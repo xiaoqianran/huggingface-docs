@@ -1,0 +1,20 @@
+# Optimum
+
+## Docs
+
+- [Installation](https://huggingface.co/docs/optimum/main/installation.md)
+- [🤗 Optimum](https://huggingface.co/docs/optimum/main/index.md)
+- [🤗 Optimum Nvidia](https://huggingface.co/docs/optimum/main/nvidia_overview.md)
+- [Quick tour](https://huggingface.co/docs/optimum/main/quicktour.md)
+- [🤗 Optimum notebooks](https://huggingface.co/docs/optimum/main/notebooks.md)
+- [🤗 Optimum Furiosa](https://huggingface.co/docs/optimum/main/furiosa_overview.md)
+- [Overview](https://huggingface.co/docs/optimum/main/exporters/overview.md)
+- [The Tasks Manager](https://huggingface.co/docs/optimum/main/exporters/task_manager.md)
+- [Dummy Input Generators](https://huggingface.co/docs/optimum/main/utils/dummy_input_generators.md)
+- [Normalized Configurations](https://huggingface.co/docs/optimum/main/utils/normalized_config.md)
+- [Quantization](https://huggingface.co/docs/optimum/main/concept_guides/quantization.md)
+- [Quantization](https://huggingface.co/docs/optimum/main/llm_quantization/usage_guides/quantization.md)
+- [Overview](https://huggingface.co/docs/optimum/main/torch_fx/overview.md)
+- [Optimization](https://huggingface.co/docs/optimum/main/torch_fx/usage_guides/optimization.md)
+- [Symbolic tracer](https://huggingface.co/docs/optimum/main/torch_fx/concept_guides/symbolic_tracer.md)
+- [Optimization](https://huggingface.co/docs/optimum/main/torch_fx/package_reference/optimization.md)

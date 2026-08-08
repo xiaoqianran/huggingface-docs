@@ -1,0 +1,38 @@
+{
+  "en": {
+    "brand": "HF Docs",
+    "brandSub": "mirror",
+    "official": "Official ↗",
+    "menu": "Menu",
+    "searchPlaceholder": "Search docs…",
+    "learningPath": "Packages · docs",
+    "copy": "Copy",
+    "copied": "Copied",
+    "mtBanner": "This page is machine-translated from English. Prefer the English original for API names and code.",
+    "mtViewEn": "View English",
+    "homeTitle": "Home",
+    "homeH1": "Hugging Face documentation mirror",
+    "homeLead": "Hub, Transformers, Diffusers, Datasets, PEFT, TRL, Inference… scraped from official llms.txt indexes.",
+    "footer": "Unofficial mirror · source: huggingface.co/docs",
+    "langEn": "EN",
+    "langZh": "中文"
+  },
+  "zh": {
+    "brand": "HF 文档",
+    "brandSub": "镜像",
+    "official": "官方 ↗",
+    "menu": "菜单",
+    "searchPlaceholder": "搜索文档…",
+    "learningPath": "包 · 文档",
+    "copy": "复制",
+    "copied": "已复制",
+    "mtBanner": "本页由英文官方文档机器翻译生成，API 名称与代码请以英文原文为准。",
+    "mtViewEn": "查看英文",
+    "homeTitle": "首页",
+    "homeH1": "Hugging Face 文档镜像",
+    "homeLead": "Hub、Transformers、Diffusers、Datasets、PEFT、TRL、Inference… 来自官方 llms.txt 索引抓取。",
+    "footer": "非官方镜像 · 来源：huggingface.co/docs",
+    "langEn": "EN",
+    "langZh": "中文"
+  }
+}

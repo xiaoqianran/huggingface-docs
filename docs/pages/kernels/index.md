@@ -1,0 +1,43 @@
+# Kernels
+
+## Docs
+
+- [Environment variables](https://huggingface.co/docs/kernels/main/env.md)
+- [Why kernels?](https://huggingface.co/docs/kernels/main/why_kernels.md)
+- [Blog posts](https://huggingface.co/docs/kernels/main/blog.md)
+- [Installation](https://huggingface.co/docs/kernels/main/installation.md)
+- [FAQ](https://huggingface.co/docs/kernels/main/faq.md)
+- [kernels versions](https://huggingface.co/docs/kernels/main/cli-versions.md)
+- [kernels info](https://huggingface.co/docs/kernels/main/cli-info.md)
+- [Quickstart](https://huggingface.co/docs/kernels/main/basic-usage.md)
+- [Projects using kernels](https://huggingface.co/docs/kernels/main/integrating-kernels.md)
+- [kernels benchmark](https://huggingface.co/docs/kernels/main/cli-benchmark.md)
+- [CLI reference for kernel-builder](https://huggingface.co/docs/kernels/main/builder-cli.md)
+- [Install agent skills](https://huggingface.co/docs/kernels/main/cli-skills.md)
+- [Kernel requirements](https://huggingface.co/docs/kernels/main/kernel-requirements.md)
+- [Migrate from older versions](https://huggingface.co/docs/kernels/main/migration.md)
+- [Kernels](https://huggingface.co/docs/kernels/main/index.md)
+- [Overview](https://huggingface.co/docs/kernels/main/cli.md)
+- [Talks](https://huggingface.co/docs/kernels/main/talks.md)
+- [kernels lock](https://huggingface.co/docs/kernels/main/cli-lock.md)
+- [Use layers](https://huggingface.co/docs/kernels/main/layers.md)
+- [Lock kernel versions](https://huggingface.co/docs/kernels/main/locking.md)
+- [kernels download](https://huggingface.co/docs/kernels/main/cli-download.md)
+- [kernels verify-signature](https://huggingface.co/docs/kernels/main/cli-verify-signature.md)
+- [Why Nix?](https://huggingface.co/docs/kernels/main/builder/why-nix.md)
+- [Write kernels](https://huggingface.co/docs/kernels/main/builder/writing-kernels.md)
+- [Develop kernels with agents](https://huggingface.co/docs/kernels/main/builder/agents-guide.md)
+- [Develop locally](https://huggingface.co/docs/kernels/main/builder/local-dev.md)
+- [Building and testing kernels with GitHub Actions](https://huggingface.co/docs/kernels/main/builder/github-actions.md)
+- [Build with Nix](https://huggingface.co/docs/kernels/main/builder/build.md)
+- [Set up for Metal kernels](https://huggingface.co/docs/kernels/main/builder/metal.md)
+- [Nix builder design](https://huggingface.co/docs/kernels/main/builder/design-nix-builder.md)
+- [Set up your IDE](https://huggingface.co/docs/kernels/main/builder/ide-setup.md)
+- [Build variants](https://huggingface.co/docs/kernels/main/builder/build-variants.md)
+- [Architecture overview](https://huggingface.co/docs/kernels/main/builder/design-overview.md)
+- [Secure your kernels](https://huggingface.co/docs/kernels/main/builder/security.md)
+- [Kernels API Reference](https://huggingface.co/docs/kernels/main/api/kernels.md)
+- [Layers API Reference](https://huggingface.co/docs/kernels/main/api/layers.md)
+
+### Environment variables
+https://huggingface.co/docs/kernels/main/env.md

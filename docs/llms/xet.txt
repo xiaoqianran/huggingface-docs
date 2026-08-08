@@ -1,0 +1,16 @@
+# Xet
+
+## Docs
+
+- [Getting a Xet File ID from the Hugging Face Hub](https://huggingface.co/docs/xet/file-id.md)
+- [Authentication and Authorization](https://huggingface.co/docs/xet/auth.md)
+- [Xorb Formation & Serialization Format](https://huggingface.co/docs/xet/xorb.md)
+- [Upload Protocol](https://huggingface.co/docs/xet/upload-protocol.md)
+- [Download Protocol](https://huggingface.co/docs/xet/download-protocol.md)
+- [Xet Protocol Specification](https://huggingface.co/docs/xet/index.md)
+- [Hashing](https://huggingface.co/docs/xet/hashing.md)
+- [Content-Defined Chunking Algorithm](https://huggingface.co/docs/xet/chunking.md)
+- [CAS API Documentation](https://huggingface.co/docs/xet/api.md)
+- [MDB Shard File Format Specification](https://huggingface.co/docs/xet/shard.md)
+- [File Reconstruction: Term-based Representation](https://huggingface.co/docs/xet/file-reconstruction.md)
+- [Xet Chunk-Level Deduplication Specification](https://huggingface.co/docs/xet/deduplication.md)

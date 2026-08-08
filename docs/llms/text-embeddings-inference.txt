@@ -1,0 +1,17 @@
+# Text-Embeddings-Inference
+
+## Docs
+
+- [Using TEI locally with GPU](https://huggingface.co/docs/text-embeddings-inference/local_gpu.md)
+- [Example uses](https://huggingface.co/docs/text-embeddings-inference/examples.md)
+- [Supported models and hardware](https://huggingface.co/docs/text-embeddings-inference/supported_models.md)
+- [Text Embeddings Inference](https://huggingface.co/docs/text-embeddings-inference/index.md)
+- [Using TEI locally with CPU](https://huggingface.co/docs/text-embeddings-inference/local_cpu.md)
+- [Using TEI Container with Intel® Hardware](https://huggingface.co/docs/text-embeddings-inference/intel_container.md)
+- [Serving private and gated models](https://huggingface.co/docs/text-embeddings-inference/private_models.md)
+- [Using TEI locally with Metal](https://huggingface.co/docs/text-embeddings-inference/local_metal.md)
+- [Quick Tour](https://huggingface.co/docs/text-embeddings-inference/quick_tour.md)
+- [Using TEI on AMD Instinct GPUs (ROCm)](https://huggingface.co/docs/text-embeddings-inference/amd_gpu.md)
+- [Deploying TEI on Google Cloud Run](https://huggingface.co/docs/text-embeddings-inference/tei_cloud_run.md)
+- [CLI arguments](https://huggingface.co/docs/text-embeddings-inference/cli_arguments.md)
+- [Build a custom container for TEI](https://huggingface.co/docs/text-embeddings-inference/custom_container.md)

@@ -1,0 +1,26 @@
+# Smolagents
+
+## Docs
+
+- [Agents - Guided tour](https://huggingface.co/docs/smolagents/v1.26.0/guided_tour.md)
+- [Installation Options](https://huggingface.co/docs/smolagents/v1.26.0/installation.md)
+- [`smolagents`](https://huggingface.co/docs/smolagents/v1.26.0/index.md)
+- [Agents](https://huggingface.co/docs/smolagents/v1.26.0/reference/agents.md)
+- [Built-in Tools](https://huggingface.co/docs/smolagents/v1.26.0/reference/default_tools.md)
+- [Models](https://huggingface.co/docs/smolagents/v1.26.0/reference/models.md)
+- [Python code executors](https://huggingface.co/docs/smolagents/v1.26.0/reference/python_executors.md)
+- [Tools](https://huggingface.co/docs/smolagents/v1.26.0/reference/tools.md)
+- [Orchestrate a multi-agent system 🤖🤝🤖](https://huggingface.co/docs/smolagents/v1.26.0/examples/multiagents.md)
+- [Async Applications with Agents](https://huggingface.co/docs/smolagents/v1.26.0/examples/async_agent.md)
+- [Using different models](https://huggingface.co/docs/smolagents/v1.26.0/examples/using_different_models.md)
+- [Text-to-SQL](https://huggingface.co/docs/smolagents/v1.26.0/examples/text_to_sql.md)
+- [Web Browser Automation with Agents 🤖🌐](https://huggingface.co/docs/smolagents/v1.26.0/examples/web_browser.md)
+- [Agentic RAG](https://huggingface.co/docs/smolagents/v1.26.0/examples/rag.md)
+- [Human-in-the-Loop: Customize Agent Plan Interactively](https://huggingface.co/docs/smolagents/v1.26.0/examples/plan_customization.md)
+- [How do multi-step agents work?](https://huggingface.co/docs/smolagents/v1.26.0/conceptual_guides/react.md)
+- [What are agents? 🤔](https://huggingface.co/docs/smolagents/v1.26.0/conceptual_guides/intro_agents.md)
+- [Secure code execution](https://huggingface.co/docs/smolagents/v1.26.0/tutorials/secure_code_execution.md)
+- [Building good agents](https://huggingface.co/docs/smolagents/v1.26.0/tutorials/building_good_agents.md)
+- [Inspecting runs with OpenTelemetry](https://huggingface.co/docs/smolagents/v1.26.0/tutorials/inspect_runs.md)
+- [Tools](https://huggingface.co/docs/smolagents/v1.26.0/tutorials/tools.md)
+- [📚 Manage your agent's memory](https://huggingface.co/docs/smolagents/v1.26.0/tutorials/memory.md)

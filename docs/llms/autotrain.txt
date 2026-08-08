@@ -1,0 +1,23 @@
+# Autotrain
+
+## Docs
+
+- [Quickstart Guide for Local Training](https://huggingface.co/docs/autotrain/main/quickstart.md)
+- [AutoTrain](https://huggingface.co/docs/autotrain/main/index.md)
+- [Quickstart Guide to AutoTrain on Hugging Face Spaces](https://huggingface.co/docs/autotrain/main/quickstart_spaces.md)
+- [How much does it cost?](https://huggingface.co/docs/autotrain/main/cost.md)
+- [Understanding Column Mapping](https://huggingface.co/docs/autotrain/main/col_map.md)
+- [AutoTrain Configs](https://huggingface.co/docs/autotrain/main/config.md)
+- [Frequently Asked Questions](https://huggingface.co/docs/autotrain/main/faq.md)
+- [Quickstart with Python](https://huggingface.co/docs/autotrain/main/quickstart_py.md)
+- [AutoTrain API](https://huggingface.co/docs/autotrain/main/autotrain_api.md)
+- [Help and Support](https://huggingface.co/docs/autotrain/main/support.md)
+- [Image Classification & Regression](https://huggingface.co/docs/autotrain/main/tasks/image_classification_regression.md)
+- [Tabular Classification / Regression](https://huggingface.co/docs/autotrain/main/tasks/tabular.md)
+- [Seq2Seq](https://huggingface.co/docs/autotrain/main/tasks/seq2seq.md)
+- [Sentence Transformers](https://huggingface.co/docs/autotrain/main/tasks/sentence_transformer.md)
+- [Object Detection](https://huggingface.co/docs/autotrain/main/tasks/object_detection.md)
+- [LLM Finetuning with AutoTrain Advanced](https://huggingface.co/docs/autotrain/main/tasks/llm_finetuning.md)
+- [Extractive Question Answering with AutoTrain](https://huggingface.co/docs/autotrain/main/tasks/extractive_qa.md)
+- [Token Classification](https://huggingface.co/docs/autotrain/main/tasks/token_classification.md)
+- [Text Classification & Regression](https://huggingface.co/docs/autotrain/main/tasks/text_classification_regression.md)
