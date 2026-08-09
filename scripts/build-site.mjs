@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// Hugging Face docs static site — EN + zh-CN, package tracks
+// Hugging Face docs — modal-docs page form (EN + zh-CN)
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { marked } from "marked";
+import { createParadigm } from "./paradigm-page.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -16,6 +17,10 @@ const UI = JSON.parse(fs.readFileSync(path.join(__dirname, "i18n", "ui.json"), "
 const CHEV_SVG =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>';
 
+const OFFICIAL = "https://huggingface.co/docs";
+const PREFERRED = ["transformers", "hub"];
+
+// --- domain constants preserved from prior builder ---
 const PACKAGE_ORDER = [
   "hub",
   "huggingface_hub",
@@ -72,10 +77,9 @@ const PACKAGE_LABEL = {
   xet: "Xet",
 };
 
-function ensureDir(p) {
-  fs.mkdirSync(p, { recursive: true });
-}
 
+
+function ensureDir(p) { fs.mkdirSync(p, { recursive: true }); }
 function asset(p, locale = "en") {
   const rel = String(p).replace(/^\//, "");
   const isShared = rel.startsWith("assets/") || rel.startsWith("meta/");
@@ -83,20 +87,13 @@ function asset(p, locale = "en") {
   const full = locPrefix + rel;
   return BASE ? `${BASE}/${full}` : `/${full}`;
 }
-
 function htmlEscape(s) {
-  return String(s)
-    .replace(/&/g, "&" + "amp;")
-    .replace(/</g, "&" + "lt;")
-    .replace(/>/g, "&" + "gt;")
-    .replace(/"/g, "&" + "quot;");
+  return String(s).replace(/&/g, "&"+"amp;").replace(/</g, "&"+"lt;").replace(/>/g, "&"+"gt;").replace(/"/g, "&"+"quot;");
 }
-
 function isHtmlDoc(text) {
   const t = String(text).trimStart().slice(0, 200).toLowerCase();
   return t.startsWith("<!doctype") || t.startsWith("<html") || t.startsWith("<head");
 }
-
 function walk(dir, acc = []) {
   if (!fs.existsSync(dir)) return acc;
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -106,26 +103,12 @@ function walk(dir, acc = []) {
   }
   return acc;
 }
-
 function titleFromMd(md, fallback) {
   const m = md.match(/^#\s+(.+)$/m);
   return m ? m[1].replace(/[`*]/g, "").trim() : fallback;
 }
 
-function humanize(slug) {
-  return slug
-    .replace(/\.md$/, "")
-    .replace(/[-_]/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
-function relToHtml(rel) {
-  return rel.replace(/\.md$/, ".html");
-}
-
-function pageHref(rel, locale) {
-  return asset(relToHtml(rel), locale);
-}
+const P = createParadigm({ htmlEscape, asset, CHEV_SVG, relToHtml });
 
 function packageOf(rel) {
   if (rel === "index.md") return "home";
@@ -206,28 +189,6 @@ function buildNav(files, locale) {
   return tracks;
 }
 
-function renderNavHtml(tracks, activeRel) {
-  // Ultra-slim: only track headers. Items hydrate from assets/nav.json on expand.
-  const parts = [];
-  const activePkg = activeRel ? packageOf(activeRel) : "home";
-  for (const track of tracks) {
-    const trackActive =
-      track.id === activePkg ||
-      track.groups.some((g) => g.items.some((it) => it.rel === activeRel));
-    const open = trackActive || track.id === "home" || track.id === "hub" ? "1" : "0";
-    parts.push(
-      `<div class="track" data-track="${htmlEscape(track.id)}" data-open="${open}" data-active="${trackActive ? "1" : "0"}" data-hydrated="0">`,
-    );
-    parts.push(
-      `<button type="button" class="track-btn" data-track-toggle="${htmlEscape(track.id)}" aria-expanded="${open === "1"}" data-needs-items="1"><span class="chev">${CHEV_SVG}</span><span class="track-label">${htmlEscape(track.name)}</span><span class="track-count">${track.count}</span></button>`,
-    );
-    parts.push(
-      `<div class="track-panel"><div class="track-panel-inner"><div class="track-body"><div class="muted" style="padding:0.45rem 0.5rem;font-size:0.78rem">Loading…</div></div></div></div></div>`,
-    );
-  }
-  return parts.join("\n");
-}
-
 function enhanceCode(html) {
   return html
     .replace(
@@ -294,121 +255,6 @@ function postProcessHtml(html, fromRel, locale) {
   });
 }
 
-function layout({ locale, title, bodyHtml, navHtml, tocHtml, rel, ui, mtBanner }) {
-  const enHref = asset(relToHtml(rel), "en");
-  const zhHref = asset(relToHtml(rel), "zh");
-  const activeEn = locale === "en" ? " active" : "";
-  const activeZh = locale === "zh" ? " active" : "";
-  const langAttr = locale === "zh" ? "zh-CN" : "en";
-
-  return `<!DOCTYPE html>
-<html lang="${langAttr}" data-locale="${locale}">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="theme-color" content="#08090c" />
-  <title>${htmlEscape(title)} · ${htmlEscape(ui.brand)}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css" />
-  <link rel="stylesheet" href="${asset("assets/site.css")}" />
-  <link rel="alternate" hreflang="en" href="${enHref}" />
-  <link rel="alternate" hreflang="zh-CN" href="${zhHref}" />
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="progress" aria-hidden="true"></div>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <button type="button" class="menu-btn" id="menuBtn" aria-label="${htmlEscape(ui.menu)}">${htmlEscape(ui.menu)}</button>
-      <a class="brand" href="${asset("index.html", locale)}">
-        <span class="brand-mark">🤗</span>
-        <span class="brand-text">${htmlEscape(ui.brand)}</span>
-        <span class="brand-v">${htmlEscape(ui.brandSub)}</span>
-      </a>
-      <nav class="chips" id="trackChips" aria-label="Tracks"></nav>
-      <div class="lang-switch" role="navigation" aria-label="Language">
-        <a class="lang-btn${activeEn}" href="${enHref}" data-lang-set="en" hreflang="en">${htmlEscape(ui.langEn)}</a>
-        <a class="lang-btn${activeZh}" href="${zhHref}" data-lang-set="zh" hreflang="zh-CN">${htmlEscape(ui.langZh)}</a>
-      </div>
-      <a class="top-link" href="https://huggingface.co/docs" rel="noopener" target="_blank">${htmlEscape(ui.official)}</a>
-    </div>
-  </header>
-  <div class="shell">
-    <aside class="sidebar" id="sidebar">
-      <div class="side-head">
-        <div class="search-wrap">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
-          <input class="search" id="search" type="search" placeholder="${htmlEscape(ui.searchPlaceholder)}" autocomplete="off" />
-          <span class="search-kbd" aria-hidden="true">/</span>
-        </div>
-        <div class="side-label">${htmlEscape(ui.learningPath)}</div>
-      </div>
-      <nav class="nav" id="nav">${navHtml}</nav>
-      <div class="side-foot">${htmlEscape(ui.footer)}</div>
-    </aside>
-    <button type="button" class="backdrop" id="backdrop" aria-label="Close menu"></button>
-    <main class="main" id="main">
-      <div class="content-wrap">
-        <article class="content prose">
-          ${mtBanner || ""}
-          ${bodyHtml}
-          <p class="page-foot">${htmlEscape(ui.footer)}</p>
-        </article>
-        ${tocHtml}
-      </div>
-    </main>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-  <script src="${asset("assets/site.js")}"></script>
-  <script>window.__HF_ACTIVE_REL__=${JSON.stringify(rel)};</script>
-  <script>document.querySelectorAll("pre code").forEach((el)=>window.hljs&&hljs.highlightElement(el));</script>
-  <button type="button" class="to-top" id="toTop" aria-label="Back to top">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
-  </button>
-
-  <div class="kbd-help" id="kbdHelp" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
-  <div class="kbd-panel">
-    <h3>Keyboard shortcuts</h3>
-    <div class="kbd-row"><span>Focus search</span><kbd>/ · ⌘K</kbd></div>
-    <div class="kbd-row"><span>Close / clear</span><kbd>Esc</kbd></div>
-    <div class="kbd-row"><span>This help</span><kbd>?</kbd></div>
-    <div style="margin-top:0.9rem;text-align:right">
-      <button type="button" class="btn ghost" id="kbdHelpClose" style="margin:0;min-height:2.1rem;padding:0.4rem 0.85rem">Close</button>
-    </div>
-  </div>
-</div>
-</body>
-</html>`;
-}
-
-function copyAssets() {
-  const out = path.join(DIST, "assets");
-  ensureDir(out);
-  for (const f of ["site.css", "site.js"]) {
-    fs.copyFileSync(path.join(__dirname, "site-assets", f), path.join(out, f));
-  }
-  fs.copyFileSync(path.join(__dirname, "i18n", "ui.json"), path.join(out, "ui.json"));
-  ensureDir(path.join(DIST, "meta"));
-  if (fs.existsSync(path.join(ROOT, "docs", "llms.txt"))) {
-    fs.copyFileSync(path.join(ROOT, "docs", "llms.txt"), path.join(DIST, "meta", "llms.txt"));
-  }
-  if (fs.existsSync(path.join(ROOT, "docs", "list.json"))) {
-    fs.copyFileSync(path.join(ROOT, "docs", "list.json"), path.join(DIST, "meta", "list.json"));
-  }
-  // package llms indexes
-  const llmsDir = path.join(ROOT, "docs", "llms");
-  if (fs.existsSync(llmsDir)) {
-    const metaLlms = path.join(DIST, "meta", "llms");
-    ensureDir(metaLlms);
-    for (const f of fs.readdirSync(llmsDir)) {
-      fs.copyFileSync(path.join(llmsDir, f), path.join(metaLlms, f));
-    }
-  }
-}
-
 function loadPages(rootDir) {
   const files = walk(rootDir);
   const pages = [];
@@ -426,32 +272,157 @@ function loadPages(rootDir) {
   return pages;
 }
 
+function pageHref(rel, locale) {
+  return asset(relToHtml(rel), locale);
+}
+
+function humanize(slug) {
+  return slug
+    .replace(/\.md$/, "")
+    .replace(/[-_]/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function relToHtml(rel) {
+  return rel.replace(/\.md$/, ".html");
+}
+
+
+function renderNavHtml(tracks, activeRel) {
+  return P.renderNavHtmlFull(tracks, activeRel, PREFERRED);
+}
+function renderChipsHtml(tracks, activeRel) {
+  return P.renderChipsHtmlFull(tracks, activeRel, 12);
+}
+
+function layout({ locale, title, bodyHtml, navHtml, chipsHtml, tocHtml, rel, ui, mtBanner, crumbHtml, pagerHtml }) {
+  const enHref = asset(relToHtml(rel || "index.md"), "en");
+  const zhHref = asset(relToHtml(rel || "index.md"), "zh");
+  const activeEn = locale === "en" ? " active" : "";
+  const activeZh = locale === "zh" ? " active" : "";
+  const langAttr = locale === "zh" ? "zh-CN" : "en";
+  const desc = htmlEscape(ui.homeLead || title || "");
+  return `<!DOCTYPE html>
+<html lang="${langAttr}" data-locale="${locale}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="${desc}" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#08090c" />
+  <title>${htmlEscape(title)} · ${htmlEscape(ui.brand || "Docs")}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="${asset("assets/site.css")}" />
+  <link rel="alternate" hreflang="en" href="${enHref}" />
+  <link rel="alternate" hreflang="zh-CN" href="${zhHref}" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button type="button" class="menu-btn" id="menuBtn" aria-label="${htmlEscape(ui.menu || "Menu")}">${htmlEscape(ui.menu || "Menu")}</button>
+      <a class="brand" href="${asset("index.html", locale)}">
+        <span class="brand-mark">HF</span>
+        <span class="brand-text">${htmlEscape(ui.brand || "Docs")}</span>
+        <span class="brand-v">${htmlEscape(ui.brandSub || "mirror")}</span>
+      </a>
+      <nav class="chips" id="trackChips" aria-label="Tracks">${chipsHtml || ""}</nav>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a class="lang-btn${activeEn}" href="${enHref}" data-lang-set="en" hreflang="en">${htmlEscape(ui.langEn || "EN")}</a>
+        <a class="lang-btn${activeZh}" href="${zhHref}" data-lang-set="zh" hreflang="zh-CN">${htmlEscape(ui.langZh || "中文")}</a>
+      </div>
+      <a class="top-link" href="${OFFICIAL}" rel="noopener" target="_blank">${htmlEscape(ui.official || "Official ↗")}</a>
+    </div>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="side-head">
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input class="search" id="search" type="search" placeholder="${htmlEscape(ui.searchPlaceholder || "Search…")}" autocomplete="off" />
+          <span class="search-kbd" aria-hidden="true">/</span>
+        </div>
+        <p class="side-label">${htmlEscape(ui.learningPath || "Browse docs")}</p>
+      </div>
+      <nav class="nav" id="nav" data-active-rel="${htmlEscape(rel || "")}" aria-label="Docs">${navHtml}</nav>
+      <div class="side-foot">${htmlEscape(ui.footer || "")}</div>
+    </aside>
+    <button type="button" class="backdrop" id="backdrop" aria-label="Close menu"></button>
+    <div class="main" id="main">
+      ${mtBanner || ""}
+      <div class="crumb">${crumbHtml || ""}</div>
+      <div class="content-wrap">
+        <article class="content prose">${bodyHtml}</article>
+        ${tocHtml || ""}
+      </div>
+      ${pagerHtml || ""}
+      <footer class="page-foot">${htmlEscape(ui.footer || "")}</footer>
+    </div>
+  </div>
+  ${P.kbdHelpHtml()}
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="${asset("assets/site.js")}"></script>
+</body>
+</html>`;
+}
+
+function copyAssets() {
+  const out = path.join(DIST, "assets");
+  ensureDir(out);
+  for (const f of ["site.css", "site.js"]) {
+    fs.copyFileSync(path.join(__dirname, "site-assets", f), path.join(out, f));
+  }
+  fs.copyFileSync(path.join(__dirname, "i18n", "ui.json"), path.join(out, "ui.json"));
+  ensureDir(path.join(DIST, "meta"));
+  for (const f of ["llms.txt", "list.json"]) {
+    const src = path.join(ROOT, "docs", f);
+    if (fs.existsSync(src)) fs.copyFileSync(src, path.join(DIST, "meta", f));
+  }
+}
+
 function buildLocale(locale, pages, navTracks) {
-  const ui = UI[locale] || UI.en;
+  const sync = locale === "zh" ? "每日与 huggingface.co/docs 同步" : "synced daily from huggingface.co/docs";
+  const ui = P.enrichUi(UI[locale] || UI.en, locale, sync);
   const outRoot = locale === "zh" ? path.join(DIST, "zh") : DIST;
   ensureDir(outRoot);
+  const flat = P.flattenNav(navTracks);
+  const homeHref = asset("index.html", locale);
   let n = 0;
   for (const page of pages) {
-    const nav = renderNavHtml(navTracks, page.rel);
-    marked.setOptions({ gfm: true, breaks: false });
-    let body = marked.parse(page.md);
-    body = enhanceCode(body);
-    body = postProcessHtml(body, page.rel, locale);
-    const toc = tocFromHtml(body);
+    const isHome = page.rel === "index.md";
+    const title = isHome ? (locale === "zh" ? "首页" : "Home") : page.title;
+    const navHtml = renderNavHtml(navTracks, page.rel);
+    const chipsHtml = renderChipsHtml(navTracks, page.rel);
+    let body, toc = "";
+    if (isHome) {
+      body = P.renderHomeBody(navTracks, ui, {
+        pageCount: pages.length,
+        localeCount: 2,
+        officialUrl: OFFICIAL,
+        syncNote: sync,
+        llmsHref: asset("meta/llms.txt"),
+      });
+    } else {
+      marked.setOptions({ gfm: true, breaks: false });
+      body = marked.parse(page.md);
+      body = P.addHeadingIds(body);
+      body = enhanceCode(body);
+      body = postProcessHtml(body, page.rel, locale);
+      toc = tocFromHtml(body);
+    }
+    const meta = P.findActiveMeta(navTracks, page.rel);
+    meta.title = title;
+    const crumbHtml = P.renderCrumb(ui, meta, isHome, homeHref);
+    const pagerHtml = isHome ? "" : P.renderPager(flat, page.rel, ui);
     const mtBanner =
-      locale === "zh"
-        ? `<div class="mt-banner">${htmlEscape(ui.mtBanner)} <a href="${asset(relToHtml(page.rel), "en")}">${htmlEscape(ui.mtViewEn)}</a></div>`
+      locale === "zh" && !isHome && ui.mtBanner
+        ? `<div class="mt-banner">${htmlEscape(ui.mtBanner)} <a href="${asset(relToHtml(page.rel), "en")}">${htmlEscape(ui.mtViewEn || "View English")}</a></div>`
         : "";
-    const html = layout({
-      locale,
-      title: page.title,
-      bodyHtml: body,
-      navHtml: nav,
-      tocHtml: toc,
-      rel: page.rel,
-      ui,
-      mtBanner,
-    });
+    const html = layout({ locale, title, bodyHtml: body, navHtml, chipsHtml, tocHtml: toc, rel: page.rel, ui, mtBanner, crumbHtml, pagerHtml });
     const outFile = path.join(outRoot, relToHtml(page.rel));
     ensureDir(path.dirname(outFile));
     fs.writeFileSync(outFile, html);
@@ -464,13 +435,8 @@ function main() {
   fs.rmSync(DIST, { recursive: true, force: true });
   ensureDir(DIST);
   copyAssets();
-
   const enPages = loadPages(EN_PAGES);
-  if (!enPages.length) {
-    console.error("No EN pages found under docs/pages");
-    process.exit(1);
-  }
-
+  if (!enPages.length) { console.error("No EN pages"); process.exit(1); }
   const zhPages = enPages.map((p) => {
     const zhAbs = path.join(ZH_PAGES, p.rel);
     if (fs.existsSync(zhAbs)) {
@@ -482,24 +448,14 @@ function main() {
     }
     return { ...p };
   });
-
   const enNav = buildNav(enPages, "en");
   const zhNav = buildNav(zhPages, "zh");
   fs.writeFileSync(path.join(DIST, "assets", "nav.json"), JSON.stringify(enNav, null, 2));
   fs.writeFileSync(path.join(DIST, "assets", "nav.zh.json"), JSON.stringify(zhNav, null, 2));
-
   const nEn = buildLocale("en", enPages, enNav);
   const nZh = buildLocale("zh", zhPages, zhNav);
-
-  const counts = {};
-  for (const t of enNav) counts[t.name] = t.count;
-  console.log(
-    `[en] ${nEn} pages — ${Object.entries(counts)
-      .map(([k, v]) => `${k}:${v}`)
-      .join(" · ")}`,
-  );
-  console.log(`[zh] ${nZh} pages (EN fallback where untranslated)`);
+  console.log(`[en] ${nEn} pages — tracks ${enNav.length}`);
+  console.log(`[zh] ${nZh} pages`);
   console.log(`Built locales en+zh -> ${DIST} (BASE=${BASE || "/"})`);
 }
-
 main();
