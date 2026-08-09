@@ -5,6 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { marked } from "marked";
 import { createParadigm } from "./paradigm-page.mjs";
+import { writeLlmsArtifacts } from "./generate-llms.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -404,7 +405,8 @@ function buildLocale(locale, pages, navTracks) {
         localeCount: 2,
         officialUrl: OFFICIAL,
         syncNote: sync,
-        llmsHref: asset("meta/llms.txt"),
+        llmsHref: asset("llms.txt"),
+        llmsFullHref: asset("llms-full.txt"),
       });
     } else {
       marked.setOptions({ gfm: true, breaks: false });
@@ -456,6 +458,32 @@ function main() {
   const nZh = buildLocale("zh", zhPages, zhNav);
   console.log(`[en] ${nEn} pages — tracks ${enNav.length}`);
   console.log(`[zh] ${nZh} pages`);
+  
+  // --- llmstxt.org artifacts (llms.txt + llms-full.txt) ---
+  try {
+    const llmsPages = (typeof enPages !== "undefined" ? enPages : typeof pages !== "undefined" ? pages : [])
+      .filter((p) => p && p.rel && p.md)
+      .map((p) => ({ rel: p.rel, title: p.title, md: p.md }));
+    const llmsNav = (typeof enNav !== "undefined" ? enNav : typeof nav !== "undefined" ? nav : typeof navTracks !== "undefined" ? navTracks : null);
+    const llmsResult = writeLlmsArtifacts({
+      dist: DIST,
+      pages: llmsPages,
+      base: BASE,
+      origin: process.env.SITE_ORIGIN || "https://xiaoqianran.github.io",
+      brand: 'Hugging Face Docs',
+      description: 'Unofficial mirror of Hugging Face documentation (Hub, Transformers, Diffusers, Datasets, and more).',
+      officialUrl: 'https://huggingface.co/docs',
+      repo: 'huggingface-docs',
+      nav: llmsNav,
+    });
+    console.log(
+      `[llms] llms.txt + llms-full.txt — ${llmsResult.pageCount} pages, full=${Math.round(llmsResult.fullBytes / 1024)}KB` +
+        (llmsResult.fullTruncated ? " (truncated)" : ""),
+    );
+  } catch (err) {
+    console.warn("[llms] failed:", err?.message || err);
+  }
+
   console.log(`Built locales en+zh -> ${DIST} (BASE=${BASE || "/"})`);
 }
 main();
