@@ -9,7 +9,7 @@ There are three ways to provide the token: setting an environment variable, pass
 If you set the environment variable `HF_TOKEN`, Polars will automatically use it when requesting datasets from Hugging Face.
 
 ```bash
-export HF_TOKEN="hf_xxxxxxxxxxxxx"
+export HF_TOKEN="REDACTED"
 ```
 
 ## Parameters

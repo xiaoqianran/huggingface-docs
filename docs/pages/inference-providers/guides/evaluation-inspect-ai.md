@@ -15,7 +15,7 @@ pip install inspect-ai
 3. Set your `HF_TOKEN` as an environment variable and install the `openai` package to call models using Inference Providers. 
 
 ```bash
-export HF_TOKEN="your_token_here"
+export HF_TOKEN="REDACTED"
 pip install openai
 ```
 

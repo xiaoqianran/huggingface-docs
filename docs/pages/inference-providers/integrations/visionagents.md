@@ -17,7 +17,7 @@ A Hugging Face account with an [API token](https://huggingface.co/settings/token
 Export your token as an environment variable:
 
 ```bash
-export HF_TOKEN=your_huggingface_token
+export HF_TOKEN=REDACTED
 ```
 
 ## Installation

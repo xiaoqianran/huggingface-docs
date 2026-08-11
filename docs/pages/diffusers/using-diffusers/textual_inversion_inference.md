@@ -39,7 +39,7 @@ pipeline = AutoPipelineForText2Image.from_pretrained(
 pipeline.load_textual_inversion(
     "EvilEngine/easynegative",
     weight_name="easynegative.safetensors",
-    token="easynegative"
+    token="REDACTED"
 )
 prompt = "A cute brown bear eating a slice of pizza, stunning color scheme, masterpiece, illustration"
 negative_prompt = "easynegative"

@@ -43,7 +43,7 @@ hf auth login
 Alternatively, you can set your Hugging Face token as an environment variable:
 
 ```bash
-export HF_TOKEN="hf_xxxxxxxxxxxxx"
+export HF_TOKEN="REDACTED"
 ```
 
 For more information on authentication, see the [Hugging Face authentication](/docs/huggingface_hub/main/en/quick-start#authentication) documentation.

@@ -29,7 +29,7 @@ $ pip install deepspeed # if you want to use deepspeed
 To run the autotrain app locally, you can use the following command:
 
 ```bash
-$ export HF_TOKEN=your_hugging_face_write_token
+$ export HF_TOKEN=REDACTED
 $ autotrain app --host 127.0.0.1 --port 8000
 ```
 
@@ -40,7 +40,7 @@ This will start the app on `http://127.0.0.1:8000`.
 It is also possible to use the CLI:
 
 ```bash
-$ export HF_TOKEN=your_hugging_face_write_token
+$ export HF_TOKEN=REDACTED
 $ autotrain --help
 ```
 

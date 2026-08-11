@@ -33,7 +33,7 @@ pip install -r requirements.txt
 Write your .env variables with the SDK API key and bot name provided by the Frodobots team.
 
 ```bash
-SDK_API_TOKEN=your_sdk_api_token_here
+SDK_API_TOKEN=REDACTED
 BOT_SLUG=your_bot_slug_here
 CHROME_EXECUTABLE_PATH=/path/to/chrome_or_chromium
 # Default value is MAP_ZOOM_LEVEL=18 https://wiki.openstreetmap.org/wiki/Zoom_levels

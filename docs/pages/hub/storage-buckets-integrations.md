@@ -106,11 +106,11 @@ run: |
   python train.py --model /base-model --output_dir /checkpoints
 ```
 
-Authenticate once - `hf auth login` (or `export HF_TOKEN=<your-token>`) is all SkyPilot needs. It forwards your local Hugging Face token to every cloud, so the bucket and repo mounts authenticate automatically:
+Authenticate once - `hf auth login` (or `export HF_TOKEN=REDACTED is all SkyPilot needs. It forwards your local Hugging Face token to every cloud, so the bucket and repo mounts authenticate automatically:
 
 ```bash
 pip install "skypilot[huggingface]"
-hf auth login                              # or: export HF_TOKEN=<your-token>
+hf auth login                              # or: export HF_TOKEN=REDACTED
 sky launch qwen-sft.yaml
 ```
 

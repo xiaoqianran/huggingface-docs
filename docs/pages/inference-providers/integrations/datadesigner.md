@@ -16,7 +16,7 @@ DataDesigner supports OpenAI-compatible endpoints, making it easy to use any mod
 ### 1. Set your HF token
 
 ```bash
-export HF_TOKEN="hf_your_token_here"
+export HF_TOKEN="REDACTED"
 ```
 
 ### 2. Configure HF as a provider

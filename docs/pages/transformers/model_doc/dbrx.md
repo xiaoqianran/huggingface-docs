@@ -29,11 +29,11 @@ The `generate()` method can be used to generate text using DBRX. You can generat
 
 from transformers import AutoTokenizer, DbrxForCausalLM
 
-tokenizer = AutoTokenizer.from_pretrained("transformers-community/dbrx-instruct", token="YOUR_HF_TOKEN")
+tokenizer = AutoTokenizer.from_pretrained("transformers-community/dbrx-instruct", token="REDACTED")
 model = DbrxForCausalLM.from_pretrained(
     "transformers-community/dbrx-instruct",
     device_map="auto",
-    token="YOUR_HF_TOKEN",
+    token="REDACTED",
     )
 
 input_text = "What does it take to build a great LLM?"
@@ -50,11 +50,11 @@ If you have flash-attention installed (`pip install flash-attn`), it is possible
 
 from transformers import AutoTokenizer, DbrxForCausalLM
 
-tokenizer = AutoTokenizer.from_pretrained("transformers-community/dbrx-instruct", token="YOUR_HF_TOKEN")
+tokenizer = AutoTokenizer.from_pretrained("transformers-community/dbrx-instruct", token="REDACTED")
 model = DbrxForCausalLM.from_pretrained(
     "transformers-community/dbrx-instruct",
     device_map="auto",
-    token="YOUR_HF_TOKEN",
+    token="REDACTED",
     attn_implementation="flash_attention_2",
     )
 
@@ -72,11 +72,11 @@ You can also generate faster using the PyTorch scaled dot product attention. (Th
 
 from transformers import AutoTokenizer, DbrxForCausalLM
 
-tokenizer = AutoTokenizer.from_pretrained("transformers-community/dbrx-instruct", token="YOUR_HF_TOKEN")
+tokenizer = AutoTokenizer.from_pretrained("transformers-community/dbrx-instruct", token="REDACTED")
 model = DbrxForCausalLM.from_pretrained(
     "transformers-community/dbrx-instruct",
     device_map="auto",
-    token="YOUR_HF_TOKEN",
+    token="REDACTED",
     attn_implementation="sdpa",
     )
 

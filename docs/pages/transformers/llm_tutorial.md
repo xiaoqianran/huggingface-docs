@@ -115,7 +115,7 @@ translation_generation_config = GenerationConfig(
     early_stopping=True,
     decoder_start_token_id=0,
     eos_token_id=model.config.eos_token_id,
-    pad_token=model.config.pad_token_id,
+    pad_token=REDACTED,
 )
 
 translation_generation_config.save_pretrained("/tmp", config_file_name="translation_generation_config.json", push_to_hub=True)

@@ -141,7 +141,7 @@ from smolagents import CodeAgent, InferenceClientModel
 
 model_id = "meta-llama/Llama-3.3-70B-Instruct"
 
-model = InferenceClientModel(model_id=model_id, token="<YOUR_HUGGINGFACEHUB_API_TOKEN>") # You can choose to not pass any model_id to InferenceClientModel to use a default model
+model = InferenceClientModel(model_id=model_id, token="REDACTED") # You can choose to not pass any model_id to InferenceClientModel to use a default model
 # you can also specify a particular provider e.g. provider="together" or provider="sambanova"
 agent = CodeAgent(tools=[], model=model, add_base_tools=True)
 
@@ -170,7 +170,7 @@ To use `LiteLLMModel`, you need to set the environment variable `ANTHROPIC_API_K
 # !pip install 'smolagents[litellm]'
 from smolagents import CodeAgent, LiteLLMModel
 
-model = LiteLLMModel(model_id="anthropic/claude-3-5-sonnet-latest", api_key="YOUR_ANTHROPIC_API_KEY") # Could use 'gpt-4o'
+model = LiteLLMModel(model_id="anthropic/claude-3-5-sonnet-latest", api_key="REDACTED") # Could use 'gpt-4o'
 agent = CodeAgent(tools=[], model=model, add_base_tools=True)
 
 agent.run(
@@ -185,7 +185,7 @@ from smolagents import CodeAgent, LiteLLMModel
 model = LiteLLMModel(
     model_id="ollama_chat/llama3.2", # This model is a bit weak for agentic behaviours though
     api_base="http://localhost:11434", # replace with 127.0.0.1:11434 or remote open-ai compatible server if necessary
-    api_key="YOUR_API_KEY", # replace with API key if necessary
+    api_key="REDACTED", # replace with API key if necessary
     num_ctx=8192, # ollama default is 2048 which will fail horribly. 8192 works for easy tasks, more is better. Check https://huggingface.co/spaces/NyxKrage/LLM-Model-VRAM-Calculator to calculate how much VRAM this will need for the selected model.
 )
 

@@ -65,7 +65,7 @@ import { Agent } from "@huggingface/tiny-agents";
 const agent = new Agent({
     model: "Qwen/Qwen2.5-72B-Instruct",
     provider: "novita",
-    apiKey: process.env.HF_TOKEN,
+    apiKey: REDACTED,
     servers: [
         {
             type: "sse",

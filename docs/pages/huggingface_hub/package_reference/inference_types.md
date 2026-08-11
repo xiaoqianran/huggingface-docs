@@ -1098,7 +1098,7 @@ huggingface_hub.TextGenerationOutputToken(id: int, logprob: float, special: bool
 #### huggingface_hub.TextGenerationStreamOutput[[huggingface_hub.TextGenerationStreamOutput]]
 
 ```python
-huggingface_hub.TextGenerationStreamOutput(index: int, token: TextGenerationStreamOutputToken, details: huggingface_hub.inference._generated.types.text_generation.TextGenerationStreamOutputStreamDetails | None = None, generated_text: str | None = None, top_tokens: list[huggingface_hub.inference._generated.types.text_generation.TextGenerationStreamOutputToken] | None = None)
+huggingface_hub.TextGenerationStreamOutput(index: int, token: REDACTED, details: huggingface_hub.inference._generated.types.text_generation.TextGenerationStreamOutputStreamDetails | None = None, generated_text: str | None = None, top_tokens: list[huggingface_hub.inference._generated.types.text_generation.TextGenerationStreamOutputToken] | None = None)
 ```
 
 [Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/types/text_generation.py#L157)

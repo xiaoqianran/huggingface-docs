@@ -16,7 +16,7 @@ The easiest way to run TGI on Gaudi is to use the official Docker image:
 ```bash
 model=meta-llama/Meta-Llama-3.1-8B-Instruct
 volume=$PWD/data # share a volume with the Docker container to avoid downloading weights every run
-hf_token=YOUR_HF_ACCESS_TOKEN
+hf_token=REDACTED
 
 docker run --runtime=habana --cap-add=sys_nice --ipc=host \
     -p 8080:80 -v $volume:/data -e HF_TOKEN=$hf_token \

@@ -22,7 +22,7 @@ class MyModelProcessor(ProcessorMixin):
     valid_processor_kwargs = MyModelProcessorKwargs
 
     def __init__(self, image_processor, tokenizer, chat_template=None, **kwargs):
-        self.image_token = tokenizer.image_token
+        self.image_token = REDACTED
         self.image_token_id = tokenizer.image_token_id
         super().__init__(
             image_processor=image_processor,

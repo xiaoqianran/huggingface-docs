@@ -205,7 +205,7 @@ Token Exchange uses HTTP Basic Authentication with your OAuth app credentials. C
 ```bash
 # Create the authorization header
 export CLIENT_ID="your-client-id"
-export CLIENT_SECRET="your-client-secret"
+export CLIENT_SECRET=REDACTED
 export AUTH_HEADER=$(echo -n "${CLIENT_ID}:${CLIENT_SECRET}" | base64)
 ```
 

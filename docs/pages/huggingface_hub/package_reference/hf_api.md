@@ -7081,7 +7081,7 @@ Example:
 ...     task_id="default",
 ...     value=20.90,
 ...     dataset_revision="5503434ddd753f426f4b38109466949a1217c2bb",
-...     verify_token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+...     verify_token="REDACTED",
 ...     date="2025-01-15T10:30:00Z",
 ...     source_url="https://huggingface.co/datasets/cais/hle",
 ...     source_name="CAIS HLE",

@@ -314,7 +314,7 @@ Example using a third-party provider directly with extra (provider-specific) par
 >>> from huggingface_hub import InferenceClient
 >>> client = InferenceClient(
 ...     provider="together",  # Use Together AI provider
-...     api_key="<together_api_key>",  # Pass your Together API key directly
+...     api_key="REDACTED",  # Pass your Together API key directly
 ... )
 >>> client.chat_completion(
 ...     model="meta-llama/Meta-Llama-3-8B-Instruct",
@@ -1542,7 +1542,7 @@ Example using a third-party provider directly. Usage will be billed on your fal.
 >>> from huggingface_hub import InferenceClient
 >>> client = InferenceClient(
 ...     provider="fal-ai",  # Use fal.ai provider
-...     api_key="fal-ai-api-key",  # Pass your fal.ai API key
+...     api_key="REDACTED",  # Pass your fal.ai API key
 ... )
 >>> image = client.text_to_image(
 ...     "A majestic lion in a fantasy forest",
@@ -1662,7 +1662,7 @@ Example using a third-party provider directly. Usage will be billed on your Repl
 >>> from huggingface_hub import InferenceClient
 >>> client = InferenceClient(
 ...     provider="replicate",
-...     api_key="your-replicate-api-key",  # Pass your Replicate API key directly
+...     api_key="REDACTED",  # Pass your Replicate API key directly
 ... )
 >>> audio = client.text_to_speech(
 ...     text="Hello world",
@@ -1777,7 +1777,7 @@ Example using a third-party provider directly. Usage will be billed on your fal.
 >>> from huggingface_hub import InferenceClient
 >>> client = InferenceClient(
 ...     provider="fal-ai",  # Using fal.ai provider
-...     api_key="fal-ai-api-key",  # Pass your fal.ai API key
+...     api_key="REDACTED",  # Pass your fal.ai API key
 ... )
 >>> video = client.text_to_video(
 ...     "A majestic lion running in a fantasy forest",
@@ -2403,7 +2403,7 @@ Example using a third-party provider directly with extra (provider-specific) par
 >>> from huggingface_hub import InferenceClient
 >>> client = InferenceClient(
 ...     provider="together",  # Use Together AI provider
-...     api_key="<together_api_key>",  # Pass your Together API key directly
+...     api_key="REDACTED",  # Pass your Together API key directly
 ... )
 >>> client.chat_completion(
 ...     model="meta-llama/Meta-Llama-3-8B-Instruct",
@@ -3666,7 +3666,7 @@ Example using a third-party provider directly. Usage will be billed on your fal.
 >>> from huggingface_hub import InferenceClient
 >>> client = InferenceClient(
 ...     provider="fal-ai",  # Use fal.ai provider
-...     api_key="fal-ai-api-key",  # Pass your fal.ai API key
+...     api_key="REDACTED",  # Pass your fal.ai API key
 ... )
 >>> image = client.text_to_image(
 ...     "A majestic lion in a fantasy forest",
@@ -3787,7 +3787,7 @@ Example using a third-party provider directly. Usage will be billed on your Repl
 >>> from huggingface_hub import InferenceClient
 >>> client = InferenceClient(
 ...     provider="replicate",
-...     api_key="your-replicate-api-key",  # Pass your Replicate API key directly
+...     api_key="REDACTED",  # Pass your Replicate API key directly
 ... )
 >>> audio = client.text_to_speech(
 ...     text="Hello world",
@@ -3902,7 +3902,7 @@ Example using a third-party provider directly. Usage will be billed on your fal.
 >>> from huggingface_hub import InferenceClient
 >>> client = InferenceClient(
 ...     provider="fal-ai",  # Using fal.ai provider
-...     api_key="fal-ai-api-key",  # Pass your fal.ai API key
+...     api_key="REDACTED",  # Pass your fal.ai API key
 ... )
 >>> video = client.text_to_video(
 ...     "A majestic lion running in a fantasy forest",

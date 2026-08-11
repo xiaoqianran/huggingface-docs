@@ -308,7 +308,7 @@ and behavior.
   If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
   `past_key_values`).
 - **image_sizes** (`torch.Tensor` of shape `(batch_size, 2)`, *optional*) --
-  The sizes of the images in the batch, being (height, width) for each image.`Mistral3ModelOutputWithPast` or `tuple(torch.FloatTensor)`A `Mistral3ModelOutputWithPast` or a tuple of
+  The sizes of the images in the batch, being (height, width) for each image.`Mistral3ModelOutputWithPast` or `tuple(torch.FloatTensor)`A `REDACTED` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration ([Mistral3Config](/docs/transformers/v5.14.0/en/model_doc/mistral3#transformers.Mistral3Config)) and inputs.
 The [Mistral3Model](/docs/transformers/v5.14.0/en/model_doc/mistral3#transformers.Mistral3Model) forward method, overrides the `__call__` special method.
@@ -443,7 +443,7 @@ and behavior.
   If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension.
   This is useful when using packed tensor format (single dimension for batch and sequence length).
 - **image_sizes** (`torch.Tensor` of shape `(batch_size, 2)`, *optional*) --
-  The sizes of the images in the batch, being (height, width) for each image.`Mistral3CausalLMOutputWithPast` or `tuple(torch.FloatTensor)`A `Mistral3CausalLMOutputWithPast` or a tuple of
+  The sizes of the images in the batch, being (height, width) for each image.`Mistral3CausalLMOutputWithPast` or `tuple(torch.FloatTensor)`A `REDACTED` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration ([Mistral3Config](/docs/transformers/v5.14.0/en/model_doc/mistral3#transformers.Mistral3Config)) and inputs.
 The [Mistral3ForConditionalGeneration](/docs/transformers/v5.14.0/en/model_doc/mistral3#transformers.Mistral3ForConditionalGeneration) forward method, overrides the `__call__` special method.

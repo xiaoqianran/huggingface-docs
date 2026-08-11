@@ -41,7 +41,7 @@ with torch.no_grad():
 # To get predictions for the mask:
 masked_index = inputs["input_ids"][0].tolist().index(processor.tokenizer.mask_token_id)
 predicted_token_id = outputs.logits[0, masked_index].argmax(axis=-1)
-predicted_token = processor.tokenizer.decode(predicted_token_id)
+predicted_token = REDACTED(predicted_token_id)
 print("Predicted token:", predicted_token)  # Predicted token: painting
 ```
 

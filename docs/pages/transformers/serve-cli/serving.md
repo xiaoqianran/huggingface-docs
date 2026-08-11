@@ -70,7 +70,7 @@ The Transformers library is primarily known for its ability to create and manipu
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 completion = client.chat.completions.create(
     model="Qwen/Qwen2.5-0.5B-Instruct",
@@ -93,7 +93,7 @@ The Transformers library is primarily known for its ability to create and manipu
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 completion = client.chat.completions.create(
     model="Qwen/Qwen2.5-0.5B-Instruct",
@@ -243,7 +243,7 @@ The image depicts an astronaut in a space suit standing on what appears to be th
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 completion = client.chat.completions.create(
     model="Qwen/Qwen2.5-VL-7B-Instruct",
@@ -274,7 +274,7 @@ The image depicts an astronaut in a space suit standing on what appears to be th
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 completion = client.chat.completions.create(
     model="Qwen/Qwen2.5-VL-7B-Instruct",
@@ -466,7 +466,7 @@ import base64
 import httpx
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 audio_url = "https://huggingface.co/datasets/hf-internal-testing/dummy-audio-samples/resolve/main/obama_first_45_secs.mp3"
 audio_b64 = base64.b64encode(httpx.get(audio_url, follow_redirects=True).content).decode()
@@ -497,7 +497,7 @@ import base64
 import httpx
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 audio_url = "https://huggingface.co/datasets/hf-internal-testing/dummy-audio-samples/resolve/main/obama_first_45_secs.mp3"
 audio_b64 = base64.b64encode(httpx.get(audio_url, follow_redirects=True).content).decode()
@@ -701,7 +701,7 @@ The lyrics of the song are: "I don't care 'bout street, from that fresh street, 
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 completion = client.chat.completions.create(
     model="google/gemma-4-E2B-it",
@@ -730,7 +730,7 @@ The lyrics of the song are: "I don't care 'bout street, from that fresh street, 
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 completion = client.chat.completions.create(
     model="google/gemma-4-E2B-it",
@@ -841,7 +841,7 @@ To have a multi-turn conversation, include the full conversation history in the 
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 completion = client.chat.completions.create(
     model="Qwen/Qwen2.5-0.5B-Instruct",
@@ -901,7 +901,7 @@ The command returns the following response.
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 # Non-streaming
 completion = client.completions.create(
@@ -942,7 +942,7 @@ The `v1/responses` API supports text, image, audio, and video requests through t
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 response = client.responses.create(
     model="Qwen/Qwen2.5-0.5B-Instruct",
@@ -962,7 +962,7 @@ Once upon a time, in a faraway land, there lived a beautiful unicorn named Luna 
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 response = client.responses.create(
     model="Qwen/Qwen2.5-0.5B-Instruct",
@@ -1050,7 +1050,7 @@ The Responses API also supports image, audio, and video inputs.
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 response = client.responses.create(
     model="Qwen/Qwen2.5-VL-7B-Instruct",
@@ -1076,7 +1076,7 @@ The image depicts an astronaut in a space suit standing on what appears to be th
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 response = client.responses.create(
     model="Qwen/Qwen2.5-VL-7B-Instruct",
@@ -1174,7 +1174,7 @@ import base64
 import httpx
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 audio_url = "https://huggingface.co/datasets/hf-internal-testing/dummy-audio-samples/resolve/main/obama_first_45_secs.mp3"
 audio_b64 = base64.b64encode(httpx.get(audio_url, follow_redirects=True).content).decode()
@@ -1202,7 +1202,7 @@ import base64
 import httpx
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 audio_url = "https://huggingface.co/datasets/hf-internal-testing/dummy-audio-samples/resolve/main/obama_first_45_secs.mp3"
 audio_b64 = base64.b64encode(httpx.get(audio_url, follow_redirects=True).content).decode()
@@ -1337,7 +1337,7 @@ response = client.responses.create(
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 response = client.responses.create(
     model="google/gemma-4-E2B-it",
@@ -1362,7 +1362,7 @@ The lyrics of the song are: "I don't care 'bout street, from that fresh street, 
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 response = client.responses.create(
     model="google/gemma-4-E2B-it",
@@ -1459,7 +1459,7 @@ For multi-turn conversations, pass a list of messages with `role` keys in the `i
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="<random_string>")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="REDACTED")
 
 response = client.responses.create(
     model="Qwen/Qwen2.5-0.5B-Instruct",

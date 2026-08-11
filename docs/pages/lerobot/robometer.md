@@ -98,7 +98,7 @@ from lerobot.rewards.robometer.processor_robometer import RobometerEncoderProces
 encoder = RobometerEncoderProcessorStep(
     base_model_id=cfg.base_model_id,
     use_multi_image=cfg.use_multi_image,
-    use_per_frame_progress_token=cfg.use_per_frame_progress_token,
+    use_per_frame_progress_token=REDACTED,
     max_frames=cfg.max_frames,
 )
 

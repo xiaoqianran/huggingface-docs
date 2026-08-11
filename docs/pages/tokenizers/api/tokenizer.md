@@ -24,7 +24,7 @@ Example:
 >>> from tokenizers.models import BPE
 >>> from tokenizers.normalizers import Lowercase
 >>> from tokenizers.pre_tokenizers import Whitespace
->>> tokenizer = Tokenizer(BPE(unk_token="&amp;lt;unk>"))
+>>> tokenizer = Tokenizer(BPE(unk_token="REDACTED"))
 >>> tokenizer.normalizer = Lowercase()
 >>> tokenizer.pre_tokenizer = Whitespace()
 >>> # Load a pre-built tokenizer from HuggingFace Hub

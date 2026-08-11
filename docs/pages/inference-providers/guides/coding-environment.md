@@ -229,7 +229,7 @@ Prerequisites
 
 2. Set your Hugging Face token, or any other API key that is compatible with the OpenAI API:
 
-       export HF_TOKEN=your_token_here
+       export HF_TOKEN=REDACTED
        export API_KEY=your_api_key_here
 
 3. Run the script::

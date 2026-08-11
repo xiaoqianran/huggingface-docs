@@ -44,7 +44,7 @@ with torch.inference_mode():
     outputs = model(**inputs)
 
 # outputs.pooler_output is the CLS token (whole-image embedding)
-cls_token = outputs.pooler_output
+cls_token = REDACTED
 print("CLS token shape:", cls_token.shape)  # [1, 1024]
 ```
 
@@ -653,7 +653,7 @@ Example:
 >>> with torch.inference_mode():
 ...     outputs = model(**inputs)
 
->>> cls_token = outputs.pooler_output
+>>> cls_token = REDACTED
 >>> cls_token.shape
 torch.Size([1, 1024])
 ```

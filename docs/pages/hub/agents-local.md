@@ -150,7 +150,7 @@ Hermes Agent consumes semantic search models through endpoints. Once you get you
 auxiliary:
   session_search:
     base_url: "http://127.0.0.1:8080/v1"
-    api_key: "no-key-required"
+    api_key: "REDACTED"
     model: "local-llama" # your model alias
     timeout: 90
     max_concurrency: 1

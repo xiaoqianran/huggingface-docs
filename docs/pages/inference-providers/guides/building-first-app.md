@@ -33,12 +33,12 @@ When prompted, paste your Hugging Face token. This handles authentication automa
 You'll need your Hugging Face token. Get one from [your settings page](https://huggingface.co/settings/tokens/new?ownUserPermissions=inference.serverless.write&tokenType=fineGrained). We can set it as an environment variable in our app.
 
 ```bash
-export HF_TOKEN="your_token_here"
+export HF_TOKEN="REDACTED"
 ```
 
 ```javascript
 // Add your token at the top of your script
-const HF_TOKEN = process.env.HF_TOKEN;
+const HF_TOKEN = REDACTED;
 ```
 
 > [!WARNING]
@@ -113,9 +113,9 @@ Our application can then use the `InferenceClient` from `huggingface.js` to call
 import { InferenceClient } from "https://esm.sh/@huggingface/inference";
 
 // Access the token from Hugging Face Spaces secrets
-const HF_TOKEN = window.huggingface?.variables?.HF_TOKEN;
+const HF_TOKEN=REDACTED
 // Or if you're running locally, you can set it as an environment variable
-// const HF_TOKEN = process.env.HF_TOKEN;
+// const HF_TOKEN = REDACTED;
 
 document.getElementById("file").onchange = async (e) => {
   if (!e.target.files[0]) return;
@@ -444,7 +444,7 @@ For JavaScript deployment, create a simple static HTML file:
       import { InferenceClient } from "https://esm.sh/@huggingface/inference";
 
       // Access the token from Hugging Face Spaces secrets
-      const HF_TOKEN = window.huggingface?.variables?.HF_TOKEN;
+      const HF_TOKEN=REDACTED
 
       // Add error handling for missing token
       if (!HF_TOKEN) {

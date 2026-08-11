@@ -112,7 +112,7 @@ import os
 import requests
 
 BASE_URL = "https://huggingface.co"
-HF_TOKEN = os.environ.get("HF_TOKEN", "")
+HF_TOKEN=REDACTEDHF_TOKEN", "")
 
 def change_member_role(org_name: str, username: str, role: str, resource_groups: list | None = None):
     payload = {"role": role, "resourceGroups": resource_groups or []}
@@ -377,7 +377,7 @@ import os
 import requests
 
 BASE_URL = "https://huggingface.co"
-HF_TOKEN = os.environ.get("HF_TOKEN", "")
+HF_TOKEN=REDACTEDHF_TOKEN", "")
 
 def list_resource_groups(org_name: str):
     r = requests.get(

@@ -57,7 +57,7 @@ You will need to populate this snippet with a valid Hugging Face User Access Tok
 Set your token as an environment variable:
 
 ```bash
-export HF_TOKEN="your_token_here"
+export HF_TOKEN="REDACTED"
 ```
 
 > [!TIP]

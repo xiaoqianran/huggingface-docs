@@ -84,7 +84,7 @@ Here's a basic implementation flow:
    ```http
    GET /api/models/black-forest-labs/FLUX.1-dev/xet-read-token/main
    Host: huggingface.co
-   Authorization: Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   Authorization: Bearer REDACTED
    ```
 
 2. **Parse the response**

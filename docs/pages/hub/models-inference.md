@@ -95,7 +95,7 @@ import { OpenAI } from "openai";
 
 const client = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const completion = await client.chat.completions.create({

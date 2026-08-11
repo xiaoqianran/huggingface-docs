@@ -84,7 +84,7 @@ publish:
   script:
     - curl -LsSf https://hf.co/cli/install.sh | bash
     - export PATH="$HOME/.local/bin:$PATH"
-    - HF_OIDC_ID_TOKEN="$HF_ID_TOKEN" HF_OIDC_RESOURCE="acme/awesome-model" hf upload acme/awesome-model ./checkpoint .
+    - HF_OIDC_ID_TOKEN="REDACTED" HF_OIDC_RESOURCE="acme/awesome-model" hf upload acme/awesome-model ./checkpoint .
 ```
 
 Complete working examples:

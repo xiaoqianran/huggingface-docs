@@ -154,7 +154,7 @@ pip install -e packages/cosmos-framework
 
 export PROMPT_UPSAMPLER_ENDPOINT_URL="https://api.anthropic.com/v1/"
 export PROMPT_UPSAMPLER_MODEL_NAME="claude-opus-4-6"
-export PROMPT_UPSAMPLER_API_TOKEN="<your_token>"
+export PROMPT_UPSAMPLER_API_TOKEN="REDACTED"
 
 python -m cosmos_framework.inference.prompt_upsampling \
     --input assets/prompt.txt \

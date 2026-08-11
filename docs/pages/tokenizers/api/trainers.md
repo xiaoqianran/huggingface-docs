@@ -57,7 +57,7 @@ Example:
 >>> trainer = UnigramTrainer(
 ...     vocab_size=8000,
 ...     special_tokens=["&amp;lt;unk>", "", ""],
-...     unk_token="&amp;lt;unk>",
+...     unk_token="REDACTED",
 ... )
 >>> tokenizer = Tokenizer(Unigram())
 >>> tokenizer.train(["path/to/corpus.txt"], trainer)
@@ -97,7 +97,7 @@ Example:
 ...     special_tokens=["&amp;lt;unk>"],
 ...     min_frequency=1,
 ... )
->>> tokenizer = Tokenizer(WordLevel(unk_token="&amp;lt;unk>"))
+>>> tokenizer = Tokenizer(WordLevel(unk_token="REDACTED"))
 >>> tokenizer.train(["path/to/corpus.txt"], trainer)
 ```
 

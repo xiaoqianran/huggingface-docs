@@ -246,7 +246,7 @@ from pydantic import BaseModel
 from typing import List
 
 # Set your Hugging Face token
-# export HF_TOKEN="your_token_here"
+# export HF_TOKEN="REDACTED"
 
 def analyze_paper_structured():
     """Complete example of structured output for research paper analysis."""
@@ -328,7 +328,7 @@ from pydantic import BaseModel, Field
 from typing import List
 
 # Set your Hugging Face token
-# export HF_TOKEN="your_token_here"
+# export HF_TOKEN="REDACTED"
 
 class PaperAnalysis(BaseModel):
     """Structured model for research paper analysis."""

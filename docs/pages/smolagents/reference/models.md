@@ -226,7 +226,7 @@ Example:
 >>> engine = InferenceClientModel(
 ...     model_id="Qwen/Qwen3-Next-80B-A3B-Thinking",
 ...     provider="hyperbolic",
-...     token="your_hf_token_here",
+...     token="REDACTED",
 ...     max_tokens=5000,
 ... )
 >>> messages = [{"role": "user", "content": "Explain quantum mechanics in simple terms."}]

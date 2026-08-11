@@ -18,7 +18,7 @@ Before we start coding, authenticate with Hugging Face using your token:
 
 ```bash
 # Get your token from https://huggingface.co/settings/tokens
-export HF_TOKEN="your_token_here"
+export HF_TOKEN="REDACTED"
 ```
 
 > [!TIP]

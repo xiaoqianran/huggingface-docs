@@ -60,7 +60,7 @@ In this case, you can build your tool by subclassing [Tool](/docs/smolagents/v1.
 You can share your custom tool to the Hub as a Space repository by calling [push_to_hub()](/docs/smolagents/v1.26.0/en/reference/tools#smolagents.Tool.push_to_hub) on the tool. Make sure you've created a repository for it on the Hub and are using a token with read access.
 
 ```python
-model_downloads_tool.push_to_hub("{your_username}/hf-model-downloads", token="<YOUR_HUGGINGFACEHUB_API_TOKEN>")
+model_downloads_tool.push_to_hub("{your_username}/hf-model-downloads", token="REDACTED")
 ```
 
 For the push to Hub to work, your tool will need to respect some rules:
@@ -390,7 +390,7 @@ from smolagents import ToolCollection, CodeAgent
 
 image_tool_collection = ToolCollection.from_hub(
     collection_slug="huggingface-tools/diffusion-tools-6630bb19a942c2306a2cdb6f",
-    token="<YOUR_HUGGINGFACEHUB_API_TOKEN>"
+    token="REDACTED"
 )
 agent = CodeAgent(tools=[*image_tool_collection.tools], model=model, add_base_tools=True)
 

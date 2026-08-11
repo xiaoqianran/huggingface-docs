@@ -25,7 +25,7 @@ Let's get started with a text-to-image task:
 # Example with an external provider (e.g. replicate)
 >>> replicate_client = InferenceClient(
     provider="replicate",
-    api_key="my_replicate_api_key",
+    api_key="REDACTED",
 )
 >>> replicate_image = replicate_client.text_to_image(
     "A flying car crossing a futuristic cityscape.",
@@ -51,7 +51,7 @@ Let's now see an example using the [chat_completion()](/docs/huggingface_hub/v1.
 >>> client = InferenceClient(
     provider="together",
     model="meta-llama/Meta-Llama-3-8B-Instruct",
-    api_key="my_together_api_key",
+    api_key="REDACTED",
 )
 >>> client.chat_completion(messages, max_tokens=100)
 ChatCompletionOutput(
@@ -87,7 +87,7 @@ If you want to use a specific provider, you can specify it when initializing the
 
 ```python
 >>> from huggingface_hub import InferenceClient
->>> client = InferenceClient(provider="replicate", api_key="my_replicate_api_key")
+>>> client = InferenceClient(provider="replicate", api_key="REDACTED")
 ```
 
 ### Using a specific model

@@ -115,7 +115,7 @@ See https://huggingface.co/docs/hub/storage-limits#repository-limitations-and-re
 
 1. ✓ **Authenticate**:
    - CLI: `hf auth login`
-   - Or use token: `HfApi(token="hf_...")` or set `HF_TOKEN` environment variable
+   - Or use token: `REDACTED"hf_...")` or set `HF_TOKEN` environment variable
 2. ✓ **Identify your data type**: Check the [Quick Reference](#quick-reference-by-data-type) table above
 3. ✓ **Choose upload method**:
 

@@ -17,6 +17,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { scrubSecrets } from "./scrub-secrets.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -165,9 +166,45 @@ async function mapPool(items, limit, fn) {
   return results;
 }
 
+const PRIORITY_PACKAGES = (
+  process.env.TRANSLATE_PRIORITY ||
+  "hub,huggingface_hub,cli,accelerate,peft,trl,datasets,diffusers,smolagents,transformers,tokenizers,optimum,bitsandbytes,safetensors,inference-providers,inference-endpoints"
+)
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+
+function packageOf(rel) {
+  return String(rel).split("/")[0] || "";
+}
+
+function priorityScore(rel) {
+  // skip dumps
+  if (rel.endsWith("/_full.md") || rel === "_full.md") return 1e9;
+  // optional skip model_doc (huge) unless enabled
+  if (process.env.TRANSLATE_INCLUDE_MODEL_DOC !== "1" && /\/model_doc\//.test(rel)) {
+    return 5e8;
+  }
+  const pkg = packageOf(rel);
+  const i = PRIORITY_PACKAGES.indexOf(pkg);
+  const base = i >= 0 ? i : 100 + pkg.charCodeAt(0);
+  // prefer index/quicktour/overview first within package
+  const boost =
+    /(^|\/)(index|quicktour|quick_tour|overview|installation|install|tutorial)\.md$/i.test(rel)
+      ? -0.5
+      : 0;
+  return base + boost;
+}
+
 async function main() {
   ensureDir(ZH_ROOT);
-  const files = walk(EN_ROOT).sort();
+  const files = walk(EN_ROOT)
+    .filter((abs) => !abs.endsWith(`${path.sep}_full.md`) && !abs.endsWith("/_full.md"))
+    .sort((a, b) => {
+      const ra = path.relative(EN_ROOT, a).replace(/\\/g, "/");
+      const rb = path.relative(EN_ROOT, b).replace(/\\/g, "/");
+      return priorityScore(ra) - priorityScore(rb) || ra.localeCompare(rb);
+    });
   const limited = files.slice(0, LIMIT);
   const manifest = loadManifest();
   if (!manifest.files) manifest.files = {};
@@ -196,7 +233,7 @@ async function main() {
       return;
     }
     try {
-      const zh = await translateMarkdown(en);
+      const zh = scrubSecrets(await translateMarkdown(en));
       ensureDir(path.dirname(zhAbs));
       const header =
         "<!-- huggingface-docs: machine-translated zh-CN from English source -->\n\n";
@@ -215,7 +252,7 @@ async function main() {
         ensureDir(path.dirname(zhAbs));
         fs.writeFileSync(
           zhAbs,
-          "<!-- huggingface-docs: translation failed; English fallback -->\n\n" + en,
+          "<!-- huggingface-docs: translation failed; English fallback -->\n\n" + scrubSecrets(en),
         );
         manifest.files[rel] = {
           hash,

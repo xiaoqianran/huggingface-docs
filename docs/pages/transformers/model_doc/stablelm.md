@@ -2,7 +2,7 @@
 
 ## Overview
 
-StableLM 3B 4E1T ([blog post](https://stability.ai/news/stable-lm-3b-sustainable-high-performance-language-models-smart-devices)) was proposed in [StableLM 3B 4E1T: Technical Report](https://stability.wandb.io/stability-llm/stable-lm/reports/StableLM-3B-4E1T--VmlldzoyMjU4?accessToken=u3zujipenkx5g7rtcj9qojjgxpconyjktjkli2po09nffrffdhhchq045vp0wyfo) by Stability AI and is the first model in a series of multi-epoch pre-trained language models.
+StableLM 3B 4E1T ([blog post](https://stability.ai/news/stable-lm-3b-sustainable-high-performance-language-models-smart-devices)) was proposed in [StableLM 3B 4E1T: Technical Report](https://stability.wandb.io/stability-llm/stable-lm/reports/StableLM-3B-4E1T--VmlldzoyMjU4?accessToken=REDACTED) by Stability AI and is the first model in a series of multi-epoch pre-trained language models.
 
 ### Model Details
 

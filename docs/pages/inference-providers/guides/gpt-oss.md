@@ -9,7 +9,7 @@ Both models are supported on Inference Providers and can be accessed through eit
 1. You'll need your Hugging Face token. Get one from your [settings page](https://huggingface.co/settings/tokens/new?ownUserPermissions=inference.serverless.write&tokenType=fineGrained). Then, set it as an environment variable.
 
 ```bash
-export HF_TOKEN="your_token_here"
+export HF_TOKEN="REDACTED"
 ```
 
 > [!TIP]
@@ -52,7 +52,7 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const response = await openai.chat.completions.create({
@@ -111,7 +111,7 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const tools = [
@@ -201,7 +201,7 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 // Force the model to output a JSON object
@@ -284,7 +284,7 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 // Set stream=true to receive a stream of semantic events
@@ -347,7 +347,7 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const tools = [
@@ -413,7 +413,7 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const response = await openai.responses.create({
@@ -464,7 +464,7 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const response = await openai.responses.create({

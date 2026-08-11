@@ -8,7 +8,7 @@ For example, this is what a compromised `app.py` file might look like:
 import numpy as np
 import scipy as sp
 
-api_key = "sw-xyz1234567891213"
+api_key = "REDACTED"
 
 def call_inference(prompt: str) -> str:
     result = call_api(prompt, api_key)

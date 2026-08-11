@@ -456,7 +456,7 @@ Load and use the [RoBERTA](https://huggingface.co/roberta-base) model in 🤗 Tr
 >>> from transformers import pipeline
 
 >>> fillmask = pipeline("fill-mask", model="roberta-base")
->>> mask_token = fillmask.tokenizer.mask_token
+>>> mask_token = REDACTED
 >>> smaller_dataset = dataset.filter(lambda e, i: i>> def augment_data(examples):
 ...     outputs = []
 ...     for sentence in examples["sentence1"]:

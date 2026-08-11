@@ -10,7 +10,8 @@
     "build": "node scripts/build-site.mjs",
     "build:pages": "PAGES_BASE=/huggingface-docs node scripts/build-site.mjs",
     "quality": "node scripts/quality-report.mjs",
-    "refresh": "node scripts/fetch-docs.mjs && node scripts/translate-docs.mjs && PAGES_BASE=/huggingface-docs node scripts/build-site.mjs"
+    "refresh": "node scripts/fetch-docs.mjs && node scripts/translate-docs.mjs && PAGES_BASE=/huggingface-docs node scripts/build-site.mjs",
+    "scrub": "node scripts/scrub-secrets.mjs"
   },
   "devDependencies": {
     "marked": "^15.0.0"

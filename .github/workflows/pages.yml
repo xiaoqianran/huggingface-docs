@@ -57,23 +57,32 @@ jobs:
           FETCH_TIMEOUT_MS: "30000"
         run: node scripts/fetch-docs.mjs
 
-      - name: Translate docs to zh-CN (hash-cached, capped)
-        if: ${{ (github.event_name == 'schedule') || (github.event_name == 'workflow_dispatch' && inputs.skip_translate != true) }}
+      - name: Translate docs to zh-CN (hash-cached, prioritized)
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.skip_translate != true }}
         env:
-          TRANSLATE_CONCURRENCY: "2"
+          TRANSLATE_CONCURRENCY: "3"
           TRANSLATE_CHUNK: "1200"
-          TRANSLATE_LIMIT: "200"
+          # Progressive: each run fills more of the cache (hash-skip already done)
+          TRANSLATE_LIMIT: "400"
+          TRANSLATE_INCLUDE_MODEL_DOC: "0"
         run: node scripts/translate-docs.mjs
         continue-on-error: true
 
+      - name: Scrub secrets before commit
+        run: node scripts/scrub-secrets.mjs docs/pages docs/zh docs/llms
+
       - name: Commit refreshed docs + zh cache
-        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.commit_docs != false) }}
-        continue-on-error: true
+        if: ${{ github.event_name == 'schedule' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.commit_docs != false) }}
+        continue-on-error: false
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # never commit giant full dumps
+          find docs -name '_full.md' -delete || true
           git add docs/llms.txt docs/llms-urls.txt docs/list.json docs/llms docs/pages docs/zh || true
+          # unstage ignored full dumps if any
+          git reset -q -- 'docs/**/_full.md' 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No doc changes to commit"
           else

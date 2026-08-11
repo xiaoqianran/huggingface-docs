@@ -6,7 +6,7 @@ Once you have installed AutoTrain Advanced, you can use the following command to
 
 ```bash
 $ export HF_USERNAME=your_hugging_face_username
-$ export HF_TOKEN=your_hugging_face_write_token
+$ export HF_TOKEN=REDACTED
 
 $ autotrain --config path/to/config.yaml
 ```

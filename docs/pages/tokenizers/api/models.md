@@ -11,7 +11,7 @@ Example:
 ```python
 >>> from tokenizers.models import BPE
 >>> # Build an empty model (to be trained)
->>> model = BPE(unk_token="&amp;lt;unk>")
+>>> model = BPE(unk_token="REDACTED")
 >>> # Load from vocabulary and merges files
 >>> model = BPE.from_file("vocab.json", "merges.txt")
 ```
@@ -209,9 +209,9 @@ Example:
 >>> from tokenizers.models import WordLevel
 >>> # Build from a vocabulary dictionary
 >>> vocab = &amp;lcub;"hello": 0, "world": 1, "&amp;lt;unk>": 2}
->>> model = WordLevel(vocab=vocab, unk_token="&amp;lt;unk>")
+>>> model = WordLevel(vocab=vocab, unk_token="REDACTED")
 >>> # Load from file
->>> model = WordLevel.from_file("vocab.json", unk_token="&amp;lt;unk>")
+>>> model = WordLevel.from_file("vocab.json", unk_token="REDACTED")
 ```
 
 from_filetokenizers.models.WordLevel.from_file[{"name": "vocab", "val": ""}, {"name": "unk_token", "val": " = None"}]- **vocab** (`str`) --

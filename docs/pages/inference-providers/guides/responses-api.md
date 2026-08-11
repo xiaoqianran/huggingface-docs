@@ -48,7 +48,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const response = await client.responses.create({
@@ -103,7 +103,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const response = await client.responses.create({
@@ -163,7 +163,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const response = await client.responses.create({
@@ -236,7 +236,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const response = await client.responses.create({
@@ -295,7 +295,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const stream = await client.responses.create({
@@ -366,7 +366,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const tools = [
@@ -460,7 +460,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const response = await client.responses.create({
@@ -566,7 +566,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const response = await client.responses.create({
@@ -636,7 +636,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   baseURL: "https://router.huggingface.co/v1",
-  apiKey: process.env.HF_TOKEN,
+  apiKey: REDACTED,
 });
 
 const response = await client.responses.create({

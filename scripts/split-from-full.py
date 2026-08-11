@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Split docs/llms/*.full.txt into docs/pages using TOC titles from *.txt"""
 from pathlib import Path
-import re, json, shutil
+import os, re, json, shutil
 from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,8 +23,34 @@ TRACK_LABEL = {
 }
 
 def sanitize(t: str) -> str:
-    t = re.sub(r"\bghp_[A-Za-z0-9]{20,}\b", "ghp_REDACTED", t)
-    t = re.sub(r"\bhf_[A-Za-z0-9]{20,}\b", "hf_REDACTED", t)
+    """Redact credential-like strings so GitHub push protection accepts commits."""
+    t = re.sub(r"\b(ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9]{20,}\b", r"\1_REDACTED", t)
+    t = re.sub(r"\bgithub_pat_[A-Za-z0-9_]{20,}\b", "github_pat_REDACTED", t)
+    t = re.sub(r"\bhf_[A-Za-z0-9]{16,}\b", "hf_REDACTED", t)
+    t = re.sub(r"\bsk-[A-Za-z0-9_\-]{16,}\b", "sk-REDACTED", t)
+    t = re.sub(r"\bxai-[A-Za-z0-9]{16,}\b", "xai-REDACTED", t)
+    t = re.sub(r"\bdckr_pat_[A-Za-z0-9_]+\b", "dckr_pat_REDACTED", t)
+    t = re.sub(r"\bAKIA[0-9A-Z]{16}\b", "AKIA_REDACTED", t)
+    t = re.sub(r"\bAIza[0-9A-Za-z\-_]{20,}\b", "AIza_REDACTED", t)
+    t = re.sub(r"\br8_[A-Za-z0-9]{20,}\b", "r8_REDACTED", t)
+    t = re.sub(r"\bsk-ant-[A-Za-z0-9_\-]{16,}\b", "sk-ant-REDACTED", t)
+    t = re.sub(
+        r"((?:api[_-]?key|apikey|access[_-]?token|secret[_-]?key|token)\s*[=:]\s*["'`])([^"'`\s]{12,})(["'`])",
+        r"\1REDACTED\3",
+        t,
+        flags=re.I,
+    )
+    t = re.sub(
+        r"\b([A-Z][A-Z0-9_]*(?:API[_-]?KEY|ACCESS[_-]?TOKEN|SECRET|TOKEN|PASSWORD))\s*=\s*["']?[^\s"']{12,}["']?",
+        r"\1=REDACTED",
+        t,
+    )
+    t = re.sub(
+        r"(mistral[^\n]{0,80})(["'`])([A-Za-z0-9_\-]{24,})(["'`])",
+        r"\1\2REDACTED\4",
+        t,
+        flags=re.I,
+    )
     return t
 
 def canonicalize_url(url: str) -> str:
@@ -119,22 +145,25 @@ def main():
         toc = parse_toc(toc_text) or parse_toc(full_text)
 
         (PAGES / pkg).mkdir(parents=True, exist_ok=True)
-        full_rel = f"{pkg}/_full.md"
-        header = (
-            f"# {TRACK_LABEL.get(pkg, pkg)} — full docs dump\n\n"
-            f"> From official `llms-full.txt` ({len(full_text):,} bytes).\n\n"
-        )
-        (PAGES / full_rel).write_text(sanitize(header + full_text), encoding="utf-8")
-        all_pages.append(
-            {
-                "rel": full_rel,
-                "bytes": (PAGES / full_rel).stat().st_size,
-                "source": "llms-full",
-                "url": f"https://huggingface.co/docs/{pkg}/llms-full.txt",
-                "track": TRACK_LABEL.get(pkg, pkg),
-                "package": pkg,
-            }
-        )
+        # Do not write package/_full.md into pages by default — it reintroduces
+        # secrets and breaks GitHub push protection on bot commits.
+        if os.environ.get("WRITE_FULL_MD") == "1":
+            full_rel = f"{pkg}/_full.md"
+            header = (
+                f"# {TRACK_LABEL.get(pkg, pkg)} — full docs dump\n\n"
+                f"> From official `llms-full.txt` ({len(full_text):,} bytes).\n\n"
+            )
+            (PAGES / full_rel).write_text(sanitize(header + full_text), encoding="utf-8")
+            all_pages.append(
+                {
+                    "rel": full_rel,
+                    "bytes": (PAGES / full_rel).stat().st_size,
+                    "source": "llms-full",
+                    "url": f"https://huggingface.co/docs/{pkg}/llms-full.txt",
+                    "track": TRACK_LABEL.get(pkg, pkg),
+                    "package": pkg,
+                }
+            )
 
         if pkg == "cli" and not toc:
             rel = "cli/index.md"
