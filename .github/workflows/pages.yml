@@ -51,7 +51,8 @@ jobs:
         run: npm install --no-save marked@15.0.0
 
       - name: Fetch Hugging Face docs
-        if: ${{ github.event_name != 'workflow_dispatch' || inputs.skip_fetch != true }}
+        # Skip automatic re-fetch on push (code deploys). Fetch on schedule / manual only.
+        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.skip_fetch != true) }}
         env:
           FETCH_CONCURRENCY: "12"
           FETCH_TIMEOUT_MS: "30000"
@@ -71,23 +72,44 @@ jobs:
       - name: Scrub secrets before commit
         run: node scripts/scrub-secrets.mjs docs/pages docs/zh docs/llms
 
-      - name: Commit refreshed docs + zh cache
+      - name: Commit zh cache (primary)
         if: ${{ github.event_name == 'schedule' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.commit_docs != false) }}
-        continue-on-error: false
+        continue-on-error: true
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # never commit giant full dumps
           find docs -name '_full.md' -delete || true
-          git add docs/llms.txt docs/llms-urls.txt docs/list.json docs/llms docs/pages docs/zh || true
-          # unstage ignored full dumps if any
+          # Prefer committing zh only — EN pages from fetch often trip push-protection
+          # (example API keys in model docs). zh is scrubbed on write.
+          git add docs/zh || true
+          if git diff --staged --quiet; then
+            echo "No zh changes to commit"
+          else
+            git commit -m "chore: refresh Hugging Face zh-CN cache [skip ci]" || true
+            git push origin HEAD:main || echo "zh push failed (will still deploy workspace copy)"
+          fi
+
+      - name: Commit EN docs refresh (best-effort)
+        if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.commit_docs != false) }}
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          find docs -name '_full.md' -delete || true
+          # Drop known push-protection tripwires before staging EN pages
+          rm -f docs/pages/transformers/model_doc/ministral3.md \
+                docs/pages/transformers/model_doc/mistral3.md \
+                docs/pages/transformers/model_doc/mistral.md || true
+          node scripts/scrub-secrets.mjs docs/pages docs/llms || true
+          git add docs/llms.txt docs/llms-urls.txt docs/list.json docs/llms docs/pages || true
           git reset -q -- 'docs/**/_full.md' 2>/dev/null || true
           if git diff --staged --quiet; then
-            echo "No doc changes to commit"
+            echo "No EN doc changes to commit"
           else
-            git commit -m "chore: refresh Hugging Face docs + zh-CN cache [skip ci]"
-            git push origin HEAD:main
+            git commit -m "chore: refresh Hugging Face EN docs [skip ci]" || true
+            git push origin HEAD:main || echo "EN push blocked by secret scanning — Pages still deploys from this job workspace"
           fi
 
 
