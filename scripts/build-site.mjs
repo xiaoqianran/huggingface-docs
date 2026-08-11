@@ -3,8 +3,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { marked } from "marked";
 import { normalizeMdxMarkdown } from "./mdx-normalize.mjs";
+import { renderMarkdown, extractToc, tocHtml } from "./marked-renderer.mjs";
+import { createLinkRewriter } from "./link-rewrite.mjs";
 import { createParadigm } from "./paradigm-page.mjs";
 import { writeLlmsArtifacts } from "./generate-llms.mjs";
 
@@ -112,6 +113,12 @@ function titleFromMd(md, fallback) {
 
 const P = createParadigm({ htmlEscape, asset, CHEV_SVG, relToHtml });
 
+const rewriteLinks = createLinkRewriter({
+  asset,
+  hosts: ["https://huggingface.co/docs", "https://huggingface.co"],
+  rootPrefixes: ["/docs/"],
+});
+
 function packageOf(rel) {
   if (rel === "index.md") return "home";
   const top = rel.split("/")[0];
@@ -191,71 +198,9 @@ function buildNav(files, locale) {
   return tracks;
 }
 
-function enhanceCode(html) {
-  return html
-    .replace(
-      /<pre><code class="language-([^"]*)">([\s\S]*?)<\/code><\/pre>/g,
-      (_, lang, code) =>
-        `<div class="code-block"><div class="code-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="lang">${htmlEscape(lang || "text")}</span><button type="button" class="copy-btn" data-copy>Copy</button></div><pre><code class="language-${htmlEscape(lang)}">${code}</code></pre></div>`,
-    )
-    .replace(
-      /<pre><code>([\s\S]*?)<\/code><\/pre>/g,
-      (_, code) =>
-        `<div class="code-block"><div class="code-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="lang">text</span><button type="button" class="copy-btn" data-copy>Copy</button></div><pre><code>${code}</code></pre></div>`,
-    );
-}
+// enhanceCode/tocFromHtml replaced by marked-renderer.mjs
 
-function tocFromHtml(html) {
-  const items = [];
-  const re = /<h([23])\s+id="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/g;
-  let m;
-  while ((m = re.exec(html))) {
-    const text = m[3].replace(/<[^>]+>/g, "").trim();
-    if (text) items.push({ level: Number(m[1]), id: m[2], text });
-  }
-  if (items.length < 1) return "";
-  return `<nav class="toc"><div class="toc-title">On this page</div><ul>${items
-    .map(
-      (it) =>
-        `<li class="l${it.level}"><a href="#${htmlEscape(it.id)}">${htmlEscape(it.text)}</a></li>`,
-    )
-    .join("")}</ul></nav>`;
-}
-
-function postProcessHtml(html, fromRel, locale) {
-  return html.replace(/href="([^"]+)"/g, (full, href) => {
-    if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("data:")) return full;
-    // external non-docs
-    if (/^https?:\/\//i.test(href) && !href.includes("huggingface.co/docs/")) return full;
-    // HF docs absolute -> local
-    let target = href;
-    let hash = "";
-    const hi = target.indexOf("#");
-    if (hi >= 0) {
-      hash = target.slice(hi);
-      target = target.slice(0, hi);
-    }
-    if (/^https?:\/\/huggingface\.co\/docs\//i.test(target)) {
-      let rel = target.replace(/^https?:\/\/huggingface\.co\/docs\//i, "");
-      if (rel.endsWith(".md")) rel = rel.slice(0, -3);
-      if (!rel.endsWith(".html")) rel = rel + ".html";
-      return `href="${asset(rel, locale)}${hash}"`;
-    }
-    // relative .md
-    if (target.endsWith(".md") || (!target.includes(".") && !target.startsWith("/"))) {
-      const dir = path.posix.dirname(fromRel.replace(/\\/g, "/"));
-      let rel = target.replace(/^\.\//, "");
-      if (!rel.startsWith("/")) {
-        rel = path.posix.normalize(path.posix.join(dir === "." ? "" : dir, rel));
-      }
-      rel = rel.replace(/^\/+/, "");
-      if (rel.endsWith(".md")) rel = rel.slice(0, -3) + ".html";
-      else if (!rel.endsWith(".html")) rel = rel + ".html";
-      return `href="${asset(rel, locale)}${hash}"`;
-    }
-    return full;
-  });
-}
+// postProcessHtml → link-rewrite.mjs
 
 function loadPages(rootDir) {
   const files = walk(rootDir);
@@ -410,12 +355,10 @@ function buildLocale(locale, pages, navTracks) {
         llmsFullHref: asset("llms-full.txt"),
       });
     } else {
-      marked.setOptions({ gfm: true, breaks: false });
-      body = marked.parse(normalizeMdxMarkdown(page.md));
-      body = P.addHeadingIds(body);
-      body = enhanceCode(body);
-      body = postProcessHtml(body, page.rel, locale);
-      toc = tocFromHtml(body);
+      const norm = normalizeMdxMarkdown(page.md);
+      body = renderMarkdown(norm, ui);
+      body = rewriteLinks(body, page.rel, locale);
+      toc = tocHtml(extractToc(norm), ui);
     }
     const meta = P.findActiveMeta(navTracks, page.rel);
     meta.title = title;

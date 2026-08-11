@@ -62,7 +62,7 @@ jobs:
         env:
           TRANSLATE_CONCURRENCY: "2"
           TRANSLATE_CHUNK: "1200"
-          TRANSLATE_LIMIT: "80"
+          TRANSLATE_LIMIT: "200"
         run: node scripts/translate-docs.mjs
         continue-on-error: true
 
@@ -80,6 +80,13 @@ jobs:
             git commit -m "chore: refresh Hugging Face docs + zh-CN cache [skip ci]"
             git push origin HEAD:main
           fi
+
+
+      - name: Body quality report
+        env:
+          QUALITY_PAGES: docs/pages
+          QUALITY_STRICT: "0"
+        run: node scripts/quality-report.mjs
 
       - name: Build static site (EN + zh-CN)
         env:

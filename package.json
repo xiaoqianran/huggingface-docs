@@ -8,7 +8,9 @@
     "translate": "node scripts/translate-docs.mjs",
     "translate:smoke": "TRANSLATE_LIMIT=10 node scripts/translate-docs.mjs",
     "build": "node scripts/build-site.mjs",
-    "build:pages": "PAGES_BASE=/huggingface-docs node scripts/build-site.mjs"
+    "build:pages": "PAGES_BASE=/huggingface-docs node scripts/build-site.mjs",
+    "quality": "node scripts/quality-report.mjs",
+    "refresh": "node scripts/fetch-docs.mjs && node scripts/translate-docs.mjs && PAGES_BASE=/huggingface-docs node scripts/build-site.mjs"
   },
   "devDependencies": {
     "marked": "^15.0.0"
