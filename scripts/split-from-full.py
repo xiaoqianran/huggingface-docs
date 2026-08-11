@@ -35,21 +35,19 @@ def sanitize(t: str) -> str:
     t = re.sub(r"\br8_[A-Za-z0-9]{20,}\b", "r8_REDACTED", t)
     t = re.sub(r"\bsk-ant-[A-Za-z0-9_\-]{16,}\b", "sk-ant-REDACTED", t)
     t = re.sub(
-        r"((?:api[_-]?key|apikey|access[_-]?token|secret[_-]?key|token)\s*[=:]\s*["'`])([^"'`\s]{12,})(["'`])",
-        r"\1REDACTED\3",
+        r"(?i)((?:api[_-]?key|apikey|access[_-]?token|secret[_-]?key|token)\s*[=:]\s*)(['\"])([^'\"\s]{12,})(\2)",
+        r"\1\2REDACTED\2",
         t,
-        flags=re.I,
     )
     t = re.sub(
-        r"\b([A-Z][A-Z0-9_]*(?:API[_-]?KEY|ACCESS[_-]?TOKEN|SECRET|TOKEN|PASSWORD))\s*=\s*["']?[^\s"']{12,}["']?",
+        r"\b([A-Z][A-Z0-9_]*(?:API[_-]?KEY|ACCESS[_-]?TOKEN|SECRET|TOKEN|PASSWORD))\s*=\s*\S{12,}",
         r"\1=REDACTED",
         t,
     )
     t = re.sub(
-        r"(mistral[^\n]{0,80})(["'`])([A-Za-z0-9_\-]{24,})(["'`])",
-        r"\1\2REDACTED\4",
+        r"(?i)(mistral[^\n]{0,80})(['\"])([A-Za-z0-9_\-]{24,})(\2)",
+        r"\1\2REDACTED\2",
         t,
-        flags=re.I,
     )
     return t
 
