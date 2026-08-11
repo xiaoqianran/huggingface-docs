@@ -108,7 +108,7 @@ run: |
   python train.py --model /base-model --output_dir /checkpoints
 ```
 
-验证一次 - SkyPilot 只需要`hf auth login`（或`export HF_TOKEN=REDACTED Hugging Face 令牌转发到每个云，因此存储桶和存储库安装会自动进行身份验证：
+验证一次 - `hf auth login`（或 `export HF_TOKEN=REDACTED 就是 SkyPilot 所需要的。它将您本地的 Hugging Face 令牌转发到每个云，因此存储桶和存储库安装会自动进行验证：
 
 ```bash
 pip install "skypilot[huggingface]"

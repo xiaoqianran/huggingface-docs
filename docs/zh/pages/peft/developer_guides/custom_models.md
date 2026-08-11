@@ -219,9 +219,9 @@ LoRA 等方法仅在目标模块受 PEFT 支持时才有效。例如，可以将
  - 打开一个[issue](https://github.com/huggingface/peft/issues)并请求维护人员将实现它的功能，或者如果对此模块类型的需求足够高，则指导您如何自己实现它
 
 ### LoRA 中自定义模块动态调度的实验支持> [!警告]
-> 此功能是实验性的，可能会发生变化，具体取决于社区的接受程度。如果有大量需求，我们将推出公共且稳定的 API。
+> 此功能是实验性的，可能会发生变化，具体取决于社区的接受情况。如果有大量需求，我们将推出公共且稳定的 API。
 
-PEFT 支持 LoRA 自定义模块类型的实验性 API。假设您有一个 LSTM 的 LoRA 实现。通常，您无法告诉 PEFT 使用它，即使理论上它可以与 PEFT 一起使用。然而，这可以通过动态调度自定义层来实现。
+PEFT 支持 LoRA 自定义模块类型的实验性 API。假设您有一个 LSTM 的 LoRA 实现。通常，您无法告诉 PEFT 使用它，即使理论上它可以与 PEFT 一起使用。然而，通过自定义层的动态调度这是可能的。
 
 目前实验性的 API 如下所示：
 
@@ -245,7 +245,7 @@ peft_model = get_peft_model(base_model, config)
 > [!提示]
 > 当您调用[get_peft_model()](/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model)时，您将看到一条警告，因为PEFT无法识别目标模块类型。在这种情况下，您可以忽略此警告。
 
-通过提供自定义映射，PEFT 首先根据自定义映射检查基本模型的层，如果存在匹配，则分派到自定义 LoRA 层类型。如果不匹配，PEFT 将检查内置 LoRA 层类型是否匹配。
+通过提供自定义映射，PEFT 首先根据自定义映射检查基本模型的层，如果存在匹配，则分派到自定义 LoRA 层类型。如果没有匹配，PEFT 将检查内置 LoRA 层类型是否匹配。
 
 因此，此功能还可以用于覆盖现有的调度逻辑，例如如果您想使用自己的 LoRA 层来实现`nn.Linear`，而不是使用 PEFT 提供的层。创建自定义 LoRA 模块时，请遵循与[existing LoRA modules](https://github.com/huggingface/peft/blob/main/src/peft/tuners/lora/layer.py)相同的规则。需要考虑的一些重要限制：
 

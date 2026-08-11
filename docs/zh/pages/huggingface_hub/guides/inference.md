@@ -179,8 +179,8 @@ ChatCompletionOutput(
 
 ## 支持的提供者和任务[InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 的目标是提供最简单的接口来在任何提供商的 Hugging Face 模型上运行推理。它有一个简单的 API，支持最常见的任务。下表显示了哪些提供程序支持哪些任务：
 
-|任务|巴斯坦|大脑 |连贯|深基础设施 |法艾 |无羽人工智能 |烟花人工智能|格罗克 |高频推理 |诺维塔人工智能 |恩斯卡尔 | OVHcloud AI 端点 |公共人工智能|复制|斯卡威|一起|波速|在|
-| --------------------------------------------------- | -------- | -------- | ------ | --------- | ------ | -------------- | ------------ | ---- | ------------ | --------- | ------ | -------------------- | --------- | --------- | -------- | -------- | --------- | --- |
+|任务|巴斯坦|大脑 |连贯|深基础设施 |法艾 |无羽人工智能 |烟花人工智能|格罗克 |高频推理 |诺维塔人工智能 |恩斯卡尔| OVHcloud AI 端点 |公共人工智能|复制|斯卡威|一起|波速|在|
+| --------------------------------------------------- | -------- | -------- | ------ | ---------| ------ | -------------- | ------------ | ---- | ------------ | ---------| ------ | -------------------- | ---------| ---------| -------- | -------- | ---------| --- |
 | [audio_classification()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.audio_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ || [audio_to_audio()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.audio_to_audio) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | [automatic_speech_recognition()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.automatic_speech_recognition) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
 | [chat_completion()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |

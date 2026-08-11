@@ -24,7 +24,7 @@
 llama-server -hf ggml-org/gemma-4-26b-a4b-it-GGUF:Q4_K_M
 ```
 
-这将下载模型并在您的计算机上启动兼容 OpenAI 的 API 服务器。有关安装说明，请参阅[llama.cpp guide](./gguf-llamacpp)。
+这将下载模型并在您的计算机上启动 OpenAI 兼容的 API 服务器。有关安装说明，请参阅[llama.cpp guide](./gguf-llamacpp)。
 
 ### 4. 连接您的代理
 

@@ -2,7 +2,7 @@
 
 # HfApi 客户端
 
-以下是 `HfApi` 类的文档，该类用作 Hugging Face Hub API 的 Python 包装器。
+以下是 `HfApi` 类的文档，该类充当 Hugging Face Hub API 的 Python 包装器。
 
 `HfApi` 中的所有方法也可以直接从包的根目录访问。下面详细介绍这两种方法。
 
@@ -258,7 +258,7 @@ batch_bucket_files(bucket_id: str, add: list[tuple[str | Path | bytes, str]] | N
 
 **参数：**
 
-bucket_id (`str`) ：存储桶的 ID（例如 `"username/my-bucket"`）。add (`list` of `tuple`, *可选*) ：要上传的文件。每个元素都是一个 `(source, destination)` 元组，其中 `source` 是本地文件（`str` 或 `Path`）或原始 `bytes` 内容的路径，`destination` 是存储桶中的路径。
+bucket_id (`str`) ：存储桶的 ID（例如 `"username/my-bucket"`）。add (`list` of `tuple`, *可选*) : 要上传的文件。每个元素都是一个 `(source, destination)` 元组，其中 `source` 是本地文件（`str` 或 `Path`）或原始 `bytes` 内容的路径，`destination` 是存储桶中的路径。
 
 copy (`list` of `tuple`, *可选*) ：通过 xet 哈希复制的文件。每个元素都是一个 `(source_repo_type, source_repo_id, xet_hash, destination)` 元组，其中： - `source_repo_type` 是源存储库的类型：`"model"`、`"dataset"`、`"space"` 或 `"bucket"`。 - `source_repo_id` 是源存储库或存储桶的 ID（例如 `"username/my-model"`）。 - `xet_hash` 是要复制的文件的 xet 哈希值。 - `destination` 是桶中的目标路径。这是服务器端操作 - 不会下载或重新上传数据。
 
@@ -593,7 +593,7 @@ repo_type (`str`, *可选*) ：如果在数据集或空间上创建分支，则�
   设置为`False`。
 
 从指定的修订版开始（默认为 `main`），为 Hub 上的存储库创建一个新分支。
-要查找适合您需要的修订版本，您可以使用 [list_repo_refs()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_refs) 或 [list_repo_commits()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_commits)。
+要查找适合您需要的修订版，您可以使用 [list_repo_refs()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_refs) 或 [list_repo_commits()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_commits)。
 
 #### create_bucket[[huggingface_hub.HfApi.create_bucket]]
 
@@ -605,7 +605,7 @@ create_bucket(bucket_id: str, private: bool | None = None, resource_group_id: st
 
 **参数：**
 
-bucket_id (`str`) ：命名空间（用户或组织）和存储桶名称，由`/`分隔。如果未提供命名空间，则将在当前用户的命名空间中创建存储桶。
+Bucket_id (`str`) ：命名空间（用户或组织）和存储桶名称，由`/`分隔。如果未提供命名空间，则将在当前用户的命名空间中创建存储桶。
 
 private (`bool`, *可选*) ：是否将存储桶设为私有。如果`None`（默认），则存储桶将是公共的，除非组织默认为私有。resource_group_id (`str`, *可选*) ：要在其中创建存储桶的资源组。资源组仅适用于企业中心组织，并允许定义组织的哪些成员可以访问资源。资源组的 ID 可以在 Hub 上资源页面的 URL 中找到（例如 `"66670e5163145ca562cb1988"`）。要了解有关资源组的更多信息，请参阅 https://huggingface.co/docs/hub/en/security-resource-groups。
 
@@ -962,7 +962,7 @@ create_pull_request(repo_id: str, title: str, token: bool | str | None = None, d
 
 **参数：**
 
-repo_id (`str`) ：命名空间（用户或组织）和存储库名称，由 `/` 分隔。
+repo_id (`str`) ：命名空间（用户或组织）和存储库名称，由`/`分隔。
 
 title (`str`) ：讨论的标题。它的长度最多为 200 个字符，并且必须至少为 3 个字符。前导和尾随空格将被删除。
 
@@ -1011,7 +1011,7 @@ repo_type (`str`, *可选*) ：如果上传到数据集或空间，则设置为 
 
 resource_group_id (`str`, *可选*) ：在其中创建存储库的资源组。资源组仅适用于企业中心组织，并允许定义组织的哪些成员可以访问资源。资源组的 ID 可以在 Hub 上资源页面的 URL 中找到（例如 `"66670e5163145ca562cb1988"`）。要了解有关资源组的更多信息，请参阅 https://huggingface.co/docs/hub/en/security-resource-groups。
 
-区域（`Literal["us", "eu"]`，*可选*）：在其中创建存储库的云区域。可以是 `"us"` 或 `"eu"` 之一。如果未指定，则将在默认区域中创建存储库。需要团队计划或以上。space_sdk (`str`, *可选*) ：如果 repo_type 为“space”，则选择要使用的 SDK。可以是“streamlit”、“gradio”、“docker”或“static”。
+区域（`Literal["us", "eu"]`，*可选*）：要在其中创建存储库的云区域。可以是 `"us"` 或 `"eu"` 之一。如果未指定，则将在默认区域中创建存储库。需要团队计划或以上。space_sdk (`str`, *可选*) ：如果 repo_type 为“space”，则选择要使用的 SDK。可以是“streamlit”、“gradio”、“docker”或“static”。
 
 space_hardware（`SpaceHardware`或`str`，*可选*）：如果repo_type为“space”，则选择硬件。完整列表请参见[SpaceHardware](/docs/huggingface_hub/v1.27.0/en/package_reference/space_runtime#huggingface_hub.SpaceHardware)。
 
@@ -1328,7 +1328,7 @@ Expand (`list[ExpandDatasetProperty_T]`, *可选*) ：列出要在响应中返�
 > - [RevisionNotFoundError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError)
 > 如果找不到要下载的版本。
 
-#### 删除分支[[huggingface_hub.HfApi.delete_branch]]
+####删除分支[[huggingface_hub.HfApi.delete_branch]]
 
 ```python
 delete_branch(repo_id: str, branch: str, token: bool | str | None = None, repo_type: str | None = None)
@@ -1600,7 +1600,7 @@ Scheduled_job_id (`str`) ：计划作业的 ID。
 
 namespace (`str`, *可选*) ：计划作业所在的命名空间。默认为当前用户的命名空间。 
 
-token `(Union[bool, str, None]`，*可选*) ：有效的用户访问令牌。如果未提供，将使用本地保存的令牌，这是推荐的身份验证方法。设置为 `False` 以禁用身份验证。请参阅：https://huggingface.co/docs/huggingface_hub/quick-start#authentication。
+令牌`(Union[bool, str, None]`，*可选*)：有效的用户访问令牌。如果未提供，将使用本地保存的令牌，这是推荐的身份验证方法。设置为 `False` 以禁用身份验证。请参阅：https://huggingface.co/docs/huggingface_hub/quick-start#authentication。
 
 删除 Hugging Face 基础设施上计划的计算作业。
 
@@ -2359,7 +2359,7 @@ get_dataset_leaderboard(repo_id: str, base_model_only: bool | None = None, token
 
 **参数：**
 
-repo_id (`str`) ：命名空间（用户或组织）和存储库名称，由 `/` 分隔。例如：`"allenai/olmOCR-bench"`。base_model_only （`bool` 或 `None`，*可选*）：默认情况下，排行榜仅包含未声明 `base_model` 关系的模型（即规范/根存储库），与 Hub 的默认排行榜视图相匹配。声明父模型的微调或衍生存储库被排除在外。通过 `base_model_only=False` 禁用此过滤器并包含每个提交的结果，无论模型是否声明基本模型关系。
+repo_id (`str`) ：命名空间（用户或组织）和存储库名称，由 `/` 分隔。例如：`"allenai/olmOCR-bench"`。base_model_only （`bool` 或 `None`，*可选*）：默认情况下，排行榜仅包含未声明 `base_model` 关系的模型（即规范/根存储库），与 Hub 的默认排行榜视图相匹配。声明父模型的微调或派生存储库被排除在外。通过 `base_model_only=False` 禁用此过滤器并包含每个提交的结果，无论模型是否声明基本模型关系。
 
 令牌（`bool` 或 `str`，*可选*）：有效的用户访问令牌。默认为本地保存的令牌，这是推荐的身份验证方法（请参阅 https://huggingface.co/docs/huggingface_hub/quick-start#authentication）。要禁用身份验证，请传递`False`。
 
@@ -2785,7 +2785,7 @@ get_user_overview(username: str, token: bool | str | None = None)
 
 **参数：**
 
-username (`str`) ：要获取概述的用户的用户名。
+用户名 (`str`) ：要获取概述的用户的用户名。
 
 令牌（`bool` 或 `str`，*可选*）：有效的用户访问令牌（字符串）。默认为本地保存的令牌，这是推荐的身份验证方法（请参阅 https://huggingface.co/docs/huggingface_hub/quick-start#authentication）。要禁用身份验证，请传递`False`。
 
@@ -3106,7 +3106,7 @@ repo_type (`str`, *可选*) ：要获取访问请求的存储库的类型。必�
   如果您对存储库只有只读访问权限，则为 HTTP 403。如果您没有 `write`，可能会出现这种情况
   或存储库所属组织中的`admin`角色，或者如果您传递了`read`令牌。
 
-获取给定门控存储库已接受的访问请求。已接受的请求意味着用户已请求访问存储库并且该请求已被接受。用户
+获取给定门控存储库的已接受访问请求。已接受的请求意味着用户已请求访问存储库并且该请求已被接受。用户
 可以下载存储库的任何文件。如果审批模式是自动，则该列表默认包含所有
 请求。已接受的请求可以随时使用 [cancel_access_request()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_access_request) 取消或拒绝，并且
 [reject_access_request()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.reject_access_request)。取消的请求将返回待处理列表，而拒绝的请求将返回待处理列表。
@@ -3401,7 +3401,7 @@ list_inference_catalog(token: bool | str | None = None)
 
 目录中可用的型号 ID 列表。
 
-列出拥抱面部推理目录中可用的模型。
+列出拥抱脸部推理目录中可用的模型。
 
 推理目录的目标是提供针对推理优化的模型的精选列表
 并对其默认配置进行了测试。请参阅 https://endpoints.huggingface.co/catalog 获取列表
@@ -5056,7 +5056,7 @@ revision (`str`) ：要检查的存储库的修订版本。repo_type (`str`, *�
 
 如果存储库和修订版本存在，则为 True，否则为 False。
 
-检查 Hugging Face Hub 上的存储库中是否存在特定修订版本。
+检查 Hugging Face Hub 上的存储库中是否存在特定修订版。
 
 示例：
 ```py
@@ -5087,7 +5087,7 @@ fn (`Callable`) ：在后台运行的方法。
 得到任务的结果。
 
 在后台运行一个方法并返回一个 Future 实例。主要目标是在不阻塞主线程的情况下运行方法（例如在训练期间推送数据）。
-后台作业排队以保持顺序，但不并行运行。如果您需要加快脚本速度
+后台作业排队以保持顺序，但不会并行运行。如果您需要加快脚本速度
 通过并行化大量 API 调用，您必须设置并使用您自己的 [ThreadPoolExecutor](https://docs.python.org/3/library/concurrent.futures.html#threadpoolexecutor)。
 
 注意：最常用的方法，如 [upload_file()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file)、[upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) 和 [create_commit()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) 都有一个 `run_as_future: bool`
@@ -5513,10 +5513,10 @@ repo_type (`str`, *可选*) ：如果从数据集或空间列出提交，则设�
 扰乱历史。压缩提交只能从分支的头部执行。
 
 > [!警告]
-> 一旦被压扁，提交历史记录将无法检索。这是不可恢复的操作。
+> 一旦被压缩，提交历史记录将无法检索。这是不可恢复的操作。
 
 > [!警告]
-> 一旦分支的历史被压缩，就不可能将其合并回另一个分支，因为
+> 一旦分支的历史记录被压缩，就不可能将其合并回另一个分支，因为
 > 他们的历史将会有所不同。
 
 示例：
@@ -5578,7 +5578,7 @@ ignore_existing（*bool*，*可选*，默认为*False*）：跳过更新接收�
 
 include (*list[str]*, *可选*) ：包含匹配模式的文件（fnmatch-style）。
 
-排除（*list[str]*，*可选*）：排除匹配模式（fnmatch-style）的文件。
+排除 (*list[str]*, *可选*) ：排除匹配模式的文件（fnmatch 样式）。
 
 filter_from (*str*, *可选*) ：具有包含/排除规则的过滤器文件的路径。plan (*str*, *可选*) ：将同步计划保存到此 JSONL 文件而不是执行。
 
@@ -5666,7 +5666,7 @@ as [sync_bucket()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#hug
 同步对作业不可见（重新运行 `sync_job_volume` 进行更新），并且卷是
 默认情况下以只读方式安装。要检索作业写入读写卷的数据，请同步
 存储桶文件夹后面带有[sync_bucket()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_bucket)。如果源目录为空（例如输出
-目录），上传占位符 `.keep` 文件，以便仍然可以挂载该卷。
+目录），上传占位符 `.keep` 文件，以便仍可以挂载该卷。
 
 示例：
 ```python
@@ -5931,7 +5931,7 @@ update_job_labels(job_id: str, labels: dict[str, str], namespace: str | None = N
 
 job_id (`str`) ：作业的 ID。 
 
-labels (`dict[str, str]`)：要在作业上设置的新标签。替换所有现有标签。键和值的长度不得超过 100 个字符，并且仅包含字母数字字符、点、破折号和下划线。 
+labels (`dict[str, str]`) ：要在作业上设置的新标签。替换所有现有标签。键和值的长度不得超过 100 个字符，并且仅包含字母数字字符、点、破折号和下划线。 
 
 命名空间（`str`，*可选*）：作业运行的命名空间。默认为当前用户的命名空间。token `(Union[bool, str, None]`，*可选*) ：有效的用户访问令牌。如果未提供，将使用本地保存的令牌，这是推荐的身份验证方法。设置为 `False` 以禁用身份验证。请参阅：https://huggingface.co/docs/huggingface_hub/quick-start#authentication。
 
@@ -6462,7 +6462,7 @@ whoami(token: bool | str | None = None, cache: bool = False)
 
 调用 HF API 即可了解“whoami”。
 
-如果传递 `cache=True`，结果将被缓存以供 Python 进程期间的后续调用。如果您打算打电话，这很有用
+如果传递`cache=True`，结果将被缓存以供Python进程期间的后续调用。如果您打算打电话，这很有用
 `whoami` 多次，因为出于安全原因，此端点受到严格的速率限制。
 
 ## API 数据类
@@ -6779,9 +6779,9 @@ trending_score (`int`, *可选*) ：数据集的趋势分数。
 
 used_storage (`int`, *可选*) ：集线器上数据集的大小（以字节为单位）。
 
-包含有关 Hub 上数据集的信息。该对象由 [dataset_info()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.dataset_info) 和 [list_datasets()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_datasets) 返回。> [!提示]
+包含有关 Hub 上数据集的信息。该对象由[dataset_info()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.dataset_info)和[list_datasets()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_datasets)返回。> [!提示]
 > 该类的大多数属性都是可选的。这是因为 Hub 返回的数据取决于所做的查询。
-> 一般来说，查询越具体，返回的信息就越多。相反，当列出数据集时
+> 一般来说，查询越具体，返回的信息越多。相反，当列出数据集时
 > 使用 [list_datasets()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_datasets) 仅返回属性的子集。
 
 ### DryRunFileInfo[[huggingface_hub.DryRunFileInfo]]
@@ -6808,7 +6808,7 @@ will_download (`bool`) : 如果使用`dry_run=False`调用`hf_hub_download`，�
 
 执行文件下载试运行时返回的信息。
 
-由 [hf_hub_download()](/docs/huggingface_hub/v1.27.0/en/package_reference/file_download#huggingface_hub.hf_hub_download) 在 `dry_run=True` 时返回。
+由[hf_hub_download()](/docs/huggingface_hub/v1.27.0/en/package_reference/file_download#huggingface_hub.hf_hub_download)在`dry_run=True`时返回。
 
 ### GitRefInfo[[huggingface_hub.GitRefInfo]]
 
@@ -7028,7 +7028,7 @@ sha（`str`，*可选*）：此特定修订版的 Repo SHA。
 
 Tags (`list[str]`) ：模型的标签列表。与`card_data.tags`相比，包含由Hub计算的额外标签（例如支持的库、模型的arXiv）。
 
-Transformers_info (`TransformersInfo`, *可选*) ：与模型关联的 Transformers 特定信息（汽车类、处理器等）。
+Transformers_info (`TransformersInfo`, *可选*) ：与模型关联的 Transformer 特定信息（汽车类、处理器等）。
 
 trending_score (`int`, *可选*) ：模型的趋势分数。
 
@@ -7038,7 +7038,7 @@ widget_data (`Any`, *可选*) ：与模型关联的小部件数据。包含有�
 
 > [!提示]
 > 该类的大多数属性都是可选的。这是因为 Hub 返回的数据取决于所做的查询。
-> 一般来说，查询越具体，返回的信息就越多。相反，在列出型号时
+> 一般来说，查询越具体，返回的信息越多。相反，在列出型号时
 > 使用 [list_models()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_models) 仅返回属性的子集。
 
 ### RepoSibling[[huggingface_hub.hf_api.RepoSibling]]
@@ -7248,7 +7248,7 @@ used_storage (`int`, *可选*) ：集线器上空间的大小（以字节为单�
 
 包含有关 Hub 上空间的信息。该对象由[space_info()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.space_info)和[list_spaces()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_spaces)返回。> [!提示]
 > 该类的大多数属性都是可选的。这是因为 Hub 返回的数据取决于所做的查询。
-> 一般来说，查询越具体，返回的信息就越多。相反，当列出空间时
+> 一般来说，查询越具体，返回的信息越多。相反，当列出空间时
 > 使用 [list_spaces()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_spaces) 仅返回属性的子集。
 
 ### SpaceSearchResult[[huggingface_hub.SpaceSearchResult]]
@@ -7347,7 +7347,7 @@ num_discussions (`int`, *可选*) ：用户发起的讨论数量。
 
 num_papers (`int`, *可选*) ：用户撰写的论文数量。
 
-num_upvotes (`int`, *可选*) : 用户收到的赞成票数。
+num_upvotes (`int`, *可选*) ：用户收到的赞成票数。
 
 num_likes (`int`, *可选*) ：用户点赞的数量。
 
@@ -7425,7 +7425,7 @@ huggingface_hub.WebhookWatchedItem(type: Literal['dataset', 'model', 'org', 'spa
 
 type (`Literal["dataset", "model", "org", "space", "user"]`) ：要观看的项目的类型。可以是`["dataset", "model", "org", "space", "user"]`之一。
 
-name (`str`) : 要观看的项目的名称。可以是用户名、组织名称、模型名称、数据集名称或空间名称。
+name (`str`) ：要观看的项目的名称。可以是用户名、组织名称、模型名称、数据集名称或空间名称。
 
 包含有关 Webhook 监视的项目信息的数据结构。
 
@@ -7583,7 +7583,7 @@ allowed_pa​​tterns（`list[str]`或`str`，*可选*）：如果提供，则�
 
 ignore_patterns（`list[str]` 或 `str`，*可选*）：如果提供，则不会上传与任何模式匹配的文件。
 
-squash_history (`bool`, *可选*) ：是否在每次提交后压缩存储库的历史记录。默认为`False`。压缩提交对于避免存储库变得太大时性能下降很有用。hf_api（`HfApi`，*可选*）：用于提交到 Hub 的 [HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi) 客户端。可以使用自定义设置（用户代理、令牌...）进行设置。
+squash_history (`bool`, *可选*) ：是否在每次提交后压缩存储库的历史记录。默认为`False`。压缩提交对于避免存储库变得太大时性能下降很有用。hf_api（`HfApi`，*可选*）：用于提交到 Hub 的 [HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi) 客户端。可以使用自定义设置（用户代理、令牌……）进行设置。
 
 调度程序定期将本地文件夹上传到集线器（例如每 5 分钟推送到集线器）。
 
@@ -7639,7 +7639,7 @@ push_to_hub()
 > 该方法不应该直接调用。它由调度程序在后台运行，尊重
 > 队列机制以避免并发提交。直接调用该方法可能会导致并发
 > 问题。`push_to_hub` 的默认行为是采用仅附加文件夹。它列出了文件夹中的所有文件并
-仅上传更改的文件。如果未发现任何更改，该方法将返回而不提交任何内容。如果你想要
+仅上传更改的文件。如果没有发现任何更改，该方法将返回而不提交任何内容。如果你想要
 要更改此行为，您可以继承[CommitScheduler](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler)并重写此方法。这可能很有用
 例如，在提交之前将数据压缩到一个文件中。有关更多详细信息和示例，请检查
 出我们的[integration guide](https://huggingface.co/docs/huggingface_hub/main/en/guides/upload#scheduled-uploads)。

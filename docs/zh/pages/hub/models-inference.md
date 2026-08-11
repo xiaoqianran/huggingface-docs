@@ -10,7 +10,7 @@ Hugging Face 的模型页面具有数千个模型的即用即付推理，因此�
 
 Inference Providers 与 Hugging Face Hub 深度集成，您可以通过几种不同的方式使用它：
 
-- **交互式小部件** - 使用在幕后使用推理提供程序的交互式小部件直接在模型页面上测试模型。查看 [DeepSeek-R1-0528 model page](https://huggingface.co/deepseek-ai/DeepSeek-R1-0528) 的示例。
+- **交互式小部件** - 使用在后台使用推理提供程序的交互式小部件直接在模型页面上测试模型。查看 [DeepSeek-R1-0528 model page](https://huggingface.co/deepseek-ai/DeepSeek-R1-0528) 的示例。
 - **推理游乐场** - 轻松测试聊天完成模型并将其与提示进行比较。查看 [Inference Playground](https://huggingface.co/playground) 开始使用。
 - **搜索** - 在 [models page](https://huggingface.co/models?inference_provider=all) 上按推理提供程序过滤模型，以查找通过特定提供程序可用的模型。
 - **Data Studio** - 使用 AI 探索 Hub 上的数据集。查看您最喜欢的数据集上的 [Data Studio](https://huggingface.co/datasets/fka/awesome-chatgpt-prompts/viewer?views%5B%5D=train)。

@@ -756,7 +756,7 @@ huggingface_hub.ImageToVideoTargetSize(height: int, width: int)
 
 输出视频帧的像素大小。
 
-## object_detection[[huggingface_hub.ObjectDetectionBoundingBox]]
+## 对象检测[[huggingface_hub.ObjectDetectionBoundingBox]]
 
 #### Huggingface_hub.ObjectDetectionBoundingBox[[huggingface_hub.ObjectDetectionBoundingBox]]
 

@@ -174,7 +174,7 @@ max_tokens (`int`, *可选*) ：响应中允许的最大令牌数。默认为 10
 
 n (`int`, *可选*) ：为每个提示生成的完成数。
 
-Presence_penalty (`float`, *可选*) ：-2.0 到 2.0 之间的数字。正值根据新标记目前是否出现在文本中来对其进行惩罚，从而增加模型谈论新主题的可能性。
+Presence_penalty (`float`, *可选*) ：-2.0 到 2.0 之间的数字。正值根据新标记目前是否出现在文本中来对其进行惩罚，从而增加模型讨论新主题的可能性。
 
 response_format (`ChatCompletionInputGrammarType()`, *可选*) ：语法约束。可以是 JSONSchema 或正则表达式。
 
@@ -736,7 +736,7 @@ model（`str`，*可选*）：用于图像分割的模型。可以是 Hugging Fa
 
 mask_threshold (`float`, *可选*) ：将预测掩码转换为二进制值时使用的阈值。
 
-overlap_mask_area_threshold (`float`, *可选*) ：掩码重叠阈值以消除小的、断开的段。
+overlap_mask_area_threshold（`float`，*可选*）：掩码重叠阈值，以消除小的、断开的段。
 
 子任务（`"ImageSegmentationSubtask"`，*可选*）：要执行的分割任务，具体取决于模型功能。
 
@@ -782,7 +782,7 @@ negative_prompt (`str`, *可选*) ：一个提示，用于指导图像生成中�
 
 num_inference_steps (`int`, *可选*) ：用于扩散模型。去噪步数。更多的去噪步骤通常会带来更高质量的图像，但代价是推理速度变慢。
 
-Guiding_scale (`float`, *可选*) ：用于扩散模型。较高的引导比例值会鼓励模型生成与文本提示紧密相关的图像，但代价是图像质量较低。
+guide_scale（`float`，*可选*）：用于扩散模型。较高的引导比例值会鼓励模型生成与文本提示紧密相关的图像，但代价是图像质量较低。
 
 model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。此参数覆盖在实例级别定义的模型。默认为无。target_size (`ImageToImageTargetSize`, *可选*) ：输出图像的大小（以像素为单位）。仅某些提供商和特定型号支持此参数。当不支持时它将被忽略。
 
@@ -1246,7 +1246,7 @@ text_generation(prompt: str, details: bool | None = None, stream: bool | None = 
 
 提示符(`str`)：输入文字。详细信息（`bool`，*可选*）：默认情况下，text_ Generation 返回一个字符串。如果您想要详细的输出（标记、概率、种子、完成原因等），请通过`details=True`。仅适用于运行 `text-generation-inference` 后端的型号。
 
-流（`bool`​​，*可选*）：默认情况下，text_ Generation 返回完整的生成文本。如果您想要返回令牌流，请传递`stream=True`。仅适用于运行 `text-generation-inference` 后端的型号。
+流（`bool`​​，*可选*）：默认情况下，text_ Generation 返回完整的生成文本。如果您想要返回令牌流，请传递`stream=True`。仅适用于运行`text-generation-inference`后端的型号。
 
 model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。此参数覆盖在实例级别定义的模型。默认为无。
 
@@ -1854,7 +1854,7 @@ visual_question_answering(image: typing.Union[bytes, typing.BinaryIO, str, pathl
 
 model (`str`, *可选*) ：用于视觉问答任务的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用默认推荐的视觉问答模型。默认为无。
 
-top_k (`int`, *可选*) ：返回的答案数量（将按可能性顺序选择）。请注意，如果上下文中没有足够的选项，我们将返回少于 topk 的答案。
+top_k (`int`, *可选*) ：要返回的答案数量（将按可能性顺序选择）。请注意，如果上下文中没有足够的选项，我们将返回少于 topk 的答案。
 
 **返回：** `list[VisualQuestionAnsweringOutputElement]`
 
@@ -1897,7 +1897,7 @@ zero_shot_classification(text: str, candidate_labels: list, multi_label: bool | 
 
 labels (`list[str]`, *可选*) ：（已弃用）字符串列表。每个字符串都是输入文本的可能标签的语言表达。
 
-multi_label (`bool`, *可选*) : 多个候选标签是否可以为真。如果为假，则对分数进行归一化，以使每个序列的标签似然之和为 1。如果为真，则将标签视为独立，并对每个候选者的概率进行归一化。
+multi_label (`bool`, *可选*) ：多个候选标签是否可以为真。如果为假，则对分数进行归一化，以使每个序列的标签似然之和为 1。如果为真，则将标签视为独立，并对每个候选者的概率进行归一化。
 
 假设_模板（`str`，*可选*）：与`candidate_labels`结合使用的句子，通过用候选标签替换占位符来尝试文本分类。
 
@@ -2170,7 +2170,7 @@ max_tokens (`int`, *可选*) ：响应中允许的最大令牌数。默认为 10
 
 n (`int`, *可选*) ：为每个提示生成的完成数。
 
-Presence_penalty (`float`, *可选*) ：-2.0 到 2.0 之间的数字。正值根据新标记目前是否出现在文本中来对其进行惩罚，从而增加模型谈论新主题的可能性。
+Presence_penalty (`float`, *可选*) ：-2.0 到 2.0 之间的数字。正值根据新标记目前是否出现在文本中来对其进行惩罚，从而增加模型讨论新主题的可能性。
 
 response_format (`ChatCompletionInputGrammarType()`, *可选*) ：语法约束。可以是 JSONSchema 或正则表达式。
 
@@ -2714,7 +2714,7 @@ image_classification(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Pa
 
 image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) ：要分类的图像。它可以是原始字节、图像文件、在线图像的 URL 或 PIL 图像。
 
-model（`str`，*可选*）：用于图像分类的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用默认推荐的图像分类模型。
+model (`str`，*可选*)：用于图像分类的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果未提供，将使用默认推荐的图像分类模型。
 
 function_to_apply (`"ImageClassificationOutputTransform"`, *可选*) ：应用于模型输出以检索分数的函数。
 
@@ -2972,7 +2972,7 @@ context (`str`) ：问题的上下文。
 
 model (`str`) ：用于问答任务的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。
 
-align_to_words (`bool`, *可选*) ：尝试将答案与真实单词对齐。提高空间分隔语言的质量。可能会对非空格分隔的语言（例如日语或中文）造成伤害
+align_to_words (`bool`, *可选*)：尝试将答案与真实单词对齐。提高空间分隔语言的质量。可能会对非空格分隔的语言（例如日语或中文）造成伤害
 
 doc_stride (`int`, *可选*) ：如果上下文太长而无法满足模型的问题，它将被分成几个有重叠的块。该参数控制重叠的大小。handle_impossible_answer (`bool`, *可选*) ：是否接受不可能作为答案。
 
@@ -3019,7 +3019,7 @@ sentence_similarity(sentence: str, other_sentences: list, model: str | None = No
 
 other_sentences (`list[str]`) ：要比较的句子列表。
 
-model (`str`, *可选*) ：用于句子相似度任务的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果不提供，将使用默认推荐的句子相似度模型。默认为无。
+model (`str`, *可选*) ：用于句子相似性任务的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。如果不提供，将使用默认推荐的句子相似度模型。默认为无。
 
 **返回：** `list[float]`
 
@@ -3278,7 +3278,7 @@ text_generation(prompt: str, details: bool | None = None, stream: bool | None = 
 
 详细信息（`bool`，*可选*）：默认情况下，text_ Generation 返回一个字符串。如果您想要详细的输出（标记、概率、种子、完成原因等），请通过`details=True`。仅适用于运行 `text-generation-inference` 后端的型号。
 
-流（`bool`，*可选*）：默认情况下，text_ Generation 返回完整的生成文本。如果您想要返回令牌流，请传递`stream=True`。仅适用于运行`text-generation-inference`后端的型号。
+流（`bool`，*可选*）：默认情况下，text_ Generation 返回完整的生成文本。如果您想要返回令牌流，请传递`stream=True`。仅适用于运行 `text-generation-inference` 后端的型号。
 
 model (`str`, *可选*) ：用于推理的模型。可以是 Hugging Face Hub 上托管的模型 ID，也可以是已部署的推理端点的 URL。此参数覆盖在实例级别定义的模型。默认为无。
 
@@ -3294,13 +3294,13 @@ Frequency_penalty（`float`，*可选*）：-2.0 到 2.0 之间的数字。正�
 
 max_new_tokens (`int`, *可选*) : 生成的令牌的最大数量。默认为 100。
 
-Repeat_penalty (`float`, *可选*) ：重复惩罚的参数。 1.0 表示没有处罚。更多详情请参见[this paper](https://arxiv.org/pdf/1909.05858.pdf)。
+repetition_penalty (`float`, *可选*) ：重复惩罚的参数。 1.0 表示没有处罚。更多详情请参见[this paper](https://arxiv.org/pdf/1909.05858.pdf)。
 
 return_full_text (`bool`, *可选*) : 是否将提示添加到生成的文本中
 
 种子（`int`，*可选*）：随机采样种子
 
-stop (`list[str]`, *可选*) ：如果生成了`stop`的成员，则停止生成令牌。stop_sequences (`list[str]`, *可选*) ：已弃用的参数。请使用`stop`代替。
+stop (`list[str]`, *可选*) : 如果生成了`stop`的成员，则停止生成令牌。stop_sequences (`list[str]`, *可选*) ：已弃用的参数。请使用`stop`代替。
 
 温度（`float`，*可选*）：用于对 logits 分布进行建模的值。
 
@@ -3578,7 +3578,7 @@ num_beam_groups (`int`, *可选*) ：将 num_beams 划分成的组数，以确�
 
 num_beams (`int`, *可选*) ：用于波束搜索的波束数量。
 
-惩罚_alpha（`float`，*可选*）：该值平衡对比搜索解码中的模型置信度和退化惩罚。
+惩罚_alpha（`float`，*可选*）：该值平衡模型置信度和对比搜索解码中的退化惩罚。
 
 温度（`float`，*可选*）：用于调节下一个令牌概率的值。
 

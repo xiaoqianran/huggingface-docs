@@ -455,7 +455,7 @@ else:
         api.request_space_hardware(repo_id=TRAINING_SPACE_ID, hardware=SpaceHardware.T4_MEDIUM)
 ```
 
-### 任务调度器
+### 任务调度程序
 
 可以通过多种方式来完成任务安排。这是一个如何使用它来完成的示例
 存储为数据集的简单 CSV。
