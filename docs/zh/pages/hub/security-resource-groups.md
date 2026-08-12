@@ -100,5 +100,5 @@
 
 您可以通过 Hub API 列出资源组并向其中添加用户（或更改成员的组织角色和资源组分配）。有关完整参考、示例和批处理工作流程，请参阅 [Programmatic User Access Control Management](./programmatic-user-access-control) 指南。
 
-### 带有 llama.cpp 的本地代理
-https://huggingface.co/docs/hub/agents-local.md
+### 通过 SSH 进行 Git
+https://huggingface.co/docs/hub/security-git-ssh.md

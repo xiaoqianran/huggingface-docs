@@ -2,7 +2,7 @@
 
 # 热门图片
 
-以下是来自流行框架的现成 Docker 镜像列表，您可以在作业中使用 uv 来使用这些镜像。
+以下是来自流行框架的现成 Docker 映像列表，您可以在作业中使用 uv 来使用这些映像。
 
 这些 Docker 镜像已经安装了 uv，但是如果您想对未安装 uv 的镜像使用镜像 + uv，则需要确保首先安装了 uv。这在许多情况下都可以很好地工作，但对于可能有非常具体要求的 LLM 推理库，使用安装了该库的特定映像可能会很有用。
 
@@ -31,7 +31,7 @@ vLLM 是一种非常知名且广泛使用的推理引擎。它以其扩展法学
 
 ## TRLTRL 是一个专为训练后模型而设计的库，使用监督微调 (SFT)、组相对策略优化 (GRPO) 和直接偏好优化 (DPO) 等技术。 `huggingface/trl` 提供了具有 UV 和所有 TRL 依赖项的最新 Docker 映像，并且可以直接与 Hugging Face Jobs 一起使用。
 
-使用 `--image` 参数来使用此 Docker 映像：
+使用 `--image` 参数来使用此 Docker 镜像：
 
 ```bash
 >>> hf jobs uv run --image huggingface/trl --flavor a100-large -s HF_TOKEN train.py
@@ -99,5 +99,5 @@ Location: /usr/local/lib/python3.12/dist-packages   # pass to PYTHONPATH
 > 不是加速。一个`uv run --system-site-packages`将重用图像的包和
 > 跳过重新安装是[requested upstream](https://github.com/astral-sh/uv/issues/7999)。
 
-### 用户管理
-https://huggingface.co/docs/hub/security-sso-user-management.md
+### 数据工作室
+https://huggingface.co/docs/hub/data-studio.md

@@ -58,5 +58,5 @@ gemini extensions install https://github.com/huggingface/skills.git --consent
 - [CLI Guide](./agents-cli) - 用于 AI 代理的 Hugging Face CLI
 - [MCP Guide](./agents-mcp) - 与技能一起使用
 
-### 数字对象标识符 (DOI)
-https://huggingface.co/docs/hub/doi.md
+### 如何使用 Okta 配置 SCIM
+https://huggingface.co/docs/hub/security-sso-okta-scim.md

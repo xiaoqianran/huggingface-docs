@@ -10,9 +10,9 @@ Hugging Face 提供两种不同的 SSO 模型，每种模型都针对不同的�
 ## 概览
 
 |  | **基本单点登录** | **托管单点登录** |
-| --- | --- | --- |
+| ---| ---| ---|
 | **计划** |团队与企业 |企业增强版 |
-| **范围** |仅组织资源|整个抱脸平台|
+| **范围** |仅组织资源 |整个抱脸平台|
 | **取代拥抱脸登录** |否 — 用户保留其现有的 Hugging Face 凭据 |是的 — 您的 IdP 成为唯一的登录方法 |
 | **用户帐户** |用户保留自己的个人 Hugging Face 帐户 |帐户由组织拥有和管理 |
 | **个人内容** |用户可以在他们的个人命名空间中创建内容 |用户只能在组织内创建内容 |
@@ -57,5 +57,5 @@ Hugging Face 提供两种不同的 SSO 模型，每种模型都针对不同的�
 - [User Management](./security-sso-user-management) — 角色映射、资源组映射、会话超时等
 - [Configuration Guides](./security-sso-configuration-guides) — Okta、Microsoft Entra ID 和 Google Workspace 的分步设置说明
 
-### 在拥抱脸部使用 PaddleNLP
-https://huggingface.co/docs/hub/paddlenlp.md
+### 纸页
+https://huggingface.co/docs/hub/paper-pages.md

@@ -6,7 +6,7 @@ TensorBoard 提供了用于跟踪和可视化指标以及可视化模型的工�
 
 ## 在 Hub 上探索 TensorBoard 模型
 
-超过 52k 的存储库在 Hub 上有 TensorBoard 跟踪。您可以通过[models page](https://huggingface.co/models?filter=tensorboard)左侧的过滤找到它们。例如，如果您转到 [aubmindlab/bert-base-arabertv02](https://huggingface.co/aubmindlab/bert-base-arabertv02) 存储库，则会有一个 **Metrics** 选项卡。如果选择它，您将查看 TensorBoard 实例。
+Hub 上有超过 52k 的存储库有 TensorBoard 痕迹。您可以通过[models page](https://huggingface.co/models?filter=tensorboard)左侧的过滤找到它们。例如，如果您转到 [aubmindlab/bert-base-arabertv02](https://huggingface.co/aubmindlab/bert-base-arabertv02) 存储库，则会有一个 **Metrics** 选项卡。如果选择它，您将查看 TensorBoard 实例。
 
 ## 添加您的 TensorBoard 轨迹
 
@@ -16,5 +16,5 @@ Hub 自动检测 TensorBoard 痕迹（例如 `tfevents`）。将 TensorBoard 文
 
 * TensorBoard [documentation](https://www.tensorflow.org/tensorboard)。
 
-### 五十一
-https://huggingface.co/docs/hub/datasets-fiftyone.md
+### 图像数据集
+https://huggingface.co/docs/hub/datasets-image.md

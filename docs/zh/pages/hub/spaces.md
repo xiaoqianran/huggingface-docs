@@ -38,5 +38,5 @@
 
 您也可以标记我们[on Twitter](https://twitter.com/huggingface)！ 🤗
 
-### 高级主题
-https://huggingface.co/docs/hub/spaces-advanced.md
+### 视频数据集
+https://huggingface.co/docs/hub/datasets-video.md

@@ -127,5 +127,5 @@ hf jobs run --timeout 3h ...
 hf jobs cancel <job-id>
 ```
 
-### 双因素身份验证 (2FA)
-https://huggingface.co/docs/hub/security-2fa.md
+### 门控数据集
+https://huggingface.co/docs/hub/datasets-gate.md

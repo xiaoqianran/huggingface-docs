@@ -48,5 +48,5 @@ claude
 - [Token Settings](https://huggingface.co/settings/tokens) - 管理您的代币
 - [Jobs Documentation](https://huggingface.co/docs/huggingface_hub/guides/cli#hf-jobs) - 计算作业指南
 
-### Spaces ZeroGPU：空间的动态 GPU 分配
-https://huggingface.co/docs/hub/spaces-zerogpu.md
+### 技能
+https://huggingface.co/docs/hub/agents-skills.md

@@ -2,7 +2,7 @@
 
 # 在您的空间中添加使用 HF 登录按钮
 
-您可以通过无缝创建和关联 [OAuth/OpenID connect](https://developer.okta.com/blog/2019/10/21/illustrated-guide-to-oauth-and-oidc) 应用程序在您的空间中启用内置登录流程，以便用户可以使用其 HF 帐户登录。
+您可以通过无缝创建和关联 [OAuth/OpenID connect](https://developer.okta.com/blog/2019/10/21/illustrated-guide-to-oauth-and-oidc) 应用程序来启用空间中的内置登录流程，以便用户可以使用其 HF 帐户登录。
 
 这将为您的空间带来新的用例。例如，当与[Storage Buckets](https://huggingface.co/docs/hub/storage-buckets)结合使用时，生成式AI空间可以允许用户登录以访问他们的前几代，只有他们可以访问。
 
@@ -54,7 +54,7 @@ hf_oauth_authorized_org:
 
 对于任何其他环境变量，您可以通过使用 `os.getenv("OAUTH_CLIENT_ID")` 在代码中使用它们。
 
-## 重定向 URL 
+## 重定向 URL
 
 您可以使用任何您想要的重定向 URL，只要它针对您的空间即可。
 
@@ -66,22 +66,25 @@ hf_oauth_authorized_org:
 
 空间始终包含以下范围：
 
-- `openid`：除了访问令牌之外，还获取 ID 令牌。
-- `profile`：获取用户的个人资料信息（用户名、头像等）
+- `openid`：除了访问令牌之外，还接收 ID 令牌。
+- `profile`：读取用户的个人资料信息（用户名、头像等）
 
-这些范围是可选的，可以通过在空间的元数据中设置 `hf_oauth_scopes` 来添加：- `email`：获取用户的电子邮件地址。
+这些范围是可选的，可以通过在空间的元数据中设置 `hf_oauth_scopes` 来添加：- `email`：读取用户的电子邮件地址。
 - `read-billing`：了解用户是否设置了支付方式。
-- `read-repos`：获取用户个人存储库的读取权限。
-- `gated-repos`：获取对用户已被授予访问权限的公共门控存储库内容的读取权限。与 `read-repos` 不同，这不会授予对私人存储库的访问权限。
-- `contribute-repos`：可以创建存储库并访问由此应用程序创建的存储库。除非授予额外权限，否则无法访问任何其他存储库。
-- `write-repos`：获得对用户个人存储库的写/读访问权限。
-- `manage-repos`：获得对用户个人存储库的完全访问权限。还授予存储库创建和删除权限。
-- `read-collections`：获得对用户个人收藏的读取权限。
-- `write-collections`：获得对用户个人收藏的写/读访问权限。还允许创建和删除集合。
-- `inference-api`：访问[Inference Providers](https://huggingface.co/docs/inference-providers/index)，您将能够代表用户提出推理请求。
-- `jobs`：运行[jobs](https://huggingface.co/docs/huggingface_hub/main/en/guides/jobs) 
-- `webhooks`：管理[webhooks](https://huggingface.co/docs/huggingface_hub/main/en/guides/webhooks)
-- `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论等）。要在私有存储库上打开拉取请求，您还需要请求 `read-repos` 范围。## 访问组织资源
+- `read-repos`：阅读用户的个人存储库。
+- `gated-repos`：读取用户已被授予访问权限的公共门控存储库的内容。与 `read-repos` 不同，这不会授予对私人存储库的访问权限。
+- `contribute-repos`：创建存储库并访问由此应用程序创建的存储库。除非授予额外权限，否则无法访问任何其他存储库。
+- `write-repos`：读写用户的个人存储库。
+- `manage-repos`：全面管理用户的个人仓库，包括创建和删除它们。
+- `read-collections`：阅读用户的个人收藏。
+- `write-collections`：读写用户的个人收藏，包括创建和删除它们。
+- `inference-api`：代表用户向[Inference Providers](https://huggingface.co/docs/inference-providers/index)提出推理请求。
+- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)并代表用户向其发出推理请求。
+- `write-endpoints`：管理用户的推理端点，包括创建和删除它们。包括 `read-endpoints` 访问权限。
+- `jobs`：运行[jobs](https://huggingface.co/docs/huggingface_hub/main/en/guides/jobs)
+- `webhooks`：管理[webhooks](https://huggingface.co/docs/huggingface_hub/main/en/guides/webhooks)- `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论……）。要在私有存储库上打开拉取请求，您还需要请求 `read-repos` 范围。
+
+## 访问组织资源
 
 默认情况下，oauth 应用程序不需要访问组织资源。
 
@@ -91,7 +94,7 @@ hf_oauth_authorized_org:
 
 ## 将按钮添加到您的空间
 
-现在，您已掌握向您的空间添加“使用 HF 登录”按钮的所有信息。一些库（[Python](https://github.com/lepture/authlib)、[NodeJS](https://github.com/panva/node-openid-client)）可以帮助您实现 OpenID/OAuth 协议。 
+现在，您已掌握向您的空间添加“使用 HF 登录”按钮的所有信息。一些库（[Python](https://github.com/lepture/authlib)、[NodeJS](https://github.com/panva/node-openid-client)）可以帮助您实现 OpenID/OAuth 协议。
 
 Gradio 和 Huggingface.js 还提供**内置支持**，使得使用 HF 按钮实现登录变得轻而易举；您可以通过[gradio](https://www.gradio.app/guides/sharing-your-app#o-auth-login-via-hugging-face)和[huggingface.js](https://huggingface.co/docs/huggingface.js/hub/README#oauth-login)查看相关指南。
 
@@ -125,5 +128,5 @@ if (!oauthResult) {
 console.log(oauthResult);
 ```
 
-### 附录
-https://huggingface.co/docs/hub/model-card-appendix.md
+### 拥抱脸部 MCP 服务器
+https://huggingface.co/docs/hub/agents-mcp.md

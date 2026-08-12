@@ -37,5 +37,5 @@ Spaces 还可以为您的应用程序提供自定义 HTML，而不是使用 Stre
 
 * [Static Variables](https://huggingface.co/spaces/huggingfacejs/static-variables)
 
-### Hugging Face Hub 文档
-https://huggingface.co/docs/hub/index.md
+### 数据集概述
+https://huggingface.co/docs/hub/datasets-overview.md

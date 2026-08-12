@@ -63,7 +63,7 @@ model = AutoModel.from_pretrained("private/model", token=access_token)
 
 ## 撤销泄露的令牌如果您自己的令牌之一已泄漏，请从设置的[Access Tokens tab](https://huggingface.co/settings/tokens)中删除或刷新它。
 
-如果您发现了其他人的 Hugging Face 访问令牌，您可以使用 [⟦T7⟧](https://huggingface-openapi.hf.space/#tag/tokens/POST/api/credentials/revoke) 端点使其失效。您不需要对拥有该令牌的帐户或组织拥有任何权限。
+如果您发现了其他人的 Hugging Face 访问令牌，您可以使用 [⟦T7⟧](https://huggingface-openapi.hf.space/#tag/tokens/POST/api/credentials/revoke) 端点使其失效。您不需要对拥有该令牌的帐户或组织拥有任何权利。
 
 ```bash
 # LEAKED_HF_TOKEN should contain the raw token value to revoke
@@ -106,5 +106,5 @@ curl -X POST "https://huggingface.co/api/credentials/revoke" \
 
 如果您的组织设置了需要细粒度令牌的策略，则在针对该组织的资源使用读/写令牌时，读/写令牌将被拒绝，并出现 `403` 错误。
 
-### 编辑数据集
-https://huggingface.co/docs/hub/datasets-editing.md
+### 空间变更日志
+https://huggingface.co/docs/hub/spaces-changelog.md

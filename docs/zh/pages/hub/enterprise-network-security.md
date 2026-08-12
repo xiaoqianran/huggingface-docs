@@ -53,5 +53,5 @@ Hub 上的大多数操作都有限制；例如，用户每天只能创建一定�
 
 **OpenAPI 参考：**
 - GET /api/organizations//settings/网络安全
-- 补丁/api/组织//设置/网络安全### 处理渐变空间中的空间依赖性
-https://huggingface.co/docs/hub/spaces-dependency.md
+- 补丁/api/组织//设置/网络安全### 文件名和分割
+https://huggingface.co/docs/hub/datasets-file-names-and-splits.md

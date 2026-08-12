@@ -12,5 +12,5 @@ Git LFS 的主要限制是其以文件为中心的重复数据删除方法。对
 
 这会导致更糟糕的开发人员体验以及额外存储的激增。
 
-### 安全模型
-https://huggingface.co/docs/hub/xet/security.md
+### Xet：我们的存储后端
+https://huggingface.co/docs/hub/xet/index.md

@@ -22,5 +22,5 @@
 
 提及同一组织拥有的模型或数据集的文章将自动显示在该存储库的页面上。详情请参见[Linking to Models and Datasets](./blog-articles#linking-to-models-and-datasets)。有关在 Hub 上创作博客文章的一般信息，请参阅 [Blog Articles](./blog-articles)。
 
-### 工作
-https://huggingface.co/docs/hub/jobs.md
+### 执行SQL操作
+https://huggingface.co/docs/hub/datasets-duckdb-sql.md

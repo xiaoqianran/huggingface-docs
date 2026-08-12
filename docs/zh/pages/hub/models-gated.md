@@ -36,7 +36,7 @@
 #### 通过 API
 
 您可以使用 API 自动批准访问请求。您必须通过 `token` 和 `write` 访问门控存储库。要生成令牌，请转到[your user settings](https://huggingface.co/settings/tokens)。|方法|统一资源定位符 |描述 |标题 |有效载荷
-| ------ | --- | ----------- | -------- | -------- |
+| ------ | ---| ----------- | -------- | -------- |
 | `GET` | `/api/models/{repo_id}/user-access-request/pending` |检索待处理请求的列表。 | `{"authorization": "Bearer $token"}` | |
 | `GET` | `/api/models/{repo_id}/user-access-request/accepted` |检索已接受请求的列表。 | `{"authorization": "Bearer $token"}` | |
 | `GET` | `/api/models/{repo_id}/user-access-request/rejected` |检索被拒绝的请求的列表。 | `{"authorization": "Bearer $token"}` | |
@@ -67,10 +67,10 @@
 如果您想收集更多的用户信息，您可以配置其他字段。可以从“**设置**”选项卡访问此信息。为此，请将 `extra_gated_fields` 属性添加到包含键/值对列表的 [model card metadata](./model-cards#model-card-metadata) 中。 *key* 是字段的名称，*value* 是其类型或具有 `type` 字段的对象。字段类型列表为：- `text`：单行文本字段。
 - `checkbox`：复选框字段。
 - `date_picker`：日期选择器字段。
-- `country`：国家/地区下拉菜单。国家列表基于[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)标准。
+- `country`：国家/地区下拉列表。国家列表基于[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)标准。
 - `select`：带有选项列表的下拉菜单。选项列表在 `options` 字段中定义。示例：`options: ["option 1", "option 2", {label: "option3", value: "opt3"}]`。
 
-最后，您还可以使用 `extra_gated_prompt` 额外字段个性化显示给用户的消息。
+最后，您还可以使用 `extra_gated_prompt` 额外字段个性化向用户显示的消息。
 
 以下是定制请求表的示例，其中要求用户提供其公司名称和国家/地区，并确认该模型仅供非商业用途。
 
@@ -92,7 +92,7 @@ extra_gated_fields:
 ---
 ```
 
-在某些情况下，您可能还想修改门标题、说明和按钮中的默认文本。对于这些用例，您可以像这样修改 `extra_gated_heading`、`extra_gated_description` 和 `extra_gated_button_content`：
+在某些情况下，您可能还想修改门标题、描述和按钮中的默认文本。对于这些用例，您可以像这样修改 `extra_gated_heading`、`extra_gated_description` 和 `extra_gated_button_content`：
 
 ```yaml
 ---
@@ -175,5 +175,5 @@ extra_gated_eu_disallowed: true
 
 系统根据用户的 IP 地址识别用户的位置。
 
-### 组织中的访问控制
-https://huggingface.co/docs/hub/organizations-security.md
+### 空间配置参考
+https://huggingface.co/docs/hub/spaces-config-reference.md

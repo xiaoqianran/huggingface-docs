@@ -48,5 +48,5 @@ model.save("hf://your-username/your-model-name")
 ## 其他资源
 
 * Keras 开发者[Guides](https://keras.io/guides/)。
-* Keras [examples](https://keras.io/examples/)。### 数据文件配置
-https://huggingface.co/docs/hub/datasets-data-files-configuration.md
+* Keras [examples](https://keras.io/examples/)。### 上传数据集
+https://huggingface.co/docs/hub/datasets-adding.md

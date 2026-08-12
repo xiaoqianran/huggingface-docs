@@ -147,5 +147,5 @@ edited_df.to_parquet(
 
 在 [supported libraries](./datasets-libraries) 页面查看您的图书馆是否支持流式传输。
 
-### 存储桶
-https://huggingface.co/docs/hub/storage-buckets.md
+### 在 Hugging Face 中使用 timm
+https://huggingface.co/docs/hub/timm.md

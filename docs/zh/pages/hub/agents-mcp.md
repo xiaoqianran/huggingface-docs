@@ -76,8 +76,8 @@ Gradio MCP 应用程序将其功能公开为工具（带有参数和描述），
 
 - 设置和客户端设置：https://huggingface.co/settings/mcp
 - 变更日志公告：https://huggingface.co/changelog/hf-mcp-server
-- Hugging Face MCP 服务器：https://huggingface.co/mcp
+- 拥抱脸部 MCP 服务器：https://huggingface.co/mcp
 - 使用 Gradio Spaces 构建您自己的 MCP 服务器：https://www.gradio.app/guides/building-mcp-server-with-gradio
 
-### 使用空格作为组织卡
-https://huggingface.co/docs/hub/spaces-organization-cards.md
+### 使用🤗数据集
+https://huggingface.co/docs/hub/datasets-usage.md

@@ -52,7 +52,7 @@ task_categories:
 
 了解有关纸质页面的更多信息[here](./paper-pages)。
 
-### 强制设置数据集模式Hub 将根据数据集包含的文件（音频、视频、地理空间等）自动检测数据集的模式。 If you want to force a specific modality, you can add a tag to the dataset card metadata: `3d`, `audio`, `geospatial`, `image`, `tabular`, `text`, `timeseries`, `video`.
+### 强制设置数据集模式Hub 将根据数据集包含的文件（音频、视频、地理空间等）自动检测数据集的模式。如果要强制使用特定模态，可以向数据集卡元数据添加标签：`3d`、`audio`、`geospatial`、`image`、`tabular`、`text`、`timeseries`、`video`。
 
 例如，要强制模态为`audio`，请将以下内容添加到数据集卡元数据中：
 
@@ -63,7 +63,7 @@ tags:
 
 ### 将库关联到数据集
 
-The dataset page automatically shows libraries and tools that are able to natively load the dataset, but if you want to show another specific library, you can add a tag to the dataset card metadata: `argilla`, `dask`, `datasets`, `distilabel`, `fiftyone`, `mlcroissant`, `pandas`, `webdataset`。请参阅 [list of supported libraries](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/dataset-libraries.ts) 了解更多信息，或建议添加新库。
+数据集页面会自动显示能够本地加载数据集的库和工具，但如果您想显示其他特定库，您可以在数据集卡元数据中添加标签：`argilla`、`dask`、`datasets`、`distilabel`、`fiftyone`、`mlcroissant`、`pandas`、 `webdataset`。请参阅 [list of supported libraries](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/dataset-libraries.ts) 了解更多信息，或建议添加新库。
 
 例如，要将 `argilla` 库关联到数据集卡，请将以下内容添加到数据集卡元数据中：
 
@@ -72,5 +72,5 @@ tags:
 - argilla
 ```
 
-### 空间作为 API 端点
-https://huggingface.co/docs/hub/spaces-api-endpoints.md
+### 在本地使用 AI 模型
+https://huggingface.co/docs/hub/local-apps.md

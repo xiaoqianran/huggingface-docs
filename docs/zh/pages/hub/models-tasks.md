@@ -72,5 +72,5 @@
 
 如果您有兴趣为小部件做出贡献，您可以查看所有小部件的[implementation](https://github.com/huggingface/huggingface.js/tree/main/packages/widgets)。
 
-### 如何使用 Google Workspace 配置 OIDC SSO
-https://huggingface.co/docs/hub/security-sso-google-oidc.md
+### 模型
+https://huggingface.co/docs/hub/models.md

@@ -61,7 +61,7 @@
 
 在本地端口上接收授权代码的本机应用程序和 MCP 客户端可以在 `redirect_uris` 中列出无端口环回 URI，例如`["http://localhost/callback", "http://127.0.0.1/callback"]` — 参见[Redirect URIs](#redirect-uris)。
 
-这对于临时环境或 MCP 客户端特别有用。在拥抱聊天中看到[implementation example](https://github.com/huggingface/chat-ui/pull/1978)。
+这对于临时环境或 MCP 客户端特别有用。在拥抱聊天中查看[implementation example](https://github.com/huggingface/chat-ui/pull/1978)。
 
 ## 设备代码 OAuth
 
@@ -107,17 +107,19 @@ curl -X POST https://huggingface.co/oauth/token \
 
 目前支持的范围有：
 
-- `openid`：除了访问令牌之外，还获取 ID 令牌。
-- `profile`：获取用户的个人资料信息（用户名、头像等）
-- `email`：获取用户的电子邮件地址。
+- `openid`：除了访问令牌之外，还接收 ID 令牌。
+- `profile`：读取用户的个人资料信息（用户名、头像等）
+- `email`：读取用户的电子邮件地址。
 - `read-billing`：了解用户是否设置了支付方式。
-- `read-repos`：获得对用户个人存储库的读取权限。
-- `gated-repos`：获取对用户已被授予访问权限的公共门控存储库内容的读取权限。与 `read-repos` 不同，这不会授予对私人存储库的访问权限。
-- `contribute-repos`：可以创建存储库并访问由此应用程序创建的存储库。除非授予额外权限，否则无法访问任何其他存储库。
-- `write-repos`：获得对用户个人存储库的写/读访问权限。
-- `manage-repos`：获得对用户个人存储库的完全访问权限。还授予存储库创建和删除权限。
-- `read-collections`：获得对用户个人收藏的读取权限。
-- `write-collections`：获得对用户个人收藏的写/读访问权限。还允许创建和删除集合。- `inference-api`：访问[Inference Providers](https://huggingface.co/docs/inference-providers/index)，您将能够代表用户提出推理请求。
+- `read-repos`：阅读用户的个人存储库。
+- `gated-repos`：读取用户已被授予访问权限的公共门控存储库的内容。与 `read-repos` 不同，这不会授予对私人存储库的访问权限。
+- `contribute-repos`：创建存储库并访问此应用程序创建的存储库。除非授予额外权限，否则无法访问任何其他存储库。
+- `write-repos`：读写用户的个人存储库。
+- `manage-repos`：全面管理用户的个人仓库，包括创建和删除它们。
+- `read-collections`：阅读用户的个人收藏。
+- `write-collections`：读写用户的个人收藏，包括创建和删除它们。
+- `inference-api`：代表用户向[Inference Providers](https://huggingface.co/docs/inference-providers/index)提出推理请求。- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)，并代表用户向其发出推理请求。
+- `write-endpoints`：管理用户的推理端点，包括创建和删除它们。包括 `read-endpoints` 访问权限。
 - `jobs`：运行[jobs](https://huggingface.co/docs/huggingface_hub/main/en/guides/jobs)
 - `webhooks`：管理[webhooks](https://huggingface.co/docs/huggingface_hub/main/en/guides/webhooks)
 - `write-discussions`：代表用户打开讨论和拉取请求，并与讨论互动（包括反应、发布/编辑评论、结束讨论等）。要在私有存储库上打开拉取请求，您还需要请求 `read-repos` 范围。
@@ -135,21 +137,21 @@ curl -X POST https://huggingface.co/oauth/token \
 
 用户在授权应用程序时可以选择向哪些组织授予访问权限。如果您需要访问特定组织，可以将 `orgIds=ORG_ID` 作为查询参数添加到 OAuth 授权 URL。您必须将 `ORG_ID` 替换为组织 ID，该 ID 可在 userinfo 响应的 `organizations.sub` 字段中找到。
 
-## 品牌推广
+## 品牌推广您可以自由地使用自己设计的按钮。下面是一些有用的 SVG 图像。
 
-您可以自由地使用自己设计的按钮。下面是一些有用的 SVG 图像。查看 [our badges](https://huggingface.co/datasets/huggingface/badges#sign-in-with-hugging-face) 以及将它们集成到 Markdown 或 HTML 中的说明。
+查看 [our badges](https://huggingface.co/datasets/huggingface/badges#sign-in-with-hugging-face) 以及将它们集成到 Markdown 或 HTML 中的说明。
 
-[⟦T73⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-[⟦T74⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-
-[⟦T75⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
 [⟦T76⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-
 [⟦T77⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
-[⟦T78⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
 
+[⟦T78⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
 [⟦T79⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+
 [⟦T80⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+[⟦T81⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+
+[⟦T82⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
+[⟦T83⟧](https://huggingface.co/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=openid%20profile&state=STATE)
 
 ## 组织令牌交换 (RFC 8693)
 
@@ -159,13 +161,13 @@ curl -X POST https://huggingface.co/oauth/token \
 令牌交换允许组织以编程方式为其成员颁发访问令牌，而无需交互式用户同意。这对于构建需要代表组织成员访问 Hugging Face 资源的内部工具、自动化管道和企业集成特别有用。
 
 > [!提示]
-> 如果您只需要 CI/CD 工作流程（GitHub Actions、GitLab CI、CircleCI 等）中的无密钥身份验证（无需为每个成员颁发令牌），请参阅[Trusted Publishers](./trusted-publishers)，它也使用 `/oauth/token`，但采用 CI 提供商铸造的 OIDC `id_token` 作为主题令牌（无需企业计划，无需客户端凭据）。
+> 如果您只需要 CI/CD 工作流程（GitHub Actions、GitLab CI、CircleCI 等）中的无密钥身份验证（无需为每个成员颁发令牌），请参阅[Trusted Publishers](./trusted-publishers)，它也使用 `/oauth/token`，但采用 CI 提供商铸造的 OIDC `id_token` 作为主题令牌（不需要企业计划，不需要客户端凭据）。
 
 该功能实现了[RFC 8693 - OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)，一种用于代币交换场景的标准协议。
 
 ### 用例
 
-令牌交换专为您的组织需要以下的场景而设计：- **构建内部平台**：创建代表您的团队成员访问 Hugging Face 资源的仪表板或门户，无需每个用户手动进行身份验证。
+令牌交换专为您的组织需要的场景而设计：- **构建内部平台**：创建代表您的团队成员访问 Hugging Face 资源的仪表板或门户，无需每个用户手动进行身份验证。
 - **自动化 CI/CD 管道**：为需要将模型或数据集推送到组织存储库的自动化工作流程发出短期的、有范围的令牌。
 - **与企业身份系统集成**：通过根据您的内部用户目录颁发令牌，将您现有的身份提供商与 Hugging Face 连接起来。
 - **实施自定义访问控制**：构建中间件，根据组织的内部策略颁发具有特定范围的令牌。
@@ -176,7 +178,7 @@ curl -X POST https://huggingface.co/oauth/token \
 2. 您的后端服务使用客户端凭据对此 OAuth 应用程序进行身份验证。
 3. 您的服务请求特定组织成员（通过电子邮件标识）的访问令牌。
 4. Hugging Face 验证用户是否是您组织的成员并颁发范围令牌。
-5. 发行的Token只能访问您组织范围内的资源。
+5. 颁发的Token只能访问您组织范围内的资源。
 
 ### 先决条件要使用令牌交换，您需要具有 `token-exchange` 权限的组织绑定 OAuth 应用程序。请联系 Hugging Face 支持人员，为您的组织设置符合条件的 OAuth 应用程序。
 
@@ -264,7 +266,7 @@ curl -X POST "https://huggingface.co/oauth/token" \
 
 ### 错误响应
 
-|错误 |描述 |
+|错误|描述 |
 |--------|-------------|
 | `invalid_client` |客户端无权使用令牌交换，或应用程序未绑定组织 |
 | `invalid_grant` |在绑定的组织中找不到用户 |
@@ -293,5 +295,5 @@ urn:ietf:params:oauth:grant-type:token-exchange
 - [RFC 8693 - OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)
 - [Audit Logs](./audit-logs)
 
-### 文件名和分割
-https://huggingface.co/docs/hub/datasets-file-names-and-splits.md
+### 门控模型
+https://huggingface.co/docs/hub/models-gate.md

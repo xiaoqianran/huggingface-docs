@@ -14,7 +14,7 @@ Jobs 在 Hugging Face 基础设施上运行，旨在为 AI 构建者、数据工
 
 ## 从任何地方运行作业
 
-您可以使用多种工具来运行作业：* `hf` 命令行界面（请参阅 [CLI installation steps](https://huggingface.co/docs/huggingface_hub/main/en/guides/cli) 和 [Jobs CLI documentation](https://huggingface.co/docs/huggingface_hub/guides/cli#hf-jobs) 了解更多信息）
+您可以使用多种工具来运行作业：* `hf` 命令行界面（有关更多信息，请参阅[CLI installation steps](https://huggingface.co/docs/huggingface_hub/main/en/guides/cli) 和 [Jobs CLI documentation](https://huggingface.co/docs/huggingface_hub/guides/cli#hf-jobs)）
 * `huggingface_hub` Python 客户端（更多信息请参阅[⟦T4⟧ Jobs documentation](https://huggingface.co/docs/huggingface_hub/guides/jobs)）
 * Jobs HTTP API（更多信息请参阅[Jobs OpenAPI](https://huggingface-openapi.hf.space/#tag/jobs)）
 
@@ -40,5 +40,5 @@ Jobs 在 Hugging Face 基础设施上运行，旨在为 AI 构建者、数据工
 
 借助 Webhooks，只要 Hugging Face 存储库有更新，作业就可以运行。例如，您可以将 Webhook 配置为触发给定帐户下的每个模型更新，并从作业中的 Webhook 负载检索更新的模型。
 
-### 使用 GPU 空间
-https://huggingface.co/docs/hub/spaces-gpus.md
+### 上传模型
+https://huggingface.co/docs/hub/models-uploading.md

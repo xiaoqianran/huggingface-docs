@@ -130,7 +130,7 @@ hf buckets list julien-c/my-training-bucket --tree -h -R
 ...
 ```
 
-## 管理文件您可以直接从 Hub 上的存储桶页面上传和下载文件，也可以使用 CLI 和 Python API 进行编程访问。使用 `hf://buckets/` 路径（例如 `hf://buckets/username/my-bucket/path/to/file`）引用存储桶文件。 `hf buckets cp` 命令处理单个文件传输，而 `hf buckets sync` 更适合目录。所有命令都双向工作——本地到远程和远程到本地。
+## 管理文件您可以直接从 Hub 上的存储桶页面上传和下载文件，或使用 CLI 和 Python API 进行编程访问。使用 `hf://buckets/` 路径（例如 `hf://buckets/username/my-bucket/path/to/file`）引用存储桶文件。 `hf buckets cp` 命令处理单个文件传输，而 `hf buckets sync` 更适合目录。所有命令都双向工作——本地到远程和远程到本地。
 
 如果您的数据已经存在于模型、数据集或空间存储库（或另一个存储桶）中，您可以使用 `hf buckets cp` 将其复制到**服务器端** — 无需下载或重新上传。参见[Copying files between repos and buckets](#copying-files-between-repos-and-buckets)。
 
@@ -337,7 +337,7 @@ buckets:
 
 ## 定价
 
-存储桶根据存储的数据量进行计费，并采用简单的按 TB 定价。企业计划受益于基于重复数据删除的计费，其中跨文件共享块直接减少计费占用空间。
+存储桶根据存储的数据量进行计费，并采用简单的按 TB 定价。企业计划受益于基于重复数据删除的计费，其中跨文件共享的块直接减少了计费占用空间。
 
-至于其他存储库，存储桶可以自由创建，并且有免费的存储空间。对于[free tier](https://huggingface.co/docs/hub/storage-limits)以上的用法，请参阅[hf.co/storage](https://huggingface.co/storage)。有关一般计费信息，请参阅 [Billing](./billing) 文档。### 访问模式
-https://huggingface.co/docs/hub/storage-buckets-access.md
+至于其他存储库，存储桶可以自由创建，并且有免费的存储空间。对于[free tier](https://huggingface.co/docs/hub/storage-limits)以上的用法，请参阅[hf.co/storage](https://huggingface.co/storage)。有关一般计费信息，请参阅 [Billing](./billing) 文档。### 在空间中使用 OpenCV
+https://huggingface.co/docs/hub/spaces-using-opencv.md

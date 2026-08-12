@@ -17,7 +17,7 @@
 
 ### 选项 1：使用 Hugging Face 中的“使用此模型”按钮
 
-对于任何 GGUF 或 MLX LLM，请单击“使用此模型”下拉列表并选择 LM Studio。如果您已经有 LM Studio，这将直接在 LM Studio 中运行模型；如果没有，则会显示下载选项。  
+对于任何 GGUF 或 MLX LLM，请单击“使用此模型”下拉列表并选择 LM Studio。如果您已经有 LM Studio，这将直接在 LM Studio 中运行该模型；如果没有，则会显示下载选项。  
 
   <img
     class="block"
@@ -28,7 +28,7 @@
 
 ### 选项 2：使用 LM Studio 的应用内下载器
 
-打开 LM Studio 应用程序，然后按 ⌘ + Shift + M（在 Mac 上）或 Ctrl + Shift + M（在 PC 上）搜索任何模型（M 代表模型）。您甚至可以将整个拥抱脸 URL 粘贴到搜索栏中！
+打开 LM Studio 应用程序，然后按 Mac 上的 ⌘ + Shift + M 或 PC 上的 Ctrl + Shift + M 搜索任何模型（M 代表模型）。您甚至可以将整个拥抱脸 URL 粘贴到搜索栏中！
 
   <img
     class="block"
@@ -80,7 +80,7 @@ lms get https://huggingface.co/lmstudio-community/Ministral-3-8B-Reasoning-2512-
 
 ### LM Studio 应用程序入门
 
-在 LM Studio 应用程序中，前往模型加载器查看已下载模型的列表并选择要加载的模型。您可以自定义模型加载参数，但 LM Studio 默认情况下会选择可优化硬件上模型性能的加载参数。
+在 LM Studio 应用程序中，前往模型加载器查看下载模型的列表并选择一个进行加载。您可以自定义模型加载参数，但 LM Studio 默认情况下会选择可优化硬件上模型性能的加载参数。
 
   <img
     class="block"
@@ -95,5 +95,5 @@ lms get https://huggingface.co/lmstudio-community/Ministral-3-8B-Reasoning-2512-
 
 关注 Hugging Face 上的 [LM Studio Community](https://huggingface.co/lmstudio-community) 页面，第一时间了解最新、最好的本地法学硕士。
 
-### 代币管理
-https://huggingface.co/docs/hub/enterprise-tokens-management.md
+### 渐变空间
+https://huggingface.co/docs/hub/spaces-sdks-gradio.md

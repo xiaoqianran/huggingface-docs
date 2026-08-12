@@ -63,5 +63,5 @@ Livebook 有一个 [official integration with Hugging Face models](https://liveb
 
 如果您有改进建议或需要具体支持，请加入[Livebook community on GitHub](https://github.com/livebook-dev/livebook/discussions)。
 
-### 如何使用 Google Workspace 配置 SAML SSO
-https://huggingface.co/docs/hub/security-sso-google-saml.md
+### 用户研究
+https://huggingface.co/docs/hub/model-cards-user-studies.md

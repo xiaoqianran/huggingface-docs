@@ -63,7 +63,7 @@ df.write_huggingface("username/dataset_name")
 
 ＃＃ 验证[⟦T17⟧](https://docs.daft.ai/en/stable/api/config/#daft.io.HuggingFaceConfig) 中的 `token` 参数可用于为需要身份验证的请求指定 Hugging Face 访问令牌（例如，读取私有数据集存储库或写入数据集存储库）。
 
-Example of loading a dataset with a specified token:
+使用指定标记加载数据集的示例：
 
 ```python
 from daft.io import IOConfig, HuggingFaceConfig
@@ -72,5 +72,5 @@ io_config = IOConfig(hf=HuggingFaceConfig(token="your_token"))
 df = daft.read_parquet("hf://datasets/username/dataset_name", io_config=io_config)
 ```
 
-### 在拥抱脸部使用 BERTopic
-https://huggingface.co/docs/hub/bertopic.md
+### 嵌入图集
+https://huggingface.co/docs/hub/datasets-embedding-atlas.md

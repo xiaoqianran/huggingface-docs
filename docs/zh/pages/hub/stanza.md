@@ -30,5 +30,5 @@ doc = nlp("Barack Obama was born in Hawaii.") # run annotation over a sentence
 
 *`stanza`[docs](https://stanfordnlp.github.io/stanza/)。
 
-### Webhooks 自动化
-https://huggingface.co/docs/hub/jobs-webhooks.md
+### 流光空间
+https://huggingface.co/docs/hub/spaces-sdks-streamlit.md

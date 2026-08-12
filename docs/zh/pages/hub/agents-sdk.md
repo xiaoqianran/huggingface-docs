@@ -139,5 +139,5 @@ JavaScript SDK 使用 `Agent` 类进行 MCP 交互。对于较低级别的控制
 - [tiny-agents Collection](https://huggingface.co/datasets/tiny-agents/tiny-agents) - 浏览社区代理
 - [MCP Server Guide](./agents-mcp) - 连接到 Hugging Face MCP 服务器
 
-### 适度
-https://huggingface.co/docs/hub/moderation.md
+### 使用 CircleCI 工作流程管理空间
+https://huggingface.co/docs/hub/spaces-circleci.md

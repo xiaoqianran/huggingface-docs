@@ -108,7 +108,7 @@ import os
 import requests
 
 BASE_URL = "https://huggingface.co"
-HF_TOKEN=REDACTED, "")
+HF_TOKEN=REDACTED "")
 
 def change_member_role(org_name: str, username: str, role: str, resource_groups: list | None = None):
     payload = {"role": role, "resourceGroups": resource_groups or []}
@@ -365,7 +365,7 @@ import os
 import requests
 
 BASE_URL = "https://huggingface.co"
-HF_TOKEN=REDACTED, "")
+HF_TOKEN=REDACTED "")
 
 def list_resource_groups(org_name: str):
     r = requests.get(
@@ -450,5 +450,5 @@ Content-Type: application/json
 ```
 
 > [!注意]
-> 禁用自动加入不会删除之前自动加入的成员。它只会阻止自动添加未来的组织成员。现有成员仍保留在资源组中。### 在拥抱脸部使用 mlx-image
-https://huggingface.co/docs/hub/mlx-image.md
+> 禁用自动加入不会删除之前自动加入的成员。它只会阻止自动添加未来的组织成员。现有成员仍保留在资源组中。### 数据集
+https://huggingface.co/docs/hub/enterprise-datasets.md

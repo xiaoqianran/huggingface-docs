@@ -44,7 +44,7 @@ pip install mlx
 conda install -c conda-forge mlx
 ```
 
-## 使用现有模型MLX-LM 具有生成文本的有用实用程序。以下行直接下载并加载模型并开始生成文本。
+## 使用现有模型MLX-LM 具有有用的实用程序来生成文本。以下行直接下载并加载模型并开始生成文本。
 
 ```bash
 python -m mlx_lm.generate --model mistralai/Mistral-7B-Instruct-v0.2 --prompt "hello"
@@ -102,5 +102,5 @@ python -m mlx_lm.convert \
 * [MLX Examples](https://github.com/ml-explore/mlx-examples/tree/main)
 * [All MLX models on the Hub](https://huggingface.co/models?library=mlx&sort=trending)
 
-### 渐变空间
-https://huggingface.co/docs/hub/spaces-sdks-gradio.md
+### 高级计算选项
+https://huggingface.co/docs/hub/advanced-compute-options.md

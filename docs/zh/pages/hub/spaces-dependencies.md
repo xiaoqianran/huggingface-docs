@@ -22,5 +22,5 @@
 
 还支持 Debian 依赖项。在存储库的根目录中添加 **packages.txt** 文件，并在其中列出所有依赖项。每个依赖项都应该位于单独的行上，并且每行都将由 `apt-get install` 读取并安装。
 
-### Xet 历史和概述
-https://huggingface.co/docs/hub/xet/overview.md
+### 组织博客文章
+https://huggingface.co/docs/hub/enterprise-blog-articles.md

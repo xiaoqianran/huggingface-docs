@@ -34,5 +34,5 @@
 
 您可以禁用所有讨论和拉取请求。一旦禁用，所有社区和贡献功能将不再可用。可以恢复此操作，而不会丢失任何先前的讨论或拉取请求。
 
-### 硬件
-https://huggingface.co/docs/hub/hardware.md
+### 博客文章
+https://huggingface.co/docs/hub/blog-articles.md

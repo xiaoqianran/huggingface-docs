@@ -128,5 +128,5 @@ app.post("/", async (req, res) => {
 
 ![discussion-result](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhooks-guides/001-discussion-bot/discussion-result.png)
 
-### 在本地使用 AI 模型
-https://huggingface.co/docs/hub/local-apps.md
+### 学术中心
+https://huggingface.co/docs/hub/academia-hub.md

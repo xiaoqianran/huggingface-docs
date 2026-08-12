@@ -86,5 +86,5 @@
 
 如果您忘记了密码并无法访问您的双因素身份验证凭据，您可以联系支持人员 (website@huggingface.co) 以重新获得对您帐户的访问权限。您需要使用恢复身份验证因素（例如 SSH 密钥或个人访问令牌）来验证您的身份。
 
-### 后续步骤
-https://huggingface.co/docs/hub/repositories-next-steps.md
+### 用户管理
+https://huggingface.co/docs/hub/security-sso-user-management.md

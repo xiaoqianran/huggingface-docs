@@ -23,5 +23,5 @@
 - [chat-ui GitHub Repository](https://github.com/huggingface/chat-ui)
 - [text-generation-inference GitHub repository](https://github.com/huggingface/text-generation-inference)
 
-### 空间设置
-https://huggingface.co/docs/hub/spaces-settings.md
+### 为模特提供工作服务
+https://huggingface.co/docs/hub/jobs-serving.md

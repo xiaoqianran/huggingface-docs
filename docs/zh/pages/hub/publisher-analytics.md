@@ -61,16 +61,16 @@ CSV 中的每条记录包含：- `repoType`：存储库的类型（例如“模�
 
 |专栏 |描述 |
 | -------------- | ------------------------------------------------------- |
-| `timestamp` |请求时间戳|
+| `timestamp` |请求时间戳 |
 | `status` | HTTP 状态代码（例如 `200`、`206`、`302`、`307`、`304`）|
 | `method` | HTTP 方法（例如 `GET`、`HEAD`）|
 | `repoName` |完整的存储库名称（例如 `nvidia/segformer-b0`）|
 | `repoType` |存储库类型：`model`、`dataset` 或 `space` |
 | `hashedUserId` |用户 ID 的不可逆哈希值（如果经过身份验证）|
-| `hashedIp` | IP 地址的不可逆散列（如果未经身份验证）|
+| `hashedIp` | IP 地址的不可逆哈希值（如果未经身份验证）|
 | `country` |国家 ISO 代码 |
 | `region` |地区或城市名称 |
 | `userAgent` | HTTP 用户代理标头 |由于它需要在我们这边设置自定义数据导出管道（自定义弹性索引等），因此这只能作为 Enterprise Plus 的附加组件提供。
 
-### 您的第一个 Docker 空间：使用 T5 生成文本
-https://huggingface.co/docs/hub/spaces-sdks-docker-first-demo.md
+### 在拥抱脸部使用🤗 `transformers`
+https://huggingface.co/docs/hub/transformers.md

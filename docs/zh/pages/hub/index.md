@@ -145,7 +145,7 @@ Hugging Face Hub 托管基于 Git 的存储库，这些存储库是版本控制�
 
 ## 空格
 
-[Spaces](https://huggingface.co/spaces) 是在 Hub 上托管 ML 演示应用程序的简单方法。它们允许您构建 ML 产品组合、在会议上或向利益相关者展示您的项目，以及与 ML 生态系统中的其他人员协作。我们目前支持两个很棒的 Python SDK（**[Gradio](https://gradio.app/)** 和 **[Streamlit](./spaces-sdks-streamlit)**），让您在几分钟内构建很酷的应用程序。用户还可以创建静态空间，即简单的 HTML/CSS/JavaScript 页面，或部署任何基于 Docker 的应用程序。
+[Spaces](https://huggingface.co/spaces) 是在 Hub 上托管 ML 演示应用程序的简单方法。它们允许您构建 ML 产品组合、在会议上或向利益相关者展示您的项目，以及与 ML 生态系统中的其他人员协作。我们目前支持两个很棒的 Python SDK（**[Gradio](https://gradio.app/)** 和 **[Streamlit](./spaces-sdks-streamlit)**），让您可以在几分钟内构建很酷的应用程序。用户还可以创建静态空间，即简单的 HTML/CSS/JavaScript 页面，或部署任何基于 Docker 的应用程序。
 
 如果您的演示需要 GPU 能力，请尝试[**ZeroGPU**](./spaces-zerogpu)：它仅在需要时实时动态提供 NVIDIA RTX Pro 6000 Blackwell GPU。
 
@@ -168,5 +168,5 @@ Hugging Face Hub 支持安全和访问控制功能，让您放心，您的代码
 - 使用 GPG 签署提交
 - 恶意软件扫描
 
-### 处理大型数据集
-https://huggingface.co/docs/hub/jobs-large-datasets.md
+### Spaces 开发模式：Spaces 中的无缝开发
+https://huggingface.co/docs/hub/spaces-dev-mode.md

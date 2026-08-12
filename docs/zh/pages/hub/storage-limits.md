@@ -13,7 +13,7 @@
 
 ## 存储计划|账户类型 |公共存储|私人存储|
 | ------------------------ | ---------------------------------------------------------------------------------- | ---------------------------- |
-|免费用户或组织 |尽力而为\* | 100GB |
+|免费用户或组织|尽力而为\* | 100GB |
 |专业版 |包含高达 10TB\* + [add-on](#public-storage-add-on) ✅ 可为有影响力的工作提供资助† | 1TB + 按量付费 |
 |团队组织| 12TB 底座 + 每个座位 1TB + [add-on](#public-storage-add-on) ✅ |每个席位 1TB + 即用即付 |
 |企业组织| 200TB 基础 + 每个席位 1TB + [add-on](#public-storage-add-on) 🏆 大合同高达 1,000TB |每个席位 1TB + 即用即付 |
@@ -32,7 +32,7 @@
 | 5TB | 60 美元/月 | 12 美元/TB/月 |
 | 10TB | 120 美元/月 | 12 美元/TB/月 |
 | 20TB | 240 美元/月 | 12 美元/TB/月 |
-| 50TB | 500 美元/月 | 10 美元/TB/月 |您可以从您的帐户或组织的**计费**设置页面订阅或更改您的级别。升级立即生效；降级计划于下月初生效。如果您需要更多存储空间，可以通过[contact us](https://huggingface.co/contact/sales)来利用[custom large-scale pricing](https://huggingface.co/pricing#storage)。
+| 50TB | 500 美元/月 | 10 美元/TB/月 |您可以从您的帐户或组织的**账单**设置页面订阅或更改您的级别。升级立即生效；降级计划于下月初生效。如果您需要更多存储空间，可以通过[contact us](https://huggingface.co/contact/sales)来利用[custom large-scale pricing](https://huggingface.co/pricing#storage)。
 
 ### 私人存储 按量付费
 
@@ -227,5 +227,5 @@ index 0000000..a090ee7
 
 ```
 
-### 如何使用 Okta 配置 OIDC SSO
-https://huggingface.co/docs/hub/security-sso-okta-oidc.md
+### 在拥抱脸部时使用 SpanMarker
+https://huggingface.co/docs/hub/span_marker.md

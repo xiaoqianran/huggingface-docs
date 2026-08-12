@@ -163,5 +163,5 @@ con.sql("SELECT lang, count(*) AS docs FROM wet GROUP BY lang ORDER BY docs DESC
 - [Pricing & hardware](./jobs-pricing#pricing) — 每种口味的临时磁盘 · [Configuration](./jobs-configuration#volumes) — 卷
 - [Storage Buckets](./storage-buckets)·[access patterns](./storage-buckets-access)·[integrations](./storage-buckets-integrations)
 
-### 在拥抱脸部时使用 ML-Agents
-https://huggingface.co/docs/hub/ml-agents.md
+### 第三方扫描仪：保护 AI
+https://huggingface.co/docs/hub/security-protectai.md

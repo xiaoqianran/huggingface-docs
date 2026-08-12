@@ -16,5 +16,5 @@ Hugging Face Hub 托管一个[large number of community-curated datasets](https:
 
 由于数据集是存储库，因此您可以通过“设置”选项卡[toggle their visibility between private and public](./repositories-settings#private-repositories)。如果数据集归[organization](./organizations)所有，则隐私设置适用于组织的所有成员。
 
-### Docker 空间示例
-https://huggingface.co/docs/hub/spaces-sdks-docker-examples.md
+### 鸭数据库
+https://huggingface.co/docs/hub/datasets-duckdb.md

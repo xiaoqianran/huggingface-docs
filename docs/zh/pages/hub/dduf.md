@@ -32,7 +32,7 @@ DDUF（**D**DUF 的 **D**iffusion **U**nified **F**ormat）是一种扩散模型
 - 存档只能包含 `.json`、`.safetensors`、`.model` 和 `.txt` 文件。
 - `model_index.json` 文件必须存在于存档的根目录中。它必须包含带有有关模型及其组件的元数据的键值映射。
 - 每个组件必须存储在自己的目录中（例如，`vae/`、`text_encoder/`）。嵌套文件必须使用 UNIX 样式路径分隔符 (`/`)。
-- 每个目录必须对应于`model_index.json`索引中的一个组件。
+- 每个目录必须对应`model_index.json`索引中的一个组件。
 - 每个目录必须包含一个 json 配置文件（`config.json`、`tokenizer_config.json`、`preprocessor_config.json`、`scheduler_config.json` 之一）。
 - 禁止子目录。
 
@@ -164,5 +164,5 @@ ZIP 有几个优点：
 	
 我们不断接触其他库和框架。如果您有兴趣为您的项目添加支持，请在 [DDUF org](https://huggingface.co/spaces/DDUF/README/discussions) 中打开讨论。
 
-### 代理
-https://huggingface.co/docs/hub/agents.md
+### 空间自定义域
+https://huggingface.co/docs/hub/spaces-custom-domain.md

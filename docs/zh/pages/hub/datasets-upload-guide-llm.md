@@ -83,7 +83,7 @@ See https://huggingface.co/docs/hub/storage-limits#repository-limitations-and-re
 
 1. ✓ **验证**：
    - CLI：`hf auth login`
-   - 或使用令牌：`REDACTED"hf_...")`或设置`HF_TOKEN`环境变量
+   - 或使用令牌：`HfApi(token="hf_...")`或设置`HF_TOKEN`环境变量
 2. ✓ **识别您的数据类型**：检查上面的[Quick Reference](#quick-reference-by-data-type)表
 3. ✓ **选择上传方式**：
 
@@ -350,7 +350,7 @@ dataset.push_to_hub("username/dataset")
 
 ### 科学数据
 
-- HDF5/NetCDF → 转换为具有数组功能的 Parquet
+- HDF5/NetCDF → 使用数组功能转换为 Parquet
 - 时间序列 → Array2D(shape=(None, n))
 - 复杂的元数据 → 存储为 JSON 字符串
 
@@ -363,5 +363,5 @@ dataset.push_to_hub("username/dataset")
 - 加入[Hugging Face Discord](https://hf.co/join/discord)获取实时帮助
 - 许多特定领域的格式已经在 Hub 上有示例
 
-### 关于空间的证据
-https://huggingface.co/docs/hub/spaces-sdks-docker-evidence.md
+### 单点登录 (SSO)
+https://huggingface.co/docs/hub/enterprise-sso.md

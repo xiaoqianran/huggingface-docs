@@ -30,7 +30,7 @@ Langfuse Hugging Face Space 允许您只需点击几下即可启动并运行已�
 2. 选择 **Docker** 作为 Space SDK
 3. 选择 **Langfuse** 作为空间模板
 4. 附加 **[Storage Bucket](https://huggingface.co/docs/hub/storage-buckets)** 以确保您的 Langfuse 数据在重新启动后仍保留
-5. 确保空间设置为**公共**可见性，以便 Langfuse API/SDK 可以访问该应用程序（有关更多详细信息，请参阅下面的注释）
+5. 确保空间设置为 **公共** 可见性，以便 Langfuse API/SDK 可以访问该应用程序（有关更多详细信息，请参阅下面的注释）
 6. [可选但建议]为了安全部署，请替换**环境变量**的默认值：
    - `NEXTAUTH_SECRET`：用于验证登录会话cookie，使用`openssl rand -base64 32`生成至少具有256熵的秘密。
    - `SALT`：用于加盐哈希API密钥，使用`openssl rand -base64 32`生成至少具有256熵的秘密。
@@ -47,7 +47,7 @@ Langfuse Hugging Face Space 允许您只需点击几下即可启动并运行已�
 
 您可以通过两种不同的方法阻止新用户注册和访问该空间：
 
-#### 1.（推荐）Hugging Face 原生组织级 OAuth 限制
+#### 1.（推荐）Hugging Face 本机组织级 OAuth 限制
 
 如果您想限制仅对指定组织的成员进行访问，您只需在空间的`README.md`文件中设置`hf_oauth_authorized_org`元数据字段，如[here](https://huggingface.co/docs/hub/spaces-oauth#create-an-oauth-app)所示。
 
@@ -115,5 +115,5 @@ _[Example trace in the Langfuse UI](https://langfuse-langfuse-template-space.hf.
 
 如需更多帮助，请在 [GitHub discussions](https://langfuse.com/discussions) 或 [open an issue](https://github.com/langfuse/langfuse/issues) 上打开支持线程。
 
-### 访问基准排行榜数据
-https://huggingface.co/docs/hub/leaderboard-data-guide.md
+### 如何使用 Microsoft Entra ID (Azure AD) 配置 SCIM
+https://huggingface.co/docs/hub/security-sso-entra-id-scim.md

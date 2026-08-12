@@ -6,7 +6,7 @@
 
 下表总结了支持的库及其集成级别。在 [the model-libraries.ts file](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/model-libraries.ts) 中查找我们所有支持的库。|图书馆 |描述 |推理提供商 |小部件 |从集线器下载 |推送到集线器 |
 |----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|---|---:|---|---|
-| [Adapters](./adapters) |统一的 Transformers 插件，用于参数高效和模块化微调。                                                | ✅ | ✅ | ✅ | ✅ |
+| [Adapters](./adapters) |统一的 Transformers 附加组件，用于参数高效和模块化微调。                                                | ✅ | ✅ | ✅ | ✅ |
 | [AllenNLP](./allennlp) |一个基于 PyTorch 构建的开源 NLP 研究库。                               | ✅ | ✅ | ✅ | ❌ |
 | [Asteroid](./asteroid) |基于PyTorch的音频源分离工具包 | ✅ | ✅ | ✅ | ❌ |
 | [BERTopic](./bertopic) | BERTopic 是一个文本和图像主题建模库 | ✅ | ✅ | ✅ | ✅ | 
@@ -23,7 +23,7 @@
 | [NeMo](https://github.com/NVIDIA/NeMo) |为研究人员构建的对话式人工智能工具包 | ✅ | ✅ | ✅ | ❌ |
 | [OpenCLIP](./open_clip) |用于 OpenAI 的 CLIP 开源实现的库 | ❌ | ❌ | ✅ | ✅ |  
 | [PaddleNLP](./paddlenlp) |基于 PaddlePaddle 构建的易于使用且功能强大的 NLP 库 | ✅ | ✅ | ✅ | ✅ |
-| [PEFT](./peft) |尖端参数高效微调库 | ✅ | ✅ | ✅ | ✅ || [Pyannote](https://github.com/pyannote/pyannote-audio) |用于说话人二值化的神经构建块。                                      | ❌ | ❌ | ✅ | ❌ |
+| [PEFT](./peft) |尖端参数高效微调库 | ✅ | ✅ | ✅ | ✅ || [Pyannote](https://github.com/pyannote/pyannote-audio) |用于说话人二值化的神经构建模块。                                      | ❌ | ❌ | ✅ | ❌ |
 | [PyCTCDecode](https://github.com/kensho-technologies/pyctcdecode) |语言模型支持语音识别的 CTC 解码 | ❌ | ❌ | ✅ | ❌ |
 | [Pythae](https://github.com/clementchadebec/benchmark_VAE) | Python 生成自动编码器的统一框架 | ❌ | ❌ | ✅ | ✅ |
 | [RL-Baselines3-Zoo](./rl-baselines3-zoo) |强化学习的训练框架，使用[Stable Baselines3](https://github.com/DLR-RM/stable-baselines3)。| ❌ | ✅ | ✅ | ✅ |
@@ -42,5 +42,5 @@
 
 ### 如何添加对新库的支持？
 
-如果您有兴趣添加您的图书馆，请联系我们！请阅读[Adding a Library Guide](./models-adding-libraries)了解相关内容。### 通知
-https://huggingface.co/docs/hub/notifications.md
+如果您有兴趣添加您的图书馆，请联系我们！请阅读[Adding a Library Guide](./models-adding-libraries)了解相关内容。### Docker 空间
+https://huggingface.co/docs/hub/spaces-sdks-docker.md

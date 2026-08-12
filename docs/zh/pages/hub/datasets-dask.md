@@ -112,7 +112,7 @@ df = dd.read_parquet("hf://datasets/HuggingFaceFW/fineweb-edu/sample/10BT/*.parq
 df = df[df.dump >= "CC-MAIN-2023"]
 ```
 
-Dask 还将只读取计算所需的列并跳过其余的列。
+Dask 还将只读取计算所需的列并跳过其余部分。
 例如，如果您在代码中后期删除了一列，那么如果不需要它，它就不会在管道中尽早加载它。
 当您想要操作列的子集或进行分析时，这非常有用：
 
@@ -142,9 +142,9 @@ cluster = LocalCluster(n_workers=8, threads_per_worker=8)
 client = Client(cluster)
 ```
 
-请注意，如果您在本地使用默认线程调度程序而不使用`Client`，则 DataFrame 在执行某些操作后可能会变慢（更多详细信息[here](https://github.com/dask/dask-expr/issues/1181)）。
+请注意，如果您在本地使用默认线程调度程序而不使用 `Client`，则 DataFrame 在执行某些操作后可能会变慢（更多详细信息[here](https://github.com/dask/dask-expr/issues/1181)）。
 
 在 [Deploying Dask documentation](https://docs.dask.org/en/latest/deploying.html) 中查找有关设置本地或云集群的更多信息。
 
-### 抱脸登录
-https://huggingface.co/docs/hub/oauth.md
+### 计费
+https://huggingface.co/docs/hub/billing.md

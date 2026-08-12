@@ -2,7 +2,7 @@
 
 # 模型卡组件
 
-**模型卡组件**是特殊元素，您可以将其直接注入到模型卡降价中，以在模型页面中显示强大的自定义组件。这些组件是我们编写的，请随时分享关于[this discussion](https://huggingface.co/spaces/huggingface/HuggingDiscussions/discussions/17)中新模型卡组件的想法。
+**模型卡组件**是特殊元素，您可以将其直接注入到模型卡降价中，以在模型页面中显示强大的自定义组件。这些组件由我们编写，欢迎分享关于[this discussion](https://huggingface.co/spaces/huggingface/HuggingDiscussions/discussions/17)中新模型卡组件的想法。
 
 ## 图库组件
 
@@ -40,5 +40,5 @@ A very classic hand drawn cartoon style.
 
 > 提示：通过 GUI 编辑器对卡组件的支持即将推出...
 
-### 上传模型
-https://huggingface.co/docs/hub/models-uploading.md
+### 模型常见问题解答
+https://huggingface.co/docs/hub/models-faq.md

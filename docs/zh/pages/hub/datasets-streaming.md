@@ -77,7 +77,7 @@ Imagine you are an experienced Ethereum developer
 
 Parquet 是 AI 数据集的绝佳格式。它提供良好的压缩、用于高效处理和投影的柱状结构以及用于快速过滤的多级元数据，并且适用于各种规模的数据集。
 
-Parquet 文件分为行组，每个行组通常约为 100MB。这使得数据加载器和数据处理框架能够逐步传输数据，并在行组上进行迭代。
+Parquet 文件分为行组，每个行组通常约为 100MB。这使得数据加载器和数据处理框架能够逐步流式传输数据，并在行组上进行迭代。
 
 行组内部是单独的列，这些列被分为多个页面。页是大约 1MB 的压缩块，其中包含实际数据。
 
@@ -103,7 +103,7 @@ with pq.ParquetFile(f"hf://datasets/{repo_id}/{path_in_repo}") as pf:
 
 在 [PyArrow documentation](./datasets-pyarrow) 中查找更多信息。
 
-### 高效的随机访问行组进一步分为列，列又分为页。页面通常约为 1MB，是 Parquet 中最小的数据单位，因为这是应用压缩的地方。访问页面可以加载特定行，而无需加载完整的行组，如果 Parquet 文件具有页面索引，则可以实现这一点。然而，并非每个 Parquet 框架都支持页面级别的读取。例如，PyArrow 不会，但 Rust 中的 `parquet` 箱会：
+### 高效的随机访问行组进一步分为列，列又分为页。页面通常约为 1MB，是 Parquet 中最小的数据单元，因为这是应用压缩的地方。访问页面可以加载特定行，而无需加载完整的行组，如果 Parquet 文件具有页面索引，则可以实现这一点。然而，并非每个 Parquet 框架都支持页面级别的读取。例如，PyArrow 不会，但 Rust 中的 `parquet` 箱会：
 
 ```rust
 use std::sync::Arc;
@@ -144,5 +144,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 它特别将“offset_index_offset”和“offset_index_length”添加到 Parquet 列中，您可以在 [Parquet metadata viewer on Hugging Face](https://huggingface.co/blog/cfahlgren1/intro-to-parquet-format) 中看到。
 页面索引还可以加快 [Hugging Face Dataset Viewer](https://huggingface.co/docs/dataset-viewer) 的速度，并允许其显示数据而不受行组大小限制。
 
-### 流光空间
-https://huggingface.co/docs/hub/spaces-sdks-streamlit.md
+### GitHub 操作
+https://huggingface.co/docs/hub/repositories-github-actions.md

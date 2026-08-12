@@ -4,7 +4,7 @@
 
 借助 Dash Open Source，您可以使用纯 Python 在笔记本电脑上创建数据应用程序，无需 JavaScript。
 
-通过使用开源构建 [sample app](https://dash.plotly.com/tutorial) 来熟悉 Dash。当您的 Dash 应用程序准备好供部门或公司范围使用时，可使用 [Dash Enterprise](https://plotly.com/dash/) 进行扩展。或者，从一开始就使用 Dash Enterprise 启动您的计划，以解锁开发人员生产力的提高并从 Plotly 团队获得实际加速。
+通过使用开源构建 [sample app](https://dash.plotly.com/tutorial) 来熟悉 Dash。当您的 Dash 应用程序准备好供部门或公司范围内使用时，可通过 [Dash Enterprise](https://plotly.com/dash/) 进行扩展。或者，从一开始就使用 Dash Enterprise 启动您的计划，以解锁开发人员生产力的提高并从 Plotly 团队获得实际加速。
 
 ## 在 Spaces 上部署 Dash
 
@@ -76,5 +76,5 @@ Dash Space 模板提供了一个基本设置，您可以根据需要进行扩展
 
 如需更多帮助，请访问[Plotly Community Forums](https://community.plotly.com)或[open an issue](https://github.com/plotly/dash/issues)。
 
-### 组织、安全性和 Hub API
-https://huggingface.co/docs/hub/other.md
+### 使用 TensorBoard
+https://huggingface.co/docs/hub/tensorboard.md

@@ -124,5 +124,5 @@ model = MyModel.from_pretrained("your-hf-username/my-awesome-model")
 
 最后，由于模型存储库只是 Git 存储库，因此您还可以使用 Git 将模型文件推送到 Hub。按照 [Getting Started with Repositories](repositories-getting-started#terminal) 上的指南了解如何使用 `git` CLI 提交和推送模型。
 
-### 数据集卡
-https://huggingface.co/docs/hub/datasets-cards.md
+### 空间作为 API 端点
+https://huggingface.co/docs/hub/spaces-api-endpoints.md

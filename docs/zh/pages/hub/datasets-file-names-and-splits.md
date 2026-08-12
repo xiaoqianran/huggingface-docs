@@ -36,7 +36,7 @@ my_dataset_repository/
 ├── train.csv
 ├── test.csv
 └── validation.csv
-```如果您没有任何非传统拆分，则可以将拆分名称放置在数据文件中的任何位置。唯一的规则是分割名称必须由非单词字符分隔，例如 `test-file.csv` 而不是 `testfile.csv`。支持的分隔符包括下划线、破折号、空格、点和数字。
+```如果您没有任何非传统拆分，则可以将拆分名称放置在数据文件中的任何位置。唯一的规则是拆分名称必须由非单词字符分隔，例如 `test-file.csv` 而不是 `testfile.csv`。支持的分隔符包括下划线、破折号、空格、点和数字。
 
 例如，以下文件名都是可接受的：
 
@@ -132,5 +132,5 @@ my_dataset_repository/
     └── random-00002-of-00003.csv
 ```
 
-### 在拥抱面使用稳定基线3
-https://huggingface.co/docs/hub/stable-baselines3.md
+### marimo 空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-marimo.md

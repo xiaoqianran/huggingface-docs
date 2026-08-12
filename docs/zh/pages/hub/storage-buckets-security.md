@@ -18,7 +18,7 @@
 
 ## 审核日志
 
-所有存储桶操作（上传、下载、删除和权限更改）都记录在您组织的 [Audit Logs](./audit-logs) 中，让您可以完整跟踪谁访问了什么内容以及何时访问内容。
+所有存储桶操作（上传、下载、删除和权限更改）都记录在您组织的 [Audit Logs](./audit-logs) 中，让您可以完整跟踪谁访问了什么以及何时访问。
 
 ## 数据驻留
 
@@ -31,5 +31,5 @@ Hugging Face 拥有以下认证和合规标准：- **SOC 2 Type 2** 认证 — �
 
 有关 Hugging Face 整体安全状况的更多详细信息，请参阅[Security](./security) 页面。如有疑问，请联系[security@huggingface.co](mailto:security@huggingface.co)。
 
-### 空格
-https://huggingface.co/docs/hub/spaces.md
+### 用户访问令牌
+https://huggingface.co/docs/hub/security-tokens.md

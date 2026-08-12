@@ -86,5 +86,5 @@
 
 可用的硬件配置因地区而异，并且某些功能可能并非在所有地区都可用。如需特殊要求，请联系您的 HF 客户团队。
 
-### Webhook 指南：为模型和数据集设置自动元数据质量审查
-https://huggingface.co/docs/hub/webhooks-guide-metadata-review.md
+### 如何向 ArXiv 添加空间
+https://huggingface.co/docs/hub/spaces-add-to-arxiv.md

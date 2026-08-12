@@ -10,5 +10,5 @@
 > [!注意]
 > 所有API调用均遵循HF范围的[Rate limits](./rate-limits)。如果您需要提升的大规模访问权限，请升级您的帐户。
 
-### 代理库
-https://huggingface.co/docs/hub/agents-libraries.md
+### 摄取数据集
+https://huggingface.co/docs/hub/datasets-ingesting.md

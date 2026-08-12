@@ -1,6 +1,6 @@
 <!-- huggingface-docs: machine-translated zh-CN from English source -->
 
-# Webhook 指南：设置自动系统以在数据集更改时重新训练模型
+# Webhook 指南：设置一个自动系统，以便在数据集发生变化时重新训练模型
 
 本指南将帮助您完成 Hugging Face 平台上自动训练管道的设置
 使用 HF 数据集、Webhooks、Spaces 和 AutoTrain。
@@ -55,7 +55,7 @@ async def post_webhook(
 ```python
 # [...]
 
-WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET")
+WEBHOOK_SECRET=REDACTED
 
 # [...]
 
@@ -166,5 +166,5 @@ def schedule_retrain(payload: WebhookPayload):
 
 就是这样！现在，对输入数据集的每次提交都将触发使用 AutoTrain 对 ResNet-50 进行微调 🎉
 
-### 静态 HTML 空间
-https://huggingface.co/docs/hub/spaces-sdks-static.md
+### 查询数据集
+https://huggingface.co/docs/hub/datasets-duckdb-select.md

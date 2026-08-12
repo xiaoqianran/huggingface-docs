@@ -22,5 +22,5 @@ JFrog 的扫描仪旨在减少误报。事实上，我们目前观察到的模�
 
 Pickle 并不是唯一可利用的格式，[see for reference](https://github.com/Azure/counterfit/wiki/Abusing-ML-model-file-formats-to-create-malware-on-AI-systems:-A-proof-of-concept) 如何利用 Keras Lambda 层来实现任意代码执行。
 
-### HF PRO 订阅 🔥
-https://huggingface.co/docs/hub/pro.md
+### 火花
+https://huggingface.co/docs/hub/datasets-spark.md

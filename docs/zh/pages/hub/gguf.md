@@ -73,5 +73,5 @@ const { metadata, tensorInfos } = await gguf(URL_LLAMA);
 | Q4_0 | [GH](https://github.com/huggingface/huggingface.js/pull/615#discussion_r1557654249) | 4 位舍入到最接近的量化 (`q`)。每个块有 32 个权重。重量公式：`w = q * block_scale`。传统的量化方法（目前尚未广泛使用）。 |
 | Q4_1 | [GH](https://github.com/huggingface/huggingface.js/pull/615#discussion_r1557682290) | 4 位舍入到最接近的量化 (`q`)。每个块有 32 个权重。重量公式：`w = q * block_scale + block_minimum`。传统的量化方法（目前尚未广泛使用）。 |*如果上表有任何不准确的地方，请在[this file](https://github.com/huggingface/huggingface.js/blob/main/packages/gguf/src/quant-descriptions.ts)上打开PR。*
 
-### Webhook 指南：设置自动系统以在数据集更改时重新训练模型
-https://huggingface.co/docs/hub/webhooks-guide-auto-retrain.md
+### 网络钩子
+https://huggingface.co/docs/hub/webhooks.md

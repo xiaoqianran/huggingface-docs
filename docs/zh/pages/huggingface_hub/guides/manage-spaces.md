@@ -420,7 +420,7 @@ hf spaces volumes delete username/my-space
 
 ```py
 # Space will need your token to request hardware: set it as a Secret !
-HF_TOKEN=REDACTED)
+HF_TOKEN=REDACTED
 
 # Space own repo_id
 TRAINING_SPACE_ID = "Wauplin/dreambooth-training"

@@ -8,7 +8,7 @@ Hugging Face Spaces 让您可以在几分钟内轻松创建和部署 ML 支持�
 
 ## 创建一个新空间
 
-**要创建新空间**，请访问[Spaces main page](https://huggingface.co/spaces)并单击**创建新空间**。除了为您的空间选择名称、选择可选许可证以及设置您的空间的 [visibility](#space-visibility)（公共、受保护或私有）之外，系统还会提示您为您的空间选择 **SD​​K**。 Hub 提供三种 SDK 选项：Gradio、Docker 和静态 HTML。如果您选择“Gradio”作为 SDK，您将导航到显示以下页面的新存储库：
+**要创建新空间**，请访问 [Spaces main page](https://huggingface.co/spaces) 并单击 **创建新空间**。除了为您的空间选择名称、选择可选许可证以及设置您的空间的 [visibility](#space-visibility)（公共、受保护或私有）之外，系统还会提示您为您的空间选择 **SD​​K**。 Hub 提供三种 SDK 选项：Gradio、Docker 和静态 HTML。如果您选择“Gradio”作为 SDK，您将导航到显示以下页面的新存储库：
 
 > [!警告]
 > 静态空间对所有人免费。 Gradio 和 Docker Spaces 在计算上运行，需要付费计划才能创建：用于个人帐户的 PRO、用于组织的团队或企业帐户。信誉良好的免费个人帐户仍然可以托管最多 2 个在 [ZeroGPU](./spaces-zerogpu) 上运行的 Gradio Space。在底层，Spaces 将您的代码存储在 git 存储库中，就像模型和数据集存储库一样。因此，我们用于所有 [other repositories on the Hub](./repositories)（`git` 和 `git-xet`）的相同工具也适用于空间。按照与[Getting Started with Repositories](./repositories-getting-started)中相同的流程将文件添加到您的空间。每次推送新的提交时，空间都会自动重建并重新启动。
@@ -37,7 +37,7 @@ Hugging Face Spaces 让您可以在几分钟内轻松创建和部署 ML 支持�
 
 ## 硬件资源
 
-默认情况下，每个 Spaces 环境仅限于 16GB RAM、2 个 CPU 核心和 50GB（非持久）磁盘空间。默认的 CPU Basic 硬件没有每小时成本，但创建在计算（Gradio 或 Docker）上运行的空间需要付费计划，而静态空间对所有人免费。您可以为 [competitive price](https://huggingface.co/pricing#spaces) 升级到更好的硬件，包括各种 GPU 加速器。要请求升级，请单击您空间中的_设置_按钮并选择您喜欢的硬件环境。| **硬件** | **CPU** | **内存** | **GPU 内存** | **每小时价格** |
+默认情况下，每个 Spaces 环境仅限于 16GB RAM、2 个 CPU 核心和 50GB（非持久）磁盘空间。默认的 CPU Basic 硬件没有每小时成本，但创建在计算（Gradio 或 Docker）上运行的空间需要付费计划，而静态空间对所有人免费。您可以为 [competitive price](https://huggingface.co/pricing#spaces) 升级到更好的硬件，包括各种 GPU 加速器。要请求升级，请单击空间中的_设置_按钮并选择您喜欢的硬件环境。| **硬件** | **CPU** | **内存** | **GPU 内存** | **每小时价格** |
 |------------------------ |-------------- |------------- |---------------- | ----------------- |
 | CPU基础| 2 个虚拟CPU | 16GB|                 |免费|
 | CPU升级 | 8 个 vCPU | 32GB|                 | 0.03 美元 | 
@@ -57,7 +57,7 @@ Hugging Face Spaces 让您可以在几分钟内轻松创建和部署 ML 支持�
 
 注意：在 [our pricing page](https://huggingface.co/pricing) 上查找更详细、更全面的定价信息。
 
-您是否拥有很棒的空间，但需要帮助支付硬件升级费用？我们热衷于帮助那些拥有创新空间的人，因此请随时使用您空间的_设置_选项卡中的链接申请社区 GPU 拨款，看看您的空间是否符合要求！
+您是否拥有很棒的空间，但需要帮助支付硬件升级成本？我们热衷于帮助那些拥有创新空间的人，因此请随时使用您空间的_设置_选项卡中的链接申请社区 GPU 拨款，看看您的空间是否符合要求！
 
 请阅读我们关于 [Spaces GPU Upgrades](./spaces-gpus) 和 [Spaces Disk Usage & Storage](./spaces-storage) 的专门部分了解更多信息。
 
@@ -143,5 +143,5 @@ models:
 - reach-vb/wav2vec2-large-xls-r-1B-common_voice7-lt-ft
 ```
 
-### 迪迪标签
-https://huggingface.co/docs/hub/datasets-distilabel.md
+### 数据集
+https://huggingface.co/docs/hub/datasets.md

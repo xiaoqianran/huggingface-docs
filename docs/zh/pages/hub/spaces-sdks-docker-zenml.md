@@ -2,7 +2,7 @@
 
 # ZenML 的空间
 
-[ZenML](https://github.com/zenml-io/zenml) 是一个可扩展的开源 MLOps 框架，用于创建可移植的、生产就绪的 MLOps 管道。它专为数据科学家、ML 工程师和 MLOps 开发人员构建，以便他们在开发到生产时进行协作。
+[ZenML](https://github.com/zenml-io/zenml) 是一个可扩展的开源 MLOps 框架，用于创建可移植的、可用于生产的 MLOps 管道。它专为数据科学家、ML 工程师和 MLOps 开发人员构建，以便他们在开发到生产时进行协作。
 
 ZenML 提供简单灵活的语法，与云和工具无关，并且具有
 接口/抽象迎合机器学习工作流程。有了 ZenML，您将拥有一切
@@ -151,5 +151,5 @@ example](https://github.com/zenml-io/zenml/tree/main/examples/quickstart)
 
 如果您有任何建议或需要其他任何不属于的具体支持
 工作中，请[join the ZenML Slack community](https://zenml.io/slack-invite/)
-我们很乐意为您提供帮助！### 吉斯卡德谈空间
-https://huggingface.co/docs/hub/spaces-sdks-docker-giskard.md
+我们很乐意为您提供帮助！### DDUF
+https://huggingface.co/docs/hub/dduf.md

@@ -66,5 +66,5 @@ SAML 选择器附近的绿色复选标记将证明测试成功。
 
 启用后，您组织的成员必须完成 [How it works](./security-sso-basic#how-it-works) 部分中描述的 SSO 身份验证流程。
 
-### 模型常见问题解答
-https://huggingface.co/docs/hub/models-faq.md
+### 流数据集
+https://huggingface.co/docs/hub/datasets-streaming.md

@@ -6,7 +6,7 @@
 
 ## 在 Google Colab 和 Kaggle 中打开模型
 
-当您访问 Hugging Face Hub 上的模型页面时，您会在“使用此模型”下拉列表中看到一个新的“Google Colab”/“Kaggle”按钮。单击此按钮将生成一个可立即运行的笔记本，其中包含用于加载和测试模型的基本代码。这非常适合快速原型设计、推理测试或微调实验 - 所有这些都无需离开浏览器。
+当您访问 Hugging Face Hub 上的模型页面时，您会在“使用此模型”下拉菜单中看到一个新的“Google Colab”/“Kaggle”按钮。单击此按钮将生成一个可立即运行的笔记本，其中包含用于加载和测试模型的基本代码。这非常适合快速原型设计、推理测试或微调实验 - 所有这些都无需离开浏览器。
 
 ![Google Colab and Kaggle option for models on the Hub](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/hf-google-colab/gemma3-4b-it-dark.png)
 
@@ -31,7 +31,7 @@ https://huggingface.co/google/gemma-3-4b-it/kaggle如果模型存储库包含名
 
 ### 在 Google Colab 中启动
 
-[Google Colab](https://colab.google/) 是一个免费的 Jupyter Notebook 环境，无需设置，完全在云端运行。这是运行 Jupyter Notebooks 的好方法，无需在本地计算机上安装任何内容。 
+[Google Colab](https://colab.google/) 是一个免费的 Jupyter Notebook 环境，无需设置，完全在云端运行。这是运行 Jupyter Notebook 的好方法，无需在本地计算机上安装任何内容。 
 
-Hub 上托管的所有 .ipynb 文件都会自动获得“在 Colab 中打开”按钮。这样您只需单击一下即可在 Colab 中打开笔记本。### 存储桶集成
-https://huggingface.co/docs/hub/storage-buckets-integrations.md
+Hub 上托管的所有 .ipynb 文件都会自动获得“在 Colab 中打开”按钮。这样您只需单击一下即可在 Colab 中打开笔记本。### 访问模式
+https://huggingface.co/docs/hub/storage-buckets-access.md

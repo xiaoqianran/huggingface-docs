@@ -96,7 +96,7 @@ A. 积分可让您使用 HF 按量付费服务：
 **问。我在添加卡时遇到问题。怎么了？**
 
 答：请确保该卡支持 3D 安全身份验证，并针对定期在线付款进行了正确配置。我们尚不支持在印度发行的信用卡，因为我们正在努力增加系统对最新 RBI 指令的合规性。在我们添加对印度信用卡的支持之前，您可以：
-* 将组织账户链接到 AWS 账户，以便访问即用即付功能（端点、空间、AutoTrain）：[Hugging Face Platform on the AWS Marketplace: Pay with your AWS Account](https://huggingface.co/blog/aws-marketplace)
+* 将组织帐户链接到 AWS 帐户，以便访问即用即付功能（端点、空间、AutoTrain）：[Hugging Face Platform on the AWS Marketplace: Pay with your AWS Account](https://huggingface.co/blog/aws-marketplace)
 * 使用其他国家发行的信用卡
 
 **问。如何添加我的税号或更新账单详细信息？**
@@ -122,5 +122,5 @@ A. 积分可让您使用 HF 按量付费服务：
 
 **问。我的组织有团队或企业订阅，我需要更新席位数。我该怎么做？**
 
-A. 席位数量将在续订时自动调整，以反映上一时期组织成员数量的任何增加。由于是固定费用订阅，因此无需在当月或当年更新订阅的席位数。### 在 Hugging Face 中使用 timm
-https://huggingface.co/docs/hub/timm.md
+A. 席位数量将在续订时自动调整，以反映上一时期组织成员数量的任何增加。由于是固定费用订阅，因此无需在当月或当年更新订阅的席位数。### 如何获取用户在 Spaces 中的计划和状态
+https://huggingface.co/docs/hub/spaces-get-user-plan.md

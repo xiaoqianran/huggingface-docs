@@ -169,5 +169,5 @@ tasks:
           model: openai/o3-mini
 ```
 
-### 用户研究
-https://huggingface.co/docs/hub/model-cards-user-studies.md
+### 后续步骤
+https://huggingface.co/docs/hub/repositories-next-steps.md

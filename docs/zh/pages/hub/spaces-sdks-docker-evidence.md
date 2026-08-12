@@ -53,5 +53,5 @@ npm run dev
 - [Slack Community](https://slack.evidence.dev/)
 - [Evidence Home Page](https://www.evidence.dev)
 
-### 空间作为 MCP 服务器
-https://huggingface.co/docs/hub/spaces-mcp-servers.md
+### 评估结果
+https://huggingface.co/docs/hub/eval-results.md

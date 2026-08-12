@@ -43,5 +43,5 @@ hf buckets sync ~/.codex/sessions hf://buckets/<username>/<bucket-name>/codex
 
 在数据集中获得跟踪后，打开 Data Studio 并单击一行。对于存储桶中的跟踪，导航到要检查的 `.jsonl` 文件并将其打开。跟踪查看器显示会话时间线、提示、助理消息、工具调用和结果。
 
-对于公共示例，请打开 [⟦T16⟧](https://huggingface.co/datasets/TeichAI/DeepSeek-v4-Pro-Agent)。您还可以浏览更多标记为[⟦T17⟧](https://huggingface.co/datasets?format=format%3Aagent-traces)的数据集。### 为模特提供工作服务
-https://huggingface.co/docs/hub/jobs-serving.md
+对于公共示例，请打开 [⟦T16⟧](https://huggingface.co/datasets/TeichAI/DeepSeek-v4-Pro-Agent)。您还可以浏览更多标记为[⟦T17⟧](https://huggingface.co/datasets?format=format%3Aagent-traces)的数据集。### 恶意软件扫描
+https://huggingface.co/docs/hub/security-malware.md

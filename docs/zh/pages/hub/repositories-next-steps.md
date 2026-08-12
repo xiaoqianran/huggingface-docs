@@ -97,5 +97,5 @@ git reset --hard upstream/main
 git push --force origin main
 ```
 
-### Langfuse 空间
-https://huggingface.co/docs/hub/spaces-sdks-docker-langfuse.md
+### 在拥抱面部使用_Adapters_
+https://huggingface.co/docs/hub/adapters.md

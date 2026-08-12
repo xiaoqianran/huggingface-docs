@@ -31,5 +31,5 @@
 
 是的。您可以前往[the main Papers page](https://huggingface.co/papers)，点击搜索并输入论文名称或完整的Arxiv id。如果该论文不存在，您将可以选择为其建立索引。您也可以访问页面 `hf.co/papers/xxxx.yyyyy` 并替换为您想要索引的论文的 arxiv id。
 
-### 第三方扫描仪：保护 AI
-https://huggingface.co/docs/hub/security-protectai.md
+### 使用 SetFit 和拥抱脸部
+https://huggingface.co/docs/hub/setfit.md

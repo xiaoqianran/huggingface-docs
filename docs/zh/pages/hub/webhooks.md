@@ -242,5 +242,5 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 
 目前尚未向最终用户公开，但如果您发送电子邮件至 website@huggingface.co，我们可以为您切换此功能。
 
-### 使用🤗数据集
-https://huggingface.co/docs/hub/datasets-usage.md
+### Xet 历史和概述
+https://huggingface.co/docs/hub/xet/overview.md

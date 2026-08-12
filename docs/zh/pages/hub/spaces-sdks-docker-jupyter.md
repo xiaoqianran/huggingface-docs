@@ -36,5 +36,5 @@ Hugging Face Spaces 中的存储是短暂的，默认配置中存储的数据可
 
 该模板由[camenduru](https://twitter.com/camenduru)和[nateraw](https://huggingface.co/nateraw)创建，并得到[osanseviero](https://huggingface.co/osanseviero)和[azzr](https://huggingface.co/azzr)的贡献。
 
-### Spaces 开发模式：Spaces 中的无缝开发
-https://huggingface.co/docs/hub/spaces-dev-mode.md
+###达斯克
+https://huggingface.co/docs/hub/datasets-dask.md

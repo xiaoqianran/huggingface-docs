@@ -33,5 +33,5 @@ my_new_dataset.push_to_hub("username/my_new_dataset")
 
 有关使用 🤗 数据集的更多信息，请查看 🤗 数据集文档中提供的 [tutorials](/docs/datasets/tutorial) 和 [how-to guides](/docs/datasets/how_to)。
 
-### 安全
-https://huggingface.co/docs/hub/security.md
+### 在 Hugging Face Hub 上将 Ollama 与任何 GGUF 模型一起使用
+https://huggingface.co/docs/hub/ollama.md

@@ -87,5 +87,5 @@ git commit -S -m "My first signed commit"
 > [!提示]
 > 要默认在计算机上的任何本地存储库中签署所有提交，您可以运行 git config --global commit.gpgsign true。
 
-### 空间上的 JupyterLab
-https://huggingface.co/docs/hub/spaces-sdks-docker-jupyter.md
+### 特色空间
+https://huggingface.co/docs/hub/spaces-featured.md
