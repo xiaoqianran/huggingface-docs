@@ -1459,7 +1459,7 @@ missing, by falling back to using pattern matching on `pretrained_model_name_or_
 - **mgp-str** -- `{'torchvision': 'ViTImageProcessor', 'pil': 'ViTImageProcessorPil'}` (MgpstrConfig model)
 - **minicpmv4_6** -- `{'pil': 'MiniCPMV4_6ImageProcessorPil', 'torchvision': 'MiniCPMV4_6ImageProcessor'}` (MiniCPMV4_6Config model)
 - **minimax_m3_vl** -- `{'torchvision': 'MiniMaxM3VLImageProcessor'}` (MiniMaxM3VLConfig model)
-- **'mistral': 'PixtralVisionModel', 'pil': 'REDACTED'}` (Mistral3Config model)
+- **mistral3** -- `{'torchvision': 'PixtralImageProcessor', 'pil': 'REDACTED'}` (Mistral3Config model)
 - **mlcd** -- `{'torchvision': 'CLIPImageProcessor', 'pil': 'CLIPImageProcessorPil'}` (MLCDVisionConfig model)
 - **mllama** -- `{'pil': 'MllamaImageProcessorPil', 'torchvision': 'MllamaImageProcessor'}` (MllamaConfig model)
 - **mm-grounding-dino** -- `{'torchvision': 'GroundingDinoImageProcessor', 'pil': 'GroundingDinoImageProcessorPil'}` (MMGroundingDinoConfig model)

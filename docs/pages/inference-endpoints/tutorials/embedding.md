@@ -81,7 +81,7 @@ Set up the configuration to connect to your Inference Endpoint based on the deta
 ```python
 # Configuration
 ENDPOINT_URL = "https://your-endpoint-name.endpoints.huggingface.cloud/v1/" # Endpoint URL + version
-HF_TOKEN = os.getenv("HF_TOKEN") # Your Hugging Face Hub token from hf.co/settings/tokens
+HF_TOKEN=REDACTED # Your Hugging Face Hub token from hf.co/settings/tokens
 
 # Initialize OpenAI client for your endpoint
 client = OpenAI(
@@ -161,7 +161,7 @@ load_dotenv()
 
 # Configuration
 ENDPOINT_URL = "https://your-endpoint-name.endpoints.huggingface.cloud/v1/"
-HF_TOKEN = os.getenv("HF_TOKEN")
+HF_TOKEN=REDACTED
 
 # Initialize OpenAI client for your endpoint
 client = OpenAI(

@@ -47,5 +47,5 @@ Organizations on the Enterprise plan can also use [SCIM](./enterprise-scim) to a
 
 Basic SSO supports [role mapping, resource group mapping, session timeout, matching email domains, and external collaborators](./security-sso-user-management). These features are configurable from your organization's settings.
 
-### Datasets Download Stats
-https://huggingface.co/docs/hub/datasets-download-stats.md
+### GGUF
+https://huggingface.co/docs/hub/gguf.md

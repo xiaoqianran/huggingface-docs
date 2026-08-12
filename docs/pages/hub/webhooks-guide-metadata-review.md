@@ -208,5 +208,5 @@ We now have an automatic metadata review bot! Here are some ideas for how you co
 
 If you build a metadata quality app using Webhooks, please tag me @davanstrien; I would love to know about it!
 
-### Using Keras at Hugging Face
-https://huggingface.co/docs/hub/keras.md
+### GGUF usage with llama.cpp
+https://huggingface.co/docs/hub/gguf-llamacpp.md

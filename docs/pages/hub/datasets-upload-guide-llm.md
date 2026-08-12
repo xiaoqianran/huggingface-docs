@@ -533,5 +533,5 @@ For very specialized or bespoke formats:
 - Join the [Hugging Face Discord](https://hf.co/join/discord) for real-time help
 - Many domain-specific formats already have examples on the Hub
 
-### Evidence on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-evidence.md
+### Single Sign-On (SSO)
+https://huggingface.co/docs/hub/enterprise-sso.md

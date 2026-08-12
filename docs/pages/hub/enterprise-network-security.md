@@ -59,5 +59,5 @@ You can read and update your organization's network security settings programmat
 - GET /api/organizations//settings/network-security
 - PATCH /api/organizations//settings/network-security
 
-### Handling Spaces Dependencies in Gradio Spaces
-https://huggingface.co/docs/hub/spaces-dependencies.md
+### File names and splits
+https://huggingface.co/docs/hub/datasets-file-names-and-splits.md

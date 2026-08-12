@@ -23,5 +23,5 @@ Once attached, repo volumes appear in the Space actions dropdown alongside bucke
 
 When a volume references a private repository, users without access will still see the volume listed (with its mount path and access mode), but the source will be masked as `****/******` with a "(private)" label.
 
-### Using OpenCLIP at Hugging Face
-https://huggingface.co/docs/hub/open_clip.md
+### Argilla
+https://huggingface.co/docs/hub/datasets-argilla.md

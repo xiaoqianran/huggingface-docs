@@ -78,5 +78,5 @@ Find more information [here](https://github.com/huggingface/huggingface.js/tree/
 
 *if there's any inaccuracy on the table above, please open a PR on [this file](https://github.com/huggingface/huggingface.js/blob/main/packages/gguf/src/quant-descriptions.ts).*
 
-### Webhook guide: Setup an automatic system to re-train a model when a dataset changes
-https://huggingface.co/docs/hub/webhooks-guide-auto-retrain.md
+### Webhooks
+https://huggingface.co/docs/hub/webhooks.md

@@ -146,5 +146,5 @@ Pass `write_page_index=True` in PyArrow to include the page index that enables e
 It notably adds "offset_index_offset" and "offset_index_length" to Parquet columns that you can see in the [Parquet metadata viewer on Hugging Face](https://huggingface.co/blog/cfahlgren1/intro-to-parquet-format).
 Page indexes also speed up the [Hugging Face Dataset Viewer](https://huggingface.co/docs/dataset-viewer) and allows it to show data without row group size limit.
 
-### Streamlit Spaces
-https://huggingface.co/docs/hub/spaces-sdks-streamlit.md
+### GitHub Actions
+https://huggingface.co/docs/hub/repositories-github-actions.md

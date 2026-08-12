@@ -110,5 +110,5 @@ In addition to those main classes of rate limits, we enforce limits on certain s
 We don't currently document the rate limits for those specific actions, given they tend to change over time more often. If you get quota errors, we encourage you to upgrade your account to PRO, Team, or Enterprise.
 Feel free to get in touch with us via the support team.
 
-### Jupyter Notebooks on the Hugging Face Hub
-https://huggingface.co/docs/hub/notebooks.md
+### Local Agents with llama.cpp
+https://huggingface.co/docs/hub/agents-local.md

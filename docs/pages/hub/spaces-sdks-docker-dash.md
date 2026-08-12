@@ -78,5 +78,5 @@ If you encounter issues:
 
 For more help, visit the [Plotly Community Forums](https://community.plotly.com) or [open an issue](https://github.com/plotly/dash/issues).
 
-### Organizations, Security, and the Hub API
-https://huggingface.co/docs/hub/other.md
+### Using TensorBoard
+https://huggingface.co/docs/hub/tensorboard.md

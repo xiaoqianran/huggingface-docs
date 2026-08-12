@@ -45,5 +45,5 @@ The Panel community is vibrant and supportive, with experienced developers and d
 - [LinkedIn](https://www.linkedin.com/company/panel-org)
 - [Github](https://github.com/holoviz/panel)
 
-### Repositories
-https://huggingface.co/docs/hub/repositories.md
+### Disk usage on Spaces
+https://huggingface.co/docs/hub/spaces-storage.md

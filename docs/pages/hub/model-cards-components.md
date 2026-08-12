@@ -38,5 +38,5 @@ See result [here](https://huggingface.co/alvdansen/littletinies#little-tinies).
 
 > Hint: Support of Card Components through the GUI editor coming soon...
 
-### Uploading models
-https://huggingface.co/docs/hub/models-uploading.md
+### Models Frequently Asked Questions
+https://huggingface.co/docs/hub/models-faq.md

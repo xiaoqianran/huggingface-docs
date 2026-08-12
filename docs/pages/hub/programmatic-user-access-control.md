@@ -112,7 +112,7 @@ import os
 import requests
 
 BASE_URL = "https://huggingface.co"
-HF_TOKEN=REDACTEDHF_TOKEN", "")
+HF_TOKEN=REDACTED "")
 
 def change_member_role(org_name: str, username: str, role: str, resource_groups: list | None = None):
     payload = {"role": role, "resourceGroups": resource_groups or []}
@@ -377,7 +377,7 @@ import os
 import requests
 
 BASE_URL = "https://huggingface.co"
-HF_TOKEN=REDACTEDHF_TOKEN", "")
+HF_TOKEN=REDACTED "")
 
 def list_resource_groups(org_name: str):
     r = requests.get(
@@ -468,5 +468,5 @@ Content-Type: application/json
 > [!NOTE]
 > Disabling auto-join does **not** remove members who were previously auto-joined. It only stops future org members from being added automatically. Existing members remain in the Resource Group.
 
-### Using mlx-image at Hugging Face
-https://huggingface.co/docs/hub/mlx-image.md
+### Datasets
+https://huggingface.co/docs/hub/enterprise-datasets.md

@@ -80,5 +80,5 @@ You need to define three parameters:
 * Hugging Face Stable-Baselines3 [documentation](https://github.com/huggingface/huggingface_sb3#hugging-face--x-stable-baselines3-v20)
 * Stable-Baselines3 [documentation](https://stable-baselines3.readthedocs.io/en/master/)
 
-### Examples & Tutorials
-https://huggingface.co/docs/hub/jobs-examples.md
+### Programmatic User Access Control Management
+https://huggingface.co/docs/hub/programmatic-user-access-control.md

@@ -45,5 +45,5 @@ You can define three parameters:
 * RL-Baselines3-Zoo [official trained models](https://huggingface.co/sb3)
 * RL-Baselines3-Zoo [documentation](https://github.com/DLR-RM/rl-baselines3-zoo)
 
-### Organization cards
-https://huggingface.co/docs/hub/organizations-cards.md
+### Libraries
+https://huggingface.co/docs/hub/models-libraries.md

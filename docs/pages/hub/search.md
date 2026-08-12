@@ -10,5 +10,5 @@ By default, models, datasets, & spaces are being searched when a user enters a q
 
 Moreover, one can copy & share the URL from one's browser's address bar, which should contain the filter information as URL query. For example, when one searches for a query `llama` with a filter to show `Spaces` only, one gets URL https://huggingface.co/search/full-text?q=llama&type=space
 
-### Advanced Access Control in Organizations with Resource Groups
-https://huggingface.co/docs/hub/security-resource-groups.md
+### Third-party scanner: JFrog
+https://huggingface.co/docs/hub/security-jfrog.md

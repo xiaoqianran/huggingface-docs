@@ -50,5 +50,5 @@ If you want to load a specific SpanMarker model, you can click `Use in SpanMarke
 * SpanMarker [repository](https://github.com/tomaarsen/SpanMarkerNER)
 * SpanMarker [docs](https://tomaarsen.github.io/SpanMarkerNER)
 
-### Hugging Face CLI for AI Agents
-https://huggingface.co/docs/hub/agents-cli.md
+### Model Card Guidebook
+https://huggingface.co/docs/hub/model-card-guidebook.md

@@ -74,7 +74,7 @@ The saved model is fully compatible with Hugging Face's transformers library. Le
 ### Docker Install
 
 ```sh
-docker run -d -e JUPYTER_PASSWORD="mypassword" \
+docker run -d -e JUPYTER_PASSWORD=REDACTED \
   -p 8888:8888 -p 2222:22 \
   -v $(pwd)/work:/workspace/work \
   --gpus all \

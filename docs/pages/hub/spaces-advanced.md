@@ -12,5 +12,5 @@
 - [How to handle URL parameters in Spaces](./spaces-handle-url-parameters)
 - [How to get user status and plan in Spaces](./spaces-get-user-plan)
 
-### Hugging Face Dataset Upload Decision Guide
-https://huggingface.co/docs/hub/datasets-upload-guide-llm.md
+### WebDataset
+https://huggingface.co/docs/hub/datasets-webdataset.md

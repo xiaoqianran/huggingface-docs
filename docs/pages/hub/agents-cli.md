@@ -46,5 +46,5 @@ claude
 - [Token Settings](https://huggingface.co/settings/tokens) - Manage your tokens
 - [Jobs Documentation](https://huggingface.co/docs/huggingface_hub/guides/cli#hf-jobs) - Compute jobs guide
 
-### Spaces ZeroGPU: Dynamic GPU Allocation for Spaces
-https://huggingface.co/docs/hub/spaces-zerogpu.md
+### Skills
+https://huggingface.co/docs/hub/agents-skills.md

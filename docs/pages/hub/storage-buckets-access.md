@@ -72,5 +72,5 @@ duckdb.sql("SELECT * FROM 'hf://buckets/username/my-bucket/data.parquet' LIMIT 1
 
 For more on `hf://` paths and supported operations, see the [`HfFileSystem` guide](/docs/huggingface_hub/guides/hf_file_system) and the [Buckets Python guide](/docs/huggingface_hub/guides/buckets).
 
-### Configuration
-https://huggingface.co/docs/hub/jobs-configuration.md
+### Agent Traces
+https://huggingface.co/docs/hub/agent-traces.md

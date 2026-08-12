@@ -56,5 +56,5 @@ For more information, including how to use it in vanilla JS (without any bundler
 * Transformers.js [docs](https://huggingface.co/docs/transformers.js)
 * Transformers.js [demo](https://huggingface.github.io/transformers.js/)
 
-### Popular Images
-https://huggingface.co/docs/hub/jobs-popular-images.md
+### FiftyOne
+https://huggingface.co/docs/hub/datasets-fiftyone.md

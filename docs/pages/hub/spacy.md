@@ -101,5 +101,5 @@ print(result["url"])
 * spaCy v 3.1 [Announcement](https://explosion.ai/blog/spacy-v3-1#huggingface-hub)
 * spaCy [documentation](https://spacy.io/universe/project/spacy-huggingface-hub/)
 
-### Getting Started with Repositories
-https://huggingface.co/docs/hub/repositories-getting-started.md
+### Using sample-factory at Hugging Face
+https://huggingface.co/docs/hub/sample-factory.md

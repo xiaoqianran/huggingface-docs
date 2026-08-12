@@ -21,5 +21,5 @@ The Hugging Face Hub hosts many models for a [variety of machine learning tasks]
   - [Integrating libraries with the Hub](./models-adding-libraries)
   - [Tasks](./models-tasks)
 
-### GGUF usage with llama.cpp
-https://huggingface.co/docs/hub/gguf-llamacpp.md
+### Organizations
+https://huggingface.co/docs/hub/organizations.md

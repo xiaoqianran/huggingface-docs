@@ -75,5 +75,5 @@ To shuffle a list of sharded files and randomly sample from the shuffle buffer:
 ... )
 ```
 
-### Spaces as Agent Tools
-https://huggingface.co/docs/hub/spaces-agents.md
+### Audit Logs
+https://huggingface.co/docs/hub/audit-logs.md

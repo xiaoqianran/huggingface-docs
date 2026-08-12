@@ -237,5 +237,5 @@ Find your list of Jobs in the MacOS [`hfjobs-menubar`](https://github.com/drbh/h
 
 Get Jobs information, and monitor logs and resource usage statistics:
 
-### Git over SSH
-https://huggingface.co/docs/hub/security-git-ssh.md
+### Spaces
+https://huggingface.co/docs/hub/spaces.md

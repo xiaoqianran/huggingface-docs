@@ -142,5 +142,5 @@ push_to_hub(
 - [🤗 FiftyOne 🤝 Transformers Integration Docs](https://docs.voxel51.com/integrations/huggingface.html#transformers-library)
 - [🧩 FiftyOne Hugging Face Hub Plugin](https://github.com/voxel51/fiftyone-huggingface-plugins)
 
-### Network Security
-https://huggingface.co/docs/hub/enterprise-network-security.md
+### Advanced Access Control in Organizations with Resource Groups
+https://huggingface.co/docs/hub/security-resource-groups.md

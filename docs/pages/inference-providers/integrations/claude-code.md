@@ -49,8 +49,8 @@ Set the following environment variables before launching Claude Code:
 
 ```bash
 export ANTHROPIC_BASE_URL="https://router.huggingface.co"
-export ANTHROPIC_AUTH_TOKEN="${HF_TOKEN}"
-export ANTHROPIC_API_KEY="${HF_TOKEN}"
+export ANTHROPIC_AUTH_TOKEN=REDACTED
+export ANTHROPIC_API_KEY=REDACTED
 export ANTHROPIC_DEFAULT_OPUS_MODEL="zai-org/GLM-5.1"
 export ANTHROPIC_DEFAULT_SONNET_MODEL="zai-org/GLM-5.1"
 export ANTHROPIC_DEFAULT_HAIKU_MODEL="zai-org/GLM-5.1"

@@ -78,5 +78,5 @@ In the following sections, we will cover more complex operations you can perform
 > ```
 Native `hf://buckets/` support in DuckDB is expected in a future release.
 
-### THE LANDSCAPE OF ML DOCUMENTATION TOOLS
-https://huggingface.co/docs/hub/model-card-landscape-analysis.md
+### Inference Providers
+https://huggingface.co/docs/hub/models-inference.md

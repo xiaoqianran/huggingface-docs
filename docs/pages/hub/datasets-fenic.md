@@ -232,5 +232,5 @@ processed_df.show()
 - [fenic GitHub Repository](https://github.com/typedef-ai/fenic)
 - [fenic Documentation](https://docs.fenic.ai/latest/)
 
-### Combine datasets and export
-https://huggingface.co/docs/hub/datasets-duckdb-combine-and-export.md
+### Authentication for private and gated datasets
+https://huggingface.co/docs/hub/datasets-duckdb-auth.md

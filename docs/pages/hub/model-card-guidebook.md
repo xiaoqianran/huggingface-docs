@@ -25,5 +25,5 @@ We also include an [Appendix](./model-card-appendix) with further details from t
 **Please cite as:** 
 Ozoani, Ezi and Gerchick, Marissa and Mitchell, Margaret. Model Card Guidebook. Hugging Face, 2022. https://huggingface.co/docs/hub/en/model-card-guidebook
 
-### Perform SQL operations
-https://huggingface.co/docs/hub/datasets-duckdb-sql.md
+### Langfuse on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-langfuse.md

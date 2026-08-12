@@ -284,5 +284,5 @@ pq.write_table(table, "data.parquet", use_content_defined_chunking=True)
 
 Setting the Audio type in the Arrow schema metadata enables other libraries and the Hugging Face Dataset Viewer to recognise that "audio" contains audio data, not just binary data.
 
-### Custom Python Spaces
-https://huggingface.co/docs/hub/spaces-sdks-python.md
+### ChatUI on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-chatui.md

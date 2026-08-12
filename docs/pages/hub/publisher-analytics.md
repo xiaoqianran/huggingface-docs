@@ -76,5 +76,5 @@ Your team is responsible for ingesting these logs and running computations on th
 
 As it requires setting up a custom data export pipeline on our side (custom Elastic index, etc), this is only available as an add-on to Enterprise Plus.
 
-### Your First Docker Space: Text Generation with T5
-https://huggingface.co/docs/hub/spaces-sdks-docker-first-demo.md
+### Using 🤗 `transformers` at Hugging Face
+https://huggingface.co/docs/hub/transformers.md

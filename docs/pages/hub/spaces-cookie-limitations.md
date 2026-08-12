@@ -22,5 +22,5 @@ To work around this issue, you would need to set the `server.enableXsrfProtectio
 > [!TIP]
 > When you are using the Streamlit SDK, you don't need to worry about this because the SDK does it for you.
 
-### Trusted Publishers
-https://huggingface.co/docs/hub/trusted-publishers.md
+### Managing organizations
+https://huggingface.co/docs/hub/organizations-managing.md

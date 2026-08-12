@@ -286,5 +286,5 @@ prompt = "What is the main topic of this sentence ? REPLY IN LESS THAN 3 WORDS. 
 df["output"] = [y["generated_text"][1]["content"] for y in pipe([{"role": "user", "content": prompt.format(x)}] for x in tqdm(df["text"]))]
 ```
 
-### Resource groups
-https://huggingface.co/docs/hub/enterprise-resource-groups.md
+### Jobs
+https://huggingface.co/docs/hub/jobs.md

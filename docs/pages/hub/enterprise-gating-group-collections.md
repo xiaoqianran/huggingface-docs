@@ -167,5 +167,5 @@ To get access to the models and datasets in a Gated Group Collection, a single a
 
 Visit our [gated models](https://huggingface.co/docs/hub/models-gated#access-gated-models-as-a-user) or [gated datasets](https://huggingface.co/docs/hub/datasets-gated#access-gated-datasets-as-a-user) documentation to learn more about requesting access to a repository.
 
-### Agent Traces
-https://huggingface.co/docs/hub/agent-traces.md
+### The HF PRO subscription 🔥
+https://huggingface.co/docs/hub/pro.md

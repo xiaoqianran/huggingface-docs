@@ -99,7 +99,7 @@ Set up the configuration to connect to both your transcription and summarization
 # Configuration for both endpoints
 TRANSCRIPTION_ENDPOINT = "https://your-whisper-endpoint.endpoints.huggingface.cloud/api/v1/audio/transcriptions"
 SUMMARIZATION_ENDPOINT = "https://your-qwen-endpoint.endpoints.huggingface.cloud/v1/chat/completions"
-HF_TOKEN = os.getenv("HF_TOKEN")  # Your Hugging Face Hub token
+HF_TOKEN=REDACTED  # Your Hugging Face Hub token
 
 # Headers for authentication
 headers = {
@@ -238,7 +238,7 @@ import requests
 # Configuration for both endpoints
 TRANSCRIPTION_ENDPOINT = "https://your-whisper-endpoint.endpoints.huggingface.cloud/api/v1/audio/transcriptions"
 SUMMARIZATION_ENDPOINT = "https://your-qwen-endpoint.endpoints.huggingface.cloud/v1/chat/completions"
-HF_TOKEN = os.getenv("HF_TOKEN")  # Your Hugging Face Hub token
+HF_TOKEN=REDACTED  # Your Hugging Face Hub token
 
 # Headers for authentication
 headers = {

@@ -38,7 +38,7 @@ export HF_TOKEN="REDACTED"
 
 ```javascript
 // Add your token at the top of your script
-const HF_TOKEN = REDACTED;
+const HF_TOKEN=REDACTED
 ```
 
 > [!WARNING]
@@ -115,7 +115,7 @@ import { InferenceClient } from "https://esm.sh/@huggingface/inference";
 // Access the token from Hugging Face Spaces secrets
 const HF_TOKEN=REDACTED
 // Or if you're running locally, you can set it as an environment variable
-// const HF_TOKEN = REDACTED;
+// const HF_TOKEN=REDACTED
 
 document.getElementById("file").onchange = async (e) => {
   if (!e.target.files[0]) return;

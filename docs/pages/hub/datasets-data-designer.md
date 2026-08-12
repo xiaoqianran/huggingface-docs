@@ -62,5 +62,5 @@ url = results.push_to_hub(
 - [Seed Datasets Guide](https://nvidia-nemo.github.io/DataDesigner/latest/concepts/seed-datasets/)
 - [Guide to using Data Designer with Inference Providers](https://huggingface.co/docs/inference-providers/integrations/datadesigner)
 
-### Download Analytics
-https://huggingface.co/docs/hub/download-analytics.md
+### Datasets Download Stats
+https://huggingface.co/docs/hub/datasets-download-stats.md

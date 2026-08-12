@@ -60,5 +60,5 @@ Both models support SAML 2.0 and OIDC protocols and can be integrated with popul
 - [User Management](./security-sso-user-management) — Role mapping, resource group mapping, session timeout, and more
 - [Configuration Guides](./security-sso-configuration-guides) — Step-by-step setup instructions for Okta, Microsoft Entra ID, and Google Workspace
 
-### Using PaddleNLP at Hugging Face
-https://huggingface.co/docs/hub/paddlenlp.md
+### Paper Pages
+https://huggingface.co/docs/hub/paper-pages.md

@@ -45,5 +45,5 @@ Once you have traces in a dataset, open Data Studio and click a row. For traces 
 
 For a public example, open [`TeichAI/DeepSeek-v4-Pro-Agent`](https://huggingface.co/datasets/TeichAI/DeepSeek-v4-Pro-Agent). You can also browse more datasets tagged as [`traces`](https://huggingface.co/datasets?format=format%3Aagent-traces).
 
-### Serve Models on Jobs
-https://huggingface.co/docs/hub/jobs-serving.md
+### Malware Scanning
+https://huggingface.co/docs/hub/security-malware.md

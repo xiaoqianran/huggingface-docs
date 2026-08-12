@@ -42,5 +42,5 @@ Once you do this, you can try out your model directly in the browser and share i
 * Asteroid [library](https://github.com/asteroid-team/asteroid).
 * Integration [docs](https://github.com/asteroid-team/asteroid/blob/master/docs/source/readmes/pretrained_models.md).
 
-### Authentication for private and gated datasets
-https://huggingface.co/docs/hub/datasets-duckdb-auth.md
+### How to configure SAML SSO with Google Workspace
+https://huggingface.co/docs/hub/security-sso-google-saml.md

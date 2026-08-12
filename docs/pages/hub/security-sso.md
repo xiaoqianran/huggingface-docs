@@ -16,5 +16,5 @@ There are two SSO models available, depending on your plan and needs. For a deta
 - [Configuration Guides](./security-sso-configuration-guides) — Step-by-step setup instructions for Okta, Microsoft Entra ID, and Google Workspace
 - [User Provisioning (SCIM)](./enterprise-scim) — Automated user provisioning from your Identity Provider
 
-### Query datasets
-https://huggingface.co/docs/hub/datasets-duckdb-select.md
+### Publisher Analytics
+https://huggingface.co/docs/hub/publisher-analytics.md

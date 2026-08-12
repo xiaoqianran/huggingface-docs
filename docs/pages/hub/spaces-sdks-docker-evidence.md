@@ -53,5 +53,5 @@ Check out the docs for [alternative install methods](https://docs.evidence.dev/g
 - [Slack Community](https://slack.evidence.dev/)
 - [Evidence Home Page](https://www.evidence.dev)
 
-### Spaces as MCP servers
-https://huggingface.co/docs/hub/spaces-mcp-servers.md
+### Evaluation Results
+https://huggingface.co/docs/hub/eval-results.md

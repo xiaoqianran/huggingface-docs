@@ -28,5 +28,5 @@ viewer: false
 
 For **private** datasets, the Dataset Viewer is enabled for [PRO users](https://huggingface.co/pricing) and [Team or Enterprise organizations](https://huggingface.co/enterprise).
 
-### Model Card Guidebook
-https://huggingface.co/docs/hub/model-card-guidebook.md
+### Manage Jobs
+https://huggingface.co/docs/hub/jobs-manage.md

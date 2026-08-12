@@ -5,7 +5,7 @@ This guide explains how to set up SCIM user and group provisioning between Okta 
 > [!WARNING]
 > This feature is part of the Enterprise and Enterprise Plus plans.
 
-## Step 0: Confirm your organization is managed by Hugging Face
+## Step 0: Confirm your organization is properly set up
 
 > [!NOTE]
 > This step is only required if you're setting up managed users on Hugging Face.
@@ -69,6 +69,7 @@ For SCIM provisioning with a managed organization configured with SAML SSO, upda
 4. In the mapping modal the Username needs to be edited to comply with the following rules.
 
 > [!WARNING]
+>
 > 
 > Only regular characters and `-` are accepted in the Username.
 > `--` (double dash) is forbidden.
@@ -115,5 +116,5 @@ Once your groups are provisioned from Okta, you can link them to Hugging Face Re
 
 Once linked, the Resource Group becomes **SCIM-managed**: any members already in the SCIM group are immediately added to the Resource Group (backfill), and all future membership changes in Okta are automatically reflected. Manual membership edits on the Resource Group via the Hub UI or API will be blocked.
 
-### Docker Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker.md
+### Storage Regions on the Hub
+https://huggingface.co/docs/hub/storage-regions.md

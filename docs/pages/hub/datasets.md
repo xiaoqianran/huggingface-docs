@@ -16,5 +16,5 @@ This documentation focuses on the datasets functionality in the Hugging Face Hub
 - [Agent Traces](./agent-traces)
 - [Data files Configuration](./datasets-data-files-configuration)
 
-### marimo on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-marimo.md
+### Model Card components
+https://huggingface.co/docs/hub/model-cards-components.md

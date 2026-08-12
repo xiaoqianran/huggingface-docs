@@ -66,5 +66,5 @@ then [Publisher Analytics](./publisher-analytics), and in particular the [granul
 
 These are provided as raw logs, since most organizations will want to apply their own custom rules.
 
-### Licenses
-https://huggingface.co/docs/hub/repositories-licenses.md
+### Using Stanza at Hugging Face
+https://huggingface.co/docs/hub/stanza.md

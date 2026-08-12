@@ -123,5 +123,5 @@ _[Example trace in the Langfuse UI](https://langfuse-langfuse-template-space.hf.
 
 For more help, open a support thread on [GitHub discussions](https://langfuse.com/discussions) or [open an issue](https://github.com/langfuse/langfuse/issues).
 
-### Accessing Benchmark Leaderboard Data
-https://huggingface.co/docs/hub/leaderboard-data-guide.md
+### How to configure SCIM with Microsoft Entra ID (Azure AD)
+https://huggingface.co/docs/hub/security-sso-entra-id-scim.md

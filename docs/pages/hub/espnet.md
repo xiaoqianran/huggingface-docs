@@ -50,5 +50,5 @@ The `run.sh` script allows to upload a given model to a Hugging Face repository.
 * ESPnet model zoo [repository](https://github.com/espnet/espnet_model_zoo).
 * Integration [docs](https://github.com/asteroid-team/asteroid/blob/master/docs/source/readmes/pretrained_models.md).
 
-### SSO Configuration Guides
-https://huggingface.co/docs/hub/security-sso-configuration-guides.md
+### Hub API Endpoints
+https://huggingface.co/docs/hub/api.md

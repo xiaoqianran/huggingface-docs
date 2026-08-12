@@ -109,5 +109,5 @@ We want to acknowledge and thank [Bibi Ofuya](https://www.figma.com/proto/qrPCjW
 **Please cite as:**
 Ozoani, Ezi and Gerchick, Marissa and Mitchell, Margaret. Model Card Guidebook. Hugging Face, 2022. https://huggingface.co/docs/hub/en/model-card-guidebook
 
-### GGUF usage with GPT4All
-https://huggingface.co/docs/hub/gguf-gpt4all.md
+### Embed your Space in another website
+https://huggingface.co/docs/hub/spaces-embed.md

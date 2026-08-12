@@ -16,5 +16,5 @@ Note: Use the context switcher in your org settings to quickly switch between yo
 
 - [Team & Enterprise Plans](./enterprise)
 
-### Schedule Jobs
-https://huggingface.co/docs/hub/jobs-schedule.md
+### Popular Images
+https://huggingface.co/docs/hub/jobs-popular-images.md

@@ -121,5 +121,5 @@ We can pass options to the first argument of `iFrameResize()`. See [the document
 
 Additionally, you can checkout [our documentation](./spaces-embed).
 
-### How to handle URL parameters in Spaces
-https://huggingface.co/docs/hub/spaces-handle-url-parameters.md
+### Storage Buckets
+https://huggingface.co/docs/hub/storage-buckets.md

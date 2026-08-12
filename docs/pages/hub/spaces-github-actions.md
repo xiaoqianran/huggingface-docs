@@ -66,5 +66,5 @@ jobs:
 
 Replace `HF_USERNAME` with your username and `SPACE_NAME` with your Space name.
 
-### Embed the Dataset Viewer in a webpage
-https://huggingface.co/docs/hub/datasets-viewer-embed.md
+### Hugging Face Hub documentation
+https://huggingface.co/docs/hub/index.md

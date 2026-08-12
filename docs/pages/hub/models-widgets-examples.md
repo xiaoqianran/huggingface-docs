@@ -349,5 +349,5 @@ widget:
   example_title: "Wine"
 ```
 
-### Using PEFT at Hugging Face
-https://huggingface.co/docs/hub/peft.md
+### Spaces ZeroGPU: Dynamic GPU Allocation for Spaces
+https://huggingface.co/docs/hub/spaces-zerogpu.md

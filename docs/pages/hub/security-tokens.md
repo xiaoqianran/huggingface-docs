@@ -118,5 +118,5 @@ Revocation only affects the organization that revoked it. The token continues to
 
 If your organization has set a policy requiring fine-grained tokens, read/write tokens will be rejected with a `403` error when used against that organization's resources.
 
-### Editing datasets
-https://huggingface.co/docs/hub/datasets-editing.md
+### Spaces Changelog
+https://huggingface.co/docs/hub/spaces-changelog.md

@@ -432,7 +432,7 @@ prompt the user for a new task.
 
 ```py
 # Space will need your token to request hardware: set it as a Secret !
-HF_TOKEN=REDACTEDHF_TOKEN")
+HF_TOKEN=REDACTED
 
 # Space own repo_id
 TRAINING_SPACE_ID = "Wauplin/dreambooth-training"

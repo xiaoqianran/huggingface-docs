@@ -33,5 +33,5 @@ If the model card includes a link to a paper on arXiv, the Hugging Face Hub will
 
 Read more about paper pages [here](./paper-pages).
 
-### Paper Pages
-https://huggingface.co/docs/hub/paper-pages.md
+### Static HTML Spaces
+https://huggingface.co/docs/hub/spaces-sdks-static.md

@@ -16,5 +16,5 @@ You can run jobs using the `hf` CLI, the `huggingface_hub` Python client, or the
 - [Webhooks Automation](./jobs-webhooks)
 - [Reference](./jobs-reference)
 
-### Dask
-https://huggingface.co/docs/hub/datasets-dask.md
+### Single Sign-On (SSO)
+https://huggingface.co/docs/hub/security-sso.md

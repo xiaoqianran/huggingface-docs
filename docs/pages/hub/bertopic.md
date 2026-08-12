@@ -92,5 +92,5 @@ Note that the saved model does not include the dimensionality reduction and clus
 * [BERTopic docs](https://maartengr.github.io/BERTopic/)
 * [BERTopic models in the Hub](https://huggingface.co/models?library=bertopic&sort=trending)
 
-### How to configure SCIM with Okta
-https://huggingface.co/docs/hub/security-sso-okta-scim.md
+### How to configure OIDC SSO with Microsoft Entra ID (Azure AD)
+https://huggingface.co/docs/hub/security-sso-azure-oidc.md
