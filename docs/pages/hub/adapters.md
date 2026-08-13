@@ -75,5 +75,5 @@ This command creates a repository with an automatically generated model card and
 * _Adapters_ [paper](https://arxiv.org/abs/2311.11077)
 * Integration with Hub [docs](https://docs.adapterhub.ml/huggingface_hub.html)
 
-### How to configure SAML SSO with Microsoft Entra ID (Azure AD)
-https://huggingface.co/docs/hub/security-sso-azure-saml.md
+### Advanced Compute Options
+https://huggingface.co/docs/hub/advanced-compute-options.md

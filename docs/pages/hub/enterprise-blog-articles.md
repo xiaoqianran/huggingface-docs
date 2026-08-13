@@ -14,7 +14,7 @@ When creating a new article at [huggingface.co/new-blog](https://huggingface.co/
 To publish blog articles under an organization namespace, members need `write` or `admin` role at the organization level. See [Access Control in Organizations](./organizations-security) for more details on roles.
 
 > [!NOTE]
-> Blog article permissions are currently tied to organization-level roles and cannot be scoped using [Resource Groups](./security-resource-groups). Resource Groups only control access to repositories (models, datasets, and Spaces), not blog articles.
+> On Enterprise plans and above, org admins can instead restrict who is allowed to write and publish organization blog articles through Resource Groups [Granular feature access](./security-resource-groups#granular-feature-access) settings.
 
 ## Linking to Models and Datasets
 
@@ -22,5 +22,5 @@ Articles mentioning a model or dataset owned by the same organization will autom
 
 See [Blog Articles](./blog-articles) for general information about authoring blog articles on the Hub.
 
-### Perform SQL operations
-https://huggingface.co/docs/hub/datasets-duckdb-sql.md
+### Jobs
+https://huggingface.co/docs/hub/jobs.md

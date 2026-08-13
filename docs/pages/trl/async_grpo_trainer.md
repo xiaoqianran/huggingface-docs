@@ -12,13 +12,13 @@
 
 ## Overview
 
-`AsyncGRPOTrainer` implements the same [GRPO](grpo_trainer) algorithm but decouples rollout generation from training. A background worker continuously streams completions from a vLLM server while the training loop consumes them, so generation and gradient updates overlap instead of alternating. The API mirrors [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer) — for full details on the GRPO method itself (advantage computation, KL estimation, loss formulation, reward functions, etc.), see the [GRPO Trainer](grpo_trainer) documentation. Not all features from [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer) are available; refer to `AsyncGRPOConfig` for the supported parameters.
+`AsyncGRPOTrainer` implements the same [GRPO](grpo_trainer) algorithm but decouples rollout generation from training. A background worker continuously streams completions from a vLLM server while the training loop consumes them, so generation and gradient updates overlap instead of alternating. The API mirrors [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) — for full details on the GRPO method itself (advantage computation, KL estimation, loss formulation, reward functions, etc.), see the [GRPO Trainer](grpo_trainer) documentation. Not all features from [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) are available; refer to `AsyncGRPOConfig` for the supported parameters.
 
 This trainer was contributed by [Quentin Gallouédec](https://huggingface.co/qgallouedec) and [Amine Dirhoussi](https://huggingface.co/aminediroHF).
 
-## How it differs from [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer)
+## How it differs from [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer)
 
-In the standard [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer), generation and training are sequential: generate a batch, compute the loss, update weights, repeat. Even in [vLLM colocate mode](grpo_trainer#speed-up-training-with-vllm-powered-generation), where generation runs on the same GPUs, one phase must finish before the other begins.
+In the standard [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer), generation and training are sequential: generate a batch, compute the loss, update weights, repeat. Even in [vLLM colocate mode](grpo_trainer#speed-up-training-with-vllm-powered-generation), where generation runs on the same GPUs, one phase must finish before the other begins.
 
 `AsyncGRPOTrainer` separates these two concerns:
 
@@ -28,9 +28,9 @@ In the standard [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer), g
 The rollout worker runs in a separate process spawned from the trainer, so reward computation never contends with the training loop for the GIL. This has two consequences for what you can pass as `reward_funcs`, `tools`, and `environment_factory` (for the latter, see the [OpenEnv guide](openenv), which covers the contract and the available integrations):
 
 > [!WARNING]
-> Because we run the rollout worker in a separate process, everything passed to it is **pickled**. Each reward function, tool, and `environment_factory` (and anything they close over) must therefore be picklable: use a module-level function, [`functools.partial`](https://docs.python.org/3/library/functools.html#functools.partial), or a **callable class instance**. Lambdas and closures will raise a `TypeError` at `trainer.train()`. This is a difference from [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer), where reward functions are called in-process and closures work.
+> Because we run the rollout worker in a separate process, everything passed to it is **pickled**. Each reward function, tool, and `environment_factory` (and anything they close over) must therefore be picklable: use a module-level function, [`functools.partial`](https://docs.python.org/3/library/functools.html#functools.partial), or a **callable class instance**. Lambdas and closures will raise a `TypeError` at `trainer.train()`. This is a difference from [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer), where reward functions are called in-process and closures work.
 >
-> The rollout process also runs with `CUDA_VISIBLE_DEVICES=""`, so it cannot use the GPU. A **GPU-backed reward model** (e.g. an `AutoModelForSequenceClassification` scorer) still loads without error but silently falls back to **CPU** (note that in [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer), such a reward model shares the trainer's GPUs). Keep reward functions CPU-side and lightweight (verifiers like `accuracy_reward`, format/length checks).
+> The rollout process also runs with `CUDA_VISIBLE_DEVICES=""`, so it cannot use the GPU. A **GPU-backed reward model** (e.g. an `AutoModelForSequenceClassification` scorer) still loads without error but silently falls back to **CPU** (note that in [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer), such a reward model shares the trainer's GPUs). Keep reward functions CPU-side and lightweight (verifiers like `accuracy_reward`, format/length checks).
 >
 > If you do need a GPU reward model, the recommended approach is to **serve it behind its own inference engine** (vLLM, TGI, …) on separate GPUs and have a lightweight, picklable reward function call it over HTTP. This keeps the reward model on its own device while the rollout process stays CPU-only, and it scales independently of the trainer.
 
@@ -82,102 +82,86 @@ This trainer is intentionally kept minimal and is not meant to grow into a gener
 
 ## AsyncGRPOConfig[[trl.experimental.async_grpo.AsyncGRPOConfig]]
 
-"}, {"name": "batch_eval_metrics", "val": ": bool = False"}, {"name": "save_only_model", "val": ": bool = False"}, {"name": "save_strategy", "val": ": transformers.trainer_utils.SaveStrategy | str = 'steps'"}, {"name": "save_steps", "val": ": float = 500"}, {"name": "save_on_each_node", "val": ": bool = False"}, {"name": "save_total_limit", "val": ": int | None = None"}, {"name": "enable_jit_checkpoint", "val": ": bool = False"}, {"name": "push_to_hub", "val": ": bool = False"}, {"name": "hub_token", "val": ": str | None = None"}, {"name": "hub_private_repo", "val": ": bool | None = None"}, {"name": "hub_model_id", "val": ": str | None = None"}, {"name": "hub_strategy", "val": ": transformers.trainer_utils.HubStrategy | str = 'every_save'"}, {"name": "hub_always_push", "val": ": bool = False"}, {"name": "hub_revision", "val": ": str | None = None"}, {"name": "load_best_model_at_end", "val": ": bool = False"}, {"name": "metric_for_best_model", "val": ": str | None = None"}, {"name": "greater_is_better", "val": ": bool | None = None"}, {"name": "ignore_data_skip", "val": ": bool = False"}, {"name": "restore_callback_states_from_checkpoint", "val": ": bool = False"}, {"name": "full_determinism", "val": ": bool = False"}, {"name": "seed", "val": ": int = 42"}, {"name": "data_seed", "val": ": int | None = None"}, {"name": "use_cpu", "val": ": bool = False"}, {"name": "accelerator_config", "val": ": dict | str | None = None"}, {"name": "parallelism_config", "val": ": accelerate.parallelism_config.ParallelismConfig | None = None"}, {"name": "dataloader_drop_last", "val": ": bool = False"}, {"name": "dataloader_num_workers", "val": ": int = 0"}, {"name": "dataloader_pin_memory", "val": ": bool = True"}, {"name": "dataloader_persistent_workers", "val": ": bool = False"}, {"name": "dataloader_prefetch_factor", "val": ": int | None = None"}, {"name": "remove_unused_columns", "val": ": bool = True"}, {"name": "label_names", "val": ": list[str] | None = None"}, {"name": "train_sampling_strategy", "val": ": str = 'random'"}, {"name": "length_column_name", "val": ": str = 'length'"}, {"name": "ddp_find_unused_parameters", "val": ": bool | None = None"}, {"name": "ddp_bucket_cap_mb", "val": ": int | None = None"}, {"name": "ddp_broadcast_buffers", "val": ": bool | None = None"}, {"name": "ddp_static_graph", "val": ": bool | None = None"}, {"name": "ddp_backend", "val": ": str | None = None"}, {"name": "ddp_timeout", "val": ": int = 1800"}, {"name": "fsdp", "val": ": str | None = None"}, {"name": "fsdp_config", "val": ": dict[str, typing.Any] | str | None = None"}, {"name": "deepspeed", "val": ": dict | str | None = None"}, {"name": "debug", "val": ": str | list[transformers.debug_utils.DebugOption] = ''"}, {"name": "skip_memory_metrics", "val": ": bool = True"}, {"name": "do_train", "val": ": bool = False"}, {"name": "do_eval", "val": ": bool = False"}, {"name": "do_predict", "val": ": bool = False"}, {"name": "resume_from_checkpoint", "val": ": str | None = None"}, {"name": "warmup_ratio", "val": ": float | None = None"}, {"name": "logging_dir", "val": ": str | None = None"}, {"name": "local_rank", "val": ": int = -1"}, {"name": "model_init_kwargs", "val": ": dict[str, typing.Any] | str | None = None"}, {"name": "trust_remote_code", "val": ": bool = False"}, {"name": "router_aux_loss_coef", "val": ": float = 0.001"}, {"name": "num_generations", "val": ": int = 8"}, {"name": "max_completion_length", "val": ": int = 2048"}, {"name": "temperature", "val": ": float = 1.0"}, {"name": "chat_template_kwargs", "val": ": dict | None = None"}, {"name": "max_tool_calling_iterations", "val": ": int | None = None"}, {"name": "fork_threshold_tokens", "val": ": int = 1024"}, {"name": "vllm_server_base_url", "val": ": str = 'http://localhost:8000'"}, {"name": "vllm_server_timeout", "val": ": float = 240.0"}, {"name": "request_timeout", "val": ": int = 600"}, {"name": "epsilon", "val": ": float = 0.2"}, {"name": "epsilon_high", "val": ": float | None = None"}, {"name": "token_budget", "val": ": int | None = None"}, {"name": "max_inflight_tasks", "val": ": int = -1"}, {"name": "max_staleness", "val": ": int = 4"}, {"name": "queue_maxsize", "val": ": int = 1024"}, {"name": "weight_sync_steps", "val": ": int = 1"}, {"name": "heartbeat_stale_after_s", "val": ": float = 300.0"}, {"name": "log_completions", "val": ": bool = False"}, {"name": "num_completions_to_print", "val": ": int | None = None"}]}>
-Parameters that control the model
+#### trl.experimental.async_grpo.AsyncGRPOConfig[[trl.experimental.async_grpo.AsyncGRPOConfig]]
 
-- **model_init_kwargs** (`dict[str, Any]` or `str`, *optional*) --
-  Keyword arguments for [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained), used when instantiating the
-  model from a path.
-- **trust_remote_code** (`bool`, *optional*, defaults to `False`) --
-  Whether to allow loading models and tokenizers that ship custom Python code from the Hub. Forwarded to
-  [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) and [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained).
-- **router_aux_loss_coef** (`float`, *optional*, defaults to `0.001`) --
-  Coefficient of the load-balancing auxiliary loss. Only has an effect when training a Mixture-of-Experts
-  (MoE) model; for other models it does nothing. The auxiliary loss is added to the training loss with this
-  weight. Set to `0.0` to disable it.
+```python
+trl.experimental.async_grpo.AsyncGRPOConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 1e-06, lr_scheduler_type: str = 'constant', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 1, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = True, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | str | None = None, trust_remote_code: bool = False, router_aux_loss_coef: float = 0.001, num_generations: int = 8, max_completion_length: int = 2048, temperature: float = 1.0, top_p: float = 1.0, top_k: int = 0, min_p: float | None = None, repetition_penalty: float = 1.0, chat_template_kwargs: dict | None = None, max_tool_calling_iterations: int | None = None, fork_threshold_tokens: int = 1024, vllm_server_base_url: str = 'http://localhost:8000', vllm_server_timeout: float = 240.0, request_timeout: int = 600, epsilon: float = 0.2, epsilon_high: float | None = None, token_budget: int | None = None, max_inflight_tasks: int = -1, max_staleness: int = 4, queue_maxsize: int = 1024, weight_sync_steps: int = 1, heartbeat_stale_after_s: float = 300.0, log_completions: bool = False, num_completions_to_print: int | None = None)
+```
 
-Parameters that control generation
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/async_grpo/async_grpo_config.py#L22)
 
-- **num_generations** (`int`, *optional*, defaults to `8`) --
-  Number of generations per prompt to sample.
-- **max_completion_length** (`int`, *optional*, defaults to `2048`) --
-  Maximum length of the generated completion.
-- **temperature** (`float`, *optional*, defaults to `1.0`) --
-  Temperature for sampling. The higher the temperature, the more random the completions.
-- **chat_template_kwargs** (`dict[str, Any]`, *optional*) --
-  Additional keyword arguments to pass to the `apply_chat_template` function when generating completions.
-- **max_tool_calling_iterations** (`int`, *optional*) --
-  Maximum number of tool-calling turns when training an agent. If `None`, there is no limit and generation
-  stops when the model generates a response turn with no tool calls or when the total response length reaches
-  `max_completion_length`.
-- **fork_threshold_tokens** (`int`, *optional*, defaults to `1024`) --
-  A multi-turn conversation is turned into training rows by re-tokenizing the whole conversation every turn
-  and reconciling the result against the tokens held so far: a clean append stays one row, a rewrite (dropped
-  reasoning, summarized history) forks a new row. When a turn's re-tokenized prompt drifts inside the last
-  generated answer, the decision is made on the **drift size** — how many previously-trained tokens the
-  realign would mask to context. A drift smaller than this many tokens is treated as a re-tokenization
-  wobble (realigned as context); a larger drift — e.g. a long reasoning block dropped by the template —
-  forks a new row so those trained tokens keep their training signal instead of being silently masked.
+**Parameters that control the model:**
 
-Parameters that control the vLLM server
+model_init_kwargs (`dict[str, Any]` or `str`, *optional*) : Keyword arguments for [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained), used when instantiating the model from a path.
 
-- **vllm_server_base_url** (`str`, *optional*, defaults to `"http --//localhost:8000"`):
-  Base URL of the vLLM server used for generation (e.g., `"http://localhost:8000"`).
-- **vllm_server_timeout** (`float`, *optional*, defaults to `240.0`) --
-  Total timeout duration in seconds to wait for the vLLM server to be ready.
-- **request_timeout** (`int`, *optional*, defaults to `600`) --
-  Timeout in seconds for individual HTTP requests to the vLLM server.
+trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to allow loading models and tokenizers that ship custom Python code from the Hub. Forwarded to [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) and [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained).
 
-Parameters that control the training
+router_aux_loss_coef (`float`, *optional*, defaults to `0.001`) : Coefficient of the load-balancing auxiliary loss. Only has an effect when training a Mixture-of-Experts (MoE) model; for other models it does nothing. The auxiliary loss is added to the training loss with this weight. Set to `0.0` to disable it.
 
-- **epsilon** (`float`, *optional*, defaults to `0.2`) --
-  Epsilon value for clipping.
-- **epsilon_high** (`float`, *optional*) --
-  Upper-bound epsilon value for clipping. If not specified, it defaults to the same value as the lower-bound
-  specified in argument `epsilon`. Paper [DAPO](https://huggingface.co/papers/2503.14476) recommends `0.28`.
-- **token_budget** (`int`, *optional*) --
-  Maximum number of real tokens packed into a single row (one DP rank's forward) for dynamic
-  token-budgeted micro-batching. When `> 0`, a `TokenBudgetBatcher` forms Σ Lᵢ²-balanced micro-batches
-  whose rows each stay within this budget, bounding peak memory independently of the sample count (the
-  number of samples per row becomes dynamic). If `None` (default), it is set to the vLLM server's
-  `max_model_len` (queried at train start) — the cap on prompt + completion length — so no rollout sample
-  can ever exceed the budget. A sample longer than `token_budget` fits in no row and is dropped with a
-  warning. Set `<= 0` to disable token budgeting and instead pack a fixed `per_device_train_batch_size ×
-  num_processes` samples per micro-batch, Σ Lᵢ²-balanced across the rows.
+**Parameters that control generation:**
 
-Parameters that control the async rollout pipeline
+num_generations (`int`, *optional*, defaults to `8`) : Number of generations per prompt to sample.
 
-- **max_inflight_tasks** (`int`, *optional*, defaults to `-1`) --
-  Maximum number of concurrent generation tasks sent to the vLLM server. Defaults to `-1` (auto), which
-  sets it to `max_staleness * per_device_train_batch_size * gradient_accumulation_steps * num_processes`.
-  If using tool-use environments, you may want to set this manually based on how many parallel environments
-  you can run.
-- **max_staleness** (`int`, *optional*, defaults to `4`) --
-  Maximum number of weight update steps a rollout sample can lag behind the current model version before
-  being discarded.
-- **queue_maxsize** (`int`, *optional*, defaults to `1024`) --
-  Maximum number of rollout samples to buffer in the rollout queue.
-- **weight_sync_steps** (`int`, *optional*, defaults to `1`) --
-  Number of training steps between weight synchronizations to the vLLM server.
-- **heartbeat_stale_after_s** (`float`, *optional*, defaults to `300.0`) --
-  Seconds since the rollout worker's last heartbeat after which the trainer treats it as
-  hung and aborts.
+max_completion_length (`int`, *optional*, defaults to `2048`) : Maximum length of the generated completion.
 
-Parameters that control the logging
+temperature (`float`, *optional*, defaults to `1.0`) : Temperature for sampling. The higher the temperature, the more random the completions.
 
-- **log_completions** (`bool`, *optional*, defaults to `False`) --
-  Whether to log a sample of (prompt, completion) pairs every `logging_steps` steps.
-- **num_completions_to_print** (`int`, *optional*) --
-  Number of completions to print with `rich`. If `None`, all completions are logged.
+top_p (`float`, *optional*, defaults to `1.0`) : Float that controls the cumulative probability of the top tokens to consider. Must be in (0, 1]. Set to 1.0 to consider all tokens.
+
+top_k (`int`, *optional*, defaults to `0`) : Number of highest probability vocabulary tokens to keep for top-k-filtering. If `0`, top-k-filtering is disabled and all tokens are considered.
+
+min_p (`float`, *optional*) : Minimum token probability, which will be scaled by the probability of the most likely token. It must be a value between 0.0 and 1.0. Typical values are in the 0.01-0.2 range.
+
+repetition_penalty (`float`, *optional*, defaults to `1.0`) : Float that penalizes new tokens based on whether they appear in the prompt and the generated text so far. Values > 1.0 encourage the model to use new tokens, while values < 1.0 encourage the model to repeat tokens.
+
+chat_template_kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments to pass to the `apply_chat_template` function when generating completions.
+
+max_tool_calling_iterations (`int`, *optional*) : Maximum number of tool-calling turns when training an agent. If `None`, there is no limit and generation stops when the model generates a response turn with no tool calls or when the total response length reaches `max_completion_length`.
+
+fork_threshold_tokens (`int`, *optional*, defaults to `1024`) : A multi-turn conversation is turned into training rows by re-tokenizing the whole conversation every turn and reconciling the result against the tokens held so far: a clean append stays one row, a rewrite (dropped reasoning, summarized history) forks a new row. When a turn's re-tokenized prompt drifts inside the last generated answer, the decision is made on the **drift size** — how many previously-trained tokens the realign would mask to context. A drift smaller than this many tokens is treated as a re-tokenization wobble (realigned as context); a larger drift — e.g. a long reasoning block dropped by the template — forks a new row so those trained tokens keep their training signal instead of being silently masked.
+
+**Parameters that control the vLLM server:**
+
+vllm_server_base_url (`str`, *optional*, defaults to `"http --//localhost:8000"`): Base URL of the vLLM server used for generation (e.g., `"http://localhost:8000"`).
+
+vllm_server_timeout (`float`, *optional*, defaults to `240.0`) : Total timeout duration in seconds to wait for the vLLM server to be ready.
+
+request_timeout (`int`, *optional*, defaults to `600`) : Timeout in seconds for individual HTTP requests to the vLLM server.
+
+**Parameters that control the training:**
+
+epsilon (`float`, *optional*, defaults to `0.2`) : Epsilon value for clipping.
+
+epsilon_high (`float`, *optional*) : Upper-bound epsilon value for clipping. If not specified, it defaults to the same value as the lower-bound specified in argument `epsilon`. Paper [DAPO](https://huggingface.co/papers/2503.14476) recommends `0.28`.
+
+token_budget (`int`, *optional*) : Maximum number of real tokens packed into a single row (one DP rank's forward) for dynamic token-budgeted micro-batching. When `> 0`, a `TokenBudgetBatcher` forms Σ Lᵢ²-balanced micro-batches whose rows each stay within this budget, bounding peak memory independently of the sample count (the number of samples per row becomes dynamic). If `None` (default), it is set to the vLLM server's `max_model_len` (queried at train start) — the cap on prompt + completion length — so no rollout sample can ever exceed the budget. A sample longer than `token_budget` fits in no row and is dropped with a warning. Set `<= 0` to disable token budgeting and instead pack a fixed `per_device_train_batch_size × num_processes` samples per micro-batch, Σ Lᵢ²-balanced across the rows.
+
+**Parameters that control the async rollout pipeline:**
+
+max_inflight_tasks (`int`, *optional*, defaults to `-1`) : Maximum number of concurrent generation tasks sent to the vLLM server. Defaults to `-1` (auto), which sets it to `max_staleness * per_device_train_batch_size * gradient_accumulation_steps * num_processes`. If using tool-use environments, you may want to set this manually based on how many parallel environments you can run.
+
+max_staleness (`int`, *optional*, defaults to `4`) : Maximum number of weight update steps a rollout sample can lag behind the current model version before being discarded.
+
+queue_maxsize (`int`, *optional*, defaults to `1024`) : Maximum number of rollout samples to buffer in the rollout queue.
+
+weight_sync_steps (`int`, *optional*, defaults to `1`) : Number of training steps between weight synchronizations to the vLLM server.
+
+heartbeat_stale_after_s (`float`, *optional*, defaults to `300.0`) : Seconds since the rollout worker's last heartbeat after which the trainer treats it as hung and aborts.
+
+**Parameters that control the logging:**
+
+log_completions (`bool`, *optional*, defaults to `False`) : Whether to log a sample of (prompt, completion) pairs every `logging_steps` steps.
+
+num_completions_to_print (`int`, *optional*) : Number of completions to print with `rich`. If `None`, all completions are logged.
 
 Configuration class for the `AsyncGRPOTrainer`.
 
 This class includes only the parameters that are specific to asynchronous GRPO training. For a full list of
-training arguments, please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default values
-in this class may differ from those in [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments).
+training arguments, please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default values
+in this class may differ from those in [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments).
 
 > [!NOTE]
-> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments):
+> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments):
 > - `logging_steps`: Defaults to `1` instead of `500`.
 > - `gradient_checkpointing`: Defaults to `True` instead of `False`.
 > - `bf16`: Defaults to `True` if `fp16` is not set, instead of `False`.
@@ -201,93 +185,37 @@ in this class may differ from those in [TrainingArguments](https://huggingface.c
 
 ## AsyncGRPOTrainer[[trl.experimental.async_grpo.AsyncGRPOTrainer]]
 
-- **model** (`str`) --
-  Model to be trained. Must be a string, being the *model id* of a pretrained model hosted inside a model
-  repo on huggingface.co, or a path to a *directory* containing model weights saved using
-  [save_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `'./my_model_directory/'`. The model is loaded
-  using [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained). The model name is also used to identify the
-  model on the vLLM server used for generation.
-- **reward_funcs** (`RewardFunc | list[RewardFunc]`, *optional*) --
-  Reward functions to be used for computing the rewards. To compute the rewards, we call all the reward
-  functions with the prompts and completions and sum the rewards. May be omitted when the reward is supplied
-  by the environment through `environment_factory` (see below). Can be either:
+#### trl.experimental.async_grpo.AsyncGRPOTrainer[[trl.experimental.async_grpo.AsyncGRPOTrainer]]
 
-  - A single reward function: The function is provided with the prompts and the generated completions, plus
-    any additional columns in the dataset. It should return a list of rewards. Reward functions can be either
-    synchronous or asynchronous and can also return `None` when the reward is not applicable to those
-    samples. This is useful for multi-task training where different reward functions apply to different types
-    of samples. When a reward function returns `None` for a sample, that reward function is excluded from the
-    reward calculation for that sample. For more details, see [Using a custom reward
-    function](#using-a-custom-reward-function).
-  - A list of reward functions, where each item is a reward function as described above. Rewards from all
-    functions are summed.
+```python
+trl.experimental.async_grpo.AsyncGRPOTrainer(model: str, reward_funcs: collections.abc.Callable[..., list[float]] | list[collections.abc.Callable[..., list[float]]] | None = None, args: trl.experimental.async_grpo.async_grpo_config.AsyncGRPOConfig | None = None, train_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple = (None, None), tools: list[collections.abc.Callable] | None = None, environment_factory: collections.abc.Callable[[], trl.experimental.async_grpo.async_grpo_trainer._SupportsReset] | dict[str, collections.abc.Callable[[], trl.experimental.async_grpo.async_grpo_trainer._SupportsReset]] | None = None, rollout_worker: trl.experimental.async_grpo.async_grpo_trainer.RolloutWorkerProtocol | None = None, weight_transfer: trl.experimental.async_grpo.async_grpo_trainer.WeightTransferProtocol | None = None)
+```
 
-  Unlike [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer), rewards are computed in a spawned child process, so each reward function (along
-  with `tools` and `environment_factory`) must be picklable: use a module-level function,
-  `functools.partial`, or a callable class instance — lambdas and closures will fail at startup. The child
-  process also runs with `CUDA_VISIBLE_DEVICES=""`, so a GPU-backed reward model runs on CPU (slow), not the
-  trainer's GPU.
-- **args** (`AsyncGRPOConfig`, *optional*) --
-  Configuration for this trainer. If `None`, a default configuration is used.
-- **train_dataset** (`Dataset` or `IterableDataset`, *optional*) --
-  Dataset to use for training. It must include a column `"prompt"`. Any additional columns in the dataset are
-  ignored. The format of the samples can be either:
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/async_grpo/async_grpo_trainer.py#L512)
 
-  - [Standard](dataset_formats#standard): Each sample contains plain text.
-  - [Conversational](dataset_formats#conversational): Each sample contains structured messages (e.g., role
-    and content).
+**Parameters:**
 
-  May be omitted only when an `environment_factory` is provided and the environment owns (or procedurally
-  generates) the data, returning the prompt from its `reset()` method. In that case, `max_steps` must be set
-  to define the training length.
-- **processing_class** ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.14.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), *optional*) --
-  Processing class used to process the data. The padding side must be set to "left". If `None`, the
-  processing class is loaded from the model's name with [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained). A
-  padding token, `tokenizer.pad_token`, must be set. If the processing class has not set a padding token,
-  `tokenizer.eos_token` will be used as the default.
-- **callbacks** (list of [TrainerCallback](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/callback#transformers.TrainerCallback), *optional*) --
-  List of callbacks to customize the training loop. Will add those to the list of default callbacks detailed
-  in [here](https://huggingface.co/docs/transformers/main_classes/callback).
+model (`str`) : Model to be trained. Must be a string, being the *model id* of a pretrained model hosted inside a model repo on huggingface.co, or a path to a *directory* containing model weights saved using [save_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `'./my_model_directory/'`. The model is loaded using [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained). The model name is also used to identify the model on the vLLM server used for generation.
 
-  If you want to remove one of the default callbacks used, use the [remove_callback](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer.remove_callback)
-  method.
-- **optimizers** (`tuple[torch.optim.Optimizer | None, torch.optim.lr_scheduler.LambdaLR | None]`, *optional*, defaults to `(None, None)`) --
-  A tuple containing the optimizer and the scheduler to use. Will default to an instance of `AdamW` on your
-  model and a scheduler given by [get_linear_schedule_with_warmup](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) controlled by `args`.
-- **tools** (list of `Callable`, *optional*) --
-  A list of callable tool functions (sync or async) that the model can invoke during generation. Each tool
-  should be a standard Python function with properly type-hinted arguments and return values, and a
-  Google-style docstring describing its purpose, arguments, and return value. For more details, see:
-  https://huggingface.co/docs/transformers/en/chat_extras#passing-tools. The model uses the function's name,
-  type hints, and docstring to determine how to call it. Ensure that the model's chat template supports tool
-  use and that it has been fine-tuned for tool calling.
-- **environment_factory** (`EnvironmentFactory` or `dict[str, EnvironmentFactory]`, *optional*) --
-  A callable that creates and returns an environment instance, or a dictionary mapping environment names to
-  such callables. The environment class should define methods that can be invoked as tools during generation.
-  Each method should comply with the same requirements as the `tools` described above. The environment must
-  also implement a callable `reset` method that can be used to reset state between generations. The `reset`
-  method should return either `None` or a string: when it returns a string, that string is appended to the
-  last user message before generation. The environment may also define a `get_reward` method taking no
-  argument and returning a `float`: when present, the environment owns the reward, and `get_reward` is called
-  once per completed rollout to score it from the environment's internal state. It acts as an additional
-  reward source (with weight 1, logged under the environment's class name) alongside `reward_funcs`, which
-  then becomes optional.
+reward_funcs (`RewardFunc | list[RewardFunc]`, *optional*) : Reward functions to be used for computing the rewards. To compute the rewards, we call all the reward functions with the prompts and completions and sum the rewards. May be omitted when the reward is supplied by the environment through `environment_factory` (see below). Can be either:  - A single reward function: The function is provided with the prompts and the generated completions, plus any additional columns in the dataset. It should return a list of rewards. Reward functions can be either synchronous or asynchronous and can also return `None` when the reward is not applicable to those samples. This is useful for multi-task training where different reward functions apply to different types of samples. When a reward function returns `None` for a sample, that reward function is excluded from the reward calculation for that sample. For more details, see [Using a custom reward function](#using-a-custom-reward-function). - A list of reward functions, where each item is a reward function as described above. Rewards from all functions are summed.  Unlike [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer), rewards are computed in a spawned child process, so each reward function (along with `tools` and `environment_factory`) must be picklable: use a module-level function, `functools.partial`, or a callable class instance — lambdas and closures will fail at startup. The child process also runs with `CUDA_VISIBLE_DEVICES=""`, so a GPU-backed reward model runs on CPU (slow), not the trainer's GPU.
 
-  With a single callable, every example uses the same environment, with one instance per rollout so their
-  interactions stay isolated. With a dictionary, each example must carry an `environment` field selecting its
-  environment by name, and only that environment's tools are exposed in its prompt — letting a single run mix
-  tasks (e.g. a coding environment and a game). This feature is experimental and may change or be removed at
-  any time without prior notice.
-- **rollout_worker** (`RolloutWorkerProtocol`, *optional*) --
-  Custom rollout worker implementing `RolloutWorkerProtocol`. If `None`, a default `AsyncRolloutWorker`
-  is created, which spawns a CUDA-free child process and scores completions with the trainer's
-  `reward_funcs`. Pass a custom worker to plug in a different rollout/scoring backend instead — for example,
-  one that runs reward models on their own GPUs.
-- **weight_transfer** (`WeightTransferProtocol`, *optional*) --
-  Custom weight-sync backend implementing `WeightTransferProtocol`. If `None`, a default
-  `WeightTransferClient` is created that streams the trainer's weights into the config's vLLM server over
-  NCCL. This is independent of `rollout_worker`: a custom rollout worker still gets weight sync. Pass a no-op
-  implementation to disable trainer-side weight sync.
+args (`AsyncGRPOConfig`, *optional*) : Configuration for this trainer. If `None`, a default configuration is used.
+
+train_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset) or [IterableDataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDataset), *optional*) : Dataset to use for training. It must include a column `"prompt"`. Any additional columns in the dataset are ignored. The format of the samples can be either:  - [Standard](dataset_formats#standard): Each sample contains plain text. - [Conversational](dataset_formats#conversational): Each sample contains structured messages (e.g., role and content).  May be omitted only when an `environment_factory` is provided and the environment owns (or procedurally generates) the data, returning the prompt from its `reset()` method. In that case, `max_steps` must be set to define the training length.
+
+processing_class ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), *optional*) : Processing class used to process the data. The padding side must be set to "left". If `None`, the processing class is loaded from the model's name with [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained). A padding token, `tokenizer.pad_token`, must be set. If the processing class has not set a padding token, `tokenizer.eos_token` will be used as the default.
+
+callbacks (list of [TrainerCallback](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback), *optional*) : List of callbacks to customize the training loop. Will add those to the list of default callbacks detailed in [here](https://huggingface.co/docs/transformers/main_classes/callback).  If you want to remove one of the default callbacks used, use the [remove_callback](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.remove_callback) method.
+
+optimizers (`tuple[torch.optim.Optimizer | None, torch.optim.lr_scheduler.LambdaLR | None]`, *optional*, defaults to `(None, None)`) : A tuple containing the optimizer and the scheduler to use. Will default to an instance of `AdamW` on your model and a scheduler given by [get_linear_schedule_with_warmup](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) controlled by `args`.
+
+tools (list of `Callable`, *optional*) : A list of callable tool functions (sync or async) that the model can invoke during generation. Each tool should be a standard Python function with properly type-hinted arguments and return values, and a Google-style docstring describing its purpose, arguments, and return value. For more details, see: https://huggingface.co/docs/transformers/en/chat_extras#passing-tools. The model uses the function's name, type hints, and docstring to determine how to call it. Ensure that the model's chat template supports tool use and that it has been fine-tuned for tool calling.
+
+environment_factory (`EnvironmentFactory` or `dict[str, EnvironmentFactory]`, *optional*) : A callable that creates and returns an environment instance, or a dictionary mapping environment names to such callables. The environment class should define methods that can be invoked as tools during generation. Each method should comply with the same requirements as the `tools` described above. The environment must also implement a callable `reset` method that can be used to reset state between generations. The `reset` method should return either `None` or a string: when it returns a string, that string is appended to the last user message before generation. The environment may also define a `get_reward` method taking no argument and returning a `float`: when present, the environment owns the reward, and `get_reward` is called once per completed rollout to score it from the environment's internal state. It acts as an additional reward source (with weight 1, logged under the environment's class name) alongside `reward_funcs`, which then becomes optional.  With a single callable, every example uses the same environment, with one instance per rollout so their interactions stay isolated. With a dictionary, each example must carry an `environment` field selecting its environment by name, and only that environment's tools are exposed in its prompt — letting a single run mix tasks (e.g. a coding environment and a game). This feature is experimental and may change or be removed at any time without prior notice.
+
+rollout_worker (`RolloutWorkerProtocol`, *optional*) : Custom rollout worker implementing `RolloutWorkerProtocol`. If `None`, a default `AsyncRolloutWorker` is created, which spawns a CUDA-free child process and scores completions with the trainer's `reward_funcs`. Pass a custom worker to plug in a different rollout/scoring backend instead — for example, one that runs reward models on their own GPUs.
+
+weight_transfer (`WeightTransferProtocol`, *optional*) : Custom weight-sync backend implementing `WeightTransferProtocol`. If `None`, a default `WeightTransferClient` is created that streams the trainer's weights into the config's vLLM server over NCCL. This is independent of `rollout_worker`: a custom rollout worker still gets weight sync. Pass a no-op implementation to disable trainer-side weight sync.
 
 Trainer for the Group Relative Policy Optimization (GRPO) method. This algorithm was initially proposed in the
 paper [DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language
@@ -314,21 +242,63 @@ Example:
 
 ## RolloutWorkerProtocol[[trl.experimental.async_grpo.async_grpo_trainer.RolloutWorkerProtocol]]
 
-- **rollout_buffer** (`queue.Queue`) --
-  Queue the trainer drains; the worker pushes scored `RolloutSample`s onto it.
+#### trl.experimental.async_grpo.async_grpo_trainer.RolloutWorkerProtocol[[trl.experimental.async_grpo.async_grpo_trainer.RolloutWorkerProtocol]]
+
+```python
+trl.experimental.async_grpo.async_grpo_trainer.RolloutWorkerProtocol(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/async_grpo/async_grpo_trainer.py#L62)
+
+**Parameters:**
+
+rollout_buffer (`queue.Queue` or `multiprocessing.queues.Queue`) : Queue the trainer drains; the worker pushes scored `RolloutSample`s onto it. The two queue types are structurally identical (`get` / `put_nowait` / `qsize`) but nominally unrelated, so both are allowed: the default `AsyncRolloutWorker` runs its loop in a spawned process and uses `multiprocessing.Queue`, while an in-process worker uses `queue.Queue`.
+
 Interface a rollout worker must implement to be passed as `rollout_worker` to `AsyncGRPOTrainer`.
 
 The default `AsyncRolloutWorker` spawns a CUDA-free child process and scores completions with the trainer's
 `reward_funcs`. Implement this protocol to plug in a custom rollout/scoring backend instead — for example, one that
 runs reward models on their own GPUs.
 
+#### check_health[[trl.experimental.async_grpo.async_grpo_trainer.RolloutWorkerProtocol.check_health]]
+
+```python
+check_health(stale_after_s: float)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/async_grpo/async_grpo_trainer.py#L91)
+
 Raise if the worker has crashed or stopped producing within `stale_after_s` seconds.
+
+#### start[[trl.experimental.async_grpo.async_grpo_trainer.RolloutWorkerProtocol.start]]
+
+```python
+start()
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/async_grpo/async_grpo_trainer.py#L79)
 
 Begin producing rollouts. Called once on train begin, after the initial weight sync.
 
+#### stop[[trl.experimental.async_grpo.async_grpo_trainer.RolloutWorkerProtocol.stop]]
+
+```python
+stop()
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/async_grpo/async_grpo_trainer.py#L83)
+
 Stop the worker and release its resources. Called on train end.
+
+#### update_model_version[[trl.experimental.async_grpo.async_grpo_trainer.RolloutWorkerProtocol.update_model_version]]
+
+```python
+update_model_version(model_version: int)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/async_grpo/async_grpo_trainer.py#L87)
 
 Tell the worker which policy version is now live, so it can tag or discard stale samples.
 
 ### Reducing Memory Usage
-https://huggingface.co/docs/trl/v1.9.2/reducing_memory_usage.md
+https://huggingface.co/docs/trl/v1.10.0/reducing_memory_usage.md

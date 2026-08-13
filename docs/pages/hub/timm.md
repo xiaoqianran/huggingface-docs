@@ -138,5 +138,5 @@ model_reloaded = timm.create_model(
 * Additional documentation at [timmdocs](https://timm.fast.ai) by [Aman Arora](https://github.com/amaarora).
 * [Getting Started with PyTorch Image Models (timm): A Practitioner’s Guide](https://towardsdatascience.com/getting-started-with-pytorch-image-models-timm-a-practitioners-guide-4e77b4bf9055) by [Chris Hughes](https://github.com/Chris-hughes10).
 
-### Data Designer
-https://huggingface.co/docs/hub/datasets-data-designer.md
+### Hugging Face MCP Server
+https://huggingface.co/docs/hub/agents-mcp.md

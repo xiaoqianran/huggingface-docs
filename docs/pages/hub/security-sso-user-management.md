@@ -86,5 +86,5 @@ To add a user as an "External Collaborator" visit the `SSO/Users Management` sec
 However, they will still be subject to your organization's access controls ([Resource Groups](./enterprise-resource-groups)).
 It's crucial to manage their access carefully to maintain your organization's data security.
 
-### S3 Compatibility
-https://huggingface.co/docs/hub/storage-buckets-s3.md
+### Spaces Configuration Reference
+https://huggingface.co/docs/hub/spaces-config-reference.md

@@ -221,4 +221,4 @@ run_uv_job(
 ```
 
 ### Unsloth Integration
-https://huggingface.co/docs/trl/v1.9.2/unsloth_integration.md
+https://huggingface.co/docs/trl/v1.10.0/unsloth_integration.md

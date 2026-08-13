@@ -124,7 +124,7 @@ training_args = GRPOConfig(
     per_device_train_batch_size=1,  # Start small
     gradient_accumulation_steps=8,  # Maintain effective batch size
     num_generations=4,              # Reduce from default 8 (GRPO generates num_generations completions per prompt)
-    max_completion_length=256,      # Tune based on task; longer sequences cost more memory
+    max_completion_length=512,      # Tune based on task; longer sequences cost more memory
 )
 ```
 
@@ -139,4 +139,4 @@ training_args = SFTConfig(learning_rate=2e-5)  # Good starting point
 For more help, open an [issue on GitHub](https://github.com/huggingface/trl/issues).
 
 ### Command Line Interfaces (CLIs)
-https://huggingface.co/docs/trl/v1.9.2/clis.md
+https://huggingface.co/docs/trl/v1.10.0/clis.md

@@ -242,5 +242,5 @@ inspect eval animal_or_else.py --model hf-inference-providers/Qwen/Qwen3-VL-30B-
 * Check out the [lighteval](https://github.com/huggingface/lighteval) library. It comes with over [1,000 tasks](https://huggingface.co/spaces/OpenEvals/open_benchmark_index), so you don't have to write any code, and it gives you several quality-of-life features for quickly running evaluations.
 * Browse models available through Inference Providers to find the best model for your needs and run your own evaluations.
 
-### Structured Outputs with Inference Providers
-https://huggingface.co/docs/inference-providers/guides/structured-output.md
+### Automating Code Review with GitHub Actions
+https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md

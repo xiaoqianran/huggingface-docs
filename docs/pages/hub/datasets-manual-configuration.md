@@ -177,5 +177,5 @@ configs:
 
 Refer to the [specific builders' documentation](/docs/datasets/package_reference/builder_classes) to see what parameters they have.
 
-### Annotated Model Card Template
-https://huggingface.co/docs/hub/model-card-annotated.md
+### Panel on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-panel.md

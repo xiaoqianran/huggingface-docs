@@ -180,5 +180,5 @@ You can check the logs of every run using `hf jobs logs` or directly in the Jobs
 
 Find more information about Hugging Face Jobs in the [Jobs documentation](/docs/hub/jobs-overview).
 
-### Aim on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-aim.md
+### How to Add a Space to ArXiv
+https://huggingface.co/docs/hub/spaces-add-to-arxiv.md

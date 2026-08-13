@@ -24,5 +24,5 @@ Under the **Account** tab in the Organization settings, you can set an **Organiz
 
 Users can leave an organization visiting their [organization settings](https://huggingface.co/settings/organizations) and clicking **Leave Organization** next to the organization they want to leave. Organization administrators can always remove users as explained above.
 
-### Examples & Tutorials
-https://huggingface.co/docs/hub/jobs-examples.md
+### Managing Spaces with CircleCI Workflows
+https://huggingface.co/docs/hub/spaces-circleci.md

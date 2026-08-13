@@ -104,5 +104,5 @@ For **private** datasets, the Dataset Viewer is enabled for [PRO users](https://
 
 For more information see our guide on [How to configure the Dataset Viewer](./datasets-viewer-configure).
 
-### Integrate your library with the Hub
-https://huggingface.co/docs/hub/models-adding-libraries.md
+### Malware Scanning
+https://huggingface.co/docs/hub/security-malware.md

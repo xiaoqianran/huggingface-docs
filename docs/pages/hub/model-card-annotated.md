@@ -291,5 +291,5 @@ _Clearly define terms in order to be accessible across audiences._
 **Please cite as:**
 Ozoani, Ezi and Gerchick, Marissa and Mitchell, Margaret. Model Card Guidebook. Hugging Face, 2022. https://huggingface.co/docs/hub/en/model-card-guidebook
 
-### Libraries
-https://huggingface.co/docs/hub/datasets-libraries.md
+### WebDataset
+https://huggingface.co/docs/hub/datasets-webdataset.md

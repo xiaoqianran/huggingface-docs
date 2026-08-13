@@ -150,5 +150,5 @@ Note that if you use the default threaded scheduler locally without `Client`, a 
 
 Find more information on setting up a local or cloud cluster in the [Deploying Dask documentation](https://docs.dask.org/en/latest/deploying.html).
 
-### Billing
-https://huggingface.co/docs/hub/billing.md
+### Sign in with Hugging Face
+https://huggingface.co/docs/hub/oauth.md

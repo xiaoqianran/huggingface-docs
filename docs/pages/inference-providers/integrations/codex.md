@@ -87,5 +87,5 @@ Replace `"your-org-name"` with the name of the organization you want to bill to.
 - [Codex Advanced Configuration](https://developers.openai.com/codex/config-advanced)
 - [Available models on Inference Providers](https://huggingface.co/models?other=conversational&inference_provider=all&sort=trending)
 
-### Claude Code
-https://huggingface.co/docs/inference-providers/integrations/claude-code.md
+### NeMo Data Designer
+https://huggingface.co/docs/inference-providers/integrations/datadesigner.md

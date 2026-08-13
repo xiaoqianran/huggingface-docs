@@ -309,5 +309,5 @@ This returns Spaces ranked by semantic relevance, with metadata including the Sp
 - [Querying Gradio Apps with curl](https://www.gradio.app/guides/querying-gradio-apps-with-curl)
 - [Spaces ZeroGPU](./spaces-zerogpu)
 
-### User Provisioning (SCIM)
-https://huggingface.co/docs/hub/enterprise-scim.md
+### Using AllenNLP at Hugging Face
+https://huggingface.co/docs/hub/allennlp.md

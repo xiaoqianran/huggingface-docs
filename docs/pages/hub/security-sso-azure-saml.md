@@ -71,5 +71,5 @@ Now that Single Sign-On is configured and tested, you can enable it for members 
 
 Once enabled, members of your organization must complete the SSO authentication flow described in the [How it works](./security-sso-basic#how-it-works) section.
 
-### Widgets
-https://huggingface.co/docs/hub/models-widgets.md
+### Hub Local Cache
+https://huggingface.co/docs/hub/local-cache.md

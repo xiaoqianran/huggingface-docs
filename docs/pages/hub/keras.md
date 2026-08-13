@@ -50,5 +50,5 @@ By default, the repository will contain a minimal model card. Check out the [Mod
 * Keras Developer [Guides](https://keras.io/guides/).
 * Keras [examples](https://keras.io/examples/).
 
-### Uploading datasets
-https://huggingface.co/docs/hub/datasets-adding.md
+### Data files Configuration
+https://huggingface.co/docs/hub/datasets-data-files-configuration.md

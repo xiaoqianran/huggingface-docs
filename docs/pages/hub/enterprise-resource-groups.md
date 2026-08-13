@@ -24,11 +24,12 @@ This feature allows organization administrators to:
 - Keep private repositories visible only to authorized group members
 - Enable multiple teams to work independently within the same organization
 - Configure which member roles are allowed to create new resource groups
+- Restrict organization features such as Blog, Collections, Jobs, Inference Endpoints and Inference Providers to the members of specific resource groups
 - Attribute costs to specific resource groups for better budget management
 
 This Team & Enterprise feature helps organizations manage complex team structures and maintain proper access control over their repositories.
 
 [Getting started with Resource Groups →](./security-resource-groups)
 
-### Distilabel
-https://huggingface.co/docs/hub/datasets-distilabel.md
+### Evaluation Results
+https://huggingface.co/docs/hub/eval-results.md

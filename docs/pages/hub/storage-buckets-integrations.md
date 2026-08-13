@@ -145,5 +145,5 @@ text_files = hffs.glob("buckets/username/my-bucket/*.txt")
 
 Native `hf://` URL support is on the way for more libraries — including Polars, DuckDB, and webdataset. In the meantime, all of these already work today through the [S3-compatible API](./storage-buckets-s3).
 
-### Building with the SDK
-https://huggingface.co/docs/hub/agents-sdk.md
+### Programmatic User Access Control Management
+https://huggingface.co/docs/hub/programmatic-user-access-control.md

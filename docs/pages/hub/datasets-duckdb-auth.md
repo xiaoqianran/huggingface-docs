@@ -48,5 +48,5 @@ export HF_TOKEN="REDACTED"
 
 For more information on authentication, see the [Hugging Face authentication](/docs/huggingface_hub/main/en/quick-start#authentication) documentation.
 
-### SQL Console: Query Hugging Face datasets in your browser
-https://huggingface.co/docs/hub/datasets-viewer-sql-console.md
+### GGUF
+https://huggingface.co/docs/hub/gguf.md

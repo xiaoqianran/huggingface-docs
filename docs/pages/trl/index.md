@@ -5,9 +5,7 @@ The library is integrated with 🤗 [transformers](https://github.com/huggingfac
 
 ## 🎉 What's New
 
-**🌍 Multi-environment agentic RL:** [`GRPOTrainer`](grpo_trainer) now supports per-example environment selection and environment-owned rewards — mix multiple sandboxed task suites in one run and let each environment define its own scoring, with [Harbor](harbor) and [OpenEnv](openenv).
-
-**🎯 KTO is now stable:** [`KTOTrainer`](kto_trainer) graduates to the stable API after a full alignment pass with [`DPOTrainer`](dpo_trainer).
+**⚗️ DistillationTrainer is now stable:** [`DistillationTrainer`](distillation_trainer) graduates to the stable API — on-policy knowledge distillation that matches a teacher's full next-token distribution with a memory-efficient chunked JSD loss and vLLM-powered generation.
 
 ## Taxonomy
 
@@ -38,6 +36,7 @@ Below is the current list of TRL trainers, organized by method type (⚡️ = vL
 
 ### Knowledge distillation
 
+- [`DistillationTrainer`](distillation_trainer) ⚡️
 - [`GKDTrainer`](gkd_trainer) 🧪
 - [`MiniLLMTrainer`](minillm_trainer) 🧪
 
@@ -137,4 +136,4 @@ The documentation is organized into the following sections:
       Fine tuning with TRL
 
 ### PPO Trainer
-https://huggingface.co/docs/trl/v1.9.2/ppo_trainer.md
+https://huggingface.co/docs/trl/v1.10.0/ppo_trainer.md

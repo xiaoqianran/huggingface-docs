@@ -78,5 +78,5 @@ OpenCode can also be used to run open models in GitHub Actions via Inference Pro
 - [OpenCode Provider Configuration](https://opencode.ai/docs/providers/#hugging-face)
 - [GitHub Actions Integration Guide](../guides/github-actions-code-review)
 
-### Vision Agents
-https://huggingface.co/docs/inference-providers/integrations/visionagents.md
+### Hermes Agent
+https://huggingface.co/docs/inference-providers/integrations/hermes-agent.md

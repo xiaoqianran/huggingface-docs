@@ -57,5 +57,5 @@ jobs:
                   git push -f https://HF_USERNAME:${HF_PERSONAL_TOKEN}@huggingface.co/spaces/HF_USERNAME/SPACE_NAME main
 ```
 
-### Transforming your dataset
-https://huggingface.co/docs/hub/datasets-polars-operations.md
+### Organizations
+https://huggingface.co/docs/hub/organizations.md

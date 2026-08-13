@@ -113,5 +113,5 @@ We support SCIM with any IdP that implements the SCIM 2.0 protocol. We have spec
 - [How to configure SCIM with Microsoft Entra ID](./security-sso-entra-id-scim)
 - [How to configure SCIM with Okta](./security-sso-okta-scim)
 
-### Hub Local Cache
-https://huggingface.co/docs/hub/local-cache.md
+### Storage Regions on the Hub
+https://huggingface.co/docs/hub/storage-regions.md

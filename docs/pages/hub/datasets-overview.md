@@ -14,5 +14,5 @@ Like models and spaces, you can search the Hub for datasets using the search bar
 
 Since datasets are repositories, you can [toggle their visibility between private and public](./repositories-settings#private-repositories) through the Settings tab. If a dataset is owned by an [organization](./organizations), the privacy settings apply to all the members of the organization.
 
-### DuckDB
-https://huggingface.co/docs/hub/datasets-duckdb.md
+### Docker Spaces Examples
+https://huggingface.co/docs/hub/spaces-sdks-docker-examples.md

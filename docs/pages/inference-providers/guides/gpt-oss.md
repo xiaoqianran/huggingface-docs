@@ -483,5 +483,5 @@ response.output.forEach((item, index) => {
 
 That's it! With the Responses API on Inference Providers, you get fine-grained control over powerful open-weight models like gpt-oss, including streaming, tool calling, and remote MCP, making it ideal for building reliable, agent-driven applications.
 
-### Use Coding Environment with Inference Providers
-https://huggingface.co/docs/inference-providers/guides/coding-environment.md
+### Structured Outputs with Inference Providers
+https://huggingface.co/docs/inference-providers/guides/structured-output.md

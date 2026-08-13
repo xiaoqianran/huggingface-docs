@@ -667,5 +667,5 @@ curl https://router.huggingface.co/v1/responses \
 
 Read the official [OpenAI Responses reference](https://platform.openai.com/docs/api-reference/responses).
 
-### Function Calling with Inference Providers
-https://huggingface.co/docs/inference-providers/guides/function-calling.md
+### Building an AI Image Editor with Gradio and Inference Providers
+https://huggingface.co/docs/inference-providers/guides/image-editor.md

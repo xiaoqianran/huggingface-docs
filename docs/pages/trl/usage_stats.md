@@ -39,4 +39,4 @@ Without usage data, the maintainers have no way to know which parts of the libra
 If you find TRL useful, leaving telemetry enabled is a low-cost way to help us make it better.
 
 ### Callbacks
-https://huggingface.co/docs/trl/v1.9.2/callbacks.md
+https://huggingface.co/docs/trl/v1.10.0/callbacks.md

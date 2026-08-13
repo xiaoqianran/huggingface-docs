@@ -31,4 +31,4 @@ Not necessarily. The experimental module is a playground for new ideas, and main
 Use: `export TRL_EXPERIMENTAL_SILENCE=1`.
 
 ### SDFT
-https://huggingface.co/docs/trl/v1.9.2/sdft_trainer.md
+https://huggingface.co/docs/trl/v1.10.0/sdft_trainer.md

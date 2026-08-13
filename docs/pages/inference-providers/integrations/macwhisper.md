@@ -43,5 +43,5 @@ That's it! MacWhisper will now use Hugging Face Inference Providers for AI proce
 - [Hugging Face Inference Providers documentation](https://huggingface.co/docs/inference-providers)
 - [Available models](https://huggingface.co/models?pipeline_tag=text-generation&inference_provider=all&sort=trending)
 
-### NeMo Data Designer
-https://huggingface.co/docs/inference-providers/integrations/datadesigner.md
+### 🤗 Use Hugging Face Inference Providers with GitHub Copilot Chat in VS Code
+https://huggingface.co/docs/inference-providers/integrations/vscode.md

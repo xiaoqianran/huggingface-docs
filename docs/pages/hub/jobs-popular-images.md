@@ -101,5 +101,5 @@ virtualenv (`/opt/venv/...`).
 > isn't a speed-up. A `uv run --system-site-packages` that would reuse the image's packages and
 > skip the reinstall is [requested upstream](https://github.com/astral-sh/uv/issues/7999).
 
-### Data Studio
-https://huggingface.co/docs/hub/data-studio.md
+### User Management
+https://huggingface.co/docs/hub/security-sso-user-management.md

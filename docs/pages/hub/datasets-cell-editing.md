@@ -29,5 +29,5 @@ Click **Commit**, update the commit message if needed, and confirm.
 
 You can leave edit mode at any time. If you don't want to keep your staged edits, discard them before exiting edit mode.
 
-### Combine datasets and export
-https://huggingface.co/docs/hub/datasets-duckdb-combine-and-export.md
+### Pickle Scanning
+https://huggingface.co/docs/hub/security-pickle.md

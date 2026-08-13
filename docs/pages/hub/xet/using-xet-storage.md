@@ -241,5 +241,5 @@ While Xet brings fine-grained deduplication and enhanced performance to Git-base
 
 - **64-bit systems only**: Both `hf_xet` and Git Xet currently require a 64-bit architecture; 32-bit systems are not supported.
 
-### Deduplication
-https://huggingface.co/docs/hub/xet/deduplication.md
+### Xet: our Storage Backend
+https://huggingface.co/docs/hub/xet/index.md

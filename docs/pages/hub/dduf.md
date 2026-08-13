@@ -172,5 +172,5 @@ No. For now, DDUF files are designed to be immutable. To update a model, create 
 	
 We are constantly reaching out to other libraries and frameworks. If you are interested in adding support to your project, open a Discussion in the [DDUF org](https://huggingface.co/spaces/DDUF/README/discussions).
 
-### Spaces Custom Domain
-https://huggingface.co/docs/hub/spaces-custom-domain.md
+### Agents
+https://huggingface.co/docs/hub/agents.md

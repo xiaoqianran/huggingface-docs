@@ -249,5 +249,5 @@ The cache relies on **symbolic links**. On Windows systems where symlinks are no
 
 This means the same file content may be duplicated across revisions, increasing disk usage. To enable symlink support on Windows, activate [Developer Mode](https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) or run as administrator.
 
-### Using Keras at Hugging Face
-https://huggingface.co/docs/hub/keras.md
+### Search
+https://huggingface.co/docs/hub/search.md

@@ -14,5 +14,5 @@ The primary limitation of Git LFS is its file-centric approach to deduplication.
 
 This leads to a worse developer experience along with a proliferation of additional storage.
 
-### Xet: our Storage Backend
-https://huggingface.co/docs/hub/xet/index.md
+### Security Model
+https://huggingface.co/docs/hub/xet/security.md

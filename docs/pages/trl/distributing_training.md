@@ -440,4 +440,4 @@ You can combine multi-node with DeepSpeed by setting `distributed_type: DEEPSPEE
 - [SLURM Workload Manager Documentation](https://slurm.schedmd.com/) - For cluster job scheduling
 
 ### TRL - Transformers Reinforcement Learning
-https://huggingface.co/docs/trl/v1.9.2/index.md
+https://huggingface.co/docs/trl/v1.10.0/index.md

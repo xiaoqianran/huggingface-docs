@@ -153,9 +153,9 @@ training_args = GKDConfig(..., use_liger_kernel=True)
 
 ## Chunked cross-entropy for reducing peak memory usage
 
-At large vocabulary sizes, the `[batch × seq_len × vocab]` logits tensor produced by the LM head is one of the dominant activations held in memory across forward and backward. `loss_type="chunked_nll"` in [SFTTrainer](/docs/trl/v1.9.2/en/sft_trainer#trl.SFTTrainer) avoids materializing it all at once: positions with `labels == -100` are dropped *before* the `lm_head` matmul, and the cross-entropy is computed in chunks of tokens using gradient checkpointing, so peak activation memory scales with `chunk_size × vocab_size` instead of `(batch × seq_len) × vocab_size`.
+At large vocabulary sizes, the `[batch × seq_len × vocab]` logits tensor produced by the LM head is one of the dominant activations held in memory across forward and backward. `loss_type="chunked_nll"` in [SFTTrainer](/docs/trl/v1.10.0/en/sft_trainer#trl.SFTTrainer) avoids materializing it all at once: positions with `labels == -100` are dropped *before* the `lm_head` matmul, and the cross-entropy is computed in chunks of tokens using gradient checkpointing, so peak activation memory scales with `chunk_size × vocab_size` instead of `(batch × seq_len) × vocab_size`.
 
-Same math as the standard `"nll"` loss — this is a memory optimization, not a new loss. It is the **default** in [SFTTrainer](/docs/trl/v1.9.2/en/sft_trainer#trl.SFTTrainer); to opt out, set `loss_type="nll"`:
+Same math as the standard `"nll"` loss — this is a memory optimization, not a new loss. It is the **default** in [SFTTrainer](/docs/trl/v1.10.0/en/sft_trainer#trl.SFTTrainer); to opt out, set `loss_type="nll"`:
 
 ```python
 from trl import SFTConfig
@@ -288,4 +288,4 @@ training_args = SFTConfig(..., gradient_checkpointing=True)
 For more memory optimization techniques, see the [Transformers Performance Guide](https://huggingface.co/docs/transformers/perf_train_gpu_one#gradient-checkpointing).
 
 ### SFT Trainer
-https://huggingface.co/docs/trl/v1.9.2/sft_trainer.md
+https://huggingface.co/docs/trl/v1.10.0/sft_trainer.md

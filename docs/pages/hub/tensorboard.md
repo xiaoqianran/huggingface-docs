@@ -14,5 +14,5 @@ The Hub automatically detects TensorBoard traces (such as `tfevents`). Once you 
 
 * TensorBoard [documentation](https://www.tensorflow.org/tensorboard).
 
-### Image Dataset
-https://huggingface.co/docs/hub/datasets-image.md
+### FiftyOne
+https://huggingface.co/docs/hub/datasets-fiftyone.md

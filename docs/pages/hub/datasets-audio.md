@@ -222,5 +222,5 @@ dataset_info:
 
 Note that Parquet is recommended for small audio files (<1MB per audio file) and small row groups (100 rows per row group, which is what `datasets` uses for audio). For larger audio files it is recommended to use the WebDataset format, or to share the original audio files (optionally with metadata files).
 
-### Repositories
-https://huggingface.co/docs/hub/repositories.md
+### Managing Spaces with Github Actions
+https://huggingface.co/docs/hub/spaces-github-actions.md

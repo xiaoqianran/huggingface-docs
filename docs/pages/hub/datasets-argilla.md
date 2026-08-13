@@ -109,5 +109,5 @@ dataset.log(hf_dataset)
 - [🚀 Argilla Docs](https://argilla-io.github.io/argilla/)
 - [🚀 Argilla Docs - import export guides](https://argilla-io.github.io/argilla/latest/how_to_guides/import_export/)
 
-### Team & Enterprise plans
-https://huggingface.co/docs/hub/enterprise.md
+### Aim on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-aim.md

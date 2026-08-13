@@ -16,5 +16,5 @@ pinned: false
 
 For additional settings, refer to the [Reference](./spaces-config-reference) section.
 
-### Spaces as Agent Tools
-https://huggingface.co/docs/hub/spaces-agents.md
+### Third-party scanner: JFrog
+https://huggingface.co/docs/hub/security-jfrog.md

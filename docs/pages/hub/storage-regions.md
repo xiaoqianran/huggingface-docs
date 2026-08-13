@@ -86,5 +86,5 @@ Both Spaces's storage and runtime use the chosen region.
 
 Available hardware configurations vary by region, and some features may not be available in all regions. Contact your HF account team for specific requests.
 
-### How to Add a Space to ArXiv
-https://huggingface.co/docs/hub/spaces-add-to-arxiv.md
+### Webhook guide: Setup an automatic metadata quality review for models and datasets
+https://huggingface.co/docs/hub/webhooks-guide-metadata-review.md

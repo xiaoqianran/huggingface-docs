@@ -41,5 +41,5 @@ Then, add a `gradio-app` element where you want to embed your Space.
 
 Check out the [Gradio documentation](https://www.gradio.app/guides/sharing-your-app#embedding-hosted-spaces) for more details.
 
-### Dataset Cards
-https://huggingface.co/docs/hub/datasets-cards.md
+### Data Studio
+https://huggingface.co/docs/hub/data-studio.md

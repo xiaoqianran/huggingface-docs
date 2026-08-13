@@ -110,5 +110,5 @@ git push origin pr/{PR_NUMBER}:refs/pr/{PR_NUMBER}
 # for example: git push origin pr/42:refs/pr/42
 ```
 
-### Spaces Settings
-https://huggingface.co/docs/hub/spaces-settings.md
+### fenic
+https://huggingface.co/docs/hub/datasets-fenic.md

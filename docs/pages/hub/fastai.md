@@ -51,5 +51,5 @@ push_to_hub_fastai(learner=learn, repo_id="espejelomar/identify-my-cat")
 * Integration with Hub [docs](https://docs.fast.ai/huggingface.html).
 * Integration with Hub [announcement](https://huggingface.co/blog/fastai).
 
-### Run with Docker
-https://huggingface.co/docs/hub/spaces-run-with-docker.md
+### Pricing and Billing
+https://huggingface.co/docs/hub/jobs-pricing.md

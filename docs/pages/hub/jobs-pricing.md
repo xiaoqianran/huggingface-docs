@@ -79,6 +79,9 @@ hf jobs run --namespace my-org-name ...
 
 In this case the Job runs under the organization account, and you can see it in your organization Jobs page (organization page > settings > Jobs).
 
+> [!NOTE]
+> On Enterprise plans and above, org admins can restrict who can run and view Jobs billed to the organization — to org admins only or to members of selected Resource Groups — via [Granular feature access](./security-resource-groups#granular-feature-access) settings.
+
 ### Bill to a resource group
 
 > [!WARNING]
@@ -135,5 +138,5 @@ If a running Job is no longer relevant, you can cancel it prematurely to stop it
 hf jobs cancel <job-id>
 ```
 
-### Gated datasets
-https://huggingface.co/docs/hub/datasets-gated.md
+### Two-Factor Authentication (2FA)
+https://huggingface.co/docs/hub/security-2fa.md

@@ -67,6 +67,9 @@ Organization collections can be assigned to a [Resource Group](./security-resour
 
 This feature is reserved for [Team & Enterprise](https://huggingface.co/docs/hub/en/enterprise) subscribers.
 
+> [!NOTE]
+> Assigning a collection to a Resource Group controls access to *that specific collection*. To restrict who can create or edit organization Collections at all, see [Granular feature access](./security-resource-groups#granular-feature-access) (Enterprise plans and above).
+
 ### Ordering your collections and their items
 
 You can use the drag and drop handles in the collections list (on the left side of your collections page) to change the order of your collections (1). The first two collections will be directly visible on your profile/organization pages.
@@ -108,47 +111,5 @@ You can re-order images by drag-and-dropping them. Clicking on an image will ope
 
 We're working on improving collections, so if you have any bugs, questions, or new features you'd like to see added, please post a message in the [dedicated discussion](https://huggingface.co/spaces/huggingface/HuggingDiscussions/discussions/12).
 
-### TF-Keras (legacy)
-https://huggingface.co/docs/hub/tf-keras.md
-
-## TF-Keras (legacy)
-
-`tf-keras` is the name given to Keras 2.x version. It is now hosted as a separate GitHub repo [here](https://github.com/keras-team/tf-keras). Though it's a legacy framework, there are still [4.5k+ models](https://huggingface.co/models?library=tf-keras&sort=trending) hosted on the Hub. These models can be loaded using the `huggingface_hub` library. You **must** have either `tf-keras` or `keras<3.x` installed on your machine.
-
-If you are interested in Keras 3.x support, check out [this guide](./keras).
-
-Once installed, you just need to use the `from_pretrained_keras` method to load a model from the Hub. Read more about `from_pretrained_keras` [here](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.from_pretrained_keras).
-
-```py
-from huggingface_hub import from_pretrained_keras
-
-model = from_pretrained_keras("keras-io/mobile-vit-xxs")
-prediction = model.predict(image)
-prediction = tf.squeeze(tf.round(prediction))
-print(f'The image is a {classes[(np.argmax(prediction))]}!')
-
-<CopyLLMTxtMenu containerStyle="float: right; margin-left: 10px; display: inline-flex; position: relative; z-index: 10;"></CopyLLMTxtMenu>
-
-# The image is a sunflower!
-```
-
-You can also host your `tf-keras` model on the Hub. However, keep in mind that `tf-keras` is a legacy framework. To reach a maximum number of users, we recommend to create your model using Keras 3.x and share it natively as described above. For more details about uploading `tf-keras` models, check out [`push_to_hub_keras` documentation](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.push_to_hub_keras).
-
-```py
-from huggingface_hub import push_to_hub_keras
-
-push_to_hub_keras(model,
-    "your-username/your-model-name",
-    "your-tensorboard-log-directory",
-    tags = ["object-detection", "some_other_tag"],
-    **model_save_kwargs,
-)
-```
-
-## Additional resources
-
-- [GitHub repo](https://github.com/keras-team/tf-keras)
-* Blog post [Putting Keras on 🤗 Hub for Collaborative Training and Reproducibility](https://merveenoyan.medium.com/putting-keras-on-hub-for-collaborative-training-and-reproducibility-9018301de877) (April 2022)
-
-### Quickstart
-https://huggingface.co/docs/hub/jobs-quickstart.md
+### User access tokens
+https://huggingface.co/docs/hub/security-tokens.md

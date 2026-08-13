@@ -262,5 +262,5 @@ In the `huggingface_hub`, use `model_info` with the expand parameter:
 
 Each provider serving the model shows a status (`staging` or `live`), the related task (here, `conversational`) and the providerId. In practice, this information is relevant for the JS and Python clients.
 
-### Inference Providers
-https://huggingface.co/docs/inference-providers/index.md
+### Security & Compliance
+https://huggingface.co/docs/inference-providers/security.md

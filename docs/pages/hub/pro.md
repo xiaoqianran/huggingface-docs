@@ -15,5 +15,5 @@ The PRO subscription unlocks essential features for serious users, including:
 
 View the full list of benefits at **https://huggingface.co/pro** then subscribe over at https://huggingface.co/subscribe/pro
 
-### Models Download Stats
-https://huggingface.co/docs/hub/models-download-stats.md
+### Displaying carbon emissions for your model
+https://huggingface.co/docs/hub/model-cards-co2.md

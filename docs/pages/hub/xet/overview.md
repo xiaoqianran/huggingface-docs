@@ -14,5 +14,5 @@ A Xet pointer includes all of this information by design. Refer to the section o
 
 Unlike Git LFS, which deduplicates at the file level, Xet-enabled repositories deduplicate at the level of bytes. When a file backed by Xet storage is updated, only the modified data is uploaded to remote storage, significantly saving on network transfers. For many workflows, like incremental updates to model checkpoints or appending/inserting new data into a dataset, this improves iteration speed for yourself and your collaborators. To learn more about deduplication in Xet storage, refer to [Deduplication](deduplication).
 
-### Security Model
-https://huggingface.co/docs/hub/xet/security.md
+### Using Xet Storage
+https://huggingface.co/docs/hub/xet/using-xet-storage.md

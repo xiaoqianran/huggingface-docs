@@ -145,6 +145,7 @@ While training and evaluating, we record the following metrics:
 - `reward_std`: The standard deviation of summed rewards across functions (weighted by `reward_weights`), computed over the full batch.
 - `frac_reward_zero_std`: The fraction of samples in the generation batch with a reward std of zero, implying there is little diversity for that prompt (all answers are correct or incorrect).
 - `entropy`: Average entropy of token predictions across generated completions. (If `mask_truncated_completions=True`, masked sequences tokens are excluded.)
+- `aux_loss`: The load-balancing auxiliary loss of a Mixture-of-Experts model, before it is scaled by `router_aux_loss_coef` and added to the loss. Logged only when the model is a MoE model and `router_aux_loss_coef` is nonzero.
 - `kl`: The average KL divergence between the model and the reference model, calculated over generated completions. Logged only if `beta` is nonzero.
 - `clip_ratio/region_mean`: The ratio of sequence probabilities where the RLOO objective is clipped to stay within the trust region:  \\( \text{clip}\left( r_{i}(\theta), 1 - \epsilon_\mathrm{low}, 1 + \epsilon_\mathrm{high} \right)\,, \quad r_{i}(\theta) = \frac{\pi_\theta(o_{i} \mid q)}{\pi_{\theta_{\text{old}}}(o_{i} \mid q)} \\). A higher value means more samples are clipped, which constrains how much the policy $\pi_\theta$ can change.
 - `clip_ratio/low_mean`: The average ratio of sequence probabilities that were clipped on the lower bound of the trust region:  \\(r_{i,t}(\theta) < 1 - \epsilon_\mathrm{low}\\).
@@ -203,7 +204,7 @@ In this mode, vLLM runs in a separate process (and using separate GPUs) and comm
 > Make sure that the server is using different GPUs than the trainer, otherwise you may run into NCCL errors. You can specify the GPUs to use with the `CUDA_VISIBLE_DEVICES` environment variable.
 
 > [!TIP]
-> Depending on the model size and the overall GPU memory requirements for training, you may need to adjust the `vllm_gpu_memory_utilization` parameter in [RLOOConfig](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOConfig) to avoid underutilization or out-of-memory errors.
+> Depending on the model size and the overall GPU memory requirements for training, you may need to adjust the `vllm_gpu_memory_utilization` parameter in [RLOOConfig](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOConfig) to avoid underutilization or out-of-memory errors.
 >
 > We provide a [HF Space](https://huggingface.co/spaces/trl-lib/recommend-vllm-memory) to help estimate the recommended GPU memory utilization based on your model configuration and experiment settings. Simply use it as follows to get `vllm_gpu_memory_utilization` recommendation:
 >
@@ -293,7 +294,7 @@ if __name__=="__main__":
 
 ### Using a custom reward function
 
-The [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer) supports using custom reward functions instead of dense reward models. To ensure compatibility, your reward function must satisfy the following requirements:
+The [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer) supports using custom reward functions instead of dense reward models. To ensure compatibility, your reward function must satisfy the following requirements:
 
 Reward functions can be either synchronous Python callables or asynchronous `async def` coroutines. When you provide multiple asynchronous reward functions, they are awaited concurrently (run in parallel via `asyncio.gather`) so their latency overlaps.
 
@@ -302,7 +303,7 @@ Reward functions can be either synchronous Python callables or asynchronous `asy
      - `prompts` (contains the prompts),
      - `completions` (contains the generated completions),
      - `completion_ids` (contains the tokenized completions),
-     - `trainer_state` ([TrainerState](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/callback#transformers.TrainerState)): The current state of the trainer. This can be used to implement dynamic reward functions, such as curriculum learning, where the reward is adjusted based on the training progress.
+     - `trainer_state` ([TrainerState](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerState)): The current state of the trainer. This can be used to implement dynamic reward functions, such as curriculum learning, where the reward is adjusted based on the training progress.
      - `log_extra`: a callable `log_extra(column: str, values: list)` to add extra columns to the completions table. See Example 6. In distributed training, it's important that all processes log the same set of keys.
      - `log_metric`: a callable `log_metric(name: str, value: float)` to log scalar metrics as plots alongside `kl`, `entropy`, etc. See Example 6. In distributed training, it's important that all processes log the same set of keys.
      - All column names (but `prompt`) that the dataset may have. For example, if the dataset contains a column named `ground_truth`, the function will be called with `ground_truth` as a keyword argument.
@@ -413,7 +414,7 @@ You can test this function as follows:
 
 #### Example 4: Multi-task reward functions
 
-Below is an example of using multiple reward functions in the [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer). In this example, we define two task-specific reward functions: `math_reward_func` and `coding_reward_func`. The `math_reward_func` rewards math problems based on their correctness, while the `coding_reward_func` rewards coding problems based on whether the solution works.
+Below is an example of using multiple reward functions in the [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer). In this example, we define two task-specific reward functions: `math_reward_func` and `coding_reward_func`. The `math_reward_func` rewards math problems based on their correctness, while the `coding_reward_func` rewards coding problems based on whether the solution works.
 
 ```python
 from datasets import Dataset
@@ -467,13 +468,13 @@ trainer = RLOOTrainer(
 trainer.train()
 ```
 
-In this example, the `math_reward_func` and `coding_reward_func` are designed to work with a mixed dataset that contains both math and coding problems. The `task` column in the dataset is used to determine which reward function to apply to each problem. If there is no relevant reward function for a sample in the dataset, the reward function will return `None`, and the [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer) will continue with the valid functions and tasks. This allows the [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer) to handle multiple reward functions with different applicability.
+In this example, the `math_reward_func` and `coding_reward_func` are designed to work with a mixed dataset that contains both math and coding problems. The `task` column in the dataset is used to determine which reward function to apply to each problem. If there is no relevant reward function for a sample in the dataset, the reward function will return `None`, and the [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer) will continue with the valid functions and tasks. This allows the [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer) to handle multiple reward functions with different applicability.
 
-Note that the [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer) will ignore the `None` rewards returned by the reward functions and only consider the rewards returned by the relevant functions. This ensures that the model is trained on the relevant tasks and ignores the tasks for which there is no relevant reward function.
+Note that the [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer) will ignore the `None` rewards returned by the reward functions and only consider the rewards returned by the relevant functions. This ensures that the model is trained on the relevant tasks and ignores the tasks for which there is no relevant reward function.
 
 #### Example 5: Asynchronous reward functions
 
-Custom reward functions can also be defined as `async def` coroutines. This is useful if your reward depends on slow I/O (for example, calling a remote service). When you pass multiple async reward functions, [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer) executes them concurrently so their latency overlaps.
+Custom reward functions can also be defined as `async def` coroutines. This is useful if your reward depends on slow I/O (for example, calling a remote service). When you pass multiple async reward functions, [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer) executes them concurrently so their latency overlaps.
 
 Below is a minimal example of an async reward function that simulates an I/O-bound operation:
 
@@ -511,7 +512,7 @@ def reward_func(completions, ground_truth, log_extra=None, log_metric=None, **kw
 
 #### Passing the reward function to the trainer
 
-To use your custom reward function, pass it to the [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer) as follows:
+To use your custom reward function, pass it to the [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer) as follows:
 
 ```python
 from trl import RLOOTrainer
@@ -535,7 +536,7 @@ trainer = RLOOTrainer(
 
 and the reward will be computed as the sum of the rewards from each function, or the weighted sum if `reward_weights` is provided in the config.
 
-Note that [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer) supports multiple reward functions of different types. See the parameters documentation for more details.
+Note that [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer) supports multiple reward functions of different types. See the parameters documentation for more details.
 
 ## Vision-Language Model (VLM) Training
 
@@ -592,88 +593,37 @@ The trainer automatically handles image-to-tensor conversion via the model’s i
 
 ## RLOOTrainer[[trl.RLOOTrainer]]
 
-- **model** (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel) or `PeftModel`) --
-  Model to be trained. Can be either:
+#### trl.RLOOTrainer[[trl.RLOOTrainer]]
 
-  - A string, being the *model id* of a pretrained model hosted inside a model repo on huggingface.co, or a
-    path to a *directory* containing model weights saved using
-    [save_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `'./my_model_directory/'`. The model is loaded
-    using `<ModelArchitecture>.from_pretrained` (where `<ModelArchitecture>` is derived from the model
-    config) with the keyword arguments in `args.model_init_kwargs`. If `dtype` is not specified in
-    `args.model_init_kwargs`, it defaults to `float32`. This differs from
-    [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), where (since Transformers v5) the dtype is inferred
-    from the model config.
-  - A [PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel) object. Only causal language models are supported.
-  - A `PeftModel` object. Only causal language models are supported.
-- **reward_funcs** (`RewardFunc | list[RewardFunc]`) --
-  Reward functions to be used for computing the rewards. To compute the rewards, we call all the reward
-  functions with the prompts and completions and sum the rewards. Can be either:
+```python
+trl.RLOOTrainer(model: str | PreTrainedModel | PeftModel, reward_funcs: str | transformers.modeling_utils.PreTrainedModel | collections.abc.Callable[..., list[float | None]] | list[str | transformers.modeling_utils.PreTrainedModel | collections.abc.Callable[..., list[float | None]]], args: trl.trainer.rloo_config.RLOOConfig | None = None, train_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | None = None, eval_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | datasets.dataset_dict.DatasetDict | datasets.dataset_dict.IterableDatasetDict | dict[str, datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset] | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.processing_utils.ProcessorMixin | None = None, reward_processing_classes: transformers.tokenization_utils_base.PreTrainedTokenizerBase | list[transformers.tokenization_utils_base.PreTrainedTokenizerBase] | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple = (None, None), quantization_config: BitsAndBytesConfig | None = None, peft_config: PeftConfig | None = None)
+```
 
-  - A single reward function, such as:
-    - A string: The *model ID* of a pretrained model hosted inside a model repo on huggingface.co, or a
-    path to a *directory* containing model weights saved using
-    [save_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `'./my_model_directory/'`. The model is loaded
-    using [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModelForSequenceClassification.from_pretrained) with `num_labels=1` and the
-    keyword arguments in `args.model_init_kwargs`.
-    - A [PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel) object: Only sequence classification models are supported.
-    - A custom reward function: The function is provided with the prompts and the generated completions,
-      plus any additional columns in the dataset. It should return a list of rewards. Custom reward
-      functions can be either synchronous or asynchronous and can also return `None` when the reward is
-      not applicable to those samples. This is useful for multi-task training where different reward
-      functions apply to different types of samples. When a reward function returns `None` for a sample,
-      that reward function is excluded from the reward calculation for that sample. For more details, see
-      [Using a custom reward
-      function](#using-a-custom-reward-function).
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/trainer/rloo_trainer.py#L109)
 
-      The trainer's state is also passed to the reward function. The trainer's state is an instance of
-      [TrainerState](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/callback#transformers.TrainerState) and can be accessed by accessing the `trainer_state` argument to the
-      reward function's signature.
-  - A list of reward functions, where each item can independently be any of the above types. Mixing different
-  types within the list (e.g., a string model ID and a custom reward function) is allowed.
-- **args** ([RLOOConfig](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOConfig), *optional*) --
-  Configuration for this trainer. If `None`, a default configuration is used.
-- **train_dataset** (`Dataset` or `IterableDataset`) --
-  Dataset to use for training. It must include a column `"prompt"`. Any additional columns in the dataset is
-  ignored. The format of the samples can be either:
+**Parameters:**
 
-  - [Standard](dataset_formats#standard): Each sample contains plain text.
-  - [Conversational](dataset_formats#conversational): Each sample contains structured messages (e.g., role
-    and content).
+model (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) or [PeftModel](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel)) : Model to be trained. Can be either:  - A string, being the *model id* of a pretrained model hosted inside a model repo on huggingface.co, or a path to a *directory* containing model weights saved using [save_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `'./my_model_directory/'`. The model is loaded using `<ModelArchitecture>.from_pretrained` (where `<ModelArchitecture>` is derived from the model config) with the keyword arguments in `args.model_init_kwargs`. If `dtype` is not specified in `args.model_init_kwargs`, it defaults to `float32`. This differs from [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), where (since Transformers v5) the dtype is inferred from the model config. - A [PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) object. Only causal language models are supported. - A [PeftModel](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel) object. Only causal language models are supported.
 
-  When `train_dataset` is an `IterableDataset` (e.g. a streaming dataset), `max_steps` must be
-  set in the training arguments, since its length cannot be inferred and the total number of training steps
-  is required to bound the training loop and configure the learning rate scheduler.
-- **eval_dataset** (`Dataset`, `IterableDataset`, `DatasetDict`, `IterableDatasetDict` or `dict[str, Dataset | IterableDataset]`) --
-  Dataset to use for evaluation. It must meet the same requirements as `train_dataset`.
-- **processing_class** ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.14.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), [ProcessorMixin](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/processors#transformers.ProcessorMixin), *optional*) --
-  Processing class used to process the data. The padding side must be set to "left". If `None`, the
-  processing class is loaded from the model's name with [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoProcessor.from_pretrained). A
-  padding token, `tokenizer.pad_token`, must be set. If the processing class has not set a padding token,
-  `tokenizer.eos_token` will be used as the default.
-- **reward_processing_classes** ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.14.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase) or `list[PreTrainedTokenizerBase]`, *optional*) --
-  Processing classes corresponding to the reward functions specified in `reward_funcs`. Can be either:
+reward_funcs (`RewardFunc | list[RewardFunc]`) : Reward functions to be used for computing the rewards. To compute the rewards, we call all the reward functions with the prompts and completions and sum the rewards. Can be either:  - A single reward function, such as: - A string: The *model ID* of a pretrained model hosted inside a model repo on huggingface.co, or a path to a *directory* containing model weights saved using [save_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `'./my_model_directory/'`. The model is loaded using [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForSequenceClassification.from_pretrained) with `num_labels=1` and the keyword arguments in `args.model_init_kwargs`. - A [PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) object: Only sequence classification models are supported. - A custom reward function: The function is provided with the prompts and the generated completions, plus any additional columns in the dataset. It should return a list of rewards. Custom reward functions can be either synchronous or asynchronous and can also return `None` when the reward is not applicable to those samples. This is useful for multi-task training where different reward functions apply to different types of samples. When a reward function returns `None` for a sample, that reward function is excluded from the reward calculation for that sample. For more details, see [Using a custom reward function](#using-a-custom-reward-function).  The trainer's state is also passed to the reward function. The trainer's state is an instance of [TrainerState](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerState) and can be accessed by accessing the `trainer_state` argument to the reward function's signature. - A list of reward functions, where each item can independently be any of the above types. Mixing different types within the list (e.g., a string model ID and a custom reward function) is allowed.
 
-  - A single processing class: Used when `reward_funcs` contains only one reward function.
-  - A list of processing classes: Must match the order and length of the reward functions in `reward_funcs`.
-  If set to `None`, or if an element of the list corresponding to a [PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel) is
-  `None`, the tokenizer for the model is automatically loaded using
-  [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained). For elements in `reward_funcs` that are custom reward
-  functions (not [PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)), the corresponding entries in `reward_processing_classes`
-  are ignored.
-- **callbacks** (list of [TrainerCallback](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/callback#transformers.TrainerCallback), *optional*) --
-  List of callbacks to customize the training loop. Will add those to the list of default callbacks detailed
-  in [here](https://huggingface.co/docs/transformers/main_classes/callback).
+args ([RLOOConfig](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOConfig), *optional*) : Configuration for this trainer. If `None`, a default configuration is used.
 
-  If you want to remove one of the default callbacks used, use the [remove_callback](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer.remove_callback)
-  method.
-- **optimizers** (`tuple[torch.optim.Optimizer | None, torch.optim.lr_scheduler.LambdaLR | None]`, *optional*, defaults to `(None, None)`) --
-  A tuple containing the optimizer and the scheduler to use. Will default to an instance of `AdamW` on your
-  model and a scheduler given by [get_linear_schedule_with_warmup](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) controlled by `args`.
-- **quantization_config** ([BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/quantization#transformers.BitsAndBytesConfig), *optional*) --
-  Quantization configuration used when loading the model from a model identifier. Combine with `peft_config`
-  for QLoRA training. Ignored if the model is already instantiated.
-- **peft_config** (`PeftConfig`, *optional*) --
-  PEFT configuration used to wrap the model. If `None`, the model is not wrapped.
+train_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset) or [IterableDataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDataset)) : Dataset to use for training. It must include a column `"prompt"`. Any additional columns in the dataset is ignored. The format of the samples can be either:  - [Standard](dataset_formats#standard): Each sample contains plain text. - [Conversational](dataset_formats#conversational): Each sample contains structured messages (e.g., role and content).  When `train_dataset` is an [IterableDataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDataset) (e.g. a streaming dataset), `max_steps` must be set in the training arguments, since its length cannot be inferred and the total number of training steps is required to bound the training loop and configure the learning rate scheduler.
+
+eval_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset), [IterableDataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDataset), [DatasetDict](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.DatasetDict), [IterableDatasetDict](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDatasetDict) or `dict[str, Dataset | IterableDataset]`) : Dataset to use for evaluation. It must meet the same requirements as `train_dataset`.
+
+processing_class ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), [ProcessorMixin](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin), *optional*) : Processing class used to process the data. The padding side must be set to "left". If `None`, the processing class is loaded from the model's name with [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor.from_pretrained). A padding token, `tokenizer.pad_token`, must be set. If the processing class has not set a padding token, `tokenizer.eos_token` will be used as the default.
+
+reward_processing_classes ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase) or `list[PreTrainedTokenizerBase]`, *optional*) : Processing classes corresponding to the reward functions specified in `reward_funcs`. Can be either:  - A single processing class: Used when `reward_funcs` contains only one reward function. - A list of processing classes: Must match the order and length of the reward functions in `reward_funcs`. If set to `None`, or if an element of the list corresponding to a [PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) is `None`, the tokenizer for the model is automatically loaded using [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained). For elements in `reward_funcs` that are custom reward functions (not [PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)), the corresponding entries in `reward_processing_classes` are ignored.
+
+callbacks (list of [TrainerCallback](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback), *optional*) : List of callbacks to customize the training loop. Will add those to the list of default callbacks detailed in [here](https://huggingface.co/docs/transformers/main_classes/callback).  If you want to remove one of the default callbacks used, use the [remove_callback](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.remove_callback) method.
+
+optimizers (`tuple[torch.optim.Optimizer | None, torch.optim.lr_scheduler.LambdaLR | None]`, *optional*, defaults to `(None, None)`) : A tuple containing the optimizer and the scheduler to use. Will default to an instance of `AdamW` on your model and a scheduler given by [get_linear_schedule_with_warmup](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) controlled by `args`.
+
+quantization_config ([BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.BitsAndBytesConfig), *optional*) : Quantization configuration used when loading the model from a model identifier. Combine with `peft_config` for QLoRA training. Ignored if the model is already instantiated.
+
+peft_config ([PeftConfig](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/config#peft.PeftConfig), *optional*) : PEFT configuration used to wrap the model. If `None`, the model is not wrapped.
 
 Trainer for the Reinforce Leave One Out (RLOO) method. This algorithm was initially proposed in the paper [Back to
 Basics: Revisiting REINFORCE Style Optimization for Learning from Human Feedback in
@@ -696,250 +646,213 @@ Example:
 >>> trainer.train()
 ```
 
-- **resume_from_checkpoint** (`str` or `bool`, *optional*) --
-  If a `str`, local path to a saved checkpoint as saved by a previous instance of `Trainer`. If a
-  `bool` and equals `True`, load the last checkpoint in *args.output_dir* as saved by a previous instance
-  of `Trainer`. If present, training will resume from the model/optimizer/scheduler states loaded here.
-- **trial** (`optuna.Trial` or `dict[str, Any]`, *optional*) --
-  The trial run or the hyperparameter dictionary for hyperparameter search.
-- **ignore_keys_for_eval** (`list[str]`, *optional*) --
-  A list of keys in the output of your model (if it is a dictionary) that should be ignored when
-  gathering predictions for evaluation during the training.`~trainer_utils.TrainOutput`Object containing the global step count, training loss, and metrics.
+#### train[[trl.RLOOTrainer.train]]
+
+```python
+train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L1347)
+
+**Parameters:**
+
+resume_from_checkpoint (`str` or `bool`, *optional*) : If a `str`, local path to a saved checkpoint as saved by a previous instance of `Trainer`. If a `bool` and equals `True`, load the last checkpoint in *args.output_dir* as saved by a previous instance of `Trainer`. If present, training will resume from the model/optimizer/scheduler states loaded here.
+
+trial (`optuna.Trial` or `dict[str, Any]`, *optional*) : The trial run or the hyperparameter dictionary for hyperparameter search.
+
+ignore_keys_for_eval (`list[str]`, *optional*) : A list of keys in the output of your model (if it is a dictionary) that should be ignored when gathering predictions for evaluation during the training.
+
+**Returns:** `~trainer_utils.TrainOutput`
+
+Object containing the global step count, training loss, and metrics.
 
 Main training entry point.
+
+#### save_model[[trl.RLOOTrainer.save_model]]
+
+```python
+save_model(output_dir: str | None = None, _internal_call: bool = False)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L3794)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
 Will only save from the main process.
 
-- **commit_message** (`str`, *optional*, defaults to `"End of training"`) --
-  Message to commit while pushing.
-- **blocking** (`bool`, *optional*, defaults to `True`) --
-  Whether the function should return only when the `git push` has finished.
-- **token** (`str`, *optional*, defaults to `None`) --
-  Token with write permission to overwrite Trainer's original args.
-- **revision** (`str`, *optional*) --
-  The git revision to commit from. Defaults to the head of the "main" branch.
-- **kwargs** (`dict[str, Any]`, *optional*) --
-  Additional keyword arguments passed along to `~Trainer.create_model_card`.The URL of the repository where the model was pushed if `blocking=False`, or a `Future` object tracking the
+#### push_to_hub[[trl.RLOOTrainer.push_to_hub]]
+
+```python
+push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L4041)
+
+**Parameters:**
+
+commit_message (`str`, *optional*, defaults to `"End of training"`) : Message to commit while pushing.
+
+blocking (`bool`, *optional*, defaults to `True`) : Whether the function should return only when the `git push` has finished.
+
+token (`str`, *optional*, defaults to `None`) : Token with write permission to overwrite Trainer's original args.
+
+revision (`str`, *optional*) : The git revision to commit from. Defaults to the head of the "main" branch.
+
+kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to `~Trainer.create_model_card`.
+
+**Returns:**
+
+The URL of the repository where the model was pushed if `blocking=False`, or a `Future` object tracking the
 progress of the commit if `blocking=True`.
 
 Upload `self.model` and `self.processing_class` to the 🤗 model hub on the repo `self.args.hub_model_id`.
 
 ## RLOOConfig[[trl.RLOOConfig]]
 
-"}, {"name": "batch_eval_metrics", "val": ": bool = False"}, {"name": "save_only_model", "val": ": bool = False"}, {"name": "save_strategy", "val": ": transformers.trainer_utils.SaveStrategy | str = 'steps'"}, {"name": "save_steps", "val": ": float = 500"}, {"name": "save_on_each_node", "val": ": bool = False"}, {"name": "save_total_limit", "val": ": int | None = None"}, {"name": "enable_jit_checkpoint", "val": ": bool = False"}, {"name": "push_to_hub", "val": ": bool = False"}, {"name": "hub_token", "val": ": str | None = None"}, {"name": "hub_private_repo", "val": ": bool | None = None"}, {"name": "hub_model_id", "val": ": str | None = None"}, {"name": "hub_strategy", "val": ": transformers.trainer_utils.HubStrategy | str = 'every_save'"}, {"name": "hub_always_push", "val": ": bool = False"}, {"name": "hub_revision", "val": ": str | None = None"}, {"name": "load_best_model_at_end", "val": ": bool = False"}, {"name": "metric_for_best_model", "val": ": str | None = None"}, {"name": "greater_is_better", "val": ": bool | None = None"}, {"name": "ignore_data_skip", "val": ": bool = False"}, {"name": "restore_callback_states_from_checkpoint", "val": ": bool = False"}, {"name": "full_determinism", "val": ": bool = False"}, {"name": "seed", "val": ": int = 42"}, {"name": "data_seed", "val": ": int | None = None"}, {"name": "use_cpu", "val": ": bool = False"}, {"name": "accelerator_config", "val": ": dict | str | None = None"}, {"name": "parallelism_config", "val": ": accelerate.parallelism_config.ParallelismConfig | None = None"}, {"name": "dataloader_drop_last", "val": ": bool = False"}, {"name": "dataloader_num_workers", "val": ": int = 0"}, {"name": "dataloader_pin_memory", "val": ": bool = True"}, {"name": "dataloader_persistent_workers", "val": ": bool = False"}, {"name": "dataloader_prefetch_factor", "val": ": int | None = None"}, {"name": "remove_unused_columns", "val": ": bool | None = False"}, {"name": "label_names", "val": ": list[str] | None = None"}, {"name": "train_sampling_strategy", "val": ": str = 'random'"}, {"name": "length_column_name", "val": ": str = 'length'"}, {"name": "ddp_find_unused_parameters", "val": ": bool | None = None"}, {"name": "ddp_bucket_cap_mb", "val": ": int | None = None"}, {"name": "ddp_broadcast_buffers", "val": ": bool | None = None"}, {"name": "ddp_static_graph", "val": ": bool | None = None"}, {"name": "ddp_backend", "val": ": str | None = None"}, {"name": "ddp_timeout", "val": ": int = 1800"}, {"name": "fsdp", "val": ": str | None = None"}, {"name": "fsdp_config", "val": ": dict[str, typing.Any] | str | None = None"}, {"name": "deepspeed", "val": ": dict | str | None = None"}, {"name": "debug", "val": ": str | list[transformers.debug_utils.DebugOption] = ''"}, {"name": "skip_memory_metrics", "val": ": bool = True"}, {"name": "do_train", "val": ": bool = False"}, {"name": "do_eval", "val": ": bool = False"}, {"name": "do_predict", "val": ": bool = False"}, {"name": "resume_from_checkpoint", "val": ": str | None = None"}, {"name": "warmup_ratio", "val": ": float | None = None"}, {"name": "logging_dir", "val": ": str | None = None"}, {"name": "local_rank", "val": ": int = -1"}, {"name": "model_init_kwargs", "val": ": dict[str, typing.Any] | str | None = None"}, {"name": "trust_remote_code", "val": ": bool = False"}, {"name": "router_aux_loss_coef", "val": ": float = 0.001"}, {"name": "disable_dropout", "val": ": bool = False"}, {"name": "num_generations", "val": ": int | None = 2"}, {"name": "num_generations_eval", "val": ": int | None = None"}, {"name": "max_completion_length", "val": ": int | None = 256"}, {"name": "ds3_gather_for_generation", "val": ": bool = True"}, {"name": "shuffle_dataset", "val": ": bool | None = True"}, {"name": "pad_to_multiple_of", "val": ": int | None = None"}, {"name": "generation_batch_size", "val": ": int | None = None"}, {"name": "steps_per_generation", "val": ": int | None = None"}, {"name": "temperature", "val": ": float = 1.0"}, {"name": "top_p", "val": ": float = 1.0"}, {"name": "top_k", "val": ": int = 0"}, {"name": "min_p", "val": ": float | None = None"}, {"name": "generation_kwargs", "val": ": dict | None = None"}, {"name": "chat_template_kwargs", "val": ": dict | None = None"}, {"name": "repetition_penalty", "val": ": float = 1.0"}, {"name": "cache_implementation", "val": ": str | None = None"}, {"name": "use_vllm", "val": ": bool = False"}, {"name": "vllm_mode", "val": ": str = 'colocate'"}, {"name": "vllm_model_impl", "val": ": str = 'vllm'"}, {"name": "vllm_enable_sleep_mode", "val": ": bool = False"}, {"name": "vllm_structured_outputs_regex", "val": ": str | None = None"}, {"name": "vllm_server_base_url", "val": ": str | None = None"}, {"name": "vllm_server_host", "val": ": str = '0.0.0.0'"}, {"name": "vllm_server_port", "val": ": int = 8000"}, {"name": "vllm_server_timeout", "val": ": float = 240.0"}, {"name": "vllm_group_port", "val": ": int = 51216"}, {"name": "vllm_gpu_memory_utilization", "val": ": float = 0.3"}, {"name": "vllm_max_model_length", "val": ": int | None = None"}, {"name": "vllm_tensor_parallel_size", "val": ": int = 1"}, {"name": "beta", "val": ": float = 0.05"}, {"name": "num_iterations", "val": ": int = 1"}, {"name": "epsilon", "val": ": float = 0.2"}, {"name": "epsilon_high", "val": ": float | None = None"}, {"name": "reward_weights", "val": ": list[float] | None = None"}, {"name": "normalize_advantages", "val": ": bool = False"}, {"name": "reward_clip_range", "val": ": tuple[float, float] | None = None"}, {"name": "mask_truncated_completions", "val": ": bool = False"}, {"name": "sync_ref_model", "val": ": bool = False"}, {"name": "ref_model_mixup_alpha", "val": ": float = 0.6"}, {"name": "ref_model_sync_steps", "val": ": int = 512"}, {"name": "log_completions", "val": ": bool = False"}, {"name": "log_multimodal", "val": ": bool = True"}, {"name": "num_completions_to_print", "val": ": int | None = None"}, {"name": "log_unique_prompts", "val": ": bool = False"}, {"name": "use_transformers_continuous_batching", "val": ": bool = False"}, {"name": "transformers_continuous_batching_config", "val": ": dict | None = None"}, {"name": "use_transformers_paged", "val": ": bool = False"}]}>
-Parameters that control the model and reference model
+#### trl.RLOOConfig[[trl.RLOOConfig]]
 
-- **model_init_kwargs** (`str`, `dict[str, Any]`, *optional*) --
-  Keyword arguments for [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained), used when the `model`
-  argument of the [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer) is provided as a string.
-- **trust_remote_code** (`bool`, *optional*, defaults to `False`) --
-  Whether to allow loading models and tokenizers that ship custom Python code from the Hub. Forwarded to
-  [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) and
-  [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoProcessor.from_pretrained). Also applied to reward-model and reward-tokenizer loads.
-- **router_aux_loss_coef** (`float`, *optional*, defaults to `0.001`) --
-  Coefficient of the load-balancing auxiliary loss. Only has an effect when training a Mixture-of-Experts
-  (MoE) model; for other models it does nothing. The auxiliary loss is added to the training loss with this
-  weight. Set to `0.0` to disable it.
-- **disable_dropout** (`bool`, *optional*, defaults to `False`) --
-  Whether to disable dropout in the model. This is useful for training with a reference model, as it prevents
-  the model from generating different logprobs for the same input.
+```python
+trl.RLOOConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 1e-06, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 10, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool | None = False, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | str | None = None, trust_remote_code: bool = False, router_aux_loss_coef: float = 0.001, disable_dropout: bool = False, num_generations: int | None = 2, num_generations_eval: int | None = None, max_completion_length: int | None = 512, ds3_gather_for_generation: bool = True, shuffle_dataset: bool | None = True, pad_to_multiple_of: int | None = None, generation_batch_size: int | None = None, steps_per_generation: int | None = None, temperature: float = 1.0, top_p: float = 1.0, top_k: int = 0, min_p: float | None = None, generation_kwargs: dict | None = None, chat_template_kwargs: dict | None = None, repetition_penalty: float = 1.0, cache_implementation: str | None = None, use_vllm: bool = False, vllm_mode: str = 'colocate', vllm_model_impl: str = 'vllm', vllm_enable_sleep_mode: bool = False, vllm_structured_outputs_regex: str | None = None, vllm_server_base_url: str | None = None, vllm_server_host: str = '0.0.0.0', vllm_server_port: int = 8000, vllm_server_timeout: float = 240.0, vllm_group_port: int = 51216, vllm_gpu_memory_utilization: float = 0.3, vllm_max_model_length: int | None = None, vllm_tensor_parallel_size: int = 1, beta: float = 0.05, num_iterations: int = 1, epsilon: float = 0.2, epsilon_high: float | None = None, reward_weights: list[float] | None = None, normalize_advantages: bool = False, reward_clip_range: tuple[float, float] | None = None, mask_truncated_completions: bool = False, sync_ref_model: bool = False, ref_model_mixup_alpha: float = 0.6, ref_model_sync_steps: int = 512, log_completions: bool = False, log_multimodal: bool = True, num_completions_to_print: int | None = None, log_unique_prompts: bool = False, use_transformers_continuous_batching: bool = False, transformers_continuous_batching_config: dict | None = None, use_transformers_paged: bool = False)
+```
 
-Parameters that control the data preprocessing
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/trainer/rloo_config.py#L23)
 
-- **remove_unused_columns** (`bool`, *optional*, defaults to `False`) --
-  Whether to only keep the column `"prompt"` in the dataset. If you use a custom reward function that
-  requires any column other than `"prompts"` and `"completions"`, you should keep this to `False`.
-- **num_generations** (`int`, *optional*, defaults to `2`) --
-  Number of generations per prompt to sample. The effective batch size (num_processes * per_device_batch_size
-  * gradient_accumulation_steps) must be evenly divisible by this value.
-- **num_generations_eval** (`int` or `None`, *optional*) --
-  Number of generations to sample during evaluation. This allows using fewer generations during evaluation to
-  save computation. If `None`, uses the value of `num_generations`.
-- **max_completion_length** (`int` or `None`, *optional*, defaults to `256`) --
-  Maximum length of the generated completion.
-- **ds3_gather_for_generation** (`bool`, *optional*, defaults to `True`) --
-  This setting applies to DeepSpeed ZeRO-3. If enabled, the policy model weights are gathered for generation,
-  improving generation speed. However, disabling this option allows training models that exceed the VRAM
-  capacity of a single GPU, albeit at the cost of slower generation. Disabling this option is not compatible
-  with vLLM generation.
-- **shuffle_dataset** (`bool`, *optional*, defaults to `True`) --
-  Whether to shuffle the training dataset.
-- **pad_to_multiple_of** (`int`, *optional*) --
-  If set, the prompts ids and completions ids will be padded to a multiple of this value.
+**Parameters that control the model and reference model:**
 
-Parameters that control generation
+model_init_kwargs (`str`, `dict[str, Any]`, *optional*) : Keyword arguments for [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained), used when the `model` argument of the [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer) is provided as a string.
 
-- **generation_batch_size** (`int`, *optional*) --
-  Batch size to use for generation. If `None`, it defaults to the effective training batch size:
-  `per_device_train_batch_size * num_processes * steps_per_generation`. In other words, there is one
-  generation batch processed per optimization step. Mutually exclusive with `steps_per_generation`.
-- **steps_per_generation** (`int`, *optional*) --
-  Number of steps per generation. If `None`, it defaults to `gradient_accumulation_steps`. Mutually exclusive
-  with `generation_batch_size`.
-- **temperature** (`float`, defaults to `1.0`) --
-  Temperature for sampling. The higher the temperature, the more random the completions.
-- **top_p** (`float`, *optional*, defaults to `1.0`) --
-  Float that controls the cumulative probability of the top tokens to consider. Must be in (0, 1]. Set to
-  `1.0` to consider all tokens.
-- **top_k** (`int`, *optional*, defaults to `0`) --
-  Number of highest probability vocabulary tokens to keep for top-k-filtering. If `0`, top-k-filtering is
-  disabled and all tokens are considered.
-- **min_p** (`float`, *optional*) --
-  Minimum token probability, which will be scaled by the probability of the most likely token. It must be a
-  value between `0.0` and `1.0`. Typical values are in the `0.01-0.2` range.
-- **generation_kwargs** (`dict[str, Any]`, *optional*) --
-  Additional keyword arguments to pass to [GenerationConfig](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/text_generation#transformers.GenerationConfig) (if using transformers) or
-  `SamplingParams` (if using vLLM) when sampling completions. This can be used to further customize the
-  generation behavior, such as setting `suppress_tokens`, `num_beams`, etc. If it contains keys that conflict
-  with the other generation parameters (like `min_p`, `top_p`, etc.), they will override them.
-- **chat_template_kwargs** (`dict[str, Any]`, *optional*) --
-  Additional keyword arguments to pass to the `apply_chat_template` function when generating completions.
-- **repetition_penalty** (`float`, *optional*, defaults to `1.0`) --
-  Float that penalizes new tokens based on whether they appear in the prompt and the generated text so far.
-  Values > `1.0` encourage the model to use new tokens, while values < `1.0` encourage the model to repeat
-  tokens.
-- **cache_implementation** (`str`, *optional*) --
-  Implementation of the cache method for faster generation when `use_vllm` is set to `False`.
+trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to allow loading models and tokenizers that ship custom Python code from the Hub. Forwarded to [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) and [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor.from_pretrained). Also applied to reward-model and reward-tokenizer loads.
 
-Parameters that control generation acceleration powered by vLLM
+router_aux_loss_coef (`float`, *optional*, defaults to `0.001`) : Coefficient of the load-balancing auxiliary loss. Only has an effect when training a Mixture-of-Experts (MoE) model; for other models it does nothing. The auxiliary loss is added to the training loss with this weight. Set to `0.0` to disable it.
 
-- **use_vllm** (`bool`, *optional*, defaults to `False`) --
-  Whether to use vLLM for generating completions. If set to `True`, the trainer will use vLLM for generation
-  instead of the default model.generate(). Requires `vllm` to be installed.
-- **vllm_mode** (`str`, *optional*, defaults to `"colocate"`) --
-  Mode to use for vLLM integration when `use_vllm` is set to `True`. Must be one of `"server"` or
-  `"colocate"`.
+disable_dropout (`bool`, *optional*, defaults to `False`) : Whether to disable dropout in the model. This is useful for training with a reference model, as it prevents the model from generating different logprobs for the same input.
 
-  - `"server"`: The trainer will send generation requests to a separate vLLM server. Make sure a TRL vLLM
-    server is running (start with `trl vllm-serve`).
-  - `"colocate"`: vLLM will run in the same process and share the training GPUs. This avoids the need for a
-    separate server but may cause resource contention with training.
-- **vllm_model_impl** (`str`, *optional*, defaults to `"vllm"`) --
-  Model implementation to use for vLLM. Must be one of `"transformers"` or `"vllm"`. `"transformers"`: Use
-  the `transformers` backend for model implementation. `"vllm"`: Use the `vllm` library for model
-  implementation.
-- **vllm_structured_outputs_regex** (`str`, *optional*) --
-  Regex for vLLM structured outputs. If `None` (default), structured outputs is disabled.
+**Parameters that control the data preprocessing:**
 
-Parameters that control the vLLM server (only used when `vllm_mode` is `"server"`)
+remove_unused_columns (`bool`, *optional*, defaults to `False`) : Whether to only keep the column `"prompt"` in the dataset. If you use a custom reward function that requires any column other than `"prompts"` and `"completions"`, you should keep this to `False`.
 
-- **vllm_server_base_url** (`str`, *optional*) --
-  Base URL for the vLLM server (e.g., `"http://localhost:8000"`). If provided, `vllm_server_host` and
-  `vllm_server_port` are ignored.
-- **vllm_server_host** (`str`, *optional*, defaults to `"0.0.0.0"`) --
-  Host of the vLLM server to connect to. Ignored if `vllm_server_base_url` is provided.
-- **vllm_server_port** (`int`, *optional*, defaults to `8000`) --
-  Port of the vLLM server to connect to. Ignored if `vllm_server_base_url` is provided.
-- **vllm_server_timeout** (`float`, *optional*, defaults to `240.0`) --
-  Total timeout duration in seconds to wait for the vLLM server to be up. If the server is not up after the
-  timeout, a `ConnectionError` is raised.
-- **vllm_group_port** (`int`, *optional*, defaults to `51216`) --
-  Port number for the weight update group. This is used to communicate with the vLLM server. Unless the port
-  is occupied, there is no need to change it.
+num_generations (`int`, *optional*, defaults to `2`) : Number of generations per prompt to sample. The effective batch size (num_processes * per_device_batch_size * gradient_accumulation_steps) must be evenly divisible by this value.
 
-Parameters that control colocated vLLM execution (only used when `vllm_mode` is `"colocate"`)
+num_generations_eval (`int` or `None`, *optional*) : Number of generations to sample during evaluation. This allows using fewer generations during evaluation to save computation. If `None`, uses the value of `num_generations`.
 
-- **vllm_gpu_memory_utilization** (`float`, *optional*, defaults to `0.3`) --
-  Control the GPU memory utilization for vLLM. This setting only applies when `vllm_mode` is set to
-  `"colocate"`. If you are using `vllm_mode="server"`, this parameter must be passed separately when
-  launching the vLLM server via the `--vllm_gpu_memory_utilization` flag.
-- **vllm_max_model_length** (`int`, *optional*) --
-  Context window for vLLM. Set it to at least the maximum prompt length in the dataset plus
-  `max_completion_length`; if omitted, it is inferred from the model config.
-- **vllm_tensor_parallel_size** (`int`, *optional*, defaults to `1`) --
-  Control the tensor parallel size for vLLM. This setting only applies when `vllm_mode` is set to
-  `"colocate"`. If you are using `vllm_mode="server"`, this parameter must be passed separately when
-  launching the vLLM server via the `--vllm_tensor_parallel_size` flag.
-- **vllm_enable_sleep_mode** (`bool`, *optional*, defaults to `False`) --
-  Enable vLLM sleep mode to offload weights/cache during the optimizer step. Keeps GPU memory usage low, but
-  waking the engine adds host–device transfer latency.
+max_completion_length (`int` or `None`, *optional*, defaults to `512`) : Maximum length of the generated completion.
 
-Parameters that control generation acceleration powered by transformers continuous batching
+ds3_gather_for_generation (`bool`, *optional*, defaults to `True`) : This setting applies to DeepSpeed ZeRO-3. If enabled, the policy model weights are gathered for generation, improving generation speed. However, disabling this option allows training models that exceed the VRAM capacity of a single GPU, albeit at the cost of slower generation. Disabling this option is not compatible with vLLM generation.
 
-- **use_transformers_continuous_batching** (`bool`, *optional*, defaults to `False`) --
-  Whether to use transformers' continuous batching engine for generating completions. Requires
-  `transformers>=5.8.0`.
-- **transformers_continuous_batching_config** (`dict`, *optional*) --
-  Keyword arguments for `ContinuousBatchingConfig`.
+shuffle_dataset (`bool`, *optional*, defaults to `True`) : Whether to shuffle the training dataset.
 
-Parameters that control the training
+pad_to_multiple_of (`int`, *optional*) : If set, the prompts ids and completions ids will be padded to a multiple of this value.
 
-- **beta** (`float`, *optional*, defaults to `0.05`) --
-  KL coefficient. If `0.0`, the reference model is not loaded, reducing memory usage and improving training
-  speed.
-- **num_iterations** (`int`, *optional*, defaults to `1`) --
-  Number of iterations per batch (denoted as μ in the algorithm).
-- **epsilon** (`float`, *optional*, defaults to `0.2`) --
-  Epsilon value for clipping.
-- **epsilon_high** (`float`, *optional*) --
-  Upper-bound epsilon value for clipping. If not specified, it defaults to the same value as the lower-bound
-  specified in argument `epsilon`. Paper [DAPO](https://huggingface.co/papers/2503.14476) recommends `0.28`.
-- **reward_weights** (`list[float]`, *optional*) --
-  Weights for each reward function. Must match the number of reward functions. If `None`, all rewards are
-  weighted equally with weight `1.0`.
-- **normalize_advantages** (`bool`, *optional*, defaults to `False`) --
-  Whether to normalize advantages. Normalization is done per generation batch to have mean `0.0` and standard
-  deviation of `1.0`.
-- **reward_clip_range** (`tuple[float, float]`, *optional*) --
-  Clip range for rewards as (min, max). If `None`, no clipping is applied.
-- **mask_truncated_completions** (`bool`, *optional*, defaults to `False`) --
-  When enabled, truncated completions are excluded from the loss calculation, preventing them from being
-  incorrectly penalized and introducing noise during training. According to the
-  [DAPO](https://huggingface.co/papers/2503.14476) paper, this is a good practice for training stability.
-- **sync_ref_model** (`bool`, *optional*, defaults to `False`) --
-  Whether to synchronize the reference model with the active model every `ref_model_sync_steps` steps, using
-  the `ref_model_mixup_alpha` parameter. This synchronization originates from the
-  [TR-DPO](https://huggingface.co/papers/2404.09656) paper.
-- **ref_model_mixup_alpha** (`float`, *optional*, defaults to `0.6`) --
-  α parameter from the [TR-DPO](https://huggingface.co/papers/2404.09656) paper, which controls the mix
-  between the current policy and the previous reference policy during updates. The reference policy is
-  updated according to the equation: `π_ref = α * π_θ + (1 - α) * π_ref_prev`. To use this parameter, you
-  must set `sync_ref_model=True`.
-- **ref_model_sync_steps** (`int`, *optional*, defaults to `512`) --
-  τ parameter from the [TR-DPO](https://huggingface.co/papers/2404.09656) paper, which determines how
-  frequently the current policy is synchronized with the reference policy. To use this parameter, you must
-  set `sync_ref_model=True`.
+**Parameters that control generation:**
 
-Parameters that control the logging
+generation_batch_size (`int`, *optional*) : Batch size to use for generation. If `None`, it defaults to the effective training batch size: `per_device_train_batch_size * num_processes * steps_per_generation`. In other words, there is one generation batch processed per optimization step. Mutually exclusive with `steps_per_generation`.
 
-- **log_completions** (`bool`, *optional*, defaults to `False`) --
-  Whether to log a sample of (prompt, completion) pairs every `logging_steps` steps. If `rich` is installed,
-  it prints the sample. If `wandb` and/or `trackio` logging is enabled, it logs it to `wandb` and/or
-  `trackio`.
-- **log_multimodal** (`bool`, *optional*, defaults to `True`) --
-  Whether to log multimodal content (images, videos, etc.) together with completions. Disable this to reduce
-  log size when using high-resolution multimodal data.
-- **num_completions_to_print** (`int`, *optional*) --
-  Number of completions to print with `rich`. If `None`, all completions are logged.
-- **log_unique_prompts** (`bool`, *optional*, defaults to `False`) --
-  Whether to log unique prompts. If `True`, only unique prompts are logged. If `False`, all prompts are
-  logged.
+steps_per_generation (`int`, *optional*) : Number of steps per generation. If `None`, it defaults to `gradient_accumulation_steps`. Mutually exclusive with `generation_batch_size`.
 
-Deprecated parameters
+temperature (`float`, defaults to `1.0`) : Temperature for sampling. The higher the temperature, the more random the completions.
 
-- **use_transformers_paged** --
+top_p (`float`, *optional*, defaults to `1.0`) : Float that controls the cumulative probability of the top tokens to consider. Must be in (0, 1]. Set to `1.0` to consider all tokens.
 
-  
+top_k (`int`, *optional*, defaults to `0`) : Number of highest probability vocabulary tokens to keep for top-k-filtering. If `0`, top-k-filtering is disabled and all tokens are considered.
 
-  Parameter `use_transformers_paged` is deprecated and will be removed in version v2.0.0. Use
-  `use_transformers_continuous_batching` instead.
+min_p (`float`, *optional*) : Minimum token probability, which will be scaled by the probability of the most likely token. It must be a value between `0.0` and `1.0`. Typical values are in the `0.01-0.2` range.
 
-  
+generation_kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments to pass to [GenerationConfig](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig) (if using transformers) or `SamplingParams` (if using vLLM) when sampling completions. This can be used to further customize the generation behavior, such as setting `suppress_tokens`, `num_beams`, etc. If it contains keys that conflict with the other generation parameters (like `min_p`, `top_p`, etc.), they will override them.
 
-Configuration class for the [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer).
+chat_template_kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments to pass to the `apply_chat_template` function when generating completions.
+
+repetition_penalty (`float`, *optional*, defaults to `1.0`) : Float that penalizes new tokens based on whether they appear in the prompt and the generated text so far. Values > `1.0` encourage the model to use new tokens, while values < `1.0` encourage the model to repeat tokens.
+
+cache_implementation (`str`, *optional*) : Implementation of the cache method for faster generation when `use_vllm` is set to `False`.
+
+**Parameters that control generation acceleration powered by vLLM:**
+
+use_vllm (`bool`, *optional*, defaults to `False`) : Whether to use vLLM for generating completions. If set to `True`, the trainer will use vLLM for generation instead of the default model.generate(). Requires `vllm` to be installed.
+
+vllm_mode (`str`, *optional*, defaults to `"colocate"`) : Mode to use for vLLM integration when `use_vllm` is set to `True`. Must be one of `"server"` or `"colocate"`.  - `"server"`: The trainer will send generation requests to a separate vLLM server. Make sure a TRL vLLM server is running (start with `trl vllm-serve`). - `"colocate"`: vLLM will run in the same process and share the training GPUs. This avoids the need for a separate server but may cause resource contention with training.
+
+vllm_model_impl (`str`, *optional*, defaults to `"vllm"`) : Model implementation to use for vLLM. Must be one of `"transformers"` or `"vllm"`. `"transformers"`: Use the `transformers` backend for model implementation. `"vllm"`: Use the `vllm` library for model implementation.
+
+vllm_structured_outputs_regex (`str`, *optional*) : Regex for vLLM structured outputs. If `None` (default), structured outputs is disabled.
+
+**Parameters that control the vLLM server (only used when `vllm_mode` is `"server"`):**
+
+vllm_server_base_url (`str`, *optional*) : Base URL for the vLLM server (e.g., `"http://localhost:8000"`). If provided, `vllm_server_host` and `vllm_server_port` are ignored.
+
+vllm_server_host (`str`, *optional*, defaults to `"0.0.0.0"`) : Host of the vLLM server to connect to. Ignored if `vllm_server_base_url` is provided.
+
+vllm_server_port (`int`, *optional*, defaults to `8000`) : Port of the vLLM server to connect to. Ignored if `vllm_server_base_url` is provided.
+
+vllm_server_timeout (`float`, *optional*, defaults to `240.0`) : Total timeout duration in seconds to wait for the vLLM server to be up. If the server is not up after the timeout, a `ConnectionError` is raised.
+
+vllm_group_port (`int`, *optional*, defaults to `51216`) : Port number for the weight update group. This is used to communicate with the vLLM server. Unless the port is occupied, there is no need to change it.
+
+**Parameters that control colocated vLLM execution (only used when `vllm_mode` is `"colocate"`):**
+
+vllm_gpu_memory_utilization (`float`, *optional*, defaults to `0.3`) : Control the GPU memory utilization for vLLM. This setting only applies when `vllm_mode` is set to `"colocate"`. If you are using `vllm_mode="server"`, this parameter must be passed separately when launching the vLLM server via the `--vllm_gpu_memory_utilization` flag.
+
+vllm_max_model_length (`int`, *optional*) : Context window for vLLM. Set it to at least the maximum prompt length in the dataset plus `max_completion_length`; if omitted, it is inferred from the model config.
+
+vllm_tensor_parallel_size (`int`, *optional*, defaults to `1`) : Control the tensor parallel size for vLLM. This setting only applies when `vllm_mode` is set to `"colocate"`. If you are using `vllm_mode="server"`, this parameter must be passed separately when launching the vLLM server via the `--vllm_tensor_parallel_size` flag.
+
+vllm_enable_sleep_mode (`bool`, *optional*, defaults to `False`) : Enable vLLM sleep mode to offload weights/cache during the optimizer step. Keeps GPU memory usage low, but waking the engine adds host–device transfer latency.
+
+**Parameters that control generation acceleration powered by transformers continuous batching:**
+
+use_transformers_continuous_batching (`bool`, *optional*, defaults to `False`) : Whether to use transformers' continuous batching engine for generating completions. Requires `transformers>=5.8.0`.
+
+transformers_continuous_batching_config (`dict`, *optional*) : Keyword arguments for `ContinuousBatchingConfig`.
+
+**Parameters that control the training:**
+
+beta (`float`, *optional*, defaults to `0.05`) : KL coefficient. If `0.0`, the reference model is not loaded, reducing memory usage and improving training speed.
+
+num_iterations (`int`, *optional*, defaults to `1`) : Number of iterations per batch (denoted as μ in the algorithm).
+
+epsilon (`float`, *optional*, defaults to `0.2`) : Epsilon value for clipping.
+
+epsilon_high (`float`, *optional*) : Upper-bound epsilon value for clipping. If not specified, it defaults to the same value as the lower-bound specified in argument `epsilon`. Paper [DAPO](https://huggingface.co/papers/2503.14476) recommends `0.28`.
+
+reward_weights (`list[float]`, *optional*) : Weights for each reward function. Must match the number of reward functions. If `None`, all rewards are weighted equally with weight `1.0`.
+
+normalize_advantages (`bool`, *optional*, defaults to `False`) : Whether to normalize advantages. Normalization is done per generation batch to have mean `0.0` and standard deviation of `1.0`.
+
+reward_clip_range (`tuple[float, float]`, *optional*) : Clip range for rewards as (min, max). If `None`, no clipping is applied.
+
+mask_truncated_completions (`bool`, *optional*, defaults to `False`) : When enabled, truncated completions are excluded from the loss calculation, preventing them from being incorrectly penalized and introducing noise during training. According to the [DAPO](https://huggingface.co/papers/2503.14476) paper, this is a good practice for training stability.
+
+sync_ref_model (`bool`, *optional*, defaults to `False`) : Whether to synchronize the reference model with the active model every `ref_model_sync_steps` steps, using the `ref_model_mixup_alpha` parameter. This synchronization originates from the [TR-DPO](https://huggingface.co/papers/2404.09656) paper.
+
+ref_model_mixup_alpha (`float`, *optional*, defaults to `0.6`) : α parameter from the [TR-DPO](https://huggingface.co/papers/2404.09656) paper, which controls the mix between the current policy and the previous reference policy during updates. The reference policy is updated according to the equation: `π_ref = α * π_θ + (1 - α) * π_ref_prev`. To use this parameter, you must set `sync_ref_model=True`.
+
+ref_model_sync_steps (`int`, *optional*, defaults to `512`) : τ parameter from the [TR-DPO](https://huggingface.co/papers/2404.09656) paper, which determines how frequently the current policy is synchronized with the reference policy. To use this parameter, you must set `sync_ref_model=True`.
+
+**Parameters that control the logging:**
+
+log_completions (`bool`, *optional*, defaults to `False`) : Whether to log a sample of (prompt, completion) pairs every `logging_steps` steps. If `rich` is installed, it prints the sample. If `wandb` and/or `trackio` logging is enabled, it logs it to `wandb` and/or `trackio`.
+
+log_multimodal (`bool`, *optional*, defaults to `True`) : Whether to log multimodal content (images, videos, etc.) together with completions. Disable this to reduce log size when using high-resolution multimodal data.
+
+num_completions_to_print (`int`, *optional*) : Number of completions to print with `rich`. If `None`, all completions are logged.
+
+log_unique_prompts (`bool`, *optional*, defaults to `False`) : Whether to log unique prompts. If `True`, only unique prompts are logged. If `False`, all prompts are logged.
+
+**Deprecated parameters:**
+
+use_transformers_paged :   Parameter `use_transformers_paged` is deprecated and will be removed in version v2.0.0. Use `use_transformers_continuous_batching` instead.  
+
+Configuration class for the [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer).
 
 This class includes only the parameters that are specific to RLOO training. For a full list of training arguments,
-please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default values in this class may
-differ from those in [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments).
+please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default values in this class may
+differ from those in [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments).
 
-Using [HfArgumentParser](https://huggingface.co/docs/transformers/v5.14.1/en/internal/trainer_utils#transformers.HfArgumentParser) we can turn this class into
+Using [HfArgumentParser](https://huggingface.co/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.HfArgumentParser) we can turn this class into
 [argparse](https://docs.python.org/3/library/argparse#module-argparse) arguments that can be specified on the
 command line.
 
 > [!NOTE]
-> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments):
+> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments):
 > - `logging_steps`: Defaults to `10` instead of `500`.
 > - `gradient_checkpointing`: Defaults to `True` instead of `False`.
 > - `bf16`: Defaults to `True` if `fp16` is not set, instead of `False`.
@@ -956,8 +869,8 @@ command line.
 
 ## Migration Guide from the old implementation (0.21 and below)
 
-With the release of version 0.22.0, we have revamped the [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer) to be more aligned with other online trainers in the library, like [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer). This new implementation introduces several changes to the configuration parameters and overall structure of the trainer.
-Below is a summary of the key changes for [RLOOConfig](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOConfig):
+With the release of version 0.22.0, we have revamped the [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer) to be more aligned with other online trainers in the library, like [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer). This new implementation introduces several changes to the configuration parameters and overall structure of the trainer.
+Below is a summary of the key changes for [RLOOConfig](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOConfig):
 
 | TRL ≤ 0.21.x | TRL ≥ 0.22.0 |
 | --- | --- |
@@ -973,12 +886,12 @@ Below is a summary of the key changes for [RLOOConfig](/docs/trl/v1.9.2/en/rloo_
 | `total_episodes` | use `max_steps=total_episodes / gradient_accumulation_steps` instead |
 | `local_rollout_forward_batch_size` | **removed** – now automatically set to `per_device_train_batch_size` (or `per_device_eval_batch_size` during evaluation) |
 | `num_sample_generations` | **removed** – use `logging_steps` to control generation logging frequency |
-| `response_length` | renamed to `max_completion_length` (default: `256`) |
+| `response_length` | renamed to `max_completion_length` (default: `512`) |
 | `stop_token` | **removed** |
 | `stop_token_id` | **removed** – use `processing_class.eos_token_id` instead |
 | `missing_eos_penalty` | **removed** – replicate with a custom reward function checking if `eos_token_id` is in `completion_ids` |
 
-Below is a summary of the key changes for [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer):
+Below is a summary of the key changes for [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer):
 
 | TRL ≤ 0.21.x | TRL ≥ 0.22.0 |
 | --- | --- |
@@ -989,4 +902,4 @@ Below is a summary of the key changes for [RLOOTrainer](/docs/trl/v1.9.2/en/rloo
 | `data_collator` | **removed** |
 
 ### Kernels Hub Integration and Usage
-https://huggingface.co/docs/trl/v1.9.2/kernels_hub.md
+https://huggingface.co/docs/trl/v1.10.0/kernels_hub.md

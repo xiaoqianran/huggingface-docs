@@ -36,5 +36,5 @@ If these are use cases you need help with, please send us an email at **website 
 
 You can disable all discussions and Pull Requests. Once disabled, all community and contribution features won't be available anymore. This action can be reverted without losing any previous discussions or Pull Requests.
 
-### Blog Articles
-https://huggingface.co/docs/hub/blog-articles.md
+### Hardware
+https://huggingface.co/docs/hub/hardware.md

@@ -79,17 +79,18 @@ Team & Enterprise organization plans add advanced capabilities to organizations,
 
 ### Governance, auditing, compliance
 
-| Feature                                                                 | Free |    Team     | Enterprise  | Enterprise Plus |
-| ----------------------------------------------------------------------- | :--: | :---------: | :---------: | :-------------: |
-| RBAC                                                                    |  ✅  | ✅ Advanced | ✅ Advanced |   ✅ Advanced   |
-| [Audit logs](./audit-logs)                                              |  ❌  |     ✅      |     ✅      |       ✅        |
-| [Resource groups](./enterprise-advanced-security)                   |  ❌  |     ✅      |     ✅      |       ✅        |
-| [Tokens admin / management](./enterprise-tokens-management)         |  ❌  |     ✅      |     ✅      |       ✅        |
-| [Token revocation](./enterprise-tokens-management#revoking-via-api) |  ❌  |     ❌      |     ✅      |       ✅        |
-| [Download analytics](./download-analytics)                          |  ✅  |     ✅      |     ✅      |       ✅        |
-| [Content access / policy controls](./enterprise-network-security)   |  ❌  |     ❌      |     ❌      |       ✅        |
-| [Network access controls](./enterprise-network-security)            |  ❌  |     ❌      |     ❌      |       ✅        |
-| [Enforced authentication (advanced)](./enterprise-network-security) |  ❌  |     ❌      |     ❌      |       ✅        |
+| Feature                                                                                | Free |    Team     | Enterprise  | Enterprise Plus |
+|----------------------------------------------------------------------------------------| :--: | :---------: | :---------: | :-------------: |
+| RBAC                                                                                   |  ✅  | ✅ Advanced | ✅ Advanced |   ✅ Advanced   |
+| [Audit logs](./audit-logs)                                                             |  ❌  |     ✅      |     ✅      |       ✅        |
+| [Resource groups](./enterprise-advanced-security)                                      |  ❌  |     ✅      |     ✅      |       ✅        |
+| [Feature access per resource group](./security-resource-groups#granular-feature-access)|  ❌  |     ❌      |     ✅      |       ✅        |
+| [Tokens admin / management](./enterprise-tokens-management)                            |  ❌  |     ✅      |     ✅      |       ✅        |
+| [Token revocation](./enterprise-tokens-management#revoking-via-api)                    |  ❌  |     ❌      |     ✅      |       ✅        |
+| [Download analytics](./download-analytics)                                             |  ✅  |     ✅      |     ✅      |       ✅        |
+| [Content access / policy controls](./enterprise-network-security)                      |  ❌  |     ❌      |     ❌      |       ✅        |
+| [Network access controls](./enterprise-network-security)                               |  ❌  |     ❌      |     ❌      |       ✅        |
+| [Enforced authentication (advanced)](./enterprise-network-security)                    |  ❌  |     ❌      |     ❌      |       ✅        |
 
 ### User provisioning & admin
 
@@ -145,5 +146,5 @@ In the following sections we will document the following Team & Enterprise featu
 
 Finally, Team & Enterprise plans include vastly more [included public storage](./storage-limits), as well as 1TB of [private storage](./storage-limits) per seat in the subscription, i.e. if your organization has 40 members, then you have 40TB included storage for your private models and datasets.
 
-### Agent Libraries
-https://huggingface.co/docs/hub/agents-libraries.md
+### Embedding Atlas
+https://huggingface.co/docs/hub/datasets-embedding-atlas.md

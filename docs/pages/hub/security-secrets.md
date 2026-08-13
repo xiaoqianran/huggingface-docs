@@ -25,5 +25,5 @@ You can opt-out from those email notifications from [your settings](https://hugg
 
 If the leaked secret is a Hugging Face access token, you can invalidate it right away — including a token that is not yours — see [Revoking a leaked token](./security-tokens#revoking-a-leaked-token).
 
-### Download Analytics
-https://huggingface.co/docs/hub/download-analytics.md
+### Ingesting Datasets
+https://huggingface.co/docs/hub/datasets-ingesting.md

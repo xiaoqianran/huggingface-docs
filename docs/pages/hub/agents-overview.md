@@ -206,5 +206,5 @@ And that's it! Once the PR is merged, `huggingface_hub` traffic (including the `
 - [Skills](./agents-skills) - Pre-built capabilities for coding agents
 - [SDK](./agents-sdk) - Python and JavaScript libraries for building agents
 
-### Digital Object Identifier (DOI)
-https://huggingface.co/docs/hub/doi.md
+### Using fastai at Hugging Face
+https://huggingface.co/docs/hub/fastai.md

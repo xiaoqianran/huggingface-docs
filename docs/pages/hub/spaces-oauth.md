@@ -133,5 +133,5 @@ if (!oauthResult) {
 console.log(oauthResult);
 ```
 
-### Hugging Face MCP Server
-https://huggingface.co/docs/hub/agents-mcp.md
+### Appendix
+https://huggingface.co/docs/hub/model-card-appendix.md

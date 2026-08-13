@@ -4,5 +4,5 @@ Xet storage provides data deduplication over all chunks stored in Hugging Face. 
 
 More information and details on how deduplication is done in a privacy-preserving way are described in the [Xet Protocol Specification](https://huggingface.co/docs/xet/deduplication).
 
-### Backward Compatibility with LFS
-https://huggingface.co/docs/hub/xet/legacy-git-lfs.md
+### Deduplication
+https://huggingface.co/docs/hub/xet/deduplication.md

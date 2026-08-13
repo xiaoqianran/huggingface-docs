@@ -243,5 +243,5 @@ playground](https://labelstud.io/playground/) for trying out different
 annotation interfaces, and links to join the [Label Studio Slack
 Community](https://slack.labelstudio.heartex.com/?source=spaces).
 
-### Accessing Benchmark Leaderboard Data
-https://huggingface.co/docs/hub/leaderboard-data-guide.md
+### Spaces Overview
+https://huggingface.co/docs/hub/spaces-overview.md

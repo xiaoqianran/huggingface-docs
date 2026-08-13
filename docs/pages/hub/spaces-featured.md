@@ -12,5 +12,5 @@ Learn how to link a Space to a Model or Dataset here, and how to link it to a Pa
 
 Spaces of the Week are a curated weekly selection of standout Spaces chosen by the Hugging Face team.
 
-### ZenML on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-zenml.md
+### Advanced Security
+https://huggingface.co/docs/hub/enterprise-advanced-security.md

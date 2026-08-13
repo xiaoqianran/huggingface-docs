@@ -72,7 +72,7 @@ Here are some other factors to consider when choosing a programming language for
 
 KTO requires an [unpaired preference](dataset_formats#unpaired-preference) dataset. Alternatively, you can provide a *paired* preference dataset (also known simply as a *preference dataset*). In this case, the trainer will automatically convert it to an unpaired format by separating the chosen and rejected responses, assigning `label = True` to the chosen completions and `label = False` to the rejected ones.
 
-The [KTOTrainer](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOTrainer) is compatible with both [standard](dataset_formats#standard) and [conversational](dataset_formats#conversational) dataset formats. When provided with a conversational dataset, the trainer will automatically apply the chat template to the dataset.
+The [KTOTrainer](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOTrainer) is compatible with both [standard](dataset_formats#standard) and [conversational](dataset_formats#conversational) dataset formats. When provided with a conversational dataset, the trainer will automatically apply the chat template to the dataset.
 
 ```python
 # Standard format
@@ -95,7 +95,7 @@ This section breaks down how KTO works in practice, covering the key steps: **pr
 ### Preprocessing and tokenization
 
 During training, each example is expected to contain a prompt, a `completion`, and a boolean `label` indicating whether the completion is desirable (`True`) or undesirable (`False`). For more details on the expected formats, see [Dataset formats](dataset_formats).
-The [KTOTrainer](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOTrainer) tokenizes each input using the model's tokenizer.
+The [KTOTrainer](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOTrainer) tokenizes each input using the model's tokenizer.
 
 ### Computing the loss
 
@@ -149,7 +149,7 @@ While training and evaluating, we record the following metrics:
 
 ### Compatibility and constraints
 
-Some argument combinations are intentionally restricted in the current [KTOTrainer](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOTrainer) implementation:
+Some argument combinations are intentionally restricted in the current [KTOTrainer](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOTrainer) implementation:
 
 * With `use_liger_kernel=True`:
   * only `loss_type="kto"` is supported (not `"apo_zero_unpaired"`),
@@ -163,13 +163,13 @@ Some argument combinations are intentionally restricted in the current [KTOTrain
 
 ### Model initialization
 
-You can directly pass the kwargs of the `from_pretrained()` method to the [KTOConfig](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOConfig). For example, if you want to load a model in a different precision, analogous to
+You can directly pass the kwargs of the `from_pretrained()` method to the [KTOConfig](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOConfig). For example, if you want to load a model in a different precision, analogous to
 
 ```python
 model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2-0.5B-Instruct", dtype=torch.bfloat16)
 ```
 
-you can do so by passing the `model_init_kwargs={"dtype": torch.bfloat16}` argument to the [KTOConfig](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOConfig).
+you can do so by passing the `model_init_kwargs={"dtype": torch.bfloat16}` argument to the [KTOConfig](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOConfig).
 
 ```python
 from trl import KTOConfig
@@ -201,7 +201,7 @@ trainer = KTOTrainer(
 trainer.train()
 ```
 
-You can also continue training your `PeftModel`. For that, first load a `PeftModel` outside [KTOTrainer](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOTrainer) and pass it directly to the trainer without the `peft_config` argument being passed.
+You can also continue training your [PeftModel](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel). For that, first load a `PeftModel` outside [KTOTrainer](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOTrainer) and pass it directly to the trainer without the `peft_config` argument being passed.
 
 > [!TIP]
 > When training adapters, you typically use a higher learning rate than full fine-tuning since only new parameters are being learned.
@@ -212,7 +212,7 @@ Liger Kernel is a collection of Triton kernels for LLM training that boosts mult
 
 ## Tool Calling with KTO
 
-The [KTOTrainer](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOTrainer) fully supports fine-tuning models with _tool calling_ capabilities. In this case, each dataset example should include:
+The [KTOTrainer](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOTrainer) fully supports fine-tuning models with _tool calling_ capabilities. In this case, each dataset example should include:
 
 * The conversation messages (prompt and completion), including any tool calls (`tool_calls`) and tool responses (`tool` role messages)
 * The list of available tools in the `tools` column, typically provided as JSON schemas
@@ -221,7 +221,7 @@ For details on the expected dataset structure, see the [Dataset Format — Tool 
 
 ## Training Vision Language Models
 
-[KTOTrainer](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOTrainer) fully supports training Vision-Language Models (VLMs). To train a VLM, provide a dataset with either an `image` column (single image per sample) or an `images` column (list of images per sample). For more information on the expected dataset structure, see the [Dataset Format — Vision Dataset](dataset_formats#vision-dataset) section.
+[KTOTrainer](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOTrainer) fully supports training Vision-Language Models (VLMs). To train a VLM, provide a dataset with either an `image` column (single image per sample) or an `images` column (list of images per sample). For more information on the expected dataset structure, see the [Dataset Format — Vision Dataset](dataset_formats#vision-dataset) section.
 
 ```python
 from trl import KTOConfig, KTOTrainer
@@ -236,7 +236,7 @@ trainer.train()
 ```
 
 > [!TIP]
-> For VLMs, truncating may remove image tokens, leading to errors during training. To avoid this, set `max_length=None` in the [KTOConfig](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOConfig). This allows the model to process the full sequence length without truncating image tokens.
+> For VLMs, truncating may remove image tokens, leading to errors during training. To avoid this, set `max_length=None` in the [KTOConfig](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOConfig). This allows the model to process the full sequence length without truncating image tokens.
 >
 > ```python
 > KTOConfig(max_length=None, ...)
@@ -265,7 +265,7 @@ accelerate launch trl/scripts/kto.py \
 MOEs are the most efficient if the load is about equally distributed between experts.  
 To ensure that we train MOEs similarly during preference-tuning, it is beneficial to add the auxiliary loss from the load balancer to the final loss.
 
-This option is enabled by setting `output_router_logits=True` in the model config (e.g. [MixtralConfig](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/mixtral#transformers.MixtralConfig)).  
+This option is enabled by setting `output_router_logits=True` in the model config (e.g. [MixtralConfig](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/mixtral#transformers.MixtralConfig)).  
 To scale how much the auxiliary loss contributes to the total loss, use the hyperparameter `router_aux_loss_coef=...` (default: `0.001`) in the model config.
 
 ### Batch size recommendations
@@ -278,81 +278,48 @@ Each choice of `beta` has a maximum learning rate it can tolerate before learnin
 
 ### Imbalanced data
 
-The `desirable_weight` and `undesirable_weight` of the [KTOConfig](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOConfig) refer to the weights placed on the losses for desirable/positive and undesirable/negative examples.
+The `desirable_weight` and `undesirable_weight` of the [KTOConfig](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOConfig) refer to the weights placed on the losses for desirable/positive and undesirable/negative examples.
 By default, they are both 1. However, if you have more of one or the other, then you should upweight the less common type such that the ratio of (`desirable_weight`  \\(\times\\) number of positives) to (`undesirable_weight`  \\(\times\\) number of negatives) is in the range 1:1 to 4:3.
 
 ## KTOTrainer[[trl.KTOTrainer]]
 
-- **model** (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel) or `PeftModel`) --
-  Model to be trained. Can be either:
+#### trl.KTOTrainer[[trl.KTOTrainer]]
 
-  - A string, being the *model id* of a pretrained model hosted inside a model repo on huggingface.co, or a
-    path to a *directory* containing model weights saved using
-    [save_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `'./my_model_directory/'`. The model is loaded
-    using `<ModelArchitecture>.from_pretrained` (where `<ModelArchitecture>` is derived from the model
-    config) with the keyword arguments in `args.model_init_kwargs`. If `dtype` is not specified in
-    `args.model_init_kwargs`, it defaults to `float32`. This differs from
-    [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), where (since Transformers v5) the dtype is inferred
-    from the model config.
-  - A [PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel) object. Only causal language models are supported.
-  - A `PeftModel` object. Only causal language models are supported.
-- **ref_model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel), *optional*) --
-  Reference model used to compute the reference log probabilities.
+```python
+trl.KTOTrainer(model: str | PreTrainedModel | PeftModel, ref_model: transformers.modeling_utils.PreTrainedModel | None = None, args: trl.trainer.kto_config.KTOConfig | None = None, data_collator: collections.abc.Callable[[list[typing.Any]], dict[str, typing.Any]] | None = None, train_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | None = None, eval_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | datasets.dataset_dict.DatasetDict | datasets.dataset_dict.IterableDatasetDict | dict[str, datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset] | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.processing_utils.ProcessorMixin | None = None, compute_metrics: collections.abc.Callable[[transformers.trainer_utils.EvalPrediction], dict] | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple = (None, None), quantization_config: BitsAndBytesConfig | None = None, peft_config: PeftConfig | None = None)
+```
 
-  - If provided, this model is used directly as the reference policy.
-  - If `None`, the trainer will automatically use the initial policy corresponding to `model`, i.e. the model
-    state before KTO training starts.
-- **args** ([KTOConfig](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOConfig), *optional*) --
-  Configuration for this trainer. If `None`, a default configuration is used.
-- **data_collator** (`DataCollator`, *optional*) --
-  Function to use to form a batch from a list of elements of the processed `train_dataset` or `eval_dataset`.
-  Will default to `DataCollatorForUnpairedPreference` if the model is a language model
-  and `DataCollatorForVisionUnpairedPreference` if the model is a vision-language
-  model. Custom collators must truncate sequences before padding; the trainer does not apply post-collation
-  truncation.
-- **train_dataset** (`Dataset` or `IterableDataset`) --
-  Dataset to use for training. This trainer supports [unpaired preference](#unpaired-preference) type. The
-  format of the samples can be either:
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/trainer/kto_trainer.py#L463)
 
-  - [Standard](dataset_formats#standard): Each sample contains plain text.
-  - [Conversational](dataset_formats#conversational): Each sample contains structured messages (e.g., role
-    and content).
+**Parameters:**
 
-  When `train_dataset` is an `IterableDataset` (e.g. a streaming dataset), `max_steps` must be
-  set in the training arguments, since its length cannot be inferred and the total number of training steps
-  is required to bound the training loop and configure the learning rate scheduler.
-- **eval_dataset** (`Dataset`, `IterableDataset`, `DatasetDict`, `IterableDatasetDict` or `dict[str, Dataset | IterableDataset]`) --
-  Dataset to use for evaluation. It must meet the same requirements as `train_dataset`.
-- **processing_class** ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.14.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase) or [ProcessorMixin](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/processors#transformers.ProcessorMixin), *optional*) --
-  Processing class used to process the data. The padding side must be set to "left". If `None`, the
-  processing class is loaded from the model's name with [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoProcessor.from_pretrained). A
-  padding token, `tokenizer.pad_token`, must be set. If the processing class has not set a padding token,
-  `tokenizer.eos_token` will be used as the default.
-- **compute_metrics** (`Callable[[EvalPrediction], dict]`, *optional*) --
-  The function that will be used to compute metrics at evaluation. Must take a
-  [EvalPrediction](https://huggingface.co/docs/transformers/v5.14.1/en/internal/trainer_utils#transformers.EvalPrediction) and return a dictionary string to metric values. When passing
-  [SFTConfig](/docs/trl/v1.9.2/en/sft_trainer#trl.SFTConfig) with `batch_eval_metrics` set to `True`, your `compute_metrics` function must take a boolean
-  `compute_result` argument. This will be triggered after the last eval batch to signal that the function
-  needs to calculate and return the global summary statistics rather than accumulating the batch-level
-  statistics.
-- **callbacks** (list of [TrainerCallback](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/callback#transformers.TrainerCallback), *optional*) --
-  List of callbacks to customize the training loop. Will add those to the list of default callbacks detailed
-  in [here](https://huggingface.co/docs/transformers/main_classes/callback).
+model (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) or [PeftModel](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel)) : Model to be trained. Can be either:  - A string, being the *model id* of a pretrained model hosted inside a model repo on huggingface.co, or a path to a *directory* containing model weights saved using [save_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `'./my_model_directory/'`. The model is loaded using `<ModelArchitecture>.from_pretrained` (where `<ModelArchitecture>` is derived from the model config) with the keyword arguments in `args.model_init_kwargs`. If `dtype` is not specified in `args.model_init_kwargs`, it defaults to `float32`. This differs from [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), where (since Transformers v5) the dtype is inferred from the model config. - A [PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) object. Only causal language models are supported. - A [PeftModel](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel) object. Only causal language models are supported.
 
-  If you want to remove one of the default callbacks used, use the [remove_callback](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer.remove_callback)
-  method.
-- **optimizers** (`tuple[torch.optim.Optimizer | None, torch.optim.lr_scheduler.LambdaLR | None]`, *optional*, defaults to `(None, None)`) --
-  A tuple containing the optimizer and the scheduler to use. Will default to an instance of `AdamW` on your
-  model and a scheduler given by [get_linear_schedule_with_warmup](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) controlled by `args`.
-- **quantization_config** ([BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/quantization#transformers.BitsAndBytesConfig), *optional*) --
-  Quantization configuration used when loading the model from a model identifier. Combine with `peft_config`
-  for QLoRA training. Ignored if the model is already instantiated.
-- **peft_config** (`PeftConfig`, *optional*) --
-  PEFT configuration used to wrap the model. If `None`, the model is not wrapped.
+ref_model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel), *optional*) : Reference model used to compute the reference log probabilities.  - If provided, this model is used directly as the reference policy. - If `None`, the trainer will automatically use the initial policy corresponding to `model`, i.e. the model state before KTO training starts.
+
+args ([KTOConfig](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOConfig), *optional*) : Configuration for this trainer. If `None`, a default configuration is used.
+
+data_collator (`DataCollator`, *optional*) : Function to use to form a batch from a list of elements of the processed `train_dataset` or `eval_dataset`. Will default to `DataCollatorForUnpairedPreference` if the model is a language model and `DataCollatorForVisionUnpairedPreference` if the model is a vision-language model. Custom collators must truncate sequences before padding; the trainer does not apply post-collation truncation.
+
+train_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset) or [IterableDataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDataset)) : Dataset to use for training. This trainer supports [unpaired preference](#unpaired-preference) type. The format of the samples can be either:  - [Standard](dataset_formats#standard): Each sample contains plain text. - [Conversational](dataset_formats#conversational): Each sample contains structured messages (e.g., role and content).  When `train_dataset` is an [IterableDataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDataset) (e.g. a streaming dataset), `max_steps` must be set in the training arguments, since its length cannot be inferred and the total number of training steps is required to bound the training loop and configure the learning rate scheduler.
+
+eval_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset), [IterableDataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDataset), [DatasetDict](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.DatasetDict), [IterableDatasetDict](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDatasetDict) or `dict[str, Dataset | IterableDataset]`) : Dataset to use for evaluation. It must meet the same requirements as `train_dataset`.
+
+processing_class ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase) or [ProcessorMixin](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin), *optional*) : Processing class used to process the data. The padding side must be set to "left". If `None`, the processing class is loaded from the model's name with [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor.from_pretrained). A padding token, `tokenizer.pad_token`, must be set. If the processing class has not set a padding token, `tokenizer.eos_token` will be used as the default.
+
+compute_metrics (`Callable[[EvalPrediction], dict]`, *optional*) : The function that will be used to compute metrics at evaluation. Must take a [EvalPrediction](https://huggingface.co/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.EvalPrediction) and return a dictionary string to metric values. When passing [SFTConfig](/docs/trl/v1.10.0/en/sft_trainer#trl.SFTConfig) with `batch_eval_metrics` set to `True`, your `compute_metrics` function must take a boolean `compute_result` argument. This will be triggered after the last eval batch to signal that the function needs to calculate and return the global summary statistics rather than accumulating the batch-level statistics.
+
+callbacks (list of [TrainerCallback](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback), *optional*) : List of callbacks to customize the training loop. Will add those to the list of default callbacks detailed in [here](https://huggingface.co/docs/transformers/main_classes/callback).  If you want to remove one of the default callbacks used, use the [remove_callback](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.remove_callback) method.
+
+optimizers (`tuple[torch.optim.Optimizer | None, torch.optim.lr_scheduler.LambdaLR | None]`, *optional*, defaults to `(None, None)`) : A tuple containing the optimizer and the scheduler to use. Will default to an instance of `AdamW` on your model and a scheduler given by [get_linear_schedule_with_warmup](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) controlled by `args`.
+
+quantization_config ([BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.BitsAndBytesConfig), *optional*) : Quantization configuration used when loading the model from a model identifier. Combine with `peft_config` for QLoRA training. Ignored if the model is already instantiated.
+
+peft_config ([PeftConfig](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/config#peft.PeftConfig), *optional*) : PEFT configuration used to wrap the model. If `None`, the model is not wrapped.
 
 Trainer for Kahneman-Tversky Optimization (KTO) method. This algorithm was initially proposed in the paper [KTO:
 Model Alignment as Prospect Theoretic Optimization](https://huggingface.co/papers/2402.01306). This class is a
-wrapper around the [Trainer](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer) class and inherits all of its attributes and methods.
+wrapper around the [Trainer](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) class and inherits all of its attributes and methods.
 
 Example:
 
@@ -369,116 +336,129 @@ Example:
 >>> trainer.train()
 ```
 
-- **resume_from_checkpoint** (`str` or `bool`, *optional*) --
-  If a `str`, local path to a saved checkpoint as saved by a previous instance of `Trainer`. If a
-  `bool` and equals `True`, load the last checkpoint in *args.output_dir* as saved by a previous instance
-  of `Trainer`. If present, training will resume from the model/optimizer/scheduler states loaded here.
-- **trial** (`optuna.Trial` or `dict[str, Any]`, *optional*) --
-  The trial run or the hyperparameter dictionary for hyperparameter search.
-- **ignore_keys_for_eval** (`list[str]`, *optional*) --
-  A list of keys in the output of your model (if it is a dictionary) that should be ignored when
-  gathering predictions for evaluation during the training.`~trainer_utils.TrainOutput`Object containing the global step count, training loss, and metrics.
+#### train[[trl.KTOTrainer.train]]
+
+```python
+train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L1347)
+
+**Parameters:**
+
+resume_from_checkpoint (`str` or `bool`, *optional*) : If a `str`, local path to a saved checkpoint as saved by a previous instance of `Trainer`. If a `bool` and equals `True`, load the last checkpoint in *args.output_dir* as saved by a previous instance of `Trainer`. If present, training will resume from the model/optimizer/scheduler states loaded here.
+
+trial (`optuna.Trial` or `dict[str, Any]`, *optional*) : The trial run or the hyperparameter dictionary for hyperparameter search.
+
+ignore_keys_for_eval (`list[str]`, *optional*) : A list of keys in the output of your model (if it is a dictionary) that should be ignored when gathering predictions for evaluation during the training.
+
+**Returns:** `~trainer_utils.TrainOutput`
+
+Object containing the global step count, training loss, and metrics.
 
 Main training entry point.
+
+#### save_model[[trl.KTOTrainer.save_model]]
+
+```python
+save_model(output_dir: str | None = None, _internal_call: bool = False)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L3794)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
 Will only save from the main process.
 
-- **commit_message** (`str`, *optional*, defaults to `"End of training"`) --
-  Message to commit while pushing.
-- **blocking** (`bool`, *optional*, defaults to `True`) --
-  Whether the function should return only when the `git push` has finished.
-- **token** (`str`, *optional*, defaults to `None`) --
-  Token with write permission to overwrite Trainer's original args.
-- **revision** (`str`, *optional*) --
-  The git revision to commit from. Defaults to the head of the "main" branch.
-- **kwargs** (`dict[str, Any]`, *optional*) --
-  Additional keyword arguments passed along to `~Trainer.create_model_card`.The URL of the repository where the model was pushed if `blocking=False`, or a `Future` object tracking the
+#### push_to_hub[[trl.KTOTrainer.push_to_hub]]
+
+```python
+push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L4041)
+
+**Parameters:**
+
+commit_message (`str`, *optional*, defaults to `"End of training"`) : Message to commit while pushing.
+
+blocking (`bool`, *optional*, defaults to `True`) : Whether the function should return only when the `git push` has finished.
+
+token (`str`, *optional*, defaults to `None`) : Token with write permission to overwrite Trainer's original args.
+
+revision (`str`, *optional*) : The git revision to commit from. Defaults to the head of the "main" branch.
+
+kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to `~Trainer.create_model_card`.
+
+**Returns:**
+
+The URL of the repository where the model was pushed if `blocking=False`, or a `Future` object tracking the
 progress of the commit if `blocking=True`.
 
 Upload `self.model` and `self.processing_class` to the 🤗 model hub on the repo `self.args.hub_model_id`.
 
 ## KTOConfig[[trl.KTOConfig]]
 
-"}, {"name": "batch_eval_metrics", "val": ": bool = False"}, {"name": "save_only_model", "val": ": bool = False"}, {"name": "save_strategy", "val": ": transformers.trainer_utils.SaveStrategy | str = 'steps'"}, {"name": "save_steps", "val": ": float = 500"}, {"name": "save_on_each_node", "val": ": bool = False"}, {"name": "save_total_limit", "val": ": int | None = None"}, {"name": "enable_jit_checkpoint", "val": ": bool = False"}, {"name": "push_to_hub", "val": ": bool = False"}, {"name": "hub_token", "val": ": str | None = None"}, {"name": "hub_private_repo", "val": ": bool | None = None"}, {"name": "hub_model_id", "val": ": str | None = None"}, {"name": "hub_strategy", "val": ": transformers.trainer_utils.HubStrategy | str = 'every_save'"}, {"name": "hub_always_push", "val": ": bool = False"}, {"name": "hub_revision", "val": ": str | None = None"}, {"name": "load_best_model_at_end", "val": ": bool = False"}, {"name": "metric_for_best_model", "val": ": str | None = None"}, {"name": "greater_is_better", "val": ": bool | None = None"}, {"name": "ignore_data_skip", "val": ": bool = False"}, {"name": "restore_callback_states_from_checkpoint", "val": ": bool = False"}, {"name": "full_determinism", "val": ": bool = False"}, {"name": "seed", "val": ": int = 42"}, {"name": "data_seed", "val": ": int | None = None"}, {"name": "use_cpu", "val": ": bool = False"}, {"name": "accelerator_config", "val": ": dict | str | None = None"}, {"name": "parallelism_config", "val": ": accelerate.parallelism_config.ParallelismConfig | None = None"}, {"name": "dataloader_drop_last", "val": ": bool = False"}, {"name": "dataloader_num_workers", "val": ": int = 0"}, {"name": "dataloader_pin_memory", "val": ": bool = True"}, {"name": "dataloader_persistent_workers", "val": ": bool = False"}, {"name": "dataloader_prefetch_factor", "val": ": int | None = None"}, {"name": "remove_unused_columns", "val": ": bool = True"}, {"name": "label_names", "val": ": list[str] | None = None"}, {"name": "train_sampling_strategy", "val": ": str = 'sequential'"}, {"name": "length_column_name", "val": ": str = 'length'"}, {"name": "ddp_find_unused_parameters", "val": ": bool | None = None"}, {"name": "ddp_bucket_cap_mb", "val": ": int | None = None"}, {"name": "ddp_broadcast_buffers", "val": ": bool | None = None"}, {"name": "ddp_static_graph", "val": ": bool | None = None"}, {"name": "ddp_backend", "val": ": str | None = None"}, {"name": "ddp_timeout", "val": ": int = 1800"}, {"name": "fsdp", "val": ": str | None = None"}, {"name": "fsdp_config", "val": ": dict[str, typing.Any] | str | None = None"}, {"name": "deepspeed", "val": ": dict | str | None = None"}, {"name": "debug", "val": ": str | list[transformers.debug_utils.DebugOption] = ''"}, {"name": "skip_memory_metrics", "val": ": bool = True"}, {"name": "do_train", "val": ": bool = False"}, {"name": "do_eval", "val": ": bool = False"}, {"name": "do_predict", "val": ": bool = False"}, {"name": "resume_from_checkpoint", "val": ": str | None = None"}, {"name": "warmup_ratio", "val": ": float | None = None"}, {"name": "logging_dir", "val": ": str | None = None"}, {"name": "local_rank", "val": ": int = -1"}, {"name": "model_init_kwargs", "val": ": dict[str, typing.Any] | str | None = None"}, {"name": "trust_remote_code", "val": ": bool = False"}, {"name": "router_aux_loss_coef", "val": ": float = 0.001"}, {"name": "disable_dropout", "val": ": bool = True"}, {"name": "dataset_num_proc", "val": ": int | None = None"}, {"name": "max_length", "val": ": int | None = 1024"}, {"name": "pad_to_multiple_of", "val": ": int | None = None"}, {"name": "precompute_ref_log_probs", "val": ": bool = False"}, {"name": "precompute_ref_batch_size", "val": ": int | None = None"}, {"name": "loss_type", "val": ": str = 'kto'"}, {"name": "beta", "val": ": float = 0.1"}, {"name": "desirable_weight", "val": ": float = 1.0"}, {"name": "undesirable_weight", "val": ": float = 1.0"}, {"name": "activation_offloading", "val": ": bool = False"}, {"name": "sync_ref_model", "val": ": bool = False"}, {"name": "ref_model_mixup_alpha", "val": ": float = 0.6"}, {"name": "ref_model_sync_steps", "val": ": int = 512"}]}>
-Parameters that control the model
+#### trl.KTOConfig[[trl.KTOConfig]]
 
-- **model_init_kwargs** (`dict[str, Any]`, *optional*) --
-  Keyword arguments for [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained), used when the `model`
-  argument of the [KTOTrainer](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOTrainer) is provided as a string.
-- **trust_remote_code** (`bool`, *optional*, defaults to `False`) --
-  Whether to allow loading models and tokenizers that ship custom Python code from the Hub. Forwarded to
-  [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) and
-  [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoProcessor.from_pretrained).
-- **router_aux_loss_coef** (`float`, *optional*, defaults to `0.001`) --
-  Coefficient of the load-balancing auxiliary loss. Only has an effect when training a Mixture-of-Experts
-  (MoE) model; for other models it does nothing. The auxiliary loss is added to the training loss with this
-  weight. Set to `0.0` to disable it.
-- **disable_dropout** (`bool`, *optional*, defaults to `True`) --
-  Whether to disable dropout in the model and reference model.
+```python
+trl.KTOConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 1e-06, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 10, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = True, label_names: list[str] | None = None, train_sampling_strategy: str = 'sequential', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | str | None = None, trust_remote_code: bool = False, router_aux_loss_coef: float = 0.001, disable_dropout: bool = True, dataset_num_proc: int | None = None, max_length: int | None = 1024, pad_to_multiple_of: int | None = None, precompute_ref_log_probs: bool = False, precompute_ref_batch_size: int | None = None, loss_type: str = 'kto', beta: float = 0.1, desirable_weight: float = 1.0, undesirable_weight: float = 1.0, activation_offloading: bool = False, sync_ref_model: bool = False, ref_model_mixup_alpha: float = 0.6, ref_model_sync_steps: int = 512)
+```
 
-Parameters that control the data preprocessing
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/trainer/kto_config.py#L22)
 
-- **dataset_num_proc** (`int`, *optional*) --
-  Number of processes to use for processing the dataset.
-- **max_length** (`int` or `None`, *optional*, defaults to `1024`) --
-  Maximum length of the tokenized sequence. Sequences longer than `max_length` are truncated from the right.
-  If `None`, no truncation is applied.
-- **pad_to_multiple_of** (`int`, *optional*) --
-  If set, the sequences will be padded to a multiple of this value.
-- **precompute_ref_log_probs** (`bool`, *optional*, defaults to `False`) --
-  Whether to precompute the reference model log probabilities for the entire training dataset before
-  training. This allows to save memory during training, as the reference model does not need to be kept in
-  memory.
-- **precompute_ref_batch_size** (`int`, *optional*) --
-  Batch size to use when precomputing reference model log probabilities. This can be set higher than the
-  training batch size to speed up preprocessing. If `None`, defaults to `per_device_train_batch_size` for
-  training and `per_device_eval_batch_size` for evaluation.
+**Parameters that control the model:**
 
-Parameters that control the training
+model_init_kwargs (`dict[str, Any]`, *optional*) : Keyword arguments for [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained), used when the `model` argument of the [KTOTrainer](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOTrainer) is provided as a string.
 
-- **loss_type** (`str`, *optional*, defaults to `"kto"`) --
-  Type of loss to use. Possible values are:
+trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to allow loading models and tokenizers that ship custom Python code from the Hub. Forwarded to [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) and [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor.from_pretrained).
 
-  - `"kto"`: KTO loss from the [KTO](https://huggingface.co/papers/2402.01306) paper.
-  - `"apo_zero_unpaired"`: Unpaired variant of APO-zero loss from the
-    [APO](https://huggingface.co/papers/2408.06266) paper.
+router_aux_loss_coef (`float`, *optional*, defaults to `0.001`) : Coefficient of the load-balancing auxiliary loss. Only has an effect when training a Mixture-of-Experts (MoE) model; for other models it does nothing. The auxiliary loss is added to the training loss with this weight. Set to `0.0` to disable it.
 
-- **beta** (`float`, *optional*, defaults to `0.1`) --
-  Parameter controlling the deviation from the reference model. Higher β means less deviation from the
-  reference model.
-- **desirable_weight** (`float`, *optional*, defaults to `1.0`) --
-  Desirable losses are weighed by this factor to counter unequal number of desirable and undesirable pairs.
-- **undesirable_weight** (`float`, *optional*, defaults to `1.0`) --
-  Undesirable losses are weighed by this factor to counter unequal number of desirable and undesirable pairs.
-- **activation_offloading** (`bool`, *optional*, defaults to `False`) --
-  Whether to offload the activations to the CPU.
-- **sync_ref_model** (`bool`, *optional*, defaults to `False`) --
-  Whether to synchronize the reference model with the active model every `ref_model_sync_steps` steps, using
-  the `ref_model_mixup_alpha` parameter. This synchronization originates from the
-  [TR-DPO](https://huggingface.co/papers/2404.09656) paper. `sync_ref_model=True` is not yet compatible with
-  PEFT or `precompute_ref_log_probs=True`.
-- **ref_model_mixup_alpha** (`float`, *optional*, defaults to `0.6`) --
-  α parameter from the TR-DPO paper, which controls the mix between the current policy and the previous
-  reference policy during updates. The reference policy is updated according to the equation: `π_ref = α *
-  π_θ + (1 - α) * π_ref_prev`. To use this parameter, you must set `sync_ref_model=True`.
-- **ref_model_sync_steps** (`int`, *optional*, defaults to `512`) --
-  τ parameter from the TR-DPO paper, which determines how frequently the current policy is synchronized with
-  the reference policy. To use this parameter, you must set `sync_ref_model=True`.
+disable_dropout (`bool`, *optional*, defaults to `True`) : Whether to disable dropout in the model and reference model.
 
-Configuration class for the [KTOTrainer](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOTrainer).
+**Parameters that control the data preprocessing:**
+
+dataset_num_proc (`int`, *optional*) : Number of processes to use for processing the dataset.
+
+max_length (`int` or `None`, *optional*, defaults to `1024`) : Maximum length of the tokenized sequence. Sequences longer than `max_length` are truncated from the right. If `None`, no truncation is applied.
+
+pad_to_multiple_of (`int`, *optional*) : If set, the sequences will be padded to a multiple of this value.
+
+precompute_ref_log_probs (`bool`, *optional*, defaults to `False`) : Whether to precompute the reference model log probabilities for the entire training dataset before training. This allows to save memory during training, as the reference model does not need to be kept in memory.
+
+precompute_ref_batch_size (`int`, *optional*) : Batch size to use when precomputing reference model log probabilities. This can be set higher than the training batch size to speed up preprocessing. If `None`, defaults to `per_device_train_batch_size` for training and `per_device_eval_batch_size` for evaluation.
+
+**Parameters that control the training:**
+
+loss_type (`str`, *optional*, defaults to `"kto"`) : Type of loss to use. Possible values are:  - `"kto"`: KTO loss from the [KTO](https://huggingface.co/papers/2402.01306) paper. - `"apo_zero_unpaired"`: Unpaired variant of APO-zero loss from the [APO](https://huggingface.co/papers/2408.06266) paper. 
+
+beta (`float`, *optional*, defaults to `0.1`) : Parameter controlling the deviation from the reference model. Higher β means less deviation from the reference model.
+
+desirable_weight (`float`, *optional*, defaults to `1.0`) : Desirable losses are weighed by this factor to counter unequal number of desirable and undesirable pairs.
+
+undesirable_weight (`float`, *optional*, defaults to `1.0`) : Undesirable losses are weighed by this factor to counter unequal number of desirable and undesirable pairs.
+
+activation_offloading (`bool`, *optional*, defaults to `False`) : Whether to offload the activations to the CPU.
+
+sync_ref_model (`bool`, *optional*, defaults to `False`) : Whether to synchronize the reference model with the active model every `ref_model_sync_steps` steps, using the `ref_model_mixup_alpha` parameter. This synchronization originates from the [TR-DPO](https://huggingface.co/papers/2404.09656) paper. `sync_ref_model=True` is not yet compatible with PEFT or `precompute_ref_log_probs=True`.
+
+ref_model_mixup_alpha (`float`, *optional*, defaults to `0.6`) : α parameter from the TR-DPO paper, which controls the mix between the current policy and the previous reference policy during updates. The reference policy is updated according to the equation: `π_ref = α * π_θ + (1 - α) * π_ref_prev`. To use this parameter, you must set `sync_ref_model=True`.
+
+ref_model_sync_steps (`int`, *optional*, defaults to `512`) : τ parameter from the TR-DPO paper, which determines how frequently the current policy is synchronized with the reference policy. To use this parameter, you must set `sync_ref_model=True`.
+
+Configuration class for the [KTOTrainer](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOTrainer).
 
 This class includes only the parameters that are specific to KTO training. For a full list of training arguments,
-please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default values in this class may
-differ from those in [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments).
+please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default values in this class may
+differ from those in [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments).
 
-Using [HfArgumentParser](https://huggingface.co/docs/transformers/v5.14.1/en/internal/trainer_utils#transformers.HfArgumentParser) we can turn this class into
+Using [HfArgumentParser](https://huggingface.co/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.HfArgumentParser) we can turn this class into
 [argparse](https://docs.python.org/3/library/argparse#module-argparse) arguments that can be specified on the
 command line.
 
 > [!NOTE]
-> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments):
+> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments):
 > - `logging_steps`: Defaults to `10` instead of `500`.
 > - `gradient_checkpointing`: Defaults to `True` instead of `False`.
 > - `bf16`: Defaults to `True` if `fp16` is not set, instead of `False`.
@@ -489,4 +469,4 @@ command line.
 >   a fixed-order batch; any other strategy breaks that pairing.
 
 ### DPO Trainer
-https://huggingface.co/docs/trl/v1.9.2/dpo_trainer.md
+https://huggingface.co/docs/trl/v1.10.0/dpo_trainer.md

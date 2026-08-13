@@ -55,5 +55,5 @@ This command creates a repository with an automatically generated model card, an
 * Sentence Transformers [docs](https://www.sbert.net/).
 * Integration with Hub [announcement](https://huggingface.co/blog/sentence-transformers-in-the-hub).
 
-### Using Unity Sentis Models from Hugging Face
-https://huggingface.co/docs/hub/unity-sentis.md
+### Shiny on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-shiny.md

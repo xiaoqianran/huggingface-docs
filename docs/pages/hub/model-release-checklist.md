@@ -280,5 +280,5 @@ By following these guidelines and examples, you’ll make your model release on 
 
 We can’t wait to see what you share next! 🤗
 
-### Shiny on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-shiny.md
+### Academia Hub
+https://huggingface.co/docs/hub/academia-hub.md

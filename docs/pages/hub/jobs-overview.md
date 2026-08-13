@@ -42,5 +42,5 @@ With a schedule, you can run Jobs every X minutes, hours, days, weeks or months.
 
 With webhooks, Jobs can run whenever there is an update on a Hugging Face repository. For example you can configure webhooks to trigger for every model update under a given account, and retrieve the updated model from the webhook payload in the Job.
 
-### Uploading models
-https://huggingface.co/docs/hub/models-uploading.md
+### Using GPU Spaces
+https://huggingface.co/docs/hub/spaces-gpus.md

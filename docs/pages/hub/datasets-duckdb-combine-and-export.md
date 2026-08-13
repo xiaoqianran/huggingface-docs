@@ -93,5 +93,5 @@ Finally, let's push the resulting dataset to the Hub. You can use the Hub UI, th
 
 And that's it! You've successfully combined two datasets, exported the result, and uploaded it to the Hugging Face Hub.
 
-### Search
-https://huggingface.co/docs/hub/search.md
+### Billing
+https://huggingface.co/docs/hub/billing.md

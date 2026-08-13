@@ -238,5 +238,5 @@ const response = await fetch(
 console.log(await response.json());
 ```
 
-### Evaluating models with Inspect
-https://huggingface.co/docs/inference-providers/guides/evaluation-inspect-ai.md
+### Inference Providers
+https://huggingface.co/docs/inference-providers/index.md

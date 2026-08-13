@@ -149,5 +149,5 @@ During Docker buildtime, you don't have access to a GPU hardware. Therefore, you
 - [List of Docker Spaces examples](spaces-sdks-docker-examples)
 - [Spaces Examples](https://huggingface.co/SpacesExamples)
 
-### Getting Started with Repositories
-https://huggingface.co/docs/hub/repositories-getting-started.md
+### Tasks
+https://huggingface.co/docs/hub/models-tasks.md

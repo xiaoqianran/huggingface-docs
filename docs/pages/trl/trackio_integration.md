@@ -65,4 +65,4 @@ trainer.train()
 will give you a hosted dashboard at https://huggingface.co/spaces/trl-lib/trackio.
 
 ### Use model after training
-https://huggingface.co/docs/trl/v1.9.2/use_model.md
+https://huggingface.co/docs/trl/v1.10.0/use_model.md

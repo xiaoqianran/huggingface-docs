@@ -76,5 +76,5 @@ Once the task is in production, what could be more exciting than implementing so
 
 If you would be interested in contributing with a widget, you can look at the [implementation](https://github.com/huggingface/huggingface.js/tree/main/packages/widgets) of all the widgets.
 
-### Models
-https://huggingface.co/docs/hub/models.md
+### How to configure OIDC SSO with Google Workspace
+https://huggingface.co/docs/hub/security-sso-google-oidc.md

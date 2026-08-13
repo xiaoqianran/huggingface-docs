@@ -472,4 +472,4 @@ For troubleshooting guidance, see the [RapidFire AI Troubleshooting Guide](https
 Learn more about RapidFire AI in their [official repository](https://github.com/RapidFireAI/rapidfireai) and [documentation](https://oss-docs.rapidfire.ai).
 
 ### Harbor Integration for Training LLMs with Environments
-https://huggingface.co/docs/trl/v1.9.2/harbor.md
+https://huggingface.co/docs/trl/v1.10.0/harbor.md

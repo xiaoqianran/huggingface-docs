@@ -51,5 +51,5 @@ Manage scheduled jobs using `hf jobs scheduled ps`, `hf jobs scheduled inspect`,
 >>> hf jobs scheduled delete <scheduled-job-id>
 ```
 
-### Basic SSO
-https://huggingface.co/docs/hub/security-sso-basic.md
+### Using sample-factory at Hugging Face
+https://huggingface.co/docs/hub/sample-factory.md

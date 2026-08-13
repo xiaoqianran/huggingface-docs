@@ -58,4 +58,4 @@ model.save_pretrained("merged_adapters")
 Once you have the model loaded and either merged the adapters or keep them separately on top you can run generation as with a normal model outlined above.
 
 ### Scripts Utilities
-https://huggingface.co/docs/trl/v1.9.2/script_utils.md
+https://huggingface.co/docs/trl/v1.10.0/script_utils.md

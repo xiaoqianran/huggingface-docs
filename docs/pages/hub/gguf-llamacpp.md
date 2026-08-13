@@ -73,5 +73,5 @@ curl http://localhost:8080/v1/chat/completions \
 
 Replace `-hf` with any valid Hugging Face hub repo name - off you go! 🦙
 
-### Managed SSO
-https://huggingface.co/docs/hub/enterprise-advanced-sso.md
+### Signing commits with GPG
+https://huggingface.co/docs/hub/security-gpg.md

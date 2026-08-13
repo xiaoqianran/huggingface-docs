@@ -227,147 +227,176 @@ python -m openrlbenchmark.rlops_multi_metrics \
 
 ## PPOTrainer[[trl.experimental.ppo.PPOTrainer]]
 
-- **args** ([experimental.ppo.PPOConfig](/docs/trl/v1.9.2/en/ppo_trainer#trl.experimental.ppo.PPOConfig)) --
-  Training arguments.
-- **processing_class** ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.14.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), [BaseImageProcessor](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/image_processor#transformers.BaseImageProcessor), [FeatureExtractionMixin](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin) or [ProcessorMixin](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/processors#transformers.ProcessorMixin)) --
-  Class to process the data.
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) --
-  Model to be trained. This is the policy model.
-- **ref_model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel), *optional*) --
-  Reference model used to compute the KL divergence. If `None`, a copy of the policy model is created.
-- **reward_model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) --
-  Reward model used to compute the rewards.
-- **train_dataset** (`Dataset`) --
-  Dataset for training.
-- **value_model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) --
-  Value model used to predict the value of a state.
-- **data_collator** ([DataCollatorWithPadding](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/data_collator#transformers.DataCollatorWithPadding), *optional*) --
-  Data collator to batch and pad samples from the dataset. If `None`, a default data collator is created
-  using the `processing_class`.
-- **eval_dataset** (`Dataset` or `dict` of `Dataset`, *optional*) --
-  Dataset for evaluation.
-- **optimizers** (`tuple` of `torch.optim.Optimizer` and `torch.optim.lr_scheduler.LambdaLR`, *optional*, defaults to `(None, None)`) --
-  Tuple containing the optimizer and the learning rate scheduler to use for training. If `None`, the
-  optimizer and the learning rate scheduler are created using the
-  [create_optimizer_and_scheduler](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer.create_optimizer_and_scheduler) method.
-- **callbacks** (`list` of [TrainerCallback](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/callback#transformers.TrainerCallback), *optional*) --
-  Callbacks to use during training.
-- **peft_config** (`PeftConfig`, *optional*) --
-  PEFT configuration to use PEFT for training. If `None`, PEFT is not used. If provided, the policy `model`
-  will be wrapped with the specified PEFT adapter.
+#### trl.experimental.ppo.PPOTrainer[[trl.experimental.ppo.PPOTrainer]]
+
+```python
+trl.experimental.ppo.PPOTrainer(args: PPOConfig, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.image_processing_utils.BaseImageProcessor | transformers.feature_extraction_utils.FeatureExtractionMixin | transformers.processing_utils.ProcessorMixin, model: PreTrainedModel, ref_model: transformers.modeling_utils.PreTrainedModel | None, reward_model: PreTrainedModel, train_dataset: Dataset, value_model: PreTrainedModel, data_collator: transformers.data.data_collator.DataCollatorWithPadding | None = None, eval_dataset: datasets.arrow_dataset.Dataset | dict[str, datasets.arrow_dataset.Dataset] | None = None, optimizers: tuple = (None, None), callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, peft_config: PeftConfig | None = None)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/ppo_trainer.py#L297)
+
+**Parameters:**
+
+args ([experimental.ppo.PPOConfig](/docs/trl/v1.10.0/en/ppo_trainer#trl.experimental.ppo.PPOConfig)) : Training arguments.
+
+processing_class ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), [BaseImageProcessor](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor), [FeatureExtractionMixin](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin) or [ProcessorMixin](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin)) : Class to process the data.
+
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : Model to be trained. This is the policy model.
+
+ref_model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel), *optional*) : Reference model used to compute the KL divergence. If `None`, a copy of the policy model is created.
+
+reward_model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : Reward model used to compute the rewards.
+
+train_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset)) : Dataset for training.
+
+value_model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : Value model used to predict the value of a state.
+
+data_collator ([DataCollatorWithPadding](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DataCollatorWithPadding), *optional*) : Data collator to batch and pad samples from the dataset. If `None`, a default data collator is created using the `processing_class`.
+
+eval_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset) or `dict` of [Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset), *optional*) : Dataset for evaluation.
+
+optimizers (`tuple` of `torch.optim.Optimizer` and `torch.optim.lr_scheduler.LambdaLR`, *optional*, defaults to `(None, None)`) : Tuple containing the optimizer and the learning rate scheduler to use for training. If `None`, the optimizer and the learning rate scheduler are created using the [create_optimizer_and_scheduler](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.create_optimizer_and_scheduler) method.
+
+callbacks (`list` of [TrainerCallback](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback), *optional*) : Callbacks to use during training.
+
+peft_config ([PeftConfig](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/config#peft.PeftConfig), *optional*) : PEFT configuration to use PEFT for training. If `None`, PEFT is not used. If provided, the policy `model` will be wrapped with the specified PEFT adapter.
+
 Trainer for Proximal Policy Optimization (PPO).
 
 For details on PPO, see the paper: [Proximal Policy Optimization
 Algorithms](https://huggingface.co/papers/1707.06347).
 
-- **commit_message** (`str`, *optional*, defaults to `"End of training"`) --
-  Message to commit while pushing.
-- **blocking** (`bool`, *optional*, defaults to `True`) --
-  Whether the function should return only when the `git push` has finished.
-- **token** (`str`, *optional*, defaults to `None`) --
-  Token with write permission to overwrite Trainer's original args.
-- **revision** (`str`, *optional*) --
-  The git revision to commit from. Defaults to the head of the "main" branch.
-- **kwargs** (`dict[str, Any]`, *optional*) --
-  Additional keyword arguments passed along to `~Trainer.create_model_card`.The URL of the repository where the model was pushed if `blocking=False`, or a `Future` object tracking the
+#### train[[trl.experimental.ppo.PPOTrainer.train]]
+
+```python
+train()
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/ppo_trainer.py#L604)
+
+#### save_model[[trl.experimental.ppo.PPOTrainer.save_model]]
+
+```python
+save_model(output_dir: str | None = None, _internal_call: bool = False)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/ppo_trainer.py#L590)
+
+#### push_to_hub[[trl.experimental.ppo.PPOTrainer.push_to_hub]]
+
+```python
+push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L4041)
+
+**Parameters:**
+
+commit_message (`str`, *optional*, defaults to `"End of training"`) : Message to commit while pushing.
+
+blocking (`bool`, *optional*, defaults to `True`) : Whether the function should return only when the `git push` has finished.
+
+token (`str`, *optional*, defaults to `None`) : Token with write permission to overwrite Trainer's original args.
+
+revision (`str`, *optional*) : The git revision to commit from. Defaults to the head of the "main" branch.
+
+kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to `~Trainer.create_model_card`.
+
+**Returns:**
+
+The URL of the repository where the model was pushed if `blocking=False`, or a `Future` object tracking the
 progress of the commit if `blocking=True`.
 
 Upload `self.model` and `self.processing_class` to the 🤗 model hub on the repo `self.args.hub_model_id`.
 
 ## PPOConfig[[trl.experimental.ppo.PPOConfig]]
 
-"}, {"name": "batch_eval_metrics", "val": ": bool = False"}, {"name": "save_only_model", "val": ": bool = False"}, {"name": "save_strategy", "val": ": transformers.trainer_utils.SaveStrategy | str = 'steps'"}, {"name": "save_steps", "val": ": float = 500"}, {"name": "save_on_each_node", "val": ": bool = False"}, {"name": "save_total_limit", "val": ": int | None = None"}, {"name": "enable_jit_checkpoint", "val": ": bool = False"}, {"name": "push_to_hub", "val": ": bool = False"}, {"name": "hub_token", "val": ": str | None = None"}, {"name": "hub_private_repo", "val": ": bool | None = None"}, {"name": "hub_model_id", "val": ": str | None = None"}, {"name": "hub_strategy", "val": ": transformers.trainer_utils.HubStrategy | str = 'every_save'"}, {"name": "hub_always_push", "val": ": bool = False"}, {"name": "hub_revision", "val": ": str | None = None"}, {"name": "load_best_model_at_end", "val": ": bool = False"}, {"name": "metric_for_best_model", "val": ": str | None = None"}, {"name": "greater_is_better", "val": ": bool | None = None"}, {"name": "ignore_data_skip", "val": ": bool = False"}, {"name": "restore_callback_states_from_checkpoint", "val": ": bool = False"}, {"name": "full_determinism", "val": ": bool = False"}, {"name": "seed", "val": ": int = 42"}, {"name": "data_seed", "val": ": int | None = None"}, {"name": "use_cpu", "val": ": bool = False"}, {"name": "accelerator_config", "val": ": dict | str | None = None"}, {"name": "parallelism_config", "val": ": accelerate.parallelism_config.ParallelismConfig | None = None"}, {"name": "dataloader_drop_last", "val": ": bool = False"}, {"name": "dataloader_num_workers", "val": ": int = 0"}, {"name": "dataloader_pin_memory", "val": ": bool = True"}, {"name": "dataloader_persistent_workers", "val": ": bool = False"}, {"name": "dataloader_prefetch_factor", "val": ": int | None = None"}, {"name": "remove_unused_columns", "val": ": bool = True"}, {"name": "label_names", "val": ": list[str] | None = None"}, {"name": "train_sampling_strategy", "val": ": str = 'random'"}, {"name": "length_column_name", "val": ": str = 'length'"}, {"name": "ddp_find_unused_parameters", "val": ": bool | None = None"}, {"name": "ddp_bucket_cap_mb", "val": ": int | None = None"}, {"name": "ddp_broadcast_buffers", "val": ": bool | None = None"}, {"name": "ddp_static_graph", "val": ": bool | None = None"}, {"name": "ddp_backend", "val": ": str | None = None"}, {"name": "ddp_timeout", "val": ": int = 1800"}, {"name": "fsdp", "val": ": str | None = None"}, {"name": "fsdp_config", "val": ": dict[str, typing.Any] | str | None = None"}, {"name": "deepspeed", "val": ": dict | str | None = None"}, {"name": "debug", "val": ": str | list[transformers.debug_utils.DebugOption] = ''"}, {"name": "skip_memory_metrics", "val": ": bool = True"}, {"name": "do_train", "val": ": bool = False"}, {"name": "do_eval", "val": ": bool = False"}, {"name": "do_predict", "val": ": bool = False"}, {"name": "resume_from_checkpoint", "val": ": str | None = None"}, {"name": "warmup_ratio", "val": ": float | None = None"}, {"name": "logging_dir", "val": ": str | None = None"}, {"name": "local_rank", "val": ": int = -1"}, {"name": "dataset_num_proc", "val": ": int | None = None"}, {"name": "num_mini_batches", "val": ": int = 1"}, {"name": "total_episodes", "val": ": int | None = None"}, {"name": "local_rollout_forward_batch_size", "val": ": int = 64"}, {"name": "num_sample_generations", "val": ": int = 10"}, {"name": "response_length", "val": ": int = 53"}, {"name": "stop_token", "val": ": typing.Optional[typing.Literal['eos']] = None"}, {"name": "stop_token_id", "val": ": int | None = None"}, {"name": "temperature", "val": ": float = 0.7"}, {"name": "missing_eos_penalty", "val": ": float | None = None"}, {"name": "sft_model_path", "val": ": str = 'EleutherAI/pythia-160m'"}, {"name": "world_size", "val": ": int | None = None"}, {"name": "num_total_batches", "val": ": int | None = None"}, {"name": "micro_batch_size", "val": ": int | None = None"}, {"name": "local_batch_size", "val": ": int | None = None"}, {"name": "batch_size", "val": ": int | None = None"}, {"name": "local_mini_batch_size", "val": ": int | None = None"}, {"name": "mini_batch_size", "val": ": int | None = None"}, {"name": "reward_model_path", "val": ": str = 'EleutherAI/pythia-160m'"}, {"name": "model_adapter_name", "val": ": str | None = None"}, {"name": "ref_adapter_name", "val": ": str | None = None"}, {"name": "num_ppo_epochs", "val": ": int = 4"}, {"name": "whiten_rewards", "val": ": bool = False"}, {"name": "kl_coef", "val": ": float = 0.05"}, {"name": "kl_estimator", "val": ": typing.Literal['k1', 'k3'] = 'k1'"}, {"name": "cliprange", "val": ": float = 0.2"}, {"name": "vf_coef", "val": ": float = 0.1"}, {"name": "cliprange_value", "val": ": float = 0.2"}, {"name": "gamma", "val": ": float = 1.0"}, {"name": "lam", "val": ": float = 0.95"}, {"name": "ds3_gather_for_generation", "val": ": bool = True"}]}>
-- **dataset_num_proc** (`int`, *optional*) --
-  Number of processes to use for processing the dataset.
-- **num_mini_batches** (`int`, *optional*, defaults to `1`) --
-  Number of minibatches to split a batch into.
-- **total_episodes** (`int`, *optional*) --
-  Total number of episodes in the dataset.
-- **local_rollout_forward_batch_size** (`int`, *optional*, defaults to `64`) --
-  Per rank no grad forward pass in the rollout phase.
-- **num_sample_generations** (`int`, *optional*, defaults to `10`) --
-  Number of debugging samples generations (i.e., `generate_completions` calls) throughout training.
-- **response_length** (`int`, *optional*, defaults to `53`) --
-  Length of the response.
-- **stop_token** (`str`, *optional*) --
-  Specifies the stop token to use for text generation. This parameter is mutually exclusive with
-  `stop_token_id`.
+#### trl.experimental.ppo.PPOConfig[[trl.experimental.ppo.PPOConfig]]
 
-  - `None`: No stop token is applied, unless `stop_token_id` is specified.
-  - `'eos'`: Uses the tokenizer's `eos_token`.
+```python
+trl.experimental.ppo.PPOConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 3e-06, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 10, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = True, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, dataset_num_proc: int | None = None, num_mini_batches: int = 1, total_episodes: int | None = None, local_rollout_forward_batch_size: int = 64, num_sample_generations: int = 10, response_length: int = 53, stop_token: typing.Optional[typing.Literal['eos']] = None, stop_token_id: int | None = None, temperature: float = 0.7, missing_eos_penalty: float | None = None, sft_model_path: str = 'EleutherAI/pythia-160m', world_size: int | None = None, num_total_batches: int | None = None, micro_batch_size: int | None = None, local_batch_size: int | None = None, batch_size: int | None = None, local_mini_batch_size: int | None = None, mini_batch_size: int | None = None, reward_model_path: str = 'EleutherAI/pythia-160m', model_adapter_name: str | None = None, ref_adapter_name: str | None = None, num_ppo_epochs: int = 4, whiten_rewards: bool = False, kl_coef: float = 0.05, kl_estimator: typing.Literal['k1', 'k3'] = 'k1', cliprange: float = 0.2, vf_coef: float = 0.1, cliprange_value: float = 0.2, gamma: float = 1.0, lam: float = 0.95, ds3_gather_for_generation: bool = True)
+```
 
-- **stop_token_id** (`int`, *optional*) --
-  Specifies the ID of the stop token to use for text generation. If `None`, no stop token ID is applied,
-  unless `stop_token` is specified. This parameter is mutually exclusive with `stop_token`.
-- **temperature** (`float`, *optional*, defaults to `0.7`) --
-  Sampling temperature.
-- **missing_eos_penalty** (`float`, *optional*) --
-  Penalty applied to the score when the model fails to generate an EOS token. This is useful to encourage to
-  generate completions shorter than the maximum length (`max_new_tokens`). The penalty must be a positive
-  value.
-- **sft_model_path** (`str`, *optional*, defaults to `"EleutherAI/pythia-160m"`) --
-  Path to the SFT model.
-- **world_size** (`int`, *optional*) --
-  Number of processes (GPUs) to use for the training.
-- **num_total_batches** (`int`, *optional*) --
-  Number of total batches to train.
-- **micro_batch_size** (`int`, *optional*) --
-  Micro batch size across devices (HF's `per_device_train_batch_size` * `world_size`).
-- **local_batch_size** (`int`, *optional*) --
-  Batch size per GPU (HF's `per_device_train_batch_size` * `gradient_accumulation_steps`).
-- **batch_size** (`int`, *optional*) --
-  Batch size across devices (HF's `per_device_train_batch_size` * `world_size` *
-  `gradient_accumulation_steps`).
-- **local_mini_batch_size** (`int`, *optional*) --
-  Mini batch size per GPU.
-- **mini_batch_size** (`int`, *optional*) --
-  Mini batch size across GPUs.
-- **push_to_hub** (`bool`, *optional*, defaults to `False`) --
-  Whether to push the model to the Hub after training.
-- **reward_model_path** (`str`, *optional*, defaults to `"EleutherAI/pythia-160m"`) --
-  Path to the reward model.
-- **model_adapter_name** (`str`, *optional*) --
-  Name of the train target PEFT adapter, when using LoRA with multiple adapters.
-- **ref_adapter_name** (`str`, *optional*) --
-  Name of the reference PEFT adapter, when using LoRA with multiple adapters.
-- **num_ppo_epochs** (`int`, *optional*, defaults to `4`) --
-  Number of epochs to train.
-- **whiten_rewards** (`bool`, *optional*, defaults to `False`) --
-  Whether to whiten the rewards.
-- **kl_coef** (`float`, *optional*, defaults to `0.05`) --
-  KL coefficient.
-- **kl_estimator** (`Literal["k1", "k3"]`, *optional*, defaults to `"k1"`) --
-  Which estimator for KL-Divergence to use from [Approximating KL
-  Divergence](http://joschu.net/blog/kl-approx.html). Defaults to "k1", a straightforward, unbiased
-  estimator. Can be set to "k3", an unbiased estimator with lower variance which "appears to be a strictly
-  better estimator". Cannot be set to "k2", as it is used for logging purposes.
-- **cliprange** (`float`, *optional*, defaults to `0.2`) --
-  Clip range.
-- **vf_coef** (`float`, *optional*, defaults to `0.1`) --
-  Value function coefficient.
-- **cliprange_value** (`float`, *optional*, defaults to `0.2`) --
-  Clip range for the value function.
-- **gamma** (`float`, *optional*, defaults to `1.0`) --
-  Discount factor.
-- **lam** (`float`, *optional*, defaults to `0.95`) --
-  Lambda value for GAE.
-- **ds3_gather_for_generation** (`bool`, *optional*, defaults to `True`) --
-  This setting applies to DeepSpeed ZeRO-3. If enabled, the policy model weights are gathered for generation,
-  improving generation speed. However, disabling this option allows training models that exceed the VRAM
-  capacity of a single GPU, albeit at the cost of slower generation.
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/ppo_config.py#L22)
 
-Configuration class for the [experimental.ppo.PPOTrainer](/docs/trl/v1.9.2/en/ppo_trainer#trl.experimental.ppo.PPOTrainer).
+**Parameters:**
+
+dataset_num_proc (`int`, *optional*) : Number of processes to use for processing the dataset.
+
+num_mini_batches (`int`, *optional*, defaults to `1`) : Number of minibatches to split a batch into.
+
+total_episodes (`int`, *optional*) : Total number of episodes in the dataset.
+
+local_rollout_forward_batch_size (`int`, *optional*, defaults to `64`) : Per rank no grad forward pass in the rollout phase.
+
+num_sample_generations (`int`, *optional*, defaults to `10`) : Number of debugging samples generations (i.e., `generate_completions` calls) throughout training.
+
+response_length (`int`, *optional*, defaults to `53`) : Length of the response.
+
+stop_token (`str`, *optional*) : Specifies the stop token to use for text generation. This parameter is mutually exclusive with `stop_token_id`.  - `None`: No stop token is applied, unless `stop_token_id` is specified. - `'eos'`: Uses the tokenizer's `eos_token`. 
+
+stop_token_id (`int`, *optional*) : Specifies the ID of the stop token to use for text generation. If `None`, no stop token ID is applied, unless `stop_token` is specified. This parameter is mutually exclusive with `stop_token`.
+
+temperature (`float`, *optional*, defaults to `0.7`) : Sampling temperature.
+
+missing_eos_penalty (`float`, *optional*) : Penalty applied to the score when the model fails to generate an EOS token. This is useful to encourage to generate completions shorter than the maximum length (`max_new_tokens`). The penalty must be a positive value.
+
+sft_model_path (`str`, *optional*, defaults to `"EleutherAI/pythia-160m"`) : Path to the SFT model.
+
+world_size (`int`, *optional*) : Number of processes (GPUs) to use for the training.
+
+num_total_batches (`int`, *optional*) : Number of total batches to train.
+
+micro_batch_size (`int`, *optional*) : Micro batch size across devices (HF's `per_device_train_batch_size` * `world_size`).
+
+local_batch_size (`int`, *optional*) : Batch size per GPU (HF's `per_device_train_batch_size` * `gradient_accumulation_steps`).
+
+batch_size (`int`, *optional*) : Batch size across devices (HF's `per_device_train_batch_size` * `world_size` * `gradient_accumulation_steps`).
+
+local_mini_batch_size (`int`, *optional*) : Mini batch size per GPU.
+
+mini_batch_size (`int`, *optional*) : Mini batch size across GPUs.
+
+push_to_hub (`bool`, *optional*, defaults to `False`) : Whether to push the model to the Hub after training.
+
+reward_model_path (`str`, *optional*, defaults to `"EleutherAI/pythia-160m"`) : Path to the reward model.
+
+model_adapter_name (`str`, *optional*) : Name of the train target PEFT adapter, when using LoRA with multiple adapters.
+
+ref_adapter_name (`str`, *optional*) : Name of the reference PEFT adapter, when using LoRA with multiple adapters.
+
+num_ppo_epochs (`int`, *optional*, defaults to `4`) : Number of epochs to train.
+
+whiten_rewards (`bool`, *optional*, defaults to `False`) : Whether to whiten the rewards.
+
+kl_coef (`float`, *optional*, defaults to `0.05`) : KL coefficient.
+
+kl_estimator (`Literal["k1", "k3"]`, *optional*, defaults to `"k1"`) : Which estimator for KL-Divergence to use from [Approximating KL Divergence](http://joschu.net/blog/kl-approx.html). Defaults to "k1", a straightforward, unbiased estimator. Can be set to "k3", an unbiased estimator with lower variance which "appears to be a strictly better estimator". Cannot be set to "k2", as it is used for logging purposes.
+
+cliprange (`float`, *optional*, defaults to `0.2`) : Clip range.
+
+vf_coef (`float`, *optional*, defaults to `0.1`) : Value function coefficient.
+
+cliprange_value (`float`, *optional*, defaults to `0.2`) : Clip range for the value function.
+
+gamma (`float`, *optional*, defaults to `1.0`) : Discount factor.
+
+lam (`float`, *optional*, defaults to `0.95`) : Lambda value for GAE.
+
+ds3_gather_for_generation (`bool`, *optional*, defaults to `True`) : This setting applies to DeepSpeed ZeRO-3. If enabled, the policy model weights are gathered for generation, improving generation speed. However, disabling this option allows training models that exceed the VRAM capacity of a single GPU, albeit at the cost of slower generation.
+
+Configuration class for the [experimental.ppo.PPOTrainer](/docs/trl/v1.10.0/en/ppo_trainer#trl.experimental.ppo.PPOTrainer).
 
 This class includes only the parameters that are specific to PPO training. For a full list of training arguments,
-please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default values in this class may
-differ from those in [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments).
+please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default values in this class may
+differ from those in [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments).
 
-Using [HfArgumentParser](https://huggingface.co/docs/transformers/v5.14.1/en/internal/trainer_utils#transformers.HfArgumentParser) we can turn this class into
+Using [HfArgumentParser](https://huggingface.co/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.HfArgumentParser) we can turn this class into
 [argparse](https://docs.python.org/3/library/argparse#module-argparse) arguments that can be specified on the
 command line.
 
 > [!NOTE]
-> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments):
+> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments):
 > - `logging_steps`: Defaults to `10` instead of `500`.
 > - `gradient_checkpointing`: Defaults to `True` instead of `False`.
 > - `bf16`: Defaults to `True` if `fp16` is not set, instead of `False`.
@@ -375,74 +404,147 @@ command line.
 
 ## PreTrainedModelWrapper[[trl.experimental.ppo.PreTrainedModelWrapper]]
 
-- **pretrained_model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model to be wrapped.
-- **parent_class** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) --
-  The parent class of the model to be wrapped.
-- **supported_args** (`list`) --
-  The list of arguments that are supported by the wrapper class.
+#### trl.experimental.ppo.PreTrainedModelWrapper[[trl.experimental.ppo.PreTrainedModelWrapper]]
 
-Wrapper for a [PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel) implemented as a standard PyTorch `torch.nn.Module`.
+```python
+trl.experimental.ppo.PreTrainedModelWrapper(pretrained_model = None, score_module = None, supports_rm_adapter = False, rm_adapter_name = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L52)
+
+**Parameters:**
+
+pretrained_model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to be wrapped.
+
+parent_class ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The parent class of the model to be wrapped.
+
+supported_args (`list`) : The list of arguments that are supported by the wrapper class.
+
+Wrapper for a [PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) implemented as a standard PyTorch `torch.nn.Module`.
 
 This class provides a compatibility layer that preserves the key attributes and methods of the original
-[PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel), while exposing a uniform interface consistent with PyTorch modules. It enables
+[PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel), while exposing a uniform interface consistent with PyTorch modules. It enables
 seamless integration of pretrained Transformer models into custom training, evaluation, or inference workflows.
+
+#### add_and_load_reward_modeling_adapter[[trl.experimental.ppo.PreTrainedModelWrapper.add_and_load_reward_modeling_adapter]]
+
+```python
+add_and_load_reward_modeling_adapter(pretrained_model, adapter_model_id, adapter_name = 'reward_model_adapter', token = None)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L438)
 
 Add and load a reward modeling adapter. This method can only be used if the model is a `PeftModel` and if you
 have initialized the model with the `reward_modeling_adapter_id` argument, pointing to the id of the reward
 modeling adapter. The latest needs also to contain the score head in order to produce the reward.
 
+#### compute_reward_score[[trl.experimental.ppo.PreTrainedModelWrapper.compute_reward_score]]
+
+```python
+compute_reward_score(input_ids, attention_mask = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L563)
+
 Computes the reward score for a given input. The method has first to enable the adapter and then compute the
 reward score. After that the model disables the reward modeling adapter and enables the default ppo adapter
 again.
 
-- **pretrained_model_name_or_path** (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) --
-  The path to the pretrained model or its name.
-- ***model_args** (`list`, *optional*) --
-  Additional positional arguments passed along to the underlying model's `from_pretrained` method.
-- ****kwargs** (`dict`, *optional*) --
-  Additional keyword arguments passed along to the underlying model's `from_pretrained` method. We also
-  pre-process the kwargs to extract the arguments that are specific to the
-  [PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel) class and the arguments that are specific to trl models. The kwargs
-  also support `prepare_model_for_kbit_training` arguments from `peft` library.
+#### from_pretrained[[trl.experimental.ppo.PreTrainedModelWrapper.from_pretrained]]
+
+```python
+from_pretrained(pretrained_model_name_or_path, *model_args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L106)
+
+**Parameters:**
+
+pretrained_model_name_or_path (`str` or [PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The path to the pretrained model or its name.
+
+- ***model_args** (`list`, *optional*) : Additional positional arguments passed along to the underlying model's `from_pretrained` method.
+
+- ****kwargs** (`dict`, *optional*) : Additional keyword arguments passed along to the underlying model's `from_pretrained` method. We also pre-process the kwargs to extract the arguments that are specific to the [PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) class and the arguments that are specific to trl models. The kwargs also support `prepare_model_for_kbit_training` arguments from `peft` library.
 
 Instantiates a new model from a pretrained model from `transformers`. The pretrained model is loaded using the
-`from_pretrained` method of the [PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel) class. The arguments that are specific to the
-[PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel) class are passed along this method and filtered out from the `kwargs`
+`from_pretrained` method of the [PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) class. The arguments that are specific to the
+[PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) class are passed along this method and filtered out from the `kwargs`
 argument.
+
+#### post_init[[trl.experimental.ppo.PreTrainedModelWrapper.post_init]]
+
+```python
+post_init(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L556)
 
 Post initialization method. This method is called after the model is instantiated and loaded from a checkpoint.
 It can be used to perform additional operations such as loading the state_dict.
 
-- ***args** (`list`, *optional*) --
-  Positional arguments passed along to the underlying model's `push_to_hub` method.
-- ****kwargs** (`dict`, *optional*) --
-  Keyword arguments passed along to the underlying model's `push_to_hub` method.
+#### push_to_hub[[trl.experimental.ppo.PreTrainedModelWrapper.push_to_hub]]
+
+```python
+push_to_hub(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L509)
+
+**Parameters:**
+
+- ***args** (`list`, *optional*) : Positional arguments passed along to the underlying model's `push_to_hub` method.
+
+- ****kwargs** (`dict`, *optional*) : Keyword arguments passed along to the underlying model's `push_to_hub` method.
 
 Push the pretrained model to the hub. This method is a wrapper around
-[push_to_hub](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.push_to_hub). Please refer to the documentation of
-[push_to_hub](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.push_to_hub) for more information.
+[push_to_hub](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.push_to_hub). Please refer to the documentation of
+[push_to_hub](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.push_to_hub) for more information.
 
-- ***args** (`list`, *optional*) --
-  Positional arguments passed along to the underlying model's `save_pretrained` method.
-- ****kwargs** (`dict`, *optional*) --
-  Keyword arguments passed along to the underlying model's `save_pretrained` method.
+#### save_pretrained[[trl.experimental.ppo.PreTrainedModelWrapper.save_pretrained]]
+
+```python
+save_pretrained(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L523)
+
+**Parameters:**
+
+- ***args** (`list`, *optional*) : Positional arguments passed along to the underlying model's `save_pretrained` method.
+
+- ****kwargs** (`dict`, *optional*) : Keyword arguments passed along to the underlying model's `save_pretrained` method.
 
 Save the pretrained model to a directory. This method is a wrapper around
-[save_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained). Please refer to the documentation of
-[save_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) for more information.
+[save_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained). Please refer to the documentation of
+[save_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) for more information.
+
+#### state_dict[[trl.experimental.ppo.PreTrainedModelWrapper.state_dict]]
+
+```python
+state_dict(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L550)
 
 Return the state_dict of the pretrained model.
 
 ## AutoModelForCausalLMWithValueHead[[trl.experimental.ppo.AutoModelForCausalLMWithValueHead]]
 
+#### trl.experimental.ppo.AutoModelForCausalLMWithValueHead[[trl.experimental.ppo.AutoModelForCausalLMWithValueHead]]
+
+```python
+trl.experimental.ppo.AutoModelForCausalLMWithValueHead(pretrained_model, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L647)
+
 An autoregressive model with a value head in addition to the language model head. This class inherits from
-[experimental.ppo.PreTrainedModelWrapper](/docs/trl/v1.9.2/en/ppo_trainer#trl.experimental.ppo.PreTrainedModelWrapper) and wraps a [PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel) class. The wrapper class
+[experimental.ppo.PreTrainedModelWrapper](/docs/trl/v1.10.0/en/ppo_trainer#trl.experimental.ppo.PreTrainedModelWrapper) and wraps a [PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) class. The wrapper class
 supports classic functions such as `from_pretrained`, `push_to_hub` and `generate`. To call a method of the wrapped
 model, simply manipulate the `pretrained_model` attribute of this class.
 
 Class attributes:
-- **transformers_parent_class** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) -- The parent class of the wrapped model.
+- **transformers_parent_class** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) -- The parent class of the wrapped model.
   This
   should be set to `transformers.AutoModelForCausalLM` for this class.
 - **supported_args** (`tuple`) -- A tuple of strings that are used to identify the arguments that are supported
@@ -457,41 +559,73 @@ Class attributes:
       default strategy.
     - **"normal"** -- Initializes the weights of the `ValueHead` with a normal distribution.
 
-- **pretrained_model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model to wrap. It should be a causal language model such as GPT2. or any model mapped inside the
-  `AutoModelForCausalLM` class.
-- **kwargs** (`dict`, `optional`) --
-  Additional keyword arguments, that are passed to the `ValueHead` class.
+#### __init__[[trl.experimental.ppo.AutoModelForCausalLMWithValueHead.__init__]]
+
+```python
+__init__(pretrained_model, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L678)
+
+**Parameters:**
+
+pretrained_model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to wrap. It should be a causal language model such as GPT2. or any model mapped inside the `AutoModelForCausalLM` class.
+
+kwargs (`dict`, `optional`) : Additional keyword arguments, that are passed to the `ValueHead` class.
 
 Initializes the model.
 
-- **input_ids** (*torch.LongTensor* of shape *(batch_size, sequence_length)*) --
-  Indices of input sequence tokens in the vocabulary.
-- **past_key_values** (*tuple(tuple(torch.FloatTensor))*, *optional*) --
-  Contains pre-computed hidden-states (key and values in the attention blocks) as computed by the model
-  (see *past_key_values* input) to speed up sequential decoding.
-- **attention_mask** (*torch.FloatTensor* of shape *(batch_size, sequence_length)*, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
-- **return_past_key_values** (bool) -- A flag indicating if the computed hidden-states should be returned.
-- **kwargs** (*dict*, *optional*) --
-  Additional keyword arguments, that are passed to the wrapped model.
+#### forward[[trl.experimental.ppo.AutoModelForCausalLMWithValueHead.forward]]
+
+```python
+forward(input_ids = None, past_key_values = None, attention_mask = None, return_past_key_values = False, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L716)
+
+**Parameters:**
+
+input_ids (*torch.LongTensor* of shape *(batch_size, sequence_length)*) : Indices of input sequence tokens in the vocabulary.
+
+past_key_values (*tuple(tuple(torch.FloatTensor))*, *optional*) : Contains pre-computed hidden-states (key and values in the attention blocks) as computed by the model (see *past_key_values* input) to speed up sequential decoding.
+
+attention_mask (*torch.FloatTensor* of shape *(batch_size, sequence_length)*, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`: - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.
+
+return_past_key_values (bool) : A flag indicating if the computed hidden-states should be returned.
+
+kwargs (*dict*, *optional*) : Additional keyword arguments, that are passed to the wrapped model.
 
 Applies a forward pass to the wrapped model and returns the logits of the value head.
 
-- ***args** (`list`, *optional*) --
-  Positional arguments passed to the `generate` method of the wrapped model.
-- ****kwargs** (`dict`, *optional*) --
-  Keyword arguments passed to the `generate` method of the wrapped model.
+#### generate[[trl.experimental.ppo.AutoModelForCausalLMWithValueHead.generate]]
+
+```python
+generate(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L771)
+
+**Parameters:**
+
+- ***args** (`list`, *optional*) : Positional arguments passed to the `generate` method of the wrapped model.
+
+- ****kwargs** (`dict`, *optional*) : Keyword arguments passed to the `generate` method of the wrapped model.
 
 A simple wrapper around the `generate` method of the wrapped model. Please refer to the
 [`generate`](https://huggingface.co/docs/transformers/internal/generation_utils) method of the wrapped model
 for more information about the supported arguments.
 
-- ****kwargs** (`dict`, `optional`) --
-  Additional keyword arguments, that are passed to the `ValueHead` class. These arguments can contain
-  the `v_head_init_strategy` argument as well as the `v_head_initializer_range` argument.
+#### _init_weights[[trl.experimental.ppo.AutoModelForCausalLMWithValueHead._init_weights]]
+
+```python
+_init_weights(**kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L694)
+
+**Parameters:**
+
+- ****kwargs** (`dict`, `optional`) : Additional keyword arguments, that are passed to the `ValueHead` class. These arguments can contain the `v_head_init_strategy` argument as well as the `v_head_initializer_range` argument.
 
 Initializes the weights of the value head. The default initialization strategy is random. Users can pass a
 different initialization strategy by passing the `v_head_init_strategy` argument when calling
@@ -500,20 +634,60 @@ different initialization strategy by passing the `v_head_init_strategy` argument
 
 ## AutoModelForSeq2SeqLMWithValueHead[[trl.experimental.ppo.AutoModelForSeq2SeqLMWithValueHead]]
 
-- **pretrained_model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model to wrap. It should be a causal language model such as GPT2. or any model mapped inside the
-  [AutoModelForSeq2SeqLM](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModelForSeq2SeqLM) class.
-- **kwargs** --
-  Additional keyword arguments passed along to the `ValueHead` class.
+#### trl.experimental.ppo.AutoModelForSeq2SeqLMWithValueHead[[trl.experimental.ppo.AutoModelForSeq2SeqLMWithValueHead]]
+
+```python
+trl.experimental.ppo.AutoModelForSeq2SeqLMWithValueHead(pretrained_model, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L851)
+
+**Parameters:**
+
+pretrained_model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to wrap. It should be a causal language model such as GPT2. or any model mapped inside the [AutoModelForSeq2SeqLM](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForSeq2SeqLM) class.
+
+kwargs : Additional keyword arguments passed along to the `ValueHead` class.
 
 A seq2seq model with a value head in addition to the language model head. This class inherits from
-[experimental.ppo.PreTrainedModelWrapper](/docs/trl/v1.9.2/en/ppo_trainer#trl.experimental.ppo.PreTrainedModelWrapper) and wraps a [PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel) class. The wrapper class
+[experimental.ppo.PreTrainedModelWrapper](/docs/trl/v1.10.0/en/ppo_trainer#trl.experimental.ppo.PreTrainedModelWrapper) and wraps a [PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) class. The wrapper class
 supports classic functions such as `from_pretrained` and `push_to_hub` and also provides some additional
 functionalities such as `generate`.
 
+#### __init__[[trl.experimental.ppo.AutoModelForSeq2SeqLMWithValueHead.__init__]]
+
+```python
+__init__(pretrained_model, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L874)
+
+#### forward[[trl.experimental.ppo.AutoModelForSeq2SeqLMWithValueHead.forward]]
+
+```python
+forward(input_ids = None, past_key_values = None, attention_mask = None, return_past_key_values = False, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L982)
+
+#### generate[[trl.experimental.ppo.AutoModelForSeq2SeqLMWithValueHead.generate]]
+
+```python
+generate(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L1016)
+
 We call `generate` on the wrapped model.
+
+#### _init_weights[[trl.experimental.ppo.AutoModelForSeq2SeqLMWithValueHead._init_weights]]
+
+```python
+_init_weights(**kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/ppo/modeling_value_head.py#L968)
 
 We initialize the weights of the value head.
 
 ### TPO Trainer
-https://huggingface.co/docs/trl/v1.9.2/tpo_trainer.md
+https://huggingface.co/docs/trl/v1.10.0/tpo_trainer.md

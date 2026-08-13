@@ -25,5 +25,5 @@ There are two ways to block a user from a discussion comment:
 > [!NOTE]
 > You must have a confirmed email address on your account to block users.
 
-### Managing Spaces with Github Actions
-https://huggingface.co/docs/hub/spaces-github-actions.md
+### Gated datasets
+https://huggingface.co/docs/hub/datasets-gated.md

@@ -33,4 +33,4 @@ pip install -e ".[dev]"
 ```
 
 ### RapidFire AI Integration
-https://huggingface.co/docs/trl/v1.9.2/rapidfire_integration.md
+https://huggingface.co/docs/trl/v1.10.0/rapidfire_integration.md

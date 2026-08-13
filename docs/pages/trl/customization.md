@@ -3,11 +3,11 @@
 TRL is designed with modularity in mind so that users are able to efficiently customize the training loop for their needs. Below are examples on how you can apply and test different techniques.
 
 > [!NOTE]
-> Although these examples use the [DPOTrainer](/docs/trl/v1.9.2/en/bema_for_reference_model#trl.DPOTrainer), these customization methods apply to most (if not all) trainers in TRL.
+> Although these examples use the [DPOTrainer](/docs/trl/v1.10.0/en/bema_for_reference_model#trl.DPOTrainer), these customization methods apply to most (if not all) trainers in TRL.
 
 ## Use different optimizers and schedulers
 
-By default, the [DPOTrainer](/docs/trl/v1.9.2/en/bema_for_reference_model#trl.DPOTrainer) creates a `torch.optim.AdamW` optimizer. You can create and define a different optimizer and pass it to [DPOTrainer](/docs/trl/v1.9.2/en/bema_for_reference_model#trl.DPOTrainer) as follows:
+By default, the [DPOTrainer](/docs/trl/v1.10.0/en/bema_for_reference_model#trl.DPOTrainer) creates a `torch.optim.AdamW` optimizer. You can create and define a different optimizer and pass it to [DPOTrainer](/docs/trl/v1.10.0/en/bema_for_reference_model#trl.DPOTrainer) as follows:
 
 ```python
 from datasets import load_dataset
@@ -110,4 +110,4 @@ training_args = DPOConfig(
 ```
 
 ### SSD
-https://huggingface.co/docs/trl/v1.9.2/ssd_trainer.md
+https://huggingface.co/docs/trl/v1.10.0/ssd_trainer.md

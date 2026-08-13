@@ -74,5 +74,5 @@ tags:
 - argilla
 ```
 
-### Use AI Models Locally
-https://huggingface.co/docs/hub/local-apps.md
+### Spaces as API endpoints
+https://huggingface.co/docs/hub/spaces-api-endpoints.md

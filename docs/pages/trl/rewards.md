@@ -1,20 +1,26 @@
 # Reward Functions
 
-This module contains some useful reward functions, primarily intended for use with the [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer) and [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer).
+This module contains some useful reward functions, primarily intended for use with the [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) and [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer).
 
 ## accuracy_reward[[trl.rewards.accuracy_reward]]
 
-- **completions** (`list[list[dict[str, str]]]`) --
-  List of completions to be evaluated. Each completion must be a list of one message, i.e. a dictionary
-  containing the key `"content"` with the value being the text of the completion.
-- **solution** (`list[str]`) --
-  List of the raw-text solutions to the questions/problems/prompts.
-- **log_extra** (`callable`, *optional*) --
-  Callable to log extra columns to the completions table, provided automatically by the trainer. Defaults to
-  `None` to allow calling the function directly outside of a trainer (e.g., for testing).
-- ****kwargs** --
-  Additional keyword arguments. This function does not use them, but they are required in the function
-  signature to ensure compatibility with trainers like [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer).
+#### trl.rewards.accuracy_reward[[trl.rewards.accuracy_reward]]
+
+```python
+trl.rewards.accuracy_reward(completions: list, solution: list, log_extra: collections.abc.Callable[[str, list], None] | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/rewards/accuracy_rewards.py#L28)
+
+**Parameters:**
+
+completions (`list[list[dict[str, str]]]`) : List of completions to be evaluated. Each completion must be a list of one message, i.e. a dictionary containing the key `"content"` with the value being the text of the completion.
+
+solution (`list[str]`) : List of the raw-text solutions to the questions/problems/prompts.
+
+log_extra (`callable`, *optional*) : Callable to log extra columns to the completions table, provided automatically by the trainer. Defaults to `None` to allow calling the function directly outside of a trainer (e.g., for testing).
+
+- ****kwargs** : Additional keyword arguments. This function does not use them, but they are required in the function signature to ensure compatibility with trainers like [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer).
 
 Reward function that checks if the completion matches the ground truth.
 - If both gold and prediction are parseable → use math verification.
@@ -35,20 +41,25 @@ Example:
 
 ## reasoning_accuracy_reward[[trl.rewards.reasoning_accuracy_reward]]
 
-- **completions** (`list[list[dict[str, str]]]`) --
-  List of completions to be evaluated. Each completion must be a list of one message, i.e. a dictionary
-  containing the key `"content"` with the value being the text of the completion.
-- **solution** (`list[str]`) --
-  List of the raw-text solutions to the questions/problems/prompts.
-- **reasoning_delimiters** (`list[str]]`, *optional*) --
-  List of strings indicating where the reasoning content ends. The final answer is assumed to be after the
-  last occurrence of any of these delimiters. If `None`, defaults to `["</think>"]`.
-- **log_extra** (`callable`, *optional*) --
-  Callable to log extra columns to the completions table, provided automatically by the trainer. Defaults to
-  `None` to allow calling the function directly outside of a trainer (e.g., for testing).
-- ****kwargs** --
-  Additional keyword arguments. This function does not use them, but they are required in the function
-  signature to ensure compatibility with trainers like [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer).
+#### trl.rewards.reasoning_accuracy_reward[[trl.rewards.reasoning_accuracy_reward]]
+
+```python
+trl.rewards.reasoning_accuracy_reward(completions: list, solution: list, reasoning_delimiters: list[str] | None = None, log_extra: collections.abc.Callable[[str, list], None] | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/rewards/accuracy_rewards.py#L223)
+
+**Parameters:**
+
+completions (`list[list[dict[str, str]]]`) : List of completions to be evaluated. Each completion must be a list of one message, i.e. a dictionary containing the key `"content"` with the value being the text of the completion.
+
+solution (`list[str]`) : List of the raw-text solutions to the questions/problems/prompts.
+
+reasoning_delimiters (`list[str]]`, *optional*) : List of strings indicating where the reasoning content ends. The final answer is assumed to be after the last occurrence of any of these delimiters. If `None`, defaults to `["</think>"]`.
+
+log_extra (`callable`, *optional*) : Callable to log extra columns to the completions table, provided automatically by the trainer. Defaults to `None` to allow calling the function directly outside of a trainer (e.g., for testing).
+
+- ****kwargs** : Additional keyword arguments. This function does not use them, but they are required in the function signature to ensure compatibility with trainers like [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer).
 
 Reward function that removes the reasoning content and checks if the final answer matches the ground truth.
 - If both gold and prediction are parseable → use math verification.
@@ -86,23 +97,36 @@ Example:
 
 ## get_cosine_scaled_reward[[trl.rewards.get_cosine_scaled_reward]]
 
-- **max_len** (`int`) --
-  Maximum completion length (in tokens) used to normalize the cosine schedule, $L_{\max}$.
-- **min_value_wrong** (`float`, *optional*, defaults to `-1.0`) --
-  Reward of a wrong completion at the shortest length.
-- **max_value_wrong** (`float`, *optional*, defaults to `-0.5`) --
-  Reward of a wrong completion at the longest length.
-- **min_value_correct** (`float`, *optional*, defaults to `0.5`) --
-  Reward of a correct completion at the longest length.
-- **max_value_correct** (`float`, *optional*, defaults to `1.0`) --
-  Reward of a correct completion at the shortest length.`Callable`A reward function that takes completions, their solutions and token ids, and returns a list of rewards
+#### trl.rewards.get_cosine_scaled_reward[[trl.rewards.get_cosine_scaled_reward]]
+
+```python
+trl.rewards.get_cosine_scaled_reward(max_len: int, min_value_wrong: float = -1.0, max_value_wrong: float = -0.5, min_value_correct: float = 0.5, max_value_correct: float = 1.0)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/rewards/accuracy_rewards.py#L118)
+
+**Parameters:**
+
+max_len (`int`) : Maximum completion length (in tokens) used to normalize the cosine schedule, $L_{\max}$.
+
+min_value_wrong (`float`, *optional*, defaults to `-1.0`) : Reward of a wrong completion at the shortest length.
+
+max_value_wrong (`float`, *optional*, defaults to `-0.5`) : Reward of a wrong completion at the longest length.
+
+min_value_correct (`float`, *optional*, defaults to `0.5`) : Reward of a correct completion at the longest length.
+
+max_value_correct (`float`, *optional*, defaults to `1.0`) : Reward of a correct completion at the shortest length.
+
+**Returns:** `Callable`
+
+A reward function that takes completions, their solutions and token ids, and returns a list of rewards
 (`None` for examples with an unparseable gold solution).
 
 Reward function that scales a correctness reward by the completion length following a cosine schedule, to favor
 concise reasoning. Reference: Appendix C.1 of the "Demystifying Long Chain-of-Thought Reasoning" paper
 (https://huggingface.co/papers/2502.03373).
 
-Correctness is determined by math verification (as in [accuracy_reward()](/docs/trl/v1.9.2/en/rewards#trl.rewards.accuracy_reward)), and the length is the number
+Correctness is determined by math verification (as in [accuracy_reward()](/docs/trl/v1.10.0/en/rewards#trl.rewards.accuracy_reward)), and the length is the number
 of completion tokens. The reward interpolates along a cosine schedule between a short-completion and a
 long-completion bound:
 
@@ -114,7 +138,7 @@ For a **correct** completion, $(v_{\min}, v_{\max}) = (\texttt{min\_value\_corre
 so a shorter completion is rewarded more. For a **wrong** completion, the bounds are swapped to
 $(v_{\min}, v_{\max}) = (\texttt{max\_value\_wrong}, \texttt{min\_value\_wrong})$, so a shorter completion is
 penalized more (a longer wrong completion is penalized less, preserving exploration). When the gold solution is not
-parseable, the example is skipped (reward `None`), as in [accuracy_reward()](/docs/trl/v1.9.2/en/rewards#trl.rewards.accuracy_reward).
+parseable, the example is skipped (reward `None`), as in [accuracy_reward()](/docs/trl/v1.10.0/en/rewards#trl.rewards.accuracy_reward).
 
 Example:
 ```python
@@ -130,12 +154,23 @@ Example:
 
 ## think_format_reward[[trl.rewards.think_format_reward]]
 
-- **completions** (`list[list[dict[str, str]]]`) --
-  List of completions to be evaluated. Each completion must be a list of one message, i.e. a dictionary
-  containing the key `"content"` with the value being the text of the completion.
-- ****kwargs** --
-  Additional keyword arguments. This function does not use them, but they are required in the function
-  signature to ensure compatibility with trainers like [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer).`list[float]`A list of rewards, where each reward is 1.0 if the completion matches the expected format, otherwise 0.0.
+#### trl.rewards.think_format_reward[[trl.rewards.think_format_reward]]
+
+```python
+trl.rewards.think_format_reward(completions: list, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/rewards/format_rewards.py#L18)
+
+**Parameters:**
+
+completions (`list[list[dict[str, str]]]`) : List of completions to be evaluated. Each completion must be a list of one message, i.e. a dictionary containing the key `"content"` with the value being the text of the completion.
+
+- ****kwargs** : Additional keyword arguments. This function does not use them, but they are required in the function signature to ensure compatibility with trainers like [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer).
+
+**Returns:** `list[float]`
+
+A list of rewards, where each reward is 1.0 if the completion matches the expected format, otherwise 0.0.
 
 Reward function that checks if the reasoning process is enclosed within `"<think>"` and `"</think>"` tags. The
 function returns a reward of 1.0 if the format is correct, otherwise 0.0.
@@ -154,10 +189,23 @@ Example:
 
 ## get_repetition_penalty_reward[[trl.rewards.get_repetition_penalty_reward]]
 
-- **ngram_size** (`int`, *optional*, defaults to `3`) --
-  Size of the token n-grams to consider.
-- **max_penalty** (`float`, *optional*, defaults to `-1.0`) --
-  Most negative penalty, applied to a fully repetitive completion. Must be non-positive.`Callable`A reward function that takes a list of completion token ids and returns a list of penalties (each in
+#### trl.rewards.get_repetition_penalty_reward[[trl.rewards.get_repetition_penalty_reward]]
+
+```python
+trl.rewards.get_repetition_penalty_reward(ngram_size: int = 3, max_penalty: float = -1.0)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/rewards/other_rewards.py#L18)
+
+**Parameters:**
+
+ngram_size (`int`, *optional*, defaults to `3`) : Size of the token n-grams to consider.
+
+max_penalty (`float`, *optional*, defaults to `-1.0`) : Most negative penalty, applied to a fully repetitive completion. Must be non-positive.
+
+**Returns:** `Callable`
+
+A reward function that takes a list of completion token ids and returns a list of penalties (each in
 `[max_penalty, 0.0]`).
 
 Reward function that penalizes repeated n-grams in a completion, used to discourage degenerate, repetitive text
@@ -187,10 +235,19 @@ Example:
 
 ## get_soft_overlong_punishment[[trl.rewards.get_soft_overlong_punishment]]
 
-- **max_completion_len** (`int`) --
-  Maximum length of the completion,  \( L_{\max} \).
-- **soft_punish_cache** (`int`) --
-  Minimum length of the completion,  \( L_{\text{cache}} \). If set to `0`, no minimum length is applied.
+#### trl.rewards.get_soft_overlong_punishment[[trl.rewards.get_soft_overlong_punishment]]
+
+```python
+trl.rewards.get_soft_overlong_punishment(max_completion_len: int, soft_punish_cache: int)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/rewards/other_rewards.py#L83)
+
+**Parameters:**
+
+max_completion_len (`int`) : Maximum length of the completion,  \( L_{\max} \).
+
+soft_punish_cache (`int`) : Minimum length of the completion,  \( L_{\text{cache}} \). If set to `0`, no minimum length is applied.
 
 Reward function that penalizes overlong completions. It is used to penalize overlong completions, but not to reward
 shorter completions. Reference: Eq. (13) from the DAPO paper (https://huggingface.co/papers/2503.14476)
@@ -214,4 +271,4 @@ Example:
 ```
 
 ### Online DPO Trainer
-https://huggingface.co/docs/trl/v1.9.2/online_dpo_trainer.md
+https://huggingface.co/docs/trl/v1.10.0/online_dpo_trainer.md

@@ -66,5 +66,5 @@ You need to define four parameters:
 * ML-Agents [documentation](https://github.com/Unity-Technologies/ml-agents/blob/develop/docs/Hugging-Face-Integration.md)
 * Official Unity ML-Agents Spaces [demos](https://huggingface.co/unity)
 
-### Organizations, Security, and the Hub API
-https://huggingface.co/docs/hub/other.md
+### Downloading datasets
+https://huggingface.co/docs/hub/datasets-downloading.md

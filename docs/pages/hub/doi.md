@@ -24,5 +24,5 @@ DOIs make finding information about a model or dataset easier and sharing them w
 
 - [Introducing DOI: the Digital Object Identifier to Datasets and Models](https://huggingface.co/blog/introducing-doi)
 
-### The Model Hub
-https://huggingface.co/docs/hub/models-the-hub.md
+### Manual Configuration
+https://huggingface.co/docs/hub/datasets-manual-configuration.md

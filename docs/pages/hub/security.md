@@ -22,5 +22,5 @@ For any other security questions, please feel free to send us an email at securi
 - [Third-party scanner: Protect AI](./security-protectai)
 - [Third-party scanner: JFrog](./security-jfrog)
 
-### Reference
-https://huggingface.co/docs/hub/jobs-reference.md
+### Video Dataset
+https://huggingface.co/docs/hub/datasets-video.md

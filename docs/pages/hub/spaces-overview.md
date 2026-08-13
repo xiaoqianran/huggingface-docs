@@ -160,5 +160,5 @@ models:
 - reach-vb/wav2vec2-large-xls-r-1B-common_voice7-lt-ft
 ```
 
-### Datasets
-https://huggingface.co/docs/hub/datasets.md
+### Distilabel
+https://huggingface.co/docs/hub/datasets-distilabel.md

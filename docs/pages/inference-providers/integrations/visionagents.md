@@ -100,6 +100,3 @@ print(response.text)
 - [Vision Agents Documentation](https://visionagents.ai/)
 - [Vision Agents Guides](https://visionagents.ai/guides/video-processors)
 - [GitHub repo](https://github.com/GetStream/Vision-Agents)
-
-### Codex
-https://huggingface.co/docs/inference-providers/integrations/codex.md

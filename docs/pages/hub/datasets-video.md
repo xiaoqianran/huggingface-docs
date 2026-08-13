@@ -191,5 +191,5 @@ train-0000/
 
 Note that for user convenience and to enable the [Dataset Viewer](./data-studio), every dataset hosted in the Hub is automatically converted to Parquet format up to 5GB. Since videos can be quite large, the URLs to the videos are stored in the converted Parquet data without the video bytes themselves. Read more about it in the [Parquet format](./data-studio#access-the-parquet-files) documentation.
 
-### Using MLX at Hugging Face
-https://huggingface.co/docs/hub/mlx.md
+### S3 Compatibility
+https://huggingface.co/docs/hub/storage-buckets-s3.md

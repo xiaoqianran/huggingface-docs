@@ -105,5 +105,5 @@ The job — and its billing — stops when you cancel it or when its timeout is 
 > [!NOTE]
 > Exposed ports require `huggingface_hub` >= 1.19.0 and are billed on top of the job's hardware price — see [Jobs pricing](./jobs-pricing).
 
-### Storage Buckets: Security & Compliance
-https://huggingface.co/docs/hub/storage-buckets-security.md
+### Annotated Model Card Template
+https://huggingface.co/docs/hub/model-card-annotated.md

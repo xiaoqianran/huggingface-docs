@@ -114,5 +114,5 @@ Allowlist the following hostnames (all over HTTPS / port 443):
 > security policy allows it, allowlist the `hf.co` and `huggingface.co` suffixes (all
 > subdomains) so your rules don't break when a specific endpoint changes.
 
-### THE LANDSCAPE OF ML DOCUMENTATION TOOLS
-https://huggingface.co/docs/hub/model-card-landscape-analysis.md
+### Storage limits
+https://huggingface.co/docs/hub/storage-limits.md

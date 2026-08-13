@@ -38,5 +38,5 @@ The webhook payload contains multiple fields, here are a few useful ones:
 
 You can find more information on webhooks in the [`huggingface_hub` Webhooks documentation](https://huggingface.co/docs/huggingface_hub/en/guides/webhooks).
 
-### How to configure OIDC SSO with Okta
-https://huggingface.co/docs/hub/security-sso-okta-oidc.md
+### Model Cards
+https://huggingface.co/docs/hub/model-cards.md

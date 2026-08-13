@@ -37,5 +37,5 @@ Here is an example of a Space using custom environment variables and oauth enabl
 
 * [Static Variables](https://huggingface.co/spaces/huggingfacejs/static-variables)
 
-### Datasets Overview
-https://huggingface.co/docs/hub/datasets-overview.md
+### Hugging Face Hub documentation
+https://huggingface.co/docs/hub/index.md

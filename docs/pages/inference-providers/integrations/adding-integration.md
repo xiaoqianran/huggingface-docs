@@ -46,5 +46,5 @@ Step-by-step setup instructions with code examples.
 - [HF Integration Guide](link-to-your-guide)
 ```
 
-### 🤗 Use Hugging Face Inference Providers with GitHub Copilot Chat in VS Code
-https://huggingface.co/docs/inference-providers/integrations/vscode.md
+### Codex
+https://huggingface.co/docs/inference-providers/integrations/codex.md

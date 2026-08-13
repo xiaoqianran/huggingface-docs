@@ -61,5 +61,5 @@ If the user turned off the **Publicly Visible** toggle, `hardwareItems` is omitt
 - [Use AI Models Locally](./local-apps) — run models with your favorite local app.
 - [Local Agents with llama.cpp](./agents-local) — build a coding agent on your own hardware.
 
-### PyArrow
-https://huggingface.co/docs/hub/datasets-pyarrow.md
+### Webhooks
+https://huggingface.co/docs/hub/webhooks.md

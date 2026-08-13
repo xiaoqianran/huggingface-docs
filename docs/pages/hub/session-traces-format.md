@@ -60,5 +60,5 @@ Upload the resulting `.jsonl` to a [Dataset](https://huggingface.co/datasets) or
 
 If you'd rather not adopt the shape above, you can emit **Pi's session format** ([session-format.md](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/session-format.md)), which the Hub already supports. In that case, add a `harness: "..."` field to Pi's session-header line as well, so the Hub can attribute the trace to your harness.
 
-### Using ML-Agents at Hugging Face
-https://huggingface.co/docs/hub/ml-agents.md
+### Inference Providers
+https://huggingface.co/docs/hub/models-inference.md

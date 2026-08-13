@@ -64,13 +64,13 @@ The best programming language depends on individual preferences and familiarity 
 
 ## Expected dataset type
 
-XPO requires a [prompt-only dataset](dataset_formats#prompt-only). The [experimental.xpo.XPOTrainer](/docs/trl/v1.9.2/en/xpo_trainer#trl.experimental.xpo.XPOTrainer) supports both [conversational](dataset_formats#conversational) and [standard](dataset_formats#standard) dataset format. When provided with a conversational dataset, the trainer will automatically apply the chat template to the dataset.
+XPO requires a [prompt-only dataset](dataset_formats#prompt-only). The [experimental.xpo.XPOTrainer](/docs/trl/v1.10.0/en/xpo_trainer#trl.experimental.xpo.XPOTrainer) supports both [conversational](dataset_formats#conversational) and [standard](dataset_formats#standard) dataset format. When provided with a conversational dataset, the trainer will automatically apply the chat template to the dataset.
 
 ## Usage tips
 
 ### Encourage EOS token generation
 
-When using a reward model, we may want the model to generate completions within a given length. During training, the model will generate completions up to the maximum length specified in the `max_new_tokens` argument of [experimental.xpo.XPOConfig](/docs/trl/v1.9.2/en/xpo_trainer#trl.experimental.xpo.XPOConfig). If you want to penalize the model for not generating an EOS token before reaching the maximum length, you can use the `missing_eos_penalty` argument of [experimental.xpo.XPOConfig](/docs/trl/v1.9.2/en/xpo_trainer#trl.experimental.xpo.XPOConfig):
+When using a reward model, we may want the model to generate completions within a given length. During training, the model will generate completions up to the maximum length specified in the `max_new_tokens` argument of [experimental.xpo.XPOConfig](/docs/trl/v1.10.0/en/xpo_trainer#trl.experimental.xpo.XPOConfig). If you want to penalize the model for not generating an EOS token before reaching the maximum length, you can use the `missing_eos_penalty` argument of [experimental.xpo.XPOConfig](/docs/trl/v1.10.0/en/xpo_trainer#trl.experimental.xpo.XPOConfig):
 
 ```python
 training_args = XPOConfig(..., max_new_tokens=128, missing_eos_penalty=1.0)
@@ -81,7 +81,7 @@ training_args = XPOConfig(..., max_new_tokens=128, missing_eos_penalty=1.0)
 
 ### Logging Completions
 
-To better understand your model's behavior during training, you can log sample completions periodically using the [LogCompletionsCallback](/docs/trl/v1.9.2/en/callbacks#trl.LogCompletionsCallback).
+To better understand your model's behavior during training, you can log sample completions periodically using the [LogCompletionsCallback](/docs/trl/v1.10.0/en/callbacks#trl.LogCompletionsCallback).
 
 ```python
 trainer = XPOTrainer(..., eval_dataset=eval_dataset)
@@ -129,98 +129,131 @@ While training and evaluating, we record the following metrics:
 * `logps/rejected`: The mean log probabilities of the rejected completions.
 * `val/model_contain_eos_token`: The amount of times the model's output contains the eos token.
 * `val/ref_contain_eos_token`: The amount of times the reference's output contains the eos token.
-* `alpha`: The weight of the XPO loss term. Typically fixed, but can be made dynamic by passing a list to [experimental.xpo.XPOConfig](/docs/trl/v1.9.2/en/xpo_trainer#trl.experimental.xpo.XPOConfig).
-* `beta`: The parameter that controls the weight of the loss term representing the deviation from the reference model. Typically fixed, but can be made dynamic by passing a list to [experimental.xpo.XPOConfig](/docs/trl/v1.9.2/en/xpo_trainer#trl.experimental.xpo.XPOConfig).
+* `alpha`: The weight of the XPO loss term. Typically fixed, but can be made dynamic by passing a list to [experimental.xpo.XPOConfig](/docs/trl/v1.10.0/en/xpo_trainer#trl.experimental.xpo.XPOConfig).
+* `beta`: The parameter that controls the weight of the loss term representing the deviation from the reference model. Typically fixed, but can be made dynamic by passing a list to [experimental.xpo.XPOConfig](/docs/trl/v1.10.0/en/xpo_trainer#trl.experimental.xpo.XPOConfig).
 
 ## XPOTrainer[[trl.experimental.xpo.XPOTrainer]]
 
-- **model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model to train, preferably an `AutoModelForCausalLM`.
-- **ref_model** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) --
-  Hugging Face transformer model with a casual language modelling head. Used for implicit reward computation
-  and loss. If no reference model is provided, the trainer will create a reference model with the same
-  architecture as the model to be optimized.
-- **reward_funcs** ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model#transformers.PreTrainedModel)) --
-  The reward model to score completions with, preferably an
-  [AutoModelForSequenceClassification](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoModelForSequenceClassification).
-- **args** ([experimental.xpo.XPOConfig](/docs/trl/v1.9.2/en/xpo_trainer#trl.experimental.xpo.XPOConfig)) --
-  The XPO config arguments to use for training.
-- **data_collator** (`DataCollator`) --
-  The data collator to use for training. If None is specified, the default data collator
-  (`experimental.utils.DPODataCollatorWithPadding`) will be used which will pad the sequences to the
-  maximum length of the sequences in the batch, given a dataset of paired sequences.
-- **train_dataset** (`Dataset`) --
-  The dataset to use for training.
-- **eval_dataset** (`Dataset`) --
-  The dataset to use for evaluation.
-- **processing_class** ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.14.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), [BaseImageProcessor](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/image_processor#transformers.BaseImageProcessor), [FeatureExtractionMixin](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin) or [ProcessorMixin](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/processors#transformers.ProcessorMixin), *optional*) --
-  Processing class used to process the data. If provided, will be used to automatically process the inputs
-  for the model, and it will be saved along the model to make it easier to rerun an interrupted training or
-  reuse the fine-tuned model.
-- **reward_processing_classes** ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.14.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase) or `list[PreTrainedTokenizerBase]`, *optional*) --
-  Processing classes corresponding to the reward functions specified in `reward_funcs`. Can be either:
+#### trl.experimental.xpo.XPOTrainer[[trl.experimental.xpo.XPOTrainer]]
 
-  - A single processing class: Used when `reward_funcs` contains only one reward function.
-  - A list of processing classes: Must match the order and length of the reward functions in `reward_funcs`.
+```python
+trl.experimental.xpo.XPOTrainer(model: typing.Union[transformers.modeling_utils.PreTrainedModel, torch.nn.Module] = None, ref_model: typing.Union[transformers.modeling_utils.PreTrainedModel, torch.nn.Module] = None, reward_funcs: typing.Optional[torch.nn.Module] = None, args: trl.experimental.xpo.xpo_config.XPOConfig | None = None, data_collator: collections.abc.Callable | None = None, train_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | None = None, eval_dataset: datasets.arrow_dataset.Dataset | dict[str, datasets.arrow_dataset.Dataset] | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.image_processing_utils.BaseImageProcessor | transformers.feature_extraction_utils.FeatureExtractionMixin | transformers.processing_utils.ProcessorMixin | None = None, reward_processing_classes: transformers.tokenization_utils_base.PreTrainedTokenizerBase | list[transformers.tokenization_utils_base.PreTrainedTokenizerBase] | None = None, peft_config: PeftConfig | None = None, compute_metrics: collections.abc.Callable[[transformers.trainer_utils.EvalPrediction], dict] | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple = (None, None), preprocess_logits_for_metrics: collections.abc.Callable[[torch.Tensor, torch.Tensor], torch.Tensor] | None = None)
+```
 
-  If set to `None`, the tokenizer for each model-based reward function is automatically loaded using
-  [from_pretrained](https://huggingface.co/docs/transformers/v5.14.1/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained).
-- **peft_config** (`PeftConfig`, *optional*) --
-  The peft config to use for training.
-- **compute_metrics** (`Callable[[EvalPrediction], dict]`, *optional*) --
-  The function to use to compute the metrics. Must take a `EvalPrediction` and return a dictionary string to
-  metric values.
-- **callbacks** (`list[transformers.TrainerCallback]`) --
-  The callbacks to use for training.
-- **optimizers** (`tuple[torch.optim.Optimizer, torch.optim.lr_scheduler.LambdaLR]`) --
-  The optimizer and scheduler to use for training.
-- **preprocess_logits_for_metrics** (`Callable[[torch.Tensor, torch.Tensor], torch.Tensor]`) --
-  The function to use to preprocess the logits before computing the metrics.
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/xpo/xpo_trainer.py#L47)
+
+**Parameters:**
+
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to train, preferably an `AutoModelForCausalLM`.
+
+ref_model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : Hugging Face transformer model with a casual language modelling head. Used for implicit reward computation and loss. If no reference model is provided, the trainer will create a reference model with the same architecture as the model to be optimized.
+
+reward_funcs ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The reward model to score completions with, preferably an [AutoModelForSequenceClassification](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForSequenceClassification).
+
+args ([experimental.xpo.XPOConfig](/docs/trl/v1.10.0/en/xpo_trainer#trl.experimental.xpo.XPOConfig)) : The XPO config arguments to use for training.
+
+data_collator (`DataCollator`) : The data collator to use for training. If None is specified, the default data collator (`experimental.utils.DPODataCollatorWithPadding`) will be used which will pad the sequences to the maximum length of the sequences in the batch, given a dataset of paired sequences.
+
+train_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset)) : The dataset to use for training.
+
+eval_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset)) : The dataset to use for evaluation.
+
+processing_class ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), [BaseImageProcessor](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor), [FeatureExtractionMixin](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin) or [ProcessorMixin](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin), *optional*) : Processing class used to process the data. If provided, will be used to automatically process the inputs for the model, and it will be saved along the model to make it easier to rerun an interrupted training or reuse the fine-tuned model.
+
+reward_processing_classes ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase) or `list[PreTrainedTokenizerBase]`, *optional*) : Processing classes corresponding to the reward functions specified in `reward_funcs`. Can be either:  - A single processing class: Used when `reward_funcs` contains only one reward function. - A list of processing classes: Must match the order and length of the reward functions in `reward_funcs`.  If set to `None`, the tokenizer for each model-based reward function is automatically loaded using [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained).
+
+peft_config ([PeftConfig](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/config#peft.PeftConfig), *optional*) : The peft config to use for training.
+
+compute_metrics (`Callable[[EvalPrediction], dict]`, *optional*) : The function to use to compute the metrics. Must take a `EvalPrediction` and return a dictionary string to metric values.
+
+callbacks (`list[transformers.TrainerCallback]`) : The callbacks to use for training.
+
+optimizers (`tuple[torch.optim.Optimizer, torch.optim.lr_scheduler.LambdaLR]`) : The optimizer and scheduler to use for training.
+
+preprocess_logits_for_metrics (`Callable[[torch.Tensor, torch.Tensor], torch.Tensor]`) : The function to use to preprocess the logits before computing the metrics.
 
 Trainer for Exploratory Preference Optimization (XPO).
 
-It is implemented as a subclass of [experimental.online_dpo.OnlineDPOTrainer](/docs/trl/v1.9.2/en/online_dpo_trainer#trl.experimental.online_dpo.OnlineDPOTrainer).
+It is implemented as a subclass of [experimental.online_dpo.OnlineDPOTrainer](/docs/trl/v1.10.0/en/online_dpo_trainer#trl.experimental.online_dpo.OnlineDPOTrainer).
 
-- **resume_from_checkpoint** (`str` or `bool`, *optional*) --
-  If a `str`, local path to a saved checkpoint as saved by a previous instance of `Trainer`. If a
-  `bool` and equals `True`, load the last checkpoint in *args.output_dir* as saved by a previous instance
-  of `Trainer`. If present, training will resume from the model/optimizer/scheduler states loaded here.
-- **trial** (`optuna.Trial` or `dict[str, Any]`, *optional*) --
-  The trial run or the hyperparameter dictionary for hyperparameter search.
-- **ignore_keys_for_eval** (`list[str]`, *optional*) --
-  A list of keys in the output of your model (if it is a dictionary) that should be ignored when
-  gathering predictions for evaluation during the training.`~trainer_utils.TrainOutput`Object containing the global step count, training loss, and metrics.
+#### train[[trl.experimental.xpo.XPOTrainer.train]]
+
+```python
+train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L1347)
+
+**Parameters:**
+
+resume_from_checkpoint (`str` or `bool`, *optional*) : If a `str`, local path to a saved checkpoint as saved by a previous instance of `Trainer`. If a `bool` and equals `True`, load the last checkpoint in *args.output_dir* as saved by a previous instance of `Trainer`. If present, training will resume from the model/optimizer/scheduler states loaded here.
+
+trial (`optuna.Trial` or `dict[str, Any]`, *optional*) : The trial run or the hyperparameter dictionary for hyperparameter search.
+
+ignore_keys_for_eval (`list[str]`, *optional*) : A list of keys in the output of your model (if it is a dictionary) that should be ignored when gathering predictions for evaluation during the training.
+
+**Returns:** `~trainer_utils.TrainOutput`
+
+Object containing the global step count, training loss, and metrics.
 
 Main training entry point.
+
+#### save_model[[trl.experimental.xpo.XPOTrainer.save_model]]
+
+```python
+save_model(output_dir: str | None = None, _internal_call: bool = False)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L3794)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
 Will only save from the main process.
 
-- **commit_message** (`str`, *optional*, defaults to `"End of training"`) --
-  Message to commit while pushing.
-- **blocking** (`bool`, *optional*, defaults to `True`) --
-  Whether the function should return only when the `git push` has finished.
-- **token** (`str`, *optional*, defaults to `None`) --
-  Token with write permission to overwrite Trainer's original args.
-- **revision** (`str`, *optional*) --
-  The git revision to commit from. Defaults to the head of the "main" branch.
-- **kwargs** (`dict[str, Any]`, *optional*) --
-  Additional keyword arguments passed along to `~Trainer.create_model_card`.The URL of the repository where the model was pushed if `blocking=False`, or a `Future` object tracking the
+#### push_to_hub[[trl.experimental.xpo.XPOTrainer.push_to_hub]]
+
+```python
+push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L4041)
+
+**Parameters:**
+
+commit_message (`str`, *optional*, defaults to `"End of training"`) : Message to commit while pushing.
+
+blocking (`bool`, *optional*, defaults to `True`) : Whether the function should return only when the `git push` has finished.
+
+token (`str`, *optional*, defaults to `None`) : Token with write permission to overwrite Trainer's original args.
+
+revision (`str`, *optional*) : The git revision to commit from. Defaults to the head of the "main" branch.
+
+kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to `~Trainer.create_model_card`.
+
+**Returns:**
+
+The URL of the repository where the model was pushed if `blocking=False`, or a `Future` object tracking the
 progress of the commit if `blocking=True`.
 
 Upload `self.model` and `self.processing_class` to the 🤗 model hub on the repo `self.args.hub_model_id`.
 
 ## XPOConfig[[trl.experimental.xpo.XPOConfig]]
 
-"}, {"name": "batch_eval_metrics", "val": ": bool = False"}, {"name": "save_only_model", "val": ": bool = False"}, {"name": "save_strategy", "val": ": transformers.trainer_utils.SaveStrategy | str = 'steps'"}, {"name": "save_steps", "val": ": float = 500"}, {"name": "save_on_each_node", "val": ": bool = False"}, {"name": "save_total_limit", "val": ": int | None = None"}, {"name": "enable_jit_checkpoint", "val": ": bool = False"}, {"name": "push_to_hub", "val": ": bool = False"}, {"name": "hub_token", "val": ": str | None = None"}, {"name": "hub_private_repo", "val": ": bool | None = None"}, {"name": "hub_model_id", "val": ": str | None = None"}, {"name": "hub_strategy", "val": ": transformers.trainer_utils.HubStrategy | str = 'every_save'"}, {"name": "hub_always_push", "val": ": bool = False"}, {"name": "hub_revision", "val": ": str | None = None"}, {"name": "load_best_model_at_end", "val": ": bool = False"}, {"name": "metric_for_best_model", "val": ": str | None = None"}, {"name": "greater_is_better", "val": ": bool | None = None"}, {"name": "ignore_data_skip", "val": ": bool = False"}, {"name": "restore_callback_states_from_checkpoint", "val": ": bool = False"}, {"name": "full_determinism", "val": ": bool = False"}, {"name": "seed", "val": ": int = 42"}, {"name": "data_seed", "val": ": int | None = None"}, {"name": "use_cpu", "val": ": bool = False"}, {"name": "accelerator_config", "val": ": dict | str | None = None"}, {"name": "parallelism_config", "val": ": accelerate.parallelism_config.ParallelismConfig | None = None"}, {"name": "dataloader_drop_last", "val": ": bool = False"}, {"name": "dataloader_num_workers", "val": ": int = 0"}, {"name": "dataloader_pin_memory", "val": ": bool = True"}, {"name": "dataloader_persistent_workers", "val": ": bool = False"}, {"name": "dataloader_prefetch_factor", "val": ": int | None = None"}, {"name": "remove_unused_columns", "val": ": bool = False"}, {"name": "label_names", "val": ": list[str] | None = None"}, {"name": "train_sampling_strategy", "val": ": str = 'random'"}, {"name": "length_column_name", "val": ": str = 'length'"}, {"name": "ddp_find_unused_parameters", "val": ": bool | None = None"}, {"name": "ddp_bucket_cap_mb", "val": ": int | None = None"}, {"name": "ddp_broadcast_buffers", "val": ": bool | None = None"}, {"name": "ddp_static_graph", "val": ": bool | None = None"}, {"name": "ddp_backend", "val": ": str | None = None"}, {"name": "ddp_timeout", "val": ": int = 1800"}, {"name": "fsdp", "val": ": str | None = None"}, {"name": "fsdp_config", "val": ": dict[str, typing.Any] | str | None = None"}, {"name": "deepspeed", "val": ": dict | str | None = None"}, {"name": "debug", "val": ": str | list[transformers.debug_utils.DebugOption] = ''"}, {"name": "skip_memory_metrics", "val": ": bool = True"}, {"name": "do_train", "val": ": bool = False"}, {"name": "do_eval", "val": ": bool = False"}, {"name": "do_predict", "val": ": bool = False"}, {"name": "resume_from_checkpoint", "val": ": str | None = None"}, {"name": "warmup_ratio", "val": ": float | None = None"}, {"name": "logging_dir", "val": ": str | None = None"}, {"name": "local_rank", "val": ": int = -1"}, {"name": "reward_model_path", "val": ": str | None = None"}, {"name": "max_new_tokens", "val": ": int = 64"}, {"name": "max_length", "val": ": int = 512"}, {"name": "temperature", "val": ": float = 0.9"}, {"name": "top_p", "val": ": float = 1.0"}, {"name": "top_k", "val": ": int = 0"}, {"name": "min_p", "val": ": float | None = None"}, {"name": "repetition_penalty", "val": ": float = 1.0"}, {"name": "generation_kwargs", "val": ": dict | None = None"}, {"name": "cache_implementation", "val": ": str | None = None"}, {"name": "missing_eos_penalty", "val": ": float | None = None"}, {"name": "beta", "val": ": list = "}, {"name": "loss_type", "val": ": str = 'sigmoid'"}, {"name": "disable_dropout", "val": ": bool = True"}, {"name": "use_vllm", "val": ": bool = False"}, {"name": "vllm_model_impl", "val": ": str = 'vllm'"}, {"name": "vllm_structured_outputs_regex", "val": ": str | None = None"}, {"name": "vllm_gpu_memory_utilization", "val": ": float | None = 0.55"}, {"name": "vllm_mode", "val": ": str = 'colocate'"}, {"name": "vllm_server_base_url", "val": ": str | None = None"}, {"name": "vllm_server_host", "val": ": str = '0.0.0.0'"}, {"name": "vllm_server_port", "val": ": int = 8000"}, {"name": "vllm_server_timeout", "val": ": float = 240.0"}, {"name": "vllm_group_port", "val": ": int = 51216"}, {"name": "vllm_tensor_parallel_size", "val": ": int = 1"}, {"name": "vllm_enable_sleep_mode", "val": ": bool = False"}, {"name": "ds3_gather_for_generation", "val": ": bool = True"}, {"name": "model_init_kwargs", "val": ": dict[str, typing.Any] | str | None = None"}, {"name": "trust_remote_code", "val": ": bool = False"}, {"name": "reward_weights", "val": ": list[float] | None = None"}, {"name": "alpha", "val": ": list = "}]}>
-- **alpha** (`float` or `list[float]`, *optional*, defaults to `1e-5`) --
-  Weight of the XPO loss term. If a list of floats is provided then the alpha is selected for each new epoch
-  and the last alpha is used for the rest of the epochs.
+#### trl.experimental.xpo.XPOConfig[[trl.experimental.xpo.XPOConfig]]
 
-Configuration class for the [experimental.xpo.XPOTrainer](/docs/trl/v1.9.2/en/xpo_trainer#trl.experimental.xpo.XPOTrainer).
+```python
+trl.experimental.xpo.XPOConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 5e-07, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 10, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = False, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, reward_model_path: str | None = None, max_new_tokens: int = 64, max_length: int = 512, temperature: float = 0.9, top_p: float = 1.0, top_k: int = 0, min_p: float | None = None, repetition_penalty: float = 1.0, generation_kwargs: dict | None = None, cache_implementation: str | None = None, missing_eos_penalty: float | None = None, beta: list = <factory>, loss_type: str = 'sigmoid', disable_dropout: bool = True, use_vllm: bool = False, vllm_model_impl: str = 'vllm', vllm_structured_outputs_regex: str | None = None, vllm_gpu_memory_utilization: float | None = 0.55, vllm_mode: str = 'colocate', vllm_server_base_url: str | None = None, vllm_server_host: str = '0.0.0.0', vllm_server_port: int = 8000, vllm_server_timeout: float = 240.0, vllm_group_port: int = 51216, vllm_tensor_parallel_size: int = 1, vllm_enable_sleep_mode: bool = False, ds3_gather_for_generation: bool = True, model_init_kwargs: dict[str, typing.Any] | str | None = None, trust_remote_code: bool = False, reward_weights: list[float] | None = None, alpha: list = <factory>)
+```
 
-Subclass of [experimental.online_dpo.OnlineDPOConfig](/docs/trl/v1.9.2/en/online_dpo_trainer#trl.experimental.online_dpo.OnlineDPOConfig) we can use all its arguments and add the following:
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/xpo/xpo_config.py#L21)
+
+**Parameters:**
+
+alpha (`float` or `list[float]`, *optional*, defaults to `1e-5`) : Weight of the XPO loss term. If a list of floats is provided then the alpha is selected for each new epoch and the last alpha is used for the rest of the epochs.
+
+Configuration class for the [experimental.xpo.XPOTrainer](/docs/trl/v1.10.0/en/xpo_trainer#trl.experimental.xpo.XPOTrainer).
+
+Subclass of [experimental.online_dpo.OnlineDPOConfig](/docs/trl/v1.10.0/en/online_dpo_trainer#trl.experimental.online_dpo.OnlineDPOConfig) we can use all its arguments and add the following:
 
 ### Installation
-https://huggingface.co/docs/trl/v1.9.2/installation.md
+https://huggingface.co/docs/trl/v1.10.0/installation.md

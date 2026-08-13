@@ -104,5 +104,5 @@ Allowlist the following hostnames (all over HTTPS / port 443):
 > security policy allows it, allowlist the `hf.co` and `huggingface.co` suffixes (all
 > subdomains) so your rules don't break when a specific endpoint changes.
 
-### Panel on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-panel.md
+### Using 🤗 `transformers` at Hugging Face
+https://huggingface.co/docs/hub/transformers.md

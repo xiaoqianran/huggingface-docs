@@ -224,5 +224,5 @@ Now that you've seen how easy it is to use AI models, you might wonder:
 
 Continue to the next guide to understand the provider ecosystem and make informed choices about authentication and billing.
 
-### Building an AI Image Editor with Gradio and Inference Providers
-https://huggingface.co/docs/inference-providers/guides/image-editor.md
+### Building Your First AI App with Inference Providers
+https://huggingface.co/docs/inference-providers/guides/building-first-app.md

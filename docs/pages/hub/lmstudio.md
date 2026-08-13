@@ -97,5 +97,5 @@ See a list of commands [here](https://lmstudio.ai/docs/cli). Note that you need 
 
 Follow the [LM Studio Community](https://huggingface.co/lmstudio-community) page on Hugging Face to stay updated on the latest & greatest local LLMs as soon as they come out.
 
-### Gradio Spaces
-https://huggingface.co/docs/hub/spaces-sdks-gradio.md
+### Tokens Management
+https://huggingface.co/docs/hub/enterprise-tokens-management.md

@@ -101,5 +101,5 @@ git reset --hard upstream/main
 git push --force origin main
 ```
 
-### Using _Adapters_ at Hugging Face
-https://huggingface.co/docs/hub/adapters.md
+### Langfuse on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-langfuse.md

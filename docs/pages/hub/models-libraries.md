@@ -48,5 +48,5 @@ The table below summarizes the supported libraries and their level of integratio
 
 If you're interested in adding your library, please reach out to us! Read about it in [Adding a Library Guide](./models-adding-libraries).
 
-### Docker Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker.md
+### Notifications
+https://huggingface.co/docs/hub/notifications.md

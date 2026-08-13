@@ -113,5 +113,5 @@ distiset.push_to_hub(
 - [🚀 Distilabel Docs - prometheus](https://distilabel.argilla.io/1.2.0/sections/pipeline_samples/papers/prometheus/)
 - [🆕 Introducing distilabel](https://argilla.io/blog/introducing-distilabel-1/)
 
-### Storage limits
-https://huggingface.co/docs/hub/storage-limits.md
+### Using RL-Baselines3-Zoo at Hugging Face
+https://huggingface.co/docs/hub/rl-baselines3-zoo.md

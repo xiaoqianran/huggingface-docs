@@ -180,5 +180,5 @@ Once your snippet has been added to [model-libraries-snippets.ts](https://github
 
 Finally, you can add your library to the Hub's documentation. Check for example the [Setfit PR](https://github.com/huggingface/hub-docs/pull/1150) that added [SetFit](./setfit) to the documentation.
 
-### Using Stable-Baselines3 at Hugging Face
-https://huggingface.co/docs/hub/stable-baselines3.md
+### PyArrow
+https://huggingface.co/docs/hub/datasets-pyarrow.md

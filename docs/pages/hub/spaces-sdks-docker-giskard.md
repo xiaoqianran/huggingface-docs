@@ -103,5 +103,5 @@ If you run into issues, head over to Giskard's [upload object documentation page
 
 If you have suggestions or need specific support, please join [Giskard's Discord community](https://discord.com/invite/ABvfpbu69R) or reach out on [Giskard's GitHub repository](https://github.com/Giskard-AI/giskard).
 
-### Cookie limitations in Spaces
-https://huggingface.co/docs/hub/spaces-cookie-limitations.md
+### Using Unity Sentis Models from Hugging Face
+https://huggingface.co/docs/hub/unity-sentis.md

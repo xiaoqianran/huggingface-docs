@@ -31,5 +31,5 @@ We're starting with Arxiv as it accounts for 95% of the paper URLs Hugging Face 
 
 Yes. You can go to [the main Papers page](https://huggingface.co/papers), click search and write the name of the paper or the full Arxiv id. If the paper does not exist, you will get an option to index it. You can also just visit the page `hf.co/papers/xxxx.yyyyy` replacing with the arxiv id of the paper you wish to index.
 
-### Using SetFit with Hugging Face
-https://huggingface.co/docs/hub/setfit.md
+### Third-party scanner: Protect AI
+https://huggingface.co/docs/hub/security-protectai.md

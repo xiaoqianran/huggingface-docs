@@ -160,5 +160,5 @@ Before integrating models into your applications, you can test them interactivel
 
 The playground uses the same Inference Providers infrastructure that powers the widgets, so you can expect similar performance and capabilities when you integrate the models into your own applications.
 
-### Editing Datasets in Data Studio
-https://huggingface.co/docs/hub/datasets-cell-editing.md
+### How to get a user's plan and status in Spaces
+https://huggingface.co/docs/hub/spaces-get-user-plan.md

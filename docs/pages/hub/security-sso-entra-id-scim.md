@@ -122,5 +122,5 @@ Once your groups are provisioned from Entra ID, you can link them to Hugging Fac
 
 Once linked, the Resource Group becomes **SCIM-managed**: any members already in the SCIM group are immediately added to the Resource Group (backfill), and all future membership changes in Entra ID are automatically reflected. Manual membership edits on the Resource Group via the Hub UI or API will be blocked.
 
-### Agents
-https://huggingface.co/docs/hub/agents-overview.md
+### Managed SSO
+https://huggingface.co/docs/hub/enterprise-advanced-sso.md

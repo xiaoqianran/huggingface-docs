@@ -105,5 +105,5 @@ Tools for understanding model cards and understanding how to create model cards 
 **Please cite as:**
 Ozoani, Ezi and Gerchick, Marissa and Mitchell, Margaret. Model Card Guidebook. Hugging Face, 2022. https://huggingface.co/docs/hub/en/model-card-guidebook
 
-### Embed the Dataset Viewer in a webpage
-https://huggingface.co/docs/hub/datasets-viewer-embed.md
+### Repository Settings
+https://huggingface.co/docs/hub/repositories-settings.md

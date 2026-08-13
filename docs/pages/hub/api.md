@@ -8,5 +8,5 @@ We have open endpoints that you can use to retrieve information from the Hub as 
 > [!NOTE]
 > All API calls are subject to the HF-wide [Rate limits](./rate-limits). Upgrade your account if you need elevated, large-scale access.
 
-### Ingesting Datasets
-https://huggingface.co/docs/hub/datasets-ingesting.md
+### Agent Libraries
+https://huggingface.co/docs/hub/agents-libraries.md

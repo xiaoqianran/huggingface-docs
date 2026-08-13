@@ -93,5 +93,5 @@ After you use a recovery code, you cannot re-use it. You can still use the other
 
 In case you've forgotten your password and lost access to your two-factor authentication credentials, you can reach out to support (website@huggingface.co) to regain access to your account. You'll be required to verify your identity using a recovery authentication factor, such as an SSH key or personal access token.
 
-### User Management
-https://huggingface.co/docs/hub/security-sso-user-management.md
+### Next Steps
+https://huggingface.co/docs/hub/repositories-next-steps.md

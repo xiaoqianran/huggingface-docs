@@ -60,5 +60,5 @@ Your agent loads the corresponding `SKILL.md` instructions and helper scripts au
 - [CLI Guide](./agents-cli) - Hugging Face CLI for AI Agents
 - [MCP Guide](./agents-mcp) - Use alongside Skills
 
-### How to configure SCIM with Okta
-https://huggingface.co/docs/hub/security-sso-okta-scim.md
+### Digital Object Identifier (DOI)
+https://huggingface.co/docs/hub/doi.md

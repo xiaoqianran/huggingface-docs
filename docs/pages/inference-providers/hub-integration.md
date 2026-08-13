@@ -56,5 +56,5 @@ In your user account settings, you are able to:
 
 Similar settings can be found in your Organization settings. Additionally, you can see a graph of your team member's usage over time, helpful to centralize usage billing at the team level.
 
-### How to be registered as an inference provider on the Hub?
-https://huggingface.co/docs/inference-providers/register-as-a-provider.md
+### Hub API
+https://huggingface.co/docs/inference-providers/hub-api.md

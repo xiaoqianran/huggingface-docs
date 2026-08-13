@@ -127,5 +127,5 @@ For organizations that need to programmatically issue access tokens for their me
 
 For automated access that is owned by the organization rather than an individual member, administrators can create [Service Accounts](./enterprise-service-accounts) and issue fine-grained tokens scoped to your organization's resources.
 
-### Advanced Security
-https://huggingface.co/docs/hub/enterprise-advanced-security.md
+### Editing Datasets in Data Studio
+https://huggingface.co/docs/hub/datasets-cell-editing.md

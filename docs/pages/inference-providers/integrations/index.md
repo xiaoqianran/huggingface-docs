@@ -90,5 +90,5 @@ Tools for creating synthetic datasets.
 
 If a tool doesn't have explicit support for Inference Providers, it's often still compatible via its OpenAI-compatible API. Check your tool's documentation to see if it can be pointed at a custom endpoint.
 
-### Add Your Integration
-https://huggingface.co/docs/inference-providers/integrations/adding-integration.md
+### Vision Agents
+https://huggingface.co/docs/inference-providers/integrations/visionagents.md

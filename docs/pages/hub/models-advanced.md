@@ -7,5 +7,5 @@
 - [GGUF format](./gguf)
 - [DDUF format](./dduf)
 
-### Network Security
-https://huggingface.co/docs/hub/enterprise-network-security.md
+### Perform vector similarity search
+https://huggingface.co/docs/hub/datasets-duckdb-vector-similarity-search.md

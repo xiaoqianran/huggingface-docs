@@ -130,5 +130,5 @@ Alternatively, one can also simply programmatically upload files or folders to t
 
 Finally, since model repos are just Git repositories, you can also use Git to push your model files to the Hub. Follow the guide on [Getting Started with Repositories](repositories-getting-started#terminal) to learn about using the `git` CLI to commit and push your models.
 
-### Spaces as API endpoints
-https://huggingface.co/docs/hub/spaces-api-endpoints.md
+### Dataset Cards
+https://huggingface.co/docs/hub/datasets-cards.md

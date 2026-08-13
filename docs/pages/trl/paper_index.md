@@ -5,13 +5,13 @@
 
 ## Group Relative Policy Optimization
 
-Papers relating to the [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer).
+Papers relating to the [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer).
 
 ### DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models
 
 **📜 Paper**: https://huggingface.co/papers/2402.03300
 
-Introduces Group Relative Policy Optimization (GRPO) and shows strong math-reasoning gains from math-centric pretraining plus group-relative PPO-style optimization. Used in TRL via [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer).
+Introduces Group Relative Policy Optimization (GRPO) and shows strong math-reasoning gains from math-centric pretraining plus group-relative PPO-style optimization. Used in TRL via [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer).
 
 ```python
 from trl import GRPOConfig, GRPOTrainer
@@ -194,8 +194,8 @@ trainer = GRPOTrainer(
 
 This paper studies long chain-of-thought RL and introduces two complementary rule-based rewards:
 
-- A **cosine length-scaled reward** ([get_cosine_scaled_reward()](/docs/trl/v1.9.2/en/rewards#trl.rewards.get_cosine_scaled_reward), Appendix C.1) that scales the correctness reward by completion length: a correct completion is rewarded more when it is shorter, while a wrong completion is penalized less when it is longer (preserving exploration).
-- An **n-gram repetition penalty** ([get_repetition_penalty_reward()](/docs/trl/v1.9.2/en/rewards#trl.rewards.get_repetition_penalty_reward), Appendix C.2) that discourages the degenerate, repetitive completions that emerge as a reward-hacking strategy under length shaping.
+- A **cosine length-scaled reward** ([get_cosine_scaled_reward()](/docs/trl/v1.10.0/en/rewards#trl.rewards.get_cosine_scaled_reward), Appendix C.1) that scales the correctness reward by completion length: a correct completion is rewarded more when it is shorter, while a wrong completion is penalized less when it is longer (preserving exploration).
+- An **n-gram repetition penalty** ([get_repetition_penalty_reward()](/docs/trl/v1.10.0/en/rewards#trl.rewards.get_repetition_penalty_reward), Appendix C.2) that discourages the degenerate, repetitive completions that emerge as a reward-hacking strategy under length shaping.
 
 The two are designed to be used together:
 
@@ -479,7 +479,7 @@ TRL exposes the Importance Sampling granularity level through the `vllm_importan
 
 A systematic study that defines a framework for analyzing and predicting reinforcement learning scaling in large language models, identifies key design choices that affect compute efficiency and propose a best-practice recipe called ScaleRL.
 
-You can partially reproduce the ScaleRL recipe using the [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer) with the following configs:
+You can partially reproduce the ScaleRL recipe using the [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) with the following configs:
 
 ```python
 from trl import GRPOConfig
@@ -497,7 +497,7 @@ training_args = GRPOConfig(
 
 **📜 Paper**: https://huggingface.co/papers/2510.00977
 
-Shows that GRPO's effectiveness stems from an implicit contrastive objective rather than accurate advantage estimation via large group sizes. This establishes a formal connection between GRPO and DPO, where group size only affects Monte Carlo estimators of the contrastive objective. The authors introduce 2-GRPO — using just two rollouts — which matches the performance of 16-GRPO at significantly lower training cost. Used in TRL via [GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer) with `num_generations=2`. To reproduce the paper's setting, use this configuration:
+Shows that GRPO's effectiveness stems from an implicit contrastive objective rather than accurate advantage estimation via large group sizes. This establishes a formal connection between GRPO and DPO, where group size only affects Monte Carlo estimators of the contrastive objective. The authors introduce 2-GRPO — using just two rollouts — which matches the performance of 16-GRPO at significantly lower training cost. Used in TRL via [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) with `num_generations=2`. To reproduce the paper's setting, use this configuration:
 
 ```python
 from trl import GRPOConfig, GRPOTrainer
@@ -552,7 +552,7 @@ $$
 \right).
 $$
 
-To enable this feature, set the `use_bias_correction_kl` parameter to `True` in the [GRPOConfig](/docs/trl/v1.9.2/en/grpo_trainer#trl.GRPOConfig), and `beta > 0`:
+This feature is enabled by default (`use_bias_correction_kl=True` in the [GRPOConfig](/docs/trl/v1.10.0/en/grpo_trainer#trl.GRPOConfig)), so you only need to set `beta > 0`:
 
 ```python
 from trl import GRPOConfig
@@ -560,7 +560,6 @@ from trl import GRPOConfig
 training_args = GRPOConfig(
     ...,
     beta=0.001,  # the paper doesn't specify the value used, so we use the value from "DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning"
-    use_bias_correction_kl=True,
 )
 ```
 
@@ -581,7 +580,7 @@ $$
 \mathcal{L}_{\text{GRPO}}(\theta) = -\frac{1}{G} \sum_{i=1}^G \frac{1}{|o_i|} \sum_{t=1}^{|o_i|} \left[ \min \left( \frac{\pi_\theta(o_{i,t} \mid q, o_{i,< t})}{\pi_{\theta_{\text{old}}}(o_{i,t} \mid q, o_{i,< t})} \hat{A}_{i,t}, \, \text{clip}\left( \frac{\pi_\theta(o_{i,t} \mid q, o_{i,< t})}{\pi_{\theta_{\text{old}}}(o_{i,t} \mid q, o_{i,< t})}, 1 - \epsilon, 1 + \epsilon \right) \hat{A}_{i,t} \right) \textcolor{red}{M_{i,t}} - \beta \mathbb{D}_{\text{KL}}\left[\pi_\theta \| \pi_{\text{ref}}\right] \right]
 $$
 
-To enable this feature, use the `off_policy_mask_threshold` (corresponding to  \\( \textcolor{blue}{\delta} \\)) in the [GRPOConfig](/docs/trl/v1.9.2/en/grpo_trainer#trl.GRPOConfig):
+To enable this feature, use the `off_policy_mask_threshold` (corresponding to  \\( \textcolor{blue}{\delta} \\)) in the [GRPOConfig](/docs/trl/v1.10.0/en/grpo_trainer#trl.GRPOConfig):
 
 ```python
 from trl import GRPOConfig
@@ -680,7 +679,7 @@ training_args = GRPOConfig(
 
 ## Optimal Advantage Regression
 
-Papers relating to the [experimental.a2po.A2POTrainer](/docs/trl/v1.9.2/en/a2po_trainer#trl.experimental.a2po.A2POTrainer).
+Papers relating to the [experimental.a2po.A2POTrainer](/docs/trl/v1.10.0/en/a2po_trainer#trl.experimental.a2po.A2POTrainer).
 
 ### Accelerating RL for LLM Reasoning with Optimal Advantage Regression
 
@@ -708,7 +707,7 @@ trainer.train()
 
 ## Direct Policy Optimization
 
-Papers relating to the [DPOTrainer](/docs/trl/v1.9.2/en/bema_for_reference_model#trl.DPOTrainer)
+Papers relating to the [DPOTrainer](/docs/trl/v1.10.0/en/bema_for_reference_model#trl.DPOTrainer)
 
 ### Direct Preference Optimization: Your Language Model is Secretly a Reward Model
 
@@ -949,7 +948,7 @@ training_args = DPOConfig(
 )
 ```
 
-For the unpaired version, the user should utilize [experimental.bco.BCOConfig](/docs/trl/v1.9.2/en/bco_trainer#trl.experimental.bco.BCOConfig) and [experimental.bco.BCOTrainer](/docs/trl/v1.9.2/en/bco_trainer#trl.experimental.bco.BCOTrainer).
+For the unpaired version, the user should utilize [experimental.bco.BCOConfig](/docs/trl/v1.10.0/en/bco_trainer#trl.experimental.bco.BCOConfig) and [experimental.bco.BCOTrainer](/docs/trl/v1.10.0/en/bco_trainer#trl.experimental.bco.BCOTrainer).
 
 ### Learn Your Reference Model for Real Good Alignment
 
@@ -1163,7 +1162,7 @@ training_args = DPOConfig(
 
 **📜 Paper**: https://huggingface.co/papers/2411.10442
 
-Introduces Mixed Preference Optimization (MPO) to improve multimodal reasoning in MLLMs, addressing distribution shift and weak Chain-of-Thought (CoT) after standard pre-training and SFT. The paper contributes (1) MMPR, an automated pipeline for high-quality multimodal preference data, and (2) MPO, a combined preference objective (pairwise + BCO-style + SFT) that boosts CoT. InternVL2-8B-MPO reaches 67.0 on MathVista (+8.7 over InternVL2-8B), comparable to the 10× larger InternVL2-76B. Used in TRL via [DPOConfig](/docs/trl/v1.9.2/en/dpo_trainer#trl.DPOConfig) with composite loss. To reproduce the paper's setting, use this configuration:
+Introduces Mixed Preference Optimization (MPO) to improve multimodal reasoning in MLLMs, addressing distribution shift and weak Chain-of-Thought (CoT) after standard pre-training and SFT. The paper contributes (1) MMPR, an automated pipeline for high-quality multimodal preference data, and (2) MPO, a combined preference objective (pairwise + BCO-style + SFT) that boosts CoT. InternVL2-8B-MPO reaches 67.0 on MathVista (+8.7 over InternVL2-8B), comparable to the 10× larger InternVL2-76B. Used in TRL via [DPOConfig](/docs/trl/v1.10.0/en/dpo_trainer#trl.DPOConfig) with composite loss. To reproduce the paper's setting, use this configuration:
 
 ```python
 from trl import DPOConfig
@@ -1196,14 +1195,14 @@ training_args = DPOConfig(
 
 ## Kahneman–Tversky Optimization
 
-Papers relating to the [KTOTrainer](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOTrainer)
+Papers relating to the [KTOTrainer](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOTrainer)
 
 ### KTO: Model Alignment as Prospect Theoretic Optimization
 
 **📜 Paper**: https://huggingface.co/papers/2402.01306
 
 KTO derives an alignment objective from prospect theory and learns directly from **binary** human feedback (liked/disliked), matching or surpassing DPO-style methods while handling imbalanced/noisy signals well.
-To reproduce the paper's setting, you can use the default configuration of [KTOTrainer](/docs/trl/v1.9.2/en/kto_trainer#trl.KTOTrainer):
+To reproduce the paper's setting, you can use the default configuration of [KTOTrainer](/docs/trl/v1.10.0/en/kto_trainer#trl.KTOTrainer):
 
 ```python
 from trl import KTOConfig, KTOTrainer
@@ -1223,13 +1222,13 @@ trainer.train()
 
 ## Supervised Fine-Tuning
 
-Papers relating to the [SFTTrainer](/docs/trl/v1.9.2/en/sft_trainer#trl.SFTTrainer)
+Papers relating to the [SFTTrainer](/docs/trl/v1.10.0/en/sft_trainer#trl.SFTTrainer)
 
 ### EMA Without the Lag: Bias-Corrected Iterate Averaging Schemes
 
 **📜 Paper**: https://huggingface.co/papers/2508.00180
 
-Bias-Corrected Exponential Moving Average (BEMA) improves the stability and efficiency of language model fine-tuning by reducing stochasticity and eliminating bias. To use BEMA with SFT as described in the paper, you can use the [BEMACallback](/docs/trl/v1.9.2/en/bema_for_reference_model#trl.BEMACallback):
+Bias-Corrected Exponential Moving Average (BEMA) improves the stability and efficiency of language model fine-tuning by reducing stochasticity and eliminating bias. To use BEMA with SFT as described in the paper, you can use the [BEMACallback](/docs/trl/v1.10.0/en/bema_for_reference_model#trl.BEMACallback):
 
 ```python
 from trl import BEMACallback, SFTTrainer
@@ -1278,7 +1277,7 @@ SFTConfig(
 
 **📜 Paper**: https://huggingface.co/papers/2404.10830
 
-The paper shows that the standard concatenate-then-split preprocessing (`packing_strategy="wrapped"`) used for LLM training causes many documents to be arbitrarily truncated, which harms learning. It proposes packing document chunks into context windows using a Best-Fit Decreasing bin-packing algorithm, greatly reducing truncation while keeping high token utilization and improving model performance. TRL implements this as the `"bfd_split"` packing strategy in [SFTConfig](/docs/trl/v1.9.2/en/sft_trainer#trl.SFTConfig). For more details on packing, see the [SFT documentation](sft_trainer#packing).
+The paper shows that the standard concatenate-then-split preprocessing (`packing_strategy="wrapped"`) used for LLM training causes many documents to be arbitrarily truncated, which harms learning. It proposes packing document chunks into context windows using a Best-Fit Decreasing bin-packing algorithm, greatly reducing truncation while keeping high token utilization and improving model performance. TRL implements this as the `"bfd_split"` packing strategy in [SFTConfig](/docs/trl/v1.10.0/en/sft_trainer#trl.SFTConfig). For more details on packing, see the [SFT documentation](sft_trainer#packing).
 
 ```python
 from trl import SFTConfig
@@ -1294,7 +1293,7 @@ training_args = SFTConfig(
 
 **📜 Paper**: https://huggingface.co/papers/1910.10683
 
-The T5 paper proposes a unified text-to-text framework for transfer learning and introduces **sequence packing** (Section 3.5.2): grouping multiple short sequences into fixed-length blocks to reduce padding and improve training efficiency. Packing is supported in TRL via [SFTConfig](/docs/trl/v1.9.2/en/sft_trainer#trl.SFTConfig) with the [SFTTrainer](/docs/trl/v1.9.2/en/sft_trainer#trl.SFTTrainer). To enable packing with TRL, use this configuration:
+The T5 paper proposes a unified text-to-text framework for transfer learning and introduces **sequence packing** (Section 3.5.2): grouping multiple short sequences into fixed-length blocks to reduce padding and improve training efficiency. Packing is supported in TRL via [SFTConfig](/docs/trl/v1.10.0/en/sft_trainer#trl.SFTConfig) with the [SFTTrainer](/docs/trl/v1.10.0/en/sft_trainer#trl.SFTTrainer). To enable packing with TRL, use this configuration:
 
 ```python
 from trl import SFTConfig
@@ -1305,6 +1304,27 @@ training_args = SFTConfig(
 )
 ```
 
+### Reparameterizing Uniform Diffusion Models: the Leave-One-Out Denoiser
+
+**📜 Paper**: https://huggingface.co/papers/2605.22765
+
+For uniform discrete diffusion models, the usual plug-in cross-entropy does not learn the plain denoiser \\( \mathbb{E}[X_0 \mid X_t] \\) but the leave-one-out (LOO) posterior, which predicts each token without using its own corrupted value. The paper derives exact conversions between the denoiser, the LOO posterior, and the score, so a network can be trained as either parameterization with the same cross-entropy. Given logits \\( f_\theta \\) whose softmax parameterizes the LOO posterior, the denoiser used in the loss is
+
+$$
+d_\theta(x_t, t)^\ell = \mathrm{softmax}\!\left( f_\theta(x_t, t)^\ell + \log\!\left(1 + \frac{K\,\alpha_t}{1 - \alpha_t}\, x_t^\ell\right) \right),
+$$
+
+i.e. an additive correction on the logit of the observed token, where \\( K \\) is the vocabulary size and \\( \alpha_t \\) the probability the uniform forward keeps the clean token. The paper reports that the LOO parameterization consistently improves generation. The block-diffusion SFT example [`examples/scripts/sft_diffusion_gemma.py`](https://github.com/huggingface/trl/blob/main/examples/scripts/sft_diffusion_gemma.py) exposes both parameterizations via `--model_prediction_type` (`mean` for the plain denoiser, matching the released checkpoint, or `mean_loo` for the LOO posterior):
+
+```bash
+accelerate launch --config_file examples/accelerate_configs/deepspeed_zero3.yaml \
+    examples/scripts/sft_diffusion_gemma.py \
+    --use_peft \
+    --gradient_checkpointing \
+    --model_prediction_type mean_loo \
+    --output_dir diffusiongemma-26B-A4B-it-gsm8k-lora
+```
+
 ## Parameter-Efficient Fine-Tuning (PEFT)
 
 For general details on using PEFT with TRL, please refer to the [PEFT Integration](peft_integration) guide.
@@ -1313,7 +1333,7 @@ For general details on using PEFT with TRL, please refer to the [PEFT Integratio
 
 **📜 Paper**: https://huggingface.co/papers/2106.09685
 
-Low-Rank Adaptation (LoRA) reduces the number of trainable parameters and GPU memory usage in large-scale pre-trained models while maintaining or improving performance on downstream tasks. TRL integrates LoRA via the [PEFT library](https://huggingface.co/docs/peft/index) and can be easily enabled in any TRL trainer by passing a `LoraConfig` to the `peft_config` argument. Here is an example of using LoRA with the [SFTTrainer](/docs/trl/v1.9.2/en/sft_trainer#trl.SFTTrainer):
+Low-Rank Adaptation (LoRA) reduces the number of trainable parameters and GPU memory usage in large-scale pre-trained models while maintaining or improving performance on downstream tasks. TRL integrates LoRA via the [PEFT library](https://huggingface.co/docs/peft/index) and can be easily enabled in any TRL trainer by passing a [LoraConfig](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig) to the `peft_config` argument. Here is an example of using LoRA with the [SFTTrainer](/docs/trl/v1.10.0/en/sft_trainer#trl.SFTTrainer):
 
 ```python
 from trl import SFTTrainer
@@ -1329,7 +1349,7 @@ trainer = SFTTrainer(
 
 **📜 Paper**: https://huggingface.co/papers/2402.09353
 
-Weight-Decomposed Low-Rank Adaptation (DoRA) can improve the performance of LoRA, especially at low ranks. DoRA decomposes pre-trained weight into two component: magnitude and direction. Direction is handled by normal LoRA, and magnitude is learnable parameters. TRL integrate DoRA via the [PEFT library](https://huggingface.co/docs/peft/index) and can be easily enable through setting `use_dora=True` to the `LoraConfig`.
+Weight-Decomposed Low-Rank Adaptation (DoRA) can improve the performance of LoRA, especially at low ranks. DoRA decomposes pre-trained weight into two component: magnitude and direction. Direction is handled by normal LoRA, and magnitude is learnable parameters. TRL integrate DoRA via the [PEFT library](https://huggingface.co/docs/peft/index) and can be easily enable through setting `use_dora=True` to the [LoraConfig](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig).
 
 ``` python
 from peft import LoraConfig
@@ -1339,7 +1359,7 @@ config = LoraConfig(use_dora=True, ...)
 
 ## Reinforce Leave-One-Out
 
-Papers relating to the [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer)
+Papers relating to the [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer)
 
 ### Back to Basics: Revisiting REINFORCE Style Optimization for Learning from Human Feedback in LLMs
 
@@ -1363,7 +1383,7 @@ training_args = RLOOConfig(
 
 **📜 Paper**: https://huggingface.co/papers/2501.03262
 
-REINFORCE++ is an enhanced variant of the classical REINFORCE algorithm that incorporates key optimization techniques from PPO while eliminating the need for a critic network. It achieves simplicity, enhanced training stability, and reduced computational overhead through global advantage normalization across the entire batch. To approximate the paper's setting with the [RLOOTrainer](/docs/trl/v1.9.2/en/rloo_trainer#trl.RLOOTrainer), use this configuration:
+REINFORCE++ is an enhanced variant of the classical REINFORCE algorithm that incorporates key optimization techniques from PPO while eliminating the need for a critic network. It achieves simplicity, enhanced training stability, and reduced computational overhead through global advantage normalization across the entire batch. To approximate the paper's setting with the [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer), use this configuration:
 
 ```python
 from trl import RLOOConfig
@@ -1375,7 +1395,7 @@ training_args = RLOOConfig(
 
 ## Odds Ratio Preference Optimization
 
-Papers relating to the [experimental.orpo.ORPOTrainer](/docs/trl/v1.9.2/en/orpo_trainer#trl.experimental.orpo.ORPOTrainer)
+Papers relating to the [experimental.orpo.ORPOTrainer](/docs/trl/v1.10.0/en/orpo_trainer#trl.experimental.orpo.ORPOTrainer)
 
 ### ORPO: Monolithic Preference Optimization without Reference Model
 
@@ -1398,13 +1418,13 @@ training_args = ORPOConfig(
 
 ## Contrastive Preference Optimization
 
-Papers relating to the [experimental.cpo.CPOTrainer](/docs/trl/v1.9.2/en/cpo_trainer#trl.experimental.cpo.CPOTrainer)
+Papers relating to the [experimental.cpo.CPOTrainer](/docs/trl/v1.10.0/en/cpo_trainer#trl.experimental.cpo.CPOTrainer)
 
 ### Contrastive Preference Optimization: Pushing the Boundaries of LLM Performance in Machine Translation
 
 **📜 Paper**: https://huggingface.co/papers/2401.08417
 
-Introduces Contrastive Preference Optimization (CPO), a preference-based method for machine translation that trains models to avoid adequate-but-imperfect translations instead of mimicking references as in SFT. The paper analyzes limitations of SFT on MT (including reference quality issues) and shows that applying CPO to ALMA with only 22K parallel sentences yields ALMA-R, which matches or exceeds WMT competition winners and GPT-4 on WMT'21–WMT'23. Used in TRL via [experimental.cpo.CPOTrainer](/docs/trl/v1.9.2/en/cpo_trainer#trl.experimental.cpo.CPOTrainer). To reproduce the paper's setting, use this configuration:
+Introduces Contrastive Preference Optimization (CPO), a preference-based method for machine translation that trains models to avoid adequate-but-imperfect translations instead of mimicking references as in SFT. The paper analyzes limitations of SFT on MT (including reference quality issues) and shows that applying CPO to ALMA with only 22K parallel sentences yields ALMA-R, which matches or exceeds WMT competition winners and GPT-4 on WMT'21–WMT'23. Used in TRL via [experimental.cpo.CPOTrainer](/docs/trl/v1.10.0/en/cpo_trainer#trl.experimental.cpo.CPOTrainer). To reproduce the paper's setting, use this configuration:
 
 ```python
 from trl.experimental.cpo import CPOConfig
@@ -1462,13 +1482,13 @@ training_args = CPOConfig(
 
 ## Triple Preference Optimization
 
-Papers relating to the [experimental.tpo.TPOTrainer](/docs/trl/v1.9.2/en/tpo_trainer#trl.experimental.tpo.TPOTrainer)
+Papers relating to the [experimental.tpo.TPOTrainer](/docs/trl/v1.10.0/en/tpo_trainer#trl.experimental.tpo.TPOTrainer)
 
 ### Triple Preference Optimization: Achieving Better Alignment using a Single Step Optimization
 
 **📜 Paper**: https://huggingface.co/papers/2405.16681
 
-Introduces Triple Preference Optimization (TPO), a preference learning method that aligns an LLM with three responses per prompt — a gold (`reference`) completion, a preferred (`chosen`) completion and a dispreferred (`rejected`) completion — in a single optimization step. TPO combines a contrastive objective on the (chosen, rejected) pair with a supervised NLL term on the gold response, removing the need for a separate SFT stage and the reference model used in DPO. Used in TRL via [experimental.tpo.TPOTrainer](/docs/trl/v1.9.2/en/tpo_trainer#trl.experimental.tpo.TPOTrainer). To reproduce the paper's setting (Llama-3-Base, 5K), use this configuration:
+Introduces Triple Preference Optimization (TPO), a preference learning method that aligns an LLM with three responses per prompt — a gold (`reference`) completion, a preferred (`chosen`) completion and a dispreferred (`rejected`) completion — in a single optimization step. TPO combines a contrastive objective on the (chosen, rejected) pair with a supervised NLL term on the gold response, removing the need for a separate SFT stage and the reference model used in DPO. Used in TRL via [experimental.tpo.TPOTrainer](/docs/trl/v1.10.0/en/tpo_trainer#trl.experimental.tpo.TPOTrainer). To reproduce the paper's setting (Llama-3-Base, 5K), use this configuration:
 
 ```python
 from trl.experimental.tpo import TPOConfig
@@ -1500,13 +1520,13 @@ training_args = TPOConfig(
 
 ## Nash Learning from Human Feedback
 
-Papers relating to the [experimental.nash_md.NashMDTrainer](/docs/trl/v1.9.2/en/nash_md_trainer#trl.experimental.nash_md.NashMDTrainer)
+Papers relating to the [experimental.nash_md.NashMDTrainer](/docs/trl/v1.10.0/en/nash_md_trainer#trl.experimental.nash_md.NashMDTrainer)
 
 ### Nash Learning from Human Feedback
 
 **📜 Paper**: https://huggingface.co/papers/2312.00886
 
-Introduces Nash-MD, an alternative to standard RLHF that learns a preference model conditioned on two inputs and finds a policy at the Nash equilibrium. Instead of optimizing against a reward model, Nash-MD produces policies that consistently generate responses preferred over those of any competing policy. The algorithm is based on mirror descent principles. Used in TRL via [experimental.nash_md.NashMDTrainer](/docs/trl/v1.9.2/en/nash_md_trainer#trl.experimental.nash_md.NashMDTrainer).
+Introduces Nash-MD, an alternative to standard RLHF that learns a preference model conditioned on two inputs and finds a policy at the Nash equilibrium. Instead of optimizing against a reward model, Nash-MD produces policies that consistently generate responses preferred over those of any competing policy. The algorithm is based on mirror descent principles. Used in TRL via [experimental.nash_md.NashMDTrainer](/docs/trl/v1.10.0/en/nash_md_trainer#trl.experimental.nash_md.NashMDTrainer).
 
 ```python
 from trl.experimental.nash_md import NashMDConfig, NashMDTrainer
@@ -1528,13 +1548,13 @@ trainer.train()
 
 ## Reward Modeling
 
-Papers relating to the [RewardTrainer](/docs/trl/v1.9.2/en/reward_trainer#trl.RewardTrainer) and [experimental.prm.PRMTrainer](/docs/trl/v1.9.2/en/prm_trainer#trl.experimental.prm.PRMTrainer)
+Papers relating to the [RewardTrainer](/docs/trl/v1.10.0/en/reward_trainer#trl.RewardTrainer) and [experimental.prm.PRMTrainer](/docs/trl/v1.10.0/en/prm_trainer#trl.experimental.prm.PRMTrainer)
 
 ### Solving math word problems with process- and outcome-based feedback
 
 **📜 Paper**: https://huggingface.co/papers/2211.14275
 
-Compares process-based supervision (per-step reasoning feedback) and outcome-based supervision (final-answer only) for math reasoning on GSM8K. Outcome-based training yields similar final-answer error with less labeling, but process-based supervision or learned process reward models (PRMs) are needed to reduce reasoning-step errors. The paper improves prior best from 16.8% to 12.7% final-answer error and 14.0% to 3.4% reasoning error among correct-answer solutions. Used in TRL via [experimental.prm.PRMTrainer](/docs/trl/v1.9.2/en/prm_trainer#trl.experimental.prm.PRMTrainer). To train a PRM using TRL, use this configuration:
+Compares process-based supervision (per-step reasoning feedback) and outcome-based supervision (final-answer only) for math reasoning on GSM8K. Outcome-based training yields similar final-answer error with less labeling, but process-based supervision or learned process reward models (PRMs) are needed to reduce reasoning-step errors. The paper improves prior best from 16.8% to 12.7% final-answer error and 14.0% to 3.4% reasoning error among correct-answer solutions. Used in TRL via [experimental.prm.PRMTrainer](/docs/trl/v1.10.0/en/prm_trainer#trl.experimental.prm.PRMTrainer). To train a PRM using TRL, use this configuration:
 
 ```python
 from trl.experimental.prm import PRMConfig
@@ -1557,7 +1577,7 @@ $$
 \mathcal{L}(\theta) = - \mathbb{E}_{(x,y^+,y^-) \sim \mathcal{D}} \left[ \log \sigma(r_\theta(x, y^+) - r_\theta(x, y^-)) \textcolor{red}{- \eta \cdot (r_\theta(x, y^+) + r_\theta(x, y^-))^2} \right].
 $$
 
-To use this auxiliary loss with [RewardTrainer](/docs/trl/v1.9.2/en/reward_trainer#trl.RewardTrainer), you can use the `center_rewards_coefficient` argument in [RewardConfig](/docs/trl/v1.9.2/en/reward_trainer#trl.RewardConfig) as follows:
+To use this auxiliary loss with [RewardTrainer](/docs/trl/v1.10.0/en/reward_trainer#trl.RewardTrainer), you can use the `center_rewards_coefficient` argument in [RewardConfig](/docs/trl/v1.10.0/en/reward_trainer#trl.RewardConfig) as follows:
 
 ```python
 from trl import RewardConfig
@@ -1628,7 +1648,7 @@ Papers relating to training a student model with the help of a teacher model.
 
 **📜 Paper**: https://huggingface.co/papers/2306.13649
 
-Introduces Generalized Knowledge Distillation (GKD), which addresses distribution mismatch in KD for auto-regressive models by training the student on its own generated outputs with teacher feedback, instead of a fixed set of sequences. GKD supports flexible loss functions (e.g. beyond KL when the student cannot match the teacher) and integrates with RL fine-tuning (RLHF). The paper reports results on summarization, translation, arithmetic reasoning, and instruction-tuning. Used in TRL via [experimental.gkd.GKDTrainer](/docs/trl/v1.9.2/en/gkd_trainer#trl.experimental.gkd.GKDTrainer), which exposes the paper's on/off-policy mixing (`lmbda`). [experimental.distillation.DistillationTrainer](/docs/trl/v1.9.2/en/distillation_trainer#trl.experimental.distillation.DistillationTrainer) implements the same generalized-JSD objective for the always-on-policy case. To reproduce the paper's setting, use this configuration:
+Introduces Generalized Knowledge Distillation (GKD), which addresses distribution mismatch in KD for auto-regressive models by training the student on its own generated outputs with teacher feedback, instead of a fixed set of sequences. GKD supports flexible loss functions (e.g. beyond KL when the student cannot match the teacher) and integrates with RL fine-tuning (RLHF). The paper reports results on summarization, translation, arithmetic reasoning, and instruction-tuning. Used in TRL via [experimental.gkd.GKDTrainer](/docs/trl/v1.10.0/en/gkd_trainer#trl.experimental.gkd.GKDTrainer), which exposes the paper's on/off-policy mixing (`lmbda`). [DistillationTrainer](/docs/trl/v1.10.0/en/distillation_trainer#trl.DistillationTrainer) implements the same generalized-JSD objective for the always-on-policy case. To reproduce the paper's setting, use this configuration:
 
 ```python
 from trl.experimental.gkd import GKDConfig
@@ -1694,19 +1714,18 @@ On-Policy Distillation has been shown to outperform SFT, GRPO and can be used to
 
 Additionally on-policy distillation is more compute efficient and is less prone to overfitting when trained with limited data.
 
-To train a model with on-policy distillation using TRL, you can use the following configuration, with the [experimental.distillation.DistillationTrainer](/docs/trl/v1.9.2/en/distillation_trainer#trl.experimental.distillation.DistillationTrainer) and [experimental.distillation.DistillationConfig](/docs/trl/v1.9.2/en/distillation_trainer#trl.experimental.distillation.DistillationConfig):
+To train a model with on-policy distillation using TRL, you can use the following configuration, with the [DistillationTrainer](/docs/trl/v1.10.0/en/distillation_trainer#trl.DistillationTrainer) and [DistillationConfig](/docs/trl/v1.10.0/en/distillation_trainer#trl.DistillationConfig):
 
 ```python
-from trl.experimental.distillation import DistillationConfig
+from trl import DistillationConfig
 
 training_args = DistillationConfig(
-    lmbda=1.0,  # student produces rollouts for all batches
     beta=1.0,  # to ensure reverse-kl as the loss function
     teacher_model_name_or_path="teacher-model",  # specify the teacher model
 )
 ```
 
-Alternatively, you can use the [experimental.gkd.GKDTrainer](/docs/trl/v1.9.2/en/gkd_trainer#trl.experimental.gkd.GKDTrainer) and [experimental.gkd.GKDConfig](/docs/trl/v1.9.2/en/gkd_trainer#trl.experimental.gkd.GKDConfig):
+Alternatively, you can use the [experimental.gkd.GKDTrainer](/docs/trl/v1.10.0/en/gkd_trainer#trl.experimental.gkd.GKDTrainer) and [experimental.gkd.GKDConfig](/docs/trl/v1.10.0/en/gkd_trainer#trl.experimental.gkd.GKDConfig):
 
 ```python
 from trl.experimental.gkd import GKDConfig
@@ -1739,7 +1758,7 @@ MiniLLM is the first on-policy knowledge distillation method, which minimizes th
 
 It is a generalized version of [Think Machine Lab's On-Policy Distillation](https://thinkingmachines.ai/blog/on-policy-distillation/), with the option to add distribution-level single-step distillation signals (like GKD when `beta=1`) and long-context reverse KLD signals.
 
-Alternatively, you can use the [experimental.minillm.MiniLLMTrainer](/docs/trl/v1.9.2/en/minillm_trainer#trl.experimental.minillm.MiniLLMTrainer) and [experimental.minillm.MiniLLMConfig](/docs/trl/v1.9.2/en/minillm_trainer#trl.experimental.minillm.MiniLLMConfig) to perform MiniLLM distillation as follows:
+Alternatively, you can use the [experimental.minillm.MiniLLMTrainer](/docs/trl/v1.10.0/en/minillm_trainer#trl.experimental.minillm.MiniLLMTrainer) and [experimental.minillm.MiniLLMConfig](/docs/trl/v1.10.0/en/minillm_trainer#trl.experimental.minillm.MiniLLMConfig) to perform MiniLLM distillation as follows:
 
 ```python
 from datasets import load_dataset
@@ -1891,13 +1910,13 @@ accelerate launch --config_file config.yaml train.py
 
 ## Proximal Policy Optimization
 
-Papers relating to the [experimental.ppo.PPOTrainer](/docs/trl/v1.9.2/en/ppo_trainer#trl.experimental.ppo.PPOTrainer)
+Papers relating to the [experimental.ppo.PPOTrainer](/docs/trl/v1.10.0/en/ppo_trainer#trl.experimental.ppo.PPOTrainer)
 
 ### Proximal Policy Optimization Algorithms
 
 **📜 Paper**: https://huggingface.co/papers/1707.06347
 
-Introduces Proximal Policy Optimization (PPO): policy gradient methods that alternate between collecting rollouts and optimizing a clipped surrogate objective over multiple minibatch epochs. PPO retains benefits of trust-region methods (e.g. TRPO) with simpler implementation and strong empirical sample efficiency, and was validated on robotics and Atari benchmarks. Used in TRL via [experimental.ppo.PPOTrainer](/docs/trl/v1.9.2/en/ppo_trainer#trl.experimental.ppo.PPOTrainer). To use PPO with TRL, use this configuration:
+Introduces Proximal Policy Optimization (PPO): policy gradient methods that alternate between collecting rollouts and optimizing a clipped surrogate objective over multiple minibatch epochs. PPO retains benefits of trust-region methods (e.g. TRPO) with simpler implementation and strong empirical sample efficiency, and was validated on robotics and Atari benchmarks. Used in TRL via [experimental.ppo.PPOTrainer](/docs/trl/v1.10.0/en/ppo_trainer#trl.experimental.ppo.PPOTrainer). To use PPO with TRL, use this configuration:
 
 ```python
 from trl.experimental.ppo import PPOConfig
@@ -1913,4 +1932,4 @@ training_args = PPOConfig(
 ```
 
 ### OpenEnv Integration for Training LLMs with Environments
-https://huggingface.co/docs/trl/v1.9.2/openenv.md
+https://huggingface.co/docs/trl/v1.10.0/openenv.md

@@ -36,4 +36,4 @@ accelerate launch --config_file examples/accelerate_configs/deepspeed_zero2.yaml
 Consult the 🤗 Accelerate [documentation](https://huggingface.co/docs/accelerate/usage_guides/deepspeed) for more information about the DeepSpeed plugin.
 
 ### Reward Modeling
-https://huggingface.co/docs/trl/v1.9.2/reward_trainer.md
+https://huggingface.co/docs/trl/v1.10.0/reward_trainer.md

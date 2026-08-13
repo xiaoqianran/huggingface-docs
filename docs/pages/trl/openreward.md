@@ -9,7 +9,7 @@ This guide covers **how to integrate OpenReward with TRL**. For more on the stan
 
 ## When to use OpenReward environments
 
-[GRPOTrainer](/docs/trl/v1.9.2/en/gspo_token#trl.GRPOTrainer) supports environment-based training via the `environment_factory` slot — see [OpenEnv](openenv) for the general contract. Use OpenReward when you want to train against an ORS-speaking environment: the [OpenReward catalog](https://openreward.ai) (e.g. `Eigent/SETA`, `kanishk/EndlessTerminals`, `nebius/SWE-rebench-V2`), an env you self-host on your own infra, or a local server you're developing.
+[GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) supports environment-based training via the `environment_factory` slot — see [OpenEnv](openenv) for the general contract. Use OpenReward when you want to train against an ORS-speaking environment: the [OpenReward catalog](https://openreward.ai) (e.g. `Eigent/SETA`, `kanishk/EndlessTerminals`, `nebius/SWE-rebench-V2`), an env you self-host on your own infra, or a local server you're developing.
 
 ## Installation
 
@@ -188,37 +188,36 @@ The per-rollout adapter exposes the running state TRL needs — `env.reward`, `e
 
 ## OpenRewardSpec[[trl.experimental.openreward.OpenRewardSpec]]
 
-- **target** (*str*) --
-  Either an openreward.ai catalog name (*"Eigent/SETA"*) or a URL pointing at any ORS server
-  (*"https://you-seta.hf.space"*, *"http://localhost:8080"*). Auto-detected by the presence of *://* in the
-  string.
-- **num_tasks** (*int*, *optional*) --
-  Cap on the number of tasks pulled into the dataset. `None` uses every task the env exposes.
-- **split** (*str*, *optional*, defaults to *"train"*) --
-  Which split's task list to draw from.
-- **indices** (*list[int]*, *optional*) --
-  Specific task indices to train on. Mutually exclusive with `num_tasks`. Useful for debugging or
-  curriculum subsets.
-- **api_key** (*str*, *optional*) --
-  `OPENREWARD_API_KEY` override. Only used when `target` is a catalog name.
-- **secrets** (*dict[str, str]*, *optional*) --
-  Per-session secrets forwarded to `env.session(secrets=)`.
-- **env_name** (*str*, *optional*) --
-  Override for the env name to look up on the server. Rarely needed.
-- **include_metadata** (*bool*, *optional*, defaults to *True*) --
-  Fold per-task metadata (*difficulty*, *category*, *tags*, ...) into the dataset rows so reward funcs can
-  read them via TRL's `inputs` argument.
-- **discover_task_tools** (*bool*, *optional*, defaults to *True*) --
-  If `True`, opens a short-lived ORS session and uses `session.list_tools()` so task-specific tools
-  (`GET …/task_tools` per ORS — e.g. `@tool(shared=False)` and `list_task_tools()`) are bound for GRPO.
-  If probe fails, falls back to `environment.list_tools()` only. Set `False` to skip the extra session
-  (shared tools only / offline quirks).
-- **task_tools_discovery_index** (*int*, *optional*) --
-  Task index used only for the discovery session when set; **overrides** multi-index probing below. When
-  omitted and `indices=` is set, discovery opens one probe session per **distinct** entry in `indices`
-  (sorted) and **merges** tool specs by name so task-specific tools from every listed task are bound. When
-  omitted and `num_tasks` / full-list mode is used, probes task `0` only. Ignored when
-  `discover_task_tools=False`.
+#### trl.experimental.openreward.OpenRewardSpec[[trl.experimental.openreward.OpenRewardSpec]]
+
+```python
+trl.experimental.openreward.OpenRewardSpec(target: str, num_tasks: int | None = None, split: str = 'train', indices: list[int] | None = None, api_key: str | None = None, secrets: dict[str, str] | None = None, env_name: str | None = None, include_metadata: bool = True, discover_task_tools: bool = True, task_tools_discovery_index: int | None = None)
+```
+
+[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/openreward/_spec.py#L78)
+
+**Parameters:**
+
+target (*str*) : Either an openreward.ai catalog name (*"Eigent/SETA"*) or a URL pointing at any ORS server (*"https://you-seta.hf.space"*, *"http://localhost:8080"*). Auto-detected by the presence of *://* in the string.
+
+num_tasks (*int*, *optional*) : Cap on the number of tasks pulled into the dataset. `None` uses every task the env exposes.
+
+split (*str*, *optional*, defaults to *"train"*) : Which split's task list to draw from.
+
+indices (*list[int]*, *optional*) : Specific task indices to train on. Mutually exclusive with `num_tasks`. Useful for debugging or curriculum subsets.
+
+api_key (*str*, *optional*) : `OPENREWARD_API_KEY` override. Only used when `target` is a catalog name.
+
+secrets (*dict[str, str]*, *optional*) : Per-session secrets forwarded to `env.session(secrets=)`.
+
+env_name (*str*, *optional*) : Override for the env name to look up on the server. Rarely needed.
+
+include_metadata (*bool*, *optional*, defaults to *True*) : Fold per-task metadata (*difficulty*, *category*, *tags*, ...) into the dataset rows so reward funcs can read them via TRL's `inputs` argument.
+
+discover_task_tools (*bool*, *optional*, defaults to *True*) : If `True`, opens a short-lived ORS session and uses `session.list_tools()` so task-specific tools (`GET …/task_tools` per ORS — e.g. `@tool(shared=False)` and `list_task_tools()`) are bound for GRPO. If probe fails, falls back to `environment.list_tools()` only. Set `False` to skip the extra session (shared tools only / offline quirks).
+
+task_tools_discovery_index (*int*, *optional*) : Task index used only for the discovery session when set; **overrides** multi-index probing below. When omitted and `indices=` is set, discovery opens one probe session per **distinct** entry in `indices` (sorted) and **merges** tool specs by name so task-specific tools from every listed task are bound. When omitted and `num_tasks` / full-list mode is used, probes task `0` only. Ignored when `discover_task_tools=False`.
+
 Single spec object that wires an ORS environment into a TRL trainer.
 
 ## Limitations
@@ -235,4 +234,4 @@ Single spec object that wires an ORS environment into a TRL trainer.
 - [Echo env Space — `trl-internal-testing/openreward-echo-env`](https://huggingface.co/spaces/trl-internal-testing/openreward-echo-env)
 
 ### Training with Jobs
-https://huggingface.co/docs/trl/v1.9.2/jobs_training.md
+https://huggingface.co/docs/trl/v1.10.0/jobs_training.md

@@ -9,5 +9,5 @@ Data Studio allows teams to understand their data and to help them build better 
 
 More information about [Data Studio](./datasets-viewer).
 
-### Jobs Overview
-https://huggingface.co/docs/hub/jobs-overview.md
+### Gated models
+https://huggingface.co/docs/hub/models-gated.md

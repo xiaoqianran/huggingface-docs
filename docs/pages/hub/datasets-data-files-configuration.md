@@ -70,5 +70,5 @@ We provide two guides that you can check out:
 - [How to create an audio dataset](./datasets-audio) ([example datasets](https://huggingface.co/collections/datasets-examples/audio-dataset-66aca0b73e8f69e3d069e607))
 - [How to create a video dataset](./datasets-video)
 
-### 🟧 Label Studio on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-label-studio.md
+### Using `Transformers.js` at Hugging Face
+https://huggingface.co/docs/hub/transformers-js.md

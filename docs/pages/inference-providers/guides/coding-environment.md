@@ -440,5 +440,5 @@ Now that you have a working coding agent, here are some ways to extend and impro
 - Try other environments like browsing the web or playing a game.
 - Integrate environments with your application
 
-### Responses API (beta)
-https://huggingface.co/docs/inference-providers/guides/responses-api.md
+### How to use OpenAI gpt-oss
+https://huggingface.co/docs/inference-providers/guides/gpt-oss.md

@@ -69,5 +69,5 @@ curl -H "Authorization: Bearer $HF_TOKEN" \
 3. For file inputs, it POSTs the file to `/gradio_api/upload` and keeps the returned path.
 4. It POSTs to `/gradio_api/call/v2/<endpoint>`, then GETs the poll URL to stream the result.
 
-### JupyterLab on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-jupyter.md
+### Using SetFit with Hugging Face
+https://huggingface.co/docs/hub/setfit.md

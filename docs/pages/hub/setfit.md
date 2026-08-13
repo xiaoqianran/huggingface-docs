@@ -52,5 +52,5 @@ If you want to load a specific SetFit model, you can click `Use in SetFit` and y
 * SetFit [docs](https://huggingface.co/docs/setfit)
 * SetFit [paper](https://arxiv.org/abs/2209.11055)
 
-### Argilla on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-argilla.md
+### Polars
+https://huggingface.co/docs/hub/datasets-polars.md

@@ -168,5 +168,5 @@ Update your Webhook to send requests to that URL:
 
 And that's it! Now every commit to the input dataset will trigger a fine-tuning of ResNet-50 with AutoTrain 🎉
 
-### Query datasets
-https://huggingface.co/docs/hub/datasets-duckdb-select.md
+### Static HTML Spaces
+https://huggingface.co/docs/hub/spaces-sdks-static.md

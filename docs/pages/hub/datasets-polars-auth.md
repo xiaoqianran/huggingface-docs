@@ -33,5 +33,5 @@ If multiple methods are specified, they are prioritized in the following order:
 - Environment variable (`HF_TOKEN`)
 - CLI
 
-### Manual Configuration
-https://huggingface.co/docs/hub/datasets-manual-configuration.md
+### Using SpanMarker at Hugging Face
+https://huggingface.co/docs/hub/span_marker.md
