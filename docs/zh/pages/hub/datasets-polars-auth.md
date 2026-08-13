@@ -33,5 +33,5 @@ pl.read_parquet(
 
 - 参数（`storage_options`）
 - 环境变量（`HF_TOKEN`）
-- 命令行界面### 手动配置
-https://huggingface.co/docs/hub/datasets-manual-configuration.md
+- 命令行界面### 在拥抱脸部时使用 SpanMarker
+https://huggingface.co/docs/hub/span_marker.md

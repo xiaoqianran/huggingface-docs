@@ -173,7 +173,7 @@ hf jobs logs --namespace <my-org-name> <job_id>
 
 当作业结束时，作业的文件系统将被删除。在作业退出之前写下您想要在某处持久保存的任何内容：
 
-- **中间工件、检查点和日志 → 存储桶卷。** 安装存储桶并在安装路径下写入输出 - 有关示例，请参阅 [Volumes](./jobs-configuration#volumes)。创建作业时，卷安装将通过您的 Hugging Face 身份进行授权，因此您的脚本不需要令牌即可写入它们。- **最终模型和数据集 → 推送到 Hub 存储库。** 作业没有 Hugging Face 令牌，除非您传递一个令牌，例如`--secrets HF_TOKEN`（裸表单自动解析为您登录的令牌）。如果您的脚本调用`push_to_hub()`或`create_repo()`，请确保令牌具有写入权限（细粒度令牌需要存储库写入和创建权限）。常见的失败模式是作业完成数小时的计算，然后在最终上传时出错，因为令牌无法写入 — 计算已完成，但结果未保存。
+- **中间工件、检查点和日志 → 存储桶卷。** 安装存储桶并在安装路径下写入输出 - 有关示例，请参阅 [Volumes](./jobs-configuration#volumes)。创建作业时，卷安装将使用您的 Hugging Face 身份进行授权，因此您的脚本不需要令牌即可写入它们。- **最终模型和数据集 → 推送到 Hub 存储库。** 作业没有 Hugging Face 令牌，除非您传递一个令牌，例如`--secrets HF_TOKEN`（裸表单自动解析为您登录的令牌）。如果您的脚本调用`push_to_hub()`或`create_repo()`，请确保令牌具有写入权限（细粒度令牌需要存储库写入和创建权限）。常见的失败模式是作业完成数小时的计算，然后在最终上传时出错，因为令牌无法写入 — 计算已完成，但结果未保存。
 
 - **将关键结果打印到日志中。** 作业日志在作业结束后保留​​，并且可以随时使用 `hf jobs logs <job-id>` 获取。即使上传步骤失败，将最终指标打印到标准输出也能让它们恢复。
 
@@ -233,5 +233,5 @@ hf jobs cancel --namespace <my-org-name> <job_id>
 
 获取作业信息，并监控日志和资源使用统计信息：
 
-### 空格
-https://huggingface.co/docs/hub/spaces.md
+### 通过 SSH 进行 Git
+https://huggingface.co/docs/hub/security-git-ssh.md

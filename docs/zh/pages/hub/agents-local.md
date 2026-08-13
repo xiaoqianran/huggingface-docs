@@ -232,5 +232,5 @@ cmake --build build --target llama-agent
 - [llama.cpp Guide](./gguf-llamacpp)——llama.cpp安装及使用详解
 - [Agents on the Hub](./agents-overview) — 将代理连接到 Hugging Face 生态系统
 
-### 门控组集合
-https://huggingface.co/docs/hub/enterprise-gating-group-collections.md
+### 模型
+https://huggingface.co/docs/hub/models.md

@@ -25,5 +25,5 @@ TruffleHog 可以验证跨多个服务工作的秘密，它不仅限于 Hugging 
 
 您可以选择退出来自 [your settings](https://huggingface.co/settings/notifications) 的电子邮件通知。
 
-如果泄露的秘密是 Hugging Face 访问令牌，您可以立即使其失效 - 包括不属于您的令牌 - 请参阅[Revoking a leaked token](./security-tokens#revoking-a-leaked-token)。### 下载分析
-https://huggingface.co/docs/hub/download-analytics.md
+如果泄露的秘密是 Hugging Face 访问令牌，您可以立即使其失效 - 包括不属于您的令牌 - 请参阅[Revoking a leaked token](./security-tokens#revoking-a-leaked-token)。### 摄取数据集
+https://huggingface.co/docs/hub/datasets-ingesting.md

@@ -25,7 +25,7 @@
 此外，您可以采取以下操作来管理您的通知：- 标记为已读/未读：更改通知的状态以将其标记为已读或未读。
  - 标记为完成：标记为完成后，通知将不再出现在通知中心（它们将被删除）。
  
-默认情况下，对通知所做的更改将仅应用于屏幕上选定的通知。但是，您还可以将更改应用于所有匹配的通知（例如 Gmail），以更加方便。
+默认情况下，对通知所做的更改将仅应用于屏幕上选定的通知。但是，您也可以将更改应用于所有匹配的通知（例如 Gmail），以更加方便。
 
 ## 观察用户和组织
 
@@ -49,7 +49,7 @@ _请注意，单击电子邮件中的取消订阅链接将使您取消订阅该�
 可以通过使用存储库上下文菜单中的“静音通知”操作来静音特定存储库的通知。
 这将阻止您收到该特定存储库的任何新通知。您可以随时通过单击同一存储库菜单中的“取消静音通知”操作来取消存储库静音。
 
-![mute notification menu](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/notifications-mute-menu.png)_注意，如果存储库被静音，除非您被直接提及或参与讨论，否则您将不会收到任何新通知。_ 
+![mute notification menu](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/notifications-mute-menu.png)_注意，如果存储库被静音，您将不会收到任何新通知，除非您被直接提及或参与讨论。_ 
 
 静音存储库列表可从通知设置页面获取：
 
@@ -63,5 +63,5 @@ _请注意，单击电子邮件中的取消订阅链接将使您取消订阅该�
 
 ![Notifications mute discussions](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/notifications-mute-discussion.png)
 
-### 优化
-https://huggingface.co/docs/hub/datasets-polars-optimizations.md
+### 在拥抱面部使用_Adapters_
+https://huggingface.co/docs/hub/adapters.md

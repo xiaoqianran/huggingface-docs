@@ -67,5 +67,5 @@ tar -czvf aim_repo.tar.gz .aim
 
 [Aim community Discord](https://github.com/aimhubio/aim#-community) 也可用于社区讨论。
 
-### 编辑数据集
-https://huggingface.co/docs/hub/datasets-editing.md
+### 音频数据集
+https://huggingface.co/docs/hub/datasets-audio.md

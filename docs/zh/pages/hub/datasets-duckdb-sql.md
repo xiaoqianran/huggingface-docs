@@ -155,5 +155,5 @@ WHERE  subject = 'nutrition' AND LENGTH(correct_answer) > 0 LIMIT 3;
 > [!提示]
 > DuckDB 的[SQL functions overview](https://duckdb.org/docs/sql/functions/overview) 中有很多有用的功能。最好的部分是您可以直接在 Hugging Face 数据集上使用它们。
 
-### Webhooks 自动化
-https://huggingface.co/docs/hub/jobs-webhooks.md
+### 🟧 空间标签工作室
+https://huggingface.co/docs/hub/spaces-sdks-docker-label-studio.md

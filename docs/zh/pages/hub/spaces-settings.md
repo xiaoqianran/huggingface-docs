@@ -18,5 +18,5 @@ pinned: false
 
 有关其他设置，请参阅[Reference](./spaces-config-reference)部分。
 
-### 空间作为代理工具
-https://huggingface.co/docs/hub/spaces-agents.md
+### 第三方扫描仪：JFrog
+https://huggingface.co/docs/hub/security-jfrog.md

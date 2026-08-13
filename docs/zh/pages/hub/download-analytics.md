@@ -30,15 +30,15 @@
 - 下载的总数据量（以字节为单位）
 - 最后一次下载的日期
 
-这使管理员能够快速了解谁在推动整个组织的带宽使用，一目了然。
+这使管理员能够快速了解谁在整个组织中推动带宽使用，一目了然。
 
 ## 数据范围
 
-下载分析报告每个成员的总带宽；它不记录下载了哪些特定存储库、修订版或文件。
+下载分析报告每个成员的总带宽；它不记录下载了哪些特定存储库、修订版本或文件。
 
 如果您发布自己的模型或数据集并希望了解这些存储库的每个存储库下载计数，请参阅[Publisher Analytics](./publisher-analytics)。## 数据可用性和保留
 
 CDN 使用计量保留 90 天。
 
-### 处理大型数据集
-https://huggingface.co/docs/hub/jobs-large-datasets.md
+### 空间自定义域
+https://huggingface.co/docs/hub/spaces-custom-domain.md

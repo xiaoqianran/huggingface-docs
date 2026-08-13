@@ -48,5 +48,5 @@ export HF_TOKEN="REDACTED"
 
 有关身份验证的更多信息，请参阅 [Hugging Face authentication](/docs/huggingface_hub/main/en/quick-start#authentication) 文档。
 
-### SQL Console：在浏览器中查询拥抱人脸数据集
-https://huggingface.co/docs/hub/datasets-viewer-sql-console.md
+### 古夫
+https://huggingface.co/docs/hub/gguf.md

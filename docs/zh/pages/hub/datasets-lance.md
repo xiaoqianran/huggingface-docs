@@ -2,11 +2,11 @@
 
 # 兰斯
 
-[Lance](https://lance.org) is an open multimodal lakehouse table format for AI. You can use Hugging Face paths (`hf://`) to access Lance datasets on the Hub. This lets you scan and search large datasets on the Hugging Face Hub without having to copy the entire dataset locally.
+[Lance](https://lance.org) 是一种面向 AI 的开放式多模式 Lakehouse 表格式。您可以使用 Hugging Face 路径 (`hf://`) 访问 Hub 上的 Lance 数据集。这使您可以扫描和搜索 Hugging Face Hub 上的大型数据集，而无需在本地复制整个数据集。
 
 ## 开始使用
 
-To get started, pip install `pylance` and `pyarrow`:
+首先，pip install `pylance` 和 `pyarrow`：
 
 ```bash
 pip install pylance pyarrow
@@ -46,7 +46,7 @@ for row in ds.take(3):
 > 流式传输对于简单标量元数据采样速度很快，但对于嵌入或大型多模式资产则不那么快。要处理大型数据集，建议扫描元数据，识别所需的子集，并在本地下载数据集的该部分，以避免面临 Hub 速率限制：
 > `hf download lance-format/laion-1m --repo-type dataset --local-dir ./laion`
 
-## 使用 `lance.dataset` 从集线器进行流式传输您还可以使用 `hf://` 路径说明符扫描存储在 Hugging Face Hub 上的 Lance 数据集。这将扫描远程数据集，而不需要您将其下载到本地。使用 Lance `dataset` API，可以非常简单地设置限制、过滤器和预测以仅获取您需要的数据。
+## 使用 `lance.dataset` 从集线器进行流式传输您还可以使用 `hf://` 路径说明符扫描存储在 Hugging Face Hub 上的 Lance 数据集。这会扫描远程数据集，而不需要您将其下载到本地。使用 Lance `dataset` API，可以非常简单地设置限制、过滤器和预测以仅获取您需要的数据。
 
 ```python
 import lance
@@ -250,5 +250,5 @@ tensor = decoder[0]  # uint8 tensor of shape [C, H, W]
 并与社区中的其他人分享您自己的 Lance 数据集！
 您可以访问[lance.org](https://lance.org/integrations/huggingface/)获取更多代码片段和示例。
 
-### 极地
-https://huggingface.co/docs/hub/datasets-polars.md
+### 团队和企业计划
+https://huggingface.co/docs/hub/enterprise.md

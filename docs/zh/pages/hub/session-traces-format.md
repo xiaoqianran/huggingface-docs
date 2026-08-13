@@ -13,8 +13,8 @@
 ```
 
 |领域 |必填|笔记 |
-| ---------| -------- | ------------------------------------------------- |
-| `type` |是的 |必须是`"session"`|
+| --------- | -------- | ------------------------------------------------- |
+| `type` |是的 |必须是`"session"` |
 | `harness` |是的 | **产生跟踪的线束的 ID** |
 | `id` |是的 |唯一的会话 ID |
 | `name` |没有|人类可读的标题 |
@@ -59,5 +59,5 @@
 
 如果您不想采用上面的形状，您可以发出 **Pi 的会话格式** ([session-format.md](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/session-format.md))，Hub 已经支持该格式。在这种情况下，还要向 Pi 的会话标头行添加一个 `harness: "..."` 字段，以便 Hub 可以将跟踪归因于您的线束。
 
-### 在拥抱脸部时使用 ML-Agents
-https://huggingface.co/docs/hub/ml-agents.md
+### 推理提供者
+https://huggingface.co/docs/hub/models-inference.md

@@ -80,7 +80,7 @@ If there is no match, the role is determined as follows:
 这使得组织内的某些用户无需完成单点登录 (SSO) 流程即可访问资源。当您与不属于组织身份提供商 (IdP) 但需要访问特定资源的外部方合作时，这会很有帮助。要将用户添加为“外部协作者”，请访问组织设置中的 `SSO/Users Management` 部分。添加后，这些用户将不需要执行 SSO 流程。
 
 但是，它们仍然受到您组织的访问控制 ([Resource Groups](./enterprise-resource-groups))。
-仔细管理他们的访问对于维护组织的数据安全至关重要。
+仔细管理他们的访问权限对于维护组织的数据安全至关重要。
 
-### S3 兼容性
-https://huggingface.co/docs/hub/storage-buckets-s3.md
+### 空间配置参考
+https://huggingface.co/docs/hub/spaces-config-reference.md

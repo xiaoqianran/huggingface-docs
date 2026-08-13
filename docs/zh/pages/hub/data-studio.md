@@ -23,11 +23,11 @@
 
 ## 共享特定行
 
-您可以通过单击特定行，然后复制浏览器地址栏中的 URL 来共享该行。例如 https://huggingface.co/datasets/nyu-mll/glue/viewer/mrpc/test?p=2&row=241 将在 MRPC 数据集、测试拆分和第 241 行上打开数据集工作室。
+您可以通过单击特定行，然后复制浏览器地址栏中的 URL 来共享该行。例如 https://huggingface.co/datasets/nyu-mll/glue/viewer/mrpc/test?p=2&row=241 将在 MRPC 数据集、测试分割和第 241 行上打开数据集工作室。
 
 ## 代理痕迹
 
-将原始 JSONL 跟踪从 Claude Code、Codex 或 Pi 等工具推送到数据集中，以便在 Data Studio 中浏览它们，或者将它们同步到 [Storage Bucket](./storage-buckets) 并在其中打开单独的 `.jsonl` 文件。两条路径都使用相同的跟踪查看器来逐步执行会话、轮次、工具调用和模型响应。有关支持的代理和查看跟踪，请参阅[Agent Traces](./agent-traces)。
+将原始 JSONL 跟踪从 Claude Code、Codex 或 Pi 等工具推送到数据集中，以便在 Data Studio 中浏览它们，或者将它们同步到 [Storage Bucket](./storage-buckets) 并在其中打开单独的 `.jsonl` 文件。两条路径都使用相同的跟踪查看器来逐步执行会话、轮次、工具调用和模型响应。请参阅 [Agent Traces](./agent-traces) 了解支持的代理和查看跟踪。
 
 ## 大规模数据集
 
@@ -96,5 +96,5 @@ configs:
 
 对于 **私有** 数据集，为 [PRO users](https://huggingface.co/pricing) 和 [Team or Enterprise organizations](https://huggingface.co/enterprise) 启用数据集查看器。有关更多信息，请参阅我们的 [How to configure the Dataset Viewer](./datasets-viewer-configure) 指南。
 
-### 将您的库与 Hub 集成
-https://huggingface.co/docs/hub/models-adding-libraries.md
+### 恶意软件扫描
+https://huggingface.co/docs/hub/security-malware.md

@@ -6,7 +6,7 @@
 
 您还可以从 Hugging Face Hub 运行私有 GGUF。
 
-Ollama 是一个基于 llama.cpp 的应用程序，可通过您的计算机直接与 LLM 交互。您可以直接通过 Ollama 在 Hugging Face 上使用社区创建的任何 GGUF 量化（[bartowski](https://huggingface.co/bartowski)、[MaziyarPanahi](https://huggingface.co/MaziyarPanahi) 和 [many more](https://huggingface.co/models?pipeline_tag=text-generation&library=gguf&sort=trending)），而无需创建新的 `Modelfile`。在撰写本文时，Hub 上有 45K 个公共 GGUF 检查点，您可以使用单个 `ollama run` 命令运行其中任何一个。我们还提供选择量化类型、系统提示等自定义功能，以改善您的整体体验。 
+Ollama 是一个基于 llama.cpp 的应用程序，可通过您的计算机直接与 LLM 交互。您可以直接通过 Ollama 在 Hugging Face 上使用社区创建的任何 GGUF 量化（[bartowski](https://huggingface.co/bartowski)、[MaziyarPanahi](https://huggingface.co/MaziyarPanahi) 和 [many more](https://huggingface.co/models?pipeline_tag=text-generation&library=gguf&sort=trending)），而无需创建新的 `Modelfile`。截至撰写本文时，Hub 上有 45K 个公共 GGUF 检查点，您可以使用单个 `ollama run` 命令运行其中任何一个。我们还提供选择量化类型、系统提示等自定义功能，以改善您的整体体验。 
 
 入门非常简单：
 
@@ -88,5 +88,5 @@ ollama run hf.co/bartowski/Llama-3.2-3B-Instruct-GGUF:Llama-3.2-3B-Instruct-IQ3_
 - https://github.com/ollama/ollama/blob/main/docs/README.md
 - https://huggingface.co/docs/hub/en/gguf
 
-### 泡菜扫描
-https://huggingface.co/docs/hub/security-pickle.md
+### 组织博客文章
+https://huggingface.co/docs/hub/enterprise-blog-articles.md

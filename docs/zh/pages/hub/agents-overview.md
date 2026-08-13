@@ -39,7 +39,7 @@ HF MCP 服务器可与任何 MCP 兼容的客户端配合使用：
 将配置片段复制到客户端的 MCP 设置中，保存并重新启动客户端。
 
 > [!提示]
-> 设置页面生成您的客户期望的准确配置。使用它而不是手动编写配置。
+> 设置页面生成您的客户期望的确切配置。使用它而不是手动编写配置。
 
 ### 你能做什么
 
@@ -51,7 +51,7 @@ HF MCP 服务器可与任何 MCP 兼容的客户端配合使用：
 |探索数据集 | “显示有关天气时间序列的数据集” |
 |寻找空间 | “找到一个可以转录音频文件的空间”|
 |生成图像 | “创建吉卜力风格的 1024x1024 猫图像”|
-|搜索论文 | “查找有关视觉语言模型的最新论文”|
+|搜索论文 | “查找有关视觉语言模型的最新论文” |
 
 您的助手调用 Hugging Face 服务器公开的 MCP 工具，并返回包含元数据、链接和上下文的结果。
 
@@ -196,5 +196,5 @@ Agent: [Fetches documentation]
 - [Skills](./agents-skills) - 编码代理的预构建功能
 - [SDK](./agents-sdk) - 用于构建代理的 Python 和 JavaScript 库
 
-### 数字对象标识符 (DOI)
-https://huggingface.co/docs/hub/doi.md
+### 在 Hugging Face 中使用 fastai
+https://huggingface.co/docs/hub/fastai.md

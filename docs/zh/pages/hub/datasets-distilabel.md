@@ -109,5 +109,5 @@ distiset.push_to_hub(
 - [🚀 Distilabel Docs - prometheus](https://distilabel.argilla.io/1.2.0/sections/pipeline_samples/papers/prometheus/)
 - [🆕 Introducing distilabel](https://argilla.io/blog/introducing-distilabel-1/)
 
-### 存储限制
-https://huggingface.co/docs/hub/storage-limits.md
+### 在 Hugging Face 中使用 RL-Baselines3-Zoo
+https://huggingface.co/docs/hub/rl-baselines3-zoo.md

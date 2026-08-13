@@ -125,14 +125,14 @@ with hffs.open("buckets/username/bucket_name/texts.jsonl", "a") as f:
         f.write(json.dumps({"text": text}) + "\n")
         f.flush()
 ````HfFileSystem` 基于 `fsspec`，其默认块大小为 5MiB，这意味着一旦附加了 5MiB 的完整新数据块，刷新实际上就会上传数据。
-If you want to upload more often, lower `blocksize` in `hffs.open()` (e.g. `hffs.open(..., blocksize=100 * 2 ** 10)` for 100 kiB) or use `f.flush(force=True)`.
+如果您想更频繁地上传，请降低 `hffs.open()` 中的 `blocksize`（例如 `hffs.open(..., blocksize=100 * 2 ** 10)` 为 100 kiB）或使用 `f.flush(force=True)`。
 
 Hugging Face 存储基于 Xet，可在附加文件时实现高效的 I/O：上传时会进行重复数据删除，并且仅上传新数据。
-Find more information on doing dynamic data ingestion in buckets in the [buckets documentation on uploads](/docs/hub/storage-buckets#uploading-files) and in the [dataset editing documentation](./datasets-editing#only-upload-the-new-data).
+在 [buckets documentation on uploads](/docs/hub/storage-buckets#uploading-files) 和 [dataset editing documentation](./datasets-editing#only-upload-the-new-data) 中查找有关在存储桶中进行动态数据摄取的更多信息。
 
 ### 使用 `CommitScheduler` 近乎实时
 
-The idea is to run a background job that regularly pushes a local folder to the Hub. You want to save data to the Hub (potentially millions of entries), but you don’t need to save in real-time each user’s input. Instead, you can save the data locally in a JSON file and upload it every 10 minutes.例如：
+这个想法是运行一个后台作业，定期将本地文件夹推送到集线器。您希望将数据保存到中心（可能有数百万个条目），但不需要实时保存每个用户的输入。相反，您可以将数据本地保存在 JSON 文件中，并每 10 分钟上传一次。例如：
 
 ```python
 import json
@@ -149,15 +149,15 @@ with CommitScheduler(repo_id="username/dataset_name", repo_type="dataset", folde
     ...
 ```
 
-Check out how to ingest dynamic data without having to reupload everything every time in the documentation on [dataset editing](./datasets-editing#only-upload-the-new-data).
+在 [dataset editing](./datasets-editing#only-upload-the-new-data) 的文档中了解如何提取动态数据，而无需每次都重新上传所有内容。
 
-Find more information on scheduled uploads in the [huggingface_hub documentation](/docs/huggingface_hub/guides/upload#scheduled-uploads).
+在 [huggingface_hub documentation](/docs/huggingface_hub/guides/upload#scheduled-uploads) 中查找有关计划上传的更多信息。
 
 ### 基于 Cron 使用 Hugging Face Jobs
 
-Schedule python scripts to ingest data according to a schedule
+安排 python 脚本根据计划摄取数据
 
-For example to run a script `ingest.py` every 5 minutes:
+例如每 5 分钟运行一次脚本 `ingest.py`：
 
 ```bash
 hf jobs scheduled uv run "*/5 * * * *" ingest.py
@@ -172,5 +172,5 @@ hf jobs scheduled uv run --with "dlt[hf]" "0 0 * * *" pipeline.py
 
 在 [Jobs documentation](/docs/hub/jobs-overview) 中查找有关拥抱脸部工作的更多信息。
 
-### 瞄准空间
-https://huggingface.co/docs/hub/spaces-sdks-docker-aim.md
+### 如何向 ArXiv 添加空间
+https://huggingface.co/docs/hub/spaces-add-to-arxiv.md

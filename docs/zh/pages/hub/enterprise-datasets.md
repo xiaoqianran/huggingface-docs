@@ -11,5 +11,5 @@ Data Studio 使团队能够了解他们的数据并帮助他们为 AI 构建更�
 
 有关[Data Studio](./datasets-viewer)的更多信息。
 
-### 职位概述
-https://huggingface.co/docs/hub/jobs-overview.md
+### 门控模型
+https://huggingface.co/docs/hub/models-gate.md

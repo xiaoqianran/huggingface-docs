@@ -242,5 +242,5 @@ dvc push
 > [!注意]
 > 在 `endpointurl` 中使用您的 [namespace](#addressing-buckets) 并在 `s3://` URL 中使用裸存储桶名称。
 
-### 代理
-https://huggingface.co/docs/hub/agents.md
+### 优化
+https://huggingface.co/docs/hub/datasets-polars-optimizations.md

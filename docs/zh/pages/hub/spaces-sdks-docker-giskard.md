@@ -49,7 +49,7 @@ Giskard Space 启动并运行后，您需要申请免费许可证才能开始使
 
 ## 生成 Hugging Face Giskard 空间令牌和 Giskard API 密钥Giskard API 密钥用于在运行 AI 模型的环境与 
 Hugging Face Spaces 上的 Giskard 应用程序。如果您已将空间的**可见性**设置为**私人**，则需要提供拥抱的面孔 
-用户访问令牌以生成 Hugging Face Giskard 空间令牌并建立访问您的私人空间的通信。为此，请按照说明进行操作 
+用户访问令牌来生成 Hugging Face Giskard 空间令牌并建立访问您的私人空间的通信。为此，请按照说明进行操作 
 显示在 Giskard 应用程序的设置页面中。
 
 ## 启动 ML Worker
@@ -78,7 +78,7 @@ giskard worker start -d -k GISKARD-API-KEY -u https://XXX.hf.space --hf-token GI
 
 这些操作都需要您的 Python 环境与 
 吉斯卡德空间。通过初始化 Giskard 客户端来实现此目的：只需复制“创建 Giskard 客户端”片段即可 
-从 Giskard 应用程序的设置页面并在您的 Python 环境中运行它。这看起来像这样：
+从 Giskard 应用程序的设置页面中，并在您的 Python 环境中运行它。这看起来像这样：
 
 ```python
 from giskard import GiskardClient
@@ -97,5 +97,5 @@ client = GiskardClient(url, api_key, hf_token)
 
 如果您有建议或需要具体支持，请加入[Giskard's Discord community](https://discord.com/invite/ABvfpbu69R)或联系[Giskard's GitHub repository](https://github.com/Giskard-AI/giskard)。
 
-### 空间中的 Cookie 限制
-https://huggingface.co/docs/hub/spaces-cookie-limitations.md
+### 使用 Hugging Face 中的 Unity Sentis 模型
+https://huggingface.co/docs/hub/unity-sentis.md

@@ -18,5 +18,5 @@ Hugging Face Hub 拥有越来越多的数据集，涵盖各种领域和任务。
 - [Agent Traces](./agent-traces)
 - [Data files Configuration](./datasets-data-files-configuration)
 
-### 型号卡组件
-https://huggingface.co/docs/hub/model-cards-components.md
+### marimo 空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-marimo.md

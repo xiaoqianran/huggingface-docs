@@ -19,7 +19,7 @@ Hugging Face MCP（模型上下文协议）服务器将兼容 MCP 的 AI 助手�
 2. 选择您的客户端：选择与 MCP 兼容的客户端（例如 Cursor、VS Code、Zed、Claude Desktop）。该页面显示客户特定的说明和可供复制的配置片段。
 
 3. 粘贴并重新启动：将代码片段复制到客户端的 MCP 配置中，保存并重新启动/重新加载客户端。您应该会在客户端中看到“Hugging Face”（或类似内容）列为已连接的 MCP 服务器。> [!提示]
-> 设置页面生成您的客户期望的准确配置。使用它而不是手动编写配置。
+> 设置页面生成您的客户期望的确切配置。使用它而不是手动编写配置。
 
 ![MCP Settings Example](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hf-mcp-settings-new.png)
 
@@ -67,7 +67,7 @@ Gradio MCP 应用程序将其功能公开为工具（带有参数和描述），
 
 ### 空格选项
 
-您的[MCP settings](https://huggingface.co/settings/mcp)提供了多个选项来自定义空间的工作方式：|选项|描述 |
+您的[MCP settings](https://huggingface.co/settings/mcp)提供了多个选项来自定义空间的工作方式：|选项 |描述 |
 |--------|-------------|
 | **动态空间** |在运行时动态调用 MCP 空间。启用后，您的助手可以即时发现和使用 MCP 兼容的空间，而无需手动添加它们。 |
 | **删除嵌入图像** |删除由 Gradio Spaces 生成的嵌入图像。如果您的 MCP 客户端的图像支持有限或您需要纯文本响应，则非常有用。 |
@@ -76,8 +76,8 @@ Gradio MCP 应用程序将其功能公开为工具（带有参数和描述），
 
 - 设置和客户端设置：https://huggingface.co/settings/mcp
 - 变更日志公告：https://huggingface.co/changelog/hf-mcp-server
-- 拥抱脸部 MCP 服务器：https://huggingface.co/mcp
+- Hugging Face MCP 服务器：https://huggingface.co/mcp
 - 使用 Gradio Spaces 构建您自己的 MCP 服务器：https://www.gradio.app/guides/building-mcp-server-with-gradio
 
-### 使用🤗数据集
-https://huggingface.co/docs/hub/datasets-usage.md
+### 使用空格作为组织卡
+https://huggingface.co/docs/hub/spaces-organization-cards.md

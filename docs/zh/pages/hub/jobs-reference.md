@@ -30,5 +30,5 @@
 
 * [View Jobs OpenAPI](https://huggingface-openapi.hf.space/#tag/jobs)
 
-### 型号发布清单
-https://huggingface.co/docs/hub/model-release-checklist.md
+### 鸭数据库
+https://huggingface.co/docs/hub/datasets-duckdb.md

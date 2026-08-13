@@ -188,7 +188,7 @@
 ### 访问控制和可见性1. **可见性设置**：
    准备好分享您的模型时，请在您的 [model settings](https://huggingface.co/docs/hub/repositories-settings) 中将其切换为公开。在此之前，请仔细检查所有文档和代码示例，以确保它们准确且完整。
 
-2. **门禁访问**：
+2. **门控访问**：
    如果您的模型需要受控访问，请使用[gated access feature](https://huggingface.co/docs/hub/models-gated)并明确说明用户必须满足的条件。这对于具有双重用途或商业限制的模型非常重要。
 
 ## 🏁 发布模型后
@@ -266,5 +266,5 @@
 
 我们迫不及待地想看看您接下来分享的内容！ 🤗
 
-### 空间闪亮
-https://huggingface.co/docs/hub/spaces-sdks-docker-shiny.md
+### 学术中心
+https://huggingface.co/docs/hub/academia-hub.md

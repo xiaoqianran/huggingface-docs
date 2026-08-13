@@ -29,5 +29,5 @@ Data Studio 允许您直接在浏览器中编辑数据集值，然后将这些�
 
 ## 放弃分阶段编辑您可以随时退出编辑模式。如果您不想保留暂存的编辑，请在退出编辑模式之前放弃它们。
 
-### 合并数据集并导出
-https://huggingface.co/docs/hub/datasets-duckdb-combine-and-export.md
+### 泡菜扫描
+https://huggingface.co/docs/hub/security-pickle.md

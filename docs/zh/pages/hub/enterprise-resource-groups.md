@@ -26,11 +26,12 @@
 - 保持私有存储库仅对授权组成员可见
 - 使多个团队能够在同一组织内独立工作
 - 配置允许哪些成员角色创建新资源组
+- 将博客、集合、作业、推理端点和推理提供程序等组织功能限制为特定资源组的成员
 - 将成本归因于特定资源组，以实现更好的预算管理
 
 此团队和企业功能可帮助组织管理复杂的团队结构并对其存储库保持适当的访问控制。
 
 [Getting started with Resource Groups →](./security-resource-groups)
 
-### 迪迪标签
-https://huggingface.co/docs/hub/datasets-distilabel.md
+### 评估结果
+https://huggingface.co/docs/hub/eval-results.md

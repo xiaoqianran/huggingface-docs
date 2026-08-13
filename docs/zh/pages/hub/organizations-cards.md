@@ -24,5 +24,5 @@
 - [Amazon's](https://huggingface.co/spaces/amazon/README/blob/main/README.md)组织卡源代码
 - [spaCy's](https://huggingface.co/spaces/spacy/README/blob/main/README.md)组织卡源代码。
 
-### Webhook 指南：使用 LLM 回复构建讨论机器人
-https://huggingface.co/docs/hub/webhooks-guide-discussion-bot.md
+### 空间 Livebook
+https://huggingface.co/docs/hub/spaces-sdks-docker-livebook.md

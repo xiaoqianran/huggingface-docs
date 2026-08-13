@@ -1,6 +1,6 @@
 <!-- huggingface-docs: machine-translated zh-CN from English source -->
 
-# Webhook 自动化
+# Webhooks 自动化
 
 Webhooks 允许您监听 Hugging Face 上特定存储库或属于特定用户/组织集（不仅仅是您的存储库，而是任何存储库）的所有存储库的新更改。
 
@@ -40,5 +40,5 @@ Webhook 负载包含多个字段，以下是一些有用的字段：
 
 您可以在 [⟦T12⟧ Webhooks documentation](https://huggingface.co/docs/huggingface_hub/en/guides/webhooks) 中找到有关 webhooks 的更多信息。
 
-### 如何使用 Okta 配置 OIDC SSO
-https://huggingface.co/docs/hub/security-sso-okta-oidc.md
+### 模型卡
+https://huggingface.co/docs/hub/model-cards.md

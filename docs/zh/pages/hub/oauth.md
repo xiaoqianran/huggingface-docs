@@ -266,7 +266,7 @@ curl -X POST "https://huggingface.co/oauth/token" \
 
 ### 错误响应
 
-|错误|描述 |
+|错误 |描述 |
 |--------|-------------|
 | `invalid_client` |客户端无权使用令牌交换，或应用程序未绑定组织 |
 | `invalid_grant` |在绑定的组织中找不到用户 |
@@ -295,5 +295,5 @@ urn:ietf:params:oauth:grant-type:token-exchange
 - [RFC 8693 - OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)
 - [Audit Logs](./audit-logs)
 
-### 门控模型
-https://huggingface.co/docs/hub/models-gate.md
+### 文件名和分割
+https://huggingface.co/docs/hub/datasets-file-names-and-splits.md

@@ -4,7 +4,7 @@
 
 本指南将向您展示如何使用音频文件配置数据集存储库。您可以在此 [Audio datasets examples collection](https://huggingface.co/collections/datasets-examples/audio-dataset-66aca0b73e8f69e3d069e607) 中找到随附的存储库示例。
 
-具有受支持结构和 [file formats](./datasets-adding#file-formats) 的数据集会自动在 Hub 的页面上显示数据集查看器。
+具有受支持结构和 [file formats](./datasets-adding#file-formats) 的数据集会自动在 Hub 上的页面上显示数据集查看器。
 
 ---
 
@@ -216,5 +216,5 @@ dataset_info:
 
 请注意，对于小型音频文件（每个音频文件 <1MB）和小型行组（每个行组 100 行，`datasets` 用于音频），建议使用 Parquet。对于较大的音频文件，建议使用 WebDataset 格式，或共享原始音频文件（可选地与元数据文件）。
 
-### 存储库
-https://huggingface.co/docs/hub/repositories.md
+### 使用 Github Actions 管理空间
+https://huggingface.co/docs/hub/spaces-github-actions.md

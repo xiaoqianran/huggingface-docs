@@ -35,7 +35,7 @@ hf-mount start bucket username/my-bucket /mnt/data
 安装后，任何读取或写入文件的工具都可以与您的存储桶配合使用 - pandas、DuckDB、vLLM、训练脚本、shell 命令等。
 
 > [!提示]
-> 存储桶以读写方式挂载；回购协议是只读的。请参阅 [hf-mount repository](https://github.com/huggingface/hf-mount) 获取完整文档，包括后端选项、缓存和写入模式。## 在作业和空间中安装卷
+> 存储桶以读写方式挂载；回购协议是只读的。请参阅 [hf-mount repository](https://github.com/huggingface/hf-mount) 了解完整文档，包括后端选项、缓存和写入模式。## 在作业和空间中安装卷
 
 [Jobs](./jobs)和[Spaces](./spaces)中的卷挂载与`hf-mount`相同，由平台为您管理 - 无需额外设置。默认情况下，存储桶以读写方式安装。
 
@@ -72,5 +72,5 @@ duckdb.sql("SELECT * FROM 'hf://buckets/username/my-bucket/data.parquet' LIMIT 1
 
 有关 `hf://` 路径和支持的操作的更多信息，请参阅 [⟦T11⟧ guide](/docs/huggingface_hub/guides/hf_file_system) 和 [Buckets Python guide](/docs/huggingface_hub/guides/buckets)。
 
-### 特工踪迹
-https://huggingface.co/docs/hub/agent-traces.md
+### 配置
+https://huggingface.co/docs/hub/jobs-configuration.md

@@ -243,5 +243,5 @@ snapshots/
 
 这意味着相同的文件内容可能会在各个版本之间重复，从而增加磁盘使用量。要在 Windows 上启用符号链接支持，请激活 [Developer Mode](https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) 或以管理员身份运行。
 
-### 使用 Keras 拥抱脸部
-https://huggingface.co/docs/hub/keras.md
+### 搜索
+https://huggingface.co/docs/hub/search.md

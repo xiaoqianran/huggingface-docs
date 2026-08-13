@@ -69,5 +69,5 @@ curl -H "Authorization: Bearer $HF_TOKEN" \
 3. 对于文件输入，它将文件 POST 到`/gradio_api/upload` 并保留返回的路径。
 4. 它 POST 到 `/gradio_api/call/v2/<endpoint>`，然后获取轮询 URL 以传输结果。
 
-### 空间上的 JupyterLab
-https://huggingface.co/docs/hub/spaces-sdks-docker-jupyter.md
+### 使用 SetFit 和拥抱脸部
+https://huggingface.co/docs/hub/setfit.md

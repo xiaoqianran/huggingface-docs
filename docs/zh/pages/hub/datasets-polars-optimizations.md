@@ -71,5 +71,5 @@ df = lf.collect()
 - 渴望：`1.96`秒
 - 懒惰：`410`毫秒惰性查询比急切查询快约 5 倍。原因在于查询优化器：如果我们将数据集的 `collect` 延迟到最后，Polars 将能够推断出需要哪些列和行，并在读取数据时尽早应用过滤器。对于包含元数据（例如特定行组中的最小值、最大值）的 Parquet 等文件格式，差异甚至可能更大，因为 Polars 可以根据过滤器和元数据跳过整个行组，而无需通过网络发送数据。
 
-### 下载数据集
-https://huggingface.co/docs/hub/datasets-downloading.md
+### GGUF 在 LM Studio 中的使用
+https://huggingface.co/docs/hub/lmstudio.md

@@ -133,7 +133,7 @@ def create_or_update_report(data):
 
 我们现在已经获得了为模型或数据集创建元数据审核报告的核心功能。下一步是使用 Webhooks 自动响应更改。 
 
-## 在您的用户配置文件中创建 Webhook
+## 在您的用户配置文件中创建一个 Webhook
 
 首先，访问 https://huggingface.co/settings/webhooks 创建 Webhook。- 输入您的 Webhook 将侦听的一些目标存储库（您可能希望将其限制为您自己的存储库或您所属组织的存储库）。
 - 输入一个秘密以使您的 Webhook 更安全（如果您不知道为此选择什么，您可能需要使用 [password generator](https://1password.com/password-generator/) 为您的秘密生成足够长的随机字符串）。
@@ -196,5 +196,5 @@ async def webhook(request: Request):
 
 如果您使用 Webhooks 构建元数据质量应用程序，请标记我@davanstrien；我很想知道！
 
-### GGUF 与 llama.cpp 的用法
-https://huggingface.co/docs/hub/gguf-llamacpp.md
+### 使用 Keras 拥抱脸部
+https://huggingface.co/docs/hub/keras.md

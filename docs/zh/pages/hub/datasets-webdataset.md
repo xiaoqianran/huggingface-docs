@@ -75,5 +75,5 @@ hf auth login
 ... )
 ```
 
-### 审核日志
-https://huggingface.co/docs/hub/audit-logs.md
+### 空间作为代理工具
+https://huggingface.co/docs/hub/spaces-agents.md

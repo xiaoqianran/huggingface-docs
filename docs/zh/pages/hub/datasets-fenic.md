@@ -230,5 +230,5 @@ processed_df.show()
 - [fenic GitHub Repository](https://github.com/typedef-ai/fenic)
 - [fenic Documentation](https://docs.fenic.ai/latest/)
 
-### 私有和门控数据集的身份验证
-https://huggingface.co/docs/hub/datasets-duckdb-auth.md
+### 合并数据集并导出
+https://huggingface.co/docs/hub/datasets-duckdb-combine-and-export.md

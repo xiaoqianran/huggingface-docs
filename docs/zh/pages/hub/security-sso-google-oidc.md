@@ -33,5 +33,5 @@
 - 测试成功后，您可以通过单击“启用”按钮为您的组织启用 SSO。
 - 启用后，组织成员必须完成 [How it works](./security-sso-basic#how-it-works) 部分中描述的 SSO 身份验证流程。
 
-### 在拥抱脸部时使用 SpeechBrain
-https://huggingface.co/docs/hub/speechbrain.md
+### 技能
+https://huggingface.co/docs/hub/agents-skills.md

@@ -110,5 +110,5 @@ trainer.push_to_hub()
 * 变形金刚[docs](https://huggingface.co/docs/transformers/index)。
 * 分享型号[guide](https://huggingface.co/docs/transformers/model_sharing)。
 
-### 安全
-https://huggingface.co/docs/hub/security.md
+### 门控组集合
+https://huggingface.co/docs/hub/enterprise-gating-group-collections.md

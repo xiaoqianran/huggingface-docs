@@ -31,5 +31,5 @@ ZeroGPU 是一种动态 GPU 分配系统，可优化 Hugging Face Spaces 上的 
 
 [Learn more about ZeroGPU →](https://huggingface.co/docs/hub/spaces-zerogpu)
 
-### 定价和计费
-https://huggingface.co/docs/hub/jobs-pricing.md
+### 职位概述
+https://huggingface.co/docs/hub/jobs-overview.md

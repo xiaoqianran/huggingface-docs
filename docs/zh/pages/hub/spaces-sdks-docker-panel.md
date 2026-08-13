@@ -2,13 +2,13 @@
 
 # 空间小组
 
-[Panel](https://panel.holoviz.org/) 是一个开源 Python 库，可让您完全使用 Python 轻松构建强大的工具、仪表板和复杂的应用程序。它具有包含电池的理念，使 PyData 生态系统、强大的数据表等触手可及。高级反应式 API 和基于低级回调的 API 确保您可以快速构建探索性应用程序，但如果您构建具有丰富交互性的复杂、多页面应用程序，则不受限制。 Panel 是 [HoloViz](https://holoviz.org/) 生态系统的成员，是您进入数据探索工具互联生态系统的门户。
+[Panel](https://panel.holoviz.org/) 是一个开源 Python 库，可让您完全使用 Python 轻松构建强大的工具、仪表板和复杂的应用程序。它采用包含电池的理念，将 PyData 生态系统、强大的数据表等置于您的指尖。高级反应式 API 和基于低级回调的 API 确保您可以快速构建探索性应用程序，但如果您构建具有丰富交互性的复杂、多页面应用程序，则不受限制。 Panel 是 [HoloViz](https://holoviz.org/) 生态系统的成员，是您进入数据探索工具互联生态系统的门户。
 
 访问 [Panel documentation](https://panel.holoviz.org/) 了解有关制作强大应用程序的更多信息。 
 
 ## 🚀 在空间上部署面板
 
-您只需点击几下即可在 Spaces 上部署面板：
+您只需单击几下即可在 Spaces 上部署面板：
 
   
 
@@ -43,5 +43,5 @@ Dockerfile 包含 Docker 将执行的一系列命令，以构建和启动图像�
 - [LinkedIn](https://www.linkedin.com/company/panel-org)
 - [Github](https://github.com/holoviz/panel)
 
-### 空间上的磁盘使用情况
-https://huggingface.co/docs/hub/spaces-storage.md
+### 存储库
+https://huggingface.co/docs/hub/repositories.md

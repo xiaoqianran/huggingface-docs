@@ -43,5 +43,5 @@
 
 这些限制维护了您企业的安全边界。对于个人项目或更广泛的组织外部协作，成员应使用单独的、非托管的 Hugging Face 帐户。
 
-### 将使用 HF 按钮登录到您的空间
-https://huggingface.co/docs/hub/spaces-oauth.md
+### 收藏
+https://huggingface.co/docs/hub/collections.md

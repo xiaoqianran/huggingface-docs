@@ -166,5 +166,5 @@ GET /api/spaces/{namespace}/{repo}/logs/{build|run}?tail=100
 
 您可以从存储库设置中`pause` 一个空间。 “已暂停”空间意味着该空间处于暂停状态，在手动重新启动之前不会使用资源，并且只有已暂停空间的所有者才能重新启动它。暂停时间不计费。
 
-### Docker 空间示例
-https://huggingface.co/docs/hub/spaces-sdks-docker-examples.md
+### 虎斑在空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-tabby.md

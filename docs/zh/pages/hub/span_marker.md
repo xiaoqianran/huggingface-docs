@@ -50,5 +50,5 @@ model.predict("Amelia Earhart flew her single engine Lockheed Vega 5B across the
 ## 其他资源
 
 * 跨度标记[repository](https://github.com/tomaarsen/SpanMarkerNER)
-* 跨度标记[docs](https://tomaarsen.github.io/SpanMarkerNER)### 模型卡指南
-https://huggingface.co/docs/hub/model-card-guidebook.md
+* 跨度标记[docs](https://tomaarsen.github.io/SpanMarkerNER)### 用于 AI 代理的 Hugging Face CLI
+https://huggingface.co/docs/hub/agents-cli.md

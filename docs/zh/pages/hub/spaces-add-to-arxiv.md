@@ -27,7 +27,7 @@ Hugging Face Spaces 的演示让广大观众可以尝试最先进的机器
 
 1. 首先，将与 ArXiv 论文相关的模型上传到 Hugging Face Hub（如果尚未存在）。 ([Detailed instructions are here](./models-uploading))
 
-2. 为模型编写模型卡 (README.md) 时，请包含 ArXiv 论文的链接。最好也包含完整的引文。您可以在 [LayoutLM model card](https://huggingface.co/microsoft/layoutlm-base-uncased) 上查看链接和引用的示例
+2. 在为模型编写模型卡 (README.md) 时，请包含 ArXiv 论文的链接。最好也包含完整的引文。您可以在 [LayoutLM model card](https://huggingface.co/microsoft/layoutlm-base-uncased) 上查看链接和引用的示例
 
     *注意*：您可以通过查看型号卡上方是否出现 ArXiv 按钮来验证此步骤是否已成功执行。对于 LayoutLM，按钮显示：“arxiv:1912.13318”并链接到 ArXiv 上的 LayoutLM 论文。
 
@@ -51,5 +51,5 @@ Hugging Face Spaces 的演示让广大观众可以尝试最先进的机器
 
 几分钟后，您的空间就会出现在 ArXiv 论文旁边的“演示”选项卡中 🤗
 
-### 使用小行星拥抱脸部
-https://huggingface.co/docs/hub/asteroid.md
+### GitHub 操作
+https://huggingface.co/docs/hub/repositories-github-actions.md

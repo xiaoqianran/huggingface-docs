@@ -64,5 +64,5 @@ filter: [
 
 这些作为原始日志提供，因为大多数组织都希望应用自己的自定义规则。
 
-### 在拥抱脸部时使用 Stanza
-https://huggingface.co/docs/hub/stanza.md
+### 许可证
+https://huggingface.co/docs/hub/repositories-licenses.md

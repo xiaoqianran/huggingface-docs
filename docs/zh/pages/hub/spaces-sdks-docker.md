@@ -69,7 +69,7 @@ RUN --mount=type=secret,id=SECRET_EXAMPLE,mode=0444,required=true \
 
 #### 运行时
 
-与公共变量相同，在运行时，您可以将机密作为环境变量进行访问。例如，在 Python 中，您将使用 `os.environ.get("SECRET_EXAMPLE")`。查看这个使用秘密的 Docker Space 的 [example](https://huggingface.co/spaces/DockerTemplates/secret-example)。
+与公共变量相同，在运行时，您可以将机密作为环境变量访问。例如，在 Python 中，您将使用 `os.environ.get("SECRET_EXAMPLE")`。查看这个使用秘密的 Docker Space 的 [example](https://huggingface.co/spaces/DockerTemplates/secret-example)。
 
 ## 权限
 
@@ -144,5 +144,5 @@ COPY --chown=user checkpoint .
 - [List of Docker Spaces examples](spaces-sdks-docker-examples)
 - [Spaces Examples](https://huggingface.co/SpacesExamples)
 
-### 存储库入门
-https://huggingface.co/docs/hub/repositories-getting-started.md
+### 任务
+https://huggingface.co/docs/hub/models-tasks.md

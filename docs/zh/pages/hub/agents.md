@@ -17,5 +17,5 @@
 - [Agent Libraries](./agents-libraries)
 - [Agent Traces](./agent-traces)
 
-### 硬件
-https://huggingface.co/docs/hub/hardware.md
+### 将您的库与 Hub 集成
+https://huggingface.co/docs/hub/models-adding-libraries.md

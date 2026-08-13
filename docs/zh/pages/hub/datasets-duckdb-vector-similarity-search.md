@@ -63,5 +63,5 @@ LIMIT 3;
 
 就是这样！您已使用 DuckDB 成功执行了矢量相似性搜索。
 
-### 在拥抱脸部时使用`Transformers.js`
-https://huggingface.co/docs/hub/transformers-js.md
+### 管理工作
+https://huggingface.co/docs/hub/jobs-manage.md

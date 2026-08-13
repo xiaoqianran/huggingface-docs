@@ -42,7 +42,7 @@
 
 当令牌策略设置为“需要管理员批准”时，组织管理员可以查看访问组织拥有的资源的所有细粒度令牌的详细信息，并批准或拒绝访问。当新令牌进入待处理状态时，最多 5 位已确认电子邮件地址的组织管理员会收到一条通知，其中包含指向令牌审核页面的直接链接。自动批准令牌时不会发送通知（例如，因为创建者是组织管理员）。
 
-- **待处理**令牌正在等待管理员决定
+- **待定**令牌正在等待管理员决定
 - **批准** 代币已获得授权并处于活动状态
 - **拒绝**令牌已被阻止访问组织资源
 
@@ -112,5 +112,5 @@ curl -X POST "https://huggingface.co/api/organizations/${ORG_NAME}/settings/toke
 
 对于由组织而不是个人成员拥有的自动访问，管理员可以创建 [Service Accounts](./enterprise-service-accounts) 并颁发适用于组织资源的细粒度令牌。
 
-### 高级安全性
-https://huggingface.co/docs/hub/enterprise-advanced-security.md
+### 在 Data Studio 中编辑数据集
+https://huggingface.co/docs/hub/datasets-cell-editing.md

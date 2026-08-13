@@ -75,5 +75,5 @@ model.push_adapter_to_hub(
 * _适配器_ [paper](https://arxiv.org/abs/2311.11077)
 * 与集线器[docs](https://docs.adapterhub.ml/huggingface_hub.html)集成
 
-### 如何使用 Microsoft Entra ID (Azure AD) 配置 SAML SSO
-https://huggingface.co/docs/hub/security-sso-azure-saml.md
+### 高级计算选项
+https://huggingface.co/docs/hub/advanced-compute-options.md

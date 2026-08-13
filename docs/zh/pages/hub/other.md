@@ -20,5 +20,5 @@
 - [Hub API Endpoints](./api)
   - [Webhooks](./webhooks)
 
-### 如何使用 Google Workspace 配置 OIDC SSO
-https://huggingface.co/docs/hub/security-sso-google-oidc.md
+### 博客文章
+https://huggingface.co/docs/hub/blog-articles.md

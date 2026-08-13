@@ -12,7 +12,7 @@ Hub 上的所有型号都具有有用的功能：
 1. 自动生成的模型卡，其中包含描述、训练配置等。
 2. 有助于发现的元数据标签。
 3. Tensorboard 摘要文件，用于可视化训练指标。
-4. Spaces Web 演示的链接，您可以在其中可视化您的代理在浏览器中进行游戏。
+4. Spaces Web 演示的链接，您可以在其中可视化您的代理在浏览器中的运行情况。
 
 ## 安装库
 
@@ -66,5 +66,5 @@ mlagents-push-to-hf --run-id="First Training" --local-dir="results/First Trainin
 * ML-代理[documentation](https://github.com/Unity-Technologies/ml-agents/blob/develop/docs/Hugging-Face-Integration.md)
 * 官方 Unity ML-Agents 空间 [demos](https://huggingface.co/unity)
 
-### 组织、安全性和 Hub API
-https://huggingface.co/docs/hub/other.md
+### 下载数据集
+https://huggingface.co/docs/hub/datasets-downloading.md

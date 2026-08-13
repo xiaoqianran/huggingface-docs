@@ -71,8 +71,8 @@ SCIM 组链接到资源组后：
 
 ## 支持的用户属性
 
-Hugging Face SCIM 端点支持以下用户属性：|属性 |描述 |基本单点登录 |托管单点登录 |
-| ---| ---| ---| ---|
+Hugging Face SCIM 端点支持以下用户属性：|属性|描述 |基本单点登录 |托管单点登录 |
+| --- | --- | --- | --- |
 | `userName` |拥抱脸用户名|只读 |读/写|
 | `name.givenName` |名字 |只读 |读/写|
 | `name.familyName` |姓氏 |只读 |读/写|
@@ -103,5 +103,5 @@ Hugging Face SCIM 端点支持以下用户属性：|属性 |描述 |基本单点
 - [How to configure SCIM with Microsoft Entra ID](./security-sso-entra-id-scim)
 - [How to configure SCIM with Okta](./security-sso-okta-scim)
 
-### 集线器本地缓存
-https://huggingface.co/docs/hub/local-cache.md
+### 集线器上的存储区域
+https://huggingface.co/docs/hub/storage-regions.md

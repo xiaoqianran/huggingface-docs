@@ -18,5 +18,5 @@ Hugging Face 支持单点登录 (SSO)，让组织可以通过自己的身份提�
 - [Configuration Guides](./security-sso-configuration-guides) — Okta、Microsoft Entra ID 和 Google Workspace 的分步设置说明
 - [User Provisioning (SCIM)](./enterprise-scim) — 来自身份提供商的自动用户配置
 
-### 发布商分析
-https://huggingface.co/docs/hub/publisher-analytics.md
+### 查询数据集
+https://huggingface.co/docs/hub/datasets-duckdb-select.md

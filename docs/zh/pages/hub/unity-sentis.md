@@ -9,7 +9,7 @@
 
 Hub 中的所有 Sentis 模型都附带代码和说明，可帮助您轻松开始在 Unity 中使用模型。 `unity`命名空间下的所有Sentis模型（例如，[unity/sentis-yolotinyv7](https://huggingface.co/unity/sentis-yolotinyv7)）都经过验证可以工作，因此您可以确定它们将在Unity中运行。
 
-要了解有关使用 Sentis 的更多详细信息，您可以阅读其[documentation](https://docs.unity3d.com/Packages/com.unity.sentis@latest)。要获得其他使用 Sentis 的帮助，您可以在其[discussion forum](https://discussions.unity.com/c/ai-beta/sentis) 中询问
+要了解有关使用 Sentis 的更多详细信息，您可以阅读其[documentation](https://docs.unity3d.com/Packages/com.unity.sentis@latest)。要获得使用 Sentis 的其他人的帮助，您可以在其[discussion forum](https://discussions.unity.com/c/ai-beta/sentis)中询问
 
 ## 文件类型
 每个存储库将包含多种类型的文件：* ``sentis`` 文件：这些是包含在 Unity 上运行的神经网络的主要模型文件。
@@ -35,7 +35,7 @@ Hub 中的所有 Sentis 模型都附带代码和说明，可帮助您轻松开�
 ## 分享您自己的 Sentis 模型
 我们鼓励您在 Hugging Face 上分享您自己的 Sentis 模型。这些可能是您自己训练的模型，也可能是您已转换为 [Sentis format](https://docs.unity3d.com/Packages/com.unity.sentis@1.3/manual/serialize-a-model.html) 并经过测试可在 Unity 中运行的模型。 
 
-请为您上传的每个存储库提供 Sentis 格式的模型。这提供了额外的检查，确保它们将在 Unity 中运行，也是大型模型的首选格式。您还可以包含模型文件的原始 ONNX 版本。提供具有最小实现的 C# 文件。例如，图像处理模型应该具有显示如何为输入准备图像并从输出构建图像的代码。或者，您可以链接到一些外部示例代码。这将使其他人可以轻松地在 Unity 中下载和使用该模型。
+请为您上传的每个存储库提供 Sentis 格式的模型。这提供了额外的检查，确保它们将在 Unity 中运行，也是大型模型的首选格式。您还可以包含模型文件的原始 ONNX 版本。提供具有最小实现的 C# 文件。例如，图像处理模型应该具有显示如何为输入准备图像并从输出构建图像的代码。或者，您可以链接到一些外部示例代码。这将使其他人可以轻松下载并在 Unity 中使用该模型。
 
 提供运行模型所需的任何数据文件。例如，词汇文件。
 
@@ -61,5 +61,5 @@ Hub 中的所有 Sentis 模型都附带代码和说明，可帮助您轻松开�
 ## 附加信息
 我们还有一些完整的 [sample projects](https://github.com/Unity-Technologies/sentis-samples) 来帮助您开始使用 Sentis。
 
-### 在拥抱脸部使用 PEFT
-https://huggingface.co/docs/hub/peft.md
+### 存储桶：安全性与合规性
+https://huggingface.co/docs/hub/storage-buckets-security.md

@@ -52,5 +52,5 @@
 
 如果您有改进建议或需要具体支持，请加入[Tabby Slack community](https://join.slack.com/t/tabbycommunity/shared_invite/zt-1xeiddizp-bciR2RtFTaJ37RBxr8VxpA)或联系[Tabby’s GitHub repository](https://github.com/TabbyML/tabby)。
 
-### 配置数据集查看器
-https://huggingface.co/docs/hub/datasets-viewer-configure.md
+### 在 Hugging Face Hub 上将 Ollama 与任何 GGUF 模型一起使用
+https://huggingface.co/docs/hub/ollama.md

@@ -101,5 +101,5 @@ dataset.log(hf_dataset)
 ## 📚 资源
 
 - [🚀 Argilla Docs](https://argilla-io.github.io/argilla/)
-- [🚀 Argilla Docs - import export guides](https://argilla-io.github.io/argilla/latest/how_to_guides/import_export/)### 团队和企业计划
-https://huggingface.co/docs/hub/enterprise.md
+- [🚀 Argilla Docs - import export guides](https://argilla-io.github.io/argilla/latest/how_to_guides/import_export/)### 瞄准空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-aim.md

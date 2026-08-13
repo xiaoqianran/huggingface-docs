@@ -83,10 +83,10 @@ tags:
 - flair
 ```
 
-如果未指定，Hub 将尝试自动检测库类型。但是，不鼓励这种方法，存储库创建者应尽可能使用显式的 `library_name`。 
+如果未指定，Hub 将尝试自动检测库类型。但是，不鼓励这种方法，并且存储库创建者应尽可能使用显式的 `library_name`。 
 
 1. 通过查看`*.nemo`或`*.mlmodel`等文件的存在，Hub可以确定模型是否来自NeMo或CoreML。
-2. 以前如果没有检测到有`config.json`文件，就认为该库是`transformers`。对于 2024 年 8 月之后创建的模型存储库，情况不再如此，因此您需要显式设置 `library_name: transformers`。
+2. 以前，如果没有检测到任何内容并且存在`config.json`文件，则认为该库是`transformers`。对于 2024 年 8 月之后创建的模型存储库，情况不再如此，因此您需要显式设置 `library_name: transformers`。
 
 ### 指定基本模型
 
@@ -240,7 +240,7 @@ model-index:
 
 ### 模型标签是如何确定的？
 
-每个模型页面在页面标题中模型名称下方列出了所有模型的标签。这些主要是根据模型卡元数据计算的，尽管有些是自动添加的，如[Enabling a Widget](./models-widgets#enabling-a-widget)中所述。
+每个模型页面在页面标题中的模型名称下方列出了所有模型的标签。这些主要是根据模型卡元数据计算的，尽管有些是自动添加的，如[Enabling a Widget](./models-widgets#enabling-a-widget)中所述。
 
 ### 我可以向我的模型添加自定义标签吗？
 
@@ -294,5 +294,5 @@ $$
 
 $$ E=mc^2 $$
 
-### 组织卡
-https://huggingface.co/docs/hub/organizations-cards.md
+### 配置数据集查看器
+https://huggingface.co/docs/hub/datasets-viewer-configure.md

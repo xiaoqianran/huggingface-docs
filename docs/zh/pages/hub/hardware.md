@@ -61,5 +61,5 @@ curl https://huggingface.co/api/users/{username}/overview
 - [Use AI Models Locally](./local-apps) — 使用您最喜欢的本地应用程序运行模型。
 - [Local Agents with llama.cpp](./agents-local) — 在您自己的硬件上构建编码代理。
 
-### PyArrow
-https://huggingface.co/docs/hub/datasets-pyarrow.md
+### 网络钩子
+https://huggingface.co/docs/hub/webhooks.md

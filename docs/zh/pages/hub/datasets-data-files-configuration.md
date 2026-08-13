@@ -5,11 +5,11 @@
 对于如何构建数据集存储库没有任何限制。
 
 但是，如果您希望数据集查看器显示某些数据文件，或者在训练/验证/测试拆分中分离数据集，则需要相应地构建数据集。
-通常，它就像根据数据文件的拆分名称命名一样简单，例如`train.csv` 和 `test.csv`。
+通常，它就像根据数据文件的拆分名称命名数据文件一样简单，例如`train.csv` 和 `test.csv`。
 
 ## 什么是分割和子集？
 
-机器学习数据集通常有分割，也可能有子集。数据集通常由在训练和评估模型的不同阶段使用的_split_（例如`train`和`test`）组成。 _子集_（也称为_配置_）是包含在较大数据集中的子数据集。子集在多语言语音数据集中尤其常见，其中每种语言可能有不同的子集。如果您有兴趣了解有关分割和子集的更多信息，请查看 [Splits and subsets](/docs/datasets-server/configs_and_splits) 指南！
+机器学习数据集通常有分割，也可能有子集。数据集通常由在训练和评估模型的不同阶段使用的_split_（例如`train`和`test`）组成。 _子集_（也称为_配置_）是包含在较大数据集中的子数据集。子集在多语言语音数据集中尤其常见，其中每种语言可能有不同的子集。如果您有兴趣了解有关分割和子集的更多信息，请查看 [Splits and subsets](/docs/datasets-server/configs_and_splits) 指南​​！
 
 ![split-configs-server](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/split-configs-server.gif)
 
@@ -23,7 +23,7 @@ my_dataset_repository/
 ├── train.csv
 ├── test.csv
 └── validation.csv
-```要通过根据拆分名称命名数据文件或目录来构建数据集，请参阅 [File names and splits](./datasets-file-names-and-splits) 文档和 [companion collection of example datasets](https://huggingface.co/collections/datasets-examples/file-names-and-splits-655e28af4471bd95709eb135)。
+```要通过根据数据文件或目录的拆分名称来命名数据集来构建数据集，请参阅 [File names and splits](./datasets-file-names-and-splits) 文档和 [companion collection of example datasets](https://huggingface.co/collections/datasets-examples/file-names-and-splits-655e28af4471bd95709eb135)。
 
 ## 手动分割和子集配置
 
@@ -68,5 +68,5 @@ configs:
 - [How to create an audio dataset](./datasets-audio) ([example datasets](https://huggingface.co/collections/datasets-examples/audio-dataset-66aca0b73e8f69e3d069e607))
 - [How to create a video dataset](./datasets-video)
 
-### 🟧 空间标签工作室
-https://huggingface.co/docs/hub/spaces-sdks-docker-label-studio.md
+### 在抱脸处使用`Transformers.js`
+https://huggingface.co/docs/hub/transformers-js.md

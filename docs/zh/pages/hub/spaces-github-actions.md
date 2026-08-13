@@ -66,5 +66,5 @@ jobs:
         run: git push https://HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/HF_USERNAME/SPACE_NAME main
 ```将 `HF_USERNAME` 替换为您的用户名，将 `SPACE_NAME` 替换为您的空间名称。
 
-### Hugging Face Hub 文档
-https://huggingface.co/docs/hub/index.md
+### 在网页中嵌入数据集查看器
+https://huggingface.co/docs/hub/datasets-viewer-embed.md

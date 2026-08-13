@@ -10,5 +10,5 @@ Hugging Face 社区的成员可以在模型中心托管所有模型检查点，�
 
 要了解如何将模型上传到Hub，您可以参考[Repositories Getting Started Guide](./repositories-getting-started)。
 
-### 在拥抱脸部时使用 AllenNLP
-https://huggingface.co/docs/hub/allennlp.md
+### 使用 Docker 运行
+https://huggingface.co/docs/hub/spaces-run-with-docker.md

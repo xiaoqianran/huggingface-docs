@@ -21,5 +21,5 @@
 **请引用为：** 
 奥佐阿尼、埃齐和格奇克、玛丽莎和米切尔、玛格丽特。模型卡指南。拥抱脸，2022 年。https://huggingface.co/docs/hub/en/model-card-guidebook
 
-### Langfuse 空间
-https://huggingface.co/docs/hub/spaces-sdks-docker-langfuse.md
+### 执行SQL操作
+https://huggingface.co/docs/hub/datasets-duckdb-sql.md

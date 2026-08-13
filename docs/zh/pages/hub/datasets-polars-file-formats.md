@@ -34,5 +34,5 @@ Polars 支持使用 `read_ndjson` 函数读取新行分隔的 JSON（也称为 [
 pl.read_ndjson("hf://datasets/proj-persona/PersonaHub/persona.jsonl")
 ```
 
-### 在拥抱脸部使用 PaddleNLP
-https://huggingface.co/docs/hub/paddlenlp.md
+### 管理组织
+https://huggingface.co/docs/hub/organizations-managing.md

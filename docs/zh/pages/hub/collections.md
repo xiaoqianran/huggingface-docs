@@ -63,6 +63,9 @@
 
 此功能专为 [Team & Enterprise](https://huggingface.co/docs/hub/en/enterprise) 订户保留。
 
+> [!注意]
+> 将集合分配给资源组可控制对*该特定集合*的访问。要限制谁可以创建或编辑组织集合，请参阅 [Granular feature access](./security-resource-groups#granular-feature-access)（企业计划及以上版本）。
+
 ### 订购您的收藏品及其物品
 
 您可以使用集合列表（位于集合页面左侧）中的拖放手柄来更改集合的顺序 (1)。前两个集合将直接在您的个人资料/组织页面上可见。
@@ -71,14 +74,14 @@
 
 ![Collections sort](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/collections/collection-sort.webp)
 
-### 从集合中删除项目
-
-要从集合中删除项目，请单击将鼠标悬停在项目上时右侧显示的菜单中的垃圾桶图标 (1)。
+### 从集合中删除项目要从集合中删除项目，请单击将鼠标悬停在项目上时右侧显示的菜单中的垃圾桶图标 (1)。
 要删除整个集合，请单击右侧菜单 (2) 上的删除 - 您需要确认此操作。
 
 ![Collection delete](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/collections/collection-delete.webp)
 
-### 为集合的项目添加注释可以向集合中的任何项目添加注释，以为其提供更多上下文（对于其他人，或者作为对自己的提醒）。当您将鼠标悬停在某个项目上时，可以通过单击铅笔图标来添加注释。注释是纯文本，不支持 Markdown，以保持简洁。注释中的 URL 会转换为可点击的链接。
+### 为集合的项目添加注释
+
+可以向集合中的任何项目添加注释，以为其提供更多上下文（对于其他人，或者作为对自己的提醒）。当您将鼠标悬停在某个项目上时，可以通过单击铅笔图标来添加注释。注释是纯文本，不支持 Markdown，以保持简洁。注释中的 URL 会转换为可点击的链接。
 
 ![Collection note](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/collections/collection-note.webp)
 
@@ -86,11 +89,9 @@
 
 同样，您可以将图像附加到集合项目。这对于展示模型的输出、数据集的内容、附加上下文信息图等非常有用。
 
-要开始将图像添加到您的收藏中，您可以单击项目的上下文菜单中的图像图标。当您将鼠标悬停在某个项目上时，会显示该菜单。
+要开始将图像添加到您的收藏中，您可以单击项目的上下文菜单中的图像图标。当您将鼠标悬停在某个项目上时，就会显示该菜单。
 
-![Collection image icon](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/collections/collections-image-button.webp)
-
-然后，通过从计算机拖放图像来添加图像。您还可以单击灰色区域从计算机的文件系统中选择图像文件。
+![Collection image icon](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/collections/collections-image-button.webp)然后，通过从计算机拖放图像来添加图像。您还可以单击灰色区域从计算机的文件系统中选择图像文件。
 
 ![Collection image drop zone with images](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/collections/collections-image-gallery.webp)
 
@@ -98,49 +99,9 @@
 
 ![Collection image viewer](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/collections/collections-image-viewer.webp)
 
-## 您对收藏的反馈我们正在努力改进集合，因此如果您有任何错误、疑问或希望添加新功能，请在 [dedicated discussion](https://huggingface.co/spaces/huggingface/HuggingDiscussions/discussions/12) 中发布消息。
+## 您对收藏的反馈
 
-### TF-Keras（旧版）
-https://huggingface.co/docs/hub/tf-keras.md
+我们正在努力改进集合，因此如果您有任何错误、问题或希望添加的新功能，请在 [dedicated discussion](https://huggingface.co/spaces/huggingface/HuggingDiscussions/discussions/12) 中发布消息。
 
-## TF-Keras（旧版）
-
-`tf-keras` 是 Keras 2.x 版本的名称。它现在作为单独的 GitHub 存储库 [here](https://github.com/keras-team/tf-keras) 托管。尽管它是一个遗留框架，但 Hub 上仍然托管着 [4.5k+ models](https://huggingface.co/models?library=tf-keras&sort=trending)。这些模型可以使用 `huggingface_hub` 库加载。您**必须**在计算机上安装 `tf-keras` 或 `keras<3.x`。
-
-如果您对 Keras 3.x 支持感兴趣，请查看 [this guide](./keras)。
-
-安装完成后，您只需使用`from_pretrained_keras`方法从Hub加载模型即可。了解更多关于 `from_pretrained_keras` [here](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.from_pretrained_keras) 的信息。
-
-```py
-from huggingface_hub import from_pretrained_keras
-
-model = from_pretrained_keras("keras-io/mobile-vit-xxs")
-prediction = model.predict(image)
-prediction = tf.squeeze(tf.round(prediction))
-print(f'The image is a {classes[(np.argmax(prediction))]}!')
-
-<CopyLLMTxtMenu containerStyle="float: right; margin-left: 10px; display: inline-flex; position: relative; z-index: 10;"></CopyLLMTxtMenu>
-
-# The image is a sunflower!
-```
-
-您还可以在 Hub 上托管您的 `tf-keras` 模型。但是，请记住，`tf-keras` 是一个遗留框架。为了达到最大数量的用户，我们建议使用 Keras 3.x 创建模型并如上所述在本机共享。有关上传`tf-keras`模型的更多详细信息，请查看[⟦T11⟧ documentation](https://huggingface.co/docs/huggingface_hub/main/en/package_reference/mixins#huggingface_hub.push_to_hub_keras)。
-
-```py
-from huggingface_hub import push_to_hub_keras
-
-push_to_hub_keras(model,
-    "your-username/your-model-name",
-    "your-tensorboard-log-directory",
-    tags = ["object-detection", "some_other_tag"],
-    **model_save_kwargs,
-)
-```
-
-## 其他资源
-
-- [GitHub repo](https://github.com/keras-team/tf-keras)
-* 博文[Putting Keras on 🤗 Hub for Collaborative Training and Reproducibility](https://merveenoyan.medium.com/putting-keras-on-hub-for-collaborative-training-and-reproducibility-9018301de877)（2022 年 4 月）
-
-### 快速入门
-https://huggingface.co/docs/hub/jobs-quickstart.md
+### 用户访问令牌
+https://huggingface.co/docs/hub/security-tokens.md

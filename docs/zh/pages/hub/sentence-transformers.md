@@ -55,5 +55,5 @@ model.save_to_hub("my_new_model")
 * 句子变形金刚[docs](https://www.sbert.net/)。
 * 与集线器[announcement](https://huggingface.co/blog/sentence-transformers-in-the-hub)集成。
 
-### 使用 Hugging Face 中的 Unity Sentis 模型
-https://huggingface.co/docs/hub/unity-sentis.md
+### 空间闪亮
+https://huggingface.co/docs/hub/spaces-sdks-docker-shiny.md

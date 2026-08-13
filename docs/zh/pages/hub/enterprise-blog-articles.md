@@ -16,11 +16,11 @@
 要在组织命名空间下发布博客文章，成员需要组织级别的 `write` 或 `admin` 角色。有关角色的更多详细信息，请参阅[Access Control in Organizations](./organizations-security)。
 
 > [!注意]
-> 博客文章权限当前与组织级别角色相关联，无法使用 [Resource Groups](./security-resource-groups) 确定范围。资源组仅控制对存储库（模型、数据集和空间）的访问，而不控制对博客文章的访问。
+> 在企业计划及以上版本中，组织管理员可以通过资源组 [Granular feature access](./security-resource-groups#granular-feature-access) 设置限制谁可以撰写和发布组织博客文章。
 
 ## 链接到模型和数据集
 
-提及同一组织拥有的模型或数据集的文章将自动显示在该存储库的页面上。详情请参见[Linking to Models and Datasets](./blog-articles#linking-to-models-and-datasets)。有关在 Hub 上创作博客文章的一般信息，请参阅 [Blog Articles](./blog-articles)。
+提及同一组织拥有的模型或数据集的文章将自动显示在该存储库的页面上。详情请参见[Linking to Models and Datasets](./blog-articles#linking-to-models-and-datasets)。
 
-### 执行SQL操作
-https://huggingface.co/docs/hub/datasets-duckdb-sql.md
+有关在 Hub 上创作博客文章的一般信息，请参阅 [Blog Articles](./blog-articles)。### 工作
+https://huggingface.co/docs/hub/jobs.md

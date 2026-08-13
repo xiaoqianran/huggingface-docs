@@ -166,5 +166,5 @@ model = BaseModel.from_pretrained("${model.id}")`;
 
 最后，您可以将您的库添加到中心的文档中。例如，检查将 [SetFit](./setfit) 添加到文档中的 [Setfit PR](https://github.com/huggingface/hub-docs/pull/1150)。
 
-### 在拥抱面使用稳定基线3
-https://huggingface.co/docs/hub/stable-baselines3.md
+### PyArrow
+https://huggingface.co/docs/hub/datasets-pyarrow.md

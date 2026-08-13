@@ -103,7 +103,7 @@ huggingface datasource enabled for pyspark 3.x.x (backport from pyspark 4)
 
 为了计算每种语言的对话数量，我们运行使用 `columns` 选项和 `groupBy()` 操作的代码。
 `columns` 选项对于仅加载我们需要的数据很有用，因为 PySpark 不支持使用数据源 API 进行谓词下推。
-还有一个 `filters` 选项，仅加载特定范围内值的数据。
+还有一个`filters`选项，仅加载特定范围内值的数据。
 
 ```python
 >>> df_langdetect_only = (
@@ -269,5 +269,5 @@ huggingface datasource enabled for pyspark 3.x.x (backport from pyspark 4)
 >>> df.write.format("huggingface").option("data_dir", "new-data").save("buckets/username/my-bucket")
 ```
 
-### 使用 GPG 签署提交
-https://huggingface.co/docs/hub/security-gpg.md
+### 发布商分析
+https://huggingface.co/docs/hub/publisher-analytics.md

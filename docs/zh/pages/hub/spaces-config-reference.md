@@ -37,7 +37,7 @@
 	`"a10g-largex4"`、`"a100-large"`、`"a100x4"`、`"a100x8"`
 
 **`suggested_storage`** : _string_  
-指定必须在其上运行该空间的建议[permanent storage](https://huggingface.co/docs/hub/spaces-storage)。  
+指定必须在其上运行该空间的建议 [permanent storage](https://huggingface.co/docs/hub/spaces-storage)。  
 对于要由其他用户复制的空间很有用。  
 设置此值不会自动为该空间分配永久存储。  
 值必须是 `"small"`、`"medium"` 或 `"large"` 之一。  
@@ -117,7 +117,7 @@ custom_headers:
 *注意：*所有标题和值都必须小写。
 
 **`preload_from_hub`**：_列表[字符串]_
-指定要在空间构建期间预加载的 Hugging Face Hub 模型或其他大文件的列表。这样可以在应用程序启动时准备好文件，从而优化启动时间。这对于依赖大型模型或数据集的空间特别有用，否则需要在运行时下载这些模型或数据集。每个项目的格式为 `"repository_name"` 用于从存储库下载所有文件，或 `"repository_name file1,file2"` 用于下载该存储库中的特定文件。您还可以使用 `"repository_name file1,file2 commit_sha256"` 格式指定要下载的特定提交。 
+指定要在空间构建期间预加载的 Hugging Face Hub 模型或其他大文件的列表。这样可以在应用程序启动时准备好文件，从而优化启动时间。这对于依赖大型模型或数据集的空间特别有用，否则需要在运行时下载这些模型或数据集。每个项目的格式为 `"repository_name"` 用于从存储库下载所有文件，或 `"repository_name file1,file2"` 用于下载该存储库中的特定文件。您还可以使用格式 `"repository_name file1,file2 commit_sha256"` 指定要下载的特定提交。 
 
 用法示例：
 ```yaml
@@ -132,7 +132,7 @@ preload_from_hub:
 > 文件保存在默认的`huggingface_hub`磁盘缓存`~/.cache/huggingface/hub`中。如果您的应用程序在其他地方需要它们或者您更改了 `HF_HOME` 变量，则此时不会遵循此预加载。
 
 > [!注意]
-> 尚不支持预加载私有存储库。
+> 尚不支持私有存储库的预加载。
 
-### 存储库设置
-https://huggingface.co/docs/hub/repositories-settings.md
+### 上传数据集
+https://huggingface.co/docs/hub/datasets-adding.md

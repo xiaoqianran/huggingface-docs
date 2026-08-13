@@ -26,5 +26,5 @@ window.parent.postMessage({
 请注意，父页面的 URL 参数*仅*在初始加载时传播到嵌入式应用程序。因此，即使使用此方法更新父 URL 哈希，嵌入式应用程序中的 `location.hash` 也不会更改。这种方法的一个例子可以在这个静态空间中找到，
 [⟦T6⟧](https://huggingface.co/spaces/whitphx/static-url-param-sync-example)。
 
-### 显示您模型的碳排放量
-https://huggingface.co/docs/hub/model-cards-co2.md
+### 文件格式
+https://huggingface.co/docs/hub/datasets-polars-file-formats.md

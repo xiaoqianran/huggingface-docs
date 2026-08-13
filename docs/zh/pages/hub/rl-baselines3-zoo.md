@@ -45,5 +45,5 @@ python -m rl_zoo3.push_to_hub  --algo dqn  --env SpaceInvadersNoFrameskip-v4  --
 * RL-Baselines3-Zoo [official trained models](https://huggingface.co/sb3)
 * RL-Baselines3-Zoo [documentation](https://github.com/DLR-RM/rl-baselines3-zoo)
 
-### 图书馆
-https://huggingface.co/docs/hub/models-libraries.md
+### 组织卡
+https://huggingface.co/docs/hub/organizations-cards.md

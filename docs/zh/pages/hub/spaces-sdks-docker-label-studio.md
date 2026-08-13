@@ -113,7 +113,7 @@ tutorial](https://labelstud.io/blog/introduction-to-label-studio-in-hugging-face
 
 > [!提示]
 > 设置 `SECRET_KEY` Space Secret 以在重新启动后保持用户会话处于活动状态。
-> 如果没有它，Label Studio 会在每次启动和所有用户时生成一个随机密钥
+> 如果没有它，Label Studio 会在每次启动时和所有用户生成一个随机密钥
 > 重新启动时注销。
 
 #### 让编码代理为您做这件事
@@ -233,5 +233,5 @@ playground](https://labelstud.io/playground/)，用于尝试不同的
 注释接口，以及加入[Label Studio Slack
 Community](https://slack.labelstudio.heartex.com/?source=spaces)的链接。
 
-### 访问基准排行榜数据
-https://huggingface.co/docs/hub/leaderboard-data-guide.md
+### 空间概述
+https://huggingface.co/docs/hub/spaces-overview.md

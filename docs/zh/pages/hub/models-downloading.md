@@ -106,7 +106,7 @@ hf-mount start repo openai-community/gpt2 /tmp/gpt2
 > [!警告]
 > 随着我们的存储和 CDN 基础设施的发展，这些主机名可能会发生变化。你在哪里
 > 安全策略允许，将 `hf.co` 和 `huggingface.co` 后缀列入白名单（所有
-> 子域），这样当特定端点发生变化时，您的规则就不会被破坏。
+> 子域），这样当特定端点发生更改时，您的规则就不会被破坏。
 
-### 机器学习文档工具的概况
-https://huggingface.co/docs/hub/model-card-landscape-analysis.md
+### 存储限制
+https://huggingface.co/docs/hub/storage-limits.md

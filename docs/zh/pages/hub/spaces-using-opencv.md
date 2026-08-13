@@ -8,5 +8,5 @@
 
 看一个例子，[see this Gradio project](https://huggingface.co/spaces/templates/gradio_opencv/tree/main)。
 
-### 文件格式
-https://huggingface.co/docs/hub/datasets-polars-file-formats.md
+### 空间变更日志
+https://huggingface.co/docs/hub/spaces-changelog.md

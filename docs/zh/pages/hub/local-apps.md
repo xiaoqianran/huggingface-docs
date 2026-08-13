@@ -2,7 +2,7 @@
 
 # 在本地使用 AI 模型
 
-您可以在计算机本地从 Hub 运行 AI 模型。这意味着您可以受益于以下优势：
+您可以在计算机上本地运行 Hub 中的 AI 模型。这意味着您可以受益于以下优势：
 
 - **隐私**：您不会将数据发送到远程服务器。
 - **速度**：您的硬件是限制因素，而不是服务器或连接速度。
@@ -93,5 +93,5 @@ LM Studio 是一个桌面应用程序，提供了一种下载、运行和试验�
 
 导航至模型卡并单击“使用此模型”。 LM Studio 将打开，您可以通过界面开始聊天。
 
-### 单点登录配置指南
-https://huggingface.co/docs/hub/security-sso-configuration-guides.md
+### 服务帐户
+https://huggingface.co/docs/hub/enterprise-service-accounts.md

@@ -34,5 +34,5 @@ window.parent.postMessage({
 
 - https://huggingface.co/spaces/huggingfacejs/plan
 
-### Hugging Face Hub 上的 Jupyter 笔记本
-https://huggingface.co/docs/hub/notebooks.md
+### 集线器 API 端点
+https://huggingface.co/docs/hub/api.md

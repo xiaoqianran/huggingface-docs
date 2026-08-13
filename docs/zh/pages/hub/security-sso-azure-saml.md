@@ -11,7 +11,7 @@
 
 ## 第 1 步：在您的身份提供商中创建一个新应用程序
 
-在浏览器中打开新选项卡/窗口并登录到组织的 Azure 门户。
+在浏览器中打开一个新选项卡/窗口并登录到组织的 Azure 门户。
 
 导航到“企业应用程序”并单击“新建应用程序”按钮。
 
@@ -69,5 +69,5 @@ SAML 选择器附近的绿色复选标记将证明测试成功。
 
 启用后，您组织的成员必须完成 [How it works](./security-sso-basic#how-it-works) 部分中描述的 SSO 身份验证流程。
 
-### 小部件
-https://huggingface.co/docs/hub/models-widgets.md
+### 集线器本地缓存
+https://huggingface.co/docs/hub/local-cache.md

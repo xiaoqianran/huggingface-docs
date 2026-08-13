@@ -3,7 +3,7 @@
 # 图书馆
 
 数据集中心支持开源生态系统中的多个库。
-借助 [huggingface_hub Python library](/docs/huggingface_hub)，可以轻松在 Hub 上共享数据集。
+借助 [huggingface_hub Python library](/docs/huggingface_hub)，您可以轻松地在 Hub 上共享数据集。
 我们很高兴欢迎来到该中心的一组开源库，这些库正在推动机器学习的发展。
 
 ## 库表
@@ -52,7 +52,7 @@ Hugging Face 上的 Parquet 文件经过优化，可提高存储效率、加速�
 
 ## 培训库
 
-与 Hub 数据集集成以进行模型训练的训练库。下表显示了它们的流功能 - 无需先下载数据集即可进行训练的能力。|图书馆 |描述 |从集线器传输 |
+与 Hub 数据集集成以进行模型训练的训练库。下表显示了它们的流媒体功能 - 无需先下载数据集即可进行训练的能力。|图书馆 |描述 |从集线器传输 |
 | -------- | ----------- | ---------------- |
 | [Axolotl](https://docs.axolotl.ai/docs/streaming.html) |低代码LLM微调框架| ✅ |
 | [LlamaFactory](https://github.com/hiyouga/LLaMA-Factory) | 100+ LLM 统一微调 | ✅ |
@@ -61,7 +61,7 @@ Hugging Face 上的 Parquet 文件经过优化，可提高存储效率、加速�
 | [TRL](https://huggingface.co/docs/trl) |通过强化学习（SFT、DPO、GRPO）培训法学硕士 | ⚠️* |
 | [Unsloth](https://docs.unsloth.ai) |快速 LLM 微调（加速 2 倍，内存减少 70%）| ✅ |
 
-_* SFTTrainer 和 DPOTrainer 支持流式传输； GRPOTrainer 尚不支持流式输入_
+_* SFTTrainer 和 DPOTrainer 支持流式传输； GRPPOTrainer 尚不支持流式输入_
 
 ### 从集线器流式传输
 
@@ -185,5 +185,5 @@ api.upload_folder(
 
 有关集成的技术问题，请随时通过 datasets@huggingface.co 联系数据集团队。
 
-### 自定义 Python 空间
-https://huggingface.co/docs/hub/spaces-sdks-python.md
+### 空间上的 ZenML
+https://huggingface.co/docs/hub/spaces-sdks-docker-zenml.md

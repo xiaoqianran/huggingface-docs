@@ -61,7 +61,7 @@ for entry in leaderboard[:5]:
 |---|---|
 | `rank` |排行榜上的位置 |
 | `model_id` |完整型号 ID（例如 `Qwen/Qwen3.5-397B-A17B`）|
-| `value` |基准分数 |
+| `value` |基准分数|
 | `verified` |结果是否经过独立验证 |
 | `author` | [⟦T23⟧](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.User) 或 [⟦T24⟧](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.Organization) 对象 |
 | `source` |结果从哪里提交（模型卡、外部等）|
@@ -160,5 +160,5 @@ for result in info.eval_results:
 - [Eval Results](./eval-results) — 如何提交评估结果并注册基准
 - [Official Benchmark Datasets](https://huggingface.co/datasets?benchmark=benchmark:official&sort=trending) — 浏览所有官方基准测试
 
-### 集线器速率限制
-https://huggingface.co/docs/hub/rate-limits.md
+### 在抱脸处使用🧨 `diffusers`
+https://huggingface.co/docs/hub/diffusers.md

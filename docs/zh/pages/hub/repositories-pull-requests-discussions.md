@@ -4,7 +4,7 @@
 
 Hub Pull 请求和讨论允许用户对存储库进行社区贡献。拉取请求和讨论对于所有存储库类型都是相同的。
 
-在较高层面上，目标是构建其他 git 主机（如 GitHub）的 PR 和问题的更简单版本：
+在较高层面上，目标是构建其他 git 主机（例如 GitHub）的 PR 和问题的更简单版本：
 - 不涉及分叉：贡献者直接推送到源存储库上的特殊 `ref` 分支。
 - 讨论和 PR 之间没有严格的区别：它们本质上是相同的，因此它们显示在相同的列表中。
 - 它们针对 ML（即模型/数据集/空间存储库）进行了简化，而不是任意存储库。
@@ -27,7 +27,7 @@ _注意，拉取请求和讨论可以从 [repository settings](./repositories-se
 
 ## 锁定讨论/拉取请求
 
-如果您对存储库具有写入权限，则可以锁定讨论或拉取请求。讨论锁定后，之前的评论仍然可见，并且用户将无法添加新评论。
+如果您拥有存储库的写入权限，则可以锁定讨论或拉取请求。讨论被锁定后，之前的评论仍然可见，并且用户将无法添加新评论。
 
 ## 评论编辑和审核
 
@@ -35,7 +35,7 @@ _注意，拉取请求和讨论可以从 [repository settings](./repositories-se
 
 编辑评论后，评论上方将出现一个新链接。此链接显示编辑历史记录。 
 
-您还可以隐藏评论。隐藏评论是不可逆的，任何人都无法看到其内容，也无法再对其进行编辑。
+您还可以隐藏评论。隐藏评论是不可逆转的，任何人都无法看到其内容也无法再编辑它。
 
 另请阅读[moderation](./moderation)，了解如何举报辱骂性评论。
 
@@ -97,12 +97,12 @@ git checkout pr/{PR_NUMBER}
 # for example: git checkout pr/42
 ```
 
-3. 如果您进行本地更改，请推送到 PR 参考：
+3. 如果您进行本地更改，请推送至 PR 参考：
 
 ```bash
 git push origin pr/{PR_NUMBER}:refs/pr/{PR_NUMBER}
 # for example: git push origin pr/42:refs/pr/42
 ```
 
-### 空间设置
-https://huggingface.co/docs/hub/spaces-settings.md
+### 芬尼克
+https://huggingface.co/docs/hub/datasets-fenic.md

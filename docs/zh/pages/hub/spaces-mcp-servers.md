@@ -19,7 +19,7 @@
 
 1. 浏览兼容的[Spaces](https://huggingface.co/spaces?filter=mcp-server)以查找可通过MCP使用的空间。您还可以在任何 Spaces 卡上查找灰色 **MCP** 徽章。
 2. 单击徽章并选择 **添加到 MCP 工具**，然后在询问时确认。
-3. 空间应列在 MCP 服务器设置的空间工具部分中。
+3. 空间应列在“空间工具”部分的 MCP 服务器设置中。
 
 ![image/png](https://cdn-uploads.huggingface.co/production/uploads/5f17f0a0925b9863e28ad517/uI4PsneUZoWn_TExhNJyt.png)
 
@@ -75,5 +75,5 @@ demo.launch(mcp_server=True)   # exposes an MCP schema automatically
     Lightricks/ltx-视频蒸馏和
     类似于 Claude Code 中的 AI/Chatterbox，生成带音频的视频。
 
-### 更多创建空间的方法
-https://huggingface.co/docs/hub/spaces-more-ways-to-create.md
+### 如何使用 Microsoft Entra ID (Azure AD) 配置 OIDC SSO
+https://huggingface.co/docs/hub/security-sso-azure-oidc.md

@@ -73,6 +73,9 @@ hf jobs run --namespace my-org-name ...
 
 在这种情况下，作业在组织帐户下运行，您可以在组织作业页面（组织页面 > 设置 > 作业）中看到它。
 
+> [!注意]
+> 在企业计划及以上版本中，组织管理员可以通过 [Granular feature access](./security-resource-groups#granular-feature-access) 设置限制谁可以运行和查看向组织计费的作业（仅限组织管理员或选定资源组的成员）。
+
 ### 向资源组开具账单
 
 > [!警告]
@@ -108,11 +111,11 @@ hf jobs run --namespace <resource-group-id> ...
 
 ### 建议
 
-#### 设置超时限制
-
-创建Job时设置一个`timeout`以确保它不能运行超过一定的持续时间。
+#### 设置超时限制创建Job时设置一个`timeout`以确保它不能运行超过一定的持续时间。
 达到`timeout`持续时间的作业运行将自动停止，其计费也将自动停止。
-以下是使用 CLI 设置超时的方法：```bash
+以下是使用 CLI 设置超时的方法：
+
+```bash
 hf jobs run --timeout 3h ...
 ```
 
@@ -127,5 +130,5 @@ hf jobs run --timeout 3h ...
 hf jobs cancel <job-id>
 ```
 
-### 门控数据集
-https://huggingface.co/docs/hub/datasets-gate.md
+### 双因素身份验证 (2FA)
+https://huggingface.co/docs/hub/security-2fa.md

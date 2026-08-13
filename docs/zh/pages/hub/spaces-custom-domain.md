@@ -35,5 +35,5 @@
 
 ## 删除自定义域只需使用空间设置中“自定义域”右侧的删除按钮即可删除自定义域。您可以在自定义域处于待处理或就绪状态时删除。
 
-### 组织中的访问控制
-https://huggingface.co/docs/hub/organizations-security.md
+### 小部件示例
+https://huggingface.co/docs/hub/models-widgets-examples.md

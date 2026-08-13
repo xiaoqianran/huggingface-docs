@@ -72,5 +72,5 @@ tags:
 - argilla
 ```
 
-### 在本地使用 AI 模型
-https://huggingface.co/docs/hub/local-apps.md
+### 空间作为 API 端点
+https://huggingface.co/docs/hub/spaces-api-endpoints.md

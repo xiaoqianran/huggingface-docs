@@ -2,7 +2,7 @@
 
 # 通过 SSH 进行 Git
 
-您可以使用 SSH（安全外壳协议）访问和写入 Huggingface.co 上的存储库中的数据。当您通过 SSH 连接时，您可以使用本地计算机上的私钥文件进行身份验证。
+您可以使用 SSH（安全外壳协议）访问和写入huggingface.co 上的存储库中的数据。当您通过 SSH 连接时，您可以使用本地计算机上的私钥文件进行身份验证。
 
 某些操作（例如推送更改或克隆私有存储库）将要求您将 SSH 公钥上传到您在 Huggingface.co 上的帐户。
 
@@ -82,5 +82,5 @@ hf.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL
 hf.co ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINJjhgtT9FOQrsVSarIoPVI1jFMh3VSHdKfdqp/O776s
 ```
 
-### 任务
-https://huggingface.co/docs/hub/models-tasks.md
+### 阿吉拉
+https://huggingface.co/docs/hub/datasets-argilla.md

@@ -23,5 +23,5 @@ Hugging Face Hub 包含许多 [variety of machine learning tasks](https://huggin
   - [Integrating libraries with the Hub](./models-adding-libraries)
   - [Tasks](./models-tasks)
 
-### 组织
-https://huggingface.co/docs/hub/organizations.md
+### GGUF 与 llama.cpp 的用法
+https://huggingface.co/docs/hub/gguf-llamacpp.md

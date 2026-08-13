@@ -57,5 +57,5 @@ Space 将自动安装`requirements.txt` 文件中列出的依赖项。至少，�
 
 如需更多帮助，请访问[marimo Discord](https://marimo.io/discord)或[open an issue](https://github.com/marimo-team/marimo/issues)。
 
-### 模型卡
-https://huggingface.co/docs/hub/model-cards.md
+### DDUF
+https://huggingface.co/docs/hub/dduf.md

@@ -12,5 +12,5 @@
 
 此外，可以从浏览器地址栏中复制并共享 URL，其中应包含过滤器信息作为 URL 查询。例如，当使用仅显示 `Spaces` 的过滤器搜索查询 `llama` 时，会得到 URL https://huggingface.co/search/full-text?q=llama&type=space
 
-### 第三方扫描仪：JFrog
-https://huggingface.co/docs/hub/security-jfrog.md
+### 具有资源组的组织中的高级访问控制
+https://huggingface.co/docs/hub/security-resource-groups.md

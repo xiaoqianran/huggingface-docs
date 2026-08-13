@@ -115,7 +115,7 @@ configs:
 
 ## 数据目录
 
-您可以使用 `data_dir` 来指向目录，而不是使用 `data_files` 列出单个文件。该目录内的文件会根据文件扩展名自动解析。当您的数据组织在子目录中时，这尤其有用：
+您可以使用 `data_dir` 来指向目录，而不是使用 `data_files` 列出单个文件。该目录内的文件会根据文件扩展名自动解析。当您的数据组织在子目录中时，这特别有用：
 
 例如，在这种情况下，您可以简单地使用`data_dir`，因为每个子集的数据都位于其自己的目录中：
 
@@ -175,5 +175,5 @@ configs:
 
 请参阅[specific builders' documentation](/docs/datasets/package_reference/builder_classes)查看它们有哪些参数。
 
-### 带注释的模型卡模板
-https://huggingface.co/docs/hub/model-card-annotated.md
+### 空间小组
+https://huggingface.co/docs/hub/spaces-sdks-docker-panel.md

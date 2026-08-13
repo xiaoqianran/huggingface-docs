@@ -4,7 +4,7 @@
 
 本指南将向您展示如何使用图像文件配置数据集存储库。您可以在此 [Image datasets examples collection](https://huggingface.co/collections/datasets-examples/image-dataset-6568e7cf28639db76eb92d65) 中找到随附的存储库示例。
 
-具有受支持结构和 [file formats](./datasets-adding#file-formats) 的数据集会自动在 Hub 的页面上显示数据集查看器。
+具有受支持结构和 [file formats](./datasets-adding#file-formats) 的数据集会自动在 Hub 上的页面上显示数据集查看器。
 
 只要您将有关图像的其他信息（例如用于对象检测的标题或边界框）包含在元数据文件 (`metadata.csv`/`metadata.jsonl`/`metadata.parquet`) 中，就会自动加载。
 
@@ -192,7 +192,7 @@ train-0000/
 ### 镶木地板格式
 
 您可以将所有内容嵌入到 [Parquet](https://parquet.apache.org/) 文件中，而不是将图像和元数据作为单独的文件上传。
-如果您有大量图像、想要嵌入多个图像列或者想要在同一文件中存储有关图像的附加信息，这会很有用。
+如果您有大量图像、想要嵌入多个图像列或者想要在同一文件中存储有关图像的附加信息，这会非常有用。
 Parquet 对于存储原始字节等数据也很有用，而 JSON/CSV 不支持这种数据。
 
 ```
@@ -213,5 +213,5 @@ dataset_info:
 
 请注意，建议对小图像（每个图像 <1MB）和小行组（每个行组 100 行，`datasets` 用于图像）使用 Parquet。对于较大的图像，建议使用 WebDataset 格式，或共享原始图像文件（可以选择元数据文件，并遵循 [repositories recommendations and limits](https://huggingface.co/docs/hub/en/storage-limits) 的存储和文件数量）。
 
-### 收藏
-https://huggingface.co/docs/hub/collections.md
+### Webhook 指南：使用 LLM 回复构建讨论机器人
+https://huggingface.co/docs/hub/webhooks-guide-discussion-bot.md

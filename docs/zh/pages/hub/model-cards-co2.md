@@ -4,7 +4,7 @@
 
 ## 为什么计算我的模型的碳排放量是有益的？
 
-训练 ML 模型通常是能源密集型的，并且会产生大量碳足迹，如[Strubell et al.](https://arxiv.org/abs/1906.02243)所述。因此，“跟踪”和“报告”模型的排放量以更好地了解我们领域的环境影响非常重要。
+训练机器学习模型通常是能源密集型的，并且会产生大量的碳足迹，如[Strubell et al.](https://arxiv.org/abs/1906.02243)所述。因此，“跟踪”和“报告”模型的排放量以更好地了解我们领域的环境影响非常重要。
 
 ## 关于我的模型的碳足迹，我应该包含哪些信息？
 
@@ -51,5 +51,5 @@ co2_eq_emissions:
 
 要了解有关变形金刚碳足迹的更多信息，请查看[video](https://www.youtube.com/watch?v=ftWlj4FBHTg)，拥抱脸部课程的一部分！
 
-### 值得信赖的出版商
-https://huggingface.co/docs/hub/trusted-publishers.md
+### 数据集概述
+https://huggingface.co/docs/hub/datasets-overview.md

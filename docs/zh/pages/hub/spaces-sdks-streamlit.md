@@ -64,11 +64,11 @@ if file_name is not None:
         col2.subheader(f"{ p['label'] }: { round(p['score'] * 100, 1)}%")
 ```
 
-此 Python 脚本使用 [🤗 Transformers pipeline](https://huggingface.co/docs/transformers/pipeline_tutorial) 加载 [julien-c/hotdog-not-hotdog](https://huggingface.co/julien-c/hotdog-not-hotdog) 模型，该模型由 Streamlit 接口使用。 Streamlit 应用程序将要求您上传图像，然后将其分类为“热狗”或“非热狗”。将代码保存到 **app.py** 文件后，请访问 **App** 选项卡以查看您的应用程序的运行情况！
+此 Python 脚本使用 [🤗 Transformers pipeline](https://huggingface.co/docs/transformers/pipeline_tutorial) 加载 [julien-c/hotdog-not-hotdog](https://huggingface.co/julien-c/hotdog-not-hotdog) 模型，该模型由 Streamlit 接口使用。 Streamlit 应用程序会要求您上传图像，然后将其分类为“热狗”或“非热狗”。将代码保存到 **app.py** 文件后，请访问 **App** 选项卡以查看您的应用程序的运行情况！
 
 ## 在其他网页上嵌入 Streamlit Spaces
 
-您可以使用 HTML `<iframe>` 标签将 Streamlit Space 作为内联框架嵌入到其他网页上。只需包含您的空间的 URL，以 `.hf.space` 后缀结尾。要查找您的空间的 URL，您可以使用空间选项中的“嵌入此空间”按钮。
+您可以使用 HTML `<iframe>` 标签将 Streamlit Space 作为内嵌框架嵌入到其他网页上。只需包含您的空间的 URL，以 `.hf.space` 后缀结尾。要查找您的空间的 URL，您可以使用空间选项中的“嵌入此空间”按钮。
 
 例如，上面的演示可以使用以下标签嵌入到这些文档中：
 
@@ -91,7 +91,7 @@ if file_name is not None:
 
 请注意，我们已将 `?embed=true` 添加到 URL，这会激活 Streamlit 应用程序的嵌入模式，删除一些间隔符和页脚以实现超薄嵌入。
 
-## 使用自动调整大小的 IFrame 嵌入 Streamlit SpacesStreamlit 自 [1.17.0](https://docs.streamlit.io/library/changelog#version-1170) 起支持自动调整 iframe 大小，以便自动调整父 iframe 的大小以适应嵌入式 Streamlit 应用程序的内容量。
+## 嵌入具有自动调整大小的 IFrame 的 Streamlit SpacesStreamlit 自 [1.17.0](https://docs.streamlit.io/library/changelog#version-1170) 起支持自动调整 iframe 大小，以便自动调整父 iframe 的大小以适应嵌入式 Streamlit 应用程序的内容量。
 
 它依赖于[⟦T15⟧](https://github.com/davidjbradshaw/iframe-resizer)库，您需要为此添加几行代码，如下例所示
 
@@ -117,5 +117,5 @@ if file_name is not None:
 
 此外，您还可以查看[our documentation](./spaces-embed)。
 
-### 存储桶
-https://huggingface.co/docs/hub/storage-buckets.md
+### 如何处理Spaces中的URL参数
+https://huggingface.co/docs/hub/spaces-handle-url-parameters.md

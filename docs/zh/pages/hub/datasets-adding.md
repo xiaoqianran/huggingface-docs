@@ -100,5 +100,5 @@ Hugging Face Hub 支持大规模数据集，通常以 Parquet 格式上传（例
 
 请参阅[how to upload a folder by chunks](/docs/huggingface_hub/guides/upload#upload-a-folder-by-chunks)、[tips and tricks for large uploads](/docs/huggingface_hub/guides/upload#tips-and-tricks-for-large-uploads) 和[repository storage limits and recommendations](./storage-limits)。
 
-### 冲向空格
-https://huggingface.co/docs/hub/spaces-sdks-docker-dash.md
+### 使用 SDK 构建
+https://huggingface.co/docs/hub/agents-sdk.md

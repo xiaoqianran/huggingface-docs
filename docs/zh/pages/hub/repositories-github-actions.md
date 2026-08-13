@@ -5,7 +5,7 @@
 您可以使用 [GitHub Actions](https://docs.github.com/en/actions) 自动将 GitHub 存储库同步到 Hugging Face Hub。官方[⟦T2⟧](https://github.com/marketplace/actions/sync-github-to-hugging-face-hub)操作支持同步**模型**、**数据集**和**空间**。
 
 > [!提示]
-> 对于无密钥发布 - 无需存储或轮换 `HF_TOKEN` 秘密 - 请参阅 [Trusted Publishers](./trusted-publishers)，它在每次运行开始时将 GitHub Actions 的内置 OIDC 令牌交换为短期的、repo 范围的 Hub 令牌。
+> 对于无密钥发布 - 无需存储或轮换 `HF_TOKEN` 秘密 - 请参阅 [Trusted Publishers](./trusted-publishers)，它在每次运行开始时将 GitHub Actions 的内置 OIDC 令牌交换为短期的、存储库范围的 Hub 令牌。
 
 ## 设置
 
@@ -44,7 +44,7 @@ jobs:
           repo_type: dataset
 ```
 
-## 参数|参数|必填|默认|描述 |
+## 参数|参数|必填 |默认|描述 |
 |---|---|---|---|
 | `github_repo_id` |是的 | — | GitHub 存储库（使用`${{ github.repository }}`）|
 | `huggingface_repo_id` |是的 | — | Hub 上的目标存储库 (`username/repo-name`) |
@@ -60,5 +60,5 @@ jobs:
 
 有关特定于空间的指南（文件大小限制、LFS 处理），请参阅 [Managing Spaces with GitHub Actions](./spaces-github-actions)。
 
-### 高级主题
-https://huggingface.co/docs/hub/spaces-advanced.md
+### 快速入门
+https://huggingface.co/docs/hub/jobs-quickstart.md

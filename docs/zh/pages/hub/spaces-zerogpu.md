@@ -143,7 +143,7 @@ ZeroGPU不支持`torch.compile`，但您可以使用PyTorch**提前**编译（�
 
 ## 使用等级
 
-GPU 使用量受每个帐户层的**每日**配额限制：|账户类型 |包含每日 GPU 配额 |队列优先级 |
+GPU 使用量受每个帐户层的**每日**配额限制：|账户类型 |包含每日 GPU 配额 |队列优先级|
 | ------------------------------------------ | ------------------------ | ---------------- |
 |未经验证 | 2 分钟 |低|
 |免费帐户 | 5 分钟 |中等|
@@ -179,5 +179,5 @@ PRO、团队和企业用户可以通过以每 10 分钟 GPU 时间 **1 美元**�
 
 您可以直接在 HF Hub 上分享您对 Spaces ZeroGPU 的反馈：https://huggingface.co/spaces/zero-gpu-explorers/README/discussions
 
-### 存储桶集成
-https://huggingface.co/docs/hub/storage-buckets-integrations.md
+### 小部件
+https://huggingface.co/docs/hub/models-widgets.md
