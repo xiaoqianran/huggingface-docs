@@ -26,5 +26,5 @@ Manage the default visibility of repositories in your organization:
 
 These settings help organizations maintain control of their ownership while enabling collaboration when needed.
 
-### ChatUI on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-chatui.md
+### Data files Configuration
+https://huggingface.co/docs/hub/datasets-data-files-configuration.md

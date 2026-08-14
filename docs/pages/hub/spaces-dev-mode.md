@@ -172,5 +172,5 @@ Example Javascript app (Express.js HTTP server): https://huggingface.co/spaces/d
 
 You can share your feedback on Spaces Dev Mode directly on the HF Hub: https://huggingface.co/spaces/dev-mode-explorers/README/discussions
 
-### Audit Logs
-https://huggingface.co/docs/hub/audit-logs.md
+### Spaces Overview
+https://huggingface.co/docs/hub/spaces-overview.md

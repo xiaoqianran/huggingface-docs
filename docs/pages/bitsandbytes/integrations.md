@@ -7,12 +7,12 @@ bitsandbytes is widely integrated with many of the libraries in the Hugging Face
 > [!TIP]
 > Learn more in the bitsandbytes Transformers integration [guide](https://huggingface.co/docs/transformers/quantization#bitsandbytes).
 
-With Transformers, it's very easy to load any model in 4 or 8-bit and quantize them on the fly. To configure the quantization parameters, specify them in the [BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/quantization#transformers.BitsAndBytesConfig) class.
+With Transformers, it's very easy to load any model in 4 or 8-bit and quantize them on the fly. To configure the quantization parameters, specify them in the [BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.BitsAndBytesConfig) class.
 
 For example, to load and quantize a model to 4-bits and use the bfloat16 data type for compute:
 
 > [!WARNING]
-> bfloat16 is the ideal `compute_dtype` if your hardware supports it. While the default `compute_dtype`, float32, ensures backward compatibility (due to wide-ranging hardware support) and numerical stability, it is large and slows down computations. In contrast, float16 is smaller and faster but can lead to numerical instabilities. bfloat16 combines the best aspects of both; it offers the numerical stability of float32 and the reduced memory footprint and speed of a 16-bit data type. Check if your hardware supports bfloat16 and configure it using the `bnb_4bit_compute_dtype` parameter in [BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/quantization#transformers.BitsAndBytesConfig)!
+> bfloat16 is the ideal `compute_dtype` if your hardware supports it. While the default `compute_dtype`, float32, ensures backward compatibility (due to wide-ranging hardware support) and numerical stability, it is large and slows down computations. In contrast, float16 is smaller and faster but can lead to numerical instabilities. bfloat16 combines the best aspects of both; it offers the numerical stability of float32 and the reduced memory footprint and speed of a 16-bit data type. Check if your hardware supports bfloat16 and configure it using the `bnb_4bit_compute_dtype` parameter in [BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.BitsAndBytesConfig)!
 
 ```py
 from transformers import AutoModelForCausalLM, BitsAndBytesConfig
@@ -27,7 +27,7 @@ model_4bit = AutoModelForCausalLM.from_pretrained(
 
 ### 8-bit optimizers
 
-You can use any of the 8-bit or paged optimizers with Transformers by passing them to the [Trainer](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.Trainer) class on initialization. All bitsandbytes optimizers are supported by passing the correct string in the [TrainingArguments](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/trainer#transformers.TrainingArguments) `optim` parameter. For example, to load a [PagedAdamW32bit](/docs/bitsandbytes/v0.50.0/en/reference/optim/adamw#bitsandbytes.optim.PagedAdamW32bit) optimizer:
+You can use any of the 8-bit or paged optimizers with Transformers by passing them to the [Trainer](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) class on initialization. All bitsandbytes optimizers are supported by passing the correct string in the [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) `optim` parameter. For example, to load a [PagedAdamW32bit](/docs/bitsandbytes/v0.50.1/en/reference/optim/adamw#bitsandbytes.optim.PagedAdamW32bit) optimizer:
 
 ```py
 from transformers import TrainingArguments, Trainer
@@ -47,7 +47,7 @@ trainer.train()
 
 PEFT builds on the bitsandbytes Transformers integration, and extends it for training with a few more steps. Let's prepare the 4-bit model from the section above for training.
 
-Call the `prepare_model_for_kbit_training` method to prepare the model for training. This only works for Transformers models!
+Call the [prepare_model_for_kbit_training](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/peft_model#peft.prepare_model_for_kbit_training) method to prepare the model for training. This only works for Transformers models!
 
 ```py
 from peft import prepare_model_for_kbit_training
@@ -55,7 +55,7 @@ from peft import prepare_model_for_kbit_training
 model_4bit = prepare_model_for_kbit_training(model_4bit)
 ```
 
-Setup a `LoraConfig` to use QLoRA:
+Setup a [LoraConfig](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig) to use QLoRA:
 
 ```py
 from peft import LoraConfig
@@ -70,7 +70,7 @@ config = LoraConfig(
 )
 ```
 
-Now call the `get_peft_model` function on your model and config to create a trainable `PeftModel`.
+Now call the [get_peft_model](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/peft_model#peft.get_peft_model) function on your model and config to create a trainable `PeftModel`.
 
 ```py
 from peft import get_peft_model
@@ -135,5 +135,5 @@ To learn in more detail about some of bitsandbytes integrations, take a look at 
 - [Making LLMs even more accessible with bitsandbytes, 4-bit quantization and QLoRA](https://huggingface.co/blog/4bit-transformers-bitsandbytes)
 - [A Gentle Introduction to 8-bit Matrix Multiplication for transformers at scale using Hugging Face Transformers, Accelerate and bitsandbytes](https://huggingface.co/blog/hf-bitsandbytes-integration)
 
-### FSDP-QLoRA
-https://huggingface.co/docs/bitsandbytes/v0.50.0/fsdp_qlora.md
+### FAQs
+https://huggingface.co/docs/bitsandbytes/v0.50.1/faqs.md

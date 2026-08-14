@@ -29,5 +29,5 @@ ZeroGPU is a dynamic GPU allocation system that optimizes AI deployment on Huggi
 
 [Learn more about ZeroGPU →](https://huggingface.co/docs/hub/spaces-zerogpu)
 
-### Jobs Overview
-https://huggingface.co/docs/hub/jobs-overview.md
+### Pricing and Billing
+https://huggingface.co/docs/hub/jobs-pricing.md

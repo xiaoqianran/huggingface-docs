@@ -72,5 +72,5 @@ io_config = IOConfig(hf=HuggingFaceConfig(token="your_token"))
 df = daft.read_parquet("hf://datasets/username/dataset_name", io_config=io_config)
 ```
 
-### Using BERTopic at Hugging Face
-https://huggingface.co/docs/hub/bertopic.md
+### Embedding Atlas
+https://huggingface.co/docs/hub/datasets-embedding-atlas.md

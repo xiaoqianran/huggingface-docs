@@ -49,5 +49,5 @@ From the service account's page, administrators can:
 
 Service accounts are not counted as billable members of your organization, so creating them does not consume a paid seat in your plan.
 
-### Downloading models
-https://huggingface.co/docs/hub/models-downloading.md
+### Tokens Management
+https://huggingface.co/docs/hub/enterprise-tokens-management.md

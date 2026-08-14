@@ -66,5 +66,5 @@ If you want to load a specific PEFT model, you can click `Use in PEFT` in the mo
 * PEFT [docs](https://huggingface.co/docs/peft/index)
 * PEFT [models](https://huggingface.co/models?library=peft&sort=trending)
 
-### Hub Rate limits
-https://huggingface.co/docs/hub/rate-limits.md
+### Appendix
+https://huggingface.co/docs/hub/model-card-appendix.md

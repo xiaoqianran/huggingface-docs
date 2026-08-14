@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-13T08:27:37.204697+00:00",
+  "fetchedAt": "2026-08-14T08:22:51.715428+00:00",
   "method": "llms-full-split",
   "ok": 2134,
   "failed": 0,
@@ -704,229 +704,229 @@
       "title": "Text Classification & Regression"
     },
     {
-      "rel": "bitsandbytes/quickstart.md",
-      "bytes": 4093,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/quickstart.md",
-      "track": "BitsAndBytes",
-      "package": "bitsandbytes",
-      "title": "Quickstart"
-    },
-    {
-      "rel": "bitsandbytes/faqs.md",
-      "bytes": 529,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/faqs.md",
-      "track": "BitsAndBytes",
-      "package": "bitsandbytes",
-      "title": "FAQs"
-    },
-    {
-      "rel": "bitsandbytes/contributing.md",
-      "bytes": 1626,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/contributing.md",
-      "track": "BitsAndBytes",
-      "package": "bitsandbytes",
-      "title": "Contribution Guide"
-    },
-    {
       "rel": "bitsandbytes/installation.md",
-      "bytes": 17472,
+      "bytes": 18462,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/installation.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/installation.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "Installation Guide"
     },
     {
-      "rel": "bitsandbytes/integrations.md",
-      "bytes": 6711,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/integrations.md",
-      "track": "BitsAndBytes",
-      "package": "bitsandbytes",
-      "title": "Integrations"
-    },
-    {
       "rel": "bitsandbytes/fsdp_qlora.md",
-      "bytes": 7793,
+      "bytes": 7878,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/fsdp_qlora.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/fsdp_qlora.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "FSDP-QLoRA"
     },
     {
       "rel": "bitsandbytes/optimizers.md",
-      "bytes": 4838,
+      "bytes": 4839,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/optimizers.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/optimizers.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "8-bit optimizers"
     },
     {
-      "rel": "bitsandbytes/index.md",
-      "bytes": 1035,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/index.md",
-      "track": "BitsAndBytes",
-      "package": "bitsandbytes",
-      "title": "bitsandbytes"
-    },
-    {
       "rel": "bitsandbytes/errors.md",
-      "bytes": 2956,
+      "bytes": 2958,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/errors.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/errors.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "Troubleshoot"
     },
     {
+      "rel": "bitsandbytes/contributing.md",
+      "bytes": 1616,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/contributing.md",
+      "track": "BitsAndBytes",
+      "package": "bitsandbytes",
+      "title": "Contribution Guide"
+    },
+    {
+      "rel": "bitsandbytes/quickstart.md",
+      "bytes": 4102,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/quickstart.md",
+      "track": "BitsAndBytes",
+      "package": "bitsandbytes",
+      "title": "Quickstart"
+    },
+    {
+      "rel": "bitsandbytes/index.md",
+      "bytes": 1041,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/index.md",
+      "track": "BitsAndBytes",
+      "package": "bitsandbytes",
+      "title": "bitsandbytes"
+    },
+    {
+      "rel": "bitsandbytes/integrations.md",
+      "bytes": 6988,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/integrations.md",
+      "track": "BitsAndBytes",
+      "package": "bitsandbytes",
+      "title": "Integrations"
+    },
+    {
+      "rel": "bitsandbytes/faqs.md",
+      "bytes": 527,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/faqs.md",
+      "track": "BitsAndBytes",
+      "package": "bitsandbytes",
+      "title": "FAQs"
+    },
+    {
       "rel": "bitsandbytes/reference/functional.md",
-      "bytes": 9268,
+      "bytes": 15714,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/functional.md",
-      "track": "BitsAndBytes",
-      "package": "bitsandbytes",
-      "title": "Overview"
-    },
-    {
-      "rel": "bitsandbytes/reference/nn/linear4bit.md",
-      "bytes": 3235,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/nn/linear4bit.md",
-      "track": "BitsAndBytes",
-      "package": "bitsandbytes",
-      "title": "4-bit quantization"
-    },
-    {
-      "rel": "bitsandbytes/reference/nn/linear8bit.md",
-      "bytes": 2961,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/nn/linear8bit.md",
-      "track": "BitsAndBytes",
-      "package": "bitsandbytes",
-      "title": "LLM.int8()"
-    },
-    {
-      "rel": "bitsandbytes/reference/nn/embeddings.md",
-      "bytes": 3176,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/nn/embeddings.md",
-      "track": "BitsAndBytes",
-      "package": "bitsandbytes",
-      "title": "Embedding"
-    },
-    {
-      "rel": "bitsandbytes/reference/optim/optim_overview.md",
-      "bytes": 4990,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/optim/optim_overview.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/functional.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "Overview"
     },
     {
       "rel": "bitsandbytes/reference/optim/adamw.md",
-      "bytes": 7447,
+      "bytes": 11454,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/optim/adamw.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/adamw.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "AdamW"
     },
     {
-      "rel": "bitsandbytes/reference/optim/rmsprop.md",
-      "bytes": 622,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/optim/rmsprop.md",
-      "track": "BitsAndBytes",
-      "package": "bitsandbytes",
-      "title": "RMSprop"
-    },
-    {
-      "rel": "bitsandbytes/reference/optim/lion.md",
-      "bytes": 4881,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/optim/lion.md",
-      "track": "BitsAndBytes",
-      "package": "bitsandbytes",
-      "title": "Lion"
-    },
-    {
       "rel": "bitsandbytes/reference/optim/lars.md",
-      "bytes": 3168,
+      "bytes": 5029,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/optim/lars.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/lars.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "LARS"
     },
     {
-      "rel": "bitsandbytes/reference/optim/adam.md",
-      "bytes": 7877,
+      "rel": "bitsandbytes/reference/optim/rmsprop.md",
+      "bytes": 1722,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/optim/adam.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/rmsprop.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
-      "title": "Adam"
-    },
-    {
-      "rel": "bitsandbytes/reference/optim/lamb.md",
-      "bytes": 4703,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/optim/lamb.md",
-      "track": "BitsAndBytes",
-      "package": "bitsandbytes",
-      "title": "LAMB"
-    },
-    {
-      "rel": "bitsandbytes/reference/optim/ademamix.md",
-      "bytes": 689,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/optim/ademamix.md",
-      "track": "BitsAndBytes",
-      "package": "bitsandbytes",
-      "title": "AdEMAMix"
+      "title": "RMSprop"
     },
     {
       "rel": "bitsandbytes/reference/optim/adagrad.md",
-      "bytes": 3179,
+      "bytes": 5174,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/optim/adagrad.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/adagrad.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "AdaGrad"
     },
     {
-      "rel": "bitsandbytes/reference/optim/sgd.md",
-      "bytes": 3004,
+      "rel": "bitsandbytes/reference/optim/optim_overview.md",
+      "bytes": 7854,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/optim/sgd.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/optim_overview.md",
+      "track": "BitsAndBytes",
+      "package": "bitsandbytes",
+      "title": "Overview"
+    },
+    {
+      "rel": "bitsandbytes/reference/optim/adam.md",
+      "bytes": 11910,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/adam.md",
+      "track": "BitsAndBytes",
+      "package": "bitsandbytes",
+      "title": "Adam"
+    },
+    {
+      "rel": "bitsandbytes/reference/optim/ademamix.md",
+      "bytes": 6573,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/ademamix.md",
+      "track": "BitsAndBytes",
+      "package": "bitsandbytes",
+      "title": "AdEMAMix"
+    },
+    {
+      "rel": "bitsandbytes/reference/optim/lamb.md",
+      "bytes": 6826,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/lamb.md",
+      "track": "BitsAndBytes",
+      "package": "bitsandbytes",
+      "title": "LAMB"
+    },
+    {
+      "rel": "bitsandbytes/reference/optim/sgd.md",
+      "bytes": 4718,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/sgd.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "SGD"
     },
     {
-      "rel": "bitsandbytes/explanations/resources.md",
-      "bytes": 3974,
+      "rel": "bitsandbytes/reference/optim/lion.md",
+      "bytes": 8468,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/explanations/resources.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/lion.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
-      "title": "Papers, related resources & how to cite"
+      "title": "Lion"
+    },
+    {
+      "rel": "bitsandbytes/reference/nn/embeddings.md",
+      "bytes": 5067,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/nn/embeddings.md",
+      "track": "BitsAndBytes",
+      "package": "bitsandbytes",
+      "title": "Embedding"
+    },
+    {
+      "rel": "bitsandbytes/reference/nn/linear8bit.md",
+      "bytes": 3957,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/nn/linear8bit.md",
+      "track": "BitsAndBytes",
+      "package": "bitsandbytes",
+      "title": "LLM.int8()"
+    },
+    {
+      "rel": "bitsandbytes/reference/nn/linear4bit.md",
+      "bytes": 5857,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/nn/linear4bit.md",
+      "track": "BitsAndBytes",
+      "package": "bitsandbytes",
+      "title": "4-bit quantization"
     },
     {
       "rel": "bitsandbytes/explanations/optimizers.md",
-      "bytes": 4847,
+      "bytes": 4967,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.0/explanations/optimizers.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/explanations/optimizers.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "8-bit optimizers"
+    },
+    {
+      "rel": "bitsandbytes/explanations/resources.md",
+      "bytes": 3876,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/explanations/resources.md",
+      "track": "BitsAndBytes",
+      "package": "bitsandbytes",
+      "title": "Papers, related resources & how to cite"
     },
     {
       "rel": "cli/index.md",
@@ -4736,80 +4736,8 @@
       "title": "How to contribute to Diffusers \ud83e\udde8"
     },
     {
-      "rel": "hub/speechbrain.md",
-      "bytes": 2052,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/speechbrain.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using SpeechBrain at Hugging Face"
-    },
-    {
-      "rel": "hub/agents-overview.md",
-      "bytes": 8906,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/agents-overview.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Agents"
-    },
-    {
-      "rel": "hub/fastai.md",
-      "bytes": 2216,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/fastai.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using fastai at Hugging Face"
-    },
-    {
-      "rel": "hub/jobs-pricing.md",
-      "bytes": 7455,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/jobs-pricing.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Pricing and Billing"
-    },
-    {
-      "rel": "hub/security-2fa.md",
-      "bytes": 4216,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-2fa.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Two-Factor Authentication (2FA)"
-    },
-    {
-      "rel": "hub/repositories-next-steps.md",
-      "bytes": 5827,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/repositories-next-steps.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Next Steps"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-langfuse.md",
-      "bytes": 8264,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-langfuse.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Langfuse on Spaces"
-    },
-    {
-      "rel": "hub/leaderboard-data-guide.md",
-      "bytes": 6943,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/leaderboard-data-guide.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Accessing Benchmark Leaderboard Data"
-    },
-    {
       "rel": "hub/diffusers.md",
-      "bytes": 3686,
+      "bytes": 3684,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/diffusers.md",
       "track": "Hub",
@@ -4817,296 +4745,17 @@
       "title": "Using \ud83e\udde8 `diffusers` at Hugging Face"
     },
     {
-      "rel": "hub/spaces-using-opencv.md",
-      "bytes": 526,
+      "rel": "hub/open_clip.md",
+      "bytes": 2530,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-using-opencv.md",
+      "url": "https://huggingface.co/docs/hub/open_clip.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Using OpenCV in Spaces"
-    },
-    {
-      "rel": "hub/spaces-changelog.md",
-      "bytes": 5560,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-changelog.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Spaces Changelog"
-    },
-    {
-      "rel": "hub/enterprise-sso.md",
-      "bytes": 4357,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/enterprise-sso.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Single Sign-On (SSO)"
-    },
-    {
-      "rel": "hub/paddlenlp.md",
-      "bytes": 5455,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/paddlenlp.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using PaddleNLP at Hugging Face"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-argilla.md",
-      "bytes": 974,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-argilla.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Argilla on Spaces"
-    },
-    {
-      "rel": "hub/spacy.md",
-      "bytes": 5361,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spacy.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using spaCy at Hugging Face"
-    },
-    {
-      "rel": "hub/repositories-getting-started.md",
-      "bytes": 7520,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/repositories-getting-started.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Getting Started with Repositories"
-    },
-    {
-      "rel": "hub/datasets-lance.md",
-      "bytes": 11533,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-lance.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Lance"
-    },
-    {
-      "rel": "hub/enterprise.md",
-      "bytes": 12541,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/enterprise.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Team & Enterprise plans"
-    },
-    {
-      "rel": "hub/datasets-embedding-atlas.md",
-      "bytes": 5113,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-embedding-atlas.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Embedding Atlas"
-    },
-    {
-      "rel": "hub/repositories-pull-requests-discussions.md",
-      "bytes": 5313,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/repositories-pull-requests-discussions.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Pull requests and Discussions"
-    },
-    {
-      "rel": "hub/datasets-fenic.md",
-      "bytes": 7199,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-fenic.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "fenic"
-    },
-    {
-      "rel": "hub/datasets-duckdb-combine-and-export.md",
-      "bytes": 11626,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-duckdb-combine-and-export.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Combine datasets and export"
-    },
-    {
-      "rel": "hub/billing.md",
-      "bytes": 8021,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/billing.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Billing"
-    },
-    {
-      "rel": "hub/timm.md",
-      "bytes": 5212,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/timm.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using timm at Hugging Face"
-    },
-    {
-      "rel": "hub/agents-mcp.md",
-      "bytes": 4975,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/agents-mcp.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Hugging Face MCP Server"
-    },
-    {
-      "rel": "hub/spaces-organization-cards.md",
-      "bytes": 339,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-organization-cards.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using Spaces for Organization Cards"
-    },
-    {
-      "rel": "hub/models-libraries.md",
-      "bytes": 7718,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/models-libraries.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Libraries"
-    },
-    {
-      "rel": "hub/notifications.md",
-      "bytes": 4935,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/notifications.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Notifications"
-    },
-    {
-      "rel": "hub/adapters.md",
-      "bytes": 3515,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/adapters.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using _Adapters_ at Hugging Face"
-    },
-    {
-      "rel": "hub/advanced-compute-options.md",
-      "bytes": 1723,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/advanced-compute-options.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Advanced Compute Options"
-    },
-    {
-      "rel": "hub/jobs-overview.md",
-      "bytes": 3295,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/jobs-overview.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Jobs Overview"
-    },
-    {
-      "rel": "hub/spaces-gpus.md",
-      "bytes": 9582,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-gpus.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using GPU Spaces"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-tabby.md",
-      "bytes": 3478,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-tabby.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Tabby on Spaces"
-    },
-    {
-      "rel": "hub/ollama.md",
-      "bytes": 4502,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/ollama.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Use Ollama with any GGUF Model on Hugging Face Hub"
-    },
-    {
-      "rel": "hub/enterprise-blog-articles.md",
-      "bytes": 1525,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/enterprise-blog-articles.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Blog Articles for Organizations"
-    },
-    {
-      "rel": "hub/jobs.md",
-      "bytes": 892,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/jobs.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Jobs"
-    },
-    {
-      "rel": "hub/datasets-dask.md",
-      "bytes": 7029,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-dask.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Dask"
-    },
-    {
-      "rel": "hub/oauth.md",
-      "bytes": 17769,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/oauth.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Sign in with Hugging Face"
-    },
-    {
-      "rel": "hub/datasets-file-names-and-splits.md",
-      "bytes": 4829,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-file-names-and-splits.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "File names and splits"
-    },
-    {
-      "rel": "hub/stable-baselines3.md",
-      "bytes": 3145,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/stable-baselines3.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using Stable-Baselines3 at Hugging Face"
-    },
-    {
-      "rel": "hub/jobs-examples.md",
-      "bytes": 2692,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/jobs-examples.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Examples & Tutorials"
+      "title": "Using OpenCLIP at Hugging Face"
     },
     {
       "rel": "hub/datasets-daft.md",
-      "bytes": 3010,
+      "bytes": 3011,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-daft.md",
       "track": "Hub",
@@ -5114,764 +4763,17 @@
       "title": "Daft"
     },
     {
-      "rel": "hub/bertopic.md",
-      "bytes": 3026,
+      "rel": "hub/datasets-embedding-atlas.md",
+      "bytes": 5102,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/bertopic.md",
+      "url": "https://huggingface.co/docs/hub/datasets-embedding-atlas.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Using BERTopic at Hugging Face"
-    },
-    {
-      "rel": "hub/security-sso-okta-scim.md",
-      "bytes": 6569,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-sso-okta-scim.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "How to configure SCIM with Okta"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker.md",
-      "bytes": 7011,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Docker Spaces"
-    },
-    {
-      "rel": "hub/models-tasks.md",
-      "bytes": 6043,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/models-tasks.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Tasks"
-    },
-    {
-      "rel": "hub/security-sso-google-oidc.md",
-      "bytes": 2104,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-sso-google-oidc.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "How to configure OIDC SSO with Google Workspace"
-    },
-    {
-      "rel": "hub/agents-skills.md",
-      "bytes": 4100,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/agents-skills.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Skills"
-    },
-    {
-      "rel": "hub/doi.md",
-      "bytes": 2343,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/doi.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Digital Object Identifier (DOI)"
-    },
-    {
-      "rel": "hub/datasets-manual-configuration.md",
-      "bytes": 4829,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-manual-configuration.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Manual Configuration"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-panel.md",
-      "bytes": 3517,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-panel.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Panel on Spaces"
-    },
-    {
-      "rel": "hub/repositories.md",
-      "bytes": 1929,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/repositories.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Repositories"
-    },
-    {
-      "rel": "hub/models-advanced.md",
-      "bytes": 309,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/models-advanced.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Advanced Topics"
-    },
-    {
-      "rel": "hub/datasets-duckdb-vector-similarity-search.md",
-      "bytes": 10350,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-duckdb-vector-similarity-search.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Perform vector similarity search"
-    },
-    {
-      "rel": "hub/jobs-manage.md",
-      "bytes": 9888,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/jobs-manage.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Manage Jobs"
-    },
-    {
-      "rel": "hub/security-git-ssh.md",
-      "bytes": 4941,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-git-ssh.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Git over SSH"
-    },
-    {
-      "rel": "hub/datasets-argilla.md",
-      "bytes": 7003,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-argilla.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Argilla"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-aim.md",
-      "bytes": 3264,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-aim.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Aim on Spaces"
-    },
-    {
-      "rel": "hub/datasets-audio.md",
-      "bytes": 8352,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-audio.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Audio Dataset"
-    },
-    {
-      "rel": "hub/spaces-github-actions.md",
-      "bytes": 2672,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-github-actions.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Managing Spaces with Github Actions"
-    },
-    {
-      "rel": "hub/datasets-viewer-embed.md",
-      "bytes": 3833,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-viewer-embed.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Embed the Dataset Viewer in a webpage"
-    },
-    {
-      "rel": "hub/session-traces-format.md",
-      "bytes": 4322,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/session-traces-format.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Session Traces Format"
-    },
-    {
-      "rel": "hub/models-inference.md",
-      "bytes": 5213,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/models-inference.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Inference Providers"
-    },
-    {
-      "rel": "hub/spaces-featured.md",
-      "bytes": 710,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-featured.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Featured Spaces"
-    },
-    {
-      "rel": "hub/enterprise-advanced-security.md",
-      "bytes": 1530,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/enterprise-advanced-security.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Advanced Security"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-chatui.md",
-      "bytes": 1999,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-chatui.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "ChatUI on Spaces"
-    },
-    {
-      "rel": "hub/spaces-settings.md",
-      "bytes": 587,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-settings.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Spaces Settings"
-    },
-    {
-      "rel": "hub/security-jfrog.md",
-      "bytes": 2004,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-jfrog.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Third-party scanner: JFrog"
-    },
-    {
-      "rel": "hub/pro.md",
-      "bytes": 917,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/pro.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "The HF PRO subscription \ud83d\udd25"
-    },
-    {
-      "rel": "hub/model-cards-co2.md",
-      "bytes": 3415,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/model-cards-co2.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Displaying carbon emissions for your model"
-    },
-    {
-      "rel": "hub/datasets-overview.md",
-      "bytes": 1592,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-overview.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Datasets Overview"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-examples.md",
-      "bytes": 1469,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-examples.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Docker Spaces Examples"
-    },
-    {
-      "rel": "hub/datasets-streaming.md",
-      "bytes": 6750,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-streaming.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Streaming datasets"
-    },
-    {
-      "rel": "hub/spaces-sdks-streamlit.md",
-      "bytes": 7064,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-streamlit.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Streamlit Spaces"
-    },
-    {
-      "rel": "hub/spaces-handle-url-parameters.md",
-      "bytes": 1669,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-handle-url-parameters.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "How to handle URL parameters in Spaces"
-    },
-    {
-      "rel": "hub/datasets-polars-file-formats.md",
-      "bytes": 1315,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-polars-file-formats.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "File formats"
-    },
-    {
-      "rel": "hub/organizations-managing.md",
-      "bytes": 2086,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/organizations-managing.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Managing organizations"
-    },
-    {
-      "rel": "hub/spaces-circleci.md",
-      "bytes": 2627,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-circleci.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Managing Spaces with CircleCI Workflows"
-    },
-    {
-      "rel": "hub/organizations.md",
-      "bytes": 957,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/organizations.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Organizations"
-    },
-    {
-      "rel": "hub/jobs-schedule.md",
-      "bytes": 2157,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/jobs-schedule.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Schedule Jobs"
-    },
-    {
-      "rel": "hub/sample-factory.md",
-      "bytes": 4546,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/sample-factory.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using sample-factory at Hugging Face"
-    },
-    {
-      "rel": "hub/enterprise-datasets.md",
-      "bytes": 605,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/enterprise-datasets.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Datasets"
-    },
-    {
-      "rel": "hub/models-gated.md",
-      "bytes": 13973,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/models-gated.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Gated models"
-    },
-    {
-      "rel": "hub/organizations-security.md",
-      "bytes": 2620,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/organizations-security.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Access control in organizations"
-    },
-    {
-      "rel": "hub/enterprise-scim.md",
-      "bytes": 7852,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/enterprise-scim.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "User Provisioning (SCIM)"
-    },
-    {
-      "rel": "hub/storage-regions.md",
-      "bytes": 3564,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/storage-regions.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Storage Regions on the Hub"
-    },
-    {
-      "rel": "hub/webhooks-guide-metadata-review.md",
-      "bytes": 12374,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/webhooks-guide-metadata-review.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Webhook guide: Setup an automatic metadata quality review for models and datasets"
-    },
-    {
-      "rel": "hub/keras.md",
-      "bytes": 3198,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/keras.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using Keras at Hugging Face"
-    },
-    {
-      "rel": "hub/datasets-data-files-configuration.md",
-      "bytes": 4599,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-data-files-configuration.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Data files Configuration"
-    },
-    {
-      "rel": "hub/transformers-js.md",
-      "bytes": 2466,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/transformers-js.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using `Transformers.js` at Hugging Face"
-    },
-    {
-      "rel": "hub/jobs-popular-images.md",
-      "bytes": 4926,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/jobs-popular-images.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Popular Images"
-    },
-    {
-      "rel": "hub/security-sso-user-management.md",
-      "bytes": 4659,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-sso-user-management.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "User Management"
-    },
-    {
-      "rel": "hub/spaces-config-reference.md",
-      "bytes": 7975,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-config-reference.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Spaces Configuration Reference"
-    },
-    {
-      "rel": "hub/datasets-adding.md",
-      "bytes": 7375,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-adding.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Uploading datasets"
-    },
-    {
-      "rel": "hub/agents-sdk.md",
-      "bytes": 4548,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/agents-sdk.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Building with the SDK"
-    },
-    {
-      "rel": "hub/moderation.md",
-      "bytes": 1919,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/moderation.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Moderation"
-    },
-    {
-      "rel": "hub/datasets-gated.md",
-      "bytes": 12567,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-gated.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Gated datasets"
-    },
-    {
-      "rel": "hub/model-release-checklist.md",
-      "bytes": 15193,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/model-release-checklist.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Model(s) Release Checklist"
-    },
-    {
-      "rel": "hub/academia-hub.md",
-      "bytes": 3039,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/academia-hub.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Academia Hub"
-    },
-    {
-      "rel": "hub/datasets-spark.md",
-      "bytes": 13165,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-spark.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Spark"
-    },
-    {
-      "rel": "hub/publisher-analytics.md",
-      "bytes": 4248,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/publisher-analytics.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Publisher Analytics"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-first-demo.md",
-      "bytes": 9958,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-first-demo.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Your First Docker Space: Text Generation with T5"
-    },
-    {
-      "rel": "hub/spaces-embed.md",
-      "bytes": 2426,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-embed.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Embed your Space in another website"
-    },
-    {
-      "rel": "hub/data-studio.md",
-      "bytes": 7172,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/data-studio.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Data Studio"
-    },
-    {
-      "rel": "hub/security-malware.md",
-      "bytes": 798,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-malware.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Malware Scanning"
-    },
-    {
-      "rel": "hub/security-sso-okta-saml.md",
-      "bytes": 2650,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-sso-okta-saml.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "How to configure SAML SSO with Okta"
-    },
-    {
-      "rel": "hub/models-faq.md",
-      "bytes": 3276,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/models-faq.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Models Frequently Asked Questions"
-    },
-    {
-      "rel": "hub/paper-pages.md",
-      "bytes": 2274,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/paper-pages.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Paper Pages"
-    },
-    {
-      "rel": "hub/security-protectai.md",
-      "bytes": 2207,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-protectai.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Third-party scanner: Protect AI"
-    },
-    {
-      "rel": "hub/datasets-polars-auth.md",
-      "bytes": 1744,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-polars-auth.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Authentication"
-    },
-    {
-      "rel": "hub/span_marker.md",
-      "bytes": 2554,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/span_marker.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using SpanMarker at Hugging Face"
-    },
-    {
-      "rel": "hub/agents-cli.md",
-      "bytes": 2021,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/agents-cli.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Hugging Face CLI for AI Agents"
-    },
-    {
-      "rel": "hub/spaces-zerogpu.md",
-      "bytes": 8127,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-zerogpu.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Spaces ZeroGPU: Dynamic GPU Allocation for Spaces"
-    },
-    {
-      "rel": "hub/models-widgets.md",
-      "bytes": 8831,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/models-widgets.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Widgets"
-    },
-    {
-      "rel": "hub/spaces-get-user-plan.md",
-      "bytes": 871,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-get-user-plan.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "How to get a user's plan and status in Spaces"
-    },
-    {
-      "rel": "hub/api.md",
-      "bytes": 1251,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/api.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Hub API Endpoints"
-    },
-    {
-      "rel": "hub/agents-libraries.md",
-      "bytes": 2250,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/agents-libraries.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Agent Libraries"
-    },
-    {
-      "rel": "hub/stanza.md",
-      "bytes": 1940,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/stanza.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using Stanza at Hugging Face"
-    },
-    {
-      "rel": "hub/jobs-webhooks.md",
-      "bytes": 1526,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/jobs-webhooks.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Webhooks Automation"
-    },
-    {
-      "rel": "hub/model-cards.md",
-      "bytes": 14726,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/model-cards.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Model Cards"
-    },
-    {
-      "rel": "hub/datasets-viewer-configure.md",
-      "bytes": 1735,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-viewer-configure.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Configure the Dataset Viewer"
-    },
-    {
-      "rel": "hub/model-card-guidebook.md",
-      "bytes": 4229,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/model-card-guidebook.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Model Card Guidebook"
-    },
-    {
-      "rel": "hub/datasets-duckdb-sql.md",
-      "bytes": 19311,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-duckdb-sql.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Perform SQL operations"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-label-studio.md",
-      "bytes": 9476,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-label-studio.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "\ud83d\udfe7 Label Studio on Spaces"
-    },
-    {
-      "rel": "hub/spaces-overview.md",
-      "bytes": 12632,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-overview.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Spaces Overview"
-    },
-    {
-      "rel": "hub/datasets-distilabel.md",
-      "bytes": 6386,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-distilabel.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Distilabel"
+      "title": "Embedding Atlas"
     },
     {
       "rel": "hub/rl-baselines3-zoo.md",
-      "bytes": 2129,
+      "bytes": 2117,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/rl-baselines3-zoo.md",
       "track": "Hub",
@@ -5879,67 +4781,220 @@
       "title": "Using RL-Baselines3-Zoo at Hugging Face"
     },
     {
-      "rel": "hub/organizations-cards.md",
-      "bytes": 1491,
+      "rel": "hub/models-libraries.md",
+      "bytes": 7723,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/organizations-cards.md",
+      "url": "https://huggingface.co/docs/hub/models-libraries.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Organization cards"
+      "title": "Libraries"
     },
     {
-      "rel": "hub/spaces-sdks-docker-livebook.md",
-      "bytes": 4195,
+      "rel": "hub/spaces-sdks-docker.md",
+      "bytes": 7055,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-livebook.md",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Livebook on Spaces"
+      "title": "Docker Spaces"
     },
     {
-      "rel": "hub/security-sso-google-saml.md",
-      "bytes": 3191,
+      "rel": "hub/repositories-getting-started.md",
+      "bytes": 7528,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-sso-google-saml.md",
+      "url": "https://huggingface.co/docs/hub/repositories-getting-started.md",
       "track": "Hub",
       "package": "hub",
-      "title": "How to configure SAML SSO with Google Workspace"
+      "title": "Getting Started with Repositories"
     },
     {
-      "rel": "hub/security-sso-entra-id-scim.md",
-      "bytes": 6738,
+      "rel": "hub/spaces-gpus.md",
+      "bytes": 9592,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-sso-entra-id-scim.md",
+      "url": "https://huggingface.co/docs/hub/spaces-gpus.md",
       "track": "Hub",
       "package": "hub",
-      "title": "How to configure SCIM with Microsoft Entra ID (Azure AD)"
+      "title": "Using GPU Spaces"
     },
     {
-      "rel": "hub/enterprise-advanced-sso.md",
-      "bytes": 3595,
+      "rel": "hub/spaces-sdks-docker-examples.md",
+      "bytes": 1468,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/enterprise-advanced-sso.md",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-examples.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Managed SSO"
+      "title": "Docker Spaces Examples"
     },
     {
-      "rel": "hub/collections.md",
-      "bytes": 7648,
+      "rel": "hub/gguf-gpt4all.md",
+      "bytes": 813,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/collections.md",
+      "url": "https://huggingface.co/docs/hub/gguf-gpt4all.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Collections"
+      "title": "GGUF usage with GPT4All"
     },
     {
-      "rel": "hub/security-tokens.md",
-      "bytes": 8813,
+      "rel": "hub/sentence-transformers.md",
+      "bytes": 3276,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-tokens.md",
+      "url": "https://huggingface.co/docs/hub/sentence-transformers.md",
       "track": "Hub",
       "package": "hub",
-      "title": "User access tokens"
+      "title": "Using Sentence Transformers at Hugging Face"
+    },
+    {
+      "rel": "hub/unity-sentis.md",
+      "bytes": 4781,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/unity-sentis.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using Unity Sentis Models from Hugging Face"
+    },
+    {
+      "rel": "hub/peft.md",
+      "bytes": 2715,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/peft.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using PEFT at Hugging Face"
+    },
+    {
+      "rel": "hub/model-card-appendix.md",
+      "bytes": 8936,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/model-card-appendix.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Appendix"
+    },
+    {
+      "rel": "hub/datasets-viewer-embed.md",
+      "bytes": 3830,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-viewer-embed.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Embed the Dataset Viewer in a webpage"
+    },
+    {
+      "rel": "hub/spaces-sdks-docker-tabby.md",
+      "bytes": 3475,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-tabby.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Tabby on Spaces"
+    },
+    {
+      "rel": "hub/datasets-viewer-configure.md",
+      "bytes": 1717,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-viewer-configure.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Configure the Dataset Viewer"
+    },
+    {
+      "rel": "hub/jobs-manage.md",
+      "bytes": 9872,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/jobs-manage.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Manage Jobs"
+    },
+    {
+      "rel": "hub/spaces.md",
+      "bytes": 2160,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Spaces"
+    },
+    {
+      "rel": "hub/datasets-video.md",
+      "bytes": 6617,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-video.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Video Dataset"
+    },
+    {
+      "rel": "hub/mlx.md",
+      "bytes": 3738,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/mlx.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using MLX at Hugging Face"
+    },
+    {
+      "rel": "hub/advanced-compute-options.md",
+      "bytes": 1728,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/advanced-compute-options.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Advanced Compute Options"
+    },
+    {
+      "rel": "hub/jobs-pricing.md",
+      "bytes": 7440,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/jobs-pricing.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Pricing and Billing"
+    },
+    {
+      "rel": "hub/datasets-gated.md",
+      "bytes": 12552,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-gated.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Gated datasets"
+    },
+    {
+      "rel": "hub/espnet.md",
+      "bytes": 2457,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/espnet.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using ESPnet at Hugging Face"
+    },
+    {
+      "rel": "hub/api.md",
+      "bytes": 1256,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/api.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Hub API Endpoints"
+    },
+    {
+      "rel": "hub/datasets-ingesting.md",
+      "bytes": 9151,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-ingesting.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Ingesting Datasets"
+    },
+    {
+      "rel": "hub/spaces-sdks-docker-aim.md",
+      "bytes": 3269,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-aim.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Aim on Spaces"
     },
     {
       "rel": "hub/datasets-editing.md",
@@ -5951,332 +5006,26 @@
       "title": "Editing datasets"
     },
     {
-      "rel": "hub/storage-buckets.md",
-      "bytes": 17574,
+      "rel": "hub/timm.md",
+      "bytes": 5214,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/storage-buckets.md",
+      "url": "https://huggingface.co/docs/hub/timm.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Storage Buckets"
+      "title": "Using timm at Hugging Face"
     },
     {
-      "rel": "hub/storage-buckets-access.md",
-      "bytes": 3428,
+      "rel": "hub/datasets-data-designer.md",
+      "bytes": 2146,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/storage-buckets-access.md",
+      "url": "https://huggingface.co/docs/hub/datasets-data-designer.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Access Patterns"
-    },
-    {
-      "rel": "hub/jobs-configuration.md",
-      "bytes": 18928,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/jobs-configuration.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Configuration"
-    },
-    {
-      "rel": "hub/datasets-viewer-sql-console.md",
-      "bytes": 5366,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-viewer-sql-console.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "SQL Console: Query Hugging Face datasets in your browser"
-    },
-    {
-      "rel": "hub/espnet.md",
-      "bytes": 2494,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/espnet.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using ESPnet at Hugging Face"
-    },
-    {
-      "rel": "hub/security-sso-configuration-guides.md",
-      "bytes": 1657,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-sso-configuration-guides.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "SSO Configuration Guides"
-    },
-    {
-      "rel": "hub/model-cards-components.md",
-      "bytes": 1595,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/model-cards-components.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Model Card components"
-    },
-    {
-      "rel": "hub/models-uploading.md",
-      "bytes": 8392,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/models-uploading.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Uploading models"
-    },
-    {
-      "rel": "hub/datasets-cards.md",
-      "bytes": 4065,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-cards.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Dataset Cards"
-    },
-    {
-      "rel": "hub/spaces-api-endpoints.md",
-      "bytes": 7930,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-api-endpoints.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Spaces as API endpoints"
-    },
-    {
-      "rel": "hub/allennlp.md",
-      "bytes": 4195,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/allennlp.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using AllenNLP at Hugging Face"
-    },
-    {
-      "rel": "hub/datasets.md",
-      "bytes": 1030,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Datasets"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-marimo.md",
-      "bytes": 3669,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-marimo.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "marimo on Spaces"
-    },
-    {
-      "rel": "hub/dduf.md",
-      "bytes": 9308,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/dduf.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "DDUF"
-    },
-    {
-      "rel": "hub/agents.md",
-      "bytes": 942,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/agents.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Agents"
-    },
-    {
-      "rel": "hub/models-adding-libraries.md",
-      "bytes": 12722,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/models-adding-libraries.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Integrate your library with the Hub"
-    },
-    {
-      "rel": "hub/datasets-pyarrow.md",
-      "bytes": 11938,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-pyarrow.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "PyArrow"
-    },
-    {
-      "rel": "hub/spaces-sdks-python.md",
-      "bytes": 1366,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-python.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Custom Python Spaces"
-    },
-    {
-      "rel": "hub/models-the-hub.md",
-      "bytes": 973,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/models-the-hub.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "The Model Hub"
-    },
-    {
-      "rel": "hub/spaces-run-with-docker.md",
-      "bytes": 573,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-run-with-docker.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Run with Docker"
-    },
-    {
-      "rel": "hub/security-sso.md",
-      "bytes": 1377,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-sso.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Single Sign-On (SSO)"
-    },
-    {
-      "rel": "hub/datasets-duckdb-select.md",
-      "bytes": 17431,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-duckdb-select.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Query datasets"
-    },
-    {
-      "rel": "hub/sentence-transformers.md",
-      "bytes": 3260,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/sentence-transformers.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using Sentence Transformers at Hugging Face"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-shiny.md",
-      "bytes": 4262,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-shiny.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Shiny on Spaces"
-    },
-    {
-      "rel": "hub/security-sso-azure-saml.md",
-      "bytes": 2831,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-sso-azure-saml.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "How to configure SAML SSO with Microsoft Entra ID (Azure AD)"
-    },
-    {
-      "rel": "hub/local-cache.md",
-      "bytes": 11838,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/local-cache.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Hub Local Cache"
-    },
-    {
-      "rel": "hub/search.md",
-      "bytes": 965,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/search.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Search"
-    },
-    {
-      "rel": "hub/security-resource-groups.md",
-      "bytes": 9384,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-resource-groups.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Advanced Access Control in Organizations with Resource Groups"
-    },
-    {
-      "rel": "hub/agents-local.md",
-      "bytes": 7837,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/agents-local.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Local Agents with llama.cpp"
-    },
-    {
-      "rel": "hub/models.md",
-      "bytes": 1241,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/models.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Models"
-    },
-    {
-      "rel": "hub/gguf-llamacpp.md",
-      "bytes": 2635,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/gguf-llamacpp.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "GGUF usage with llama.cpp"
-    },
-    {
-      "rel": "hub/security-gpg.md",
-      "bytes": 4505,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-gpg.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Signing commits with GPG"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-jupyter.md",
-      "bytes": 2302,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-jupyter.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "JupyterLab on Spaces"
-    },
-    {
-      "rel": "hub/spaces-dev-mode.md",
-      "bytes": 6569,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-dev-mode.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Spaces Dev Mode: Seamless development in Spaces"
-    },
-    {
-      "rel": "hub/audit-logs.md",
-      "bytes": 7899,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/audit-logs.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Audit Logs"
-    },
-    {
-      "rel": "hub/security-sso-basic.md",
-      "bytes": 3433,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-sso-basic.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Basic SSO"
+      "title": "Data Designer"
     },
     {
       "rel": "hub/datasets-download-stats.md",
-      "bytes": 2233,
+      "bytes": 2252,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-download-stats.md",
       "track": "Hub",
@@ -6284,17 +5033,773 @@
       "title": "Datasets Download Stats"
     },
     {
-      "rel": "hub/datasets-pandas.md",
-      "bytes": 11252,
+      "rel": "hub/mlx-image.md",
+      "bytes": 3587,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-pandas.md",
+      "url": "https://huggingface.co/docs/hub/mlx-image.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Pandas"
+      "title": "Using mlx-image at Hugging Face"
+    },
+    {
+      "rel": "hub/spaces-organization-cards.md",
+      "bytes": 378,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-organization-cards.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using Spaces for Organization Cards"
+    },
+    {
+      "rel": "hub/spaces-dependencies.md",
+      "bytes": 2056,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-dependencies.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Handling Spaces Dependencies in Gradio Spaces"
+    },
+    {
+      "rel": "hub/enterprise-blog-articles.md",
+      "bytes": 1558,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/enterprise-blog-articles.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Blog Articles for Organizations"
+    },
+    {
+      "rel": "hub/datasets-duckdb-sql.md",
+      "bytes": 19285,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-duckdb-sql.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Perform SQL operations"
+    },
+    {
+      "rel": "hub/jobs-webhooks.md",
+      "bytes": 1561,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/jobs-webhooks.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Webhooks Automation"
+    },
+    {
+      "rel": "hub/security-sso-okta-oidc.md",
+      "bytes": 2429,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-sso-okta-oidc.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "How to configure OIDC SSO with Okta"
+    },
+    {
+      "rel": "hub/models-advanced.md",
+      "bytes": 280,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/models-advanced.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Advanced Topics"
+    },
+    {
+      "rel": "hub/enterprise-network-security.md",
+      "bytes": 4236,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/enterprise-network-security.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Network Security"
+    },
+    {
+      "rel": "hub/datasets-file-names-and-splits.md",
+      "bytes": 4814,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-file-names-and-splits.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "File names and splits"
+    },
+    {
+      "rel": "hub/spaces-sdks-docker-marimo.md",
+      "bytes": 3683,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-marimo.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "marimo on Spaces"
+    },
+    {
+      "rel": "hub/model-cards.md",
+      "bytes": 14710,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/model-cards.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Model Cards"
+    },
+    {
+      "rel": "hub/organizations-cards.md",
+      "bytes": 1529,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/organizations-cards.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Organization cards"
+    },
+    {
+      "rel": "hub/webhooks-guide-discussion-bot.md",
+      "bytes": 5879,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/webhooks-guide-discussion-bot.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Webhook guide: build a Discussion bot with LLM replies"
+    },
+    {
+      "rel": "hub/academia-hub.md",
+      "bytes": 3052,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/academia-hub.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Academia Hub"
+    },
+    {
+      "rel": "hub/flair.md",
+      "bytes": 2080,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/flair.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using Flair at Hugging Face"
+    },
+    {
+      "rel": "hub/datasets-duckdb-vector-similarity-search.md",
+      "bytes": 10382,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-duckdb-vector-similarity-search.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Perform vector similarity search"
+    },
+    {
+      "rel": "hub/transformers-js.md",
+      "bytes": 2458,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/transformers-js.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using `Transformers.js` at Hugging Face"
+    },
+    {
+      "rel": "hub/datasets-fiftyone.md",
+      "bytes": 7168,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-fiftyone.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "FiftyOne"
+    },
+    {
+      "rel": "hub/security-resource-groups.md",
+      "bytes": 9373,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-resource-groups.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Advanced Access Control in Organizations with Resource Groups"
+    },
+    {
+      "rel": "hub/security-git-ssh.md",
+      "bytes": 4935,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-git-ssh.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Git over SSH"
+    },
+    {
+      "rel": "hub/models-tasks.md",
+      "bytes": 5984,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/models-tasks.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Tasks"
+    },
+    {
+      "rel": "hub/models.md",
+      "bytes": 1229,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/models.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Models"
+    },
+    {
+      "rel": "hub/organizations.md",
+      "bytes": 964,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/organizations.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Organizations"
+    },
+    {
+      "rel": "hub/jobs-popular-images.md",
+      "bytes": 4905,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/jobs-popular-images.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Popular Images"
+    },
+    {
+      "rel": "hub/data-studio.md",
+      "bytes": 7198,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/data-studio.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Data Studio"
+    },
+    {
+      "rel": "hub/models-adding-libraries.md",
+      "bytes": 12755,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/models-adding-libraries.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Integrate your library with the Hub"
+    },
+    {
+      "rel": "hub/stable-baselines3.md",
+      "bytes": 3187,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/stable-baselines3.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using Stable-Baselines3 at Hugging Face"
+    },
+    {
+      "rel": "hub/programmatic-user-access-control.md",
+      "bytes": 19046,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/programmatic-user-access-control.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Programmatic User Access Control Management"
+    },
+    {
+      "rel": "hub/enterprise-datasets.md",
+      "bytes": 607,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/enterprise-datasets.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Datasets"
+    },
+    {
+      "rel": "hub/jobs-overview.md",
+      "bytes": 3300,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/jobs-overview.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Jobs Overview"
+    },
+    {
+      "rel": "hub/models-uploading.md",
+      "bytes": 8408,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/models-uploading.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Uploading models"
+    },
+    {
+      "rel": "hub/spaces-api-endpoints.md",
+      "bytes": 7931,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-api-endpoints.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Spaces as API endpoints"
+    },
+    {
+      "rel": "hub/enterprise-scim.md",
+      "bytes": 7837,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/enterprise-scim.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "User Provisioning (SCIM)"
+    },
+    {
+      "rel": "hub/local-cache.md",
+      "bytes": 11858,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/local-cache.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Hub Local Cache"
+    },
+    {
+      "rel": "hub/keras.md",
+      "bytes": 3174,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/keras.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using Keras at Hugging Face"
+    },
+    {
+      "rel": "hub/datasets-adding.md",
+      "bytes": 7381,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-adding.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Uploading datasets"
+    },
+    {
+      "rel": "hub/spaces-sdks-docker-dash.md",
+      "bytes": 4098,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-dash.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Dash on Spaces"
+    },
+    {
+      "rel": "hub/tensorboard.md",
+      "bytes": 1081,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/tensorboard.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using TensorBoard"
+    },
+    {
+      "rel": "hub/datasets-image.md",
+      "bytes": 8649,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-image.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Image Dataset"
+    },
+    {
+      "rel": "hub/collections.md",
+      "bytes": 9916,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/collections.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Collections"
+    },
+    {
+      "rel": "hub/jobs-quickstart.md",
+      "bytes": 6241,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/jobs-quickstart.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Quickstart"
+    },
+    {
+      "rel": "hub/lmstudio.md",
+      "bytes": 4031,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/lmstudio.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "GGUF usage with LM Studio"
+    },
+    {
+      "rel": "hub/spaces-sdks-gradio.md",
+      "bytes": 4032,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-gradio.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Gradio Spaces"
+    },
+    {
+      "rel": "hub/security-sso-okta-saml.md",
+      "bytes": 2643,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-sso-okta-saml.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "How to configure SAML SSO with Okta"
+    },
+    {
+      "rel": "hub/datasets-streaming.md",
+      "bytes": 6754,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-streaming.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Streaming datasets"
+    },
+    {
+      "rel": "hub/repositories-github-actions.md",
+      "bytes": 3111,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/repositories-github-actions.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "GitHub Actions"
+    },
+    {
+      "rel": "hub/spaces-advanced.md",
+      "bytes": 651,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-advanced.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Advanced Topics"
+    },
+    {
+      "rel": "hub/datasets-webdataset.md",
+      "bytes": 3209,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-webdataset.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "WebDataset"
+    },
+    {
+      "rel": "hub/audit-logs.md",
+      "bytes": 7902,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/audit-logs.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Audit Logs"
+    },
+    {
+      "rel": "hub/oauth.md",
+      "bytes": 17742,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/oauth.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Sign in with Hugging Face"
+    },
+    {
+      "rel": "hub/models-gated.md",
+      "bytes": 13973,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/models-gated.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Gated models"
+    },
+    {
+      "rel": "hub/spaces-config-reference.md",
+      "bytes": 7982,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-config-reference.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Spaces Configuration Reference"
+    },
+    {
+      "rel": "hub/repositories-settings.md",
+      "bytes": 2929,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/repositories-settings.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Repository Settings"
+    },
+    {
+      "rel": "hub/blog-articles.md",
+      "bytes": 3349,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/blog-articles.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Blog Articles"
+    },
+    {
+      "rel": "hub/repositories-pull-requests-discussions.md",
+      "bytes": 5324,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/repositories-pull-requests-discussions.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Pull requests and Discussions"
+    },
+    {
+      "rel": "hub/spaces-settings.md",
+      "bytes": 581,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-settings.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Spaces Settings"
+    },
+    {
+      "rel": "hub/spaces-agents.md",
+      "bytes": 3869,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-agents.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Spaces as Agent Tools"
+    },
+    {
+      "rel": "hub/spaces-sdks-docker-jupyter.md",
+      "bytes": 2257,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-jupyter.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "JupyterLab on Spaces"
+    },
+    {
+      "rel": "hub/datasets-dask.md",
+      "bytes": 7013,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-dask.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Dask"
+    },
+    {
+      "rel": "hub/billing.md",
+      "bytes": 8056,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/billing.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Billing"
+    },
+    {
+      "rel": "hub/spaces-get-user-plan.md",
+      "bytes": 901,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-get-user-plan.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "How to get a user's plan and status in Spaces"
+    },
+    {
+      "rel": "hub/notebooks.md",
+      "bytes": 2939,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/notebooks.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Jupyter Notebooks on the Hugging Face Hub"
+    },
+    {
+      "rel": "hub/storage-buckets-access.md",
+      "bytes": 3421,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/storage-buckets-access.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Access Patterns"
+    },
+    {
+      "rel": "hub/agent-traces.md",
+      "bytes": 3127,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/agent-traces.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Agent Traces"
+    },
+    {
+      "rel": "hub/security-malware.md",
+      "bytes": 784,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-malware.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Malware Scanning"
+    },
+    {
+      "rel": "hub/security-2fa.md",
+      "bytes": 4226,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-2fa.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Two-Factor Authentication (2FA)"
+    },
+    {
+      "rel": "hub/security-sso-user-management.md",
+      "bytes": 4640,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-sso-user-management.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "User Management"
+    },
+    {
+      "rel": "hub/storage-buckets-s3.md",
+      "bytes": 12576,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/storage-buckets-s3.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "S3 Compatibility"
+    },
+    {
+      "rel": "hub/agents.md",
+      "bytes": 900,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/agents.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Agents"
+    },
+    {
+      "rel": "hub/hardware.md",
+      "bytes": 2985,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/hardware.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Hardware"
+    },
+    {
+      "rel": "hub/datasets-pyarrow.md",
+      "bytes": 11941,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-pyarrow.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "PyArrow"
+    },
+    {
+      "rel": "hub/spaces-sdks-docker-chatui.md",
+      "bytes": 2001,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-chatui.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "ChatUI on Spaces"
+    },
+    {
+      "rel": "hub/jobs-serving.md",
+      "bytes": 5514,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/jobs-serving.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Serve Models on Jobs"
+    },
+    {
+      "rel": "hub/storage-buckets-security.md",
+      "bytes": 1812,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/storage-buckets-security.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Storage Buckets: Security & Compliance"
+    },
+    {
+      "rel": "hub/security-tokens.md",
+      "bytes": 8813,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-tokens.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "User access tokens"
+    },
+    {
+      "rel": "hub/spaces-changelog.md",
+      "bytes": 5637,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-changelog.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Spaces Changelog"
+    },
+    {
+      "rel": "hub/webhooks-guide-metadata-review.md",
+      "bytes": 12380,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/webhooks-guide-metadata-review.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Webhook guide: Setup an automatic metadata quality review for models and datasets"
+    },
+    {
+      "rel": "hub/gguf-llamacpp.md",
+      "bytes": 2633,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/gguf-llamacpp.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "GGUF usage with llama.cpp"
+    },
+    {
+      "rel": "hub/enterprise-advanced-sso.md",
+      "bytes": 3630,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/enterprise-advanced-sso.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Managed SSO"
+    },
+    {
+      "rel": "hub/spaces-oauth.md",
+      "bytes": 7997,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-oauth.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Adding a Sign-In with HF button to your Space"
+    },
+    {
+      "rel": "hub/agents-mcp.md",
+      "bytes": 4948,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/agents-mcp.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Hugging Face MCP Server"
+    },
+    {
+      "rel": "hub/datasets-usage.md",
+      "bytes": 1414,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-usage.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using \ud83e\udd17 Datasets"
+    },
+    {
+      "rel": "hub/ollama.md",
+      "bytes": 4477,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/ollama.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Use Ollama with any GGUF Model on Hugging Face Hub"
+    },
+    {
+      "rel": "hub/security-pickle.md",
+      "bytes": 12507,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-pickle.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Pickle Scanning"
     },
     {
       "rel": "hub/enterprise-resource-groups.md",
-      "bytes": 1672,
+      "bytes": 1671,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/enterprise-resource-groups.md",
       "track": "Hub",
@@ -6302,35 +5807,116 @@
       "title": "Resource groups"
     },
     {
-      "rel": "hub/eval-results.md",
-      "bytes": 8506,
+      "rel": "hub/datasets-distilabel.md",
+      "bytes": 6358,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/eval-results.md",
+      "url": "https://huggingface.co/docs/hub/datasets-distilabel.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Evaluation Results"
+      "title": "Distilabel"
     },
     {
-      "rel": "hub/model-cards-user-studies.md",
-      "bytes": 8845,
+      "rel": "hub/storage-limits.md",
+      "bytes": 17409,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/model-cards-user-studies.md",
+      "url": "https://huggingface.co/docs/hub/storage-limits.md",
       "track": "Hub",
       "package": "hub",
-      "title": "User Studies"
+      "title": "Storage limits"
     },
     {
-      "rel": "hub/gguf-gpt4all.md",
-      "bytes": 801,
+      "rel": "hub/span_marker.md",
+      "bytes": 2554,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/gguf-gpt4all.md",
+      "url": "https://huggingface.co/docs/hub/span_marker.md",
       "track": "Hub",
       "package": "hub",
-      "title": "GGUF usage with GPT4All"
+      "title": "Using SpanMarker at Hugging Face"
+    },
+    {
+      "rel": "hub/model-card-guidebook.md",
+      "bytes": 4233,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/model-card-guidebook.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Model Card Guidebook"
+    },
+    {
+      "rel": "hub/spaces-sdks-docker-langfuse.md",
+      "bytes": 8288,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-langfuse.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Langfuse on Spaces"
+    },
+    {
+      "rel": "hub/security-sso-entra-id-scim.md",
+      "bytes": 6725,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-sso-entra-id-scim.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "How to configure SCIM with Microsoft Entra ID (Azure AD)"
+    },
+    {
+      "rel": "hub/agents-overview.md",
+      "bytes": 8906,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/agents-overview.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Agents"
+    },
+    {
+      "rel": "hub/doi.md",
+      "bytes": 2321,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/doi.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Digital Object Identifier (DOI)"
+    },
+    {
+      "rel": "hub/models-the-hub.md",
+      "bytes": 974,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/models-the-hub.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "The Model Hub"
+    },
+    {
+      "rel": "hub/allennlp.md",
+      "bytes": 4256,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/allennlp.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using AllenNLP at Hugging Face"
+    },
+    {
+      "rel": "hub/spaces-sdks-docker-first-demo.md",
+      "bytes": 9950,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-first-demo.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Your First Docker Space: Text Generation with T5"
+    },
+    {
+      "rel": "hub/spaces-mcp-servers.md",
+      "bytes": 4063,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-mcp-servers.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Spaces as MCP servers"
     },
     {
       "rel": "hub/spaces-more-ways-to-create.md",
-      "bytes": 628,
+      "bytes": 617,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/spaces-more-ways-to-create.md",
       "track": "Hub",
@@ -6338,13 +5924,238 @@
       "title": "More ways to create Spaces"
     },
     {
-      "rel": "hub/spaces-cookie-limitations.md",
-      "bytes": 1654,
+      "rel": "hub/session-traces-format.md",
+      "bytes": 4327,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-cookie-limitations.md",
+      "url": "https://huggingface.co/docs/hub/session-traces-format.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Cookie limitations in Spaces"
+      "title": "Session Traces Format"
+    },
+    {
+      "rel": "hub/ml-agents.md",
+      "bytes": 2529,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/ml-agents.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using ML-Agents at Hugging Face"
+    },
+    {
+      "rel": "hub/other.md",
+      "bytes": 759,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/other.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Organizations, Security, and the Hub API"
+    },
+    {
+      "rel": "hub/security-sso-google-oidc.md",
+      "bytes": 2129,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-sso-google-oidc.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "How to configure OIDC SSO with Google Workspace"
+    },
+    {
+      "rel": "hub/speechbrain.md",
+      "bytes": 2074,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/speechbrain.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using SpeechBrain at Hugging Face"
+    },
+    {
+      "rel": "hub/enterprise-service-accounts.md",
+      "bytes": 3118,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/enterprise-service-accounts.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Service Accounts"
+    },
+    {
+      "rel": "hub/enterprise-tokens-management.md",
+      "bytes": 8776,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/enterprise-tokens-management.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Tokens Management"
+    },
+    {
+      "rel": "hub/enterprise-advanced-security.md",
+      "bytes": 1546,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/enterprise-advanced-security.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Advanced Security"
+    },
+    {
+      "rel": "hub/datasets-data-files-configuration.md",
+      "bytes": 4603,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-data-files-configuration.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Data files Configuration"
+    },
+    {
+      "rel": "hub/spaces-sdks-docker-label-studio.md",
+      "bytes": 9504,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-label-studio.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "\ud83d\udfe7 Label Studio on Spaces"
+    },
+    {
+      "rel": "hub/leaderboard-data-guide.md",
+      "bytes": 6922,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/leaderboard-data-guide.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Accessing Benchmark Leaderboard Data"
+    },
+    {
+      "rel": "hub/rate-limits.md",
+      "bytes": 7746,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/rate-limits.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Hub Rate limits"
+    },
+    {
+      "rel": "hub/agents-local.md",
+      "bytes": 7884,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/agents-local.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Local Agents with llama.cpp"
+    },
+    {
+      "rel": "hub/enterprise-gating-group-collections.md",
+      "bytes": 10833,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/enterprise-gating-group-collections.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Gating Group Collections"
+    },
+    {
+      "rel": "hub/pro.md",
+      "bytes": 902,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/pro.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "The HF PRO subscription \ud83d\udd25"
+    },
+    {
+      "rel": "hub/models-download-stats.md",
+      "bytes": 4010,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/models-download-stats.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Models Download Stats"
+    },
+    {
+      "rel": "hub/stanza.md",
+      "bytes": 1945,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/stanza.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using Stanza at Hugging Face"
+    },
+    {
+      "rel": "hub/spaces-sdks-streamlit.md",
+      "bytes": 7028,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-streamlit.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Streamlit Spaces"
+    },
+    {
+      "rel": "hub/storage-buckets.md",
+      "bytes": 17578,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/storage-buckets.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Storage Buckets"
+    },
+    {
+      "rel": "hub/spaces-using-opencv.md",
+      "bytes": 534,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-using-opencv.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using OpenCV in Spaces"
+    },
+    {
+      "rel": "hub/datasets-polars-file-formats.md",
+      "bytes": 1311,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-polars-file-formats.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "File formats"
+    },
+    {
+      "rel": "hub/paddlenlp.md",
+      "bytes": 3163,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/paddlenlp.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using PaddleNLP at Hugging Face"
+    },
+    {
+      "rel": "hub/datasets-audio.md",
+      "bytes": 8320,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-audio.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Audio Dataset"
+    },
+    {
+      "rel": "hub/repositories.md",
+      "bytes": 1965,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/repositories.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Repositories"
+    },
+    {
+      "rel": "hub/spaces-handle-url-parameters.md",
+      "bytes": 1686,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-handle-url-parameters.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "How to handle URL parameters in Spaces"
+    },
+    {
+      "rel": "hub/model-cards-co2.md",
+      "bytes": 3417,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/model-cards-co2.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Displaying carbon emissions for your model"
     },
     {
       "rel": "hub/trusted-publishers.md",
@@ -6356,76 +6167,67 @@
       "title": "Trusted Publishers"
     },
     {
-      "rel": "hub/spaces-storage.md",
-      "bytes": 1870,
+      "rel": "hub/datasets-polars-auth.md",
+      "bytes": 1750,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-storage.md",
+      "url": "https://huggingface.co/docs/hub/datasets-polars-auth.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Disk usage on Spaces"
+      "title": "Authentication"
     },
     {
-      "rel": "hub/open_clip.md",
-      "bytes": 2550,
+      "rel": "hub/datasets-manual-configuration.md",
+      "bytes": 4839,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/open_clip.md",
+      "url": "https://huggingface.co/docs/hub/datasets-manual-configuration.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Using OpenCLIP at Hugging Face"
+      "title": "Manual Configuration"
     },
     {
-      "rel": "hub/spaces-sdks-docker-dash.md",
-      "bytes": 4115,
+      "rel": "hub/model-card-annotated.md",
+      "bytes": 12838,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-dash.md",
+      "url": "https://huggingface.co/docs/hub/model-card-annotated.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Dash on Spaces"
+      "title": "Annotated Model Card Template"
     },
     {
-      "rel": "hub/other.md",
-      "bytes": 714,
+      "rel": "hub/datasets-libraries.md",
+      "bytes": 16173,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/other.md",
+      "url": "https://huggingface.co/docs/hub/datasets-libraries.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Organizations, Security, and the Hub API"
+      "title": "Libraries"
     },
     {
-      "rel": "hub/blog-articles.md",
-      "bytes": 3320,
+      "rel": "hub/spaces-sdks-python.md",
+      "bytes": 1373,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/blog-articles.md",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-python.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Blog Articles"
+      "title": "Custom Python Spaces"
     },
     {
-      "rel": "hub/asteroid.md",
-      "bytes": 2537,
+      "rel": "hub/fastai.md",
+      "bytes": 2222,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/asteroid.md",
+      "url": "https://huggingface.co/docs/hub/fastai.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Using Asteroid at Hugging Face"
+      "title": "Using fastai at Hugging Face"
     },
     {
-      "rel": "hub/datasets-duckdb-auth.md",
-      "bytes": 1997,
+      "rel": "hub/spaces-run-with-docker.md",
+      "bytes": 651,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-duckdb-auth.md",
+      "url": "https://huggingface.co/docs/hub/spaces-run-with-docker.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Authentication for private and gated datasets"
-    },
-    {
-      "rel": "hub/gguf.md",
-      "bytes": 10119,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/gguf.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "GGUF"
+      "title": "Run with Docker"
     },
     {
       "rel": "hub/webhooks-guide-auto-retrain.md",
@@ -6437,368 +6239,26 @@
       "title": "Webhook guide: Setup an automatic system to re-train a model when a dataset changes"
     },
     {
-      "rel": "hub/spaces-sdks-static.md",
-      "bytes": 2474,
+      "rel": "hub/datasets-duckdb-select.md",
+      "bytes": 17393,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-static.md",
+      "url": "https://huggingface.co/docs/hub/datasets-duckdb-select.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Static HTML Spaces"
+      "title": "Query datasets"
     },
     {
-      "rel": "hub/index.md",
-      "bytes": 8948,
+      "rel": "hub/notifications.md",
+      "bytes": 4937,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/index.md",
+      "url": "https://huggingface.co/docs/hub/notifications.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Hugging Face Hub documentation"
-    },
-    {
-      "rel": "hub/jobs-large-datasets.md",
-      "bytes": 8871,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/jobs-large-datasets.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Process Large Datasets"
-    },
-    {
-      "rel": "hub/ml-agents.md",
-      "bytes": 2524,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/ml-agents.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using ML-Agents at Hugging Face"
-    },
-    {
-      "rel": "hub/datasets-downloading.md",
-      "bytes": 6003,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-downloading.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Downloading datasets"
-    },
-    {
-      "rel": "hub/transformers.md",
-      "bytes": 7276,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/transformers.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using \ud83e\udd17 `transformers` at Hugging Face"
-    },
-    {
-      "rel": "hub/enterprise-gating-group-collections.md",
-      "bytes": 10826,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/enterprise-gating-group-collections.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Gating Group Collections"
-    },
-    {
-      "rel": "hub/agent-traces.md",
-      "bytes": 3135,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/agent-traces.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Agent Traces"
-    },
-    {
-      "rel": "hub/jobs-serving.md",
-      "bytes": 5501,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/jobs-serving.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Serve Models on Jobs"
-    },
-    {
-      "rel": "hub/model-card-annotated.md",
-      "bytes": 12840,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/model-card-annotated.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Annotated Model Card Template"
-    },
-    {
-      "rel": "hub/datasets-webdataset.md",
-      "bytes": 3223,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-webdataset.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "WebDataset"
-    },
-    {
-      "rel": "hub/spaces-agents.md",
-      "bytes": 3859,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-agents.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Spaces as Agent Tools"
-    },
-    {
-      "rel": "hub/setfit.md",
-      "bytes": 2956,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/setfit.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using SetFit with Hugging Face"
-    },
-    {
-      "rel": "hub/datasets-polars.md",
-      "bytes": 2287,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-polars.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Polars"
-    },
-    {
-      "rel": "hub/datasets-libraries.md",
-      "bytes": 16174,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-libraries.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Libraries"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-zenml.md",
-      "bytes": 9039,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-zenml.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "ZenML on Spaces"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-giskard.md",
-      "bytes": 5168,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-giskard.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Giskard on Spaces"
-    },
-    {
-      "rel": "hub/unity-sentis.md",
-      "bytes": 4813,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/unity-sentis.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using Unity Sentis Models from Hugging Face"
-    },
-    {
-      "rel": "hub/storage-buckets-security.md",
-      "bytes": 1791,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/storage-buckets-security.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Storage Buckets: Security & Compliance"
-    },
-    {
-      "rel": "hub/spaces.md",
-      "bytes": 2163,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Spaces"
-    },
-    {
-      "rel": "hub/spaces-advanced.md",
-      "bytes": 689,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-advanced.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Advanced Topics"
-    },
-    {
-      "rel": "hub/datasets-upload-guide-llm.md",
-      "bytes": 23584,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-upload-guide-llm.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Hugging Face Dataset Upload Decision Guide"
-    },
-    {
-      "rel": "hub/spaces-sdks-docker-evidence.md",
-      "bytes": 2525,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-evidence.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Evidence on Spaces"
-    },
-    {
-      "rel": "hub/spaces-mcp-servers.md",
-      "bytes": 4094,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-mcp-servers.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Spaces as MCP servers"
-    },
-    {
-      "rel": "hub/security-sso-azure-oidc.md",
-      "bytes": 3071,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-sso-azure-oidc.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "How to configure OIDC SSO with Microsoft Entra ID (Azure AD)"
-    },
-    {
-      "rel": "hub/datasets-polars-operations.md",
-      "bytes": 8978,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-polars-operations.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Transforming your dataset"
-    },
-    {
-      "rel": "hub/models-download-stats.md",
-      "bytes": 4005,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/models-download-stats.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Models Download Stats"
-    },
-    {
-      "rel": "hub/repositories-licenses.md",
-      "bytes": 10120,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/repositories-licenses.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Licenses"
-    },
-    {
-      "rel": "hub/mlx.md",
-      "bytes": 3721,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/mlx.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using MLX at Hugging Face"
-    },
-    {
-      "rel": "hub/spaces-sdks-gradio.md",
-      "bytes": 4007,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-sdks-gradio.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Gradio Spaces"
-    },
-    {
-      "rel": "hub/flair.md",
-      "bytes": 2065,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/flair.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using Flair at Hugging Face"
-    },
-    {
-      "rel": "hub/spaces-oauth.md",
-      "bytes": 7991,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-oauth.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Adding a Sign-In with HF button to your Space"
-    },
-    {
-      "rel": "hub/model-card-appendix.md",
-      "bytes": 8918,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/model-card-appendix.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Appendix"
-    },
-    {
-      "rel": "hub/repositories-settings.md",
-      "bytes": 2919,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/repositories-settings.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Repository Settings"
-    },
-    {
-      "rel": "hub/hardware.md",
-      "bytes": 2978,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/hardware.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Hardware"
-    },
-    {
-      "rel": "hub/webhooks.md",
-      "bytes": 10363,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/webhooks.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Webhooks"
-    },
-    {
-      "rel": "hub/datasets-usage.md",
-      "bytes": 1374,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-usage.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Using \ud83e\udd17 Datasets"
-    },
-    {
-      "rel": "hub/security.md",
-      "bytes": 1631,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Security"
-    },
-    {
-      "rel": "hub/datasets-video.md",
-      "bytes": 6623,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-video.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Video Dataset"
-    },
-    {
-      "rel": "hub/storage-buckets-s3.md",
-      "bytes": 12606,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/storage-buckets-s3.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "S3 Compatibility"
+      "title": "Notifications"
     },
     {
       "rel": "hub/datasets-polars-optimizations.md",
-      "bytes": 3112,
+      "bytes": 3119,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-polars-optimizations.md",
       "track": "Hub",
@@ -6806,40 +6266,58 @@
       "title": "Optimizations"
     },
     {
-      "rel": "hub/lmstudio.md",
-      "bytes": 4045,
+      "rel": "hub/datasets-downloading.md",
+      "bytes": 5989,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/lmstudio.md",
+      "url": "https://huggingface.co/docs/hub/datasets-downloading.md",
       "track": "Hub",
       "package": "hub",
-      "title": "GGUF usage with LM Studio"
+      "title": "Downloading datasets"
     },
     {
-      "rel": "hub/enterprise-tokens-management.md",
-      "bytes": 8783,
+      "rel": "hub/spaces-sdks-docker-panel.md",
+      "bytes": 3527,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/enterprise-tokens-management.md",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-panel.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Tokens Management"
+      "title": "Panel on Spaces"
     },
     {
-      "rel": "hub/datasets-cell-editing.md",
-      "bytes": 1295,
+      "rel": "hub/spaces-storage.md",
+      "bytes": 1854,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-cell-editing.md",
+      "url": "https://huggingface.co/docs/hub/spaces-storage.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Editing Datasets in Data Studio"
+      "title": "Disk usage on Spaces"
     },
     {
-      "rel": "hub/security-pickle.md",
-      "bytes": 12498,
+      "rel": "hub/datasets-argilla.md",
+      "bytes": 7001,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-pickle.md",
+      "url": "https://huggingface.co/docs/hub/datasets-argilla.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Pickle Scanning"
+      "title": "Argilla"
+    },
+    {
+      "rel": "hub/enterprise.md",
+      "bytes": 12533,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/enterprise.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Team & Enterprise plans"
+    },
+    {
+      "rel": "hub/agents-libraries.md",
+      "bytes": 2248,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/agents-libraries.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Agent Libraries"
     },
     {
       "rel": "hub/security-secrets.md",
@@ -6851,53 +6329,8 @@
       "title": "Secrets Scanning"
     },
     {
-      "rel": "hub/datasets-ingesting.md",
-      "bytes": 9162,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-ingesting.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Ingesting Datasets"
-    },
-    {
-      "rel": "hub/spaces-add-to-arxiv.md",
-      "bytes": 4322,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-add-to-arxiv.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "How to Add a Space to ArXiv"
-    },
-    {
-      "rel": "hub/repositories-github-actions.md",
-      "bytes": 3106,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/repositories-github-actions.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "GitHub Actions"
-    },
-    {
-      "rel": "hub/jobs-quickstart.md",
-      "bytes": 6243,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/jobs-quickstart.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Quickstart"
-    },
-    {
-      "rel": "hub/datasets-data-designer.md",
-      "bytes": 2136,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-data-designer.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Data Designer"
-    },
-    {
       "rel": "hub/download-analytics.md",
-      "bytes": 2075,
+      "bytes": 2076,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/download-analytics.md",
       "track": "Hub",
@@ -6905,143 +6338,143 @@
       "title": "Download Analytics"
     },
     {
-      "rel": "hub/spaces-custom-domain.md",
-      "bytes": 1439,
+      "rel": "hub/jobs-large-datasets.md",
+      "bytes": 8880,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-custom-domain.md",
+      "url": "https://huggingface.co/docs/hub/jobs-large-datasets.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Spaces Custom Domain"
+      "title": "Process Large Datasets"
     },
     {
-      "rel": "hub/models-widgets-examples.md",
-      "bytes": 8983,
+      "rel": "hub/security-protectai.md",
+      "bytes": 2240,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/models-widgets-examples.md",
+      "url": "https://huggingface.co/docs/hub/security-protectai.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Widget Examples"
+      "title": "Third-party scanner: Protect AI"
     },
     {
-      "rel": "hub/peft.md",
-      "bytes": 2714,
+      "rel": "hub/datasets-upload-guide-llm.md",
+      "bytes": 23573,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/peft.md",
+      "url": "https://huggingface.co/docs/hub/datasets-upload-guide-llm.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Using PEFT at Hugging Face"
+      "title": "Hugging Face Dataset Upload Decision Guide"
     },
     {
-      "rel": "hub/rate-limits.md",
-      "bytes": 7757,
+      "rel": "hub/enterprise-sso.md",
+      "bytes": 4339,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/rate-limits.md",
+      "url": "https://huggingface.co/docs/hub/enterprise-sso.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Hub Rate limits"
+      "title": "Single Sign-On (SSO)"
     },
     {
-      "rel": "hub/notebooks.md",
-      "bytes": 2949,
+      "rel": "hub/paper-pages.md",
+      "bytes": 2261,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/notebooks.md",
+      "url": "https://huggingface.co/docs/hub/paper-pages.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Jupyter Notebooks on the Hugging Face Hub"
+      "title": "Paper Pages"
     },
     {
-      "rel": "hub/storage-buckets-integrations.md",
-      "bytes": 5349,
+      "rel": "hub/setfit.md",
+      "bytes": 2978,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/storage-buckets-integrations.md",
+      "url": "https://huggingface.co/docs/hub/setfit.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Bucket Integrations"
+      "title": "Using SetFit with Hugging Face"
     },
     {
-      "rel": "hub/programmatic-user-access-control.md",
-      "bytes": 19059,
+      "rel": "hub/spaces-sdks-docker-argilla.md",
+      "bytes": 961,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/programmatic-user-access-control.md",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-argilla.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Programmatic User Access Control Management"
+      "title": "Argilla on Spaces"
     },
     {
-      "rel": "hub/mlx-image.md",
-      "bytes": 3554,
+      "rel": "hub/datasets-lance.md",
+      "bytes": 11521,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/mlx-image.md",
+      "url": "https://huggingface.co/docs/hub/datasets-lance.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Using mlx-image at Hugging Face"
+      "title": "Lance"
     },
     {
-      "rel": "hub/datasets-image.md",
-      "bytes": 8710,
+      "rel": "hub/datasets-polars.md",
+      "bytes": 2281,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-image.md",
+      "url": "https://huggingface.co/docs/hub/datasets-polars.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Image Dataset"
+      "title": "Polars"
     },
     {
-      "rel": "hub/webhooks-guide-discussion-bot.md",
-      "bytes": 5886,
+      "rel": "hub/datasets-pandas.md",
+      "bytes": 11219,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/webhooks-guide-discussion-bot.md",
+      "url": "https://huggingface.co/docs/hub/datasets-pandas.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Webhook guide: build a Discussion bot with LLM replies"
+      "title": "Pandas"
     },
     {
-      "rel": "hub/local-apps.md",
-      "bytes": 3838,
+      "rel": "hub/jobs.md",
+      "bytes": 907,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/local-apps.md",
+      "url": "https://huggingface.co/docs/hub/jobs.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Use AI Models Locally"
+      "title": "Jobs"
     },
     {
-      "rel": "hub/enterprise-service-accounts.md",
-      "bytes": 3109,
+      "rel": "hub/security-sso.md",
+      "bytes": 1379,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/enterprise-service-accounts.md",
+      "url": "https://huggingface.co/docs/hub/security-sso.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Service Accounts"
+      "title": "Single Sign-On (SSO)"
     },
     {
-      "rel": "hub/models-downloading.md",
-      "bytes": 6394,
+      "rel": "hub/publisher-analytics.md",
+      "bytes": 4224,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/models-downloading.md",
+      "url": "https://huggingface.co/docs/hub/publisher-analytics.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Downloading models"
+      "title": "Publisher Analytics"
     },
     {
-      "rel": "hub/storage-limits.md",
-      "bytes": 17423,
+      "rel": "hub/transformers.md",
+      "bytes": 7233,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/storage-limits.md",
+      "url": "https://huggingface.co/docs/hub/transformers.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Storage limits"
+      "title": "Using \ud83e\udd17 `transformers` at Hugging Face"
     },
     {
-      "rel": "hub/security-sso-okta-oidc.md",
-      "bytes": 2422,
+      "rel": "hub/security.md",
+      "bytes": 1627,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/security-sso-okta-oidc.md",
+      "url": "https://huggingface.co/docs/hub/security.md",
       "track": "Hub",
       "package": "hub",
-      "title": "How to configure OIDC SSO with Okta"
+      "title": "Security"
     },
     {
       "rel": "hub/jobs-reference.md",
-      "bytes": 1945,
+      "bytes": 1973,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-reference.md",
       "track": "Hub",
@@ -7049,8 +6482,215 @@
       "title": "Reference"
     },
     {
+      "rel": "hub/model-release-checklist.md",
+      "bytes": 15208,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/model-release-checklist.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Model(s) Release Checklist"
+    },
+    {
+      "rel": "hub/spaces-sdks-docker-shiny.md",
+      "bytes": 4198,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-shiny.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Shiny on Spaces"
+    },
+    {
+      "rel": "hub/datasets-fenic.md",
+      "bytes": 7203,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-fenic.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "fenic"
+    },
+    {
+      "rel": "hub/datasets-duckdb-auth.md",
+      "bytes": 2072,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-duckdb-auth.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Authentication for private and gated datasets"
+    },
+    {
+      "rel": "hub/datasets-viewer-sql-console.md",
+      "bytes": 5364,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-viewer-sql-console.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "SQL Console: Query Hugging Face datasets in your browser"
+    },
+    {
+      "rel": "hub/spacy.md",
+      "bytes": 5350,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spacy.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using spaCy at Hugging Face"
+    },
+    {
+      "rel": "hub/sample-factory.md",
+      "bytes": 4550,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/sample-factory.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using sample-factory at Hugging Face"
+    },
+    {
+      "rel": "hub/jobs-configuration.md",
+      "bytes": 18888,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/jobs-configuration.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Configuration"
+    },
+    {
+      "rel": "hub/spaces-sdks-docker-giskard.md",
+      "bytes": 5166,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-giskard.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Giskard on Spaces"
+    },
+    {
+      "rel": "hub/spaces-cookie-limitations.md",
+      "bytes": 1662,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-cookie-limitations.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Cookie limitations in Spaces"
+    },
+    {
+      "rel": "hub/organizations-managing.md",
+      "bytes": 2065,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/organizations-managing.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Managing organizations"
+    },
+    {
+      "rel": "hub/jobs-examples.md",
+      "bytes": 2704,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/jobs-examples.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Examples & Tutorials"
+    },
+    {
+      "rel": "hub/repositories-licenses.md",
+      "bytes": 10112,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/repositories-licenses.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Licenses"
+    },
+    {
+      "rel": "hub/moderation.md",
+      "bytes": 1947,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/moderation.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Moderation"
+    },
+    {
+      "rel": "hub/spaces-github-actions.md",
+      "bytes": 2649,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-github-actions.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Managing Spaces with Github Actions"
+    },
+    {
+      "rel": "hub/index.md",
+      "bytes": 8969,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/index.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Hugging Face Hub documentation"
+    },
+    {
+      "rel": "hub/spaces-dev-mode.md",
+      "bytes": 6579,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-dev-mode.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Spaces Dev Mode: Seamless development in Spaces"
+    },
+    {
+      "rel": "hub/spaces-overview.md",
+      "bytes": 12619,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-overview.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Spaces Overview"
+    },
+    {
+      "rel": "hub/datasets.md",
+      "bytes": 1032,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Datasets"
+    },
+    {
+      "rel": "hub/model-cards-components.md",
+      "bytes": 1606,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/model-cards-components.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Model Card components"
+    },
+    {
+      "rel": "hub/models-faq.md",
+      "bytes": 3290,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/models-faq.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Models Frequently Asked Questions"
+    },
+    {
+      "rel": "hub/spaces-sdks-static.md",
+      "bytes": 2473,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-static.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Static HTML Spaces"
+    },
+    {
+      "rel": "hub/datasets-overview.md",
+      "bytes": 1564,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-overview.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Datasets Overview"
+    },
+    {
       "rel": "hub/datasets-duckdb.md",
-      "bytes": 3737,
+      "bytes": 3704,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/datasets-duckdb.md",
       "track": "Hub",
@@ -7058,8 +6698,215 @@
       "title": "DuckDB"
     },
     {
+      "rel": "hub/models-inference.md",
+      "bytes": 5221,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/models-inference.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Inference Providers"
+    },
+    {
+      "rel": "hub/bertopic.md",
+      "bytes": 3056,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/bertopic.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using BERTopic at Hugging Face"
+    },
+    {
+      "rel": "hub/security-sso-azure-oidc.md",
+      "bytes": 3060,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-sso-azure-oidc.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "How to configure OIDC SSO with Microsoft Entra ID (Azure AD)"
+    },
+    {
+      "rel": "hub/agents-cli.md",
+      "bytes": 2505,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/agents-cli.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Hugging Face CLI for AI Agents"
+    },
+    {
+      "rel": "hub/agents-skills.md",
+      "bytes": 4119,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/agents-skills.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Skills"
+    },
+    {
+      "rel": "hub/security-sso-okta-scim.md",
+      "bytes": 6579,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-sso-okta-scim.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "How to configure SCIM with Okta"
+    },
+    {
+      "rel": "hub/storage-regions.md",
+      "bytes": 3499,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/storage-regions.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Storage Regions on the Hub"
+    },
+    {
+      "rel": "hub/spaces-add-to-arxiv.md",
+      "bytes": 4319,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-add-to-arxiv.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "How to Add a Space to ArXiv"
+    },
+    {
+      "rel": "hub/asteroid.md",
+      "bytes": 2543,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/asteroid.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using Asteroid at Hugging Face"
+    },
+    {
+      "rel": "hub/security-sso-google-saml.md",
+      "bytes": 3147,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-sso-google-saml.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "How to configure SAML SSO with Google Workspace"
+    },
+    {
+      "rel": "hub/models-widgets-examples.md",
+      "bytes": 9016,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/models-widgets-examples.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Widget Examples"
+    },
+    {
+      "rel": "hub/spaces-zerogpu.md",
+      "bytes": 8153,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-zerogpu.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Spaces ZeroGPU: Dynamic GPU Allocation for Spaces"
+    },
+    {
+      "rel": "hub/storage-buckets-integrations.md",
+      "bytes": 5305,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/storage-buckets-integrations.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Bucket Integrations"
+    },
+    {
+      "rel": "hub/agents-sdk.md",
+      "bytes": 4582,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/agents-sdk.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Building with the SDK"
+    },
+    {
+      "rel": "hub/spaces-circleci.md",
+      "bytes": 2652,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-circleci.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Managing Spaces with CircleCI Workflows"
+    },
+    {
+      "rel": "hub/datasets-polars-operations.md",
+      "bytes": 8981,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-polars-operations.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Transforming your dataset"
+    },
+    {
+      "rel": "hub/spaces-sdks-docker-livebook.md",
+      "bytes": 4160,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-livebook.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Livebook on Spaces"
+    },
+    {
+      "rel": "hub/model-cards-user-studies.md",
+      "bytes": 8857,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/model-cards-user-studies.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "User Studies"
+    },
+    {
+      "rel": "hub/spaces-embed.md",
+      "bytes": 2431,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-embed.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Embed your Space in another website"
+    },
+    {
+      "rel": "hub/datasets-cards.md",
+      "bytes": 4053,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-cards.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Dataset Cards"
+    },
+    {
+      "rel": "hub/local-apps.md",
+      "bytes": 3852,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/local-apps.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Use AI Models Locally"
+    },
+    {
+      "rel": "hub/security-sso-configuration-guides.md",
+      "bytes": 1650,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-sso-configuration-guides.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "SSO Configuration Guides"
+    },
+    {
+      "rel": "hub/models-downloading.md",
+      "bytes": 6434,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/models-downloading.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Downloading models"
+    },
+    {
       "rel": "hub/model-card-landscape-analysis.md",
-      "bytes": 26739,
+      "bytes": 26756,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/model-card-landscape-analysis.md",
       "track": "Hub",
@@ -7067,44 +6914,197 @@
       "title": "THE LANDSCAPE OF ML DOCUMENTATION TOOLS"
     },
     {
-      "rel": "hub/tensorboard.md",
-      "bytes": 1079,
+      "rel": "hub/spaces-sdks-docker-evidence.md",
+      "bytes": 2516,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/tensorboard.md",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-evidence.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Using TensorBoard"
+      "title": "Evidence on Spaces"
     },
     {
-      "rel": "hub/datasets-fiftyone.md",
-      "bytes": 7126,
+      "rel": "hub/eval-results.md",
+      "bytes": 8503,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/datasets-fiftyone.md",
+      "url": "https://huggingface.co/docs/hub/eval-results.md",
       "track": "Hub",
       "package": "hub",
-      "title": "FiftyOne"
+      "title": "Evaluation Results"
     },
     {
-      "rel": "hub/enterprise-network-security.md",
-      "bytes": 4249,
+      "rel": "hub/repositories-next-steps.md",
+      "bytes": 5822,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/enterprise-network-security.md",
+      "url": "https://huggingface.co/docs/hub/repositories-next-steps.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Network Security"
+      "title": "Next Steps"
     },
     {
-      "rel": "hub/spaces-dependencies.md",
-      "bytes": 2035,
+      "rel": "hub/adapters.md",
+      "bytes": 3550,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/spaces-dependencies.md",
+      "url": "https://huggingface.co/docs/hub/adapters.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Handling Spaces Dependencies in Gradio Spaces"
+      "title": "Using _Adapters_ at Hugging Face"
+    },
+    {
+      "rel": "hub/security-sso-azure-saml.md",
+      "bytes": 2826,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-sso-azure-saml.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "How to configure SAML SSO with Microsoft Entra ID (Azure AD)"
+    },
+    {
+      "rel": "hub/models-widgets.md",
+      "bytes": 8818,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/models-widgets.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Widgets"
+    },
+    {
+      "rel": "hub/datasets-cell-editing.md",
+      "bytes": 1326,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-cell-editing.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Editing Datasets in Data Studio"
+    },
+    {
+      "rel": "hub/datasets-duckdb-combine-and-export.md",
+      "bytes": 11624,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-duckdb-combine-and-export.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Combine datasets and export"
+    },
+    {
+      "rel": "hub/search.md",
+      "bytes": 920,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/search.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Search"
+    },
+    {
+      "rel": "hub/security-jfrog.md",
+      "bytes": 1992,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-jfrog.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Third-party scanner: JFrog"
+    },
+    {
+      "rel": "hub/datasets-spark.md",
+      "bytes": 13163,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/datasets-spark.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Spark"
+    },
+    {
+      "rel": "hub/security-gpg.md",
+      "bytes": 4489,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-gpg.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Signing commits with GPG"
+    },
+    {
+      "rel": "hub/spaces-featured.md",
+      "bytes": 704,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-featured.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Featured Spaces"
+    },
+    {
+      "rel": "hub/spaces-sdks-docker-zenml.md",
+      "bytes": 9004,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-sdks-docker-zenml.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "ZenML on Spaces"
+    },
+    {
+      "rel": "hub/dduf.md",
+      "bytes": 9336,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/dduf.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "DDUF"
+    },
+    {
+      "rel": "hub/spaces-custom-domain.md",
+      "bytes": 1454,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/spaces-custom-domain.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Spaces Custom Domain"
+    },
+    {
+      "rel": "hub/organizations-security.md",
+      "bytes": 2607,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/organizations-security.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Access control in organizations"
+    },
+    {
+      "rel": "hub/jobs-schedule.md",
+      "bytes": 2134,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/jobs-schedule.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Schedule Jobs"
+    },
+    {
+      "rel": "hub/security-sso-basic.md",
+      "bytes": 3395,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/security-sso-basic.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Basic SSO"
+    },
+    {
+      "rel": "hub/gguf.md",
+      "bytes": 10025,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/gguf.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "GGUF"
+    },
+    {
+      "rel": "hub/webhooks.md",
+      "bytes": 10364,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/webhooks.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Webhooks"
     },
     {
       "rel": "hub/xet/overview.md",
-      "bytes": 1858,
+      "bytes": 1846,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/xet/overview.md",
       "track": "Hub",
@@ -7112,26 +7112,17 @@
       "title": "Xet History & Overview"
     },
     {
-      "rel": "hub/xet/using-xet-storage.md",
-      "bytes": 15494,
+      "rel": "hub/xet/security.md",
+      "bytes": 627,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/xet/using-xet-storage.md",
+      "url": "https://huggingface.co/docs/hub/xet/security.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Using Xet Storage"
-    },
-    {
-      "rel": "hub/xet/index.md",
-      "bytes": 2474,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/xet/index.md",
-      "track": "Hub",
-      "package": "hub",
-      "title": "Xet: our Storage Backend"
+      "title": "Security Model"
     },
     {
       "rel": "hub/xet/legacy-git-lfs.md",
-      "bytes": 3012,
+      "bytes": 3019,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/xet/legacy-git-lfs.md",
       "track": "Hub",
@@ -7139,13 +7130,22 @@
       "title": "Backward Compatibility with LFS"
     },
     {
-      "rel": "hub/xet/security.md",
-      "bytes": 608,
+      "rel": "hub/xet/index.md",
+      "bytes": 2463,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/hub/xet/security.md",
+      "url": "https://huggingface.co/docs/hub/xet/index.md",
       "track": "Hub",
       "package": "hub",
-      "title": "Security Model"
+      "title": "Xet: our Storage Backend"
+    },
+    {
+      "rel": "hub/xet/using-xet-storage.md",
+      "bytes": 15491,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/hub/xet/using-xet-storage.md",
+      "track": "Hub",
+      "package": "hub",
+      "title": "Using Xet Storage"
     },
     {
       "rel": "hub/xet/deduplication.md",
@@ -7887,7 +7887,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 72292,
+      "bytes": 72265,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -7977,7 +7977,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 100930,
+      "bytes": 100919,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -8211,7 +8211,7 @@
     },
     {
       "rel": "kernels/kernel-requirements.md",
-      "bytes": 16521,
+      "bytes": 18777,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/kernel-requirements.md",
       "track": "Kernels",
@@ -8220,7 +8220,7 @@
     },
     {
       "rel": "kernels/migration.md",
-      "bytes": 8485,
+      "bytes": 8812,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/migration.md",
       "track": "Kernels",
@@ -19228,7 +19228,7 @@
       "toc": 25,
       "found": 25,
       "written": 25,
-      "full_bytes": 117369
+      "full_bytes": 159882
     },
     {
       "pkg": "cli",
@@ -19263,7 +19263,7 @@
       "toc": 270,
       "found": 269,
       "written": 269,
-      "full_bytes": 1435315
+      "full_bytes": 1435829
     },
     {
       "pkg": "huggingface_hub",
@@ -19284,14 +19284,14 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 416165
+      "full_bytes": 416127
     },
     {
       "pkg": "kernels",
       "toc": 36,
       "found": 36,
       "written": 36,
-      "full_bytes": 198401
+      "full_bytes": 200984
     },
     {
       "pkg": "lerobot",

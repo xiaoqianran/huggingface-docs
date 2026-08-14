@@ -96,5 +96,5 @@ for epoch in range(10):
 
 If you have any questions, please email `riccardomusmeci92@gmail.com`.
 
-### Image Dataset
-https://huggingface.co/docs/hub/datasets-image.md
+### Using Spaces for Organization Cards
+https://huggingface.co/docs/hub/spaces-organization-cards.md

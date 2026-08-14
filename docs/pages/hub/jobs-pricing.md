@@ -138,5 +138,5 @@ If a running Job is no longer relevant, you can cancel it prematurely to stop it
 hf jobs cancel <job-id>
 ```
 
-### Two-Factor Authentication (2FA)
-https://huggingface.co/docs/hub/security-2fa.md
+### Gated datasets
+https://huggingface.co/docs/hub/datasets-gated.md

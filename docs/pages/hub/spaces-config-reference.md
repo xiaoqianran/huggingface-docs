@@ -142,5 +142,5 @@ In this example, the Space will preload specific .safetensors files from `warp-a
 > [!NOTE]
 > Preloading of private repos is not supported yet.
 
-### Uploading datasets
-https://huggingface.co/docs/hub/datasets-adding.md
+### Repository Settings
+https://huggingface.co/docs/hub/repositories-settings.md

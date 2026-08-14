@@ -45,3 +45,6 @@ The unified memory feature is less efficient than regular asynchronous memory tr
 This means performance depends highly on the particular use-case. For example, if you evict 1 GB of memory per forward-backward-optimizer loop, then you can expect about 50% of the PCIe bandwidth as time in the best case. So, 1 GB for PCIe 3.0 with 16x lanes would run at 16 GB/s, which is `1/(16*0.5) = 1/8 = 125ms` of overhead per optimizer step. Other overhead can be estimated for the particular use-case given a PCIe interface, lanes, and the memory evicted in each iteration.
 
 Compared to CPU offloading, a paged optimizer has zero overhead if all the memory fits onto the device and only some overhead if some of memory needs to be evicted. For offloading, you usually offload fixed parts of the model and need to off and onload all this memory with each iteration through the model (sometimes twice for both forward and backward pass).
+
+### Papers, related resources & how to cite
+https://huggingface.co/docs/bitsandbytes/v0.50.1/explanations/resources.md

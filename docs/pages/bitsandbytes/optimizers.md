@@ -7,7 +7,7 @@ This guide will show you how to use 8-bit optimizers.
 > [!WARNING]
 > 8-bit optimizers reduce memory usage and accelerate optimization on a wide range of tasks. However, since 8-bit optimizers only reduce memory proportional to the number of parameters, models that use large amounts of activation memory, such as convolutional networks, don't really benefit from 8-bit optimizers. 8-bit optimizers are most beneficial for training or finetuning models with many parameters on highly memory-constrained GPUs.
 
-8-bit optimizers are a drop-in replacement for regular optimizers which means they also accept the same arguments as a regular optimizer. For NLP models, it is recommended to use the [StableEmbedding](/docs/bitsandbytes/v0.50.0/en/reference/nn/embeddings#bitsandbytes.nn.StableEmbedding) class to improve stability and results.
+8-bit optimizers are a drop-in replacement for regular optimizers which means they also accept the same arguments as a regular optimizer. For NLP models, it is recommended to use the [StableEmbedding](/docs/bitsandbytes/v0.50.1/en/reference/nn/embeddings#bitsandbytes.nn.StableEmbedding) class to improve stability and results.
 
 ```diff
 import bitsandbytes as bnb
@@ -30,7 +30,7 @@ import bitsandbytes as bnb
 adam = bnb.optim.Adam8bit(model.parameters(), min_8bit_size=16384)
 ```
 
-Other parameters you can configure include the learning rate (`lr`), the decay rates (`betas`), and the number of bits of the optimizer state (`optim_bits`). For example, to initialize a 32-bit [Adam](/docs/bitsandbytes/v0.50.0/en/reference/optim/adam#bitsandbytes.optim.Adam) optimizer:
+Other parameters you can configure include the learning rate (`lr`), the decay rates (`betas`), and the number of bits of the optimizer state (`optim_bits`). For example, to initialize a 32-bit [Adam](/docs/bitsandbytes/v0.50.1/en/reference/optim/adam#bitsandbytes.optim.Adam) optimizer:
 
 ```py
 import bitsandbytes as bnb
@@ -40,7 +40,7 @@ adam = bnb.optim.Adam(model.parameters(), lr=0.001, betas=(0.9, 0.995), optim_bi
 
 ## Optimize unstable parameters
 
-To optimize some unstable parameters with 32-bit Adam and others with 8-bit Adam, use the [GlobalOptimManager](/docs/bitsandbytes/v0.50.0/en/reference/optim/optim_overview#bitsandbytes.optim.GlobalOptimManager) class to override the specific hyperparameters for a particular layer. You'll need to:
+To optimize some unstable parameters with 32-bit Adam and others with 8-bit Adam, use the [GlobalOptimManager](/docs/bitsandbytes/v0.50.1/en/reference/optim/optim_overview#bitsandbytes.optim.GlobalOptimManager) class to override the specific hyperparameters for a particular layer. You'll need to:
 
 1. Register the parameters while they're on the CPU.
 
@@ -75,7 +75,7 @@ mng.override_config([model.special.weight, model.also_special.weight],
                     key_value_dict ={'is_sparse': True, 'lr': 1e-5, 'betas'=(0.9, 0.98)})
 ```
 
-For a specific layer, we recommend overriding locally in each module. Pass the module, the parameter, and its attribute name to the [GlobalOptimManager](/docs/bitsandbytes/v0.50.0/en/reference/optim/optim_overview#bitsandbytes.optim.GlobalOptimManager):
+For a specific layer, we recommend overriding locally in each module. Pass the module, the parameter, and its attribute name to the [GlobalOptimManager](/docs/bitsandbytes/v0.50.1/en/reference/optim/optim_overview#bitsandbytes.optim.GlobalOptimManager):
 
 ```py
 class MyModule(torch.nn.Module):
@@ -93,5 +93,5 @@ class MyModule(torch.nn.Module):
 
 For more conceptual details and explanation about 8-bit optimizers, take a look at the [8-bit optimizers](./explanations/optimizers) guide.
 
-### bitsandbytes
-https://huggingface.co/docs/bitsandbytes/v0.50.0/index.md
+### Troubleshoot
+https://huggingface.co/docs/bitsandbytes/v0.50.1/errors.md

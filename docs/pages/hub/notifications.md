@@ -67,5 +67,5 @@ You can unmute at any time by clicking the same icon again.
 
 ![Notifications mute discussions](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/notifications-mute-discussion.png)
 
-### Using _Adapters_ at Hugging Face
-https://huggingface.co/docs/hub/adapters.md
+### Optimizations
+https://huggingface.co/docs/hub/datasets-polars-optimizations.md

@@ -146,5 +146,5 @@ linear_4bit = bnb.nn.Linear4bit(1024, 1024, compute_dtype=torch.bfloat16)
 - Visit [official documentation](https://huggingface.co/docs/bitsandbytes)
 - Open an issue on [GitHub](https://github.com/bitsandbytes-foundation/bitsandbytes/issues)
 
-### FAQs
-https://huggingface.co/docs/bitsandbytes/v0.50.0/faqs.md
+### bitsandbytes
+https://huggingface.co/docs/bitsandbytes/v0.50.1/index.md

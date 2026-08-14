@@ -28,5 +28,5 @@ These guides help you configure SAML 2.0 and OpenID Connect (OIDC) with your Ide
 - [How to configure SAML with Google Workspace](./security-sso-google-saml)
 - [How to configure OIDC with Google Workspace](./security-sso-google-oidc)
 
-### Model Card components
-https://huggingface.co/docs/hub/model-cards-components.md
+### Downloading models
+https://huggingface.co/docs/hub/models-downloading.md

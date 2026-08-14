@@ -118,5 +118,5 @@ While some headings within model cards may differ between models, we grouped com
 **Please cite as:**
 Ozoani, Ezi and Gerchick, Marissa and Mitchell, Margaret. Model Card Guidebook. Hugging Face, 2022. https://huggingface.co/docs/hub/en/model-card-guidebook
 
-### Using TensorBoard
-https://huggingface.co/docs/hub/tensorboard.md
+### Evidence on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-evidence.md

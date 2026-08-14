@@ -202,5 +202,5 @@ You can see an example of using this approach to upload data to the Hub in
 
 For technical questions about integration, feel free to contact the datasets team at datasets@huggingface.co.
 
-### ZenML on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-zenml.md
+### Custom Python Spaces
+https://huggingface.co/docs/hub/spaces-sdks-python.md

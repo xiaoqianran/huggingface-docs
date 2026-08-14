@@ -155,5 +155,5 @@ Finally, lets highlight some of the DuckDB functions used in this section:
 > [!TIP]
 > There are plenty of useful functions available in DuckDB's [SQL functions overview](https://duckdb.org/docs/sql/functions/overview). The best part is that you can use them directly on Hugging Face datasets.
 
-### 🟧 Label Studio on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-label-studio.md
+### Webhooks Automation
+https://huggingface.co/docs/hub/jobs-webhooks.md

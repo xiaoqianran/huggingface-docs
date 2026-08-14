@@ -23,5 +23,5 @@ Start chatting!
 - [chat-ui GitHub Repository](https://github.com/huggingface/chat-ui)
 - [text-generation-inference GitHub repository](https://github.com/huggingface/text-generation-inference)
 
-### Spaces Settings
-https://huggingface.co/docs/hub/spaces-settings.md
+### Serve Models on Jobs
+https://huggingface.co/docs/hub/jobs-serving.md

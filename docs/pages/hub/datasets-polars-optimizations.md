@@ -71,5 +71,5 @@ Running both queries leads to following run times on a regular laptop with a hou
 
 The lazy query is ~5 times faster than the eager one. The reason for this is the query optimizer: if we delay `collect`-ing our dataset until the end, Polars will be able to reason about which columns and rows are required and apply filters as early as possible when reading the data. For file formats such as Parquet that contain metadata (e.g. min, max in a certain group of rows) the difference can even be bigger as Polars can skip entire row groups based on the filters and the metadata without sending the data over the wire.
 
-### GGUF usage with LM Studio
-https://huggingface.co/docs/hub/lmstudio.md
+### Downloading datasets
+https://huggingface.co/docs/hub/datasets-downloading.md

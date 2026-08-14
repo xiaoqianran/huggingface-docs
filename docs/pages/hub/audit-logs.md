@@ -110,5 +110,5 @@ Each action has an **event name** in `scope.action` format (e.g. `repo.create`, 
 
 The list above covers every event type shown in the audit log UI and export. Event names follow the `scope.action` pattern; scopes include `org`, `repo`, `collection`, `spaces`, `resource_group`, `jobs`, `scheduled_job`, and `billing`. The export action itself is recorded as `org.audit_log.export` but that event is not included in the default audit log view.
 
-### Basic SSO
-https://huggingface.co/docs/hub/security-sso-basic.md
+### Sign in with Hugging Face
+https://huggingface.co/docs/hub/oauth.md

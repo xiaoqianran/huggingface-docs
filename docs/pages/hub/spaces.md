@@ -36,5 +36,5 @@ If you're interested in infra challenges, custom demos, advanced GPUs, or someth
 
 You can also tag us [on Twitter](https://twitter.com/huggingface)! 🤗
 
-### Advanced Topics
-https://huggingface.co/docs/hub/spaces-advanced.md
+### Video Dataset
+https://huggingface.co/docs/hub/datasets-video.md

@@ -468,5 +468,5 @@ Content-Type: application/json
 > [!NOTE]
 > Disabling auto-join does **not** remove members who were previously auto-joined. It only stops future org members from being added automatically. Existing members remain in the Resource Group.
 
-### Using mlx-image at Hugging Face
-https://huggingface.co/docs/hub/mlx-image.md
+### Datasets
+https://huggingface.co/docs/hub/enterprise-datasets.md

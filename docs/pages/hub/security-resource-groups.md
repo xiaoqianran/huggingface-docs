@@ -138,5 +138,5 @@ You can use the dedicated API endpoint to retrieve cost attribution data for res
 
 You can list resource groups and add users to them (or change a member's org role and resource group assignments) via the Hub API. For the full reference, examples, and batch workflows, see the [Programmatic User Access Control Management](./programmatic-user-access-control) guide.
 
-### Local Agents with llama.cpp
-https://huggingface.co/docs/hub/agents-local.md
+### Git over SSH
+https://huggingface.co/docs/hub/security-git-ssh.md

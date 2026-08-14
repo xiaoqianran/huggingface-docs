@@ -52,13 +52,15 @@ The currently distributed `bitsandbytes` packages are built with the following c
 | **OS**             | **CUDA Toolkit** | **Host Compiler**    | **Targets**
 |--------------------|------------------|----------------------|--------------
 | **Linux x86-64**   | 11.8 - 12.6      | GCC 11.2             | sm60, sm70, sm75, sm80, sm86, sm89, sm90
-| **Linux x86-64**   | 12.8 - 12.9      | GCC 11.2             | sm70, sm75, sm80, sm86, sm89, sm90, sm100, sm120
-| **Linux x86-64**   | 13.0             | GCC 11.2             | sm75, sm80, sm86, sm89, sm90, sm100, sm120
+| **Linux x86-64**   | 12.8             | GCC 11.2             | sm70, sm75, sm80, sm86, sm89, sm90, sm100, sm120
+| **Linux x86-64**   | 13.0 - 13.2      | GCC 11.2             | sm75, sm80, sm86, sm89, sm90, sm100, sm120
 | **Linux aarch64**  | 11.8 - 12.6      | GCC 11.2             | sm75, sm80, sm90
-| **Linux aarch64**  | 12.8 - 13.0      | GCC 11.2             | sm75, sm80, sm90, sm100, sm110, sm120, sm121
+| **Linux aarch64**  | 12.8             | GCC 11.2             | sm75, sm80, sm90, sm100, sm120
+| **Linux aarch64**  | 13.0 - 13.2      | GCC 11.2             | sm75, sm80, sm90, sm100, sm110, sm120, sm121
 | **Windows x86-64** | 11.8 - 12.6      | MSVC 19.43+ (VS2022) | sm50, sm60, sm75, sm80, sm86, sm89, sm90
-| **Windows x86-64** | 12.8 - 12.9      | MSVC 19.43+ (VS2022) | sm70, sm75, sm80, sm86, sm89, sm90, sm100, sm120
-| **Windows x86-64** | 13.0             | MSVC 19.43+ (VS2022) | sm75, sm80, sm86, sm89, sm90, sm100, sm120
+| **Windows x86-64** | 12.8             | MSVC 19.43+ (VS2022) | sm70, sm75, sm80, sm86, sm89, sm90, sm100, sm120
+| **Windows x86-64** | 13.0 - 13.2      | MSVC 19.43+ (VS2022) | sm75, sm80, sm86, sm89, sm90, sm100, sm120
+| **Windows arm64**  | 13.4             | MSVC 19.51+ (VS2026) | sm121
 
 The Linux build has a minimum glibc version of 2.24.
 
@@ -67,6 +69,22 @@ Use `pip` or `uv` to install the latest release:
 ```bash
 pip install bitsandbytes
 ```
+
+> [!NOTE]
+> **NVIDIA Spark (ARM64).** To install bitsandbytes with PyTorch on NVIDIA Spark devices (such as an RTX Spark laptop) running ARM64, install PyTorch from the NVIDIA PyPI index. These devices require NVIDIA's ARM64 builds of PyTorch, which are not available on the default PyPI index or the standard PyTorch wheel index.
+>
+> Run the command below to check if your system detects an NVIDIA GPU.
+>
+> ```bash
+> nvidia-smi
+> ```
+>
+> Install PyTorch from the NVIDIA PyPI index, then install bitsandbytes.
+>
+> ```bash
+> pip install torch --index-url https://pypi.nvidia.com
+> pip install bitsandbytes
+> ```
 
 > [!WARNING]
 > **NVIDIA Jetson (L4T / JetPack) — source build required.** The `Linux aarch64` wheels above are built on aarch64-sbsa runners (server-class ARM with the standard CUDA Toolkit). They are **not compatible** with the L4T runtime on Jetson devices (Orin Nano / NX / AGX, Xavier, Thor on CUDA 12), even though both are aarch64 and even though the cubins are binary-compatible with the device's compute capability (e.g., `sm_80` cubin runs on `sm_87` hardware via Ampere-family binary compat — see [NVIDIA's docs on binary compatibility](https://developer.nvidia.com/blog/understanding-ptx-the-assembly-language-of-cuda-gpu-computing/#binary_compatibility)). The mismatch is at the CUDA library / ABI layer (JetPack ships its own CUDA Toolkit and system libraries), and surfaces as a runtime symbol-resolution error like `Error named symbol not found in /src/csrc/ops.cu` on the first CUDA op.
@@ -107,6 +125,8 @@ Compilation from source on Windows systems require Visual Studio with C++ suppor
 
 To compile from source, you need CMake >= **3.22.1** and Python >= **3.10** installed. You should also install CUDA Toolkit by following the [CUDA Installation Guide for Windows](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html) guide from NVIDIA. The current minimum supported CUDA Toolkit version that we support is **11.8**.
 
+On Windows ARM64, the CUDA Toolkit is supported from version **13.4**, and Visual Studio must include the **ARM64 C++ build tools** component.
+
 ```bash
 git clone https://github.com/bitsandbytes-foundation/bitsandbytes.git && cd bitsandbytes/
 cmake -DCOMPUTE_BACKEND=cuda -S .
@@ -136,7 +156,7 @@ The currently distributed `bitsandbytes` are built with the following configurat
 | **Linux x86-64**   | 7.0.2    | CDNA: gfx90a, gfx942, gfx950 / RDNA: gfx1100, gfx1101, gfx1102, gfx1103, gfx1150, gfx1151, gfx1152, gfx1153, gfx1200, gfx1201
 | **Linux x86-64**   | 7.1.1    | CDNA: gfx90a, gfx942, gfx950 / RDNA: gfx1100, gfx1101, gfx1102, gfx1103, gfx1150, gfx1151, gfx1152, gfx1153, gfx1200, gfx1201
 | **Linux x86-64**   | 7.2.4    | CDNA: gfx90a, gfx942, gfx950 / RDNA: gfx1100, gfx1101, gfx1102, gfx1103, gfx1150, gfx1151, gfx1152, gfx1153, gfx1200, gfx1201
-| **Linux x86-64**   | 7.14.0   | CDNA: gfx908, gfx90a, gfx942, gfx950 / RDNA: gfx1030, gfx1031, gfx1032, gfx1033, gfx1034, gfx1035, gfx1036, gfx1100, gfx1101, gfx1102, gfx1103, gfx1150, gfx1151, gfx1152, gfx1153, gfx1200, gfx1201
+| **Linux x86-64**   | 7.14.0   | CDNA: gfx908, gfx90a, gfx942, gfx950, gfx1250 / RDNA: gfx1030, gfx1031, gfx1032, gfx1033, gfx1034, gfx1035, gfx1036, gfx1100, gfx1101, gfx1102, gfx1103, gfx1150, gfx1151, gfx1152, gfx1153, gfx1200, gfx1201
 | **Windows x86-64** | 7.2.1    | RDNA: gfx1100, gfx1101, gfx1102, gfx1150, gfx1151, gfx1200, gfx1201
 | **Windows x86-64** | 7.14.0   | RDNA: gfx1030, gfx1031, gfx1032, gfx1033, gfx1034, gfx1035, gfx1036, gfx1100, gfx1101, gfx1102, gfx1150, gfx1151, gfx1152, gfx1153, gfx1200, gfx1201
 
@@ -298,7 +318,7 @@ pip install -e .
 ```
 
 > [!NOTE]
-> The build system will detect the ARM64 architecture automatically via CMake. Only the CPU backend is supported on Windows ARM64 at this time (no CUDA).
+> The build system will detect the ARM64 architecture automatically via CMake. For a CUDA build on Windows ARM64, see [Compile from Source](#cuda-compile) in the CUDA section; CUDA Toolkit 13.4 or newer is required.
 
 ## Preview Wheels[[preview-wheels]]
 
@@ -330,5 +350,5 @@ pip install --force-reinstall https://github.com/bitsandbytes-foundation/bitsand
 pip install --force-reinstall https://github.com/bitsandbytes-foundation/bitsandbytes/releases/download/continuous-release_main/bitsandbytes-1.33.7.preview-py3-none-macosx_14_0_arm64.whl
 ```
 
-### Integrations
-https://huggingface.co/docs/bitsandbytes/v0.50.0/integrations.md
+### FSDP-QLoRA
+https://huggingface.co/docs/bitsandbytes/v0.50.1/fsdp_qlora.md

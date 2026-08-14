@@ -89,5 +89,5 @@ For example:
 python -m sf_examples.mujoco_examples.enjoy_mujoco --algo=APPO --env=mujoco_ant --experiment=<repo_name> --train_dir=./train_dir --max_num_episodes=10 --push_to_hub --hf_username=<username> --hf_repository=<hf_repo_name> --save_video --no_render
 ```
 
-### Datasets
-https://huggingface.co/docs/hub/enterprise-datasets.md
+### Configuration
+https://huggingface.co/docs/hub/jobs-configuration.md

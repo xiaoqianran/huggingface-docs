@@ -90,6 +90,3 @@ Authors: Tim Dettmers, Mike Lewis, Sam Shleifer, Luke Zettlemoyer
   bibsource    = {dblp computer science bibliography, https://dblp.org}
 }
 ```
-
-### 8-bit optimizers
-https://huggingface.co/docs/bitsandbytes/v0.50.0/explanations/optimizers.md

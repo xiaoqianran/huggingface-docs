@@ -259,5 +259,5 @@ Explore more Lance datasets on the [Hugging Face Hub](https://huggingface.co/dat
 and share your own Lance datasets with others in the community!
 You can visit [lance.org](https://lance.org/integrations/huggingface/) for more code snippets and examples.
 
-### Team & Enterprise plans
-https://huggingface.co/docs/hub/enterprise.md
+### Polars
+https://huggingface.co/docs/hub/datasets-polars.md

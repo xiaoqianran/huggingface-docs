@@ -6,28 +6,55 @@ The `StableEmbedding` class was introduced in the [8-bit Optimizers via Block-wi
 
 ## Embedding[[bitsandbytes.nn.Embedding]]
 
+#### bitsandbytes.nn.Embedding[[bitsandbytes.nn.Embedding]]
+
+```python
+bitsandbytes.nn.Embedding(num_embeddings: int, embedding_dim: int, padding_idx: typing.Optional[int] = None, max_norm: typing.Optional[float] = None, norm_type: float = 2.0, scale_grad_by_freq: bool = False, sparse: bool = False, _weight: typing.Optional[torch.Tensor] = None, device: typing.Optional[torch.device] = None)
+```
+
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L134)
+
 Embedding class to store and retrieve word embeddings from their indices.
 
-- **num_embeddings** (`int`) --
-  The number of unique embeddings (vocabulary size).
-- **embedding_dim** (`int`) --
-  The dimensionality of the embedding.
-- **padding_idx** (`Optional[int]`) --
-  Pads the output with zeros at the given index.
-- **max_norm** (`Optional[float]`) --
-  Renormalizes embeddings to have a maximum L2 norm.
-- **norm_type** (`float`, defaults to `2.0`) --
-  The p-norm to compute for the `max_norm` option.
-- **scale_grad_by_freq** (`bool`, defaults to `False`) --
-  Scale gradient by frequency during backpropagation.
-- **sparse** (`bool`, defaults to `False`) --
-  Computes dense gradients. Set to `True` to compute sparse gradients instead.
-- **_weight** (`Optional[Tensor]`) --
-  Pretrained embeddings.
+#### __init__[[bitsandbytes.nn.Embedding.__init__]]
+
+```python
+__init__(num_embeddings: int, embedding_dim: int, padding_idx: typing.Optional[int] = None, max_norm: typing.Optional[float] = None, norm_type: float = 2.0, scale_grad_by_freq: bool = False, sparse: bool = False, _weight: typing.Optional[torch.Tensor] = None, device: typing.Optional[torch.device] = None)
+```
+
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L139)
+
+**Parameters:**
+
+num_embeddings (`int`) : The number of unique embeddings (vocabulary size).
+
+embedding_dim (`int`) : The dimensionality of the embedding.
+
+padding_idx (`Optional[int]`) : Pads the output with zeros at the given index.
+
+max_norm (`Optional[float]`) : Renormalizes embeddings to have a maximum L2 norm.
+
+norm_type (`float`, defaults to `2.0`) : The p-norm to compute for the `max_norm` option.
+
+scale_grad_by_freq (`bool`, defaults to `False`) : Scale gradient by frequency during backpropagation.
+
+sparse (`bool`, defaults to `False`) : Computes dense gradients. Set to `True` to compute sparse gradients instead.
+
+_weight (`Optional[Tensor]`) : Pretrained embeddings.
 
 ## StableEmbedding[[bitsandbytes.nn.StableEmbedding]]
 
-- **norm** (`torch.nn.LayerNorm`) -- Layer normalization applied after the embedding.
+#### bitsandbytes.nn.StableEmbedding[[bitsandbytes.nn.StableEmbedding]]
+
+```python
+bitsandbytes.nn.StableEmbedding(num_embeddings: int, embedding_dim: int, padding_idx: typing.Optional[int] = None, max_norm: typing.Optional[float] = None, norm_type: float = 2.0, scale_grad_by_freq: bool = False, sparse: bool = False, _weight: typing.Optional[torch.Tensor] = None, device = None, dtype = None)
+```
+
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L28)
+
+**Parameters:**
+
+norm (`torch.nn.LayerNorm`) : Layer normalization applied after the embedding.
 
 Custom embedding layer designed to improve stability during training for NLP tasks by using 32-bit optimizer states. It is designed to reduce gradient variations that can result from quantization. This embedding layer is initialized with Xavier uniform initialization followed by layer normalization.
 
@@ -49,22 +76,31 @@ Methods:
 reset_parameters(): Reset embedding parameters using Xavier uniform initialization.
 forward(input: Tensor) -> Tensor: Forward pass through the stable embedding layer.
 
-- **num_embeddings** (`int`) --
-  The number of unique embeddings (vocabulary size).
-- **embedding_dim** (`int`) --
-  The dimensionality of the embedding.
-- **padding_idx** (`Optional[int]`) --
-  Pads the output with zeros at the given index.
-- **max_norm** (`Optional[float]`) --
-  Renormalizes embeddings to have a maximum L2 norm.
-- **norm_type** (`float`, defaults to `2.0`) --
-  The p-norm to compute for the `max_norm` option.
-- **scale_grad_by_freq** (`bool`, defaults to `False`) --
-  Scale gradient by frequency during backpropagation.
-- **sparse** (`bool`, defaults to `False`) --
-  Computes dense gradients. Set to `True` to compute sparse gradients instead.
-- **_weight** (`Optional[Tensor]`) --
-  Pretrained embeddings.
+#### __init__[[bitsandbytes.nn.StableEmbedding.__init__]]
 
-### Overview
-https://huggingface.co/docs/bitsandbytes/v0.50.0/reference/optim/optim_overview.md
+```python
+__init__(num_embeddings: int, embedding_dim: int, padding_idx: typing.Optional[int] = None, max_norm: typing.Optional[float] = None, norm_type: float = 2.0, scale_grad_by_freq: bool = False, sparse: bool = False, _weight: typing.Optional[torch.Tensor] = None, device = None, dtype = None)
+```
+
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L54)
+
+**Parameters:**
+
+num_embeddings (`int`) : The number of unique embeddings (vocabulary size).
+
+embedding_dim (`int`) : The dimensionality of the embedding.
+
+padding_idx (`Optional[int]`) : Pads the output with zeros at the given index.
+
+max_norm (`Optional[float]`) : Renormalizes embeddings to have a maximum L2 norm.
+
+norm_type (`float`, defaults to `2.0`) : The p-norm to compute for the `max_norm` option.
+
+scale_grad_by_freq (`bool`, defaults to `False`) : Scale gradient by frequency during backpropagation.
+
+sparse (`bool`, defaults to `False`) : Computes dense gradients. Set to `True` to compute sparse gradients instead.
+
+_weight (`Optional[Tensor]`) : Pretrained embeddings.
+
+### LLM.int8()
+https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/nn/linear8bit.md

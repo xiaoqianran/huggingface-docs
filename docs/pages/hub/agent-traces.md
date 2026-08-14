@@ -26,12 +26,11 @@ Buckets are especially useful if you want to keep syncing traces as new sessions
 
 ## Upload your traces
 
-After creating a dataset or bucket, install the `hf` CLI with the [recommended standalone installer](/docs/huggingface_hub/guides/cli#getting-started) and log in. If you want your coding agent to run `hf` commands for you, install the Hugging Face CLI skill with `hf skills add`.
+After creating a dataset or bucket, install the `hf` CLI with the [recommended standalone installer](/docs/huggingface_hub/guides/cli#getting-started) and log in. The installer also sets up the [Hugging Face CLI Skill](./agents-cli), so your coding agent can run `hf` commands for you.
 
 ```bash
 curl -LsSf https://hf.co/cli/install.sh | bash
 hf auth login
-hf skills add
 
 hf upload <username>/<dataset-name> ~/.codex/sessions . --repo-type dataset
 hf buckets sync ~/.codex/sessions hf://buckets/<username>/<bucket-name>/codex
@@ -45,5 +44,5 @@ Once you have traces in a dataset, open Data Studio and click a row. For traces 
 
 For a public example, open [`TeichAI/DeepSeek-v4-Pro-Agent`](https://huggingface.co/datasets/TeichAI/DeepSeek-v4-Pro-Agent). You can also browse more datasets tagged as [`traces`](https://huggingface.co/datasets?format=format%3Aagent-traces).
 
-### Serve Models on Jobs
-https://huggingface.co/docs/hub/jobs-serving.md
+### Malware Scanning
+https://huggingface.co/docs/hub/security-malware.md

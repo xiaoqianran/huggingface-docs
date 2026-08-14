@@ -235,5 +235,5 @@ index 0000000..a090ee7
 
 ```
 
-### How to configure OIDC SSO with Okta
-https://huggingface.co/docs/hub/security-sso-okta-oidc.md
+### Using SpanMarker at Hugging Face
+https://huggingface.co/docs/hub/span_marker.md

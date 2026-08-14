@@ -146,5 +146,5 @@ In the following sections we will document the following Team & Enterprise featu
 
 Finally, Team & Enterprise plans include vastly more [included public storage](./storage-limits), as well as 1TB of [private storage](./storage-limits) per seat in the subscription, i.e. if your organization has 40 members, then you have 40TB included storage for your private models and datasets.
 
-### Embedding Atlas
-https://huggingface.co/docs/hub/datasets-embedding-atlas.md
+### Agent Libraries
+https://huggingface.co/docs/hub/agents-libraries.md

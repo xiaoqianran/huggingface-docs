@@ -414,5 +414,5 @@ hf jobs labels <job_id> --name daily-report
 hf jobs labels <job_id> --clear
 ```
 
-### SQL Console: Query Hugging Face datasets in your browser
-https://huggingface.co/docs/hub/datasets-viewer-sql-console.md
+### Giskard on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-giskard.md

@@ -26,5 +26,5 @@ Note that the URL parameters of the parent page are propagated to the embedded a
 An example of this method can be found in this static Space,
 [`whitphx/static-url-param-sync-example`](https://huggingface.co/spaces/whitphx/static-url-param-sync-example).
 
-### File formats
-https://huggingface.co/docs/hub/datasets-polars-file-formats.md
+### Displaying carbon emissions for your model
+https://huggingface.co/docs/hub/model-cards-co2.md

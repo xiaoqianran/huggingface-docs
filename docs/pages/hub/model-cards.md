@@ -312,5 +312,5 @@ $$
 
 $$ E=mc^2 $$
 
-### Configure the Dataset Viewer
-https://huggingface.co/docs/hub/datasets-viewer-configure.md
+### Organization cards
+https://huggingface.co/docs/hub/organizations-cards.md

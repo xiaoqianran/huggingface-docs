@@ -33,5 +33,5 @@ We currently support SP-initiated authentication. For user provisioning, see [SC
 - Once the test is successful, you can enable SSO for your organization by clicking the "Enable" button.
 - Once enabled, members of your organization must complete the SSO authentication flow described in the [How it works](./security-sso-basic#how-it-works) section.
 
-### Skills
-https://huggingface.co/docs/hub/agents-skills.md
+### Using SpeechBrain at Hugging Face
+https://huggingface.co/docs/hub/speechbrain.md

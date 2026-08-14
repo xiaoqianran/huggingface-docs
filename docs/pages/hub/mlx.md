@@ -102,5 +102,5 @@ python -m mlx_lm.convert \
 * [MLX Examples](https://github.com/ml-explore/mlx-examples/tree/main)
 * [All MLX models on the Hub](https://huggingface.co/models?library=mlx&sort=trending)
 
-### Gradio Spaces
-https://huggingface.co/docs/hub/spaces-sdks-gradio.md
+### Advanced Compute Options
+https://huggingface.co/docs/hub/advanced-compute-options.md

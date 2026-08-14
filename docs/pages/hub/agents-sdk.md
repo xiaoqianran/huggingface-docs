@@ -139,5 +139,5 @@ Contribute agents to the [tiny-agents collection](https://huggingface.co/dataset
 - [tiny-agents Collection](https://huggingface.co/datasets/tiny-agents/tiny-agents) - Browse community agents
 - [MCP Server Guide](./agents-mcp) - Connect to the Hugging Face MCP Server
 
-### Moderation
-https://huggingface.co/docs/hub/moderation.md
+### Managing Spaces with CircleCI Workflows
+https://huggingface.co/docs/hub/spaces-circleci.md

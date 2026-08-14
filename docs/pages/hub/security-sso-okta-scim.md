@@ -116,5 +116,5 @@ Once your groups are provisioned from Okta, you can link them to Hugging Face Re
 
 Once linked, the Resource Group becomes **SCIM-managed**: any members already in the SCIM group are immediately added to the Resource Group (backfill), and all future membership changes in Okta are automatically reflected. Manual membership edits on the Resource Group via the Hub UI or API will be blocked.
 
-### Docker Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker.md
+### Storage Regions on the Hub
+https://huggingface.co/docs/hub/storage-regions.md

@@ -355,5 +355,5 @@ Storage Buckets are billed based on the amount of data stored, with simple per-T
 
 As for other repositories, buckets are free to create and have a free storage allowance. For usage above the [free tier](https://huggingface.co/docs/hub/storage-limits), see [hf.co/storage](https://huggingface.co/storage). For general billing information, see the [Billing](./billing) documentation.
 
-### Access Patterns
-https://huggingface.co/docs/hub/storage-buckets-access.md
+### Using OpenCV in Spaces
+https://huggingface.co/docs/hub/spaces-using-opencv.md

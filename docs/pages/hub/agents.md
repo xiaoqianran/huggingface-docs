@@ -15,5 +15,5 @@ You can connect agents via the HF MCP Server, install pre-built Skills for codin
 - [Agent Libraries](./agents-libraries)
 - [Agent Traces](./agent-traces)
 
-### Integrate your library with the Hub
-https://huggingface.co/docs/hub/models-adding-libraries.md
+### Hardware
+https://huggingface.co/docs/hub/hardware.md

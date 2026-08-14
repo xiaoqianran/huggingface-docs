@@ -178,5 +178,5 @@ The Hugging Face Hub supports security and access control features to give you t
 - Signing commits with GPG
 - Malware scanning
 
-### Process Large Datasets
-https://huggingface.co/docs/hub/jobs-large-datasets.md
+### Spaces Dev Mode: Seamless development in Spaces
+https://huggingface.co/docs/hub/spaces-dev-mode.md

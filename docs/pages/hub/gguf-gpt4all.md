@@ -8,5 +8,5 @@ After you have selected and downloaded a model, you can go to `Settings` and pro
 
 Then from the main page, you can select the model from the list of installed models and start a conversation.
 
-### More ways to create Spaces
-https://huggingface.co/docs/hub/spaces-more-ways-to-create.md
+### Using Sentence Transformers at Hugging Face
+https://huggingface.co/docs/hub/sentence-transformers.md

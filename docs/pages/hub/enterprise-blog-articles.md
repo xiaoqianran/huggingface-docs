@@ -22,5 +22,5 @@ Articles mentioning a model or dataset owned by the same organization will autom
 
 See [Blog Articles](./blog-articles) for general information about authoring blog articles on the Hub.
 
-### Jobs
-https://huggingface.co/docs/hub/jobs.md
+### Perform SQL operations
+https://huggingface.co/docs/hub/datasets-duckdb-sql.md

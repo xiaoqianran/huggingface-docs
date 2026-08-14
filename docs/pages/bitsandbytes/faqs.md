@@ -4,5 +4,5 @@ Please submit your questions in [this Github Discussion thread](https://github.c
 
 We'll pick the most generally applicable ones and post the QAs here or integrate them into the general documentation (also feel free to submit doc PRs, please).
 
-### Contribution Guide
-https://huggingface.co/docs/bitsandbytes/v0.50.0/contributing.md
+### Overview
+https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/functional.md

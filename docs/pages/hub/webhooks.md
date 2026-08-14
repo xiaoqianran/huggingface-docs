@@ -250,5 +250,5 @@ No, this is not currently supported.
 
 This is not currently exposed to end users but we can toggle this for you if you send an email to website@huggingface.co.
 
-### Using 🤗 Datasets
-https://huggingface.co/docs/hub/datasets-usage.md
+### Xet History & Overview
+https://huggingface.co/docs/hub/xet/overview.md

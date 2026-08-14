@@ -83,5 +83,5 @@ Your [MCP settings](https://huggingface.co/settings/mcp) provide several options
 - Hugging Face MCP Server: https://huggingface.co/mcp
 - Build your own MCP Server with Gradio Spaces: https://www.gradio.app/guides/building-mcp-server-with-gradio
 
-### Using Spaces for Organization Cards
-https://huggingface.co/docs/hub/spaces-organization-cards.md
+### Using 🤗 Datasets
+https://huggingface.co/docs/hub/datasets-usage.md

@@ -24,5 +24,5 @@ Please see the existing documentation to see how to generate autodocs.
 - images shall be uploaded via PR in the `bitsandbytes/` directory [here](https://huggingface.co/datasets/huggingface/documentation-images)
 - find the documentation builds for each PR in a link posted to the PR, such as https://moon-ci-docs.huggingface.co/docs/bitsandbytes/pr_1012/en/introduction
 
-### Installation Guide
-https://huggingface.co/docs/bitsandbytes/v0.50.0/installation.md
+### Quickstart
+https://huggingface.co/docs/bitsandbytes/v0.50.1/quickstart.md

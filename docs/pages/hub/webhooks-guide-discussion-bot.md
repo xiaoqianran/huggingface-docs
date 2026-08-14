@@ -130,5 +130,5 @@ Update your webhook to send requests to that URL:
 
 ![discussion-result](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhooks-guides/001-discussion-bot/discussion-result.png)
 
-### Use AI Models Locally
-https://huggingface.co/docs/hub/local-apps.md
+### Academia Hub
+https://huggingface.co/docs/hub/academia-hub.md

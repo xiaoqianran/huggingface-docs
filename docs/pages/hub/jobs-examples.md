@@ -41,5 +41,5 @@ The [expose ports](./jobs-configuration#expose-ports) feature of Jobs makes them
 
 Have a tutorial or project using Jobs? [Open a PR](https://github.com/huggingface/hub-docs/edit/main/docs/hub/jobs-examples.md) to add it here.
 
-### Daft
-https://huggingface.co/docs/hub/datasets-daft.md
+### Licenses
+https://huggingface.co/docs/hub/repositories-licenses.md

@@ -134,5 +134,5 @@ my_dataset_repository/
     └── random-00002-of-00003.csv
 ```
 
-### Using Stable-Baselines3 at Hugging Face
-https://huggingface.co/docs/hub/stable-baselines3.md
+### marimo on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-marimo.md

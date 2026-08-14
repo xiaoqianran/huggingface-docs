@@ -132,5 +132,5 @@ Drop us a line at billing@huggingface.co with your feedback.
 
 A. The number of seats will automatically be adjusted at the time of the subscription renewal to reflect any increases in the number of members in the organization during the previous period. There’s no need to update the subscribed number of seats during the month or year as it’s a flat fee subscription.
 
-### Using timm at Hugging Face
-https://huggingface.co/docs/hub/timm.md
+### How to get a user's plan and status in Spaces
+https://huggingface.co/docs/hub/spaces-get-user-plan.md

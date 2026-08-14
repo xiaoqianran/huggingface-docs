@@ -110,5 +110,5 @@ You can upload large scale datasets at high speed using the `huggingface_hub` li
 
 See [how to upload a folder by chunks](/docs/huggingface_hub/guides/upload#upload-a-folder-by-chunks), the [tips and tricks for large uploads](/docs/huggingface_hub/guides/upload#tips-and-tricks-for-large-uploads) and the [repository storage limits and recommendations](./storage-limits).
 
-### Building with the SDK
-https://huggingface.co/docs/hub/agents-sdk.md
+### Dash on Spaces
+https://huggingface.co/docs/hub/spaces-sdks-docker-dash.md

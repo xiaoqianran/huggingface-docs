@@ -91,5 +91,5 @@ Once pushed on the Hub, you should see the commit with a "Verified" badge.
 > [!TIP]
 > To sign all commits by default in any local repository on your computer, you can run git config --global commit.gpgsign true.
 
-### JupyterLab on Spaces
-https://huggingface.co/docs/hub/spaces-sdks-docker-jupyter.md
+### Featured Spaces
+https://huggingface.co/docs/hub/spaces-featured.md

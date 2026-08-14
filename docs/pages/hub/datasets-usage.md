@@ -31,5 +31,5 @@ This creates a dataset repository `username/my_new_dataset` containing your Data
 
 For more information about using 🤗 Datasets, check out the [tutorials](/docs/datasets/tutorial) and [how-to guides](/docs/datasets/how_to) available in the 🤗 Datasets documentation.
 
-### Security
-https://huggingface.co/docs/hub/security.md
+### Use Ollama with any GGUF Model on Hugging Face Hub
+https://huggingface.co/docs/hub/ollama.md

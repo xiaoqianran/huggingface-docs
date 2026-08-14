@@ -61,5 +61,5 @@ If you encounter issues:
 
 For more help, visit the [marimo Discord](https://marimo.io/discord) or [open an issue](https://github.com/marimo-team/marimo/issues).
 
-### DDUF
-https://huggingface.co/docs/hub/dduf.md
+### Model Cards
+https://huggingface.co/docs/hub/model-cards.md

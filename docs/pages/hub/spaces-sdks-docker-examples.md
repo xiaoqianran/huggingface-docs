@@ -13,5 +13,5 @@ We gathered some example demos in the [Spaces Examples](https://huggingface.co/S
 * Zeno app for interactive model evaluation: https://huggingface.co/spaces/zeno-ml/diffusiondb and [instructions for setup](https://zenoml.com/docs/deployment#hugging-face-spaces)
 * Gradio App: https://huggingface.co/spaces/sayakpaul/demo-docker-gradio
 
-### Streaming datasets
-https://huggingface.co/docs/hub/datasets-streaming.md
+### GGUF usage with GPT4All
+https://huggingface.co/docs/hub/gguf-gpt4all.md

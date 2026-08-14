@@ -169,5 +169,5 @@ Run it with `hf jobs uv run cc_wet.py` — it completes in about a minute on the
 - [Pricing & hardware](./jobs-pricing#pricing) — ephemeral disk per flavor · [Configuration](./jobs-configuration#volumes) — volumes
 - [Storage Buckets](./storage-buckets) · [access patterns](./storage-buckets-access) · [integrations](./storage-buckets-integrations)
 
-### Using ML-Agents at Hugging Face
-https://huggingface.co/docs/hub/ml-agents.md
+### Third-party scanner: Protect AI
+https://huggingface.co/docs/hub/security-protectai.md

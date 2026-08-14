@@ -84,5 +84,5 @@ hf.co ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL
 hf.co ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINJjhgtT9FOQrsVSarIoPVI1jFMh3VSHdKfdqp/O776s
 ```
 
-### Argilla
-https://huggingface.co/docs/hub/datasets-argilla.md
+### Tasks
+https://huggingface.co/docs/hub/models-tasks.md

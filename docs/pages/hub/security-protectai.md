@@ -22,5 +22,5 @@ As Hugging Face has become a popular platform for model sharing, we’d like to 
 
 Pickle is not the only exploitable format out there, [see for reference](https://github.com/Azure/counterfit/wiki/Abusing-ML-model-file-formats-to-create-malware-on-AI-systems:-A-proof-of-concept) how one can exploit Keras Lambda layers to achieve arbitrary code execution.
 
-### Authentication
-https://huggingface.co/docs/hub/datasets-polars-auth.md
+### Hugging Face Dataset Upload Decision Guide
+https://huggingface.co/docs/hub/datasets-upload-guide-llm.md

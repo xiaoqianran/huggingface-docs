@@ -139,5 +139,5 @@ Congrats ! You just run your first Job to fine-tune an open source model 🔥
 
 Feel free to try out your model locally and evaluate it using e.g. [transformers](https://huggingface.co/docs/transformers) by clicking on "Use this model", or deploy it to [Inference Endpoints](https://huggingface.co/docs/inference-endpoints) in one click using the "Deploy" button.
 
-### Data Designer
-https://huggingface.co/docs/hub/datasets-data-designer.md
+### GGUF usage with LM Studio
+https://huggingface.co/docs/hub/lmstudio.md
