@@ -1,16 +1,16 @@
 <!-- huggingface-docs: machine-translated zh-CN from English source -->
 
-# 你的第一个 Docker 空间：使用 T5 生成文本
+# Your First Docker Space: Text Generation with T5
 
-在以下部分中，您将了解创建 Docker 空间、配置它以及将代码部署到其中的基础知识。我们将使用 Docker 创建一个 **文本生成** 空间，用于演示 [google/flan-t5-small](https://huggingface.co/google/flan-t5-small) 模型，该模型可以使用 FastAPI 作为服务器，在给定一些输入文本的情况下生成文本。
+In the following sections, you'll learn the basics of creating a Docker Space, configuring it, and deploying your code to it.我们将使用 Docker 创建一个 **文本生成** 空间，用于演示 [google/flan-t5-small](https://huggingface.co/google/flan-t5-small) 模型，该模型可以使用 FastAPI 作为服务器，在给定一些输入文本的情况下生成文本。
 
-您可以找到此托管[here](https://huggingface.co/spaces/DockerTemplates/fastapi_t5)的完整版本。
+You can find a completed version of this hosted [here](https://huggingface.co/spaces/DockerTemplates/fastapi_t5).
 
 ## 创建一个新的 Docker 空间
 
-我们将从 [creating a brand new Space](https://huggingface.co/new-space) 开始并选择 **Docker** 作为我们的 SDK。
+We'll start by [creating a brand new Space](https://huggingface.co/new-space) and choosing **Docker** as our SDK.
 
-Hugging Face Spaces 是 Git 存储库，这意味着您可以通过推送提交来增量（协作）地处理您的空间。在继续之前，请查看 [Getting Started with Repositories](./repositories-getting-started) 指南，了解如何创建和编辑文件。如果您更喜欢使用 UI，您也可以直接在浏览器中完成工作。
+Hugging Face Spaces are Git repositories, meaning that you can work on your Space incrementally (and collaboratively) by pushing commits. Take a look at the [Getting Started with Repositories](./repositories-getting-started) guide to learn about how you can create and edit files before continuing. If you prefer to work with a UI, you can also do the work directly in the browser.
 
 当 [creating a new Space](https://huggingface.co/new-space) 时选择 **Docker** 作为 SDK，将通过在 `README.md` 文件的 YAML 块中将 `sdk` 属性设置为 `docker` 来初始化 Docker 空间。
 
@@ -18,7 +18,7 @@ Hugging Face Spaces 是 Git 存储库，这意味着您可以通过推送提交�
 sdk: docker
 ```
 
-您可以选择通过在 `README.md` 文件的 YAML 块中设置 `app_port` 属性来更改空间的默认应用程序端口。默认端口为`7860`。
+You have the option to change the default application port of your Space by setting the `app_port` property in your `README.md` file's YAML block.默认端口为`7860`。
 
 ```yaml
 app_port: 7860
@@ -76,7 +76,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
 
 保存更改后，空间将重建，您的演示应该会在几秒钟后启动！ [Here](https://huggingface.co/spaces/DockerTemplates/fastapi_dummy) 是此时的一个示例结果。
 
-### 本地测试**给高级用户的提示（您可以跳过）：** 如果您在本地开发，这是一个很好的时机，您可以执行`docker build`和`docker run`进行本地调试，但将更改推送到 Hub 并查看它的样子甚至更容易！
+### 本地测试**Tip for power users (you can skip):** If you're developing locally, this is a good moment in which you can do `docker build` and `docker run` to debug locally, but it's even easier to push the changes to the Hub and see how it looks like!
 
 ```bash
 docker build -t fastapi .
@@ -99,7 +99,7 @@ docker run -it -p 7860:7860 -e SECRET_EXAMPLE=$SECRET_EXAMPLE fastapi
 
 ## 添加一些机器学习到我们的应用程序
 
-如前所述，我们的想法是使用 Flan T5 模型进行文本生成。我们想要为输入字段添加一些 HTML 和 CSS，因此让我们创建一个名为 static 的目录，其中包含 `index.html`、`style.css` 和 `script.js` 文件。此时，你的文件结构应该如下所示：
+如前所述，我们的想法是使用 Flan T5 模型进行文本生成。 We'll want to add some HTML and CSS for an input field, so let's create a directory called static with `index.html`, `style.css`, and `script.js` files.此时，你的文件结构应该如下所示：
 
 ```bash
 /static
@@ -156,7 +156,7 @@ def t5(input):
     </form>
   </section>
 </main>
-```3. 在`main.py`文件中挂载静态文件并在根路由中显示html文件
+```3. In the `main.py` file, mount the static files and show the html file in the root route
 
 ```python
 app.mount("/", StaticFiles(directory="static", html=True), name="static")
@@ -166,7 +166,7 @@ def index() -> FileResponse:
     return FileResponse(path="/app/static/index.html", media_type="text/html")
 ```
 
-4. 在`script.js`文件中，让它处理请求
+4. In the `script.js` file, make it handle the request
 
 ```javascript
 const textGenForm = document.querySelector(".text-gen-form");
@@ -190,7 +190,7 @@ textGenForm.addEventListener("submit", async (event) => {
 
 5. 授予正确目录权限
 
-正如[Permissions Section](./spaces-sdks-docker#permissions)中所讨论的，容器以用户ID 1000运行。这意味着该空间可能面临权限问题。例如，`transformers`下载并缓存`HF_HOME`路径下的模型。解决此问题的最简单方法是创建具有正确权限的用户并使用它来运行容器应用程序。我们可以通过将以下行添加到 `Dockerfile` 来做到这一点。
+As discussed in the [Permissions Section](./spaces-sdks-docker#permissions), the container runs with user ID 1000. That means that the Space might face permission issues. For example, `transformers` downloads and caches the models in the path under the `HF_HOME` path. The easiest way to solve this is to create a user with righ permissions and use it to run the container application.我们可以通过将以下行添加到 `Dockerfile` 来做到这一点。
 
 ```Dockerfile
 # Switch to the "user" user
@@ -230,13 +230,13 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
 
 成功了！您的应用程序现在应该可以运行了！查看[DockerTemplates/fastapi_t5](https://huggingface.co/spaces/DockerTemplates/fastapi_t5)查看最终结果。
 
-多么美妙的旅程啊！请记住，Docker Spaces 为您提供了很大的自由，因此您不限于使用 FastAPI。从[Go Endpoint](https://huggingface.co/spaces/DockerTemplates/test-docker-go)到[Shiny App](https://huggingface.co/spaces/DockerTemplates/shiny-with-python)，极限就是月亮！看看[some official examples](./spaces-sdks-docker-examples)。如果需要，您还可以将 Space 升级为 GPU 😃
+多么美妙的旅程啊！ Please remember that Docker Spaces give you lots of freedom, so you're not limited to use FastAPI.从[Go Endpoint](https://huggingface.co/spaces/DockerTemplates/test-docker-go)到[Shiny App](https://huggingface.co/spaces/DockerTemplates/shiny-with-python)，极限就是月亮！看看[some official examples](./spaces-sdks-docker-examples)。 You can also upgrade your Space to a GPU if needed 😃
 
 ## 调试
 
-您可以通过检查 **Build** 和 **Container** 日志来调试您的 Space。单击 **打开日志** 按钮打开模式。
+You can debug your Space by checking the **Build** and **Container** logs. Click on the **Open Logs** button to open the modal.
 
-如果一切顺利，您将在 **Build** 选项卡上看到 `Pushing Image` 和 `Scheduling Space`在**容器**选项卡上，您将看到应用程序状态，在本例中为`Uvicorn running on http://0.0.0.0:7860`
+If everything went well, you will see `Pushing Image` and `Scheduling Space` on the **Build** tab在**容器**选项卡上，您将看到应用程序状态，在本例中为`Uvicorn running on http://0.0.0.0:7860`
 
 此外，您可以在您的空间上启用开发模式。开发模式允许您通过 VSCode 或 SSH 连接到正在运行的空间。在这里了解更多信息：https://huggingface.co/dev-mode-explorers
 
@@ -245,5 +245,5 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
 - [Docker Spaces](spaces-sdks-docker)
 - [List of Docker Spaces examples](spaces-sdks-docker-examples)
 
-### 将您的空间嵌入另一个网站
-https://huggingface.co/docs/hub/spaces-embed.md
+### 空间作为 MCP 服务器
+https://huggingface.co/docs/hub/spaces-mcp-servers.md

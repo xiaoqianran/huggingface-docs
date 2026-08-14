@@ -53,7 +53,7 @@ DDUF（**D**DUF 的 **D**iffusion **U**nified **F**ormat）是一种扩散模型
 
 `read_dduf_file` 返回一个映射，其中每个条目对应于 DDUF 存档中的一个文件。文件由 `DDUFEntry` 数据类表示，其中包含原始 DDUF 文件中的文件名、偏移量和条目长度。此信息对于读取其内容而不加载整个文件很有用。在实践中，您不必处理低级阅读，而是依赖助手。
 
-例如，以下是如何加载`model_index.json`内容：
+例如，以下是加载`model_index.json`内容的方法：
 ```python
 >>> import json
 >>> json.loads(dduf_entries["model_index.json"].read_text())
@@ -164,5 +164,5 @@ ZIP 有几个优点：
 	
 我们不断接触其他库和框架。如果您有兴趣为您的项目添加支持，请在 [DDUF org](https://huggingface.co/spaces/DDUF/README/discussions) 中打开讨论。
 
-### 代理
-https://huggingface.co/docs/hub/agents.md
+### 空间自定义域
+https://huggingface.co/docs/hub/spaces-custom-domain.md

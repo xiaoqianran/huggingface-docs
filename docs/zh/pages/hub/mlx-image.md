@@ -96,5 +96,5 @@ for epoch in range(10):
 
 如果您有任何疑问，请发送电子邮件至`riccardomusmeci92@gmail.com`。
 
-### 图像数据集
-https://huggingface.co/docs/hub/datasets-image.md
+### 使用空格作为组织卡
+https://huggingface.co/docs/hub/spaces-organization-cards.md

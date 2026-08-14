@@ -86,5 +86,5 @@
 
 如果是 `license: other`，请将许可证文本添加到存储库内的 `LICENSE` 文件中（或联系我们将您使用的许可证添加到此列表中），并在 `license_name` 中为其设置名称。
 
-### 在拥抱脸部时使用 MLX
-https://huggingface.co/docs/hub/mlx.md
+### 适度
+https://huggingface.co/docs/hub/moderation.md

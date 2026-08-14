@@ -162,7 +162,7 @@ configs:
 ### Web数据集格式
 
 [WebDataset](./datasets-webdataset) 格式非常适合大规模视频数据集。
-它由包含视频及其元数据的 TAR 档案组成，并针对流媒体进行了优化。如果您有大量视频并需要流数据加载器进行大规模训练，那么它会很有用。
+它由包含视频及其元数据的 TAR 档案组成，并针对流媒体进行了优化。如果您有大量视频并需要获取流数据加载器以进行大规模训练，那么它会很有用。
 
 ```
 my_dataset_repository/
@@ -189,5 +189,5 @@ train-0000/
 
 请注意，为了方便用户并启用 [Dataset Viewer](./data-studio)，Hub 中托管的每个数据集都会自动转换为最大 5GB 的 Parquet 格式。由于视频可能非常大，因此视频的 URL 存储在转换后的 Parquet 数据中，而不包含视频字节本身。在 [Parquet format](./data-studio#access-the-parquet-files) 文档中阅读更多相关信息。
 
-### S3 兼容性
-https://huggingface.co/docs/hub/storage-buckets-s3.md
+### 在拥抱脸部时使用 MLX
+https://huggingface.co/docs/hub/mlx.md

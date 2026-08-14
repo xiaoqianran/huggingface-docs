@@ -233,5 +233,5 @@ hf jobs cancel --namespace <my-org-name> <job_id>
 
 获取作业信息，并监控日志和资源使用统计信息：
 
-### 通过 SSH 进行 Git
-https://huggingface.co/docs/hub/security-git-ssh.md
+### 空格
+https://huggingface.co/docs/hub/spaces.md

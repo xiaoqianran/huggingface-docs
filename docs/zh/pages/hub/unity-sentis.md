@@ -9,7 +9,7 @@
 
 Hub 中的所有 Sentis 模型都附带代码和说明，可帮助您轻松开始在 Unity 中使用模型。 `unity`命名空间下的所有Sentis模型（例如，[unity/sentis-yolotinyv7](https://huggingface.co/unity/sentis-yolotinyv7)）都经过验证可以工作，因此您可以确定它们将在Unity中运行。
 
-要了解有关使用 Sentis 的更多详细信息，您可以阅读其[documentation](https://docs.unity3d.com/Packages/com.unity.sentis@latest)。要获得使用 Sentis 的其他人的帮助，您可以在其[discussion forum](https://discussions.unity.com/c/ai-beta/sentis)中询问
+要了解有关使用 Sentis 的更多详细信息，您可以阅读其[documentation](https://docs.unity3d.com/Packages/com.unity.sentis@latest)。要获得其他使用 Sentis 的帮助，您可以在其[discussion forum](https://discussions.unity.com/c/ai-beta/sentis) 中询问
 
 ## 文件类型
 每个存储库将包含多种类型的文件：* ``sentis`` 文件：这些是包含在 Unity 上运行的神经网络的主要模型文件。
@@ -61,5 +61,5 @@ Hub 中的所有 Sentis 模型都附带代码和说明，可帮助您轻松开�
 ## 附加信息
 我们还有一些完整的 [sample projects](https://github.com/Unity-Technologies/sentis-samples) 来帮助您开始使用 Sentis。
 
-### 存储桶：安全性与合规性
-https://huggingface.co/docs/hub/storage-buckets-security.md
+### 在拥抱脸部使用 PEFT
+https://huggingface.co/docs/hub/peft.md

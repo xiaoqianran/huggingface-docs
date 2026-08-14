@@ -171,7 +171,7 @@ neighbors = ds.scanner(
 > [!注意]
 > 设置较大的 `k` 或 `nprobes` 值，或一次发送大量查询可能会达到 Hub 速率限制。对于大量使用，请在本地下载数据集（或其子集）并将 Lance 指向本地路径以避免限制。
 
-## 数据集演变Lance 最强大的功能之一是灵活、零成本的数据演化，这意味着您可以轻松添加派生列，**无需**重写原始表。对于包含大量大 blob 的非常大的表，I/O 节省可能非常显着。如果您正在试验 ML/AI 工程任务的数据，并且经常发现自己添加新功能、嵌入或派生元数据，则此功能非常相关。
+## 数据集演化Lance 最强大的功能之一是灵活、零成本的数据演化，这意味着您可以轻松添加派生列，**无需**重写原始表。对于包含大量大 blob 的非常大的表，I/O 节省可能非常显着。如果您正在试验 ML/AI 工程任务的数据，并且经常发现自己添加新功能、嵌入或派生元数据，则此功能非常相关。
 
 下面的示例展示了如何添加派生的 `moderation_label` 列，根据现有分数列将图像标记为 `NSFW`。进行此更改时，回填新列**仅**写入新列数据，而不会触及原始图像 blob 或其他列中的数据。您还可以选择仅添加新列架构而不回填任何数据。
 
@@ -197,7 +197,7 @@ local_ds.add_columns(
 
 ## 处理视频 blob
 
-Lance 表还支持大型内联视频 blob。 `OpenVid-1M` 数据集（来自 [this paper](https://arxiv.org/abs/2407.02371)）包含高质量、富有表现力的视频及其字幕。视频数据存储在Hub上以下Lance数据集的`video_blob`列中。
+Lance 表还支持大型内嵌视频 blob。 `OpenVid-1M` 数据集（来自 [this paper](https://arxiv.org/abs/2407.02371)）包含高质量、富有表现力的视频及其字幕。视频数据存储在Hub上以下Lance数据集的`video_blob`列中。
 
 ```python
 import lance
@@ -250,5 +250,5 @@ tensor = decoder[0]  # uint8 tensor of shape [C, H, W]
 并与社区中的其他人分享您自己的 Lance 数据集！
 您可以访问[lance.org](https://lance.org/integrations/huggingface/)获取更多代码片段和示例。
 
-### 团队和企业计划
-https://huggingface.co/docs/hub/enterprise.md
+### 极地
+https://huggingface.co/docs/hub/datasets-polars.md

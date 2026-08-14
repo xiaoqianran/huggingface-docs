@@ -5,7 +5,7 @@
 Hugging Face Jobs 让您可以在 Hugging Face 基础设施上运行计算任务，而无需自行管理。只需在各种 CPU 和 GPU 选项中定义命令、Docker 映像和硬件风格即可。
 
 > [!提示]
-> 任何具有积极的 [credit balance](https://huggingface.co/settings/billing) 的用户或组织都可以获得工作。
+> 任何具有积极 [credit balance](https://huggingface.co/settings/billing) 的用户或组织都可以获得工作。
 
 作业计费基于硬件使用情况并按分钟计算：作业在请求的硬件上运行的每分钟都会向您收费。
 
@@ -130,5 +130,5 @@ hf jobs run --timeout 3h ...
 hf jobs cancel <job-id>
 ```
 
-### 双因素身份验证 (2FA)
-https://huggingface.co/docs/hub/security-2fa.md
+### 门控数据集
+https://huggingface.co/docs/hub/datasets-gate.md

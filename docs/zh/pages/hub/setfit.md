@@ -52,5 +52,5 @@ model.predict("Amelia Earhart flew her single engine Lockheed Vega 5B across the
 * 设置适合[docs](https://huggingface.co/docs/setfit)
 * 设置适合[paper](https://arxiv.org/abs/2209.11055)
 
-### 极地
-https://huggingface.co/docs/hub/datasets-polars.md
+### 阿吉拉空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-argilla.md

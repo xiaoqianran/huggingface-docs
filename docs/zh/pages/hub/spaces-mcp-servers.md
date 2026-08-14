@@ -75,5 +75,5 @@ demo.launch(mcp_server=True)   # exposes an MCP schema automatically
     Lightricks/ltx-视频蒸馏和
     类似于 Claude Code 中的 AI/Chatterbox，生成带音频的视频。
 
-### 如何使用 Microsoft Entra ID (Azure AD) 配置 OIDC SSO
-https://huggingface.co/docs/hub/security-sso-azure-oidc.md
+### 更多创建空间的方法
+https://huggingface.co/docs/hub/spaces-more-ways-to-create.md

@@ -47,5 +47,5 @@
 
 服务帐户不计为组织的计费成员，因此创建它们不会占用计划中的付费席位。
 
-### 下载模型
-https://huggingface.co/docs/hub/models-downloading.md
+### 代币管理
+https://huggingface.co/docs/hub/enterprise-tokens-management.md

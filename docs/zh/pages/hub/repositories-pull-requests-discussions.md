@@ -27,7 +27,7 @@ _注意，拉取请求和讨论可以从 [repository settings](./repositories-se
 
 ## 锁定讨论/拉取请求
 
-如果您拥有存储库的写入权限，则可以锁定讨论或拉取请求。讨论被锁定后，之前的评论仍然可见，并且用户将无法添加新评论。
+如果您对存储库具有写入权限，则可以锁定讨论或拉取请求。讨论锁定后，之前的评论仍然可见，并且用户将无法添加新评论。
 
 ## 评论编辑和审核
 
@@ -35,7 +35,7 @@ _注意，拉取请求和讨论可以从 [repository settings](./repositories-se
 
 编辑评论后，评论上方将出现一个新链接。此链接显示编辑历史记录。 
 
-您还可以隐藏评论。隐藏评论是不可逆转的，任何人都无法看到其内容也无法再编辑它。
+您还可以隐藏评论。隐藏评论是不可逆的，任何人都无法看到其内容，也无法再对其进行编辑。
 
 另请阅读[moderation](./moderation)，了解如何举报辱骂性评论。
 
@@ -97,12 +97,12 @@ git checkout pr/{PR_NUMBER}
 # for example: git checkout pr/42
 ```
 
-3. 如果您进行本地更改，请推送至 PR 参考：
+3. 如果您进行本地更改，请推送到 PR 参考：
 
 ```bash
 git push origin pr/{PR_NUMBER}:refs/pr/{PR_NUMBER}
 # for example: git push origin pr/42:refs/pr/42
 ```
 
-### 芬尼克
-https://huggingface.co/docs/hub/datasets-fenic.md
+### 空间设置
+https://huggingface.co/docs/hub/spaces-settings.md

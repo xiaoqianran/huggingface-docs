@@ -13,7 +13,7 @@
 ## 概述
 
 您的目标是帮助用户将数据集上传到 Hugging Face Hub。理想情况下，数据集应与数据集查看器（以及`load_dataset`功能）兼容，以确保轻松访问和可用性。您应该致力于满足以下标准：| **标准** |描述 |优先|
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- || **尊重存储库限制** |确保数据集遵守 Hugging Face 的文件大小、存储库大小和文件计数的存储限制。有关具体限制，请参阅下面的关键约束部分。                                                                                                                                                                                               |必填 |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- || **尊重存储库限制** |确保数据集遵守 Hugging Face 的文件大小、存储库大小和文件计数的存储限制。有关具体限制，请参阅下面的关键约束部分。                                                                                                                                                                                               |必填|
 | **使用集线器兼容的格式** |尽可能使用 Parquet 格式（最佳压缩、丰富的类型、大数据集支持）。对于较小的数据集 (<several GB), JSON/JSONL or CSV are acceptable. Raw files work well for images/audio in smaller datasets while respecting repo limits. Use WebDataset (.tar) for large media collections. Domain-specific formats can be used when conversion is impractical. | Desired                                           |
 | **Dataset Viewer compatibility**   | Structure data to work with the automatic Dataset Viewer, enabling preview and easy exploration. This typically means using supported formats and proper file organization. Validation steps are provided later in this guide.                                                                                                                                               | Desired                                           |
 | **Organize data sensibly**         | Use logical folder structures that match Hub conventions (e.g., train/test splits). Configs can be used to define different configurations of the dataset. This facilitates both human understanding and automatic data loading.                                                                                                                                             | Desired                                           |
@@ -363,5 +363,5 @@ dataset.push_to_hub("username/dataset")
 - 加入[Hugging Face Discord](https://hf.co/join/discord)获取实时帮助
 - 许多特定领域的格式已经在 Hub 上有示例
 
-### 关于空间的证据
-https://huggingface.co/docs/hub/spaces-sdks-docker-evidence.md
+### 单点登录 (SSO)
+https://huggingface.co/docs/hub/enterprise-sso.md

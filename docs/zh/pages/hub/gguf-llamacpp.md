@@ -73,5 +73,5 @@ curl http://localhost:8080/v1/chat/completions \
 
 将 `-hf` 替换为任何有效的 Hugging Face 中心存储库名称 - 开始吧！ 🦙
 
-### 使用 GPG 签署提交
-https://huggingface.co/docs/hub/security-gpg.md
+### 托管单点登录
+https://huggingface.co/docs/hub/enterprise-advanced-sso.md

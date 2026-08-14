@@ -2,7 +2,7 @@
 
 # ZenML 的空间
 
-[ZenML](https://github.com/zenml-io/zenml) 是一个可扩展的开源 MLOps 框架，用于创建可移植的、生产就绪的 MLOps 管道。它专为数据科学家、ML 工程师和 MLOps 开发人员构建，以便他们在开发到生产时进行协作。
+[ZenML](https://github.com/zenml-io/zenml) 是一个可扩展的开源 MLOps 框架，用于创建可移植的、可用于生产的 MLOps 管道。它专为数据科学家、ML 工程师和 MLOps 开发人员构建，以便他们在开发到生产时进行协作。
 
 ZenML 提供简单灵活的语法，与云和工具无关，并且具有
 接口/抽象迎合机器学习工作流程。有了 ZenML，您将拥有一切
@@ -84,7 +84,7 @@ zenml connect --url '<YOUR_HF_SPACES_DIRECT_URL>' --username='default' --passwor
 您还可以使用浏览器中的直接 URL 将 ZenML 仪表板用作
 全屏应用程序（即没有 HuggingFace Spaces 包装器）。> [!警告]
 > 从 Huggingface 内部查看时，ZenML 仪表板当前无法工作 
-> 网页（即包含在主`https://huggingface.co/...`网站中）。这是在 
+> 网页（即包含在主 `https://huggingface.co/...` 网站中）。这是在 
 > 说明 ZenML 和 Huggingface 之间处理 cookie 的方式存在限制。 
 > 您**必须**从“直接 URL”查看仪表板（见上文）。
 
@@ -151,5 +151,5 @@ example](https://github.com/zenml-io/zenml/tree/main/examples/quickstart)
 
 如果您有任何建议或需要其他任何不属于的具体支持
 工作中，请[join the ZenML Slack community](https://zenml.io/slack-invite/)
-我们很乐意为您提供帮助！### 吉斯卡德谈空间
-https://huggingface.co/docs/hub/spaces-sdks-docker-giskard.md
+我们很乐意为您提供帮助！### DDUF
+https://huggingface.co/docs/hub/dduf.md

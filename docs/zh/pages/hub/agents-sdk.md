@@ -16,7 +16,7 @@ npm install @huggingface/tiny-agents
 pnpm add @huggingface/tiny-agents
 ```
 
-## 快速入门：运行代理
+## Quick Start: Run an Agent
 
 最快的入门方法是使用 `tiny-agents` CLI：
 
@@ -32,7 +32,7 @@ npx @huggingface/tiny-agents run "julien-c/flux-schnell-generator"
 
 ## 使用代理类
 
-`Agent` 类管理聊天循环和 MCP 工具执行。它使用 [Inference Providers](https://huggingface.co/docs/inference-providers) 来运行 LLM。
+`Agent` 类管理聊天循环和 MCP 工具执行。 It uses [Inference Providers](https://huggingface.co/docs/inference-providers) to run the LLM.
 
 ```python
 from huggingface_hub import Agent
@@ -59,7 +59,7 @@ async def main():
 asyncio.run(main())
 ```
 
-有关所有选项，请参阅[Agent reference](https://huggingface.co/docs/huggingface_hub/package_reference/mcp#huggingface_hub.Agent)。
+See the [Agent reference](https://huggingface.co/docs/huggingface_hub/package_reference/mcp#huggingface_hub.Agent) for all options.
 
 ```typescript
 import { Agent } from "@huggingface/tiny-agents";
@@ -88,9 +88,9 @@ for await (const chunk of agent.run("Generate an image of a sunset")) {
 }
 ```
 
-有关所有选项，请参阅[tiny-agents documentation](https://huggingface.co/docs/huggingface.js/tiny-agents/README)。
+See the [tiny-agents documentation](https://huggingface.co/docs/huggingface.js/tiny-agents/README) for all options.
 
-## 直接使用MCPClient
+## Using MCPClient Directly
 
 如需更多控制，请使用`MCPClient`直接管理MCP服务器和工具调用。
 
@@ -121,15 +121,15 @@ async def main():
 asyncio.run(main())
 ```
 
-有关所有选项，请参阅[MCPClient reference](https://huggingface.co/docs/huggingface_hub/package_reference/mcp#huggingface_hub.MCPClient)。
+See the [MCPClient reference](https://huggingface.co/docs/huggingface_hub/package_reference/mcp#huggingface_hub.MCPClient) for all options.
 
 JavaScript SDK 使用 `Agent` 类进行 MCP 交互。对于较低级别的控制，请参阅[@huggingface/mcp-client](https://huggingface.co/docs/huggingface.js/mcp-client/README)包。
 
 ## 分享你的经纪人
 
-向 Hub 上的[tiny-agents collection](https://huggingface.co/datasets/tiny-agents/tiny-agents) 贡献代理。包括：
+Contribute agents to the [tiny-agents collection](https://huggingface.co/datasets/tiny-agents/tiny-agents) on the Hub.包括：
 
-- `agent.json` - 代理配置（必填）
+- `agent.json` - Agent configuration (required)
 - `PROMPT.md` 或 `AGENTS.md` - 系统提示（可选）
 - `EXAMPLES.md` - 示例提示和用例（可选）
 
@@ -139,5 +139,5 @@ JavaScript SDK 使用 `Agent` 类进行 MCP 交互。对于较低级别的控制
 - [tiny-agents Collection](https://huggingface.co/datasets/tiny-agents/tiny-agents) - 浏览社区代理
 - [MCP Server Guide](./agents-mcp) - 连接到 Hugging Face MCP 服务器
 
-### 适度
-https://huggingface.co/docs/hub/moderation.md
+### 使用 CircleCI 工作流程管理空间
+https://huggingface.co/docs/hub/spaces-circleci.md

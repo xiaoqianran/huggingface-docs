@@ -33,5 +33,5 @@
 
 [Getting started with Resource Groups →](./security-resource-groups)
 
-### 评估结果
-https://huggingface.co/docs/hub/eval-results.md
+### 迪迪标签
+https://huggingface.co/docs/hub/datasets-distilabel.md

@@ -49,7 +49,7 @@
 ## [2022-06-07] - 添加对 Streamlit 1.10.0 的支持
 
 - 新的多页面应用程序功能在 Spaces 上开箱即用。
-- Streamlit 博客文章：https://blog.streamlit.io/introducing-multipage-apps。## [2022-05-23] - Spaces 加速和反应式系统主题
+- Streamlit 博客文章：https://blog.streamlit.io/introducing-multipage-apps。## [2022-05-23] - Spaces 加速和反应系统主题
 
 - 所有使用 Gradio 3+ 和 Streamlit 1.x.x 的空间在加载方面都有显着的加速。
 - 系统主题现在在应用程序内具有反应性。如果用户更改为深色模式，它会自动更改。
@@ -88,7 +88,7 @@
 
 ## [2021-10-20] - 添加对 Streamlit 1.0 的支持
 
-- 我们现在支持 0.79.0 到 1.0.0 之间的所有版本
+- 我们现在支持 0.79.0 和 1.0.0 之间的所有版本
 
 ## [2021-09-07] - Streamlit 版本固定
 
@@ -121,5 +121,5 @@
 
 ## [2021-08-01] - 提供原始日志- 添加空间存储库中原始日志（构建和容器）的链接（具有空间写入权限的用户可以查看）
 
-### 单点登录 (SSO)
-https://huggingface.co/docs/hub/enterprise-sso.md
+### Webhook 指南：为模型和数据集设置自动元数据质量审查
+https://huggingface.co/docs/hub/webhooks-guide-metadata-review.md

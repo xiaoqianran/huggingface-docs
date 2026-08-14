@@ -10,9 +10,9 @@
 - 使用模板页面根据单个模板自动生成多个页面。
 - 将报告无缝部署到各种托管解决方案。
 
-请访问[Evidence’s documentation](https://docs.evidence.dev/)，获取使用 Evidence 创建数据产品的指南、示例和最佳实践。
+Visit [Evidence’s documentation](https://docs.evidence.dev/) for guides, examples, and best practices for using Evidence to create data products.
 
-## 在空间上部署证据
+## Deploy Evidence on Spaces
 
 您只需点击几下即可在 Hugging Face Spaces 上部署 Evidence：
 
@@ -22,7 +22,7 @@
 
 您的 Evidence 应用程序将自动部署在 Hugging Face Spaces 上。 
 
-## 从 CLI 编辑您的 Evidence 应用程序
+## Editing your Evidence app from the CLI
 
 要编辑您的应用程序，请克隆 Space 并在本地编辑文件。
 
@@ -32,19 +32,19 @@ cd your-space-name
 npm install
 npm run sources
 npm run dev
-```然后，您可以修改pages/index.md来更改应用程序的内容。
+```You can then modify pages/index.md to change the content of your app.
 
-## 从 VS Code 编辑您的 Evidence 应用程序
+## Editing your Evidence app from VS Code
 
 使用 Evidence 进行开发的最简单方法是使用 [VS Code Extension](https://marketplace.visualstudio.com/items?itemName=Evidence.evidence-vscode)：
 
-1. 从 VS Code Marketplace 安装扩展
+1. Install the extension from the VS Code Marketplace
 2. 打开命令面板（Ctrl/Cmd + Shift + P）并输入`Evidence: Copy Existing Project`
-3. 粘贴您要复制的 Hugging Face Spaces Evidence 应用程序的 URL（例如 `https://huggingface.co/spaces/your-username/your-space-name`），然后按 Enter
-4. 选择要将项目克隆到的文件夹，然后按 Enter
-5. 按底部状态栏`Start Evidence`
+3. Paste the URL of the Hugging Face Spaces Evidence app you'd like to copy (e.g. `https://huggingface.co/spaces/your-username/your-space-name`) and press Enter
+4. Select the folder you'd like to clone the project to and press Enter
+5. Press `Start Evidence` in the bottom status bar
 
-查看 [alternative install methods](https://docs.evidence.dev/getting-started/install-evidence)、Github Codespaces 以及 dbt 的文档。
+Check out the docs for [alternative install methods](https://docs.evidence.dev/getting-started/install-evidence), Github Codespaces, and alongside dbt.
 
 ## 了解更多
 
@@ -53,5 +53,5 @@ npm run dev
 - [Slack Community](https://slack.evidence.dev/)
 - [Evidence Home Page](https://www.evidence.dev)
 
-### 空间作为 MCP 服务器
-https://huggingface.co/docs/hub/spaces-mcp-servers.md
+### 评估结果
+https://huggingface.co/docs/hub/eval-results.md

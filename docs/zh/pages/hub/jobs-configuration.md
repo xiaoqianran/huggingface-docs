@@ -315,7 +315,7 @@ ssh 6a2bd1f1871c005b5352ad31@ssh.hf.jobs
 
 ## 超时
 
-作业有默认超时（30 分钟），之后它们将自动停止。在运行模型训练等长时间运行的任务时，了解这一点很重要。
+作业有一个默认超时（30 分钟），之后它们将自动停止。在运行模型训练等长时间运行的任务时，了解这一点很重要。
 
 您可以在运行作业时使用 `--timeout` 参数指定自定义超时值。可以通过两种方式指定超时：
 
@@ -351,7 +351,7 @@ ssh 6a2bd1f1871c005b5352ad31@ssh.hf.jobs
 - `d` - 天
 
 > [!警告]
-> 如果您不指定超时，则默认超时将应用于您的作业。对于长时间运行的任务（例如可能需要数小时的模型训练），请确保设置适当的超时以避免作业意外终止。
+> 如果您不指定超时，则默认超时将应用于您的作业。对于模型训练等可能需要数小时的长时间运行的任务，请确保设置适当的超时以避免作业意外终止。
 
 ## 命名空间使用 `--namespace` 参数在您的组织帐户下运行作业。确保您使用有权在您的组织帐户下启动和管理作业的令牌登录。
 
@@ -402,5 +402,5 @@ hf jobs labels <job_id> --name daily-report
 hf jobs labels <job_id> --clear
 ```
 
-### SQL Console：在浏览器中查询拥抱人脸数据集
-https://huggingface.co/docs/hub/datasets-viewer-sql-console.md
+### 吉斯卡德谈空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-giskard.md

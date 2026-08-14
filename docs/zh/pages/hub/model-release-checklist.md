@@ -2,8 +2,8 @@
 
 # 型号发布清单
 
-[Hugging Face Hub](https://huggingface.co/models)是共享机器学习模型的首选平台。
-执行良好的发布可以提高模型的可见性和影响力。本节涵盖了简洁、信息丰富且用户友好的模型发布的**基本**步骤。
+[Hugging Face Hub](https://huggingface.co/models) 是共享机器学习模型的首选平台。
+执行良好的版本可以提高模型的可见性和影响力。本节涵盖了简洁、信息丰富且用户友好的模型发布的**基本**步骤。
 
 > [!提示]
 > 使用编码剂发布？安装 [⟦T11⟧ CLI Skill](./agents-cli) 让您的代理为您处理上传、模型卡和元数据。
@@ -18,7 +18,7 @@
    为同一架构的每个变体创建单独的存储库。这使您可以将它们分组到 [collection](https://huggingface.co/docs/hub/en/collections) 中，这比目录列表更容易导航。它还提高了可见性，因为每个模型都有自己的 URL (`hf.co/org/model-name`)，使搜索更容易，并提供每个模型的下载计数。一个很好的例子是最近的 [Qwen3-VL collection](https://huggingface.co/collections/Qwen/qwen3-vl)，它具有 VL 架构的各种变体。
 
 - **对于权重序列化，优先使用 [⟦T13⟧](https://huggingface.co/docs/safetensors/en/index) 而不是 `pickle`。**：
-   `safetensors` 比 Python 的 `pickle` 或 `pth` 更安全、更快。如果您有 `.bin` pickle 文件，请使用 [weight conversion tool](https://huggingface.co/docs/safetensors/en/convert-weights) 进行转换。###写一张综合模型卡
+   `safetensors` 比 Python 的 `pickle` 或 `pth` 更安全、更快。如果您有 `.bin` pickle 文件，请使用 [weight conversion tool](https://huggingface.co/docs/safetensors/en/convert-weights) 对其进行转换。###写一张综合模型卡
 
 精心制作的模型卡（存储库中的`README.md`）对于可发现性、可重复性和有效共享至关重要。确保覆盖：
 
@@ -87,7 +87,7 @@
 
    | ![code snippet tab](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/release-checklist/code-snippet.png) |
    | :--: |
-   |代码片段选项卡|
+   |代码片段选项卡 |
 
    您还可以[register your own model library](https://huggingface.co/docs/hub/en/models-adding-libraries)或将Hub支持添加到您的库和代码库中，以便用户知道如何从Hub下载模型权重。
 
@@ -266,5 +266,5 @@
 
 我们迫不及待地想看看您接下来分享的内容！ 🤗
 
-### 学术中心
-https://huggingface.co/docs/hub/academia-hub.md
+### 空间闪亮
+https://huggingface.co/docs/hub/spaces-sdks-docker-shiny.md

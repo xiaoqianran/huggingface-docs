@@ -2,7 +2,7 @@
 
 # 存储限制
 
-在 Hugging Face，我们的目标是为人工智能社区提供大量的**公共存储库免费存储空间**，并可以在必要时选择购买更多存储空间。我们还对免费层之上的**私有存储库**的存储空间进行计费（见下表）。
+在 Hugging Face，我们的目标是为人工智能社区提供大量的**公共存储库免费存储空间**，并可以在必要时选择购买更多存储空间。我们还对免费层之上的**私人存储库**的存储空间进行计费（见下表）。
 
 > [!提示]
 > 存储限制和策略适用于 Hub 上所有类型的存储库（模型、数据集、存储桶等）。
@@ -227,5 +227,5 @@ index 0000000..a090ee7
 
 ```
 
-### 如何使用 Okta 配置 OIDC SSO
-https://huggingface.co/docs/hub/security-sso-okta-oidc.md
+### 在拥抱脸部时使用 SpanMarker
+https://huggingface.co/docs/hub/span_marker.md

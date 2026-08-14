@@ -72,5 +72,5 @@ CSV 中的每条记录包含：- `repoType`：存储库的类型（例如“模�
 | `region` |地区或城市名称 |
 | `userAgent` | HTTP 用户代理标头 |由于它需要在我们这边设置自定义数据导出管道（自定义弹性索引等），因此这只能作为 Enterprise Plus 的附加组件提供。
 
-### 您的第一个 Docker 空间：使用 T5 生成文本
-https://huggingface.co/docs/hub/spaces-sdks-docker-first-demo.md
+### 在拥抱脸部使用🤗 `transformers`
+https://huggingface.co/docs/hub/transformers.md

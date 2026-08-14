@@ -11,9 +11,9 @@
     
 
 您应该提供一个 MongoDB 端点，您的聊天记录将在其中写入。如果将此部分留空，您的日志将保存到空间内的数据库中。请注意，Hugging Face 无法访问您的聊天记录。您可以通过提供应用程序名称和应用程序颜色参数来配置空间的名称和主题。
-在此下方，您可以选择您想要服务的模型的 Hugging Face Hub ID。您还可以在下面的字典中以 JSON 格式更改生成超参数。_注意_：如果您想部署具有门控访问权限的模型或私有存储库中的模型，您只需在存储库机密中提供 `HF_TOKEN` 即可。您需要将其值设置为可从 [here](https://huggingface.co/settings/tokens) 获取的访问令牌。
+在此下方，您可以选择您想要服务的模型的 Hugging Face Hub ID。您还可以在下面的字典中以 JSON 格式更改生成超参数。_注意_：如果您想部署具有门控访问权限的模型或私有存储库中的模型，您只需在存储库机密中提供 `HF_TOKEN` 即可。 You need to set its value to an access token you can get from [here](https://huggingface.co/settings/tokens).
 
-创建完成后，您将在您的空间上看到`Building`。构建完成后，您可以尝试自己的 HuggingChat！
+Once the creation is complete, you will see `Building` on your Space. Once built, you can try your own HuggingChat!
 
 开始聊天吧！
 
@@ -23,5 +23,5 @@
 - [chat-ui GitHub Repository](https://github.com/huggingface/chat-ui)
 - [text-generation-inference GitHub repository](https://github.com/huggingface/text-generation-inference)
 
-### 空间设置
-https://huggingface.co/docs/hub/spaces-settings.md
+### 为模特提供工作服务
+https://huggingface.co/docs/hub/jobs-serving.md

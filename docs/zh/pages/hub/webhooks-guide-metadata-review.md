@@ -2,7 +2,7 @@
 
 # Webhook 指南：为模型和数据集设置自动元数据质量审查 
 
-本指南将引导您创建一个系统，该系统可以对 Hub 上用户或组织的模型或数据集的更改做出反应，并为更改的存储库创建“元数据审核”。 
+本指南将引导您创建一个系统，该系统可以对 Hub 上用户或组织的模型或数据集的更改做出反应，并为更改的存储库创建“元数据审查”。 
 
 ## 我们正在构建什么以及为什么？
 
@@ -25,7 +25,7 @@ datasets:
 ---
 ```
 
-此元数据包含有关潜在用户的模型或数据集的基本信息。例如，许可证定义了可以使用模型或数据集的条款。 Hub 用户还可以使用 `YAML` 元数据中定义的字段作为过滤器来识别符合特定条件的模型或数据集。由于此块中定义的元数据对于我们的模型和数据集的潜在用户至关重要，因此完成此部分非常重要。在团队或组织设置中，将模型和数据集推送到 Hub 的用户可能对此 YAML 元数据块的重要性有不同的熟悉程度。虽然团队中的某人可以承担审查此元数据的责任，但我们可以采取一些自动化措施来帮助我们解决此问题。结果将是当中心上的存储库发生更改时自动发布或更新的元数据审查报告。对于我们的元数据质量，该系统的工作原理与[CI/CD](https://en.wikipedia.org/wiki/CI/CD)类似。
+此元数据包含有关潜在用户的模型或数据集的基本信息。例如，许可证定义了可以使用模型或数据集的条款。 Hub 用户还可以使用`YAML`元数据中定义的字段作为过滤器来识别符合特定条件的模型或数据集。由于此块中定义的元数据对于我们的模型和数据集的潜在用户至关重要，因此完成此部分非常重要。在团队或组织设置中，将模型和数据集推送到 Hub 的用户可能对此 YAML 元数据块的重要性有不同的熟悉程度。虽然团队中的某人可以承担审查此元数据的责任，但我们可以采取一些自动化措施来帮助我们解决此问题。结果将是当中心上的存储库发生更改时自动发布或更新的元数据审查报告。对于我们的元数据质量，该系统的工作原理与[CI/CD](https://en.wikipedia.org/wiki/CI/CD)类似。
 
 ![Metadata review](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhooks-guides/003-metadata-review/metadata-report-screenshot.png)
 
@@ -196,5 +196,5 @@ async def webhook(request: Request):
 
 如果您使用 Webhooks 构建元数据质量应用程序，请标记我@davanstrien；我很想知道！
 
-### 使用 Keras 拥抱脸部
-https://huggingface.co/docs/hub/keras.md
+### GGUF 与 llama.cpp 的用法
+https://huggingface.co/docs/hub/gguf-llamacpp.md

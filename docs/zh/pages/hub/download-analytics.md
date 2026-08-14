@@ -30,7 +30,7 @@
 - 下载的总数据量（以字节为单位）
 - 最后一次下载的日期
 
-这使管理员能够快速了解谁在整个组织中推动带宽使用，一目了然。
+这使管理员能够快速了解谁在推动整个组织的带宽使用，一目了然。
 
 ## 数据范围
 
@@ -40,5 +40,5 @@
 
 CDN 使用计量保留 90 天。
 
-### 空间自定义域
-https://huggingface.co/docs/hub/spaces-custom-domain.md
+### 处理大型数据集
+https://huggingface.co/docs/hub/jobs-large-datasets.md

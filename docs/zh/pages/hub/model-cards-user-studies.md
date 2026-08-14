@@ -97,5 +97,5 @@
 **请引用为：**
 奥佐阿尼、埃齐和格奇克、玛丽莎和米切尔、玛格丽特。模型卡指南。拥抱脸，2022 年。https://huggingface.co/docs/hub/en/model-card-guidebook
 
-### GGUF 与 GPT4All 的使用
-https://huggingface.co/docs/hub/gguf-gpt4all.md
+### 将您的空间嵌入另一个网站
+https://huggingface.co/docs/hub/spaces-embed.md

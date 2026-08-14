@@ -55,5 +55,5 @@ Dockerfile 基于 [rocker shiny](https://hub.docker.com/r/rocker/shiny) 镜像�
 
 - 其次，目前您必须使用[httpuv](https://github.com/rstudio/httpuv)的开发版本，它解决了Hugging Face上应用程序超时的问题。
 
-### 如何使用 Microsoft Entra ID (Azure AD) 配置 SAML SSO
-https://huggingface.co/docs/hub/security-sso-azure-saml.md
+### 芬尼克
+https://huggingface.co/docs/hub/datasets-fenic.md

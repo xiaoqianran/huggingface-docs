@@ -1,9 +1,9 @@
 <!-- huggingface-docs: machine-translated zh-CN from English source -->
 
-# 🟧 空间标签工作室
+# 🟧 Label Studio on Spaces
 
-[Label Studio](https://labelstud.io) 是用于标签的 [open-source data labeling
-platform](https://github.com/heartexlabs/label-studio)，
+[Label Studio](https://labelstud.io) is an [open-source data labeling
+platform](https://github.com/heartexlabs/label-studio) for labeling,
 注释并探索许多不同的数据类型。此外，标签工作室
 包括一个强大的[machine learning
 interface](https://labelstud.io/guide/ml.html)，可用于新型号
@@ -15,7 +15,7 @@ Hugging Face Hub 中的标签和注释。您可以使用默认的
 将 Label Studio 配置为完全托管的独立应用程序
 在 Hub 上使用 Docker 进行演示和评估，或者您也可以
 附加您自己的数据库和云存储来托管功能齐全的
-托管在 Spaces 上的生产就绪应用程序。
+production-ready application hosted on Spaces.
 
 ## ⚡️ 在 Spaces 上部署 Label Studio
 
@@ -113,7 +113,7 @@ tutorial](https://labelstud.io/blog/introduction-to-label-studio-in-hugging-face
 
 > [!提示]
 > 设置 `SECRET_KEY` Space Secret 以在重新启动后保持用户会话处于活动状态。
-> 如果没有它，Label Studio 会在每次启动时和所有用户生成一个随机密钥
+> 如果没有它，Label Studio 会在每次启动和所有用户时生成一个随机密钥
 > 重新启动时注销。
 
 #### 让编码代理为您做这件事
@@ -233,5 +233,5 @@ playground](https://labelstud.io/playground/)，用于尝试不同的
 注释接口，以及加入[Label Studio Slack
 Community](https://slack.labelstudio.heartex.com/?source=spaces)的链接。
 
-### 空间概述
-https://huggingface.co/docs/hub/spaces-overview.md
+### 访问基准排行榜数据
+https://huggingface.co/docs/hub/leaderboard-data-guide.md

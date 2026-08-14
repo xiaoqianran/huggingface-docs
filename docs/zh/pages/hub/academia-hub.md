@@ -19,19 +19,19 @@
 4. **治理和安全：** 席位管理、集中管理、[SSO](https://huggingface.co/docs/hub/en/enterprise-sso)、[2FA](https://huggingface.co/docs/hub/en/enterprise-advanced-security)、[SCIM](https://huggingface.co/docs/hub/en/enterprise-sso#user-provisioning-scim)、SOC 2 认证。
 5. **全球开源社区：** 与致力于该领域最常用模型和数据集的研究人员和构建者一起发布和协作。
 
-## 定价
+## Pricing
 起价为 10 美元/席位/月，并提供基于数量的折扣。 
 请联系我们的学术中心团队获取定制套餐！
 
 我们需要至少 250 个年度席位才能加入该计划。对于较小的团体，我们建议从团队计划开始。
 
-## 如何开始
+## How to get started
 研究人员和学生：联系我们表达对学术中心的兴趣，并帮助我们与您所在大学的 IT 或采购团队建立联系。IT 或采购人员：直接联系以设置您所在机构的 Academia Hub 订阅，或详细了解您的机构如何从 Academia Hub 中受益。
 
 ## 常见用例
 🎓 教学和课程作业
 - 交互式探索、测试和比较模型，无需编写代码。
-- 为下游任务微调 Hub 数据集上的基本模型。
+- 为下游任务微调 Hub 数据集上的基础模型。
 - 将代理跟踪同步到存储桶以实现共享协作和重用。
 - 使用数千个空间来解决代理工作流程中的任务。
 
@@ -44,5 +44,5 @@
 - 通过精细的访问控制在实验室或校园之间共享组织工作空间。
 - 将数据和课程材料保存在一个机构组织下，需要时在本地安装或使用。
 
-### 火花
-https://huggingface.co/docs/hub/datasets-spark.md
+### 在拥抱脸部时运用天赋
+https://huggingface.co/docs/hub/flair.md

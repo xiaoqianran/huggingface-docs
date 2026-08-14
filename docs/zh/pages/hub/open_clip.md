@@ -67,5 +67,5 @@ Label probs: tensor([[0.0020, 0.0034, 0.9946]])
 * OpenCLIP [docs](https://github.com/mlfoundations/open_clip/tree/main/docs)
 * OpenCLIP [models in the Hub](https://huggingface.co/models?library=open_clip&sort=trending)
 
-### 冲向空格
-https://huggingface.co/docs/hub/spaces-sdks-docker-dash.md
+### 愚蠢
+https://huggingface.co/docs/hub/datasets-daft.md

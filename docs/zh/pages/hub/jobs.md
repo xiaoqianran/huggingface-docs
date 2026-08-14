@@ -18,5 +18,5 @@
 - [Webhooks Automation](./jobs-webhooks)
 - [Reference](./jobs-reference)
 
-###达斯克
-https://huggingface.co/docs/hub/datasets-dask.md
+### 单点登录 (SSO)
+https://huggingface.co/docs/hub/security-sso.md

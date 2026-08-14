@@ -217,7 +217,7 @@ model = AutoModel.from_pretrained("google-bert/bert-base-cased", from_flax=True)
 我们通过[⟦T29⟧](https://docs.python.org/3/library/pickletools.html#pickletools.genops)获得这些数据，它允许我们在不执行潜在危险代码的情况下读取文件。
 
 请注意，这可以让您知道在解封文件时，它是否会 `REDUCE` `*GLOBAL` 导入的潜在危险函数。***免责声明***：这并非100%万无一失。作为用户，您有责任检查某些内容是否安全。我们不会主动审核 python 包的安全性，我们会尽力维护安全/不安全的导入列表。
-如果您认为某些内容不安全，请通过向我们的网站huggingface.co 发送电子邮件来标记该情况，并与我们联系
+如果您认为某些内容不安全，请联系我们，我们会通过向我们的网站 Huggingface.co 发送电子邮件来标记该情况
 
 #### 潜在的解决方案
 
@@ -251,5 +251,5 @@ model = AutoModel.from_pretrained("google-bert/bert-base-cased", from_flax=True)
 
 [Rehabilitating Python's pickle module](https://github.com/moreati/pickle-fuzz)
 
-### 秘密扫描
-https://huggingface.co/docs/hub/security-secrets.md
+### 资源组
+https://huggingface.co/docs/hub/enterprise-resource-groups.md

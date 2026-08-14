@@ -175,5 +175,5 @@ configs:
 
 请参阅[specific builders' documentation](/docs/datasets/package_reference/builder_classes)查看它们有哪些参数。
 
-### 空间小组
-https://huggingface.co/docs/hub/spaces-sdks-docker-panel.md
+### 带注释的模型卡模板
+https://huggingface.co/docs/hub/model-card-annotated.md

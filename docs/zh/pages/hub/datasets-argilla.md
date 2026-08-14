@@ -14,7 +14,7 @@ Argilla 可用于收集各种 AI 项目的人类反馈，例如传统 NLP（文�
 
 ### 开源数据集和模型
 
-Argilla 也向开源贡献了一些模型和数据集。- [Cleaned UltraFeedback dataset](https://huggingface.co/datasets/argilla/ultrafeedback-binarized-preferences-cleaned) 用于微调 [Notus](https://huggingface.co/argilla/notus-7b-v1) 和 [Notux](https://huggingface.co/argilla/notux-8x7b-v1) 模型。原始 UltraFeedback 数据集是使用 Argilla UI 过滤器进行整理的，以查找并报告原始数据生成代码中的错误。基于此数据管理流程，Argilla 构建了新版本的 UltraFeedback 数据集并对 Notus 进行了微调，在多个基准测试中表现优于 Zephyr。
+Argilla 也向开源贡献了一些模型和数据集。- [Cleaned UltraFeedback dataset](https://huggingface.co/datasets/argilla/ultrafeedback-binarized-preferences-cleaned)用于微调[Notus](https://huggingface.co/argilla/notus-7b-v1)和[Notux](https://huggingface.co/argilla/notux-8x7b-v1)模型。原始 UltraFeedback 数据集是使用 Argilla UI 过滤器进行整理的，以查找并报告原始数据生成代码中的错误。基于此数据管理流程，Argilla 构建了新版本的 UltraFeedback 数据集并对 Notus 进行了微调，在多个基准测试中表现优于 Zephyr。
 - [distilabeled Intel Orca DPO dataset](https://huggingface.co/datasets/argilla/distilabel-intel-orca-dpo-pairs) 用于微调[improved OpenHermes model](https://huggingface.co/argilla/distilabeled-OpenHermes-2.5-Mistral-7B)。该数据集是通过将 Argilla 中的人工管理与 distilabel 的人工智能反馈相结合而构建的，从而形成了英特尔 Orca 数据集的改进版本，并超越了在原始数据集上微调的模型。
 
 ### 示例 用例
@@ -101,5 +101,5 @@ dataset.log(hf_dataset)
 ## 📚 资源
 
 - [🚀 Argilla Docs](https://argilla-io.github.io/argilla/)
-- [🚀 Argilla Docs - import export guides](https://argilla-io.github.io/argilla/latest/how_to_guides/import_export/)### 瞄准空间
-https://huggingface.co/docs/hub/spaces-sdks-docker-aim.md
+- [🚀 Argilla Docs - import export guides](https://argilla-io.github.io/argilla/latest/how_to_guides/import_export/)### 团队和企业计划
+https://huggingface.co/docs/hub/enterprise.md

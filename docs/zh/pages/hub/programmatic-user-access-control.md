@@ -396,7 +396,7 @@ for rg in list_resource_groups(org_name):
     add_users_to_resource_group(org_name, rg["id"], users_with_roles)
 ```
 
-对于一长串用户名，将它们分块（例如每个请求 50 个）并为每个块调用一次 API 以避免大型请求体或超时。
+对于一长串用户名，将它们分块（例如每个请求 50 个）并为每个块调用一次 API 以避免大型请求正文或超时。
 
 ### 重要提示1. **仅限用户名** — API 接受 Hugging Face **用户名**，而不接受电子邮件。在调用 API 之前，您需要从电子邮件 → 用户名（例如，从您的目录或组织成员列表）的映射。
 2. **用户必须位于组织中** — 请求中的每个用户必须已经是组织的成员。否则，请求将返回 `403` 并显示某些用户不在组织中的消息。
@@ -450,5 +450,5 @@ Content-Type: application/json
 ```
 
 > [!注意]
-> 禁用自动加入不会删除之前自动加入的成员。它只会阻止自动添加未来的组织成员。现有成员仍保留在资源组中。### 在拥抱脸部使用 mlx-image
-https://huggingface.co/docs/hub/mlx-image.md
+> 禁用自动加入不会删除之前自动加入的成员。它只会阻止自动添加未来的组织成员。现有成员仍保留在资源组中。### 数据集
+https://huggingface.co/docs/hub/enterprise-datasets.md

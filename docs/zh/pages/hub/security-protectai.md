@@ -10,7 +10,7 @@
 ![Protect AI report for the danger.dat file contained in mcpotato/42-eicar-street](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/protect-ai-report.png)
 *[danger.dat](https://huggingface.co/mcpotato/42-eicar-street/blob/main/danger.dat)的报告示例*
 
-我们与 Protect AI 合作提供扫描，以使 Hub 更安全。与我们的内部扫描系统扫描文件的方式相同，Guardian 也扫描公共存储库的文件。
+我们与 Protect AI 合作提供扫描服务，以使 Hub 更安全。与我们的内部扫描系统扫描文件的方式相同，Guardian 也扫描公共存储库的文件。
 
 我们的前端专门为此目的进行了重新设计，以适应新的扫描仪：
 
@@ -22,5 +22,5 @@
 
 Pickle 并不是唯一可利用的格式，[see for reference](https://github.com/Azure/counterfit/wiki/Abusing-ML-model-file-formats-to-create-malware-on-AI-systems:-A-proof-of-concept) 如何利用 Keras Lambda 层来实现任意代码执行。
 
-### 身份验证
-https://huggingface.co/docs/hub/datasets-polars-auth.md
+### 拥抱人脸数据集上传决策指南
+https://huggingface.co/docs/hub/datasets-upload-guide-llm.md

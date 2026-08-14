@@ -135,7 +135,7 @@ Hugging Face Hub 托管基于 Git 的存储库，这些存储库是版本控制�
 
 ## 型号
 
-您可以发现和使用社区共享的数十万个开源 ML 模型。为了促进负责任的模型使用和开发，模型存储库配备了[Model Cards](./model-cards)，以告知用户每个模型的局限性和偏差。可以包含有关任务、语言和评估结果等信息的附加[metadata](./model-cards#model-card-metadata)，如果存储库包含[TensorBoard traces](./tensorboard)，甚至还可以添加训练指标图表。向您的模型添加 [**inference widget**](./models-widgets) 也很容易，让任何人都可以直接在浏览器中使用该模型！对于编程访问，[**Inference Providers**](./models-inference) 提供了无服务器 API。
+您可以发现和使用社区共享的数十万个开源 ML 模型。为了促进负责任的模型使用和开发，模型存储库配备了[Model Cards](./model-cards)，以告知用户每个模型的局限性和偏差。可以包含有关任务、语言和评估结果等信息的附加[metadata](./model-cards#model-card-metadata)，如果存储库包含[TensorBoard traces](./tensorboard)，甚至还可以添加训练指标图表。向您的模型添加 [**inference widget**](./models-widgets) 也很容易，任何人都可以直接在浏览器中使用该模型！对于编程访问，[**Inference Providers**](./models-inference) 提供了无服务器 API。
 
 要将模型上传到 Hub，或下载模型并将其集成到您的工作中，请探索 [**Models documentation**](./models)。您还可以选择支持 Hub 的[**over a dozen libraries**](./models-libraries)，例如🤗 Transformers、Asteroids 和 ESPnet。
 
@@ -143,7 +143,7 @@ Hugging Face Hub 托管基于 Git 的存储库，这些存储库是版本控制�
 
 [🤗 ⟦T0⟧](https://huggingface.co/docs/datasets/index) 库允许您以编程方式与数据集交互，因此您可以在项目中轻松使用 Hub 中的数据集。只需一行代码，您就可以访问数据集；即使它们太大而无法放入您的计算机，您也可以使用流式传输来有效地访问数据。
 
-## 空格
+## Spaces
 
 [Spaces](https://huggingface.co/spaces) 是在 Hub 上托管 ML 演示应用程序的简单方法。它们允许您构建 ML 产品组合、在会议上或向利益相关者展示您的项目，以及与 ML 生态系统中的其他人员协作。我们目前支持两个很棒的 Python SDK（**[Gradio](https://gradio.app/)** 和 **[Streamlit](./spaces-sdks-streamlit)**），让您在几分钟内构建很酷的应用程序。用户还可以创建静态空间，即简单的 HTML/CSS/JavaScript 页面，或部署任何基于 Docker 的应用程序。
 
@@ -151,11 +151,11 @@ Hugging Face Hub 托管基于 Git 的存储库，这些存储库是版本控制�
 
 探索了几个空间后（看看我们的 [Space of the Week!](https://huggingface.co/spaces)），请深入了解 [**Spaces documentation**](./spaces-overview) 了解如何创建自己的空间。您还可以升级 Space 以在 GPU 或其他加速硬件上运行。 ⚡️
 
-## 存储桶
+## Storage Buckets
 
 [Storage Buckets](./storage-buckets) 在 Hugging Face 上提供类似 S3 的对象存储，由 Xet 存储后端提供支持。与存储库（基于 git 并跟踪文件历史记录）不同，存储桶是远程对象存储容器，专为具有内容可寻址重复数据删除功能的大型文件而设计。它们专为需要简单、快速、可变存储的用例而设计，例如存储训练检查点、日志、中间工件或任何不需要版本控制的大型文件集合。
 
-## 组织公司、大学和非营利组织是 Hugging Face 社区的重要组成部分！ Hub 提供[**Organizations**](./organizations)，可用于对帐户进行分组并管理数据集、模型和空间。教育工作者还可以使用[Hugging Face for Classrooms](https://huggingface.co/classrooms)为学生创建协作组织。组织的存储库将显示在组织的页面上，并且组织的每个成员都将能够为存储库做出贡献。除了方便地对组织的所有工作进行分组之外，该中心还允许管理员将角色设置为[**control access to repositories**](./organizations-security)，并管理其组织的[payment method and billing info](https://huggingface.co/pricing)。协作时机器学习会更有趣！ 🔥
+## Organizations公司、大学和非营利组织是 Hugging Face 社区的重要组成部分！ Hub 提供[**Organizations**](./organizations)，可用于对帐户进行分组并管理数据集、模型和空间。教育工作者还可以使用[Hugging Face for Classrooms](https://huggingface.co/classrooms)为学生创建协作组织。组织的存储库将显示在组织的页面上，并且组织的每个成员都将能够为存储库做出贡献。除了方便地对组织的所有工作进行分组之外，该中心还允许管理员将角色设置为[**control access to repositories**](./organizations-security)，并管理其组织的[payment method and billing info](https://huggingface.co/pricing)。协作时机器学习会更有趣！ 🔥
 
 [Explore existing organizations](https://huggingface.co/organizations)，创建新组织[here](https://huggingface.co/organizations/new)，然后访问[**Organizations documentation**](./organizations)了解更多信息。
 
@@ -168,5 +168,5 @@ Hugging Face Hub 支持安全和访问控制功能，让您放心，您的代码
 - 使用 GPG 签署提交
 - 恶意软件扫描
 
-### 处理大型数据集
-https://huggingface.co/docs/hub/jobs-large-datasets.md
+### Spaces 开发模式：Spaces 中的无缝开发
+https://huggingface.co/docs/hub/spaces-dev-mode.md

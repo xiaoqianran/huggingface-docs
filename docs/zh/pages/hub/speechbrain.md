@@ -35,5 +35,5 @@ out_prob, score, index, text_lab = classifier.classify_file('speechbrain/urbanso
 * SpeechBrain [website](https://speechbrain.github.io/)。
 * SpeechBrain [docs](https://speechbrain.readthedocs.io/en/latest/index.html)。
 
-### 代理
-https://huggingface.co/docs/hub/agents-overview.md
+### 服务帐户
+https://huggingface.co/docs/hub/enterprise-service-accounts.md

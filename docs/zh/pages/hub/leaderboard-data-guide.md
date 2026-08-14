@@ -57,11 +57,11 @@ for entry in leaderboard[:5]:
 
 ### 响应字段
 
-每个[⟦T16⟧](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.DatasetLeaderboardEntry)包含：|领域|描述 |
+每个[⟦T16⟧](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.DatasetLeaderboardEntry)包含：|领域 |描述 |
 |---|---|
 | `rank` |排行榜上的位置 |
 | `model_id` |完整型号 ID（例如 `Qwen/Qwen3.5-397B-A17B`）|
-| `value` |基准分数|
+| `value` |基准分数 |
 | `verified` |结果是否经过独立验证 |
 | `author` | [⟦T23⟧](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.User) 或 [⟦T24⟧](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.Organization) 对象 |
 | `source` |结果从哪里提交（模型卡、外部等）|
@@ -137,7 +137,7 @@ for result in info.eval_results:
 
 您可以通过在 iframe URL 中传递查询参数来配置嵌入式排行榜：|参数|描述 |
 |---|---|
-| `leaderboard_task_id` |要显示的任务的 ID，如基准测试的 `eval.yaml` 中所定义（例如 `gpqa_diamond`）。默认为第一个任务。 |
+| `leaderboard_task_id` |要显示的任务 ID，如基准测试的 `eval.yaml` 中所定义（例如 `gpqa_diamond`）。默认为第一个任务。 |
 | `eval_result` |要在排行榜上突出显示的型号 ID（例如 `meta-llama/Llama-3.1-8B`）。 |
 | `leaderboard_max_params` |按最大参数计数过滤行。接受以下值之一：`1B`、`3B`、`6B`、`12B`、`32B`、`128B` 或 `500B`。 |
 | `leaderboard_is_expanded` |设置为 `true` 可使排行榜完全展开而不是折叠。 |
@@ -160,5 +160,5 @@ for result in info.eval_results:
 - [Eval Results](./eval-results) — 如何提交评估结果并注册基准
 - [Official Benchmark Datasets](https://huggingface.co/datasets?benchmark=benchmark:official&sort=trending) — 浏览所有官方基准测试
 
-### 在抱脸处使用🧨 `diffusers`
-https://huggingface.co/docs/hub/diffusers.md
+### 集线器速率限制
+https://huggingface.co/docs/hub/rate-limits.md

@@ -73,7 +73,7 @@ hf_oauth_authorized_org:
 - `read-billing`：了解用户是否设置了支付方式。
 - `read-repos`：阅读用户的个人存储库。
 - `gated-repos`：读取用户已被授予访问权限的公共门控存储库的内容。与 `read-repos` 不同，这不会授予对私人存储库的访问权限。
-- `contribute-repos`：创建存储库并访问由此应用程序创建的存储库。除非授予额外权限，否则无法访问任何其他存储库。
+- `contribute-repos`：创建存储库并访问此应用程序创建的存储库。除非授予额外权限，否则无法访问任何其他存储库。
 - `write-repos`：读写用户的个人存储库。
 - `manage-repos`：全面管理用户的个人仓库，包括创建和删除它们。
 - `read-collections`：阅读用户的个人收藏。
@@ -99,20 +99,20 @@ hf_oauth_authorized_org:
 Gradio 和 Huggingface.js 还提供**内置支持**，使得使用 HF 按钮实现登录变得轻而易举；您可以通过[gradio](https://www.gradio.app/guides/sharing-your-app#o-auth-login-via-hugging-face)和[huggingface.js](https://huggingface.co/docs/huggingface.js/hub/README#oauth-login)查看相关指南。
 
 基本上，您需要：- 将用户重定向到`https://huggingface.co/oauth/authorize?redirect_uri={REDIRECT_URI}&scope=openid%20profile&client_id={CLIENT_ID}&state={STATE}`，其中`STATE`是一个随机字符串，您稍后需要验证。
-- 处理`/auth/callback`或`/login/callback`（或您自己的自定义回调URL）上的回调并验证`state`参数。
+- Handle the callback on `/auth/callback` or `/login/callback` (or your own custom callback URL) and verify the `state` parameter.
 - 使用 `code` 查询参数从 `https://huggingface.co/oauth/token` 获取访问令牌和 id 令牌（使用 `client_id`、`code`、`grant_type=authorization_code` 和 `redirect_uri` 作为表单数据，并使用 `Authorization: Basic {base64(client_id:client_secret)}` 作为标头的 POST 请求）。
 
 > [!警告]
-> 您应该在按钮上使用 `target=_blank` 在新选项卡中打开登录页面，除非您运行其 `iframe` 之外的空间。否则，您可能会在某些浏览器上遇到 cookie 问题。
+> You should use `target=_blank` on the button to open the sign-in page in a new tab, unless you run the space outside its `iframe`. Otherwise, you might encounter issues with cookies on some browsers.
 
-## 示例：
+## Examples:
 
 - [Gradio test app](https://huggingface.co/spaces/Wauplin/gradio-oauth-test)
 - [HuggingChat (NodeJS/SvelteKit)](https://huggingface.co/spaces/huggingchat/chat-ui)
 - [Inference Widgets (Auth.js/SvelteKit)](https://huggingface.co/spaces/huggingfacejs/inference-widgets)，使用`inference-api`范围代表用户发出推理请求。
 - [Client-Side in a Static Space (huggingface.js)](https://huggingface.co/spaces/huggingfacejs/client-side-oauth) - 非常简单的 JavaScript 示例。
 
-JS代码示例：
+JS Code example:
 
 ```js
 import { oauthLoginUrl, oauthHandleRedirectIfPresent } from "@huggingface/hub";
@@ -128,5 +128,5 @@ if (!oauthResult) {
 console.log(oauthResult);
 ```
 
-### 附录
-https://huggingface.co/docs/hub/model-card-appendix.md
+### 拥抱脸部 MCP 服务器
+https://huggingface.co/docs/hub/agents-mcp.md

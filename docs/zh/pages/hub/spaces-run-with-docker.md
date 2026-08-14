@@ -14,5 +14,5 @@
 - 您的 Hugging Face 用户名是 `username`
 - 用户访问令牌为`password`。生成一个[here](https://huggingface.co/settings/tokens)。
 
-### 单点登录 (SSO)
-https://huggingface.co/docs/hub/security-sso.md
+### Webhook 指南：设置自动系统以在数据集更改时重新训练模型
+https://huggingface.co/docs/hub/webhooks-guide-auto-retrain.md

@@ -3,7 +3,7 @@
 # 图书馆
 
 数据集中心支持开源生态系统中的多个库。
-借助 [huggingface_hub Python library](/docs/huggingface_hub)，您可以轻松地在 Hub 上共享数据集。
+借助 [huggingface_hub Python library](/docs/huggingface_hub)，可以轻松在 Hub 上共享数据集。
 我们很高兴欢迎来到该中心的一组开源库，这些库正在推动机器学习的发展。
 
 ## 库表
@@ -31,7 +31,7 @@
 ### 流媒体
 
 数据集流允许逐步迭代 Hugging Face 中的数据集，而无需完全下载。
-它节省了本地磁盘空间，因为数据永远不在磁盘上。它可以节省内存，因为一次仅使用数据集的一小部分。而且它还可以节省时间，因为无需在 CPU 或 GPU 工作负载之前下载数据。
+它节省了本地磁盘空间，因为数据永远不在磁盘上。它可以节省内存，因为一次仅使用数据集的一小部分。而且它还节省了时间，因为无需在 CPU 或 GPU 工作负载之前下载数据。
 
 除了从“Hugging Face”流式传输之外，许多库还支持“返回”Hugging Face 流式传输。
 因此，他们可以运行端到端的流传输管道：从源进行流传输并逐步写入 Hugging Face，通常会重叠下载、上传和处理步骤。
@@ -52,7 +52,7 @@ Hugging Face 上的 Parquet 文件经过优化，可提高存储效率、加速�
 
 ## 培训库
 
-与 Hub 数据集集成以进行模型训练的训练库。下表显示了它们的流媒体功能 - 无需先下载数据集即可进行训练的能力。|图书馆 |描述 |从集线器传输 |
+与 Hub 数据集集成以进行模型训练的训练库。下表显示了它们的流功能 - 无需先下载数据集即可进行训练的能力。|图书馆 |描述 |从集线器传输 |
 | -------- | ----------- | ---------------- |
 | [Axolotl](https://docs.axolotl.ai/docs/streaming.html) |低代码LLM微调框架| ✅ |
 | [LlamaFactory](https://github.com/hiyouga/LLaMA-Factory) | 100+ LLM 统一微调 | ✅ |
@@ -84,7 +84,7 @@ _* SFTTrainer 和 DPOTrainer 支持流式传输； GRPPOTrainer 尚不支持流�
 
 该指南涵盖：
 
-- 将数据从 Hub 加载到库/工具中的可能方法
+- 将数据从集线器加载到库/工具中的可能方法
 - 将数据从库/工具上传到中心的可能方法
 
 ### 从集线器加载数据
@@ -185,5 +185,5 @@ api.upload_folder(
 
 有关集成的技术问题，请随时通过 datasets@huggingface.co 联系数据集团队。
 
-### 空间上的 ZenML
-https://huggingface.co/docs/hub/spaces-sdks-docker-zenml.md
+### 自定义 Python 空间
+https://huggingface.co/docs/hub/spaces-sdks-python.md

@@ -20,7 +20,7 @@
 
 ![Duplicate Space](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/tabby/duplicate-space.png)
 
-您将看到*建筑状态*。一旦它变成“正在运行”，您的空间就准备好了。如果您没有看到 Tabby Swagger UI，请尝试刷新页面。
+您将看到*建筑状态*。一旦它变成*正在运行*，您的空间就准备好了。如果您没有看到 Tabby Swagger UI，请尝试刷新页面。
 
 ![Swagger UI](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/tabby/swagger-ui.png)
 
@@ -39,7 +39,7 @@
 
 ![Agent Config](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/tabby/agent-config.png)
 
-3. 您会注意到一个 ✓ 图标，表示连接成功。
+3. 您会看到一个 ✓ 图标，表示连接成功。
 ![Tabby Connected](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/tabby/tabby-connected.png)
 
 4. 您已完成设置，现在可以开始使用 Tab 了！
@@ -52,5 +52,5 @@
 
 如果您有改进建议或需要具体支持，请加入[Tabby Slack community](https://join.slack.com/t/tabbycommunity/shared_invite/zt-1xeiddizp-bciR2RtFTaJ37RBxr8VxpA)或联系[Tabby’s GitHub repository](https://github.com/TabbyML/tabby)。
 
-### 在 Hugging Face Hub 上将 Ollama 与任何 GGUF 模型一起使用
-https://huggingface.co/docs/hub/ollama.md
+### 配置数据集查看器
+https://huggingface.co/docs/hub/datasets-viewer-configure.md

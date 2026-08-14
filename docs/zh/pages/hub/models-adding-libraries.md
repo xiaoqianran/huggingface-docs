@@ -2,7 +2,7 @@
 
 # 将您的库与 Hub 集成
 
-Hugging Face Hub 旨在促进共享机器学习模型、检查点和工件。这项努力包括将 Hub 集成到社区中许多令人惊叹的第三方库中。一些已经集成的包括 [spaCy](https://spacy.io/usage/projects#huggingface_hub)、[Sentence Transformers](https://sbert.net/)、[OpenCLIP](https://github.com/mlfoundations/open_clip) 和 [timm](https://huggingface.co/docs/timm/index) 等。集成意味着用户可以直接从您的库下载文件并将文件上传到集线器。我们希望您能够整合您的图书馆，并与我们一起为每个人实现人工智能的民主化。
+Hugging Face Hub 旨在促进共享机器学习模型、检查点和工件。这项努力包括将 Hub 集成到社区中许多令人惊叹的第三方库中。一些已经集成的包括 [spaCy](https://spacy.io/usage/projects#huggingface_hub)、[Sentence Transformers](https://sbert.net/)、[OpenCLIP](https://github.com/mlfoundations/open_clip) 和 [timm](https://huggingface.co/docs/timm/index) 等。集成意味着用户可以直接从您的库下载文件并将其上传到集线器。我们希望您能够整合您的图书馆，并与我们一起为每个人实现人工智能的民主化。
 
 将 Hub 与您的图书馆集成可带来许多好处，包括：
 
@@ -166,5 +166,5 @@ model = BaseModel.from_pretrained("${model.id}")`;
 
 最后，您可以将您的库添加到中心的文档中。例如，检查将 [SetFit](./setfit) 添加到文档中的 [Setfit PR](https://github.com/huggingface/hub-docs/pull/1150)。
 
-### PyArrow
-https://huggingface.co/docs/hub/datasets-pyarrow.md
+### 在拥抱面使用稳定基线3
+https://huggingface.co/docs/hub/stable-baselines3.md

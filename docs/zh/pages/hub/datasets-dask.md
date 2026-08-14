@@ -113,7 +113,7 @@ df = df[df.dump >= "CC-MAIN-2023"]
 ```
 
 Dask 还将只读取计算所需的列并跳过其余的列。
-例如，如果您在代码中后期删除了一列，那么如果不需要它，它就不会在管道中尽早加载它。
+例如，如果您在代码中后期删除了一列，那么如果不需要的话，它不会费心在管道中尽早加载它。
 当您想要操作列的子集或进行分析时，这非常有用：
 
 ```python
@@ -146,5 +146,5 @@ client = Client(cluster)
 
 在 [Deploying Dask documentation](https://docs.dask.org/en/latest/deploying.html) 中查找有关设置本地或云集群的更多信息。
 
-### 抱脸登录
-https://huggingface.co/docs/hub/oauth.md
+### 计费
+https://huggingface.co/docs/hub/billing.md

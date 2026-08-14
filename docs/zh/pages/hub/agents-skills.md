@@ -3,11 +3,11 @@
 # 技能
 
 > [!提示]
-> 正在寻找 `hf` CLI 技能？这是将您的代理连接到 Hugging Face Hub 和生态系统的最快方式。请参阅[Hugging Face CLI for AI Agents](./agents-cli)指南。
+> Looking for the `hf` CLI Skill?这是将您的代理连接到 Hugging Face Hub 和生态系统的最快方式。请参阅[Hugging Face CLI for AI Agents](./agents-cli)指南。
 
 Hugging Face 提供了一套专为 AI 构建者打造的精选技能。训练模型、创建数据集、运行评估、跟踪实验。每个技能都是一个独立的`SKILL.md`，您的代理在执行任务时遵循它。
 
-技能适用于所有主要编码代理：Claude Code、OpenAI Codex、Google Gemini CLI 和 Cursor。了解有关格式的更多信息，请访问[agentskills.io](https://agentskills.io)。
+技能适用于所有主要编码代理：Claude Code、OpenAI Codex、Google Gemini CLI 和 Cursor。 Learn more about the format at [agentskills.io](https://agentskills.io).
 
 ## 安装
 
@@ -49,7 +49,7 @@ gemini extensions install https://github.com/huggingface/skills.git --consent
 
 - “使用 HF 模型训练器 Skill 在 Capybara 数据集上通过 SFT 微调 Qwen3-0.6B”
 - “使用 HF 评估技能将基准结果添加到我的模型卡中”
-- “使用 HF 数据集技能从这些示例创建新数据集”您的代理会自动加载相应的`SKILL.md`指令和帮助程序脚本。
+- “使用 HF 数据集技能从这些示例创建新数据集”Your agent loads the corresponding `SKILL.md` instructions and helper scripts automatically.
 
 ## 资源
 
@@ -58,5 +58,5 @@ gemini extensions install https://github.com/huggingface/skills.git --consent
 - [CLI Guide](./agents-cli) - 用于 AI 代理的 Hugging Face CLI
 - [MCP Guide](./agents-mcp) - 与技能一起使用
 
-### 数字对象标识符 (DOI)
-https://huggingface.co/docs/hub/doi.md
+### 如何使用 Okta 配置 SCIM
+https://huggingface.co/docs/hub/security-sso-okta-scim.md

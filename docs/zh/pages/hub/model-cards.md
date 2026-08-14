@@ -240,7 +240,7 @@ model-index:
 
 ### 模型标签是如何确定的？
 
-每个模型页面在页面标题中的模型名称下方列出了所有模型的标签。这些主要是根据模型卡元数据计算的，尽管有些是自动添加的，如[Enabling a Widget](./models-widgets#enabling-a-widget)中所述。
+每个模型页面在页面标题中模型名称下方列出了所有模型的标签。这些主要是根据模型卡元数据计算的，尽管有些是自动添加的，如[Enabling a Widget](./models-widgets#enabling-a-widget)中所述。
 
 ### 我可以向我的模型添加自定义标签吗？
 
@@ -294,5 +294,5 @@ $$
 
 $$ E=mc^2 $$
 
-### 配置数据集查看器
-https://huggingface.co/docs/hub/datasets-viewer-configure.md
+### 组织卡
+https://huggingface.co/docs/hub/organizations-cards.md

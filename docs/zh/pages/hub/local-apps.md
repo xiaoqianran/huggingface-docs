@@ -93,5 +93,5 @@ LM Studio 是一个桌面应用程序，提供了一种下载、运行和试验�
 
 导航至模型卡并单击“使用此模型”。 LM Studio 将打开，您可以通过界面开始聊天。
 
-### 服务帐户
-https://huggingface.co/docs/hub/enterprise-service-accounts.md
+### 单点登录配置指南
+https://huggingface.co/docs/hub/security-sso-configuration-guides.md

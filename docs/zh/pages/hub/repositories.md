@@ -25,5 +25,5 @@
 - [Next Steps](./repositories-next-steps)
 - [Licenses](./repositories-licenses)
 
-### 高级主题
-https://huggingface.co/docs/hub/models-advanced.md
+### 如何处理Spaces中的URL参数
+https://huggingface.co/docs/hub/spaces-handle-url-parameters.md

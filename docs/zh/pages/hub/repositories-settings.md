@@ -8,7 +8,7 @@
 
 对于模型和数据集，可见性可以在*公共*和*私有*之间切换。
 
-对于空间，可见性通过下拉菜单设置，其中包含三个选项：*公共*、*受保护*和*私有*。 [PRO](https://huggingface.co/pro) 和 [Team & Enterprise](https://huggingface.co/enterprise) 计划提供受保护的可见性。有关受保护空间的详细信息，请参阅[Spaces Overview](./spaces-overview#space-visibility)。
+对于空间，可见性通过具有三个选项的下拉菜单设置：*公共*、*受保护*和*私有*。 [PRO](https://huggingface.co/pro) 和 [Team & Enterprise](https://huggingface.co/enterprise) 计划提供受保护的可见性。有关受保护空间的详细信息，请参阅[Spaces Overview](./spaces-overview#space-visibility)。
 
 将您的可见性设置为*私人*将：
 
@@ -34,5 +34,5 @@
 
 您可以禁用所有讨论和拉取请求。一旦禁用，所有社区和贡献功能将不再可用。可以恢复此操作，而不会丢失任何先前的讨论或拉取请求。
 
-### 硬件
-https://huggingface.co/docs/hub/hardware.md
+### 博客文章
+https://huggingface.co/docs/hub/blog-articles.md

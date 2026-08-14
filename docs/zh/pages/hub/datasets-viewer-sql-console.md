@@ -144,5 +144,5 @@ Leakage detection is the process of identifying whether data in a dataset is pre
         其他 0
     END AS 重叠百分比
 FROM 重叠行数、总唯一行数；
-````### 在拥抱脸部使用 ESPnet
-https://huggingface.co/docs/hub/espnet.md
+````### 在 Hugging Face 中使用 spaCy
+https://huggingface.co/docs/hub/spacy.md

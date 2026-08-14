@@ -31,7 +31,7 @@ https://huggingface.co/google/gemma-3-4b-it/kaggle如果模型存储库包含名
 
 ### 在 Google Colab 中启动
 
-[Google Colab](https://colab.google/) 是一个免费的 Jupyter Notebook 环境，无需设置，完全在云端运行。这是运行 Jupyter Notebooks 的好方法，无需在本地计算机上安装任何内容。 
+[Google Colab](https://colab.google/) 是一个免费的 Jupyter Notebook 环境，无需设置，完全在云端运行。这是运行 Jupyter Notebook 的好方法，无需在本地计算机上安装任何内容。 
 
-Hub 上托管的所有 .ipynb 文件都会自动获得“在 Colab 中打开”按钮。这样您只需单击一下即可在 Colab 中打开笔记本。### 存储桶集成
-https://huggingface.co/docs/hub/storage-buckets-integrations.md
+Hub 上托管的所有 .ipynb 文件都会自动获得“在 Colab 中打开”按钮。这样您只需单击一下即可在 Colab 中打开笔记本。### 访问模式
+https://huggingface.co/docs/hub/storage-buckets-access.md

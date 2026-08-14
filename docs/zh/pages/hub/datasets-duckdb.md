@@ -76,5 +76,5 @@ SELECT * FROM 'hf://datasets/ibm/duorc/ParaphraseRC/*.parquet' LIMIT 3;
 > ```
 DuckDB 预计在未来版本中提供本机 `hf://buckets/` 支持。
 
-### 机器学习文档工具的概况
-https://huggingface.co/docs/hub/model-card-landscape-analysis.md
+### 推理提供者
+https://huggingface.co/docs/hub/models-inference.md

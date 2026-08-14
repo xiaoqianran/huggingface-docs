@@ -118,7 +118,7 @@ curl -X POST https://huggingface.co/oauth/token \
 - `manage-repos`：全面管理用户的个人仓库，包括创建和删除它们。
 - `read-collections`：阅读用户的个人收藏。
 - `write-collections`：读写用户的个人收藏，包括创建和删除它们。
-- `inference-api`：代表用户向[Inference Providers](https://huggingface.co/docs/inference-providers/index)提出推理请求。- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)，并代表用户向其发出推理请求。
+- `inference-api`：代表用户向[Inference Providers](https://huggingface.co/docs/inference-providers/index)提出推理请求。- `read-endpoints`：查看用户的[Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)并代表用户向其发出推理请求。
 - `write-endpoints`：管理用户的推理端点，包括创建和删除它们。包括 `read-endpoints` 访问权限。
 - `jobs`：运行[jobs](https://huggingface.co/docs/huggingface_hub/main/en/guides/jobs)
 - `webhooks`：管理[webhooks](https://huggingface.co/docs/huggingface_hub/main/en/guides/webhooks)
@@ -167,7 +167,7 @@ curl -X POST https://huggingface.co/oauth/token \
 
 ### 用例
 
-令牌交换专为您的组织需要的场景而设计：- **构建内部平台**：创建代表您的团队成员访问 Hugging Face 资源的仪表板或门户，无需每个用户手动进行身份验证。
+令牌交换专为您的组织需要以下的场景而设计：- **构建内部平台**：创建代表您的团队成员访问 Hugging Face 资源的仪表板或门户，无需每个用户手动进行身份验证。
 - **自动化 CI/CD 管道**：为需要将模型或数据集推送到组织存储库的自动化工作流程发出短期的、有范围的令牌。
 - **与企业身份系统集成**：通过根据您的内部用户目录颁发令牌，将您现有的身份提供商与 Hugging Face 连接起来。
 - **实施自定义访问控制**：构建中间件，根据组织的内部策略颁发具有特定范围的令牌。
@@ -178,7 +178,7 @@ curl -X POST https://huggingface.co/oauth/token \
 2. 您的后端服务使用客户端凭据对此 OAuth 应用程序进行身份验证。
 3. 您的服务请求特定组织成员（通过电子邮件标识）的访问令牌。
 4. Hugging Face 验证用户是否是您组织的成员并颁发范围令牌。
-5. 颁发的Token只能访问您组织范围内的资源。
+5. 发行的Token只能访问您组织范围内的资源。
 
 ### 先决条件要使用令牌交换，您需要具有 `token-exchange` 权限的组织绑定 OAuth 应用程序。请联系 Hugging Face 支持人员，为您的组织设置符合条件的 OAuth 应用程序。
 
@@ -266,7 +266,7 @@ curl -X POST "https://huggingface.co/oauth/token" \
 
 ### 错误响应
 
-|错误 |描述 |
+|错误|描述 |
 |--------|-------------|
 | `invalid_client` |客户端无权使用令牌交换，或应用程序未绑定组织 |
 | `invalid_grant` |在绑定的组织中找不到用户 |
@@ -295,5 +295,5 @@ urn:ietf:params:oauth:grant-type:token-exchange
 - [RFC 8693 - OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)
 - [Audit Logs](./audit-logs)
 
-### 文件名和分割
-https://huggingface.co/docs/hub/datasets-file-names-and-splits.md
+### 门控模型
+https://huggingface.co/docs/hub/models-gate.md

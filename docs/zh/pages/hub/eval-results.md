@@ -56,7 +56,7 @@
 |徽章|状况 |
 |------|----------|
 |已验证 | `verifyToken` 有效（使用 Inspect-ai 在 HF 作业中运行评估）|
-|社区 |通过开放 PR 提交的结果（未合并到主版本）|
+|社区 |通过开放 PR 提交的结果（未合并到 main）|
 |排行榜 |基准数据集链接 |
 |来源 |评估日志或外部来源的链接 |
 
@@ -169,5 +169,5 @@ tasks:
           model: openai/o3-mini
 ```
 
-### 用户研究
-https://huggingface.co/docs/hub/model-cards-user-studies.md
+### 后续步骤
+https://huggingface.co/docs/hub/repositories-next-steps.md

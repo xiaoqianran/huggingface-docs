@@ -24,5 +24,5 @@ DOI 使查找有关模型或数据集的信息变得更加容易，并通过永�
 
 - [Introducing DOI: the Digital Object Identifier to Datasets and Models](https://huggingface.co/blog/introducing-doi)
 
-### 手动配置
-https://huggingface.co/docs/hub/datasets-manual-configuration.md
+### 模型中心
+https://huggingface.co/docs/hub/models-the-hub.md

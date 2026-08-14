@@ -26,7 +26,7 @@
 
 ## 开始使用
 
-转到您的组织的设置，然后导航到左侧菜单中的“资源组”条目。该页面分为两个选项卡：**资源组**，其中列出和管理组本身，以及**访问设置**，组织管理员在其中配置谁可以创建资源组以及哪些成员可以使用特定组织功能。
+前往您的组织设置，然后导航至左侧菜单中的“资源组”条目。该页面分为两个选项卡：**资源组**，其中列出和管理组本身，以及**访问设置**，组织管理员在其中配置谁可以创建资源组以及哪些成员可以使用特定组织功能。
 
     
     
@@ -121,5 +121,5 @@
 
 ## 资源组 API您可以通过 Hub API 列出资源组并向其中添加用户（或更改成员的组织角色和资源组分配）。有关完整参考、示例和批处理工作流程，请参阅 [Programmatic User Access Control Management](./programmatic-user-access-control) 指南。
 
-### 带有 llama.cpp 的本地代理
-https://huggingface.co/docs/hub/agents-local.md
+### 通过 SSH 进行 Git
+https://huggingface.co/docs/hub/security-git-ssh.md

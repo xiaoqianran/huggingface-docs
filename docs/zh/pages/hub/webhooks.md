@@ -4,7 +4,7 @@
 
 Webhook 是 MLOps 相关功能的基础。它们允许您监听特定存储库或属于特定用户/组织集的所有存储库（不仅仅是您的存储库，而是任何存储库）的新更改。
 
-您可以使用它们自动转换模型、构建社区机器人或为您的模型、数据集和空间（以及更多！）构建 CI/CD。 Webhook 还可以[trigger Jobs](./jobs-webhooks) 自动执行计算任务以响应存储库事件。
+您可以使用它们自动转换模型、构建社区机器人或为您的模型、数据集和空间（以及更多！）构建 CI/CD。 Webhook 还可以 [trigger Jobs](./jobs-webhooks) 自动执行计算任务以响应存储库事件。
 
 Webhooks 的文档如下 - 或者您也可以浏览我们的**指南**，其中展示了 Webhooks 的一些可能的用例：
 - [Fine-tune a new model whenever a dataset gets updated (Python)](./webhooks-guide-auto-retrain)
@@ -224,7 +224,7 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 
 此外，您可以在开发过程中将真实的 Webhook 有效负载路由到计算机上本地运行的代码。这是测试和调试以实现更快集成的好方法。您可以通过将本地主机端口公开到互联网来完成此操作。为了能够走这条路，您可以使用[ngrok](https://ngrok.com/)或[localtunnel](https://theboroer.github.io/localtunnel-www/)。
 
-## 调试 Webhooks
+## 调试 Webhook
 
 您可以轻松找到最近为您的 webhook 生成的事件。打开 Webhook 的活动选项卡。在那里您将看到最近事件的列表。![image.png](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhook-payload.png)
  
@@ -242,5 +242,5 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 
 目前尚未向最终用户公开，但如果您发送电子邮件至 website@huggingface.co，我们可以为您切换此功能。
 
-### 使用🤗数据集
-https://huggingface.co/docs/hub/datasets-usage.md
+### Xet 历史和概述
+https://huggingface.co/docs/hub/xet/overview.md

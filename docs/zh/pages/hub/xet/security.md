@@ -6,5 +6,5 @@ Xet 存储对 Hugging Face 中存储的所有块提供重复数据删除。这�
 
 有关如何以保护隐私的方式完成重复数据删除的更多信息和细节，请参阅[Xet Protocol Specification](https://huggingface.co/docs/xet/deduplication)。
 
-### 重复数据删除
-https://huggingface.co/docs/hub/xet/deduplication.md
+### 与 LFS 的向后兼容性
+https://huggingface.co/docs/hub/xet/legacy-git-lfs.md

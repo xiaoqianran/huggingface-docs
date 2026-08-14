@@ -51,5 +51,5 @@ co2_eq_emissions:
 
 要了解有关变形金刚碳足迹的更多信息，请查看[video](https://www.youtube.com/watch?v=ftWlj4FBHTg)，拥抱脸部课程的一部分！
 
-### 数据集概述
-https://huggingface.co/docs/hub/datasets-overview.md
+### 值得信赖的出版商
+https://huggingface.co/docs/hub/trusted-publishers.md

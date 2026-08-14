@@ -2,7 +2,7 @@
 
 # 在拥抱面部使用_Adapters_
 
-> 注意：_Adapters_已替换了`adapter-transformers`库，并且在模型权重方面完全兼容。更多信息请参见[here](https://docs.adapterhub.ml/transitioning.html)。
+> 注意：_Adapters_已替换了`adapter-transformers`库，并且在模型权重方面完全兼容。 See [here](https://docs.adapterhub.ml/transitioning.html) for more.
 
 [_Adapters_](https://github.com/adapter-hub/adapters) 是 🤗 `transformers` 的附加库，用于使用适配器和其他参数有效的方法有效地微调预训练的语言模型。
 _Adapters_还提供了在训练和推理过程中组合适配器模块的各种方法。
@@ -10,7 +10,7 @@ _Adapters_还提供了在训练和推理过程中组合适配器模块的各种�
 
 ## 探索集线器上的_适配器_
 
-您可以通过[models page](https://huggingface.co/models?library=adapter-transformers&sort=downloads)左侧的过滤来查找_Adapters_型号。一些适配器型号可以在适配器中心[repository](https://github.com/adapter-hub/hub)中找到。两个来源的模型都汇总在 [AdapterHub website](https://adapterhub.ml/explore/) 上。
+您可以通过[models page](https://huggingface.co/models?library=adapter-transformers&sort=downloads)左侧的过滤找到_Adapters_型号。一些适配器型号可以在适配器中心[repository](https://github.com/adapter-hub/hub)中找到。两个来源的模型都汇总在 [AdapterHub website](https://adapterhub.ml/explore/) 上。
 
 ## 安装
 
@@ -20,7 +20,7 @@ _Adapters_还提供了在训练和推理过程中组合适配器模块的各种�
 pip install adapters
 ```
 
-## 使用现有模型
+## Using existing models
 
 有关加载预训练适配器的完整指南，我们建议查看[official guide](https://docs.adapterhub.ml/loading.html)。 
 
@@ -75,5 +75,5 @@ model.push_adapter_to_hub(
 * _适配器_ [paper](https://arxiv.org/abs/2311.11077)
 * 与集线器[docs](https://docs.adapterhub.ml/huggingface_hub.html)集成
 
-### 高级计算选项
-https://huggingface.co/docs/hub/advanced-compute-options.md
+### 如何使用 Microsoft Entra ID (Azure AD) 配置 SAML SSO
+https://huggingface.co/docs/hub/security-sso-azure-saml.md

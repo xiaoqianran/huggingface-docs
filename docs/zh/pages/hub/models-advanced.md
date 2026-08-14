@@ -9,5 +9,5 @@
 - [GGUF format](./gguf)
 - [DDUF format](./dduf)
 
-### 执行向量相似度搜索
-https://huggingface.co/docs/hub/datasets-duckdb-vector-similarity-search.md
+### 网络安全
+https://huggingface.co/docs/hub/enterprise-network-security.md

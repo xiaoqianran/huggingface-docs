@@ -56,5 +56,5 @@ if __name__ == "__main__":
 
 ## 在其他网页上嵌入渐变空间您可以使用 Web 组件或 HTML `<iframe>` 标签将 Gradio Space 嵌入其他网页。查看 [our documentation](./spaces-embed) 或 [Gradio documentation](https://gradio.app/sharing_your_app/#embedding-hosted-spaces) 了解更多详情。
 
-### 在拥抱脸部时运用天赋
-https://huggingface.co/docs/hub/flair.md
+### 如何使用 Okta 配置 SAML SSO
+https://huggingface.co/docs/hub/security-sso-okta-saml.md

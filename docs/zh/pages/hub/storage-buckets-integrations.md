@@ -145,5 +145,5 @@ text_files = hffs.glob("buckets/username/my-bucket/*.txt")
 
 更多库即将提供原生 `hf://` URL 支持，包括 Polars、DuckDB 和 webdataset。与此同时，所有这些今天都已经通过 [S3-compatible API](./storage-buckets-s3) 发挥作用。
 
-### 编程式用户访问控制管理
-https://huggingface.co/docs/hub/programmatic-user-access-control.md
+### 使用 SDK 构建
+https://huggingface.co/docs/hub/agents-sdk.md

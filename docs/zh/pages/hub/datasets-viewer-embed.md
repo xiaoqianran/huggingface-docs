@@ -23,7 +23,7 @@
 
 ## 参数
 
-数据集查看器页面的所有参数也可以通过将它们添加到 iframe URL 来传递到嵌入式查看器（过滤器、搜索、特定拆分等）。例如，要显示 `nyu-mll/glue` 数据集的 `rte` 子集的 `test` 分割中的 `mangrove` 搜索结果，您可以使用以下 URL：
+数据集查看器页面的所有参数也可以通过将它们添加到 iframe URL 来传递到嵌入式查看器（过滤器、搜索、特定分割等）。例如，要显示 `nyu-mll/glue` 数据集的 `rte` 子集的 `test` 分割中的 `mangrove` 搜索结果，您可以使用以下 URL：
 
 ```html
 <iframe
@@ -66,5 +66,5 @@
 
 [⟦T19⟧](https://huggingface.co/Zaid) [showcases](https://x.com/zaidalyafeai/status/1815365207775932576) [Masader - the Arabic NLP data catalogue0](https://arbml.github.io/masader//) 中的数据集查看器。
 
-### 会话跟踪格式
-https://huggingface.co/docs/hub/session-traces-format.md
+### 虎斑在空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-tabby.md

@@ -64,7 +64,7 @@
 |团队组织| 3,000 | 20,000 | 400 ||企业组织| 6,000 | 50,000 | 600 |
 |企业+组织| 10,000 | 100,000 | 1,000 |
 | Enterprise Plus 组织何时定义组织 IP 范围 | 100,000 | 500,000 | 10,000 |
-|学术中心组织| 3,000 | 20,000 | 400 |
+|学术中心组织 | 3,000 | 20,000 | 400 |
 
 \* 匿名和免费用户可能会随着时间的推移而变化，具体取决于平台的健康状况🤞
 
@@ -102,5 +102,5 @@ Hub Python 库[⟦T12⟧](https://huggingface.co/docs/huggingface_hub/index)（�
 - 等我们目前没有记录这些特定操作的速率限制，因为它们往往会随着时间的推移而更频繁地发生变化。如果您遇到配额错误，我们鼓励您将帐户升级到 PRO、Team 或 Enterprise。
 请随时通过支持团队与我们联系。
 
-### Hugging Face Hub 上的 Jupyter 笔记本
-https://huggingface.co/docs/hub/notebooks.md
+### 带有 llama.cpp 的本地代理
+https://huggingface.co/docs/hub/agents-local.md

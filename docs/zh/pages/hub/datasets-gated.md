@@ -23,7 +23,7 @@
 
 ### 审查访问请求
 
-启用访问请求后，您可以完全控制谁可以访问您的数据集，无论批准模式是手动还是自动。您可以从 UI 或通过 API 查看和管理请求。
+启用访问请求后，您可以完全控制谁可以访问您的数据集，无论审批模式是手动还是自动。您可以从 UI 或通过 API 查看和管理请求。
 
 ### 从用户界面您可以通过单击“**查看访问请求**”按钮，从设置页面查看谁有权访问您的门控数据集。这将打开一个包含 3 个用户列表的模式：
 - **待处理**：等待批准访问您的数据集的用户列表。除非您选择了**手动批准**，否则此列表为空。您可以**接受**或**拒绝**该需求。如果请求被拒绝，用户将无法访问您的数据集，也无法再次请求访问。
@@ -67,10 +67,10 @@
 如果您想请求更多用户信息以提供访问权限，您可以配置其他字段。可以从“**设置**”选项卡访问此信息。为此，请将 `extra_gated_fields` 属性添加到包含键/值对列表的 [dataset card metadata](./datasets-cards#dataset-card-metadata) 中。 *key* 是字段的名称，*value* 是其类型或具有 `type` 字段的对象。字段类型列表为：- `text`：单行文本字段。
 - `checkbox`：复选框字段。
 - `date_picker`：日期选择器字段。
-- `country`：国家/地区下拉菜单。国家列表基于[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)标准。
+- `country`：国家/地区下拉列表。国家列表基于[ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)标准。
 - `select`：带有选项列表的下拉菜单。选项列表在 `options` 字段中定义。示例：`options: ["option 1", "option 2", {label: "option3", value: "opt3"}]`。
 
-最后，您还可以使用 `extra_gated_prompt` 额外字段个性化显示给用户的消息。
+最后，您还可以使用 `extra_gated_prompt` 额外字段个性化向用户显示的消息。
 
 以下是自定义请求表单的示例，其中要求用户提供其公司名称和国家/地区，并确认数据集仅供非商业用途。
 
@@ -116,7 +116,7 @@ extra_gated_button_content: "Acknowledge license"
 
 [Team & Enterprise](https://huggingface.co/docs/hub/en/enterprise) 订阅者可以创建门控组集合，以一次性授予（或拒绝）对集合中所有模型和数据集的访问权限。
 
-有关门控组集合的更多信息可以在[our dedicated doc](https://huggingface.co/docs/hub/en/enterprise-gating-group-collections)中找到。
+有关门控组集合的更多信息，请参阅[our dedicated doc](https://huggingface.co/docs/hub/en/enterprise-gating-group-collections)。
 
 ## 以用户身份访问门控数据集
 
@@ -164,5 +164,5 @@ extra_gated_eu_disallowed: true
 
 系统根据用户的 IP 地址识别用户的位置。
 
-### 型号发布清单
-https://huggingface.co/docs/hub/model-release-checklist.md
+### 在拥抱脸部使用 ESPnet
+https://huggingface.co/docs/hub/espnet.md

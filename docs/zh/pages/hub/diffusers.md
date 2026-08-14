@@ -12,7 +12,7 @@ Hub上有超过10,000个`diffusers`兼容管道，您可以通过[the models pag
 
 * 根据自然语言文本提示生成图像（[text-to-image](https://huggingface.co/models?library=diffusers&pipeline_tag=text-to-image&sort=downloads)）。
 * 使用自然语言文本提示转换图像 ([image-to-image](https://huggingface.co/models?library=diffusers&pipeline_tag=image-to-image&sort=downloads))。
-* 根据自然语言描述生成视频 ([text-to-video](https://huggingface.co/models?library=diffusers&pipeline_tag=text-to-video&sort=downloads))。如果您想测试模型而不下载它们，您可以直接在浏览器中试用这些模型，这要归功于浏览器内的小部件！ 
+* 根据自然语言描述生成视频 ([text-to-video](https://huggingface.co/models?library=diffusers&pipeline_tag=text-to-video&sort=downloads))。如果您想在不下载模型的情况下测试它们，您可以直接在浏览器中试用这些模型，这要归功于浏览器内的小部件！ 
 
 ## Diffusers 存储库文件
 
@@ -51,5 +51,5 @@ unet = UNet2DConditionModel.from_pretrained("stabilityai/stable-diffusion-xl-bas
 * 扩散器[library](https://github.com/huggingface/diffusers)。
 * 扩散器[docs](https://huggingface.co/docs/diffusers/index)。
 
-### 在空间中使用 OpenCV
-https://huggingface.co/docs/hub/spaces-using-opencv.md
+### 在拥抱脸部时使用 OpenCLIP
+https://huggingface.co/docs/hub/open_clip.md

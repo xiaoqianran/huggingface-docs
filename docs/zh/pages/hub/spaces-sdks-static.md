@@ -31,11 +31,11 @@ Spaces 还可以为您的应用程序提供自定义 HTML，而不是使用 Stre
 
 ## 空间变量自定义[environment variables](./spaces-overview#managing-secrets)可以传递到您的空间。如果您的空间有 [enabled OAuth](./spaces-oauth)，则 OAuth 信息（例如客户端 ID 和范围）也可用作环境变量。
 
-要在 JavaScript 中使用这些变量，您可以使用 `window.huggingface.variables` 对象。例如，要访问 `OAUTH_CLIENT_ID` 变量，可以使用 `window.huggingface.variables.OAUTH_CLIENT_ID`。
+要在 JavaScript 中使用这些变量，您可以使用 `window.huggingface.variables` 对象。例如，要访问 `OAUTH_CLIENT_ID` 变量，您可以使用 `window.huggingface.variables.OAUTH_CLIENT_ID`。
 
 以下是使用自定义环境变量并启用 oauth 并在 HTML 中显示变量的空间示例：
 
 * [Static Variables](https://huggingface.co/spaces/huggingfacejs/static-variables)
 
-### Hugging Face Hub 文档
-https://huggingface.co/docs/hub/index.md
+### 数据集概述
+https://huggingface.co/docs/hub/datasets-overview.md

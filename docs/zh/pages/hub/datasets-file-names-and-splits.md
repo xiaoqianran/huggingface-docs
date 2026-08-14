@@ -132,5 +132,5 @@ my_dataset_repository/
     └── random-00002-of-00003.csv
 ```
 
-### 在拥抱面使用稳定基线3
-https://huggingface.co/docs/hub/stable-baselines3.md
+### marimo 空间
+https://huggingface.co/docs/hub/spaces-sdks-docker-marimo.md

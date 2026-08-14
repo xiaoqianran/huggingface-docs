@@ -57,5 +57,5 @@ Hugging Face 提供两种不同的 SSO 模型，每种模型都针对不同的�
 - [User Management](./security-sso-user-management) — 角色映射、资源组映射、会话超时等
 - [Configuration Guides](./security-sso-configuration-guides) — Okta、Microsoft Entra ID 和 Google Workspace 的分步设置说明
 
-### 在拥抱脸部使用 PaddleNLP
-https://huggingface.co/docs/hub/paddlenlp.md
+### 纸页
+https://huggingface.co/docs/hub/paper-pages.md

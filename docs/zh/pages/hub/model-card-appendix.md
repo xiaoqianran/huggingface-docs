@@ -98,5 +98,5 @@ _机器学习中模型文档状态概述_
 **请引用为：**
 奥佐阿尼、埃齐和格奇克、玛丽莎和米切尔、玛格丽特。模型卡指南。拥抱脸，2022 年。https://huggingface.co/docs/hub/en/model-card-guidebook
 
-### 存储库设置
-https://huggingface.co/docs/hub/repositories-settings.md
+### 在网页中嵌入数据集查看器
+https://huggingface.co/docs/hub/datasets-viewer-embed.md

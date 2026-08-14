@@ -36,5 +36,5 @@
 
 参见[Tokens Management](./enterprise-tokens-management)
 
-### 用户配置 (SCIM)
-https://huggingface.co/docs/hub/enterprise-scim.md
+### 安排工作
+https://huggingface.co/docs/hub/jobs-schedule.md

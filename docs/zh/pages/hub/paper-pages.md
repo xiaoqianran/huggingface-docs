@@ -19,7 +19,7 @@
 
 如果您还没有任何关于 Hugging Face 的论文，您可以按照 [here](#can-i-have-a-paper-page-even-if-i-have-no-modeldatasetspace) 的说明对第一篇论文进行索引。一旦可用，您就可以声明作者身份。
 
-## 常见问题### 我可以控制在我的个人资料中显示哪些 Paper 页面吗？
+## 常见问题### 我可以控制哪些 Paper 页面显示在我的个人资料中吗？
 
 是的！您可以在[settings](https://huggingface.co/settings/papers)中访问您的论文，在那里您将看到经过验证的论文列表。在那里，您可以单击“在个人资料上显示”复选框以在您的个人资料中隐藏/显示它。 
 
@@ -31,5 +31,5 @@
 
 是的。您可以前往[the main Papers page](https://huggingface.co/papers)，点击搜索并输入论文名称或完整的Arxiv id。如果该论文不存在，您将可以选择为其建立索引。您也可以访问页面 `hf.co/papers/xxxx.yyyyy` 并替换为您想要索引的论文的 arxiv id。
 
-### 第三方扫描仪：保护 AI
-https://huggingface.co/docs/hub/security-protectai.md
+### 使用 SetFit 和拥抱脸部
+https://huggingface.co/docs/hub/setfit.md

@@ -72,7 +72,7 @@ api.list_datasets(tags="fiftyone")
 文件。为您处理类型转换，并从 URL 下载图像
 如果需要的话。
 
-借助此功能，[you can load](https://docs.voxel51.com/integrations/huggingface.html#basic-examples) 以下任何一项：
+借助此功能，[you can load](https://docs.voxel51.com/integrations/huggingface.html#basic-examples) 可以实现以下任一功能：
 
 - [FiftyOne-Compatible Image Classification Datasets](https://huggingface.co/collections/Voxel51/fiftyone-compatible-image-classification-datasets-665dfd51020d8b66a56c9b6f)，如 [Food101](https://huggingface.co/datasets/food101) 和 [ImageNet-Sketch](https://huggingface.co/datasets/imagenet_sketch)
 - [FiftyOne-Compatible Object Detection Datasets](https://huggingface.co/collections/Voxel51/fiftyone-compatible-object-detection-datasets-665e0279c94ae552c7159a2b) 类似 [CPPE-5](https://huggingface.co/datasets/cppe-5) 和 [WIDER FACE](https://huggingface.co/datasets/wider_face)
@@ -140,5 +140,5 @@ push_to_hub(
 - [🤗 FiftyOne 🤝 Transformers Integration Docs](https://docs.voxel51.com/integrations/huggingface.html#transformers-library)
 - [🧩 FiftyOne Hugging Face Hub Plugin](https://github.com/voxel51/fiftyone-huggingface-plugins)
 
-### 网络安全
-https://huggingface.co/docs/hub/enterprise-network-security.md
+### 具有资源组的组织中的高级访问控制
+https://huggingface.co/docs/hub/security-resource-groups.md

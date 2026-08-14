@@ -6,7 +6,7 @@
 
 ## 在 Hub 中探索 spaCy 模型
 
-`spaCy` 3.3 的官方型号在`spaCy` [Organization Page](https://huggingface.co/spacy)。社区中的任何人都可以分享他们的`spaCy`模型，您可以通过[models page](https://huggingface.co/models?library=spacy)左侧的过滤找到这些模型。
+`spaCy` 3.3 的官方型号位于`spaCy` [Organization Page](https://huggingface.co/spacy)。社区中的任何人都可以分享他们的`spaCy`模型，您可以通过[models page](https://huggingface.co/models?library=spacy)左侧的过滤找到这些模型。
 
 集线器上的所有型号都具有有用的功能
 1. 自动生成的模型卡，其中包含标签方案、指标、组件等。
@@ -47,7 +47,7 @@ nlp = en_core_web_sm.load()
 pip install spacy-huggingface-hub
 ```
 
-然后可以检查命令是否注册成功
+然后可以检查该命令是否已注册成功
 
 ```bash
 python -m spacy huggingface-hub --help
@@ -97,5 +97,5 @@ print(result["url"])
 * spaCy v 3.1 [Announcement](https://explosion.ai/blog/spacy-v3-1#huggingface-hub)
 * 斯帕西[documentation](https://spacy.io/universe/project/spacy-huggingface-hub/)
 
-### 存储库入门
-https://huggingface.co/docs/hub/repositories-getting-started.md
+### 在 Hugging Face 中使用示例工厂
+https://huggingface.co/docs/hub/sample-factory.md

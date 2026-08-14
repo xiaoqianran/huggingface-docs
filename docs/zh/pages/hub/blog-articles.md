@@ -45,5 +45,5 @@
 
 这使得访问者可以轻松地在存储库本身旁边发现相关的文章、发布公告和研究笔记。如果文章引用 [Collection](./collections)，则该集合中的每个模型和数据集都被视为链接 - 文章将显示在每个成员存储库的页面上（遵循相同的所有权规则）。
 
-### 使用小行星拥抱脸部
-https://huggingface.co/docs/hub/asteroid.md
+### 拉取请求和讨论
+https://huggingface.co/docs/hub/repositories-pull-requests-discussions.md

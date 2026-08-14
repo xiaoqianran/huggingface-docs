@@ -11,9 +11,11 @@
 
 确保 `hf` CLI 已安装并且是最新的。请参阅 [CLI installation guide](https://huggingface.co/docs/huggingface_hub/guides/cli#getting-started) 了解设置说明。
 
+推荐的独立安装程序还会全局安装 CLI Skill，包括 Claude Code 位置，因此代理无需额外步骤即可获取它。通过 `--exclude-skill`（或 Windows 上的 `-ExcludeSkill`）来跳过它。
+
 ## 添加 CLI 技能
 
-技能为您的代理提供有效使用工具所需的背景。安装 CLI 技能，以便您的代理了解每个 `hf` 命令并保持最新更新。了解更多关于技能的信息，请访问[agentskills.io](https://agentskills.io)。
+技能为您的代理提供有效使用工具所需的背景。独立安装程序为您添加了 CLI 技能 - 如果您使用 pip 或 Homebrew、跳过它或希望在单个项目中使用它，请手动安装它。在[agentskills.io](https://agentskills.io)了解有关技能的更多信息。
 
 ```bash
 # install globally (available in all projects, works with Codex, Cursor, OpenCode,
@@ -29,10 +31,8 @@ hf skills add
 
 # for Claude Code, use the --claude flag
 hf skills add --claude
-```
-
-> [!提示]
-> 该技能是根据您本地安装的 CLI 版本生成的，因此它始终是最新的。
+```> [!提示]
+> 该技能是从您本地安装的 CLI 版本生成的，因此当您升级时它就会过时。 `hf update` 刷新全局安装的技能 - 永远不会重新添加您删除的技能 - `hf skills update -g` 自行刷新它。 `hf` 每天提醒您一次技能缺失或过时；使用 `HF_HUB_DISABLE_UPDATE_CHECK=1` 使其静音。
 
 或者，您可以通过 Claude Code 插件系统安装：
 
@@ -48,5 +48,5 @@ claude
 - [Token Settings](https://huggingface.co/settings/tokens) - 管理您的代币
 - [Jobs Documentation](https://huggingface.co/docs/huggingface_hub/guides/cli#hf-jobs) - 计算作业指南
 
-### Spaces ZeroGPU：空间的动态 GPU 分配
-https://huggingface.co/docs/hub/spaces-zerogpu.md
+### 技能
+https://huggingface.co/docs/hub/agents-skills.md

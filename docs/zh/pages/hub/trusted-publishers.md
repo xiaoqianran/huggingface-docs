@@ -95,7 +95,7 @@ publish:
 ## 两种风格：repo 与 user|风味 |配置于 |你得到什么 |用它来... |
 | --- | --- | --- | --- |
 | **回购发布者** |存储库的**设置 → 受信任的发布者** |具有**对该一个存储库的写入权限**的令牌 |从 CI 发布模型、数据集、空间、内核或存储桶 |
-| **用户发布者** |您的帐户是 [**Authentication settings → CI/CD Access**](https://huggingface.co/settings/authentication#ci-cd-access) |具有 `gated-repos` 范围的只读令牌 |阅读您有权访问的**门控存储库并使用 CI | 的速率限制
+| **用户发布者** |您的帐户是 [**Authentication settings → CI/CD Access**](https://huggingface.co/settings/authentication#ci-cd-access) |具有 `gated-repos` 范围的只读令牌 |阅读 **您有权访问的门控存储库** 并使用 CI | 的速率限制
 
 两个令牌都会在 60 分钟后过期。您需要 Hub 存储库上的 **Write** 角色来管理其受信任的发布者。
 
@@ -166,7 +166,7 @@ HF_OIDC_ID_TOKEN="$ID_TOKEN" HF_OIDC_RESOURCE="your-hf-username" hf download acm
 
 **请求正文：**
 
-|领域|必填 |价值|
+|领域 |必填 |价值|
 | --- | --- | --- |
 | `grant_type` |是的 | `urn:ietf:params:oauth:grant-type:token-exchange` |
 | `subject_token_type` |是的 | `urn:ietf:params:oauth:token-type:id_token` |
@@ -204,5 +204,5 @@ HF_OIDC_ID_TOKEN="$ID_TOKEN" HF_OIDC_RESOURCE="your-hf-username" hf download acm
 - [Managing Spaces with GitHub Actions](./spaces-github-actions)
 - [GitHub Actions integration for the Hub](./repositories-github-actions)
 
-### 空间上的磁盘使用情况
-https://huggingface.co/docs/hub/spaces-storage.md
+### 身份验证
+https://huggingface.co/docs/hub/datasets-polars-auth.md

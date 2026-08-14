@@ -9,7 +9,7 @@
 
 ## 第 1 步：在您的身份提供商中创建一个新应用程序
 
-在浏览器中打开一个新选项卡/窗口并登录到组织的 Azure 门户。
+在浏览器中打开新选项卡/窗口并登录到组织的 Azure 门户。
 
 导航到 Microsoft Entra ID 管理中心并单击“企业应用程序”
 
@@ -56,5 +56,5 @@ OIDC 选择器附近的绿色复选标记将证明测试成功。
 
 启用后，您组织的成员必须完成 [How it works](./security-sso-basic#how-it-works) 部分中描述的 SSO 身份验证流程。
 
-### 转换你的数据集
-https://huggingface.co/docs/hub/datasets-polars-operations.md
+### 用于 AI 代理的 Hugging Face CLI
+https://huggingface.co/docs/hub/agents-cli.md

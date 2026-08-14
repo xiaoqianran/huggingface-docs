@@ -115,7 +115,7 @@ git commit -m "First model version"  # You can choose any descriptive message
 git push
 ```
 
-你就完成了！您可以在 Hugging Face 上检查您的存储库以及所有最近添加的文件。例如，在下面的屏幕截图中，用户添加了许多文件。请注意，此示例中的某些文件的大小为`1.04 GB`，因此存储库使用 Xet 来跟踪它。
+你就完成了！您可以在 Hugging Face 上检查您的存储库以及所有最近添加的文件。例如，在下面的屏幕截图中，用户添加了许多文件。请注意，此示例中的某些文件的大小为 `1.04 GB`，因此存储库使用 Xet 来跟踪它。
 
 > [!提示]
 > 如果您使用 HTTP 克隆存储库，则可能会要求您在每次推送操作时填写用户名和密码。避免重复的最简单方法是使用[switch to SSH](#cloning-repositories)，而不是 HTTP。或者，如果您必须使用 HTTP，您可能会发现设置 [git credential helper](https://git-scm.com/docs/gitcredentials#_avoiding_repetition) 自动填充您的用户名和密码很有帮助。
@@ -124,5 +124,5 @@ git push
 
 您可以单击单个提交来查看该提交引入了哪些更改：
 
-### 兰斯
-https://huggingface.co/docs/hub/datasets-lance.md
+### 使用 GPU 空间
+https://huggingface.co/docs/hub/spaces-gpus.md

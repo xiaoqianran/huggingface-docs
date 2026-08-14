@@ -152,5 +152,5 @@ widget:
 - 试验温度、最大令牌等推理参数
 - 找到适合您特定用例的完美型号Playground 使用为小部件提供支持的相同推理提供程序基础设施，因此当您将模型集成到自己的应用程序中时，您可以期待类似的性能和功能。
 
-### 如何获取用户在 Spaces 中的计划和状态
-https://huggingface.co/docs/hub/spaces-get-user-plan.md
+### 在 Data Studio 中编辑数据集
+https://huggingface.co/docs/hub/datasets-cell-editing.md

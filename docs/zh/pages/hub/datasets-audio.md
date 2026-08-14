@@ -195,7 +195,7 @@ train-0000/
 ### 镶木地板格式
 
 您可以将所有内容嵌入到 [Parquet](https://parquet.apache.org/) 文件中，而不是将音频文件和元数据作为单独的文件上传。
-如果您有大量音频文件、想要嵌入多个音频列或者想要在同一文件中存储有关音频的其他信息，这会非常有用。
+如果您有大量音频文件、想要嵌入多个音频列或者想要在同一文件中存储有关音频的其他信息，这会很有用。
 Parquet 对于存储原始字节等数据也很有用，而 JSON/CSV 不支持这种数据。
 
 ```plaintext
@@ -216,5 +216,5 @@ dataset_info:
 
 请注意，对于小型音频文件（每个音频文件 <1MB）和小型行组（每个行组 100 行，`datasets` 用于音频），建议使用 Parquet。对于较大的音频文件，建议使用 WebDataset 格式，或共享原始音频文件（可选地与元数据文件）。
 
-### 使用 Github Actions 管理空间
-https://huggingface.co/docs/hub/spaces-github-actions.md
+### 存储库
+https://huggingface.co/docs/hub/repositories.md

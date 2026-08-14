@@ -144,5 +144,5 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 它特别将“offset_index_offset”和“offset_index_length”添加到 Parquet 列中，您可以在 [Parquet metadata viewer on Hugging Face](https://huggingface.co/blog/cfahlgren1/intro-to-parquet-format) 中看到。
 页面索引还可以加快 [Hugging Face Dataset Viewer](https://huggingface.co/docs/dataset-viewer) 的速度，并允许其显示数据而不受行组大小限制。
 
-### 流光空间
-https://huggingface.co/docs/hub/spaces-sdks-streamlit.md
+### GitHub 操作
+https://huggingface.co/docs/hub/repositories-github-actions.md

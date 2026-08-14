@@ -43,7 +43,7 @@ Hub 上的大多数操作都有限制；例如，用户每天只能创建一定�
 
 #### 保持存储库元数据可见
 
-默认情况下，当内容访问策略阻止存储库时，整个存储库将无法访问。启用“保持存储库元数据可见”选项仅阻止存储库的内容，同时保持其元数据可见。
+默认情况下，当内容访问策略阻止存储库时，整个存储库将无法访问。启用“保持存储库元数据可见”选项可仅阻止存储库的内容，同时保持其元数据可见。
 
 启用此选项后，被阻止的存储库仍会显示其元数据（存储库卡、配置文件和列表页面），并且仅阻止其内容：文件下载、数据集查看器、运行空间和模型推理。
 
@@ -53,5 +53,5 @@ Hub 上的大多数操作都有限制；例如，用户每天只能创建一定�
 
 **OpenAPI 参考：**
 - GET /api/organizations//settings/网络安全
-- 补丁/api/组织//设置/网络安全### 处理渐变空间中的空间依赖性
-https://huggingface.co/docs/hub/spaces-dependency.md
+- 补丁 /api/organizations//settings/network-security### 文件名和分割
+https://huggingface.co/docs/hub/datasets-file-names-and-splits.md

@@ -41,5 +41,5 @@ Jobs 的 [expose ports](./jobs-configuration#expose-ports) 功能使其非常适
 
 有使用 Jobs 的教程或项目吗？ [Open a PR](https://github.com/huggingface/hub-docs/edit/main/docs/hub/jobs-examples.md) 将其添加到此处。
 
-### 愚蠢
-https://huggingface.co/docs/hub/datasets-daft.md
+### 许可证
+https://huggingface.co/docs/hub/repositories-licenses.md

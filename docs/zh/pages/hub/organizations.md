@@ -18,5 +18,5 @@ Hugging Face Hub 提供**组织**，可用于对帐户进行分组并管理数�
 
 - [Team & Enterprise Plans](./enterprise)
 
-### 安排工作
-https://huggingface.co/docs/hub/jobs-schedule.md
+### 热门图片
+https://huggingface.co/docs/hub/jobs-popular-images.md

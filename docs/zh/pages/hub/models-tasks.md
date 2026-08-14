@@ -51,7 +51,7 @@
 
 **我的模型不受任何库支持。我注定了吗？ 😱**
 
-对于这些用例，我们建议使用[Hugging Face Spaces](./spaces)。
+对于这些用例，我们建议使用 [Hugging Face Spaces](./spaces)。
 
 ### 用户界面元素
 
@@ -72,5 +72,5 @@
 
 如果您有兴趣为小部件做出贡献，您可以查看所有小部件的[implementation](https://github.com/huggingface/huggingface.js/tree/main/packages/widgets)。
 
-### 如何使用 Google Workspace 配置 OIDC SSO
-https://huggingface.co/docs/hub/security-sso-google-oidc.md
+### 模型
+https://huggingface.co/docs/hub/models.md

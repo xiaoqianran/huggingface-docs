@@ -17,5 +17,5 @@ PRO 订阅为认真的用户解锁了基本功能，包括：
 
 在 **https://huggingface.co/pro** 查看完整的福利列表，然后在 https://huggingface.co/subscribe/pro 订阅
 
-### 显示您模型的碳排放量
-https://huggingface.co/docs/hub/model-cards-co2.md
+### 模型下载统计数据
+https://huggingface.co/docs/hub/models-download-stats.md

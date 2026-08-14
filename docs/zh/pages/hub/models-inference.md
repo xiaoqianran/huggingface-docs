@@ -66,7 +66,7 @@ completion = client.chat.completions.create(
 ```
 
 > [!警告]
-> OpenAI API 兼容客户端不支持图像生成。
+> 图像生成不支持 OpenAI API 兼容客户端。
 
 您可以使用我们的 JavaScript SDK 与推理提供程序进行交互。
 
@@ -122,5 +122,5 @@ const completion = await client.chat.completions.create({
 
 HF-Inference API 是通过推理提供程序提供的提供程序之一。它以前被称为“推理 API（无服务器）”，并由 [Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index) 提供支持。
 
-有关 HF-Inference 提供程序的更多详细信息，请查看其 [dedicated page](https://huggingface.co/docs/inference-providers/providers/hf-inference)。### 特色空间
-https://huggingface.co/docs/hub/spaces-featured.md
+有关 HF-Inference 提供程序的更多详细信息，请查看其 [dedicated page](https://huggingface.co/docs/inference-providers/providers/hf-inference)。### 在拥抱脸部使用 BERTopic
+https://huggingface.co/docs/hub/bertopic.md

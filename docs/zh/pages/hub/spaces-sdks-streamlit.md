@@ -117,5 +117,5 @@ if file_name is not None:
 
 此外，您还可以查看[our documentation](./spaces-embed)。
 
-### 如何处理Spaces中的URL参数
-https://huggingface.co/docs/hub/spaces-handle-url-parameters.md
+### 存储桶
+https://huggingface.co/docs/hub/storage-buckets.md

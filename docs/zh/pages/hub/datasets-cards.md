@@ -54,7 +54,7 @@ task_categories:
 
 ### 强制设置数据集模式Hub 将根据数据集包含的文件（音频、视频、地理空间等）自动检测数据集的模式。如果要强制使用特定模态，可以向数据集卡元数据添加标签：`3d`、`audio`、`geospatial`、`image`、`tabular`、`text`、`timeseries`、`video`。
 
-例如，要强制模态为`audio`，请将以下内容添加到数据集卡元数据中：
+例如，要强制模态为 `audio`，请将以下内容添加到数据集卡元数据中：
 
 ```yaml
 tags:
@@ -72,5 +72,5 @@ tags:
 - argilla
 ```
 
-### 空间作为 API 端点
-https://huggingface.co/docs/hub/spaces-api-endpoints.md
+### 在本地使用 AI 模型
+https://huggingface.co/docs/hub/local-apps.md

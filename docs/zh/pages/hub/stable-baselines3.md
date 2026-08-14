@@ -80,5 +80,5 @@ push_to_hub(
 * 拥抱脸部稳定-基线3 [documentation](https://github.com/huggingface/huggingface_sb3#hugging-face--x-stable-baselines3-v20)
 * 稳定基线3 [documentation](https://stable-baselines3.readthedocs.io/en/master/)
 
-### 示例和教程
-https://huggingface.co/docs/hub/jobs-examples.md
+### 编程式用户访问控制管理
+https://huggingface.co/docs/hub/programmatic-user-access-control.md

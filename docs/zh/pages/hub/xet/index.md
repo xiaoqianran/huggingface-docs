@@ -27,5 +27,5 @@ Hugging Face Hub 上的存储库与软件开发平台上的存储库不同。它
 - [Backwards Compatibility & Legacy](./legacy-git-lfs)
 - [Deduplication](./deduplication)
 
-### 与 LFS 的向后兼容性
-https://huggingface.co/docs/hub/xet/legacy-git-lfs.md
+### 使用 Xet 存储
+https://huggingface.co/docs/hub/xet/using-xet-storage.md

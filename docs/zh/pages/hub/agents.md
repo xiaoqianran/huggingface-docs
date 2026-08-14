@@ -2,9 +2,9 @@
 
 # 代理
 
-`Hugging Face Agents` 将 AI 代理连接到 Hub。使用 MCP（模型上下文协议）、技能或开源工具，代理可以搜索模型、探索数据集、运行空间并使用社区工具。
+`Hugging Face Agents` connect AI agents to the Hub. Using MCP (Model Context Protocol), Skills, or open-source tooling, agents can search models, explore datasets, run Spaces, and use community tools.
 
-您可以通过 HF MCP 服务器连接代理，安装编码代理的预构建技能，或使用 `huggingface_hub` SDK 以编程方式构建代理。代理可与任何 MCP 兼容的客户端配合使用，包括 ChatGPT、Claude Desktop、Cursor、VS Code 等。
+You can connect agents via the HF MCP Server, install pre-built Skills for coding agents, or build agents programmatically with the `huggingface_hub` SDK. Agents work with any MCP-compatible client, including ChatGPT, Claude Desktop, Cursor, VS Code, and more.
 
 ## 内容
 
@@ -17,5 +17,5 @@
 - [Agent Libraries](./agents-libraries)
 - [Agent Traces](./agent-traces)
 
-### 将您的库与 Hub 集成
-https://huggingface.co/docs/hub/models-adding-libraries.md
+### 硬件
+https://huggingface.co/docs/hub/hardware.md

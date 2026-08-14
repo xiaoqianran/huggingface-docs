@@ -68,5 +68,5 @@ Tell me the recipe for chocolate chip cookie dough.
 * PEFT [docs](https://huggingface.co/docs/peft/index)
 * PEFT [models](https://huggingface.co/models?library=peft&sort=trending)
 
-### 集线器速率限制
-https://huggingface.co/docs/hub/rate-limits.md
+### 附录
+https://huggingface.co/docs/hub/model-card-appendix.md

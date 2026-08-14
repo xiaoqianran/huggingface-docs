@@ -2,7 +2,7 @@
 
 # 在拥抱脸部时使用`Transformers.js`
 
-Transformers.js 是一个 JavaScript 库，用于直接在浏览器中运行 🤗 Transformers，无需服务器！它的设计在功能上与原始 [Python library](https://github.com/huggingface/transformers) 相同，这意味着您可以使用非常相似的 API 运行相同的预训练模型。
+Transformers.js 是一个 JavaScript 库，用于直接在浏览器中运行 🤗 Transformer，无需服务器！它的设计在功能上与原始 [Python library](https://github.com/huggingface/transformers) 相同，这意味着您可以使用非常相似的 API 运行相同的预训练模型。
 
 ## 在 Hub 中探索 `transformers.js`
 
@@ -56,5 +56,5 @@ npm i @huggingface/transformers
 
 * Transformers.js [repository](https://github.com/huggingface/transformers.js)
 * Transformers.js [docs](https://huggingface.co/docs/transformers.js)
-* Transformers.js [demo](https://huggingface.github.io/transformers.js/)### 热门图片
-https://huggingface.co/docs/hub/jobs-popular-images.md
+* Transformers.js [demo](https://huggingface.github.io/transformers.js/)### 五十一
+https://huggingface.co/docs/hub/datasets-fiftyone.md

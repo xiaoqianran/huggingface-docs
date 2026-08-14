@@ -25,5 +25,5 @@
 > [!注意]
 > 您的帐户中必须有经过确认的电子邮件地址才能阻止用户。
 
-### 门控数据集
-https://huggingface.co/docs/hub/datasets-gate.md
+### 使用 Github Actions 管理空间
+https://huggingface.co/docs/hub/spaces-github-actions.md

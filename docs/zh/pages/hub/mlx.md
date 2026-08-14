@@ -44,7 +44,7 @@ pip install mlx
 conda install -c conda-forge mlx
 ```
 
-## 使用现有模型MLX-LM 具有生成文本的有用实用程序。以下行直接下载并加载模型并开始生成文本。
+## 使用现有模型MLX-LM 具有有用的实用程序来生成文本。以下行直接下载并加载模型并开始生成文本。
 
 ```bash
 python -m mlx_lm.generate --model mistralai/Mistral-7B-Instruct-v0.2 --prompt "hello"
@@ -66,7 +66,7 @@ model, tokenizer = load("mistralai/Mistral-7B-Instruct-v0.2")
 response = generate(model, tokenizer, prompt="hello", verbose=True)
 ```
 
-MLX-LM 支持流行的 LLM 架构，包括 LLaMA、Phi-2、Mistral 和 Qwen。除受支持的型号外，您可以轻松下载以下型号：
+MLX-LM 支持流行的 LLM 架构，包括 LLaMA、Phi-2、Mistral 和 Qwen。除受支持的型号之外的型号可以轻松下载，如下所示：
 
 设置 `HF_XET_HIGH_PERFORMANCE=1` 会提高具有高带宽和至少 64 GB RAM 的计算机的并发范围和缓冲区大小：
 
@@ -79,7 +79,7 @@ hf download --local-dir <LOCAL FOLDER PATH> <USER_ID>/<MODEL_NAME>
 
 ## 转换和共享模型
 
-您可以从 Hugging Face Hub 转换并可选择量化 LLM，如下所示： 
+您可以转换并可选择量化来自 Hugging Face Hub 的 LLM，如下所示： 
 
 ```bash
 python -m mlx_lm.convert --hf-path mistralai/Mistral-7B-v0.1 -q 
@@ -102,5 +102,5 @@ python -m mlx_lm.convert \
 * [MLX Examples](https://github.com/ml-explore/mlx-examples/tree/main)
 * [All MLX models on the Hub](https://huggingface.co/models?library=mlx&sort=trending)
 
-### 渐变空间
-https://huggingface.co/docs/hub/spaces-sdks-gradio.md
+### 高级计算选项
+https://huggingface.co/docs/hub/advanced-compute-options.md

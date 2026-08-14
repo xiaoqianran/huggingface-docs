@@ -5,7 +5,7 @@
 > [!警告]
 > 此功能是团队和企业计划的一部分。
 
-审核日志使组织管理员能够轻松查看成员采取的操作，包括组织成员身份、存储库设置和计费更改。
+审核日志使组织管理员能够轻松查看成员采取的操作，包括组织成员资格、存储库设置和计费更改。
 
   <img
     class="block dark:hidden m-0!"
@@ -103,5 +103,5 @@
 
 上面的列表涵盖了审核日志 UI 和导出中显示的每种事件类型。事件名称遵循 `scope.action` 模式；范围包括 `org`、`repo`、`collection`、`spaces`、`resource_group`、`jobs`、`scheduled_job` 和 `billing`。导出操作本身记录为 `org.audit_log.export`，但该事件不包含在默认审核日志视图中。
 
-### 基本单点登录
-https://huggingface.co/docs/hub/security-sso-basic.md
+### 抱脸登录
+https://huggingface.co/docs/hub/oauth.md

@@ -137,5 +137,5 @@ JOB ID                   CPU % NUM CPU MEM % MEM USAGE        NET I/O         GP
 
 恭喜！您只需运行第一个作业来微调开源模型 🔥请随意在本地尝试您的模型并使用例如评估它单击“使用此模型”即可创建[transformers](https://huggingface.co/docs/transformers)，或者使用“部署”按钮将其一键部署到[Inference Endpoints](https://huggingface.co/docs/inference-endpoints)。
 
-### 数据设计师
-https://huggingface.co/docs/hub/datasets-data-designer.md
+### GGUF 在 LM Studio 中的使用
+https://huggingface.co/docs/hub/lmstudio.md
