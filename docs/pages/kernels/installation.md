@@ -65,5 +65,5 @@ pip install "kernels[curated-xpu]"
 > on Python versions before 3.15. Kernels are compiled with the stable ABI
 > to support a wide range of Python versions.
 
-### FAQ
-https://huggingface.co/docs/kernels/main/faq.md
+### Lock kernel versions
+https://huggingface.co/docs/kernels/main/locking.md

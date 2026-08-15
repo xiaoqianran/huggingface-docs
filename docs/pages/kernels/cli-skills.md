@@ -51,5 +51,5 @@ kernel-builder skills add --claude --codex --opencode
 kernel-builder skills add --dest ~/my-skills --force
 ```
 
-### Kernel requirements
-https://huggingface.co/docs/kernels/main/kernel-requirements.md
+### Overview
+https://huggingface.co/docs/kernels/main/cli.md

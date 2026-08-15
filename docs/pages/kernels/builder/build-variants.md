@@ -66,5 +66,5 @@ one or more of the following variants:
 - `torch-rocm`
 - `torch-xpu`
 
-### Architecture overview
-https://huggingface.co/docs/kernels/main/builder/design-overview.md
+### Develop kernels with agents
+https://huggingface.co/docs/kernels/main/builder/agents-guide.md

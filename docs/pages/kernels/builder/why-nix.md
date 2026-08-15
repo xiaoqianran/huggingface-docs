@@ -57,5 +57,5 @@ If you want to learn more about Nix, check out the following resources:
   - A community-driven wiki with a wealth of information, including tips, tricks, and tutorials, covering a wide range of topics, including NixOS-specific information.
   - Link: [NixOS Wiki](https://nixos.wiki/wiki/Main_Page)
 
-### Write kernels
-https://huggingface.co/docs/kernels/main/builder/writing-kernels.md
+### Set up your IDE
+https://huggingface.co/docs/kernels/main/builder/ide-setup.md

@@ -85,5 +85,5 @@ $ LOCAL_KERNELS="kernels-community/activation=devel/activation:kernels-community
   python my_app.py
 ```
 
-### Building and testing kernels with GitHub Actions
-https://huggingface.co/docs/kernels/main/builder/github-actions.md
+### Nix builder design
+https://huggingface.co/docs/kernels/main/builder/design-nix-builder.md

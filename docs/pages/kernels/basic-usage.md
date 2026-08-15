@@ -89,5 +89,5 @@ Browse through different kernels compatible with `kernels` from [here](https://h
 
 A kernel can provide layers in addition to kernel functions. Refer to [Layers](./layers) to know more.
 
-### Projects using kernels
-https://huggingface.co/docs/kernels/main/integrating-kernels.md
+### Kernel requirements
+https://huggingface.co/docs/kernels/main/kernel-requirements.md

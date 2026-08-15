@@ -9,5 +9,5 @@ of the `huggingface_hub` package is used.
 
 Disables kernel mappings for [`layers`](layers).
 
-### Why kernels?
-https://huggingface.co/docs/kernels/main/why_kernels.md
+### Install agent skills
+https://huggingface.co/docs/kernels/main/cli-skills.md

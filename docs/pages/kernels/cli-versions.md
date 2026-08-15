@@ -34,5 +34,5 @@ Version 1: torch210-metal-aarch64-darwin, torch28-cxx11-cu126-aarch64-linux, tor
 - [kernels lock](cli-lock) - Lock kernel versions in your project
 - [kernels download](cli-download) - Download locked kernels
 
-### kernels info
-https://huggingface.co/docs/kernels/main/cli-info.md
+### Use layers
+https://huggingface.co/docs/kernels/main/layers.md

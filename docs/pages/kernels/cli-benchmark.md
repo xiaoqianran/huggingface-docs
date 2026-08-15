@@ -145,5 +145,5 @@ The runner will:
 - If a benchmark script defines no `Benchmark` subclasses, the command exits with an error.
 - If `verify_<workload>()` exists and the outputs do not match, the command exits with an error.
 
-### CLI reference for kernel-builder
-https://huggingface.co/docs/kernels/main/builder-cli.md
+### Blog posts
+https://huggingface.co/docs/kernels/main/blog.md

@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-14T08:22:51.715428+00:00",
+  "fetchedAt": "2026-08-15T07:37:06.280947+00:00",
   "method": "llms-full-split",
   "ok": 2134,
   "failed": 0,
@@ -7887,7 +7887,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 72265,
+      "bytes": 72303,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -7977,7 +7977,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 100919,
+      "bytes": 100957,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -8094,7 +8094,7 @@
     },
     {
       "rel": "kernels/index.md",
-      "bytes": 3002,
+      "bytes": 3001,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/index.md",
       "track": "Kernels",
@@ -8102,22 +8102,31 @@
       "title": "Kernels"
     },
     {
-      "rel": "kernels/env.md",
-      "bytes": 310,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/env.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Environment variables"
-    },
-    {
       "rel": "kernels/why_kernels.md",
-      "bytes": 1747,
+      "bytes": 1739,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/why_kernels.md",
       "track": "Kernels",
       "package": "kernels",
       "title": "Why kernels?"
+    },
+    {
+      "rel": "kernels/faq.md",
+      "bytes": 2763,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/faq.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "FAQ"
+    },
+    {
+      "rel": "kernels/cli-benchmark.md",
+      "bytes": 5671,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli-benchmark.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "kernels benchmark"
     },
     {
       "rel": "kernels/blog.md",
@@ -8130,138 +8139,12 @@
     },
     {
       "rel": "kernels/installation.md",
-      "bytes": 2173,
+      "bytes": 2194,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/installation.md",
       "track": "Kernels",
       "package": "kernels",
       "title": "Installation"
-    },
-    {
-      "rel": "kernels/faq.md",
-      "bytes": 2761,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/faq.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "FAQ"
-    },
-    {
-      "rel": "kernels/cli-versions.md",
-      "bytes": 1487,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli-versions.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "kernels versions"
-    },
-    {
-      "rel": "kernels/cli-info.md",
-      "bytes": 1733,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli-info.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "kernels info"
-    },
-    {
-      "rel": "kernels/basic-usage.md",
-      "bytes": 3665,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/basic-usage.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Quickstart"
-    },
-    {
-      "rel": "kernels/integrating-kernels.md",
-      "bytes": 2275,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/integrating-kernels.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Projects using kernels"
-    },
-    {
-      "rel": "kernels/cli-benchmark.md",
-      "bytes": 5700,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli-benchmark.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "kernels benchmark"
-    },
-    {
-      "rel": "kernels/builder-cli.md",
-      "bytes": 11376,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder-cli.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "CLI reference for kernel-builder"
-    },
-    {
-      "rel": "kernels/cli-skills.md",
-      "bytes": 2977,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli-skills.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Install agent skills"
-    },
-    {
-      "rel": "kernels/kernel-requirements.md",
-      "bytes": 18777,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/kernel-requirements.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Kernel requirements"
-    },
-    {
-      "rel": "kernels/migration.md",
-      "bytes": 8812,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/migration.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Migrate from older versions"
-    },
-    {
-      "rel": "kernels/cli.md",
-      "bytes": 815,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Overview"
-    },
-    {
-      "rel": "kernels/talks.md",
-      "bytes": 547,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/talks.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Talks"
-    },
-    {
-      "rel": "kernels/cli-lock.md",
-      "bytes": 1774,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/cli-lock.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "kernels lock"
-    },
-    {
-      "rel": "kernels/layers.md",
-      "bytes": 15132,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/layers.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Use layers"
     },
     {
       "rel": "kernels/locking.md",
@@ -8274,7 +8157,7 @@
     },
     {
       "rel": "kernels/cli-download.md",
-      "bytes": 1436,
+      "bytes": 1412,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-download.md",
       "track": "Kernels",
@@ -8282,8 +8165,107 @@
       "title": "kernels download"
     },
     {
+      "rel": "kernels/cli-lock.md",
+      "bytes": 1786,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli-lock.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "kernels lock"
+    },
+    {
+      "rel": "kernels/cli-versions.md",
+      "bytes": 1483,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli-versions.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "kernels versions"
+    },
+    {
+      "rel": "kernels/layers.md",
+      "bytes": 15129,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/layers.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Use layers"
+    },
+    {
+      "rel": "kernels/env.md",
+      "bytes": 317,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/env.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Environment variables"
+    },
+    {
+      "rel": "kernels/cli-skills.md",
+      "bytes": 2950,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli-skills.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Install agent skills"
+    },
+    {
+      "rel": "kernels/cli.md",
+      "bytes": 826,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Overview"
+    },
+    {
+      "rel": "kernels/basic-usage.md",
+      "bytes": 3662,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/basic-usage.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Quickstart"
+    },
+    {
+      "rel": "kernels/kernel-requirements.md",
+      "bytes": 18761,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/kernel-requirements.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Kernel requirements"
+    },
+    {
+      "rel": "kernels/cli-info.md",
+      "bytes": 1755,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/cli-info.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "kernels info"
+    },
+    {
+      "rel": "kernels/builder-cli.md",
+      "bytes": 11356,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder-cli.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "CLI reference for kernel-builder"
+    },
+    {
+      "rel": "kernels/talks.md",
+      "bytes": 571,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/talks.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Talks"
+    },
+    {
       "rel": "kernels/cli-verify-signature.md",
-      "bytes": 2014,
+      "bytes": 3592,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/cli-verify-signature.md",
       "track": "Kernels",
@@ -8291,89 +8273,26 @@
       "title": "kernels verify-signature"
     },
     {
-      "rel": "kernels/builder/why-nix.md",
-      "bytes": 3373,
+      "rel": "kernels/migration.md",
+      "bytes": 7277,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/why-nix.md",
+      "url": "https://huggingface.co/docs/kernels/main/migration.md",
       "track": "Kernels",
       "package": "kernels",
-      "title": "Why Nix?"
+      "title": "Migrate from older versions"
     },
     {
-      "rel": "kernels/builder/writing-kernels.md",
-      "bytes": 20266,
+      "rel": "kernels/integrating-kernels.md",
+      "bytes": 2281,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/writing-kernels.md",
+      "url": "https://huggingface.co/docs/kernels/main/integrating-kernels.md",
       "track": "Kernels",
       "package": "kernels",
-      "title": "Write kernels"
-    },
-    {
-      "rel": "kernels/builder/agents-guide.md",
-      "bytes": 9714,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/agents-guide.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Develop kernels with agents"
-    },
-    {
-      "rel": "kernels/builder/local-dev.md",
-      "bytes": 3141,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/local-dev.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Develop locally"
-    },
-    {
-      "rel": "kernels/builder/github-actions.md",
-      "bytes": 9690,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/github-actions.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Building and testing kernels with GitHub Actions"
-    },
-    {
-      "rel": "kernels/builder/build.md",
-      "bytes": 9799,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/build.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Build with Nix"
-    },
-    {
-      "rel": "kernels/builder/metal.md",
-      "bytes": 2266,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/metal.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Set up for Metal kernels"
-    },
-    {
-      "rel": "kernels/builder/design-nix-builder.md",
-      "bytes": 4726,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/design-nix-builder.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Nix builder design"
-    },
-    {
-      "rel": "kernels/builder/ide-setup.md",
-      "bytes": 6492,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/kernels/main/builder/ide-setup.md",
-      "track": "Kernels",
-      "package": "kernels",
-      "title": "Set up your IDE"
+      "title": "Projects using kernels"
     },
     {
       "rel": "kernels/builder/build-variants.md",
-      "bytes": 1783,
+      "bytes": 1786,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/build-variants.md",
       "track": "Kernels",
@@ -8381,13 +8300,67 @@
       "title": "Build variants"
     },
     {
+      "rel": "kernels/builder/agents-guide.md",
+      "bytes": 9726,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder/agents-guide.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Develop kernels with agents"
+    },
+    {
       "rel": "kernels/builder/design-overview.md",
-      "bytes": 1477,
+      "bytes": 1479,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/design-overview.md",
       "track": "Kernels",
       "package": "kernels",
       "title": "Architecture overview"
+    },
+    {
+      "rel": "kernels/builder/metal.md",
+      "bytes": 2245,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder/metal.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Set up for Metal kernels"
+    },
+    {
+      "rel": "kernels/builder/why-nix.md",
+      "bytes": 3369,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder/why-nix.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Why Nix?"
+    },
+    {
+      "rel": "kernels/builder/ide-setup.md",
+      "bytes": 6526,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder/ide-setup.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Set up your IDE"
+    },
+    {
+      "rel": "kernels/builder/github-actions.md",
+      "bytes": 9699,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder/github-actions.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Building and testing kernels with GitHub Actions"
+    },
+    {
+      "rel": "kernels/builder/writing-kernels.md",
+      "bytes": 20254,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder/writing-kernels.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Write kernels"
     },
     {
       "rel": "kernels/builder/security.md",
@@ -8397,6 +8370,33 @@
       "track": "Kernels",
       "package": "kernels",
       "title": "Secure your kernels"
+    },
+    {
+      "rel": "kernels/builder/local-dev.md",
+      "bytes": 3115,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder/local-dev.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Develop locally"
+    },
+    {
+      "rel": "kernels/builder/design-nix-builder.md",
+      "bytes": 4721,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder/design-nix-builder.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Nix builder design"
+    },
+    {
+      "rel": "kernels/builder/build.md",
+      "bytes": 9794,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/kernels/main/builder/build.md",
+      "track": "Kernels",
+      "package": "kernels",
+      "title": "Build with Nix"
     },
     {
       "rel": "kernels/api/kernels.md",
@@ -19284,7 +19284,7 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 416127
+      "full_bytes": 416203
     },
     {
       "pkg": "kernels",

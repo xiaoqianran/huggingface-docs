@@ -9,5 +9,5 @@ different events:
 
 This page will be kept updated.
 
-### kernels lock
-https://huggingface.co/docs/kernels/main/cli-lock.md
+### kernels verify-signature
+https://huggingface.co/docs/kernels/main/cli-verify-signature.md

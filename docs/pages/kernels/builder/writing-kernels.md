@@ -555,5 +555,5 @@ The card will be filled automatically by the builder when using the
 to the `build` sub-directory inside the main kernel directory. It
 will be uploaded as `README.md` to the Hub.
 
-### Develop kernels with agents
-https://huggingface.co/docs/kernels/main/builder/agents-guide.md
+### Secure your kernels
+https://huggingface.co/docs/kernels/main/builder/security.md

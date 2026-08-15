@@ -114,5 +114,5 @@ The package sets all use a similar list of overlays:
   overlays. One typical example are derivations that construct a full compiler
   toolchain (e.g. `nix-builder/pkgs/manylinux_2_28/gcc-unwrapped.nix`).
 
-### Set up your IDE
-https://huggingface.co/docs/kernels/main/builder/ide-setup.md
+### Build with Nix
+https://huggingface.co/docs/kernels/main/builder/build.md

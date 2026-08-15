@@ -31,5 +31,5 @@ without having to run any installation locally.
     * Fast download and upload powered by [XET](https://huggingface.co/docs/hub/xet/index)
     * Visibility into the download stats
 
-### Blog posts
-https://huggingface.co/docs/kernels/main/blog.md
+### FAQ
+https://huggingface.co/docs/kernels/main/faq.md

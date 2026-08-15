@@ -349,5 +349,5 @@ Clean generated artifacts
     This document was generated automatically by
     clap-markdown.
 
-### Install agent skills
-https://huggingface.co/docs/kernels/main/cli-skills.md
+### Talks
+https://huggingface.co/docs/kernels/main/talks.md

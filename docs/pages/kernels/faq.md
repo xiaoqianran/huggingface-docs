@@ -50,5 +50,5 @@ information for the kernel being requested.
 
 You can disable this by setting `export DISABLE_TELEMETRY=yes`.
 
-### kernels versions
-https://huggingface.co/docs/kernels/main/cli-versions.md
+### kernels benchmark
+https://huggingface.co/docs/kernels/main/cli-benchmark.md

@@ -275,5 +275,5 @@ is compliant. This option is primarily intended for kernels with
 `triton.autotune` decorators, which can fail because there is no GPU available
 in the build sandbox.
 
-### Set up for Metal kernels
-https://huggingface.co/docs/kernels/main/builder/metal.md
+### Kernels API Reference
+https://huggingface.co/docs/kernels/main/api/kernels.md

@@ -42,5 +42,5 @@ the pre-built compute kernels available on the Hub.
 Feel free to open a PR enlisting your project to show how `kernels`
 is leveraged there.
 
-### kernels benchmark
-https://huggingface.co/docs/kernels/main/cli-benchmark.md
+### Build variants
+https://huggingface.co/docs/kernels/main/builder/build-variants.md

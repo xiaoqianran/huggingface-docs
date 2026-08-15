@@ -80,5 +80,5 @@ these builds from slipping by unnoticed:
 - The `kernels` loader emits a warning when a kernel variant it loads was
   built from a dirty tree.
 
-### Kernels API Reference
-https://huggingface.co/docs/kernels/main/api/kernels.md
+### Develop locally
+https://huggingface.co/docs/kernels/main/builder/local-dev.md

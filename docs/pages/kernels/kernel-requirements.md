@@ -487,5 +487,5 @@ __all__ = [
 - Only modules from the Python standard library, Torch, or the kernel itself
   can be imported.
 
-### Migrate from older versions
-https://huggingface.co/docs/kernels/main/migration.md
+### kernels info
+https://huggingface.co/docs/kernels/main/cli-info.md

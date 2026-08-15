@@ -392,5 +392,5 @@ with use_kernel_mapping(
     kernelize(model, mode=Mode.INFERENCE)
 ```
 
-### Lock kernel versions
-https://huggingface.co/docs/kernels/main/locking.md
+### Environment variables
+https://huggingface.co/docs/kernels/main/env.md
