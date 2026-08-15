@@ -2001,10 +2001,10 @@
       "translatedAt": "2026-08-11T13:59:27.535Z"
     }
   },
-  "updatedAt": "2026-08-14T08:26:32.436Z",
+  "updatedAt": "2026-08-15T07:37:06.399Z",
   "stats": {
-    "translated": 268,
-    "skipped": 132,
+    "translated": 0,
+    "skipped": 400,
     "failed": 0,
     "total": 400
   }
