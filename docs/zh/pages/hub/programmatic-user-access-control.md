@@ -45,12 +45,12 @@ Content-Type: application/json
   "resourceGroups": []
 }
 ```- **路径参数**
-  - `org_name`：组织段（例如`my-org`）。
+  - `org_name`：组织团块（例如`my-org`）。
   - `username`：拥抱您要更改角色的成员的 **用户名**。
 - **身体**
   - `role`（必填）：成员的**组织级别**角色。以下之一：`"no_access"`、`"read"`、`"contributor"`、`"write"` 或 `"admin"`。
   - `resourceGroups`（可选）：该用户的资源组分配数组。每一项：
-    - `id`：资源组 ID（24 个字符的十六进制字符串；从 [resource groups list API](#list-resource-groups) 获取 ID）。
+    - `id`：资源组 ID（24 个字符的十六进制字符串；从[resource groups list API](#list-resource-groups) 获取 ID）。
     - `role`：该资源组中的角色：`"read"`、`"contributor"`、`"write"` 或 `"admin"`。
   - 如果省略 `resourceGroups` 或传递 `[]`，将从所有资源组中删除用户。要仅更改组织角色并保持资源组不变，请传递其当前资源组成员身份（正文始终设置组织角色和资源组列表）。
 
@@ -74,7 +74,7 @@ curl -s -X PUT \
   "https://huggingface.co/api/organizations/my-org/members/member2/role"
 ```
 
-**成功响应：**状态`200 OK`；本体：`{ "success": true }`。
+**成功响应：**状态`200 OK`；机身：`{ "success": true }`。
 
 **典型错误**- `400` — 无效正文（例如无效的角色或资源组`id`）。
 - `402` — 组织没有订阅计划。
@@ -152,7 +152,7 @@ for username in ["member1", "member2", "member3", "member4"]:
 
 - **基本网址：** `https://huggingface.co`
 - **身份验证：** 使用以下之一：
-  - **访问令牌（建议用于脚本）：** 创建一个细粒度令牌，其范围为您的组织（[https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)）的“对组织设置/成员管理的写入访问权限”。在请求头中发送：
+  - **访问令牌（建议用于脚本）：** 创建一个细粒度令牌，具有范围为您的组织（[https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)）的“对组织设置/成员管理的写入访问权限”权限。在请求头中发送：
     ```http
     Authorization: Bearer <your_access_token>
     ```
@@ -188,9 +188,9 @@ curl -s -H "Authorization: Bearer $HF_TOKEN" \
     "repos": [...]
   }
 ]
-```
+```添加用户时使用每个资源组的`id`。
 
-添加用户时使用每个资源组的`id`。### 将用户添加到资源组
+### 将用户添加到资源组
 
 在一个请求中将一名或多名用户添加到单个资源组。您可以在同一请求中发送多个用户。
 
@@ -211,7 +211,7 @@ Content-Type: application/json
 ```
 
 - **路径参数**
-  - `org_name`：组织段（例如`my-org`）。
+  - `org_name`：组织团块（例如`my-org`）。
   - `resource_group_id`：资源组的`id`（来自列表端点的 24 个字符的十六进制字符串）。
 - **身体**
   - `users`：对象数组。每个对象必须具有：
@@ -396,11 +396,11 @@ for rg in list_resource_groups(org_name):
     add_users_to_resource_group(org_name, rg["id"], users_with_roles)
 ```
 
-对于一长串用户名，将它们分块（例如每个请求 50 个）并为每个块调用一次 API 以避免大型请求正文或超时。
+对于一长串用户名，将它们分块（例如每个请求 50 个）并为每个块调用一次 API 以避免大型请求体或超时。
 
-### 重要提示1. **仅限用户名** — API 接受 Hugging Face **用户名**，而不接受电子邮件。在调用 API 之前，您需要从电子邮件 → 用户名（例如，从您的目录或组织成员列表）的映射。
+### 重要提示1. **仅限用户名** — API 接受 Hugging Face **用户名**，而不接受电子邮件。在调用 API 之前，您需要从电子邮件→用户名（例如，从您的目录或组织成员列表）的映射。
 2. **用户必须位于组织中** — 请求中的每个用户必须已经是组织的成员。否则，请求将返回 `403` 并显示某些用户不在组织中的消息。
-3. **幂等性** — 如果用户已经在资源组中，则后端可能会针对该请求返回`403`。如果您首先获取组的 `users` 列表，您的脚本可以捕获错误并继续，或者跳过组中已有的用户。
+3. **幂等性** — 如果用户已在资源组中，则后端可能会针对该请求返回 `403`。如果您首先获取组的 `users` 列表，您的脚本可以捕获错误并继续，或者跳过组中已有的用户。
 4. **速率限制** — 对于大批量，请考虑在请求之间添加较短的延迟（例如 0.5-1 秒），以避免达到速率限制。
 5. **令牌范围** — 访问令牌必须对组织具有足够的权限（通常至少“对组织设置/成员管理的写入访问权限”）。安全地创建和存储令牌；不要将其提交给版本控制。
 
@@ -435,7 +435,7 @@ Content-Type: application/json
 
 **禁用自动加入**
 
-使用`"enabled": false`发送相同的请求。禁用时不需要 `role` 字段：
+使用 `"enabled": false` 发送相同的请求。禁用时不需要 `role` 字段：
 
 ```http
 POST /api/organizations/{org_name}/resource-groups/{resource_group_id}/settings
@@ -450,5 +450,57 @@ Content-Type: application/json
 ```
 
 > [!注意]
-> 禁用自动加入不会删除之前自动加入的成员。它只会阻止自动添加未来的组织成员。现有成员仍保留在资源组中。### 数据集
+> 禁用自动加入不会删除之前自动加入的成员。它只会阻止自动添加未来的组织成员。现有成员仍保留在资源组中。
+
+## 通过 API 设置支出限额[Spend limits](./security-resource-groups#spend-limits) 限制资源组的每月计算支出。使用更新端点设置它们：
+
+```http
+PATCH /api/organizations/{org_name}/resource-groups/{resource_group_id}
+Authorization: Bearer <your_access_token>
+Content-Type: application/json
+
+{
+  "spendLimits": {
+    "total": 500000,
+    "spaces": 100000,
+    "jobs": 50000
+  }
+}
+```
+
+- **路径参数**
+  - `org_name`：组织块（例如`my-org`）。
+  - `resource_group_id`：资源组的 ID（24 个字符的十六进制字符串；从 [list resource groups endpoint](#list-resource-groups) 获取 ID）。
+- **身体**
+  - `spendLimits`：每月限额**以美分**。上面的示例设置了 5,000 美元的总限额，其中空间为 1,000 美元，职位为 500 美元。
+    - `total`：限制团体在每种产品上的总支出。
+    - `inferenceProviders`、`spaces`、`jobs`、`endpoints`：按产品限制，应用于总数之上。两者中较严格者获胜。
+
+仅更新您发送的密钥，其他密钥保持其当前值。发送 `null` 删除限制：
+
+```http
+PATCH /api/organizations/{org_name}/resource-groups/{resource_group_id}
+Authorization: Bearer <your_access_token>
+Content-Type: application/json
+
+{
+  "spendLimits": {
+    "jobs": null
+  }
+}
+```
+
+**示例（卷曲）**
+
+```bash
+curl -s -X PATCH \
+  -H "Authorization: Bearer $HF_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"spendLimits": {"total": 500000}}' \
+  "https://huggingface.co/api/organizations/my-org/resource-groups/507f1f77bcf86cd799439011"
+```
+
+响应是更新后的资源组，包括其`spendLimits`。
+
+### 数据集
 https://huggingface.co/docs/hub/enterprise-datasets.md

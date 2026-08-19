@@ -19,21 +19,31 @@ hf jobs uv run --flavor a10g-small --secrets HF_TOKEN \
   --push_to_hub
 ```
 
+## 大规模处理数据
+
+[DataTrove](https://github.com/huggingface/datatrove) 提供了一个实验性的[⟦T1⟧](https://github.com/huggingface/datatrove#jobspipelineexecutor)，用于跨作业池分配数据处理管道。它支持并发限制、多阶段依赖、重试和可恢复运行——重新运行管道会跳过已经完成的任务，只运行剩余的任务。
+
+请参阅准备运行的示例：
+
+- [Filtering a Hub dataset](https://github.com/huggingface/datatrove/blob/main/examples/filter_hf_dataset_jobs.py)
+- [Tokenizing and merging a Hub dataset](https://github.com/huggingface/datatrove/blob/main/examples/tokenize_hf_dataset_jobs.py)
+- [Multi-stage MinHash deduplication](https://github.com/huggingface/datatrove/blob/main/examples/minhash_deduplication_jobs.py)
+
 ## UV 脚本
 
 [uv-scripts](https://huggingface.co/uv-scripts) 组织维护着一组独立的 uv 脚本，这些脚本可以通过单个命令在作业上运行。脚本涵盖 OCR、批量推理、文本分类、对象检测、数据集统计、嵌入可视化等。
 
 [Unsloth](https://huggingface.co/datasets/unsloth/jobs) 还提供了可立即运行的训练脚本，用于在 Jobs 上微调 LLM 和 VLM。
 
-## 编码代理技能
-
-[hugging-face-jobs skill](https://github.com/huggingface/skills/tree/main/skills/hugging-face-jobs) 允许 Claude Code 和 Cursor 等编码代理直接从编辑器提交和监控作业。
+## 编码代理技能[hugging-face-jobs skill](https://github.com/huggingface/skills/tree/main/skills/hugging-face-jobs) 允许 Claude Code 和 Cursor 等编码代理直接从编辑器提交和监控作业。
 
 ## 沙箱
 
 Jobs 的 [expose ports](./jobs-configuration#expose-ports) 功能使其非常适合构建沙箱，即代理和 LLM 应用程序使用的临时独立环境。
 
-## 社区教程和项目- [Train on massive datasets without downloading](https://danielvanstrien.xyz/posts/2026/hf-streaming-unsloth/train-massive-datasets-without-downloading.html) - 使用 Unsloth 直接在作业上流式传输数据集，无需本地存储
+## 社区教程和项目
+
+- [Train on massive datasets without downloading](https://danielvanstrien.xyz/posts/2026/hf-streaming-unsloth/train-massive-datasets-without-downloading.html) - 使用 Unsloth 直接在作业上流式传输数据集，无需本地存储
 - [Fine-tune a vision-language model with TRL](https://danielvanstrien.xyz/posts/2025/iconclass-vlm-sft/trl-vlm-fine-tuning-iconclass.html) - 使用 TRL 和 Jobs 微调 Qwen2.5-VL 以执行艺术史任务
 - [FreeFlow](https://github.com/wjbmattingly/freeflow) - 具有内置 Jobs 集成的开源注释平台，用于训练 YOLOv11 对象检测模型
 

@@ -317,8 +317,8 @@
       "translatedAt": "2026-08-14T08:24:04.848Z"
     },
     "hub/enterprise-resource-groups.md": {
-      "hash": "35efeb60817327920e85518b3d484c58e4a7e02f",
-      "translatedAt": "2026-08-14T08:24:05.405Z"
+      "hash": "6c7c12535832fc09a5635ad114ebca105e4f29bf",
+      "translatedAt": "2026-08-19T07:46:56.734Z"
     },
     "hub/enterprise-service-accounts.md": {
       "hash": "7ad3d2f364f518bf6e6ef05b9e9ff86d41b39826",
@@ -373,8 +373,8 @@
       "translatedAt": "2026-08-14T08:24:16.155Z"
     },
     "hub/jobs-examples.md": {
-      "hash": "f28458dcab9260b556183a66b3eb6de7621a4bfa",
-      "translatedAt": "2026-08-14T08:24:16.938Z"
+      "hash": "1d98b7479332adf7258e4a6a3becf0bbbedf8ec2",
+      "translatedAt": "2026-08-19T07:46:56.753Z"
     },
     "hub/enterprise.md": {
       "hash": "d3da8136598ddb4360f9055c15d5d3cfaa62d681",
@@ -613,8 +613,8 @@
       "translatedAt": "2026-08-14T08:25:04.518Z"
     },
     "hub/oauth.md": {
-      "hash": "a3d699aa94fd612d21d016e050effe6055a01103",
-      "translatedAt": "2026-08-14T08:25:04.304Z"
+      "hash": "178778e1c7b2fe71cd93c536c008d35084c534ca",
+      "translatedAt": "2026-08-19T07:47:01.281Z"
     },
     "hub/publisher-analytics.md": {
       "hash": "4b235f6e02e0e0cdc5331176ab3f331c1278117d",
@@ -633,8 +633,8 @@
       "translatedAt": "2026-08-14T08:25:09.334Z"
     },
     "hub/programmatic-user-access-control.md": {
-      "hash": "c65d88d2b814ac5151bddf021e878c0b70bf656e",
-      "translatedAt": "2026-08-14T08:25:10.358Z"
+      "hash": "83e64d6dc8f77b9a13ed4d4216392f31e968aad5",
+      "translatedAt": "2026-08-19T07:47:04.003Z"
     },
     "hub/repositories-next-steps.md": {
       "hash": "c710dbd81473ecefadcae495c75e8c7002c5675a",
@@ -721,8 +721,8 @@
       "translatedAt": "2026-08-14T08:25:24.535Z"
     },
     "hub/security-resource-groups.md": {
-      "hash": "9af1d59f77856f154a1aa7d5e42528428ef547da",
-      "translatedAt": "2026-08-14T08:25:23.767Z"
+      "hash": "16bf94638849b55eacb3e0f853defd3daefd77ac",
+      "translatedAt": "2026-08-19T07:47:02.352Z"
     },
     "hub/security-sso-okta-oidc.md": {
       "hash": "693df1db7540e95f74d55b9cea151b8bc9022349",
@@ -853,8 +853,8 @@
       "translatedAt": "2026-08-14T08:25:42.422Z"
     },
     "hub/spaces-oauth.md": {
-      "hash": "40080aca9b8c2b73bb063ca9724bb34c1839f7d1",
-      "translatedAt": "2026-08-14T08:25:45.114Z"
+      "hash": "ade37849934a26cfacc58c7999633d8891508686",
+      "translatedAt": "2026-08-19T07:47:04.508Z"
     },
     "hub/spaces-sdks-docker-aim.md": {
       "hash": "9bec003e510e105f8439f2720b9ba148cd0f8010",
@@ -2001,10 +2001,10 @@
       "translatedAt": "2026-08-11T13:59:27.535Z"
     }
   },
-  "updatedAt": "2026-08-18T07:45:59.948Z",
+  "updatedAt": "2026-08-19T07:47:04.508Z",
   "stats": {
-    "translated": 0,
-    "skipped": 400,
+    "translated": 6,
+    "skipped": 394,
     "failed": 0,
     "total": 400
   }
