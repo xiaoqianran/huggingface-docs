@@ -25,8 +25,8 @@ python3 -m sglang.launch_server \
 
 Setting `model_impl="transformers"` tells SGLang to skip its native model matching and use the Transformers model directly.
 
-1. [PreTrainedConfig.from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained) loads the model's `config.json` from the Hub or your Hugging Face cache.
-2. [AutoModel.from_config()](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel.from_config) resolves the model class based on the config.
+1. [PreTrainedConfig.from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained) loads the model's `config.json` from the Hub or your Hugging Face cache.
+2. [AutoModel.from_config()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel.from_config) resolves the model class based on the config.
 3. During loading, `_attn_implementation` is set to `"sglang"`. This routes attention calls through SGLang's RadixAttention kernels.
 4. SGLang's parallel linear class replaces linear layers to support tensor parallelism.
 5. The [load_weights](https://github.com/sgl-project/sglang/blob/main/python/sglang/srt/models/transformers.py#L277) function populates the model with weights from safetensors files.
@@ -42,4 +42,4 @@ The model benefits from all SGLang optimizations while using the Transformers mo
 - [Transformers backend integration in SGLang](https://huggingface.co/blog/transformers-backend-sglang) blog post explains what this integration enables.
 
 ### Building a compatible model backend for inference
-https://huggingface.co/docs/transformers/v5.14.0/community_integrations/transformers_as_backend.md
+https://huggingface.co/docs/transformers/v5.15.0/community_integrations/transformers_as_backend.md

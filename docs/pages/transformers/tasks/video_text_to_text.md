@@ -31,7 +31,8 @@ from transformers import AutoProcessor, LlavaOnevisionForConditionalGeneration
 import torch
 model_id = "llava-hf/llava-onevision-qwen2-0.5b-ov-hf"
 
-processor = AutoProcessor.from_pretrained(model_id, device="cuda")
+device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
+processor = AutoProcessor.from_pretrained(model_id, device=device)
 
 model = LlavaForConditionalGeneration.from_pretrained(model_id, device_map="auto", dtype=torch.float16)
 ```
@@ -52,7 +53,7 @@ We will infer with two videos, both have cats.
 
 Videos are series of image frames. Depending on the hardware limitations, downsampling is required. If the number of downsampled frames are too little, predictions will be low quality.
 
-Video-text-to-text models have processors with video processor abstracted in them. You can pass video inference related arguments to [apply_chat_template()](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) function.
+Video-text-to-text models have processors with video processor abstracted in them. You can pass video inference related arguments to [apply_chat_template()](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) function.
 
 > [!WARNING]
 > You can learn more about video processors [here](../main_classes/video_processor).
@@ -145,4 +146,4 @@ print(output_text)
 ```
 
 ### Visual document retrieval
-https://huggingface.co/docs/transformers/v5.14.0/tasks/visual_document_retrieval.md
+https://huggingface.co/docs/transformers/v5.15.0/tasks/visual_document_retrieval.md

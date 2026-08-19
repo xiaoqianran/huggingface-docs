@@ -467,7 +467,7 @@ import torch
 
 num_epochs = 30
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
+device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
 model.to(device)
 
 model.train()
@@ -528,5 +528,5 @@ Great improvement after only training for 20 epochs on a small dataset!
 
 ![SAM2 result after training](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/sam2_after_training.png)
 
-### Video-text-to-text
-https://huggingface.co/docs/transformers/v5.14.0/tasks/video_text_to_text.md
+### Question answering
+https://huggingface.co/docs/transformers/v5.15.0/tasks/question_answering.md

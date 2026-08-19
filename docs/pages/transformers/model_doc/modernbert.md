@@ -7,7 +7,7 @@ You can find all the original ModernBERT checkpoints under the [ModernBERT](http
 > [!TIP]
 > Click on the ModernBERT models in the right sidebar for more examples of how to apply ModernBERT to different language tasks.
 
-The example below demonstrates how to predict the `[MASK]` token with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
+The example below demonstrates how to predict the `[MASK]` token with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
 
 ```python
 from transformers import pipeline
@@ -48,7 +48,7 @@ print(f"The predicted token is: {predicted_token}")
 
 ## Padding-free inference and training
 
-ModernBERT supports padding-free inference and training. For example, you can leverage the [DataCollatorWithFlattening](/docs/transformers/v5.14.0/en/main_classes/data_collator#transformers.DataCollatorWithFlattening) to prepare your inputs:
+ModernBERT supports padding-free inference and training. For example, you can leverage the [DataCollatorWithFlattening](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DataCollatorWithFlattening) to prepare your inputs:
 
 > [!TIP]
 > Padding-free inference and training requires `flash_attention_2` as the attention implementation. Since ModernBERT no longer defaults to FlashAttention2, you must explicitly set `attn_implementation="flash_attention_2"` when loading the model for padding-free usage.
@@ -82,7 +82,7 @@ inputs = prepare_text_for_padding_free(
     ["The capital of France is [MASK].", "ModernBERT is a [MASK] model."]
 )
 model = AutoModelForMaskedLM.from_pretrained(
-    model_id, attn_implementation="flash_attention_2", device_map="cuda"
+    model_id, attn_implementation="flash_attention_2", device_map="auto"
 )
 
 # Optional: use torch.compile for faster inference
@@ -93,84 +93,88 @@ out = model(**inputs)
 
 ## ModernBertConfig[[transformers.ModernBertConfig]]
 
-- **vocab_size** (`int`, *optional*, defaults to `50368`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **intermediate_size** (`int`, *optional*, defaults to `1152`) --
-  Dimension of the MLP representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `22`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **hidden_activation** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **max_position_embeddings** (`int`, *optional*, defaults to `8192`) --
-  The maximum sequence length that this model might ever be used with.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **initializer_cutoff_factor** (`float`, *optional*, defaults to 2.0) --
-  The cutoff factor for the truncated_normal_initializer for initializing all weight matrices.
-- **norm_eps** (`float`, *optional*, defaults to 1e-05) --
-  The epsilon used by the rms normalization layers.
-- **norm_bias** (`bool`, *optional*, defaults to `False`) --
-  Whether to use bias in the normalization layers.
-- **pad_token_id** (`int`, *optional*, defaults to `50283`) --
-  Token id used for padding in the vocabulary.
-- **eos_token_id** (`Union[int, list[int]]`, *optional*, defaults to `50282`) --
-  Token id used for end-of-stream in the vocabulary.
-- **bos_token_id** (`int`, *optional*, defaults to `50281`) --
-  Token id used for beginning-of-stream in the vocabulary.
-- **cls_token_id** (`int`, *optional*, defaults to `50281`) --
-  Token id used for CLS in the vocabulary.
-- **sep_token_id** (`int`, *optional*, defaults to `50282`) --
-  Token id used for separator in the vocabulary.
-- **attention_bias** (`bool`, *optional*, defaults to `False`) --
-  Whether to use a bias in the query, key, value and output projection layers during self-attention.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **layer_types** (`list[str]`, *optional*) --
-  A list that explicitly maps each layer index with its layer type. If not provided, it will be automatically
-  generated based on config values.
-- **rope_parameters** (`dict[Literal[full_attention, sliding_attention], dict]`, *optional*) --
-  Dictionary containing the configuration parameters for the RoPE embeddings. The dictionary should contain
-  a value for `rope_theta` and optionally parameters used for scaling in case you want to use RoPE
-  with longer `max_position_embeddings`.
-- **local_attention** (`int`, *optional*, defaults to 128) --
-  The window size for local attention.
-- **embedding_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the embeddings.
-- **mlp_bias** (`bool`, *optional*, defaults to `False`) --
-  Whether to use a bias in up_proj, down_proj and gate_proj layers in the MLP layers.
-- **mlp_dropout** (`float`, *optional*, defaults to 0.0) --
-  The dropout ratio for the MLP layers.
-- **decoder_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to use bias in the decoder layers.
-- **classifier_pooling** (`str`, *optional*, defaults to `"cls"`) --
-  The pooling method for the classifier. Should be either `"cls"` or `"mean"`. In local attention layers, the
-  CLS token doesn't attend to all tokens on long sequences.
-- **classifier_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for classifier.
-- **classifier_bias** (`bool`, *optional*, defaults to `False`) --
-  Whether to use bias in the classifier.
-- **classifier_activation** (`str`, *optional*, defaults to `"gelu"`) --
-  The activation function for the classifier.
-- **deterministic_flash_attn** (`bool`, *optional*, defaults to `False`) --
-  Whether to use deterministic flash attention. If `False`, inference will be faster but not deterministic.
-- **sparse_prediction** (`bool`, *optional*, defaults to `False`) --
-  Whether to use sparse prediction for the masked language model instead of returning the full dense logits.
-- **sparse_pred_ignore_index** (`int`, *optional*, defaults to -100) --
-  The index to ignore for the sparse prediction.
-- **tie_word_embeddings** (`bool`, *optional*, defaults to `True`) --
-  Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
+#### transformers.ModernBertConfig[[transformers.ModernBertConfig]]
+
+```python
+transformers.ModernBertConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 50368, hidden_size: int = 768, intermediate_size: int = 1152, num_hidden_layers: int = 22, num_attention_heads: int = 12, hidden_activation: str = 'gelu', max_position_embeddings: int = 8192, initializer_range: float = 0.02, initializer_cutoff_factor: float = 2.0, norm_eps: float = 1e-05, norm_bias: bool = False, pad_token_id: int | None = 50283, eos_token_id: int | list[int] | None = 50282, bos_token_id: int | None = 50281, cls_token_id: int | None = 50281, sep_token_id: int | None = 50282, attention_bias: bool = False, attention_dropout: float | int = 0.0, layer_types: list[str] | None = None, rope_parameters: dict[typing.Literal['full_attention', 'sliding_attention'], dict] | None = None, local_attention: int = 128, embedding_dropout: float | int = 0.0, mlp_bias: bool = False, mlp_dropout: float | int = 0.0, decoder_bias: bool = True, classifier_pooling: typing.Literal['cls', 'mean'] = 'cls', classifier_dropout: float | int = 0.0, classifier_bias: bool = False, classifier_activation: str = 'gelu', deterministic_flash_attn: bool = False, sparse_prediction: bool = False, sparse_pred_ignore_index: int = -100, tie_word_embeddings: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernbert/configuration_modernbert.py#L32)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `50368`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+intermediate_size (`int`, *optional*, defaults to `1152`) : Dimension of the MLP representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `22`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+hidden_activation (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+max_position_embeddings (`int`, *optional*, defaults to `8192`) : The maximum sequence length that this model might ever be used with.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+initializer_cutoff_factor (`float`, *optional*, defaults to 2.0) : The cutoff factor for the truncated_normal_initializer for initializing all weight matrices.
+
+norm_eps (`float`, *optional*, defaults to 1e-05) : The epsilon used by the rms normalization layers.
+
+norm_bias (`bool`, *optional*, defaults to `False`) : Whether to use bias in the normalization layers.
+
+pad_token_id (`int`, *optional*, defaults to `50283`) : Token id used for padding in the vocabulary.
+
+eos_token_id (`Union[int, list[int]]`, *optional*, defaults to `50282`) : Token id used for end-of-stream in the vocabulary.
+
+bos_token_id (`int`, *optional*, defaults to `50281`) : Token id used for beginning-of-stream in the vocabulary.
+
+cls_token_id (`int`, *optional*, defaults to `50281`) : Token id used for CLS in the vocabulary.
+
+sep_token_id (`int`, *optional*, defaults to `50282`) : Token id used for separator in the vocabulary.
+
+attention_bias (`bool`, *optional*, defaults to `False`) : Whether to use a bias in the query, key, value and output projection layers during self-attention.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+layer_types (`list[str]`, *optional*) : A list that explicitly maps each layer index with its layer type. If not provided, it will be automatically generated based on config values.
+
+rope_parameters (`dict[Literal[full_attention, sliding_attention], dict]`, *optional*) : Dictionary containing the configuration parameters for the RoPE embeddings. The dictionary should contain a value for `rope_theta` and optionally parameters used for scaling in case you want to use RoPE with longer `max_position_embeddings`.
+
+local_attention (`int`, *optional*, defaults to 128) : The window size for local attention.
+
+embedding_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the embeddings.
+
+mlp_bias (`bool`, *optional*, defaults to `False`) : Whether to use a bias in up_proj, down_proj and gate_proj layers in the MLP layers.
+
+mlp_dropout (`float`, *optional*, defaults to 0.0) : The dropout ratio for the MLP layers.
+
+decoder_bias (`bool`, *optional*, defaults to `True`) : Whether to use bias in the decoder layers.
+
+classifier_pooling (`str`, *optional*, defaults to `"cls"`) : The pooling method for the classifier. Should be either `"cls"` or `"mean"`. In local attention layers, the CLS token doesn't attend to all tokens on long sequences.
+
+classifier_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for classifier.
+
+classifier_bias (`bool`, *optional*, defaults to `False`) : Whether to use bias in the classifier.
+
+classifier_activation (`str`, *optional*, defaults to `"gelu"`) : The activation function for the classifier.
+
+deterministic_flash_attn (`bool`, *optional*, defaults to `False`) : Whether to use deterministic flash attention. If `False`, inference will be faster but not deterministic.
+
+sparse_prediction (`bool`, *optional*, defaults to `False`) : Whether to use sparse prediction for the masked language model instead of returning the full dense logits.
+
+sparse_pred_ignore_index (`int`, *optional*, defaults to -100) : The index to ignore for the sparse prediction.
+
+tie_word_embeddings (`bool`, *optional*, defaults to `True`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
 
 This is the configuration class to store the configuration of a ModernBertModel. It is used to instantiate a Modernbert
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [answerdotai/ModernBERT-base](https://huggingface.co/answerdotai/ModernBERT-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -189,14 +193,21 @@ Examples:
 
 ## ModernBertModel[[transformers.ModernBertModel]]
 
-- **config** ([ModernBertConfig](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.ModernBertModel[[transformers.ModernBertModel]]
+
+```python
+transformers.ModernBertModel(config: ModernBertConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernbert/modeling_modernbert.py#L412)
+
+**Parameters:**
+
+config ([ModernBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Modernbert Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -204,31 +215,31 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.ModernBertModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernbert/modeling_modernbert.py#L431)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.[BaseModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`A [BaseModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+**Returns:** [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ModernBertConfig](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertConfig)) and inputs.
-The [ModernBertModel](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([ModernBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertConfig)) and inputs.
+
+The [ModernBertModel](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -247,14 +258,21 @@ the latter silently ignores them.
 
 ## ModernBertForMaskedLM[[transformers.ModernBertForMaskedLM]]
 
-- **config** ([ModernBertConfig](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.ModernBertForMaskedLM[[transformers.ModernBertForMaskedLM]]
+
+```python
+transformers.ModernBertForMaskedLM(config: ModernBertConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernbert/modeling_modernbert.py#L498)
+
+**Parameters:**
+
+config ([ModernBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The ModernBert Model with a decoder head on top that is used for masked language modeling.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -262,35 +280,33 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.ModernBertForMaskedLM.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernbert/modeling_modernbert.py#L520)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.[MaskedLMOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`A [MaskedLMOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+**Returns:** [MaskedLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`
+
+A [MaskedLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ModernBertConfig](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertConfig)) and inputs.
-The [ModernBertForMaskedLM](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertForMaskedLM) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([ModernBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertConfig)) and inputs.
+
+The [ModernBertForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertForMaskedLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -340,14 +356,21 @@ Example:
 
 ## ModernBertForSequenceClassification[[transformers.ModernBertForSequenceClassification]]
 
-- **config** ([ModernBertConfig](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.ModernBertForSequenceClassification[[transformers.ModernBertForSequenceClassification]]
+
+```python
+transformers.ModernBertForSequenceClassification(config: ModernBertConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernbert/modeling_modernbert.py#L569)
+
+**Parameters:**
+
+config ([ModernBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The ModernBert Model with a sequence classification head on top that performs pooling.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -355,35 +378,33 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.ModernBertForSequenceClassification.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernbert/modeling_modernbert.py#L583)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the sequence classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).[SequenceClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`A [SequenceClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ModernBertConfig](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertConfig)) and inputs.
-The [ModernBertForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertForSequenceClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([ModernBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertConfig)) and inputs.
+
+The [ModernBertForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -459,14 +480,21 @@ Example of multi-label classification:
 
 ## ModernBertForTokenClassification[[transformers.ModernBertForTokenClassification]]
 
-- **config** ([ModernBertConfig](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.ModernBertForTokenClassification[[transformers.ModernBertForTokenClassification]]
+
+```python
+transformers.ModernBertForTokenClassification(config: ModernBertConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernbert/modeling_modernbert.py#L660)
+
+**Parameters:**
+
+config ([ModernBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The ModernBert Model with a token classification head on top, e.g. for Named Entity Recognition (NER) tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -474,33 +502,33 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.ModernBertForTokenClassification.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernbert/modeling_modernbert.py#L673)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the token classification loss. Indices should be in `[0, ..., config.num_labels - 1]`.[TokenClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`A [TokenClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the token classification loss. Indices should be in `[0, ..., config.num_labels - 1]`.
+
+**Returns:** [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ModernBertConfig](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertConfig)) and inputs.
-The [ModernBertForTokenClassification](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertForTokenClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([ModernBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertConfig)) and inputs.
+
+The [ModernBertForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -551,14 +579,21 @@ Example:
 
 ## ModernBertForMultipleChoice[[transformers.ModernBertForMultipleChoice]]
 
-- **config** ([ModernBertConfig](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.ModernBertForMultipleChoice[[transformers.ModernBertForMultipleChoice]]
+
+```python
+transformers.ModernBertForMultipleChoice(config: ModernBertConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernbert/modeling_modernbert.py#L772)
+
+**Parameters:**
+
+config ([ModernBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The ModernBert Model with a multiple choice classification head on top (a linear layer on top of the pooled output and a softmax) e.g. for RocStories/SWAG tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -566,34 +601,33 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.ModernBertForMultipleChoice.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernbert/modeling_modernbert.py#L785)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the multiple choice classification loss. Indices should be in `[0, ...,
-  num_choices-1]` where `num_choices` is the size of the second dimension of the input tensors.</paramsdesc><rettype>[MultipleChoiceModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or `tuple(torch.FloatTensor)`A [MultipleChoiceModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or a tuple of
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the multiple choice classification loss. Indices should be in `[0, ..., num_choices-1]` where `num_choices` is the size of the second dimension of the input tensors.
+
+**Returns:** [MultipleChoiceModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or `tuple(torch.FloatTensor)`
+
+A [MultipleChoiceModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ModernBertConfig](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertConfig)) and inputs.
-The [ModernBertForMultipleChoice](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertForMultipleChoice) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([ModernBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertConfig)) and inputs.
+
+The [ModernBertForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertForMultipleChoice) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -637,15 +671,22 @@ Example:
 
 ## ModernBertForQuestionAnswering[[transformers.ModernBertForQuestionAnswering]]
 
-- **config** ([ModernBertConfig](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.ModernBertForQuestionAnswering[[transformers.ModernBertForQuestionAnswering]]
+
+```python
+transformers.ModernBertForQuestionAnswering(config: ModernBertConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernbert/modeling_modernbert.py#L715)
+
+**Parameters:**
+
+config ([ModernBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Modernbert transformer with a span classification head on top for extractive question-answering tasks like
 SQuAD (a linear layer on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -653,35 +694,33 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.ModernBertForQuestionAnswering.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, start_positions: typing.Optional[torch.Tensor] = None, end_positions: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernbert/modeling_modernbert.py#L727)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **start_positions** (`torch.Tensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the start of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.
-- **end_positions** (`torch.Tensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the end of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.[QuestionAnsweringModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`A [QuestionAnsweringModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+start_positions (`torch.Tensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the start of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+end_positions (`torch.Tensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the end of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+**Returns:** [QuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`
+
+A [QuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ModernBertConfig](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertConfig)) and inputs.
-The [ModernBertForQuestionAnswering](/docs/transformers/v5.14.0/en/model_doc/modernbert#transformers.ModernBertForQuestionAnswering) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([ModernBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertConfig)) and inputs.
+
+The [ModernBertForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/modernbert#transformers.ModernBertForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -736,5 +775,5 @@ Example:
 
 The ModernBert model can be fine-tuned using the HuggingFace Transformers library with its [official script](https://github.com/huggingface/transformers/blob/main/examples/pytorch/question-answering/run_qa.py) for question-answering tasks.
 
-### Gemma 4 Unified Assistant
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/gemma4_unified_assistant.md
+### HerBERT
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/herbert.md

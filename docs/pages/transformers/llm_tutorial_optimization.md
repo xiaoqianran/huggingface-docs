@@ -98,10 +98,10 @@ def bytes_to_giga_bytes(bytes):
   return bytes / 1024 / 1024 / 1024
 ```
 
-Let's call [`torch.cuda.memory.max_memory_allocated`](https://docs.pytorch.org/docs/stable/generated/torch.cuda.memory.max_memory_allocated.html) to measure the peak GPU memory allocation.
+Let's call [`torch.accelerator.memory.max_memory_allocated`](https://docs.pytorch.org/docs/main/generated/torch.accelerator.memory.max_memory_allocated.html) to measure the peak accelerator memory allocation.
 
 ```python
-bytes_to_giga_bytes(torch.cuda.max_memory_allocated())
+bytes_to_giga_bytes(torch.accelerator.max_memory_allocated())
 ```
 
 **Output**:
@@ -128,8 +128,8 @@ import torch
 
 def flush():
   gc.collect()
-  torch.cuda.empty_cache()
-  torch.cuda.reset_peak_memory_stats()
+  torch.accelerator.empty_cache()
+  torch.accelerator.reset_peak_memory_stats()
 ```
 
 Let's call it now for the next experiment.
@@ -202,7 +202,7 @@ Here is a Python function that transforms bytes to Giga bytes:\n\n```python\ndef
 Nice, we're getting the same result as before, so no loss in accuracy! Let's look at how much memory was used this time.
 
 ```python
-bytes_to_giga_bytes(torch.cuda.max_memory_allocated())
+bytes_to_giga_bytes(torch.accelerator.max_memory_allocated())
 ```
 
 **Output**:
@@ -245,7 +245,7 @@ Here is a Python function that transforms bytes to Giga bytes:\n\n```\ndef bytes
 We're almost seeing the same output text as before - just the `python` is missing just before the code snippet. Let's see how much memory was required.
 
 ```python
-bytes_to_giga_bytes(torch.cuda.max_memory_allocated())
+bytes_to_giga_bytes(torch.accelerator.max_memory_allocated())
 ```
 
 **Output**:
@@ -429,7 +429,7 @@ Please have a look at [Transformer's Generate Text Tutorial](https://huggingface
 Let's run a quick code snippet to show how auto-regressive works in practice. We will simply take the most likely next token via `torch.argmax`.
 
 ```python
-input_ids = tokenizer(prompt, return_tensors="pt")["input_ids"].to("cuda")
+input_ids = tokenizer(prompt, return_tensors="pt")["input_ids"].to(model.device)
 
 for _ in range(5):
   next_logits = model(input_ids)["logits"][:, -1:]
@@ -465,7 +465,7 @@ In Transformers, we can retrieve the key-value cache by passing the `use_cache` 
 ```python
 past_key_values = None # past_key_values is the key-value cache
 generated_tokens = []
-next_token_id = tokenizer(prompt, return_tensors="pt")["input_ids"].to("cuda")
+next_token_id = tokenizer(prompt, return_tensors="pt")["input_ids"].to(model.device)
 
 for _ in range(5):
   next_logits, past_key_values = model(next_token_id, past_key_values=past_key_values, use_cache=True).to_tuple()
@@ -622,55 +622,5 @@ The research community is constantly coming up with new, nifty ways to speed up 
 The reason massive LLMs such as GPT3/4, Llama-2-70b, Claude, PaLM can run so quickly in chat-interfaces such as [Hugging Face Chat](https://huggingface.co/chat/) or ChatGPT is to a big part thanks to the above-mentioned improvements in precision, algorithms, and architecture.
 Going forward, accelerators such as GPUs, TPUs, etc... will only get faster and allow for more memory, but one should nevertheless always make sure to use the best available algorithms and architectures to get the most bang for your buck 🤗
 
-### Transformers
-https://huggingface.co/docs/transformers/v5.14.0/index.md
-
-# Transformers
-
-    
-
-Transformers acts as the model-definition framework for state-of-the-art machine learning models in text, computer
-vision, audio, video, and multimodal models, for both inference and training.
-
-It centralizes the model definition so that this definition is agreed upon across the ecosystem. `transformers` is the
-pivot across frameworks: if a model definition is supported, it will be compatible with the majority of training
-frameworks (Axolotl, Unsloth, DeepSpeed, FSDP, PyTorch-Lightning, ...), inference engines (vLLM, SGLang, TGI, ...),
-and adjacent modeling libraries (llama.cpp, mlx, ...) which leverage the model definition from `transformers`.
-
-We pledge to help support new state-of-the-art models and democratize their usage by having their model definition be
-simple, customizable, and efficient.
-
-There are over 1M+ Transformers [model checkpoints](https://huggingface.co/models?library=transformers&sort=trending) on the [Hugging Face Hub](https://huggingface.com/models) you can use.
-
-Explore the [Hub](https://huggingface.com/) today to find a model and use Transformers to help you get started right away.
-
-Explore the [Models Timeline](./models_timeline) to discover the latest text, vision, audio and multimodal model architectures in Transformers.
-
-## Features
-
-Transformers provides everything you need for inference or training with state-of-the-art pretrained models. Some of the main features include:
-
-- [Pipeline](./pipeline_tutorial): Simple and optimized inference class for many machine learning tasks like text generation, image segmentation, automatic speech recognition, document question answering, and more.
-- [Trainer](./trainer): A comprehensive trainer that supports features such as mixed precision, torch.compile, and FlashAttention for training and distributed training for PyTorch models.
-- [generate](./llm_tutorial): Fast text generation with large language models (LLMs) and vision language models (VLMs), including support for streaming and multiple decoding strategies.
-
-## Design
-
-> [!TIP]
-> Read our [Philosophy](./philosophy) to learn more about Transformers' design principles.
-
-Transformers is designed for developers and machine learning engineers and researchers. Its main design principles are:
-
-1. Fast and easy to use: Every model is implemented from only three main classes (configuration, model, and preprocessor) and can be quickly used for inference or training with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) or [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer).
-2. Pretrained models: Reduce your carbon footprint, compute cost and time by using a pretrained model instead of training an entirely new one. Each pretrained model is reproduced as closely as possible to the original model and offers state-of-the-art performance.
-
-  
-      
-  
-
-## Learn
-
-If you're new to Transformers or want to learn more about transformer models, we recommend starting with the [LLM course](https://huggingface.co/learn/llm-course/chapter1/1?fw=pt). This comprehensive course covers everything from the fundamentals of how transformer models work to practical applications across various tasks. You'll learn the complete workflow, from curating high-quality datasets to fine-tuning large language models and implementing reasoning capabilities. The course contains both theoretical and hands-on exercises to build a solid foundational knowledge of transformer models as you learn.
-
-### Machine learning apps
-https://huggingface.co/docs/transformers/v5.14.0/pipeline_gradio.md
+### Contribute to 🤗 Transformers
+https://huggingface.co/docs/transformers/v5.15.0/contributing.md

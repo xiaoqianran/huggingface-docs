@@ -7,7 +7,7 @@ You can find all the original CANINE checkpoints under the [Google](https://hugg
 > [!TIP]
 > Click on the CANINE models in the right sidebar for more examples of how to apply CANINE to different language tasks.
 
-The example below demonstrates how to generate embeddings with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
+The example below demonstrates how to generate embeddings with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
 
 ```python
 from transformers import pipeline
@@ -52,55 +52,60 @@ sequence_output = outputs.last_hidden_state
 
 ## CanineConfig[[transformers.CanineConfig]]
 
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **intermediate_size** (`int`, *optional*, defaults to `3072`) --
-  Dimension of the MLP representations.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **attention_probs_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The dropout ratio for the attention probabilities.
-- **max_position_embeddings** (`int`, *optional*, defaults to `16384`) --
-  The maximum sequence length that this model might ever be used with.
-- **type_vocab_size** (`int`, *optional*, defaults to `16`) --
-  The vocabulary size of the `token_type_ids`.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-12`) --
-  The epsilon used by the layer normalization layers.
-- **pad_token_id** (`int`, *optional*, defaults to `0`) --
-  Token id used for padding in the vocabulary.
-- **bos_token_id** (`int`, *optional*, defaults to `57344`) --
-  Token id used for beginning-of-stream in the vocabulary.
-- **eos_token_id** (`Union[int, list[int]]`, *optional*, defaults to `57345`) --
-  Token id used for end-of-stream in the vocabulary.
-- **downsampling_rate** (`int`, *optional*, defaults to 4) --
-  The rate at which to downsample the original character sequence length before applying the deep Transformer
-  encoder.
-- **upsampling_kernel_size** (`int`, *optional*, defaults to 4) --
-  The kernel size (i.e. the number of characters in each window) of the convolutional projection layer when
-  projecting back from `hidden_size`*2 to `hidden_size`.
-- **num_hash_functions** (`int`, *optional*, defaults to 8) --
-  The number of hash functions to use. Each hash function has its own embedding matrix.
-- **num_hash_buckets** (`int`, *optional*, defaults to 16384) --
-  The number of hash buckets to use.
-- **local_transformer_stride** (`int`, *optional*, defaults to 128) --
-  The stride of the local attention of the first shallow Transformer encoder. Defaults to 128 for good
-  TPU/XLA memory alignment.
+#### transformers.CanineConfig[[transformers.CanineConfig]]
+
+```python
+transformers.CanineConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.1, max_position_embeddings: int = 16384, type_vocab_size: int = 16, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, pad_token_id: int | None = 0, bos_token_id: int | None = 57344, eos_token_id: int | list[int] | None = 57345, downsampling_rate: int = 4, upsampling_kernel_size: int = 4, num_hash_functions: int = 8, num_hash_buckets: int = 16384, local_transformer_stride: int = 128)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/canine/configuration_canine.py#L24)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+intermediate_size (`int`, *optional*, defaults to `3072`) : Dimension of the MLP representations.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.1`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+attention_probs_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.1`) : The dropout ratio for the attention probabilities.
+
+max_position_embeddings (`int`, *optional*, defaults to `16384`) : The maximum sequence length that this model might ever be used with.
+
+type_vocab_size (`int`, *optional*, defaults to `16`) : The vocabulary size of the `token_type_ids`.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-12`) : The epsilon used by the layer normalization layers.
+
+pad_token_id (`int`, *optional*, defaults to `0`) : Token id used for padding in the vocabulary.
+
+bos_token_id (`int`, *optional*, defaults to `57344`) : Token id used for beginning-of-stream in the vocabulary.
+
+eos_token_id (`Union[int, list[int]]`, *optional*, defaults to `57345`) : Token id used for end-of-stream in the vocabulary.
+
+downsampling_rate (`int`, *optional*, defaults to 4) : The rate at which to downsample the original character sequence length before applying the deep Transformer encoder.
+
+upsampling_kernel_size (`int`, *optional*, defaults to 4) : The kernel size (i.e. the number of characters in each window) of the convolutional projection layer when projecting back from `hidden_size`*2 to `hidden_size`.
+
+num_hash_functions (`int`, *optional*, defaults to 8) : The number of hash functions to use. Each hash function has its own embedding matrix.
+
+num_hash_buckets (`int`, *optional*, defaults to 16384) : The number of hash buckets to use.
+
+local_transformer_stride (`int`, *optional*, defaults to 128) : The stride of the local attention of the first shallow Transformer encoder. Defaults to 128 for good TPU/XLA memory alignment.
 
 This is the configuration class to store the configuration of a CanineModel. It is used to instantiate a Canine
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/canine-s](https://huggingface.co/google/canine-s)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -119,20 +124,42 @@ Example:
 
 ## CanineTokenizer[[transformers.CanineTokenizer]]
 
-- **model_max_length** (`int`, *optional*, defaults to 2048) --
-  The maximum sentence length the model accepts.
+#### transformers.CanineTokenizer[[transformers.CanineTokenizer]]
+
+```python
+transformers.CanineTokenizer(bos_token = '\ue000', eos_token = '\ue001', sep_token = '\ue001', cls_token = '\ue000', pad_token = '\x00', mask_token = '\ue003', add_prefix_space = False, model_max_length = 2048, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/canine/tokenization_canine.py#L55)
+
+**Parameters:**
+
+model_max_length (`int`, *optional*, defaults to 2048) : The maximum sentence length the model accepts.
 
 Construct a CANINE tokenizer (i.e. a character splitter). It turns text into a sequence of characters, and then
 converts each character into its Unicode code point.
 
-[CanineTokenizer](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineTokenizer) inherits from [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend).
+[CanineTokenizer](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineTokenizer) inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend).
 
-Refer to superclass [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend) for usage examples and documentation concerning parameters.
+Refer to superclass [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) for usage examples and documentation concerning parameters.
 
-- **token_ids_0** (`list[int]`) --
-  List of IDs to which the special tokens will be added.
-- **token_ids_1** (`list[int]`, *optional*) --
-  Optional second list of IDs for sequence pairs.`list[int]`List of input IDs with the appropriate special tokens.
+#### build_inputs_with_special_tokens[[transformers.CanineTokenizer.build_inputs_with_special_tokens]]
+
+```python
+build_inputs_with_special_tokens(token_ids_0: list, token_ids_1: list[int] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_python.py#L865)
+
+**Parameters:**
+
+token_ids_0 (`list[int]`) : List of IDs to which the special tokens will be added.
+
+token_ids_1 (`list[int]`, *optional*) : Optional second list of IDs for sequence pairs.
+
+**Returns:** `list[int]`
+
+List of input IDs with the appropriate special tokens.
 
 Build model inputs from a sequence or a pair of sequences by adding special tokens.
 
@@ -145,12 +172,25 @@ This method dynamically builds inputs based on the tokenizer's `special_tokens_p
 - `"cls_double_sep"`: [CLS] seq0 [SEP] or [CLS] seq0 [SEP] [SEP] seq1 [SEP]
 - `"prefix_suffix"`: `<prefix_tokens> seq0 [seq1] <suffix_tokens>` (custom prefix/suffix stored on the tokenizer)
 
-- **token_ids_0** (`list[int]`) --
-  List of ids of the first sequence.
-- **token_ids_1** (`list[int]`, *optional*) --
-  List of ids of the second sequence.
-- **already_has_special_tokens** (`bool`, *optional*, defaults to `False`) --
-  Whether or not the token list is already formatted with special tokens for the model.A list of integers in the range [0, 1]1 for a special token, 0 for a sequence token.
+#### get_special_tokens_mask[[transformers.CanineTokenizer.get_special_tokens_mask]]
+
+```python
+get_special_tokens_mask(token_ids_0: list, token_ids_1: list | None = None, already_has_special_tokens: bool = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_python.py#L969)
+
+**Parameters:**
+
+token_ids_0 (`list[int]`) : List of ids of the first sequence.
+
+token_ids_1 (`list[int]`, *optional*) : List of ids of the second sequence.
+
+already_has_special_tokens (`bool`, *optional*, defaults to `False`) : Whether or not the token list is already formatted with special tokens for the model.
+
+**Returns:** A list of integers in the range [0, 1]
+
+1 for a special token, 0 for a sequence token.
 
 Retrieves sequence ids from a token list that has no special tokens added. This method is called when adding
 special tokens using the tokenizer `prepare_for_model` or `encode_plus` methods.
@@ -164,10 +204,23 @@ This method dynamically builds the special tokens mask based on the tokenizer's 
 - `"cls_double_sep"`: [CLS] seq0 [SEP] or [CLS] seq0 [SEP] [SEP] seq1 [SEP]
 - `"prefix_suffix"`: `<prefix_tokens> seq0 [seq1] <suffix_tokens>`
 
-- **token_ids_0** (`list[int]`) --
-  List of IDs.
-- **token_ids_1** (`list[int]`, *optional*) --
-  Optional second list of IDs for sequence pairs.`list[int]`Token type IDs according to the configured pattern.
+#### create_token_type_ids_from_sequences[[transformers.CanineTokenizer.create_token_type_ids_from_sequences]]
+
+```python
+create_token_type_ids_from_sequences(token_ids_0: list, token_ids_1: list[int] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_python.py#L1298)
+
+**Parameters:**
+
+token_ids_0 (`list[int]`) : List of IDs.
+
+token_ids_1 (`list[int]`, *optional*) : Optional second list of IDs for sequence pairs.
+
+**Returns:** `list[int]`
+
+Token type IDs according to the configured pattern.
 
 Create a mask from the two sequences passed to be used in a sequence-pair classification task.
 
@@ -188,42 +241,47 @@ tokenizer.token_type_ids_pattern = "bert_style"
 
 ## CANINE specific outputs[[transformers.models.canine.modeling_canine.CanineModelOutputWithPooling]]
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) --
-  Sequence of hidden-states at the output of the last layer of the model (i.e. the output of the final
-  shallow Transformer encoder).
-- **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) --
-  Hidden-state of the first token of the sequence (classification token) at the last layer of the deep
-  Transformer encoder, further processed by a Linear layer and a Tanh activation function. The Linear layer
-  weights are trained from the next sentence prediction (classification) objective during pretraining.
-- **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) --
-  Tuple of `torch.FloatTensor` (one for the input to each encoder + one for the output of each layer of each
-  encoder) of shape `(batch_size, sequence_length, hidden_size)` and `(batch_size, sequence_length //
-  config.downsampling_rate, hidden_size)`. Hidden-states of the model at the output of each layer plus the
-  initial input to each Transformer encoder. The hidden states of the shallow encoders have length
-  `sequence_length`, but the hidden states of the deep encoder have length `sequence_length` //
-  `config.downsampling_rate`.
-- **attentions** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) --
-  Tuple of `torch.FloatTensor` (one for each layer) of the 3 Transformer encoders of shape `(batch_size,
-  num_heads, sequence_length, sequence_length)` and `(batch_size, num_heads, sequence_length //
-  config.downsampling_rate, sequence_length // config.downsampling_rate)`. Attentions weights after the
-  attention softmax, used to compute the weighted average in the self-attention heads.
+#### transformers.models.canine.modeling_canine.CanineModelOutputWithPooling[[transformers.models.canine.modeling_canine.CanineModelOutputWithPooling]]
 
-Output type of [CanineModel](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineModel). Based on [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling), but with slightly
+```python
+transformers.models.canine.modeling_canine.CanineModelOutputWithPooling(last_hidden_state: typing.Optional[torch.FloatTensor] = None, pooler_output: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor] | None = None, attentions: tuple[torch.FloatTensor] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/canine/modeling_canine.py#L57)
+
+**Parameters:**
+
+last_hidden_state (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) : Sequence of hidden-states at the output of the last layer of the model (i.e. the output of the final shallow Transformer encoder).
+
+pooler_output (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) : Hidden-state of the first token of the sequence (classification token) at the last layer of the deep Transformer encoder, further processed by a Linear layer and a Tanh activation function. The Linear layer weights are trained from the next sentence prediction (classification) objective during pretraining.
+
+hidden_states (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.FloatTensor` (one for the input to each encoder + one for the output of each layer of each encoder) of shape `(batch_size, sequence_length, hidden_size)` and `(batch_size, sequence_length // config.downsampling_rate, hidden_size)`. Hidden-states of the model at the output of each layer plus the initial input to each Transformer encoder. The hidden states of the shallow encoders have length `sequence_length`, but the hidden states of the deep encoder have length `sequence_length` // `config.downsampling_rate`.
+
+attentions (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of the 3 Transformer encoders of shape `(batch_size, num_heads, sequence_length, sequence_length)` and `(batch_size, num_heads, sequence_length // config.downsampling_rate, sequence_length // config.downsampling_rate)`. Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
+
+Output type of [CanineModel](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineModel). Based on [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling), but with slightly
 different `hidden_states` and `attentions`, as these also include the hidden states and attentions of the shallow
 Transformer encoders.
 
 ## CanineModel[[transformers.CanineModel]]
 
-- **config** ([CanineModel](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
-- **add_pooling_layer** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a pooling layer
+#### transformers.CanineModel[[transformers.CanineModel]]
+
+```python
+transformers.CanineModel(config, add_pooling_layer = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/canine/modeling_canine.py#L727)
+
+**Parameters:**
+
+config ([CanineModel](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+
+add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare Canine Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -231,46 +289,39 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.CanineModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/canine/modeling_canine.py#L829)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[CanineModelOutputWithPooling](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.models.canine.modeling_canine.CanineModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [CanineModelOutputWithPooling](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.models.canine.modeling_canine.CanineModelOutputWithPooling) or a tuple of
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [CanineModelOutputWithPooling](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.models.canine.modeling_canine.CanineModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [CanineModelOutputWithPooling](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.models.canine.modeling_canine.CanineModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CanineConfig](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineConfig)) and inputs.
-The [CanineModel](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([CanineConfig](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineConfig)) and inputs.
+
+The [CanineModel](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -294,15 +345,22 @@ the latter silently ignores them.
 
 ## CanineForSequenceClassification[[transformers.CanineForSequenceClassification]]
 
-- **config** ([CanineForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineForSequenceClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.CanineForSequenceClassification[[transformers.CanineForSequenceClassification]]
+
+```python
+transformers.CanineForSequenceClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/canine/modeling_canine.py#L995)
+
+**Parameters:**
+
+config ([CanineForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 CANINE Model transformer with a sequence classification/regression head on top (a linear layer on top of the pooled
 output) e.g. for GLUE tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -310,50 +368,41 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.CanineForSequenceClassification.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/canine/modeling_canine.py#L1007)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the sequence classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[SequenceClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`A [SequenceClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CanineConfig](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineConfig)) and inputs.
-The [CanineForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineForSequenceClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([CanineConfig](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineConfig)) and inputs.
+
+The [CanineForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -429,15 +478,22 @@ Example of multi-label classification:
 
 ## CanineForMultipleChoice[[transformers.CanineForMultipleChoice]]
 
-- **config** ([CanineForMultipleChoice](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineForMultipleChoice)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.CanineForMultipleChoice[[transformers.CanineForMultipleChoice]]
+
+```python
+transformers.CanineForMultipleChoice(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/canine/modeling_canine.py#L1080)
+
+**Parameters:**
+
+config ([CanineForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineForMultipleChoice)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Canine Model with a multiple choice classification head on top (a linear layer on top of the pooled output and a
 softmax) e.g. for RocStories/SWAG tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -445,52 +501,41 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) --
-  Indices of input sequence tokens in the vocabulary.
+#### forward[[transformers.CanineForMultipleChoice.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/canine/modeling_canine.py#L1091)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0,
-  1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0,
-  config.max_position_embeddings - 1]`.
+token_type_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, num_choices, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert *input_ids* indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the multiple choice classification loss. Indices should be in `[0, ...,
-  num_choices-1]` where `num_choices` is the size of the second dimension of the input tensors. (See
-  `input_ids` above)
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[MultipleChoiceModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or `tuple(torch.FloatTensor)`A [MultipleChoiceModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or a tuple of
+position_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.max_position_embeddings - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, num_choices, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert *input_ids* indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the multiple choice classification loss. Indices should be in `[0, ..., num_choices-1]` where `num_choices` is the size of the second dimension of the input tensors. (See `input_ids` above)
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [MultipleChoiceModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or `tuple(torch.FloatTensor)`
+
+A [MultipleChoiceModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CanineConfig](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineConfig)) and inputs.
-The [CanineForMultipleChoice](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineForMultipleChoice) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([CanineConfig](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineConfig)) and inputs.
+
+The [CanineForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineForMultipleChoice) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -534,15 +579,22 @@ Example:
 
 ## CanineForTokenClassification[[transformers.CanineForTokenClassification]]
 
-- **config** ([CanineForTokenClassification](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineForTokenClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.CanineForTokenClassification[[transformers.CanineForTokenClassification]]
+
+```python
+transformers.CanineForTokenClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/canine/modeling_canine.py#L1183)
+
+**Parameters:**
+
+config ([CanineForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Canine transformer with a token classification head on top (a linear layer on top of the hidden-states
 output) e.g. for Named-Entity-Recognition (NER) tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -550,48 +602,41 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.CanineForTokenClassification.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/canine/modeling_canine.py#L1195)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the token classification loss. Indices should be in `[0, ..., config.num_labels - 1]`.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[TokenClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`A [TokenClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the token classification loss. Indices should be in `[0, ..., config.num_labels - 1]`.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CanineConfig](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineConfig)) and inputs.
-The [CanineForTokenClassification](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineForTokenClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([CanineConfig](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineConfig)) and inputs.
+
+The [CanineForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -642,15 +687,22 @@ Example:
 
 ## CanineForQuestionAnswering[[transformers.CanineForQuestionAnswering]]
 
-- **config** ([CanineForQuestionAnswering](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineForQuestionAnswering)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.CanineForQuestionAnswering[[transformers.CanineForQuestionAnswering]]
+
+```python
+transformers.CanineForQuestionAnswering(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/canine/modeling_canine.py#L1279)
+
+**Parameters:**
+
+config ([CanineForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Canine transformer with a span classification head on top for extractive question-answering tasks like
 SQuAD (a linear layer on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -658,54 +710,43 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.CanineForQuestionAnswering.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, start_positions: typing.Optional[torch.LongTensor] = None, end_positions: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/canine/modeling_canine.py#L1290)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **start_positions** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the start of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.
-- **end_positions** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the end of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[QuestionAnsweringModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`A [QuestionAnsweringModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+start_positions (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the start of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+end_positions (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the end of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [QuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`
+
+A [QuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CanineConfig](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineConfig)) and inputs.
-The [CanineForQuestionAnswering](/docs/transformers/v5.14.0/en/model_doc/canine#transformers.CanineForQuestionAnswering) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([CanineConfig](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineConfig)) and inputs.
+
+The [CanineForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/canine#transformers.CanineForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -756,5 +797,5 @@ Example:
 ...
 ```
 
-### ViTMAE
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/vit_mae.md
+### BLOOM
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/bloom.md

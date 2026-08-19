@@ -151,52 +151,58 @@ model = AutoModel.from_pretrained(model_id, revision=revision, rope_parameters=r
 
 ## NomicBertConfig[[transformers.NomicBertConfig]]
 
-- **vocab_size** (`int`, *optional*, defaults to `30528`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **intermediate_size** (`int`, *optional*, defaults to `3072`) --
-  Dimension of the MLP representations.
-- **hidden_act** (`str`, *optional*, defaults to `silu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dropout_prob** (`float`, *optional*, defaults to `0.0`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **attention_probs_dropout_prob** (`float`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **max_position_embeddings** (`int`, *optional*, defaults to `2048`) --
-  The maximum sequence length that this model might ever be used with.
-- **type_vocab_size** (`int`, *optional*, defaults to `2`) --
-  The vocabulary size of the `token_type_ids`.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-12`) --
-  The epsilon used by the layer normalization layers.
-- **pad_token_id** (`int`, *optional*, defaults to `0`) --
-  Token id used for padding in the vocabulary.
-- **classifier_dropout** (`float`, *optional*) --
-  The dropout ratio for classifier.
-- **bos_token_id** (`int`, *optional*) --
-  Token id used for beginning-of-stream in the vocabulary.
-- **eos_token_id** (`int`, *optional*) --
-  Token id used for end-of-stream in the vocabulary.
-- **rope_parameters** (`Union[~modeling_rope_utils.RopeParameters, dict]`, *optional*) --
-  Dictionary containing the configuration parameters for the RoPE embeddings. The dictionary should contain
-  a value for `rope_theta` and optionally parameters used for scaling in case you want to use RoPE
-  with longer `max_position_embeddings`.
-- **head_dim** (`int`, *optional*) --
-  The attention head dimension. If None, it will default to hidden_size // num_attention_heads
+#### transformers.NomicBertConfig[[transformers.NomicBertConfig]]
+
+```python
+transformers.NomicBertConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 30528, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'silu', hidden_dropout_prob: float = 0.0, attention_probs_dropout_prob: float = 0.0, max_position_embeddings: int = 2048, type_vocab_size: int = 2, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, pad_token_id: int = 0, classifier_dropout: float | None = None, bos_token_id: int | None = None, eos_token_id: int | None = None, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, head_dim: int | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nomic_bert/configuration_nomic_bert.py#L31)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `30528`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+intermediate_size (`int`, *optional*, defaults to `3072`) : Dimension of the MLP representations.
+
+hidden_act (`str`, *optional*, defaults to `silu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dropout_prob (`float`, *optional*, defaults to `0.0`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+attention_probs_dropout_prob (`float`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+max_position_embeddings (`int`, *optional*, defaults to `2048`) : The maximum sequence length that this model might ever be used with.
+
+type_vocab_size (`int`, *optional*, defaults to `2`) : The vocabulary size of the `token_type_ids`.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-12`) : The epsilon used by the layer normalization layers.
+
+pad_token_id (`int`, *optional*, defaults to `0`) : Token id used for padding in the vocabulary.
+
+classifier_dropout (`float`, *optional*) : The dropout ratio for classifier.
+
+bos_token_id (`int`, *optional*) : Token id used for beginning-of-stream in the vocabulary.
+
+eos_token_id (`int`, *optional*) : Token id used for end-of-stream in the vocabulary.
+
+rope_parameters (`Union[~modeling_rope_utils.RopeParameters, dict]`, *optional*) : Dictionary containing the configuration parameters for the RoPE embeddings. The dictionary should contain a value for `rope_theta` and optionally parameters used for scaling in case you want to use RoPE with longer `max_position_embeddings`.
+
+head_dim (`int`, *optional*) : The attention head dimension. If None, it will default to hidden_size // num_attention_heads
 
 This is the configuration class to store the configuration of a NomicBertModel. It is used to instantiate a Nomic Bert
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nomic-ai/nomic-embed-text-v1.5](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -215,16 +221,23 @@ Examples:
 
 ## NomicBertModel[[transformers.NomicBertModel]]
 
-- **config** ([NomicBertModel](/docs/transformers/v5.14.0/en/model_doc/nomic_bert#transformers.NomicBertModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
-- **add_pooling_layer** (`bool`, *optional*, defaults to `False`) --
-  Whether to add a pooling layer.
+#### transformers.NomicBertModel[[transformers.NomicBertModel]]
+
+```python
+transformers.NomicBertModel(config, add_pooling_layer = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nomic_bert/modeling_nomic_bert.py#L377)
+
+**Parameters:**
+
+config ([NomicBertModel](/docs/transformers/v5.15.0/en/model_doc/nomic_bert#transformers.NomicBertModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+
+add_pooling_layer (`bool`, *optional*, defaults to `False`) : Whether to add a pooling layer.
 
 The bare Nomic Bert Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -232,38 +245,33 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.NomicBertModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nomic_bert/modeling_nomic_bert.py#L404)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([NomicBertConfig](/docs/transformers/v5.14.0/en/model_doc/nomic_bert#transformers.NomicBertConfig)) and inputs.
-The [NomicBertModel](/docs/transformers/v5.14.0/en/model_doc/nomic_bert#transformers.NomicBertModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([NomicBertConfig](/docs/transformers/v5.15.0/en/model_doc/nomic_bert#transformers.NomicBertConfig)) and inputs.
+
+The [NomicBertModel](/docs/transformers/v5.15.0/en/model_doc/nomic_bert#transformers.NomicBertModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -286,14 +294,21 @@ the latter silently ignores them.
 
 ## NomicBertForMaskedLM[[transformers.NomicBertForMaskedLM]]
 
-- **config** ([NomicBertForMaskedLM](/docs/transformers/v5.14.0/en/model_doc/nomic_bert#transformers.NomicBertForMaskedLM)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.NomicBertForMaskedLM[[transformers.NomicBertForMaskedLM]]
+
+```python
+transformers.NomicBertForMaskedLM(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nomic_bert/modeling_nomic_bert.py#L492)
+
+**Parameters:**
+
+config ([NomicBertForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/nomic_bert#transformers.NomicBertForMaskedLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Nomic Bert Model with a `language modeling` head on top."
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -301,42 +316,35 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.NomicBertForMaskedLM.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nomic_bert/modeling_nomic_bert.py#L514)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should be in `[-100, 0, ...,
-  config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are ignored (masked), the
-  loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`[MaskedLMOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`A [MaskedLMOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should be in `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`
+
+**Returns:** [MaskedLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`
+
+A [MaskedLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([NomicBertConfig](/docs/transformers/v5.14.0/en/model_doc/nomic_bert#transformers.NomicBertConfig)) and inputs.
-The [NomicBertForMaskedLM](/docs/transformers/v5.14.0/en/model_doc/nomic_bert#transformers.NomicBertForMaskedLM) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([NomicBertConfig](/docs/transformers/v5.15.0/en/model_doc/nomic_bert#transformers.NomicBertConfig)) and inputs.
+
+The [NomicBertForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/nomic_bert#transformers.NomicBertForMaskedLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -386,15 +394,22 @@ Example:
 
 ## NomicBertForSequenceClassification[[transformers.NomicBertForSequenceClassification]]
 
-- **config** ([NomicBertForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/nomic_bert#transformers.NomicBertForSequenceClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.NomicBertForSequenceClassification[[transformers.NomicBertForSequenceClassification]]
+
+```python
+transformers.NomicBertForSequenceClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nomic_bert/modeling_nomic_bert.py#L564)
+
+**Parameters:**
+
+config ([NomicBertForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/nomic_bert#transformers.NomicBertForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 NomicBert Model transformer with a sequence classification/regression head on top (a linear layer on top of the pooled
 output) e.g. for GLUE tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -402,42 +417,35 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.NomicBertForSequenceClassification.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nomic_bert/modeling_nomic_bert.py#L579)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the sequence classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).[SequenceClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`A [SequenceClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([NomicBertConfig](/docs/transformers/v5.14.0/en/model_doc/nomic_bert#transformers.NomicBertConfig)) and inputs.
-The [NomicBertForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/nomic_bert#transformers.NomicBertForSequenceClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([NomicBertConfig](/docs/transformers/v5.15.0/en/model_doc/nomic_bert#transformers.NomicBertConfig)) and inputs.
+
+The [NomicBertForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/nomic_bert#transformers.NomicBertForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -513,15 +521,22 @@ Example of multi-label classification:
 
 ## NomicBertForTokenClassification[[transformers.NomicBertForTokenClassification]]
 
-- **config** ([NomicBertForTokenClassification](/docs/transformers/v5.14.0/en/model_doc/nomic_bert#transformers.NomicBertForTokenClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.NomicBertForTokenClassification[[transformers.NomicBertForTokenClassification]]
+
+```python
+transformers.NomicBertForTokenClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nomic_bert/modeling_nomic_bert.py#L644)
+
+**Parameters:**
+
+config ([NomicBertForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/nomic_bert#transformers.NomicBertForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Nomic Bert transformer with a token classification head on top (a linear layer on top of the hidden-states
 output) e.g. for Named-Entity-Recognition (NER) tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -529,40 +544,35 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.NomicBertForTokenClassification.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nomic_bert/modeling_nomic_bert.py#L659)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the token classification loss. Indices should be in `[0, ..., config.num_labels - 1]`.[TokenClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`A [TokenClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the token classification loss. Indices should be in `[0, ..., config.num_labels - 1]`.
+
+**Returns:** [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([NomicBertConfig](/docs/transformers/v5.14.0/en/model_doc/nomic_bert#transformers.NomicBertConfig)) and inputs.
-The [NomicBertForTokenClassification](/docs/transformers/v5.14.0/en/model_doc/nomic_bert#transformers.NomicBertForTokenClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([NomicBertConfig](/docs/transformers/v5.15.0/en/model_doc/nomic_bert#transformers.NomicBertConfig)) and inputs.
+
+The [NomicBertForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/nomic_bert#transformers.NomicBertForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -611,5 +621,5 @@ Example:
 ...
 ```
 
-### LW-DETR
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/lw_detr.md
+### ShieldGemma 2
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/shieldgemma2.md

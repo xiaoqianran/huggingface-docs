@@ -26,5 +26,5 @@ let model = Model::new(args.use_flash_attn, &config, vb)?;
 
 - [Candle](https://github.com/huggingface/candle) documentation
 
-### NeMo Automodel
-https://huggingface.co/docs/transformers/v5.14.0/community_integrations/nemo_automodel_pretraining.md
+### SGLang
+https://huggingface.co/docs/transformers/v5.15.0/community_integrations/sglang.md

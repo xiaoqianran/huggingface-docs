@@ -54,53 +54,61 @@ Note that the latter will likely take time to compile. NATTEN does not support W
 
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with DiNAT.
 
-- [DinatForImageClassification](/docs/transformers/v5.14.0/en/model_doc/dinat#transformers.DinatForImageClassification) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-classification) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/image_classification.ipynb).
+- [DinatForImageClassification](/docs/transformers/v5.15.0/en/model_doc/dinat#transformers.DinatForImageClassification) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-classification) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/image_classification.ipynb).
 - See also: [Image classification task guide](../tasks/image_classification)
 
 If you're interested in submitting a resource to be included here, please feel free to open a Pull Request and we'll review it! The resource should ideally demonstrate something new instead of duplicating an existing resource.
 
 ## DinatConfig[[transformers.DinatConfig]]
 
-- **patch_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `4`) --
-  The size (resolution) of each patch.
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **embed_dim** (`int`, *optional*, defaults to `64`) --
-  Dimensionality of the embeddings and hidden states.
-- **depths** (`Union[list[int], tuple[int, ...]]`, *optional*, defaults to `(3, 4, 6, 5)`) --
-  Depth of each layer in the Transformer.
-- **num_heads** (`Union[list[int], tuple[int, ...]]`, *optional*, defaults to `(2, 4, 8, 16)`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **kernel_size** (`int`, *optional*, defaults to `7`) --
-  The size of the convolutional kernel.
-- **dilations** (`list[list[int]]`, *optional*, defaults to `[[1, 8, 1], [1, 4, 1, 4], [1, 2, 1, 2, 1, 2], [1, 1, 1, 1, 1]]`) --
-  Dilation value of each NA layer in the Transformer encoder.
-- **mlp_ratio** (`float`, *optional*, defaults to `3.0`) --
-  Ratio of the MLP hidden dim to the embedding dim.
-- **qkv_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a bias to the queries, keys and values.
-- **hidden_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **attention_probs_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **drop_path_rate** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  Drop path rate for the patch fusion.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-05`) --
-  The epsilon used by the layer normalization layers.
-- **layer_scale_init_value** (`float`, *optional*, defaults to `0.0`) --
-  Scale to use in the self-attention layers. 0.1 for base, 1e-6 for large. Set 0 to disable layer scale.
+#### transformers.DinatConfig[[transformers.DinatConfig]]
+
+```python
+transformers.DinatConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, patch_size: int | list[int] | tuple[int, int] = 4, num_channels: int = 3, embed_dim: int = 64, depths: list[int] | tuple[int, ...] = (3, 4, 6, 5), num_heads: list[int] | tuple[int, ...] = (2, 4, 8, 16), kernel_size: int = 7, dilations: list | tuple | None = None, mlp_ratio: float = 3.0, qkv_bias: bool = True, hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, drop_path_rate: float | int = 0.1, hidden_act: str = 'gelu', initializer_range: float = 0.02, layer_norm_eps: float = 1e-05, layer_scale_init_value: float = 0.0, _out_features: list[str] | None = None, _out_indices: list[int] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dinat/configuration_dinat.py#L25)
+
+**Parameters:**
+
+patch_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `4`) : The size (resolution) of each patch.
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+embed_dim (`int`, *optional*, defaults to `64`) : Dimensionality of the embeddings and hidden states.
+
+depths (`Union[list[int], tuple[int, ...]]`, *optional*, defaults to `(3, 4, 6, 5)`) : Depth of each layer in the Transformer.
+
+num_heads (`Union[list[int], tuple[int, ...]]`, *optional*, defaults to `(2, 4, 8, 16)`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+kernel_size (`int`, *optional*, defaults to `7`) : The size of the convolutional kernel.
+
+dilations (`list[list[int]]`, *optional*, defaults to `[[1, 8, 1], [1, 4, 1, 4], [1, 2, 1, 2, 1, 2], [1, 1, 1, 1, 1]]`) : Dilation value of each NA layer in the Transformer encoder.
+
+mlp_ratio (`float`, *optional*, defaults to `3.0`) : Ratio of the MLP hidden dim to the embedding dim.
+
+qkv_bias (`bool`, *optional*, defaults to `True`) : Whether to add a bias to the queries, keys and values.
+
+hidden_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+attention_probs_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+drop_path_rate (`Union[float, int]`, *optional*, defaults to `0.1`) : Drop path rate for the patch fusion.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-05`) : The epsilon used by the layer normalization layers.
+
+layer_scale_init_value (`float`, *optional*, defaults to `0.0`) : Scale to use in the self-attention layers. 0.1 for base, 1e-6 for large. Set 0 to disable layer scale.
 
 This is the configuration class to store the configuration of a DinatModel. It is used to instantiate a Dinat
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [shi-labs/dinat-mini-in1k-224](https://huggingface.co/shi-labs/dinat-mini-in1k-224)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -119,16 +127,23 @@ Example:
 
 ## DinatModel[[transformers.DinatModel]]
 
-- **config** ([DinatModel](/docs/transformers/v5.14.0/en/model_doc/dinat#transformers.DinatModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
-- **add_pooling_layer** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a pooling layer
+#### transformers.DinatModel[[transformers.DinatModel]]
+
+```python
+transformers.DinatModel(config, add_pooling_layer = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dinat/modeling_dinat.py#L541)
+
+**Parameters:**
+
+config ([DinatModel](/docs/transformers/v5.15.0/en/model_doc/dinat#transformers.DinatModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+
+add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare Dinat Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -136,21 +151,31 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.`DinatModelOutput` or `tuple(torch.FloatTensor)`A `DinatModelOutput` or a tuple of
+#### forward[[transformers.DinatModel.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dinat/modeling_dinat.py#L567)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** `DinatModelOutput` or `tuple(torch.FloatTensor)`
+
+A `DinatModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DinatConfig](/docs/transformers/v5.14.0/en/model_doc/dinat#transformers.DinatConfig)) and inputs.
-The [DinatModel](/docs/transformers/v5.14.0/en/model_doc/dinat#transformers.DinatModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([DinatConfig](/docs/transformers/v5.15.0/en/model_doc/dinat#transformers.DinatConfig)) and inputs.
+
+The [DinatModel](/docs/transformers/v5.15.0/en/model_doc/dinat#transformers.DinatModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -180,15 +205,22 @@ Example:
 
 ## DinatForImageClassification[[transformers.DinatForImageClassification]]
 
-- **config** ([DinatForImageClassification](/docs/transformers/v5.14.0/en/model_doc/dinat#transformers.DinatForImageClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.DinatForImageClassification[[transformers.DinatForImageClassification]]
+
+```python
+transformers.DinatForImageClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dinat/modeling_dinat.py#L622)
+
+**Parameters:**
+
+config ([DinatForImageClassification](/docs/transformers/v5.15.0/en/model_doc/dinat#transformers.DinatForImageClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Dinat Model transformer with an image classification head on top (a linear layer on top of the final hidden state
 of the [CLS] token) e.g. for ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -196,25 +228,33 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the image classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.`DinatImageClassifierOutput` or `tuple(torch.FloatTensor)`A `DinatImageClassifierOutput` or a tuple of
+#### forward[[transformers.DinatForImageClassification.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dinat/modeling_dinat.py#L639)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** `DinatImageClassifierOutput` or `tuple(torch.FloatTensor)`
+
+A `DinatImageClassifierOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DinatConfig](/docs/transformers/v5.14.0/en/model_doc/dinat#transformers.DinatConfig)) and inputs.
-The [DinatForImageClassification](/docs/transformers/v5.14.0/en/model_doc/dinat#transformers.DinatForImageClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([DinatConfig](/docs/transformers/v5.15.0/en/model_doc/dinat#transformers.DinatConfig)) and inputs.
+
+The [DinatForImageClassification](/docs/transformers/v5.15.0/en/model_doc/dinat#transformers.DinatForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -261,5 +301,5 @@ Example:
 ...
 ```
 
-### Evolla
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/evolla.md
+### TimesFM 2.5
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/timesfm2_5.md

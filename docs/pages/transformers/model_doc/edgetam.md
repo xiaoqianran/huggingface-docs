@@ -277,21 +277,30 @@ with torch.no_grad():
 
 ## EdgeTamConfig[[transformers.EdgeTamConfig]]
 
-- **vision_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the vision backbone.
-- **prompt_encoder_config** (Union[`dict`, `EdgeTamPromptEncoderConfig`], *optional*) --
-  Dictionary of configuration options used to initialize [EdgeTamPromptEncoderConfig](/docs/transformers/v5.14.0/en/model_doc/edgetam#transformers.EdgeTamPromptEncoderConfig).
-- **mask_decoder_config** (Union[`dict`, `EdgeTamMaskDecoderConfig`], *optional*) --
-  Dictionary of configuration options used to initialize [EdgeTamMaskDecoderConfig](/docs/transformers/v5.14.0/en/model_doc/edgetam#transformers.EdgeTamMaskDecoderConfig).
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+#### transformers.EdgeTamConfig[[transformers.EdgeTamConfig]]
+
+```python
+transformers.EdgeTamConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, prompt_encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, mask_decoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, initializer_range: float = 0.02)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/configuration_edgetam.py#L152)
+
+**Parameters:**
+
+vision_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the vision backbone.
+
+prompt_encoder_config (Union[`dict`, `EdgeTamPromptEncoderConfig`], *optional*) : Dictionary of configuration options used to initialize [EdgeTamPromptEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamPromptEncoderConfig).
+
+mask_decoder_config (Union[`dict`, `EdgeTamMaskDecoderConfig`], *optional*) : Dictionary of configuration options used to initialize [EdgeTamMaskDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamMaskDecoderConfig).
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
 This is the configuration class to store the configuration of a EdgeTamModel. It is used to instantiate a Edgetam
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/EdgeTAM-hf](https://huggingface.co/yonigozlan/EdgeTAM-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -323,111 +332,142 @@ Example:
 
 ## EdgeTamVisionConfig[[transformers.EdgeTamVisionConfig]]
 
-- **backbone_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The configuration of the backbone model.
-- **backbone_channel_list** (`List[int]`, *optional*, defaults to `[384, 192, 96, 48]`) --
-  The list of channel dimensions for the backbone.
-- **backbone_feature_sizes** (`List[List[int]]`, *optional*, defaults to `[[256, 256], [128, 128], [64, 64]]`) --
-  The spatial sizes of the feature maps from the backbone.
-- **fpn_hidden_size** (`int`, *optional*, defaults to 256) --
-  The hidden dimension of the FPN.
-- **fpn_kernel_size** (`int`, *optional*, defaults to 1) --
-  The kernel size for the convolutions in the neck.
-- **fpn_stride** (`int`, *optional*, defaults to 1) --
-  The stride for the convolutions in the neck.
-- **fpn_padding** (`int`, *optional*, defaults to 0) --
-  The padding for the convolutions in the neck.
-- **fpn_top_down_levels** (`List[int]`, *optional*, defaults to `[2, 3]`) --
-  The levels for the top-down FPN connections.
-- **num_feature_levels** (`int`, *optional*, defaults to 3) --
-  The number of feature levels from the FPN to use.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+#### transformers.EdgeTamVisionConfig[[transformers.EdgeTamVisionConfig]]
+
+```python
+transformers.EdgeTamVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, backbone_channel_list: list[int] | None = None, backbone_feature_sizes: list | None = None, fpn_hidden_size: int = 256, fpn_kernel_size: int = 1, fpn_stride: int = 1, fpn_padding: int = 0, fpn_top_down_levels: list[int] | None = None, num_feature_levels: int = 3, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, initializer_range: float = 0.02)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/configuration_edgetam.py#L29)
+
+**Parameters:**
+
+backbone_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The configuration of the backbone model.
+
+backbone_channel_list (`List[int]`, *optional*, defaults to `[384, 192, 96, 48]`) : The list of channel dimensions for the backbone.
+
+backbone_feature_sizes (`List[List[int]]`, *optional*, defaults to `[[256, 256], [128, 128], [64, 64]]`) : The spatial sizes of the feature maps from the backbone.
+
+fpn_hidden_size (`int`, *optional*, defaults to 256) : The hidden dimension of the FPN.
+
+fpn_kernel_size (`int`, *optional*, defaults to 1) : The kernel size for the convolutions in the neck.
+
+fpn_stride (`int`, *optional*, defaults to 1) : The stride for the convolutions in the neck.
+
+fpn_padding (`int`, *optional*, defaults to 0) : The padding for the convolutions in the neck.
+
+fpn_top_down_levels (`List[int]`, *optional*, defaults to `[2, 3]`) : The levels for the top-down FPN connections.
+
+num_feature_levels (`int`, *optional*, defaults to 3) : The number of feature levels from the FPN to use.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
 This is the configuration class to store the configuration of a EdgeTamModel. It is used to instantiate a Edgetam
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/EdgeTAM-hf](https://huggingface.co/yonigozlan/EdgeTAM-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## EdgeTamMaskDecoderConfig[[transformers.EdgeTamMaskDecoderConfig]]
 
-- **hidden_size** (`int`, *optional*, defaults to `256`) --
-  Dimension of the hidden representations.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **mlp_dim** (`int`, *optional*, defaults to 2048) --
-  The dimension of the MLP in the two-way transformer.
-- **num_hidden_layers** (`int`, *optional*, defaults to `2`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **attention_downsample_rate** (`int`, *optional*, defaults to 2) --
-  The downsample rate for the attention layers.
-- **num_multimask_outputs** (`int`, *optional*, defaults to 3) --
-  The number of multimask outputs.
-- **iou_head_depth** (`int`, *optional*, defaults to 3) --
-  The depth of the IoU head.
-- **iou_head_hidden_dim** (`int`, *optional*, defaults to 256) --
-  The hidden dimension of the IoU head.
-- **dynamic_multimask_via_stability** (`bool`, *optional*, defaults to `True`) --
-  Whether to use dynamic multimask via stability.
-- **dynamic_multimask_stability_delta** (`float`, *optional*, defaults to 0.05) --
-  The stability delta for the dynamic multimask.
-- **dynamic_multimask_stability_thresh** (`float`, *optional*, defaults to 0.98) --
-  The stability threshold for the dynamic multimask.
+#### transformers.EdgeTamMaskDecoderConfig[[transformers.EdgeTamMaskDecoderConfig]]
+
+```python
+transformers.EdgeTamMaskDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, hidden_act: str = 'gelu', mlp_dim: int = 2048, num_hidden_layers: int = 2, num_attention_heads: int = 8, attention_downsample_rate: int = 2, num_multimask_outputs: int = 3, iou_head_depth: int = 3, iou_head_hidden_dim: int = 256, dynamic_multimask_via_stability: bool = True, dynamic_multimask_stability_delta: float = 0.05, dynamic_multimask_stability_thresh: float = 0.98)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/configuration_edgetam.py#L114)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `256`) : Dimension of the hidden representations.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+mlp_dim (`int`, *optional*, defaults to 2048) : The dimension of the MLP in the two-way transformer.
+
+num_hidden_layers (`int`, *optional*, defaults to `2`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+attention_downsample_rate (`int`, *optional*, defaults to 2) : The downsample rate for the attention layers.
+
+num_multimask_outputs (`int`, *optional*, defaults to 3) : The number of multimask outputs.
+
+iou_head_depth (`int`, *optional*, defaults to 3) : The depth of the IoU head.
+
+iou_head_hidden_dim (`int`, *optional*, defaults to 256) : The hidden dimension of the IoU head.
+
+dynamic_multimask_via_stability (`bool`, *optional*, defaults to `True`) : Whether to use dynamic multimask via stability.
+
+dynamic_multimask_stability_delta (`float`, *optional*, defaults to 0.05) : The stability delta for the dynamic multimask.
+
+dynamic_multimask_stability_thresh (`float`, *optional*, defaults to 0.98) : The stability threshold for the dynamic multimask.
 
 This is the configuration class to store the configuration of a EdgeTamModel. It is used to instantiate a Edgetam
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/EdgeTAM-hf](https://huggingface.co/yonigozlan/EdgeTAM-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## EdgeTamPromptEncoderConfig[[transformers.EdgeTamPromptEncoderConfig]]
 
-- **hidden_size** (`int`, *optional*, defaults to `256`) --
-  Dimension of the hidden representations.
-- **image_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `1024`) --
-  The size (resolution) of each image.
-- **patch_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `16`) --
-  The size (resolution) of each patch.
-- **mask_input_channels** (`int`, *optional*, defaults to 16) --
-  The number of channels to be fed to the `MaskDecoder` module.
-- **num_point_embeddings** (`int`, *optional*, defaults to 4) --
-  The number of point embeddings to be used.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **scale** (`float`, *optional*, defaults to 1) --
-  The scale factor for the prompt encoder.
+#### transformers.EdgeTamPromptEncoderConfig[[transformers.EdgeTamPromptEncoderConfig]]
+
+```python
+transformers.EdgeTamPromptEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, image_size: int | list[int] | tuple[int, int] = 1024, patch_size: int | list[int] | tuple[int, int] = 16, mask_input_channels: int = 16, num_point_embeddings: int = 4, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, scale: int = 1)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/configuration_edgetam.py#L90)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `256`) : Dimension of the hidden representations.
+
+image_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `1024`) : The size (resolution) of each image.
+
+patch_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `16`) : The size (resolution) of each patch.
+
+mask_input_channels (`int`, *optional*, defaults to 16) : The number of channels to be fed to the `MaskDecoder` module.
+
+num_point_embeddings (`int`, *optional*, defaults to 4) : The number of point embeddings to be used.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+scale (`float`, *optional*, defaults to 1) : The scale factor for the prompt encoder.
 
 This is the configuration class to store the configuration of a EdgeTamModel. It is used to instantiate a Edgetam
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/EdgeTAM-hf](https://huggingface.co/yonigozlan/EdgeTAM-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## EdgeTamVisionModel[[transformers.EdgeTamVisionModel]]
 
-- **config** ([EdgeTamVisionConfig](/docs/transformers/v5.14.0/en/model_doc/edgetam#transformers.EdgeTamVisionConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.EdgeTamVisionModel[[transformers.EdgeTamVisionModel]]
+
+```python
+transformers.EdgeTamVisionModel(config: EdgeTamVisionConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/modeling_edgetam.py#L452)
+
+**Parameters:**
+
+config ([EdgeTamVisionConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The vision model from EdgeTAM without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -435,17 +475,32 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
+#### forward[[transformers.EdgeTamVisionModel.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/modeling_edgetam.py#L470)
+
 ## EdgeTamModel[[transformers.EdgeTamModel]]
 
-- **config** ([EdgeTamConfig](/docs/transformers/v5.14.0/en/model_doc/edgetam#transformers.EdgeTamConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.EdgeTamModel[[transformers.EdgeTamModel]]
+
+```python
+transformers.EdgeTamModel(config: EdgeTamConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/modeling_edgetam.py#L945)
+
+**Parameters:**
+
+config ([EdgeTamConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Segment Anything Model 2 (SAM 2) for generating segmentation masks, given an input image and
 input points and labels, boxes, or masks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -453,65 +508,41 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [Sam2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sam2#transformers.Sam2ImageProcessor). See `Sam2ImageProcessor.__call__()` for details ([Sam2Processor](/docs/transformers/v5.14.0/en/model_doc/sam2#transformers.Sam2Processor) uses
-  [Sam2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sam2#transformers.Sam2ImageProcessor) for processing images).
-- **input_points** (`torch.FloatTensor` of shape `(batch_size, num_points, 2)`) --
-  Input 2D spatial points, this is used by the prompt encoder to encode the prompt. Generally yields to much
-  better results. The points can be obtained by passing a list of list of list to the processor that will
-  create corresponding `torch` tensors of dimension 4. The first dimension is the image batch size, the
-  second dimension is the point batch size (i.e. how many segmentation masks do we want the model to predict
-  per input point), the third dimension is the number of points per segmentation mask (it is possible to pass
-  multiple points for a single mask), and the last dimension is the x (vertical) and y (horizontal)
-  coordinates of the point. If a different number of points is passed either for each image, or for each
-  mask, the processor will create "PAD" points that will correspond to the (0, 0) coordinate, and the
-  computation of the embedding will be skipped for these points using the labels.
-- **input_labels** (`torch.LongTensor` of shape `(batch_size, point_batch_size, num_points)`) --
-  Input labels for the points, this is used by the prompt encoder to encode the prompt. According to the
-  official implementation, there are 3 types of labels
+#### forward[[transformers.EdgeTamModel.forward]]
 
-  - `1`: the point is a point that contains the object of interest
-  - `0`: the point is a point that does not contain the object of interest
-  - `-1`: the point corresponds to the background
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, input_points: typing.Optional[torch.FloatTensor] = None, input_labels: typing.Optional[torch.LongTensor] = None, input_boxes: typing.Optional[torch.FloatTensor] = None, input_masks: typing.Optional[torch.LongTensor] = None, image_embeddings: typing.Optional[torch.FloatTensor] = None, multimask_output: bool = True, attention_similarity: typing.Optional[torch.FloatTensor] = None, target_embedding: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
+```
 
-  We added the label:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/modeling_edgetam.py#L1051)
 
-  - `-10`: the point is a padding point, thus should be ignored by the prompt encoder
+**Parameters:**
 
-  The padding labels should be automatically done by the processor.
-- **input_boxes** (`torch.FloatTensor` of shape `(batch_size, num_boxes, 4)`) --
-  Input boxes for the points, this is used by the prompt encoder to encode the prompt. Generally yields to
-  much better generated masks. The boxes can be obtained by passing a list of list of list to the processor,
-  that will generate a `torch` tensor, with each dimension corresponding respectively to the image batch
-  size, the number of boxes per image and the coordinates of the top left and bottom right point of the box.
-  In the order (`x1`, `y1`, `x2`, `y2`):
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Sam2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2ImageProcessor). See `Sam2ImageProcessor.__call__()` for details ([Sam2Processor](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2Processor) uses [Sam2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2ImageProcessor) for processing images).
 
-  - `x1`: the x coordinate of the top left point of the input box
-  - `y1`: the y coordinate of the top left point of the input box
-  - `x2`: the x coordinate of the bottom right point of the input box
-  - `y2`: the y coordinate of the bottom right point of the input box
-- **input_masks** (`torch.FloatTensor` of shape `(batch_size, image_size, image_size)`) --
-  SAM model also accepts segmentation masks as input. The mask will be embedded by the prompt encoder to
-  generate a corresponding embedding, that will be fed later on to the mask decoder. These masks needs to be
-  manually fed by the user, and they need to be of shape (`batch_size`, `image_size`, `image_size`).
-- **image_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_channels, window_size, window_size)`) --
-  Image embeddings, this is used by the mask decoder to generate masks and iou scores. For more memory
-  efficient computation, users can first retrieve the image embeddings using the `get_image_embeddings`
-  method, and then feed them to the `forward` method instead of feeding the `pixel_values`.
-- **multimask_output** (`bool`, *optional*) --
-  In the original implementation and paper, the model always outputs 3 masks per image (or per point / per
-  bounding box if relevant). However, it is possible to just output a single mask, that corresponds to the
-  "best" mask, by specifying `multimask_output=False`.
-- **attention_similarity** (`torch.FloatTensor`, *optional*) --
-  Attention similarity tensor, to be provided to the mask decoder for target-guided attention in case the
-  model is used for personalization as introduced in [PerSAM](https://huggingface.co/papers/2305.03048).
-- **target_embedding** (`torch.FloatTensor`, *optional*) --
-  Embedding of the target concept, to be provided to the mask decoder for target-semantic prompting in case
-  the model is used for personalization as introduced in [PerSAM](https://huggingface.co/papers/2305.03048).`EdgeTamImageSegmentationOutput` or `tuple(torch.FloatTensor)`A `EdgeTamImageSegmentationOutput` or a tuple of
+input_points (`torch.FloatTensor` of shape `(batch_size, num_points, 2)`) : Input 2D spatial points, this is used by the prompt encoder to encode the prompt. Generally yields to much better results. The points can be obtained by passing a list of list of list to the processor that will create corresponding `torch` tensors of dimension 4. The first dimension is the image batch size, the second dimension is the point batch size (i.e. how many segmentation masks do we want the model to predict per input point), the third dimension is the number of points per segmentation mask (it is possible to pass multiple points for a single mask), and the last dimension is the x (vertical) and y (horizontal) coordinates of the point. If a different number of points is passed either for each image, or for each mask, the processor will create "PAD" points that will correspond to the (0, 0) coordinate, and the computation of the embedding will be skipped for these points using the labels.
+
+input_labels (`torch.LongTensor` of shape `(batch_size, point_batch_size, num_points)`) : Input labels for the points, this is used by the prompt encoder to encode the prompt. According to the official implementation, there are 3 types of labels  - `1`: the point is a point that contains the object of interest - `0`: the point is a point that does not contain the object of interest - `-1`: the point corresponds to the background  We added the label:  - `-10`: the point is a padding point, thus should be ignored by the prompt encoder  The padding labels should be automatically done by the processor.
+
+input_boxes (`torch.FloatTensor` of shape `(batch_size, num_boxes, 4)`) : Input boxes for the points, this is used by the prompt encoder to encode the prompt. Generally yields to much better generated masks. The boxes can be obtained by passing a list of list of list to the processor, that will generate a `torch` tensor, with each dimension corresponding respectively to the image batch size, the number of boxes per image and the coordinates of the top left and bottom right point of the box. In the order (`x1`, `y1`, `x2`, `y2`):  - `x1`: the x coordinate of the top left point of the input box - `y1`: the y coordinate of the top left point of the input box - `x2`: the x coordinate of the bottom right point of the input box - `y2`: the y coordinate of the bottom right point of the input box
+
+input_masks (`torch.FloatTensor` of shape `(batch_size, image_size, image_size)`) : SAM model also accepts segmentation masks as input. The mask will be embedded by the prompt encoder to generate a corresponding embedding, that will be fed later on to the mask decoder. These masks needs to be manually fed by the user, and they need to be of shape (`batch_size`, `image_size`, `image_size`).
+
+image_embeddings (`torch.FloatTensor` of shape `(batch_size, output_channels, window_size, window_size)`) : Image embeddings, this is used by the mask decoder to generate masks and iou scores. For more memory efficient computation, users can first retrieve the image embeddings using the `get_image_embeddings` method, and then feed them to the `forward` method instead of feeding the `pixel_values`.
+
+multimask_output (`bool`, *optional*) : In the original implementation and paper, the model always outputs 3 masks per image (or per point / per bounding box if relevant). However, it is possible to just output a single mask, that corresponds to the "best" mask, by specifying `multimask_output=False`.
+
+attention_similarity (`torch.FloatTensor`, *optional*) : Attention similarity tensor, to be provided to the mask decoder for target-guided attention in case the model is used for personalization as introduced in [PerSAM](https://huggingface.co/papers/2305.03048).
+
+target_embedding (`torch.FloatTensor`, *optional*) : Embedding of the target concept, to be provided to the mask decoder for target-semantic prompting in case the model is used for personalization as introduced in [PerSAM](https://huggingface.co/papers/2305.03048).
+
+**Returns:** `EdgeTamImageSegmentationOutput` or `tuple(torch.FloatTensor)`
+
+A `EdgeTamImageSegmentationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EdgeTamConfig](/docs/transformers/v5.14.0/en/model_doc/edgetam#transformers.EdgeTamConfig)) and inputs.
-The [EdgeTamModel](/docs/transformers/v5.14.0/en/model_doc/edgetam#transformers.EdgeTamModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([EdgeTamConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamConfig)) and inputs.
+
+The [EdgeTamModel](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -556,10 +587,23 @@ Example:
 ... )
 ```
 
-- **pixel_values** (`torch.FloatTensor`) --
-  Input pixel values of shape `(batch_size, num_channels, height, width)`.`EdgeTamVisionEncoderOutput` or `tuple(torch.FloatTensor)`A `EdgeTamVisionEncoderOutput` or a tuple of
+#### get_image_features[[transformers.EdgeTamModel.get_image_features]]
+
+```python
+get_image_features(pixel_values: FloatTensor, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/modeling_edgetam.py#L1229)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor`) : Input pixel values of shape `(batch_size, num_channels, height, width)`.
+
+**Returns:** `EdgeTamVisionEncoderOutput` or `tuple(torch.FloatTensor)`
+
+A `EdgeTamVisionEncoderOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EdgeTamConfig](/docs/transformers/v5.14.0/en/model_doc/edgetam#transformers.EdgeTamConfig)) and inputs.
+elements depending on the configuration ([EdgeTamConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, height, width, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -585,5 +629,5 @@ Example:
 ```python
 ```
 
-### DiffusionGemma
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/diffusion_gemma.md
+### DeepSeek-V4
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/deepseek_v4.md

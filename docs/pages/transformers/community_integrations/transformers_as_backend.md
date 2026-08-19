@@ -8,9 +8,9 @@ This guide shows you how to implement a model in Transformers that works as a ba
 
 1. Follow the model [contribution guidelines](../add_new_model) or the [custom model contribution guidelines](../custom_models). The model must have a valid `config.json` in its directory and a valid `auto_map` field pointing to the model class in the config.
 
-2. Use the [AttentionInterface](/docs/transformers/v5.14.0/en/internal/modeling_utils#transformers.AttentionInterface) class for custom and optimized attention functions. This interface unlocks each inference engine's performance features. 
+2. Use the [AttentionInterface](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.AttentionInterface) class for custom and optimized attention functions. This interface unlocks each inference engine's performance features. 
 
-   Use `ALL_ATTENTION_FUNCTIONS` when defining the attention layer and propagate `**kwargs` from the base `MyModel` class to the attention layers. Set `_supports_attention_backend` to `True` in [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
+   Use `ALL_ATTENTION_FUNCTIONS` when defining the attention layer and propagate `**kwargs` from the base `MyModel` class to the attention layers. Set `_supports_attention_backend` to `True` in [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
    
    Expand the code below for an example.
 
@@ -42,7 +42,7 @@ This guide shows you how to implement a model in Transformers that works as a ba
 
     
 
-3. Enable optional tensor or pipeline parallelism by adding the following keys to [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig).
+3. Enable optional tensor or pipeline parallelism by adding the following keys to [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig).
 
     * `base_model_tp_plan` enables [tensor parallelism](../perf_infer_gpu_multi) by mapping fully qualified layer name patterns to tensor parallel styles. Supports only the `"colwise"` and `"rowwise"` partitioning strategies.
     * `base_model_pp_plan` enables pipeline parallelism by mapping direct child layer names to tuples of lists of strings. The first element of the tuple contains the names of the input arguments. The last element contains the variable names of the layer outputs in the modeling code.
@@ -78,11 +78,11 @@ This guide shows you how to implement a model in Transformers that works as a ba
 
 Multimodal models require additional changes beyond the [vision language model contribution checklist](../contributing#vision-language-model-contribution-checklist). These changes ensure multimodal inputs are properly processed.
 
-1. The [ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin) class must include the `self.image_token` and `self.image_token_ids` attributes. These placeholder tokens indicate image positions in the input. The same token appears in the input prompt for images and in the model code to scatter image features.
+1. The [ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin) class must include the `self.image_token` and `self.image_token_ids` attributes. These placeholder tokens indicate image positions in the input. The same token appears in the input prompt for images and in the model code to scatter image features.
 
-2. The [ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin) class must include a `self._get_num_multimodal_tokens` method. This method computes the number of placeholder tokens required for multimodal inputs with given sizes. It returns a `MultiModalData` object. Placeholders between `<image>` tokens, such as row or column tokens, don't count as image placeholders. Count only tokens replaced by image features later in the modeling code.
+2. The [ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin) class must include a `self._get_num_multimodal_tokens` method. This method computes the number of placeholder tokens required for multimodal inputs with given sizes. It returns a `MultiModalData` object. Placeholders between `<image>` tokens, such as row or column tokens, don't count as image placeholders. Count only tokens replaced by image features later in the modeling code.
 
-3. The [ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin) class must check the value of `return_mm_token_type_ids` and return `mm_token_type_ids`. This indicates whether each position is a text token (`0`), image placeholder token (`1`), or a video placeholder token (`2`). Multimodal token type id sequences must be contiguous with no breaks between consecutive tokens. Treat special tokens for beginning, ending, row, and column tokens as placeholders.
+3. The [ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin) class must check the value of `return_mm_token_type_ids` and return `mm_token_type_ids`. This indicates whether each position is a text token (`0`), image placeholder token (`1`), or a video placeholder token (`2`). Multimodal token type id sequences must be contiguous with no breaks between consecutive tokens. Treat special tokens for beginning, ending, row, and column tokens as placeholders.
 
 Expand the code below for an example.
 
@@ -121,5 +121,5 @@ class MyMultimodalProcessor(ProcessorMixin):
 * Read the [Transformers backend integration in vLLM](https://blog.vllm.ai/2025/04/11/transformers-backend.html) blog post for more details.
 * Read the [Transformers backend integration in SGLang](https://huggingface.co/blog/transformers-backend-sglang) blog post for more details.
 
-### Candle
-https://huggingface.co/docs/transformers/v5.14.0/community_integrations/candle.md
+### Axolotl
+https://huggingface.co/docs/transformers/v5.15.0/community_integrations/axolotl.md

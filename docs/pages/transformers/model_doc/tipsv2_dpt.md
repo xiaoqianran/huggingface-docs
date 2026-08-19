@@ -70,7 +70,7 @@ plt.show()
 <img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/model_doc/tipsv2_pipeline_segmentation.jpg"
 alt="tipsv2 image segmentation pipeline" width="600"/>
 
-Use [Tipsv2DptForDensePrediction](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDensePrediction) to run all three tasks (depth, normals, and segmentation) in a single forward pass over a shared backbone.
+Use [Tipsv2DptForDensePrediction](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDensePrediction) to run all three tasks (depth, normals, and segmentation) in a single forward pass over a shared backbone.
 
 ```python
 import torch
@@ -225,38 +225,47 @@ alt="tipsv2 semantic segmentation" width="600"/>
 
 ## Notes
 
-- [Tipsv2DptForDensePrediction](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDensePrediction) runs a single shared backbone forward pass and produces three outputs simultaneously: `predicted_depth`, `normals`, and `segmentation_logits`. Use it when you need all three tasks for the same image.
-- [Tipsv2DptForDepthEstimation](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDepthEstimation), [Tipsv2DptForNormalEstimation](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForNormalEstimation), and [Tipsv2DptForSemanticSegmentation](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForSemanticSegmentation) are single-task variants that discard the other heads. Use them in a pipeline or for inference on a single task.
+- [Tipsv2DptForDensePrediction](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDensePrediction) runs a single shared backbone forward pass and produces three outputs simultaneously: `predicted_depth`, `normals`, and `segmentation_logits`. Use it when you need all three tasks for the same image.
+- [Tipsv2DptForDepthEstimation](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDepthEstimation), [Tipsv2DptForNormalEstimation](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForNormalEstimation), and [Tipsv2DptForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForSemanticSegmentation) are single-task variants that discard the other heads. Use them in a pipeline or for inference on a single task.
 
 ## Tipsv2DptConfig[[transformers.Tipsv2DptConfig]]
 
-- **backbone_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The configuration of the backbone model.
-- **neck_hidden_sizes** (`list[int]`, *optional*, defaults to `[96, 192, 384, 768]`) --
-  The hidden sizes to project to for the feature maps of the backbone.
-- **fusion_hidden_size** (`int`, *optional*, defaults to 256) --
-  The number of channels before fusion.
-- **reassemble_factors** (`list[float]`, *optional*, defaults to `[4, 2, 1, 0.5]`) --
-  The up/downsampling factors of the reassemble layers.
-- **readout_activation** (`str`, *optional*, defaults to `"gelu_pytorch_tanh"`) --
-  Activation applied after the readout projection layer.
-- **num_depth_bins** (`int`, *optional*, defaults to 256) --
-  The number of depth bins used by the depth-estimation head.
-- **min_depth** (`float`, *optional*, defaults to 0.001) --
-  The minimum depth value (meters) for depth bin calculation.
-- **max_depth** (`float`, *optional*, defaults to 10.0) --
-  The maximum depth value (meters) for depth bin calculation.
-- **depth_decoder_activation** (`str`, *optional*, defaults to `"relu"`) --
-  Activation applied after the depth decoder projection layer.
-- **semantic_loss_ignore_index** (`int`, *optional*, defaults to 255) --
-  Label index to ignore in the cross-entropy loss for semantic segmentation.
+#### transformers.Tipsv2DptConfig[[transformers.Tipsv2DptConfig]]
+
+```python
+transformers.Tipsv2DptConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, neck_hidden_sizes: list[int] | tuple[int, ...] | None = None, fusion_hidden_size: int = 256, reassemble_factors: list[int | float] | tuple[int | float, ...] | None = None, readout_activation: str = 'gelu_pytorch_tanh', num_depth_bins: int = 256, min_depth: float = 0.001, max_depth: float = 10.0, depth_decoder_activation: str = 'relu', semantic_loss_ignore_index: int = 255)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tipsv2_dpt/configuration_tipsv2_dpt.py#L31)
+
+**Parameters:**
+
+backbone_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The configuration of the backbone model.
+
+neck_hidden_sizes (`list[int]`, *optional*, defaults to `[96, 192, 384, 768]`) : The hidden sizes to project to for the feature maps of the backbone.
+
+fusion_hidden_size (`int`, *optional*, defaults to 256) : The number of channels before fusion.
+
+reassemble_factors (`list[float]`, *optional*, defaults to `[4, 2, 1, 0.5]`) : The up/downsampling factors of the reassemble layers.
+
+readout_activation (`str`, *optional*, defaults to `"gelu_pytorch_tanh"`) : Activation applied after the readout projection layer.
+
+num_depth_bins (`int`, *optional*, defaults to 256) : The number of depth bins used by the depth-estimation head.
+
+min_depth (`float`, *optional*, defaults to 0.001) : The minimum depth value (meters) for depth bin calculation.
+
+max_depth (`float`, *optional*, defaults to 10.0) : The maximum depth value (meters) for depth bin calculation.
+
+depth_decoder_activation (`str`, *optional*, defaults to `"relu"`) : Activation applied after the depth decoder projection layer.
+
+semantic_loss_ignore_index (`int`, *optional*, defaults to 255) : Label index to ignore in the cross-entropy loss for semantic segmentation.
 
 This is the configuration class to store the configuration of a Tipsv2 DptModel. It is used to instantiate a Tipsv2 Dpt
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/tipsv2-b14-dpt](https://huggingface.co/google/tipsv2-b14-dpt)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -270,69 +279,286 @@ Example:
 
 ## Tipsv2DptImageProcessor[[transformers.Tipsv2DptImageProcessor]]
 
-- ****kwargs** ([ImagesKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ImagesKwargs), *optional*) --
-  Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class
-  for the complete list of supported arguments.
+#### transformers.Tipsv2DptImageProcessor[[transformers.Tipsv2DptImageProcessor]]
+
+```python
+transformers.Tipsv2DptImageProcessor(**kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tipsv2_dpt/image_processing_tipsv2_dpt.py#L32)
+
+**Parameters:**
+
+do_convert_rgb (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'height' : 448, 'width': 448}`): Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `Resampling.BILINEAR`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*, defaults to `0.00392156862745098`) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors. --
+
 Constructs a Tipsv2DptImageProcessor image processor.
 
-- **images** (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) --
-  Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If
-  passing in images with pixel values between 0 and 1, set `do_rescale=False`.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
-- ****kwargs** ([ImagesKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ImagesKwargs), *optional*) --
-  Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class
-  for the complete list of supported arguments.`~image_processing_base.BatchFeature`- **data** (`dict`) -- Dictionary of lists/arrays/tensors returned by the __call__ method ('pixel_values', etc.).
+disable_grouping (`bool`, *kwargs*, *optional*):
+Whether to disable grouping of images by size to process them individually and not in batches.
+If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on
+empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+image_seq_length (`int`, *kwargs*, *optional*):
+The number of image tokens to be used for each image in the input.
+Added for backward compatibility but this should be set as a processor attribute in future models.
+
+#### preprocess[[transformers.Tipsv2DptImageProcessor.preprocess]]
+
+```python
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+
+**Parameters:**
+
+images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+**Returns:** `~image_processing_base.BatchFeature`
+
+- **data** (`dict`) -- Dictionary of lists/arrays/tensors returned by the __call__ method ('pixel_values', etc.).
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
-- **outputs** (`DepthEstimatorOutput` or `Tipsv2DptDensePredictorOutput`) --
-  Raw outputs of the model.
-- **target_sizes** ([TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType) or `list[tuple[int, int]]`, *optional*) --
-  Tensor of shape `(batch_size, 2)` or list of tuples (`tuple[int, int]`) containing the target size
-  (height, width) of each image in the batch. If left to None, predictions will not be resized.`list[dict[str, torch.Tensor]]`A list of dictionaries of tensors representing the processed depth
+#### post_process_depth_estimation[[transformers.Tipsv2DptImageProcessor.post_process_depth_estimation]]
+
+```python
+post_process_depth_estimation(outputs, target_sizes: transformers.utils.generic.TensorType | list[tuple[int, int]] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tipsv2_dpt/image_processing_tipsv2_dpt.py#L40)
+
+**Parameters:**
+
+outputs (`DepthEstimatorOutput` or `Tipsv2DptDensePredictorOutput`) : Raw outputs of the model.
+
+target_sizes ([TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType) or `list[tuple[int, int]]`, *optional*) : Tensor of shape `(batch_size, 2)` or list of tuples (`tuple[int, int]`) containing the target size (height, width) of each image in the batch. If left to None, predictions will not be resized.
+
+**Returns:** `list[dict[str, torch.Tensor]]`
+
+A list of dictionaries of tensors representing the processed depth
 predictions.
 
-Converts the output of [Tipsv2DptForDepthEstimation](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDepthEstimation) or [Tipsv2DptForDensePrediction](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDensePrediction) into final depth predictions.
+Converts the output of [Tipsv2DptForDepthEstimation](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDepthEstimation) or [Tipsv2DptForDensePrediction](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDensePrediction) into final depth predictions.
 
-- **outputs** (`Tipsv2DptNormalEstimatorOutput` or `Tipsv2DptDensePredictorOutput`) --
-  Raw outputs of the model.
-- **target_sizes** ([TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType) or `list[tuple[int, int]]`, *optional*) --
-  Tensor of shape `(batch_size, 2)` or list of tuples (`tuple[int, int]`) containing the target size
-  (height, width) of each image in the batch. If left to None, predictions will not be resized.`list[dict[str, torch.Tensor]]` of length `batch_size`. Each dict has a `"normals"` key
+#### post_process_normal_estimation[[transformers.Tipsv2DptImageProcessor.post_process_normal_estimation]]
+
+```python
+post_process_normal_estimation(outputs, target_sizes: transformers.utils.generic.TensorType | list[tuple[int, int]] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tipsv2_dpt/image_processing_tipsv2_dpt.py#L76)
+
+**Parameters:**
+
+outputs (`Tipsv2DptNormalEstimatorOutput` or `Tipsv2DptDensePredictorOutput`) : Raw outputs of the model.
+
+target_sizes ([TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType) or `list[tuple[int, int]]`, *optional*) : Tensor of shape `(batch_size, 2)` or list of tuples (`tuple[int, int]`) containing the target size (height, width) of each image in the batch. If left to None, predictions will not be resized.
+
+**Returns:**
+
+`list[dict[str, torch.Tensor]]` of length `batch_size`. Each dict has a `"normals"` key
 mapping to a tensor of shape `(3, height, width)` with L2-normalized unit vectors in
 `[-1, 1]` per channel (XYZ surface normals).
 
-Converts the output of [Tipsv2DptForNormalEstimation](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForNormalEstimation) or [Tipsv2DptForDensePrediction](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDensePrediction) into L2-normalized surface normal maps.
+Converts the output of [Tipsv2DptForNormalEstimation](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForNormalEstimation) or [Tipsv2DptForDensePrediction](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDensePrediction) into L2-normalized surface normal maps.
 
-- **outputs** (`SemanticSegmenterOutput` or `Tipsv2DptDensePredictorOutput`) --
-  Raw outputs of the model.
-- **target_sizes** [([TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType) or `list[tuple[int, int]]`, *optional*) --
-  Tensor of shape `(batch_size, 2)` or list of tuples (`tuple[int, int]`) containing the target size
-  (height, width) of each image in the batch. If left to None, predictions will not be resized.
-- **return_segmentation_scores** (`bool`, *optional*, defaults to `False`) --
-  Whether to return segmentation scores alongside the segmentation map. When `True`, each element of
-  the returned list is a `SemanticSegmentationPostProcessorOutput` with fields `segmentation`
-  (class IDs, shape `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`).`list[torch.Tensor]` or `list[SemanticSegmentationPostProcessorOutput]`When
+#### post_process_semantic_segmentation[[transformers.Tipsv2DptImageProcessor.post_process_semantic_segmentation]]
+
+```python
+post_process_semantic_segmentation(outputs, target_sizes: transformers.utils.generic.TensorType | list[tuple[int, int]] | None = None, return_segmentation_scores: bool = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tipsv2_dpt/image_processing_tipsv2_dpt.py#L113)
+
+**Parameters:**
+
+outputs (`SemanticSegmenterOutput` or `Tipsv2DptDensePredictorOutput`) : Raw outputs of the model.
+
+target_sizes [([TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType) or `list[tuple[int, int]]`, *optional*) : Tensor of shape `(batch_size, 2)` or list of tuples (`tuple[int, int]`) containing the target size (height, width) of each image in the batch. If left to None, predictions will not be resized.
+
+return_segmentation_scores (`bool`, *optional*, defaults to `False`) : Whether to return segmentation scores alongside the segmentation map. When `True`, each element of the returned list is a `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (class IDs, shape `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`).
+
+**Returns:** `list[torch.Tensor]` or `list[SemanticSegmentationPostProcessorOutput]`
+
+When
 `return_segmentation_scores=False` (default), a list of length `batch_size` where each item is a
 segmentation map of shape `(height, width)` with class IDs. When `return_segmentation_scores=True`,
 a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (class IDs, shape
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [Tipsv2DptForSemanticSegmentation](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForSemanticSegmentation) or [Tipsv2DptForDensePrediction](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDensePrediction) into semantic segmentation maps.
+Converts the output of [Tipsv2DptForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForSemanticSegmentation) or [Tipsv2DptForDensePrediction](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDensePrediction) into semantic segmentation maps.
 
 ## Tipsv2DptForDensePrediction[[transformers.Tipsv2DptForDensePrediction]]
 
-- **config** ([Tipsv2DptConfig](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Tipsv2DptForDensePrediction[[transformers.Tipsv2DptForDensePrediction]]
+
+```python
+transformers.Tipsv2DptForDensePrediction(config: Tipsv2DptConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tipsv2_dpt/modeling_tipsv2_dpt.py#L391)
+
+**Parameters:**
+
+config ([Tipsv2DptConfig](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 TIPSv2-DPT Model with three independent heads for depth estimation, surface normal estimation,
 and semantic segmentation — running a single shared backbone forward pass.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -340,13 +566,25 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [Tipsv2DptImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor). See `Tipsv2DptImageProcessor.__call__()` for details (`processor_class` uses
-  [Tipsv2DptImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor) for processing images).`Tipsv2DptDensePredictorOutput` or `tuple(torch.FloatTensor)`A `Tipsv2DptDensePredictorOutput` or a tuple of
+#### forward[[transformers.Tipsv2DptForDensePrediction.forward]]
+
+```python
+forward(pixel_values: FloatTensor, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tipsv2_dpt/modeling_tipsv2_dpt.py#L409)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Tipsv2DptImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor). See `Tipsv2DptImageProcessor.__call__()` for details (`processor_class` uses [Tipsv2DptImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor) for processing images).
+
+**Returns:** `Tipsv2DptDensePredictorOutput` or `tuple(torch.FloatTensor)`
+
+A `Tipsv2DptDensePredictorOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Tipsv2DptConfig](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) and inputs.
-The [Tipsv2DptForDensePrediction](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDensePrediction) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Tipsv2DptConfig](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) and inputs.
+
+The [Tipsv2DptForDensePrediction](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDensePrediction) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -392,14 +630,21 @@ Example:
 
 ## Tipsv2DptForDepthEstimation[[transformers.Tipsv2DptForDepthEstimation]]
 
-- **config** ([Tipsv2DptConfig](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Tipsv2DptForDepthEstimation[[transformers.Tipsv2DptForDepthEstimation]]
+
+```python
+transformers.Tipsv2DptForDepthEstimation(config: Tipsv2DptConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tipsv2_dpt/modeling_tipsv2_dpt.py#L481)
+
+**Parameters:**
+
+config ([Tipsv2DptConfig](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 TIPSv2-DPT Model with a monocular depth estimation head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -407,17 +652,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [Tipsv2DptImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor). See `Tipsv2DptImageProcessor.__call__()` for details (`processor_class` uses
-  [Tipsv2DptImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor) for processing images).
-- **labels** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.[DepthEstimatorOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or `tuple(torch.FloatTensor)`A [DepthEstimatorOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or a tuple of
+#### forward[[transformers.Tipsv2DptForDepthEstimation.forward]]
+
+```python
+forward(pixel_values: FloatTensor, labels: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tipsv2_dpt/modeling_tipsv2_dpt.py#L497)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Tipsv2DptImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor). See `Tipsv2DptImageProcessor.__call__()` for details (`processor_class` uses [Tipsv2DptImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor) for processing images).
+
+labels (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+**Returns:** [DepthEstimatorOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or `tuple(torch.FloatTensor)`
+
+A [DepthEstimatorOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Tipsv2DptConfig](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) and inputs.
-The [Tipsv2DptForDepthEstimation](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDepthEstimation) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Tipsv2DptConfig](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) and inputs.
+
+The [Tipsv2DptForDepthEstimation](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForDepthEstimation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -458,14 +713,21 @@ Example:
 
 ## Tipsv2DptForNormalEstimation[[transformers.Tipsv2DptForNormalEstimation]]
 
-- **config** ([Tipsv2DptConfig](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Tipsv2DptForNormalEstimation[[transformers.Tipsv2DptForNormalEstimation]]
+
+```python
+transformers.Tipsv2DptForNormalEstimation(config: Tipsv2DptConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tipsv2_dpt/modeling_tipsv2_dpt.py#L557)
+
+**Parameters:**
+
+config ([Tipsv2DptConfig](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 TIPSv2-DPT Model with a surface normal estimation head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -473,17 +735,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [Tipsv2DptImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor). See `Tipsv2DptImageProcessor.__call__()` for details (`processor_class` uses
-  [Tipsv2DptImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor) for processing images).
-- **labels** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.`Tipsv2DptNormalEstimatorOutput` or `tuple(torch.FloatTensor)`A `Tipsv2DptNormalEstimatorOutput` or a tuple of
+#### forward[[transformers.Tipsv2DptForNormalEstimation.forward]]
+
+```python
+forward(pixel_values: FloatTensor, labels: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tipsv2_dpt/modeling_tipsv2_dpt.py#L570)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Tipsv2DptImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor). See `Tipsv2DptImageProcessor.__call__()` for details (`processor_class` uses [Tipsv2DptImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor) for processing images).
+
+labels (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+**Returns:** `Tipsv2DptNormalEstimatorOutput` or `tuple(torch.FloatTensor)`
+
+A `Tipsv2DptNormalEstimatorOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Tipsv2DptConfig](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) and inputs.
-The [Tipsv2DptForNormalEstimation](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForNormalEstimation) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Tipsv2DptConfig](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) and inputs.
+
+The [Tipsv2DptForNormalEstimation](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForNormalEstimation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -520,14 +792,21 @@ Example:
 
 ## Tipsv2DptForSemanticSegmentation[[transformers.Tipsv2DptForSemanticSegmentation]]
 
-- **config** ([Tipsv2DptConfig](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Tipsv2DptForSemanticSegmentation[[transformers.Tipsv2DptForSemanticSegmentation]]
+
+```python
+transformers.Tipsv2DptForSemanticSegmentation(config: Tipsv2DptConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tipsv2_dpt/modeling_tipsv2_dpt.py#L629)
+
+**Parameters:**
+
+config ([Tipsv2DptConfig](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 TIPSv2-DPT Model with a semantic segmentation head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -535,16 +814,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [Tipsv2DptImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor). See `Tipsv2DptImageProcessor.__call__()` for details (`processor_class` uses
-  [Tipsv2DptImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor) for processing images).
-- **labels** (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) --
-  Ground truth semantic segmentation maps for computing the loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels > 1`, a classification loss is computed (Cross-Entropy).</paramsdesc><rettype>[SemanticSegmenterOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`A [SemanticSegmenterOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
+#### forward[[transformers.Tipsv2DptForSemanticSegmentation.forward]]
+
+```python
+forward(pixel_values: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tipsv2_dpt/modeling_tipsv2_dpt.py#L642)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Tipsv2DptImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor). See `Tipsv2DptImageProcessor.__call__()` for details (`processor_class` uses [Tipsv2DptImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptImageProcessor) for processing images).
+
+labels (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Ground truth semantic segmentation maps for computing the loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels > 1`, a classification loss is computed (Cross-Entropy).
+
+**Returns:** [SemanticSegmenterOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`
+
+A [SemanticSegmenterOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Tipsv2DptConfig](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) and inputs.
-The [Tipsv2DptForSemanticSegmentation](/docs/transformers/v5.14.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForSemanticSegmentation) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Tipsv2DptConfig](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptConfig)) and inputs.
+
+The [Tipsv2DptForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/tipsv2_dpt#transformers.Tipsv2DptForSemanticSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -591,5 +881,5 @@ Example:
 >>> segmentation_map = results[0]  # (height, width) tensor with class ids
 ```
 
-### Florence-2
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/florence2.md
+### Higgs Audio V2 Tokenizer
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/higgs_audio_v2_tokenizer.md

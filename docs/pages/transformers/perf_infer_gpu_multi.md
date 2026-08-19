@@ -50,7 +50,7 @@ Launch the inference script with [torchrun](https://pytorch.org/docs/stable/elas
 torchrun --nproc-per-node 4 demo.py
 ```
 
-Define a tensor parallel plan for each layer in `tp_plan`. Pass it to [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The example below uses column and row partitioning. See the [Partitioning strategies](#partitioning-strategies) section for other supported strategies.
+Define a tensor parallel plan for each layer in `tp_plan`. Pass it to [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The example below uses column and row partitioning. See the [Partitioning strategies](#partitioning-strategies) section for other supported strategies.
 
 Manual partitioning requires a deep understanding of model architecture and strategy interactions. Poor partitioning choices create slow models that fail or produce incorrect results. The [Ultra-Scale Playbook](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=tensor_parallelism) explains partitioning strategies in detail.
 
@@ -71,7 +71,7 @@ print(model.tp_plan)
 
 ## Partitioning strategies
 
-The `ParallelInterface` class defines all partitioning strategies. It maps a string to the strategy implementation. You don't need to interact with this class directly since you set strategies with `tp_plan` in [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). It's useful for checking available strategies.
+The `ParallelInterface` class defines all partitioning strategies. It maps a string to the strategy implementation. You don't need to interact with this class directly since you set strategies with `tp_plan` in [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). It's useful for checking available strategies.
 
 ```py
 class ParallelInterface(MutableMapping):
@@ -226,10 +226,12 @@ Transformers implements tensor parallelism in a framework-agnostic way. It relie
 `DeviceMesh` creates a multi-dimensional grid of devices that communicate together. Different parallelization strategies require different communication patterns. Create a `DeviceMesh` with multiple sub-meshes to handle these patterns.
 
 ```python
+import torch
 from torch.distributed.device_mesh import init_device_mesh
 
-# Create a 1D mesh of 4 GPUs
-device_mesh = init_device_mesh("cuda", (4,), mesh_dim_names=["tp"])
+# Create a 1D mesh of 4 accelerators
+device_type = torch.accelerator.current_accelerator().type
+device_mesh = init_device_mesh(device_type, (4,), mesh_dim_names=["tp"])
 ```
 
 Most `torch.distributed` parallelization strategies apply to the mesh itself or its sub-mesh. The mesh automatically handles communication patterns.
@@ -277,5 +279,5 @@ The `placement` attribute tells PyTorch how to place a tensor on devices in `Dev
 
 - See the [Tensor parallelism](./tensor_parallelism) training guide to learn how to use it in a training setting.
 
-### torch.compile
-https://huggingface.co/docs/transformers/v5.14.0/torch_compile.md
+### Callbacks
+https://huggingface.co/docs/transformers/v5.15.0/trainer_callbacks.md

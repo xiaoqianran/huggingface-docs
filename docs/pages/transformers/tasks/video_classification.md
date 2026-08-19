@@ -335,7 +335,7 @@ You can access the `num_videos` argument to know the number of videos in the dat
 
 ## Train the model
 
-Leverage [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) from  🤗 Transformers for training the model. To instantiate a `Trainer`, you need to define the training configuration and an evaluation metric. The most important is the [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments), which is a class that contains all the attributes to configure the training. It requires an output folder name, which will be used to save the checkpoints of the model. It also helps sync all the information in the model repository on 🤗 Hub.
+Leverage [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) from  🤗 Transformers for training the model. To instantiate a `Trainer`, you need to define the training configuration and an evaluation metric. The most important is the [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments), which is a class that contains all the attributes to configure the training. It requires an output folder name, which will be used to save the checkpoints of the model. It also helps sync all the information in the model repository on 🤗 Hub.
 
 Most of the training arguments are self-explanatory, but one that is quite important here is `remove_unused_columns=False`. This one will drop any features not used by the model's call function. By default it's `True` because usually it's ideal to drop unused feature columns, making it easier to unpack inputs into the model's call function. But, in this case, you need the unused features ('video' in particular) in order to create `pixel_values` (which is a mandatory key our model expects in its inputs).
 
@@ -415,7 +415,7 @@ Now fine-tune our model by calling the `train` method:
 >>> train_results = trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -433,7 +433,7 @@ Load a video for inference:
 
     
 
-The simplest way to try out your fine-tuned model for inference is to use it in a [VideoClassificationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.VideoClassificationPipeline). Instantiate a `pipeline` for video classification with your model, and pass your video to it:
+The simplest way to try out your fine-tuned model for inference is to use it in a [VideoClassificationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.VideoClassificationPipeline). Instantiate a `pipeline` for video classification with your model, and pass your video to it:
 
 ```py
 >>> from transformers import pipeline
@@ -453,7 +453,7 @@ You can also manually replicate the results of the `pipeline` if you'd like.
 ```py
 >>> def run_inference(model, video):
 ...     # (num_frames, num_channels, height, width)
-...     perumuted_sample_test_video = video.permute(1, 0, 2, 3)
+...     permuted_sample_test_video = video.permute(1, 0, 2, 3)
 ...     inputs = {
 ...         "pixel_values": perumuted_sample_test_video.unsqueeze(0),
 ...         "labels": torch.tensor(
@@ -487,5 +487,5 @@ Decoding the `logits`, we get:
 # Predicted class: BasketballDunk
 ```
 
-### Image-text-to-text
-https://huggingface.co/docs/transformers/v5.14.0/tasks/image_text_to_text.md
+### Keypoint matching
+https://huggingface.co/docs/transformers/v5.15.0/tasks/keypoint_matching.md

@@ -2,7 +2,7 @@
 
 [CPMAnt](https://github.com/OpenBMB/CPM-Live/tree/cpm-ant/cpm-live) is a 10B-parameter open-source Chinese pre-trained language model and the first milestone of the CPM-Live open training project. It achieves strong results with delta tuning on the CUGE benchmark, and compressed variants are available for different hardware configurations.
 
-The example below demonstrates how to generate text with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) or the [CpmAntForCausalLM](/docs/transformers/v5.14.0/en/model_doc/cpmant#transformers.CpmAntForCausalLM) class.
+The example below demonstrates how to generate text with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [CpmAntForCausalLM](/docs/transformers/v5.15.0/en/model_doc/cpmant#transformers.CpmAntForCausalLM) class.
 
 ```python
 from transformers import pipeline
@@ -30,47 +30,54 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 
 ## CpmAntConfig[[transformers.CpmAntConfig]]
 
-- **vocab_size** (`int`, *optional*, defaults to `30720`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **hidden_size** (`int`, *optional*, defaults to `4096`) --
-  Dimension of the hidden representations.
-- **num_attention_heads** (`int`, *optional*, defaults to `32`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **dim_head** (`int`, *optional*, defaults to `128`) --
-  The attention head dimension. If None, it will default to hidden_size // num_attention_heads
-- **dim_ff** (`int`, *optional*, defaults to `10240`) --
-  Dimension of the MLP representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `48`) --
-  Number of hidden layers in the Transformer decoder.
-- **dropout_p** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The ratio for all dropout layers.
-- **position_bias_num_buckets** (`int`, *optional*, defaults to 512) --
-  The number of position_bias buckets.
-- **position_bias_max_distance** (`int`, *optional*, defaults to 2048) --
-  The maximum sequence length that this model might ever be used with. Typically set this to something large
-  just in case (e.g., 512 or 1024 or 2048).
-- **eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **init_std** (`float`, *optional*, defaults to `1.0`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **prompt_types** (`int`, *optional*, defaults to 32) --
-  The type of prompt.
-- **prompt_length** (`int`, *optional*, defaults to 32) --
-  The length of prompt.
-- **segment_types** (`int`, *optional*, defaults to 32) --
-  The type of segment.
-- **use_cache** (`bool`, *optional*, defaults to `True`) --
-  Whether or not the model should return the last key/values attentions (not used by all models). Only
-  relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
-- **tie_word_embeddings** (`bool`, *optional*, defaults to `True`) --
-  Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
+#### transformers.CpmAntConfig[[transformers.CpmAntConfig]]
+
+```python
+transformers.CpmAntConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 30720, hidden_size: int = 4096, num_attention_heads: int = 32, dim_head: int = 128, dim_ff: int = 10240, num_hidden_layers: int = 48, dropout_p: float | int = 0.0, position_bias_num_buckets: int = 512, position_bias_max_distance: int = 2048, eps: float = 1e-06, init_std: float = 1.0, prompt_types: int = 32, prompt_length: int = 32, segment_types: int = 32, use_cache: bool = True, tie_word_embeddings: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cpmant/configuration_cpmant.py#L24)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `30720`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+hidden_size (`int`, *optional*, defaults to `4096`) : Dimension of the hidden representations.
+
+num_attention_heads (`int`, *optional*, defaults to `32`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+dim_head (`int`, *optional*, defaults to `128`) : The attention head dimension. If None, it will default to hidden_size // num_attention_heads
+
+dim_ff (`int`, *optional*, defaults to `10240`) : Dimension of the MLP representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `48`) : Number of hidden layers in the Transformer decoder.
+
+dropout_p (`Union[float, int]`, *optional*, defaults to `0.0`) : The ratio for all dropout layers.
+
+position_bias_num_buckets (`int`, *optional*, defaults to 512) : The number of position_bias buckets.
+
+position_bias_max_distance (`int`, *optional*, defaults to 2048) : The maximum sequence length that this model might ever be used with. Typically set this to something large just in case (e.g., 512 or 1024 or 2048).
+
+eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+init_std (`float`, *optional*, defaults to `1.0`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+prompt_types (`int`, *optional*, defaults to 32) : The type of prompt.
+
+prompt_length (`int`, *optional*, defaults to 32) : The length of prompt.
+
+segment_types (`int`, *optional*, defaults to 32) : The type of segment.
+
+use_cache (`bool`, *optional*, defaults to `True`) : Whether or not the model should return the last key/values attentions (not used by all models). Only relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
+
+tie_word_embeddings (`bool`, *optional*, defaults to `True`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
 
 This is the configuration class to store the configuration of a CpmAntModel. It is used to instantiate a Cpmant
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [openbmb/cpm-ant-10b](https://huggingface.co/openbmb/cpm-ant-10b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -89,38 +96,53 @@ Example:
 
 ## CpmAntTokenizer[[transformers.CpmAntTokenizer]]
 
-'"}, {"name": "eod_token", "val": " = ''"}, {"name": "bos_token", "val": " = ''"}, {"name": "eos_token", "val": " = ''"}, {"name": "pad_token", "val": " = ''"}, {"name": "unk_token", "val": " = ''"}, {"name": "line_token", "val": " = ''"}, {"name": "space_token", "val": " = ''"}, {"name": "padding_side", "val": " = 'left'"}, {"name": "**kwargs", "val": ""}]}>
-- **vocab_file** (`str`) --
-  Path to the vocabulary file.
-- **bod_token** (`str`, *optional*, defaults to `"<d>"`) --
-  The beginning of document token.
-- **eod_token** (`str`, *optional*, defaults to `"</d>"`) --
-  The end of document token.
-- **bos_token** (`str`, *optional*, defaults to `"<s>"`) --
-  The beginning of sequence token.
-- **eos_token** (`str`, *optional*, defaults to `"</s>"`) --
-  The end of sequence token.
-- **pad_token** (`str`, *optional*, defaults to `"<pad>"`) --
-  The token used for padding.
-- **unk_token** (`str`, *optional*, defaults to `"<unk>"`) --
-  The unknown token.
-- **line_token** (`str`, *optional*, defaults to `"</n>"`) --
-  The line token.
-- **space_token** (`str`, *optional*, defaults to `"</_>"`) --
-  The space token.
+#### transformers.CpmAntTokenizer[[transformers.CpmAntTokenizer]]
+
+```python
+transformers.CpmAntTokenizer(vocab_file, bod_token = '<d>', eod_token = '</d>', bos_token = '<s>', eos_token = '</s>', pad_token = '<pad>', unk_token = '<unk>', line_token = '</n>', space_token = '</_>', padding_side = 'left', **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cpmant/tokenization_cpmant.py#L77)
+
+**Parameters:**
+
+vocab_file (`str`) : Path to the vocabulary file.
+
+bod_token (`str`, *optional*, defaults to `"<d>"`) : The beginning of document token.
+
+eod_token (`str`, *optional*, defaults to `"</d>"`) : The end of document token.
+
+bos_token (`str`, *optional*, defaults to `"<s>"`) : The beginning of sequence token.
+
+eos_token (`str`, *optional*, defaults to `"</s>"`) : The end of sequence token.
+
+pad_token (`str`, *optional*, defaults to `"<pad>"`) : The token used for padding.
+
+unk_token (`str`, *optional*, defaults to `"<unk>"`) : The unknown token.
+
+line_token (`str`, *optional*, defaults to `"</n>"`) : The line token.
+
+space_token (`str`, *optional*, defaults to `"</_>"`) : The space token.
 
 Construct a CPMAnt tokenizer. Based on byte-level Byte-Pair-Encoding.
 
 ## CpmAntModel[[transformers.CpmAntModel]]
 
-- **config** ([CpmAntConfig](/docs/transformers/v5.14.0/en/model_doc/cpmant#transformers.CpmAntConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.CpmAntModel[[transformers.CpmAntModel]]
+
+```python
+transformers.CpmAntModel(config: CpmAntConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cpmant/modeling_cpmant.py#L536)
+
+**Parameters:**
+
+config ([CpmAntConfig](/docs/transformers/v5.15.0/en/model_doc/cpmant#transformers.CpmAntConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Cpmant Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -128,40 +150,35 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, seq_len)`) --
-  Indices of input sequence tokens in the vocabulary.
+#### forward[[transformers.CpmAntModel.forward]]
 
-  Indices can be obtained using `CPMAntTokenizer`. See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, past_key_values: transformers.cache_utils.Cache | None = None, use_cache: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cpmant/modeling_cpmant.py#L574)
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+**Parameters:**
 
-  The model will output the same cache format that is fed as input.
+input_ids (`torch.Tensor` of shape `(batch_size, seq_len)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using `CPMAntTokenizer`. See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
-  `past_key_values`).
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[BaseModelOutputWithPast](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPast](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+
+use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CpmAntConfig](/docs/transformers/v5.14.0/en/model_doc/cpmant#transformers.CpmAntConfig)) and inputs.
-The [CpmAntModel](/docs/transformers/v5.14.0/en/model_doc/cpmant#transformers.CpmAntModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([CpmAntConfig](/docs/transformers/v5.15.0/en/model_doc/cpmant#transformers.CpmAntConfig)) and inputs.
+
+The [CpmAntModel](/docs/transformers/v5.15.0/en/model_doc/cpmant#transformers.CpmAntModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -171,7 +188,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -188,14 +205,21 @@ the latter silently ignores them.
 
 ## CpmAntForCausalLM[[transformers.CpmAntForCausalLM]]
 
-- **config** ([CpmAntConfig](/docs/transformers/v5.14.0/en/model_doc/cpmant#transformers.CpmAntConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.CpmAntForCausalLM[[transformers.CpmAntForCausalLM]]
+
+```python
+transformers.CpmAntForCausalLM(config: CpmAntConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cpmant/modeling_cpmant.py#L686)
+
+**Parameters:**
+
+config ([CpmAntConfig](/docs/transformers/v5.15.0/en/model_doc/cpmant#transformers.CpmAntConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The CPMAnt Model with a language modeling head on top (linear layer with weights tied to the input embeddings).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -203,55 +227,41 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, seq_len)`) --
-  Indices of input sequence tokens in the vocabulary.
+#### forward[[transformers.CpmAntForCausalLM.forward]]
 
-  Indices can be obtained using `CPMAntTokenizer`. See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, labels: typing.Optional[torch.Tensor] = None, return_dict: bool | None = None, attention_mask: typing.Optional[torch.Tensor] = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cpmant/modeling_cpmant.py#L699)
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+**Parameters:**
 
-  The model will output the same cache format that is fed as input.
+input_ids (`torch.Tensor` of shape `(batch_size, seq_len)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using `CPMAntTokenizer`. See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
-  `past_key_values`).
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **labels** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-  [What are attention masks?](../glossary#attention-mask)
-- **logits_to_keep** (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) --
-  If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all
-  `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that
-  token can save memory, which becomes pretty significant for long sequences or large vocabulary size.
-  If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension.
-  This is useful when using packed tensor format (single dimension for batch and sequence length).[CausalLMOutputWithPast](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`A [CausalLMOutputWithPast](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+labels (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
+
+**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`
+
+A [CausalLMOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CpmAntConfig](/docs/transformers/v5.14.0/en/model_doc/cpmant#transformers.CpmAntConfig)) and inputs.
-The [CpmAntForCausalLM](/docs/transformers/v5.14.0/en/model_doc/cpmant#transformers.CpmAntForCausalLM) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([CpmAntConfig](/docs/transformers/v5.15.0/en/model_doc/cpmant#transformers.CpmAntConfig)) and inputs.
+
+The [CpmAntForCausalLM](/docs/transformers/v5.15.0/en/model_doc/cpmant#transformers.CpmAntForCausalLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -259,7 +269,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -290,5 +300,5 @@ Text Generation with CpmAntForCausalLM.
 ['今天天气不错，阳光明媚，我和妈妈一起去超市买东西。\n在超市里，我看到了一个很好玩的玩具，它的名字叫“机器人”。它有一个圆圆的脑袋，两只圆圆的眼睛，还有一个圆圆的']
 ```
 
-### Qwen3-Omni-MOE
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/qwen3_omni_moe.md
+### HunYuanMoEV1
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/hunyuan_v1_moe.md

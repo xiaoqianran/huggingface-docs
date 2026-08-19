@@ -38,7 +38,7 @@ encoder_outputs = outputs.last_hidden_state
 predictor_outputs = outputs.predictor_output.last_hidden_state
 ```
 
-V-JEPA 2 can also be finetuned for video classification. In the following snippet, we show how use finetuned on Something-Something-V2 video classification model.
+V-JEPA 2 can also be finetuned for video classification. In the following snippet, we show how to use the finetuned on Something-Something-V2 video classification model.
 
 ```python
 import numpy as np
@@ -75,60 +75,68 @@ for idx, prob in zip(top5_indices, top5_probs):
 
 ## VJEPA2Config[[transformers.VJEPA2Config]]
 
-- **patch_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `16`) --
-  The size (resolution) of each patch.
-- **crop_size** (`int`, *optional*, defaults to 256) --
-  Input resolution of the model
-- **frames_per_clip** (`int`, *optional*, defaults to 64) --
-  The number of frames the model has been pretrained with. Does not impact inference.
-- **tubelet_size** (`int`, *optional*, defaults to 2) --
-  The number of temporal frames used for a single rastor, check paper for more information.
-- **hidden_size** (`int`, *optional*, defaults to `1024`) --
-  Dimension of the hidden representations.
-- **in_chans** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **num_attention_heads** (`int`, *optional*, defaults to `16`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **num_hidden_layers** (`int`, *optional*, defaults to `24`) --
-  Number of hidden layers in the Transformer decoder.
-- **drop_path_rate** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  Drop path rate for the patch fusion.
-- **mlp_ratio** (`Union[int, float]`, *optional*, defaults to `4.0`) --
-  Ratio of the MLP hidden dim to the embedding dim.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **qkv_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a bias to the queries, keys and values.
-- **attention_probs_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **num_pooler_layers** (`int`, *optional*, defaults to 3) --
-  The number of self-attention layers in the pooler.
-- **pred_hidden_size** (`int`, *optional*, defaults to 384) --
-  Dimensionality of the predictor layers
-- **pred_num_attention_heads** (`int`, *optional*, defaults to 12) --
-  Number of attention heads for each attention layer in the Predictor
-- **pred_num_hidden_layers** (`int`, *optional*, defaults to 12) --
-  Number of hidden layers in the Predictor
-- **pred_num_mask_tokens** (`int`, *optional*, defaults to 10) --
-  Define the number of mask tokens to use in the Predictor
-- **pred_zero_init_mask_tokens** (`bool`, *optional*, defaults to `True`) --
-  Initialize the mask tokens in the predictor with 0.
-- **pred_mlp_ratio** (`float`, *optional*, defaults to 4.0) --
-  Ratio of the hidden size of the MLPs used in Predictor relative to the `pred_hidden_size`.
+#### transformers.VJEPA2Config[[transformers.VJEPA2Config]]
+
+```python
+transformers.VJEPA2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, patch_size: int | list[int] | tuple[int, int] = 16, crop_size: int = 256, frames_per_clip: int = 64, tubelet_size: int = 2, hidden_size: int = 1024, in_chans: int = 3, num_attention_heads: int = 16, num_hidden_layers: int = 24, drop_path_rate: float | int = 0.0, mlp_ratio: int | float = 4.0, layer_norm_eps: float = 1e-06, qkv_bias: bool = True, attention_probs_dropout_prob: float | int = 0.0, hidden_act: str = 'gelu', initializer_range: float = 0.02, attention_dropout: float | int = 0.0, num_pooler_layers: int = 3, pred_hidden_size: int = 384, pred_num_attention_heads: int = 12, pred_num_hidden_layers: int = 12, pred_num_mask_tokens: int = 10, pred_zero_init_mask_tokens: bool = True, pred_mlp_ratio: int | float = 4.0)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vjepa2/configuration_vjepa2.py#L24)
+
+**Parameters:**
+
+patch_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `16`) : The size (resolution) of each patch.
+
+crop_size (`int`, *optional*, defaults to 256) : Input resolution of the model
+
+frames_per_clip (`int`, *optional*, defaults to 64) : The number of frames the model has been pretrained with. Does not impact inference.
+
+tubelet_size (`int`, *optional*, defaults to 2) : The number of temporal frames used for a single rastor, check paper for more information.
+
+hidden_size (`int`, *optional*, defaults to `1024`) : Dimension of the hidden representations.
+
+in_chans (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+num_attention_heads (`int`, *optional*, defaults to `16`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+num_hidden_layers (`int`, *optional*, defaults to `24`) : Number of hidden layers in the Transformer decoder.
+
+drop_path_rate (`Union[float, int]`, *optional*, defaults to `0.0`) : Drop path rate for the patch fusion.
+
+mlp_ratio (`Union[int, float]`, *optional*, defaults to `4.0`) : Ratio of the MLP hidden dim to the embedding dim.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+qkv_bias (`bool`, *optional*, defaults to `True`) : Whether to add a bias to the queries, keys and values.
+
+attention_probs_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+num_pooler_layers (`int`, *optional*, defaults to 3) : The number of self-attention layers in the pooler.
+
+pred_hidden_size (`int`, *optional*, defaults to 384) : Dimensionality of the predictor layers
+
+pred_num_attention_heads (`int`, *optional*, defaults to 12) : Number of attention heads for each attention layer in the Predictor
+
+pred_num_hidden_layers (`int`, *optional*, defaults to 12) : Number of hidden layers in the Predictor
+
+pred_num_mask_tokens (`int`, *optional*, defaults to 10) : Define the number of mask tokens to use in the Predictor
+
+pred_zero_init_mask_tokens (`bool`, *optional*, defaults to `True`) : Initialize the mask tokens in the predictor with 0.
+
+pred_mlp_ratio (`float`, *optional*, defaults to 4.0) : Ratio of the hidden size of the MLPs used in Predictor relative to the `pred_hidden_size`.
 
 This is the configuration class to store the configuration of a VJEPA2Model. It is used to instantiate a Vjepa2
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/vjepa2-vitl-fpc64-256](https://huggingface.co/facebook/vjepa2-vitl-fpc64-256)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -147,14 +155,21 @@ Example:
 
 ## VJEPA2Model[[transformers.VJEPA2Model]]
 
-- **config** ([VJEPA2Config](/docs/transformers/v5.14.0/en/model_doc/vjepa2#transformers.VJEPA2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.VJEPA2Model[[transformers.VJEPA2Model]]
+
+```python
+transformers.VJEPA2Model(config: VJEPA2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vjepa2/modeling_vjepa2.py#L888)
+
+**Parameters:**
+
+config ([VJEPA2Config](/docs/transformers/v5.15.0/en/model_doc/vjepa2#transformers.VJEPA2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Vjepa2 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -162,24 +177,31 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "context_mask", "val": ": list[)>] | None = None"}, {"name": "target_mask", "val": ": list[)>] | None = None"}, {"name": "skip_predictor", "val": ": bool = False"}, {"name": "**kwargs", "val": ": Unpack"}]}>
-- **pixel_values_videos** (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) --
-  The tensors corresponding to the input video. Pixel values for videos can be obtained using
-  [VJEPA2VideoProcessor](/docs/transformers/v5.14.0/en/model_doc/vjepa2#transformers.VJEPA2VideoProcessor). See `VJEPA2VideoProcessor.__call__()` for details (`processor_class` uses
-  [VJEPA2VideoProcessor](/docs/transformers/v5.14.0/en/model_doc/vjepa2#transformers.VJEPA2VideoProcessor) for processing videos).
-- **context_mask** (`torch.Tensor` with shape `[batch_size, patch_size, 1]`, *optional*) --
-  The mask position ids indicating which encoder output patches are going to be exposed to the predictor.
-  By default, this mask is created as torch.arange(N).unsqueeze(0).repeat(B,1), indicating full context
-  available to the predictor.
-- **target_mask** (`torch.Tensor` with shape `[batch_size, patch_size, 1]`, *optional*) --
-  The mask position ids indicating which encoder output patches are going to be used as a prediction target
-  for the predictor. By default, this mask is created as torch.arange(N).unsqueeze(0).repeat(B,1), indicating
-  that the predictor should predict all encoder patches.
-- **skip_predictor** (`bool`, *optional*, defaults to `False`) --
-  flag to skip the predictor forward, useful if you just need the encoder outputs`VJEPA2WithMaskedInputModelOutput` or `tuple(torch.FloatTensor)`A `VJEPA2WithMaskedInputModelOutput` or a tuple of
+#### forward[[transformers.VJEPA2Model.forward]]
+
+```python
+forward(pixel_values_videos: Tensor, context_mask: list[torch.Tensor] | None = None, target_mask: list[torch.Tensor] | None = None, skip_predictor: bool = False, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vjepa2/modeling_vjepa2.py#L902)
+
+**Parameters:**
+
+pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [VJEPA2VideoProcessor](/docs/transformers/v5.15.0/en/model_doc/vjepa2#transformers.VJEPA2VideoProcessor). See `VJEPA2VideoProcessor.__call__()` for details (`processor_class` uses [VJEPA2VideoProcessor](/docs/transformers/v5.15.0/en/model_doc/vjepa2#transformers.VJEPA2VideoProcessor) for processing videos).
+
+context_mask (`torch.Tensor` with shape `[batch_size, patch_size, 1]`, *optional*) : The mask position ids indicating which encoder output patches are going to be exposed to the predictor. By default, this mask is created as torch.arange(N).unsqueeze(0).repeat(B,1), indicating full context available to the predictor.
+
+target_mask (`torch.Tensor` with shape `[batch_size, patch_size, 1]`, *optional*) : The mask position ids indicating which encoder output patches are going to be used as a prediction target for the predictor. By default, this mask is created as torch.arange(N).unsqueeze(0).repeat(B,1), indicating that the predictor should predict all encoder patches.
+
+skip_predictor (`bool`, *optional*, defaults to `False`) : flag to skip the predictor forward, useful if you just need the encoder outputs
+
+**Returns:** `VJEPA2WithMaskedInputModelOutput` or `tuple(torch.FloatTensor)`
+
+A `VJEPA2WithMaskedInputModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VJEPA2Config](/docs/transformers/v5.14.0/en/model_doc/vjepa2#transformers.VJEPA2Config)) and inputs.
-The [VJEPA2Model](/docs/transformers/v5.14.0/en/model_doc/vjepa2#transformers.VJEPA2Model) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([VJEPA2Config](/docs/transformers/v5.15.0/en/model_doc/vjepa2#transformers.VJEPA2Config)) and inputs.
+
+The [VJEPA2Model](/docs/transformers/v5.15.0/en/model_doc/vjepa2#transformers.VJEPA2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -200,14 +222,21 @@ the latter silently ignores them.
 
 ## VJEPA2ForVideoClassification[[transformers.VJEPA2ForVideoClassification]]
 
-- **config** ([VJEPA2Config](/docs/transformers/v5.14.0/en/model_doc/vjepa2#transformers.VJEPA2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.VJEPA2ForVideoClassification[[transformers.VJEPA2ForVideoClassification]]
+
+```python
+transformers.VJEPA2ForVideoClassification(config: VJEPA2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vjepa2/modeling_vjepa2.py#L976)
+
+**Parameters:**
+
+config ([VJEPA2Config](/docs/transformers/v5.15.0/en/model_doc/vjepa2#transformers.VJEPA2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 V-JEPA 2 Model transformer with a video classification head on top (a linear layer on top of the attentive pooler).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -215,18 +244,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "labels", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "**kwargs", "val": ": Unpack"}]}>
-- **pixel_values_videos** (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) --
-  The tensors corresponding to the input video. Pixel values for videos can be obtained using
-  [VJEPA2VideoProcessor](/docs/transformers/v5.14.0/en/model_doc/vjepa2#transformers.VJEPA2VideoProcessor). See `VJEPA2VideoProcessor.__call__()` for details (`processor_class` uses
-  [VJEPA2VideoProcessor](/docs/transformers/v5.14.0/en/model_doc/vjepa2#transformers.VJEPA2VideoProcessor) for processing videos).
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the image classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).[ImageClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`A [ImageClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
+#### forward[[transformers.VJEPA2ForVideoClassification.forward]]
+
+```python
+forward(pixel_values_videos: Tensor, labels: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vjepa2/modeling_vjepa2.py#L990)
+
+**Parameters:**
+
+pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [VJEPA2VideoProcessor](/docs/transformers/v5.15.0/en/model_doc/vjepa2#transformers.VJEPA2VideoProcessor). See `VJEPA2VideoProcessor.__call__()` for details (`processor_class` uses [VJEPA2VideoProcessor](/docs/transformers/v5.15.0/en/model_doc/vjepa2#transformers.VJEPA2VideoProcessor) for processing videos).
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VJEPA2Config](/docs/transformers/v5.14.0/en/model_doc/vjepa2#transformers.VJEPA2Config)) and inputs.
-The [VJEPA2ForVideoClassification](/docs/transformers/v5.14.0/en/model_doc/vjepa2#transformers.VJEPA2ForVideoClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([VJEPA2Config](/docs/transformers/v5.15.0/en/model_doc/vjepa2#transformers.VJEPA2Config)) and inputs.
+
+The [VJEPA2ForVideoClassification](/docs/transformers/v5.15.0/en/model_doc/vjepa2#transformers.VJEPA2ForVideoClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -274,5 +312,13 @@ Examples:
 
 ## VJEPA2VideoProcessor[[transformers.VJEPA2VideoProcessor]]
 
-### Depth Anything V2
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/depth_anything_v2.md
+#### transformers.VJEPA2VideoProcessor[[transformers.VJEPA2VideoProcessor]]
+
+```python
+transformers.VJEPA2VideoProcessor(**kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vjepa2/video_processing_vjepa2.py#L21)
+
+### CLVP
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/clvp.md

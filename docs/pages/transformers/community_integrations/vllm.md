@@ -21,9 +21,9 @@ vllm serve meta-llama/Llama-3.2-1B \
 
 ## Transformers integration
 
-1. [AutoConfig.from_pretrained()](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoConfig.from_pretrained) loads the model's `config.json` from the Hub or your Hugging Face cache. vLLM checks the `architectures` field against its internal model registry to determine which vLLM model class to use.
-2. If the model isn't in the registry, vLLM calls [AutoModel.from_config()](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel.from_config) to load the Transformers model implementation instead.
-3. [AutoTokenizer.from_pretrained()](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained) loads the tokenizer files. vLLM caches some tokenizer internals to reduce overhead during inference.
+1. [AutoConfig.from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoConfig.from_pretrained) loads the model's `config.json` from the Hub or your Hugging Face cache. vLLM checks the `architectures` field against its internal model registry to determine which vLLM model class to use.
+2. If the model isn't in the registry, vLLM calls [AutoModel.from_config()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel.from_config) to load the Transformers model implementation instead.
+3. [AutoTokenizer.from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained) loads the tokenizer files. vLLM caches some tokenizer internals to reduce overhead during inference.
 4. Model weights download from the Hub in safetensors format.
 
 Setting `model_impl="transformers"` bypasses the vLLM model registry and loads directly from Transformers. vLLM replaces most model modules (MoE, attention, linear layers) with its own optimized versions while keeping the Transformers model structure.
@@ -33,5 +33,5 @@ Setting `model_impl="transformers"` bypasses the vLLM model registry and loads d
 - [vLLM docs](https://docs.vllm.ai/en/latest/models/supported_models.html#transformers) for more usage examples and tips.
 - [Integration with Hugging Face](https://docs.vllm.ai/en/latest/design/huggingface_integration/) explains how vLLM integrates with Transformers.
 
-### TensorRT-LLM
-https://huggingface.co/docs/transformers/v5.14.0/community_integrations/tensorrt-llm.md
+### TRL
+https://huggingface.co/docs/transformers/v5.15.0/community_integrations/trl.md

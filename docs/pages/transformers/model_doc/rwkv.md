@@ -55,40 +55,46 @@ output = model.generate(inputs["input_ids"], max_new_tokens=64, stopping_criteri
 
 ## RwkvConfig[[transformers.RwkvConfig]]
 
-- **vocab_size** (`int`, *optional*, defaults to `50277`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **context_length** (`int`, *optional*, defaults to 1024) --
-  The maximum sequence length that this model can be used with in a single forward (using it in RNN mode
-  lets use any sequence length).
-- **hidden_size** (`int`, *optional*, defaults to `4096`) --
-  Dimension of the hidden representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `32`) --
-  Number of hidden layers in the Transformer decoder.
-- **attention_hidden_size** (`int`, *optional*) --
-  Dimensionality of the attention hidden states. Will default to `hidden_size` if unset.
-- **intermediate_size** (`int`, *optional*) --
-  Dimension of the MLP representations.
-- **layer_norm_epsilon** (`float`, *optional*, defaults to `1e-05`) --
-  The epsilon used by the layer normalization layers.
-- **bos_token_id** (`int`, *optional*, defaults to `0`) --
-  Token id used for beginning-of-stream in the vocabulary.
-- **eos_token_id** (`Union[int, list[int]]`, *optional*, defaults to `0`) --
-  Token id used for end-of-stream in the vocabulary.
-- **rescale_every** (`int`, *optional*, defaults to 6) --
-  At inference, the hidden states (and weights of the corresponding output layers) are divided by 2 every
-  `rescale_every` layer. If set to 0 or a negative number, no rescale is done.
-- **tie_word_embeddings** (`bool`, *optional*, defaults to `False`) --
-  Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
-- **use_cache** (`bool`, *optional*, defaults to `True`) --
-  Whether or not the model should return the last key/values attentions (not used by all models). Only
-  relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
+#### transformers.RwkvConfig[[transformers.RwkvConfig]]
+
+```python
+transformers.RwkvConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 50277, context_length: int = 1024, hidden_size: int = 4096, num_hidden_layers: int = 32, attention_hidden_size: int | None = None, intermediate_size: int | None = None, layer_norm_epsilon: float = 1e-05, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 0, rescale_every: int = 6, tie_word_embeddings: bool = False, use_cache: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rwkv/configuration_rwkv.py#L25)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `50277`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+context_length (`int`, *optional*, defaults to 1024) : The maximum sequence length that this model can be used with in a single forward (using it in RNN mode lets use any sequence length).
+
+hidden_size (`int`, *optional*, defaults to `4096`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `32`) : Number of hidden layers in the Transformer decoder.
+
+attention_hidden_size (`int`, *optional*) : Dimensionality of the attention hidden states. Will default to `hidden_size` if unset.
+
+intermediate_size (`int`, *optional*) : Dimension of the MLP representations.
+
+layer_norm_epsilon (`float`, *optional*, defaults to `1e-05`) : The epsilon used by the layer normalization layers.
+
+bos_token_id (`int`, *optional*, defaults to `0`) : Token id used for beginning-of-stream in the vocabulary.
+
+eos_token_id (`Union[int, list[int]]`, *optional*, defaults to `0`) : Token id used for end-of-stream in the vocabulary.
+
+rescale_every (`int`, *optional*, defaults to 6) : At inference, the hidden states (and weights of the corresponding output layers) are divided by 2 every `rescale_every` layer. If set to 0 or a negative number, no rescale is done.
+
+tie_word_embeddings (`bool`, *optional*, defaults to `False`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
+
+use_cache (`bool`, *optional*, defaults to `True`) : Whether or not the model should return the last key/values attentions (not used by all models). Only relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
 
 This is the configuration class to store the configuration of a RwkvModel. It is used to instantiate a Rwkv
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [RWKV/rwkv-4-169m-pile](https://huggingface.co/RWKV/rwkv-4-169m-pile)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -107,14 +113,21 @@ Example:
 
 ## RwkvModel[[transformers.RwkvModel]]
 
-- **config** ([RwkvModel](/docs/transformers/v5.14.0/en/model_doc/rwkv#transformers.RwkvModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.RwkvModel[[transformers.RwkvModel]]
+
+```python
+transformers.RwkvModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rwkv/modeling_rwkv.py#L487)
+
+**Parameters:**
+
+config ([RwkvModel](/docs/transformers/v5.15.0/en/model_doc/rwkv#transformers.RwkvModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Rwkv Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -122,45 +135,39 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, input_ids_length)`) --
-  `input_ids_length` = `sequence_length` if `past_key_values` is `None` else
-  `past_key_values.get_seq_length()` (`sequence_length` of input past key value states). Indices of input
-  sequence tokens in the vocabulary.
+#### forward[[transformers.RwkvModel.forward]]
 
-  If `past_key_values` is used, only `input_ids` that do not have their past calculated should be passed as
-  `input_ids`.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, state: list[torch.FloatTensor] | None = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rwkv/modeling_rwkv.py#L508)
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+**Parameters:**
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+input_ids (`torch.LongTensor` of shape `(batch_size, input_ids_length)`) : `input_ids_length` = `sequence_length` if `past_key_values` is `None` else `past_key_values.get_seq_length()` (`sequence_length` of input past key value states). Indices of input sequence tokens in the vocabulary.  If `past_key_values` is used, only `input_ids` that do not have their past calculated should be passed as `input_ids`.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are attention masks?](../glossary#attention-mask)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **state** (`tuple` of five `torch.FloatTensor` of shape `(batch_size, hidden_size, num_hidden_layers)`, *optional*) --
-  If passed along, the model uses the previous state in all the blocks (which will give the output for the
-  `input_ids` provided as if the model add `state_input_ids + input_ids` as context).
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, the last state is returned and can be used to quickly generate the next logits.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.`RwkvOutput` or `tuple(torch.FloatTensor)`A `RwkvOutput` or a tuple of
+attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+state (`tuple` of five `torch.FloatTensor` of shape `(batch_size, hidden_size, num_hidden_layers)`, *optional*) : If passed along, the model uses the previous state in all the blocks (which will give the output for the `input_ids` provided as if the model add `state_input_ids + input_ids` as context).
+
+use_cache (`bool`, *optional*) : If set to `True`, the last state is returned and can be used to quickly generate the next logits.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** `RwkvOutput` or `tuple(torch.FloatTensor)`
+
+A `RwkvOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([RwkvConfig](/docs/transformers/v5.14.0/en/model_doc/rwkv#transformers.RwkvConfig)) and inputs.
-The [RwkvModel](/docs/transformers/v5.14.0/en/model_doc/rwkv#transformers.RwkvModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([RwkvConfig](/docs/transformers/v5.15.0/en/model_doc/rwkv#transformers.RwkvConfig)) and inputs.
+
+The [RwkvModel](/docs/transformers/v5.15.0/en/model_doc/rwkv#transformers.RwkvModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -181,15 +188,22 @@ the latter silently ignores them.
 
 ## RwkvLMHeadModel[[transformers.RwkvForCausalLM]]
 
-- **config** ([RwkvForCausalLM](/docs/transformers/v5.14.0/en/model_doc/rwkv#transformers.RwkvForCausalLM)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.RwkvForCausalLM[[transformers.RwkvForCausalLM]]
+
+```python
+transformers.RwkvForCausalLM(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rwkv/modeling_rwkv.py#L667)
+
+**Parameters:**
+
+config ([RwkvForCausalLM](/docs/transformers/v5.15.0/en/model_doc/rwkv#transformers.RwkvForCausalLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The RWKV Model transformer with a language modeling head on top (linear layer with weights tied to the input
 embeddings).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -197,55 +211,43 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, input_ids_length)`) --
-  `input_ids_length` = `sequence_length` if `past_key_values` is `None` else
-  `past_key_values.get_seq_length()` (`sequence_length` of input past key value states). Indices of input
-  sequence tokens in the vocabulary.
+#### forward[[transformers.RwkvForCausalLM.forward]]
 
-  If `past_key_values` is used, only `input_ids` that do not have their past calculated should be passed as
-  `input_ids`.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, state: list[torch.FloatTensor] | None = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs)
+```
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rwkv/modeling_rwkv.py#L684)
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+**Parameters:**
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+input_ids (`torch.LongTensor` of shape `(batch_size, input_ids_length)`) : `input_ids_length` = `sequence_length` if `past_key_values` is `None` else `past_key_values.get_seq_length()` (`sequence_length` of input past key value states). Indices of input sequence tokens in the vocabulary.  If `past_key_values` is used, only `input_ids` that do not have their past calculated should be passed as `input_ids`.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are attention masks?](../glossary#attention-mask)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **state** (`tuple` of five `torch.FloatTensor` of shape `(batch_size, hidden_size, num_hidden_layers)`, *optional*) --
-  If passed along, the model uses the previous state in all the blocks (which will give the output for the
-  `input_ids` provided as if the model add `state_input_ids + input_ids` as context).
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for language modeling. Note that the labels **are shifted** inside the model, i.e. you can set
-  `labels = input_ids` Indices are selected in `[-100, 0, ..., config.vocab_size]` All labels set to `-100`
-  are ignored (masked), the loss is only computed for labels in `[0, ..., config.vocab_size]`
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, the last state is returned and can be used to quickly generate the next logits.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
-- **logits_to_keep** (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) --
-  If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all
-  `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that
-  token can save memory, which becomes pretty significant for long sequences or large vocabulary size.
-  If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension.
-  This is useful when using packed tensor format (single dimension for batch and sequence length).`RwkvCausalLMOutput` or `tuple(torch.FloatTensor)`A `RwkvCausalLMOutput` or a tuple of
+attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+state (`tuple` of five `torch.FloatTensor` of shape `(batch_size, hidden_size, num_hidden_layers)`, *optional*) : If passed along, the model uses the previous state in all the blocks (which will give the output for the `input_ids` provided as if the model add `state_input_ids + input_ids` as context).
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for language modeling. Note that the labels **are shifted** inside the model, i.e. you can set `labels = input_ids` Indices are selected in `[-100, 0, ..., config.vocab_size]` All labels set to `-100` are ignored (masked), the loss is only computed for labels in `[0, ..., config.vocab_size]`
+
+use_cache (`bool`, *optional*) : If set to `True`, the last state is returned and can be used to quickly generate the next logits.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
+
+**Returns:** `RwkvCausalLMOutput` or `tuple(torch.FloatTensor)`
+
+A `RwkvCausalLMOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([RwkvConfig](/docs/transformers/v5.14.0/en/model_doc/rwkv#transformers.RwkvConfig)) and inputs.
-The [RwkvForCausalLM](/docs/transformers/v5.14.0/en/model_doc/rwkv#transformers.RwkvForCausalLM) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([RwkvConfig](/docs/transformers/v5.15.0/en/model_doc/rwkv#transformers.RwkvConfig)) and inputs.
+
+The [RwkvForCausalLM](/docs/transformers/v5.15.0/en/model_doc/rwkv#transformers.RwkvForCausalLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -336,5 +338,5 @@ which finally gives us
 
 $$O_{i} = \sigma(R_{i}) \frac{N_{i}}{D_{i}}$$
 
-### Mamba
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/mamba.md
+### Janus
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/janus.md

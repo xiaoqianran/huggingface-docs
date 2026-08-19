@@ -17,7 +17,7 @@ The original code can be found [here](https://github.com/Atten4Vis/LW-DETR).
 >
 > Click on the LW-DETR models in the right sidebar for more examples of how to apply LW-DETR to different object detection tasks.
 
-The example below demonstrates how to perform object detection with the [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) and the [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to perform object detection with the [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) and the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 
@@ -64,83 +64,89 @@ for result in results:
 
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with LwDetr.
 
-- Scripts for finetuning [LwDetrForObjectDetection](/docs/transformers/v5.14.0/en/model_doc/lw_detr#transformers.LwDetrForObjectDetection) with [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) or [Accelerate](https://huggingface.co/docs/accelerate/index) can be found [here](https://github.com/huggingface/transformers/tree/main/examples/pytorch/object-detection).
+- Scripts for finetuning [LwDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrForObjectDetection) with [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) or [Accelerate](https://huggingface.co/docs/accelerate/index) can be found [here](https://github.com/huggingface/transformers/tree/main/examples/pytorch/object-detection).
 - See also: [Object detection task guide](../tasks/object_detection).
 
 ## LwDetrConfig[[transformers.LwDetrConfig]]
 
-- **backbone_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The configuration of the backbone model.
-- **projector_scale_factors** (`list[float]`, *optional*, defaults to `[]`) --
-  Scale factors for the feature pyramid network. Each scale factor determines the resolution of features
-  at different levels. Supported values are 0.5, 1.0, and 2.0.
-- **hidden_expansion** (`float`, *optional*, defaults to 0.5) --
-  Expansion factor for hidden dimensions in the projector layers.
-- **c2f_num_blocks** (`int`, *optional*, defaults to 3) --
-  Number of blocks in the C2F layer.
-- **activation_function** (`str`, *optional*, defaults to `"silu"`) --
-  The non-linear activation function in the projector. Supported values are `"silu"`, `"relu"`, `"gelu"`.
-- **batch_norm_eps** (`float`, *optional*, defaults to 1e-05) --
-  The epsilon value for batch normalization layers.
-- **dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The ratio for all dropout layers.
-- **decoder_ffn_dim** (`int`, *optional*, defaults to 2048) --
-  Dimension of the "intermediate" (often named feed-forward) layer in decoder.
-- **decoder_n_points** (`int`, *optional*, defaults to 4) --
-  The number of sampled keys in each feature level for each attention head in the decoder.
-- **decoder_layers** (`int`, *optional*, defaults to `3`) --
-  Number of hidden layers in the Transformer decoder. Will use the same value as `num_layers` if not set.
-- **decoder_self_attention_heads** (`int`, *optional*, defaults to 8) --
-  Number of attention heads for each attention layer in the decoder self-attention.
-- **decoder_cross_attention_heads** (`int`, *optional*, defaults to 16) --
-  Number of attention heads for each attention layer in the decoder cross-attention.
-- **decoder_activation_function** (`str`, *optional*, defaults to `"relu"`) --
-  The non-linear activation function in the decoder. Supported values are `"relu"`, `"silu"`, `"gelu"`.
-- **num_queries** (`int`, *optional*, defaults to 300) --
-  Number of object queries, i.e. detection slots. This is the maximal number of objects
-  [LwDetrModel](/docs/transformers/v5.14.0/en/model_doc/lw_detr#transformers.LwDetrModel) can detect in a single image.
-- **attention_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to use a bias in the query, key, value and output projection layers during self-attention.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **activation_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for activations inside the fully connected layer.
-- **group_detr** (`int`, *optional*, defaults to 13) --
-  Number of groups for Group DETR attention mechanism, which helps reduce computational complexity.
-- **init_std** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **disable_custom_kernels** (`bool`, *optional*, defaults to `True`) --
-  Disable the use of custom CUDA and CPU kernels. This option is necessary for the ONNX export, as custom
-  kernels are not supported by PyTorch ONNX export.
-- **class_cost** (`Union[int, float]`, *optional*, defaults to `2`) --
-  Relative weight of the classification error in the Hungarian matching cost.
-- **bbox_cost** (`Union[int, float]`, *optional*, defaults to `5`) --
-  Relative weight of the L1 bounding box error in the Hungarian matching cost.
-- **giou_cost** (`Union[int, float]`, *optional*, defaults to `2`) --
-  Relative weight of the generalized IoU loss in the Hungarian matching cost.
-- **class_loss_coefficient** (`float`, *optional*, defaults to 1) --
-  Relative weight of the classification loss in the Hungarian matching cost.
-- **dice_loss_coefficient** (`Union[int, float]`, *optional*, defaults to `1`) --
-  Relative weight of the dice loss in the panoptic segmentation loss.
-- **bbox_loss_coefficient** (`Union[int, float]`, *optional*, defaults to `5`) --
-  Relative weight of the L1 bounding box loss in the panoptic segmentation loss.
-- **giou_loss_coefficient** (`Union[int, float]`, *optional*, defaults to `2`) --
-  Relative weight of the generalized IoU loss in the panoptic segmentation loss.
-- **eos_coefficient** (`float`, *optional*, defaults to `0.1`) --
-  Relative classification weight of the 'no-object' class in the object detection loss.
-- **focal_alpha** (`float`, *optional*, defaults to `0.25`) --
-  Alpha parameter in the focal loss.
-- **auxiliary_loss** (`bool`, *optional*, defaults to `True`) --
-  Whether auxiliary decoding losses (losses at each decoder layer) are to be used.
-- **d_model** (`int`, *optional*, defaults to `256`) --
-  Size of the encoder layers and the pooler layer.
+#### transformers.LwDetrConfig[[transformers.LwDetrConfig]]
+
+```python
+transformers.LwDetrConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, projector_scale_factors: list[float] | tuple[float, ...] = (), hidden_expansion: float = 0.5, c2f_num_blocks: int = 3, activation_function: str = 'silu', batch_norm_eps: float = 1e-05, dropout: float | int = 0.0, decoder_ffn_dim: int = 2048, decoder_n_points: int = 4, decoder_layers: int = 3, decoder_self_attention_heads: int = 8, decoder_cross_attention_heads: int = 16, decoder_activation_function: str = 'relu', num_queries: int = 300, attention_bias: bool = True, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, group_detr: int = 13, init_std: float = 0.02, disable_custom_kernels: bool = True, class_cost: int | float = 2, bbox_cost: int | float = 5, giou_cost: int | float = 2, class_loss_coefficient: int | float = 1, dice_loss_coefficient: int | float = 1, bbox_loss_coefficient: int | float = 5, giou_loss_coefficient: int | float = 2, eos_coefficient: float = 0.1, focal_alpha: float = 0.25, auxiliary_loss: bool = True, d_model: int = 256)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/configuration_lw_detr.py#L109)
+
+**Parameters:**
+
+backbone_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The configuration of the backbone model.
+
+projector_scale_factors (`list[float]`, *optional*, defaults to `[]`) : Scale factors for the feature pyramid network. Each scale factor determines the resolution of features at different levels. Supported values are 0.5, 1.0, and 2.0.
+
+hidden_expansion (`float`, *optional*, defaults to 0.5) : Expansion factor for hidden dimensions in the projector layers.
+
+c2f_num_blocks (`int`, *optional*, defaults to 3) : Number of blocks in the C2F layer.
+
+activation_function (`str`, *optional*, defaults to `"silu"`) : The non-linear activation function in the projector. Supported values are `"silu"`, `"relu"`, `"gelu"`.
+
+batch_norm_eps (`float`, *optional*, defaults to 1e-05) : The epsilon value for batch normalization layers.
+
+dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The ratio for all dropout layers.
+
+decoder_ffn_dim (`int`, *optional*, defaults to 2048) : Dimension of the "intermediate" (often named feed-forward) layer in decoder.
+
+decoder_n_points (`int`, *optional*, defaults to 4) : The number of sampled keys in each feature level for each attention head in the decoder.
+
+decoder_layers (`int`, *optional*, defaults to `3`) : Number of hidden layers in the Transformer decoder. Will use the same value as `num_layers` if not set.
+
+decoder_self_attention_heads (`int`, *optional*, defaults to 8) : Number of attention heads for each attention layer in the decoder self-attention.
+
+decoder_cross_attention_heads (`int`, *optional*, defaults to 16) : Number of attention heads for each attention layer in the decoder cross-attention.
+
+decoder_activation_function (`str`, *optional*, defaults to `"relu"`) : The non-linear activation function in the decoder. Supported values are `"relu"`, `"silu"`, `"gelu"`.
+
+num_queries (`int`, *optional*, defaults to 300) : Number of object queries, i.e. detection slots. This is the maximal number of objects [LwDetrModel](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrModel) can detect in a single image.
+
+attention_bias (`bool`, *optional*, defaults to `True`) : Whether to use a bias in the query, key, value and output projection layers during self-attention.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+activation_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for activations inside the fully connected layer.
+
+group_detr (`int`, *optional*, defaults to 13) : Number of groups for Group DETR attention mechanism, which helps reduce computational complexity.
+
+init_std (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+disable_custom_kernels (`bool`, *optional*, defaults to `True`) : Disable the use of custom CUDA and CPU kernels. This option is necessary for the ONNX export, as custom kernels are not supported by PyTorch ONNX export.
+
+class_cost (`Union[int, float]`, *optional*, defaults to `2`) : Relative weight of the classification error in the Hungarian matching cost.
+
+bbox_cost (`Union[int, float]`, *optional*, defaults to `5`) : Relative weight of the L1 bounding box error in the Hungarian matching cost.
+
+giou_cost (`Union[int, float]`, *optional*, defaults to `2`) : Relative weight of the generalized IoU loss in the Hungarian matching cost.
+
+class_loss_coefficient (`float`, *optional*, defaults to 1) : Relative weight of the classification loss in the Hungarian matching cost.
+
+dice_loss_coefficient (`Union[int, float]`, *optional*, defaults to `1`) : Relative weight of the dice loss in the panoptic segmentation loss.
+
+bbox_loss_coefficient (`Union[int, float]`, *optional*, defaults to `5`) : Relative weight of the L1 bounding box loss in the panoptic segmentation loss.
+
+giou_loss_coefficient (`Union[int, float]`, *optional*, defaults to `2`) : Relative weight of the generalized IoU loss in the panoptic segmentation loss.
+
+eos_coefficient (`float`, *optional*, defaults to `0.1`) : Relative classification weight of the 'no-object' class in the object detection loss.
+
+focal_alpha (`float`, *optional*, defaults to `0.25`) : Alpha parameter in the focal loss.
+
+auxiliary_loss (`bool`, *optional*, defaults to `True`) : Whether auxiliary decoding losses (losses at each decoder layer) are to be used.
+
+d_model (`int`, *optional*, defaults to `256`) : Size of the encoder layers and the pooler layer.
 
 This is the configuration class to store the configuration of a LwDetrModel. It is used to instantiate a Lw Detr
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [AnnaZhang/lwdetr_small_60e_coco](https://huggingface.co/AnnaZhang/lwdetr_small_60e_coco)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -159,49 +165,56 @@ Examples:
 
 ## LwDetrViTConfig[[transformers.LwDetrViTConfig]]
 
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **mlp_ratio** (`int`, *optional*, defaults to `4`) --
-  Ratio of the MLP hidden dim to the embedding dim.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The ratio for all dropout layers.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **image_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `256`) --
-  The size (resolution) of each image.
-- **pretrain_image_size** (`int`, *optional*, defaults to 224) --
-  The size (resolution) of each image during pretraining.
-- **patch_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `16`) --
-  The size (resolution) of each patch.
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **qkv_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a bias to the queries, keys and values.
-- **window_block_indices** (`list[int]`, *optional*, defaults to `[]`) --
-  List of indices of blocks that should have window attention instead of regular global self-attention.
-- **use_absolute_position_embeddings** (`bool`, *optional*, defaults to `True`) --
-  Whether to add absolute position embeddings to the patch embeddings.
-- **cae_init_values** (`float`, *optional*, defaults to 0.1) --
-  Initialization value for CAE parameters when `use_cae` is enabled.
-- **num_windows** (`int`, *optional*, defaults to 16) --
-  Number of windows for window-based attention. Must be a perfect square and the image size must be
-  divisible by the square root of this value. This enables efficient window-major feature map organization.
+#### transformers.LwDetrViTConfig[[transformers.LwDetrViTConfig]]
+
+```python
+transformers.LwDetrViTConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, mlp_ratio: int = 4, hidden_act: str = 'gelu', dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-06, image_size: int | list[int] | tuple[int, int] = 256, pretrain_image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, qkv_bias: bool = True, window_block_indices: list[int] | tuple[int, ...] = (), use_absolute_position_embeddings: bool = True, _out_features: list[str] | None = None, _out_indices: list[int] | None = None, cae_init_values: float = 0.1, num_windows: int = 16)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/configuration_lw_detr.py#L35)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+mlp_ratio (`int`, *optional*, defaults to `4`) : Ratio of the MLP hidden dim to the embedding dim.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The ratio for all dropout layers.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+image_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `256`) : The size (resolution) of each image.
+
+pretrain_image_size (`int`, *optional*, defaults to 224) : The size (resolution) of each image during pretraining.
+
+patch_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `16`) : The size (resolution) of each patch.
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+qkv_bias (`bool`, *optional*, defaults to `True`) : Whether to add a bias to the queries, keys and values.
+
+window_block_indices (`list[int]`, *optional*, defaults to `[]`) : List of indices of blocks that should have window attention instead of regular global self-attention.
+
+use_absolute_position_embeddings (`bool`, *optional*, defaults to `True`) : Whether to add absolute position embeddings to the patch embeddings.
+
+cae_init_values (`float`, *optional*, defaults to 0.1) : Initialization value for CAE parameters when `use_cae` is enabled.
+
+num_windows (`int`, *optional*, defaults to 16) : Number of windows for window-based attention. Must be a perfect square and the image size must be divisible by the square root of this value. This enables efficient window-major feature map organization.
 
 This is the configuration class to store the configuration of a LwDetrModel. It is used to instantiate a Lw Detr
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [AnnaZhang/lwdetr_small_60e_coco](https://huggingface.co/AnnaZhang/lwdetr_small_60e_coco)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -220,15 +233,22 @@ Example:
 
 ## LwDetrModel[[transformers.LwDetrModel]]
 
-- **config** ([LwDetrConfig](/docs/transformers/v5.14.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.LwDetrModel[[transformers.LwDetrModel]]
+
+```python
+transformers.LwDetrModel(config: LwDetrConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/modeling_lw_detr.py#L1200)
+
+**Parameters:**
+
+config ([LwDetrConfig](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare LW Detr Model (consisting of a backbone and decoder Transformer) outputting raw
 hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -236,20 +256,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [DeformableDetrImageProcessor](/docs/transformers/v5.14.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor). See `DeformableDetrImageProcessor.__call__()` for details (`processor_class` uses
-  [DeformableDetrImageProcessor](/docs/transformers/v5.14.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor) for processing images).
-- **pixel_mask** (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) --
-  Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:
+#### forward[[transformers.LwDetrModel.forward]]
 
-  - 1 for pixels that are real (i.e. **not masked**),
-  - 0 for pixels that are padding (i.e. **masked**).
+```python
+forward(pixel_values: FloatTensor = None, pixel_mask: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
+```
 
-  [What are attention masks?](../glossary#attention-mask)`LwDetrModelOutput` or `tuple(torch.FloatTensor)`A `LwDetrModelOutput` or a tuple of
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/modeling_lw_detr.py#L1306)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeformableDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor). See `DeformableDetrImageProcessor.__call__()` for details (`processor_class` uses [DeformableDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor) for processing images).
+
+pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
+
+**Returns:** `LwDetrModelOutput` or `tuple(torch.FloatTensor)`
+
+A `LwDetrModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LwDetrConfig](/docs/transformers/v5.14.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) and inputs.
-The [LwDetrModel](/docs/transformers/v5.14.0/en/model_doc/lw_detr#transformers.LwDetrModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([LwDetrConfig](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) and inputs.
+
+The [LwDetrModel](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -304,15 +331,22 @@ Examples:
 
 ## LwDetrForObjectDetection[[transformers.LwDetrForObjectDetection]]
 
-- **config** ([LwDetrConfig](/docs/transformers/v5.14.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.LwDetrForObjectDetection[[transformers.LwDetrForObjectDetection]]
+
+```python
+transformers.LwDetrForObjectDetection(config: LwDetrConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/modeling_lw_detr.py#L1536)
+
+**Parameters:**
+
+config ([LwDetrConfig](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 LW DETR Model (consisting of a backbone and decoder Transformer) with object detection heads on
 top, for tasks such as COCO detection.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -320,25 +354,29 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [DeformableDetrImageProcessor](/docs/transformers/v5.14.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor). See `DeformableDetrImageProcessor.__call__()` for details (`processor_class` uses
-  [DeformableDetrImageProcessor](/docs/transformers/v5.14.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor) for processing images).
-- **pixel_mask** (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) --
-  Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:
+#### forward[[transformers.LwDetrForObjectDetection.forward]]
 
-  - 1 for pixels that are real (i.e. **not masked**),
-  - 0 for pixels that are padding (i.e. **masked**).
+```python
+forward(pixel_values: FloatTensor = None, pixel_mask: typing.Optional[torch.LongTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
+```
 
-  [What are attention masks?](../glossary#attention-mask)
-- **labels** (`list[Dict]` of len `(batch_size,)`, *optional*) --
-  Labels for computing the bipartite matching loss. List of dicts, each dictionary containing at least the
-  following 2 keys: 'class_labels' and 'boxes' (the class labels and bounding boxes of an image in the batch
-  respectively). The class labels themselves should be a `torch.LongTensor` of len `(number of bounding boxes
-  in the image,)` and the boxes a `torch.FloatTensor` of shape `(number of bounding boxes in the image, 4)`.</paramsdesc><rettype>`LwDetrObjectDetectionOutput` or `tuple(torch.FloatTensor)`</rettype><retdesc>A `LwDetrObjectDetectionOutput` or a tuple of
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/modeling_lw_detr.py#L1550)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeformableDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor). See `DeformableDetrImageProcessor.__call__()` for details (`processor_class` uses [DeformableDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor) for processing images).
+
+pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
+
+labels (`list[Dict]` of len `(batch_size,)`, *optional*) : Labels for computing the bipartite matching loss. List of dicts, each dictionary containing at least the following 2 keys: 'class_labels' and 'boxes' (the class labels and bounding boxes of an image in the batch respectively). The class labels themselves should be a `torch.LongTensor` of len `(number of bounding boxes in the image,)` and the boxes a `torch.FloatTensor` of shape `(number of bounding boxes in the image, 4)`.
+
+**Returns:** `LwDetrObjectDetectionOutput` or `tuple(torch.FloatTensor)`
+
+A `LwDetrObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LwDetrConfig](/docs/transformers/v5.14.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) and inputs.
-The [LwDetrForObjectDetection](/docs/transformers/v5.14.0/en/model_doc/lw_detr#transformers.LwDetrForObjectDetection) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([LwDetrConfig](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) and inputs.
+
+The [LwDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -415,14 +453,21 @@ Detected remote with confidence 0.633 at location [40.79, 72.78, 176.76, 117.25]
 
 ## LwDetrViTBackbone[[transformers.LwDetrViTBackbone]]
 
-- **config** ([LwDetrViTBackbone](/docs/transformers/v5.14.0/en/model_doc/lw_detr#transformers.LwDetrViTBackbone)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.LwDetrViTBackbone[[transformers.LwDetrViTBackbone]]
+
+```python
+transformers.LwDetrViTBackbone(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/modeling_lw_detr.py#L342)
+
+**Parameters:**
+
+config ([LwDetrViTBackbone](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrViTBackbone)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Lw Detr backbone.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -430,14 +475,25 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "**kwargs", "val": ": Unpack"}]}>
-- **pixel_values** (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [DeformableDetrImageProcessor](/docs/transformers/v5.14.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor). See `DeformableDetrImageProcessor.__call__()` for details (`processor_class` uses
-  [DeformableDetrImageProcessor](/docs/transformers/v5.14.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor) for processing images).`BackboneOutput` or `tuple(torch.FloatTensor)`A `BackboneOutput` or a tuple of
+#### forward[[transformers.LwDetrViTBackbone.forward]]
+
+```python
+forward(pixel_values: Tensor, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/modeling_lw_detr.py#L356)
+
+**Parameters:**
+
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DeformableDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor). See `DeformableDetrImageProcessor.__call__()` for details (`processor_class` uses [DeformableDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor) for processing images).
+
+**Returns:** `BackboneOutput` or `tuple(torch.FloatTensor)`
+
+A `BackboneOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LwDetrConfig](/docs/transformers/v5.14.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) and inputs.
-The [LwDetrViTBackbone](/docs/transformers/v5.14.0/en/model_doc/lw_detr#transformers.LwDetrViTBackbone) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([LwDetrConfig](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) and inputs.
+
+The [LwDetrViTBackbone](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrViTBackbone) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -474,5 +530,5 @@ Examples:
 [1, 768, 14, 14]
 ```
 
-### OLMoE
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/olmoe.md
+### Gemma3n
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/gemma3n.md

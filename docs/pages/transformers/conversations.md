@@ -4,7 +4,7 @@ Chat models are conversational models you can send a message to and receive a re
 
 Larger and newer models are generally more capable, but models specialized in certain domains (medical, legal text, non-English languages, etc.) can often outperform these larger models. Try leaderboards like [OpenLLM](https://hf.co/spaces/HuggingFaceH4/open_llm_leaderboard) and [LMSys Chatbot Arena](https://chat.lmsys.org/?leaderboard) to help you identify the best model for your use case.
 
-This guide shows you how to quickly load chat models in Transformers from the command line, how to build and format a conversation, and how to chat using the [TextGenerationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.TextGenerationPipeline).
+This guide shows you how to quickly load chat models in Transformers from the command line, how to build and format a conversation, and how to chat using the [TextGenerationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.TextGenerationPipeline).
 
 ## chat CLI
 
@@ -34,7 +34,7 @@ The chat is implemented on top of the [AutoClass](./model_doc/auto), using tooli
 
 ## TextGenerationPipeline
 
-[TextGenerationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.TextGenerationPipeline) is a high-level text generation class with a "chat mode". Chat mode is enabled when a conversational model is detected and the chat prompt is [properly formatted](./llm_tutorial#wrong-prompt-format).
+[TextGenerationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.TextGenerationPipeline) is a high-level text generation class with a "chat mode". Chat mode is enabled when a conversational model is detected and the chat prompt is [properly formatted](./llm_tutorial#wrong-prompt-format).
 
 Chat models accept a list of messages (the chat history) as the input. Each message is a dictionary with `role` and `content` keys.
 To start the chat, add a single `user` message. You can also optionally include a `system` message to give the model directions on how to behave.
@@ -46,7 +46,7 @@ chat = [
 ]
 ```
 
-Create the [TextGenerationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.TextGenerationPipeline) and pass `chat` to it. For large models, setting [device_map="auto"](./models#big-model-inference) helps load the model quicker and automatically places it on the fastest device available.
+Create the [TextGenerationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.TextGenerationPipeline) and pass `chat` to it. For large models, setting [device_map="auto"](./models#big-model-inference) helps load the model quicker and automatically places it on the fastest device available.
 
 ```py
 import torch
@@ -83,7 +83,7 @@ Transformers load models in full `float32` precision by default, and for a 8B mo
 > [!TIP]
 > Refer to the [Quantization](./quantization/overview) docs for more information about the different quantization backends available.
 
-To lower memory usage even lower, you can quantize the model to 8-bit or 4-bit with [bitsandbytes](https://hf.co/docs/bitsandbytes/index). Create a [BitsAndBytesConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.BitsAndBytesConfig) with your desired quantization settings and pass it to the pipelines `model_kwargs` parameter. The example below quantizes a model to 8-bits.
+To lower memory usage even lower, you can quantize the model to 8-bit or 4-bit with [bitsandbytes](https://hf.co/docs/bitsandbytes/index). Create a [BitsAndBytesConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.BitsAndBytesConfig) with your desired quantization settings and pass it to the pipelines `model_kwargs` parameter. The example below quantizes a model to 8-bits.
 
 ```py
 from transformers import pipeline, BitsAndBytesConfig
@@ -100,5 +100,5 @@ You can also try techniques like [speculative decoding](./generation_strategies#
 > [!TIP]
 Mixture-of-Expert (MoE) models such as [Mixtral](./model_doc/mixtral), [Qwen2MoE](./model_doc/qwen2_moe), and [GPT-OSS](./model_doc/gpt_oss) have lots of parameters, but only "activate" a small fraction of them to generate each token. As a result, MoE models generally have much lower memory bandwidth requirements and can be faster than a regular LLM of the same size. However, techniques like speculative decoding are ineffective with MoE models because more parameters become activated with each new speculated token.
 
-### Writing a chat template
-https://huggingface.co/docs/transformers/v5.14.0/chat_templating_writing.md
+### Monkey patching (experimental feature)
+https://huggingface.co/docs/transformers/v5.15.0/monkey_patching.md

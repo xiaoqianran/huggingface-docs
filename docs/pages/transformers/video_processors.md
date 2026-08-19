@@ -4,7 +4,7 @@ A **Video Processor** is a utility responsible for preparing input features for 
 
 The video processor extends the functionality of image processors by allowing the models to handle videos with a distinct set of arguments compared to images. It serves as the bridge between raw video data and the model, ensuring that input features are optimized for the VLM.
 
-Use [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/video_processor#transformers.BaseVideoProcessor.from_pretrained) to load a video processors configuration (image size, whether to normalize and rescale, etc.) from a video model on the Hugging Face [Hub](https://hf.co) or local directory. The configuration for each pretrained model should be saved in a [video_preprocessor_config.json] file but older models might have the config saved in [preprocessor_config.json](https://huggingface.co/llava-hf/llava-onevision-qwen2-0.5b-ov-hf/blob/main/preprocessor_config.json) file. Note that the latter is less preferred and will be removed in the future.
+Use [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/video_processor#transformers.BaseVideoProcessor.from_pretrained) to load a video processors configuration (image size, whether to normalize and rescale, etc.) from a video model on the Hugging Face [Hub](https://hf.co) or local directory. The configuration for each pretrained model should be saved in a [video_preprocessor_config.json] file but older models might have the config saved in [preprocessor_config.json](https://huggingface.co/llava-hf/llava-onevision-qwen2-0.5b-ov-hf/blob/main/preprocessor_config.json) file. Note that the latter is less preferred and will be removed in the future.
 
 ## Usage Example
 
@@ -18,18 +18,20 @@ processor = AutoVideoProcessor.from_pretrained("llava-hf/llava-onevision-qwen2-0
 
 Currently, if using base image processor for videos, it processes video data by treating each frame as an individual image and applying transformations frame-by-frame. While functional, this approach is not highly efficient. Using `AutoVideoProcessor` allows us to take advantage of **fast video processors**, leveraging the [torchvision](https://pytorch.org/vision/stable/index.html) library. Fast processors handle the whole batch of videos at once, without iterating over each video or frame. These updates introduce GPU acceleration and significantly enhance processing speed, especially for tasks requiring high throughput.
 
-Fast video processors are available for all models and are loaded by default when an `AutoVideoProcessor` is initialized. When using a fast video processor, you can also set the `device` argument to specify the device on which the processing should be done. By default, the processing is done on the same device as the inputs if the inputs are tensors, or on the CPU otherwise. For even more speed improvement, we can compile the processor when using 'cuda' as device.
+Fast video processors are available for all models and are loaded by default when an `AutoVideoProcessor` is initialized. When using a fast video processor, you can also set the `device` argument to specify the device on which the processing should be done. By default, the processing is done on the same device as the inputs if the inputs are tensors, or on the CPU otherwise. For even more speed improvement, we can compile the processor when using an accelerator as device.
 
 ```python
 import torch
 from transformers.video_utils import load_video
 from transformers import AutoVideoProcessor
 
+device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
+
 video = load_video("video.mp4")
-processor = AutoVideoProcessor.from_pretrained("llava-hf/llava-onevision-qwen2-0.5b-ov-hf", device="cuda")
+processor = AutoVideoProcessor.from_pretrained("llava-hf/llava-onevision-qwen2-0.5b-ov-hf", device=device)
 processor = torch.compile(processor)
 processed_video = processor(video, return_tensors="pt")
 ```
 
-### Processors
-https://huggingface.co/docs/transformers/v5.14.0/processors.md
+### Adding a new pipeline
+https://huggingface.co/docs/transformers/v5.15.0/add_new_pipeline.md

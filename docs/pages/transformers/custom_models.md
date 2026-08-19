@@ -9,12 +9,12 @@ This guide will show you how to customize a ResNet model, enable [AutoClass](./m
 
 ## Configuration
 
-A configuration, given by the base [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) class, contains all the necessary information to build a model. This is where you'll configure the attributes of the custom ResNet model. Different attributes gives different ResNet model types.
+A configuration, given by the base [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) class, contains all the necessary information to build a model. This is where you'll configure the attributes of the custom ResNet model. Different attributes gives different ResNet model types.
 
 The main rules for customizing a configuration are:
 
-1. A custom configuration must subclass [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig). This ensures a custom model has all the functionality of a Transformers' model such as [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained), [save_pretrained()](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig.save_pretrained), and [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub).
-2. The [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) `__init__` must accept any `kwargs` and they must be passed to the superclass `__init__`. [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) has more fields than the ones set in your custom configuration, so when you load a configuration with [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained), those fields need to be accepted by your configuration and passed to the superclass.
+1. A custom configuration must subclass [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig). This ensures a custom model has all the functionality of a Transformers' model such as [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained), [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.save_pretrained), and [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub).
+2. The [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) `__init__` must accept any `kwargs` and they must be passed to the superclass `__init__`. [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) has more fields than the ones set in your custom configuration, so when you load a configuration with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained), those fields need to be accepted by your configuration and passed to the superclass.
 
 > [!TIP]
 > It is useful to check the validity of some of the parameters. In the example below, a check is implemented to ensure `block_type` and `stem_type` belong to one of the predefined values.
@@ -58,7 +58,7 @@ class ResnetConfig(PreTrainedConfig):
         super().__init__(**kwargs)
 ```
 
-Save the configuration to a JSON file in your custom model folder, `custom-resnet`, with [save_pretrained()](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig.save_pretrained).
+Save the configuration to a JSON file in your custom model folder, `custom-resnet`, with [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.save_pretrained).
 
 ```py
 resnet50d_config = ResnetConfig(block_type="bottleneck", stem_width=32, stem_type="deep", avg_down=True)
@@ -67,7 +67,7 @@ resnet50d_config.save_pretrained("custom-resnet")
 
 ## Model
 
-With the custom ResNet configuration, you can now create and customize the model. The model subclasses the base [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel) class. Like [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig), inheriting from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel) and initializing the superclass with the configuration extends Transformers' functionalities such as saving and loading to the custom model.
+With the custom ResNet configuration, you can now create and customize the model. The model subclasses the base [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) class. Like [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig), inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) and initializing the superclass with the configuration extends Transformers' functionalities such as saving and loading to the custom model.
 
 Transformers' models follow the convention of accepting a `config` object in the `__init__` method. This passes the entire `config` to the model sublayers, instead of breaking the `config` object into multiple arguments that are individually passed to the sublayers.
 
@@ -143,7 +143,7 @@ class ResnetModelForImageClassification(PreTrainedModel):
         return {"logits": logits}
 ```
 
-A model can return any output format. Returning a dictionary (like `ResnetModelForImageClassification`) with losses when labels are available makes the custom model compatible with [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer). For other output formats, you'll need your own training loop or a different library for training.
+A model can return any output format. Returning a dictionary (like `ResnetModelForImageClassification`) with losses when labels are available makes the custom model compatible with [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer). For other output formats, you'll need your own training loop or a different library for training.
 
 Instantiate the custom model class with the configuration.
 
@@ -166,10 +166,10 @@ resnet50d.model.load_state_dict(pretrained_model.state_dict())
 
 The [AutoClass](./models#model-classes) API is a shortcut for automatically loading the correct architecture for a given model. It is convenient to enable this for users loading your custom model.
 
-Make sure you have the `model_type` attribute (must be different from existing model types) in the configuration class and `config_class` attribute in the model class. Use the [register()](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoConfig.register) method to add the custom configuration and model to the [AutoClass](./models#model-classes) API.
+Make sure you have the `model_type` attribute (must be different from existing model types) in the configuration class and `config_class` attribute in the model class. Use the [register()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoConfig.register) method to add the custom configuration and model to the [AutoClass](./models#model-classes) API.
 
 > [!TIP]
-> The first argument to [AutoConfig.register()](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoConfig.register) must match the `model_type` attribute in the custom configuration class, and the first argument to `AutoModel.register()` must match the `config_class` of the custom model class.
+> The first argument to [AutoConfig.register()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoConfig.register) must match the `model_type` attribute in the custom configuration class, and the first argument to `AutoModel.register()` must match the `config_class` of the custom model class.
 
 ```py
 from transformers import AutoConfig, AutoModel, AutoModelForImageClassification
@@ -179,7 +179,7 @@ AutoModel.register(ResnetConfig, ResnetModel)
 AutoModelForImageClassification.register(ResnetConfig, ResnetModelForImageClassification)
 ```
 
-Your custom model code is now compatible with the [AutoClass](./models#autoclass) API. Users can load the model with the [AutoModel](./model_doc/auto#automodel) or [AutoModelForImageClassification](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModelForImageClassification) classes.
+Your custom model code is now compatible with the [AutoClass](./models#autoclass) API. Users can load the model with the [AutoModel](./model_doc/auto#automodel) or [AutoModelForImageClassification](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForImageClassification) classes.
 
 ## Upload
 
@@ -210,7 +210,7 @@ from resnet_model.configuration_resnet import ResnetConfig
 from resnet_model.modeling_resnet import ResnetModel, ResnetModelForImageClassification
 ```
 
-Copy the code from the model and configuration files. To make sure the AutoClass objects are saved with [save_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), call the [register_for_auto_class()](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig.register_for_auto_class) method. This modifies the configuration JSON file to include the AutoClass objects and mapping.
+Copy the code from the model and configuration files. To make sure the AutoClass objects are saved with [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), call the [register_for_auto_class()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.register_for_auto_class) method. This modifies the configuration JSON file to include the AutoClass objects and mapping.
 
 For a model, pick the appropriate `AutoModelFor` class based on the task.
 
@@ -252,7 +252,7 @@ from huggingface_hub import notebook_login
 notebook_login()
 ```
 
-Call [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) on the model to upload the model to the Hub.
+Call [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) on the model to upload the model to the Hub.
 
 ```py
 resnet50d.push_to_hub("custom-resnet50d")
@@ -260,7 +260,7 @@ resnet50d.push_to_hub("custom-resnet50d")
 
 The pretrained weights, configuration, `modeling.py` and `configuration.py` files should all be uploaded to the Hub now in a [repository](https://hf.co/sgugger/custom-resnet50d) under your namespace.
 
-Because a custom model doesn't use the same modeling code as a Transformers' model, you need to add `trust_remote_code=True` in [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load it. Refer to the load [custom models](./models#custom-models) section for more information.
+Because a custom model doesn't use the same modeling code as a Transformers' model, you need to add `trust_remote_code=True` in [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load it. Refer to the load [custom models](./models#custom-models) section for more information.
 
-### Image processors
-https://huggingface.co/docs/transformers/v5.14.0/image_processors.md
+### torch.compile
+https://huggingface.co/docs/transformers/v5.15.0/perf_torch_compile.md

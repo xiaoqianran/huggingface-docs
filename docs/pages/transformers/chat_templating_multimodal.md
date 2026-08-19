@@ -3,13 +3,13 @@
 Multimodal chat models accept inputs like images, audio or video, in addition to text. The `content` key in a multimodal chat history is a list containing multiple items of different types. This is unlike text-only chat models whose `content` key is a single string.
 
 In the same way the [Tokenizer](./fast_tokenizers) class handles chat templates and tokenization for text-only models,
-the [Processor](./processors) class handles preprocessing, tokenization and chat templates for multimodal models. Their [apply_chat_template()](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) methods are almost identical.
+the [Processor](./processors) class handles preprocessing, tokenization and chat templates for multimodal models. Their [apply_chat_template()](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) methods are almost identical.
 
-This guide will show you how to chat with multimodal models with the high-level [ImageTextToTextPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.ImageTextToTextPipeline) and at a lower level using the [apply_chat_template()](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) and [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) methods.
+This guide will show you how to chat with multimodal models with the high-level [ImageTextToTextPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.ImageTextToTextPipeline) and at a lower level using the [apply_chat_template()](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) and [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) methods.
 
 ## ImageTextToTextPipeline
 
-[ImageTextToTextPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.ImageTextToTextPipeline) is a high-level image and text generation class with a “chat mode”. Chat mode is enabled when a conversational model is detected and the chat prompt is [properly formatted](./llm_tutorial#wrong-prompt-format).
+[ImageTextToTextPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.ImageTextToTextPipeline) is a high-level image and text generation class with a “chat mode”. Chat mode is enabled when a conversational model is detected and the chat prompt is [properly formatted](./llm_tutorial#wrong-prompt-format).
 
 Add image and text blocks to the `content` key in the chat history.
 
@@ -29,7 +29,7 @@ messages = [
 ]
 ```
 
-Create an [ImageTextToTextPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.ImageTextToTextPipeline) and pass the chat to it. For large models, setting [device_map="auto"](./models#big-model-inference) helps load the model quicker and automatically places it on the fastest device available. Setting the data type to [auto](./models#model-data-type) also helps save memory and improve speed.
+Create an [ImageTextToTextPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.ImageTextToTextPipeline) and pass the chat to it. For large models, setting [device_map="auto"](./models#big-model-inference) helps load the model quicker and automatically places it on the fastest device available. Setting the data type to [auto](./models#model-data-type) also helps save memory and improve speed.
 
 ```python
 import torch
@@ -48,7 +48,7 @@ Aside from the gradual descent from pirate-speak into modern American English (i
 
 ## Using `apply_chat_template`
 
-Like [text-only models](./chat_templating), use the [apply_chat_template()](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to prepare the chat messages for multimodal models.
+Like [text-only models](./chat_templating), use the [apply_chat_template()](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to prepare the chat messages for multimodal models.
 This method handles the tokenization and formatting of the chat messages, including images and other media types. The resulting inputs are passed to the model for generation.
 
 ```python
@@ -72,7 +72,7 @@ messages = [
 ]
 ```
 
-Pass `messages` to [apply_chat_template()](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) to tokenize the input content. Unlike text models, the output of `apply_chat_template`
+Pass `messages` to [apply_chat_template()](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) to tokenize the input content. Unlike text models, the output of `apply_chat_template`
 contains a `pixel_values` key with the preprocessed image data, in addition to the tokenized text.
 
 ```py
@@ -84,7 +84,7 @@ print(list(processed_chat.keys()))
 ['input_ids', 'attention_mask', 'pixel_values', 'image_grid_thw']
 ```
 
-Pass these inputs to [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
+Pass these inputs to [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
 
 ```python
 out = model.generate(**processed_chat.to(model.device), max_new_tokens=128)
@@ -175,7 +175,7 @@ messages = [
 ]
 ```
 
-Pass `messages` to [apply_chat_template()](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) to tokenize the input content. There are a few extra parameters to include in [apply_chat_template()](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) that controls the sampling process.
+Pass `messages` to [apply_chat_template()](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) to tokenize the input content. There are a few extra parameters to include in [apply_chat_template()](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) that controls the sampling process.
 
 The `num_frames` parameter controls how many frames to uniformly sample from the video. Each checkpoint has a maximum frame count it was pretrained with and exceeding this count can significantly lower generation quality. It's important to choose a frame count that fits both the model capacity and your hardware resources. If `num_frames` isn't specified, the entire video is loaded without any frame sampling.
 
@@ -191,7 +191,7 @@ processed_chat = processor.apply_chat_template(
 print(processed_chat.keys())
 ```
 
-These inputs are now ready to be used in [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
+These inputs are now ready to be used in [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
 
 For longer videos, it may be better to sample more frames for better representation with the `fps` parameter. This determines how many frames per second to extract. As an example, if a video is 10 seconds long and `fps=2`, then the model samples 20 frames. In other words, 2 frames are uniformly sampled every 10 seconds.
 
@@ -235,5 +235,5 @@ processed_chat = processor.apply_chat_template(
 print(processed_chat.keys())
 ```
 
-### Parameter-efficient fine-tuning
-https://huggingface.co/docs/transformers/v5.14.0/peft.md
+### Glossary
+https://huggingface.co/docs/transformers/v5.15.0/glossary.md

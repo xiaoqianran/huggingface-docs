@@ -2,7 +2,7 @@
 
 All attention implementations perform the same computation. Every token is compared to every other token. The difference is *how* the computation is performed. Basic attention scales poorly because it materializes the full attention matrix in memory, creating bottlenecks that slow down inference. Optimized implementations rearrange the math to reduce memory traffic for faster, more affordable inference.
 
-The [AttentionInterface](/docs/transformers/v5.14.0/en/internal/modeling_utils#transformers.AttentionInterface) provides optimized attention implementations. It decouples the attention implementation from the model implementation to simplify experimentation with different functions. Add new backends easily with this consistent interface.
+The [AttentionInterface](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.AttentionInterface) provides optimized attention implementations. It decouples the attention implementation from the model implementation to simplify experimentation with different functions. Add new backends easily with this consistent interface.
 
 Attention backendDescription
 "flash_attention_3"improves FlashAttention-2 by also overlapping operations and fusing forward and backward passes more tightly
@@ -16,7 +16,7 @@ Attention backendDescription
 
 ## Set an attention backend
 
-Use the `attn_implementation` argument in [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to instantiate a model with a specific attention function.
+Use the `attn_implementation` argument in [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to instantiate a model with a specific attention function.
 
 ```py
 import torch
@@ -27,7 +27,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-Switch between attention backends at runtime without reloading the model using [set_attn_implementation()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.set_attn_implementation).
+Switch between attention backends at runtime without reloading the model using [set_attn_implementation()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.set_attn_implementation).
 
 ```py
 model.set_attn_implementation("sdpa")
@@ -37,7 +37,7 @@ model.set_attn_implementation("sdpa")
 
 Download and load compiled compute kernels directly from the [Hub](https://huggingface.co/models?other=kernels) at runtime with the [Kernels](https://huggingface.co/docs/kernels/index) library. This avoids packaging issues from mismatched PyTorch or CUDA versions.
 
-Kernels automatically register to [AttentionInterface](/docs/transformers/v5.14.0/en/internal/modeling_utils#transformers.AttentionInterface) upon detection. You don't need to install the FlashAttention package explicitly.
+Kernels automatically register to [AttentionInterface](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.AttentionInterface) upon detection. You don't need to install the FlashAttention package explicitly. Requesting FlashAttention by name also falls back to the Hub kernel, see [FlashAttention fallback](./kernel_doc/loading_kernels#flashattention-fallback).
 
 ```py
 import torch
@@ -112,10 +112,10 @@ model = AutoModelForImageTextToText.from_pretrained(
 
 ## Create a new attention function
 
-Customize or create new attention functions by adding them to the attention registry with [AttentionInterface.register()](/docs/transformers/v5.14.0/en/internal/modeling_utils#transformers.AttentionInterface.register). Models use these functions through the `attn_implementation` argument.
+Customize or create new attention functions by adding them to the attention registry with [AttentionInterface.register()](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.AttentionInterface.register). Models use these functions through the `attn_implementation` argument.
 
 > [!WARNING]  
-> Register a matching attention mask function when you register a custom attention function. If the custom `attn_implementation` name is not registered in [AttentionMaskInterface](/docs/transformers/v5.14.0/en/internal/modeling_utils#transformers.AttentionMaskInterface), Transformers skips mask creation and passes `attention_mask=None` to the attention layers. Your attention function must handle causal, padding, packing, or sliding-window constraints itself, or those constraints can be silently dropped.
+> Register a matching attention mask function when you register a custom attention function. If the custom `attn_implementation` name is not registered in [AttentionMaskInterface](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.AttentionMaskInterface), Transformers skips mask creation and passes `attention_mask=None` to the attention layers. Your attention function must handle causal, padding, packing, or sliding-window constraints itself, or those constraints can be silently dropped.
 
 This example customizes the attention function to print a statement for each layer. It keeps the mask in the original implementation by registering `masking_utils.sdpa_mask` as the attention mask function.
 
@@ -136,7 +136,7 @@ model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.2-1B", attn_imp
 model(torch.ones(1, 5, dtype=int))
 ```
 
-You can also add new arguments to the attention function. Models supporting [AttentionInterface](/docs/transformers/v5.14.0/en/internal/modeling_utils#transformers.AttentionInterface) propagate kwargs to attention layers and the attention function. Pass arguments as kwargs in the model's forward function. Custom attention functions must follow this signature and return format.
+You can also add new arguments to the attention function. Models supporting [AttentionInterface](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.AttentionInterface) propagate kwargs to attention layers and the attention function. Pass arguments as kwargs in the model's forward function. Custom attention functions must follow this signature and return format.
 
 ```python
 import torch
@@ -168,7 +168,7 @@ Check a model's [modeling code](https://github.com/huggingface/transformers/tree
 
 ## AttentionMaskInterface
 
-[AttentionMaskInterface](/docs/transformers/v5.14.0/en/internal/modeling_utils#transformers.AttentionMaskInterface) is the registry the [`create_*_mask`](#build-an-attention-mask) functions consult to convert a mask into the format the active attention backend expects. FlexAttention needs a [BlockMask](https://docs.pytorch.org/docs/stable/nn.attention.flex_attention.html#torch.nn.attention.flex_attention.BlockMask), SDPA needs a 4D tensor, and FlashAttention needs the base 2D padding mask. Register a custom backend, or override the formatter for an existing one, with [AttentionMaskInterface.register()](/docs/transformers/v5.14.0/en/internal/modeling_utils#transformers.AttentionInterface.register).
+[AttentionMaskInterface](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.AttentionMaskInterface) is the registry the [`create_*_mask`](#build-an-attention-mask) functions consult to convert a mask into the format the active attention backend expects. FlexAttention needs a [BlockMask](https://docs.pytorch.org/docs/stable/nn.attention.flex_attention.html#torch.nn.attention.flex_attention.BlockMask), SDPA needs a 4D tensor, and FlashAttention needs the base 2D padding mask. Register a custom backend, or override the formatter for an existing one, with [AttentionMaskInterface.register()](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.AttentionInterface.register).
 
 ```python
 import torch
@@ -206,7 +206,7 @@ The `mask_function` argument is a `Callable` that mimics PyTorch's [mask_mod](ht
 
 ## Build an attention mask
 
-Build attention masks with the `create_*_mask` functions in [transformers.masking_utils](https://github.com/huggingface/transformers/blob/main/src/transformers/masking_utils.py#L894). Each function reads the active attention backend from the model config, looks up the backend's mask formatter in [AttentionMaskInterface](/docs/transformers/v5.14.0/en/internal/modeling_utils#transformers.AttentionMaskInterface), and returns the format that backend expects. You don't need to invert, expand, or cast the mask yourself.
+Build attention masks with the `create_*_mask` functions in [transformers.masking_utils](https://github.com/huggingface/transformers/blob/main/src/transformers/masking_utils.py#L894). Each function reads the active attention backend from the model config, looks up the backend's mask formatter in [AttentionMaskInterface](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.AttentionMaskInterface), and returns the format that backend expects. You don't need to invert, expand, or cast the mask yourself.
 
 Pick the function that matches the attention pattern.
 
@@ -277,7 +277,7 @@ mask_kwargs = {
 attention_mask = create_causal_mask(**mask_kwargs)
 ```
 
-During generation, [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) builds masks through `create_masks_for_generate`, which dispatches to the right `create_*_mask` based on the model config. Override it on a model class to plug in a custom masking strategy for generation.
+During generation, [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) builds masks through `create_masks_for_generate`, which dispatches to the right `create_*_mask` based on the model config. Override it on a model class to plug in a custom masking strategy for generation.
 
 ## Pass a custom 4D attention mask
 
@@ -368,5 +368,5 @@ outputs = model(**inputs, is_causal=False)
 outputs = model(**inputs)
 ```
 
-### Customizing models
-https://huggingface.co/docs/transformers/v5.14.0/custom_models.md
+### GGUF
+https://huggingface.co/docs/transformers/v5.15.0/gguf.md

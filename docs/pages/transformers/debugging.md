@@ -21,7 +21,7 @@ from transformers.debug_utils import DebugUnderflowOverflow
 debug_overflow = DebugUnderflowOverflow(model)
 ```
 
-[DebugUnderflowOverflow](/docs/transformers/v5.14.0/en/internal/trainer_utils#transformers.debug_utils.DebugUnderflowOverflow) inserts hooks into the model to test input and output variables and the corresponding model weights after each forward call. When `inf` or `nan` is detected in at least one element of the activations or weights, the module prints a report like the one below.
+[DebugUnderflowOverflow](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.debug_utils.DebugUnderflowOverflow) inserts hooks into the model to test input and output variables and the corresponding model weights after each forward call. When `inf` or `nan` is detected in at least one element of the activations or weights, the module prints a report like the one below.
 
 The example below is for fp16 mixed precision training with [google/mt5-small](https://huggingface.co/google/mt5-small).
 
@@ -140,7 +140,7 @@ class T5LayerFF(nn.Module):
         return hidden_states + self.dropout(forwarded_states)
 ```
 
-Configure the number of frames printed by [DebugUnderflowOverflow](/docs/transformers/v5.14.0/en/internal/trainer_utils#transformers.debug_utils.DebugUnderflowOverflow).
+Configure the number of frames printed by [DebugUnderflowOverflow](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.debug_utils.DebugUnderflowOverflow).
 
 ```py
 from transformers.debug_utils import DebugUnderflowOverflow
@@ -150,7 +150,7 @@ debug_overflow = DebugUnderflowOverflow(model, max_frames_to_save=100)
 
 ### Batch tracing
 
-[DebugUnderflowOverflow](/docs/transformers/v5.14.0/en/internal/trainer_utils#transformers.debug_utils.DebugUnderflowOverflow) can also trace the absolute minimum and maximum values in each batch with underflow and overflow detection disabled. This helps you locate where values start diverging in your model.
+[DebugUnderflowOverflow](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.debug_utils.DebugUnderflowOverflow) can also trace the absolute minimum and maximum values in each batch with underflow and overflow detection disabled. This helps you locate where values start diverging in your model.
 
 The example below traces batches 1 and 3 (batches are zero-indexed).
 
@@ -187,7 +187,7 @@ abs min  abs max  metadata
 [...]
 ```
 
-[DebugUnderflowOverflow](/docs/transformers/v5.14.0/en/internal/trainer_utils#transformers.debug_utils.DebugUnderflowOverflow) reports many frames, which makes it easier to spot where values diverge. If you know the problem is around batch 150, focus the trace on batches 149 and 150 to compare where the numbers start to differ.
+[DebugUnderflowOverflow](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.debug_utils.DebugUnderflowOverflow) reports many frames, which makes it easier to spot where values diverge. If you know the problem is around batch 150, focus the trace on batches 149 and 150 to compare where the numbers start to differ.
 
 You can also stop the trace after a specific batch number, for example batch 3.
 
@@ -221,7 +221,7 @@ When you hit an error, first check whether DeepSpeed is the cause. Retry your se
 For issues related to the Transformers integration, include the following information.
 
 * The full DeepSpeed config file.
-* The command line arguments for [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) or the [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments) if you're scripting the [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) setup yourself (don't dump the entire [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments) which contains many irrelevant entries).
+* The command line arguments for [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) or the [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) if you're scripting the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) setup yourself (don't dump the entire [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) which contains many irrelevant entries).
 * The outputs of these commands.
 
     ```bash
@@ -394,5 +394,5 @@ This generates a binary wheel like `dist/deepspeed-0.3.13+8cd046f-cp38-cp38-linu
 pip install deepspeed-0.3.13+8cd046f-cp38-cp38-linux_x86_64.whl
 ```
 
-### Mixed precision training
-https://huggingface.co/docs/transformers/v5.14.0/mixed_precision_training.md
+### Machine learning apps
+https://huggingface.co/docs/transformers/v5.15.0/pipeline_gradio.md

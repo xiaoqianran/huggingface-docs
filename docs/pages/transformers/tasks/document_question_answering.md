@@ -112,7 +112,7 @@ If most of the documents in your dataset are long, you can implement a sliding w
 
 At this point let's also remove the OCR features from this dataset. These are a result of OCR for fine-tuning a different
 model. They would still require some processing if we wanted to use them, as they do not match the input requirements
-of the model we use in this guide. Instead, we can use the [LayoutLMv2Processor](/docs/transformers/v5.14.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Processor) on the original data for both OCR and
+of the model we use in this guide. Instead, we can use the [LayoutLMv2Processor](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Processor) on the original data for both OCR and
 tokenization. This way we'll get the inputs that match model's expected input. If you want to process images manually,
 check out the [`LayoutLMv2` model documentation](../model_doc/layoutlmv2) to learn what input format the model expects.
 
@@ -133,7 +133,7 @@ Finally, the data exploration won't be complete if we don't peek at an image exa
 ## Preprocess the data
 
 The Document Question Answering task is a multimodal task, and you need to make sure that the inputs from each modality
-are preprocessed according to the model's expectations. Let's start by loading the [LayoutLMv2Processor](/docs/transformers/v5.14.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Processor), which internally combines an image processor that can handle image data and a tokenizer that can encode text data.
+are preprocessed according to the model's expectations. Let's start by loading the [LayoutLMv2Processor](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Processor), which internally combines an image processor that can handle image data and a tokenizer that can encode text data.
 
 ```py
 >>> from transformers import AutoProcessor
@@ -162,7 +162,7 @@ Write a function that applies the default image processing to a batch of images 
 ...     return examples
 ```
 
-To apply this preprocessing to the entire dataset in a fast way, use `map`.
+To apply this preprocessing to the entire dataset in a fast way, use [map](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset.map).
 
 ```py
 >>> dataset_with_ocr = updated_dataset.map(get_ocr_words_and_boxes, batched=True, batch_size=2)
@@ -334,7 +334,7 @@ Let's check what the features of the encoded dataset look like:
 ## Evaluation
 
 Evaluation for document question answering requires a significant amount of postprocessing. To avoid taking up too much
-of your time, this guide skips the evaluation step. The [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) still calculates the evaluation loss during training so
+of your time, this guide skips the evaluation step. The [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) still calculates the evaluation loss during training so
 you're not completely in the dark about your model's performance. Extractive question answering is typically evaluated using F1/exact match.
 If you'd like to implement it yourself, check out the [Question Answering chapter](https://huggingface.co/course/chapter7/7?fw=pt#postprocessing)
 of the Hugging Face course for inspiration.
@@ -344,11 +344,11 @@ of the Hugging Face course for inspiration.
 Congratulations! You've successfully navigated the toughest part of this guide and now you are ready to train your own model.
 Training involves the following steps:
 
-* Load the model with [AutoModelForDocumentQuestionAnswering](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModelForDocumentQuestionAnswering) using the same checkpoint as in the preprocessing.
-* Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments).
-* Define a function to batch examples together, here the [DefaultDataCollator](/docs/transformers/v5.14.0/en/main_classes/data_collator#transformers.DefaultDataCollator) will do just fine
-* Pass the training arguments to [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, and data collator.
-* Call [train()](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
+* Load the model with [AutoModelForDocumentQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForDocumentQuestionAnswering) using the same checkpoint as in the preprocessing.
+* Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments).
+* Define a function to batch examples together, here the [DefaultDataCollator](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DefaultDataCollator) will do just fine
+* Pass the training arguments to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, and data collator.
+* Call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
 
 ```py
 >>> from transformers import AutoModelForDocumentQuestionAnswering
@@ -356,7 +356,7 @@ Training involves the following steps:
 >>> model = AutoModelForDocumentQuestionAnswering.from_pretrained(model_checkpoint)
 ```
 
-In the [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments) use `output_dir` to specify where to save your model, and configure hyperparameters as you see fit.
+In the [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) use `output_dir` to specify where to save your model, and configure hyperparameters as you see fit.
 If you wish to share your model with the community, set `push_to_hub` to `True` (you must be signed in to Hugging Face to upload your model).
 In this case the `output_dir` will also be the name of the repo where your model checkpoint will be pushed.
 
@@ -388,7 +388,7 @@ Define a simple data collator to batch examples together.
 >>> data_collator = DefaultDataCollator()
 ```
 
-Finally, bring everything together, and call [train()](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer.train):
+Finally, bring everything together, and call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train):
 
 ```py
 >>> from transformers import Trainer
@@ -415,7 +415,7 @@ To add the final model to 🤗 Hub, create a model card and call `push_to_hub`:
 ## Inference
 
 Now that you have finetuned a LayoutLMv2 model, and uploaded it to the 🤗 Hub, you can use it for inference. The simplest
-way to try out your finetuned model for inference is to use it in a [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline).
+way to try out your finetuned model for inference is to use it in a [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline).
 
 Let's take an example:
 
@@ -472,5 +472,5 @@ which token is at the end of the answer. Both have shape (batch_size, sequence_l
 'lee a. waller'
 ```
 
-### Multimodal Generation
-https://huggingface.co/docs/transformers/v5.14.0/tasks/any_to_any.md
+### Monocular depth estimation
+https://huggingface.co/docs/transformers/v5.15.0/tasks/monocular_depth_estimation.md

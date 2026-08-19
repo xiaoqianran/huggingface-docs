@@ -7,7 +7,7 @@ You can find all the original ByT5 checkpoints under the [Google](https://huggin
 > [!TIP]
 > Refer to the [T5](./t5) docs for more examples of how to apply ByT5 to different language tasks.
 
-The example below demonstrates how to generate text with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel) and from the command line.
+The example below demonstrates how to generate text with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) and from the command line.
 
 ```python
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
@@ -81,40 +81,48 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 
 ## ByT5Tokenizer[[transformers.ByT5Tokenizer]]
 
-'"}, {"name": "unk_token", "val": " = ''"}, {"name": "pad_token", "val": " = ''"}, {"name": "extra_ids", "val": " = 125"}, {"name": "additional_special_tokens", "val": " = None"}, {"name": "**kwargs", "val": ""}]}>
-- **eos_token** (`str`, *optional*, defaults to `"</s>"`) --
-  The end of sequence token.
+#### transformers.ByT5Tokenizer[[transformers.ByT5Tokenizer]]
 
-  
+```python
+transformers.ByT5Tokenizer(eos_token = '</s>', unk_token = '<unk>', pad_token = '<pad>', extra_ids = 125, additional_special_tokens = None, **kwargs)
+```
 
-  When building a sequence using special tokens, this is not the token that is used for the end of sequence.
-  The token used is the `sep_token`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/byt5/tokenization_byt5.py#L25)
 
-  
+**Parameters:**
 
-- **unk_token** (`str`, *optional*, defaults to `"<unk>"`) --
-  The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this
-  token instead.
-- **pad_token** (`str`, *optional*, defaults to `"<pad>"`) --
-  The token used for padding, for example when batching sequences of different lengths.
-- **extra_ids** (`int`, *optional*, defaults to 125) --
-  Add a number of extra ids added to the end of the vocabulary for use as sentinels. These tokens are
-  accessible as "" where "{%d}" is a number between 0 and extra_ids-1. Extra tokens are
-  indexed from the end of the vocabulary up to beginning ("" is the last token in the vocabulary
-  like in ByT5 preprocessing see
-  [here](https://github.com/google-research/text-to-text-transfer-transformer/blob/9fd7b14a769417be33bc6c850f9598764913c833/t5/data/preprocessors.py#L2117)).
-- **additional_special_tokens** (`list[str]`, *optional*) --
-  Additional special tokens used by the tokenizer.
+eos_token (`str`, *optional*, defaults to `"</s>"`) : The end of sequence token.    When building a sequence using special tokens, this is not the token that is used for the end of sequence. The token used is the `sep_token`.   
+
+unk_token (`str`, *optional*, defaults to `"<unk>"`) : The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this token instead.
+
+pad_token (`str`, *optional*, defaults to `"<pad>"`) : The token used for padding, for example when batching sequences of different lengths.
+
+extra_ids (`int`, *optional*, defaults to 125) : Add a number of extra ids added to the end of the vocabulary for use as sentinels. These tokens are accessible as "" where "{%d}" is a number between 0 and extra_ids-1. Extra tokens are indexed from the end of the vocabulary up to beginning ("" is the last token in the vocabulary like in ByT5 preprocessing see [here](https://github.com/google-research/text-to-text-transfer-transformer/blob/9fd7b14a769417be33bc6c850f9598764913c833/t5/data/preprocessors.py#L2117)).
+
+additional_special_tokens (`list[str]`, *optional*) : Additional special tokens used by the tokenizer.
 
 Construct a ByT5 tokenizer. ByT5 simply uses raw bytes utf-8 encoding.
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
-- **token_ids_0** (`list[int]`) --
-  List of IDs to which the special tokens will be added.
-- **token_ids_1** (`list[int]`, *optional*) --
-  Optional second list of IDs for sequence pairs.`list[int]`List of [input IDs](../glossary#input-ids) with the appropriate special tokens.
+#### build_inputs_with_special_tokens[[transformers.ByT5Tokenizer.build_inputs_with_special_tokens]]
+
+```python
+build_inputs_with_special_tokens(token_ids_0: list, token_ids_1: list[int] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/byt5/tokenization_byt5.py#L169)
+
+**Parameters:**
+
+token_ids_0 (`list[int]`) : List of IDs to which the special tokens will be added.
+
+token_ids_1 (`list[int]`, *optional*) : Optional second list of IDs for sequence pairs.
+
+**Returns:** `list[int]`
+
+List of [input IDs](../glossary#input-ids) with the appropriate special tokens.
 
 Build model inputs from a sequence or a pair of sequence for sequence classification tasks by concatenating and
 adding special tokens. A sequence has the following format:
@@ -122,25 +130,59 @@ adding special tokens. A sequence has the following format:
 - single sequence: `X </s>`
 - pair of sequences: `A </s> B </s>`
 
+#### convert_tokens_to_string[[transformers.ByT5Tokenizer.convert_tokens_to_string]]
+
+```python
+convert_tokens_to_string(tokens)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/byt5/tokenization_byt5.py#L215)
+
 Converts a sequence of tokens (string) in a single string.
 
-- **token_ids_0** (`list[int]`) --
-  List of IDs.
-- **token_ids_1** (`list[int]`, *optional*) --
-  Optional second list of IDs for sequence pairs.`list[int]`List of zeros.
+#### create_token_type_ids_from_sequences[[transformers.ByT5Tokenizer.create_token_type_ids_from_sequences]]
+
+```python
+create_token_type_ids_from_sequences(token_ids_0: list, token_ids_1: list[int] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/byt5/tokenization_byt5.py#L147)
+
+**Parameters:**
+
+token_ids_0 (`list[int]`) : List of IDs.
+
+token_ids_1 (`list[int]`, *optional*) : Optional second list of IDs for sequence pairs.
+
+**Returns:** `list[int]`
+
+List of zeros.
 
 Create a mask from the two sequences passed to be used in a sequence-pair classification task. ByT5 does not
 make use of token type ids, therefore a list of zeros is returned.
 
-- **token_ids_0** (`list[int]`) --
-  List of IDs.
-- **token_ids_1** (`list[int]`, *optional*) --
-  Optional second list of IDs for sequence pairs.
-- **already_has_special_tokens** (`bool`, *optional*, defaults to `False`) --
-  Whether or not the token list is already formatted with special tokens for the model.`list[int]`A list of integers in the range [0, 1]: 1 for a special token, 0 for a sequence token.
+#### get_special_tokens_mask[[transformers.ByT5Tokenizer.get_special_tokens_mask]]
+
+```python
+get_special_tokens_mask(token_ids_0: list, token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/byt5/tokenization_byt5.py#L108)
+
+**Parameters:**
+
+token_ids_0 (`list[int]`) : List of IDs.
+
+token_ids_1 (`list[int]`, *optional*) : Optional second list of IDs for sequence pairs.
+
+already_has_special_tokens (`bool`, *optional*, defaults to `False`) : Whether or not the token list is already formatted with special tokens for the model.
+
+**Returns:** `list[int]`
+
+A list of integers in the range [0, 1]: 1 for a special token, 0 for a sequence token.
 
 Retrieve sequence ids from a token list that has no special tokens added. This method is called when adding
 special tokens using the tokenizer `prepare_for_model` method.
 
-### Cohere 2
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/cohere2.md
+### LiLT
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/lilt.md

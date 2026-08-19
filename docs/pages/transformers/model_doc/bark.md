@@ -6,10 +6,10 @@
 
 Bark is made of 4 main models:
 
-- [BarkSemanticModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkSemanticModel) (also referred to as the 'text' model): a causal auto-regressive transformer model that takes as input tokenized text, and predicts semantic text tokens that capture the meaning of the text.
-- [BarkCoarseModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkCoarseModel) (also referred to as the 'coarse acoustics' model): a causal autoregressive transformer, that takes as input the results of the [BarkSemanticModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkSemanticModel) model. It aims at predicting the first two audio codebooks necessary for EnCodec.
-- [BarkFineModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkFineModel) (the 'fine acoustics' model), this time a non-causal autoencoder transformer, which iteratively predicts the last codebooks based on the sum of the previous codebooks embeddings.
-- having predicted all the codebook channels from the [EncodecModel](/docs/transformers/v5.14.0/en/model_doc/encodec#transformers.EncodecModel), Bark uses it to decode the output audio array.
+- [BarkSemanticModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkSemanticModel) (also referred to as the 'text' model): a causal auto-regressive transformer model that takes as input tokenized text, and predicts semantic text tokens that capture the meaning of the text.
+- [BarkCoarseModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkCoarseModel) (also referred to as the 'coarse acoustics' model): a causal autoregressive transformer, that takes as input the results of the [BarkSemanticModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkSemanticModel) model. It aims at predicting the first two audio codebooks necessary for EnCodec.
+- [BarkFineModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkFineModel) (the 'fine acoustics' model), this time a non-causal autoencoder transformer, which iteratively predicts the last codebooks based on the sum of the previous codebooks embeddings.
+- having predicted all the codebook channels from the [EncodecModel](/docs/transformers/v5.15.0/en/model_doc/encodec#transformers.EncodecModel), Bark uses it to decode the output audio array.
 
 It should be noted that each of the first three modules can support conditional speaker embeddings to condition the output sound according to specific predefined voice.
 
@@ -57,7 +57,7 @@ pip install -U flash-attn --no-build-isolation
 
 ##### Usage
 
-To load a model using Flash Attention 2, we can pass the `attn_implementation="flash_attention_2"` flag to [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). We'll also load the model in half-precision (e.g. `torch.float16`), since it results in almost no degradation to audio quality but significantly lower memory usage and faster inference:
+To load a model using Flash Attention 2, we can pass the `attn_implementation="flash_attention_2"` flag to [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). We'll also load the model in half-precision (e.g. `torch.float16`), since it results in almost no degradation to audio quality but significantly lower memory usage and faster inference:
 
 ```python
 model = BarkModel.from_pretrained("suno/bark-small", attn_implementation="flash_attention_2", device_map="auto")
@@ -142,23 +142,32 @@ write_wav("bark_generation.wav", sample_rate, audio_array)
 
 ## BarkConfig[[transformers.BarkConfig]]
 
-- **semantic_config** ([BarkSemanticConfig](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkSemanticConfig), *optional*) --
-  Configuration of the underlying semantic sub-model.
-- **coarse_acoustics_config** ([BarkCoarseConfig](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkCoarseConfig), *optional*) --
-  Configuration of the underlying coarse acoustics sub-model.
-- **fine_acoustics_config** ([BarkFineConfig](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkFineConfig), *optional*) --
-  Configuration of the underlying fine acoustics sub-model.
-- **codec_config** ([AutoConfig](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoConfig), *optional*) --
-  Configuration of the underlying codec sub-model.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+#### transformers.BarkConfig[[transformers.BarkConfig]]
+
+```python
+transformers.BarkConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, semantic_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, coarse_acoustics_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, fine_acoustics_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, codec_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, initializer_range: float = 0.02)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/configuration_bark.py#L188)
+
+**Parameters:**
+
+semantic_config ([BarkSemanticConfig](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkSemanticConfig), *optional*) : Configuration of the underlying semantic sub-model.
+
+coarse_acoustics_config ([BarkCoarseConfig](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkCoarseConfig), *optional*) : Configuration of the underlying coarse acoustics sub-model.
+
+fine_acoustics_config ([BarkFineConfig](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkFineConfig), *optional*) : Configuration of the underlying fine acoustics sub-model.
+
+codec_config ([AutoConfig](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoConfig), *optional*) : Configuration of the underlying codec sub-model.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
 This is the configuration class to store the configuration of a BarkModel. It is used to instantiate a Bark
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [suno/bark](https://huggingface.co/suno/bark)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -192,113 +201,126 @@ Example:
 
 ## BarkProcessor[[transformers.BarkProcessor]]
 
-- **tokenizer** (`BertTokenizer`) --
-  The tokenizer is a required input.
-- **speaker_embeddings** (`dict[dict[str]]`, *optional*) --
-  Optional nested speaker embeddings dictionary. The first level contains voice preset names (e.g
-  `"en_speaker_4"`). The second level contains `"semantic_prompt"`, `"coarse_prompt"` and `"fine_prompt"`
-  embeddings. The values correspond to the path of the corresponding `np.ndarray`. See
-  [here](https://suno-ai.notion.site/8b8e8749ed514b0cbf3f699013548683?v=bc67cff786b04b50b3ceb756fd05f68c) for
-  a list of `voice_preset_names`.
+#### transformers.BarkProcessor[[transformers.BarkProcessor]]
+
+```python
+transformers.BarkProcessor(tokenizer, speaker_embeddings = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/processing_bark.py#L35)
+
+**Parameters:**
+
+tokenizer (`BertTokenizer`) : The tokenizer is a required input.
+
+speaker_embeddings (`dict[dict[str]]`, *optional*) : Optional nested speaker embeddings dictionary. The first level contains voice preset names (e.g `"en_speaker_4"`). The second level contains `"semantic_prompt"`, `"coarse_prompt"` and `"fine_prompt"` embeddings. The values correspond to the path of the corresponding `np.ndarray`. See [here](https://suno-ai.notion.site/8b8e8749ed514b0cbf3f699013548683?v=bc67cff786b04b50b3ceb756fd05f68c) for a list of `voice_preset_names`.
+
 Constructs a BarkProcessor which wraps a tokenizer into a single processor.
 
-[BarkProcessor](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkProcessor) offers all the functionalities of [BertTokenizer](/docs/transformers/v5.14.0/en/model_doc/electra#transformers.BertTokenizer). See the
-[~BertTokenizer](/docs/transformers/v5.14.0/en/model_doc/electra#transformers.BertTokenizer) for more information.
+[BarkProcessor](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkProcessor) offers all the functionalities of [BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer). See the
+[~BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer) for more information.
 
-- **text** (``) --
-  The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings
-  (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
-- **voice_preset** (`str`, `dict[np.ndarray]`) --
-  The voice preset, i.e the speaker embeddings. It can either be a valid voice_preset name, e.g
-  `"en_speaker_1"`, or directly a dictionary of `np.ndarray` embeddings for each submodel of `Bark`. Or
-  it can be a valid file name of a local `.npz` single voice preset containing the keys
-  `"semantic_prompt"`, `"coarse_prompt"` and `"fine_prompt"`.
-- **return_tensors** (``, defaults to `pt`) --
-  If set, will return tensors of a particular framework. Acceptable values are:
+#### __call__[[transformers.BarkProcessor.__call__]]
 
-  - `'pt'`: Return PyTorch `torch.Tensor` objects.
-  - `'np'`: Return NumPy `np.ndarray` objects.
-- **max_length** (`int`, defaults to `256`) --
-  Controls the maximum length to use by one of the truncation/padding parameters.
+```python
+__call__(text = None, voice_preset = None, return_tensors = 'pt', max_length = 256, add_special_tokens = False, return_attention_mask = True, return_token_type_ids = False, **kwargs)
+```
 
-  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length
-  is required by one of the truncation/padding parameters. If the model has no specific maximum input
-  length (like XLNet) truncation/padding to a maximum length will be deactivated.
-- **add_special_tokens** (`bool`, defaults to `False`) --
-  Whether or not to add special tokens when encoding the sequences. This will use the underlying
-  `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are
-  automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens
-  automatically.
-- **return_attention_mask** (`bool`, defaults to `True`) --
-  Whether to return the attention mask. If left to the default, will return the attention mask according
-  to the specific tokenizer's default, defined by the `return_outputs` attribute.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/processing_bark.py#L275)
 
-  [What are attention masks?](../glossary#attention-mask)
-- **return_token_type_ids** (`bool`, defaults to `False`) --
-  Whether to return token type IDs. If left to the default, will return the token type IDs according to
-  the specific tokenizer's default, defined by the `return_outputs` attribute.
+**Parameters:**
 
-  [What are token type IDs?](../glossary#token-type-ids)[BatchEncoding](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.BatchEncoding)A [BatchEncoding](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.BatchEncoding) object containing the output of the `tokenizer`.
+text (``) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
+
+voice_preset (`str`, `dict[np.ndarray]`) : The voice preset, i.e the speaker embeddings. It can either be a valid voice_preset name, e.g `"en_speaker_1"`, or directly a dictionary of `np.ndarray` embeddings for each submodel of `Bark`. Or it can be a valid file name of a local `.npz` single voice preset containing the keys `"semantic_prompt"`, `"coarse_prompt"` and `"fine_prompt"`.
+
+return_tensors (``, defaults to `pt`) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+max_length (`int`, defaults to `256`) : Controls the maximum length to use by one of the truncation/padding parameters.  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length is required by one of the truncation/padding parameters. If the model has no specific maximum input length (like XLNet) truncation/padding to a maximum length will be deactivated.
+
+add_special_tokens (`bool`, defaults to `False`) : Whether or not to add special tokens when encoding the sequences. This will use the underlying `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens automatically.
+
+return_attention_mask (`bool`, defaults to `True`) : Whether to return the attention mask. If left to the default, will return the attention mask according to the specific tokenizer's default, defined by the `return_outputs` attribute.  [What are attention masks?](../glossary#attention-mask)
+
+return_token_type_ids (`bool`, defaults to `False`) : Whether to return token type IDs. If left to the default, will return the token type IDs according to the specific tokenizer's default, defined by the `return_outputs` attribute.  [What are token type IDs?](../glossary#token-type-ids)
+
+**Returns:** [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding)
+
+A [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding) object containing the output of the `tokenizer`.
 If a voice preset is provided, the returned object will include a `"history_prompt"` key
-containing a [BatchFeature](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BatchFeature), i.e the voice preset with the right tensors type.
+containing a [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature), i.e the voice preset with the right tensors type.
 
-- **pretrained_model_name_or_path** (`str` or `os.PathLike`) --
-  This can be either:
+#### from_pretrained[[transformers.BarkProcessor.from_pretrained]]
 
-  - a string, the *model id* of a pretrained [BarkProcessor](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkProcessor) hosted inside a model repo on
-    huggingface.co.
-  - a path to a *directory* containing a processor saved using the [save_pretrained()](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkProcessor.save_pretrained)
-    method, e.g., `./my_model_directory/`.
-- **speaker_embeddings_dict_path** (`str`, *optional*, defaults to `"speaker_embeddings_path.json"`) --
-  The name of the `.json` file containing the speaker_embeddings dictionary located in
-  `pretrained_model_name_or_path`. If `None`, no speaker_embeddings is loaded.
-- ****kwargs** --
-  Additional keyword arguments passed along to both
-  `~tokenization_utils_base.PreTrainedTokenizer.from_pretrained`.
+```python
+from_pretrained(pretrained_processor_name_or_path, speaker_embeddings_dict_path = 'speaker_embeddings_path.json', **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/processing_bark.py#L55)
+
+**Parameters:**
+
+pretrained_model_name_or_path (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained [BarkProcessor](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkProcessor) hosted inside a model repo on huggingface.co. - a path to a *directory* containing a processor saved using the [save_pretrained()](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkProcessor.save_pretrained) method, e.g., `./my_model_directory/`.
+
+speaker_embeddings_dict_path (`str`, *optional*, defaults to `"speaker_embeddings_path.json"`) : The name of the `.json` file containing the speaker_embeddings dictionary located in `pretrained_model_name_or_path`. If `None`, no speaker_embeddings is loaded.
+
+- ****kwargs** : Additional keyword arguments passed along to both `~tokenization_utils_base.PreTrainedTokenizer.from_pretrained`.
 
 Instantiate a Bark processor associated with a pretrained model.
 
-- **save_directory** (`str` or `os.PathLike`) --
-  Directory where the tokenizer files and the speaker embeddings will be saved (directory will be created
-  if it does not exist).
-- **speaker_embeddings_dict_path** (`str`, *optional*, defaults to `"speaker_embeddings_path.json"`) --
-  The name of the `.json` file that will contains the speaker_embeddings nested path dictionary, if it
-  exists, and that will be located in `pretrained_model_name_or_path/speaker_embeddings_directory`.
-- **speaker_embeddings_directory** (`str`, *optional*, defaults to `"speaker_embeddings/"`) --
-  The name of the folder in which the speaker_embeddings arrays will be saved.
-- **push_to_hub** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to push your model to the Hugging Face model hub after saving it. You can specify the
-  repository you want to push to with `repo_id` (will default to the name of `save_directory` in your
-  namespace).
-- **kwargs** --
-  Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
+#### save_pretrained[[transformers.BarkProcessor.save_pretrained]]
+
+```python
+save_pretrained(save_directory, speaker_embeddings_dict_path = 'speaker_embeddings_path.json', speaker_embeddings_directory = 'speaker_embeddings', push_to_hub: bool = False, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/processing_bark.py#L113)
+
+**Parameters:**
+
+save_directory (`str` or `os.PathLike`) : Directory where the tokenizer files and the speaker embeddings will be saved (directory will be created if it does not exist).
+
+speaker_embeddings_dict_path (`str`, *optional*, defaults to `"speaker_embeddings_path.json"`) : The name of the `.json` file that will contains the speaker_embeddings nested path dictionary, if it exists, and that will be located in `pretrained_model_name_or_path/speaker_embeddings_directory`.
+
+speaker_embeddings_directory (`str`, *optional*, defaults to `"speaker_embeddings/"`) : The name of the folder in which the speaker_embeddings arrays will be saved.
+
+push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push your model to the Hugging Face model hub after saving it. You can specify the repository you want to push to with `repo_id` (will default to the name of `save_directory` in your namespace).
+
+kwargs : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
 
 Saves the attributes of this processor (tokenizer...) in the specified directory so that it can be reloaded
-using the [from_pretrained()](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkProcessor.from_pretrained) method.
+using the [from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkProcessor.from_pretrained) method.
 
 ## BarkModel[[transformers.BarkModel]]
 
-- **config** ([BarkModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.BarkModel[[transformers.BarkModel]]
+
+```python
+transformers.BarkModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/modeling_bark.py#L1258)
+
+**Parameters:**
+
+config ([BarkModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The full Bark model, a text-to-speech model composed of 4 sub-models:
-- [BarkSemanticModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkSemanticModel) (also referred to as the 'text' model): a causal auto-regressive transformer model that
+- [BarkSemanticModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkSemanticModel) (also referred to as the 'text' model): a causal auto-regressive transformer model that
 takes
 as input tokenized text, and predicts semantic text tokens that capture the meaning of the text.
-- [BarkCoarseModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkCoarseModel) (also referred to as the 'coarse acoustics' model), also a causal autoregressive transformer,
+- [BarkCoarseModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkCoarseModel) (also referred to as the 'coarse acoustics' model), also a causal autoregressive transformer,
 that takes into input the results of the last model. It aims at regressing the first two audio codebooks necessary
 to `encodec`.
-- [BarkFineModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkFineModel) (the 'fine acoustics' model), this time a non-causal autoencoder transformer, which iteratively
+- [BarkFineModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkFineModel) (the 'fine acoustics' model), this time a non-causal autoencoder transformer, which iteratively
 predicts the last codebooks based on the sum of the previous codebooks embeddings.
-- having predicted all the codebook channels from the [EncodecModel](/docs/transformers/v5.14.0/en/model_doc/encodec#transformers.EncodecModel), Bark uses it to decode the output audio
+- having predicted all the codebook channels from the [EncodecModel](/docs/transformers/v5.15.0/en/model_doc/encodec#transformers.EncodecModel), Bark uses it to decode the output audio
 array.
 
 It should be noted that each of the first three modules can support conditional speaker embeddings to condition the
 output sound according to specific predefined voice.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -306,21 +328,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>] | None = None"}, {"name": "return_output_lengths", "val": ": bool | None = None"}, {"name": "**kwargs", "val": ""}]}>
-- **input_ids** (`Optional[torch.Tensor]` of shape (batch_size, seq_len), *optional*) --
-  Input ids. Will be truncated up to 256 tokens. Note that the output audios will be as long as the
-  longest generation among the batch.
-- **history_prompt** (`Optional[dict[str,torch.Tensor]]`, *optional*) --
-  Optional `Bark` speaker prompt. Note that for now, this model takes only one speaker prompt per batch.
-- **kwargs** (*optional*) -- Remaining dictionary of keyword arguments. Keyword arguments are of two types:
+#### generate[[transformers.BarkModel.generate]]
 
-  - Without a prefix, they will be entered as `**kwargs` for the `generate` method of each sub-model.
-  - With a *semantic_*, *coarse_*, *fine_* prefix, they will be input for the `generate` method of the
-  semantic, coarse and fine respectively. It has the priority over the keywords without a prefix.
+```python
+generate(input_ids: typing.Optional[torch.Tensor] = None, history_prompt: dict[str, torch.Tensor] | None = None, return_output_lengths: bool | None = None, **kwargs)
+```
 
-  This means you can, for example, specify a generation strategy for all sub-models except one.
-- **return_output_lengths** (`bool`, *optional*) --
-  Whether or not to return the waveform lengths. Useful when batching.By default- **audio_waveform** (`torch.Tensor` of shape (batch_size, seq_len)): Generated audio waveform.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/modeling_bark.py#L1364)
+
+**Parameters:**
+
+input_ids (`Optional[torch.Tensor]` of shape (batch_size, seq_len), *optional*) : Input ids. Will be truncated up to 256 tokens. Note that the output audios will be as long as the longest generation among the batch.
+
+history_prompt (`Optional[dict[str,torch.Tensor]]`, *optional*) : Optional `Bark` speaker prompt. Note that for now, this model takes only one speaker prompt per batch.
+
+kwargs (*optional*) : Remaining dictionary of keyword arguments. Keyword arguments are of two types:  - Without a prefix, they will be entered as `**kwargs` for the `generate` method of each sub-model. - With a *semantic_*, *coarse_*, *fine_* prefix, they will be input for the `generate` method of the semantic, coarse and fine respectively. It has the priority over the keywords without a prefix.  This means you can, for example, specify a generation strategy for all sub-models except one.
+
+return_output_lengths (`bool`, *optional*) : Whether or not to return the waveform lengths. Useful when batching.
+
+**Returns:** `By default`
+
+- **audio_waveform** (`torch.Tensor` of shape (batch_size, seq_len)): Generated audio waveform.
 When `return_output_lengths=True`:
 Returns a tuple made of:
 - **audio_waveform** (`torch.Tensor` of shape (batch_size, seq_len)): Generated audio waveform.
@@ -345,23 +373,39 @@ Example:
 >>> audio_array = audio_array.cpu().numpy().squeeze()
 ```
 
-- **accelerator_id** (`int`, *optional*, defaults to 0) --
-  accelerator id on which the sub-models will be loaded and offloaded.
+#### enable_cpu_offload[[transformers.BarkModel.enable_cpu_offload]]
+
+```python
+enable_cpu_offload(accelerator_id: int | None = 0, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/modeling_bark.py#L1300)
+
+**Parameters:**
+
+accelerator_id (`int`, *optional*, defaults to 0) : accelerator id on which the sub-models will be loaded and offloaded.
 
 Offloads all sub-models to CPU using accelerate, reducing memory usage with a low impact on performance. This
 method moves one whole sub-model at a time to the accelerator when it is used, and the sub-model remains in accelerator until the next sub-model runs.
 
 ## BarkSemanticModel[[transformers.BarkSemanticModel]]
 
-- **config** ([BarkCausalModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkCausalModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.BarkSemanticModel[[transformers.BarkSemanticModel]]
+
+```python
+transformers.BarkSemanticModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/modeling_bark.py#L524)
+
+**Parameters:**
+
+config ([BarkCausalModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkCausalModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Bark semantic (or text) model. It shares the same architecture as the coarse model.
 It is a GPT-2 like autoregressive model with a language modeling head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -369,59 +413,43 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.BarkSemanticModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/modeling_bark.py#L394)
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+**Parameters:**
 
-  The model will output the same cache format that is fed as input.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
-  `past_key_values`).
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[CausalLMOutputWithPast](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`A [CausalLMOutputWithPast](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`
+
+A [CausalLMOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([BarkConfig](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkConfig)) and inputs.
-The [BarkCausalModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkCausalModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([BarkConfig](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkConfig)) and inputs.
+
+The [BarkCausalModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkCausalModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -429,7 +457,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -445,16 +473,23 @@ the latter silently ignores them.
 
 ## BarkCoarseModel[[transformers.BarkCoarseModel]]
 
-- **config** ([`[BarkCausalModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkCausalModel)`]) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.BarkCoarseModel[[transformers.BarkCoarseModel]]
+
+```python
+transformers.BarkCoarseModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/modeling_bark.py#L640)
+
+**Parameters:**
+
+config ([`[BarkCausalModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkCausalModel)`]) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Bark coarse acoustics model.
 It shares the same architecture as the semantic (or text) model. It is a GPT-2 like autoregressive model with a
 language modeling head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -462,59 +497,43 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.BarkCoarseModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/modeling_bark.py#L394)
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+**Parameters:**
 
-  The model will output the same cache format that is fed as input.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
-  `past_key_values`).
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[CausalLMOutputWithPast](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`A [CausalLMOutputWithPast](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`
+
+A [CausalLMOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([BarkConfig](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkConfig)) and inputs.
-The [BarkCausalModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkCausalModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([BarkConfig](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkConfig)) and inputs.
+
+The [BarkCausalModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkCausalModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -522,7 +541,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -538,15 +557,22 @@ the latter silently ignores them.
 
 ## BarkFineModel[[transformers.BarkFineModel]]
 
-- **config** ([BarkFineModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkFineModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.BarkFineModel[[transformers.BarkFineModel]]
+
+```python
+transformers.BarkFineModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/modeling_bark.py#L864)
+
+**Parameters:**
+
+config ([BarkFineModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkFineModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Bark fine acoustics model. It is a non-causal GPT-like model with `config.n_codes_total` embedding layers and
 language modeling heads, one for each codebook.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -554,43 +580,41 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **codebook_idx** (`int`) --
-  Index of the codebook that will be predicted.
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.BarkFineModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(codebook_idx: int, input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/modeling_bark.py#L991)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+codebook_idx (`int`) : Index of the codebook that will be predicted.
 
-  [What are position IDs?](../glossary#position-ids)
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  NOT IMPLEMENTED YET.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[MaskedLMOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`A [MaskedLMOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : NOT IMPLEMENTED YET.
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [MaskedLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`
+
+A [MaskedLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([BarkConfig](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkConfig)) and inputs.
-The [BarkFineModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkFineModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([BarkConfig](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkConfig)) and inputs.
+
+The [BarkFineModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkFineModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -610,59 +634,51 @@ the latter silently ignores them.
 
 ## BarkCausalModel[[transformers.BarkCausalModel]]
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### transformers.BarkCausalModel[[transformers.BarkCausalModel]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+transformers.BarkCausalModel(config)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/modeling_bark.py#L359)
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+#### forward[[transformers.BarkCausalModel.forward]]
 
-  The model will output the same cache format that is fed as input.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/modeling_bark.py#L394)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
-  `past_key_values`).
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[CausalLMOutputWithPast](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`A [CausalLMOutputWithPast](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`
+
+A [CausalLMOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([BarkConfig](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkConfig)) and inputs.
-The [BarkCausalModel](/docs/transformers/v5.14.0/en/model_doc/bark#transformers.BarkCausalModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([BarkConfig](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkConfig)) and inputs.
+
+The [BarkCausalModel](/docs/transformers/v5.15.0/en/model_doc/bark#transformers.BarkCausalModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -670,7 +686,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -686,39 +702,42 @@ the latter silently ignores them.
 
 ## BarkCoarseConfig[[transformers.BarkCoarseConfig]]
 
-- **block_size** (`int`, *optional*, defaults to 1024) --
-  The maximum sequence length that this model might ever be used with. Typically set this to something large
-  just in case (e.g., 512 or 1024 or 2048).
-- **input_vocab_size** (`int`, *optional*, defaults to 10_048) --
-  Vocabulary size of a Bark sub-model. Defines the number of different tokens that can be represented by the
-  `inputs_ids` passed when calling `{model}`. Defaults to 10_048 but should be carefully thought with
-  regards to the chosen sub-model.
-- **output_vocab_size** (`int`, *optional*, defaults to 10_048) --
-  Output vocabulary size of a Bark sub-model. Defines the number of different tokens that can be represented
-  by the: `output_ids` when passing forward a `{model}`. Defaults to 10_048 but should be carefully thought
-  with regards to the chosen sub-model.
-- **num_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The ratio for all dropout layers.
-- **bias** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to use bias in the linear layers and layer norm layers
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **use_cache** (`bool`, *optional*, defaults to `True`) --
-  Whether or not the model should return the last key/values attentions (not used by all models). Only
-  relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
+#### transformers.BarkCoarseConfig[[transformers.BarkCoarseConfig]]
+
+```python
+transformers.BarkCoarseConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, block_size: int = 1024, input_vocab_size: int = 10048, output_vocab_size: int = 10048, num_layers: int = 12, num_heads: int = 12, hidden_size: int = 768, dropout: float | int = 0.0, bias: bool = True, initializer_range: float = 0.02, use_cache: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/configuration_bark.py#L105)
+
+**Parameters:**
+
+block_size (`int`, *optional*, defaults to 1024) : The maximum sequence length that this model might ever be used with. Typically set this to something large just in case (e.g., 512 or 1024 or 2048).
+
+input_vocab_size (`int`, *optional*, defaults to 10_048) : Vocabulary size of a Bark sub-model. Defines the number of different tokens that can be represented by the `inputs_ids` passed when calling `{model}`. Defaults to 10_048 but should be carefully thought with regards to the chosen sub-model.
+
+output_vocab_size (`int`, *optional*, defaults to 10_048) : Output vocabulary size of a Bark sub-model. Defines the number of different tokens that can be represented by the: `output_ids` when passing forward a `{model}`. Defaults to 10_048 but should be carefully thought with regards to the chosen sub-model.
+
+num_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The ratio for all dropout layers.
+
+bias (`bool`, *optional*, defaults to `True`) : Whether or not to use bias in the linear layers and layer norm layers
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+use_cache (`bool`, *optional*, defaults to `True`) : Whether or not the model should return the last key/values attentions (not used by all models). Only relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
 
 This is the configuration class to store the configuration of a BarkModel. It is used to instantiate a Bark
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [suno/bark](https://huggingface.co/suno/bark)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -737,46 +756,48 @@ Example:
 
 ## BarkFineConfig[[transformers.BarkFineConfig]]
 
-- **block_size** (`int`, *optional*, defaults to 1024) --
-  The maximum sequence length that this model might ever be used with. Typically set this to something large
-  just in case (e.g., 512 or 1024 or 2048).
-- **input_vocab_size** (`int`, *optional*, defaults to 10_048) --
-  Vocabulary size of a Bark sub-model. Defines the number of different tokens that can be represented by the
-  `inputs_ids` passed when calling `{model}`. Defaults to 10_048 but should be carefully thought with
-  regards to the chosen sub-model.
-- **output_vocab_size** (`int`, *optional*, defaults to 10_048) --
-  Output vocabulary size of a Bark sub-model. Defines the number of different tokens that can be represented
-  by the: `output_ids` when passing forward a `{model}`. Defaults to 10_048 but should be carefully thought
-  with regards to the chosen sub-model.
-- **num_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The ratio for all dropout layers.
-- **bias** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to use bias in the linear layers and layer norm layers
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **use_cache** (`bool`, *optional*, defaults to `True`) --
-  Whether or not the model should return the last key/values attentions (not used by all models). Only
-  relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
-- **tie_word_embeddings** (`bool`, *optional*, defaults to `True`) --
-  Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
-- **n_codes_total** (`int`, *optional*, defaults to 8) --
-  The total number of audio codebooks predicted. Used in the fine acoustics sub-model.
-- **n_codes_given** (`int`, *optional*, defaults to 1) --
-  The number of audio codebooks predicted in the coarse acoustics sub-model. Used in the acoustics
-  sub-models.
+#### transformers.BarkFineConfig[[transformers.BarkFineConfig]]
+
+```python
+transformers.BarkFineConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, block_size: int = 1024, input_vocab_size: int = 10048, output_vocab_size: int = 10048, num_layers: int = 12, num_heads: int = 12, hidden_size: int = 768, dropout: float | int = 0.0, bias: bool = True, initializer_range: float = 0.02, use_cache: bool = True, tie_word_embeddings: bool = True, n_codes_total: int = 8, n_codes_given: int = 1)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/configuration_bark.py#L142)
+
+**Parameters:**
+
+block_size (`int`, *optional*, defaults to 1024) : The maximum sequence length that this model might ever be used with. Typically set this to something large just in case (e.g., 512 or 1024 or 2048).
+
+input_vocab_size (`int`, *optional*, defaults to 10_048) : Vocabulary size of a Bark sub-model. Defines the number of different tokens that can be represented by the `inputs_ids` passed when calling `{model}`. Defaults to 10_048 but should be carefully thought with regards to the chosen sub-model.
+
+output_vocab_size (`int`, *optional*, defaults to 10_048) : Output vocabulary size of a Bark sub-model. Defines the number of different tokens that can be represented by the: `output_ids` when passing forward a `{model}`. Defaults to 10_048 but should be carefully thought with regards to the chosen sub-model.
+
+num_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The ratio for all dropout layers.
+
+bias (`bool`, *optional*, defaults to `True`) : Whether or not to use bias in the linear layers and layer norm layers
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+use_cache (`bool`, *optional*, defaults to `True`) : Whether or not the model should return the last key/values attentions (not used by all models). Only relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
+
+tie_word_embeddings (`bool`, *optional*, defaults to `True`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
+
+n_codes_total (`int`, *optional*, defaults to 8) : The total number of audio codebooks predicted. Used in the fine acoustics sub-model.
+
+n_codes_given (`int`, *optional*, defaults to 1) : The number of audio codebooks predicted in the coarse acoustics sub-model. Used in the acoustics sub-models.
 
 This is the configuration class to store the configuration of a BarkModel. It is used to instantiate a Bark
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [suno/bark](https://huggingface.co/suno/bark)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -795,39 +816,42 @@ Example:
 
 ## BarkSemanticConfig[[transformers.BarkSemanticConfig]]
 
-- **block_size** (`int`, *optional*, defaults to 1024) --
-  The maximum sequence length that this model might ever be used with. Typically set this to something large
-  just in case (e.g., 512 or 1024 or 2048).
-- **input_vocab_size** (`int`, *optional*, defaults to 10_048) --
-  Vocabulary size of a Bark sub-model. Defines the number of different tokens that can be represented by the
-  `inputs_ids` passed when calling `{model}`. Defaults to 10_048 but should be carefully thought with
-  regards to the chosen sub-model.
-- **output_vocab_size** (`int`, *optional*, defaults to 10_048) --
-  Output vocabulary size of a Bark sub-model. Defines the number of different tokens that can be represented
-  by the: `output_ids` when passing forward a `{model}`. Defaults to 10_048 but should be carefully thought
-  with regards to the chosen sub-model.
-- **num_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The ratio for all dropout layers.
-- **bias** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to use bias in the linear layers and layer norm layers
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **use_cache** (`bool`, *optional*, defaults to `True`) --
-  Whether or not the model should return the last key/values attentions (not used by all models). Only
-  relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
+#### transformers.BarkSemanticConfig[[transformers.BarkSemanticConfig]]
+
+```python
+transformers.BarkSemanticConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, block_size: int = 1024, input_vocab_size: int = 10048, output_vocab_size: int = 10048, num_layers: int = 12, num_heads: int = 12, hidden_size: int = 768, dropout: float | int = 0.0, bias: bool = True, initializer_range: float = 0.02, use_cache: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bark/configuration_bark.py#L68)
+
+**Parameters:**
+
+block_size (`int`, *optional*, defaults to 1024) : The maximum sequence length that this model might ever be used with. Typically set this to something large just in case (e.g., 512 or 1024 or 2048).
+
+input_vocab_size (`int`, *optional*, defaults to 10_048) : Vocabulary size of a Bark sub-model. Defines the number of different tokens that can be represented by the `inputs_ids` passed when calling `{model}`. Defaults to 10_048 but should be carefully thought with regards to the chosen sub-model.
+
+output_vocab_size (`int`, *optional*, defaults to 10_048) : Output vocabulary size of a Bark sub-model. Defines the number of different tokens that can be represented by the: `output_ids` when passing forward a `{model}`. Defaults to 10_048 but should be carefully thought with regards to the chosen sub-model.
+
+num_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The ratio for all dropout layers.
+
+bias (`bool`, *optional*, defaults to `True`) : Whether or not to use bias in the linear layers and layer norm layers
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+use_cache (`bool`, *optional*, defaults to `True`) : Whether or not the model should return the last key/values attentions (not used by all models). Only relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
 
 This is the configuration class to store the configuration of a BarkModel. It is used to instantiate a Bark
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [suno/bark](https://huggingface.co/suno/bark)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -844,5 +868,5 @@ Example:
 >>> configuration = model.config
 ```
 
-### SigLIP2
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/siglip2.md
+### Dilated Neighborhood Attention Transformer
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/dinat.md

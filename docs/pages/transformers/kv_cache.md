@@ -4,7 +4,7 @@ The key-value (KV) vectors are used to calculate attention scores. For autoregre
 
 A KV *cache* stores these calculations so they can be reused without recomputing them. Efficient caching is crucial for optimizing model performance because it reduces computation time and improves response rates. Refer to the [Caching](./cache_explanation) doc for a more detailed explanation about how a cache works.
 
-Transformers offers several [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) classes that implement different caching mechanisms. Some of these [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) classes are optimized to save memory while others are designed to maximize generation speed. Refer to the table below to compare cache types and use it to help you select the best cache for your use case.
+Transformers offers several [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) classes that implement different caching mechanisms. Some of these [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) classes are optimized to save memory while others are designed to maximize generation speed. Refer to the table below to compare cache types and use it to help you select the best cache for your use case.
 
 | Cache Type             | Supports sliding layers  | Supports offloading | Supports torch.compile() | Expected memory usage |
 |------------------------|--------------------------|---------------------|--------------------------|-----------------------|
@@ -12,15 +12,15 @@ Transformers offers several [Cache](/docs/transformers/v5.14.0/en/internal/gener
 | Static Cache           |           Yes            |          Yes        |           Yes            |         High          |
 | Quantized Cache        |           No             |          No         |           No             |         Low           |
 
-This guide introduces you to the different [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) classes and shows you how to use them for generation.
+This guide introduces you to the different [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) classes and shows you how to use them for generation.
 
 ## Default cache
 
-The [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) is the default cache class for all models. It allows the cache size to grow dynamically in order to store an increasing number of keys and values as generation progresses.
+The [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) is the default cache class for all models. It allows the cache size to grow dynamically in order to store an increasing number of keys and values as generation progresses.
 
 Note that for models using sliding window attention (Mistral, Gemma2,...) or chunked attention (Llama4), the cache will stop growing when the layers using these types of attention have reached their maximum size (the sliding window or chunk size).
 
-Disable the cache by configuring `use_cache=False` in [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
+Disable the cache by configuring `use_cache=False` in [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
 
 ```py
 import torch
@@ -33,9 +33,9 @@ inputs = tokenizer("I like rock music because", return_tensors="pt").to(model.de
 model.generate(**inputs, do_sample=False, max_new_tokens=20, use_cache=False)
 ```
 
-Cache classes can also be initialized first before calling and passing it to the models [past_key_values](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.generation.GenerateDecoderOnlyOutput.past_key_values) parameter. This can be useful for more fine-grained control, or more advanced usage such as context caching.
+Cache classes can also be initialized first before calling and passing it to the models [past_key_values](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.generation.GenerateDecoderOnlyOutput.past_key_values) parameter. This can be useful for more fine-grained control, or more advanced usage such as context caching.
 
-In most cases, it's easier to define the cache strategy in the [cache_implementation](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationConfig.cache_implementation) parameter.
+In most cases, it's easier to define the cache strategy in the [cache_implementation](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig.cache_implementation) parameter.
 
 ```py
 import torch
@@ -51,13 +51,13 @@ out = model.generate(**inputs, do_sample=False, max_new_tokens=20, past_key_valu
 
 ## Fixed-size cache
 
-The default [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) prevents you from taking advantage of most just-in-time (JIT) optimizations because the cache size isn't fixed. JIT optimizations enable you to minimize latency at the expense of memory usage. All of the following cache types are compatible with JIT optimizations like [torch.compile](./perf_torch_compile) to accelerate generation.
+The default [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) prevents you from taking advantage of most just-in-time (JIT) optimizations because the cache size isn't fixed. JIT optimizations enable you to minimize latency at the expense of memory usage. All of the following cache types are compatible with JIT optimizations like [torch.compile](./perf_torch_compile) to accelerate generation.
 
-A fixed-size cache ([StaticCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.StaticCache)) pre-allocates a specific maximum cache size for the kv pairs. You can generate up to the maximum cache size without needing to modify it. However, having a fixed (usually large) size for the key/value states means that while generating, a lot of tokens will actually be masked as they should not take part in the attention. So this trick allows to easily `compile` the decoding stage, but it incurs a waste of tokens in the attention computation. As all things, it's then a trade-off which should be very good if you generate with several sequence of more or less the same lengths, but may be sub-optimal if you have for example 1 very large sequence, and then only short sequences (as the fix cache size would be large, a lot would be wasted for the short sequences). Make sure you understand the impact if you use it!
+A fixed-size cache ([StaticCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.StaticCache)) pre-allocates a specific maximum cache size for the kv pairs. You can generate up to the maximum cache size without needing to modify it. However, having a fixed (usually large) size for the key/value states means that while generating, a lot of tokens will actually be masked as they should not take part in the attention. So this trick allows to easily `compile` the decoding stage, but it incurs a waste of tokens in the attention computation. As all things, it's then a trade-off which should be very good if you generate with several sequence of more or less the same lengths, but may be sub-optimal if you have for example 1 very large sequence, and then only short sequences (as the fix cache size would be large, a lot would be wasted for the short sequences). Make sure you understand the impact if you use it!
 
-As for [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache), note that for models using sliding window attention (Mistral, Gemma2,...) or chunked attention (Llama4), the cache will never be larger than the sliding window/chunk size on layers using these types of attention, even if the maximum length specified is larger.
+As for [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache), note that for models using sliding window attention (Mistral, Gemma2,...) or chunked attention (Llama4), the cache will never be larger than the sliding window/chunk size on layers using these types of attention, even if the maximum length specified is larger.
 
-You can enable [StaticCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.StaticCache) by configuring `cache_implementation="static"` in [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate). This will also turn on automatic `compilation` of the decoding stage for greedy and sample decoding strategies.
+You can enable [StaticCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.StaticCache) by configuring `cache_implementation="static"` in [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate). This will also turn on automatic `compilation` of the decoding stage for greedy and sample decoding strategies.
 
 ```py
 import torch
@@ -76,7 +76,7 @@ tokenizer.batch_decode(out, skip_special_tokens=True)[0]
 
 Compiler backends like Neuron and TPU trace your model into a fixed computation graph. The generation loop maintains tensors (output sequence, `attention_mask`, `position_ids`) that grow by one token each step. The compiler retraces the graph whenever these tensors change shape on the accelerator, which slows generation.
 
-[generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) moves only the tensors that `forward` consumes onto the model device, right before each `forward` call. The output is moved back to match the device of the input. Pass your inputs on CPU to keep the loop's growing tensor bookkeeping off the accelerator. The compiled graph stays stable, and because the output follows the input device, the generated output stays on CPU.
+[generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) moves only the tensors that `forward` consumes onto the model device, right before each `forward` call. The output is moved back to match the device of the input. Pass your inputs on CPU to keep the loop's growing tensor bookkeeping off the accelerator. The compiled graph stays stable, and because the output follows the input device, the generated output stays on CPU.
 
 ```py
 import torch
@@ -105,12 +105,12 @@ You may want to consider offloading if you have a small GPU and you're getting o
 > [!WARNING]
 > You may notice a small degradation in generation throughput compared to a full on-device cache, depending on your model and generation choices (context size, number of generated tokens, number of beams, etc.). This is because moving the key/value states back and forth requires some work.
 
-Offloading is available for both [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) and [StaticCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.StaticCache). You can enable it by configuring `cache_implementation="offloaded"` for the dynamic version, or `cache_implementation="offloaded_static"` for the static version, in either [GenerationConfig](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationConfig) or [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
-Additionally, you can also instantiate your own [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) or [StaticCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.StaticCache) with the `offloading=True` option, and pass this cache in `generate` or your model's `forward` (for example, `past_key_values=DynamicCache(config=model.config, offloading=True)` for a dynamic cache).
+Offloading is available for both [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) and [StaticCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.StaticCache). You can enable it by configuring `cache_implementation="offloaded"` for the dynamic version, or `cache_implementation="offloaded_static"` for the static version, in either [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig) or [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
+Additionally, you can also instantiate your own [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) or [StaticCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.StaticCache) with the `offloading=True` option, and pass this cache in `generate` or your model's `forward` (for example, `past_key_values=DynamicCache(config=model.config, offloading=True)` for a dynamic cache).
 
-Note that the 2 [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) classes mentioned above have an additional option when instantiating them directly, `offload_only_non_sliding`.
+Note that the 2 [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) classes mentioned above have an additional option when instantiating them directly, `offload_only_non_sliding`.
 This additional argument decides if the layers using sliding window/chunk attention (if any), will be offloaded as well. Since
-these layers are usually short anyway, it may be better to avoid offloading them, as offloading may incur a speed penalty. By default, this option is `False` for [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache), and `True` for [StaticCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.StaticCache).
+these layers are usually short anyway, it may be better to avoid offloading them, as offloading may incur a speed penalty. By default, this option is `False` for [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache), and `True` for [StaticCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.StaticCache).
 
 ```py
 import torch
@@ -160,7 +160,7 @@ responses = tokenizer.batch_decode(out[:,-28:], skip_special_tokens=True)
 
 ## Quantized cache
 
-The [QuantizedCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.QuantizedCache) reduces memory requirements by quantizing the KV values to a lower precision. [QuantizedCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.QuantizedCache) currently supports two quantization backends:
+The [QuantizedCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.QuantizedCache) reduces memory requirements by quantizing the KV values to a lower precision. [QuantizedCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.QuantizedCache) currently supports two quantization backends:
 
 - `hqq` supports int2, int4, and int8 datatypes.
 - `quanto` supports int2 and int4 datatypes. This is the default quantization backend.
@@ -168,7 +168,7 @@ The [QuantizedCache](/docs/transformers/v5.14.0/en/internal/generation_utils#tra
 > [!WARNING]
 > Quantizing the cache can harm latency if the context length is short and there is enough GPU memory available for generation without enabling cache quantization. Try to find a balance between memory efficiency and latency.
 
-Enable [QuantizedCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.QuantizedCache) by configuring `cache_implementation="quantized"` in [GenerationConfig](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationConfig), and the quantization backend, as well as any additional quantization related parameters should also be passed either as a dict. You should use the default values for these additional parameters unless you're running out-of-memory. In that case, consider decreasing the residual length.
+Enable [QuantizedCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.QuantizedCache) by configuring `cache_implementation="quantized"` in [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig), and the quantization backend, as well as any additional quantization related parameters should also be passed either as a dict. You should use the default values for these additional parameters unless you're running out-of-memory. In that case, consider decreasing the residual length.
 
 For the `hqq` backend, we recommend setting the `axis-key` and `axis-value` parameters to `1`.
 
@@ -202,15 +202,15 @@ I like rock music because it's loud and energetic. It's a great way to express m
 
 ## Encoder-decoder cache
 
-[EncoderDecoderCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.EncoderDecoderCache) is designed for encoder-decoder models. It manages both the self-attention and cross-attention caches to ensure storage and retrieval of previous kv pairs. It is possible to individually set a different cache type for the encoder and decoder.
+[EncoderDecoderCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.EncoderDecoderCache) is designed for encoder-decoder models. It manages both the self-attention and cross-attention caches to ensure storage and retrieval of previous kv pairs. It is possible to individually set a different cache type for the encoder and decoder.
 
-This cache type doesn't require any setup. It is a simple wrapper around 2 [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache)s as described above, that will be used independently directly by the model.
+This cache type doesn't require any setup. It is a simple wrapper around 2 [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache)s as described above, that will be used independently directly by the model.
 
 ## Model-specific caches
 
 Some models have a unique way of storing past kv pairs or states that is not compatible with any other cache classes.
 
-Mamba models, such as [Mamba](./model_doc/mamba), require a specific cache because the model doesn't have an attention mechanism or kv states. Thus, they are not compatible with the above [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) classes.
+Mamba models, such as [Mamba](./model_doc/mamba), require a specific cache because the model doesn't have an attention mechanism or kv states. Thus, they are not compatible with the above [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) classes.
 
 ## Iterative generation
 
@@ -218,7 +218,7 @@ A cache can also work in iterative generation settings where there is back-and-f
 
 For iterative generation with a cache, start by initializing an empty cache class and then you can feed in your new prompts. Keep track of dialogue history with a [chat template](./chat_templating).
 
-The following example demonstrates [Llama-2-7b-chat-hf](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf). If you're using a different chat-style model, [apply_chat_template()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template) may process messages differently. It might cut out important tokens depending on how the Jinja template is written. For multimodal chat models, see the [iterative chatting with cache](./tasks/image_text_to_text#iterative-chatting-with-cache) guide for how to process images or audio.
+The following example demonstrates [Llama-2-7b-chat-hf](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf). If you're using a different chat-style model, [apply_chat_template()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template) may process messages differently. It might cut out important tokens depending on how the Jinja template is written. For multimodal chat models, see the [iterative chatting with cache](./tasks/image_text_to_text#iterative-chatting-with-cache) guide for how to process images or audio.
 
 For example, some models use special `<think> ... </think>` tokens during reasoning. These could get lost during re-encoding, causing indexing issues. You might need to manually remove or adjust extra tokens from the completions to keep things stable.
 
@@ -246,9 +246,9 @@ for prompt in user_prompts:
 
 ## Prefill a cache (prefix caching)
 
-In some situations, you may want to fill a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) with kv pairs for a certain prefix prompt and reuse it to generate different sequences.
+In some situations, you may want to fill a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) with kv pairs for a certain prefix prompt and reuse it to generate different sequences.
 
-The example below initializes a [StaticCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.StaticCache), and then caches an initial prompt. Now you can generate several sequences from the prefilled prompt.
+The example below initializes a [StaticCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.StaticCache), and then caches an initial prompt. Now you can generate several sequences from the prefilled prompt.
 
 ```py
 import copy
@@ -281,5 +281,5 @@ for prompt in prompts:
 print(responses)
 ```
 
-### Quickstart
-https://huggingface.co/docs/transformers/v5.14.0/quicktour.md
+### Text generation
+https://huggingface.co/docs/transformers/v5.15.0/llm_tutorial.md

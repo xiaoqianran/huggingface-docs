@@ -47,7 +47,7 @@ gen_text = tokenizer.batch_decode(gen_tokens)[0]
 
 ## Using Flash Attention 2
 
-Flash Attention 2 is an faster, optimized version of the model.
+Flash Attention 2 is a faster, optimized version of the model.
 
 ### Installation
 
@@ -61,7 +61,7 @@ pip install -U flash-attn --no-build-isolation
 
 ### Usage
 
-To load a model using Flash Attention 2, we can pass the argument `attn_implementation="flash_attention_2"` to [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). We'll also load the model in half-precision (e.g. `torch.float16`), since it results in almost no degradation to audio quality but significantly lower memory usage and faster inference:
+To load a model using Flash Attention 2, we can pass the argument `attn_implementation="flash_attention_2"` to [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). We'll also load the model in half-precision (e.g. `torch.float16`), since it results in almost no degradation to audio quality but significantly lower memory usage and faster inference:
 
 ```python
 from transformers import GPTNeoXForCausalLM
@@ -144,60 +144,64 @@ following speedups during training and inference.
 
 ## GPTNeoXConfig[[transformers.GPTNeoXConfig]]
 
-- **vocab_size** (`int`, *optional*, defaults to `50432`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **hidden_size** (`int`, *optional*, defaults to `6144`) --
-  Dimension of the hidden representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `44`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `64`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **intermediate_size** (`int`, *optional*, defaults to `24576`) --
-  Dimension of the MLP representations.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **hidden_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **classifier_dropout** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The dropout ratio for classifier.
-- **max_position_embeddings** (`int`, *optional*, defaults to `2048`) --
-  The maximum sequence length that this model might ever be used with.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-05`) --
-  The epsilon used by the layer normalization layers.
-- **use_cache** (`bool`, *optional*, defaults to `True`) --
-  Whether or not the model should return the last key/values attentions (not used by all models). Only
-  relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
-- **bos_token_id** (`int`, *optional*, defaults to `0`) --
-  Token id used for beginning-of-stream in the vocabulary.
-- **eos_token_id** (`Union[int, list[int]]`, *optional*, defaults to `2`) --
-  Token id used for end-of-stream in the vocabulary.
-- **pad_token_id** (`int`, *optional*) --
-  Token id used for padding in the vocabulary.
-- **tie_word_embeddings** (`bool`, *optional*, defaults to `False`) --
-  Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
-- **use_parallel_residual** (`bool`, *optional*, defaults to `True`) --
-  Whether to use a "parallel" formulation in each Transformer layer, which can provide a slight training
-  speedup at large scales (e.g. 20B).
-- **rope_parameters** (`Union[~modeling_rope_utils.RopeParameters, dict]`, *optional*) --
-  Dictionary containing the configuration parameters for the RoPE embeddings. The dictionary should contain
-  a value for `rope_theta` and optionally parameters used for scaling in case you want to use RoPE
-  with longer `max_position_embeddings`.
-- **attention_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to use a bias in the query, key, value and output projection layers during self-attention.
-- **is_decoder** (`bool`, *optional*, defaults to `False`) --
-  Whether the model is used as a decoder or not. If `False`, the model is used as an encoder.
+#### transformers.GPTNeoXConfig[[transformers.GPTNeoXConfig]]
+
+```python
+transformers.GPTNeoXConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 50432, hidden_size: int = 6144, num_hidden_layers: int = 44, num_attention_heads: int = 64, intermediate_size: int = 24576, hidden_act: str = 'gelu', attention_dropout: float | int = 0.0, hidden_dropout: float | int = 0.0, classifier_dropout: float | int = 0.1, max_position_embeddings: int = 2048, initializer_range: float = 0.02, layer_norm_eps: float = 1e-05, use_cache: bool = True, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 2, pad_token_id: int | None = None, tie_word_embeddings: bool = False, use_parallel_residual: bool = True, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = True, is_decoder: bool = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gpt_neox/configuration_gpt_neox.py#L25)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `50432`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+hidden_size (`int`, *optional*, defaults to `6144`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `44`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `64`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+intermediate_size (`int`, *optional*, defaults to `24576`) : Dimension of the MLP representations.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+hidden_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+classifier_dropout (`Union[float, int]`, *optional*, defaults to `0.1`) : The dropout ratio for classifier.
+
+max_position_embeddings (`int`, *optional*, defaults to `2048`) : The maximum sequence length that this model might ever be used with.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-05`) : The epsilon used by the layer normalization layers.
+
+use_cache (`bool`, *optional*, defaults to `True`) : Whether or not the model should return the last key/values attentions (not used by all models). Only relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
+
+bos_token_id (`int`, *optional*, defaults to `0`) : Token id used for beginning-of-stream in the vocabulary.
+
+eos_token_id (`Union[int, list[int]]`, *optional*, defaults to `2`) : Token id used for end-of-stream in the vocabulary.
+
+pad_token_id (`int`, *optional*) : Token id used for padding in the vocabulary.
+
+tie_word_embeddings (`bool`, *optional*, defaults to `False`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
+
+use_parallel_residual (`bool`, *optional*, defaults to `True`) : Whether to use a "parallel" formulation in each Transformer layer, which can provide a slight training speedup at large scales (e.g. 20B).
+
+rope_parameters (`Union[~modeling_rope_utils.RopeParameters, dict]`, *optional*) : Dictionary containing the configuration parameters for the RoPE embeddings. The dictionary should contain a value for `rope_theta` and optionally parameters used for scaling in case you want to use RoPE with longer `max_position_embeddings`.
+
+attention_bias (`bool`, *optional*, defaults to `True`) : Whether to use a bias in the query, key, value and output projection layers during self-attention.
+
+is_decoder (`bool`, *optional*, defaults to `False`) : Whether the model is used as a decoder or not. If `False`, the model is used as an encoder.
 
 This is the configuration class to store the configuration of a GPTNeoXModel. It is used to instantiate a Gpt Neox
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [EleutherAI/gpt-neox-20b](https://huggingface.co/EleutherAI/gpt-neox-20b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -215,38 +219,43 @@ Example:
 
 ## GPTNeoXTokenizer[[transformers.GPTNeoXTokenizer]]
 
-'"}, {"name": "bos_token", "val": ": str = '<|endoftext|>'"}, {"name": "eos_token", "val": ": str = '<|endoftext|>'"}, {"name": "pad_token", "val": ": str = '<|padding|>'"}, {"name": "add_prefix_space", "val": ": bool = False"}, {"name": "trim_offsets", "val": ": bool = True"}, {"name": "**kwargs", "val": ""}]}>
-- **vocab_file** (`str`, *optional*) --
-  Path to the vocabulary file.
-- **merges_file** (`str`, *optional*) --
-  Path to the merges file.
-- **tokenizer_file** (`str`, *optional*) --
-  Path to a tokenizers JSON file containing the serialization of a tokenizer.
-- **errors** (`str`, *optional*, defaults to `"replace"`) --
-  Paradigm to follow when decoding bytes to UTF-8. See
-  [bytes.decode](https://docs.python.org/3/library/stdtypes.html#bytes.decode) for more information.
-- **unk_token** (`str`, *optional*, defaults to `"<|endoftext|>"`) --
-  The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this
-  token instead.
-- **bos_token** (`str`, *optional*, defaults to `"<|endoftext|>"`) --
-  The beginning of sequence token.
-- **eos_token** (`str`, *optional*, defaults to `"<|endoftext|>"`) --
-  The end of sequence token.
-- **pad_token** (`str`, *optional*, defaults to `"<|padding|>"`) --
-  Token for padding a sequence.
-- **add_prefix_space** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to add an initial space to the input. This allows to treat the leading word just as any
-  other word. (GPTNeoX tokenizer detect beginning of words by the preceding space).
-- **add_bos_token** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to add a `bos_token` at the start of sequences.
-- **add_eos_token** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to add an `eos_token` at the end of sequences.
-- **trim_offsets** (`bool`, *optional*, defaults to `True`) --
-  Whether or not the post-processing step should trim offsets to avoid including whitespaces.
-- **vocab** (`str` or `dict[str, int]`, *optional*) --
-  Custom vocabulary dictionary. If not provided, vocabulary is loaded from `vocab_file`.
-- **merges** (`str` or `list[str]`, *optional*) --
-  Custom merges list. If not provided, merges are loaded from `merges_file`.
+#### transformers.GPTNeoXTokenizer[[transformers.GPTNeoXTokenizer]]
+
+```python
+transformers.GPTNeoXTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, errors: str = 'replace', unk_token: str = '<|endoftext|>', bos_token: str = '<|endoftext|>', eos_token: str = '<|endoftext|>', pad_token: str = '<|padding|>', add_prefix_space: bool = False, trim_offsets: bool = True, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gpt_neox/tokenization_gpt_neox.py#L28)
+
+**Parameters:**
+
+vocab_file (`str`, *optional*) : Path to the vocabulary file.
+
+merges_file (`str`, *optional*) : Path to the merges file.
+
+tokenizer_file (`str`, *optional*) : Path to a tokenizers JSON file containing the serialization of a tokenizer.
+
+errors (`str`, *optional*, defaults to `"replace"`) : Paradigm to follow when decoding bytes to UTF-8. See [bytes.decode](https://docs.python.org/3/library/stdtypes.html#bytes.decode) for more information.
+
+unk_token (`str`, *optional*, defaults to `"<|endoftext|>"`) : The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this token instead.
+
+bos_token (`str`, *optional*, defaults to `"<|endoftext|>"`) : The beginning of sequence token.
+
+eos_token (`str`, *optional*, defaults to `"<|endoftext|>"`) : The end of sequence token.
+
+pad_token (`str`, *optional*, defaults to `"<|padding|>"`) : Token for padding a sequence.
+
+add_prefix_space (`bool`, *optional*, defaults to `False`) : Whether or not to add an initial space to the input. This allows to treat the leading word just as any other word. (GPTNeoX tokenizer detect beginning of words by the preceding space).
+
+add_bos_token (`bool`, *optional*, defaults to `False`) : Whether or not to add a `bos_token` at the start of sequences.
+
+add_eos_token (`bool`, *optional*, defaults to `False`) : Whether or not to add an `eos_token` at the end of sequences.
+
+trim_offsets (`bool`, *optional*, defaults to `True`) : Whether or not the post-processing step should trim offsets to avoid including whitespaces.
+
+vocab (`str` or `dict[str, int]`, *optional*) : Custom vocabulary dictionary. If not provided, vocabulary is loaded from `vocab_file`.
+
+merges (`str` or `list[str]`, *optional*) : Custom merges list. If not provided, merges are loaded from `merges_file`.
 
 Construct a GPT-NeoX-20B tokenizer (backed by HuggingFace's tokenizers library). Based on byte-level
 Byte-Pair-Encoding.
@@ -271,43 +280,48 @@ the model was not pretrained this way, it might yield a decrease in performance.
 
 When used with `is_split_into_words=True`, this tokenizer needs to be instantiated with `add_prefix_space=True`.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 ## GPTNeoXTokenizerFast[[transformers.GPTNeoXTokenizer]]
 
-'"}, {"name": "bos_token", "val": ": str = '<|endoftext|>'"}, {"name": "eos_token", "val": ": str = '<|endoftext|>'"}, {"name": "pad_token", "val": ": str = '<|padding|>'"}, {"name": "add_prefix_space", "val": ": bool = False"}, {"name": "trim_offsets", "val": ": bool = True"}, {"name": "**kwargs", "val": ""}]}>
-- **vocab_file** (`str`, *optional*) --
-  Path to the vocabulary file.
-- **merges_file** (`str`, *optional*) --
-  Path to the merges file.
-- **tokenizer_file** (`str`, *optional*) --
-  Path to a tokenizers JSON file containing the serialization of a tokenizer.
-- **errors** (`str`, *optional*, defaults to `"replace"`) --
-  Paradigm to follow when decoding bytes to UTF-8. See
-  [bytes.decode](https://docs.python.org/3/library/stdtypes.html#bytes.decode) for more information.
-- **unk_token** (`str`, *optional*, defaults to `"<|endoftext|>"`) --
-  The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this
-  token instead.
-- **bos_token** (`str`, *optional*, defaults to `"<|endoftext|>"`) --
-  The beginning of sequence token.
-- **eos_token** (`str`, *optional*, defaults to `"<|endoftext|>"`) --
-  The end of sequence token.
-- **pad_token** (`str`, *optional*, defaults to `"<|padding|>"`) --
-  Token for padding a sequence.
-- **add_prefix_space** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to add an initial space to the input. This allows to treat the leading word just as any
-  other word. (GPTNeoX tokenizer detect beginning of words by the preceding space).
-- **add_bos_token** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to add a `bos_token` at the start of sequences.
-- **add_eos_token** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to add an `eos_token` at the end of sequences.
-- **trim_offsets** (`bool`, *optional*, defaults to `True`) --
-  Whether or not the post-processing step should trim offsets to avoid including whitespaces.
-- **vocab** (`str` or `dict[str, int]`, *optional*) --
-  Custom vocabulary dictionary. If not provided, vocabulary is loaded from `vocab_file`.
-- **merges** (`str` or `list[str]`, *optional*) --
-  Custom merges list. If not provided, merges are loaded from `merges_file`.
+#### transformers.GPTNeoXTokenizer[[transformers.GPTNeoXTokenizer]]
+
+```python
+transformers.GPTNeoXTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, errors: str = 'replace', unk_token: str = '<|endoftext|>', bos_token: str = '<|endoftext|>', eos_token: str = '<|endoftext|>', pad_token: str = '<|padding|>', add_prefix_space: bool = False, trim_offsets: bool = True, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gpt_neox/tokenization_gpt_neox.py#L28)
+
+**Parameters:**
+
+vocab_file (`str`, *optional*) : Path to the vocabulary file.
+
+merges_file (`str`, *optional*) : Path to the merges file.
+
+tokenizer_file (`str`, *optional*) : Path to a tokenizers JSON file containing the serialization of a tokenizer.
+
+errors (`str`, *optional*, defaults to `"replace"`) : Paradigm to follow when decoding bytes to UTF-8. See [bytes.decode](https://docs.python.org/3/library/stdtypes.html#bytes.decode) for more information.
+
+unk_token (`str`, *optional*, defaults to `"<|endoftext|>"`) : The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this token instead.
+
+bos_token (`str`, *optional*, defaults to `"<|endoftext|>"`) : The beginning of sequence token.
+
+eos_token (`str`, *optional*, defaults to `"<|endoftext|>"`) : The end of sequence token.
+
+pad_token (`str`, *optional*, defaults to `"<|padding|>"`) : Token for padding a sequence.
+
+add_prefix_space (`bool`, *optional*, defaults to `False`) : Whether or not to add an initial space to the input. This allows to treat the leading word just as any other word. (GPTNeoX tokenizer detect beginning of words by the preceding space).
+
+add_bos_token (`bool`, *optional*, defaults to `False`) : Whether or not to add a `bos_token` at the start of sequences.
+
+add_eos_token (`bool`, *optional*, defaults to `False`) : Whether or not to add an `eos_token` at the end of sequences.
+
+trim_offsets (`bool`, *optional*, defaults to `True`) : Whether or not the post-processing step should trim offsets to avoid including whitespaces.
+
+vocab (`str` or `dict[str, int]`, *optional*) : Custom vocabulary dictionary. If not provided, vocabulary is loaded from `vocab_file`.
+
+merges (`str` or `list[str]`, *optional*) : Custom merges list. If not provided, merges are loaded from `merges_file`.
 
 Construct a GPT-NeoX-20B tokenizer (backed by HuggingFace's tokenizers library). Based on byte-level
 Byte-Pair-Encoding.
@@ -332,19 +346,26 @@ the model was not pretrained this way, it might yield a decrease in performance.
 
 When used with `is_split_into_words=True`, this tokenizer needs to be instantiated with `add_prefix_space=True`.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 ## GPTNeoXModel[[transformers.GPTNeoXModel]]
 
-- **config** ([GPTNeoXModel](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.GPTNeoXModel[[transformers.GPTNeoXModel]]
+
+```python
+transformers.GPTNeoXModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gpt_neox/modeling_gpt_neox.py#L305)
+
+**Parameters:**
+
+config ([GPTNeoXModel](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Gpt Neox Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -352,47 +373,35 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.GPTNeoXModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, use_cache: bool | None = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gpt_neox/modeling_gpt_neox.py#L320)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-  The model will output the same cache format that is fed as input.
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
-  `past_key_values`).[BaseModelOutputWithPast](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPast](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+
+use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([GPTNeoXConfig](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXConfig)) and inputs.
-The [GPTNeoXModel](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([GPTNeoXConfig](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXConfig)) and inputs.
+
+The [GPTNeoXModel](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -402,7 +411,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -419,14 +428,21 @@ the latter silently ignores them.
 
 ## GPTNeoXForCausalLM[[transformers.GPTNeoXForCausalLM]]
 
-- **config** ([GPTNeoXForCausalLM](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXForCausalLM)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.GPTNeoXForCausalLM[[transformers.GPTNeoXForCausalLM]]
+
+```python
+transformers.GPTNeoXForCausalLM(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gpt_neox/modeling_gpt_neox.py#L387)
+
+**Parameters:**
+
+config ([GPTNeoXForCausalLM](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXForCausalLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 GPTNeoX Model with a `language modeling` head on top for CLM fine-tuning.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -434,57 +450,39 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.GPTNeoXForCausalLM.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gpt_neox/modeling_gpt_neox.py#L407)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-  The model will output the same cache format that is fed as input.
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the left-to-right language modeling loss (next word prediction). Indices should be in
-  `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are
-  ignored (masked), the loss is only computed for the tokens with labels n `[0, ..., config.vocab_size]`.
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
-  `past_key_values`).
-- **logits_to_keep** (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) --
-  If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all
-  `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that
-  token can save memory, which becomes pretty significant for long sequences or large vocabulary size.
-  If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension.
-  This is useful when using packed tensor format (single dimension for batch and sequence length).[CausalLMOutputWithPast](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`A [CausalLMOutputWithPast](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the left-to-right language modeling loss (next word prediction). Indices should be in `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+
+logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
+
+**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`
+
+A [CausalLMOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([GPTNeoXConfig](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXConfig)) and inputs.
-The [GPTNeoXForCausalLM](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXForCausalLM) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([GPTNeoXConfig](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXConfig)) and inputs.
+
+The [GPTNeoXForCausalLM](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXForCausalLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -492,7 +490,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -525,15 +523,22 @@ Example:
 
 ## GPTNeoXForQuestionAnswering[[transformers.GPTNeoXForQuestionAnswering]]
 
-- **config** ([GPTNeoXForQuestionAnswering](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXForQuestionAnswering)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.GPTNeoXForQuestionAnswering[[transformers.GPTNeoXForQuestionAnswering]]
+
+```python
+transformers.GPTNeoXForQuestionAnswering(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gpt_neox/modeling_gpt_neox.py#L619)
+
+**Parameters:**
+
+config ([GPTNeoXForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Gpt Neox transformer with a span classification head on top for extractive question-answering tasks like
 SQuAD (a linear layer on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -541,46 +546,37 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.GPTNeoXForQuestionAnswering.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, start_positions: typing.Optional[torch.LongTensor] = None, end_positions: typing.Optional[torch.LongTensor] = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gpt_neox/modeling_gpt_neox.py#L629)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **start_positions** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the start of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.
-- **end_positions** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the end of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.[QuestionAnsweringModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`A [QuestionAnsweringModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+start_positions (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the start of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+end_positions (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the end of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+**Returns:** [QuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`
+
+A [QuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([GPTNeoXConfig](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXConfig)) and inputs.
-The [GPTNeoXForQuestionAnswering](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXForQuestionAnswering) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([GPTNeoXConfig](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXConfig)) and inputs.
+
+The [GPTNeoXForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -633,14 +629,21 @@ Example:
 
 ## GPTNeoXForSequenceClassification[[transformers.GPTNeoXForSequenceClassification]]
 
-- **config** ([GPTNeoXForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXForSequenceClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.GPTNeoXForSequenceClassification[[transformers.GPTNeoXForSequenceClassification]]
+
+```python
+transformers.GPTNeoXForSequenceClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gpt_neox/modeling_gpt_neox.py#L485)
+
+**Parameters:**
+
+config ([GPTNeoXForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The GPTNeoX Model transformer with a sequence classification head on top (linear layer).
 
-[GPTNeoXForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXForSequenceClassification) uses the last token in order to do the classification, as other causal models
+[GPTNeoXForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXForSequenceClassification) uses the last token in order to do the classification, as other causal models
 (e.g. GPT-1) do.
 
 Since it does classification on the last token, it requires to know the position of the last token. If a
@@ -649,7 +652,7 @@ no `pad_token_id` is defined, it simply takes the last value in each row of the 
 padding tokens when `inputs_embeds` are passed instead of `input_ids`, it does the same (take the last value in
 each row of the batch).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -657,51 +660,37 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.GPTNeoXForSequenceClassification.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gpt_neox/modeling_gpt_neox.py#L495)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-  The model will output the same cache format that is fed as input.
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the sequence classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
-  `past_key_values`).`SequenceClassifierOutputWithPast` or `tuple(torch.FloatTensor)`A `SequenceClassifierOutputWithPast` or a tuple of
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+
+**Returns:** `SequenceClassifierOutputWithPast` or `tuple(torch.FloatTensor)`
+
+A `SequenceClassifierOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([GPTNeoXConfig](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXConfig)) and inputs.
-The [GPTNeoXForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXForSequenceClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([GPTNeoXConfig](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXConfig)) and inputs.
+
+The [GPTNeoXForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -709,7 +698,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Classification (or regression if config.num_labels==1) loss.
 - **logits** (`torch.FloatTensor` of shape `(batch_size, config.num_labels)`) -- Classification (or regression if config.num_labels==1) scores (before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -781,58 +770,47 @@ Example of multi-label classification:
 
 ## GPTNeoXForTokenClassification[[transformers.GPTNeoXForTokenClassification]]
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### transformers.GPTNeoXForTokenClassification[[transformers.GPTNeoXForTokenClassification]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+transformers.GPTNeoXForTokenClassification(config)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gpt_neox/modeling_gpt_neox.py#L559)
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+#### forward[[transformers.GPTNeoXForTokenClassification.forward]]
 
-  The model will output the same cache format that is fed as input.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, **kwargs)
+```
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gpt_neox/modeling_gpt_neox.py#L571)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the sequence classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
-  `past_key_values`).[TokenClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`A [TokenClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
+token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
+
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+
+**Returns:** [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([GPTNeoXConfig](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXConfig)) and inputs.
-The [GPTNeoXForTokenClassification](/docs/transformers/v5.14.0/en/model_doc/gpt_neox#transformers.GPTNeoXForTokenClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([GPTNeoXConfig](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXConfig)) and inputs.
+
+The [GPTNeoXForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/gpt_neox#transformers.GPTNeoXForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -881,5 +859,5 @@ Example:
 ...
 ```
 
-### AFMoE
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/afmoe.md
+### MusicGen Melody
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/musicgen_melody.md

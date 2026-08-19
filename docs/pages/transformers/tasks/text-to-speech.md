@@ -580,7 +580,7 @@ Load the model from the 🤗 Hub:
 >>> model = SpeechT5ForTextToSpeech.from_pretrained("YOUR_ACCOUNT/speecht5_finetuned_voxpopuli_nl")
 ```
 
-Pick an example from the test dataset obtain a speaker embedding.
+Pick an example from the test dataset and obtain a speaker embedding.
 
 ```py
 >>> example = dataset["test"][304]
@@ -634,5 +634,5 @@ Finally, it is essential to consider ethical considerations. Although TTS techno
 may also be used for malicious purposes, such as impersonating someone's voice without their knowledge or consent. Please
 use TTS judiciously and responsibly.
 
-### Token classification
-https://huggingface.co/docs/transformers/v5.14.0/tasks/token_classification.md
+### Translation
+https://huggingface.co/docs/transformers/v5.15.0/tasks/translation.md

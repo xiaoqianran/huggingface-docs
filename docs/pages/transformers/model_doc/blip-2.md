@@ -22,7 +22,7 @@ The original code can be found [here](https://github.com/salesforce/LAVIS/tree/5
 ## Usage tips
 
 - BLIP-2 can be used for conditional text generation given an image and an optional text prompt. At inference time, it's recommended to use the `generate` method.
-- One can use [Blip2Processor](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Processor) to prepare images for the model, and decode the predicted tokens ID's back to text.
+- One can use [Blip2Processor](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Processor) to prepare images for the model, and decode the predicted tokens ID's back to text.
 
 > [!NOTE]
 > BLIP models after release v4.46 will raise warnings about adding `processor.num_query_tokens = {{num_query_tokens}}` and expand model embeddings layer to add special `<image>` token. It is strongly recommended to add the attributes to the processor if you own the model checkpoint, or open a PR if it is not owned by you. Adding these attributes means that BLIP will add the number of query tokens required per image and expand the text with as many `<image>` placeholders as there will be query tokens. Usually it is around 500 tokens per image, so make sure that the text is not truncated as otherwise there will be failure when merging the embeddings.
@@ -38,30 +38,38 @@ If you're interested in submitting a resource to be included here, please feel f
 
 ## Blip2Config[[transformers.Blip2Config]]
 
-- **vision_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the vision backbone.
-- **qformer_config** (`dict`, *optional*) --
-  Dictionary of configuration options used to initialize [Blip2QFormerConfig](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2QFormerConfig).
-- **text_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the text backbone.
-- **num_query_tokens** (`int`, *optional*, defaults to 32) --
-  The number of query tokens passed through the Transformer.
-- **image_text_hidden_size** (`int`, *optional*, defaults to 256) --
-  Dimensionality of the hidden state of the image-text fusion layer.
-- **image_token_index** (`int`, *optional*) --
-  The image token index used as a placeholder for input images.
-- **initializer_factor** (`float`, *optional*, defaults to `1.0`) --
-  A factor for initializing all weight matrices (should be kept to 1, used internally for initialization
-  testing).
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+#### transformers.Blip2Config[[transformers.Blip2Config]]
+
+```python
+transformers.Blip2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, qformer_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, num_query_tokens: int = 32, image_text_hidden_size: int = 256, image_token_index: int | None = None, initializer_factor: float = 1.0, initializer_range: float = 0.02)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/configuration_blip_2.py#L107)
+
+**Parameters:**
+
+vision_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the vision backbone.
+
+qformer_config (`dict`, *optional*) : Dictionary of configuration options used to initialize [Blip2QFormerConfig](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2QFormerConfig).
+
+text_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the text backbone.
+
+num_query_tokens (`int`, *optional*, defaults to 32) : The number of query tokens passed through the Transformer.
+
+image_text_hidden_size (`int`, *optional*, defaults to 256) : Dimensionality of the hidden state of the image-text fusion layer.
+
+image_token_index (`int`, *optional*) : The image token index used as a placeholder for input images.
+
+initializer_factor (`float`, *optional*, defaults to `1.0`) : A factor for initializing all weight matrices (should be kept to 1, used internally for initialization testing).
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
 This is the configuration class to store the configuration of a Blip 2Model. It is used to instantiate a Blip 2
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Salesforce/blip2-opt-2.7b](https://huggingface.co/Salesforce/blip2-opt-2.7b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -95,36 +103,44 @@ Example:
 
 ## Blip2VisionConfig[[transformers.Blip2VisionConfig]]
 
-- **hidden_size** (`int`, *optional*, defaults to `1408`) --
-  Dimension of the hidden representations.
-- **intermediate_size** (`int`, *optional*, defaults to `6144`) --
-  Dimension of the MLP representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `39`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `16`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **image_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) --
-  The size (resolution) of each image.
-- **patch_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `14`) --
-  The size (resolution) of each patch.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **initializer_range** (`float`, *optional*, defaults to `1e-10`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **qkv_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a bias to the queries, keys and values.
+#### transformers.Blip2VisionConfig[[transformers.Blip2VisionConfig]]
+
+```python
+transformers.Blip2VisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 1408, intermediate_size: int = 6144, num_hidden_layers: int = 39, num_attention_heads: int = 16, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 14, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, attention_dropout: float | int = 0.0, initializer_range: float = 1e-10, qkv_bias: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/configuration_blip_2.py#L29)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `1408`) : Dimension of the hidden representations.
+
+intermediate_size (`int`, *optional*, defaults to `6144`) : Dimension of the MLP representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `39`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `16`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+image_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) : The size (resolution) of each image.
+
+patch_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `14`) : The size (resolution) of each patch.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+initializer_range (`float`, *optional*, defaults to `1e-10`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+qkv_bias (`bool`, *optional*, defaults to `True`) : Whether to add a bias to the queries, keys and values.
 
 This is the configuration class to store the configuration of a Blip 2Model. It is used to instantiate a Blip 2
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Salesforce/blip2-opt-2.7b](https://huggingface.co/Salesforce/blip2-opt-2.7b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -143,44 +159,52 @@ Example:
 
 ## Blip2QFormerConfig[[transformers.Blip2QFormerConfig]]
 
-- **vocab_size** (`int`, *optional*, defaults to `30522`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **intermediate_size** (`int`, *optional*, defaults to `3072`) --
-  Dimension of the MLP representations.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **attention_probs_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The dropout ratio for the attention probabilities.
-- **max_position_embeddings** (`int`, *optional*, defaults to `512`) --
-  The maximum sequence length that this model might ever be used with.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-12`) --
-  The epsilon used by the layer normalization layers.
-- **pad_token_id** (`int`, *optional*, defaults to `0`) --
-  Token id used for padding in the vocabulary.
-- **cross_attention_frequency** (`int`, *optional*, defaults to 2) --
-  The frequency of adding cross-attention to the Transformer layers.
-- **encoder_hidden_size** (`int`, *optional*, defaults to `1408`) --
-  Dimension of the hidden representations.
-- **use_qformer_text_input** (`bool`, *optional*, defaults to `False`) --
-  Whether to use BERT-style embeddings.
+#### transformers.Blip2QFormerConfig[[transformers.Blip2QFormerConfig]]
+
+```python
+transformers.Blip2QFormerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 30522, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.1, max_position_embeddings: int = 512, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, pad_token_id: int | None = 0, cross_attention_frequency: int = 2, encoder_hidden_size: int = 1408, use_qformer_text_input: bool = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/configuration_blip_2.py#L64)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `30522`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+intermediate_size (`int`, *optional*, defaults to `3072`) : Dimension of the MLP representations.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.1`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+attention_probs_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.1`) : The dropout ratio for the attention probabilities.
+
+max_position_embeddings (`int`, *optional*, defaults to `512`) : The maximum sequence length that this model might ever be used with.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-12`) : The epsilon used by the layer normalization layers.
+
+pad_token_id (`int`, *optional*, defaults to `0`) : Token id used for padding in the vocabulary.
+
+cross_attention_frequency (`int`, *optional*, defaults to 2) : The frequency of adding cross-attention to the Transformer layers.
+
+encoder_hidden_size (`int`, *optional*, defaults to `1408`) : Dimension of the hidden representations.
+
+use_qformer_text_input (`bool`, *optional*, defaults to `False`) : Whether to use BERT-style embeddings.
 
 This is the configuration class to store the configuration of a Blip 2Model. It is used to instantiate a Blip 2
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Salesforce/blip2-opt-2.7b](https://huggingface.co/Salesforce/blip2-opt-2.7b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -198,31 +222,48 @@ Examples:
 
 ## Blip2Processor[[transformers.Blip2Processor]]
 
-- **image_processor** (`BlipImageProcessor`) --
-  The image processor is a required input.
-- **tokenizer** (`GPT2Tokenizer`) --
-  The tokenizer is a required input.
-- **num_query_tokens** (`int`, *optional*) --
-  Number of tokens used by the Qformer as queries, should be same as in model's config.
+#### transformers.Blip2Processor[[transformers.Blip2Processor]]
+
+```python
+transformers.Blip2Processor(image_processor, tokenizer, num_query_tokens = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/processing_blip_2.py#L45)
+
+**Parameters:**
+
+image_processor (`BlipImageProcessor`) : The image processor is a required input.
+
+tokenizer (`GPT2Tokenizer`) : The tokenizer is a required input.
+
+num_query_tokens (`int`, *optional*) : Number of tokens used by the Qformer as queries, should be same as in model's config.
+
 Constructs a Blip2Processor which wraps a image processor and a tokenizer into a single processor.
 
-[Blip2Processor](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Processor) offers all the functionalities of [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor) and [GPT2Tokenizer](/docs/transformers/v5.14.0/en/model_doc/gpt2#transformers.GPT2Tokenizer). See the
-[~BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor) and [~GPT2Tokenizer](/docs/transformers/v5.14.0/en/model_doc/gpt2#transformers.GPT2Tokenizer) for more information.
+[Blip2Processor](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Processor) offers all the functionalities of [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor) and [GPT2Tokenizer](/docs/transformers/v5.15.0/en/model_doc/gpt2#transformers.GPT2Tokenizer). See the
+[~BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor) and [~GPT2Tokenizer](/docs/transformers/v5.15.0/en/model_doc/gpt2#transformers.GPT2Tokenizer) for more information.
 
-- **images** (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) --
-  Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If
-  passing in images with pixel values between 0 and 1, set `do_rescale=False`.
-- **text** (`Union[str, list[str]]`, *optional*) --
-  The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings
-  (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  If set, will return tensors of a particular framework. Acceptable values are:
+#### __call__[[transformers.Blip2Processor.__call__]]
 
-  - `'pt'`: Return PyTorch `torch.Tensor` objects.
-  - `'np'`: Return NumPy `np.ndarray` objects.
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) --
-  Additional processing options for each modality (text, images, videos, audio). Model-specific parameters
-  are listed above; see the TypedDict class for the complete list of supported arguments.`~tokenization_utils_base.BatchEncoding`- **data** (`dict`, *optional*) -- Dictionary of lists/arrays/tensors returned by the `__call__`/`encode_plus`/`batch_encode_plus` methods
+```python
+__call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | None = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/processing_blip_2.py#L61)
+
+**Parameters:**
+
+images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+text (`Union[str, list[str]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
+
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+
+**Returns:** `~tokenization_utils_base.BatchEncoding`
+
+- **data** (`dict`, *optional*) -- Dictionary of lists/arrays/tensors returned by the `__call__`/`encode_plus`/`batch_encode_plus` methods
   ('input_ids', 'attention_mask', etc.).
 - **encoding** (`tokenizers.Encoding` or `Sequence[tokenizers.Encoding]`, *optional*) -- If the tokenizer is a fast tokenizer which outputs additional information like mapping from word/character
   space to token space the `tokenizers.Encoding` instance or list of instance (for batches) hold this
@@ -231,19 +272,25 @@ Constructs a Blip2Processor which wraps a image processor and a tokenizer into a
   initialization.
 - **prepend_batch_axis** (`bool`, *optional*, defaults to `False`) -- Whether or not to add a batch axis when converting to tensors (see `tensor_type` above). Note that this
   parameter has an effect if the parameter `tensor_type` is set, *otherwise has no effect*.
-- **n_sequences** (`int`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
-  initialization.
+- **n_sequences** (`int`, *optional*) -- The number of input sequences represented by each encoding (`None` for unknown, `1` for a single sequence and `2` for a pair of sequences).
 
 ## Blip2VisionModel[[transformers.Blip2VisionModel]]
 
-- **config** ([Blip2VisionConfig](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2VisionConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Blip2VisionModel[[transformers.Blip2VisionModel]]
+
+```python
+transformers.Blip2VisionModel(config: Blip2VisionConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L482)
+
+**Parameters:**
+
+config ([Blip2VisionConfig](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2VisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Blip 2 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -251,15 +298,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor). See `BlipImageProcessor.__call__()` for details ([Blip2Processor](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Processor) uses
-  [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor) for processing images).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### forward[[transformers.Blip2VisionModel.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L502)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor). See `BlipImageProcessor.__call__()` for details ([Blip2Processor](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Processor) uses [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor) for processing images).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
-The [Blip2VisionModel](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2VisionModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
+
+The [Blip2VisionModel](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2VisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -282,14 +341,21 @@ the latter silently ignores them.
 
 ## Blip2QFormerModel[[transformers.Blip2QFormerModel]]
 
-- **config** ([Blip2QFormerConfig](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2QFormerConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Blip2QFormerModel[[transformers.Blip2QFormerModel]]
+
+```python
+transformers.Blip2QFormerModel(config: Blip2QFormerConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L849)
+
+**Parameters:**
+
+config ([Blip2QFormerConfig](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2QFormerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 BLIP-2 Querying Transformer (Q-Former).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -297,31 +363,33 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **query_embeds** (`torch.FloatTensor`  of shape `(batch_size, sequence_length, hidden_size)`) --
-  Hidden states to be used in the attention computation. If cross-attention,
-  will be used for the query (i.e., key and value will use the encoder_hidden_states).
-- **query_length** (`int`, *optional*) --
-  Length of the query, usually based on the number of query tokens.
-  If no value is provided, query_length will be inferred by the query_embeds.
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+#### forward[[transformers.Blip2QFormerModel.forward]]
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+```python
+forward(query_embeds: FloatTensor, query_length: int | None = None, attention_mask: typing.Optional[torch.FloatTensor] = None, encoder_hidden_states: typing.Optional[torch.FloatTensor] = None, encoder_attention_mask: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
+```
 
-  [What are attention masks?](../glossary#attention-mask)
-- **encoder_hidden_states** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention
-  if the model is configured as a decoder.
-- **encoder_attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on the padding token indices of the encoder input. This mask is used in
-  the cross-attention if the model is configured as a decoder. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L886)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.[BaseModelOutputWithPoolingAndCrossAttentions](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPoolingAndCrossAttentions) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPoolingAndCrossAttentions](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPoolingAndCrossAttentions) or a tuple of
+**Parameters:**
+
+query_embeds (`torch.FloatTensor`  of shape `(batch_size, sequence_length, hidden_size)`) : Hidden states to be used in the attention computation. If cross-attention, will be used for the query (i.e., key and value will use the encoder_hidden_states).
+
+query_length (`int`, *optional*) : Length of the query, usually based on the number of query tokens. If no value is provided, query_length will be inferred by the query_embeds.
+
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+encoder_hidden_states (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention if the model is configured as a decoder.
+
+encoder_attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on the padding token indices of the encoder input. This mask is used in the cross-attention if the model is configured as a decoder. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.
+
+**Returns:** [BaseModelOutputWithPoolingAndCrossAttentions](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPoolingAndCrossAttentions) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPoolingAndCrossAttentions](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPoolingAndCrossAttentions) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
-The [Blip2QFormerModel](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2QFormerModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
+
+The [Blip2QFormerModel](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2QFormerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -346,7 +414,7 @@ the latter silently ignores them.
 
   Attentions weights of the decoder's cross-attention layer, after the attention softmax, used to compute the
   weighted average in the cross-attention heads.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -354,15 +422,22 @@ the latter silently ignores them.
 
 ## Blip2Model[[transformers.Blip2Model]]
 
-- **config** ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Blip2Model[[transformers.Blip2Model]]
+
+```python
+transformers.Blip2Model(config: Blip2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L958)
+
+**Parameters:**
+
+config ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 BLIP-2 Model for generating text and image features. The model consists of a vision encoder, Querying Transformer
 (Q-Former) and a language model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -370,45 +445,37 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor). See `BlipImageProcessor.__call__()` for details ([Blip2Processor](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Processor) uses
-  [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor) for processing images).
-- **input_ids** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.Blip2Model.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(pixel_values: FloatTensor, input_ids: FloatTensor, attention_mask: typing.Optional[torch.LongTensor] = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, labels: typing.Optional[torch.LongTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L1153)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **decoder_input_ids** (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) --
-  Indices of decoder input sequence tokens in the vocabulary.
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor). See `BlipImageProcessor.__call__()` for details ([Blip2Processor](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Processor) uses [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor) for processing images).
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+input_ids (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are decoder input IDs?](../glossary#decoder-input-ids)
-- **decoder_attention_mask** (`torch.BoolTensor` of shape `(batch_size, target_sequence_length)`, *optional*) --
-  Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also
-  be used by default.
+attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  Only relevant in case an encoder-decoder language model (like T5) is used.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.`Blip2ForConditionalGenerationModelOutput` or `tuple(torch.FloatTensor)`A `Blip2ForConditionalGenerationModelOutput` or a tuple of
+decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are decoder input IDs?](../glossary#decoder-input-ids)
+
+decoder_attention_mask (`torch.BoolTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also be used by default.  Only relevant in case an encoder-decoder language model (like T5) is used.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** `Blip2ForConditionalGenerationModelOutput` or `tuple(torch.FloatTensor)`
+
+A `Blip2ForConditionalGenerationModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
-The [Blip2Model](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Model) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
+
+The [Blip2Model](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -444,43 +511,31 @@ Examples:
 >>> outputs = model(**inputs)
 ```
 
-)>"}, {"name": "attention_mask", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "decoder_input_ids", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "decoder_attention_mask", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "labels", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "**kwargs", "val": ": Unpack"}]}>
-- **input_ids** (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, sequence_length)`) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### get_text_features[[transformers.Blip2Model.get_text_features]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+get_text_features(input_ids: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, decoder_input_ids: typing.Optional[torch.Tensor] = None, decoder_attention_mask: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L995)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **decoder_input_ids** (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) --
-  Indices of decoder input sequence tokens in the vocabulary.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are decoder input IDs?](../glossary#decoder-input-ids)
+decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are decoder input IDs?](../glossary#decoder-input-ids)  T5 uses the `pad_token_id` as the starting token for `decoder_input_ids` generation. If `past_key_values` is used, optionally only the last `decoder_input_ids` have to be input (see `past_key_values`).  To know more on how to prepare `decoder_input_ids` for pretraining take a look at [T5 Training](./t5#training).
 
-  T5 uses the `pad_token_id` as the starting token for `decoder_input_ids` generation. If `past_key_values`
-  is used, optionally only the last `decoder_input_ids` have to be input (see `past_key_values`).
+decoder_attention_mask (`torch.BoolTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also be used by default.
 
-  To know more on how to prepare `decoder_input_ids` for pretraining take a look at [T5
-  Training](./t5#training).
-- **decoder_attention_mask** (`torch.BoolTensor` of shape `(batch_size, target_sequence_length)`, *optional*) --
-  Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also
-  be used by default.
-- **labels** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+labels (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
+elements depending on the configuration ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -510,14 +565,25 @@ Examples:
 ...     text_features = model.get_text_features(**inputs)
 ```
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor). See `BlipImageProcessor.__call__()` for details ([Blip2Processor](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Processor) uses
-  [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor) for processing images).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### get_image_features[[transformers.Blip2Model.get_image_features]]
+
+```python
+get_image_features(pixel_values: FloatTensor, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L1057)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor). See `BlipImageProcessor.__call__()` for details ([Blip2Processor](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Processor) uses [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor) for processing images).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
+elements depending on the configuration ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -551,12 +617,23 @@ Examples:
 ...     image_outputs = model.get_image_features(**inputs)
 ```
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor). See `BlipImageProcessor.__call__()` for details ([Blip2Processor](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Processor) uses
-  [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor) for processing images).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.qformer_outputs (`torch.FloatTensor`)The Q-Former model's last layer hidden states.
+#### get_qformer_features[[transformers.Blip2Model.get_qformer_features]]
+
+```python
+get_qformer_features(pixel_values: FloatTensor, interpolate_pos_encoding: bool = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L1088)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor). See `BlipImageProcessor.__call__()` for details ([Blip2Processor](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Processor) uses [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor) for processing images).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** qformer_outputs (`torch.FloatTensor`)
+
+The Q-Former model's last layer hidden states.
 
 Examples:
 
@@ -578,10 +655,17 @@ Examples:
 
 ## Blip2ForConditionalGeneration[[transformers.Blip2ForConditionalGeneration]]
 
-- **config** ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Blip2ForConditionalGeneration[[transformers.Blip2ForConditionalGeneration]]
+
+```python
+transformers.Blip2ForConditionalGeneration(config: Blip2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L1466)
+
+**Parameters:**
+
+config ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 BLIP-2 Model for generating text given an image and an optional text prompt. The model consists of a vision
 encoder, Querying Transformer (Q-Former) and a language model.
@@ -591,7 +675,7 @@ the prompt. Otherwise, the language model starts generating text from the [BOS] 
 
 Note that Flan-T5 checkpoints cannot be cast to float16. They are pre-trained using bfloat16.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -599,49 +683,39 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor). See `BlipImageProcessor.__call__()` for details ([Blip2Processor](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Processor) uses
-  [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor) for processing images).
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary of the language model. Input tokens can optionally be
-  provided to serve as text prompt, which the language model can continue.
+#### forward[[transformers.Blip2ForConditionalGeneration.forward]]
 
-  Indices can be obtained using [Blip2Processor](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Processor). See [Blip2Processor.__call__()](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Processor.__call__) for details.
+```python
+forward(pixel_values: FloatTensor, input_ids: LongTensor, attention_mask: typing.Optional[torch.LongTensor] = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L1593)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **decoder_input_ids** (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) --
-  Indices of decoder input sequence tokens in the vocabulary.
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor). See `BlipImageProcessor.__call__()` for details ([Blip2Processor](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Processor) uses [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor) for processing images).
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary of the language model. Input tokens can optionally be provided to serve as text prompt, which the language model can continue.  Indices can be obtained using [Blip2Processor](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Processor). See [Blip2Processor.__call__()](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Processor.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are decoder input IDs?](../glossary#decoder-input-ids)
-- **decoder_attention_mask** (`torch.BoolTensor` of shape `(batch_size, target_sequence_length)`, *optional*) --
-  Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also
-  be used by default.
+attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  Only relevant in case an encoder-decoder language model (like T5) is used.
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.`Blip2ForConditionalGenerationModelOutput` or `tuple(torch.FloatTensor)`A `Blip2ForConditionalGenerationModelOutput` or a tuple of
+decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are decoder input IDs?](../glossary#decoder-input-ids)
+
+decoder_attention_mask (`torch.BoolTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also be used by default.  Only relevant in case an encoder-decoder language model (like T5) is used.
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** `Blip2ForConditionalGenerationModelOutput` or `tuple(torch.FloatTensor)`
+
+A `Blip2ForConditionalGenerationModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
-The [Blip2ForConditionalGeneration](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2ForConditionalGeneration) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
+
+The [Blip2ForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2ForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -715,25 +789,51 @@ This greatly reduces the amount of memory used by the model while maintaining th
 two
 ```
 
-- **pixel_values** (`torch.FloatTensor` of shape (batch_size, num_channels, height, width)) --
-  Input images to be processed.
-- **input_ids** (`torch.LongTensor` of shape (batch_size, sequence_length), *optional*) --
-  The sequence used as a prompt for the generation.
-- **attention_mask** (`torch.LongTensor` of shape (batch_size, sequence_length), *optional*) --
-  Mask to avoid performing attention on padding token indices
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) --
-  Embedded representation of the inputs. Should be float, not int tokens.
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the positional encoding of the image embeddings.captions (list)A list of strings of length batch_size * num_captions.
+#### generate[[transformers.Blip2ForConditionalGeneration.generate]]
+
+```python
+generate(pixel_values: FloatTensor, input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, interpolate_pos_encoding: bool = False, **generate_kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L1743)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape (batch_size, num_channels, height, width)) : Input images to be processed.
+
+input_ids (`torch.LongTensor` of shape (batch_size, sequence_length), *optional*) : The sequence used as a prompt for the generation.
+
+attention_mask (`torch.LongTensor` of shape (batch_size, sequence_length), *optional*) : Mask to avoid performing attention on padding token indices
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) : Embedded representation of the inputs. Should be float, not int tokens.
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the positional encoding of the image embeddings.
+
+**Returns:** `captions (list)`
+
+A list of strings of length batch_size * num_captions.
 
 Overrides `generate` function to be able to use the model as a conditional generator.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images.
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.`BaseModelOutputWithVisionQformerOutputs` or `tuple(torch.FloatTensor)`A `BaseModelOutputWithVisionQformerOutputs` or a tuple of
+#### get_image_features[[transformers.Blip2ForConditionalGeneration.get_image_features]]
+
+```python
+get_image_features(pixel_values: FloatTensor, interpolate_pos_encoding: bool | None = False, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L1525)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images.
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** `BaseModelOutputWithVisionQformerOutputs` or `tuple(torch.FloatTensor)`
+
+A `BaseModelOutputWithVisionQformerOutputs` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
+elements depending on the configuration ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -784,16 +884,23 @@ Example:
 
 ## Blip2ForImageTextRetrieval[[transformers.Blip2ForImageTextRetrieval]]
 
-- **config** ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Blip2ForImageTextRetrieval[[transformers.Blip2ForImageTextRetrieval]]
+
+```python
+transformers.Blip2ForImageTextRetrieval(config: Blip2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L1837)
+
+**Parameters:**
+
+config ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 BLIP-2 Model with a vision and text projector, and a classification head on top. The model is used in the context
 of image-text retrieval. Given an image and a text, the model returns the probability of the text being relevant to
 the image.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -801,37 +908,37 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor). See `BlipImageProcessor.__call__()` for details ([Blip2Processor](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Processor) uses
-  [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor) for processing images).
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary of the language model. Input tokens can optionally be
-  provided to serve as text prompt, which the language model can continue.
+#### forward[[transformers.Blip2ForImageTextRetrieval.forward]]
 
-  Indices can be obtained using [Blip2Processor](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Processor). See [Blip2Processor.__call__()](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Processor.__call__) for details.
+```python
+forward(pixel_values: FloatTensor, input_ids: LongTensor, attention_mask: typing.Optional[torch.LongTensor] = None, use_image_text_matching_head: bool | None = False, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L1871)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **use_image_text_matching_head** (`bool`, *optional*) --
-  Whether to return the Image-Text Matching or Contrastive scores.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.`Blip2ImageTextMatchingModelOutput` or `tuple(torch.FloatTensor)`A `Blip2ImageTextMatchingModelOutput` or a tuple of
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor). See `BlipImageProcessor.__call__()` for details ([Blip2Processor](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Processor) uses [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor) for processing images).
+
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary of the language model. Input tokens can optionally be provided to serve as text prompt, which the language model can continue.  Indices can be obtained using [Blip2Processor](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Processor). See [Blip2Processor.__call__()](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Processor.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+
+attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+use_image_text_matching_head (`bool`, *optional*) : Whether to return the Image-Text Matching or Contrastive scores.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** `Blip2ImageTextMatchingModelOutput` or `tuple(torch.FloatTensor)`
+
+A `Blip2ImageTextMatchingModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
-The [Blip2ForImageTextRetrieval](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2ForImageTextRetrieval) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
+
+The [Blip2ForImageTextRetrieval](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2ForImageTextRetrieval) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -844,8 +951,8 @@ the latter silently ignores them.
   similarity scores.
 - **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output.
 - **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output.
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Blip2QFormerModel](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2QFormerModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Blip2VisionModel](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2VisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Blip2QFormerModel](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2QFormerModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [Blip2VisionModel](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2VisionModel).
 
 Examples:
 
@@ -894,14 +1001,21 @@ Examples:
 
 ## Blip2TextModelWithProjection[[transformers.Blip2TextModelWithProjection]]
 
-- **config** ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Blip2TextModelWithProjection[[transformers.Blip2TextModelWithProjection]]
+
+```python
+transformers.Blip2TextModelWithProjection(config: Blip2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L1280)
+
+**Parameters:**
+
+config ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Blip 2 Model with a projection layer on top (a linear layer on top of the pooled output).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -909,27 +1023,29 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.Blip2TextModelWithProjection.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L1304)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)`Blip2TextModelOutput` or `tuple(torch.FloatTensor)`A `Blip2TextModelOutput` or a tuple of
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+**Returns:** `Blip2TextModelOutput` or `tuple(torch.FloatTensor)`
+
+A `Blip2TextModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
-The [Blip2TextModelWithProjection](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2TextModelWithProjection) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
+
+The [Blip2TextModelWithProjection](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2TextModelWithProjection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -972,14 +1088,21 @@ torch.Size([2, 7, 256])
 
 ## Blip2VisionModelWithProjection[[transformers.Blip2VisionModelWithProjection]]
 
-- **config** ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Blip2VisionModelWithProjection[[transformers.Blip2VisionModelWithProjection]]
+
+```python
+transformers.Blip2VisionModelWithProjection(config: Blip2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L1365)
+
+**Parameters:**
+
+config ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Blip 2 Model with a projection layer on top (a linear layer on top of the pooled output).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -987,13 +1110,25 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor). See `BlipImageProcessor.__call__()` for details ([Blip2Processor](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Processor) uses
-  [BlipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/blip#transformers.BlipImageProcessor) for processing images).`Blip2VisionModelOutput` or `tuple(torch.FloatTensor)`A `Blip2VisionModelOutput` or a tuple of
+#### forward[[transformers.Blip2VisionModelWithProjection.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/blip_2/modeling_blip_2.py#L1388)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor). See `BlipImageProcessor.__call__()` for details ([Blip2Processor](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Processor) uses [BlipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/blip#transformers.BlipImageProcessor) for processing images).
+
+**Returns:** `Blip2VisionModelOutput` or `tuple(torch.FloatTensor)`
+
+A `Blip2VisionModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Blip2Config](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
-The [Blip2VisionModelWithProjection](/docs/transformers/v5.14.0/en/model_doc/blip-2#transformers.Blip2VisionModelWithProjection) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Blip2Config](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2Config)) and inputs.
+
+The [Blip2VisionModelWithProjection](/docs/transformers/v5.15.0/en/model_doc/blip-2#transformers.Blip2VisionModelWithProjection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1037,5 +1172,5 @@ Examples:
 torch.Size([1, 32, 256])
 ```
 
-### Qwen2
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/qwen2.md
+### Speech Encoder Decoder Models
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/speech-encoder-decoder.md

@@ -40,68 +40,68 @@ with torch.no_grad():
 
 ## TimesFm2_5Config[[transformers.TimesFm2_5Config]]
 
-- **patch_length** (`int`, *optional*, defaults to 32) --
-  The length of one patch in the input sequence.
-- **context_length** (`int`, *optional*, defaults to 16384) --
-  The length of the input context.
-- **horizon_length** (`int`, *optional*, defaults to 128) --
-  The length of the prediction horizon.
-- **num_hidden_layers** (`int`, *optional*, defaults to `20`) --
-  Number of hidden layers in the Transformer decoder.
-- **hidden_size** (`int`, *optional*, defaults to `1280`) --
-  Dimension of the hidden representations.
-- **intermediate_size** (`int`, *optional*, defaults to `1280`) --
-  Dimension of the MLP representations.
-- **head_dim** (`int`, *optional*, defaults to `80`) --
-  The attention head dimension. If None, it will default to hidden_size // num_attention_heads
-- **num_attention_heads** (`int`, *optional*, defaults to `16`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **rms_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the rms normalization layers.
-- **quantiles** (`list[float]`, *optional*, defaults to `[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]`) --
-  The quantiles to predict.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **num_key_value_heads** (`int`, *optional*, defaults to `16`) --
-  This is the number of key_value heads that should be used to implement Grouped Query Attention. If
-  `num_key_value_heads=num_attention_heads`, the model will use Multi Head Attention (MHA), if
-  `num_key_value_heads=1` the model will use Multi Query Attention (MQA) otherwise GQA is used. When
-  converting a multi-head checkpoint to a GQA checkpoint, each group key and value head should be constructed
-  by meanpooling all the original heads within that group. For more details, check out [this
-  paper](https://huggingface.co/papers/2305.13245). If it is not specified, will default to
-  `num_attention_heads`.
-- **attention_bias** (`bool`, *optional*, defaults to `False`) --
-  Whether to use a bias in the query, key, value and output projection layers during self-attention.
-- **output_quantile_len** (`int`, *optional*, defaults to 1024) --
-  Length of the quantile output projection dimension.
-- **decode_index** (`int`, *optional*, defaults to 5) --
-  Index into the quantile dimension used to extract the point (median) forecast.
-- **use_bias** (`bool`, *optional*, defaults to `False`) --
-  Whether to use bias in MLP and transformer linear layers.
-- **activation** (`str`, *optional*, defaults to `swish`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **use_continuous_quantile_head** (`bool`, *optional*, defaults to `True`) --
-  Whether to use the continuous quantile head for non-median quantile predictions.
-- **force_flip_invariance** (`bool`, *optional*, defaults to `True`) --
-  Whether to apply flip-invariance averaging during forecasting.
-- **infer_is_positive** (`bool`, *optional*, defaults to `True`) --
-  Whether to clamp forecasts to non-negative values when the input minimum is non-negative.
-- **max_position_embeddings** (`int`, *optional*, defaults to `16384`) --
-  The maximum sequence length that this model might ever be used with.
-- **rope_parameters** (`Union[~modeling_rope_utils.RopeParameters, dict]`, *optional*) --
-  Dictionary containing the configuration parameters for the RoPE embeddings. The dictionary should contain
-  a value for `rope_theta` and optionally parameters used for scaling in case you want to use RoPE
-  with longer `max_position_embeddings`.
+#### transformers.TimesFm2_5Config[[transformers.TimesFm2_5Config]]
+
+```python
+transformers.TimesFm2_5Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, patch_length: int = 32, context_length: int = 16384, horizon_length: int = 128, num_hidden_layers: int = 20, hidden_size: int = 1280, intermediate_size: int = 1280, head_dim: int = 80, num_attention_heads: int = 16, rms_norm_eps: float = 1e-06, quantiles: list[float] | tuple[float, ...] = (0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9), attention_dropout: float | int = 0.0, initializer_range: float = 0.02, num_key_value_heads: int = 16, attention_bias: bool = False, output_quantile_len: int = 1024, decode_index: int = 5, use_bias: bool = False, activation: str = 'swish', use_continuous_quantile_head: bool = True, force_flip_invariance: bool = True, infer_is_positive: bool = True, max_position_embeddings: int = 16384, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm2_5/configuration_timesfm2_5.py#L30)
+
+**Parameters:**
+
+patch_length (`int`, *optional*, defaults to 32) : The length of one patch in the input sequence.
+
+context_length (`int`, *optional*, defaults to 16384) : The length of the input context.
+
+horizon_length (`int`, *optional*, defaults to 128) : The length of the prediction horizon.
+
+num_hidden_layers (`int`, *optional*, defaults to `20`) : Number of hidden layers in the Transformer decoder.
+
+hidden_size (`int`, *optional*, defaults to `1280`) : Dimension of the hidden representations.
+
+intermediate_size (`int`, *optional*, defaults to `1280`) : Dimension of the MLP representations.
+
+head_dim (`int`, *optional*, defaults to `80`) : The attention head dimension. If None, it will default to hidden_size // num_attention_heads
+
+num_attention_heads (`int`, *optional*, defaults to `16`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+rms_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the rms normalization layers.
+
+quantiles (`list[float]`, *optional*, defaults to `[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]`) : The quantiles to predict.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+num_key_value_heads (`int`, *optional*, defaults to `16`) : This is the number of key_value heads that should be used to implement Grouped Query Attention. If `num_key_value_heads=num_attention_heads`, the model will use Multi Head Attention (MHA), if `num_key_value_heads=1` the model will use Multi Query Attention (MQA) otherwise GQA is used. When converting a multi-head checkpoint to a GQA checkpoint, each group key and value head should be constructed by meanpooling all the original heads within that group. For more details, check out [this paper](https://huggingface.co/papers/2305.13245). If it is not specified, will default to `num_attention_heads`.
+
+attention_bias (`bool`, *optional*, defaults to `False`) : Whether to use a bias in the query, key, value and output projection layers during self-attention.
+
+output_quantile_len (`int`, *optional*, defaults to 1024) : Length of the quantile output projection dimension.
+
+decode_index (`int`, *optional*, defaults to 5) : Index into the quantile dimension used to extract the point (median) forecast.
+
+use_bias (`bool`, *optional*, defaults to `False`) : Whether to use bias in MLP and transformer linear layers.
+
+activation (`str`, *optional*, defaults to `swish`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+use_continuous_quantile_head (`bool`, *optional*, defaults to `True`) : Whether to use the continuous quantile head for non-median quantile predictions.
+
+force_flip_invariance (`bool`, *optional*, defaults to `True`) : Whether to apply flip-invariance averaging during forecasting.
+
+infer_is_positive (`bool`, *optional*, defaults to `True`) : Whether to clamp forecasts to non-negative values when the input minimum is non-negative.
+
+max_position_embeddings (`int`, *optional*, defaults to `16384`) : The maximum sequence length that this model might ever be used with.
+
+rope_parameters (`Union[~modeling_rope_utils.RopeParameters, dict]`, *optional*) : Dictionary containing the configuration parameters for the RoPE embeddings. The dictionary should contain a value for `rope_theta` and optionally parameters used for scaling in case you want to use RoPE with longer `max_position_embeddings`.
 
 This is the configuration class to store the configuration of a TimesFm2_5Model. It is used to instantiate a Timesfm2 5
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/timesfm-2.5-200m-transformers](https://huggingface.co/google/timesfm-2.5-200m-transformers)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -115,14 +115,35 @@ Example:
 
 ## TimesFm2_5Model[[transformers.TimesFm2_5Model]]
 
-)>"}, {"name": "past_values_padding", "val": ": typing.Optional[torch.LongTensor] = None"}, {"name": "**kwargs", "val": ": Unpack"}]}>
-- **past_values** (`torch.Tensor` of shape `(batch_size, sequence_length)`) --
-  Past values of the time series used as input to the model.
-- **past_values_padding** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Padding mask for the input. `1` indicates padded (masked) time steps, `0` indicates valid values.`TimesFm2_5Output` or `tuple(torch.FloatTensor)`A `TimesFm2_5Output` or a tuple of
+#### transformers.TimesFm2_5Model[[transformers.TimesFm2_5Model]]
+
+```python
+transformers.TimesFm2_5Model(config: TimesFm2_5Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L465)
+
+#### forward[[transformers.TimesFm2_5Model.forward]]
+
+```python
+forward(past_values: Tensor, past_values_padding: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L561)
+
+**Parameters:**
+
+past_values (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Past values of the time series used as input to the model.
+
+past_values_padding (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Padding mask for the input. `1` indicates padded (masked) time steps, `0` indicates valid values.
+
+**Returns:** `TimesFm2_5Output` or `tuple(torch.FloatTensor)`
+
+A `TimesFm2_5Output` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TimesFm2_5Config](/docs/transformers/v5.14.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5Config)) and inputs.
-The [TimesFm2_5Model](/docs/transformers/v5.14.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5Model) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([TimesFm2_5Config](/docs/transformers/v5.15.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5Config)) and inputs.
+
+The [TimesFm2_5Model](/docs/transformers/v5.15.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -147,24 +168,45 @@ the latter silently ignores them.
 
 ## TimesFm2_5ModelForPrediction[[transformers.TimesFm2_5ModelForPrediction]]
 
+#### transformers.TimesFm2_5ModelForPrediction[[transformers.TimesFm2_5ModelForPrediction]]
+
+```python
+transformers.TimesFm2_5ModelForPrediction(config: TimesFm2_5Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L647)
+
 TimesFm2_5 model for quantile and mean prediction.
 
-- **past_values** (`collections.abc.Sequence[doc_builder.mock_imports.torch.Tensor]`) --
-  Past values of the time series that serves as input to the model. Each tensor is a 1D time series.
-- **window_size** (`int`, *optional*) --
-  Window size of trend + residual decomposition. If `None`, decomposition is not applied.
-- **future_values** (`torch.Tensor`, *optional*) --
-  Optional future values used to compute the loss.
-- **forecast_context_len** (`int`, *optional*) --
-  Optional context length override used during forecasting.
-- **truncate_negative** (`bool`, *optional*) --
-  Whether to clamp outputs to non-negative values. If `None`, defaults to `config.infer_is_positive`.
-- **force_flip_invariance** (`bool`, *optional*) --
-  Whether to apply the flip-invariance combination. If `None`, defaults to
-  `config.force_flip_invariance`.`TimesFm2_5OutputForPrediction` or `tuple(torch.FloatTensor)`A `TimesFm2_5OutputForPrediction` or a tuple of
+#### forward[[transformers.TimesFm2_5ModelForPrediction.forward]]
+
+```python
+forward(past_values: Sequence, window_size: int | None = None, future_values: typing.Optional[torch.Tensor] = None, forecast_context_len: int | None = None, truncate_negative: bool | None = None, force_flip_invariance: bool | None = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm2_5/modeling_timesfm2_5.py#L735)
+
+**Parameters:**
+
+past_values (`collections.abc.Sequence[torch.Tensor]`) : Past values of the time series that serves as input to the model. Each tensor is a 1D time series.
+
+window_size (`int`, *optional*) : Window size of trend + residual decomposition. If `None`, decomposition is not applied.
+
+future_values (`torch.Tensor`, *optional*) : Optional future values used to compute the loss.
+
+forecast_context_len (`int`, *optional*) : Optional context length override used during forecasting.
+
+truncate_negative (`bool`, *optional*) : Whether to clamp outputs to non-negative values. If `None`, defaults to `config.infer_is_positive`.
+
+force_flip_invariance (`bool`, *optional*) : Whether to apply the flip-invariance combination. If `None`, defaults to `config.force_flip_invariance`.
+
+**Returns:** `TimesFm2_5OutputForPrediction` or `tuple(torch.FloatTensor)`
+
+A `TimesFm2_5OutputForPrediction` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TimesFm2_5Config](/docs/transformers/v5.14.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5Config)) and inputs.
-The [TimesFm2_5ModelForPrediction](/docs/transformers/v5.14.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5ModelForPrediction) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([TimesFm2_5Config](/docs/transformers/v5.15.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5Config)) and inputs.
+
+The [TimesFm2_5ModelForPrediction](/docs/transformers/v5.15.0/en/model_doc/timesfm2_5#transformers.TimesFm2_5ModelForPrediction) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -184,5 +226,5 @@ the latter silently ignores them.
 - **full_predictions** (`torch.Tensor` of shape `(batch_size, horizon_length, quantiles)`) -- Quantile forecasts including the median after denormalization.
 - **loss** (`torch.Tensor` of shape `(1,)`, *optional*, returned when `future_values` is provided) -- Training loss combining MSE and quantile losses when targets are supplied.
 
-### ConvNeXT
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/convnext.md
+### ZoeDepth
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/zoedepth.md

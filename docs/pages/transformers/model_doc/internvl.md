@@ -294,55 +294,62 @@ decoded_outputs
 
 ## InternVLVisionConfig[[transformers.InternVLVisionConfig]]
 
-- **hidden_size** (`int`, *optional*, defaults to `1024`) --
-  Dimension of the hidden representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `24`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `16`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **attention_bias** (`bool`, *optional*, defaults to `False`) --
-  Whether to use a bias in the query, key, value and output projection layers during self-attention.
-- **use_qk_norm** (`bool`, *optional*, defaults to `False`) --
-  Whether to use query-key normalization in the attention.
-- **intermediate_size** (`int`, *optional*, defaults to `4096`) --
-  Dimension of the MLP representations.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **projection_dropout** (`float`, *optional*, defaults to 0.0) --
-  Dropout probability for the projection layer.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **norm_type** (`str`, *optional*, defaults to `"layer_norm"`) --
-  The type of normalization to use in the encoder. Can be `"layer_norm"` or `"rms_norm"`.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **image_size** (`Union[int, list[int], tuple[int, ...]]`, *optional*, defaults to `(448, 448)`) --
-  The size (resolution) of each image.
-- **patch_size** (`Union[int, list[int], tuple[int, ...]]`, *optional*, defaults to `(14, 14)`) --
-  The size (resolution) of each patch.
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **use_mask_token** (`bool`, *optional*, defaults to `False`) --
-  Whether to use a mask token for masked image modeling
-- **use_absolute_position_embeddings** (`bool`, *optional*, defaults to `True`) --
-  Whether to use absolute position embeddings.
-- **layer_scale_init_value** (`float`, *optional*, defaults to `0.1`) --
-  Scale to use in the self-attention layers. 0.1 for base, 1e-6 for large. Set 0 to disable layer scale.
-- **use_mean_pooling** (`bool`, *optional*, defaults to `True`) --
-  Whether to mean pool the final hidden states of the patches instead of using the final hidden state of the
-  CLS token, before applying the classification head.
+#### transformers.InternVLVisionConfig[[transformers.InternVLVisionConfig]]
+
+```python
+transformers.InternVLVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 1024, num_hidden_layers: int = 24, num_attention_heads: int = 16, attention_bias: bool = False, use_qk_norm: bool = False, intermediate_size: int = 4096, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_dropout: float | int = 0.0, projection_dropout: float | int = 0.0, initializer_range: float = 0.02, norm_type: str = 'layer_norm', layer_norm_eps: float = 1e-06, image_size: int | list[int] | tuple[int, ...] = (448, 448), patch_size: int | list[int] | tuple[int, ...] = (14, 14), num_channels: int = 3, use_mask_token: bool = False, use_absolute_position_embeddings: bool = True, layer_scale_init_value: float = 0.1, use_mean_pooling: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/internvl/configuration_internvl.py#L25)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `1024`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `24`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `16`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+attention_bias (`bool`, *optional*, defaults to `False`) : Whether to use a bias in the query, key, value and output projection layers during self-attention.
+
+use_qk_norm (`bool`, *optional*, defaults to `False`) : Whether to use query-key normalization in the attention.
+
+intermediate_size (`int`, *optional*, defaults to `4096`) : Dimension of the MLP representations.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+projection_dropout (`float`, *optional*, defaults to 0.0) : Dropout probability for the projection layer.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+norm_type (`str`, *optional*, defaults to `"layer_norm"`) : The type of normalization to use in the encoder. Can be `"layer_norm"` or `"rms_norm"`.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+image_size (`Union[int, list[int], tuple[int, ...]]`, *optional*, defaults to `(448, 448)`) : The size (resolution) of each image.
+
+patch_size (`Union[int, list[int], tuple[int, ...]]`, *optional*, defaults to `(14, 14)`) : The size (resolution) of each patch.
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+use_mask_token (`bool`, *optional*, defaults to `False`) : Whether to use a mask token for masked image modeling
+
+use_absolute_position_embeddings (`bool`, *optional*, defaults to `True`) : Whether to use absolute position embeddings.
+
+layer_scale_init_value (`float`, *optional*, defaults to `0.1`) : Scale to use in the self-attention layers. 0.1 for base, 1e-6 for large. Set 0 to disable layer scale.
+
+use_mean_pooling (`bool`, *optional*, defaults to `True`) : Whether to mean pool the final hidden states of the patches instead of using the final hidden state of the CLS token, before applying the classification head.
 
 This is the configuration class to store the configuration of a InternVLModel. It is used to instantiate a Internvl
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [OpenGVLab/InternVL3-1B-hf](https://huggingface.co/OpenGVLab/InternVL3-1B-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -361,33 +368,40 @@ Example:
 
 ## InternVLConfig[[transformers.InternVLConfig]]
 
-- **vision_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the vision backbone.
-- **text_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the text backbone.
-- **image_token_id** (`int`, *optional*, defaults to `151667`) --
-  The image token index used as a placeholder for input images.
-- **image_seq_length** (`int`, *optional*, defaults to `256`) --
-  Sequence length of one image embedding.
-- **downsample_ratio** (`float`, *optional*, defaults to 0.5) --
-  Factor by which to downsample the image.
-- **projector_hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The activation function used by the multimodal projector.
-- **vision_feature_layer** (`Union[int, list[int]]`, *optional*, defaults to `-1`) --
-  The index of the layer to select the vision feature. If multiple indices are provided,
-  the vision feature of the corresponding indices will be concatenated to form the
-  vision features.
-- **vision_feature_select_strategy** (`str`, *optional*, defaults to `default`) --
-  The feature selection strategy used to select the vision feature from the vision backbone.
-- **tie_word_embeddings** (`bool`, *optional*, defaults to `True`) --
-  Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
+#### transformers.InternVLConfig[[transformers.InternVLConfig]]
+
+```python
+transformers.InternVLConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_id: int = 151667, image_seq_length: int = 256, downsample_ratio: float = 0.5, projector_hidden_act: str = 'gelu', vision_feature_layer: int | list[int] = -1, vision_feature_select_strategy: str = 'default', tie_word_embeddings: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/internvl/configuration_internvl.py#L88)
+
+**Parameters:**
+
+vision_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the vision backbone.
+
+text_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the text backbone.
+
+image_token_id (`int`, *optional*, defaults to `151667`) : The image token index used as a placeholder for input images.
+
+image_seq_length (`int`, *optional*, defaults to `256`) : Sequence length of one image embedding.
+
+downsample_ratio (`float`, *optional*, defaults to 0.5) : Factor by which to downsample the image.
+
+projector_hidden_act (`str`, *optional*, defaults to `gelu`) : The activation function used by the multimodal projector.
+
+vision_feature_layer (`Union[int, list[int]]`, *optional*, defaults to `-1`) : The index of the layer to select the vision feature. If multiple indices are provided, the vision feature of the corresponding indices will be concatenated to form the vision features.
+
+vision_feature_select_strategy (`str`, *optional*, defaults to `default`) : The feature selection strategy used to select the vision feature from the vision backbone.
+
+tie_word_embeddings (`bool`, *optional*, defaults to `True`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
 
 This is the configuration class to store the configuration of a InternVLModel. It is used to instantiate a Internvl
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [OpenGVLab/InternVL3-1B-hf](https://huggingface.co/OpenGVLab/InternVL3-1B-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -406,14 +420,21 @@ Example:
 
 ## InternVLVisionModel[[transformers.InternVLVisionModel]]
 
-- **config** ([InternVLVisionConfig](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLVisionConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.InternVLVisionModel[[transformers.InternVLVisionModel]]
+
+```python
+transformers.InternVLVisionModel(config: InternVLVisionConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/internvl/modeling_internvl.py#L428)
+
+**Parameters:**
+
+config ([InternVLVisionConfig](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Internvl Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -421,16 +442,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "bool_masked_pos", "val": ": typing.Optional[torch.BoolTensor] = None"}, {"name": "**kwargs", "val": ""}]}>
-- **pixel_values** (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [GotOcr2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor). See `GotOcr2ImageProcessor.__call__()` for details ([InternVLProcessor](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLProcessor) uses
-  [GotOcr2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor) for processing images).
-- **bool_masked_pos** (`torch.BoolTensor` of shape `(batch_size, num_patches)`, *optional*) --
-  Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).`InternVLVisionModelOutputWithPooling` or `tuple(torch.FloatTensor)`A `InternVLVisionModelOutputWithPooling` or a tuple of
+#### forward[[transformers.InternVLVisionModel.forward]]
+
+```python
+forward(pixel_values: Tensor, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/internvl/modeling_internvl.py#L446)
+
+**Parameters:**
+
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GotOcr2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor). See `GotOcr2ImageProcessor.__call__()` for details ([InternVLProcessor](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLProcessor) uses [GotOcr2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor) for processing images).
+
+bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`, *optional*) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
+
+**Returns:** `InternVLVisionModelOutputWithPooling` or `tuple(torch.FloatTensor)`
+
+A `InternVLVisionModelOutputWithPooling` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([InternVLConfig](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLConfig)) and inputs.
-The [InternVLVisionModel](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLVisionModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([InternVLConfig](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLConfig)) and inputs.
+
+The [InternVLVisionModel](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -452,14 +484,21 @@ the latter silently ignores them.
 
 ## InternVLModel[[transformers.InternVLModel]]
 
-- **config** ([InternVLConfig](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.InternVLModel[[transformers.InternVLModel]]
+
+```python
+transformers.InternVLModel(config: InternVLConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/internvl/modeling_internvl.py#L529)
+
+**Parameters:**
+
+config ([InternVLConfig](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The InternVL model which consists of a vision backbone and a language model, without a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -467,55 +506,39 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.InternVLModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, vision_feature_layer: int | list[int] | None = None, vision_feature_select_strategy: str | None = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [GotOcr2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor). See `GotOcr2ImageProcessor.__call__()` for details ([InternVLProcessor](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLProcessor) uses
-  [GotOcr2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor) for processing images).
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/internvl/modeling_internvl.py#L613)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [GotOcr2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor). See `GotOcr2ImageProcessor.__call__()` for details ([InternVLProcessor](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLProcessor) uses [GotOcr2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor) for processing images).
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  The model will output the same cache format that is fed as input.
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **vision_feature_layer** (`Union[int, list[int]]`, *optional*) --
-  The index of the layer to select the vision feature. If multiple indices are provided,
-  the vision feature of the corresponding indices will be concatenated to form the
-  vision features.
-- **vision_feature_select_strategy** (`str`, *optional*) --
-  The feature selection strategy used to select the vision feature from the vision backbone.
-  Can be one of `"default"` or `"full"`.`InternVLModelOutputWithPast` or `tuple(torch.FloatTensor)`A `InternVLModelOutputWithPast` or a tuple of
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+vision_feature_layer (`Union[int, list[int]]`, *optional*) : The index of the layer to select the vision feature. If multiple indices are provided, the vision feature of the corresponding indices will be concatenated to form the vision features.
+
+vision_feature_select_strategy (`str`, *optional*) : The feature selection strategy used to select the vision feature from the vision backbone. Can be one of `"default"` or `"full"`.
+
+**Returns:** `InternVLModelOutputWithPast` or `tuple(torch.FloatTensor)`
+
+A `InternVLModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([InternVLConfig](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLConfig)) and inputs.
-The [InternVLModel](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([InternVLConfig](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLConfig)) and inputs.
+
+The [InternVLModel](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -525,7 +548,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -541,19 +564,30 @@ the latter silently ignores them.
 - **image_hidden_states** (`torch.FloatTensor`, *optional*) -- A `torch.FloatTensor` of size `(batch_size, num_images, sequence_length, hidden_size)`.
   image_hidden_states of the model produced by the vision encoder and after projecting the last hidden state.
 
-- **pixel_values** (`torch.FloatTensor]` of shape `(batch_size, channels, height, width)`) --
-  The tensors corresponding to the input images.
-- **vision_feature_layer** (`int` or `list[int]`) --
-  Layer index or list of layer indices to extract features from.
-- **vision_feature_layer** (`Union[int, list[int]]`, *optional*) --
-  The index of the layer to select the vision feature. If multiple indices are provided,
-  the vision feature of the corresponding indices will be concatenated to form the
-  vision features.
-- **vision_feature_select_strategy** (`str`, *optional*) --
-  The feature selection strategy used to select the vision feature from the vision backbone.
-  Can be one of `"default"` or `"full"`.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### get_image_features[[transformers.InternVLModel.get_image_features]]
+
+```python
+get_image_features(pixel_values: FloatTensor, vision_feature_layer: int | list[int] | None = None, vision_feature_select_strategy: str | None = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/internvl/modeling_internvl.py#L538)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, channels, height, width)`) : The tensors corresponding to the input images.
+
+vision_feature_layer (`int` or `list[int]`) : Layer index or list of layer indices to extract features from.
+
+vision_feature_layer (`Union[int, list[int]]`, *optional*) : The index of the layer to select the vision feature. If multiple indices are provided, the vision feature of the corresponding indices will be concatenated to form the vision features.
+
+vision_feature_select_strategy (`str`, *optional*) : The feature selection strategy used to select the vision feature from the vision backbone. Can be one of `"default"` or `"full"`.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([InternVLConfig](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLConfig)) and inputs.
+elements depending on the configuration ([InternVLConfig](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLConfig)) and inputs.
+
 Obtains image last hidden states from the vision tower and apply multimodal projection.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
@@ -573,14 +607,21 @@ Obtains image last hidden states from the vision tower and apply multimodal proj
 
 ## InternVLForConditionalGeneration[[transformers.InternVLForConditionalGeneration]]
 
-- **config** ([InternVLConfig](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.InternVLForConditionalGeneration[[transformers.InternVLForConditionalGeneration]]
+
+```python
+transformers.InternVLForConditionalGeneration(config: InternVLConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/internvl/modeling_internvl.py#L733)
+
+**Parameters:**
+
+config ([InternVLConfig](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The INTERNVL model which consists of a vision backbone and a language model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -588,67 +629,45 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.InternVLForConditionalGeneration.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, vision_feature_layer: int | list[int] | None = None, vision_feature_select_strategy: str | None = None, labels: typing.Optional[torch.LongTensor] = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, image_sizes: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [GotOcr2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor). See `GotOcr2ImageProcessor.__call__()` for details ([InternVLProcessor](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLProcessor) uses
-  [GotOcr2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor) for processing images).
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/internvl/modeling_internvl.py#L760)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [GotOcr2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor). See `GotOcr2ImageProcessor.__call__()` for details ([InternVLProcessor](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLProcessor) uses [GotOcr2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor) for processing images).
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  The model will output the same cache format that is fed as input.
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **vision_feature_layer** (`Union[int, list[int]]`, *optional*) --
-  The index of the layer to select the vision feature. If multiple indices are provided,
-  the vision feature of the corresponding indices will be concatenated to form the
-  vision features.
-- **vision_feature_select_strategy** (`str`, *optional*) --
-  The feature selection strategy used to select the vision feature from the vision backbone.
-  Can be one of `"default"` or `"full"`.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
-- **logits_to_keep** (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) --
-  If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all
-  `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that
-  token can save memory, which becomes pretty significant for long sequences or large vocabulary size.
-  If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension.
-  This is useful when using packed tensor format (single dimension for batch and sequence length).
-- **image_sizes** (`torch.Tensor` of shape `(batch_size, 2)`, *optional*) --
-  The sizes of the images in the batch, being (height, width) for each image.`InternVLCausalLMOutputWithPast` or `tuple(torch.FloatTensor)`A `InternVLCausalLMOutputWithPast` or a tuple of
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+vision_feature_layer (`Union[int, list[int]]`, *optional*) : The index of the layer to select the vision feature. If multiple indices are provided, the vision feature of the corresponding indices will be concatenated to form the vision features.
+
+vision_feature_select_strategy (`str`, *optional*) : The feature selection strategy used to select the vision feature from the vision backbone. Can be one of `"default"` or `"full"`.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
+
+image_sizes (`torch.Tensor` of shape `(batch_size, 2)`, *optional*) : The sizes of the images in the batch, being (height, width) for each image.
+
+**Returns:** `InternVLCausalLMOutputWithPast` or `tuple(torch.FloatTensor)`
+
+A `InternVLCausalLMOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([InternVLConfig](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLConfig)) and inputs.
-The [InternVLForConditionalGeneration](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLForConditionalGeneration) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([InternVLConfig](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLConfig)) and inputs.
+
+The [InternVLForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -656,7 +675,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -707,19 +726,27 @@ Example:
 The images depict the Statue of Liberty and the Golden Gate Bridge.
 ```
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [GotOcr2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor). See `GotOcr2ImageProcessor.__call__()` for details ([InternVLProcessor](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLProcessor) uses
-  [GotOcr2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor) for processing images).
-- **vision_feature_layer** (`Union[int, list[int]]`, *optional*) --
-  The index of the layer to select the vision feature. If multiple indices are provided,
-  the vision feature of the corresponding indices will be concatenated to form the
-  vision features.
-- **vision_feature_select_strategy** (`str`, *optional*) --
-  The feature selection strategy used to select the vision feature from the vision backbone.
-  Can be one of `"default"` or `"full"`.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### get_image_features[[transformers.InternVLForConditionalGeneration.get_image_features]]
+
+```python
+get_image_features(pixel_values: FloatTensor, vision_feature_layer: int | list[int] | None = None, vision_feature_select_strategy: str | None = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/internvl/modeling_internvl.py#L745)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GotOcr2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor). See `GotOcr2ImageProcessor.__call__()` for details ([InternVLProcessor](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLProcessor) uses [GotOcr2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor) for processing images).
+
+vision_feature_layer (`Union[int, list[int]]`, *optional*) : The index of the layer to select the vision feature. If multiple indices are provided, the vision feature of the corresponding indices will be concatenated to form the vision features.
+
+vision_feature_select_strategy (`str`, *optional*) : The feature selection strategy used to select the vision feature from the vision backbone. Can be one of `"default"` or `"full"`.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([InternVLConfig](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLConfig)) and inputs.
+elements depending on the configuration ([InternVLConfig](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -768,39 +795,54 @@ Example:
 
 ## InternVLProcessor[[transformers.InternVLProcessor]]
 
-- **image_processor** (`GotOcr2ImageProcessor`) --
-  The image processor is a required input.
-- **tokenizer** (`Qwen2Tokenizer`) --
-  The tokenizer is a required input.
-- **video_processor** (`InternVLVideoProcessor`) --
-  The video processor is a required input.
-- **image_seq_length** (`int`, *optional*, defaults to 256) --
-  The number of image token to use per image patch. it should be set so that:
-  image_seq_length = (config.image_size // config.patch_size) ** 2 * (config.scale_factor**2)
-- **chat_template** (`str`) --
-  A Jinja template to convert lists of messages in a chat into a tokenizable string.
+#### transformers.InternVLProcessor[[transformers.InternVLProcessor]]
+
+```python
+transformers.InternVLProcessor(image_processor = None, tokenizer = None, video_processor = None, image_seq_length: int = 256, chat_template = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/internvl/processing_internvl.py#L43)
+
+**Parameters:**
+
+image_processor (`GotOcr2ImageProcessor`) : The image processor is a required input.
+
+tokenizer (`Qwen2Tokenizer`) : The tokenizer is a required input.
+
+video_processor (`InternVLVideoProcessor`) : The video processor is a required input.
+
+image_seq_length (`int`, *optional*, defaults to 256) : The number of image token to use per image patch. it should be set so that: image_seq_length = (config.image_size // config.patch_size) ** 2 * (config.scale_factor**2)
+
+chat_template (`str`) : A Jinja template to convert lists of messages in a chat into a tokenizable string.
+
 Constructs a InternVLProcessor which wraps a image processor, a tokenizer, and a video processor into a single processor.
 
-[InternVLProcessor](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLProcessor) offers all the functionalities of [GotOcr2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor), [Qwen2Tokenizer](/docs/transformers/v5.14.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer), and [InternVLVideoProcessor](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLVideoProcessor). See the
-[~GotOcr2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor), [~Qwen2Tokenizer](/docs/transformers/v5.14.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer), and [~InternVLVideoProcessor](/docs/transformers/v5.14.0/en/model_doc/internvl#transformers.InternVLVideoProcessor) for more information.
+[InternVLProcessor](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLProcessor) offers all the functionalities of [GotOcr2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor), [Qwen2Tokenizer](/docs/transformers/v5.15.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer), and [InternVLVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLVideoProcessor). See the
+[~GotOcr2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/got_ocr2#transformers.GotOcr2ImageProcessor), [~Qwen2Tokenizer](/docs/transformers/v5.15.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer), and [~InternVLVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/internvl#transformers.InternVLVideoProcessor) for more information.
 
-- **images** (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) --
-  Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If
-  passing in images with pixel values between 0 and 1, set `do_rescale=False`.
-- **text** (`Union[str, list[str], list[list[str]]]`, *optional*) --
-  The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings
-  (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
-- **videos** (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor], list[list[PIL.Image.Image]], list[list[numpy.ndarray]], list[list[torch.Tensor]], ~video_utils.URL, list[~video_utils.URL], list[list[~video_utils.URL]], ~video_utils.Path, list[~video_utils.Path], list[list[~video_utils.Path]]]`, *optional*) --
-  Video to preprocess. Expects a single or batch of videos with pixel values ranging from 0 to 255. If
-  passing in videos with pixel values between 0 and 1, set `do_rescale=False`.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  If set, will return tensors of a particular framework. Acceptable values are:
+#### __call__[[transformers.InternVLProcessor.__call__]]
 
-  - `'pt'`: Return PyTorch `torch.Tensor` objects.
-  - `'np'`: Return NumPy `np.ndarray` objects.
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) --
-  Additional processing options for each modality (text, images, videos, audio). Model-specific parameters
-  are listed above; see the TypedDict class for the complete list of supported arguments.[BatchFeature](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BatchFeature)A [BatchFeature](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
+```python
+__call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/internvl/processing_internvl.py#L78)
+
+**Parameters:**
+
+images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+text (`Union[str, list[str], list[list[str]]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
+
+videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor], list[list[PIL.Image.Image]], list[list[numpy.ndarray]], list[list[torch.Tensor]], ~video_utils.URL, list[~video_utils.URL], list[list[~video_utils.URL]], ~video_utils.Path, list[~video_utils.Path], list[list[~video_utils.Path]]]`, *optional*) : Video to preprocess. Expects a single or batch of videos with pixel values ranging from 0 to 255. If passing in videos with pixel values between 0 and 1, set `do_rescale=False`.
+
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+
+**Returns:** [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature)
+
+A [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model. Returned when `text` is not `None`.
 - **attention_mask** -- List of indices specifying which tokens should be attended to by the model (when
@@ -810,18 +852,39 @@ Constructs a InternVLProcessor which wraps a image processor, a tokenizer, and a
 
 ## InternVLVideoProcessor[[transformers.InternVLVideoProcessor]]
 
-- **metadata** (`VideoMetadata`) --
-  Metadata of the video containing information about total duration, fps and total number of frames.
-- **num_frames** (`int`, *optional*) --
-  Maximum number of frames to sample. Defaults to `self.num_frames`.
-- **fps** (`int` or `float`, *optional*) --
-  Target frames to sample per second. Defaults to `self.fps`.
-- **initial_shift** (`bool`, `float` or `int`, defaults to `self.initial_shift`) --
-  The initial shift to apply when sampling frames. If `True`, the shift is set so that frames are sampled from the middle of the video.np.ndarrayIndices to sample video frames.
+#### transformers.InternVLVideoProcessor[[transformers.InternVLVideoProcessor]]
+
+```python
+transformers.InternVLVideoProcessor(**kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/internvl/video_processing_internvl.py#L31)
+
+#### sample_frames[[transformers.InternVLVideoProcessor.sample_frames]]
+
+```python
+sample_frames(metadata: VideoMetadata, num_frames: int | None = None, fps: int | float | None = None, initial_shift: bool | float | int | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/internvl/video_processing_internvl.py#L47)
+
+**Parameters:**
+
+metadata (`VideoMetadata`) : Metadata of the video containing information about total duration, fps and total number of frames.
+
+num_frames (`int`, *optional*) : Maximum number of frames to sample. Defaults to `self.num_frames`.
+
+fps (`int` or `float`, *optional*) : Target frames to sample per second. Defaults to `self.fps`.
+
+initial_shift (`bool`, `float` or `int`, defaults to `self.initial_shift`) : The initial shift to apply when sampling frames. If `True`, the shift is set so that frames are sampled from the middle of the video.
+
+**Returns:** `np.ndarray`
+
+Indices to sample video frames.
 
 Default sampling function which uniformly samples the desired number of frames between 0 and total number of frames.
-If `fps` is passed along with metadata, `fps` frames per second are sampled uniformty. Arguments `num_frames`
+If `fps` is passed along with metadata, `fps` frames per second are sampled uniformly. Arguments `num_frames`
 and `fps` are mutually exclusive.
 
-### CLVP
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/clvp.md
+### BARTpho
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/bartpho.md

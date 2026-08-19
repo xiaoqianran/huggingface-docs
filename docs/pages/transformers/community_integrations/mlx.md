@@ -37,5 +37,5 @@ print(output)
 - [mlx-lm](https://github.com/ml-explore/mlx-lm) repository containing MLX LLM implementations
 - [mlx-vlm](https://github.com/Blaizzy/mlx-vlm) community library with VLM implementations
 
-### TRL
-https://huggingface.co/docs/transformers/v5.14.0/community_integrations/trl.md
+### Unsloth
+https://huggingface.co/docs/transformers/v5.15.0/community_integrations/unsloth.md

@@ -17,7 +17,7 @@ git submodule update --init --recursive
 pip install .
 ```
 
-Quantize a model on-the-fly by defining the quantization data type in [EetqConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.EetqConfig).
+Quantize a model on-the-fly by defining the quantization data type in [EetqConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.EetqConfig).
 
 ```py
 from transformers import AutoModelForCausalLM, EetqConfig
@@ -31,7 +31,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-Save the quantized model with [save_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) so it can be reused again with [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Save the quantized model with [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) so it can be reused again with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```py
 quant_path = "/path/to/save/quantized/model"
@@ -39,5 +39,5 @@ model.save_pretrained(quant_path)
 model = AutoModelForCausalLM.from_pretrained(quant_path, device_map="auto")
 ```
 
-### SpQR
-https://huggingface.co/docs/transformers/v5.14.0/quantization/spqr.md
+### Quark
+https://huggingface.co/docs/transformers/v5.15.0/quantization/quark.md

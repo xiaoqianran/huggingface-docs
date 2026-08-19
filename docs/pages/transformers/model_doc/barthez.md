@@ -8,7 +8,7 @@ You can find all of the original BARThez checkpoints under the [BARThez](https:/
 > This model was contributed by [moussakam](https://huggingface.co/moussakam).
 > Refer to the [BART](./bart) docs for more usage examples.
 
-The example below demonstrates how to predict the `<mask>` token with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
+The example below demonstrates how to predict the `<mask>` token with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
 
 ```python
 from transformers import pipeline
@@ -48,109 +48,79 @@ print(f"The predicted token is: {predicted_token}")
 
 ## BarthezTokenizer[[transformers.BarthezTokenizer]]
 
-'"}, {"name": "eos_token", "val": " = ''"}, {"name": "sep_token", "val": " = ''"}, {"name": "cls_token", "val": " = ''"}, {"name": "unk_token", "val": " = ''"}, {"name": "pad_token", "val": " = ''"}, {"name": "mask_token", "val": " = ''"}, {"name": "add_prefix_space", "val": " = True"}, {"name": "**kwargs", "val": ""}]}>
-- **bos_token** (`str`, *optional*, defaults to `"<s>"`) --
-  The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.
+#### transformers.BarthezTokenizer[[transformers.BarthezTokenizer]]
 
-  
+```python
+transformers.BarthezTokenizer(vocab: str | dict | list | None = None, bos_token = '<s>', eos_token = '</s>', sep_token = '</s>', cls_token = '<s>', unk_token = '<unk>', pad_token = '<pad>', mask_token = '<mask>', add_prefix_space = True, **kwargs)
+```
 
-  When building a sequence using special tokens, this is not the token that is used for the beginning of
-  sequence. The token used is the `cls_token`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/barthez/tokenization_barthez.py#L32)
 
-  
+**Parameters:**
 
-- **eos_token** (`str`, *optional*, defaults to `"</s>"`) --
-  The end of sequence token.
+bos_token (`str`, *optional*, defaults to `"<s>"`) : The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.    When building a sequence using special tokens, this is not the token that is used for the beginning of sequence. The token used is the `cls_token`.   
 
-  
+eos_token (`str`, *optional*, defaults to `"</s>"`) : The end of sequence token.    When building a sequence using special tokens, this is not the token that is used for the end of sequence. The token used is the `sep_token`.   
 
-  When building a sequence using special tokens, this is not the token that is used for the end of sequence.
-  The token used is the `sep_token`.
+sep_token (`str`, *optional*, defaults to `"</s>"`) : The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for sequence classification or for a text and a question for question answering. It is also used as the last token of a sequence built with special tokens.
 
-  
+cls_token (`str`, *optional*, defaults to `"<s>"`) : The classifier token which is used when doing sequence classification (classification of the whole sequence instead of per-token classification). It is the first token of the sequence when built with special tokens.
 
-- **sep_token** (`str`, *optional*, defaults to `"</s>"`) --
-  The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for
-  sequence classification or for a text and a question for question answering. It is also used as the last
-  token of a sequence built with special tokens.
-- **cls_token** (`str`, *optional*, defaults to `"<s>"`) --
-  The classifier token which is used when doing sequence classification (classification of the whole sequence
-  instead of per-token classification). It is the first token of the sequence when built with special tokens.
-- **unk_token** (`str`, *optional*, defaults to `"<unk>"`) --
-  The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this
-  token instead.
-- **pad_token** (`str`, *optional*, defaults to `"<pad>"`) --
-  The token used for padding, for example when batching sequences of different lengths.
-- **mask_token** (`str`, *optional*, defaults to `"<mask>"`) --
-  The token used for masking values. This is the token used when training this model with masked language
-  modeling. This is the token which the model will try to predict.
-- **vocab_file** (`str`, *optional*) --
-  [SentencePiece](https://github.com/google/sentencepiece) file (generally has a *.spm* extension) that
-  contains the vocabulary necessary to instantiate a tokenizer.
-- **vocab** (`str`, `dict` or `list`, *optional*) --
-  Custom vocabulary dictionary. If not provided, vocabulary is loaded from vocab_file.
-- **add_prefix_space** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to add an initial space to the input. This allows to treat the leading word just as any
-  other word.
+unk_token (`str`, *optional*, defaults to `"<unk>"`) : The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this token instead.
 
-Adapted from [CamembertTokenizer](/docs/transformers/v5.14.0/en/model_doc/camembert#transformers.CamembertTokenizer) and [BartTokenizer](/docs/transformers/v5.14.0/en/model_doc/roberta#transformers.RobertaTokenizer). Construct a "fast" BARThez tokenizer. Based on
+pad_token (`str`, *optional*, defaults to `"<pad>"`) : The token used for padding, for example when batching sequences of different lengths.
+
+mask_token (`str`, *optional*, defaults to `"<mask>"`) : The token used for masking values. This is the token used when training this model with masked language modeling. This is the token which the model will try to predict.
+
+vocab_file (`str`, *optional*) : [SentencePiece](https://github.com/google/sentencepiece) file (generally has a *.spm* extension) that contains the vocabulary necessary to instantiate a tokenizer.
+
+vocab (`str`, `dict` or `list`, *optional*) : Custom vocabulary dictionary. If not provided, vocabulary is loaded from vocab_file.
+
+add_prefix_space (`bool`, *optional*, defaults to `True`) : Whether or not to add an initial space to the input. This allows to treat the leading word just as any other word.
+
+Adapted from [CamembertTokenizer](/docs/transformers/v5.15.0/en/model_doc/camembert#transformers.CamembertTokenizer) and [BartTokenizer](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaTokenizer). Construct a "fast" BARThez tokenizer. Based on
 [SentencePiece](https://github.com/google/sentencepiece).
 
-This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 ## BarthezTokenizerFast[[transformers.BarthezTokenizer]]
 
-'"}, {"name": "eos_token", "val": " = ''"}, {"name": "sep_token", "val": " = ''"}, {"name": "cls_token", "val": " = ''"}, {"name": "unk_token", "val": " = ''"}, {"name": "pad_token", "val": " = ''"}, {"name": "mask_token", "val": " = ''"}, {"name": "add_prefix_space", "val": " = True"}, {"name": "**kwargs", "val": ""}]}>
-- **bos_token** (`str`, *optional*, defaults to `"<s>"`) --
-  The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.
+#### transformers.BarthezTokenizer[[transformers.BarthezTokenizer]]
 
-  
+```python
+transformers.BarthezTokenizer(vocab: str | dict | list | None = None, bos_token = '<s>', eos_token = '</s>', sep_token = '</s>', cls_token = '<s>', unk_token = '<unk>', pad_token = '<pad>', mask_token = '<mask>', add_prefix_space = True, **kwargs)
+```
 
-  When building a sequence using special tokens, this is not the token that is used for the beginning of
-  sequence. The token used is the `cls_token`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/barthez/tokenization_barthez.py#L32)
 
-  
+**Parameters:**
 
-- **eos_token** (`str`, *optional*, defaults to `"</s>"`) --
-  The end of sequence token.
+bos_token (`str`, *optional*, defaults to `"<s>"`) : The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.    When building a sequence using special tokens, this is not the token that is used for the beginning of sequence. The token used is the `cls_token`.   
 
-  
+eos_token (`str`, *optional*, defaults to `"</s>"`) : The end of sequence token.    When building a sequence using special tokens, this is not the token that is used for the end of sequence. The token used is the `sep_token`.   
 
-  When building a sequence using special tokens, this is not the token that is used for the end of sequence.
-  The token used is the `sep_token`.
+sep_token (`str`, *optional*, defaults to `"</s>"`) : The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for sequence classification or for a text and a question for question answering. It is also used as the last token of a sequence built with special tokens.
 
-  
+cls_token (`str`, *optional*, defaults to `"<s>"`) : The classifier token which is used when doing sequence classification (classification of the whole sequence instead of per-token classification). It is the first token of the sequence when built with special tokens.
 
-- **sep_token** (`str`, *optional*, defaults to `"</s>"`) --
-  The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for
-  sequence classification or for a text and a question for question answering. It is also used as the last
-  token of a sequence built with special tokens.
-- **cls_token** (`str`, *optional*, defaults to `"<s>"`) --
-  The classifier token which is used when doing sequence classification (classification of the whole sequence
-  instead of per-token classification). It is the first token of the sequence when built with special tokens.
-- **unk_token** (`str`, *optional*, defaults to `"<unk>"`) --
-  The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this
-  token instead.
-- **pad_token** (`str`, *optional*, defaults to `"<pad>"`) --
-  The token used for padding, for example when batching sequences of different lengths.
-- **mask_token** (`str`, *optional*, defaults to `"<mask>"`) --
-  The token used for masking values. This is the token used when training this model with masked language
-  modeling. This is the token which the model will try to predict.
-- **vocab_file** (`str`, *optional*) --
-  [SentencePiece](https://github.com/google/sentencepiece) file (generally has a *.spm* extension) that
-  contains the vocabulary necessary to instantiate a tokenizer.
-- **vocab** (`str`, `dict` or `list`, *optional*) --
-  Custom vocabulary dictionary. If not provided, vocabulary is loaded from vocab_file.
-- **add_prefix_space** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to add an initial space to the input. This allows to treat the leading word just as any
-  other word.
+unk_token (`str`, *optional*, defaults to `"<unk>"`) : The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this token instead.
 
-Adapted from [CamembertTokenizer](/docs/transformers/v5.14.0/en/model_doc/camembert#transformers.CamembertTokenizer) and [BartTokenizer](/docs/transformers/v5.14.0/en/model_doc/roberta#transformers.RobertaTokenizer). Construct a "fast" BARThez tokenizer. Based on
+pad_token (`str`, *optional*, defaults to `"<pad>"`) : The token used for padding, for example when batching sequences of different lengths.
+
+mask_token (`str`, *optional*, defaults to `"<mask>"`) : The token used for masking values. This is the token used when training this model with masked language modeling. This is the token which the model will try to predict.
+
+vocab_file (`str`, *optional*) : [SentencePiece](https://github.com/google/sentencepiece) file (generally has a *.spm* extension) that contains the vocabulary necessary to instantiate a tokenizer.
+
+vocab (`str`, `dict` or `list`, *optional*) : Custom vocabulary dictionary. If not provided, vocabulary is loaded from vocab_file.
+
+add_prefix_space (`bool`, *optional*, defaults to `True`) : Whether or not to add an initial space to the input. This allows to treat the leading word just as any other word.
+
+Adapted from [CamembertTokenizer](/docs/transformers/v5.15.0/en/model_doc/camembert#transformers.CamembertTokenizer) and [BartTokenizer](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaTokenizer). Construct a "fast" BARThez tokenizer. Based on
 [SentencePiece](https://github.com/google/sentencepiece).
 
-This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
-### Gemma4
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/gemma4.md
+### LASR
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/lasr.md

@@ -34,5 +34,5 @@ args = TrainingArguments(
 - See the [Mixed precision training](./mixed_precision_training) guide to learn how to use lower precision data types to further reduce memory and speed up training.
 - See the [Kernels](./kernels) guide to learn how to speed up training with custom fused kernels.
 
-### Troubleshoot
-https://huggingface.co/docs/transformers/v5.14.0/troubleshooting.md
+### Processors
+https://huggingface.co/docs/transformers/v5.15.0/processors.md

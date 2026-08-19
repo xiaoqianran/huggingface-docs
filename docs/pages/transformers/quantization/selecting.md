@@ -97,7 +97,7 @@ See the [AWQ documentation](./awq) for more details.
 | Pros                                                         | Cons                                                        |
 |--------------------------------------------------------------|-------------------------------------------------------------|
 | Supports flexible formats like FP8.        | Primarily for loading pre-quantized models.                 |
-|                                                              | Doesn't perform quantization within Transformers directly.  |
+| FP8 kernel acceleration on NVIDIA (SM89+) and Intel XPU.    |                                                             |
 
 See the [compressed-tensors documentation](./compressed_tensors) for more details.
 
@@ -151,5 +151,5 @@ The key takeaways are:
 > [!TIP]
 > Always benchmark the performance (accuracy and speed) of the quantized model on your specific task and hardware to ensure it meets your requirements. Refer to the individual documentation pages linked above for detailed usage instructions.
 
-### Quantization
-https://huggingface.co/docs/transformers/v5.14.0/main_classes/quantization.md
+### FBGEMM
+https://huggingface.co/docs/transformers/v5.15.0/quantization/fbgemm_fp8.md

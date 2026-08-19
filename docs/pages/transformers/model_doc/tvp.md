@@ -26,10 +26,10 @@ TVP consists of a visual encoder and cross-modal encoder. A universal set of vis
 The goal of this model is to incorporate trainable prompts into both visual inputs and textual features to temporal video grounding(TVG) problems.
 In principle, one can apply any visual, cross-modal encoder in the proposed architecture.
 
-The [TvpProcessor](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpProcessor) wraps [BertTokenizer](/docs/transformers/v5.14.0/en/model_doc/electra#transformers.BertTokenizer) and [TvpImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpImageProcessor) into a single instance to both
+The [TvpProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpProcessor) wraps [BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer) and [TvpImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpImageProcessor) into a single instance to both
 encode the text and prepare the images respectively.
 
-The following example shows how to run temporal video grounding using [TvpProcessor](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpProcessor) and [TvpForVideoGrounding](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpForVideoGrounding).
+The following example shows how to run temporal video grounding using [TvpProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpProcessor) and [TvpForVideoGrounding](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpForVideoGrounding).
 
 ```python
 import av
@@ -142,171 +142,383 @@ print(f"The time slot of the video corresponding to the text \"{text}\" is from 
 
 Tips:
 
-- This implementation of TVP uses [BertTokenizer](/docs/transformers/v5.14.0/en/model_doc/electra#transformers.BertTokenizer) to generate text embeddings and Resnet-50 model to compute visual embeddings.
+- This implementation of TVP uses [BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer) to generate text embeddings and Resnet-50 model to compute visual embeddings.
 - Checkpoints for pre-trained [tvp-base](https://huggingface.co/Intel/tvp-base) is released.
 - Please refer to [Table 2](https://huggingface.co/papers/2303.04995) for TVP's performance on Temporal Video Grounding task.
 
 ## TvpConfig[[transformers.TvpConfig]]
 
-- **backbone_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The configuration of the backbone model.
-- **distance_loss_weight** (`float`, *optional*, defaults to 1.0) --
-  The weight of distance loss.
-- **duration_loss_weight** (`float`, *optional*, defaults to 0.1) --
-  The weight of duration loss.
-- **visual_prompter_type** (`str`, *optional*, defaults to `"framepad"`) --
-  Visual prompt type. The type of padding. Framepad means padding on each frame. Should be one of "framepad"
-  or "framedownpad"
-- **visual_prompter_apply** (`str`, *optional*, defaults to `"replace"`) --
-  The way of applying visual prompt. Replace means use the value of prompt to change the original value in
-  visual inputs. Should be one of "replace", or "add", or "remove".
-- **visual_prompt_size** (`int`, *optional*, defaults to 96) --
-  The size of visual prompt.
-- **max_img_size** (`int`, *optional*, defaults to 448) --
-  The maximum size of frame.
-- **num_frames** (`int`, *optional*, defaults to 48) --
-  The number of frames extracted from a video.
-- **vocab_size** (`int`, *optional*, defaults to `30522`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **type_vocab_size** (`int`, *optional*, defaults to `2`) --
-  The vocabulary size of the `token_type_ids`.
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **intermediate_size** (`int`, *optional*, defaults to `3072`) --
-  Dimension of the MLP representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **max_position_embeddings** (`int`, *optional*, defaults to 512) --
-  The maximum sequence length that this model might ever be used with. Typically set this to something large
-  just in case (e.g., 512 or 1024 or 2048).
-- **max_grid_col_position_embeddings** (`int`, *optional*, defaults to 100) --
-  The largest number of horizontal patches from a video frame.
-- **max_grid_row_position_embeddings** (`int`, *optional*, defaults to 100) --
-  The largest number of vertical patches from a video frame.
-- **hidden_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-12`) --
-  The epsilon used by the layer normalization layers.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **attention_probs_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The dropout ratio for the attention probabilities.
-- **pad_token_id** (`int`, *optional*) --
-  Token id used for padding in the vocabulary.
+#### transformers.TvpConfig[[transformers.TvpConfig]]
+
+```python
+transformers.TvpConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, distance_loss_weight: float = 1.0, duration_loss_weight: float = 0.1, visual_prompter_type: str = 'framepad', visual_prompter_apply: str = 'replace', visual_prompt_size: int = 96, max_img_size: int = 448, num_frames: int = 48, vocab_size: int = 30522, type_vocab_size: int = 2, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, max_position_embeddings: int = 512, max_grid_col_position_embeddings: int = 100, max_grid_row_position_embeddings: int = 100, hidden_dropout_prob: float | int = 0.1, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-12, initializer_range: float = 0.02, attention_probs_dropout_prob: float | int = 0.1, pad_token_id: int | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/configuration_tvp.py#L26)
+
+**Parameters:**
+
+backbone_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The configuration of the backbone model.
+
+distance_loss_weight (`float`, *optional*, defaults to 1.0) : The weight of distance loss.
+
+duration_loss_weight (`float`, *optional*, defaults to 0.1) : The weight of duration loss.
+
+visual_prompter_type (`str`, *optional*, defaults to `"framepad"`) : Visual prompt type. The type of padding. Framepad means padding on each frame. Should be one of "framepad" or "framedownpad"
+
+visual_prompter_apply (`str`, *optional*, defaults to `"replace"`) : The way of applying visual prompt. Replace means use the value of prompt to change the original value in visual inputs. Should be one of "replace", or "add", or "remove".
+
+visual_prompt_size (`int`, *optional*, defaults to 96) : The size of visual prompt.
+
+max_img_size (`int`, *optional*, defaults to 448) : The maximum size of frame.
+
+num_frames (`int`, *optional*, defaults to 48) : The number of frames extracted from a video.
+
+vocab_size (`int`, *optional*, defaults to `30522`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+type_vocab_size (`int`, *optional*, defaults to `2`) : The vocabulary size of the `token_type_ids`.
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+intermediate_size (`int`, *optional*, defaults to `3072`) : Dimension of the MLP representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+max_position_embeddings (`int`, *optional*, defaults to 512) : The maximum sequence length that this model might ever be used with. Typically set this to something large just in case (e.g., 512 or 1024 or 2048).
+
+max_grid_col_position_embeddings (`int`, *optional*, defaults to 100) : The largest number of horizontal patches from a video frame.
+
+max_grid_row_position_embeddings (`int`, *optional*, defaults to 100) : The largest number of vertical patches from a video frame.
+
+hidden_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.1`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-12`) : The epsilon used by the layer normalization layers.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+attention_probs_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.1`) : The dropout ratio for the attention probabilities.
+
+pad_token_id (`int`, *optional*) : Token id used for padding in the vocabulary.
 
 This is the configuration class to store the configuration of a TvpModel. It is used to instantiate a Tvp
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Intel/tvp-base](https://huggingface.co/Intel/tvp-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## TvpImageProcessor[[transformers.TvpImageProcessor]]
 
-- **do_flip_channel_order** (`bool`, *kwargs*, *optional*, defaults to `self.do_flip_channel_order`) --
-  Whether to flip the channel order of the image from RGB to BGR.
-- **constant_values** (`float`, *kwargs* or `List[float]`, *optional*, defaults to `self.constant_values`) --
-  Value used to fill the padding area when `pad_mode` is `'constant'`.
-- **pad_mode** (`str`, *kwargs*, *optional*, defaults to `self.pad_mode`) --
-  Padding mode to use — `'constant'`, `'edge'`, `'reflect'`, or `'symmetric'`.
-- ****kwargs** ([ImagesKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ImagesKwargs), *optional*) --
-  Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class
-  for the complete list of supported arguments.
+#### transformers.TvpImageProcessor[[transformers.TvpImageProcessor]]
+
+```python
+transformers.TvpImageProcessor(**kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/image_processing_tvp.py#L50)
+
+**Parameters:**
+
+do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'longest_edge' : 448}`): Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'height' : 448, 'width': 448}`): Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `Resampling.BILINEAR`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*, defaults to `0.00392156862745098`) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*, defaults to `[0.5, 0.5, 0.5]`) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*, defaults to `[0.5, 0.5, 0.5]`) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'height' : 448, 'width': 448}`): The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+do_flip_channel_order (`bool`, *kwargs*, *optional*, defaults to `self.do_flip_channel_order`) : Whether to flip the channel order of the image from RGB to BGR.
+
+constant_values (`float`, *kwargs* or `List[float]`, *optional*, defaults to `self.constant_values`) : Value used to fill the padding area when `pad_mode` is `'constant'`.
+
+pad_mode (`str`, *kwargs*, *optional*, defaults to `self.pad_mode`) : Padding mode to use — `'constant'`, `'edge'`, `'reflect'`, or `'symmetric'`.
+
 Constructs a TvpImageProcessor image processor.
 
-- **videos** (`ImageInput` or `list[ImageInput]` or `list[list[ImageInput]]`) --
-  Frames to preprocess.
-- **do_flip_channel_order** (`bool`, *kwargs*, *optional*, defaults to `self.do_flip_channel_order`) --
-  Whether to flip the channel order of the image from RGB to BGR.
-- **constant_values** (`float`, *kwargs* or `List[float]`, *optional*, defaults to `self.constant_values`) --
-  Value used to fill the padding area when `pad_mode` is `'constant'`.
-- **pad_mode** (`str`, *kwargs*, *optional*, defaults to `self.pad_mode`) --
-  Padding mode to use — `'constant'`, `'edge'`, `'reflect'`, or `'symmetric'`.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
-- ****kwargs** ([ImagesKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ImagesKwargs), *optional*) --
-  Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class
-  for the complete list of supported arguments.`~image_processing_base.BatchFeature`- **data** (`dict`) -- Dictionary of lists/arrays/tensors returned by the __call__ method ('pixel_values', etc.).
+#### preprocess[[transformers.TvpImageProcessor.preprocess]]
+
+```python
+preprocess(videos: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], list[typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']]], list[list[typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']]]]], **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/image_processing_tvp.py#L72)
+
+**Parameters:**
+
+videos (`ImageInput` or `list[ImageInput]` or `list[list[ImageInput]]`) : Frames to preprocess.
+
+do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+do_flip_channel_order (`bool`, *kwargs*, *optional*, defaults to `self.do_flip_channel_order`) : Whether to flip the channel order of the image from RGB to BGR.
+
+constant_values (`float`, *kwargs* or `List[float]`, *optional*, defaults to `self.constant_values`) : Value used to fill the padding area when `pad_mode` is `'constant'`.
+
+pad_mode (`str`, *kwargs*, *optional*, defaults to `self.pad_mode`) : Padding mode to use — `'constant'`, `'edge'`, `'reflect'`, or `'symmetric'`.
+
+**Returns:** `~image_processing_base.BatchFeature`
+
+- **data** (`dict`) -- Dictionary of lists/arrays/tensors returned by the __call__ method ('pixel_values', etc.).
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
 ## TvpImageProcessorPil[[transformers.TvpImageProcessorPil]]
 
-- **do_flip_channel_order** (`bool`, *kwargs*, *optional*, defaults to `self.do_flip_channel_order`) --
-  Whether to flip the channel order of the image from RGB to BGR.
-- **constant_values** (`float`, *kwargs* or `List[float]`, *optional*, defaults to `self.constant_values`) --
-  Value used to fill the padding area when `pad_mode` is `'constant'`.
-- **pad_mode** (`str`, *kwargs*, *optional*, defaults to `self.pad_mode`) --
-  Padding mode to use — `'constant'`, `'edge'`, `'reflect'`, or `'symmetric'`.
-- ****kwargs** ([ImagesKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ImagesKwargs), *optional*) --
-  Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class
-  for the complete list of supported arguments.
+#### transformers.TvpImageProcessorPil[[transformers.TvpImageProcessorPil]]
+
+```python
+transformers.TvpImageProcessorPil(**kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/image_processing_pil_tvp.py#L72)
+
+**Parameters:**
+
+do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'longest_edge' : 448}`): Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'height' : 448, 'width': 448}`): Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `Resampling.BILINEAR`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*, defaults to `0.00392156862745098`) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*, defaults to `[0.5, 0.5, 0.5]`) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*, defaults to `[0.5, 0.5, 0.5]`) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'height' : 448, 'width': 448}`): The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+do_flip_channel_order (`bool`, *kwargs*, *optional*, defaults to `self.do_flip_channel_order`) : Whether to flip the channel order of the image from RGB to BGR.
+
+constant_values (`float`, *kwargs* or `List[float]`, *optional*, defaults to `self.constant_values`) : Value used to fill the padding area when `pad_mode` is `'constant'`.
+
+pad_mode (`str`, *kwargs*, *optional*, defaults to `self.pad_mode`) : Padding mode to use — `'constant'`, `'edge'`, `'reflect'`, or `'symmetric'`.
+
 Constructs a TvpImageProcessor image processor.
 
-- **videos** (`ImageInput` or `list[ImageInput]` or `list[list[ImageInput]]`) --
-  Frames to preprocess.
-- **do_flip_channel_order** (`bool`, *kwargs*, *optional*, defaults to `self.do_flip_channel_order`) --
-  Whether to flip the channel order of the image from RGB to BGR.
-- **constant_values** (`float`, *kwargs* or `List[float]`, *optional*, defaults to `self.constant_values`) --
-  Value used to fill the padding area when `pad_mode` is `'constant'`.
-- **pad_mode** (`str`, *kwargs*, *optional*, defaults to `self.pad_mode`) --
-  Padding mode to use — `'constant'`, `'edge'`, `'reflect'`, or `'symmetric'`.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
-- ****kwargs** ([ImagesKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ImagesKwargs), *optional*) --
-  Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class
-  for the complete list of supported arguments.`~image_processing_base.BatchFeature`- **data** (`dict`) -- Dictionary of lists/arrays/tensors returned by the __call__ method ('pixel_values', etc.).
+#### preprocess[[transformers.TvpImageProcessorPil.preprocess]]
+
+```python
+preprocess(videos: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], list[typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']]], list[list[typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']]]]], **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/image_processing_pil_tvp.py#L94)
+
+**Parameters:**
+
+videos (`ImageInput` or `list[ImageInput]` or `list[list[ImageInput]]`) : Frames to preprocess.
+
+do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+do_flip_channel_order (`bool`, *kwargs*, *optional*, defaults to `self.do_flip_channel_order`) : Whether to flip the channel order of the image from RGB to BGR.
+
+constant_values (`float`, *kwargs* or `List[float]`, *optional*, defaults to `self.constant_values`) : Value used to fill the padding area when `pad_mode` is `'constant'`.
+
+pad_mode (`str`, *kwargs*, *optional*, defaults to `self.pad_mode`) : Padding mode to use — `'constant'`, `'edge'`, `'reflect'`, or `'symmetric'`.
+
+**Returns:** `~image_processing_base.BatchFeature`
+
+- **data** (`dict`) -- Dictionary of lists/arrays/tensors returned by the __call__ method ('pixel_values', etc.).
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
 ## TvpProcessor[[transformers.TvpProcessor]]
 
-- **image_processor** (`TvpImageProcessor`) --
-  The image processor is a required input.
-- **tokenizer** (`BertTokenizer`) --
-  The tokenizer is a required input.
+#### transformers.TvpProcessor[[transformers.TvpProcessor]]
+
+```python
+transformers.TvpProcessor(image_processor = None, tokenizer = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/processing_tvp.py#L34)
+
+**Parameters:**
+
+image_processor (`TvpImageProcessor`) : The image processor is a required input.
+
+tokenizer (`BertTokenizer`) : The tokenizer is a required input.
+
 Constructs a TvpProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[TvpProcessor](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpProcessor) offers all the functionalities of [TvpImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpImageProcessor) and [BertTokenizer](/docs/transformers/v5.14.0/en/model_doc/electra#transformers.BertTokenizer). See the
-[~TvpImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpImageProcessor) and [~BertTokenizer](/docs/transformers/v5.14.0/en/model_doc/electra#transformers.BertTokenizer) for more information.
+[TvpProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpProcessor) offers all the functionalities of [TvpImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpImageProcessor) and [BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer). See the
+[~TvpImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpImageProcessor) and [~BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer) for more information.
 
-- **images** (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) --
-  Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If
-  passing in images with pixel values between 0 and 1, set `do_rescale=False`.
-- **text** (`Union[str, list[str], list[list[str]]]`, *optional*) --
-  The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings
-  (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
-- **videos** (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor], list[list[PIL.Image.Image]], list[list[numpy.ndarray]], list[list[torch.Tensor]], ~video_utils.URL, list[~video_utils.URL], list[list[~video_utils.URL]], ~video_utils.Path, list[~video_utils.Path], list[list[~video_utils.Path]]]`, *optional*) --
-  Video to preprocess. Expects a single or batch of videos with pixel values ranging from 0 to 255. If
-  passing in videos with pixel values between 0 and 1, set `do_rescale=False`.
-- **audio** (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) --
-  The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor.
-  In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels,
-  and T is the sample length of the audio.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  If set, will return tensors of a particular framework. Acceptable values are:
+#### __call__[[transformers.TvpProcessor.__call__]]
 
-  - `'pt'`: Return PyTorch `torch.Tensor` objects.
-  - `'np'`: Return NumPy `np.ndarray` objects.
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) --
-  Additional processing options for each modality (text, images, videos, audio). Model-specific parameters
-  are listed above; see the TypedDict class for the complete list of supported arguments.
+```python
+__call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+
+**Parameters:**
+
+images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+text (`Union[str, list[str], list[list[str]]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
+
+videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor], list[list[PIL.Image.Image]], list[list[numpy.ndarray]], list[list[torch.Tensor]], ~video_utils.URL, list[~video_utils.URL], list[list[~video_utils.URL]], ~video_utils.Path, list[~video_utils.Path], list[list[~video_utils.Path]]]`, *optional*) : Video to preprocess. Expects a single or batch of videos with pixel values ranging from 0 to 255. If passing in videos with pixel values between 0 and 1, set `do_rescale=False`.
+
+audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
+
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## TvpModel[[transformers.TvpModel]]
 
-- **config** ([TvpModel](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.TvpModel[[transformers.TvpModel]]
+
+```python
+transformers.TvpModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/modeling_tvp.py#L684)
+
+**Parameters:**
+
+config ([TvpModel](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Tvp Model transformer outputting BaseModelOutputWithPooling object without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -314,37 +526,37 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.TvpModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, interpolate_pos_encoding: bool = False, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [TvpImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpImageProcessor). See `TvpImageProcessor.__call__()` for details ([TvpProcessor](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpProcessor) uses
-  [TvpImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpImageProcessor) for processing images).
-- **attention_mask** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/modeling_tvp.py#L707)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [TvpImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpImageProcessor). See `TvpImageProcessor.__call__()` for details ([TvpProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpProcessor) uses [TvpImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpImageProcessor) for processing images).
+
+attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TvpConfig](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpConfig)) and inputs.
-The [TvpModel](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([TvpConfig](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpConfig)) and inputs.
+
+The [TvpModel](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -381,14 +593,21 @@ Examples:
 
 ## TvpForVideoGrounding[[transformers.TvpForVideoGrounding]]
 
-- **config** ([TvpForVideoGrounding](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpForVideoGrounding)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.TvpForVideoGrounding[[transformers.TvpForVideoGrounding]]
+
+```python
+transformers.TvpForVideoGrounding(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/modeling_tvp.py#L803)
+
+**Parameters:**
+
+config ([TvpForVideoGrounding](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpForVideoGrounding)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Tvp Model with a video grounding head on top computing IoU, distance, and duration loss.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -396,40 +615,39 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>] | None = None"}, {"name": "output_attentions", "val": ": bool | None = None"}, {"name": "output_hidden_states", "val": ": bool | None = None"}, {"name": "return_dict", "val": ": bool | None = None"}, {"name": "interpolate_pos_encoding", "val": ": bool = False"}, {"name": "**kwargs", "val": ""}]}>
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.TvpForVideoGrounding.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, labels: tuple[torch.Tensor] | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, interpolate_pos_encoding: bool = False, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [TvpImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpImageProcessor). See `TvpImageProcessor.__call__()` for details ([TvpProcessor](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpProcessor) uses
-  [TvpImageProcessor](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpImageProcessor) for processing images).
-- **attention_mask** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/modeling_tvp.py#L812)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **labels** (`torch.FloatTensor` of shape `(batch_size, 3)`, *optional*) --
-  The labels contains duration, start time, and end time of the video corresponding to the text.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.`TvpVideoGroundingOutput` or `tuple(torch.FloatTensor)`A `TvpVideoGroundingOutput` or a tuple of
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [TvpImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpImageProcessor). See `TvpImageProcessor.__call__()` for details ([TvpProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpProcessor) uses [TvpImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpImageProcessor) for processing images).
+
+attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+labels (`torch.FloatTensor` of shape `(batch_size, 3)`, *optional*) : The labels contains duration, start time, and end time of the video corresponding to the text.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** `TvpVideoGroundingOutput` or `tuple(torch.FloatTensor)`
+
+A `TvpVideoGroundingOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TvpConfig](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpConfig)) and inputs.
-The [TvpForVideoGrounding](/docs/transformers/v5.14.0/en/model_doc/tvp#transformers.TvpForVideoGrounding) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([TvpConfig](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpConfig)) and inputs.
+
+The [TvpForVideoGrounding](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpForVideoGrounding) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -459,5 +677,5 @@ Examples:
 >>> output = model(text_inputs.input_ids, pixel_values, text_inputs.attention_mask)
 ```
 
-### M2M100
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/m2m_100.md
+### Video Vision Transformer (ViViT)
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/vivit.md

@@ -7,7 +7,7 @@ You can find all the original DINOv2 checkpoints under the [Dinov2](https://hugg
 > [!TIP]
 > Click on the DINOv2 models in the right sidebar for more examples of how to apply DINOv2 to different vision tasks.
 
-The example below demonstrates how to obtain an image embedding with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to obtain an image embedding with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -143,54 +143,60 @@ print("Predicted class:", model.config.id2label[predicted_class_idx])
 
 ## Dinov2Config[[transformers.Dinov2Config]]
 
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **mlp_ratio** (`int`, *optional*, defaults to `4`) --
-  Ratio of the MLP hidden dim to the embedding dim.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **attention_probs_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **image_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) --
-  The size (resolution) of each image.
-- **patch_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `14`) --
-  The size (resolution) of each patch.
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **qkv_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a bias to the queries, keys and values.
-- **layerscale_value** (`float`, *optional*, defaults to 1.0) --
-  Initial value to use for layer scale.
-- **drop_path_rate** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  Drop path rate for the patch fusion.
-- **use_swiglu_ffn** (`bool`, *optional*, defaults to `False`) --
-  Whether to use the SwiGLU feedforward neural network.
-- **apply_layernorm** (`bool`, *optional*, defaults to `True`) --
-  Whether to apply layer normalization to the feature maps in case the model is used as backbone.
-- **reshape_hidden_states** (`bool`, *optional*, defaults to `True`) --
-  Whether to reshape the feature maps to 4D tensors of shape `(batch_size, hidden_size, height, width)` in
-  case the model is used as backbone. If `False`, the feature maps will be 3D tensors of shape `(batch_size,
-  seq_len, hidden_size)`.
-- **use_mask_token** (`bool`, *optional*, defaults to `True`) --
-  Whether to use mask_token in embeddings.
+#### transformers.Dinov2Config[[transformers.Dinov2Config]]
+
+```python
+transformers.Dinov2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, mlp_ratio: int = 4, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-06, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 14, num_channels: int = 3, qkv_bias: bool = True, layerscale_value: float = 1.0, drop_path_rate: float | int = 0.0, use_swiglu_ffn: bool = False, _out_features: list[str] | None = None, _out_indices: list[int] | None = None, apply_layernorm: bool = True, reshape_hidden_states: bool = True, use_mask_token: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dinov2/configuration_dinov2.py#L25)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+mlp_ratio (`int`, *optional*, defaults to `4`) : Ratio of the MLP hidden dim to the embedding dim.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+attention_probs_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+image_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) : The size (resolution) of each image.
+
+patch_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `14`) : The size (resolution) of each patch.
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+qkv_bias (`bool`, *optional*, defaults to `True`) : Whether to add a bias to the queries, keys and values.
+
+layerscale_value (`float`, *optional*, defaults to 1.0) : Initial value to use for layer scale.
+
+drop_path_rate (`Union[float, int]`, *optional*, defaults to `0.0`) : Drop path rate for the patch fusion.
+
+use_swiglu_ffn (`bool`, *optional*, defaults to `False`) : Whether to use the SwiGLU feedforward neural network.
+
+apply_layernorm (`bool`, *optional*, defaults to `True`) : Whether to apply layer normalization to the feature maps in case the model is used as backbone.
+
+reshape_hidden_states (`bool`, *optional*, defaults to `True`) : Whether to reshape the feature maps to 4D tensors of shape `(batch_size, hidden_size, height, width)` in case the model is used as backbone. If `False`, the feature maps will be 3D tensors of shape `(batch_size, seq_len, hidden_size)`.
+
+use_mask_token (`bool`, *optional*, defaults to `True`) : Whether to use mask_token in embeddings.
 
 This is the configuration class to store the configuration of a Dinov2Model. It is used to instantiate a Dinov2
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/dinov2-base](https://huggingface.co/facebook/dinov2-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -209,14 +215,21 @@ Example:
 
 ## Dinov2Model[[transformers.Dinov2Model]]
 
-- **config** ([Dinov2Config](/docs/transformers/v5.14.0/en/model_doc/dinov2#transformers.Dinov2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Dinov2Model[[transformers.Dinov2Model]]
+
+```python
+transformers.Dinov2Model(config: Dinov2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dinov2/modeling_dinov2.py#L433)
+
+**Parameters:**
+
+config ([Dinov2Config](/docs/transformers/v5.15.0/en/model_doc/dinov2#transformers.Dinov2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Dinov2 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -224,16 +237,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [BitImageProcessor](/docs/transformers/v5.14.0/en/model_doc/bit#transformers.BitImageProcessor). See `BitImageProcessor.__call__()` for details (`processor_class` uses
-  [BitImageProcessor](/docs/transformers/v5.14.0/en/model_doc/bit#transformers.BitImageProcessor) for processing images).
-- **bool_masked_pos** (`torch.BoolTensor` of shape `(batch_size, sequence_length)`) --
-  Boolean masked positions. Indicates which patches are masked (1) and which aren't (0). Only relevant for
-  pre-training.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### forward[[transformers.Dinov2Model.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.Tensor] = None, bool_masked_pos: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dinov2/modeling_dinov2.py#L449)
+
+**Parameters:**
+
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bit#transformers.BitImageProcessor). See `BitImageProcessor.__call__()` for details (`processor_class` uses [BitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bit#transformers.BitImageProcessor) for processing images).
+
+bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, sequence_length)`) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0). Only relevant for pre-training.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Dinov2Config](/docs/transformers/v5.14.0/en/model_doc/dinov2#transformers.Dinov2Config)) and inputs.
-The [Dinov2Model](/docs/transformers/v5.14.0/en/model_doc/dinov2#transformers.Dinov2Model) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Dinov2Config](/docs/transformers/v5.15.0/en/model_doc/dinov2#transformers.Dinov2Config)) and inputs.
+
+The [Dinov2Model](/docs/transformers/v5.15.0/en/model_doc/dinov2#transformers.Dinov2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -261,15 +285,22 @@ Example:
 
 ## Dinov2ForImageClassification[[transformers.Dinov2ForImageClassification]]
 
-- **config** ([Dinov2Config](/docs/transformers/v5.14.0/en/model_doc/dinov2#transformers.Dinov2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Dinov2ForImageClassification[[transformers.Dinov2ForImageClassification]]
+
+```python
+transformers.Dinov2ForImageClassification(config: Dinov2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dinov2/modeling_dinov2.py#L486)
+
+**Parameters:**
+
+config ([Dinov2Config](/docs/transformers/v5.15.0/en/model_doc/dinov2#transformers.Dinov2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Dinov2 Model transformer with an image classification head on top (a linear layer on top of the final hidden state
 of the [CLS] token) e.g. for ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -277,17 +308,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [BitImageProcessor](/docs/transformers/v5.14.0/en/model_doc/bit#transformers.BitImageProcessor). See `BitImageProcessor.__call__()` for details (`processor_class` uses
-  [BitImageProcessor](/docs/transformers/v5.14.0/en/model_doc/bit#transformers.BitImageProcessor) for processing images).
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the image classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).[ImageClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`A [ImageClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
+#### forward[[transformers.Dinov2ForImageClassification.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dinov2/modeling_dinov2.py#L501)
+
+**Parameters:**
+
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bit#transformers.BitImageProcessor). See `BitImageProcessor.__call__()` for details (`processor_class` uses [BitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bit#transformers.BitImageProcessor) for processing images).
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Dinov2Config](/docs/transformers/v5.14.0/en/model_doc/dinov2#transformers.Dinov2Config)) and inputs.
-The [Dinov2ForImageClassification](/docs/transformers/v5.14.0/en/model_doc/dinov2#transformers.Dinov2ForImageClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Dinov2Config](/docs/transformers/v5.15.0/en/model_doc/dinov2#transformers.Dinov2Config)) and inputs.
+
+The [Dinov2ForImageClassification](/docs/transformers/v5.15.0/en/model_doc/dinov2#transformers.Dinov2ForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -328,5 +369,5 @@ Example:
 ...
 ```
 
-### ColModernVBert
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/colmodernvbert.md
+### RADIO
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/radio.md

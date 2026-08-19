@@ -16,7 +16,7 @@ This model was contributed by [namctin](https://huggingface.co/namctin), [gsinth
 
 ## Usage tips
 
-The model can also be used for time series classification and time series regression. See the respective [PatchTSTForClassification](/docs/transformers/v5.14.0/en/model_doc/patchtst#transformers.PatchTSTForClassification) and [PatchTSTForRegression](/docs/transformers/v5.14.0/en/model_doc/patchtst#transformers.PatchTSTForRegression) classes.
+The model can also be used for time series classification and time series regression. See the respective [PatchTSTForClassification](/docs/transformers/v5.15.0/en/model_doc/patchtst#transformers.PatchTSTForClassification) and [PatchTSTForRegression](/docs/transformers/v5.15.0/en/model_doc/patchtst#transformers.PatchTSTForRegression) classes.
 
 ## Resources
 
@@ -24,102 +24,100 @@ The model can also be used for time series classification and time series regres
 
 ## PatchTSTConfig[[transformers.PatchTSTConfig]]
 
-- **num_input_channels** (`int`, *optional*, defaults to `1`) --
-  The number of input channels.
-- **context_length** (`int`, *optional*, defaults to 32) --
-  The context length of the input sequence.
-- **distribution_output** (`str`, *optional*, defaults to `"student_t"`) --
-  The distribution emission head for the model when loss is "nll". Could be either "student_t", "normal" or
-  "negative_binomial".
-- **loss** (`str`, *optional*, defaults to `"mse"`) --
-  The loss function for the model corresponding to the `distribution_output` head. For parametric
-  distributions it is the negative log likelihood ("nll") and for point estimates it is the mean squared
-  error "mse".
-- **patch_length** (`int`, *optional*, defaults to 1) --
-  Define the patch length of the patchification process.
-- **patch_stride** (`int`, *optional*, defaults to 1) --
-  Define the stride of the patchification process.
-- **num_hidden_layers** (`int`, *optional*, defaults to `3`) --
-  Number of hidden layers in the Transformer decoder.
-- **d_model** (`int`, *optional*, defaults to `128`) --
-  Size of the encoder layers and the pooler layer.
-- **num_attention_heads** (`int`, *optional*, defaults to 4) --
-  Number of attention heads for each attention layer in the Transformer encoder.
-- **share_embedding** (`bool`, *optional*, defaults to `True`) --
-  Sharing the input embedding across all channels.
-- **channel_attention** (`bool`, *optional*, defaults to `False`) --
-  Activate channel attention block in the Transformer to allow channels to attend each other.
-- **ffn_dim** (`int`, *optional*, defaults to 512) --
-  Dimension of the "intermediate" (often named feed-forward) layer in the Transformer encoder.
-- **norm_type** (`str` , *optional*, defaults to `"batchnorm"`) --
-  Normalization at each Transformer layer. Can be `"batchnorm"` or `"layernorm"`.
-- **norm_eps** (`float`, *optional*, defaults to 1e-05) --
-  A value added to the denominator for numerical stability of normalization.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **positional_dropout** (`float`, *optional*, defaults to 0.0) --
-  The dropout probability in the positional embedding layer.
-- **path_dropout** (`float`, *optional*, defaults to 0.0) --
-  The dropout path in the residual block.
-- **ff_dropout** (`float`, *optional*, defaults to 0.0) --
-  The dropout probability used between the two layers of the feed-forward networks.
-- **bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to add bias in the feed-forward networks.
-- **activation_function** (`str`, *optional*, defaults to `"gelu"`) --
-  The non-linear activation function (string) in the Transformer.`"gelu"` and `"relu"` are supported.
-- **pre_norm** (`bool`, *optional*, defaults to `True`) --
-  Normalization is applied before self-attention if pre_norm is set to `True`. Otherwise, normalization is
-  applied after residual block.
-- **positional_encoding_type** (`str`, *optional*, defaults to `"sincos"`) --
-  Positional encodings. Options `"random"` and `"sincos"` are supported.
-- **use_cls_token** (`bool`, *optional*, defaults to `False`) --
-  Whether cls token is used.
-- **init_std** (`float`, *optional*, defaults to 0.02) --
-  The standard deviation of the truncated normal weight initialization distribution.
-- **share_projection** (`bool`, *optional*, defaults to `True`) --
-  Sharing the projection layer across different channels in the forecast head.
-- **scaling** (`Union`, *optional*, defaults to `"std"`) --
-  Whether to scale the input targets via "mean" scaler, "std" scaler or no scaler if `None`. If `True`, the
-  scaler is set to "mean".
-- **do_mask_input** (`bool`, *optional*) --
-  Apply masking during the pretraining.
-- **mask_type** (`str`, *optional*, defaults to `"random"`) --
-  Masking type. Only `"random"` and `"forecast"` are currently supported.
-- **random_mask_ratio** (`float`, *optional*, defaults to 0.5) --
-  Masking ratio applied to mask the input data during random pretraining.
-- **num_forecast_mask_patches** (`int` or `list`, *optional*, defaults to `[2]`) --
-  Number of patches to be masked at the end of each batch sample. If it is an integer,
-  all the samples in the batch will have the same number of masked patches. If it is a list,
-  samples in the batch will be randomly masked by numbers defined in the list. This argument is only used
-  for forecast pretraining.
-- **channel_consistent_masking** (`bool`, *optional*, defaults to `False`) --
-  If channel consistent masking is True, all the channels will have the same masking pattern.
-- **unmasked_channel_indices** (`list`, *optional*) --
-  Indices of channels that are not masked during pretraining. Values in the list are number between 1 and
-  `num_input_channels`
-- **mask_value** (`int`, *optional*, defaults to 0) --
-  Values in the masked patches will be filled by `mask_value`.
-- **pooling_type** (`str`, *optional*, defaults to `"mean"`) --
-  Pooling of the embedding. `"mean"`, `"max"` and `None` are supported.
-- **head_dropout** (`float`, *optional*, defaults to 0.0) --
-  The dropout probability for head.
-- **prediction_length** (`int`, *optional*, defaults to 24) --
-  The prediction horizon that the model will output.
-- **num_targets** (`int`, *optional*, defaults to 1) --
-  Number of targets for regression and classification tasks. For classification, it is the number of
-  classes.
-- **output_range** (`list`, *optional*) --
-  Output range for regression task. The range of output values can be set to enforce the model to produce
-  values within a range.
-- **num_parallel_samples** (`int`, *optional*, defaults to 100) --
-  The number of samples is generated in parallel for probabilistic prediction.
+#### transformers.PatchTSTConfig[[transformers.PatchTSTConfig]]
+
+```python
+transformers.PatchTSTConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, num_input_channels: int = 1, context_length: int = 32, distribution_output: str = 'student_t', loss: str | None = 'mse', patch_length: int = 1, patch_stride: int = 1, num_hidden_layers: int = 3, d_model: int = 128, num_attention_heads: int = 4, share_embedding: bool = True, channel_attention: bool = False, ffn_dim: int = 512, norm_type: str = 'batchnorm', norm_eps: float = 1e-05, attention_dropout: float | int = 0.0, positional_dropout: float | int = 0.0, path_dropout: float | int = 0.0, ff_dropout: float | int = 0.0, bias: bool = True, activation_function: str = 'gelu', pre_norm: bool = True, positional_encoding_type: str = 'sincos', use_cls_token: bool = False, init_std: float = 0.02, share_projection: bool = True, scaling: str | bool | None = 'std', do_mask_input: bool | None = None, mask_type: str = 'random', random_mask_ratio: float = 0.5, num_forecast_mask_patches: list[int] | tuple[int, ...] | int | None = (2,), channel_consistent_masking: bool | None = False, unmasked_channel_indices: list[int] | None = None, mask_value: int = 0, pooling_type: str | None = 'mean', head_dropout: float | int = 0.0, prediction_length: int = 24, num_targets: int = 1, output_range: list | None = None, num_parallel_samples: int = 100)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtst/configuration_patchtst.py#L24)
+
+**Parameters:**
+
+num_input_channels (`int`, *optional*, defaults to `1`) : The number of input channels.
+
+context_length (`int`, *optional*, defaults to 32) : The context length of the input sequence.
+
+distribution_output (`str`, *optional*, defaults to `"student_t"`) : The distribution emission head for the model when loss is "nll". Could be either "student_t", "normal" or "negative_binomial".
+
+loss (`str`, *optional*, defaults to `"mse"`) : The loss function for the model corresponding to the `distribution_output` head. For parametric distributions it is the negative log likelihood ("nll") and for point estimates it is the mean squared error "mse".
+
+patch_length (`int`, *optional*, defaults to 1) : Define the patch length of the patchification process.
+
+patch_stride (`int`, *optional*, defaults to 1) : Define the stride of the patchification process.
+
+num_hidden_layers (`int`, *optional*, defaults to `3`) : Number of hidden layers in the Transformer decoder.
+
+d_model (`int`, *optional*, defaults to `128`) : Size of the encoder layers and the pooler layer.
+
+num_attention_heads (`int`, *optional*, defaults to 4) : Number of attention heads for each attention layer in the Transformer encoder.
+
+share_embedding (`bool`, *optional*, defaults to `True`) : Sharing the input embedding across all channels.
+
+channel_attention (`bool`, *optional*, defaults to `False`) : Activate channel attention block in the Transformer to allow channels to attend each other.
+
+ffn_dim (`int`, *optional*, defaults to 512) : Dimension of the "intermediate" (often named feed-forward) layer in the Transformer encoder.
+
+norm_type (`str` , *optional*, defaults to `"batchnorm"`) : Normalization at each Transformer layer. Can be `"batchnorm"` or `"layernorm"`.
+
+norm_eps (`float`, *optional*, defaults to 1e-05) : A value added to the denominator for numerical stability of normalization.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+positional_dropout (`float`, *optional*, defaults to 0.0) : The dropout probability in the positional embedding layer.
+
+path_dropout (`float`, *optional*, defaults to 0.0) : The dropout path in the residual block.
+
+ff_dropout (`float`, *optional*, defaults to 0.0) : The dropout probability used between the two layers of the feed-forward networks.
+
+bias (`bool`, *optional*, defaults to `True`) : Whether to add bias in the feed-forward networks.
+
+activation_function (`str`, *optional*, defaults to `"gelu"`) : The non-linear activation function (string) in the Transformer.`"gelu"` and `"relu"` are supported.
+
+pre_norm (`bool`, *optional*, defaults to `True`) : Normalization is applied before self-attention if pre_norm is set to `True`. Otherwise, normalization is applied after residual block.
+
+positional_encoding_type (`str`, *optional*, defaults to `"sincos"`) : Positional encodings. Options `"random"` and `"sincos"` are supported.
+
+use_cls_token (`bool`, *optional*, defaults to `False`) : Whether cls token is used.
+
+init_std (`float`, *optional*, defaults to 0.02) : The standard deviation of the truncated normal weight initialization distribution.
+
+share_projection (`bool`, *optional*, defaults to `True`) : Sharing the projection layer across different channels in the forecast head.
+
+scaling (`Union`, *optional*, defaults to `"std"`) : Whether to scale the input targets via "mean" scaler, "std" scaler or no scaler if `None`. If `True`, the scaler is set to "mean".
+
+do_mask_input (`bool`, *optional*) : Apply masking during the pretraining.
+
+mask_type (`str`, *optional*, defaults to `"random"`) : Masking type. Only `"random"` and `"forecast"` are currently supported.
+
+random_mask_ratio (`float`, *optional*, defaults to 0.5) : Masking ratio applied to mask the input data during random pretraining.
+
+num_forecast_mask_patches (`int` or `list`, *optional*, defaults to `[2]`) : Number of patches to be masked at the end of each batch sample. If it is an integer, all the samples in the batch will have the same number of masked patches. If it is a list, samples in the batch will be randomly masked by numbers defined in the list. This argument is only used for forecast pretraining.
+
+channel_consistent_masking (`bool`, *optional*, defaults to `False`) : If channel consistent masking is True, all the channels will have the same masking pattern.
+
+unmasked_channel_indices (`list`, *optional*) : Indices of channels that are not masked during pretraining. Values in the list are number between 1 and `num_input_channels`
+
+mask_value (`int`, *optional*, defaults to 0) : Values in the masked patches will be filled by `mask_value`.
+
+pooling_type (`str`, *optional*, defaults to `"mean"`) : Pooling of the embedding. `"mean"`, `"max"` and `None` are supported.
+
+head_dropout (`float`, *optional*, defaults to 0.0) : The dropout probability for head.
+
+prediction_length (`int`, *optional*, defaults to 24) : The prediction horizon that the model will output.
+
+num_targets (`int`, *optional*, defaults to 1) : Number of targets for regression and classification tasks. For classification, it is the number of classes.
+
+output_range (`list`, *optional*) : Output range for regression task. The range of output values can be set to enforce the model to produce values within a range.
+
+num_parallel_samples (`int`, *optional*, defaults to 100) : The number of samples is generated in parallel for probabilistic prediction.
 
 This is the configuration class to store the configuration of a PatchTSTModel. It is used to instantiate a Patchtst
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [ibm-granite/granite-timeseries-patchtst](https://huggingface.co/ibm-granite/granite-timeseries-patchtst)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ```python
 >>> from transformers import PatchTSTConfig, PatchTSTModel
@@ -136,14 +134,21 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes
 
 ## PatchTSTModel[[transformers.PatchTSTModel]]
 
-- **config** ([PatchTSTConfig](/docs/transformers/v5.14.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.PatchTSTModel[[transformers.PatchTSTModel]]
+
+```python
+transformers.PatchTSTModel(config: PatchTSTConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtst/modeling_patchtst.py#L1068)
+
+**Parameters:**
+
+config ([PatchTSTConfig](/docs/transformers/v5.15.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Patchtst Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -151,23 +156,31 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "past_observed_mask", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "future_values", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "output_hidden_states", "val": ": bool | None = None"}, {"name": "output_attentions", "val": ": bool | None = None"}, {"name": "return_dict", "val": ": bool | None = None"}, {"name": "**kwargs", "val": ""}]}>
-- **past_values** (`torch.Tensor` of shape `(bs, sequence_length, num_input_channels)`, *required*) --
-  Input sequence to the model
-- **past_observed_mask** (`torch.BoolTensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) --
-  Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected
-  in `[0, 1]`:
+#### forward[[transformers.PatchTSTModel.forward]]
 
-  - 1 for values that are **observed**,
-  - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
-- **future_values** (`torch.BoolTensor` of shape `(batch_size, prediction_length, num_input_channels)`, *optional*) --
-  Future target values associated with the `past_values`
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the output attention of all layers
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a `ModelOutput` instead of a plain tuple.`PatchTSTModelOutput` or tuple of `torch.Tensor` (if `return_dict`=False or `config.return_dict`=False)
+```python
+forward(past_values: Tensor, past_observed_mask: typing.Optional[torch.Tensor] = None, future_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, output_attentions: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtst/modeling_patchtst.py#L1087)
+
+**Parameters:**
+
+past_values (`torch.Tensor` of shape `(bs, sequence_length, num_input_channels)`, *required*) : Input sequence to the model
+
+past_observed_mask (`torch.BoolTensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) : Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected in `[0, 1]`:  - 1 for values that are **observed**, - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
+
+future_values (`torch.BoolTensor` of shape `(batch_size, prediction_length, num_input_channels)`, *optional*) : Future target values associated with the `past_values`
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers
+
+output_attentions (`bool`, *optional*) : Whether or not to return the output attention of all layers
+
+return_dict (`bool`, *optional*) : Whether or not to return a `ModelOutput` instead of a plain tuple.
+
+**Returns:**
+
+`PatchTSTModelOutput` or tuple of `torch.Tensor` (if `return_dict`=False or `config.return_dict`=False)
 
 Examples:
 
@@ -194,14 +207,21 @@ Examples:
 
 ## PatchTSTForPrediction[[transformers.PatchTSTForPrediction]]
 
-- **config** ([PatchTSTConfig](/docs/transformers/v5.14.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.PatchTSTForPrediction[[transformers.PatchTSTForPrediction]]
+
+```python
+transformers.PatchTSTForPrediction(config: PatchTSTConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtst/modeling_patchtst.py#L1562)
+
+**Parameters:**
+
+config ([PatchTSTConfig](/docs/transformers/v5.15.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The PatchTST for prediction model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -209,23 +229,31 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "past_observed_mask", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "future_values", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "output_hidden_states", "val": ": bool | None = None"}, {"name": "output_attentions", "val": ": bool | None = None"}, {"name": "return_dict", "val": ": bool | None = None"}, {"name": "**kwargs", "val": ""}]}>
-- **past_values** (`torch.Tensor` of shape `(bs, sequence_length, num_input_channels)`, *required*) --
-  Input sequence to the model
-- **past_observed_mask** (`torch.BoolTensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) --
-  Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected
-  in `[0, 1]`:
+#### forward[[transformers.PatchTSTForPrediction.forward]]
 
-  - 1 for values that are **observed**,
-  - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
-- **future_values** (`torch.Tensor` of shape `(bs, forecast_len, num_input_channels)`, *optional*) --
-  Future target values associated with the `past_values`
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the output attention of all layers
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a `ModelOutput` instead of a plain tuple.`PatchTSTForPredictionOutput` or tuple of `torch.Tensor` (if `return_dict`=False or
+```python
+forward(past_values: Tensor, past_observed_mask: typing.Optional[torch.Tensor] = None, future_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, output_attentions: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtst/modeling_patchtst.py#L1592)
+
+**Parameters:**
+
+past_values (`torch.Tensor` of shape `(bs, sequence_length, num_input_channels)`, *required*) : Input sequence to the model
+
+past_observed_mask (`torch.BoolTensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) : Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected in `[0, 1]`:  - 1 for values that are **observed**, - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
+
+future_values (`torch.Tensor` of shape `(bs, forecast_len, num_input_channels)`, *optional*) : Future target values associated with the `past_values`
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers
+
+output_attentions (`bool`, *optional*) : Whether or not to return the output attention of all layers
+
+return_dict (`bool`, *optional*) : Whether or not to return a `ModelOutput` instead of a plain tuple.
+
+**Returns:**
+
+`PatchTSTForPredictionOutput` or tuple of `torch.Tensor` (if `return_dict`=False or
 `config.return_dict`=False)
 
 Examples:
@@ -259,14 +287,21 @@ Examples:
 
 ## PatchTSTForClassification[[transformers.PatchTSTForClassification]]
 
-- **config** ([PatchTSTConfig](/docs/transformers/v5.14.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.PatchTSTForClassification[[transformers.PatchTSTForClassification]]
+
+```python
+transformers.PatchTSTForClassification(config: PatchTSTConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtst/modeling_patchtst.py#L1368)
+
+**Parameters:**
+
+config ([PatchTSTConfig](/docs/transformers/v5.15.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The PatchTST for classification model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -274,28 +309,35 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "target_values", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "past_observed_mask", "val": ": bool | None = None"}, {"name": "output_hidden_states", "val": ": bool | None = None"}, {"name": "output_attentions", "val": ": bool | None = None"}, {"name": "return_dict", "val": ": bool | None = None"}, {"name": "**kwargs", "val": ""}]}>
-- **past_values** (`torch.Tensor` of shape `(bs, sequence_length, num_input_channels)`, *required*) --
-  Input sequence to the model
-- **target_values** (`torch.Tensor`, *optional*) --
-  Labels associates with the `past_values`
-- **past_observed_mask** (`torch.BoolTensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) --
-  Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected
-  in `[0, 1]`:
+#### forward[[transformers.PatchTSTForClassification.forward]]
 
-  - 1 for values that are **observed**,
-  - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.`PatchTSTForClassificationOutput` or `tuple(torch.FloatTensor)`A `PatchTSTForClassificationOutput` or a tuple of
+```python
+forward(past_values: Tensor, target_values: typing.Optional[torch.Tensor] = None, past_observed_mask: bool | None = None, output_hidden_states: bool | None = None, output_attentions: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtst/modeling_patchtst.py#L1383)
+
+**Parameters:**
+
+past_values (`torch.Tensor` of shape `(bs, sequence_length, num_input_channels)`, *required*) : Input sequence to the model
+
+target_values (`torch.Tensor`, *optional*) : Labels associates with the `past_values`
+
+past_observed_mask (`torch.BoolTensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) : Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected in `[0, 1]`:  - 1 for values that are **observed**, - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** `PatchTSTForClassificationOutput` or `tuple(torch.FloatTensor)`
+
+A `PatchTSTForClassificationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PatchTSTConfig](/docs/transformers/v5.14.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) and inputs.
-The [PatchTSTForClassification](/docs/transformers/v5.14.0/en/model_doc/patchtst#transformers.PatchTSTForClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([PatchTSTConfig](/docs/transformers/v5.15.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) and inputs.
+
+The [PatchTSTForClassification](/docs/transformers/v5.15.0/en/model_doc/patchtst#transformers.PatchTSTForClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -338,14 +380,21 @@ Examples:
 
 ## PatchTSTForPretraining[[transformers.PatchTSTForPretraining]]
 
-- **config** ([PatchTSTConfig](/docs/transformers/v5.14.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.PatchTSTForPretraining[[transformers.PatchTSTForPretraining]]
+
+```python
+transformers.PatchTSTForPretraining(config: PatchTSTConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtst/modeling_patchtst.py#L1214)
+
+**Parameters:**
+
+config ([PatchTSTConfig](/docs/transformers/v5.15.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The PatchTST for pretrain model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -353,20 +402,29 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "past_observed_mask", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "output_hidden_states", "val": ": bool | None = None"}, {"name": "output_attentions", "val": ": bool | None = None"}, {"name": "return_dict", "val": ": bool | None = None"}, {"name": "**kwargs", "val": ""}]}>
-- **past_values** (`torch.Tensor` of shape `(bs, sequence_length, num_input_channels)`, *required*) --
-  Input sequence to the model
-- **past_observed_mask** (`torch.BoolTensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) --
-  Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected
-  in `[0, 1]`:
+#### forward[[transformers.PatchTSTForPretraining.forward]]
 
-  - 1 for values that are **observed**,
-  - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the output attention of all layers
-- **return_dict** (`bool`, *optional*) -- Whether or not to return a `ModelOutput` instead of a plain tuple.`PatchTSTForPretrainingOutput` or tuple of `torch.Tensor` (if `return_dict`=False or
+```python
+forward(past_values: Tensor, past_observed_mask: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, output_attentions: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtst/modeling_patchtst.py#L1225)
+
+**Parameters:**
+
+past_values (`torch.Tensor` of shape `(bs, sequence_length, num_input_channels)`, *required*) : Input sequence to the model
+
+past_observed_mask (`torch.BoolTensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) : Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected in `[0, 1]`:  - 1 for values that are **observed**, - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers
+
+output_attentions (`bool`, *optional*) : Whether or not to return the output attention of all layers
+
+return_dict (`bool`, *optional*) : Whether or not to return a `ModelOutput` instead of a plain tuple.
+
+**Returns:**
+
+`PatchTSTForPretrainingOutput` or tuple of `torch.Tensor` (if `return_dict`=False or
 `config.return_dict`=False)
 
 Examples:
@@ -412,14 +470,21 @@ Examples:
 
 ## PatchTSTForRegression[[transformers.PatchTSTForRegression]]
 
-- **config** ([PatchTSTConfig](/docs/transformers/v5.14.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.PatchTSTForRegression[[transformers.PatchTSTForRegression]]
+
+```python
+transformers.PatchTSTForRegression(config: PatchTSTConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtst/modeling_patchtst.py#L1811)
+
+**Parameters:**
+
+config ([PatchTSTConfig](/docs/transformers/v5.15.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The PatchTST for regression model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -427,29 +492,35 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "target_values", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "past_observed_mask", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "output_hidden_states", "val": ": bool | None = None"}, {"name": "output_attentions", "val": ": bool | None = None"}, {"name": "return_dict", "val": ": bool | None = None"}, {"name": "**kwargs", "val": ""}]}>
-- **past_values** (`torch.Tensor` of shape `(bs, sequence_length, num_input_channels)`, *required*) --
-  Input sequence to the model
-- **target_values** (`torch.Tensor` of shape `(bs, num_input_channels)`) --
-  Target values associates with the `past_values`
-- **past_observed_mask** (`torch.BoolTensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) --
-  Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected
-  in `[0, 1]`:
+#### forward[[transformers.PatchTSTForRegression.forward]]
 
-  - 1 for values that are **observed**,
-  - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros).
-  Whether or not to return a `ModelOutput` instead of a plain tuple.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.`PatchTSTForRegressionOutput` or `tuple(torch.FloatTensor)`A `PatchTSTForRegressionOutput` or a tuple of
+```python
+forward(past_values: Tensor, target_values: typing.Optional[torch.Tensor] = None, past_observed_mask: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, output_attentions: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtst/modeling_patchtst.py#L1838)
+
+**Parameters:**
+
+past_values (`torch.Tensor` of shape `(bs, sequence_length, num_input_channels)`, *required*) : Input sequence to the model
+
+target_values (`torch.Tensor` of shape `(bs, num_input_channels)`) : Target values associates with the `past_values`
+
+past_observed_mask (`torch.BoolTensor` of shape `(batch_size, sequence_length, num_input_channels)`, *optional*) : Boolean mask to indicate which `past_values` were observed and which were missing. Mask values selected in `[0, 1]`:  - 1 for values that are **observed**, - 0 for values that are **missing** (i.e. NaNs that were replaced by zeros). Whether or not to return a `ModelOutput` instead of a plain tuple.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** `PatchTSTForRegressionOutput` or `tuple(torch.FloatTensor)`
+
+A `PatchTSTForRegressionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PatchTSTConfig](/docs/transformers/v5.14.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) and inputs.
-The [PatchTSTForRegression](/docs/transformers/v5.14.0/en/model_doc/patchtst#transformers.PatchTSTForRegression) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([PatchTSTConfig](/docs/transformers/v5.15.0/en/model_doc/patchtst#transformers.PatchTSTConfig)) and inputs.
+
+The [PatchTSTForRegression](/docs/transformers/v5.15.0/en/model_doc/patchtst#transformers.PatchTSTForRegression) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -481,5 +552,5 @@ Examples:
 >>> regression_outputs = outputs.regression_outputs
 ```
 
-### SAM3 Tracker Video
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/sam3_tracker_video.md
+### GlmImage
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/glm_image.md

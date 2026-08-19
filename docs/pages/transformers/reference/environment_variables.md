@@ -41,5 +41,5 @@ from transformers import pipeline
 model = pipeline(task="text-generation", model="facebook/opt-30b", device_map="auto")
 ```
 
-### Loading kernels
-https://huggingface.co/docs/transformers/v5.14.0/kernel_doc/loading_kernels.md
+### Video-text-to-text
+https://huggingface.co/docs/transformers/v5.15.0/tasks/video_text_to_text.md

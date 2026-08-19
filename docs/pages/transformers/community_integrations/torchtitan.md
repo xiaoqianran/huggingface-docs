@@ -35,8 +35,8 @@ model = HFTransformerModel(model_args)
 
 ## Transformers integration
 
-1. [AutoConfig.from_pretrained()](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoConfig.from_pretrained) loads the config for a given model. The config values are copied into torchtitan style args in `HFTransformerModelArgs`.
-2. torchtitan's `HFTransformerModel` wrapper scans the `architecture` field in the config and instantiates and loads the corresponding model class, like [LlamaForCausalLM](/docs/transformers/v5.14.0/en/model_doc/llama#transformers.LlamaForCausalLM).
+1. [AutoConfig.from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoConfig.from_pretrained) loads the config for a given model. The config values are copied into torchtitan style args in `HFTransformerModelArgs`.
+2. torchtitan's `HFTransformerModel` wrapper scans the `architecture` field in the config and instantiates and loads the corresponding model class, like [LlamaForCausalLM](/docs/transformers/v5.15.0/en/model_doc/llama2#transformers.LlamaForCausalLM).
 3. The `forward` path uses native Transformers components while leaning on torchtitan's parallelization and optimization methods. torchtitan treats the Transformers model as a torchtitan model without needing to rewrite anything.
 
 ## Resources
@@ -44,4 +44,4 @@ model = HFTransformerModel(model_args)
 - [torchtitan](https://github.com/pytorch/torchtitan) repository
 
 ### vLLM
-https://huggingface.co/docs/transformers/v5.14.0/community_integrations/vllm.md
+https://huggingface.co/docs/transformers/v5.15.0/community_integrations/vllm.md

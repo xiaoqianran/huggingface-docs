@@ -23,7 +23,7 @@ The original code can be found [here](https://github.com/SimonZeng7108/efficient
 
 ## Usage
 
-SAM3-LiteText is a drop-in replacement for SAM3 with a lightweight text encoder. It uses the same processor ([Sam3Processor](/docs/transformers/v5.14.0/en/model_doc/sam3#transformers.Sam3Processor)) and supports the same prompting interface. Refer to the [SAM3 documentation](sam3) for detailed usage examples including text prompts, box prompts, batched inference, and more.
+SAM3-LiteText is a drop-in replacement for SAM3 with a lightweight text encoder. It uses the same processor ([Sam3Processor](/docs/transformers/v5.15.0/en/model_doc/sam3#transformers.Sam3Processor)) and supports the same prompting interface. Refer to the [SAM3 documentation](sam3) for detailed usage examples including text prompts, box prompts, batched inference, and more.
 
 ```python
 from io import BytesIO
@@ -55,27 +55,36 @@ print(f"Found {len(results['masks'])} objects")
 
 ## Sam3LiteTextConfig[[transformers.Sam3LiteTextConfig]]
 
-- **vision_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the vision backbone.
-- **text_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the text backbone.
-- **geometry_encoder_config** (`dict` or `Sam3LiteTextGeometryEncoderConfig`, *optional*) --
-  Configuration for the geometry encoder.
-- **detr_encoder_config** (`dict` or `Sam3LiteTextDETREncoderConfig`, *optional*) --
-  Configuration for the DETR encoder.
-- **detr_decoder_config** (`dict` or `Sam3LiteTextDETRDecoderConfig`, *optional*) --
-  Configuration for the DETR decoder.
-- **mask_decoder_config** (`dict` or `Sam3LiteTextMaskDecoderConfig`, *optional*) --
-  Configuration for the mask decoder.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+#### transformers.Sam3LiteTextConfig[[transformers.Sam3LiteTextConfig]]
+
+```python
+transformers.Sam3LiteTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, geometry_encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, detr_encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, detr_decoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, mask_decoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, initializer_range: float = 0.02)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_lite_text/configuration_sam3_lite_text.py#L143)
+
+**Parameters:**
+
+vision_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the vision backbone.
+
+text_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the text backbone.
+
+geometry_encoder_config (`dict` or `Sam3LiteTextGeometryEncoderConfig`, *optional*) : Configuration for the geometry encoder.
+
+detr_encoder_config (`dict` or `Sam3LiteTextDETREncoderConfig`, *optional*) : Configuration for the DETR encoder.
+
+detr_decoder_config (`dict` or `Sam3LiteTextDETRDecoderConfig`, *optional*) : Configuration for the DETR decoder.
+
+mask_decoder_config (`dict` or `Sam3LiteTextMaskDecoderConfig`, *optional*) : Configuration for the mask decoder.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
 This is the configuration class to store the configuration of a Sam3LiteTextModel. It is used to instantiate a Sam3 Lite Text
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/sam3-litetext-s0](https://huggingface.co/yonigozlan/sam3-litetext-s0)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -93,168 +102,215 @@ Example:
 
 ## Sam3LiteTextTextConfig[[transformers.Sam3LiteTextTextConfig]]
 
-- **vocab_size** (`int`, *optional*, defaults to `49408`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **hidden_size** (`int`, *optional*, defaults to `512`) --
-  Dimension of the hidden representations.
-- **intermediate_size** (`int`, *optional*, defaults to `2048`) --
-  Dimension of the MLP representations.
-- **projection_dim** (`int`, *optional*, defaults to `512`) --
-  Dimensionality of text and vision projection layers.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **max_position_embeddings** (`int`, *optional*, defaults to `77`) --
-  The maximum sequence length that this model might ever be used with.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-05`) --
-  The epsilon used by the layer normalization layers.
-- **attention_dropout** (`float`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **use_repmixer_blocks** (`bool`, *optional*, defaults to `True`) --
-  Whether to use RepMixer blocks (MobileCLIP-style) for the first and last encoder layers.
-  When `False`, all layers are standard Transformer encoder layers.
-- **layer_scale_init_value** (`float`, *optional*, defaults to `1e-5`) --
-  Initial value for the learnable layer-scale parameters in RepMixer blocks (residual branches).
-- **repmixer_kernel_size** (`int`, *optional*, defaults to `11`) --
-  Kernel size for depthwise convolutions in RepMixer blocks (token mixer and convolutional feed-forward path).
+#### transformers.Sam3LiteTextTextConfig[[transformers.Sam3LiteTextTextConfig]]
+
+```python
+transformers.Sam3LiteTextTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 49408, hidden_size: int = 512, intermediate_size: int = 2048, projection_dim: int = 512, num_hidden_layers: int = 12, num_attention_heads: int = 8, max_position_embeddings: int = 77, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-05, attention_dropout: float = 0.0, use_repmixer_blocks: bool = True, layer_scale_init_value: float = 1e-05, repmixer_kernel_size: int = 11)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_lite_text/configuration_sam3_lite_text.py#L113)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `49408`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+hidden_size (`int`, *optional*, defaults to `512`) : Dimension of the hidden representations.
+
+intermediate_size (`int`, *optional*, defaults to `2048`) : Dimension of the MLP representations.
+
+projection_dim (`int`, *optional*, defaults to `512`) : Dimensionality of text and vision projection layers.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+max_position_embeddings (`int`, *optional*, defaults to `77`) : The maximum sequence length that this model might ever be used with.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-05`) : The epsilon used by the layer normalization layers.
+
+attention_dropout (`float`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+use_repmixer_blocks (`bool`, *optional*, defaults to `True`) : Whether to use RepMixer blocks (MobileCLIP-style) for the first and last encoder layers. When `False`, all layers are standard Transformer encoder layers.
+
+layer_scale_init_value (`float`, *optional*, defaults to `1e-5`) : Initial value for the learnable layer-scale parameters in RepMixer blocks (residual branches).
+
+repmixer_kernel_size (`int`, *optional*, defaults to `11`) : Kernel size for depthwise convolutions in RepMixer blocks (token mixer and convolutional feed-forward path).
 
 This is the configuration class to store the configuration of a Sam3LiteTextModel. It is used to instantiate a Sam3 Lite Text
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/sam3-litetext-s0](https://huggingface.co/yonigozlan/sam3-litetext-s0)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Sam3LiteTextGeometryEncoderConfig[[transformers.Sam3LiteTextGeometryEncoderConfig]]
 
-- **hidden_size** (`int`, *optional*, defaults to `256`) --
-  Dimension of the hidden representations.
-- **num_layers** (`int`, *optional*, defaults to `3`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **intermediate_size** (`int`, *optional*, defaults to `2048`) --
-  Dimension of the MLP representations.
-- **dropout** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The ratio for all dropout layers.
-- **hidden_act** (`str`, *optional*, defaults to `relu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **roi_size** (`int`, *optional*, defaults to 7) --
-  ROI size for box pooling operations.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+#### transformers.Sam3LiteTextGeometryEncoderConfig[[transformers.Sam3LiteTextGeometryEncoderConfig]]
+
+```python
+transformers.Sam3LiteTextGeometryEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, num_layers: int = 3, num_attention_heads: int = 8, intermediate_size: int = 2048, dropout: float | int = 0.1, hidden_act: str = 'relu', hidden_dropout: float | int = 0.0, layer_norm_eps: float = 1e-06, roi_size: int = 7, initializer_range: float = 0.02)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_lite_text/configuration_sam3_lite_text.py#L30)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `256`) : Dimension of the hidden representations.
+
+num_layers (`int`, *optional*, defaults to `3`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+intermediate_size (`int`, *optional*, defaults to `2048`) : Dimension of the MLP representations.
+
+dropout (`Union[float, int]`, *optional*, defaults to `0.1`) : The ratio for all dropout layers.
+
+hidden_act (`str`, *optional*, defaults to `relu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+roi_size (`int`, *optional*, defaults to 7) : ROI size for box pooling operations.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
 This is the configuration class to store the configuration of a Sam3LiteTextModel. It is used to instantiate a Sam3 Lite Text
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/sam3-litetext-s0](https://huggingface.co/yonigozlan/sam3-litetext-s0)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Sam3LiteTextDETREncoderConfig[[transformers.Sam3LiteTextDETREncoderConfig]]
 
-- **hidden_size** (`int`, *optional*, defaults to `256`) --
-  Dimension of the hidden representations.
-- **num_layers** (`int`, *optional*, defaults to `6`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **intermediate_size** (`int`, *optional*, defaults to `2048`) --
-  Dimension of the MLP representations.
-- **dropout** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The ratio for all dropout layers.
-- **hidden_act** (`str`, *optional*, defaults to `relu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dropout** (`float`, *optional*, defaults to 0.0) --
-  Dropout probability for hidden states.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+#### transformers.Sam3LiteTextDETREncoderConfig[[transformers.Sam3LiteTextDETREncoderConfig]]
+
+```python
+transformers.Sam3LiteTextDETREncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, num_layers: int = 6, num_attention_heads: int = 8, intermediate_size: int = 2048, dropout: float | int = 0.1, hidden_act: str = 'relu', hidden_dropout: float | int = 0.0, layer_norm_eps: float = 1e-06, initializer_range: float = 0.02)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_lite_text/configuration_sam3_lite_text.py#L52)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `256`) : Dimension of the hidden representations.
+
+num_layers (`int`, *optional*, defaults to `6`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+intermediate_size (`int`, *optional*, defaults to `2048`) : Dimension of the MLP representations.
+
+dropout (`Union[float, int]`, *optional*, defaults to `0.1`) : The ratio for all dropout layers.
+
+hidden_act (`str`, *optional*, defaults to `relu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dropout (`float`, *optional*, defaults to 0.0) : Dropout probability for hidden states.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
 This is the configuration class to store the configuration of a Sam3LiteTextModel. It is used to instantiate a Sam3 Lite Text
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/sam3-litetext-s0](https://huggingface.co/yonigozlan/sam3-litetext-s0)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Sam3LiteTextDETRDecoderConfig[[transformers.Sam3LiteTextDETRDecoderConfig]]
 
-- **hidden_size** (`int`, *optional*, defaults to `256`) --
-  Dimension of the hidden representations.
-- **num_layers** (`int`, *optional*, defaults to `6`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_queries** (`int`, *optional*, defaults to 200) --
-  Number of object queries.
-- **num_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **intermediate_size** (`int`, *optional*, defaults to `2048`) --
-  Dimension of the MLP representations.
-- **dropout** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The ratio for all dropout layers.
-- **hidden_act** (`str`, *optional*, defaults to `relu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+#### transformers.Sam3LiteTextDETRDecoderConfig[[transformers.Sam3LiteTextDETRDecoderConfig]]
+
+```python
+transformers.Sam3LiteTextDETRDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, num_layers: int = 6, num_queries: int = 200, num_attention_heads: int = 8, intermediate_size: int = 2048, dropout: float | int = 0.1, hidden_act: str = 'relu', hidden_dropout: float | int = 0.0, layer_norm_eps: float = 1e-06, initializer_range: float = 0.02)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_lite_text/configuration_sam3_lite_text.py#L73)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `256`) : Dimension of the hidden representations.
+
+num_layers (`int`, *optional*, defaults to `6`) : Number of hidden layers in the Transformer decoder.
+
+num_queries (`int`, *optional*, defaults to 200) : Number of object queries.
+
+num_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+intermediate_size (`int`, *optional*, defaults to `2048`) : Dimension of the MLP representations.
+
+dropout (`Union[float, int]`, *optional*, defaults to `0.1`) : The ratio for all dropout layers.
+
+hidden_act (`str`, *optional*, defaults to `relu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
 This is the configuration class to store the configuration of a Sam3LiteTextModel. It is used to instantiate a Sam3 Lite Text
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/sam3-litetext-s0](https://huggingface.co/yonigozlan/sam3-litetext-s0)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Sam3LiteTextMaskDecoderConfig[[transformers.Sam3LiteTextMaskDecoderConfig]]
 
-- **hidden_size** (`int`, *optional*, defaults to `256`) --
-  Dimension of the hidden representations.
-- **num_upsampling_stages** (`int`, *optional*, defaults to 3) --
-  Number of upsampling stages in the pixel decoder (FPN).
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The ratio for all dropout layers.
-- **num_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+#### transformers.Sam3LiteTextMaskDecoderConfig[[transformers.Sam3LiteTextMaskDecoderConfig]]
+
+```python
+transformers.Sam3LiteTextMaskDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, num_upsampling_stages: int = 3, layer_norm_eps: float = 1e-06, dropout: float | int = 0.0, num_attention_heads: int = 8, initializer_range: float = 0.02)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_lite_text/configuration_sam3_lite_text.py#L95)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `256`) : Dimension of the hidden representations.
+
+num_upsampling_stages (`int`, *optional*, defaults to 3) : Number of upsampling stages in the pixel decoder (FPN).
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The ratio for all dropout layers.
+
+num_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
 This is the configuration class to store the configuration of a Sam3LiteTextModel. It is used to instantiate a Sam3 Lite Text
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/sam3-litetext-s0](https://huggingface.co/yonigozlan/sam3-litetext-s0)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Sam3LiteTextTextModel[[transformers.Sam3LiteTextTextModel]]
 
-- **config** ([Sam3LiteTextTextConfig](/docs/transformers/v5.14.0/en/model_doc/sam3_lite_text#transformers.Sam3LiteTextTextConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Sam3LiteTextTextModel[[transformers.Sam3LiteTextTextModel]]
+
+```python
+transformers.Sam3LiteTextTextModel(config: Sam3LiteTextTextConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_lite_text/modeling_sam3_lite_text.py#L372)
+
+**Parameters:**
+
+config ([Sam3LiteTextTextConfig](/docs/transformers/v5.15.0/en/model_doc/sam3_lite_text#transformers.Sam3LiteTextTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 MobileCLIP MCT text encoder used in EfficientSAM3 LiteText.
 
 When `config.use_repmixer_blocks` is `True`, the first and last layers are
 `Sam3LiteTextRepMixerBlock` modules; the rest are standard `Sam3LiteTextTextEncoderLayer` layers.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -262,23 +318,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.Sam3LiteTextTextModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_lite_text/modeling_sam3_lite_text.py#L394)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)`Sam3LiteTextTextEncoderOutput` or `tuple(torch.FloatTensor)`A `Sam3LiteTextTextEncoderOutput` or a tuple of
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+**Returns:** `Sam3LiteTextTextEncoderOutput` or `tuple(torch.FloatTensor)`
+
+A `Sam3LiteTextTextEncoderOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Sam3LiteTextConfig](/docs/transformers/v5.14.0/en/model_doc/sam3_lite_text#transformers.Sam3LiteTextConfig)) and inputs.
-The [Sam3LiteTextTextModel](/docs/transformers/v5.14.0/en/model_doc/sam3_lite_text#transformers.Sam3LiteTextTextModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Sam3LiteTextConfig](/docs/transformers/v5.15.0/en/model_doc/sam3_lite_text#transformers.Sam3LiteTextConfig)) and inputs.
+
+The [Sam3LiteTextTextModel](/docs/transformers/v5.15.0/en/model_doc/sam3_lite_text#transformers.Sam3LiteTextTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -291,37 +351,45 @@ the latter silently ignores them.
 
 ## Sam3LiteTextModel[[transformers.Sam3LiteTextModel]]
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [Sam3ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sam3#transformers.Sam3ImageProcessor). See `Sam3ImageProcessor.__call__()` for details ([Sam3Processor](/docs/transformers/v5.14.0/en/model_doc/sam3#transformers.Sam3Processor) uses
-  [Sam3ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sam3#transformers.Sam3ImageProcessor) for processing images).
-- **vision_embeds** (`Sam3LiteTextVisionEncoderOutput`, *optional*) --
-  Pre-computed vision embeddings. Can be used to easily reuse vision embeddings. If provided, `pixel_values`
-  should not be passed. Mutually exclusive with `pixel_values`.
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### transformers.Sam3LiteTextModel[[transformers.Sam3LiteTextModel]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+transformers.Sam3LiteTextModel(config: Sam3LiteTextConfig)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_lite_text/modeling_sam3_lite_text.py#L1920)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+#### forward[[transformers.Sam3LiteTextModel.forward]]
 
-  [What are attention masks?](../glossary#attention-mask)
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Pre-computed text embeddings. Can be used to easily reuse text embeddings. If provided, `input_ids`
-  should not be passed. Mutually exclusive with `input_ids`.
-- **input_boxes** (`torch.FloatTensor` of shape `(batch_size, num_boxes, 4)`, *optional*) --
-  Normalized box coordinates in [0, 1] range, in (cx, cy, w, h) format.
-- **input_boxes_labels** (`torch.LongTensor` of shape `(batch_size, num_boxes)`, *optional*) --
-  Labels for boxes: 1 (positive), 0 (negative).`Sam3LiteTextImageSegmentationOutput` or `tuple(torch.FloatTensor)`A `Sam3LiteTextImageSegmentationOutput` or a tuple of
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, vision_embeds: transformers.models.sam3_lite_text.modeling_sam3_lite_text.Sam3LiteTextVisionEncoderOutput | None = None, input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, text_embeds: typing.Optional[torch.FloatTensor] = None, input_boxes: typing.Optional[torch.FloatTensor] = None, input_boxes_labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_lite_text/modeling_sam3_lite_text.py#L2036)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Sam3ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam3#transformers.Sam3ImageProcessor). See `Sam3ImageProcessor.__call__()` for details ([Sam3Processor](/docs/transformers/v5.15.0/en/model_doc/sam3#transformers.Sam3Processor) uses [Sam3ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam3#transformers.Sam3ImageProcessor) for processing images).
+
+vision_embeds (`Sam3LiteTextVisionEncoderOutput`, *optional*) : Pre-computed vision embeddings. Can be used to easily reuse vision embeddings. If provided, `pixel_values` should not be passed. Mutually exclusive with `pixel_values`.
+
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+text_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Pre-computed text embeddings. Can be used to easily reuse text embeddings. If provided, `input_ids` should not be passed. Mutually exclusive with `input_ids`.
+
+input_boxes (`torch.FloatTensor` of shape `(batch_size, num_boxes, 4)`, *optional*) : Normalized box coordinates in [0, 1] range, in (cx, cy, w, h) format.
+
+input_boxes_labels (`torch.LongTensor` of shape `(batch_size, num_boxes)`, *optional*) : Labels for boxes: 1 (positive), 0 (negative).
+
+**Returns:** `Sam3LiteTextImageSegmentationOutput` or `tuple(torch.FloatTensor)`
+
+A `Sam3LiteTextImageSegmentationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Sam3LiteTextConfig](/docs/transformers/v5.14.0/en/model_doc/sam3_lite_text#transformers.Sam3LiteTextConfig)) and inputs.
-The [Sam3LiteTextModel](/docs/transformers/v5.14.0/en/model_doc/sam3_lite_text#transformers.Sam3LiteTextModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Sam3LiteTextConfig](/docs/transformers/v5.15.0/en/model_doc/sam3_lite_text#transformers.Sam3LiteTextConfig)) and inputs.
+
+The [Sam3LiteTextModel](/docs/transformers/v5.15.0/en/model_doc/sam3_lite_text#transformers.Sam3LiteTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -369,12 +437,19 @@ Example:
 
 ## Sam3LiteTextPreTrainedModel[[transformers.Sam3LiteTextPreTrainedModel]]
 
-- **config** ([PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Sam3LiteTextPreTrainedModel[[transformers.Sam3LiteTextPreTrainedModel]]
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+```python
+transformers.Sam3LiteTextPreTrainedModel(config: PreTrainedConfig, *inputs, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_lite_text/modeling_sam3_lite_text.py#L344)
+
+**Parameters:**
+
+config ([PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -382,11 +457,17 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
+#### forward[[transformers.Sam3LiteTextPreTrainedModel.forward]]
+
+```python
+forward(*args, **kwargs)
+```
+
 A mock value for a dotted path (e.g. `torch.float32`): attribute access chains,
 calls behave as pass-through decorators, `repr` is the dotted path, and using it
 as a base class substitutes a plain-`type` base (PEP 560 `__mro_entries__`), so
 real subclasses keep a normal metaclass and `inspect.signature` reads their real
 `__init__` instead of a mock's.
 
-### Glmga
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/glmga.md
+### SqueezeBERT
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/squeezebert.md

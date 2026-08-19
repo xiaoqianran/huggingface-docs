@@ -4,7 +4,7 @@
 
 You can find all the original Pixio checkpoints under the [Pixio]() collection.
 
-The example below demonstrates how to obtain an image embedding with the [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to obtain an image embedding with the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 import requests
@@ -84,50 +84,56 @@ features = outputs.hidden_states[-1] # class tokens + patch tokens before last L
 
 ## PixioConfig[[transformers.PixioConfig]]
 
-- **hidden_size** (`int`, *optional*, defaults to `1280`) --
-  Dimension of the hidden representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `32`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `16`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **mlp_ratio** (`int`, *optional*, defaults to `4`) --
-  Ratio of the MLP hidden dim to the embedding dim.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **attention_probs_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **image_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `256`) --
-  The size (resolution) of each image.
-- **patch_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `16`) --
-  The size (resolution) of each patch.
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **qkv_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a bias to the queries, keys and values.
-- **drop_path_rate** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  Drop path rate for the patch fusion.
-- **apply_layernorm** (`bool`, *optional*, defaults to `True`) --
-  Whether to apply layer normalization to the feature maps in case the model is used as backbone.
-- **reshape_hidden_states** (`bool`, *optional*, defaults to `True`) --
-  Whether to reshape the feature maps to 4D tensors of shape `(batch_size, hidden_size, height, width)` in
-  case the model is used as backbone. If `False`, the feature maps will be 3D tensors of shape `(batch_size,
-  seq_len, hidden_size)`.
-- **n_cls_tokens** (`int`, *optional*, defaults to 8) --
-  Number of class tokens in the Transformer encoder.
+#### transformers.PixioConfig[[transformers.PixioConfig]]
+
+```python
+transformers.PixioConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 1280, num_hidden_layers: int = 32, num_attention_heads: int = 16, mlp_ratio: int = 4, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-06, image_size: int | list[int] | tuple[int, int] = 256, patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, qkv_bias: bool = True, drop_path_rate: float | int = 0.0, _out_features: list[str] | None = None, _out_indices: list[int] | None = None, apply_layernorm: bool = True, reshape_hidden_states: bool = True, n_cls_tokens: int = 8)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pixio/configuration_pixio.py#L29)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `1280`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `32`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `16`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+mlp_ratio (`int`, *optional*, defaults to `4`) : Ratio of the MLP hidden dim to the embedding dim.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+attention_probs_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+image_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `256`) : The size (resolution) of each image.
+
+patch_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `16`) : The size (resolution) of each patch.
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+qkv_bias (`bool`, *optional*, defaults to `True`) : Whether to add a bias to the queries, keys and values.
+
+drop_path_rate (`Union[float, int]`, *optional*, defaults to `0.0`) : Drop path rate for the patch fusion.
+
+apply_layernorm (`bool`, *optional*, defaults to `True`) : Whether to apply layer normalization to the feature maps in case the model is used as backbone.
+
+reshape_hidden_states (`bool`, *optional*, defaults to `True`) : Whether to reshape the feature maps to 4D tensors of shape `(batch_size, hidden_size, height, width)` in case the model is used as backbone. If `False`, the feature maps will be 3D tensors of shape `(batch_size, seq_len, hidden_size)`.
+
+n_cls_tokens (`int`, *optional*, defaults to 8) : Number of class tokens in the Transformer encoder.
 
 This is the configuration class to store the configuration of a PixioModel. It is used to instantiate a Pixio
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/pixio-huge](https://huggingface.co/facebook/pixio-huge)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -146,14 +152,21 @@ Example:
 
 ## PixioModel[[transformers.PixioModel]]
 
-- **config** ([PixioConfig](/docs/transformers/v5.14.0/en/model_doc/pixio#transformers.PixioConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.PixioModel[[transformers.PixioModel]]
+
+```python
+transformers.PixioModel(config: PixioConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pixio/modeling_pixio.py#L324)
+
+**Parameters:**
+
+config ([PixioConfig](/docs/transformers/v5.15.0/en/model_doc/pixio#transformers.PixioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Pixio Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -161,20 +174,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [BitImageProcessor](/docs/transformers/v5.14.0/en/model_doc/bit#transformers.BitImageProcessor). See `BitImageProcessor.__call__()` for details (`processor_class` uses
-  [BitImageProcessor](/docs/transformers/v5.14.0/en/model_doc/bit#transformers.BitImageProcessor) for processing images).
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+#### forward[[transformers.PixioModel.forward]]
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+```python
+forward(pixel_values: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are attention masks?](../glossary#attention-mask)[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pixio/modeling_pixio.py#L336)
+
+**Parameters:**
+
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bit#transformers.BitImageProcessor). See `BitImageProcessor.__call__()` for details (`processor_class` uses [BitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bit#transformers.BitImageProcessor) for processing images).
+
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PixioConfig](/docs/transformers/v5.14.0/en/model_doc/pixio#transformers.PixioConfig)) and inputs.
-The [PixioModel](/docs/transformers/v5.14.0/en/model_doc/pixio#transformers.PixioModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([PixioConfig](/docs/transformers/v5.15.0/en/model_doc/pixio#transformers.PixioConfig)) and inputs.
+
+The [PixioModel](/docs/transformers/v5.15.0/en/model_doc/pixio#transformers.PixioModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -202,14 +222,21 @@ Example:
 
 ## PixioBackbone[[transformers.PixioBackbone]]
 
-- **config** ([PixioConfig](/docs/transformers/v5.14.0/en/model_doc/pixio#transformers.PixioConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.PixioBackbone[[transformers.PixioBackbone]]
+
+```python
+transformers.PixioBackbone(config: PixioConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pixio/modeling_pixio.py#L371)
+
+**Parameters:**
+
+config ([PixioConfig](/docs/transformers/v5.15.0/en/model_doc/pixio#transformers.PixioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Pixio backbone, to be used with frameworks like DETR and MaskFormer.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -217,21 +244,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "attention_mask", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "**kwargs", "val": ": Unpack"}]}>
-- **pixel_values** (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [BitImageProcessor](/docs/transformers/v5.14.0/en/model_doc/bit#transformers.BitImageProcessor). See `BitImageProcessor.__call__()` for details (`processor_class` uses
-  [BitImageProcessor](/docs/transformers/v5.14.0/en/model_doc/bit#transformers.BitImageProcessor) for processing images).
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+#### forward[[transformers.PixioBackbone.forward]]
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+```python
+forward(pixel_values: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are attention masks?](../glossary#attention-mask)`BackboneOutput` or `tuple(torch.FloatTensor)`A `BackboneOutput` or a tuple of
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pixio/modeling_pixio.py#L381)
+
+**Parameters:**
+
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [BitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bit#transformers.BitImageProcessor). See `BitImageProcessor.__call__()` for details (`processor_class` uses [BitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bit#transformers.BitImageProcessor) for processing images).
+
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+**Returns:** `BackboneOutput` or `tuple(torch.FloatTensor)`
+
+A `BackboneOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PixioConfig](/docs/transformers/v5.14.0/en/model_doc/pixio#transformers.PixioConfig)) and inputs.
-The [PixioBackbone](/docs/transformers/v5.14.0/en/model_doc/pixio#transformers.PixioBackbone) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([PixioConfig](/docs/transformers/v5.15.0/en/model_doc/pixio#transformers.PixioConfig)) and inputs.
+
+The [PixioBackbone](/docs/transformers/v5.15.0/en/model_doc/pixio#transformers.PixioBackbone) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -275,5 +308,5 @@ Examples:
 [1, 1280, 16, 16]
 ```
 
-### CodeGen
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/codegen.md
+### PP-FormulaNet
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/pp_formulanet.md

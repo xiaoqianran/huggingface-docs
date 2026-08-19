@@ -62,5 +62,5 @@ Tips:
 
 A ton of cool resources are already available on the documentation page of [Llama2](./llama2), inviting contributors to add new resources curated for Llama3 here! 🤗
 
-### Zamba
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/zamba.md
+### OLMo2
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/olmo2.md

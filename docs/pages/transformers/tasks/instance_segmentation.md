@@ -5,7 +5,7 @@ Instance segmentation is the computer vision task of detecting objects in an ima
 In this guide, you will learn how to:
 
  1. Load an instance segmentation dataset from the Hugging Face Hub.
- 2. Fine-tune [RF-DETR-Seg](https://huggingface.co/Roboflow/rf-detr-seg-medium), a transformer-based instance segmentation model, using the Transformers [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer).
+ 2. Fine-tune [RF-DETR-Seg](https://huggingface.co/Roboflow/rf-detr-seg-medium), a transformer-based instance segmentation model, using the Transformers [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer).
  3. Evaluate your model with mean IoU.
  4. Run inference and visualize predictions.
 
@@ -96,7 +96,7 @@ Visualize an example with its ground-truth masks:
 
 ## Load the model and image processor
 
-Use [AutoImageProcessor](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoImageProcessor) and [AutoModelForInstanceSegmentation](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModelForInstanceSegmentation) to load the RF-DETR-Seg model. When loading the model, pass `id2label` and `label2id` mappings to configure the classification head for the single "building" class. Since the pretrained model was trained on COCO (91 classes), set `ignore_mismatched_sizes=True` to reinitialize the classification head with the correct number of outputs.
+Use [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor) and [AutoModelForInstanceSegmentation](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForInstanceSegmentation) to load the RF-DETR-Seg model. When loading the model, pass `id2label` and `label2id` mappings to configure the classification head for the single "building" class. Since the pretrained model was trained on COCO (91 classes), set `ignore_mismatched_sizes=True` to reinitialize the classification head with the correct number of outputs.
 
 The image processor handles all the preprocessing: resizing images while maintaining aspect ratio, normalizing with ImageNet statistics, padding to a uniform size, and — crucially for instance segmentation — converting polygon annotations to binary masks, resizing those masks, and normalizing bounding boxes to the `[cx, cy, w, h]` format in `[0, 1]` range that the model expects.
 
@@ -127,7 +127,7 @@ To fine-tune the model, you must preprocess the data to match the format the mod
 
 The transform reconstructs the COCO-style annotation dicts that the image processor expects from the dataset's `objects` column.
 
-Use `with_transform` to apply preprocessing lazily (on-the-fly when samples are loaded), which avoids storing the entire processed dataset in memory.
+Use [with_transform](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset.with_transform) to apply preprocessing lazily (on-the-fly when samples are loaded), which avoids storing the entire processed dataset in memory.
 
 ```py
 >>> from functools import partial
@@ -218,7 +218,7 @@ This gives a per-image metric of "how well does the model cover the buildings", 
 > [!TIP]
 > Instance segmentation benchmarks (such as COCO) usually report mask mean average precision (mAP), which scores each predicted instance mask against the ground truth across a range of IoU thresholds and therefore rewards correctly separating individual objects. The union-based mean IoU used here is a simpler, faster proxy: it measures overall pixel coverage rather than per-instance quality, which makes it convenient for tracking progress during training. For a standard, instance-aware evaluation, compute mask mAP instead, for example with `torchmetrics`' [`MeanAveragePrecision(iou_type="segm")`](https://lightning.ai/docs/torchmetrics/stable/detection/mean_average_precision.html).
 
-Pass this to the [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) as a `compute_metrics` function instead of subclassing the trainer. With `eval_do_concat_batches=False` (set in the [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments) below), the predictions and labels produced by the standard evaluation pass are handed to `compute_metrics` as a list of per-batch outputs, so the metric reuses those predictions and no second forward pass over the validation set is needed. In the model output tuple, index `3` holds `pred_masks`:
+Pass this to the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) as a `compute_metrics` function instead of subclassing the trainer. With `eval_do_concat_batches=False` (set in the [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) below), the predictions and labels produced by the standard evaluation pass are handed to `compute_metrics` as a list of per-batch outputs, so the metric reuses those predictions and no second forward pass over the validation set is needed. In the model output tuple, index `3` holds `pred_masks`:
 
 ```py
 >>> import torch.nn.functional as F
@@ -253,11 +253,11 @@ Pass this to the [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#tr
 ...     return {"mean_iou": mean_iou}
 ```
 
-The [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) automatically prefixes the returned keys with `eval_`, so this produces the `eval_mean_iou` metric used below for checkpoint selection.
+The [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) automatically prefixes the returned keys with `eval_`, so this produces the `eval_mean_iou` metric used below for checkpoint selection.
 
 ## Training
 
-With the data, model, and metrics ready, set up training. A few important notes on the [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments):
+With the data, model, and metrics ready, set up training. A few important notes on the [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments):
 
 - `remove_unused_columns=False`: Required because the default behavior would drop columns before our transform runs.
 - `eval_do_concat_batches=False`: Instance segmentation labels are variable-length dicts, they cannot be concatenated across batches. This also keeps predictions grouped per batch so `compute_metrics` can match them to their labels.
@@ -275,7 +275,7 @@ With the data, model, and metrics ready, set up training. A few important notes 
 ...     learning_rate=1e-4,
 ...     weight_decay=1e-4,
 ...     lr_scheduler_type="cosine",
-...     warmup_ratio=0.1,
+...     warmup_steps=0.1,
 ...     fp16=True,
 ...     dataloader_num_workers=4,
 ...     eval_strategy="epoch",
@@ -303,7 +303,7 @@ With the data, model, and metrics ready, set up training. A few important notes 
 ```
 
 If you set `push_to_hub=True` in the training arguments, the training checkpoints are pushed to the
-Hugging Face Hub. Upon training completion, push the final model to the Hub as well by calling the [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method.
+Hugging Face Hub. Upon training completion, push the final model to the Hub as well by calling the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method.
 
 ```py
 >>> trainer.push_to_hub(
@@ -369,5 +369,5 @@ Visualize the predictions. The segmentation map assigns each pixel a segment ID 
 
 ![Fine-tuning Result](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/finetuned-results.png)
 
-### Audio classification
-https://huggingface.co/docs/transformers/v5.14.0/tasks/audio_classification.md
+### tiny-agents
+https://huggingface.co/docs/transformers/v5.15.0/serve-cli/tiny_agents.md

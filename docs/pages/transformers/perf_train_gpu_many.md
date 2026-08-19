@@ -100,5 +100,5 @@ Compute efficiency is enabled by ZeRO data parallelism where each GPU only store
 
 This approach is scalable to extremely large models with trillions of parameters.
 
-### Multimodal chat templates
-https://huggingface.co/docs/transformers/v5.14.0/chat_templating_multimodal.md
+### Parameter-efficient fine-tuning
+https://huggingface.co/docs/transformers/v5.15.0/peft.md

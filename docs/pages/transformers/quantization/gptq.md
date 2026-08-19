@@ -16,7 +16,7 @@ Then run the command below to install GPT-QModel.
 pip install gptqmodel --no-build-isolation
 ```
 
-Create a [GPTQConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.GPTQConfig) class and set the number of bits to quantize to, a dataset to calbrate the weights for quantization, and a tokenizer to prepare the dataset.
+Create a [GPTQConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.GPTQConfig) class and set the number of bits to quantize to, a dataset to calbrate the weights for quantization, and a tokenizer to prepare the dataset.
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer, GPTQConfig
@@ -32,7 +32,7 @@ dataset = ["gptqmodel is an easy-to-use model quantization library with user-fri
 gptq_config = GPTQConfig(bits=4, dataset=dataset, tokenizer=tokenizer)
 ```
 
-Load a model to quantize and pass [GPTQConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.GPTQConfig) to [from_pretrained()](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel.from_pretrained). Set `device_map="auto"` to automatically offload the model to a CPU to help fit the model in memory, and allow the model modules to be moved between the CPU and GPU for quantization.
+Load a model to quantize and pass [GPTQConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.GPTQConfig) to [from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel.from_pretrained). Set `device_map="auto"` to automatically offload the model to a CPU to help fit the model in memory, and allow the model modules to be moved between the CPU and GPU for quantization.
 
 ```py
 quantized_model = AutoModelForCausalLM.from_pretrained("facebook/opt-125m", device_map="auto", quantization_config=gptq_config)
@@ -52,14 +52,14 @@ quantized_model = AutoModelForCausalLM.from_pretrained(
 > [!WARNING]
 > Depending on your hardware, it can take some time to quantize a model from scratch. It can take ~5 minutes to quantize the [facebook/opt-350m](https://huggingface.co/facebook/opt-350m) model on a free-tier Google Colab GPU, but it'll take ~4 hours to quantize a 175B parameter model on a NVIDIA A100. Before you quantize a model, it is a good idea to check the Hub if a GPTQ-quantized version of the model already exists.
 
-Once a model is quantized, you can use [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) to push the model and tokenizer to the Hub where it can be easily shared and accessed. This saves the [GPTQConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.GPTQConfig).
+Once a model is quantized, you can use [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) to push the model and tokenizer to the Hub where it can be easily shared and accessed. This saves the [GPTQConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.GPTQConfig).
 
 ```py
 quantized_model.push_to_hub("opt-125m-gptq")
 tokenizer.push_to_hub("opt-125m-gptq")
 ```
 
-[save_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) saves a quantized model locally. If the model was quantized with the `device_map` parameter, make sure to move the entire model to a GPU or CPU before saving it. The example below saves the model on a CPU.
+[save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) saves a quantized model locally. If the model was quantized with the `device_map` parameter, make sure to move the entire model to a GPU or CPU before saving it. The example below saves the model on a CPU.
 
 ```py
 quantized_model.save_pretrained("opt-125m-gptq")
@@ -70,7 +70,7 @@ quantized_model.to("cpu")
 quantized_model.save_pretrained("opt-125m-gptq")
 ```
 
-Reload a quantized model with [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), and set `device_map="auto"` to automatically distribute the model on all available GPUs to load the model faster without using more memory than needed.
+Reload a quantized model with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), and set `device_map="auto"` to automatically distribute the model on all available GPUs to load the model faster without using more memory than needed.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -82,7 +82,7 @@ model = AutoModelForCausalLM.from_pretrained("{your_username}/opt-125m-gptq", de
 
 [Marlin](https://github.com/IST-DASLab/marlin) is a 4-bit only CUDA GPTQ kernel, highly optimized for the NVIDIA A100 GPU (Ampere) architecture. Loading, dequantization, and execution of post-dequantized weights are highly parallelized, offering a substantial inference improvement versus the original CUDA GPTQ kernel. Marlin is only available for quantized inference and does not support model quantization.
 
-Marlin inference can be activated with the `backend` parameter in [GPTQConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.GPTQConfig).
+Marlin inference can be activated with the `backend` parameter in [GPTQConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.GPTQConfig).
 
 ```py
 
@@ -105,5 +105,5 @@ The Marlin kernels are also updated for A100 GPUs and other kernels are updated 
 
 Run the GPTQ quantization with PEFT [notebook](https://colab.research.google.com/drive/1_TIrmuKOFhuRRiTWN94iLKUFu6ZX4ceb?usp=sharing) for a hands-on experience.
 
-### HIGGS
-https://huggingface.co/docs/transformers/v5.14.0/quantization/higgs.md
+### EETQ
+https://huggingface.co/docs/transformers/v5.15.0/quantization/eetq.md

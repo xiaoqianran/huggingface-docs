@@ -59,13 +59,13 @@ These fields control how FSDP2 wraps, shards, and loads the model. `reshard_afte
 
 - `cpu_ram_efficient_loading` loads the checkpoint from disk on rank 0 only. Other GPUs initialize an empty model and receive the weights by broadcast, avoiding multiple processes loading a large model into CPU RAM.
 
-- `activation_checkpointing` recomputes activations during the backward pass instead of storing them. Use this instead of [gradient checkpointing](./grad_checkpointing) in [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments). Setting both raises an error.
+- `activation_checkpointing` recomputes activations during the backward pass instead of storing them. Use this instead of [gradient checkpointing](./grad_checkpointing) in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments). Setting both raises an error.
 
 Configure FSDP training with either an [Accelerate config file](./accelerate#accelerate-config-file) or an FSDP config file passed to `fsdp_config`.
 
 Run the [accelerate config](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-config) command and answer questions about your hardware and training setup. This creates a `default_config.yaml` file in your cache.
 
-Run [accelerate launch](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-launch) with a [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer)-based script. The `fsdp_config` is unnecessary because the Accelerate config file covers the same settings.
+Run [accelerate launch](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-launch) with a [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer)-based script. The `fsdp_config` is unnecessary because the Accelerate config file covers the same settings.
 
 ```cli
 accelerate launch train.py
@@ -103,5 +103,5 @@ TrainingArguments(
 - For FSDP on TPUs with PyTorch/XLA, set `xla`, `xla_fsdp_settings`, and `xla_fsdp_grad_ckpt` in `~TrainingArguments.fsdp_config`.
 - Read the [FSDP chapter](https://nanotron-ultrascale-playbook.static.hf.space/index.html#zero-3:_adding_parameter_partitioning_(fsdp)) from The Ultra-Scale Playbook for more information about how FSDP works.
 
-### Sharing
-https://huggingface.co/docs/transformers/v5.14.0/model_sharing.md
+### Quickstart
+https://huggingface.co/docs/transformers/v5.15.0/quicktour.md

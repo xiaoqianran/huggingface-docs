@@ -27,7 +27,7 @@ The original code can be found [here](https://github.com/facebookresearch/sapien
 
 ## Usage examples
 
-The example below shows how to obtain the CLS token (whole-image embedding) with [Sapiens2Model](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Model).
+The example below shows how to obtain the CLS token (whole-image embedding) with [Sapiens2Model](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Model).
 
 ```python
 import torch
@@ -48,7 +48,7 @@ cls_token = REDACTED
 print("CLS token shape:", cls_token.shape)  # [1, 1024]
 ```
 
-[Sapiens2Backbone](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Backbone) exposes patch tokens already reshaped to spatial dimensions and CLS tokens directly on the output object.
+[Sapiens2Backbone](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Backbone) exposes patch tokens already reshaped to spatial dimensions and CLS tokens directly on the output object.
 
 ```python
 import torch
@@ -71,7 +71,7 @@ print("CLS token shape:", cls_token.shape)           # [1, 1024]
 print("Patch features shape:", patch_features.shape) # [1, 64, 48, 1024]
 ```
 
-The example below shows how to estimate surface normals with [Sapiens2ForNormalEstimation](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForNormalEstimation).
+The example below shows how to estimate surface normals with [Sapiens2ForNormalEstimation](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForNormalEstimation).
 The output normals are raw (unnormalized); use `post_process_normal_estimation` to resize and L2-normalize them.
 
 ```python
@@ -112,7 +112,7 @@ normals_rgb[:, background_mask] = 0
 print("Normals RGB shape:", normals_rgb.shape)   # [3, original_height, original_width]
 ```
 
-The example below shows how to estimate per-pixel 3D coordinates with [Sapiens2ForPointmapEstimation](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForPointmapEstimation).
+The example below shows how to estimate per-pixel 3D coordinates with [Sapiens2ForPointmapEstimation](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForPointmapEstimation).
 Use `post_process_pointmap_estimation` to remove preprocessing padding, resize to the original image size, and apply the predicted focal-length scale.
 
 ```python
@@ -163,7 +163,7 @@ if foreground_depth.numel() > 0:
 print("Pointmap RGB shape:", pointmap_rgb.shape)  # [3, original_height, original_width]
 ```
 
-The example below shows how to run pose estimation with [Sapiens2ForPoseEstimation](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForPoseEstimation).
+The example below shows how to run pose estimation with [Sapiens2ForPoseEstimation](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForPoseEstimation).
 The model predicts per-keypoint heatmaps; use `post_process_pose_estimation` to decode them back to
 image-space keypoint coordinates. It requires `opencv-python` (`pip install opencv-python`).
 
@@ -223,7 +223,7 @@ keypoints = results[0]["keypoints"]
 scores = results[0]["scores"]
 ```
 
-The example below shows how to compute the supervised Masked Mean Squared Error (MSE) loss with [Sapiens2ForPoseEstimation](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForPoseEstimation) by passing `labels` and optional `label_weights`. This is useful for fine-tuning using the `Trainer` API.
+The example below shows how to compute the supervised Masked Mean Squared Error (MSE) loss with [Sapiens2ForPoseEstimation](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForPoseEstimation) by passing `labels` and optional `label_weights`. This is useful for fine-tuning using the `Trainer` API.
 
 ```python
 import torch
@@ -252,7 +252,7 @@ outputs = model(**inputs, labels=labels, label_weights=label_weights)
 print("Loss:", outputs.loss.item())
 ```
 
-The example below shows how to perform body-part segmentation with [Sapiens2ForSemanticSegmentation](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForSemanticSegmentation).
+The example below shows how to perform body-part segmentation with [Sapiens2ForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForSemanticSegmentation).
 
 ```python
 import torch
@@ -279,7 +279,7 @@ segmentation = image_processor.post_process_semantic_segmentation(
 print("Segmentation map shape:", segmentation.shape)  # [original_height, original_width]
 ```
 
-The example below shows how to run image matting with [Sapiens2ForImageMatting](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForImageMatting).
+The example below shows how to run image matting with [Sapiens2ForImageMatting](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForImageMatting).
 Outputs are sigmoid-activated and already in `[0, 1]`; use `post_process_image_matting` to resize and split
 into `alphas`, `foregrounds`, and an optional `composite` image. The composite image shows
 the foreground overlaid over the background with the formula: `composite = foreground * (1 - alpha) * background`.
@@ -314,255 +314,360 @@ print("Composite shape:", result["composite"].shape)    # [3, original_height, o
 
 ## Sapiens2Config[[transformers.Sapiens2Config]]
 
-- **patch_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `16`) --
-  The size (resolution) of each patch.
-- **hidden_size** (`int`, *optional*, defaults to `1024`) --
-  Dimension of the hidden representations.
-- **intermediate_size** (`int`, *optional*, defaults to `4096`) --
-  Dimension of the MLP representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `24`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `16`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **hidden_act** (`str`, *optional*, defaults to `silu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **rope_theta** (`float`, *optional*, defaults to 100.0) --
-  The base period of the RoPE embeddings.
-- **image_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) --
-  The size (resolution) of each image.
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **query_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a bias to the query projection.
-- **key_bias** (`bool`, *optional*, defaults to `False`) --
-  Whether to add a bias to the key projection.
-- **value_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a bias to the value projection.
-- **proj_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a bias to the output projection.
-- **mlp_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to use a bias in up_proj, down_proj and gate_proj layers in the MLP layers.
-- **layerscale_value** (`float`, *optional*, defaults to 1.0) --
-  Initial value to use for layer scale.
-- **drop_path_rate** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  Drop path rate for the patch fusion.
-- **use_gated_mlp** (`bool`, *optional*, defaults to `False`) --
-  Whether to use the SwiGLU feedforward neural network.
-- **num_register_tokens** (`int`, *optional*, defaults to 0) --
-  The number of register tokens.
-- **pos_embed_shift** (`float`, *optional*) --
-  Amount to randomly shift position embedding coordinates in [-shift, shift],
-  applied only in training mode if not `None`.
-- **pos_embed_jitter** (`float`, *optional*) --
-  Amount to randomly jitter position embedding coordinates in log-uniform value in [1/jitter, jitter],
-  applied only in training mode if not `None`.
-- **pos_embed_rescale** (`float`, *optional*, defaults to 2.0) --
-  Amount to randomly rescale position embedding coordinates in log-uniform value in [1/rescale, rescale],
-  applied only in training mode if not `None`.
-- **reshape_hidden_states** (`bool`, *optional*, defaults to `True`) --
-  Whether to reshape the hidden states to spatial dimensions when used as backbone.
-- **use_mask_token** (`bool`, *optional*, defaults to `False`) --
-  Whether to use a mask token in the embeddings (needed for masked image modeling pretraining).
-- **rms_norm_eps** (`float`, *optional*, defaults to 1e-6) --
-  Epsilon for the RMS normalization layers.
-- **normalize_backbone_outputs** (`bool`, *optional*, defaults to `True`) --
-  Whether to apply RMSNorm to the backbone `feature_maps` and `cls_tokens` outputs before
-  returning them from the forward pass. Only applies when the model is used as a backbone.
-- **use_qk_norm** (`bool`, *optional*, defaults to `True`) --
-  Whether to apply RMSNorm to queries and keys before RoPE in attention layers.
-- **num_key_value_heads_per_layer** (`list[int]`, *optional*) --
-  Number of key/value heads for each transformer layer. Setting a layer's value equal to
-  `num_attention_heads` gives full multi-head attention; a smaller value gives grouped-query
-  attention. Defaults to `num_attention_heads` for the first `num_first_full_attention_layers`
-  and last `num_last_full_attention_layers` layers and `num_key_valueattention_heads` for all other
-  layers.
-- **num_key_value_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of key/value heads for layers that use grouped-query attention when `num_key_value_heads_per_layer`
-  is not set. Ignored when `num_key_value_heads_per_layer` is set.
-- **num_first_full_attention_layers** (`int`, *optional*, defaults to 8) --
-  Number of leading transformer layers that use full multi-head attention.
-  Only used when `num_key_value_heads_per_layer` is `None`.
-- **num_last_full_attention_layers** (`int`, *optional*, defaults to 8) --
-  Number of trailing transformer layers that use full multi-head attention.
-  Only used when `num_key_value_heads_per_layer` is `None`.
-- **semantic_loss_ignore_index** (`int`, *optional*, defaults to 255) --
-  Label index ignored when computing the segmentation loss.
-- **flip_pairs** (`list[list[int]]`, *optional*) --
-  Pairs of keypoint indices that are mirrored horizontally (e.g., left ear ↔ right ear).
-  Each pair is a two-element list `[left_index, right_index]`. Used for test-time
-  horizontal flip augmentation in pose estimation: pass these pairs to the second
-  forward call so the model flips heatmaps back before returning them.
-- **head_config** (`Sapiens2HeadConfig`, *optional*) --
-  Configuration for the decode head. See [Sapiens2HeadConfig](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2HeadConfig) for the available options.
+#### transformers.Sapiens2Config[[transformers.Sapiens2Config]]
+
+```python
+transformers.Sapiens2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, patch_size: int | list[int] | tuple[int, int] = 16, hidden_size: int = 1024, intermediate_size: int = 4096, num_hidden_layers: int = 24, num_attention_heads: int = 16, hidden_act: str = 'silu', attention_dropout: float | int = 0.0, initializer_range: float = 0.02, rope_theta: float = 100.0, image_size: int | list[int] | tuple[int, int] = 224, num_channels: int = 3, query_bias: bool = True, key_bias: bool = True, value_bias: bool = True, proj_bias: bool = True, mlp_bias: bool = True, layerscale_value: float = 1.0, drop_path_rate: float | int = 0.0, use_gated_mlp: bool = True, num_register_tokens: int = 8, pos_embed_shift: float | None = None, pos_embed_jitter: float | None = None, pos_embed_rescale: float | None = 2.0, _out_features: list[str] | None = None, _out_indices: list[int] | None = None, reshape_hidden_states: bool = True, use_mask_token: bool = False, rms_norm_eps: float = 1e-06, normalize_backbone_outputs: bool = True, use_qk_norm: bool = True, num_key_value_heads_per_layer: list[int] | None = None, num_key_value_attention_heads: int = 8, num_first_full_attention_layers: int = 8, num_last_full_attention_layers: int = 8, semantic_loss_ignore_index: int = 255, flip_pairs: list[list[int]] | None = None, head_config: transformers.models.sapiens2.configuration_sapiens2.Sapiens2HeadConfig | dict | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/configuration_sapiens2.py#L116)
+
+**Parameters:**
+
+patch_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `16`) : The size (resolution) of each patch.
+
+hidden_size (`int`, *optional*, defaults to `1024`) : Dimension of the hidden representations.
+
+intermediate_size (`int`, *optional*, defaults to `4096`) : Dimension of the MLP representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `24`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `16`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+hidden_act (`str`, *optional*, defaults to `silu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+rope_theta (`float`, *optional*, defaults to 100.0) : The base period of the RoPE embeddings.
+
+image_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) : The size (resolution) of each image.
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+query_bias (`bool`, *optional*, defaults to `True`) : Whether to add a bias to the query projection.
+
+key_bias (`bool`, *optional*, defaults to `False`) : Whether to add a bias to the key projection.
+
+value_bias (`bool`, *optional*, defaults to `True`) : Whether to add a bias to the value projection.
+
+proj_bias (`bool`, *optional*, defaults to `True`) : Whether to add a bias to the output projection.
+
+mlp_bias (`bool`, *optional*, defaults to `True`) : Whether to use a bias in up_proj, down_proj and gate_proj layers in the MLP layers.
+
+layerscale_value (`float`, *optional*, defaults to 1.0) : Initial value to use for layer scale.
+
+drop_path_rate (`Union[float, int]`, *optional*, defaults to `0.0`) : Drop path rate for the patch fusion.
+
+use_gated_mlp (`bool`, *optional*, defaults to `False`) : Whether to use the SwiGLU feedforward neural network.
+
+num_register_tokens (`int`, *optional*, defaults to 0) : The number of register tokens.
+
+pos_embed_shift (`float`, *optional*) : Amount to randomly shift position embedding coordinates in [-shift, shift], applied only in training mode if not `None`.
+
+pos_embed_jitter (`float`, *optional*) : Amount to randomly jitter position embedding coordinates in log-uniform value in [1/jitter, jitter], applied only in training mode if not `None`.
+
+pos_embed_rescale (`float`, *optional*, defaults to 2.0) : Amount to randomly rescale position embedding coordinates in log-uniform value in [1/rescale, rescale], applied only in training mode if not `None`.
+
+reshape_hidden_states (`bool`, *optional*, defaults to `True`) : Whether to reshape the hidden states to spatial dimensions when used as backbone.
+
+use_mask_token (`bool`, *optional*, defaults to `False`) : Whether to use a mask token in the embeddings (needed for masked image modeling pretraining).
+
+rms_norm_eps (`float`, *optional*, defaults to 1e-6) : Epsilon for the RMS normalization layers.
+
+normalize_backbone_outputs (`bool`, *optional*, defaults to `True`) : Whether to apply RMSNorm to the backbone `feature_maps` and `cls_tokens` outputs before returning them from the forward pass. Only applies when the model is used as a backbone.
+
+use_qk_norm (`bool`, *optional*, defaults to `True`) : Whether to apply RMSNorm to queries and keys before RoPE in attention layers.
+
+num_key_value_heads_per_layer (`list[int]`, *optional*) : Number of key/value heads for each transformer layer. Setting a layer's value equal to `num_attention_heads` gives full multi-head attention; a smaller value gives grouped-query attention. Defaults to `num_attention_heads` for the first `num_first_full_attention_layers` and last `num_last_full_attention_layers` layers and `num_key_value_attention_heads` for all other layers.
+
+num_key_value_attention_heads (`int`, *optional*, defaults to `8`) : Number of key/value heads for layers that use grouped-query attention when `num_key_value_heads_per_layer` is not set. Ignored when `num_key_value_heads_per_layer` is set.
+
+num_first_full_attention_layers (`int`, *optional*, defaults to 8) : Number of leading transformer layers that use full multi-head attention. Only used when `num_key_value_heads_per_layer` is `None`.
+
+num_last_full_attention_layers (`int`, *optional*, defaults to 8) : Number of trailing transformer layers that use full multi-head attention. Only used when `num_key_value_heads_per_layer` is `None`.
+
+semantic_loss_ignore_index (`int`, *optional*, defaults to 255) : Label index ignored when computing the segmentation loss.
+
+flip_pairs (`list[list[int]]`, *optional*) : Pairs of keypoint indices that are mirrored horizontally (e.g., left ear ↔ right ear). Each pair is a two-element list `[left_index, right_index]`. Used for test-time horizontal flip augmentation in pose estimation: pass these pairs to the second forward call so the model flips heatmaps back before returning them.
+
+head_config (`Sapiens2HeadConfig`, *optional*) : Configuration for the decode head. See [Sapiens2HeadConfig](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2HeadConfig) for the available options.
 
 This is the configuration class to store the configuration of a Sapiens2Model. It is used to instantiate a Sapiens2
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sapiens2-pretrain-0.4b](https://huggingface.co/facebook/sapiens2-pretrain-0.4b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Sapiens2HeadConfig[[transformers.Sapiens2HeadConfig]]
 
-- **upsample_out_channels** (`list[int]`, *optional*) --
-  Output channel counts for each upsample block.
-  The first block takes `hidden_size` channels as input; subsequent blocks use the previous output.
-- **upsample_kernel_sizes** (`list[int]`, *optional*) --
-  Kernel size for each upsample block. Auto-filled with `[4, ...]` when
-  `upsample_out_channels` is set but this is `None`.
-  Must have the same length as `upsample_out_channels`.
-- **upsample_kernel_size** (`int`, defaults to 4) --
-  Default kernel size for upsample blocks when `upsample_kernel_sizes` is not set.
-- **use_pixel_shuffle** (`bool`, *optional*) --
-  Whether the upsample head uses pixel-shuffle upsampling instead of transposed convolutions.
-  When `None` (default), the head uses transposed convolutions.
-- **conv_out_channels** (`list[int]`, *optional*) --
-  Output channel counts for the refinement conv layers that follow the upsample blocks.
-- **conv_kernel_sizes** (`list[int]`, *optional*) --
-  Kernel size for each refinement conv layer. Auto-filled with `[1, ...]` when
-  `conv_out_channels` is set but this is `None`.
-  Must have the same length as `conv_out_channels`.
-- **conv_kernel_size** (`int`, defaults to 1) --
-  Default kernel size for conv layers when `conv_kernel_sizes` is not set.
-- **scale_conv_out_channels** (`list[int]`, *optional*) --
-  Output channel counts for the stride-2 conv layers used to predict the focal-length scale.
-  When `None` (default), no scale branch is built.
-- **scale_conv_kernel_sizes** (`list[int]`, *optional*) --
-  Kernel size for each scale conv layer. Auto-filled with `[1, ...]` when
-  `scale_conv_out_channels` is set but this is `None`.
-  Must have the same length as `scale_conv_out_channels`.
-- **scale_conv_kernel_size** (`int`, defaults to 1) --
-  Default kernel size for scale conv layers when `scale_conv_kernel_sizes` is not set.
-- **scale_final_input_size** (`int`, *optional*) --
-  Flattened feature size passed into the scale MLP.
-  When `None` (default), it is automatically inferred from `image_size` and `patch_size`
-  in the parent [Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config).
-- **scale_final_hidden_sizes** (`list[int]`, *optional*) --
-  Hidden-layer sizes for the MLP that maps flattened scale features to the scalar scale output.
-  When `None` (default), no scale branch is built.
+#### transformers.Sapiens2HeadConfig[[transformers.Sapiens2HeadConfig]]
+
+```python
+transformers.Sapiens2HeadConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, upsample_out_channels: list[int] | None = None, upsample_kernel_sizes: list[int] | None = None, upsample_kernel_size: int = 4, use_pixel_shuffle: bool | None = None, conv_out_channels: list[int] | None = None, conv_kernel_sizes: list[int] | None = None, conv_kernel_size: int = 1, scale_conv_out_channels: list[int] | None = None, scale_conv_kernel_sizes: list[int] | None = None, scale_conv_kernel_size: int = 1, scale_final_input_size: int | None = None, scale_final_hidden_sizes: list[int] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/configuration_sapiens2.py#L28)
+
+**Parameters:**
+
+upsample_out_channels (`list[int]`, *optional*) : Output channel counts for each upsample block. The first block takes `hidden_size` channels as input; subsequent blocks use the previous output.
+
+upsample_kernel_sizes (`list[int]`, *optional*) : Kernel size for each upsample block. Auto-filled with `[4, ...]` when `upsample_out_channels` is set but this is `None`. Must have the same length as `upsample_out_channels`.
+
+upsample_kernel_size (`int`, defaults to 4) : Default kernel size for upsample blocks when `upsample_kernel_sizes` is not set.
+
+use_pixel_shuffle (`bool`, *optional*) : Whether the upsample head uses pixel-shuffle upsampling instead of transposed convolutions. When `None` (default), the head uses transposed convolutions.
+
+conv_out_channels (`list[int]`, *optional*) : Output channel counts for the refinement conv layers that follow the upsample blocks.
+
+conv_kernel_sizes (`list[int]`, *optional*) : Kernel size for each refinement conv layer. Auto-filled with `[1, ...]` when `conv_out_channels` is set but this is `None`. Must have the same length as `conv_out_channels`.
+
+conv_kernel_size (`int`, defaults to 1) : Default kernel size for conv layers when `conv_kernel_sizes` is not set.
+
+scale_conv_out_channels (`list[int]`, *optional*) : Output channel counts for the stride-2 conv layers used to predict the focal-length scale. When `None` (default), no scale branch is built.
+
+scale_conv_kernel_sizes (`list[int]`, *optional*) : Kernel size for each scale conv layer. Auto-filled with `[1, ...]` when `scale_conv_out_channels` is set but this is `None`. Must have the same length as `scale_conv_out_channels`.
+
+scale_conv_kernel_size (`int`, defaults to 1) : Default kernel size for scale conv layers when `scale_conv_kernel_sizes` is not set.
+
+scale_final_input_size (`int`, *optional*) : Flattened feature size passed into the scale MLP. When `None` (default), it is automatically inferred from `image_size` and `patch_size` in the parent [Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config).
+
+scale_final_hidden_sizes (`list[int]`, *optional*) : Hidden-layer sizes for the MLP that maps flattened scale features to the scalar scale output. When `None` (default), no scale branch is built.
 
 This is the configuration class to store the configuration of a Sapiens2Model. It is used to instantiate a Sapiens2
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sapiens2-seg-0.4b](https://huggingface.co/facebook/sapiens2-seg-0.4b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Sapiens2ImageProcessor[[transformers.Sapiens2ImageProcessor]]
 
-- **do_reduce_labels** (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labels`) --
-  Whether or not to reduce all label values of segmentation maps by 1. Usually used for datasets where 0
-  is used for background, and background itself is not included in all classes of a dataset (e.g.
-  ADE20k). The background label will be replaced by 255.
-- ****kwargs** ([ImagesKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ImagesKwargs), *optional*) --
-  Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class
-  for the complete list of supported arguments.
+#### transformers.Sapiens2ImageProcessor[[transformers.Sapiens2ImageProcessor]]
+
+```python
+transformers.Sapiens2ImageProcessor(**kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/image_processing_sapiens2.py#L296)
+
+**Parameters:**
+
+do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'height' : 1024, 'width': 768}`): Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'height' : 224, 'width': 224}`): Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `Resampling.BILINEAR`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*, defaults to `0.00392156862745098`) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*, defaults to `[0.485, 0.456, 0.406]`) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*, defaults to `[0.229, 0.224, 0.225]`) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+do_reduce_labels (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labels`) : Whether or not to reduce all label values of segmentation maps by 1. Usually used for datasets where 0 is used for background, and background itself is not included in all classes of a dataset (e.g. ADE20k). The background label will be replaced by 255.
+
 Constructs a Sapiens2ImageProcessor image processor.
 
-- **images** (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) --
-  Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If
-  passing in images with pixel values between 0 and 1, set `do_rescale=False`.
-- **segmentation_maps** (`ImageInput`, *optional*) --
-  The segmentation maps to preprocess.
-- **boxes** (`list[list[list[float]]]` or `np.ndarray`, *optional*) --
-  List or array of bounding boxes for each image. Each box should be a list of 4 floats
-  representing the bounding box coordinates in COCO format
-  (top_left_x, top_left_y, width, height). When provided, each person crop is
-  affine-warped to the model input size instead of resizing the full image.
-- **do_reduce_labels** (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labels`) --
-  Whether or not to reduce all label values of segmentation maps by 1. Usually used for datasets where 0
-  is used for background, and background itself is not included in all classes of a dataset (e.g.
-  ADE20k). The background label will be replaced by 255.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
-- ****kwargs** ([ImagesKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ImagesKwargs), *optional*) --
-  Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class
-  for the complete list of supported arguments.`~image_processing_base.BatchFeature`- **data** (`dict`) -- Dictionary of lists/arrays/tensors returned by the __call__ method ('pixel_values', etc.).
+#### preprocess[[transformers.Sapiens2ImageProcessor.preprocess]]
+
+```python
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, boxes: list[list[list[float]]] | None = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/image_processing_sapiens2.py#L317)
+
+**Parameters:**
+
+images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+segmentation_maps (`ImageInput`, *optional*) : The segmentation maps to preprocess.
+
+boxes (`list[list[list[float]]]` or `np.ndarray`, *optional*) : List or array of bounding boxes for each image. Each box should be a list of 4 floats representing the bounding box coordinates in COCO format (top_left_x, top_left_y, width, height). When provided, each person crop is affine-warped to the model input size instead of resizing the full image.
+
+do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+do_reduce_labels (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labels`) : Whether or not to reduce all label values of segmentation maps by 1. Usually used for datasets where 0 is used for background, and background itself is not included in all classes of a dataset (e.g. ADE20k). The background label will be replaced by 255.
+
+**Returns:** `~image_processing_base.BatchFeature`
+
+- **data** (`dict`) -- Dictionary of lists/arrays/tensors returned by the __call__ method ('pixel_values', etc.).
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
-- **outputs** (`Sapiens2ImageMattingOutput`) --
-  Raw outputs of the model.
-- **target_sizes** (`torch.Tensor` or `list[tuple[int, int]]` of length `batch_size`, *optional*) --
-  Requested final `(height, width)` for each prediction. Resized with bilinear
-  interpolation. If unset, predictions are returned at the model output resolution.
-- **backgrounds** (`ImageInput`, *optional*) --
-  Background image(s) to composite over. Can be a single image (applied to every item
-  in the batch) or a list of images, one per batch item. Accepts PIL images, numpy
-  arrays, or torch tensors of any dtype; integer types (e.g. uint8) are scaled to
-  `[0, 1]` automatically. When provided, each result dict gains a `"composite"` key
-  with the composited image as a uint8 tensor in `[0, 255]`.`list[dict]` of length `batch_size`. Each dict has- `"alpha"` (`torch.Tensor` of shape `(1, height, width)`): alpha values in `[0, 1]`.
+#### post_process_image_matting[[transformers.Sapiens2ImageProcessor.post_process_image_matting]]
+
+```python
+post_process_image_matting(outputs, target_sizes: transformers.utils.generic.TensorType | list[tuple[int, int]] | None = None, backgrounds: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/image_processing_sapiens2.py#L732)
+
+**Parameters:**
+
+outputs (`Sapiens2ImageMattingOutput`) : Raw outputs of the model.
+
+target_sizes (`torch.Tensor` or `list[tuple[int, int]]` of length `batch_size`, *optional*) : Requested final `(height, width)` for each prediction. Resized with bilinear interpolation. If unset, predictions are returned at the model output resolution.
+
+backgrounds (`ImageInput`, *optional*) : Background image(s) to composite over. Can be a single image (applied to every item in the batch) or a list of images, one per batch item. Accepts PIL images, numpy arrays, or torch tensors of any dtype; integer types (e.g. uint8) are scaled to `[0, 1]` automatically. When provided, each result dict gains a `"composite"` key with the composited image as a uint8 tensor in `[0, 255]`.
+
+**Returns:** `list[dict]` of length `batch_size`. Each dict has
+
+- `"alpha"` (`torch.Tensor` of shape `(1, height, width)`): alpha values in `[0, 1]`.
 - `"foreground"` (`torch.Tensor` of shape `(3, height, width)`): pre-multiplied RGB in `[0, 1]`.
 - `"composite"` (`torch.Tensor` of shape `(3, height, width)` or `None`): foreground composited
   over `backgrounds` as a uint8 tensor in `[0, 255]`; `None` when `backgrounds` is not provided.
 
-Converts the output of [Sapiens2ForImageMatting](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForImageMatting) into alpha mattes and foreground maps.
+Converts the output of [Sapiens2ForImageMatting](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForImageMatting) into alpha mattes and foreground maps.
 
-- **outputs** (`Sapiens2NormalEstimatorOutput`) --
-  Raw outputs of the model.
-- **source_sizes** (`torch.Tensor` or `list[tuple[int, int]]` of length `batch_size`, *optional*) --
-  Original `(height, width)` of each image before preprocessing. When provided,
-  the padding added during preprocessing is removed and predictions are resized back
-  to the original image size (unless `target_sizes` overrides the final size).
-- **target_sizes** (`torch.Tensor` or `list[tuple[int, int]]` of length `batch_size`, *optional*) --
-  Requested final `(height, width)` for each prediction. When provided, used as the
-  resize target instead of `source_sizes`. Resized with bilinear interpolation after
-  L2 normalization.
-- **do_remove_padding** (`bool`, *optional*) --
-  Whether to crop away the zero-padding added during preprocessing before resizing.
-  Defaults to `True` when `source_sizes` is provided, `False` otherwise.`list[dict[str, torch.Tensor]]` of length `batch_size`. Each dict has a `"normals"` key
+#### post_process_normal_estimation[[transformers.Sapiens2ImageProcessor.post_process_normal_estimation]]
+
+```python
+post_process_normal_estimation(outputs, source_sizes: transformers.utils.generic.TensorType | list[tuple[int, int]] | None = None, target_sizes: transformers.utils.generic.TensorType | list[tuple[int, int]] | None = None, do_remove_padding: bool | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/image_processing_sapiens2.py#L659)
+
+**Parameters:**
+
+outputs (`Sapiens2NormalEstimatorOutput`) : Raw outputs of the model.
+
+source_sizes (`torch.Tensor` or `list[tuple[int, int]]` of length `batch_size`, *optional*) : Original `(height, width)` of each image before preprocessing. When provided, the padding added during preprocessing is removed and predictions are resized back to the original image size (unless `target_sizes` overrides the final size).
+
+target_sizes (`torch.Tensor` or `list[tuple[int, int]]` of length `batch_size`, *optional*) : Requested final `(height, width)` for each prediction. When provided, used as the resize target instead of `source_sizes`. Resized with bilinear interpolation after L2 normalization.
+
+do_remove_padding (`bool`, *optional*) : Whether to crop away the zero-padding added during preprocessing before resizing. Defaults to `True` when `source_sizes` is provided, `False` otherwise.
+
+**Returns:**
+
+`list[dict[str, torch.Tensor]]` of length `batch_size`. Each dict has a `"normals"` key
 mapping to a tensor of shape `(3, height, width)` with L2-normalized unit vectors in
 `[-1, 1]` per channel (XYZ surface normals).
 
-Converts the output of [Sapiens2ForNormalEstimation](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForNormalEstimation) into L2-normalized surface normal maps.
+Converts the output of [Sapiens2ForNormalEstimation](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForNormalEstimation) into L2-normalized surface normal maps.
 
-- **outputs** (`Sapiens2PointmapEstimatorOutput`) --
-  Raw outputs of the model.
-- **source_sizes** (`torch.Tensor` or `list[tuple[int, int]]` of length `batch_size`, *optional*) --
-  Original `(height, width)` of each image before preprocessing. When provided,
-  the padding added during preprocessing is removed and predictions are resized back
-  to the original image size (unless `target_sizes` overrides the final size).
-- **target_sizes** (`torch.Tensor` or `list[tuple[int, int]]` of length `batch_size`, *optional*) --
-  Requested final `(height, width)` for each prediction. Overrides `source_sizes`
-  as the resize target.
-- **do_remove_padding** (`bool`, *optional*) --
-  Whether to crop away the zero-padding added during preprocessing before resizing.
-  Defaults to `True` when `source_sizes` is provided, `False` otherwise.`list[dict[str, torch.Tensor]]` of length `batch_size`. Each dict has a `"pointmap"` key
+#### post_process_pointmap_estimation[[transformers.Sapiens2ImageProcessor.post_process_pointmap_estimation]]
+
+```python
+post_process_pointmap_estimation(outputs, source_sizes: transformers.utils.generic.TensorType | list[tuple[int, int]] | None = None, target_sizes: transformers.utils.generic.TensorType | list[tuple[int, int]] | None = None, do_remove_padding: bool | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/image_processing_sapiens2.py#L695)
+
+**Parameters:**
+
+outputs (`Sapiens2PointmapEstimatorOutput`) : Raw outputs of the model.
+
+source_sizes (`torch.Tensor` or `list[tuple[int, int]]` of length `batch_size`, *optional*) : Original `(height, width)` of each image before preprocessing. When provided, the padding added during preprocessing is removed and predictions are resized back to the original image size (unless `target_sizes` overrides the final size).
+
+target_sizes (`torch.Tensor` or `list[tuple[int, int]]` of length `batch_size`, *optional*) : Requested final `(height, width)` for each prediction. Overrides `source_sizes` as the resize target.
+
+do_remove_padding (`bool`, *optional*) : Whether to crop away the zero-padding added during preprocessing before resizing. Defaults to `True` when `source_sizes` is provided, `False` otherwise.
+
+**Returns:**
+
+`list[dict[str, torch.Tensor]]` of length `batch_size`. Each dict has a `"pointmap"` key
 mapping to a tensor of shape `(3, height, width)` with per-pixel 3D XYZ coordinates in
 canonical camera space, optionally divided by `outputs.scales` to convert to metric coordinates.
 
-Converts the output of [Sapiens2ForPointmapEstimation](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForPointmapEstimation) into pointmap tensors in image space.
+Converts the output of [Sapiens2ForPointmapEstimation](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForPointmapEstimation) into pointmap tensors in image space.
 
-- **outputs** (`Sapiens2PoseEstimatorOutput`) --
-  Raw outputs of the model. `outputs.heatmaps` must have shape
-  `(N_total, num_keypoints, heatmap_height, heatmap_width)` where
-  `N_total = sum(len(b) for b in boxes)`.
-- **boxes** (`list[list[list[float]]]` or `np.ndarray`) --
-  List or array of bounding boxes for each image in absolute pixel coordinates. Each box
-  should be a list of 4 floats representing the bounding box coordinates in COCO format
-  (top_left_x, top_left_y, width, height). Must match the `boxes` argument passed to
-  `preprocess`.
-- **outputs_flipped** (`Sapiens2PoseEstimatorOutput`, *optional*) --
-  Outputs from running the model on horizontally flipped inputs. When provided, heatmaps
-  are averaged with `outputs` before keypoint extraction to improve accuracy:
-  `avg_heatmaps = (outputs.heatmaps + outputs_flipped.heatmaps) / 2`.
-- **kernel_size** (`int`, *optional*, defaults to 11) --
-  Kernel size for the Gaussian blur used in UDP Dark Pose refinement.
-- **threshold** (`float`, *optional*) --
-  Score threshold. Keypoints with scores at or below this value are
-  filtered out from the result dictionaries.
-- **source_sizes** (`torch.Tensor` or `list[tuple[int, int]]` of length `batch_size`, *optional*) --
-  Original `(height, width)` of each image in pixels. Required when `target_sizes` is
-  provided, as the source coordinate space for scaling keypoints and bounding boxes.
-- **target_sizes** (`torch.Tensor` or `list[tuple[int, int]]` of length `batch_size`, *optional*) --
-  Desired output `(height, width)` coordinate space for each image. When provided
-  alongside `source_sizes`, keypoint coordinates and bounding boxes are scaled from
-  source to target space.`list[list[dict]]`Outer list is over images, inner list is over persons.
+#### post_process_pose_estimation[[transformers.Sapiens2ImageProcessor.post_process_pose_estimation]]
+
+```python
+post_process_pose_estimation(outputs, boxes: list, outputs_flipped = None, kernel_size: int = 11, threshold: float | None = None, source_sizes: transformers.utils.generic.TensorType | list[tuple[int, int]] | None = None, target_sizes: transformers.utils.generic.TensorType | list[tuple[int, int]] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/image_processing_sapiens2.py#L517)
+
+**Parameters:**
+
+outputs (`Sapiens2PoseEstimatorOutput`) : Raw outputs of the model. `outputs.heatmaps` must have shape `(N_total, num_keypoints, heatmap_height, heatmap_width)` where `N_total = sum(len(b) for b in boxes)`.
+
+boxes (`list[list[list[float]]]` or `np.ndarray`) : List or array of bounding boxes for each image in absolute pixel coordinates. Each box should be a list of 4 floats representing the bounding box coordinates in COCO format (top_left_x, top_left_y, width, height). Must match the `boxes` argument passed to `preprocess`.
+
+outputs_flipped (`Sapiens2PoseEstimatorOutput`, *optional*) : Outputs from running the model on horizontally flipped inputs. When provided, heatmaps are averaged with `outputs` before keypoint extraction to improve accuracy: `avg_heatmaps = (outputs.heatmaps + outputs_flipped.heatmaps) / 2`.
+
+kernel_size (`int`, *optional*, defaults to 11) : Kernel size for the Gaussian blur used in UDP Dark Pose refinement.
+
+threshold (`float`, *optional*) : Score threshold. Keypoints with scores at or below this value are filtered out from the result dictionaries.
+
+source_sizes (`torch.Tensor` or `list[tuple[int, int]]` of length `batch_size`, *optional*) : Original `(height, width)` of each image in pixels. Required when `target_sizes` is provided, as the source coordinate space for scaling keypoints and bounding boxes.
+
+target_sizes (`torch.Tensor` or `list[tuple[int, int]]` of length `batch_size`, *optional*) : Desired output `(height, width)` coordinate space for each image. When provided alongside `source_sizes`, keypoint coordinates and bounding boxes are scaled from source to target space.
+
+**Returns:** `list[list[dict]]`
+
+Outer list is over images, inner list is over persons.
 Each dict contains:
 - `keypoints` (`torch.FloatTensor` of shape `(num_keypoints, 2)`): absolute x/y coordinates in
   the source image space, or in target space if `target_sizes` is provided.
@@ -571,35 +676,52 @@ Each dict contains:
 - `bbox` (`torch.FloatTensor` of shape `(4,)`): bounding box in absolute (x_min, y_min, x_max, y_max)
   format, in the same coordinate space as `keypoints`.
 
-Converts the output of [Sapiens2ForPoseEstimation](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForPoseEstimation) into keypoint predictions in image space.
+Converts the output of [Sapiens2ForPoseEstimation](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForPoseEstimation) into keypoint predictions in image space.
 
-- **outputs** ([Sapiens2ForSemanticSegmentation](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForSemanticSegmentation)) --
-  Raw outputs of the model.
-- **target_sizes** (`list[Tuple]` of length `batch_size`, *optional*) --
-  List of tuples corresponding to the requested final size (height, width) of each prediction. If unset,
-  predictions will not be resized.
-- **return_segmentation_scores** (`bool`, *optional*, defaults to `False`) --
-  Whether to return segmentation scores alongside the segmentation map. When `True`, each element of
-  the returned list is a `SemanticSegmentationPostProcessorOutput` with fields `segmentation`
-  (class IDs, shape `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`).`list[torch.Tensor]` or `list[SemanticSegmentationPostProcessorOutput]`When
+#### post_process_semantic_segmentation[[transformers.Sapiens2ImageProcessor.post_process_semantic_segmentation]]
+
+```python
+post_process_semantic_segmentation(outputs, target_sizes: list[tuple] | None = None, return_segmentation_scores: bool = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/image_processing_sapiens2.py#L451)
+
+**Parameters:**
+
+outputs ([Sapiens2ForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForSemanticSegmentation)) : Raw outputs of the model.
+
+target_sizes (`list[Tuple]` of length `batch_size`, *optional*) : List of tuples corresponding to the requested final size (height, width) of each prediction. If unset, predictions will not be resized.
+
+return_segmentation_scores (`bool`, *optional*, defaults to `False`) : Whether to return segmentation scores alongside the segmentation map. When `True`, each element of the returned list is a `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (class IDs, shape `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`).
+
+**Returns:** `list[torch.Tensor]` or `list[SemanticSegmentationPostProcessorOutput]`
+
+When
 `return_segmentation_scores=False` (default), a list of length `batch_size` where each item is a
 segmentation map of shape `(height, width)` with class IDs. When `return_segmentation_scores=True`,
 a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (class IDs, shape
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [Sapiens2ForSemanticSegmentation](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForSemanticSegmentation) into semantic segmentation maps.
+Converts the output of [Sapiens2ForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForSemanticSegmentation) into semantic segmentation maps.
 
 ## Sapiens2Model[[transformers.Sapiens2Model]]
 
-- **config** ([Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Sapiens2Model[[transformers.Sapiens2Model]]
+
+```python
+transformers.Sapiens2Model(config: Sapiens2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/modeling_sapiens2.py#L864)
+
+**Parameters:**
+
+config ([Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Sapiens2 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -607,17 +729,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "bool_masked_pos", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "**kwargs", "val": ": Unpack"}]}>
-- **pixel_values** (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [Sapiens2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor). See `Sapiens2ImageProcessor.__call__()` for details (`processor_class` uses
-  [Sapiens2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor) for processing images).
-- **bool_masked_pos** (`torch.BoolTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Boolean masked positions. Indicates which patches are masked (1) and which aren't (0). Only relevant for
-  pre-training.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### forward[[transformers.Sapiens2Model.forward]]
+
+```python
+forward(pixel_values: Tensor, bool_masked_pos: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/modeling_sapiens2.py#L878)
+
+**Parameters:**
+
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Sapiens2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor). See `Sapiens2ImageProcessor.__call__()` for details (`processor_class` uses [Sapiens2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor) for processing images).
+
+bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, sequence_length)`, *optional*) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0). Only relevant for pre-training.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) and inputs.
-The [Sapiens2Model](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Model) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) and inputs.
+
+The [Sapiens2Model](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -660,14 +792,21 @@ torch.Size([1, 1024])
 
 ## Sapiens2Backbone[[transformers.Sapiens2Backbone]]
 
-- **config** ([Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Sapiens2Backbone[[transformers.Sapiens2Backbone]]
+
+```python
+transformers.Sapiens2Backbone(config: Sapiens2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/modeling_sapiens2.py#L929)
+
+**Parameters:**
+
+config ([Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Sapiens2 backbone.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -675,14 +814,25 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "**kwargs", "val": ": Unpack"}]}>
-- **pixel_values** (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [Sapiens2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor). See `Sapiens2ImageProcessor.__call__()` for details (`processor_class` uses
-  [Sapiens2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor) for processing images).`Sapiens2BackboneOutput` or `tuple(torch.FloatTensor)`A `Sapiens2BackboneOutput` or a tuple of
+#### forward[[transformers.Sapiens2Backbone.forward]]
+
+```python
+forward(pixel_values: Tensor, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/modeling_sapiens2.py#L945)
+
+**Parameters:**
+
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Sapiens2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor). See `Sapiens2ImageProcessor.__call__()` for details (`processor_class` uses [Sapiens2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor) for processing images).
+
+**Returns:** `Sapiens2BackboneOutput` or `tuple(torch.FloatTensor)`
+
+A `Sapiens2BackboneOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) and inputs.
-The [Sapiens2Backbone](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Backbone) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) and inputs.
+
+The [Sapiens2Backbone](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Backbone) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -725,15 +875,22 @@ torch.Size([1, 1024])
 
 ## Sapiens2ForImageMatting[[transformers.Sapiens2ForImageMatting]]
 
-- **config** ([Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Sapiens2ForImageMatting[[transformers.Sapiens2ForImageMatting]]
+
+```python
+transformers.Sapiens2ForImageMatting(config: Sapiens2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/modeling_sapiens2.py#L1373)
+
+**Parameters:**
+
+config ([Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Sapiens2 model with a matting head on top (a PixelShuffle-based decoder that predicts a
 pre-multiplied RGB foreground and an alpha matte).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -741,15 +898,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [Sapiens2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor). See `Sapiens2ImageProcessor.__call__()` for details (`processor_class` uses
-  [Sapiens2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor) for processing images).
-- **labels** (`torch.FloatTensor` of shape `(batch_size, 4, height, width)`, *optional*) --
-  Ground-truth matting targets for computing the loss.`Sapiens2ImageMattingOutput` or `tuple(torch.FloatTensor)`A `Sapiens2ImageMattingOutput` or a tuple of
+#### forward[[transformers.Sapiens2ForImageMatting.forward]]
+
+```python
+forward(pixel_values: FloatTensor, labels: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/modeling_sapiens2.py#L1380)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Sapiens2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor). See `Sapiens2ImageProcessor.__call__()` for details (`processor_class` uses [Sapiens2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor) for processing images).
+
+labels (`torch.FloatTensor` of shape `(batch_size, 4, height, width)`, *optional*) : Ground-truth matting targets for computing the loss.
+
+**Returns:** `Sapiens2ImageMattingOutput` or `tuple(torch.FloatTensor)`
+
+A `Sapiens2ImageMattingOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) and inputs.
-The [Sapiens2ForImageMatting](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForImageMatting) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) and inputs.
+
+The [Sapiens2ForImageMatting](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForImageMatting) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -790,14 +959,21 @@ torch.Size([1, 3, 1024, 768])
 
 ## Sapiens2ForNormalEstimation[[transformers.Sapiens2ForNormalEstimation]]
 
-- **config** ([Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Sapiens2ForNormalEstimation[[transformers.Sapiens2ForNormalEstimation]]
+
+```python
+transformers.Sapiens2ForNormalEstimation(config: Sapiens2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/modeling_sapiens2.py#L1223)
+
+**Parameters:**
+
+config ([Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Sapiens2 model with a normal estimation head on top (a PixelShuffle-based decoder that predicts surface normal maps).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -805,15 +981,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [Sapiens2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor). See `Sapiens2ImageProcessor.__call__()` for details (`processor_class` uses
-  [Sapiens2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor) for processing images).
-- **labels** (`torch.FloatTensor` of shape `(batch_size, num_labels, height, width)`, *optional*) --
-  Ground-truth surface normal maps for computing the loss.`Sapiens2NormalEstimatorOutput` or `tuple(torch.FloatTensor)`A `Sapiens2NormalEstimatorOutput` or a tuple of
+#### forward[[transformers.Sapiens2ForNormalEstimation.forward]]
+
+```python
+forward(pixel_values: FloatTensor, labels: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/modeling_sapiens2.py#L1231)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Sapiens2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor). See `Sapiens2ImageProcessor.__call__()` for details (`processor_class` uses [Sapiens2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor) for processing images).
+
+labels (`torch.FloatTensor` of shape `(batch_size, num_labels, height, width)`, *optional*) : Ground-truth surface normal maps for computing the loss.
+
+**Returns:** `Sapiens2NormalEstimatorOutput` or `tuple(torch.FloatTensor)`
+
+A `Sapiens2NormalEstimatorOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) and inputs.
-The [Sapiens2ForNormalEstimation](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForNormalEstimation) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) and inputs.
+
+The [Sapiens2ForNormalEstimation](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForNormalEstimation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -848,15 +1036,22 @@ torch.Size([1, 3, 1024, 768])
 
 ## Sapiens2ForPointmapEstimation[[transformers.Sapiens2ForPointmapEstimation]]
 
-- **config** ([Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Sapiens2ForPointmapEstimation[[transformers.Sapiens2ForPointmapEstimation]]
+
+```python
+transformers.Sapiens2ForPointmapEstimation(config: Sapiens2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/modeling_sapiens2.py#L1295)
+
+**Parameters:**
+
+config ([Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Sapiens2 model with a pointmap head on top (a PixelShuffle-based decoder that predicts per-pixel 3D XYZ
 coordinates, plus an optional scale branch for focal-length normalization).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -864,15 +1059,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [Sapiens2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor). See `Sapiens2ImageProcessor.__call__()` for details (`processor_class` uses
-  [Sapiens2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor) for processing images).
-- **labels** (`torch.FloatTensor` of shape `(batch_size, 3, height, width)`, *optional*) --
-  Ground-truth pointmap for computing the loss.`Sapiens2PointmapEstimatorOutput` or `tuple(torch.FloatTensor)`A `Sapiens2PointmapEstimatorOutput` or a tuple of
+#### forward[[transformers.Sapiens2ForPointmapEstimation.forward]]
+
+```python
+forward(pixel_values: FloatTensor, labels: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/modeling_sapiens2.py#L1307)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Sapiens2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor). See `Sapiens2ImageProcessor.__call__()` for details (`processor_class` uses [Sapiens2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor) for processing images).
+
+labels (`torch.FloatTensor` of shape `(batch_size, 3, height, width)`, *optional*) : Ground-truth pointmap for computing the loss.
+
+**Returns:** `Sapiens2PointmapEstimatorOutput` or `tuple(torch.FloatTensor)`
+
+A `Sapiens2PointmapEstimatorOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) and inputs.
-The [Sapiens2ForPointmapEstimation](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForPointmapEstimation) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) and inputs.
+
+The [Sapiens2ForPointmapEstimation](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForPointmapEstimation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -908,14 +1115,21 @@ torch.Size([1, 3, 1024, 768])
 
 ## Sapiens2ForPoseEstimation[[transformers.Sapiens2ForPoseEstimation]]
 
-- **config** ([Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Sapiens2ForPoseEstimation[[transformers.Sapiens2ForPoseEstimation]]
+
+```python
+transformers.Sapiens2ForPoseEstimation(config: Sapiens2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/modeling_sapiens2.py#L1140)
+
+**Parameters:**
+
+config ([Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Sapiens2 model with a pose estimation head on top (a set of heatmap predictors on top of the hidden states output).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -923,22 +1137,31 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [Sapiens2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor). See `Sapiens2ImageProcessor.__call__()` for details (`processor_class` uses
-  [Sapiens2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor) for processing images).
-- **flip_pairs** (`torch.Tensor` of shape `(num_pairs, 2)`, *optional*) --
-  Pairs of keypoints which are mirrored (for example, left ear -- right ear), used for
-  test-time flip augmentation. When provided, the model assumes `pixel_values` contains
-  horizontally-flipped images and calls `flip_back` on the output heatmaps to restore the
-  original orientation.
-- **labels** (`torch.FloatTensor` of shape `(batch_size, num_keypoints, height, width)`, *optional*) --
-  Heatmap ground truth for computing the loss.
-- **label_weights** (`torch.FloatTensor` of shape `(batch_size, num_labels, 1, 1)` or `(batch_size, num_labels, height, width)`, *optional*) --
-  Visibility weights for each keypoint. Must be broadcastable to the shape of `labels`.`Sapiens2PoseEstimatorOutput` or `tuple(torch.FloatTensor)`A `Sapiens2PoseEstimatorOutput` or a tuple of
+#### forward[[transformers.Sapiens2ForPoseEstimation.forward]]
+
+```python
+forward(pixel_values: FloatTensor, flip_pairs: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.FloatTensor] = None, label_weights: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/modeling_sapiens2.py#L1148)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Sapiens2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor). See `Sapiens2ImageProcessor.__call__()` for details (`processor_class` uses [Sapiens2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor) for processing images).
+
+flip_pairs (`torch.Tensor` of shape `(num_pairs, 2)`, *optional*) : Pairs of keypoints which are mirrored (for example, left ear -- right ear), used for test-time flip augmentation. When provided, the model assumes `pixel_values` contains horizontally-flipped images and calls `flip_back` on the output heatmaps to restore the original orientation.
+
+labels (`torch.FloatTensor` of shape `(batch_size, num_keypoints, height, width)`, *optional*) : Heatmap ground truth for computing the loss.
+
+label_weights (`torch.FloatTensor` of shape `(batch_size, num_labels, 1, 1)` or `(batch_size, num_labels, height, width)`, *optional*) : Visibility weights for each keypoint. Must be broadcastable to the shape of `labels`.
+
+**Returns:** `Sapiens2PoseEstimatorOutput` or `tuple(torch.FloatTensor)`
+
+A `Sapiens2PoseEstimatorOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) and inputs.
-The [Sapiens2ForPoseEstimation](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForPoseEstimation) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) and inputs.
+
+The [Sapiens2ForPoseEstimation](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForPoseEstimation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -977,14 +1200,21 @@ torch.Size([1, 308, 256, 192])
 
 ## Sapiens2ForSemanticSegmentation[[transformers.Sapiens2ForSemanticSegmentation]]
 
-- **config** ([Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.Sapiens2ForSemanticSegmentation[[transformers.Sapiens2ForSemanticSegmentation]]
+
+```python
+transformers.Sapiens2ForSemanticSegmentation(config: Sapiens2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/modeling_sapiens2.py#L1022)
+
+**Parameters:**
+
+config ([Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Sapiens2 Model with a semantic segmentation head on top e.g. for ADE20K, CityScapes.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -992,17 +1222,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [Sapiens2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor). See `Sapiens2ImageProcessor.__call__()` for details (`processor_class` uses
-  [Sapiens2ImageProcessor](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor) for processing images).
-- **labels** (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) --
-  Ground truth semantic segmentation maps for computing the loss.
-  Indices should be in `[0, ..., config.num_labels - 1]`.
-  If `config.num_labels > 1`, a classification loss is computed (Cross-Entropy).[SemanticSegmenterOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`A [SemanticSegmenterOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
+#### forward[[transformers.Sapiens2ForSemanticSegmentation.forward]]
+
+```python
+forward(pixel_values: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sapiens2/modeling_sapiens2.py#L1030)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Sapiens2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor). See `Sapiens2ImageProcessor.__call__()` for details (`processor_class` uses [Sapiens2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ImageProcessor) for processing images).
+
+labels (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Ground truth semantic segmentation maps for computing the loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels > 1`, a classification loss is computed (Cross-Entropy).
+
+**Returns:** [SemanticSegmenterOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`
+
+A [SemanticSegmenterOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Sapiens2Config](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) and inputs.
-The [Sapiens2ForSemanticSegmentation](/docs/transformers/v5.14.0/en/model_doc/sapiens2#transformers.Sapiens2ForSemanticSegmentation) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([Sapiens2Config](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2Config)) and inputs.
+
+The [Sapiens2ForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/sapiens2#transformers.Sapiens2ForSemanticSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1047,5 +1287,5 @@ Example:
 torch.Size([1, 29, 1024, 768])
 ```
 
-### CamemBERT
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/camembert.md
+### Evolla
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/evolla.md

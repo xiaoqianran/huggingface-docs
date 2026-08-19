@@ -1,6 +1,6 @@
 # MM Grounding DINO
 
-[MM Grounding DINO](https://huggingface.co/papers/2401.02361) model was proposed in [An Open and Comprehensive Pipeline for Unified Object Grounding and Detection](https://huggingface.co/papers/2401.02361) by Xiangyu Zhao, Yicheng Chen, Shilin Xu, Xiangtai Li, Xinjiang Wang, Yining Li, Haian Huang>.
+[MM Grounding DINO](https://huggingface.co/papers/2401.02361) model was proposed in [An Open and Comprehensive Pipeline for Unified Object Grounding and Detection](https://huggingface.co/papers/2401.02361) by Xiangyu Zhao, Yicheng Chen, Shilin Xu, Xiangtai Li, Xinjiang Wang, Yining Li, Haian Huang.
 
 MM Grounding DINO improves upon the [Grounding DINO](https://huggingface.co/docs/transformers/model_doc/grounding-dino) by improving the contrastive class head and removing the parameter sharing in the decoder, improving zero-shot detection performance on both COCO (50.6(+2.2) AP) and LVIS (31.9(+11.8) val AP and 41.4(+12.6) minival AP).
 
@@ -9,7 +9,7 @@ You can find all the original MM Grounding DINO checkpoints under the [MM Ground
 > [!TIP]
 > Click on the MM Grounding DINO models in the right sidebar for more examples of how to apply MM Grounding DINO to different MM Grounding DINO tasks.
 
-The example below demonstrates how to generate text based on an image with the [AutoModelForZeroShotObjectDetection](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModelForZeroShotObjectDetection) class.
+The example below demonstrates how to generate text based on an image with the [AutoModelForZeroShotObjectDetection](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForZeroShotObjectDetection) class.
 
 ```python
 import torch
@@ -80,93 +80,98 @@ for box, score, labels in zip(result["boxes"], result["scores"], result["labels"
 
 ## MMGroundingDinoConfig[[transformers.MMGroundingDinoConfig]]
 
-- **is_encoder_decoder** (`bool`, *optional*, defaults to `True`) --
-  Whether the model is used as an encoder/decoder or not.
-- **backbone_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The configuration of the backbone model.
-- **text_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the text backbone.
-- **num_queries** (`int`, *optional*, defaults to 900) --
-  Number of object queries, i.e. detection slots. This is the maximal number of objects
-  [MMGroundingDinoModel](/docs/transformers/v5.14.0/en/model_doc/mm-grounding-dino#transformers.MMGroundingDinoModel) can detect in a single image.
-- **encoder_layers** (`int`, *optional*, defaults to `6`) --
-  Number of hidden layers in the Transformer encoder. Will use the same value as `num_layers` if not set.
-- **encoder_ffn_dim** (`int`, *optional*, defaults to `2048`) --
-  Dimensionality of the "intermediate" (often named feed-forward) layer in encoder.
-- **encoder_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer encoder.
-- **decoder_layers** (`int`, *optional*, defaults to `6`) --
-  Number of hidden layers in the Transformer decoder. Will use the same value as `num_layers` if not set.
-- **decoder_ffn_dim** (`int`, *optional*, defaults to `2048`) --
-  Dimensionality of the "intermediate" (often named feed-forward) layer in decoder.
-- **decoder_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **activation_function** (`str`, *optional*, defaults to `relu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **d_model** (`int`, *optional*, defaults to `256`) --
-  Size of the encoder layers and the pooler layer.
-- **dropout** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The ratio for all dropout layers.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **activation_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for activations inside the fully connected layer.
-- **auxiliary_loss** (`bool`, *optional*, defaults to `False`) --
-  Whether auxiliary decoding losses (loss at each decoder layer) are to be used.
-- **position_embedding_type** (`str`, *optional*, defaults to `"sine"`) --
-  Type of position embeddings to be used on top of the image features. One of `"sine"` or `"learned"`.
-- **num_feature_levels** (`int`, *optional*, defaults to 4) --
-  The number of input feature levels.
-- **encoder_n_points** (`int`, *optional*, defaults to 4) --
-  The number of sampled keys in each feature level for each attention head in the encoder.
-- **decoder_n_points** (`int`, *optional*, defaults to 4) --
-  The number of sampled keys in each feature level for each attention head in the decoder.
-- **two_stage** (`bool`, *optional*, defaults to `True`) --
-  Whether to apply a two-stage deformable DETR, where the region proposals are also generated by a variant of
-  Grounding DINO, which are further fed into the decoder for iterative bounding box refinement.
-- **class_cost** (`float`, *optional*, defaults to `1.0`) --
-  Relative weight of the classification error in the Hungarian matching cost.
-- **bbox_cost** (`float`, *optional*, defaults to `5.0`) --
-  Relative weight of the L1 bounding box error in the Hungarian matching cost.
-- **giou_cost** (`float`, *optional*, defaults to `2.0`) --
-  Relative weight of the generalized IoU loss in the Hungarian matching cost.
-- **bbox_loss_coefficient** (`float`, *optional*, defaults to `5.0`) --
-  Relative weight of the L1 bounding box loss in the panoptic segmentation loss.
-- **giou_loss_coefficient** (`float`, *optional*, defaults to `2.0`) --
-  Relative weight of the generalized IoU loss in the panoptic segmentation loss.
-- **focal_alpha** (`float`, *optional*, defaults to `0.25`) --
-  Alpha parameter in the focal loss.
-- **disable_custom_kernels** (`bool`, *optional*, defaults to `False`) --
-  Disable the use of custom CUDA and CPU kernels. This option is necessary for the ONNX export, as custom
-  kernels are not supported by PyTorch ONNX export.
-- **max_text_len** (`int`, *optional*, defaults to 256) --
-  The maximum length of the text input.
-- **text_enhancer_dropout** (`float`, *optional*, defaults to 0.0) --
-  The dropout ratio for the text enhancer.
-- **fusion_droppath** (`float`, *optional*, defaults to 0.1) --
-  The droppath ratio for the fusion module.
-- **fusion_dropout** (`float`, *optional*, defaults to 0.0) --
-  The dropout ratio for the fusion module.
-- **embedding_init_target** (`bool`, *optional*, defaults to `True`) --
-  Whether to initialize the target with Embedding weights.
-- **query_dim** (`int`, *optional*, defaults to 4) --
-  The dimension of the query vector.
-- **positional_embedding_temperature** (`float`, *optional*, defaults to 20) --
-  The temperature for Sine Positional Embedding that is used together with vision backbone.
-- **init_std** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-05`) --
-  The epsilon used by the layer normalization layers.
-- **tie_word_embeddings** (`bool`, *optional*, defaults to `True`) --
-  Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
+#### transformers.MMGroundingDinoConfig[[transformers.MMGroundingDinoConfig]]
+
+```python
+transformers.MMGroundingDinoConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, num_queries: int = 900, encoder_layers: int = 6, encoder_ffn_dim: int = 2048, encoder_attention_heads: int = 8, decoder_layers: int = 6, decoder_ffn_dim: int = 2048, decoder_attention_heads: int = 8, activation_function: str = 'relu', d_model: int = 256, dropout: float | int = 0.1, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, auxiliary_loss: bool = False, position_embedding_type: str = 'sine', num_feature_levels: int = 4, encoder_n_points: int = 4, decoder_n_points: int = 4, two_stage: bool = True, class_cost: float = 1.0, bbox_cost: float = 5.0, giou_cost: float = 2.0, bbox_loss_coefficient: float = 5.0, giou_loss_coefficient: float = 2.0, focal_alpha: float = 0.25, disable_custom_kernels: bool = False, max_text_len: int = 256, text_enhancer_dropout: float | int = 0.0, fusion_droppath: float | int = 0.1, fusion_dropout: float | int = 0.0, embedding_init_target: bool = True, query_dim: int = 4, positional_embedding_temperature: int = 20, init_std: float = 0.02, layer_norm_eps: float = 1e-05, tie_word_embeddings: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mm_grounding_dino/configuration_mm_grounding_dino.py#L33)
+
+**Parameters:**
+
+is_encoder_decoder (`bool`, *optional*, defaults to `True`) : Whether the model is used as an encoder/decoder or not.
+
+backbone_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The configuration of the backbone model.
+
+text_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the text backbone.
+
+num_queries (`int`, *optional*, defaults to 900) : Number of object queries, i.e. detection slots. This is the maximal number of objects [MMGroundingDinoModel](/docs/transformers/v5.15.0/en/model_doc/mm-grounding-dino#transformers.MMGroundingDinoModel) can detect in a single image.
+
+encoder_layers (`int`, *optional*, defaults to `6`) : Number of hidden layers in the Transformer encoder. Will use the same value as `num_layers` if not set.
+
+encoder_ffn_dim (`int`, *optional*, defaults to `2048`) : Dimensionality of the "intermediate" (often named feed-forward) layer in encoder.
+
+encoder_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer encoder.
+
+decoder_layers (`int`, *optional*, defaults to `6`) : Number of hidden layers in the Transformer decoder. Will use the same value as `num_layers` if not set.
+
+decoder_ffn_dim (`int`, *optional*, defaults to `2048`) : Dimensionality of the "intermediate" (often named feed-forward) layer in decoder.
+
+decoder_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+activation_function (`str`, *optional*, defaults to `relu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+d_model (`int`, *optional*, defaults to `256`) : Size of the encoder layers and the pooler layer.
+
+dropout (`Union[float, int]`, *optional*, defaults to `0.1`) : The ratio for all dropout layers.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+activation_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for activations inside the fully connected layer.
+
+auxiliary_loss (`bool`, *optional*, defaults to `False`) : Whether auxiliary decoding losses (loss at each decoder layer) are to be used.
+
+position_embedding_type (`str`, *optional*, defaults to `"sine"`) : Type of position embeddings to be used on top of the image features. One of `"sine"` or `"learned"`.
+
+num_feature_levels (`int`, *optional*, defaults to 4) : The number of input feature levels.
+
+encoder_n_points (`int`, *optional*, defaults to 4) : The number of sampled keys in each feature level for each attention head in the encoder.
+
+decoder_n_points (`int`, *optional*, defaults to 4) : The number of sampled keys in each feature level for each attention head in the decoder.
+
+two_stage (`bool`, *optional*, defaults to `True`) : Whether to apply a two-stage deformable DETR, where the region proposals are also generated by a variant of Grounding DINO, which are further fed into the decoder for iterative bounding box refinement.
+
+class_cost (`float`, *optional*, defaults to `1.0`) : Relative weight of the classification error in the Hungarian matching cost.
+
+bbox_cost (`float`, *optional*, defaults to `5.0`) : Relative weight of the L1 bounding box error in the Hungarian matching cost.
+
+giou_cost (`float`, *optional*, defaults to `2.0`) : Relative weight of the generalized IoU loss in the Hungarian matching cost.
+
+bbox_loss_coefficient (`float`, *optional*, defaults to `5.0`) : Relative weight of the L1 bounding box loss in the panoptic segmentation loss.
+
+giou_loss_coefficient (`float`, *optional*, defaults to `2.0`) : Relative weight of the generalized IoU loss in the panoptic segmentation loss.
+
+focal_alpha (`float`, *optional*, defaults to `0.25`) : Alpha parameter in the focal loss.
+
+disable_custom_kernels (`bool`, *optional*, defaults to `False`) : Disable the use of custom CUDA and CPU kernels. This option is necessary for the ONNX export, as custom kernels are not supported by PyTorch ONNX export.
+
+max_text_len (`int`, *optional*, defaults to 256) : The maximum length of the text input.
+
+text_enhancer_dropout (`float`, *optional*, defaults to 0.0) : The dropout ratio for the text enhancer.
+
+fusion_droppath (`float`, *optional*, defaults to 0.1) : The droppath ratio for the fusion module.
+
+fusion_dropout (`float`, *optional*, defaults to 0.0) : The dropout ratio for the fusion module.
+
+embedding_init_target (`bool`, *optional*, defaults to `True`) : Whether to initialize the target with Embedding weights.
+
+query_dim (`int`, *optional*, defaults to 4) : The dimension of the query vector.
+
+positional_embedding_temperature (`float`, *optional*, defaults to 20) : The temperature for Sine Positional Embedding that is used together with vision backbone.
+
+init_std (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-05`) : The epsilon used by the layer normalization layers.
+
+tie_word_embeddings (`bool`, *optional*, defaults to `True`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
 
 This is the configuration class to store the configuration of a Mm Grounding DinoModel. It is used to instantiate a Mm Grounding Dino
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [openmmlab-community/mm_grounding_dino_tiny_o365v1_goldg_v3det](https://huggingface.co/openmmlab-community/mm_grounding_dino_tiny_o365v1_goldg_v3det)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -185,15 +190,22 @@ Examples:
 
 ## MMGroundingDinoModel[[transformers.MMGroundingDinoModel]]
 
-- **config** ([MMGroundingDinoConfig](/docs/transformers/v5.14.0/en/model_doc/mm-grounding-dino#transformers.MMGroundingDinoConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.MMGroundingDinoModel[[transformers.MMGroundingDinoModel]]
+
+```python
+transformers.MMGroundingDinoModel(config: MMGroundingDinoConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mm_grounding_dino/modeling_mm_grounding_dino.py#L1783)
+
+**Parameters:**
+
+config ([MMGroundingDinoConfig](/docs/transformers/v5.15.0/en/model_doc/mm-grounding-dino#transformers.MMGroundingDinoConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Grounding DINO Model (consisting of a backbone and encoder-decoder Transformer) outputting raw
 hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -201,50 +213,41 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "input_ids", "val": ": )>"}, {"name": "token_type_ids", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "attention_mask", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "pixel_mask", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "encoder_outputs", "val": " = None"}, {"name": "output_attentions", "val": " = None"}, {"name": "output_hidden_states", "val": " = None"}, {"name": "return_dict", "val": " = None"}, {"name": "**kwargs", "val": ""}]}>
-- **pixel_values** (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [GroundingDinoImageProcessor](/docs/transformers/v5.14.0/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor). See `GroundingDinoImageProcessor.__call__()` for details ([GroundingDinoProcessor](/docs/transformers/v5.14.0/en/model_doc/grounding-dino#transformers.GroundingDinoProcessor) uses
-  [GroundingDinoImageProcessor](/docs/transformers/v5.14.0/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor) for processing images).
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, text_sequence_length)`) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default should you provide
-  it.
+#### forward[[transformers.MMGroundingDinoModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [BertTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, text_sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0,
-  1]`: 0 corresponds to a `sentence A` token, 1 corresponds to a `sentence B` token
+```python
+forward(pixel_values: Tensor, input_ids: Tensor, token_type_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, pixel_mask: typing.Optional[torch.Tensor] = None, encoder_outputs = None, output_attentions = None, output_hidden_states = None, return_dict = None, **kwargs)
+```
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mm_grounding_dino/modeling_mm_grounding_dino.py#L1904)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **pixel_mask** (`torch.Tensor` of shape `(batch_size, height, width)`, *optional*) --
-  Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GroundingDinoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor). See `GroundingDinoImageProcessor.__call__()` for details ([GroundingDinoProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoProcessor) uses [GroundingDinoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor) for processing images).
 
-  - 1 for pixels that are real (i.e. **not masked**),
-  - 0 for pixels that are padding (i.e. **masked**).
+input_ids (`torch.LongTensor` of shape `(batch_size, text_sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default should you provide it.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [BertTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
 
-  [What are attention masks?](../glossary#attention-mask)
-- **encoder_outputs** (``) --
-  Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`)
-  `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of
-  hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
-- **output_attentions** (``) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (``) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (``) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.`MMGroundingDinoModelOutput` or `tuple(torch.FloatTensor)`A `MMGroundingDinoModelOutput` or a tuple of
+token_type_ids (`torch.LongTensor` of shape `(batch_size, text_sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`: 0 corresponds to a `sentence A` token, 1 corresponds to a `sentence B` token  [What are token type IDs?](../glossary#token-type-ids)
+
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+pixel_mask (`torch.Tensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
+
+encoder_outputs (``) : Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
+
+output_attentions (``) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (``) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (``) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** `MMGroundingDinoModelOutput` or `tuple(torch.FloatTensor)`
+
+A `MMGroundingDinoModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MMGroundingDinoConfig](/docs/transformers/v5.14.0/en/model_doc/mm-grounding-dino#transformers.MMGroundingDinoConfig)) and inputs.
-The [MMGroundingDinoModel](/docs/transformers/v5.14.0/en/model_doc/mm-grounding-dino#transformers.MMGroundingDinoModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([MMGroundingDinoConfig](/docs/transformers/v5.15.0/en/model_doc/mm-grounding-dino#transformers.MMGroundingDinoConfig)) and inputs.
+
+The [MMGroundingDinoModel](/docs/transformers/v5.15.0/en/model_doc/mm-grounding-dino#transformers.MMGroundingDinoModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -309,15 +312,22 @@ Examples:
 
 ## MMGroundingDinoForObjectDetection[[transformers.MMGroundingDinoForObjectDetection]]
 
-- **config** ([MMGroundingDinoConfig](/docs/transformers/v5.14.0/en/model_doc/mm-grounding-dino#transformers.MMGroundingDinoConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.MMGroundingDinoForObjectDetection[[transformers.MMGroundingDinoForObjectDetection]]
+
+```python
+transformers.MMGroundingDinoForObjectDetection(config: MMGroundingDinoConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mm_grounding_dino/modeling_mm_grounding_dino.py#L2354)
+
+**Parameters:**
+
+config ([MMGroundingDinoConfig](/docs/transformers/v5.15.0/en/model_doc/mm-grounding-dino#transformers.MMGroundingDinoConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Grounding DINO Model (consisting of a backbone and encoder-decoder Transformer) with object detection heads on top,
 for tasks such as COCO detection.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -325,52 +335,37 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [GroundingDinoImageProcessor](/docs/transformers/v5.14.0/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor). See `GroundingDinoImageProcessor.__call__()` for details ([GroundingDinoProcessor](/docs/transformers/v5.14.0/en/model_doc/grounding-dino#transformers.GroundingDinoProcessor) uses
-  [GroundingDinoImageProcessor](/docs/transformers/v5.14.0/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor) for processing images).
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, text_sequence_length)`) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default should you provide
-  it.
+#### forward[[transformers.MMGroundingDinoForObjectDetection.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [BertTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, text_sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0,
-  1]`: 0 corresponds to a `sentence A` token, 1 corresponds to a `sentence B` token
+```python
+forward(pixel_values: FloatTensor, input_ids: LongTensor, token_type_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, pixel_mask: typing.Optional[torch.BoolTensor] = None, encoder_outputs: transformers.models.mm_grounding_dino.modeling_mm_grounding_dino.MMGroundingDinoEncoderOutput | tuple | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, labels: list[dict[str, typing.Union[torch.LongTensor, torch.FloatTensor]]] | None = None, **kwargs)
+```
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **attention_mask** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mm_grounding_dino/modeling_mm_grounding_dino.py#L2389)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **pixel_mask** (`torch.BoolTensor` of shape `(batch_size, height, width)`, *optional*) --
-  Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GroundingDinoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor). See `GroundingDinoImageProcessor.__call__()` for details ([GroundingDinoProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoProcessor) uses [GroundingDinoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor) for processing images).
 
-  - 1 for pixels that are real (i.e. **not masked**),
-  - 0 for pixels that are padding (i.e. **masked**).
+input_ids (`torch.LongTensor` of shape `(batch_size, text_sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default should you provide it.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [BertTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
 
-  [What are attention masks?](../glossary#attention-mask)
-- **encoder_outputs** (`Union[~models.mm_grounding_dino.modeling_mm_grounding_dino.MMGroundingDinoEncoderOutput, tuple]`, *optional*) --
-  Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`)
-  `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of
-  hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
-- **labels** (`list[Dict]` of len `(batch_size,)`, *optional*) --
-  Labels for computing the bipartite matching loss. List of dicts, each dictionary containing at least the
-  following 2 keys: 'class_labels' and 'boxes' (the class labels and bounding boxes of an image in the batch
-  respectively). The class labels themselves should be a `torch.LongTensor` of len `(number of bounding boxes
-  in the image,)` and the boxes a `torch.FloatTensor` of shape `(number of bounding boxes in the image, 4)`.
-The [MMGroundingDinoForObjectDetection](/docs/transformers/v5.14.0/en/model_doc/mm-grounding-dino#transformers.MMGroundingDinoForObjectDetection) forward method, overrides the `__call__` special method.
+token_type_ids (`torch.LongTensor` of shape `(batch_size, text_sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`: 0 corresponds to a `sentence A` token, 1 corresponds to a `sentence B` token  [What are token type IDs?](../glossary#token-type-ids)
+
+attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+pixel_mask (`torch.BoolTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
+
+encoder_outputs (`Union[~models.mm_grounding_dino.modeling_mm_grounding_dino.MMGroundingDinoEncoderOutput, tuple]`, *optional*) : Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+labels (`list[Dict]` of len `(batch_size,)`, *optional*) : Labels for computing the bipartite matching loss. List of dicts, each dictionary containing at least the following 2 keys: 'class_labels' and 'boxes' (the class labels and bounding boxes of an image in the batch respectively). The class labels themselves should be a `torch.LongTensor` of len `(number of bounding boxes in the image,)` and the boxes a `torch.FloatTensor` of shape `(number of bounding boxes in the image, 4)`.
+
+The [MMGroundingDinoForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/mm-grounding-dino#transformers.MMGroundingDinoForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -418,5 +413,5 @@ Detected a cat with confidence 0.438 at location [12.27, 51.91, 316.86, 472.44]
 Detected a remote control with confidence 0.478 at location [38.57, 70.0, 176.78, 118.18]
 ```
 
-### RoBERTa
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/roberta.md
+### Pegasus
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/pegasus.md

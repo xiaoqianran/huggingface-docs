@@ -13,7 +13,7 @@ Install the kernels package. We recommend the latest version which provides the 
 pip install -U kernels
 ```
 
-Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load the most performant kernels available on the Hub for your device. This replaces supported PyTorch operations with the kernel implementation.
+Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load the most performant kernels available on the Hub for your device. This replaces supported PyTorch operations with the kernel implementation.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -21,7 +21,7 @@ from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen3-0.6B",
     use_kernels=True,
-    device_map="cuda"
+    device_map="auto"
 )
 ```
 
@@ -53,7 +53,7 @@ from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen3-0.6B",
     attn_implementation="kernels-community/flash-attn2",
-    device_map="cuda"
+    device_map="auto"
 )
 ```
 
@@ -66,7 +66,7 @@ model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen3-0.6B",
     attn_implementation="random-repo/random-attention",
     allow_all_kernels=True,
-    device_map="cuda"
+    device_map="auto"
 )
 ```
 
@@ -82,13 +82,31 @@ from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen3-0.6B",
     attn_implementation="kernels-community/flash-attn2@v2.1.0",
-    device_map="cuda"
+    device_map="auto"
 )
 # use semantic versioning constraints
 model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen3-0.6B",
     attn_implementation="kernels-community/flash-attn2@>=2.0,<3.0",
-    device_map="cuda"
+    device_map="auto"
+)
+```
+
+### FlashAttention fallback
+
+Requesting `attn_implementation="flash_attention_2"`, `"flash_attention_3"`, or `"flash_attention_4"` falls back to the matching Hub kernel when the compiled `flash-attn` package isn't installed or your device isn't CUDA.
+
+> [!NOTE]
+> FlashAttention-4 support is in beta. APIs and behavior may change.
+
+```py
+from transformers import AutoModelForCausalLM
+
+# uses the compiled flash-attn package if present, otherwise the kernels-community/flash-attn2 Hub kernel
+model = AutoModelForCausalLM.from_pretrained(
+    "Qwen/Qwen3-0.6B",
+    attn_implementation="flash_attention_2",
+    device_map="auto",
 )
 ```
 
@@ -103,7 +121,7 @@ from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen3-0.6B",
     use_kernels=True,
-    device_map="cuda"
+    device_map="auto"
 )
 
 # Switch to inference mode - uses inference-optimized kernels
@@ -117,7 +135,7 @@ loss = model(input_ids, labels=labels).loss
 loss.backward()
 ```
 
-Explicitly enable training and inference modes with the `mode` argument in the [kernelize()](/docs/transformers/v5.14.0/en/main_classes/kernels#transformers.kernelize) function. Training mode also supports an additional torch.compile mode.
+Explicitly enable training and inference modes with the `mode` argument in the [kernelize()](/docs/transformers/v5.15.0/en/main_classes/kernels#transformers.kernelize) function. Training mode also supports an additional torch.compile mode.
 
 ```py
 from kernels import Mode
@@ -135,7 +153,7 @@ kernelize(model, mode=Mode.TRAINING | Mode.TORCH_COMPILE)
 
 ## KernelConfig
 
-[KernelConfig](/docs/transformers/v5.14.0/en/main_classes/kernels#transformers.KernelConfig) customizes which kernels are used in a model.
+[KernelConfig](/docs/transformers/v5.15.0/en/main_classes/kernels#transformers.KernelConfig) customizes which kernels are used in a model.
 
 The `:` separator names a specific kernel entry inside the repository and maps it to a layer.
 
@@ -152,7 +170,7 @@ model = AutoModelForCausalLM.from_pretrained(
     attn_implementation="kernels-community/flash-attn2:FlashAttention2",
     use_kernels=True,
     kernel_config=kernel_config,
-    device_map="cuda"
+    device_map="auto"
 )
 ```
 
@@ -175,7 +193,7 @@ kernel_config = KernelConfig(
 
 ## Module fusion
 
-Fuse adjacent modules into a single kernel by passing a tuple of `(class_name, path_pattern)` pairs as the key in [KernelConfig](/docs/transformers/v5.14.0/en/main_classes/kernels#transformers.KernelConfig). All patterns must share the same parent module. `*` matches any single path segment.
+Fuse adjacent modules into a single kernel by passing a tuple of `(class_name, path_pattern)` pairs as the key in [KernelConfig](/docs/transformers/v5.15.0/en/main_classes/kernels#transformers.KernelConfig). All patterns must share the same parent module. `*` matches any single path segment.
 
 ```python
 from transformers import AutoModelForCausalLM, KernelConfig
@@ -192,7 +210,7 @@ model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen3-0.6B",
     use_kernels=True,
     kernel_config=kernel_config,
-    device_map="cuda",
+    device_map="auto",
 )
 ```
 
@@ -200,7 +218,7 @@ Fusion requires the kernel repo to provide a companion `KernelNameLayout` class 
 
 ## Local kernels
 
-Load kernels from local file paths with `use_local_kernel=True` in [KernelConfig](/docs/transformers/v5.14.0/en/main_classes/kernels#transformers.KernelConfig). This loads from a local filesystem path instead of a Hub repository.
+Load kernels from local file paths with `use_local_kernel=True` in [KernelConfig](/docs/transformers/v5.15.0/en/main_classes/kernels#transformers.KernelConfig). This loads from a local filesystem path instead of a Hub repository.
 
 Local kernels use `/abs/path:layer_name` instead of the Hub format `org/repo:layer_name`.
 
@@ -223,7 +241,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ## Disabling kernels
 
-Disable kernels for specific layers with an empty kernel mapping in [KernelConfig](/docs/transformers/v5.14.0/en/main_classes/kernels#transformers.KernelConfig).
+Disable kernels for specific layers with an empty kernel mapping in [KernelConfig](/docs/transformers/v5.15.0/en/main_classes/kernels#transformers.KernelConfig).
 
 ```py
 from transformers import AutoModelForCausalLM, KernelConfig
@@ -238,7 +256,7 @@ model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen3-0.6B",
     use_kernels=True,
     kernel_config=kernel_config,
-    device_map="cuda"
+    device_map="auto"
 )
 ```
 
@@ -279,4 +297,4 @@ Not all kernels support all devices. The library falls back to standard PyTorch 
 - Discover kernels in the [kernels-community](https://huggingface.co/kernels-community) org
 
 ### Kernels
-https://huggingface.co/docs/transformers/v5.14.0/kernel_doc/overview.md
+https://huggingface.co/docs/transformers/v5.15.0/kernel_doc/overview.md

@@ -53,5 +53,5 @@ FP-Quant currently performs best for very large batch size processing.
 
 See [QuTLASS README](https://github.com/IST-DASLab/qutlass/blob/main/README.md) for speedups.
 
-### MXFP4
-https://huggingface.co/docs/transformers/v5.14.0/quantization/mxfp4.md
+### AutoRound
+https://huggingface.co/docs/transformers/v5.15.0/quantization/auto_round.md

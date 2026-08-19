@@ -32,5 +32,5 @@ A XLM-V (base size) model is available under the [`facebook/xlm-v-base`](https:/
 
 XLM-V architecture is the same as XLM-RoBERTa, refer to [XLM-RoBERTa documentation](xlm-roberta) for API reference, and examples.
 
-### InstructBlipVideo
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/instructblipvideo.md
+### SeamlessM4T
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/seamless_m4t.md

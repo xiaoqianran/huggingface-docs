@@ -44,7 +44,7 @@ from transformers import AutoImageProcessor, AutoModelForUniversalSegmentation
 
 model_id = "tue-mps/eomt-dinov3-coco-panoptic-base-640"
 processor = AutoImageProcessor.from_pretrained(model_id)
-model = AutoModelForUniversalSegmentation.from_pretrained(model_id).to("cuda" if torch.cuda.is_available() else "cpu", device_map="auto")
+model = AutoModelForUniversalSegmentation.from_pretrained(model_id, device_map="auto")
 
 image = Image.open(requests.get("http://images.cocodataset.org/val2017/000000039769.jpg", stream=True).raw)
 
@@ -60,101 +60,120 @@ list(segmentation.keys())
 
 ## EomtDinov3Config[[transformers.EomtDinov3Config]]
 
-- **hidden_size** (`int`, *optional*, defaults to `1024`) --
-  Dimension of the hidden representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `24`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `16`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **image_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `640`) --
-  The size (resolution) of each image.
-- **patch_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `16`) --
-  The size (resolution) of each patch.
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **layerscale_value** (`float`, *optional*, defaults to 1.0) --
-  Initial value for the LayerScale parameter.
-- **drop_path_rate** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  Drop path rate for the patch fusion.
-- **num_upscale_blocks** (`int`, *optional*, defaults to 2) --
-  Number of upsampling blocks used in the decoder or segmentation head.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **num_blocks** (`int`, *optional*, defaults to 4) --
-  Number of feature blocks or stages in the architecture.
-- **no_object_weight** (`float`, *optional*, defaults to 0.1) --
-  Loss weight for the "no object" class in panoptic/instance segmentation.
-- **class_weight** (`float`, *optional*, defaults to `2.0`) --
-  Relative weight of the classification error in the Hungarian matching cost.
-- **mask_weight** (`float`, *optional*, defaults to `5.0`) --
-  Relative weight of the focal loss in the panoptic segmentation loss.
-- **dice_weight** (`float`, *optional*, defaults to `5.0`) --
-  Relative weight of the dice loss in the panoptic segmentation loss.
-- **train_num_points** (`int`, *optional*, defaults to 12544) --
-  Number of points to sample for mask loss computation during training.
-- **oversample_ratio** (`float`, *optional*, defaults to 3.0) --
-  Oversampling ratio used in point sampling for mask training.
-- **importance_sample_ratio** (`float`, *optional*, defaults to 0.75) --
-  Ratio of points to sample based on importance during training.
-- **num_queries** (`int`, *optional*, defaults to 200) --
-  Number of object queries in the Transformer.
-- **num_register_tokens** (`int`, *optional*, defaults to 4) --
-  Number of learnable register tokens added to the transformer input.
-- **intermediate_size** (`int`, *optional*, defaults to `4096`) --
-  Dimension of the MLP representations.
-- **rope_parameters** (`Union[~modeling_rope_utils.RopeParameters, dict]`, *optional*) --
-  Dictionary containing the configuration parameters for the RoPE embeddings. The dictionary should contain
-  a value for `rope_theta` and optionally parameters used for scaling in case you want to use RoPE
-  with longer `max_position_embeddings`.
-- **query_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to use bias in query projection.
-- **key_bias** (`bool`, *optional*, defaults to `False`) --
-  Whether to use bias in key projection.
-- **value_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to use bias in value projection.
-- **proj_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to use bias in output projection.
-- **mlp_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to use a bias in up_proj, down_proj and gate_proj layers in the MLP layers.
-- **use_gated_mlp** (`bool`, *optional*, defaults to `False`) --
-  Whether to use gated MLP layers.
-- **pos_embed_shift** (`float`, *optional*) --
-  Shift value for position embeddings.
-- **pos_embed_jitter** (`float`, *optional*) --
-  Jitter value for position embeddings.
-- **pos_embed_rescale** (`float`, *optional*, defaults to 2.0) --
-  Rescale value for position embeddings.
+#### transformers.EomtDinov3Config[[transformers.EomtDinov3Config]]
+
+```python
+transformers.EomtDinov3Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 1024, num_hidden_layers: int = 24, num_attention_heads: int = 16, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-06, image_size: int | list[int] | tuple[int, int] = 640, patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, layerscale_value: float = 1.0, drop_path_rate: float | int = 0.0, num_upscale_blocks: int = 2, attention_dropout: float | int = 0.0, num_blocks: int = 4, no_object_weight: float = 0.1, class_weight: float = 2.0, mask_weight: float = 5.0, dice_weight: float = 5.0, train_num_points: int = 12544, oversample_ratio: float = 3.0, importance_sample_ratio: float = 0.75, num_queries: int = 200, num_register_tokens: int = 4, intermediate_size: int = 4096, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, query_bias: bool = True, key_bias: bool = False, value_bias: bool = True, proj_bias: bool = True, mlp_bias: bool = True, use_gated_mlp: bool = False, pos_embed_shift: float | None = None, pos_embed_jitter: float | None = None, pos_embed_rescale: float | None = 2.0)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt_dinov3/configuration_eomt_dinov3.py#L29)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `1024`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `24`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `16`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+image_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `640`) : The size (resolution) of each image.
+
+patch_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `16`) : The size (resolution) of each patch.
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+layerscale_value (`float`, *optional*, defaults to 1.0) : Initial value for the LayerScale parameter.
+
+drop_path_rate (`Union[float, int]`, *optional*, defaults to `0.0`) : Drop path rate for the patch fusion.
+
+num_upscale_blocks (`int`, *optional*, defaults to 2) : Number of upsampling blocks used in the decoder or segmentation head.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+num_blocks (`int`, *optional*, defaults to 4) : Number of feature blocks or stages in the architecture.
+
+no_object_weight (`float`, *optional*, defaults to 0.1) : Loss weight for the "no object" class in panoptic/instance segmentation.
+
+class_weight (`float`, *optional*, defaults to `2.0`) : Relative weight of the classification error in the Hungarian matching cost.
+
+mask_weight (`float`, *optional*, defaults to `5.0`) : Relative weight of the focal loss in the panoptic segmentation loss.
+
+dice_weight (`float`, *optional*, defaults to `5.0`) : Relative weight of the dice loss in the panoptic segmentation loss.
+
+train_num_points (`int`, *optional*, defaults to 12544) : Number of points to sample for mask loss computation during training.
+
+oversample_ratio (`float`, *optional*, defaults to 3.0) : Oversampling ratio used in point sampling for mask training.
+
+importance_sample_ratio (`float`, *optional*, defaults to 0.75) : Ratio of points to sample based on importance during training.
+
+num_queries (`int`, *optional*, defaults to 200) : Number of object queries in the Transformer.
+
+num_register_tokens (`int`, *optional*, defaults to 4) : Number of learnable register tokens added to the transformer input.
+
+intermediate_size (`int`, *optional*, defaults to `4096`) : Dimension of the MLP representations.
+
+rope_parameters (`Union[~modeling_rope_utils.RopeParameters, dict]`, *optional*) : Dictionary containing the configuration parameters for the RoPE embeddings. The dictionary should contain a value for `rope_theta` and optionally parameters used for scaling in case you want to use RoPE with longer `max_position_embeddings`.
+
+query_bias (`bool`, *optional*, defaults to `True`) : Whether to use bias in query projection.
+
+key_bias (`bool`, *optional*, defaults to `False`) : Whether to use bias in key projection.
+
+value_bias (`bool`, *optional*, defaults to `True`) : Whether to use bias in value projection.
+
+proj_bias (`bool`, *optional*, defaults to `True`) : Whether to use bias in output projection.
+
+mlp_bias (`bool`, *optional*, defaults to `True`) : Whether to use a bias in up_proj, down_proj and gate_proj layers in the MLP layers.
+
+use_gated_mlp (`bool`, *optional*, defaults to `False`) : Whether to use gated MLP layers.
+
+pos_embed_shift (`float`, *optional*) : Shift value for position embeddings.
+
+pos_embed_jitter (`float`, *optional*) : Jitter value for position embeddings.
+
+pos_embed_rescale (`float`, *optional*, defaults to 2.0) : Rescale value for position embeddings.
 
 This is the configuration class to store the configuration of a Eomt Dinov3Model. It is used to instantiate a Eomt Dinov3
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [tue-mps/coco_panoptic_eomt_large_640_dinov3](https://huggingface.co/tue-mps/coco_panoptic_eomt_large_640_dinov3)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## EomtDinov3PreTrainedModel[[transformers.EomtDinov3PreTrainedModel]]
 
-- **config** ([PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.EomtDinov3PreTrainedModel[[transformers.EomtDinov3PreTrainedModel]]
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+```python
+transformers.EomtDinov3PreTrainedModel(config: PreTrainedConfig, *inputs, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt_dinov3/modeling_eomt_dinov3.py#L1057)
+
+**Parameters:**
+
+config ([PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
 This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/nn.html#torch.nn.Module) subclass.
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
+
+#### forward[[transformers.EomtDinov3PreTrainedModel.forward]]
+
+```python
+forward(*args, **kwargs)
+```
 
 A mock value for a dotted path (e.g. `torch.float32`): attribute access chains,
 calls behave as pass-through decorators, `repr` is the dotted path, and using it
@@ -164,14 +183,21 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 
 ## EomtDinov3ForUniversalSegmentation[[transformers.EomtDinov3ForUniversalSegmentation]]
 
-- **config** ([EomtDinov3Config](/docs/transformers/v5.14.0/en/model_doc/eomt_dinov3#transformers.EomtDinov3Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.EomtDinov3ForUniversalSegmentation[[transformers.EomtDinov3ForUniversalSegmentation]]
+
+```python
+transformers.EomtDinov3ForUniversalSegmentation(config: EomtDinov3Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt_dinov3/modeling_eomt_dinov3.py#L1164)
+
+**Parameters:**
+
+config ([EomtDinov3Config](/docs/transformers/v5.15.0/en/model_doc/eomt_dinov3#transformers.EomtDinov3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The EoMT-DINOv3 model with head on top for instance/semantic/panoptic segmentation.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -179,21 +205,31 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "mask_labels", "val": ": list[)>] | None = None"}, {"name": "class_labels", "val": ": list[)>] | None = None"}, {"name": "patch_offsets", "val": ": list[)>] | None = None"}, {"name": "**kwargs", "val": ": Unpack"}]}>
-- **pixel_values** (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [EomtImageProcessor](/docs/transformers/v5.14.0/en/model_doc/eomt#transformers.EomtImageProcessor). See `EomtImageProcessor.__call__()` for details (`processor_class` uses
-  [EomtImageProcessor](/docs/transformers/v5.14.0/en/model_doc/eomt#transformers.EomtImageProcessor) for processing images).
-- **mask_labels** (`list[torch.Tensor]`, *optional*) --
-  list of mask labels of shape `(num_labels, height, width)` to be fed to a model
-- **class_labels** (`list[torch.LongTensor]`, *optional*) --
-  list of target class labels of shape `(num_labels, height, width)` to be fed to a model. They identify the
-  labels of `mask_labels`, e.g. the label of `mask_labels[i][j]` if `class_labels[i][j]`.
-- **patch_offsets** (`list[torch.Tensor]`, *optional*) --
-  list of tuples indicating the image index and start and end positions of patches for semantic segmentation.`EomtDinov3ForUniversalSegmentationOutput` or `tuple(torch.FloatTensor)`A `EomtDinov3ForUniversalSegmentationOutput` or a tuple of
+#### forward[[transformers.EomtDinov3ForUniversalSegmentation.forward]]
+
+```python
+forward(pixel_values: Tensor, mask_labels: list[torch.Tensor] | None = None, class_labels: list[torch.Tensor] | None = None, patch_offsets: list[torch.Tensor] | None = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt_dinov3/modeling_eomt_dinov3.py#L1228)
+
+**Parameters:**
+
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [EomtImageProcessor](/docs/transformers/v5.15.0/en/model_doc/eomt#transformers.EomtImageProcessor). See `EomtImageProcessor.__call__()` for details (`processor_class` uses [EomtImageProcessor](/docs/transformers/v5.15.0/en/model_doc/eomt#transformers.EomtImageProcessor) for processing images).
+
+mask_labels (`list[torch.Tensor]`, *optional*) : list of mask labels of shape `(num_labels, height, width)` to be fed to a model
+
+class_labels (`list[torch.LongTensor]`, *optional*) : list of target class labels of shape `(num_labels, height, width)` to be fed to a model. They identify the labels of `mask_labels`, e.g. the label of `mask_labels[i][j]` if `class_labels[i][j]`.
+
+patch_offsets (`list[torch.Tensor]`, *optional*) : list of tuples indicating the image index and start and end positions of patches for semantic segmentation.
+
+**Returns:** `EomtDinov3ForUniversalSegmentationOutput` or `tuple(torch.FloatTensor)`
+
+A `EomtDinov3ForUniversalSegmentationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EomtDinov3Config](/docs/transformers/v5.14.0/en/model_doc/eomt_dinov3#transformers.EomtDinov3Config)) and inputs.
-The [EomtDinov3ForUniversalSegmentation](/docs/transformers/v5.14.0/en/model_doc/eomt_dinov3#transformers.EomtDinov3ForUniversalSegmentation) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([EomtDinov3Config](/docs/transformers/v5.15.0/en/model_doc/eomt_dinov3#transformers.EomtDinov3Config)) and inputs.
+
+The [EomtDinov3ForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/eomt_dinov3#transformers.EomtDinov3ForUniversalSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -211,5 +247,5 @@ the latter silently ignores them.
   sequence_length)`. Self and Cross Attentions weights from transformer decoder.
 - **patch_offsets** (`list[torch.Tensor]`, *optional*) -- list of tuples indicating the image index and start and end positions of patches for semantic segmentation.
 
-### TrOCR
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/trocr.md
+### Vision Encoder Decoder Models
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/vision-encoder-decoder.md

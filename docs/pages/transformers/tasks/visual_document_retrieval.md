@@ -53,7 +53,7 @@ model = ColPaliForRetrieval.from_pretrained(
 ).eval()
 ```
 
-Pass the text query to the processor and return the indexed text embeddings from the model. For image-to-text search, replace the `text` parameter in [ColPaliProcessor](/docs/transformers/v5.14.0/en/model_doc/colpali#transformers.ColPaliProcessor) with the `images` parameter to pass images.
+Pass the text query to the processor and return the indexed text embeddings from the model. For image-to-text search, replace the `text` parameter in [ColPaliProcessor](/docs/transformers/v5.15.0/en/model_doc/colpali#transformers.ColPaliProcessor) with the `images` parameter to pass images.
 
 ```python
 inputs = processor(text="a document about Mars expedition").to(model.device)
@@ -63,7 +63,7 @@ with torch.no_grad():
 
 Index the images offline, and during inference, return the query text embeddings to get its closest image embeddings.
 
-Store the image and image embeddings by writing them to the dataset with `map` as shown below. Add an `embeddings` column that contains the indexed embeddings. ColPali embeddings take up a lot of storage, so remove them from the accelerator and store them in the CPU as NumPy vectors.
+Store the image and image embeddings by writing them to the dataset with [map](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset.map) as shown below. Add an `embeddings` column that contains the indexed embeddings. ColPali embeddings take up a lot of storage, so remove them from the accelerator and store them in the CPU as NumPy vectors.
 
 ```python
 ds_with_embeddings = dataset.map(lambda example: {'embeddings': model(**processor(images=example["image"]).to(device), return_tensors="pt").embeddings.to(torch.float32).detach().cpu().numpy()})
@@ -131,4 +131,4 @@ for i in indices:
          style="height: 200px; object-fit: contain;">
 
 ### Zero-shot image classification
-https://huggingface.co/docs/transformers/v5.14.0/tasks/zero_shot_image_classification.md
+https://huggingface.co/docs/transformers/v5.15.0/tasks/zero_shot_image_classification.md

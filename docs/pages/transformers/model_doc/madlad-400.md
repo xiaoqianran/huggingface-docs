@@ -47,5 +47,5 @@ The original checkpoints can be found [here](https://github.com/google-research/
 
 Refer to [T5's documentation page](t5) for all API references, code examples, and notebooks. For more details regarding training and evaluation of the MADLAD-400, refer to the model card.
 
-### Moonshine Streaming
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/moonshine_streaming.md
+### Llama
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/llama.md

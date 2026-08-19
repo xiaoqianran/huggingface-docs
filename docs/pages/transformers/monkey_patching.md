@@ -1,6 +1,6 @@
 # Monkey patching (experimental feature)
 
-Monkey patching allows you to replace model components globally without modifying the original model code. Once registered, patches are automatically applied when loading any model with [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) or `~PreTrainedModel.from_config`. This enables you to restructure models for specific requirements like quantization compatibility, apply optimizations, or experiment with architectural variants.
+Monkey patching allows you to replace model components globally without modifying the original model code. Once registered, patches are automatically applied when loading any model with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) or `~PreTrainedModel.from_config`. This enables you to restructure models for specific requirements like quantization compatibility, apply optimizations, or experiment with architectural variants.
 
 > [!WARNING]
 > **Monkey patching should be used as a last resort** when you need to change the layout and structure of a module and or its weights. For many customization and optimization needs, try using the [Attention interface](./attention_interface), [Experts interface](./experts_interface), or [Kernels registry](./kernel_doc/overview) instead. Only use monkey patching when you need structural changes that can't be achieved through custom forward implementations alone (e.g., for quantization library compatibility, fusing layers, or architectural experiments).
@@ -492,16 +492,19 @@ The same recipe applies to other MoE families — subclass the family's `*TopKRo
 
 ## API reference[[transformers.monkey_patching.register_patch_mapping]]
 
-- **mapping** (`Dict[str, type[nn.Module]]`) --
-  Mapping from original class names (or regex patterns) to replacement classes. Supports:
-  - Exact class names: `"Qwen2MoeExperts"` → `CustomExperts`
-  - Regex patterns: `".*Attention"` matches `LlamaAttention`, `MistralAttention`, etc.,
-  or `"^Llama\d+Attention$"` matches `Llama2Attention`, `Llama3Attention`, etc.
+#### transformers.monkey_patching.register_patch_mapping[[transformers.monkey_patching.register_patch_mapping]]
 
-  Exact matches take precedence over patterns. Patterns are matched using `re.search()`,
-  so they can match anywhere in the class name unless you use anchors (`^` for start, `$` for end).
-- **overwrite** (`bool`, *optional*, defaults to `False`) --
-  Whether to overwrite existing mappings for class names that are already registered.
+```python
+transformers.monkey_patching.register_patch_mapping(mapping: dict, overwrite: bool = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/monkey_patching.py#L85)
+
+**Parameters:**
+
+mapping (`Dict[str, type[nn.Module]]`) : Mapping from original class names (or regex patterns) to replacement classes. Supports: - Exact class names: `"Qwen2MoeExperts"` → `CustomExperts` - Regex patterns: `".*Attention"` matches `LlamaAttention`, `MistralAttention`, etc., or `"^Llama\d+Attention$"` matches `Llama2Attention`, `Llama3Attention`, etc.  Exact matches take precedence over patterns. Patterns are matched using `re.search()`, so they can match anywhere in the class name unless you use anchors (`^` for start, `$` for end).
+
+overwrite (`bool`, *optional*, defaults to `False`) : Whether to overwrite existing mappings for class names that are already registered.
 
 Register patch mappings to enable automatic patching during model creation using `from_pretrained`,
 `from_config` or within the `apply_patches` context manager.
@@ -541,9 +544,17 @@ model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.2-1B")
 Note:
 For weight conversions, use `~transformers.register_checkpoint_conversion_mapping` instead.
 
-- **keys** (`List[str]`) --
-  List of mapping keys (class names or regex patterns) to remove from the patch mapping
-  (e.g., `["Qwen2MoeExperts"]` or `[".*Attention"]`).
+#### transformers.monkey_patching.unregister_patch_mapping[[transformers.monkey_patching.unregister_patch_mapping]]
+
+```python
+transformers.monkey_patching.unregister_patch_mapping(keys: list)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/monkey_patching.py#L158)
+
+**Parameters:**
+
+keys (`List[str]`) : List of mapping keys (class names or regex patterns) to remove from the patch mapping (e.g., `["Qwen2MoeExperts"]` or `[".*Attention"]`).
 
 Unregister patch mappings to disable automatic patching.
 
@@ -567,6 +578,14 @@ unregister_patch_mapping(["Qwen2MoeExperts"])
 model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen1.5-MoE-A2.7B")
 ```
 
+#### transformers.monkey_patching.clear_patch_mapping[[transformers.monkey_patching.clear_patch_mapping]]
+
+```python
+transformers.monkey_patching.clear_patch_mapping()
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/monkey_patching.py#L209)
+
 Clear all registered patch mappings.
 
 This removes all registered mappings from the global registry.
@@ -584,9 +603,27 @@ register_patch_mapping(
 clear_patch_mapping()
 ```
 
-`Dict[str, type[nn.Module]]`Dictionary mapping class names or patterns to replacement classes.
+#### transformers.monkey_patching.get_patch_mapping[[transformers.monkey_patching.get_patch_mapping]]
+
+```python
+transformers.monkey_patching.get_patch_mapping()
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/monkey_patching.py#L198)
+
+**Returns:** `Dict[str, type[nn.Module]]`
+
+Dictionary mapping class names or patterns to replacement classes.
 
 Get all registered patch mappings.
+
+#### transformers.monkey_patching.apply_patches[[transformers.monkey_patching.apply_patches]]
+
+```python
+transformers.monkey_patching.apply_patches()
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/monkey_patching.py#L233)
 
 Context manager to apply registered monkey patches within a block of code.
 
@@ -612,5 +649,5 @@ with apply_patches():
 model = Qwen2MoeModel(Qwen2MoeConfig())
 ```
 
-### Training Vision Models using Backbone API
-https://huggingface.co/docs/transformers/v5.14.0/tasks/training_vision_backbone.md
+### Experts backends
+https://huggingface.co/docs/transformers/v5.15.0/experts_interface.md

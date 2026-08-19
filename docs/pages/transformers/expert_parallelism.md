@@ -7,11 +7,16 @@
 Enable expert parallelism with the `DistributedConfig` class and the `enable_expert_parallel` argument.
 
 ```py
+import os
+
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.distributed.configuration_utils import DistributedConfig
 
-distributed_config = DistributedConfig(enable_expert_parallel=True)
+distributed_config = DistributedConfig(
+    tp_size=int(os.environ["WORLD_SIZE"]),
+    enable_expert_parallel=True,
+)
 
 model = AutoModelForCausalLM.from_pretrained(
     "openai/gpt-oss-120b",
@@ -30,5 +35,5 @@ Launch your inference script with [torchrun](https://pytorch.org/docs/stable/ela
 torchrun --nproc-per-node 8 your_script.py
 ```
 
-### Tokenizers
-https://huggingface.co/docs/transformers/v5.14.0/fast_tokenizers.md
+### Sharing
+https://huggingface.co/docs/transformers/v5.15.0/model_sharing.md

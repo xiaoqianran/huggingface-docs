@@ -12,7 +12,7 @@ You can find all the MetaCLIP 2 checkpoints under the [Meta](https://huggingface
 > [!TIP]
 > Click on the MetaCLIP 2 models in the right sidebar for more examples of how to apply MetaCLIP 2 to different image and language tasks.
 
-The example below demonstrates how to calculate similarity scores between multiple text descriptions and an image with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel) class. Usage of the MetaCLIP 2 models is identical to the CLIP models, you just need the `MetaClip2Model` class instead of `CLIPModel`.
+The example below demonstrates how to calculate similarity scores between multiple text descriptions and an image with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class. Usage of the MetaCLIP 2 models is identical to the CLIP models, you just need the `MetaClip2Model` class instead of `CLIPModel`.
 
 ```python
 import torch
@@ -53,24 +53,32 @@ print(f"Most likely label: {most_likely_label} with probability: {probs[0][most_
 
 ## MetaClip2Config[[transformers.MetaClip2Config]]
 
-- **text_config** (`Union[dict, ~models.metaclip_2.configuration_metaclip_2.MetaClip2TextConfig]`, *optional*) --
-  The config object or dictionary of the text backbone.
-- **vision_config** (`Union[dict, ~models.metaclip_2.configuration_metaclip_2.MetaClip2VisionConfig]`, *optional*) --
-  The config object or dictionary of the vision backbone.
-- **projection_dim** (`int`, *optional*, defaults to `512`) --
-  Dimensionality of text and vision projection layers.
-- **logit_scale_init_value** (`Union[float, int]`, *optional*, defaults to `2.6592`) --
-  The initial value of the *logit_scale* parameter.
-- **initializer_factor** (`float`, *optional*, defaults to `1.0`) --
-  A factor for initializing all weight matrices (should be kept to 1, used internally for initialization
-  testing).
+#### transformers.MetaClip2Config[[transformers.MetaClip2Config]]
+
+```python
+transformers.MetaClip2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.models.metaclip_2.configuration_metaclip_2.MetaClip2TextConfig | None = None, vision_config: dict | transformers.models.metaclip_2.configuration_metaclip_2.MetaClip2VisionConfig | None = None, projection_dim: int | None = 512, logit_scale_init_value: float | int | None = 2.6592, initializer_factor: float | None = 1.0)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/configuration_metaclip_2.py#L128)
+
+**Parameters:**
+
+text_config (`Union[dict, ~models.metaclip_2.configuration_metaclip_2.MetaClip2TextConfig]`, *optional*) : The config object or dictionary of the text backbone.
+
+vision_config (`Union[dict, ~models.metaclip_2.configuration_metaclip_2.MetaClip2VisionConfig]`, *optional*) : The config object or dictionary of the vision backbone.
+
+projection_dim (`int`, *optional*, defaults to `512`) : Dimensionality of text and vision projection layers.
+
+logit_scale_init_value (`Union[float, int]`, *optional*, defaults to `2.6592`) : The initial value of the *logit_scale* parameter.
+
+initializer_factor (`float`, *optional*, defaults to `1.0`) : A factor for initializing all weight matrices (should be kept to 1, used internally for initialization testing).
 
 This is the configuration class to store the configuration of a MetaClip2Model. It is used to instantiate a Metaclip 2
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/metaclip-2-worldwide-huge-quickgelu](https://huggingface.co/facebook/metaclip-2-worldwide-huge-quickgelu)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -98,45 +106,52 @@ Example:
 
 ## MetaClip2TextConfig[[transformers.MetaClip2TextConfig]]
 
-- **vocab_size** (`int`, *optional*, defaults to `49408`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **hidden_size** (`int`, *optional*, defaults to `512`) --
-  Dimension of the hidden representations.
-- **intermediate_size** (`int`, *optional*, defaults to `2048`) --
-  Dimension of the MLP representations.
-- **projection_dim** (`int`, *optional*, defaults to `512`) --
-  Dimensionality of text and vision projection layers.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **max_position_embeddings** (`int`, *optional*, defaults to `77`) --
-  The maximum sequence length that this model might ever be used with.
-- **hidden_act** (`str`, *optional*, defaults to `quick_gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-05`) --
-  The epsilon used by the layer normalization layers.
-- **attention_dropout** (`Union[int, float]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **initializer_factor** (`float`, *optional*, defaults to `1.0`) --
-  A factor for initializing all weight matrices (should be kept to 1, used internally for initialization
-  testing).
-- **pad_token_id** (`int`, *optional*, defaults to `1`) --
-  Token id used for padding in the vocabulary.
-- **bos_token_id** (`int`, *optional*, defaults to `49406`) --
-  Token id used for beginning-of-stream in the vocabulary.
-- **eos_token_id** (`Union[int, list[int]]`, *optional*, defaults to `49407`) --
-  Token id used for end-of-stream in the vocabulary.
+#### transformers.MetaClip2TextConfig[[transformers.MetaClip2TextConfig]]
+
+```python
+transformers.MetaClip2TextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 49408, hidden_size: int = 512, intermediate_size: int = 2048, projection_dim: int | None = 512, num_hidden_layers: int = 12, num_attention_heads: int = 8, max_position_embeddings: int = 77, hidden_act: str = 'quick_gelu', layer_norm_eps: float | None = 1e-05, attention_dropout: int | float | None = 0.0, initializer_range: float = 0.02, initializer_factor: float | None = 1.0, pad_token_id: int | None = 1, bos_token_id: int | None = 49406, eos_token_id: int | list[int] | None = 49407)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/configuration_metaclip_2.py#L33)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `49408`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+hidden_size (`int`, *optional*, defaults to `512`) : Dimension of the hidden representations.
+
+intermediate_size (`int`, *optional*, defaults to `2048`) : Dimension of the MLP representations.
+
+projection_dim (`int`, *optional*, defaults to `512`) : Dimensionality of text and vision projection layers.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+max_position_embeddings (`int`, *optional*, defaults to `77`) : The maximum sequence length that this model might ever be used with.
+
+hidden_act (`str`, *optional*, defaults to `quick_gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-05`) : The epsilon used by the layer normalization layers.
+
+attention_dropout (`Union[int, float]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+initializer_factor (`float`, *optional*, defaults to `1.0`) : A factor for initializing all weight matrices (should be kept to 1, used internally for initialization testing).
+
+pad_token_id (`int`, *optional*, defaults to `1`) : Token id used for padding in the vocabulary.
+
+bos_token_id (`int`, *optional*, defaults to `49406`) : Token id used for beginning-of-stream in the vocabulary.
+
+eos_token_id (`Union[int, list[int]]`, *optional*, defaults to `49407`) : Token id used for end-of-stream in the vocabulary.
 
 This is the configuration class to store the configuration of a MetaClip2Model. It is used to instantiate a Metaclip 2
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/metaclip-2-worldwide-huge-quickgelu](https://huggingface.co/facebook/metaclip-2-worldwide-huge-quickgelu)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -155,41 +170,48 @@ Example:
 
 ## MetaClip2VisionConfig[[transformers.MetaClip2VisionConfig]]
 
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **intermediate_size** (`int`, *optional*, defaults to `3072`) --
-  Dimension of the MLP representations.
-- **projection_dim** (`int`, *optional*, defaults to `512`) --
-  Dimensionality of text and vision projection layers.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **image_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) --
-  The size (resolution) of each image.
-- **patch_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `32`) --
-  The size (resolution) of each patch.
-- **hidden_act** (`str`, *optional*, defaults to `quick_gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-05`) --
-  The epsilon used by the layer normalization layers.
-- **attention_dropout** (`Union[int, float]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **initializer_factor** (`float`, *optional*, defaults to `1.0`) --
-  A factor for initializing all weight matrices (should be kept to 1, used internally for initialization
-  testing).
+#### transformers.MetaClip2VisionConfig[[transformers.MetaClip2VisionConfig]]
+
+```python
+transformers.MetaClip2VisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, intermediate_size: int = 3072, projection_dim: int = 512, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] | None = 224, patch_size: int | list[int] | tuple[int, int] | None = 32, hidden_act: str = 'quick_gelu', layer_norm_eps: float = 1e-05, attention_dropout: int | float | None = 0.0, initializer_range: float = 0.02, initializer_factor: float = 1.0)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/configuration_metaclip_2.py#L83)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+intermediate_size (`int`, *optional*, defaults to `3072`) : Dimension of the MLP representations.
+
+projection_dim (`int`, *optional*, defaults to `512`) : Dimensionality of text and vision projection layers.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+image_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) : The size (resolution) of each image.
+
+patch_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `32`) : The size (resolution) of each patch.
+
+hidden_act (`str`, *optional*, defaults to `quick_gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-05`) : The epsilon used by the layer normalization layers.
+
+attention_dropout (`Union[int, float]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+initializer_factor (`float`, *optional*, defaults to `1.0`) : A factor for initializing all weight matrices (should be kept to 1, used internally for initialization testing).
 
 This is the configuration class to store the configuration of a MetaClip2Model. It is used to instantiate a Metaclip 2
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/metaclip-2-worldwide-huge-quickgelu](https://huggingface.co/facebook/metaclip-2-worldwide-huge-quickgelu)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -208,14 +230,21 @@ Example:
 
 ## MetaClip2Model[[transformers.MetaClip2Model]]
 
-- **config** ([MetaClip2Config](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.MetaClip2Model[[transformers.MetaClip2Model]]
+
+```python
+transformers.MetaClip2Model(config: MetaClip2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/modeling_metaclip_2.py#L677)
+
+**Parameters:**
+
+config ([MetaClip2Config](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Metaclip 2 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -223,35 +252,35 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.MetaClip2Model.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, return_loss: bool | None = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([CLIPProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPProcessor) uses
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/modeling_metaclip_2.py#L808)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **return_loss** (`bool`, *optional*) --
-  Whether or not to return the contrastive loss.
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.`MetaClip2Output` or `tuple(torch.FloatTensor)`A `MetaClip2Output` or a tuple of
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([CLIPProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPProcessor) uses [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
+
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+return_loss (`bool`, *optional*) : Whether or not to return the contrastive loss.
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** `MetaClip2Output` or `tuple(torch.FloatTensor)`
+
+A `MetaClip2Output` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
-The [MetaClip2Model](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2Model) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
+
+The [MetaClip2Model](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -262,10 +291,10 @@ the latter silently ignores them.
   similarity scores.
 - **logits_per_text** (`torch.FloatTensor` of shape `(text_batch_size, image_batch_size)`) -- The scaled dot product scores between `text_embeds` and `image_embeds`. This represents the text-image
   similarity scores.
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [MetaClip2TextModel](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2TextModel).
-- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of [MetaClip2VisionModel](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2VisionModel).
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [MetaClip2TextModel](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2TextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [MetaClip2VisionModel](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2VisionModel).
+- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [MetaClip2TextModel](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2TextModel).
+- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of [MetaClip2VisionModel](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2VisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [MetaClip2TextModel](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2TextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [MetaClip2VisionModel](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2VisionModel).
 
 Examples:
 
@@ -291,27 +320,27 @@ Examples:
 >>> probs = logits_per_image.softmax(dim=1)  # we can take the softmax to get the label probabilities
 ```
 
-)>"}, {"name": "attention_mask", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "position_ids", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "**kwargs", "val": ": Unpack"}]}>
-- **input_ids** (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, sequence_length)`) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### get_text_features[[transformers.MetaClip2Model.get_text_features]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+get_text_features(input_ids: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/modeling_metaclip_2.py#L736)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
+elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -340,14 +369,25 @@ Examples:
 >>> text_features = model.get_text_features(**inputs)
 ```
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([CLIPProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPProcessor) uses
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### get_image_features[[transformers.MetaClip2Model.get_image_features]]
+
+```python
+get_image_features(pixel_values: typing.Optional[torch.FloatTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/modeling_metaclip_2.py#L769)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([CLIPProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPProcessor) uses [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
+elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -386,14 +426,21 @@ Examples:
 
 ## MetaClip2TextModel[[transformers.MetaClip2TextModel]]
 
-- **config** ([MetaClip2TextConfig](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2TextConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.MetaClip2TextModel[[transformers.MetaClip2TextModel]]
+
+```python
+transformers.MetaClip2TextModel(config: MetaClip2TextConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/modeling_metaclip_2.py#L400)
+
+**Parameters:**
+
+config ([MetaClip2TextConfig](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2TextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The text model from METACLIP_2 without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -401,27 +448,29 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.MetaClip2TextModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/modeling_metaclip_2.py#L446)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
-The [MetaClip2TextModel](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2TextModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
+
+The [MetaClip2TextModel](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2TextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -459,14 +508,21 @@ Examples:
 
 ## MetaClip2TextModelWithProjection[[transformers.MetaClip2TextModelWithProjection]]
 
-- **config** ([MetaClip2TextConfig](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2TextConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.MetaClip2TextModelWithProjection[[transformers.MetaClip2TextModelWithProjection]]
+
+```python
+transformers.MetaClip2TextModelWithProjection(config: MetaClip2TextConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/modeling_metaclip_2.py#L529)
+
+**Parameters:**
+
+config ([MetaClip2TextConfig](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2TextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Metaclip 2 Model with a projection layer on top (a linear layer on top of the pooled output).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -474,27 +530,29 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.MetaClip2TextModelWithProjection.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/modeling_metaclip_2.py#L578)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)`MetaClip2TextModelOutput` or `tuple(torch.FloatTensor)`A `MetaClip2TextModelOutput` or a tuple of
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+**Returns:** `MetaClip2TextModelOutput` or `tuple(torch.FloatTensor)`
+
+A `MetaClip2TextModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
-The [MetaClip2TextModelWithProjection](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2TextModelWithProjection) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
+
+The [MetaClip2TextModelWithProjection](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2TextModelWithProjection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -528,14 +586,21 @@ Examples:
 
 ## MetaClip2VisionModelWithProjection[[transformers.MetaClip2VisionModelWithProjection]]
 
-- **config** ([MetaClip2VisionConfig](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2VisionConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.MetaClip2VisionModelWithProjection[[transformers.MetaClip2VisionModelWithProjection]]
+
+```python
+transformers.MetaClip2VisionModelWithProjection(config: MetaClip2VisionConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/modeling_metaclip_2.py#L1015)
+
+**Parameters:**
+
+config ([MetaClip2VisionConfig](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2VisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Metaclip 2 Model with a projection layer on top (a linear layer on top of the pooled output).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -543,15 +608,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([CLIPProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPProcessor) uses
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.`MetaClip2VisionModelOutput` or `tuple(torch.FloatTensor)`A `MetaClip2VisionModelOutput` or a tuple of
+#### forward[[transformers.MetaClip2VisionModelWithProjection.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/modeling_metaclip_2.py#L1069)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([CLIPProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPProcessor) uses [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** `MetaClip2VisionModelOutput` or `tuple(torch.FloatTensor)`
+
+A `MetaClip2VisionModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
-The [MetaClip2VisionModelWithProjection](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2VisionModelWithProjection) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
+
+The [MetaClip2VisionModelWithProjection](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2VisionModelWithProjection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -592,14 +669,21 @@ Examples:
 
 ## MetaClip2VisionModel[[transformers.MetaClip2VisionModel]]
 
-- **config** ([MetaClip2VisionConfig](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2VisionConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.MetaClip2VisionModel[[transformers.MetaClip2VisionModel]]
+
+```python
+transformers.MetaClip2VisionModel(config: MetaClip2VisionConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/modeling_metaclip_2.py#L893)
+
+**Parameters:**
+
+config ([MetaClip2VisionConfig](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2VisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The vision model from METACLIP_2 without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -607,15 +691,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([CLIPProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPProcessor) uses
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### forward[[transformers.MetaClip2VisionModel.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/modeling_metaclip_2.py#L947)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([CLIPProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPProcessor) uses [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
-The [MetaClip2VisionModel](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2VisionModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
+
+The [MetaClip2VisionModel](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2VisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -660,15 +756,22 @@ Examples:
 
 ## MetaClip2ForImageClassification[[transformers.MetaClip2ForImageClassification]]
 
-- **config** ([MetaClip2Config](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.MetaClip2ForImageClassification[[transformers.MetaClip2ForImageClassification]]
+
+```python
+transformers.MetaClip2ForImageClassification(config: MetaClip2Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/modeling_metaclip_2.py#L1121)
+
+**Parameters:**
+
+config ([MetaClip2Config](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 METACLIP_2 vision encoder with an image classification head on top (a linear layer on top of the pooled final hidden states of
 the patch tokens) e.g. for ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -676,17 +779,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([CLIPProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPProcessor) uses
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the image classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).[ImageClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`A [ImageClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
+#### forward[[transformers.MetaClip2ForImageClassification.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/metaclip_2/modeling_metaclip_2.py#L1139)
+
+**Parameters:**
+
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([CLIPProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPProcessor) uses [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
-The [MetaClip2ForImageClassification](/docs/transformers/v5.14.0/en/model_doc/metaclip_2#transformers.MetaClip2ForImageClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([MetaClip2Config](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2Config)) and inputs.
+
+The [MetaClip2ForImageClassification](/docs/transformers/v5.15.0/en/model_doc/metaclip_2#transformers.MetaClip2ForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -727,5 +840,5 @@ Example:
 ...
 ```
 
-### LXMERT
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/lxmert.md
+### SEW-D
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/sew-d.md

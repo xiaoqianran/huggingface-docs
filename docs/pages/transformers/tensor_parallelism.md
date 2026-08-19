@@ -30,7 +30,7 @@ print(config.base_model_tp_plan is not None)
 print(config.base_model_tp_plan)
 ```
 
-If a model supports TP, set `tp_plan="auto"` in [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Transformers initializes the device mesh and shards the supported layers for you.
+If a model supports TP, set `tp_plan="auto"` in [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Transformers initializes the device mesh and shards the supported layers for you.
 
 > [!WARNING]
 > Don't use `device_map` with `tp_plan`. The two conflict at the weight-loading level. `device_map` places whole modules on specific GPUs, while `tp_plan` shards those same parameters across all GPUs.
@@ -47,7 +47,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-[Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) detects `tp_plan`, reads `tp_size` from the model, and creates a `ParallelismConfig` automatically.
+[Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) detects `tp_plan`, reads `tp_size` from the model, and creates a `ParallelismConfig` automatically.
 
 Launch training on one node with 4 GPUs.
 
@@ -84,5 +84,5 @@ args = TrainingArguments(
 - Read the [Tensor Parallelism](https://huggingface.co/spaces/nanotron/ultrascale-playbook?section=tensor_parallelism) chapter from The Ultra-Scale Playbook for more details about how it works.
 - Read the [tensor parallelism inference guide](./perf_infer_gpu_multi) to learn more about partitioning strategies, manual TP plans, and implementation details.
 
-### Building a GPU workstation
-https://huggingface.co/docs/transformers/v5.14.0/perf_hardware.md
+### Tensor parallelism
+https://huggingface.co/docs/transformers/v5.15.0/perf_infer_gpu_multi.md

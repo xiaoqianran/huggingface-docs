@@ -181,5 +181,5 @@ message = [
 ]
 ```
 
-### Tensor parallelism
-https://huggingface.co/docs/transformers/v5.14.0/perf_infer_gpu_multi.md
+### Fine-tuning
+https://huggingface.co/docs/transformers/v5.15.0/training.md

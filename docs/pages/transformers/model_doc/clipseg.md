@@ -35,8 +35,8 @@ The original code can be found [here](https://github.com/timojl/clipseg).
 
 ## Usage tips
 
-- [CLIPSegForImageSegmentation](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegForImageSegmentation) adds a decoder on top of [CLIPSegModel](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegModel). The latter is identical to [CLIPModel](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPModel).
-- [CLIPSegForImageSegmentation](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegForImageSegmentation) can generate image segmentations based on arbitrary prompts at test time. A prompt can be either a text
+- [CLIPSegForImageSegmentation](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegForImageSegmentation) adds a decoder on top of [CLIPSegModel](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegModel). The latter is identical to [CLIPModel](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPModel).
+- [CLIPSegForImageSegmentation](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegForImageSegmentation) can generate image segmentations based on arbitrary prompts at test time. A prompt can be either a text
 (provided to the model as `input_ids`) or an image (provided to the model as `conditional_pixel_values`). One can also provide custom
 conditional embeddings (provided to the model as `conditional_embeddings`).
 
@@ -48,43 +48,48 @@ A list of official Hugging Face and community (indicated by 🌎) resources to h
 
 ## CLIPSegConfig[[transformers.CLIPSegConfig]]
 
-- **text_config** (`Union[dict, ~models.clipseg.configuration_clipseg.CLIPSegTextConfig]`, *optional*) --
-  The config object or dictionary of the text backbone.
-- **vision_config** (`Union[dict, ~models.clipseg.configuration_clipseg.CLIPSegVisionConfig]`, *optional*) --
-  The config object or dictionary of the vision backbone.
-- **projection_dim** (`int`, *optional*, defaults to `512`) --
-  Dimensionality of text and vision projection layers.
-- **logit_scale_init_value** (`Union[float, int]`, *optional*, defaults to `2.6592`) --
-  The initial value of the *logit_scale* parameter.
-- **initializer_factor** (`float`, *optional*, defaults to `1.0`) --
-  A factor for initializing all weight matrices (should be kept to 1, used internally for initialization
-  testing).
-- **extract_layers** (`list[int]`, *optional*, defaults to `[3, 6, 9]`) --
-  Layers to extract when forwarding the query image through the frozen visual backbone of CLIP.
-- **reduce_dim** (`int`, *optional*, defaults to 64) --
-  Dimensionality to reduce the CLIP vision embedding.
-- **decoder_num_attention_heads** (`int`, *optional*, defaults to `4`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **decoder_attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **decoder_hidden_act** (`str`, *optional*, defaults to `quick_gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **decoder_intermediate_size** (`int`, *optional*, defaults to `2048`) --
-  Dimension of the MLP representations.
-- **conditional_layer** (`int`, *optional*, defaults to 0) --
-  The layer to use of the Transformer encoder whose activations will be combined with the condition
-  embeddings using FiLM (Feature-wise Linear Modulation). If 0, the last layer is used.
-- **use_complex_transposed_convolution** (`bool`, *optional*, defaults to `False`) --
-  Whether to use a more complex transposed convolution in the decoder, enabling more fine-grained
-  segmentation..
+#### transformers.CLIPSegConfig[[transformers.CLIPSegConfig]]
+
+```python
+transformers.CLIPSegConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.models.clipseg.configuration_clipseg.CLIPSegTextConfig | None = None, vision_config: dict | transformers.models.clipseg.configuration_clipseg.CLIPSegVisionConfig | None = None, projection_dim: int | None = 512, logit_scale_init_value: float | int | None = 2.6592, initializer_factor: float | None = 1.0, extract_layers: list[int] | tuple[int, ...] = (3, 6, 9), reduce_dim: int = 64, decoder_num_attention_heads: int = 4, decoder_attention_dropout: float | int = 0.0, decoder_hidden_act: str = 'quick_gelu', decoder_intermediate_size: int = 2048, conditional_layer: int = 0, use_complex_transposed_convolution: bool = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/configuration_clipseg.py#L124)
+
+**Parameters:**
+
+text_config (`Union[dict, ~models.clipseg.configuration_clipseg.CLIPSegTextConfig]`, *optional*) : The config object or dictionary of the text backbone.
+
+vision_config (`Union[dict, ~models.clipseg.configuration_clipseg.CLIPSegVisionConfig]`, *optional*) : The config object or dictionary of the vision backbone.
+
+projection_dim (`int`, *optional*, defaults to `512`) : Dimensionality of text and vision projection layers.
+
+logit_scale_init_value (`Union[float, int]`, *optional*, defaults to `2.6592`) : The initial value of the *logit_scale* parameter.
+
+initializer_factor (`float`, *optional*, defaults to `1.0`) : A factor for initializing all weight matrices (should be kept to 1, used internally for initialization testing).
+
+extract_layers (`list[int]`, *optional*, defaults to `[3, 6, 9]`) : Layers to extract when forwarding the query image through the frozen visual backbone of CLIP.
+
+reduce_dim (`int`, *optional*, defaults to 64) : Dimensionality to reduce the CLIP vision embedding.
+
+decoder_num_attention_heads (`int`, *optional*, defaults to `4`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+decoder_attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+decoder_hidden_act (`str`, *optional*, defaults to `quick_gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+decoder_intermediate_size (`int`, *optional*, defaults to `2048`) : Dimension of the MLP representations.
+
+conditional_layer (`int`, *optional*, defaults to 0) : The layer to use of the Transformer encoder whose activations will be combined with the condition embeddings using FiLM (Feature-wise Linear Modulation). If 0, the last layer is used.
+
+use_complex_transposed_convolution (`bool`, *optional*, defaults to `False`) : Whether to use a more complex transposed convolution in the decoder, enabling more fine-grained segmentation..
 
 This is the configuration class to store the configuration of a CLIPSegModel. It is used to instantiate a Clipseg
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [CIDAS/clipseg-rd64](https://huggingface.co/CIDAS/clipseg-rd64)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -111,43 +116,50 @@ Example:
 
 ## CLIPSegTextConfig[[transformers.CLIPSegTextConfig]]
 
-- **vocab_size** (`int`, *optional*, defaults to `49408`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **hidden_size** (`int`, *optional*, defaults to `512`) --
-  Dimension of the hidden representations.
-- **intermediate_size** (`int`, *optional*, defaults to `2048`) --
-  Dimension of the MLP representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **max_position_embeddings** (`int`, *optional*, defaults to `77`) --
-  The maximum sequence length that this model might ever be used with.
-- **hidden_act** (`str`, *optional*, defaults to `quick_gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-05`) --
-  The epsilon used by the layer normalization layers.
-- **attention_dropout** (`Union[int, float]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **initializer_factor** (`float`, *optional*, defaults to `1.0`) --
-  A factor for initializing all weight matrices (should be kept to 1, used internally for initialization
-  testing).
-- **pad_token_id** (`int`, *optional*, defaults to `1`) --
-  Token id used for padding in the vocabulary.
-- **bos_token_id** (`int`, *optional*, defaults to `49406`) --
-  Token id used for beginning-of-stream in the vocabulary.
-- **eos_token_id** (`Union[int, list[int]]`, *optional*, defaults to `49407`) --
-  Token id used for end-of-stream in the vocabulary.
+#### transformers.CLIPSegTextConfig[[transformers.CLIPSegTextConfig]]
+
+```python
+transformers.CLIPSegTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 49408, hidden_size: int = 512, intermediate_size: int = 2048, num_hidden_layers: int = 12, num_attention_heads: int = 8, max_position_embeddings: int = 77, hidden_act: str = 'quick_gelu', layer_norm_eps: float | None = 1e-05, attention_dropout: int | float | None = 0.0, initializer_range: float = 0.02, initializer_factor: float | None = 1.0, pad_token_id: int | None = 1, bos_token_id: int | None = 49406, eos_token_id: int | list[int] | None = 49407)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/configuration_clipseg.py#L31)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `49408`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+hidden_size (`int`, *optional*, defaults to `512`) : Dimension of the hidden representations.
+
+intermediate_size (`int`, *optional*, defaults to `2048`) : Dimension of the MLP representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+max_position_embeddings (`int`, *optional*, defaults to `77`) : The maximum sequence length that this model might ever be used with.
+
+hidden_act (`str`, *optional*, defaults to `quick_gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-05`) : The epsilon used by the layer normalization layers.
+
+attention_dropout (`Union[int, float]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+initializer_factor (`float`, *optional*, defaults to `1.0`) : A factor for initializing all weight matrices (should be kept to 1, used internally for initialization testing).
+
+pad_token_id (`int`, *optional*, defaults to `1`) : Token id used for padding in the vocabulary.
+
+bos_token_id (`int`, *optional*, defaults to `49406`) : Token id used for beginning-of-stream in the vocabulary.
+
+eos_token_id (`Union[int, list[int]]`, *optional*, defaults to `49407`) : Token id used for end-of-stream in the vocabulary.
 
 This is the configuration class to store the configuration of a CLIPSegModel. It is used to instantiate a Clipseg
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [CIDAS/clipseg-rd64](https://huggingface.co/CIDAS/clipseg-rd64)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -166,39 +178,46 @@ Example:
 
 ## CLIPSegVisionConfig[[transformers.CLIPSegVisionConfig]]
 
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **intermediate_size** (`int`, *optional*, defaults to `3072`) --
-  Dimension of the MLP representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **image_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) --
-  The size (resolution) of each image.
-- **patch_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `32`) --
-  The size (resolution) of each patch.
-- **hidden_act** (`str`, *optional*, defaults to `quick_gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-05`) --
-  The epsilon used by the layer normalization layers.
-- **attention_dropout** (`Union[int, float]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **initializer_factor** (`float`, *optional*, defaults to `1.0`) --
-  A factor for initializing all weight matrices (should be kept to 1, used internally for initialization
-  testing).
+#### transformers.CLIPSegVisionConfig[[transformers.CLIPSegVisionConfig]]
+
+```python
+transformers.CLIPSegVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] | None = 224, patch_size: int | list[int] | tuple[int, int] | None = 32, hidden_act: str = 'quick_gelu', layer_norm_eps: float = 1e-05, attention_dropout: int | float | None = 0.0, initializer_range: float = 0.02, initializer_factor: float = 1.0)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/configuration_clipseg.py#L80)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+intermediate_size (`int`, *optional*, defaults to `3072`) : Dimension of the MLP representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+image_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) : The size (resolution) of each image.
+
+patch_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `32`) : The size (resolution) of each patch.
+
+hidden_act (`str`, *optional*, defaults to `quick_gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-05`) : The epsilon used by the layer normalization layers.
+
+attention_dropout (`Union[int, float]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+initializer_factor (`float`, *optional*, defaults to `1.0`) : A factor for initializing all weight matrices (should be kept to 1, used internally for initialization testing).
 
 This is the configuration class to store the configuration of a CLIPSegModel. It is used to instantiate a Clipseg
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [CIDAS/clipseg-rd64](https://huggingface.co/CIDAS/clipseg-rd64)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -217,30 +236,46 @@ Example:
 
 ## CLIPSegProcessor[[transformers.CLIPSegProcessor]]
 
-- **image_processor** (`ViTImageProcessor`) --
-  The image processor is a required input.
-- **tokenizer** (`CLIPTokenizer`) --
-  The tokenizer is a required input.
+#### transformers.CLIPSegProcessor[[transformers.CLIPSegProcessor]]
+
+```python
+transformers.CLIPSegProcessor(image_processor = None, tokenizer = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/processing_clipseg.py#L24)
+
+**Parameters:**
+
+image_processor (`ViTImageProcessor`) : The image processor is a required input.
+
+tokenizer (`CLIPTokenizer`) : The tokenizer is a required input.
+
 Constructs a CLIPSegProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[CLIPSegProcessor](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegProcessor) offers all the functionalities of [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor) and [CLIPTokenizer](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPTokenizer). See the
-[~ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor) and [~CLIPTokenizer](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPTokenizer) for more information.
+[CLIPSegProcessor](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegProcessor) offers all the functionalities of [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) and [CLIPTokenizer](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPTokenizer). See the
+[~ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) and [~CLIPTokenizer](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPTokenizer) for more information.
 
-- **text** (``) --
-  The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings
-  (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
-- **images** (``) --
-  Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If
-  passing in images with pixel values between 0 and 1, set `do_rescale=False`.
-- **visual_prompt** (`PIL.Image.Image`, `np.ndarray`, `torch.Tensor`, `list[PIL.Image.Image]`, `list[np.ndarray]`, `list[torch.Tensor]`) --
-  The visual prompt image or batch of images to be prepared. Each visual prompt image can be a PIL image,
-  NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each image should be of shape
-  (C, H, W), where C is a number of channels, H and W are image height and width.
-- **return_tensors** (``) --
-  If set, will return tensors of a particular framework. Acceptable values are:
+#### __call__[[transformers.CLIPSegProcessor.__call__]]
 
-  - `'pt'`: Return PyTorch `torch.Tensor` objects.
-  - `'np'`: Return NumPy `np.ndarray` objects.[BatchEncoding](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.BatchEncoding)A [BatchEncoding](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
+```python
+__call__(text = None, images = None, visual_prompt = None, return_tensors = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/processing_clipseg.py#L28)
+
+**Parameters:**
+
+text (``) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
+
+images (``) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+visual_prompt (`PIL.Image.Image`, `np.ndarray`, `torch.Tensor`, `list[PIL.Image.Image]`, `list[np.ndarray]`, `list[torch.Tensor]`) : The visual prompt image or batch of images to be prepared. Each visual prompt image can be a PIL image, NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each image should be of shape (C, H, W), where C is a number of channels, H and W are image height and width.
+
+return_tensors (``) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+**Returns:** [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding)
+
+A [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model. Returned when `text` is not `None`.
 - **attention_mask** -- List of indices specifying which tokens should be attended to by the model (when
@@ -250,14 +285,21 @@ Constructs a CLIPSegProcessor which wraps a image processor and a tokenizer into
 
 ## CLIPSegModel[[transformers.CLIPSegModel]]
 
-- **config** ([CLIPSegConfig](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.CLIPSegModel[[transformers.CLIPSegModel]]
+
+```python
+transformers.CLIPSegModel(config: CLIPSegConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/modeling_clipseg.py#L783)
+
+**Parameters:**
+
+config ([CLIPSegConfig](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Clipseg Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -265,35 +307,35 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.CLIPSegModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, return_loss: bool | None = None, interpolate_pos_encoding: bool = True, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details ([CLIPSegProcessor](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegProcessor) uses
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/modeling_clipseg.py#L877)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **return_loss** (`bool`, *optional*) --
-  Whether or not to return the contrastive loss.
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `True`) --
-  Whether to interpolate the pre-trained position encodings.`CLIPSegOutput` or `tuple(torch.FloatTensor)`A `CLIPSegOutput` or a tuple of
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details ([CLIPSegProcessor](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegProcessor) uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+return_loss (`bool`, *optional*) : Whether or not to return the contrastive loss.
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `True`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** `CLIPSegOutput` or `tuple(torch.FloatTensor)`
+
+A `CLIPSegOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CLIPSegConfig](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) and inputs.
-The [CLIPSegModel](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([CLIPSegConfig](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) and inputs.
+
+The [CLIPSegModel](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -304,10 +346,10 @@ the latter silently ignores them.
   similarity scores.
 - **logits_per_text** (`torch.FloatTensor` of shape `(text_batch_size, image_batch_size)`) -- The scaled dot product scores between `text_embeds` and `image_embeds`. This represents the text-image
   similarity scores.
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [CLIPSegTextModel](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegTextModel).
-- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of [CLIPSegVisionModel](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegVisionModel).
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [CLIPSegTextModel](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegTextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [CLIPSegVisionModel](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegVisionModel).
+- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [CLIPSegTextModel](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegTextModel).
+- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of [CLIPSegVisionModel](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegVisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [CLIPSegTextModel](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegTextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [CLIPSegVisionModel](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegVisionModel).
 
 Examples:
 
@@ -332,27 +374,27 @@ Examples:
 >>> probs = logits_per_image.softmax(dim=1)  # we can take the softmax to get the label probabilities
 ```
 
-)>"}, {"name": "attention_mask", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "position_ids", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "**kwargs", "val": ": Unpack"}]}>
-- **input_ids** (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, sequence_length)`) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### get_text_features[[transformers.CLIPSegModel.get_text_features]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+get_text_features(input_ids: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/modeling_clipseg.py#L804)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CLIPSegConfig](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) and inputs.
+elements depending on the configuration ([CLIPSegConfig](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -383,14 +425,25 @@ Examples:
 ...     text_features = model.get_text_features(**inputs)
 ```
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details ([CLIPSegProcessor](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegProcessor) uses
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `True`) --
-  Whether to interpolate the pre-trained position encodings.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### get_image_features[[transformers.CLIPSegModel.get_image_features]]
+
+```python
+get_image_features(pixel_values: FloatTensor, interpolate_pos_encoding: bool = True, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/modeling_clipseg.py#L839)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details ([CLIPSegProcessor](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegProcessor) uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `True`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CLIPSegConfig](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) and inputs.
+elements depending on the configuration ([CLIPSegConfig](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -428,14 +481,21 @@ Examples:
 
 ## CLIPSegTextModel[[transformers.CLIPSegTextModel]]
 
-- **config** ([CLIPSegTextConfig](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegTextConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.CLIPSegTextModel[[transformers.CLIPSegTextModel]]
+
+```python
+transformers.CLIPSegTextModel(config: CLIPSegTextConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/modeling_clipseg.py#L594)
+
+**Parameters:**
+
+config ([CLIPSegTextConfig](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The text model from CLIPSEG without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -443,27 +503,29 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.CLIPSegTextModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/modeling_clipseg.py#L610)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CLIPSegConfig](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) and inputs.
-The [CLIPSegTextModel](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegTextModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([CLIPSegConfig](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) and inputs.
+
+The [CLIPSegTextModel](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -501,14 +563,21 @@ Examples:
 
 ## CLIPSegVisionModel[[transformers.CLIPSegVisionModel]]
 
-- **config** ([CLIPSegVisionConfig](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegVisionConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.CLIPSegVisionModel[[transformers.CLIPSegVisionModel]]
+
+```python
+transformers.CLIPSegVisionModel(config: CLIPSegVisionConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/modeling_clipseg.py#L694)
+
+**Parameters:**
+
+config ([CLIPSegVisionConfig](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The vision model from CLIPSEG without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -516,15 +585,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details ([CLIPSegProcessor](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegProcessor) uses
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `True`) --
-  Whether to interpolate the pre-trained position encodings.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### forward[[transformers.CLIPSegVisionModel.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor], interpolate_pos_encoding: bool | None = True, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/modeling_clipseg.py#L710)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details ([CLIPSegProcessor](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegProcessor) uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `True`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CLIPSegConfig](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) and inputs.
-The [CLIPSegVisionModel](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegVisionModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([CLIPSegConfig](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) and inputs.
+
+The [CLIPSegVisionModel](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -569,14 +650,21 @@ Examples:
 
 ## CLIPSegForImageSegmentation[[transformers.CLIPSegForImageSegmentation]]
 
-- **config** ([CLIPSegConfig](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.CLIPSegForImageSegmentation[[transformers.CLIPSegForImageSegmentation]]
+
+```python
+transformers.CLIPSegForImageSegmentation(config: CLIPSegConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/modeling_clipseg.py#L961)
+
+**Parameters:**
+
+config ([CLIPSegConfig](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 CLIPSeg model with a Transformer-based decoder on top for zero-shot and one-shot image segmentation.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -584,42 +672,39 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.CLIPSegForImageSegmentation.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.FloatTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, conditional_pixel_values: typing.Optional[torch.FloatTensor] = None, conditional_embeddings: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, labels: typing.Optional[torch.LongTensor] = None, interpolate_pos_encoding: bool = True, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details ([CLIPSegProcessor](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegProcessor) uses
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
-- **conditional_pixel_values** (`torch.FloatTensor`, *optional*) --
-  The pixel values of the conditional images.
-- **conditional_embeddings** (`torch.FloatTensor` of shape `(batch_size, config.projection_dim)`, *optional*) --
-  The conditional embeddings for the query images. If provided, the model will use this instead of computing
-  the embeddings from the conditional_pixel_values.
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clipseg/modeling_clipseg.py#L1001)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the sequence classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `True`) --
-  Whether to interpolate the pre-trained position encodings.`CLIPSegOutput` or `tuple(torch.FloatTensor)`A `CLIPSegOutput` or a tuple of
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details ([CLIPSegProcessor](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegProcessor) uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+
+conditional_pixel_values (`torch.FloatTensor`, *optional*) : The pixel values of the conditional images.
+
+conditional_embeddings (`torch.FloatTensor` of shape `(batch_size, config.projection_dim)`, *optional*) : The conditional embeddings for the query images. If provided, the model will use this instead of computing the embeddings from the conditional_pixel_values.
+
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `True`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** `CLIPSegOutput` or `tuple(torch.FloatTensor)`
+
+A `CLIPSegOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CLIPSegConfig](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) and inputs.
-The [CLIPSegForImageSegmentation](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegForImageSegmentation) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([CLIPSegConfig](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegConfig)) and inputs.
+
+The [CLIPSegForImageSegmentation](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegForImageSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -630,10 +715,10 @@ the latter silently ignores them.
   similarity scores.
 - **logits_per_text** (`torch.FloatTensor` of shape `(text_batch_size, image_batch_size)`) -- The scaled dot product scores between `text_embeds` and `image_embeds`. This represents the text-image
   similarity scores.
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [CLIPSegTextModel](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegTextModel).
-- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of [CLIPSegVisionModel](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegVisionModel).
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [CLIPSegTextModel](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegTextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [CLIPSegVisionModel](/docs/transformers/v5.14.0/en/model_doc/clipseg#transformers.CLIPSegVisionModel).
+- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [CLIPSegTextModel](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegTextModel).
+- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of [CLIPSegVisionModel](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegVisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [CLIPSegTextModel](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegTextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [CLIPSegVisionModel](/docs/transformers/v5.15.0/en/model_doc/clipseg#transformers.CLIPSegVisionModel).
 
 Examples:
 
@@ -659,5 +744,5 @@ Examples:
 torch.Size([3, 352, 352])
 ```
 
-### LLaVa
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/llava.md
+### SolarOpen
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/solar_open.md

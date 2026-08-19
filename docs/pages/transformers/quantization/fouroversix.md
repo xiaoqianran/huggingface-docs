@@ -48,5 +48,5 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-### Metal
-https://huggingface.co/docs/transformers/v5.14.0/quantization/metal.md
+### Selecting a quantization method
+https://huggingface.co/docs/transformers/v5.15.0/quantization/selecting.md

@@ -154,7 +154,7 @@ Now that we have the mappings, we can replace the string answers with their ids,
 ## Preprocessing data
 
 The next step is to load a ViLT processor to prepare the image and text data for the model.
-[ViltProcessor](/docs/transformers/v5.14.0/en/model_doc/vilt#transformers.ViltProcessor) wraps a BERT tokenizer and ViLT image processor into a convenient single processor:
+[ViltProcessor](/docs/transformers/v5.15.0/en/model_doc/vilt#transformers.ViltProcessor) wraps a BERT tokenizer and ViLT image processor into a convenient single processor:
 
 ```py
 >>> from transformers import ViltProcessor
@@ -162,9 +162,9 @@ The next step is to load a ViLT processor to prepare the image and text data for
 >>> processor = ViltProcessor.from_pretrained(model_checkpoint)
 ```
 
-To preprocess the data we need to encode the images and questions using the [ViltProcessor](/docs/transformers/v5.14.0/en/model_doc/vilt#transformers.ViltProcessor). The processor will use
-the [BertTokenizerFast](/docs/transformers/v5.14.0/en/model_doc/electra#transformers.BertTokenizer) to tokenize the text and create `input_ids`, `attention_mask` and `token_type_ids` for the text data.
-As for images, the processor will leverage [ViltImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vilt#transformers.ViltImageProcessor) to resize and normalize the image, and create `pixel_values` and `pixel_mask`.
+To preprocess the data we need to encode the images and questions using the [ViltProcessor](/docs/transformers/v5.15.0/en/model_doc/vilt#transformers.ViltProcessor). The processor will use
+the [BertTokenizerFast](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer) to tokenize the text and create `input_ids`, `attention_mask` and `token_type_ids` for the text data.
+As for images, the processor will leverage [ViltImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vilt#transformers.ViltImageProcessor) to resize and normalize the image, and create `pixel_values` and `pixel_mask`.
 
 All these preprocessing steps are done under the hood, we only need to call the `processor`. However, we still need to
 prepare the target labels. In this representation, each element corresponds to a possible answer (label). For correct answers, the element holds
@@ -212,7 +212,7 @@ Dataset({
 })
 ```
 
-As a final step, create a batch of examples using [DefaultDataCollator](/docs/transformers/v5.14.0/en/main_classes/data_collator#transformers.DefaultDataCollator):
+As a final step, create a batch of examples using [DefaultDataCollator](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DefaultDataCollator):
 
 ```py
 >>> from transformers import DefaultDataCollator
@@ -222,7 +222,7 @@ As a final step, create a batch of examples using [DefaultDataCollator](/docs/tr
 
 ## Train the model
 
-You're ready to start training your model now! Load ViLT with [ViltForQuestionAnswering](/docs/transformers/v5.14.0/en/model_doc/vilt#transformers.ViltForQuestionAnswering). Specify the number of labels
+You're ready to start training your model now! Load ViLT with [ViltForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/vilt#transformers.ViltForQuestionAnswering). Specify the number of labels
 along with the label mappings:
 
 ```py
@@ -233,7 +233,7 @@ along with the label mappings:
 
 At this point, only three steps remain:
 
-1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments):
+1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments):
 
 ```py
 >>> from transformers import TrainingArguments
@@ -253,7 +253,7 @@ At this point, only three steps remain:
 ... )
 ```
 
-2. Pass the training arguments to [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, processor, and data collator.
+2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, processor, and data collator.
 
 ```py
 >>> from transformers import Trainer
@@ -267,13 +267,13 @@ At this point, only three steps remain:
 ... )
 ```
 
-3. Call [train()](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
+3. Call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
 
 ```py
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method to share your final model on the 🤗 Hub:
+Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method to share your final model on the 🤗 Hub:
 
 ```py
 >>> trainer.push_to_hub()
@@ -316,7 +316,7 @@ paradigm in which any combination of pre-trained vision encoder and LLM can be u
 This enables achieving state-of-the-art results on multiple visual-language tasks including visual question answering.
 
 Let's illustrate how you can use this model for VQA. First, let's load the model. Here we'll explicitly send the model to a
-GPU, if available, which we didn't need to do earlier when training, as [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) handles this automatically:
+GPU, if available, which we didn't need to do earlier when training, as [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) handles this automatically:
 
 ```py
 >>> from transformers import AutoProcessor, Blip2ForConditionalGeneration
@@ -358,5 +358,5 @@ As you can see, the model recognized the crowd, and the direction of the face (l
 the fact the crowd is behind the skater. Still, in cases where acquiring human-annotated datasets is not feasible, this
 approach can quickly produce useful results.
 
-### Prompt engineering
-https://huggingface.co/docs/transformers/v5.14.0/tasks/prompting.md
+### Image Feature Extraction
+https://huggingface.co/docs/transformers/v5.15.0/tasks/image_feature_extraction.md

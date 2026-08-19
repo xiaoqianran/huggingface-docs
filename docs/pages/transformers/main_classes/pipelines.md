@@ -7,7 +7,7 @@ Recognition, Masked Language Modeling, Sentiment Analysis, Feature Extraction an
 
 There are two categories of pipeline abstractions to be aware about:
 
-- The [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) which is the most powerful object encapsulating all other pipelines.
+- The [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) which is the most powerful object encapsulating all other pipelines.
 - Task-specific pipelines are available for [audio](#audio), [computer vision](#computer-vision), [natural language processing](#natural-language-processing), and [multimodal](#multimodal) tasks.
 
 ## The pipeline abstraction[[transformers.pipeline]]
@@ -86,123 +86,53 @@ for out in pipe(data()):
     # ....
 ```
 
-- **task** (`str`) --
-  The task defining which pipeline will be returned. Currently accepted tasks are:
+#### transformers.pipeline[[transformers.pipeline]]
 
-  - `"audio-classification"`: will return a [AudioClassificationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.AudioClassificationPipeline).
-  - `"automatic-speech-recognition"`: will return a [AutomaticSpeechRecognitionPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.AutomaticSpeechRecognitionPipeline).
-  - `"depth-estimation"`: will return a [DepthEstimationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.DepthEstimationPipeline).
-  - `"document-question-answering"`: will return a [DocumentQuestionAnsweringPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.DocumentQuestionAnsweringPipeline).
-  - `"feature-extraction"`: will return a [FeatureExtractionPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.FeatureExtractionPipeline).
-  - `"fill-mask"`: will return a [FillMaskPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.FillMaskPipeline):.
-  - `"image-classification"`: will return a [ImageClassificationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.ImageClassificationPipeline).
-  - `"image-feature-extraction"`: will return an [ImageFeatureExtractionPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.ImageFeatureExtractionPipeline).
-  - `"image-segmentation"`: will return a [ImageSegmentationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.ImageSegmentationPipeline).
-  - `"image-text-to-text"`: will return a [ImageTextToTextPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.ImageTextToTextPipeline).
-  - `"keypoint-matching"`: will return a [KeypointMatchingPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.KeypointMatchingPipeline).
-  - `"mask-generation"`: will return a [MaskGenerationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.MaskGenerationPipeline).
-  - `"object-detection"`: will return a [ObjectDetectionPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.ObjectDetectionPipeline).
-  - `"table-question-answering"`: will return a [TableQuestionAnsweringPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.TableQuestionAnsweringPipeline).
-  - `"text-classification"` (alias `"sentiment-analysis"` available): will return a
-    [TextClassificationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.TextClassificationPipeline).
-  - `"text-generation"`: will return a [TextGenerationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.TextGenerationPipeline):.
-  - `"text-to-audio"` (alias `"text-to-speech"` available): will return a [TextToAudioPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.TextToAudioPipeline):.
-  - `"token-classification"` (alias `"ner"` available): will return a [TokenClassificationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.TokenClassificationPipeline).
-  - `"video-classification"`: will return a [VideoClassificationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.VideoClassificationPipeline).
-  - `"zero-shot-classification"`: will return a [ZeroShotClassificationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.ZeroShotClassificationPipeline).
-  - `"zero-shot-image-classification"`: will return a [ZeroShotImageClassificationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.ZeroShotImageClassificationPipeline).
-  - `"zero-shot-audio-classification"`: will return a [ZeroShotAudioClassificationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.ZeroShotAudioClassificationPipeline).
-  - `"zero-shot-object-detection"`: will return a [ZeroShotObjectDetectionPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.ZeroShotObjectDetectionPipeline).
+```python
+transformers.pipeline(task: str | None = None, model: str | PreTrainedModel | None = None, config: str | PreTrainedConfig | None = None, tokenizer: str | PreTrainedTokenizer | PreTrainedTokenizerFast | None = None, feature_extractor: str | FeatureExtractionMixin | None = None, image_processor: str | BaseImageProcessor | None = None, video_processor: str | BaseVideoProcessor | None = None, processor: str | ProcessorMixin | None = None, revision: str | None = None, use_fast: bool = True, token: str | bool | None = None, device: int | str | torch.device | None = None, device_map: str | dict[str, int | str] | None = None, dtype: str | torch.dtype | None = 'auto', trust_remote_code: bool | None = None, model_kwargs: dict[str, Any] | None = None, pipeline_class: Any | None = None, **kwargs: Any)
+```
 
-- **model** (`str` or [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel), *optional*) --
-  The model that will be used by the pipeline to make predictions. This can be a model identifier or an
-  actual instance of a pretrained model inheriting from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/__init__.py#L671)
 
-  If not provided, the default for the `task` will be loaded.
-- **config** (`str` or [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig), *optional*) --
-  The configuration that will be used by the pipeline to instantiate the model. This can be a model
-  identifier or an actual pretrained model configuration inheriting from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig).
+**Parameters:**
 
-  If not provided, the default configuration file for the requested model will be used. That means that if
-  `model` is given, its default configuration will be used. However, if `model` is not supplied, this
-  `task`'s default model's config is used instead.
-- **tokenizer** (`str` or [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend), *optional*) --
-  The tokenizer that will be used by the pipeline to encode data for the model. This can be a model
-  identifier or an actual pretrained tokenizer inheriting from [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend).
+task (`str`) : The task defining which pipeline will be returned. Currently accepted tasks are:  - `"audio-classification"`: will return a [AudioClassificationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.AudioClassificationPipeline). - `"automatic-speech-recognition"`: will return a [AutomaticSpeechRecognitionPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.AutomaticSpeechRecognitionPipeline). - `"depth-estimation"`: will return a [DepthEstimationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.DepthEstimationPipeline). - `"document-question-answering"`: will return a [DocumentQuestionAnsweringPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.DocumentQuestionAnsweringPipeline). - `"feature-extraction"`: will return a [FeatureExtractionPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.FeatureExtractionPipeline). - `"fill-mask"`: will return a [FillMaskPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.FillMaskPipeline):. - `"image-classification"`: will return a [ImageClassificationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.ImageClassificationPipeline). - `"image-feature-extraction"`: will return an [ImageFeatureExtractionPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.ImageFeatureExtractionPipeline). - `"image-segmentation"`: will return a [ImageSegmentationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.ImageSegmentationPipeline). - `"image-text-to-text"`: will return a [ImageTextToTextPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.ImageTextToTextPipeline). - `"keypoint-matching"`: will return a [KeypointMatchingPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.KeypointMatchingPipeline). - `"mask-generation"`: will return a [MaskGenerationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.MaskGenerationPipeline). - `"object-detection"`: will return a [ObjectDetectionPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.ObjectDetectionPipeline). - `"table-question-answering"`: will return a [TableQuestionAnsweringPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.TableQuestionAnsweringPipeline). - `"text-classification"` (alias `"sentiment-analysis"` available): will return a [TextClassificationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.TextClassificationPipeline). - `"text-generation"`: will return a [TextGenerationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.TextGenerationPipeline):. - `"text-to-audio"` (alias `"text-to-speech"` available): will return a [TextToAudioPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.TextToAudioPipeline):. - `"token-classification"` (alias `"ner"` available): will return a [TokenClassificationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.TokenClassificationPipeline). - `"video-classification"`: will return a [VideoClassificationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.VideoClassificationPipeline). - `"zero-shot-classification"`: will return a [ZeroShotClassificationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.ZeroShotClassificationPipeline). - `"zero-shot-image-classification"`: will return a [ZeroShotImageClassificationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.ZeroShotImageClassificationPipeline). - `"zero-shot-audio-classification"`: will return a [ZeroShotAudioClassificationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.ZeroShotAudioClassificationPipeline). - `"zero-shot-object-detection"`: will return a [ZeroShotObjectDetectionPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.ZeroShotObjectDetectionPipeline). 
 
-  If not provided, the default tokenizer for the given `model` will be loaded (if it is a string). If `model`
-  is not specified or not a string, then the default tokenizer for `config` is loaded (if it is a string).
-  However, if `config` is also not given or not a string, then the default tokenizer for the given `task`
-  will be loaded.
-- **feature_extractor** (`str` or [FeatureExtractionMixin](/docs/transformers/v5.14.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin), *optional*) --
-  The feature extractor that will be used by the pipeline to encode data for the model. This can be a model
-  identifier or an actual pretrained feature extractor inheriting from [FeatureExtractionMixin](/docs/transformers/v5.14.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin).
+model (`str` or [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel), *optional*) : The model that will be used by the pipeline to make predictions. This can be a model identifier or an actual instance of a pretrained model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).  If not provided, the default for the `task` will be loaded.
 
-  Feature extractors are used for non-NLP models, such as Speech or Vision models as well as multi-modal
-  models. Multi-modal models will also require a tokenizer to be passed.
+config (`str` or [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig), *optional*) : The configuration that will be used by the pipeline to instantiate the model. This can be a model identifier or an actual pretrained model configuration inheriting from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig).  If not provided, the default configuration file for the requested model will be used. That means that if `model` is given, its default configuration will be used. However, if `model` is not supplied, this `task`'s default model's config is used instead.
 
-  If not provided, the default feature extractor for the given `model` will be loaded (if it is a string). If
-  `model` is not specified or not a string, then the default feature extractor for `config` is loaded (if it
-  is a string). However, if `config` is also not given or not a string, then the default feature extractor
-  for the given `task` will be loaded.
-- **image_processor** (`str` or [BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor), *optional*) --
-  The image processor that will be used by the pipeline to preprocess images for the model. This can be a
-  model identifier or an actual image processor inheriting from [BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
+tokenizer (`str` or [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend), *optional*) : The tokenizer that will be used by the pipeline to encode data for the model. This can be a model identifier or an actual pretrained tokenizer inheriting from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend).  If not provided, the default tokenizer for the given `model` will be loaded (if it is a string). If `model` is not specified or not a string, then the default tokenizer for `config` is loaded (if it is a string). However, if `config` is also not given or not a string, then the default tokenizer for the given `task` will be loaded.
 
-  Image processors are used for Vision models and multi-modal models that require image inputs. Multi-modal
-  models will also require a tokenizer to be passed.
+feature_extractor (`str` or [FeatureExtractionMixin](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin), *optional*) : The feature extractor that will be used by the pipeline to encode data for the model. This can be a model identifier or an actual pretrained feature extractor inheriting from [FeatureExtractionMixin](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin).  Feature extractors are used for non-NLP models, such as Speech or Vision models as well as multi-modal models. Multi-modal models will also require a tokenizer to be passed.  If not provided, the default feature extractor for the given `model` will be loaded (if it is a string). If `model` is not specified or not a string, then the default feature extractor for `config` is loaded (if it is a string). However, if `config` is also not given or not a string, then the default feature extractor for the given `task` will be loaded.
 
-  If not provided, the default image processor for the given `model` will be loaded (if it is a string). If
-  `model` is not specified or not a string, then the default image processor for `config` is loaded (if it is
-  a string).
-- **processor** (`str` or [ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin), *optional*) --
-  The processor that will be used by the pipeline to preprocess data for the model. This can be a model
-  identifier or an actual processor inheriting from [ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin).
+image_processor (`str` or [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor), *optional*) : The image processor that will be used by the pipeline to preprocess images for the model. This can be a model identifier or an actual image processor inheriting from [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor).  Image processors are used for Vision models and multi-modal models that require image inputs. Multi-modal models will also require a tokenizer to be passed.  If not provided, the default image processor for the given `model` will be loaded (if it is a string). If `model` is not specified or not a string, then the default image processor for `config` is loaded (if it is a string).
 
-  Processors are used for multi-modal models that require multi-modal inputs, for example, a model that
-  requires both text and image inputs.
+processor (`str` or [ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin), *optional*) : The processor that will be used by the pipeline to preprocess data for the model. This can be a model identifier or an actual processor inheriting from [ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin).  Processors are used for multi-modal models that require multi-modal inputs, for example, a model that requires both text and image inputs.  If not provided, the default processor for the given `model` will be loaded (if it is a string). If `model` is not specified or not a string, then the default processor for `config` is loaded (if it is a string).
 
-  If not provided, the default processor for the given `model` will be loaded (if it is a string). If `model`
-  is not specified or not a string, then the default processor for `config` is loaded (if it is a string).
-- **revision** (`str`, *optional*, defaults to `"main"`) --
-  When passing a task name or a string model identifier: The specific model version to use. It can be a
-  branch name, a tag name, or a commit id, since we use a git-based system for storing models and other
-  artifacts on huggingface.co, so `revision` can be any identifier allowed by git.
-- **use_fast** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to use a Fast tokenizer if possible (a [PreTrainedTokenizerFast](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend)).
-- **token** (`str` or *bool*, *optional*) --
-  The token to use as HTTP bearer authorization for remote files. If `True`, will use the token generated
-  when running `hf auth login`.
-- **device** (`int` or `str` or `torch.device`) --
-  Defines the device (*e.g.*, `"cpu"`, `"cuda:1"`, `"mps"`, or a GPU ordinal rank like `1`) on which this
-  pipeline will be allocated.
-- **device_map** (`str` or `dict[str, Union[int, str, torch.device]`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut). When `accelerate` library is present, set
-  `device_map="auto"` to compute the most optimized `device_map` automatically (see
-  [here](https://huggingface.co/docs/accelerate/main/en/package_reference/big_modeling#accelerate.cpu_offload)
-  for more information).
+revision (`str`, *optional*, defaults to `"main"`) : When passing a task name or a string model identifier: The specific model version to use. It can be a branch name, a tag name, or a commit id, since we use a git-based system for storing models and other artifacts on huggingface.co, so `revision` can be any identifier allowed by git.
 
-  
+use_fast (`bool`, *optional*, defaults to `True`) : Whether or not to use a Fast tokenizer if possible (a [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend)).
 
-  Do not use `device_map` AND `device` at the same time as they will conflict
+token (`str` or *bool*, *optional*) : The token to use as HTTP bearer authorization for remote files. If `True`, will use the token generated when running `hf auth login`.
 
-  
+device (`int` or `str` or `torch.device`) : Defines the device (*e.g.*, `"cpu"`, `"cuda:1"`, `"mps"`, or a GPU ordinal rank like `1`) on which this pipeline will be allocated.
 
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`).
-- **trust_remote_code** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to allow for custom code defined on the Hub in their own modeling, configuration,
-  tokenization or even pipeline files. This option should only be set to `True` for repositories you trust
-  and in which you have read the code, as it will execute code present on the Hub on your local machine.
-- **model_kwargs** (`dict[str, Any]`, *optional*) --
-  Additional dictionary of keyword arguments passed along to the model's `from_pretrained(...,
-  **model_kwargs)` function.
-- **kwargs** (`dict[str, Any]`, *optional*) --
-  Additional keyword arguments passed along to the specific pipeline init (see the documentation for the
-  corresponding pipeline class for possible values).[Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline)A suitable pipeline for the task.
+device_map (`str` or `dict[str, Union[int, str, torch.device]`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut). When `accelerate` library is present, set `device_map="auto"` to compute the most optimized `device_map` automatically (see [here](https://huggingface.co/docs/accelerate/main/en/package_reference/big_modeling#accelerate.cpu_offload) for more information).    Do not use `device_map` AND `device` at the same time as they will conflict   
 
-Utility factory method to build a [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline).
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`).
+
+trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether or not to allow for custom code defined on the Hub in their own modeling, configuration, tokenization or even pipeline files. This option should only be set to `True` for repositories you trust and in which you have read the code, as it will execute code present on the Hub on your local machine.
+
+model_kwargs (`dict[str, Any]`, *optional*) : Additional dictionary of keyword arguments passed along to the model's `from_pretrained(..., **model_kwargs)` function.
+
+kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to the specific pipeline init (see the documentation for the corresponding pipeline class for possible values).
+
+**Returns:** [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline)
+
+A suitable pipeline for the task.
+
+Utility factory method to build a [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline).
 
 A pipeline consists of:
 
@@ -294,7 +224,7 @@ Streaming batch_size=256
 (diminishing returns, saturated the GPU)
 ```
 
-Example where it's most a slowdown:
+Example where it's mostly a slowdown:
 
 ```python
 class MyDataset(Dataset):
@@ -380,7 +310,7 @@ outputs = pipe.postprocess(all_model_outputs)
 This should be very transparent to your code because the pipelines are used in
 the same way.
 
-This is a simplified view, since the pipeline can handle automatically the batch to ! Meaning you don't have to care
+This is a simplified view, since the pipeline can handle automatically the batch to you! Meaning you don't have to care
 about how many forward passes you inputs are actually going to trigger, you can optimize the `batch_size`
 independently of the inputs. The caveats from the previous section still apply.
 
@@ -425,32 +355,33 @@ Pipelines available for audio tasks include the following.
 
 ### AudioClassificationPipeline[[transformers.AudioClassificationPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **feature_extractor** ([SequenceFeatureExtractor](/docs/transformers/v5.14.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor)) --
-  The feature extractor that will be used by the pipeline to encode data for the model. This object inherits from
-  [SequenceFeatureExtractor](/docs/transformers/v5.14.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.AudioClassificationPipeline[[transformers.AudioClassificationPipeline]]
+
+```python
+transformers.AudioClassificationPipeline(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/audio_classification.py#L67)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+feature_extractor ([SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor)) : The feature extractor that will be used by the pipeline to encode data for the model. This object inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 Audio classification pipeline using any `AutoModelForAudioClassification`. This pipeline predicts the class of a
 raw waveform or an audio file. In case of an audio file, ffmpeg should be installed to support multiple audio
@@ -468,55 +399,57 @@ Example:
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-This pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
+This pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
 `"audio-classification"`.
 
 See the list of available models on
 [huggingface.co/models](https://huggingface.co/models?filter=audio-classification).
 
-- **inputs** (`np.ndarray` or `bytes` or `str` or `dict`) --
-  The inputs is either :
-  - `str` that is the filename of the audio file, the file will be read at the correct sampling rate
-    to get the waveform using *ffmpeg*. This requires *ffmpeg* to be installed on the system.
-  - `bytes` it is supposed to be the content of an audio file and is interpreted by *ffmpeg* in the
-    same way.
-  - (`np.ndarray` of shape (n, ) of type `np.float32` or `np.float64`)
-    Raw audio at the correct sampling rate (no further check will be done)
-  - `dict` form can be used to pass raw audio sampled at arbitrary `sampling_rate` and let this
-    pipeline do the resampling. The dict must be either be in the format `{"sampling_rate": int,
-    "raw": np.array}`, or `{"sampling_rate": int, "array": np.array}`, where the key `"raw"` or
-    `"array"` is used to denote the raw audio waveform.
-- **top_k** (`int`, *optional*, defaults to None) --
-  The number of top labels that will be returned by the pipeline. If the provided number is `None` or
-  higher than the number of labels available in the model configuration, it will default to the number of
-  labels.
-- **function_to_apply** (`str`, *optional*, defaults to "softmax") --
-  The function to apply to the model output. By default, the pipeline will apply the softmax function to
-  the output of the model. Valid options: ["softmax", "sigmoid", "none"]. Note that passing Python's
-  built-in `None` will default to "softmax", so you need to pass the string "none" to disable any
-  post-processing.A list of `dict` with the following keys- **label** (`str`) -- The label predicted.
+#### __call__[[transformers.AudioClassificationPipeline.__call__]]
+
+```python
+__call__(inputs: numpy.ndarray | bytes | str | dict, **kwargs: typing.Any)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/audio_classification.py#L109)
+
+**Parameters:**
+
+inputs (`np.ndarray` or `bytes` or `str` or `dict`) : The inputs is either : - `str` that is the filename of the audio file, the file will be read at the correct sampling rate to get the waveform using *ffmpeg*. This requires *ffmpeg* to be installed on the system. - `bytes` it is supposed to be the content of an audio file and is interpreted by *ffmpeg* in the same way. - (`np.ndarray` of shape (n, ) of type `np.float32` or `np.float64`) Raw audio at the correct sampling rate (no further check will be done) - `dict` form can be used to pass raw audio sampled at arbitrary `sampling_rate` and let this pipeline do the resampling. The dict must be either be in the format `{"sampling_rate": int, "raw": np.array}`, or `{"sampling_rate": int, "array": np.array}`, where the key `"raw"` or `"array"` is used to denote the raw audio waveform.
+
+top_k (`int`, *optional*, defaults to None) : The number of top labels that will be returned by the pipeline. If the provided number is `None` or higher than the number of labels available in the model configuration, it will default to the number of labels.
+
+function_to_apply (`str`, *optional*, defaults to "softmax") : The function to apply to the model output. By default, the pipeline will apply the softmax function to the output of the model. Valid options: ["softmax", "sigmoid", "none"]. Note that passing Python's built-in `None` will default to "softmax", so you need to pass the string "none" to disable any post-processing.
+
+**Returns:** A list of `dict` with the following keys
+
+- **label** (`str`) -- The label predicted.
 - **score** (`float`) -- The corresponding probability.
 
-Classify the sequence(s) given as inputs. See the [AutomaticSpeechRecognitionPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.AutomaticSpeechRecognitionPipeline) documentation for more
+Classify the sequence(s) given as inputs. See the [AutomaticSpeechRecognitionPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.AutomaticSpeechRecognitionPipeline) documentation for more
 information.
 
 ### AutomaticSpeechRecognitionPipeline[[transformers.AutomaticSpeechRecognitionPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **feature_extractor** ([SequenceFeatureExtractor](/docs/transformers/v5.14.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor), *optional*) --
-  The feature extractor that will be used by the pipeline to encode waveform for the model.
-- **tokenizer** ([PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend), *optional*) --
-  The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from
-  [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend).
-- **decoder** (`pyctcdecode.BeamSearchDecoderCTC`, *optional*) --
-  [PyCTCDecode's
-  BeamSearchDecoderCTC](https://github.com/kensho-technologies/pyctcdecode/blob/2fd33dc37c4111417e08d89ccd23d28e9b308d19/pyctcdecode/decoder.py#L180)
-  can be passed for language model boosted decoding. See [Wav2Vec2ProcessorWithLM](/docs/transformers/v5.14.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM) for more information.
-- **device** (Union[`int`, `torch.device`], *optional*) --
-  Device ordinal for CPU/GPU supports. Setting this to `None` will leverage CPU, a positive will run the
-  model on the associated CUDA device id.
+#### transformers.AutomaticSpeechRecognitionPipeline[[transformers.AutomaticSpeechRecognitionPipeline]]
+
+```python
+transformers.AutomaticSpeechRecognitionPipeline(model: PreTrainedModel, feature_extractor: typing.Union[ForwardRef('SequenceFeatureExtractor'), str, NoneType] = None, tokenizer: transformers.tokenization_python.PythonBackend | None = None, decoder: typing.Union[ForwardRef('BeamSearchDecoderCTC'), str, NoneType] = None, device: typing.Union[int, ForwardRef('torch.device'), NoneType] = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/automatic_speech_recognition.py#L112)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+feature_extractor ([SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor), *optional*) : The feature extractor that will be used by the pipeline to encode waveform for the model.
+
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend), *optional*) : The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend).
+
+decoder (`pyctcdecode.BeamSearchDecoderCTC`, *optional*) : [PyCTCDecode's BeamSearchDecoderCTC](https://github.com/kensho-technologies/pyctcdecode/blob/2fd33dc37c4111417e08d89ccd23d28e9b308d19/pyctcdecode/decoder.py#L180) can be passed for language model boosted decoding. See [Wav2Vec2ProcessorWithLM](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM) for more information.
+
+device (Union[`int`, `torch.device`], *optional*) : Device ordinal for CPU/GPU supports. Setting this to `None` will leverage CPU, a positive will run the model on the associated CUDA device id.
 
 Pipeline that aims at extracting spoken text contained within some audio.
 
@@ -540,47 +473,25 @@ Example:
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-- **inputs** (`np.ndarray` or `bytes` or `str` or `dict`) --
-  The inputs is either :
-  - `str` that is either the filename of a local audio file, or a public URL address to download the
-    audio file. The file will be read at the correct sampling rate to get the waveform using
-    *ffmpeg*. This requires *ffmpeg* to be installed on the system.
-  - `bytes` it is supposed to be the content of an audio file and is interpreted by *ffmpeg* in the
-    same way.
-  - (`np.ndarray` of shape (n, ) of type `np.float32` or `np.float64`)
-    Raw audio at the correct sampling rate (no further check will be done)
-  - `dict` form can be used to pass raw audio sampled at arbitrary `sampling_rate` and let this
-    pipeline do the resampling. The dict must be in the format `{"sampling_rate": int, "raw":
-    np.array}` with optionally a `"stride": (left: int, right: int)` than can ask the pipeline to
-    treat the first `left` samples and last `right` samples to be ignored in decoding (but used at
-    inference to provide more context to the model). Only use `stride` with CTC models.
-- **return_timestamps** (*optional*, `str` or `bool`) --
-  Only available for pure CTC models (Wav2Vec2, HuBERT, etc) and the Whisper model. Not available for
-  other sequence-to-sequence models.
+#### __call__[[transformers.AutomaticSpeechRecognitionPipeline.__call__]]
 
-  For CTC models, timestamps can take one of two formats:
-  - `"char"`: the pipeline will return timestamps along the text for every character in the text. For
-    instance, if you get `[{"text": "h", "timestamp": (0.5, 0.6)}, {"text": "i", "timestamp": (0.7,
-    0.9)}]`, then it means the model predicts that the letter "h" was spoken after `0.5` and before
-    `0.6` seconds.
-  - `"word"`: the pipeline will return timestamps along the text for every word in the text. For
-    instance, if you get `[{"text": "hi ", "timestamp": (0.5, 0.9)}, {"text": "there", "timestamp":
-    (1.0, 1.5)}]`, then it means the model predicts that the word "hi" was spoken after `0.5` and
-    before `0.9` seconds.
+```python
+__call__(inputs: numpy.ndarray | bytes | str | dict, **kwargs: typing.Any)
+```
 
-  For the Whisper model, timestamps can take one of two formats:
-  - `"word"`: same as above for word-level CTC timestamps. Word-level timestamps are predicted
-    through the *dynamic-time warping (DTW)* algorithm, an approximation to word-level timestamps
-    by inspecting the cross-attention weights.
-  - `True`: the pipeline will return timestamps along the text for *segments* of words in the text.
-    For instance, if you get `[{"text": " Hi there!", "timestamp": (0.5, 1.5)}]`, then it means the
-    model predicts that the segment "Hi there!" was spoken after `0.5` and before `1.5` seconds.
-    Note that a segment of text refers to a sequence of one or more words, rather than individual
-    words as with word-level timestamps.
-- **generate_kwargs** (`dict`, *optional*) --
-  The dictionary of ad-hoc parametrization of `generate_config` to be used for the generation call. For a
-  complete overview of generate, check the [following
-  guide](https://huggingface.co/docs/transformers/en/main_classes/text_generation).`Dict`A dictionary with the following keys:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/automatic_speech_recognition.py#L190)
+
+**Parameters:**
+
+inputs (`np.ndarray` or `bytes` or `str` or `dict`) : The inputs is either : - `str` that is either the filename of a local audio file, or a public URL address to download the audio file. The file will be read at the correct sampling rate to get the waveform using *ffmpeg*. This requires *ffmpeg* to be installed on the system. - `bytes` it is supposed to be the content of an audio file and is interpreted by *ffmpeg* in the same way. - (`np.ndarray` of shape (n, ) of type `np.float32` or `np.float64`) Raw audio at the correct sampling rate (no further check will be done) - `dict` form can be used to pass raw audio sampled at arbitrary `sampling_rate` and let this pipeline do the resampling. The dict must be in the format `{"sampling_rate": int, "raw": np.array}` with optionally a `"stride": (left: int, right: int)` than can ask the pipeline to treat the first `left` samples and last `right` samples to be ignored in decoding (but used at inference to provide more context to the model). Only use `stride` with CTC models.
+
+return_timestamps (*optional*, `str` or `bool`) : Only available for pure CTC models (Wav2Vec2, HuBERT, etc) and the Whisper model. Not available for other sequence-to-sequence models.  For CTC models, timestamps can take one of two formats: - `"char"`: the pipeline will return timestamps along the text for every character in the text. For instance, if you get `[{"text": "h", "timestamp": (0.5, 0.6)}, {"text": "i", "timestamp": (0.7, 0.9)}]`, then it means the model predicts that the letter "h" was spoken after `0.5` and before `0.6` seconds. - `"word"`: the pipeline will return timestamps along the text for every word in the text. For instance, if you get `[{"text": "hi ", "timestamp": (0.5, 0.9)}, {"text": "there", "timestamp": (1.0, 1.5)}]`, then it means the model predicts that the word "hi" was spoken after `0.5` and before `0.9` seconds.  For the Whisper model, timestamps can take one of two formats: - `"word"`: same as above for word-level CTC timestamps. Word-level timestamps are predicted through the *dynamic-time warping (DTW)* algorithm, an approximation to word-level timestamps by inspecting the cross-attention weights. - `True`: the pipeline will return timestamps along the text for *segments* of words in the text. For instance, if you get `[{"text": " Hi there!", "timestamp": (0.5, 1.5)}]`, then it means the model predicts that the segment "Hi there!" was spoken after `0.5` and before `1.5` seconds. Note that a segment of text refers to a sequence of one or more words, rather than individual words as with word-level timestamps.
+
+generate_kwargs (`dict`, *optional*) : The dictionary of ad-hoc parametrization of `generate_config` to be used for the generation call. For a complete overview of generate, check the [following guide](https://huggingface.co/docs/transformers/en/main_classes/text_generation).
+
+**Returns:** `Dict`
+
+A dictionary with the following keys:
 - **text** (`str`): The recognized text.
 - **chunks** (*optional(, `list[Dict]`)
   When using `return_timestamps`, the `chunks` will become a list containing all the various text
@@ -588,10 +499,18 @@ Learn more about the basics of using a pipeline in the [pipeline tutorial](../pi
   "there", "timestamp": (1.0, 1.5)}]`. The original full text can roughly be recovered by doing
   `"".join(chunk["text"] for chunk in output["chunks"])`.
 
-Transcribe the audio sequence(s) given as inputs to text. See the [AutomaticSpeechRecognitionPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.AutomaticSpeechRecognitionPipeline)
+Transcribe the audio sequence(s) given as inputs to text. See the [AutomaticSpeechRecognitionPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.AutomaticSpeechRecognitionPipeline)
 documentation for more information.
 
 ### TextToAudioPipeline[[transformers.TextToAudioPipeline]]
+
+#### transformers.TextToAudioPipeline[[transformers.TextToAudioPipeline]]
+
+```python
+transformers.TextToAudioPipeline(*args, vocoder = None, sampling_rate = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/text_to_audio.py#L45)
 
 Text-to-audio generation pipeline using any `AutoModelForTextToWaveform` or `AutoModelForTextToSpectrogram`. This
 pipeline generates an audio file from an input text and optional other conditional inputs.
@@ -634,59 +553,65 @@ Example:
 >>> outputs = music_generator("Techno music with high melodic riffs", generate_kwargs=generate_kwargs)
 ```
 
-This pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifiers: `"text-to-speech"` or
+This pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifiers: `"text-to-speech"` or
 `"text-to-audio"`.
 
 See the list of available models on [huggingface.co/models](https://huggingface.co/models?filter=text-to-speech).
 
-- **text_inputs** (`str`, `list[str]`, `ChatType`, or `list[ChatType]`) --
-  One or several texts to generate. If strings or a list of string are passed, this pipeline will
-  generate the corresponding text. Alternatively, a "chat", in the form of a list of dicts with "role"
-  and "content" keys, can be passed, or a list of such chats. When chats are passed, the model's chat
-  template will be used to format them before passing them to the model.
-- **forward_params** (`dict`, *optional*) --
-  Parameters passed to the model generation/forward method. `forward_params` are always passed to the
-  underlying model.
-- **generate_kwargs** (`dict`, *optional*) --
-  The dictionary of ad-hoc parametrization of `generate_config` to be used for the generation call. For a
-  complete overview of generate, check the [following
-  guide](https://huggingface.co/docs/transformers/en/main_classes/text_generation). `generate_kwargs` are
-  only passed to the underlying model if the latter is a generative model.`AudioOutput` or a list of `AudioOutput`, which is a `TypedDict` with two keys- **audio** (`np.ndarray` of shape `(nb_channels, audio_length)`) -- The generated audio waveform.
+#### __call__[[transformers.TextToAudioPipeline.__call__]]
+
+```python
+__call__(text_inputs, **forward_params)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/text_to_audio.py#L243)
+
+**Parameters:**
+
+text_inputs (`str`, `list[str]`, `ChatType`, or `list[ChatType]`) : One or several texts to generate. If strings or a list of string are passed, this pipeline will generate the corresponding text. Alternatively, a "chat", in the form of a list of dicts with "role" and "content" keys, can be passed, or a list of such chats. When chats are passed, the model's chat template will be used to format them before passing them to the model.
+
+forward_params (`dict`, *optional*) : Parameters passed to the model generation/forward method. `forward_params` are always passed to the underlying model.
+
+generate_kwargs (`dict`, *optional*) : The dictionary of ad-hoc parametrization of `generate_config` to be used for the generation call. For a complete overview of generate, check the [following guide](https://huggingface.co/docs/transformers/en/main_classes/text_generation). `generate_kwargs` are only passed to the underlying model if the latter is a generative model.
+
+**Returns:** `AudioOutput` or a list of `AudioOutput`, which is a `TypedDict` with two keys
+
+- **audio** (`np.ndarray` of shape `(nb_channels, audio_length)`) -- The generated audio waveform.
 - **sampling_rate** (`int`) -- The sampling rate of the generated audio waveform.
 
-Generates speech/audio from the inputs. See the [TextToAudioPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.TextToAudioPipeline) documentation for more information.
+Generates speech/audio from the inputs. See the [TextToAudioPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.TextToAudioPipeline) documentation for more information.
 
 ### ZeroShotAudioClassificationPipeline[[transformers.ZeroShotAudioClassificationPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **tokenizer** ([PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend)) --
-  The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from
-  [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend).
-- **feature_extractor** ([SequenceFeatureExtractor](/docs/transformers/v5.14.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor)) --
-  The feature extractor that will be used by the pipeline to encode data for the model. This object inherits from
-  [SequenceFeatureExtractor](/docs/transformers/v5.14.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.ZeroShotAudioClassificationPipeline[[transformers.ZeroShotAudioClassificationPipeline]]
+
+```python
+transformers.ZeroShotAudioClassificationPipeline(**kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/zero_shot_audio_classification.py#L32)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)) : The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend).
+
+feature_extractor ([SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor)) : The feature extractor that will be used by the pipeline to encode data for the model. This object inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 Zero shot audio classification pipeline using `ClapModel`. This pipeline predicts the class of an audio when you
 provide an audio and a set of `candidate_labels`.
@@ -705,22 +630,30 @@ Example:
 [{'score': 0.9996, 'label': 'Sound of a dog'}, {'score': 0.0004, 'label': 'Sound of vacuum cleaner'}]
 ```
 
-Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial) This audio
-classification pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
+Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial). This audio
+classification pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
 `"zero-shot-audio-classification"`. See the list of available models on
 [huggingface.co/models](https://huggingface.co/models?filter=zero-shot-audio-classification).
 
-- **audios** (`str`, `list[str]`, `np.array` or `list[np.array]`) --
-  The pipeline handles three types of inputs:
-  - A string containing a http link pointing to an audio
-  - A string containing a local path to an audio
-  - An audio loaded in numpy
-- **candidate_labels** (`list[str]`) --
-  The candidate labels for this audio. They will be formatted using *hypothesis_template*.
-- **hypothesis_template** (`str`, *optional*, defaults to `"This is a sound of {}"`) --
-  The format used in conjunction with *candidate_labels* to attempt the audio classification by
-  replacing the placeholder with the candidate_labels. Pass "{}" if *candidate_labels* are
-  already formatted.A list of dictionaries containing one entry per proposed label. Each dictionary contains the
+#### __call__[[transformers.ZeroShotAudioClassificationPipeline.__call__]]
+
+```python
+__call__(audios: numpy.ndarray | bytes | str | dict, **kwargs: typing.Any)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/zero_shot_audio_classification.py#L70)
+
+**Parameters:**
+
+audios (`str`, `list[str]`, `np.array` or `list[np.array]`) : The pipeline handles three types of inputs: - A string containing a http link pointing to an audio - A string containing a local path to an audio - An audio loaded in numpy
+
+candidate_labels (`list[str]`) : The candidate labels for this audio. They will be formatted using *hypothesis_template*.
+
+hypothesis_template (`str`, *optional*, defaults to `"This is a sound of {}"`) : The format used in conjunction with *candidate_labels* to attempt the audio classification by replacing the placeholder with the candidate_labels. Pass "{}" if *candidate_labels* are already formatted.
+
+**Returns:**
+
+A list of dictionaries containing one entry per proposed label. Each dictionary contains the
 following keys:
 - **label** (`str`) -- One of the suggested *candidate_labels*.
 - **score** (`float`) -- The score attributed by the model to that label. It is a value between
@@ -734,32 +667,33 @@ Pipelines available for computer vision tasks include the following.
 
 ### DepthEstimationPipeline[[transformers.DepthEstimationPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **image_processor** ([BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) --
-  The image processor that will be used by the pipeline to encode data for the model. This object inherits from
-  [BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.DepthEstimationPipeline[[transformers.DepthEstimationPipeline]]
+
+```python
+transformers.DepthEstimationPipeline(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/depth_estimation.py#L25)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+image_processor ([BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) : The image processor that will be used by the pipeline to encode data for the model. This object inherits from [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 Depth estimation pipeline using any `AutoModelForDepthEstimation`. This pipeline predicts the depth of an image.
 
@@ -777,28 +711,30 @@ torch.Size([1, 384, 384])
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-This depth estimation pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
+This depth estimation pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
 `"depth-estimation"`.
 
 See the list of available models on [huggingface.co/models](https://huggingface.co/models?filter=depth-estimation).
 
-- **inputs** (`str`, `list[str]`, `PIL.Image` or `list[PIL.Image]`) --
-  The pipeline handles three types of images:
+#### __call__[[transformers.DepthEstimationPipeline.__call__]]
 
-  - A string containing a http link pointing to an image
-  - A string containing a local path to an image
-  - An image loaded in PIL directly
+```python
+__call__(inputs: typing.Union[str, list[str], ForwardRef('Image.Image'), list['Image.Image']], **kwargs: typing.Any)
+```
 
-  The pipeline accepts either a single image or a batch of images, which must then be passed as a string.
-  Images in a batch must all be in the same format: all as http links, all as local paths, or all as PIL
-  images.
-- **parameters** (`Dict`, *optional*) --
-  A dictionary of argument names to parameter values, to control pipeline behaviour.
-  The only parameter available right now is `timeout`, which is the length of time, in seconds,
-  that the pipeline should wait before giving up on trying to download an image.
-- **timeout** (`float`, *optional*, defaults to None) --
-  The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and
-  the call may block forever.A dictionary or a list of dictionaries containing result. If the input is a single image, will return a
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/depth_estimation.py#L66)
+
+**Parameters:**
+
+inputs (`str`, `list[str]`, `PIL.Image` or `list[PIL.Image]`) : The pipeline handles three types of images:  - A string containing a http link pointing to an image - A string containing a local path to an image - An image loaded in PIL directly  The pipeline accepts either a single image or a batch of images, which must then be passed as a string. Images in a batch must all be in the same format: all as http links, all as local paths, or all as PIL images.
+
+parameters (`Dict`, *optional*) : A dictionary of argument names to parameter values, to control pipeline behaviour. The only parameter available right now is `timeout`, which is the length of time, in seconds, that the pipeline should wait before giving up on trying to download an image.
+
+timeout (`float`, *optional*, defaults to None) : The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and the call may block forever.
+
+**Returns:**
+
+A dictionary or a list of dictionaries containing result. If the input is a single image, will return a
 dictionary, if the input is a list of several images, will return a list of dictionaries corresponding to
 the images.
 
@@ -811,40 +747,35 @@ Predict the depth(s) of the image(s) passed as inputs.
 
 ### ImageClassificationPipeline[[transformers.ImageClassificationPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **image_processor** ([BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) --
-  The image processor that will be used by the pipeline to encode data for the model. This object inherits from
-  [BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
-- **function_to_apply** (`str`, *optional*, defaults to `"default"`) --
-  The function to apply to the model outputs in order to retrieve the scores. Accepts four different values:
+#### transformers.ImageClassificationPipeline[[transformers.ImageClassificationPipeline]]
 
-  - `"default"`: if the model has a single label, will apply the sigmoid function on the output. If the model
-    has several labels, will apply the softmax function on the output.
-  - `"sigmoid"`: Applies the sigmoid function on the output.
-  - `"softmax"`: Applies the softmax function on the output.
-  - `"none"`: Does not apply any function on the output.
+```python
+transformers.ImageClassificationPipeline(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/image_classification.py#L73)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+image_processor ([BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) : The image processor that will be used by the pipeline to encode data for the model. This object inherits from [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
+
+function_to_apply (`str`, *optional*, defaults to `"default"`) : The function to apply to the model outputs in order to retrieve the scores. Accepts four different values:  - `"default"`: if the model has a single label, will apply the sigmoid function on the output. If the model has several labels, will apply the softmax function on the output. - `"sigmoid"`: Applies the sigmoid function on the output. - `"softmax"`: Applies the softmax function on the output. - `"none"`: Does not apply any function on the output.
 
 Image classification pipeline using any `AutoModelForImageClassification`. This pipeline predicts the class of an
 image.
@@ -861,43 +792,33 @@ Example:
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-This image classification pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
+This image classification pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
 `"image-classification"`.
 
 See the list of available models on
 [huggingface.co/models](https://huggingface.co/models?filter=image-classification).
 
-- **inputs** (`str`, `list[str]`, `PIL.Image` or `list[PIL.Image]`) --
-  The pipeline handles three types of images:
+#### __call__[[transformers.ImageClassificationPipeline.__call__]]
 
-  - A string containing a http link pointing to an image
-  - A string containing a local path to an image
-  - An image loaded in PIL directly
+```python
+__call__(inputs: typing.Union[str, list[str], ForwardRef('Image.Image'), list['Image.Image']], **kwargs: typing.Any)
+```
 
-  The pipeline accepts either a single image or a batch of images, which must then be passed as a string.
-  Images in a batch must all be in the same format: all as http links, all as local paths, or all as PIL
-  images.
-- **function_to_apply** (`str`, *optional*, defaults to `"default"`) --
-  The function to apply to the model outputs in order to retrieve the scores. Accepts four different
-  values:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/image_classification.py#L127)
 
-  If this argument is not specified, then it will apply the following functions according to the number
-  of labels:
+**Parameters:**
 
-  - If the model has a single label, will apply the sigmoid function on the output.
-  - If the model has several labels, will apply the softmax function on the output.
+inputs (`str`, `list[str]`, `PIL.Image` or `list[PIL.Image]`) : The pipeline handles three types of images:  - A string containing a http link pointing to an image - A string containing a local path to an image - An image loaded in PIL directly  The pipeline accepts either a single image or a batch of images, which must then be passed as a string. Images in a batch must all be in the same format: all as http links, all as local paths, or all as PIL images.
 
-  Possible values are:
+function_to_apply (`str`, *optional*, defaults to `"default"`) : The function to apply to the model outputs in order to retrieve the scores. Accepts four different values:  If this argument is not specified, then it will apply the following functions according to the number of labels:  - If the model has a single label, will apply the sigmoid function on the output. - If the model has several labels, will apply the softmax function on the output.  Possible values are:  - `"sigmoid"`: Applies the sigmoid function on the output. - `"softmax"`: Applies the softmax function on the output. - `"none"`: Does not apply any function on the output.
 
-  - `"sigmoid"`: Applies the sigmoid function on the output.
-  - `"softmax"`: Applies the softmax function on the output.
-  - `"none"`: Does not apply any function on the output.
-- **top_k** (`int`, *optional*, defaults to 5) --
-  The number of top labels that will be returned by the pipeline. If the provided number is higher than
-  the number of labels available in the model configuration, it will default to the number of labels.
-- **timeout** (`float`, *optional*, defaults to None) --
-  The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and
-  the call may block forever.A dictionary or a list of dictionaries containing result. If the input is a single image, will return a
+top_k (`int`, *optional*, defaults to 5) : The number of top labels that will be returned by the pipeline. If the provided number is higher than the number of labels available in the model configuration, it will default to the number of labels.
+
+timeout (`float`, *optional*, defaults to None) : The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and the call may block forever.
+
+**Returns:**
+
+A dictionary or a list of dictionaries containing result. If the input is a single image, will return a
 dictionary, if the input is a list of several images, will return a list of dictionaries corresponding to
 the images.
 
@@ -910,32 +831,33 @@ Assign labels to the image(s) passed as inputs.
 
 ### ImageSegmentationPipeline[[transformers.ImageSegmentationPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **image_processor** ([BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) --
-  The image processor that will be used by the pipeline to encode data for the model. This object inherits from
-  [BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.ImageSegmentationPipeline[[transformers.ImageSegmentationPipeline]]
+
+```python
+transformers.ImageSegmentationPipeline(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/image_segmentation.py#L27)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+image_processor ([BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) : The image processor that will be used by the pipeline to encode data for the model. This object inherits from [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 Image segmentation pipeline using any `AutoModelForXXXSegmentation`. This pipeline predicts masks of objects and
 their classes.
@@ -963,34 +885,37 @@ Example:
 (768, 512)
 ```
 
-This image segmentation pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
+This image segmentation pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
 `"image-segmentation"`.
 
 See the list of available models on
 [huggingface.co/models](https://huggingface.co/models?filter=image-segmentation).
 
-- **inputs** (`str`, `list[str]`, `PIL.Image` or `list[PIL.Image]`) --
-  The pipeline handles three types of images:
+#### __call__[[transformers.ImageSegmentationPipeline.__call__]]
 
-  - A string containing an HTTP(S) link pointing to an image
-  - A string containing a local path to an image
-  - An image loaded in PIL directly
+```python
+__call__(inputs: typing.Union[str, ForwardRef('Image.Image'), list[str], list['Image.Image']], **kwargs: typing.Any)
+```
 
-  The pipeline accepts either a single image or a batch of images. Images in a batch must all be in the
-  same format: all as HTTP(S) links, all as local paths, or all as PIL images.
-- **subtask** (`str`, *optional*) --
-  Segmentation task to be performed, choose [`semantic`, `instance` and `panoptic`] depending on model
-  capabilities. If not set, the pipeline will attempt tp resolve in the following order:
-  `panoptic`, `instance`, `semantic`.
-- **threshold** (`float`, *optional*, defaults to 0.9) --
-  Probability threshold to filter out predicted masks.
-- **mask_threshold** (`float`, *optional*, defaults to 0.5) --
-  Threshold to use when turning the predicted masks into binary values.
-- **overlap_mask_area_threshold** (`float`, *optional*, defaults to 0.5) --
-  Mask overlap threshold to eliminate small, disconnected segments.
-- **timeout** (`float`, *optional*, defaults to None) --
-  The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and
-  the call may block forever.If the input is a single image, will return a list of dictionaries, if the input is a list of several images,
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/image_segmentation.py#L101)
+
+**Parameters:**
+
+inputs (`str`, `list[str]`, `PIL.Image` or `list[PIL.Image]`) : The pipeline handles three types of images:  - A string containing an HTTP(S) link pointing to an image - A string containing a local path to an image - An image loaded in PIL directly  The pipeline accepts either a single image or a batch of images. Images in a batch must all be in the same format: all as HTTP(S) links, all as local paths, or all as PIL images.
+
+subtask (`str`, *optional*) : Segmentation task to be performed, choose [`semantic`, `instance` and `panoptic`] depending on model capabilities. If not set, the pipeline will attempt to resolve in the following order: `panoptic`, `instance`, `semantic`.
+
+threshold (`float`, *optional*, defaults to 0.9) : Probability threshold to filter out predicted masks.
+
+mask_threshold (`float`, *optional*, defaults to 0.5) : Threshold to use when turning the predicted masks into binary values.
+
+overlap_mask_area_threshold (`float`, *optional*, defaults to 0.5) : Mask overlap threshold to eliminate small, disconnected segments.
+
+timeout (`float`, *optional*, defaults to None) : The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and the call may block forever.
+
+**Returns:**
+
+If the input is a single image, will return a list of dictionaries, if the input is a list of several images,
 will return a list of list of dictionaries corresponding to each image.
 
 The dictionaries contain the mask, label and score (where applicable) of each detected object and contains
@@ -1006,27 +931,35 @@ Perform segmentation (detect masks & classes) in the image(s) passed as inputs.
 
 ### KeypointMatchingPipeline[[transformers.KeypointMatchingPipeline]]
 
+#### transformers.KeypointMatchingPipeline[[transformers.KeypointMatchingPipeline]]
+
+```python
+transformers.KeypointMatchingPipeline(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/keypoint_matching.py#L69)
+
 Keypoint matching pipeline using any `AutoModelForKeypointMatching`. This pipeline matches keypoints between two images.
 
-- **inputs** (`str`, `list[str]`, `PIL.Image` or `list[PIL.Image]`) --
-  The pipeline handles three types of images:
+#### __call__[[transformers.KeypointMatchingPipeline.__call__]]
 
-  - A string containing a http link pointing to an image
-  - A string containing a local path to an image
-  - An image loaded in PIL directly
+```python
+__call__(inputs: list[collections.abc.Sequence[typing.Union[ForwardRef('Image.Image'), str]]] | collections.abc.Sequence[typing.Union[ForwardRef('Image.Image'), str]], threshold: float = 0.0, **kwargs: typing.Any)
+```
 
-  The pipeline accepts either a single pair of images or a batch of image pairs, which must then be passed as a string.
-  Images in a batch must all be in the same format: all as http links, all as local paths, or all as PIL
-  images.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/keypoint_matching.py#L98)
 
-- **threshold** (`float`, *optional*, defaults to 0.0) --
-  The threshold to use for keypoint matching. Keypoints matched with a lower matching score will be filtered out.
-  A value of 0 means that all matched keypoints will be returned.
+**Parameters:**
 
-- **kwargs** --
-  `timeout (`float`, *optional*, defaults to None)`
-  The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and
-  the call may block forever.Union[list[Match], list[list[Match]]]A list of matches or a list if a single image pair is provided, or of lists of matches if a batch
+inputs (`str`, `list[str]`, `PIL.Image` or `list[PIL.Image]`) : The pipeline handles three types of images:  - A string containing a http link pointing to an image - A string containing a local path to an image - An image loaded in PIL directly  The pipeline accepts either a single pair of images or a batch of image pairs, which must then be passed as a string. Images in a batch must all be in the same format: all as http links, all as local paths, or all as PIL images. 
+
+threshold (`float`, *optional*, defaults to 0.0) : The threshold to use for keypoint matching. Keypoints matched with a lower matching score will be filtered out. A value of 0 means that all matched keypoints will be returned. 
+
+kwargs : `timeout (`float`, *optional*, defaults to None)` The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and the call may block forever.
+
+**Returns:** Union[list[Match], list[list[Match]]]
+
+A list of matches or a list if a single image pair is provided, or of lists of matches if a batch
 of image pairs is provided. Each match is a dictionary containing the following keys:
 
 - **keypoint_image_0** (`Keypoint`): The keypoint in the first image (x, y coordinates).
@@ -1037,32 +970,33 @@ Find matches between keypoints in two images.
 
 ### ObjectDetectionPipeline[[transformers.ObjectDetectionPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **image_processor** ([BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) --
-  The image processor that will be used by the pipeline to encode data for the model. This object inherits from
-  [BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.ObjectDetectionPipeline[[transformers.ObjectDetectionPipeline]]
+
+```python
+transformers.ObjectDetectionPipeline(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/object_detection.py#L26)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+image_processor ([BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) : The image processor that will be used by the pipeline to encode data for the model. This object inherits from [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 Object detection pipeline using any `AutoModelForObjectDetection`. This pipeline predicts bounding boxes of objects
 and their classes.
@@ -1081,25 +1015,30 @@ Example:
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-This object detection pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
+This object detection pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
 `"object-detection"`.
 
 See the list of available models on [huggingface.co/models](https://huggingface.co/models?filter=object-detection).
 
-- **inputs** (`str`, `list[str]`, `PIL.Image` or `list[PIL.Image]`) --
-  The pipeline handles three types of images:
+#### __call__[[transformers.ObjectDetectionPipeline.__call__]]
 
-  - A string containing an HTTP(S) link pointing to an image
-  - A string containing a local path to an image
-  - An image loaded in PIL directly
+```python
+__call__(*args, **kwargs)
+```
 
-  The pipeline accepts either a single image or a batch of images. Images in a batch must all be in the
-  same format: all as HTTP(S) links, all as local paths, or all as PIL images.
-- **threshold** (`float`, *optional*, defaults to 0.5) --
-  The probability necessary to make a prediction.
-- **timeout** (`float`, *optional*, defaults to None) --
-  The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and
-  the call may block forever.A list of dictionaries or a list of list of dictionaries containing the result. If the input is a single
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/object_detection.py#L81)
+
+**Parameters:**
+
+inputs (`str`, `list[str]`, `PIL.Image` or `list[PIL.Image]`) : The pipeline handles three types of images:  - A string containing an HTTP(S) link pointing to an image - A string containing a local path to an image - An image loaded in PIL directly  The pipeline accepts either a single image or a batch of images. Images in a batch must all be in the same format: all as HTTP(S) links, all as local paths, or all as PIL images.
+
+threshold (`float`, *optional*, defaults to 0.5) : The probability necessary to make a prediction.
+
+timeout (`float`, *optional*, defaults to None) : The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and the call may block forever.
+
+**Returns:**
+
+A list of dictionaries or a list of list of dictionaries containing the result. If the input is a single
 image, will return a list of dictionaries, if the input is a list of several images, will return a list of
 list of dictionaries corresponding to each image.
 
@@ -1113,40 +1052,40 @@ Detect objects (bounding boxes & classes) in the image(s) passed as inputs.
 
 ### VideoClassificationPipeline[[transformers.VideoClassificationPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **image_processor** ([BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) --
-  The image processor that will be used by the pipeline to encode data for the model. This object inherits from
-  [BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
-- **video_processor** ([BaseVideoProcessor](/docs/transformers/v5.14.0/en/main_classes/video_processor#transformers.BaseVideoProcessor)) --
-  The video processor that will be used by the pipeline to encode video data for the model. This object
-  inherits from [BaseVideoProcessor](/docs/transformers/v5.14.0/en/main_classes/video_processor#transformers.BaseVideoProcessor).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.VideoClassificationPipeline[[transformers.VideoClassificationPipeline]]
+
+```python
+transformers.VideoClassificationPipeline(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/video_classification.py#L41)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+image_processor ([BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) : The image processor that will be used by the pipeline to encode data for the model. This object inherits from [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
+
+video_processor ([BaseVideoProcessor](/docs/transformers/v5.15.0/en/main_classes/video_processor#transformers.BaseVideoProcessor)) : The video processor that will be used by the pipeline to encode video data for the model. This object inherits from [BaseVideoProcessor](/docs/transformers/v5.15.0/en/main_classes/video_processor#transformers.BaseVideoProcessor).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 Video classification pipeline using any `AutoModelForVideoClassification`. This pipeline predicts the class of a
 video.
 
-This video classification pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
+This video classification pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
 `"video-classification"`.
 
 See the list of available models on
@@ -1156,28 +1095,29 @@ The pipeline supports models that use either an image processor (legacy video mo
 TimeSformer) or a video processor (newer models such as VJEPA2). When both are present the video processor takes
 precedence; when neither is found the pipeline will raise an error.
 
-- **inputs** (`str`, `list[str]`) --
-  The pipeline handles three types of videos:
+#### __call__[[transformers.VideoClassificationPipeline.__call__]]
 
-  - A string containing a http link pointing to a video
-  - A string containing a local path to a video
+```python
+__call__(inputs: str | list[str] | None, **kwargs)
+```
 
-  The pipeline accepts either a single video or a batch of videos, which must then be passed as a string.
-  Videos in a batch must all be in the same format: all as http links or all as local paths.
-- **top_k** (`int`, *optional*, defaults to 5) --
-  The number of top labels that will be returned by the pipeline. If the provided number is higher than
-  the number of labels available in the model configuration, it will default to the number of labels.
-- **num_frames** (`int`, *optional*, defaults to `self.model.config.num_frames`) --
-  The number of frames sampled from the video to run the classification on. If not provided, will default
-  to the number of frames specified in the model configuration.
-- **frame_sampling_rate** (`int`, *optional*, defaults to 1) --
-  The sampling rate used to select frames from the video. If not provided, will default to 1, i.e. every
-  frame will be used.
-- **function_to_apply(`str`,** *optional*, defaults to "softmax") --
-  The function to apply to the model output. By default, the pipeline will apply the softmax function to
-  the output of the model. Valid options: ["softmax", "sigmoid", "none"]. Note that passing Python's
-  built-in `None` will default to "softmax", so you need to pass the string "none" to disable any
-  post-processing.A list of dictionaries or a list of list of dictionaries containing result. If the input is a single video,
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/video_classification.py#L105)
+
+**Parameters:**
+
+inputs (`str`, `list[str]`) : The pipeline handles three types of videos:  - A string containing a http link pointing to a video - A string containing a local path to a video  The pipeline accepts either a single video or a batch of videos, which must then be passed as a string. Videos in a batch must all be in the same format: all as http links or all as local paths.
+
+top_k (`int`, *optional*, defaults to 5) : The number of top labels that will be returned by the pipeline. If the provided number is higher than the number of labels available in the model configuration, it will default to the number of labels.
+
+num_frames (`int`, *optional*, defaults to `self.model.config.num_frames`) : The number of frames sampled from the video to run the classification on. If not provided, will default to the number of frames specified in the model configuration.
+
+frame_sampling_rate (`int`, *optional*, defaults to 1) : The sampling rate used to select frames from the video. If not provided, will default to 1, i.e. every frame will be used.
+
+function_to_apply(`str`, *optional*, defaults to "softmax") : The function to apply to the model output. By default, the pipeline will apply the softmax function to the output of the model. Valid options: ["softmax", "sigmoid", "none"]. Note that passing Python's built-in `None` will default to "softmax", so you need to pass the string "none" to disable any post-processing.
+
+**Returns:**
+
+A list of dictionaries or a list of list of dictionaries containing result. If the input is a single video,
 will return a list of `top_k` dictionaries, if the input is a list of several videos, will return a list of list of
 `top_k` dictionaries corresponding to the videos.
 
@@ -1190,32 +1130,33 @@ Assign labels to the video(s) passed as inputs.
 
 ### ZeroShotImageClassificationPipeline[[transformers.ZeroShotImageClassificationPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **image_processor** ([BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) --
-  The image processor that will be used by the pipeline to encode data for the model. This object inherits from
-  [BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.ZeroShotImageClassificationPipeline[[transformers.ZeroShotImageClassificationPipeline]]
+
+```python
+transformers.ZeroShotImageClassificationPipeline(**kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/zero_shot_image_classification.py#L29)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+image_processor ([BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) : The image processor that will be used by the pipeline to encode data for the model. This object inherits from [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 Zero shot image classification pipeline using `CLIPModel`. This pipeline predicts the class of an image when you
 provide an image and a set of `candidate_labels`.
@@ -1241,30 +1182,33 @@ Example:
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-This image classification pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
+This image classification pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
 `"zero-shot-image-classification"`.
 
 See the list of available models on
 [huggingface.co/models](https://huggingface.co/models?filter=zero-shot-image-classification).
 
-- **image** (`str`, `list[str]`, `PIL.Image` or `list[PIL.Image]`) --
-  The pipeline handles three types of images:
+#### __call__[[transformers.ZeroShotImageClassificationPipeline.__call__]]
 
-  - A string containing a http link pointing to an image
-  - A string containing a local path to an image
-  - An image loaded in PIL directly
+```python
+__call__(image: typing.Union[str, list[str], ForwardRef('Image.Image'), list['Image.Image']], candidate_labels: list, **kwargs: typing.Any)
+```
 
-- **candidate_labels** (`list[str]`) --
-  The candidate labels for this image. They will be formatted using *hypothesis_template*.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/zero_shot_image_classification.py#L83)
 
-- **hypothesis_template** (`str`, *optional*, defaults to `"This is a photo of {}"`) --
-  The format used in conjunction with *candidate_labels* to attempt the image classification by
-  replacing the placeholder with the candidate_labels. Pass "{}" if *candidate_labels* are
-  already formatted.
+**Parameters:**
 
-- **timeout** (`float`, *optional*, defaults to None) --
-  The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and
-  the call may block forever.A list of dictionaries containing one entry per proposed label. Each dictionary contains the
+image (`str`, `list[str]`, `PIL.Image` or `list[PIL.Image]`) : The pipeline handles three types of images:  - A string containing a http link pointing to an image - A string containing a local path to an image - An image loaded in PIL directly 
+
+candidate_labels (`list[str]`) : The candidate labels for this image. They will be formatted using *hypothesis_template*. 
+
+hypothesis_template (`str`, *optional*, defaults to `"This is a photo of {}"`) : The format used in conjunction with *candidate_labels* to attempt the image classification by replacing the placeholder with the candidate_labels. Pass "{}" if *candidate_labels* are already formatted. 
+
+timeout (`float`, *optional*, defaults to None) : The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and the call may block forever.
+
+**Returns:**
+
+A list of dictionaries containing one entry per proposed label. Each dictionary contains the
 following keys:
 - **label** (`str`) -- One of the suggested *candidate_labels*.
 - **score** (`float`) -- The score attributed by the model to that label. It is a value between
@@ -1274,32 +1218,33 @@ Assign labels to the image(s) passed as inputs.
 
 ### ZeroShotObjectDetectionPipeline[[transformers.ZeroShotObjectDetectionPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **image_processor** ([BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) --
-  The image processor that will be used by the pipeline to encode data for the model. This object inherits from
-  [BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.ZeroShotObjectDetectionPipeline[[transformers.ZeroShotObjectDetectionPipeline]]
+
+```python
+transformers.ZeroShotObjectDetectionPipeline(**kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/zero_shot_object_detection.py#L23)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+image_processor ([BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) : The image processor that will be used by the pipeline to encode data for the model. This object inherits from [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 Zero shot object detection pipeline using `OwlViTForObjectDetection`. This pipeline predicts bounding boxes of
 objects when you provide an image and a set of `candidate_labels`.
@@ -1325,53 +1270,35 @@ Example:
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-This object detection pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
+This object detection pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
 `"zero-shot-object-detection"`.
 
 See the list of available models on
 [huggingface.co/models](https://huggingface.co/models?filter=zero-shot-object-detection).
 
-- **image** (`str`, `PIL.Image` or `list[dict[str, Any]]`) --
-  The pipeline handles three types of images:
-
-  - A string containing an http url pointing to an image
-  - A string containing a local path to an image
-  - An image loaded in PIL directly
-
-  You can use this parameter to send directly a list of images, or a dataset or a generator like so:
+#### __call__[[transformers.ZeroShotObjectDetectionPipeline.__call__]]
 
 ```python
->>> from transformers import pipeline
-
->>> detector = pipeline(model="google/owlvit-base-patch32", task="zero-shot-object-detection")
->>> detector(
-...     [
-...         {
-...             "image": "http://images.cocodataset.org/val2017/000000039769.jpg",
-...             "candidate_labels": ["cat", "couch"],
-...         },
-...         {
-...             "image": "http://images.cocodataset.org/val2017/000000039769.jpg",
-...             "candidate_labels": ["cat", "couch"],
-...         },
-...     ]
-... )
-[[{'score': 0.287, 'label': 'cat', 'box': {'xmin': 324, 'ymin': 20, 'xmax': 640, 'ymax': 373}}, {'score': 0.25, 'label': 'cat', 'box': {'xmin': 1, 'ymin': 55, 'xmax': 315, 'ymax': 472}}, {'score': 0.121, 'label': 'couch', 'box': {'xmin': 4, 'ymin': 0, 'xmax': 642, 'ymax': 476}}], [{'score': 0.287, 'label': 'cat', 'box': {'xmin': 324, 'ymin': 20, 'xmax': 640, 'ymax': 373}}, {'score': 0.254, 'label': 'cat', 'box': {'xmin': 1, 'ymin': 55, 'xmax': 315, 'ymax': 472}}, {'score': 0.121, 'label': 'couch', 'box': {'xmin': 4, 'ymin': 0, 'xmax': 642, 'ymax': 476}}]]
+__call__(image: typing.Union[str, ForwardRef('Image.Image'), list[dict[str, typing.Any]]], candidate_labels: str | list[str] | None = None, **kwargs: typing.Any)
 ```
 
-- **candidate_labels** (`str` or `list[str]` or `list[list[str]]`) --
-  What the model should recognize in the image.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/zero_shot_object_detection.py#L75)
 
-- **threshold** (`float`, *optional*, defaults to 0.1) --
-  The probability necessary to make a prediction.
+**Parameters:**
 
-- **top_k** (`int`, *optional*, defaults to None) --
-  The number of top predictions that will be returned by the pipeline. If the provided number is `None`
-  or higher than the number of predictions available, it will default to the number of predictions.
+image (`str`, `PIL.Image` or `list[dict[str, Any]]`) : The pipeline handles three types of images:  - A string containing an http url pointing to an image - A string containing a local path to an image - An image loaded in PIL directly  You can use this parameter to send directly a list of images, or a dataset or a generator like so:  ```python >>> from transformers import pipeline  >>> detector = pipeline(model="google/owlvit-base-patch32", task="zero-shot-object-detection") >>> detector( ...     [ ...         { ...             "image": "http://images.cocodataset.org/val2017/000000039769.jpg", ...             "candidate_labels": ["cat", "couch"], ...         }, ...         { ...             "image": "http://images.cocodataset.org/val2017/000000039769.jpg", ...             "candidate_labels": ["cat", "couch"], ...         }, ...     ] ... ) [[{'score': 0.287, 'label': 'cat', 'box': {'xmin': 324, 'ymin': 20, 'xmax': 640, 'ymax': 373}}, {'score': 0.25, 'label': 'cat', 'box': {'xmin': 1, 'ymin': 55, 'xmax': 315, 'ymax': 472}}, {'score': 0.121, 'label': 'couch', 'box': {'xmin': 4, 'ymin': 0, 'xmax': 642, 'ymax': 476}}], [{'score': 0.287, 'label': 'cat', 'box': {'xmin': 324, 'ymin': 20, 'xmax': 640, 'ymax': 373}}, {'score': 0.254, 'label': 'cat', 'box': {'xmin': 1, 'ymin': 55, 'xmax': 315, 'ymax': 472}}, {'score': 0.121, 'label': 'couch', 'box': {'xmin': 4, 'ymin': 0, 'xmax': 642, 'ymax': 476}}]] ```  
 
-- **timeout** (`float`, *optional*, defaults to None) --
-  The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and
-  the call may block forever.A list of lists containing prediction results, one list per input image. Each list contains dictionaries
+candidate_labels (`str` or `list[str]` or `list[list[str]]`) : What the model should recognize in the image. 
+
+threshold (`float`, *optional*, defaults to 0.1) : The probability necessary to make a prediction. 
+
+top_k (`int`, *optional*, defaults to None) : The number of top predictions that will be returned by the pipeline. If the provided number is `None` or higher than the number of predictions available, it will default to the number of predictions. 
+
+timeout (`float`, *optional*, defaults to None) : The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and the call may block forever.
+
+**Returns:**
+
+A list of lists containing prediction results, one list per input image. Each list contains dictionaries
 with the following keys:
 
 - **label** (`str`) -- Text query corresponding to the found object.
@@ -1387,49 +1314,59 @@ Pipelines available for natural language processing tasks include the following.
 
 ### FillMaskPipeline[[transformers.FillMaskPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **tokenizer** ([PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend)) --
-  The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from
-  [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
-- **top_k** (`int`, *optional*, defaults to 5) --
-  The number of predictions to return.
-- **targets** (`str` or `list[str]`, *optional*) --
-  When passed, the model will limit the scores to the passed targets instead of looking up in the whole
-  vocab. If the provided targets are not in the model vocab, they will be tokenized and the first resulting
-  token will be used (with a warning, and that might be slower).
-- **tokenizer_kwargs** (`dict`, *optional*) --
-  Additional dictionary of keyword arguments passed along to the tokenizer.
+#### transformers.FillMaskPipeline[[transformers.FillMaskPipeline]]
 
-- **inputs** (`str` or `list[str]`) --
-  One or several texts (or one list of prompts) with masked tokens.
-- **targets** (`str` or `list[str]`, *optional*) --
-  When passed, the model will limit the scores to the passed targets instead of looking up in the whole
-  vocab. If the provided targets are not in the model vocab, they will be tokenized and the first
-  resulting token will be used (with a warning, and that might be slower).
-- **top_k** (`int`, *optional*) --
-  When passed, overrides the number of predictions to return.A list or a list of list of `dict`Each result comes as list of dictionaries with the following keys:
+```python
+transformers.FillMaskPipeline(model: PreTrainedModel, tokenizer: PreTrainedTokenizer | None = None, feature_extractor: PreTrainedFeatureExtractor | None = None, image_processor: BaseImageProcessor | None = None, video_processor: BaseVideoProcessor | None = None, processor: ProcessorMixin | None = None, task: str = '', device: int | torch.device | None = None, binary_output: bool = False, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/fill_mask.py#L28)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)) : The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
+
+top_k (`int`, *optional*, defaults to 5) : The number of predictions to return.
+
+targets (`str` or `list[str]`, *optional*) : When passed, the model will limit the scores to the passed targets instead of looking up in the whole vocab. If the provided targets are not in the model vocab, they will be tokenized and the first resulting token will be used (with a warning, and that might be slower).
+
+tokenizer_kwargs (`dict`, *optional*) : Additional dictionary of keyword arguments passed along to the tokenizer.
+
+#### __call__[[transformers.FillMaskPipeline.__call__]]
+
+```python
+__call__(inputs: str | list[str], **kwargs: typing.Any)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/fill_mask.py#L234)
+
+**Parameters:**
+
+inputs (`str` or `list[str]`) : One or several texts (or one list of prompts) with masked tokens.
+
+targets (`str` or `list[str]`, *optional*) : When passed, the model will limit the scores to the passed targets instead of looking up in the whole vocab. If the provided targets are not in the model vocab, they will be tokenized and the first resulting token will be used (with a warning, and that might be slower).
+
+top_k (`int`, *optional*) : When passed, overrides the number of predictions to return.
+
+**Returns:** A list or a list of list of `dict`
+
+Each result comes as list of dictionaries with the following keys:
 
 - **sequence** (`str`) -- The corresponding input with the mask token prediction.
 - **score** (`float`) -- The corresponding probability.
@@ -1440,33 +1377,33 @@ Fill the masked token in the text(s) given as inputs.
 
 ### TableQuestionAnsweringPipeline[[transformers.TableQuestionAnsweringPipeline]]
 
-"}, {"name": "**kwargs", "val": ""}]}>
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **tokenizer** ([PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend)) --
-  The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from
-  [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.TableQuestionAnsweringPipeline[[transformers.TableQuestionAnsweringPipeline]]
+
+```python
+transformers.TableQuestionAnsweringPipeline(args_parser = <transformers.pipelines.table_question_answering.TableQuestionAnsweringArgumentHandler object at 0x7fed0b773400>, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/table_question_answering.py#L78)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)) : The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 Table Question Answering pipeline using a `ModelForTableQuestionAnswering`. This pipeline is only available in
 PyTorch.
@@ -1493,40 +1430,36 @@ Example:
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-This tabular question answering pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task
+This tabular question answering pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task
 identifier: `"table-question-answering"`.
 
 The models that this pipeline can use are models that have been fine-tuned on a tabular question answering task.
 See the up-to-date list of available models on
 [huggingface.co/models](https://huggingface.co/models?filter=table-question-answering).
 
-- **table** (`pd.DataFrame` or `Dict`) --
-  Pandas DataFrame or dictionary that will be converted to a DataFrame containing all the table values.
-  See above for an example of dictionary.
-- **query** (`str` or `list[str]`) --
-  Query or list of queries that will be sent to the model alongside the table.
-- **sequential** (`bool`, *optional*, defaults to `False`) --
-  Whether to do inference sequentially or as a batch. Batching is faster, but models like SQA require the
-  inference to be done sequentially to extract relations within sequences, given their conversational
-  nature.
-- **padding** (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) --
-  Activates and controls padding. Accepts the following values:
+#### __call__[[transformers.TableQuestionAnsweringPipeline.__call__]]
 
-  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single
-    sequence if provided).
-  - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum
-    acceptable input length for the model if that argument is not provided.
-  - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different
-    lengths).
+```python
+__call__(*args, **kwargs)
+```
 
-- **truncation** (`bool`, `str` or `TapasTruncationStrategy`, *optional*, defaults to `False`) --
-  Activates and controls truncation. Accepts the following values:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/table_question_answering.py#L208)
 
-  - `True` or `'drop_rows_to_fit'`: Truncate to a maximum length specified with the argument `max_length`
-    or to the maximum acceptable input length for the model if that argument is not provided. This will
-    truncate row by row, removing rows from the table.
-  - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths
-    greater than the model maximum admissible input size).A dictionary or a list of dictionaries containing resultsEach result is a dictionary with the following
+**Parameters:**
+
+table (`pd.DataFrame` or `Dict`) : Pandas DataFrame or dictionary that will be converted to a DataFrame containing all the table values. See above for an example of dictionary.
+
+query (`str` or `list[str]`) : Query or list of queries that will be sent to the model alongside the table.
+
+sequential (`bool`, *optional*, defaults to `False`) : Whether to do inference sequentially or as a batch. Batching is faster, but models like SQA require the inference to be done sequentially to extract relations within sequences, given their conversational nature.
+
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths). 
+
+truncation (`bool`, `str` or `TapasTruncationStrategy`, *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'drop_rows_to_fit'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate row by row, removing rows from the table. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
+
+**Returns:** `A dictionary or a list of dictionaries containing results`
+
+Each result is a dictionary with the following
 keys:
 
 - **answer** (`str`) -- The answer of the query given the table. If there is an aggregator, the answer will
@@ -1570,41 +1503,35 @@ table = pd.DataFrame.from_dict(data)
 
 ### TextClassificationPipeline[[transformers.TextClassificationPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **tokenizer** ([PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend)) --
-  The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from
-  [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
-- **function_to_apply** (`str`, *optional*, defaults to `"default"`) --
-  The function to apply to the model outputs in order to retrieve the scores. Accepts four different values:
+#### transformers.TextClassificationPipeline[[transformers.TextClassificationPipeline]]
 
-  - `"default"`: if the model has a single label, will apply the sigmoid function on the output. If the model
-    has several labels, will apply the softmax function on the output. In case of regression tasks, will not
-    apply any function on the output.
-  - `"sigmoid"`: Applies the sigmoid function on the output.
-  - `"softmax"`: Applies the softmax function on the output.
-  - `"none"`: Does not apply any function on the output.
+```python
+transformers.TextClassificationPipeline(**kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/text_classification.py#L43)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)) : The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
+
+function_to_apply (`str`, *optional*, defaults to `"default"`) : The function to apply to the model outputs in order to retrieve the scores. Accepts four different values:  - `"default"`: if the model has a single label, will apply the sigmoid function on the output. If the model has several labels, will apply the softmax function on the output. In case of regression tasks, will not apply any function on the output. - `"sigmoid"`: Applies the sigmoid function on the output. - `"softmax"`: Applies the softmax function on the output. - `"none"`: Does not apply any function on the output.
 
 Text classification pipeline using any `ModelForSequenceClassification`. See the [sequence classification
 examples](../task_summary#sequence-classification) for more information.
@@ -1624,7 +1551,7 @@ Example:
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-This text classification pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
+This text classification pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
 `"sentiment-analysis"` (for classifying sequences according to positive or negative sentiments).
 
 If multiple classification labels are available (`model.config.num_labels >= 2`), the pipeline will run a softmax
@@ -1635,27 +1562,25 @@ The models that this pipeline can use are models that have been fine-tuned on a 
 the up-to-date list of available models on
 [huggingface.co/models](https://huggingface.co/models?filter=text-classification).
 
-- **inputs** (`str` or `list[str]` or `dict[str]`, or `list[dict[str]]`) --
-  One or several texts to classify. In order to use text pairs for your classification, you can send a
-  dictionary containing `{"text", "text_pair"}` keys, or a list of those.
-- **top_k** (`int`, *optional*, defaults to `1`) --
-  How many results to return.
-- **function_to_apply** (`str`, *optional*, defaults to `"default"`) --
-  The function to apply to the model outputs in order to retrieve the scores. Accepts four different
-  values:
+#### __call__[[transformers.TextClassificationPipeline.__call__]]
 
-  If this argument is not specified, then it will apply the following functions according to the number
-  of labels:
+```python
+__call__(inputs: str | list[str] | dict[str, str] | list[dict[str, str]], **kwargs: typing.Any)
+```
 
-  - If problem type is regression, will not apply any function on the output.
-  - If the model has a single label, will apply the sigmoid function on the output.
-  - If the model has several labels, will apply the softmax function on the output.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/text_classification.py#L105)
 
-  Possible values are:
+**Parameters:**
 
-  - `"sigmoid"`: Applies the sigmoid function on the output.
-  - `"softmax"`: Applies the softmax function on the output.
-  - `"none"`: Does not apply any function on the output.A list of `dict`Each result comes as list of dictionaries with the following keys:
+inputs (`str` or `list[str]` or `dict[str]`, or `list[dict[str]]`) : One or several texts to classify. In order to use text pairs for your classification, you can send a dictionary containing `{"text", "text_pair"}` keys, or a list of those.
+
+top_k (`int`, *optional*, defaults to `1`) : How many results to return.
+
+function_to_apply (`str`, *optional*, defaults to `"default"`) : The function to apply to the model outputs in order to retrieve the scores. Accepts four different values:  If this argument is not specified, then it will apply the following functions according to the number of labels:  - If problem type is regression, will not apply any function on the output. - If the model has a single label, will apply the sigmoid function on the output. - If the model has several labels, will apply the softmax function on the output.  Possible values are:  - `"sigmoid"`: Applies the sigmoid function on the output. - `"softmax"`: Applies the softmax function on the output. - `"none"`: Does not apply any function on the output.
+
+**Returns:** A list of `dict`
+
+Each result comes as list of dictionaries with the following keys:
 
 - **label** (`str`) -- The label predicted.
 - **score** (`float`) -- The corresponding probability.
@@ -1666,32 +1591,33 @@ Classify the text(s) given as inputs.
 
 ### TextGenerationPipeline[[transformers.TextGenerationPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **tokenizer** ([PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend)) --
-  The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from
-  [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.TextGenerationPipeline[[transformers.TextGenerationPipeline]]
+
+```python
+transformers.TextGenerationPipeline(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/text_generation.py#L23)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)) : The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 Language generation pipeline using any `ModelWithLMHead` or `ModelForCausalLM`. This pipeline predicts the words
 that will follow a specified text prompt. When the underlying model is a conversational model, it can also accept
@@ -1731,7 +1657,7 @@ generation parameters to this pipeline to control stopping criteria, decoding st
 text generation parameters in [Text generation strategies](../generation_strategies) and [Text
 generation](text_generation).
 
-This language generation pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
+This language generation pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
 `"text-generation"`.
 
 The models that this pipeline can use are models that have been trained with an autoregressive language modeling
@@ -1739,42 +1665,39 @@ objective. See the list of available [text completion models](https://huggingfac
 and the list of [conversational models](https://huggingface.co/models?other=conversational)
 on [huggingface.co/models].
 
-- **text_inputs** (`str`, `list[str]`, `ChatType`, or `list[ChatType]`) --
-  One or several prompts (or one list of prompts) to complete. If strings or a list of string are
-  passed, this pipeline will continue each prompt. Alternatively, a "chat", in the form of a list
-  of dicts with "role" and "content" keys, can be passed, or a list of such chats. When chats are passed,
-  the model's chat template will be used to format them before passing them to the model.
-- **return_tensors** (`bool`, *optional*, defaults to `False`) --
-  Returns the tensors of predictions (as token indices) in the outputs. If set to
-  `True`, the decoded text is not returned.
-- **return_text** (`bool`, *optional*) --
-  Returns the decoded texts in the outputs.
-- **return_full_text** (`bool`, *optional*, defaults to `True`) --
-  If set to `False` only added text is returned, otherwise the full text is returned. Cannot be
-  specified at the same time as `return_text`.
-- **clean_up_tokenization_spaces** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to clean up the potential extra spaces in the text output.
-- **continue_final_message(** `bool`, *optional*) -- This indicates that you want the model to continue the
-  last message in the input chat rather than starting a new one, allowing you to "prefill" its response.
-  By default this is `True` when the final message in the input chat has the `assistant` role and
-  `False` otherwise, but you can manually override that behaviour by setting this flag.
-- **prefix** (`str`, *optional*) --
-  Prefix added to prompt.
-- **handle_long_generation** (`str`, *optional*) --
-  By default, this pipelines does not handle long generation (ones that exceed in one form or the other
-  the model maximum length). There is no perfect way to address this (more info
-  :https://github.com/huggingface/transformers/issues/14033#issuecomment-948385227). This provides common
-  strategies to work around that problem depending on your use case.
+#### __call__[[transformers.TextGenerationPipeline.__call__]]
 
-  - `None` : default strategy where nothing in particular happens
-  - `"hole"`: Truncates left of input, and leaves a gap wide enough to let generation happen (might
-    truncate a lot of the prompt and not suitable when generation exceed the model capacity)
-- **tokenizer_encode_kwargs** (`dict`, *optional*) --
-  Additional keyword arguments to pass along to the encoding step of the tokenizer. If the text input is
-  a chat, it is passed to `apply_chat_template`. Otherwise, it is passed to `__call__`.
-- **generate_kwargs** (`dict`, *optional*) --
-  Additional keyword arguments to pass along to the generate method of the model (see the generate method
-  [here](./text_generation)).A list or a list of lists of `dict`Returns one of the following dictionaries (cannot return a combination
+```python
+__call__(text_inputs, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/text_generation.py#L249)
+
+**Parameters:**
+
+text_inputs (`str`, `list[str]`, `ChatType`, or `list[ChatType]`) : One or several prompts (or one list of prompts) to complete. If strings or a list of string are passed, this pipeline will continue each prompt. Alternatively, a "chat", in the form of a list of dicts with "role" and "content" keys, can be passed, or a list of such chats. When chats are passed, the model's chat template will be used to format them before passing them to the model.
+
+return_tensors (`bool`, *optional*, defaults to `False`) : Returns the tensors of predictions (as token indices) in the outputs. If set to `True`, the decoded text is not returned.
+
+return_text (`bool`, *optional*) : Returns the decoded texts in the outputs.
+
+return_full_text (`bool`, *optional*, defaults to `True`) : If set to `False` only added text is returned, otherwise the full text is returned. Cannot be specified at the same time as `return_text`.
+
+clean_up_tokenization_spaces (`bool`, *optional*, defaults to `True`) : Whether or not to clean up the potential extra spaces in the text output.
+
+continue_final_message( `bool`, *optional*) : This indicates that you want the model to continue the last message in the input chat rather than starting a new one, allowing you to "prefill" its response. By default this is `True` when the final message in the input chat has the `assistant` role and `False` otherwise, but you can manually override that behaviour by setting this flag.
+
+prefix (`str`, *optional*) : Prefix added to prompt.
+
+handle_long_generation (`str`, *optional*) : By default, this pipelines does not handle long generation (ones that exceed in one form or the other the model maximum length). There is no perfect way to address this (more info :https://github.com/huggingface/transformers/issues/14033#issuecomment-948385227). This provides common strategies to work around that problem depending on your use case.  - `None` : default strategy where nothing in particular happens - `"hole"`: Truncates left of input, and leaves a gap wide enough to let generation happen (might truncate a lot of the prompt and not suitable when generation exceed the model capacity)
+
+tokenizer_encode_kwargs (`dict`, *optional*) : Additional keyword arguments to pass along to the encoding step of the tokenizer. If the text input is a chat, it is passed to `apply_chat_template`. Otherwise, it is passed to `__call__`.
+
+generate_kwargs (`dict`, *optional*) : Additional keyword arguments to pass along to the generate method of the model (see the generate method [here](./text_generation)).
+
+**Returns:** A list or a list of lists of `dict`
+
+Returns one of the following dictionaries (cannot return a combination
 of both `generated_text` and `generated_token_ids`):
 
 - **generated_text** (`str`, present when `return_text=True`) -- The generated text.
@@ -1785,60 +1708,39 @@ Complete the prompt(s) given as inputs.
 
 ### TokenClassificationPipeline[[transformers.TokenClassificationPipeline]]
 
-"}, {"name": "**kwargs", "val": ""}]}>
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **tokenizer** ([PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend)) --
-  The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from
-  [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
-- **ignore_labels** (`list[str]`, defaults to `["O"]`) --
-  A list of labels to ignore.
-- **stride** (`int`, *optional*) --
-  If stride is provided, the pipeline is applied on all the text. The text is split into chunks of size
-  model_max_length. Works only with fast tokenizers and `aggregation_strategy` different from `NONE`. The
-  value of this argument defines the number of overlapping tokens between chunks. In other words, the model
-  will shift forward by `tokenizer.model_max_length - stride` tokens each step.
-- **aggregation_strategy** (`str`, *optional*, defaults to `"none"`) --
-  The strategy to fuse (or not) tokens based on the model prediction.
+#### transformers.TokenClassificationPipeline[[transformers.TokenClassificationPipeline]]
 
-  - "none" : Will simply not do any aggregation and simply return raw results from the model
-  - "simple" : Will attempt to group entities following the default schema. (A, B-TAG), (B, I-TAG), (C,
-    I-TAG), (D, B-TAG2) (E, B-TAG2) will end up being [{"word": ABC, "entity": "TAG"}, {"word": "D",
-    "entity": "TAG2"}, {"word": "E", "entity": "TAG2"}] Notice that two consecutive B tags will end up as
-    different entities. On word based languages, we might end up splitting words undesirably : Imagine
-    Microsoft being tagged as [{"word": "Micro", "entity": "ENTERPRISE"}, {"word": "soft", "entity":
-    "NAME"}]. Look for FIRST, MAX, AVERAGE for ways to mitigate that and disambiguate words (on languages
-    that support that meaning, which is basically tokens separated by a space). These mitigations will
-    only work on real words, "New york" might still be tagged with two different entities.
-  - "first" : (works only on word based models) Will use the `SIMPLE` strategy except that words, cannot
-    end up with different tags. Words will simply use the tag of the first token of the word when there
-    is ambiguity.
-  - "average" : (works only on word based models) Will use the `SIMPLE` strategy except that words,
-    cannot end up with different tags. scores will be averaged first across tokens, and then the maximum
-    label is applied.
-  - "max" : (works only on word based models) Will use the `SIMPLE` strategy except that words, cannot
-    end up with different tags. Word entity will simply be the token with the maximum score.
+```python
+transformers.TokenClassificationPipeline(args_parser = <transformers.pipelines.token_classification.TokenClassificationArgumentHandler object at 0x7fed0be58880>, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/token_classification.py#L92)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)) : The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
+
+ignore_labels (`list[str]`, defaults to `["O"]`) : A list of labels to ignore.
+
+stride (`int`, *optional*) : If stride is provided, the pipeline is applied on all the text. The text is split into chunks of size model_max_length. Works only with fast tokenizers and `aggregation_strategy` different from `NONE`. The value of this argument defines the number of overlapping tokens between chunks. In other words, the model will shift forward by `tokenizer.model_max_length - stride` tokens each step.
+
+aggregation_strategy (`str`, *optional*, defaults to `"none"`) : The strategy to fuse (or not) tokens based on the model prediction.  - "none" : Will simply not do any aggregation and simply return raw results from the model - "simple" : Will attempt to group entities following the default schema. (A, B-TAG), (B, I-TAG), (C, I-TAG), (D, B-TAG2) (E, B-TAG2) will end up being [{"word": ABC, "entity": "TAG"}, {"word": "D", "entity": "TAG2"}, {"word": "E", "entity": "TAG2"}] Notice that two consecutive B tags will end up as different entities. On word based languages, we might end up splitting words undesirably : Imagine Microsoft being tagged as [{"word": "Micro", "entity": "ENTERPRISE"}, {"word": "soft", "entity": "NAME"}]. Look for FIRST, MAX, AVERAGE for ways to mitigate that and disambiguate words (on languages that support that meaning, which is basically tokens separated by a space). These mitigations will only work on real words, "New york" might still be tagged with two different entities. - "first" : (works only on word based models) Will use the `SIMPLE` strategy except that words, cannot end up with different tags. Words will simply use the tag of the first token of the word when there is ambiguity. - "average" : (works only on word based models) Will use the `SIMPLE` strategy except that words, cannot end up with different tags. scores will be averaged first across tokens, and then the maximum label is applied. - "max" : (works only on word based models) Will use the `SIMPLE` strategy except that words, cannot end up with different tags. Word entity will simply be the token with the maximum score.
 
 Named Entity Recognition pipeline using any `ModelForTokenClassification`. See the [named entity recognition
 examples](../task_summary#named-entity-recognition) for more information.
@@ -1867,16 +1769,28 @@ Example:
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-This token recognition pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
+This token recognition pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
 `"ner"` (for predicting the classes of tokens in a sequence: person, organisation, location or miscellaneous).
 
 The models that this pipeline can use are models that have been fine-tuned on a token classification task. See the
 up-to-date list of available models on
 [huggingface.co/models](https://huggingface.co/models?filter=token-classification).
 
-- **inputs** (`str` or `List[str]`) --
-  One or several texts (or one list of texts) for token classification. Can be pre-tokenized when
-  `is_split_into_words=True`.A list or a list of list of `dict`Each result comes as a list of dictionaries (one for each token in the
+#### __call__[[transformers.TokenClassificationPipeline.__call__]]
+
+```python
+__call__(inputs: str | list[str], **kwargs: typing.Any)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/token_classification.py#L209)
+
+**Parameters:**
+
+inputs (`str` or `List[str]`) : One or several texts (or one list of texts) for token classification. Can be pre-tokenized when `is_split_into_words=True`.
+
+**Returns:** A list or a list of list of `dict`
+
+Each result comes as a list of dictionaries (one for each token in the
 corresponding input, or each entity if this pipeline was instantiated with an aggregation_strategy) with
 the following keys:
 
@@ -1894,50 +1808,86 @@ the following keys:
 
 Classify each token of the text(s) given as inputs.
 
+#### aggregate_words[[transformers.TokenClassificationPipeline.aggregate_words]]
+
+```python
+aggregate_words(entities: list, aggregation_strategy: AggregationStrategy)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/token_classification.py#L521)
+
 Override tokens from a given word that disagree to force agreement on word boundaries.
 
 Example: micro|soft| com|pany| B-ENT I-NAME I-ENT I-ENT will be rewritten with first strategy as microsoft|
 company| B-ENT I-ENT
 
+#### gather_pre_entities[[transformers.TokenClassificationPipeline.gather_pre_entities]]
+
+```python
+gather_pre_entities(sentence: str, input_ids: ndarray, scores: ndarray, offset_mapping: list[tuple[int, int]] | None, special_tokens_mask: ndarray, aggregation_strategy: AggregationStrategy, word_ids: list[int | None] | None = None, word_to_chars_map: list[tuple[int, int]] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/token_classification.py#L397)
+
 Fuse various numpy arrays into dicts with all the information needed for aggregation
 
-- **entities** (`dict`) -- The entities predicted by the pipeline.
+#### group_entities[[transformers.TokenClassificationPipeline.group_entities]]
+
+```python
+group_entities(entities: list)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/token_classification.py#L584)
+
+**Parameters:**
+
+entities (`dict`) : The entities predicted by the pipeline.
 
 Find and group together the adjacent tokens with the same entity predicted.
 
-- **entities** (`dict`) -- The entities predicted by the pipeline.
+#### group_sub_entities[[transformers.TokenClassificationPipeline.group_sub_entities]]
+
+```python
+group_sub_entities(entities: list)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/token_classification.py#L549)
+
+**Parameters:**
+
+entities (`dict`) : The entities predicted by the pipeline.
 
 Group together the adjacent tokens with the same entity predicted.
 
 ### ZeroShotClassificationPipeline[[transformers.ZeroShotClassificationPipeline]]
 
-"}, {"name": "**kwargs", "val": ""}]}>
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **tokenizer** ([PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend)) --
-  The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from
-  [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.ZeroShotClassificationPipeline[[transformers.ZeroShotClassificationPipeline]]
+
+```python
+transformers.ZeroShotClassificationPipeline(args_parser = <transformers.pipelines.zero_shot_classification.ZeroShotClassificationArgumentHandler object at 0x7fed0b52ba00>, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/zero_shot_classification.py#L44)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)) : The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 NLI-based zero-shot classification pipeline using a `ModelForSequenceClassification` trained on NLI (natural
 language inference) tasks. Equivalent of `text-classification` pipelines, but these models don't require a
@@ -1970,35 +1920,39 @@ Example:
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-This NLI pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
+This NLI pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
 `"zero-shot-classification"`.
 
 The models that this pipeline can use are models that have been fine-tuned on an NLI task. See the up-to-date list
 of available models on [huggingface.co/models](https://huggingface.co/models?search=nli).
 
-- **sequences** (`str` or `list[str]`) --
-  The sequence(s) to classify, will be truncated if the model input is too large.
-- **candidate_labels** (`str` or `list[str]`) --
-  The set of possible class labels to classify each sequence into. Can be a single label, a string of
-  comma-separated labels, or a list of labels.
-- **hypothesis_template** (`str`, *optional*, defaults to `"This example is {}."`) --
-  The template used to turn each label into an NLI-style hypothesis. This template must include a {} or
-  similar syntax for the candidate label to be inserted into the template. For example, the default
-  template is `"This example is {}."` With the candidate label `"sports"`, this would be fed into the
-  model like `"<cls> sequence to classify <sep> This example is sports . <sep>"`. The default template
-  works well in many cases, but it may be worthwhile to experiment with different templates depending on
-  the task setting.
-- **multi_label** (`bool`, *optional*, defaults to `False`) --
-  Whether or not multiple candidate labels can be true. If `False`, the scores are normalized such that
-  the sum of the label likelihoods for each sequence is 1. If `True`, the labels are considered
-  independent and probabilities are normalized for each candidate by doing a softmax of the entailment
-  score vs. the contradiction score.A `dict` or a list of `dict`Each result comes as a dictionary with the following keys:
+#### __call__[[transformers.ZeroShotClassificationPipeline.__call__]]
+
+```python
+__call__(sequences: str | list[str], *args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/zero_shot_classification.py#L159)
+
+**Parameters:**
+
+sequences (`str` or `list[str]`) : The sequence(s) to classify, will be truncated if the model input is too large.
+
+candidate_labels (`str` or `list[str]`) : The set of possible class labels to classify each sequence into. Can be a single label, a string of comma-separated labels, or a list of labels.
+
+hypothesis_template (`str`, *optional*, defaults to `"This example is {}."`) : The template used to turn each label into an NLI-style hypothesis. This template must include a {} or similar syntax for the candidate label to be inserted into the template. For example, the default template is `"This example is {}."` With the candidate label `"sports"`, this would be fed into the model like `"<cls> sequence to classify <sep> This example is sports . <sep>"`. The default template works well in many cases, but it may be worthwhile to experiment with different templates depending on the task setting.
+
+multi_label (`bool`, *optional*, defaults to `False`) : Whether or not multiple candidate labels can be true. If `False`, the scores are normalized such that the sum of the label likelihoods for each sequence is 1. If `True`, the labels are considered independent and probabilities are normalized for each candidate by doing a softmax of the entailment score vs. the contradiction score.
+
+**Returns:** A `dict` or a list of `dict`
+
+Each result comes as a dictionary with the following keys:
 
 - **sequence** (`str`) -- The sequence for which this is the output.
 - **labels** (`list[str]`) -- The labels sorted by order of likelihood.
 - **scores** (`list[float]`) -- The probabilities for each of the labels.
 
-Classify the sequence(s) given as inputs. See the [ZeroShotClassificationPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.ZeroShotClassificationPipeline) documentation for more
+Classify the sequence(s) given as inputs. See the [ZeroShotClassificationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.ZeroShotClassificationPipeline) documentation for more
 information.
 
 ## Multimodal
@@ -2007,35 +1961,35 @@ Pipelines available for multimodal tasks include the following.
 
 ### DocumentQuestionAnsweringPipeline[[transformers.DocumentQuestionAnsweringPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **tokenizer** ([PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend)) --
-  The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from
-  [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend).
-- **image_processor** ([BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) --
-  The image processor that will be used by the pipeline to encode data for the model. This object inherits from
-  [BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.DocumentQuestionAnsweringPipeline[[transformers.DocumentQuestionAnsweringPipeline]]
+
+```python
+transformers.DocumentQuestionAnsweringPipeline(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/document_question_answering.py#L206)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)) : The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend).
+
+image_processor ([BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) : The image processor that will be used by the pipeline to encode data for the model. This object inherits from [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 Document Question Answering pipeline using any `AutoModelForDocumentQuestionAnswering`. The inputs/outputs are
 similar to the (extractive) question answering pipeline; however, the pipeline takes an image (and optional OCR'd
@@ -2060,51 +2014,50 @@ Example:
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-This document question answering pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task
+This document question answering pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task
 identifier: `"document-question-answering"`.
 
 The models that this pipeline can use are models that have been fine-tuned on a document question answering task.
 See the up-to-date list of available models on
 [huggingface.co/models](https://huggingface.co/models?filter=document-question-answering).
 
-- **image** (`str` or `PIL.Image`) --
-  The pipeline handles three types of images:
+#### __call__[[transformers.DocumentQuestionAnsweringPipeline.__call__]]
 
-  - A string containing a http link pointing to an image
-  - A string containing a local path to an image
-  - An image loaded in PIL directly
+```python
+__call__(image: typing.Union[ForwardRef('Image.Image'), str, list[dict[str, typing.Any]]], question: str | None = None, word_boxes: tuple[str, list[float]] | None = None, **kwargs: typing.Any)
+```
 
-  The pipeline accepts either a single image or a batch of images. If given a single image, it can be
-  broadcasted to multiple questions.
-- **question** (`str`) --
-  A question to ask of the document.
-- **word_boxes** (`list[str, tuple[float, float, float, float]]`, *optional*) --
-  A list of words and bounding boxes (normalized 0->1000). If you provide this optional input, then the
-  pipeline will use these words and boxes instead of running OCR on the image to derive them for models
-  that need them (e.g. LayoutLM). This allows you to reuse OCR'd results across many invocations of the
-  pipeline without having to re-run it each time.
-- **top_k** (`int`, *optional*, defaults to 1) --
-  The number of answers to return (will be chosen by order of likelihood). Note that we return less than
-  top_k answers if there are not enough options available within the context.
-- **doc_stride** (`int`, *optional*, defaults to 128) --
-  If the words in the document are too long to fit with the question for the model, it will be split in
-  several chunks with some overlap. This argument controls the size of that overlap.
-- **max_answer_len** (`int`, *optional*, defaults to 15) --
-  The maximum length of predicted answers (e.g., only answers with a shorter length are considered).
-- **max_seq_len** (`int`, *optional*, defaults to 384) --
-  The maximum length of the total sentence (context + question) in tokens of each chunk passed to the
-  model. The context will be split in several chunks (using `doc_stride` as overlap) if needed.
-- **max_question_len** (`int`, *optional*, defaults to 64) --
-  The maximum length of the question after tokenization. It will be truncated if needed.
-- **handle_impossible_answer** (`bool`, *optional*, defaults to `False`) --
-  Whether or not we accept impossible as an answer.
-- **lang** (`str`, *optional*) --
-  Language to use while running OCR. Defaults to english.
-- **tesseract_config** (`str`, *optional*) --
-  Additional flags to pass to tesseract while running OCR.
-- **timeout** (`float`, *optional*, defaults to None) --
-  The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and
-  the call may block forever.A `dict` or a list of `dict`Each result comes as a dictionary with the following keys:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/document_question_answering.py#L336)
+
+**Parameters:**
+
+image (`str` or `PIL.Image`) : The pipeline handles three types of images:  - A string containing a http link pointing to an image - A string containing a local path to an image - An image loaded in PIL directly  The pipeline accepts either a single image or a batch of images. If given a single image, it can be broadcasted to multiple questions.
+
+question (`str`) : A question to ask of the document.
+
+word_boxes (`list[str, tuple[float, float, float, float]]`, *optional*) : A list of words and bounding boxes (normalized 0->1000). If you provide this optional input, then the pipeline will use these words and boxes instead of running OCR on the image to derive them for models that need them (e.g. LayoutLM). This allows you to reuse OCR'd results across many invocations of the pipeline without having to re-run it each time.
+
+top_k (`int`, *optional*, defaults to 1) : The number of answers to return (will be chosen by order of likelihood). Note that we return less than top_k answers if there are not enough options available within the context.
+
+doc_stride (`int`, *optional*, defaults to 128) : If the words in the document are too long to fit with the question for the model, it will be split in several chunks with some overlap. This argument controls the size of that overlap.
+
+max_answer_len (`int`, *optional*, defaults to 15) : The maximum length of predicted answers (e.g., only answers with a shorter length are considered).
+
+max_seq_len (`int`, *optional*, defaults to 384) : The maximum length of the total sentence (context + question) in tokens of each chunk passed to the model. The context will be split in several chunks (using `doc_stride` as overlap) if needed.
+
+max_question_len (`int`, *optional*, defaults to 64) : The maximum length of the question after tokenization. It will be truncated if needed.
+
+handle_impossible_answer (`bool`, *optional*, defaults to `False`) : Whether or not we accept impossible as an answer.
+
+lang (`str`, *optional*) : Language to use while running OCR. Defaults to english.
+
+tesseract_config (`str`, *optional*) : Additional flags to pass to tesseract while running OCR.
+
+timeout (`float`, *optional*, defaults to None) : The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and the call may block forever.
+
+**Returns:** A `dict` or a list of `dict`
+
+Each result comes as a dictionary with the following keys:
 
 - **score** (`float`) -- The probability associated to the answer.
 - **start** (`int`) -- The start word index of the answer (in the OCR'd version of the input or provided
@@ -2128,33 +2081,35 @@ You can invoke the pipeline several ways:
 
 ### FeatureExtractionPipeline[[transformers.FeatureExtractionPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **tokenizer** ([PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend)) --
-  The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from
-  [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **tokenize_kwargs** (`dict`, *optional*) --
-  Additional dictionary of keyword arguments passed along to the tokenizer.
-- **return_tensors** (`bool`, *optional*) --
-  If `True`, returns a tensor according to the specified framework, otherwise returns a list.
+#### transformers.FeatureExtractionPipeline[[transformers.FeatureExtractionPipeline]]
+
+```python
+transformers.FeatureExtractionPipeline(model: PreTrainedModel, tokenizer: PreTrainedTokenizer | None = None, feature_extractor: PreTrainedFeatureExtractor | None = None, image_processor: BaseImageProcessor | None = None, video_processor: BaseVideoProcessor | None = None, processor: ProcessorMixin | None = None, task: str = '', device: int | torch.device | None = None, binary_output: bool = False, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/feature_extraction.py#L15)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)) : The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+tokenize_kwargs (`dict`, *optional*) : Additional dictionary of keyword arguments passed along to the tokenizer.
+
+return_tensors (`bool`, *optional*) : If `True`, returns a tensor according to the specified framework, otherwise returns a list.
 
 Feature extraction pipeline uses no model head. This pipeline extracts the hidden states from the base
 transformer, which can be used as features in downstream tasks.
@@ -2172,49 +2127,63 @@ torch.Size([1, 8, 768])
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-This feature extraction pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the task identifier:
+This feature extraction pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the task identifier:
 `"feature-extraction"`.
 
 All models may be used for this pipeline. See a list of all models, including community-contributed models on
 [huggingface.co/models](https://huggingface.co/models).
 
-- **args** (`str` or `list[str]`) -- One or several texts (or one list of texts) to get the features of.A nested list of `float`The features computed by the model.
+#### __call__[[transformers.FeatureExtractionPipeline.__call__]]
+
+```python
+__call__(*args: str | list[str], **kwargs: typing.Any)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/feature_extraction.py#L78)
+
+**Parameters:**
+
+args (`str` or `list[str]`) : One or several texts (or one list of texts) to get the features of.
+
+**Returns:** A nested list of `float`
+
+The features computed by the model.
 
 Extract the features of the input(s) text.
 
 ### ImageFeatureExtractionPipeline[[transformers.ImageFeatureExtractionPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **image_processor** ([BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) --
-  The image processor that will be used by the pipeline to encode data for the model. This object inherits from
-  [BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
-- **image_processor_kwargs** (`dict`, *optional*) --
-  Additional dictionary of keyword arguments passed along to the image processor e.g.
-  {"size": {"height": 100, "width": 100}}
-- **pool** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to return the pooled output. If `False`, the model will return the raw hidden states.
+#### transformers.ImageFeatureExtractionPipeline[[transformers.ImageFeatureExtractionPipeline]]
+
+```python
+transformers.ImageFeatureExtractionPipeline(model: PreTrainedModel, tokenizer: PreTrainedTokenizer | None = None, feature_extractor: PreTrainedFeatureExtractor | None = None, image_processor: BaseImageProcessor | None = None, video_processor: BaseVideoProcessor | None = None, processor: ProcessorMixin | None = None, task: str = '', device: int | torch.device | None = None, binary_output: bool = False, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/image_feature_extraction.py#L23)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+image_processor ([BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) : The image processor that will be used by the pipeline to encode data for the model. This object inherits from [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
+
+image_processor_kwargs (`dict`, *optional*) : Additional dictionary of keyword arguments passed along to the image processor e.g. {"size": {"height": 100, "width": 100}}
+
+pool (`bool`, *optional*, defaults to `False`) : Whether or not to return the pooled output. If `False`, the model will return the raw hidden states.
 
 Image feature extraction pipeline uses no model head. This pipeline extracts the hidden states from the base
 transformer, which can be used as features in downstream tasks.
@@ -2232,57 +2201,61 @@ torch.Size([1, 197, 768])
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-This image feature extraction pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the task identifier:
+This image feature extraction pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the task identifier:
 `"image-feature-extraction"`.
 
 All vision models may be used for this pipeline. See a list of all models, including community-contributed models on
 [huggingface.co/models](https://huggingface.co/models).
 
-- **images** (`str`, `list[str]`, `PIL.Image` or `list[PIL.Image]`) --
-  The pipeline handles three types of images:
+#### __call__[[transformers.ImageFeatureExtractionPipeline.__call__]]
 
-  - A string containing a http link pointing to an image
-  - A string containing a local path to an image
-  - An image loaded in PIL directly
+```python
+__call__(*args: typing.Union[str, ForwardRef('Image.Image'), list['Image.Image'], list[str]], **kwargs: typing.Any)
+```
 
-  The pipeline accepts either a single image or a batch of images, which must then be passed as a string.
-  Images in a batch must all be in the same format: all as http links, all as local paths, or all as PIL
-  images.
-- **timeout** (`float`, *optional*, defaults to None) --
-  The maximum time in seconds to wait for fetching images from the web. If None, no timeout is used and
-  the call may block forever.A nested list of `float`The features computed by the model.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/image_feature_extraction.py#L94)
+
+**Parameters:**
+
+images (`str`, `list[str]`, `PIL.Image` or `list[PIL.Image]`) : The pipeline handles three types of images:  - A string containing a http link pointing to an image - A string containing a local path to an image - An image loaded in PIL directly  The pipeline accepts either a single image or a batch of images, which must then be passed as a string. Images in a batch must all be in the same format: all as http links, all as local paths, or all as PIL images.
+
+timeout (`float`, *optional*, defaults to None) : The maximum time in seconds to wait for fetching images from the web. If None, no timeout is used and the call may block forever.
+
+**Returns:** A nested list of `float`
+
+The features computed by the model.
 
 Extract the features of the input(s).
 
 ### ImageTextToTextPipeline[[transformers.ImageTextToTextPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **processor** ([ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin)) --
-  The processor that will be used by the pipeline to encode data for the model. This object inherits from
-  [ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin). Processor is a composite object that might contain `tokenizer`, `feature_extractor`, and
-  `image_processor`.
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.ImageTextToTextPipeline[[transformers.ImageTextToTextPipeline]]
+
+```python
+transformers.ImageTextToTextPipeline(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/image_text_to_text.py#L53)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+processor ([ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin)) : The processor that will be used by the pipeline to encode data for the model. This object inherits from [ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin). Processor is a composite object that might contain `tokenizer`, `feature_extractor`, and `image_processor`.
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 Image-text-to-text pipeline using an `AutoModelForImageTextToText`. This pipeline generates text given an image and text.
 When the underlying model is a conversational model, it can also accept one or more chats,
@@ -2343,36 +2316,33 @@ This image-text to text pipeline can currently be loaded from pipeline() using t
 See the list of available models on
 [huggingface.co/models](https://huggingface.co/models?pipeline_tag=image-text-to-text).
 
-- **images** (`str`, `list[str]`, `PIL.Image, `list[PIL.Image]`, `list[dict[str, Union[str, PIL.Image]]]`) --
-  The pipeline handles three types of images:
+#### __call__[[transformers.ImageTextToTextPipeline.__call__]]
 
-  - A string containing a HTTP(s) link pointing to an image
-  - A string containing a local path to an image
-  - An image loaded in PIL directly
+```python
+__call__(images: typing.Union[str, list[str], list[list[str]], ForwardRef('Image.Image'), list['Image.Image'], list[list['Image.Image']], list[dict], NoneType] = None, text: str | list[str] | list[dict] | None = None, **kwargs)
+```
 
-  The pipeline accepts either a single image or a batch of images. Finally, this pipeline also supports
-  the chat format (see `text`) containing images and text in this argument.
-- **text** (str, list[str], `list[dict[str, Union[str, PIL.Image]]]`) --
-  The text to be used for generation. If a list of strings is passed, the length of the list should be
-  the same as the number of images. Text can also follow the chat format: a list of dictionaries where
-  each dictionary represents a message in a conversation. Each dictionary should have two keys: 'role'
-  and 'content'. 'role' should be one of 'user', 'system' or 'assistant'. 'content' should be a list of
-  dictionary containing the text of the message and the type of the message. The type of the message
-  can be either 'text' or 'image'. If the type is 'image', no text is needed.
-- **return_tensors** (`bool`, *optional*, defaults to `False`) --
-  Returns the tensors of predictions (as token indices) in the outputs. If set to
-  `True`, the decoded text is not returned.
-- **return_text** (`bool`, *optional*) --
-  Returns the decoded texts in the outputs.
-- **return_full_text** (`bool`, *optional*, defaults to `True`) --
-  If set to `False` only added text is returned, otherwise the full text is returned. Cannot be
-  specified at the same time as `return_text`.
-- **clean_up_tokenization_spaces** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to clean up the potential extra spaces in the text output.
-- **continue_final_message(** `bool`, *optional*) -- This indicates that you want the model to continue the
-  last message in the input chat rather than starting a new one, allowing you to "prefill" its response.
-  By default this is `True` when the final message in the input chat has the `assistant` role and
-  `False` otherwise, but you can manually override that behaviour by setting this flag.A list or a list of list of `dict`Each result comes as a dictionary with the following key (cannot
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/image_text_to_text.py#L215)
+
+**Parameters:**
+
+images (`str`, `list[str]`, `PIL.Image, `list[PIL.Image]`, `list[dict[str, Union[str, PIL.Image]]]`) : The pipeline handles three types of images:  - A string containing a HTTP(s) link pointing to an image - A string containing a local path to an image - An image loaded in PIL directly  The pipeline accepts either a single image or a batch of images. Finally, this pipeline also supports the chat format (see `text`) containing images and text in this argument.
+
+text (str, list[str], `list[dict[str, Union[str, PIL.Image]]]`) : The text to be used for generation. If a list of strings is passed, the length of the list should be the same as the number of images. Text can also follow the chat format: a list of dictionaries where each dictionary represents a message in a conversation. Each dictionary should have two keys: 'role' and 'content'. 'role' should be one of 'user', 'system' or 'assistant'. 'content' should be a list of dictionary containing the text of the message and the type of the message. The type of the message can be either 'text' or 'image'. If the type is 'image', no text is needed.
+
+return_tensors (`bool`, *optional*, defaults to `False`) : Returns the tensors of predictions (as token indices) in the outputs. If set to `True`, the decoded text is not returned.
+
+return_text (`bool`, *optional*) : Returns the decoded texts in the outputs.
+
+return_full_text (`bool`, *optional*, defaults to `True`) : If set to `False` only added text is returned, otherwise the full text is returned. Cannot be specified at the same time as `return_text`.
+
+clean_up_tokenization_spaces (`bool`, *optional*, defaults to `True`) : Whether or not to clean up the potential extra spaces in the text output.
+
+continue_final_message( `bool`, *optional*) : This indicates that you want the model to continue the last message in the input chat rather than starting a new one, allowing you to "prefill" its response. By default this is `True` when the final message in the input chat has the `assistant` role and `False` otherwise, but you can manually override that behaviour by setting this flag.
+
+**Returns:** A list or a list of list of `dict`
+
+Each result comes as a dictionary with the following key (cannot
 return a combination of both `generated_text` and `generated_token_ids`):
 
 - **generated_text** (`str`, present when `return_text=True`) -- The generated text.
@@ -2384,33 +2354,33 @@ Generate a text given text and the image(s) passed as inputs.
 
 ### AnyToAnyPipeline[[transformers.AnyToAnyPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **processor** ([ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin)) --
-  The processor that will be used by the pipeline to encode data for the model. This object inherits from
-  [ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin). Processor is a composite object that might contain `tokenizer`, `feature_extractor`, and
-  `image_processor`.
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.AnyToAnyPipeline[[transformers.AnyToAnyPipeline]]
+
+```python
+transformers.AnyToAnyPipeline(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/any_to_any.py#L67)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+processor ([ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin)) : The processor that will be used by the pipeline to encode data for the model. This object inherits from [ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin). Processor is a composite object that might contain `tokenizer`, `feature_extractor`, and `image_processor`.
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 Multimodal Generation pipeline using an `AutoModelForMultimodalLM`. This pipeline generates text given any
 combination of multimodal data and text.When the underlying model is a conversational model, it can also
@@ -2472,53 +2442,37 @@ This multimodal pipeline can currently be loaded from pipeline() using the follo
 See the list of available models on
 [huggingface.co/models](https://huggingface.co/models?pipeline_tag=any-to-any).
 
-- **text** (`str`, `list[str]`, `list[dict]`) --
-  The text to be used for generation. If a list of strings is passed, the length of the list should be
-  the same as the number of images. Text can also follow the chat format: a list of dictionaries where
-  each dictionary represents a message in a conversation. Each dictionary should have two keys: 'role'
-  and 'content'. 'role' should be one of 'user', 'system' or 'assistant'. 'content' should be a list of
-  dictionary containing the text of the message and the type of the message.
-- **images** (`str`, `list[str]`, `ImageInput`) --
-  The pipeline handles three types of images:
+#### __call__[[transformers.AnyToAnyPipeline.__call__]]
 
-  - A string containing a HTTP(s) link pointing to an image
-  - A string containing a local path to an image
-  - An image loaded in PIL directly
+```python
+__call__(text: str | list[str] | list[dict], images: typing.Union[str, list[str], list[list[str]], ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, videos: typing.Union[str, list[str], list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[str, list[str], numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs)
+```
 
-  The pipeline accepts either a single image or a batch of images. Finally, this pipeline also supports
-  the chat format (see `text`) containing images and text in this argument.
-- **videos** (`str`, `list[str]`, `VideoInput`) --
-  The pipeline handles three types of videos:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/any_to_any.py#L258)
 
-  - A string containing a HTTP(s) link pointing to a video
-  - A string containing a local path to a video
-  - A video loaded and decoded to array format
+**Parameters:**
 
-  The pipeline accepts either a single video or a batch of videos. Finally, this pipeline also supports
-  the chat format (see `text`) containing videos and text in this argument.
-- **audio** (`str`, `list[str]`, `AudioInput`) --
-  The pipeline handles three types of audios:
+text (`str`, `list[str]`, `list[dict]`) : The text to be used for generation. If a list of strings is passed, the length of the list should be the same as the number of images. Text can also follow the chat format: a list of dictionaries where each dictionary represents a message in a conversation. Each dictionary should have two keys: 'role' and 'content'. 'role' should be one of 'user', 'system' or 'assistant'. 'content' should be a list of dictionary containing the text of the message and the type of the message.
 
-  - A string containing a HTTP(s) link pointing to an audio
-  - A string containing a local path to an audio
-  - An audio loaded in PIL directly
+images (`str`, `list[str]`, `ImageInput`) : The pipeline handles three types of images:  - A string containing a HTTP(s) link pointing to an image - A string containing a local path to an image - An image loaded in PIL directly  The pipeline accepts either a single image or a batch of images. Finally, this pipeline also supports the chat format (see `text`) containing images and text in this argument.
 
-  The pipeline accepts either a single audios or a batch of audios. Finally, this pipeline also supports
-  the chat format (see `text`) containing audios and text in this argument.
-- **return_tensors** (`bool`, *optional*, defaults to `False`) --
-  Returns the tensors of predictions (as token indices) in the outputs. If set to
-  `True`, the decoded text is not returned.
-- **return_text** (`bool`, *optional*) --
-  Returns the decoded texts in the outputs.
-- **return_full_text** (`bool`, *optional*, defaults to `True`) --
-  If set to `False` only added text is returned, otherwise the full text is returned. Cannot be
-  specified at the same time as `return_text`.
-- **clean_up_tokenization_spaces** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to clean up the potential extra spaces in the text output.
-- **continue_final_message(** `bool`, *optional*) -- This indicates that you want the model to continue the
-  last message in the input chat rather than starting a new one, allowing you to "prefill" its response.
-  By default this is `True` when the final message in the input chat has the `assistant` role and
-  `False` otherwise, but you can manually override that behaviour by setting this flag.A list or a list of list of `dict`Each result comes as a dictionary with the following key (cannot
+videos (`str`, `list[str]`, `VideoInput`) : The pipeline handles three types of videos:  - A string containing a HTTP(s) link pointing to a video - A string containing a local path to a video - A video loaded and decoded to array format  The pipeline accepts either a single video or a batch of videos. Finally, this pipeline also supports the chat format (see `text`) containing videos and text in this argument.
+
+audio (`str`, `list[str]`, `AudioInput`) : The pipeline handles three types of audios:  - A string containing a HTTP(s) link pointing to an audio - A string containing a local path to an audio - An audio loaded in PIL directly  The pipeline accepts either a single audios or a batch of audios. Finally, this pipeline also supports the chat format (see `text`) containing audios and text in this argument.
+
+return_tensors (`bool`, *optional*, defaults to `False`) : Returns the tensors of predictions (as token indices) in the outputs. If set to `True`, the decoded text is not returned.
+
+return_text (`bool`, *optional*) : Returns the decoded texts in the outputs.
+
+return_full_text (`bool`, *optional*, defaults to `True`) : If set to `False` only added text is returned, otherwise the full text is returned. Cannot be specified at the same time as `return_text`.
+
+clean_up_tokenization_spaces (`bool`, *optional*, defaults to `True`) : Whether or not to clean up the potential extra spaces in the text output.
+
+continue_final_message( `bool`, *optional*) : This indicates that you want the model to continue the last message in the input chat rather than starting a new one, allowing you to "prefill" its response. By default this is `True` when the final message in the input chat has the `assistant` role and `False` otherwise, but you can manually override that behaviour by setting this flag.
+
+**Returns:** A list or a list of list of `dict`
+
+Each result comes as a dictionary with the following key (cannot
 return a combination of both `generated_text` and `generated_token_ids`):
 
 - **generated_text** (`str`, present when `return_text=True` and `generation_mode="text"`) -- The generated text.
@@ -2532,39 +2486,39 @@ Generate a text given text and optionally multimodal data passed as inputs.
 
 ### MaskGenerationPipeline[[transformers.MaskGenerationPipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **image_processor** ([BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) --
-  The image processor that will be used by the pipeline to encode data for the model. This object inherits from
-  [BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
-- **points_per_batch** (*optional*, int, default to 64) --
-  Sets the number of points run simultaneously by the model. Higher numbers may be faster but use more GPU
-  memory.
-- **output_bboxes_mask** (`bool`, *optional*, default to `False`) --
-  Whether or not to output the bounding box predictions.
-- **output_rle_masks** (`bool`, *optional*, default to `False`) --
-  Whether or not to output the masks in `RLE` format
+#### transformers.MaskGenerationPipeline[[transformers.MaskGenerationPipeline]]
+
+```python
+transformers.MaskGenerationPipeline(**kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/mask_generation.py#L36)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+image_processor ([BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) : The image processor that will be used by the pipeline to encode data for the model. This object inherits from [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
+
+points_per_batch (*optional*, int, default to 64) : Sets the number of points run simultaneously by the model. Higher numbers may be faster but use more GPU memory.
+
+output_bboxes_mask (`bool`, *optional*, default to `False`) : Whether or not to output the bounding box predictions.
+
+output_rle_masks (`bool`, *optional*, default to `False`) : Whether or not to output the masks in `RLE` format
 
 Automatic mask generation for images using `SamForMaskGeneration`. This pipeline predicts binary masks for an
 image, given an image. It is a `ChunkPipeline` because you can separate the points in a mini-batch in order to
@@ -2609,35 +2563,44 @@ Example:
 
 Learn more about the basics of using a pipeline in the [pipeline tutorial](../pipeline_tutorial)
 
-This segmentation pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
+This segmentation pipeline can currently be loaded from [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) using the following task identifier:
 `"mask-generation"`.
 
 See the list of available models on [huggingface.co/models](https://huggingface.co/models?filter=mask-generation).
 
-- **image** (`str`, `List[str]`, `PIL.Image` or `List[PIL.Image]`) --
-  Image or list of images.
-- **mask_threshold** (`float`, *optional*, defaults to 0.0) --
-  Threshold to use when turning the predicted masks into binary values.
-- **pred_iou_thresh** (`float`, *optional*, defaults to 0.88) --
-  A filtering threshold in `[0,1]` applied on the model's predicted mask quality.
-- **stability_score_thresh** (`float`, *optional*, defaults to 0.95) --
-  A filtering threshold in `[0,1]`, using the stability of the mask under changes to the cutoff used to
-  binarize the model's mask predictions.
-- **stability_score_offset** (`int`, *optional*, defaults to 1) --
-  The amount to shift the cutoff when calculated the stability score.
-- **crops_nms_thresh** (`float`, *optional*, defaults to 0.7) --
-  The box IoU cutoff used by non-maximal suppression to filter duplicate masks.
-- **crops_n_layers** (`int`, *optional*, defaults to 0) --
-  If `crops_n_layers>0`, mask prediction will be run again on crops of the image. Sets the number of
-  layers to run, where each layer has 2**i_layer number of image crops.
-- **crop_overlap_ratio** (`float`, *optional*, defaults to `512 / 1500`) --
-  Sets the degree to which crops overlap. In the first crop layer, crops will overlap by this fraction of
-  the image length. Later layers with more crops scale down this overlap.
-- **crop_n_points_downscale_factor** (`int`, *optional*, defaults to `1`) --
-  The number of points-per-side sampled in layer n is scaled down by crop_n_points_downscale_factor**n.
-- **timeout** (`float`, *optional*, defaults to None) --
-  The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and
-  the call may block forever.`Dict`A dictionary with the following keys:
+#### __call__[[transformers.MaskGenerationPipeline.__call__]]
+
+```python
+__call__(image: typing.Union[str, ForwardRef('Image.Image'), list[str], list['Image.Image']], *args: typing.Any, **kwargs: typing.Any)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/mask_generation.py#L143)
+
+**Parameters:**
+
+image (`str`, `List[str]`, `PIL.Image` or `List[PIL.Image]`) : Image or list of images.
+
+mask_threshold (`float`, *optional*, defaults to 0.0) : Threshold to use when turning the predicted masks into binary values.
+
+pred_iou_thresh (`float`, *optional*, defaults to 0.88) : A filtering threshold in `[0,1]` applied on the model's predicted mask quality.
+
+stability_score_thresh (`float`, *optional*, defaults to 0.95) : A filtering threshold in `[0,1]`, using the stability of the mask under changes to the cutoff used to binarize the model's mask predictions.
+
+stability_score_offset (`int`, *optional*, defaults to 1) : The amount to shift the cutoff when calculated the stability score.
+
+crops_nms_thresh (`float`, *optional*, defaults to 0.7) : The box IoU cutoff used by non-maximal suppression to filter duplicate masks.
+
+crops_n_layers (`int`, *optional*, defaults to 0) : If `crops_n_layers>0`, mask prediction will be run again on crops of the image. Sets the number of layers to run, where each layer has 2**i_layer number of image crops.
+
+crop_overlap_ratio (`float`, *optional*, defaults to `512 / 1500`) : Sets the degree to which crops overlap. In the first crop layer, crops will overlap by this fraction of the image length. Later layers with more crops scale down this overlap.
+
+crop_n_points_downscale_factor (`int`, *optional*, defaults to `1`) : The number of points-per-side sampled in layer n is scaled down by crop_n_points_downscale_factor**n.
+
+timeout (`float`, *optional*, defaults to None) : The maximum time in seconds to wait for fetching images from the web. If None, no timeout is set and the call may block forever.
+
+**Returns:** `Dict`
+
+A dictionary with the following keys:
 - **mask** (`PIL.Image`) -- A binary mask of the detected object as a PIL Image of shape `(width,
   height)` of the original image. Returns a mask filled with zeros if no object is found.
 - **score** (*optional* `float`) -- Optionally, when the model is capable of estimating a confidence of
@@ -2647,42 +2610,39 @@ Generates binary segmentation masks
 
 ## Parent class: `Pipeline`[[transformers.Pipeline]]
 
-- **model** ([PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel)) --
-  The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from
-  [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
-- **tokenizer** ([PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend)) --
-  The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from
-  [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend).
-- **feature_extractor** ([SequenceFeatureExtractor](/docs/transformers/v5.14.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor)) --
-  The feature extractor that will be used by the pipeline to encode data for the model. This object inherits from
-  [SequenceFeatureExtractor](/docs/transformers/v5.14.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor).
-- **image_processor** ([BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) --
-  The image processor that will be used by the pipeline to encode data for the model. This object inherits from
-  [BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
-- **processor** ([ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin)) --
-  The processor that will be used by the pipeline to encode data for the model. This object inherits from
-  [ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin). Processor is a composite object that might contain `tokenizer`, `feature_extractor`, and
-  `image_processor`.
-- **task** (`str`, defaults to `""`) --
-  A task-identifier for the pipeline.
-- **num_workers** (`int`, *optional*, defaults to 8) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of
-  workers to be used.
-- **batch_size** (`int`, *optional*, defaults to 1) --
-  When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of
-  the batch to use, for inference this is not always beneficial, please read [Batching with
-  pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
-- **args_parser** ([ArgumentHandler](/docs/transformers/v5.14.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) --
-  Reference to the object in charge of parsing supplied pipeline parameters.
-- **device** (`int`, *optional*, defaults to -1) --
-  Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on
-  the associated CUDA device id. You can pass native `torch.device` or a `str` too
-- **dtype** (`str` or `torch.dtype`, *optional*) --
-  Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model
-  (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
-- **binary_output** (`bool`, *optional*, defaults to `False`) --
-  Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as
-  the raw output data e.g. text.
+#### transformers.Pipeline[[transformers.Pipeline]]
+
+```python
+transformers.Pipeline(model: PreTrainedModel, tokenizer: PreTrainedTokenizer | None = None, feature_extractor: PreTrainedFeatureExtractor | None = None, image_processor: BaseImageProcessor | None = None, video_processor: BaseVideoProcessor | None = None, processor: ProcessorMixin | None = None, task: str = '', device: int | torch.device | None = None, binary_output: bool = False, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/base.py#L754)
+
+**Parameters:**
+
+model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model that will be used by the pipeline to make predictions. This needs to be a model inheriting from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)) : The tokenizer that will be used by the pipeline to encode data for the model. This object inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend).
+
+feature_extractor ([SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor)) : The feature extractor that will be used by the pipeline to encode data for the model. This object inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor).
+
+image_processor ([BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor)) : The image processor that will be used by the pipeline to encode data for the model. This object inherits from [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor).
+
+processor ([ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin)) : The processor that will be used by the pipeline to encode data for the model. This object inherits from [ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin). Processor is a composite object that might contain `tokenizer`, `feature_extractor`, and `image_processor`.
+
+task (`str`, defaults to `""`) : A task-identifier for the pipeline.
+
+num_workers (`int`, *optional*, defaults to 8) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the number of workers to be used.
+
+batch_size (`int`, *optional*, defaults to 1) : When the pipeline will use *DataLoader* (when passing a dataset, on GPU for a Pytorch model), the size of the batch to use, for inference this is not always beneficial, please read [Batching with pipelines](https://huggingface.co/transformers/main_classes/pipelines.html#pipeline-batching) .
+
+args_parser ([ArgumentHandler](/docs/transformers/v5.15.0/en/internal/pipelines_utils#transformers.pipelines.ArgumentHandler), *optional*) : Reference to the object in charge of parsing supplied pipeline parameters.
+
+device (`int`, *optional*, defaults to -1) : Device ordinal for CPU/GPU supports. Setting this to -1 will leverage CPU, a positive will run the model on the associated CUDA device id. You can pass native `torch.device` or a `str` too
+
+dtype (`str` or `torch.dtype`, *optional*) : Sent directly as `model_kwargs` (just a simpler shortcut) to use the available precision for this model (`torch.float16`, `torch.bfloat16`, ... or `"auto"`)
+
+binary_output (`bool`, *optional*, defaults to `False`) : Flag indicating if the output the pipeline should happen in a serialized format (i.e., pickle) or as the raw output data e.g. text.
 
 The Pipeline class is the class from which all pipelines inherit. Refer to this class for methods shared across
 different pipelines.
@@ -2694,14 +2654,33 @@ Input -> Tokenization -> Model Inference -> Post-Processing (task dependent) -> 
 
 Pipeline supports running on CPU or GPU through the device argument (see below).
 
-Some pipeline, like for instance [FeatureExtractionPipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.FeatureExtractionPipeline) (`'feature-extraction'`) output large tensor object
+Some pipeline, like for instance [FeatureExtractionPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.FeatureExtractionPipeline) (`'feature-extraction'`) output large tensor object
 as nested-lists. In order to avoid dumping such large structure as textual data we provide the `binary_output`
 constructor argument. If set to `True`, the output will be stored in the pickle format.
 
-- **supported_models** (`list[str]` or `dict`) --
-  The list of models supported by the pipeline, or a dictionary with model class values.
+#### check_model_type[[transformers.Pipeline.check_model_type]]
+
+```python
+check_model_type(supported_models: list[str] | dict)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/base.py#L1099)
+
+**Parameters:**
+
+supported_models (`list[str]` or `dict`) : The list of models supported by the pipeline, or a dictionary with model class values.
 
 Check if the model class is in supported by the pipeline.
+
+#### device_placement[[transformers.Pipeline.device_placement]]
+
+```python
+device_placement()
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/base.py#L1035)
+
+**Returns:**
 
 Context manager
 
@@ -2717,43 +2696,86 @@ with pipe.device_placement():
     output = pipe(...)
 ```
 
-- **inputs** (keyword arguments that should be `torch.Tensor`, the rest is ignored) --
-  The tensors to place on `self.device`.
-- **Recursive** on lists **only**. --`dict[str, torch.Tensor]`The same as `inputs` but on the proper device.
+#### ensure_tensor_on_device[[transformers.Pipeline.ensure_tensor_on_device]]
+
+```python
+ensure_tensor_on_device(**inputs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/base.py#L1067)
+
+**Parameters:**
+
+inputs (keyword arguments that should be `torch.Tensor`, the rest is ignored) : The tensors to place on `self.device`.
+
+Recursive on lists **only**. --
+
+**Returns:** `dict[str, torch.Tensor]`
+
+The same as `inputs` but on the proper device.
 
 Ensure PyTorch tensors are on the specified device.
+
+#### postprocess[[transformers.Pipeline.postprocess]]
+
+```python
+postprocess(model_outputs: ModelOutput, **postprocess_parameters: dict)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/base.py#L1166)
 
 Postprocess will receive the raw outputs of the `_forward` method, generally tensors, and reformat them into
 something more friendly. Generally it will output a list or a dict or results (containing just strings and
 numbers).
 
+#### predict[[transformers.Pipeline.predict]]
+
+```python
+predict(X)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/base.py#L1014)
+
 Scikit / Keras interface to transformers' pipelines. This method will forward to __call__().
+
+#### preprocess[[transformers.Pipeline.preprocess]]
+
+```python
+preprocess(input_: Any, **preprocess_parameters: dict)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/base.py#L1145)
 
 Preprocess will take the `input_` of a specific pipeline and return a dictionary of everything necessary for
 `_forward` to run properly. It should contain at least one tensor, but might have arbitrary other items.
 
-- **repo_id** (`str`) --
-  The name of the repository you want to push your pipe to. It should contain your organization name
-  when pushing to a given organization.
-- **commit_message** (`str`, *optional*) --
-  Message to commit while pushing. Will default to `"Upload pipe"`.
-- **commit_description** (`str`, *optional*) --
-  The description of the commit that will be created
-- **private** (`bool`, *optional*) --
-  Whether to make the repo private. If `None` (default), the repo will be public unless the organization's default is private. This value is ignored if the repo already exists.
-- **token** (`bool` or `str`, *optional*) --
-  The token to use as HTTP bearer authorization for remote files. If `True` (default), will use the token generated
-  when running `hf auth login` (stored in `~/.huggingface`).
-- **revision** (`str`, *optional*) --
-  Branch to push the uploaded files to.
-- **create_pr** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to create a PR with the uploaded files or directly commit.
-- **max_shard_size** (`int` or `str`, *optional*, defaults to `"50GB"`) --
-  Only applicable for models. The maximum size for a checkpoint before being sharded. Checkpoints shard
-  will then be each of size lower than this size. If expressed as a string, needs to be digits followed
-  by a unit (like `"5MB"`).
-- **tags** (`list[str]`, *optional*) --
-  List of tags to push on the Hub.
+#### push_to_hub[[transformers.Pipeline.push_to_hub]]
+
+```python
+push_to_hub(repo_id: str, commit_message: str | None = None, commit_description: str | None = None, private: bool | None = None, token: bool | str | None = None, revision: str | None = None, create_pr: bool = False, max_shard_size: int | str | None = '50GB', tags: list[str] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/hub.py#L743)
+
+**Parameters:**
+
+repo_id (`str`) : The name of the repository you want to push your pipe to. It should contain your organization name when pushing to a given organization.
+
+commit_message (`str`, *optional*) : Message to commit while pushing. Will default to `"Upload pipe"`.
+
+commit_description (`str`, *optional*) : The description of the commit that will be created
+
+private (`bool`, *optional*) : Whether to make the repo private. If `None` (default), the repo will be public unless the organization's default is private. This value is ignored if the repo already exists.
+
+token (`bool` or `str`, *optional*) : The token to use as HTTP bearer authorization for remote files. If `True` (default), will use the token generated when running `hf auth login` (stored in `~/.huggingface`).
+
+revision (`str`, *optional*) : Branch to push the uploaded files to.
+
+create_pr (`bool`, *optional*, defaults to `False`) : Whether or not to create a PR with the uploaded files or directly commit.
+
+max_shard_size (`int` or `str`, *optional*, defaults to `"50GB"`) : Only applicable for models. The maximum size for a checkpoint before being sharded. Checkpoints shard will then be each of size lower than this size. If expressed as a string, needs to be digits followed by a unit (like `"5MB"`).
+
+tags (`list[str]`, *optional*) : List of tags to push on the Hub.
 
 Upload the pipeline file to the 🤗 Model Hub.
 
@@ -2771,14 +2793,28 @@ pipe.push_to_hub("my-finetuned-bert")
 pipe.push_to_hub("huggingface/my-finetuned-bert")
 ```
 
-- **save_directory** (`str` or `os.PathLike`) --
-  A path to the directory where to saved. It will be created if it doesn't exist.
-- **kwargs** (`dict[str, Any]`, *optional*) --
-  Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
+#### save_pretrained[[transformers.Pipeline.save_pretrained]]
+
+```python
+save_pretrained(save_directory: str | os.PathLike, **kwargs: Any)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/base.py#L962)
+
+**Parameters:**
+
+save_directory (`str` or `os.PathLike`) : A path to the directory where to saved. It will be created if it doesn't exist.
+
+kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
 
 Save the pipeline's model and tokenizer.
 
-Scikit / Keras interface to transformers' pipelines. This method will forward to __call__().
+#### transform[[transformers.Pipeline.transform]]
 
-### PEFT[[transformers.integrations.PeftAdapterMixin]]
-https://huggingface.co/docs/transformers/v5.14.0/main_classes/peft.md
+```python
+transform(X)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pipelines/base.py#L1008)
+
+Scikit / Keras interface to transformers' pipelines. This method will forward to __call__().

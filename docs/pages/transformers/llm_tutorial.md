@@ -2,7 +2,7 @@
 
 Text generation is the most popular application for large language models (LLMs). A LLM is trained to generate the next word (token) given some initial text (prompt) along with its own generated outputs up to a predefined length or when it reaches an end-of-sequence (`EOS`) token.
 
-In Transformers, the [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) API handles text generation, and it is available for all models with generative capabilities. This guide will show you the basics of text generation with [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) and some common pitfalls to avoid.
+In Transformers, the [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) API handles text generation, and it is available for all models with generative capabilities. This guide will show you the basics of text generation with [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) and some common pitfalls to avoid.
 
 > [!TIP]
 > For the following commands, please make sure [`transformers serve` is running](https://huggingface.co/docs/transformers/main/en/serving).
@@ -21,7 +21,7 @@ Before you begin, it's helpful to install [bitsandbytes](https://hf.co/docs/bits
 
 Bitsandbytes supports multiple backends in addition to CUDA-based GPUs. Refer to the multi-backend installation [guide](https://huggingface.co/docs/bitsandbytes/main/en/installation#multi-backend) to learn more.
 
-Load a LLM with [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) and add the following two parameters to reduce the memory requirements.
+Load a LLM with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) and add the following two parameters to reduce the memory requirements.
 
 - `device_map="auto"` enables Accelerates' [Big Model Inference](./models#big-model-inference) feature for automatically initiating the model skeleton and loading and dispatching the model weights across all available devices, starting with the fastest device (GPU).
 - `quantization_config` is a configuration object that defines the quantization settings. This examples uses bitsandbytes as the quantization backend (see the [Quantization](./quantization/overview) section for more available backends) and it loads the model in [4-bits](./quantization/bitsandbytes).
@@ -43,7 +43,7 @@ tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-v0.1", padding_s
 model_inputs = tokenizer(["A list of colors: red, blue"], return_tensors="pt").to(model.device)
 ```
 
-Pass the inputs to [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to generate tokens, and [batch_decode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode) the generated tokens back to text.
+Pass the inputs to [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to generate tokens, and [batch_decode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode) the generated tokens back to text.
 
 ```py
 generated_ids = model.generate(**model_inputs)
@@ -53,7 +53,7 @@ tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
 
 ## Generation configuration
 
-All generation settings are contained in [GenerationConfig](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationConfig). In the example above, the generation settings are derived from the `generation_config.json` file of [mistralai/Mistral-7B-v0.1](https://huggingface.co/mistralai/Mistral-7B-v0.1). A default decoding strategy is used when no configuration is saved with a model.
+All generation settings are contained in [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig). In the example above, the generation settings are derived from the `generation_config.json` file of [mistralai/Mistral-7B-v0.1](https://huggingface.co/mistralai/Mistral-7B-v0.1). A default decoding strategy is used when no configuration is saved with a model.
 
 Inspect the configuration through the `generation_config` attribute. It only shows values that are different from the default configuration, in this case, the `bos_token_id` and `eos_token_id`.
 
@@ -68,24 +68,24 @@ GenerationConfig {
 }
 ```
 
-You can customize [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) by overriding the parameters and values in [GenerationConfig](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationConfig). See [this section below](#common-options) for commonly adjusted parameters.
+You can customize [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) by overriding the parameters and values in [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig). See [this section below](#common-options) for commonly adjusted parameters.
 
 ```py
 # enable beam search sampling strategy
 model.generate(**inputs, num_beams=4, do_sample=True)
 ```
 
-[generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) can also be extended with external libraries or custom code:
+[generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) can also be extended with external libraries or custom code:
 
-1. the `logits_processor` parameter accepts custom [LogitsProcessor](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.LogitsProcessor) instances for manipulating the next token probability distribution;
-2. the `stopping_criteria` parameters supports custom [StoppingCriteria](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.StoppingCriteria) to stop text generation;
+1. the `logits_processor` parameter accepts custom [LogitsProcessor](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.LogitsProcessor) instances for manipulating the next token probability distribution;
+2. the `stopping_criteria` parameters supports custom [StoppingCriteria](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.StoppingCriteria) to stop text generation;
 3. other custom generation methods can be loaded through the `custom_generate` flag ([docs](generation_strategies.md/#custom-decoding-methods)).
 
 Refer to the [Generation strategies](./generation_strategies) guide to learn more about search, sampling, and decoding strategies.
 
 ### Saving
 
-Create an instance of [GenerationConfig](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationConfig) and specify the decoding parameters you want.
+Create an instance of [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig) and specify the decoding parameters you want.
 
 ```py
 from transformers import AutoModelForCausalLM, GenerationConfig
@@ -96,7 +96,7 @@ generation_config = GenerationConfig(
 )
 ```
 
-Use [save_pretrained()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationConfig.save_pretrained) to save a specific generation configuration and set the `push_to_hub` parameter to `True` to upload it to the Hub.
+Use [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig.save_pretrained) to save a specific generation configuration and set the `push_to_hub` parameter to `True` to upload it to the Hub.
 
 ```py
 generation_config.save_pretrained("my_account/my_model", push_to_hub=True)
@@ -128,7 +128,7 @@ print(tokenizer.batch_decode(outputs, skip_special_tokens=True))
 
 ## Common Options
 
-[generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) is a powerful tool that can be heavily customized. This can be daunting for a new users. This section contains a list of popular generation options that you can define in most text generation tools in Transformers: [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate), [GenerationConfig](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationConfig), `pipelines`, the `chat` CLI, ...
+[generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) is a powerful tool that can be heavily customized. This can be daunting for a new users. This section contains a list of popular generation options that you can define in most text generation tools in Transformers: [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate), [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig), `pipelines`, the `chat` CLI, ...
 
 | Option name | Type | Simplified description |
 |---|---|---|
@@ -145,7 +145,7 @@ The section below covers some common issues you may encounter during text genera
 
 ### Output length
 
-[generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) returns up to 20 tokens by default unless otherwise specified in a models [GenerationConfig](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationConfig). It is highly recommended to manually set the number of generated tokens with the `max_new_tokens` parameter to control the output length. [Decoder-only](https://hf.co/learn/nlp-course/chapter1/6?fw=pt) models returns the initial prompt along with the generated tokens.
+[generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) returns up to 20 tokens by default unless otherwise specified in a models [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig). It is highly recommended to manually set the number of generated tokens with the `max_new_tokens` parameter to control the output length. [Decoder-only](https://hf.co/learn/nlp-course/chapter1/6?fw=pt) models returns the initial prompt along with the generated tokens.
 
 ```py
 model_inputs = tokenizer(["A sequence of numbers: 1, 2"], return_tensors="pt").to(model.device)
@@ -165,7 +165,7 @@ tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
 
 ### Decoding strategy
 
-The default decoding strategy in [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) is *greedy search*, which selects the next most likely token, unless otherwise specified in a models [GenerationConfig](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationConfig). While this decoding strategy works well for input-grounded tasks (transcription, translation), it is not optimal for more creative use cases (story writing, chat applications).
+The default decoding strategy in [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) is *greedy search*, which selects the next most likely token, unless otherwise specified in a models [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig). While this decoding strategy works well for input-grounded tasks (transcription, translation), it is not optimal for more creative use cases (story writing, chat applications).
 
 For example, enable a [multinomial sampling](./generation_strategies#multinomial-sampling) strategy to generate more diverse outputs. Refer to the [Generation strategy](./generation_strategies) guide for more decoding strategies.
 
@@ -257,5 +257,5 @@ Take a look below for some more specific and specialized text generation librari
 - [Text generation web UI](https://github.com/oobabooga/text-generation-webui): a Gradio web UI for text generation.
 - [logits-processor-zoo](https://github.com/NVIDIA/logits-processor-zoo): additional logits processors for controlling text generation.
 
-### Model structure rules
-https://huggingface.co/docs/transformers/v5.14.0/modeling_rules.md
+### Ulysses sequence parallelism
+https://huggingface.co/docs/transformers/v5.15.0/deepspeed_alst.md

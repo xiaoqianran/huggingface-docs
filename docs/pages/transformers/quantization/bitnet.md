@@ -13,7 +13,7 @@ BitNet models can't be quantized on the fly. They need to be quantized during pr
 
 Refer to this [PR](https://github.com/huggingface/nanotron/pull/180) to pretrain or fine-tune a 1.58-bit model with [Nanotron](https://github.com/huggingface/nanotron). For fine-tuning, convert a model from the Hugging Face to Nanotron format. Find the conversion steps in this [PR](https://github.com/huggingface/nanotron/pull/174).
 
-Load a BitNet quantized model with [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Load a BitNet quantized model with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -29,5 +29,5 @@ model = AutoModelForCausalLM.from_pretrained(path, device_map="auto")
 
 Read [Fine-tuning LLMs to 1.58bit: extreme quantization made easy](https://huggingface.co/blog/1_58_llm_extreme_quantization) to learn more about how BitNet models are trained and fine-tuned.
 
-### HQQ
-https://huggingface.co/docs/transformers/v5.14.0/quantization/hqq.md
+### SINQ
+https://huggingface.co/docs/transformers/v5.15.0/quantization/sinq.md

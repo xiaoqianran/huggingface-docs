@@ -662,7 +662,7 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"cohere":{"modelId":"CohereLabs/command-a-plus-05-2026-w4a4","providerModelId":"command-a-plus-05-2026"} } }
+    providersMapping={ {"cohere":{"modelId":"CohereLabs/aya-vision-32b","providerModelId":"c4ai-aya-vision-32b"} } }
 conversational />
 
 ### Template
@@ -1264,7 +1264,7 @@ Find out more about Image Segmentation [here](../tasks/image-segmentation).
 
 <InferenceSnippet
     pipeline=image-segmentation
-    providersMapping={ {"hf-inference":{"modelId":"mattmdjaga/segformer_b2_clothes","providerModelId":"mattmdjaga/segformer_b2_clothes"} } }
+    providersMapping={ {"hf-inference":{"modelId":"nvidia/segformer-b0-finetuned-ade-512-512","providerModelId":"nvidia/segformer-b0-finetuned-ade-512-512"} } }
 />
 
 ### Object Detection

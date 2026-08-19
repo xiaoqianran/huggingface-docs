@@ -70,7 +70,7 @@ class MySpecialModel(PreTrainedModel):
         # ...
 ```
 
-Also apply `@auto_docstring` to classes that inherit from [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput).
+Also apply `@auto_docstring` to classes that inherit from [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput).
 
 ```python
 @auto_docstring(
@@ -99,9 +99,9 @@ class MyModelOutput(ImageClassifierOutput):
 
 ### Config classes
 
-Place `@auto_docstring` directly above a [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) subclass, alongside the `@strict` decorator. `@strict` adds runtime type validation and turns the class into a validated dataclass. Config parameters are *class-level annotations* (not `__init__` arguments), and `@auto_docstring` reads them from the class body to generate docs.
+Place `@auto_docstring` directly above a [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) subclass, alongside the `@strict` decorator. `@strict` adds runtime type validation and turns the class into a validated dataclass. Config parameters are *class-level annotations* (not `__init__` arguments), and `@auto_docstring` reads them from the class body to generate docs.
 
-`ConfigArgs` provides standard parameters like `vocab_size`, `hidden_size`, and `num_hidden_layers`, so they don't need a description unless the behavior differs. [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) base parameters are excluded automatically. The `checkpoint` argument generates the usage example.
+`ConfigArgs` provides standard parameters like `vocab_size`, `hidden_size`, and `num_hidden_layers`, so they don't need a description unless the behavior differs. [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) base parameters are excluded automatically. The `checkpoint` argument generates the usage example.
 
 ```python
 from huggingface_hub.dataclasses import strict
@@ -139,7 +139,7 @@ class MyModelConfig(PreTrainedConfig):
 
 ### Processor classes
 
-Multimodal processors ([ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin) subclasses, `processing_*.py`) always use the bare `@auto_docstring`. The class intro is auto-generated. Document only `__init__` parameters not already covered by `ProcessorArgs` (`image_processor`, `tokenizer`, `chat_template`, and others).
+Multimodal processors ([ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin) subclasses, `processing_*.py`) always use the bare `@auto_docstring`. The class intro is auto-generated. Document only `__init__` parameters not already covered by `ProcessorArgs` (`image_processor`, `tokenizer`, `chat_template`, and others).
 
 If every parameter is standard, omit the docstring. Decorate `__call__` with `@auto_docstring` too. Its body docstring holds only a `Returns:` section plus any extra model-specific call arguments. `return_tensors` is appended automatically.
 
@@ -164,7 +164,7 @@ class MyModelProcessor(ProcessorMixin):
     def __call__(self, images=None, text=None, **kwargs: Unpack[MyModelProcessorKwargs]):
         r"""
         Returns:
-            [BatchFeature](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BatchFeature): A [BatchFeature](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
+            [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature): A [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
 
             - **input_ids** -- Token ids to be fed to the model.
             - **pixel_values** -- Pixel values to be fed to the model.
@@ -340,7 +340,7 @@ python utils/check_docstrings.py
 
 The `@auto_docstring` decorator generates docstrings through the following steps.
 
-1. The decorator inspects the signature to read arguments, types, and defaults from the decorated class's `__init__` or the decorated function. For config classes, it walks class-level annotations up the inheritance chain and stops before [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig), excluding base class fields.
+1. The decorator inspects the signature to read arguments, types, and defaults from the decorated class's `__init__` or the decorated function. For config classes, it walks class-level annotations up the inheritance chain and stops before [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig), excluding base class fields.
 
     It automatically filters out parameters like `self`, `kwargs`, `args`, `deprecated_arguments`, and `_`-prefixed names. A few private parameters are renamed to their public equivalents (`_out_features` → `out_features` for backbone models).
 
@@ -360,11 +360,11 @@ The `@auto_docstring` decorator generates docstrings through the following steps
 
 6. The decorator picks usage examples based on the model's task or pipeline compatibility. It reads checkpoint metadata from the configuration class so examples use real model IDs. The `checkpoint` argument overrides the checkpoint inferred from the config class's docstring. Set `checkpoint` on config classes, or when checkpoint inference fails. If you see an error like `"Config not found for <model_name>"`, add an entry to `HARDCODED_CONFIG_FOR_MODELS` in `auto_docstring.py`.
 
-7. For methods like `forward`, the decorator writes the `Returns` section from the method's return type. When the return type is a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) subclass, `@auto_docstring` pulls field descriptions from that class's docstring. A custom `Returns` block in the function's docstring takes precedence.
+7. For methods like `forward`, the decorator writes the `Returns` section from the method's return type. When the return type is a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) subclass, `@auto_docstring` pulls field descriptions from that class's docstring. A custom `Returns` block in the function's docstring takes precedence.
 
 8. For methods in `UNROLL_KWARGS_METHODS` and classes in `UNROLL_KWARGS_CLASSES`, the decorator expands `**kwargs` typed with `Unpack[KwargsTypedDict]`. Each key from the `TypedDict` becomes a documented parameter.
 
-    The same expansion applies to `__call__` and `preprocess` methods on [BaseImageProcessor](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BaseImageProcessor) and [ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin) subclasses. Generic base types (`TextKwargs`, `ImagesKwargs`, `VideosKwargs`, `AudioKwargs`) are skipped. Only model-specific subclasses are unrolled.
+    The same expansion applies to `__call__` and `preprocess` methods on [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor) and [ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin) subclasses. Generic base types (`TextKwargs`, `ImagesKwargs`, `VideosKwargs`, `AudioKwargs`) are skipped. Only model-specific subclasses are unrolled.
 
-### Chat message patterns
-https://huggingface.co/docs/transformers/v5.14.0/chat_content_patterns.md
+### Writing a chat template
+https://huggingface.co/docs/transformers/v5.15.0/chat_templating_writing.md

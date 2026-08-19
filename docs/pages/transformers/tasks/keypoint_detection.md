@@ -128,5 +128,5 @@ Below you can see the outputs.
          alt="Cats"
          style="height: 200px; object-fit: contain;">
 
-### Causal language modeling
-https://huggingface.co/docs/transformers/v5.14.0/tasks/language_modeling.md
+### Training Vision Models using Backbone API
+https://huggingface.co/docs/transformers/v5.15.0/tasks/training_vision_backbone.md

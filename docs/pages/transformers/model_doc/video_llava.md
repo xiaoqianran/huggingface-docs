@@ -77,7 +77,7 @@ def read_video_pyav(container, indices):
 model = VideoLlavaForConditionalGeneration.from_pretrained("LanguageBind/Video-LLaVA-7B-hf", device_map="auto")
 processor = VideoLlavaProcessor.from_pretrained("LanguageBind/Video-LLaVA-7B-hf")
 
-# Load the video as an np.arrau, sampling uniformly 8 frames
+# Load the video as an np.array, sampling uniformly 8 frames
 video_path = hf_hub_download(repo_id="raushan-testing-hf/videos-test", filename="sample_demo_1.mp4", repo_type="dataset")
 container = av.open(video_path)
 total_frames = container.streams.video[0].frames
@@ -123,7 +123,7 @@ processor.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokeniza
 
 ### Quantization using Bitsandbytes for memory efficiency
 
-The model can be loaded in lower bits, significantly reducing memory burden while maintaining the performance of the original model. his allows for efficient deployment on resource-constrained cases.
+The model can be loaded in lower bits, significantly reducing memory burden while maintaining the performance of the original model. This allows for efficient deployment on resource-constrained cases.
 
 First make sure to install bitsandbytes by running `pip install bitsandbytes` and to have access to a GPU/accelerator that is supported by the library.
 
@@ -131,7 +131,7 @@ bitsandbytes is being refactored to support multiple backends beyond CUDA. Curre
 
 We value your feedback to help identify bugs before the full release! Check out [these docs](https://huggingface.co/docs/bitsandbytes/main/en/non_cuda_backends) for more details and feedback links.
 
-Load the quantized model by simply adding [BitsAndBytesConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.BitsAndBytesConfig) as shown below:
+Load the quantized model by simply adding [BitsAndBytesConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.BitsAndBytesConfig) as shown below:
 
 ```python
 from transformers import BitsAndBytesConfig, VideoLlavaForConditionalGeneration
@@ -171,37 +171,44 @@ model = VideoLlavaForConditionalGeneration.from_pretrained(
 
 ## VideoLlavaConfig[[transformers.VideoLlavaConfig]]
 
-- **vision_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the vision backbone.
-- **text_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the text backbone.
-- **image_token_index** (`int`, *optional*, defaults to `32000`) --
-  The image token index used as a placeholder for input images.
-- **video_token_index** (`int`, *optional*, defaults to `32001`) --
-  The video token index used as a placeholder for input videos.
-- **projector_hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The activation function used by the multimodal projector.
-- **vision_feature_select_strategy** (`Literal[default, full]`, *optional*, defaults to `default`) --
-  The feature selection strategy used to select the vision feature from the vision backbone.
-- **vision_feature_layer** (`Union[int, list[int]]`, *optional*, defaults to `-2`) --
-  The index of the layer to select the vision feature. If multiple indices are provided,
-  the vision feature of the corresponding indices will be concatenated to form the
-  vision features.
-- **image_seq_length** (`int`, *optional*, defaults to `256`) --
-  Sequence length of one image embedding.
-- **video_seq_length** (`int`, *optional*, defaults to `2056`) --
-  Sequence length of one video embedding.
-- **multimodal_projector_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to use bias in the multimodal projector.
-- **tie_word_embeddings** (`bool`, *optional*, defaults to `False`) --
-  Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
+#### transformers.VideoLlavaConfig[[transformers.VideoLlavaConfig]]
+
+```python
+transformers.VideoLlavaConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_index: int = 32000, video_token_index: int = 32001, projector_hidden_act: str = 'gelu', vision_feature_select_strategy: typing.Literal['default', 'full'] = 'default', vision_feature_layer: int | list[int] = -2, image_seq_length: int = 256, video_seq_length: int = 2056, multimodal_projector_bias: bool = True, tie_word_embeddings: bool = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llava/configuration_video_llava.py#L29)
+
+**Parameters:**
+
+vision_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the vision backbone.
+
+text_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the text backbone.
+
+image_token_index (`int`, *optional*, defaults to `32000`) : The image token index used as a placeholder for input images.
+
+video_token_index (`int`, *optional*, defaults to `32001`) : The video token index used as a placeholder for input videos.
+
+projector_hidden_act (`str`, *optional*, defaults to `gelu`) : The activation function used by the multimodal projector.
+
+vision_feature_select_strategy (`Literal[default, full]`, *optional*, defaults to `default`) : The feature selection strategy used to select the vision feature from the vision backbone.
+
+vision_feature_layer (`Union[int, list[int]]`, *optional*, defaults to `-2`) : The index of the layer to select the vision feature. If multiple indices are provided, the vision feature of the corresponding indices will be concatenated to form the vision features.
+
+image_seq_length (`int`, *optional*, defaults to `256`) : Sequence length of one image embedding.
+
+video_seq_length (`int`, *optional*, defaults to `2056`) : Sequence length of one video embedding.
+
+multimodal_projector_bias (`bool`, *optional*, defaults to `True`) : Whether to use bias in the multimodal projector.
+
+tie_word_embeddings (`bool`, *optional*, defaults to `False`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
 
 This is the configuration class to store the configuration of a VideoLlavaModel. It is used to instantiate a Video Llava
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [LanguageBind/Video-LLaVA-7B-hf](https://huggingface.co/LanguageBind/Video-LLaVA-7B-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -226,166 +233,166 @@ Example:
 
 ## VideoLlavaImageProcessor[[transformers.VideoLlavaImageProcessor]]
 
-"}, {"name": "do_center_crop", "val": ": bool = True"}, {"name": "crop_size", "val": ": dict[str, int] | None = None"}, {"name": "do_rescale", "val": ": bool = True"}, {"name": "rescale_factor", "val": ": int | float = 0.00392156862745098"}, {"name": "do_normalize", "val": ": bool = True"}, {"name": "image_mean", "val": ": float | list[float] | None = None"}, {"name": "image_std", "val": ": float | list[float] | None = None"}, {"name": "do_convert_rgb", "val": ": bool = True"}, {"name": "**kwargs", "val": ""}]}>
-- **do_resize** (`bool`, *optional*, defaults to `True`) --
-  Whether to resize the image's (height, width) dimensions to the specified `size`. Can be overridden by
-  `do_resize` in the `preprocess` method.
-- **size** (`dict[str, int]` *optional*, defaults to `{"shortest_edge" -- 224}`):
-  Size of the image after resizing. The shortest edge of the image is resized to size["shortest_edge"], with
-  the longest edge resized to keep the input aspect ratio. Can be overridden by `size` in the `preprocess`
-  method.
-- **resample** (`PILImageResampling`, *optional*, defaults to `Resampling.BICUBIC`) --
-  Resampling filter to use if resizing the image. Can be overridden by `resample` in the `preprocess` method.
-- **do_center_crop** (`bool`, *optional*, defaults to `True`) --
-  Whether to center crop the image to the specified `crop_size`. Can be overridden by `do_center_crop` in the
-  `preprocess` method.
-- **crop_size** (`dict[str, int]` *optional*, defaults to 224) --
-  Size of the output image after applying `center_crop`. Can be overridden by `crop_size` in the `preprocess`
-  method.
-- **do_rescale** (`bool`, *optional*, defaults to `True`) --
-  Whether to rescale the image by the specified scale `rescale_factor`. Can be overridden by `do_rescale` in
-  the `preprocess` method.
-- **rescale_factor** (`int` or `float`, *optional*, defaults to `1/255`) --
-  Scale factor to use if rescaling the image. Can be overridden by `rescale_factor` in the `preprocess`
-  method.
-- **do_normalize** (`bool`, *optional*, defaults to `True`) --
-  Whether to normalize the image. Can be overridden by `do_normalize` in the `preprocess` method.
-- **image_mean** (`float` or `list[float]`, *optional*, defaults to `[0.48145466, 0.4578275, 0.40821073]`) --
-  Mean to use if normalizing the image. This is a float or list of floats the length of the number of
-  channels in the image. Can be overridden by the `image_mean` parameter in the `preprocess` method.
-- **image_std** (`float` or `list[float]`, *optional*, defaults to `[0.26862954, 0.26130258, 0.27577711]`) --
-  Standard deviation to use if normalizing the image. This is a float or list of floats the length of the
-  number of channels in the image. Can be overridden by the `image_std` parameter in the `preprocess` method.
-  Can be overridden by the `image_std` parameter in the `preprocess` method.
-- **do_convert_rgb** (`bool`, *optional*, defaults to `True`) --
-  Whether to convert the image to RGB.
+#### transformers.VideoLlavaImageProcessor[[transformers.VideoLlavaImageProcessor]]
+
+```python
+transformers.VideoLlavaImageProcessor(do_resize: bool = True, size: dict[str, int] | None = None, resample: Resampling = <Resampling.BICUBIC: 3>, do_center_crop: bool = True, crop_size: dict[str, int] | None = None, do_rescale: bool = True, rescale_factor: int | float = 0.00392156862745098, do_normalize: bool = True, image_mean: float | list[float] | None = None, image_std: float | list[float] | None = None, do_convert_rgb: bool = True, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llava/image_processing_video_llava.py#L44)
+
+**Parameters:**
+
+do_resize (`bool`, *optional*, defaults to `True`) : Whether to resize the image's (height, width) dimensions to the specified `size`. Can be overridden by `do_resize` in the `preprocess` method.
+
+size (`dict[str, int]` *optional*, defaults to `{"shortest_edge" : 224}`): Size of the image after resizing. The shortest edge of the image is resized to size["shortest_edge"], with the longest edge resized to keep the input aspect ratio. Can be overridden by `size` in the `preprocess` method.
+
+resample (`PILImageResampling`, *optional*, defaults to `Resampling.BICUBIC`) : Resampling filter to use if resizing the image. Can be overridden by `resample` in the `preprocess` method.
+
+do_center_crop (`bool`, *optional*, defaults to `True`) : Whether to center crop the image to the specified `crop_size`. Can be overridden by `do_center_crop` in the `preprocess` method.
+
+crop_size (`dict[str, int]` *optional*, defaults to 224) : Size of the output image after applying `center_crop`. Can be overridden by `crop_size` in the `preprocess` method.
+
+do_rescale (`bool`, *optional*, defaults to `True`) : Whether to rescale the image by the specified scale `rescale_factor`. Can be overridden by `do_rescale` in the `preprocess` method.
+
+rescale_factor (`int` or `float`, *optional*, defaults to `1/255`) : Scale factor to use if rescaling the image. Can be overridden by `rescale_factor` in the `preprocess` method.
+
+do_normalize (`bool`, *optional*, defaults to `True`) : Whether to normalize the image. Can be overridden by `do_normalize` in the `preprocess` method.
+
+image_mean (`float` or `list[float]`, *optional*, defaults to `[0.48145466, 0.4578275, 0.40821073]`) : Mean to use if normalizing the image. This is a float or list of floats the length of the number of channels in the image. Can be overridden by the `image_mean` parameter in the `preprocess` method.
+
+image_std (`float` or `list[float]`, *optional*, defaults to `[0.26862954, 0.26130258, 0.27577711]`) : Standard deviation to use if normalizing the image. This is a float or list of floats the length of the number of channels in the image. Can be overridden by the `image_std` parameter in the `preprocess` method. Can be overridden by the `image_std` parameter in the `preprocess` method.
+
+do_convert_rgb (`bool`, *optional*, defaults to `True`) : Whether to convert the image to RGB.
 
 Constructs a CLIP image processor.
 
-"}, {"name": "input_data_format", "val": ": str | transformers.image_utils.ChannelDimension | None = None"}]}>
-- **images** (`ImageInput`, *optional*) --
-  List of images to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If
-  passing in images with pixel values between 0 and 1, set `do_rescale=False`.
-- **do_resize** (`bool`, *optional*, defaults to `self.do_resize`) --
-  Whether to resize the image.
-- **size** (`dict[str, int]`, *optional*, defaults to `self.size`) --
-  Size of the image after resizing. Shortest edge of the image is resized to size["shortest_edge"], with
-  the longest edge resized to keep the input aspect ratio.
-- **resample** (`int`, *optional*, defaults to `self.resample`) --
-  Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only
-  has an effect if `do_resize` is set to `True`.
-- **do_center_crop** (`bool`, *optional*, defaults to `self.do_center_crop`) --
-  Whether to center crop the image.
-- **crop_size** (`dict[str, int]`, *optional*, defaults to `self.crop_size`) --
-  Size of the center crop. Only has an effect if `do_center_crop` is set to `True`.
-- **do_rescale** (`bool`, *optional*, defaults to `self.do_rescale`) --
-  Whether to rescale the image.
-- **rescale_factor** (`float`, *optional*, defaults to `self.rescale_factor`) --
-  Rescale factor to rescale the image by if `do_rescale` is set to `True`.
-- **do_normalize** (`bool`, *optional*, defaults to `self.do_normalize`) --
-  Whether to normalize the image.
-- **image_mean** (`float` or `list[float]`, *optional*, defaults to `self.image_mean`) --
-  Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
-- **image_std** (`float` or `list[float]`, *optional*, defaults to `self.image_std`) --
-  Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to
-  `True`.
-- **do_convert_rgb** (`bool`, *optional*, defaults to `self.do_convert_rgb`) --
-  Whether to convert the image to RGB.
-- **return_tensors** (`str` or `TensorType`, *optional*) --
-  The type of tensors to return. Can be one of:
-  - Unset: Return a list of `np.ndarray`.
-  - `TensorType.PYTORCH` or `'pt'`: Return a batch of type `torch.Tensor`.
-  - `TensorType.NUMPY` or `'np'`: Return a batch of type `np.ndarray`.
-- **data_format** (`ChannelDimension` or `str`, *optional*, defaults to `ChannelDimension.FIRST`) --
-  The channel dimension format for the output image. Can be one of:
-  - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format.
-  - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format.
-  - Unset: Use the channel dimension format of the input image.
-- **input_data_format** (`ChannelDimension` or `str`, *optional*) --
-  The channel dimension format for the input image. If unset, the channel dimension format is inferred
-  from the input image. Can be one of:
-  - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format.
-  - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format.
-  - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+#### preprocess[[transformers.VideoLlavaImageProcessor.preprocess]]
+
+```python
+preprocess(images: list[typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']]] | None = None, do_resize: bool | None = None, size: dict[str, int] | None = None, resample: PIL.Image.Resampling | None = None, do_center_crop: bool | None = None, crop_size: int | None = None, do_rescale: bool | None = None, rescale_factor: float | None = None, do_normalize: bool | None = None, image_mean: float | list[float] | None = None, image_std: float | list[float] | None = None, do_convert_rgb: bool | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, data_format: transformers.image_utils.ChannelDimension | None = <ChannelDimension.FIRST: 'channels_first'>, input_data_format: str | transformers.image_utils.ChannelDimension | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llava/image_processing_video_llava.py#L167)
+
+**Parameters:**
+
+images (`ImageInput`, *optional*) : List of images to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+do_resize (`bool`, *optional*, defaults to `self.do_resize`) : Whether to resize the image.
+
+size (`dict[str, int]`, *optional*, defaults to `self.size`) : Size of the image after resizing. Shortest edge of the image is resized to size["shortest_edge"], with the longest edge resized to keep the input aspect ratio.
+
+resample (`int`, *optional*, defaults to `self.resample`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_center_crop (`bool`, *optional*, defaults to `self.do_center_crop`) : Whether to center crop the image.
+
+crop_size (`dict[str, int]`, *optional*, defaults to `self.crop_size`) : Size of the center crop. Only has an effect if `do_center_crop` is set to `True`.
+
+do_rescale (`bool`, *optional*, defaults to `self.do_rescale`) : Whether to rescale the image.
+
+rescale_factor (`float`, *optional*, defaults to `self.rescale_factor`) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *optional*, defaults to `self.do_normalize`) : Whether to normalize the image.
+
+image_mean (`float` or `list[float]`, *optional*, defaults to `self.image_mean`) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`float` or `list[float]`, *optional*, defaults to `self.image_std`) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_convert_rgb (`bool`, *optional*, defaults to `self.do_convert_rgb`) : Whether to convert the image to RGB.
+
+return_tensors (`str` or `TensorType`, *optional*) : The type of tensors to return. Can be one of: - Unset: Return a list of `np.ndarray`. - `TensorType.PYTORCH` or `'pt'`: Return a batch of type `torch.Tensor`. - `TensorType.NUMPY` or `'np'`: Return a batch of type `np.ndarray`.
+
+data_format (`ChannelDimension` or `str`, *optional*, defaults to `ChannelDimension.FIRST`) : The channel dimension format for the output image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - Unset: Use the channel dimension format of the input image.
+
+input_data_format (`ChannelDimension` or `str`, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
 
 Preprocess an image or batch of images.
 
 ## VideoLlavaVideoProcessor[[transformers.VideoLlavaVideoProcessor]]
 
+#### transformers.VideoLlavaVideoProcessor[[transformers.VideoLlavaVideoProcessor]]
+
+```python
+transformers.VideoLlavaVideoProcessor(**kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llava/video_processing_video_llava.py#L20)
+
 ## VideoLlavaProcessor[[transformers.VideoLlavaProcessor]]
 
-'"}, {"name": "video_token", "val": " = ''"}, {"name": "chat_template", "val": " = None"}, {"name": "num_additional_image_tokens", "val": " = 1"}, {"name": "**kwargs", "val": ""}]}>
-- **image_processor** (`VideoLlavaImageProcessor`) --
-  The image processor is a required input.
-- **video_processor** (`VideoLlavaVideoProcessor`) --
-  The video processor is a required input.
-- **tokenizer** (`tokenizer_class`) --
-  The tokenizer is a required input.
-- **patch_size** (`int`, *optional*, defaults to 14) --
-  Patch size from the vision tower.
-- **vision_feature_select_strategy** (`str`, *optional*, defaults to `"default"`) --
-  The feature selection strategy used to select the vision feature from the vision backbone.
-  Should be same as in model's config
-- **image_token** (`str`, *optional*, defaults to `"<image>"`) --
-  Special token used to denote image location.
-- **video_token** (`str`, *optional*, defaults to `"<video>"`) --
-  Special token used to denote video location.
-- **chat_template** (`str`) --
-  A Jinja template to convert lists of messages in a chat into a tokenizable string.
-- **num_additional_image_tokens** (`int`, *optional*, defaults to 1) --
-  Number of additional tokens added to the image embeddings, such as CLS (+1). If the backbone has no CLS or other
-  extra tokens appended, no need to set this arg.
+#### transformers.VideoLlavaProcessor[[transformers.VideoLlavaProcessor]]
+
+```python
+transformers.VideoLlavaProcessor(image_processor = None, video_processor = None, tokenizer = None, patch_size = 14, vision_feature_select_strategy = 'default', image_token = '<image>', video_token = '<video>', chat_template = None, num_additional_image_tokens = 1, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llava/processing_video_llava.py#L37)
+
+**Parameters:**
+
+image_processor (`VideoLlavaImageProcessor`) : The image processor is a required input.
+
+video_processor (`VideoLlavaVideoProcessor`) : The video processor is a required input.
+
+tokenizer (`tokenizer_class`) : The tokenizer is a required input.
+
+patch_size (`int`, *optional*, defaults to 14) : Patch size from the vision tower.
+
+vision_feature_select_strategy (`str`, *optional*, defaults to `"default"`) : The feature selection strategy used to select the vision feature from the vision backbone. Should be same as in model's config
+
+image_token (`str`, *optional*, defaults to `"<image>"`) : Special token used to denote image location.
+
+video_token (`str`, *optional*, defaults to `"<video>"`) : Special token used to denote video location.
+
+chat_template (`str`) : A Jinja template to convert lists of messages in a chat into a tokenizable string.
+
+num_additional_image_tokens (`int`, *optional*, defaults to 1) : Number of additional tokens added to the image embeddings, such as CLS (+1). If the backbone has no CLS or other extra tokens appended, no need to set this arg.
+
 Constructs a VideoLlavaProcessor which wraps a image processor, a video processor, and a tokenizer into a single processor.
 
-[VideoLlavaProcessor](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaProcessor) offers all the functionalities of [VideoLlavaImageProcessor](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaImageProcessor), [VideoLlavaVideoProcessor](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaVideoProcessor), and `tokenizer_class`. See the
-[~VideoLlavaImageProcessor](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaImageProcessor), [~VideoLlavaVideoProcessor](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaVideoProcessor), and `~tokenizer_class` for more information.
+[VideoLlavaProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaProcessor) offers all the functionalities of [VideoLlavaImageProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaImageProcessor), [VideoLlavaVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaVideoProcessor), and `tokenizer_class`. See the
+[~VideoLlavaImageProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaImageProcessor), [~VideoLlavaVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaVideoProcessor), and `~tokenizer_class` for more information.
 
-"}]}>
-- **text** (`Union[str, list[str], list[list[str]]]`, *optional*) --
-  The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings
-  (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
-- **images** (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) --
-  Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If
-  passing in images with pixel values between 0 and 1, set `do_rescale=False`.
-- **videos** (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) --
-  Video to preprocess. Expects a single or batch of videos with pixel values ranging from 0 to 255. If
-  passing in videos with pixel values between 0 and 1, set `do_rescale=False`.
-- **padding** (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) --
-  Select a strategy to pad the returned sequences (according to the model's padding side and padding
-  index) among:
-  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single
-    sequence if provided).
-  - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum
-    acceptable input length for the model if that argument is not provided.
-  - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different
-    lengths).
-- **truncation** (`bool`, *optional*) --
-  Activates truncation to cut input sequences longer than `max_length` to `max_length`.
-- **max_length** (`int`, *optional*) --
-  Maximum length of the returned list and optionally padding length (see above).
-- **return_tensors** (`Union[str, ~utils.generic.TensorType]`, *optional*, defaults to `TensorType.PYTORCH`) --
-  If set, will return tensors of a particular framework. Acceptable values are:
+#### __call__[[transformers.VideoLlavaProcessor.__call__]]
 
-  - `'pt'`: Return PyTorch `torch.Tensor` objects.
-  - `'np'`: Return NumPy `np.ndarray` objects.[BatchFeature](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BatchFeature)A [BatchFeature](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
+```python
+__call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
+```
 
-- **input_ids** -- List of token ids to be fed to a model. Returned when `text` is not `None`.
-- **attention_mask** -- List of indices specifying which tokens should be attended to by the model (when
-  `return_attention_mask=True` or if *"attention_mask"* is in `self.model_input_names` and if `text` is not
-  `None`).
-- **pixel_values** -- Pixel values to be fed to a model. Returned when `images` is not `None`.
-- **pixel_values_videos** -- Pixel values to be fed to a model. Returned when `videos` is not `None`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+
+**Parameters:**
+
+images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+text (`Union[str, list[str], list[list[str]]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
+
+videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor], list[list[PIL.Image.Image]], list[list[numpy.ndarray]], list[list[torch.Tensor]], ~video_utils.URL, list[~video_utils.URL], list[list[~video_utils.URL]], ~video_utils.Path, list[~video_utils.Path], list[list[~video_utils.Path]]]`, *optional*) : Video to preprocess. Expects a single or batch of videos with pixel values ranging from 0 to 255. If passing in videos with pixel values between 0 and 1, set `do_rescale=False`.
+
+audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
+
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## VideoLlavaModel[[transformers.VideoLlavaModel]]
 
-- **config** ([VideoLlavaConfig](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.VideoLlavaModel[[transformers.VideoLlavaModel]]
+
+```python
+transformers.VideoLlavaModel(config: VideoLlavaConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llava/modeling_video_llava.py#L153)
+
+**Parameters:**
+
+config ([VideoLlavaConfig](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The VideoLlava model which consists of a vision backbone and a language model without language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -393,69 +400,50 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.VideoLlavaModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values_images: typing.Optional[torch.FloatTensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, vision_feature_layer: int | list[int] | None = None, vision_feature_select_strategy: str | None = None, use_cache: bool | None = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **pixel_values_images** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [AutoImageProcessor](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoImageProcessor). See `VideoLlavaImageProcessor.__call__()` for details ([]`LlavaProcessor`] uses
-  [VideoLlavaImageProcessor](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaImageProcessor) for processing images).
-- **pixel_values_videos** (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) --
-  The tensors corresponding to the input video. Pixel values for videos can be obtained using
-  [VideoLlavaVideoProcessor](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaVideoProcessor). See `VideoLlavaVideoProcessor.__call__()` for details ([VideoLlavaProcessor](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaProcessor) uses
-  [VideoLlavaVideoProcessor](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaVideoProcessor) for processing videos).
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llava/modeling_video_llava.py#L299)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+pixel_values_images (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)) : The tensors corresponding to the input images. Pixel values can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor). See `VideoLlavaImageProcessor.__call__()` for details ([]`LlavaProcessor`] uses [VideoLlavaImageProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaImageProcessor) for processing images).
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [VideoLlavaVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaVideoProcessor). See `VideoLlavaVideoProcessor.__call__()` for details ([VideoLlavaProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaProcessor) uses [VideoLlavaVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaVideoProcessor) for processing videos).
 
-  The model will output the same cache format that is fed as input.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **vision_feature_layer** (`Union[int, list[int]]`, *optional*) --
-  The index of the layer to select the vision feature. If multiple indices are provided,
-  the vision feature of the corresponding indices will be concatenated to form the
-  vision features.
-- **vision_feature_select_strategy** (`str`, *optional*) --
-  The feature selection strategy used to select the vision feature from the vision backbone.
-  Can be one of `"default"` or `"full"`.
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
-  `past_key_values`).`VideoLlavaModelOutputWithPast` or `tuple(torch.FloatTensor)`A `VideoLlavaModelOutputWithPast` or a tuple of
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+vision_feature_layer (`Union[int, list[int]]`, *optional*) : The index of the layer to select the vision feature. If multiple indices are provided, the vision feature of the corresponding indices will be concatenated to form the vision features.
+
+vision_feature_select_strategy (`str`, *optional*) : The feature selection strategy used to select the vision feature from the vision backbone. Can be one of `"default"` or `"full"`.
+
+use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+
+**Returns:** `VideoLlavaModelOutputWithPast` or `tuple(torch.FloatTensor)`
+
+A `VideoLlavaModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoLlavaConfig](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaConfig)) and inputs.
-The [VideoLlavaModel](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([VideoLlavaConfig](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaConfig)) and inputs.
+
+The [VideoLlavaModel](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) -- Sequence of hidden-states at the output of the last layer of the model.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -473,24 +461,32 @@ the latter silently ignores them.
 - **video_hidden_states** (`torch.FloatTensor`, *optional*) -- A `torch.FloatTensor`  of size `(batch_size * num_frames, num_videos, sequence_length, hidden_size)`.
   video_hidden_states of the model produced by the vision encoder and after projecting the last hidden state.
 
-- **pixel_values_images** (`torch.FloatTensor]` of shape `(batch_size, channels, height, width)`) --
-  The tensors corresponding to the input images.
-- **vision_feature_layer** (`Union[int, list[int]]`, *optional*) --
-  The index of the layer to select the vision feature. If multiple indices are provided,
-  the vision feature of the corresponding indices will be concatenated to form the
-  vision features.
-- **vision_feature_layer** (`Union[int, list[int]]`, *optional*) --
-  The index of the layer to select the vision feature. If multiple indices are provided,
-  the vision feature of the corresponding indices will be concatenated to form the
-  vision features.
-- **vision_feature_select_strategy** (`str`, *optional*) --
-  The feature selection strategy used to select the vision feature from the vision backbone.
-  Can be one of `"default"` or `"full"`
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### get_image_features[[transformers.VideoLlavaModel.get_image_features]]
+
+```python
+get_image_features(pixel_values_images: FloatTensor, vision_feature_layer: int | list[int] | None = None, vision_feature_select_strategy: str | None = None, output_hidden_states: bool | None = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llava/modeling_video_llava.py#L164)
+
+**Parameters:**
+
+pixel_values_images (`torch.FloatTensor` of shape `(batch_size, channels, height, width)`) : The tensors corresponding to the input images.
+
+vision_feature_layer (`Union[int, list[int]]`, *optional*) : The index of the layer to select the vision feature. If multiple indices are provided, the vision feature of the corresponding indices will be concatenated to form the vision features.
+
+vision_feature_layer (`Union[int, list[int]]`, *optional*) : The index of the layer to select the vision feature. If multiple indices are provided, the vision feature of the corresponding indices will be concatenated to form the vision features.
+
+vision_feature_select_strategy (`str`, *optional*) : The feature selection strategy used to select the vision feature from the vision backbone. Can be one of `"default"` or `"full"`
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoLlavaConfig](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaConfig)) and inputs.
+elements depending on the configuration ([VideoLlavaConfig](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaConfig)) and inputs.
+
 Obtains image last hidden states from the vision tower and apply multimodal projection.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
@@ -508,24 +504,41 @@ Obtains image last hidden states from the vision tower and apply multimodal proj
   Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
   heads.
 
+#### get_placeholder_mask[[transformers.VideoLlavaModel.get_placeholder_mask]]
+
+```python
+get_placeholder_mask(input_ids: LongTensor, inputs_embeds: FloatTensor, image_features: typing.Optional[torch.FloatTensor] = None, video_features: typing.Optional[torch.FloatTensor] = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llava/modeling_video_llava.py#L256)
+
 Obtains multimodal placeholder mask from `input_ids` or `inputs_embeds`, and checks that the placeholder token count is
 equal to the length of multimodal features. If the lengths are different, an error is raised.
 
-- **pixel_values_videos** (`torch.FloatTensor]` of shape `(batch_size, num_frames, channels, height, width)`) --
-  The tensors corresponding to the input videos.
-- **vision_feature_layer** (`Union[int, list[int]]`, *optional*) --
-  The index of the layer to select the vision feature. If multiple indices are provided,
-  the vision feature of the corresponding indices will be concatenated to form the
-  vision features.
-- **vision_feature_layer** (`Union[int, list[int]]`, *optional*) --
-  The index of the layer to select the vision feature. If multiple indices are provided,
-  the vision feature of the corresponding indices will be concatenated to form the
-  vision features.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### get_video_features[[transformers.VideoLlavaModel.get_video_features]]
+
+```python
+get_video_features(pixel_values_videos: FloatTensor, vision_feature_layer: int | list[int] | None = None, output_hidden_states: bool | None = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llava/modeling_video_llava.py#L213)
+
+**Parameters:**
+
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, channels, height, width)`) : The tensors corresponding to the input videos.
+
+vision_feature_layer (`Union[int, list[int]]`, *optional*) : The index of the layer to select the vision feature. If multiple indices are provided, the vision feature of the corresponding indices will be concatenated to form the vision features.
+
+vision_feature_layer (`Union[int, list[int]]`, *optional*) : The index of the layer to select the vision feature. If multiple indices are provided, the vision feature of the corresponding indices will be concatenated to form the vision features.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoLlavaConfig](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaConfig)) and inputs.
+elements depending on the configuration ([VideoLlavaConfig](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaConfig)) and inputs.
+
 Obtains video last hidden states from the vision tower and apply multimodal projection.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
@@ -545,14 +558,21 @@ Obtains video last hidden states from the vision tower and apply multimodal proj
 
 ## VideoLlavaForConditionalGeneration[[transformers.VideoLlavaForConditionalGeneration]]
 
-- **config** ([VideoLlavaConfig](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.VideoLlavaForConditionalGeneration[[transformers.VideoLlavaForConditionalGeneration]]
+
+```python
+transformers.VideoLlavaForConditionalGeneration(config: VideoLlavaConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llava/modeling_video_llava.py#L375)
+
+**Parameters:**
+
+config ([VideoLlavaConfig](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The VideoLlava model which consists of a vision backbone and a language model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -560,72 +580,47 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.VideoLlavaForConditionalGeneration.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values_images: typing.Optional[torch.FloatTensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, vision_feature_layer: int | list[int] | None = None, vision_feature_select_strategy: str | None = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **pixel_values_images** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [AutoImageProcessor](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoImageProcessor). See `VideoLlavaImageProcessor.__call__()` for details ([]`LlavaProcessor`] uses
-  [VideoLlavaImageProcessor](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaImageProcessor) for processing images).
-- **pixel_values_videos** (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) --
-  The tensors corresponding to the input video. Pixel values for videos can be obtained using
-  [VideoLlavaVideoProcessor](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaVideoProcessor). See `VideoLlavaVideoProcessor.__call__()` for details ([VideoLlavaProcessor](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaProcessor) uses
-  [VideoLlavaVideoProcessor](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaVideoProcessor) for processing videos).
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llava/modeling_video_llava.py#L415)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+pixel_values_images (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)) : The tensors corresponding to the input images. Pixel values can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor). See `VideoLlavaImageProcessor.__call__()` for details ([]`LlavaProcessor`] uses [VideoLlavaImageProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaImageProcessor) for processing images).
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [VideoLlavaVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaVideoProcessor). See `VideoLlavaVideoProcessor.__call__()` for details ([VideoLlavaProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaProcessor) uses [VideoLlavaVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaVideoProcessor) for processing videos).
 
-  The model will output the same cache format that is fed as input.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **vision_feature_layer** (`Union[int, list[int]]`, *optional*) --
-  The index of the layer to select the vision feature. If multiple indices are provided,
-  the vision feature of the corresponding indices will be concatenated to form the
-  vision features.
-- **vision_feature_select_strategy** (`str`, *optional*) --
-  The feature selection strategy used to select the vision feature from the vision backbone.
-  Can be one of `"default"` or `"full"`.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
-  `past_key_values`).
-- **logits_to_keep** (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) --
-  If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all
-  `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that
-  token can save memory, which becomes pretty significant for long sequences or large vocabulary size.
-  If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension.
-  This is useful when using packed tensor format (single dimension for batch and sequence length).`VideoLlavaCausalLMOutputWithPast` or `tuple(torch.FloatTensor)`A `VideoLlavaCausalLMOutputWithPast` or a tuple of
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+vision_feature_layer (`Union[int, list[int]]`, *optional*) : The index of the layer to select the vision feature. If multiple indices are provided, the vision feature of the corresponding indices will be concatenated to form the vision features.
+
+vision_feature_select_strategy (`str`, *optional*) : The feature selection strategy used to select the vision feature from the vision backbone. Can be one of `"default"` or `"full"`.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+
+logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
+
+**Returns:** `VideoLlavaCausalLMOutputWithPast` or `tuple(torch.FloatTensor)`
+
+A `VideoLlavaCausalLMOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoLlavaConfig](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaConfig)) and inputs.
-The [VideoLlavaForConditionalGeneration](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaForConditionalGeneration) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([VideoLlavaConfig](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaConfig)) and inputs.
+
+The [VideoLlavaForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -633,7 +628,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -717,21 +712,29 @@ Example:
 ['USER:   How many cats do you see? ASSISTANT: There are two cats visible in the image. (or three, if you count the one in the background).', 'USER:  Why is this video funny? ASSISTANT: The video is funny because it shows a baby sitting on a bed and playing with a Wii remote.Ъ. The baby is holding the remote']
 ```
 
-- **pixel_values_images** (`torch.FloatTensor]` of shape `(batch_size, channels, height, width)`) --
-  The tensors corresponding to the input images.
-- **vision_feature_layer** (`Union[int, list[int]]`, *optional*) --
-  The index of the layer to select the vision feature. If multiple indices are provided,
-  the vision feature of the corresponding indices will be concatenated to form the
-  vision features.
-- **vision_feature_layer** (`Union[int, list[int]]`, *optional*) --
-  The index of the layer to select the vision feature. If multiple indices are provided,
-  the vision feature of the corresponding indices will be concatenated to form the
-  vision features.
-- **vision_feature_select_strategy** (`str`, *optional*) --
-  The feature selection strategy used to select the vision feature from the vision backbone.
-  Can be one of `"default"` or `"full"`[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### get_image_features[[transformers.VideoLlavaForConditionalGeneration.get_image_features]]
+
+```python
+get_image_features(pixel_values_images: FloatTensor, vision_feature_layer: int | list[int] | None = None, vision_feature_select_strategy: str | None = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llava/modeling_video_llava.py#L387)
+
+**Parameters:**
+
+pixel_values_images (`torch.FloatTensor` of shape `(batch_size, channels, height, width)`) : The tensors corresponding to the input images.
+
+vision_feature_layer (`Union[int, list[int]]`, *optional*) : The index of the layer to select the vision feature. If multiple indices are provided, the vision feature of the corresponding indices will be concatenated to form the vision features.
+
+vision_feature_layer (`Union[int, list[int]]`, *optional*) : The index of the layer to select the vision feature. If multiple indices are provided, the vision feature of the corresponding indices will be concatenated to form the vision features.
+
+vision_feature_select_strategy (`str`, *optional*) : The feature selection strategy used to select the vision feature from the vision backbone. Can be one of `"default"` or `"full"`
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoLlavaConfig](/docs/transformers/v5.14.0/en/model_doc/video_llava#transformers.VideoLlavaConfig)) and inputs.
+elements depending on the configuration ([VideoLlavaConfig](/docs/transformers/v5.15.0/en/model_doc/video_llava#transformers.VideoLlavaConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -778,5 +781,5 @@ Example:
 >>> processor.batch_decode(generate_ids, skip_special_tokens=True)[0]
 ```
 
-### Jan
-https://huggingface.co/docs/transformers/v5.14.0/serve-cli/jan.md
+### InstructBLIP
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/instructblip.md

@@ -51,7 +51,7 @@ class layers:
 > [!NOTE]
 > The `layers` class is required by the `kernels` library to expose the kernel entry point.
 
-Load this kernel by passing the repo and class name to [KernelConfig](/docs/transformers/v5.14.0/en/main_classes/kernels#transformers.KernelConfig). The key is the original module class name from the model. The value points to the `KernelName` class (not the `Layout`) in the repo.
+Load this kernel by passing the repo and class name to [KernelConfig](/docs/transformers/v5.15.0/en/main_classes/kernels#transformers.KernelConfig). The key is the original module class name from the model. The value points to the `KernelName` class (not the `Layout`) in the repo.
 
 ```python
 from transformers import AutoModelForCausalLM, KernelConfig
@@ -61,7 +61,7 @@ model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen3-0.6B",
     use_kernels=True,
     kernel_config=kernel_config,
-    device_map="cuda",
+    device_map="auto",
 )
 ```
 
@@ -133,7 +133,7 @@ model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen3-0.6B",
     use_kernels=True,
     kernel_config=kernel_config,
-    device_map="cuda",
+    device_map="auto",
 )
 ```
 
@@ -146,3 +146,6 @@ When the model loads, Transformers:
 
 > [!TIP]
 > The order of pairs in the fusion tuple determines the argument order passed to `KernelNameLayout.__init__`.
+
+### Loading kernels
+https://huggingface.co/docs/transformers/v5.15.0/kernel_doc/loading_kernels.md

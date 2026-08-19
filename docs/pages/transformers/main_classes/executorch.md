@@ -8,6 +8,14 @@ ExecuTorch introduces well defined entry points to perform model, device, and/or
 
 An integration point is being developed to ensure that 🤗 Transformers can be exported using `torch.export`. The goal of this integration is not only to enable export but also to ensure that the exported artifact can be further lowered and optimized to run efficiently in `ExecuTorch`, particularly for mobile and edge use cases.
 
+#### transformers.TorchExportableModuleWithStaticCache[[transformers.TorchExportableModuleWithStaticCache]]
+
+```python
+transformers.TorchExportableModuleWithStaticCache(model: PreTrainedModel, batch_size: int | None = None, max_cache_len: int | None = None, device: typing.Optional[torch.device] = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/executorch.py#L467)
+
 A recipe module designed to make a `PreTrainedModel` exportable with `torch.export`,
 specifically for decoder-only LM to `StaticCache`. This module ensures that the
 exported model is compatible with further lowering and execution in `ExecuTorch`.
@@ -16,9 +24,25 @@ Note:
 This class is specifically designed to support export process using `torch.export`
 in a way that ensures the model can be further lowered and run efficiently in `ExecuTorch`.
 
-- **input_ids** (`torch.Tensor`) -- Tensor representing current input token id to the module.
-- **inputs_embeds** (`torch.Tensor`) -- Tensor representing current input embeddings to the module.
-- **cache_position** (`torch.Tensor`) -- Tensor representing current input position in the cache.torch.TensorLogits output from the model.
+#### forward[[transformers.TorchExportableModuleWithStaticCache.forward]]
+
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, cache_position: typing.Optional[torch.Tensor] = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/executorch.py#L559)
+
+**Parameters:**
+
+input_ids (`torch.Tensor`) : Tensor representing current input token id to the module.
+
+inputs_embeds (`torch.Tensor`) : Tensor representing current input embeddings to the module.
+
+cache_position (`torch.Tensor`) : Tensor representing current input position in the cache.
+
+**Returns:** `torch.Tensor`
+
+Logits output from the model.
 
 Forward pass of the module, which is compatible with the ExecuTorch runtime.
 
@@ -32,14 +56,32 @@ This forward adapter serves two primary purposes:
    The adapter matches the model's forward signature with that in `executorch/extension/llm/runner`,
    ensuring that the exported model can be executed in `ExecuTorch` out-of-the-box.
 
-- **model** (`PreTrainedModel`) -- The pretrained model to be exported.
-- **example_input_ids** (`Optional[torch.Tensor]`) -- Example input token id used by `torch.export`.
-- **example_cache_position** (`Optional[torch.Tensor]`) -- Example current cache position used by `torch.export`.
-- **dynamic_shapes(`Optional[dict]`)** -- Dynamic shapes used by `torch.export`.
-- **strict(`Optional[bool]`)** -- Flag to instruct `torch.export` to use `dynamo`.Exported program (`torch.export.ExportedProgram`)The exported program generated via `torch.export`.
+#### transformers.convert_and_export_with_cache[[transformers.convert_and_export_with_cache]]
+
+```python
+transformers.convert_and_export_with_cache(model: PreTrainedModel, example_input_ids: typing.Optional[torch.Tensor] = None, example_cache_position: typing.Optional[torch.Tensor] = None, dynamic_shapes: dict | None = None, strict: bool | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/executorch.py#L773)
+
+**Parameters:**
+
+model (`PreTrainedModel`) : The pretrained model to be exported.
+
+example_input_ids (`Optional[torch.Tensor]`) : Example input token id used by `torch.export`.
+
+example_cache_position (`Optional[torch.Tensor]`) : Example current cache position used by `torch.export`.
+
+dynamic_shapes(`Optional[dict]`) : Dynamic shapes used by `torch.export`.
+
+strict(`Optional[bool]`) : Flag to instruct `torch.export` to use `dynamo`.
+
+**Returns:** Exported program (`torch.export.ExportedProgram`)
+
+The exported program generated via `torch.export`.
 
 Convert a `PreTrainedModel` into an exportable module and export it using `torch.export`,
 ensuring the exported model is compatible with `ExecuTorch`.
 
-### Model outputs
-https://huggingface.co/docs/transformers/v5.14.0/main_classes/output.md
+### Optimization
+https://huggingface.co/docs/transformers/v5.15.0/main_classes/optimizer_schedules.md

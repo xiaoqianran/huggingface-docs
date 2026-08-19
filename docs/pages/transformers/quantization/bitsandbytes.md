@@ -52,7 +52,7 @@ This backend is supported on Linux x86-64, Linux aarch64, and Windows x86-64 pla
 
 ## Quantization Examples
 
-Quantize a model by passing a [BitsAndBytesConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.BitsAndBytesConfig) to [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). This works for any model in any modality, as long as it supports [Accelerate](https://huggingface.co/docs/accelerate/index) and contains [torch.nn.Linear](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html) layers.
+Quantize a model by passing a [BitsAndBytesConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.BitsAndBytesConfig) to [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). This works for any model in any modality, as long as it supports [Accelerate](https://huggingface.co/docs/accelerate/index) and contains [torch.nn.Linear](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html) layers.
 
 Quantizing a model in 8-bit halves the memory-usage, and for large models, set `device_map="auto"` to efficiently distribute the weights across all available GPUs.
 
@@ -85,7 +85,7 @@ model_8bit = AutoModelForCausalLM.from_pretrained(
 model_8bit.model.decoder.layers[-1].final_layer_norm.weight.dtype
 ```
 
-Once a model is quantized to 8-bit, you can't push the quantized weights to the Hub unless you're using the latest version of Transformers and bitsandbytes. If you have the latest versions, then you can push the 8-bit model to the Hub with [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub). The quantization config.json file is pushed first, followed by the quantized model weights.
+Once a model is quantized to 8-bit, you can't push the quantized weights to the Hub unless you're using the latest version of Transformers and bitsandbytes. If you have the latest versions, then you can push the 8-bit model to the Hub with [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub). The quantization config.json file is pushed first, followed by the quantized model weights.
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
@@ -132,7 +132,7 @@ model_4bit = AutoModelForCausalLM.from_pretrained(
 model_4bit.model.decoder.layers[-1].final_layer_norm.weight.dtype
 ```
 
-Make sure you have the latest bitsandbytes version so you can serialize 4-bit models and push them to the Hub with [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub). Use [save_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) to save the 4-bit model locally.  
+Make sure you have the latest bitsandbytes version so you can serialize 4-bit models and push them to the Hub with [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub). Use [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) to save the 4-bit model locally.  
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
@@ -157,7 +157,7 @@ Check your memory footprint with `get_memory_footprint`.
 print(model.get_memory_footprint())
 ```
 
-Load quantized models with [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) without a `quantization_config`.
+Load quantized models with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) without a `quantization_config`.
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -171,7 +171,7 @@ This section explores some of the specific features of 8-bit quantization, such 
 
 ### Offloading
 
-8-bit models can offload weights between the CPU and GPU to fit very large models into memory. The weights dispatched to the CPU are stored in **float32** and aren't converted to 8-bit. For example, enable offloading for [bigscience/bloom-1b7](https://huggingface.co/bigscience/bloom-1b7) through [BitsAndBytesConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.BitsAndBytesConfig).
+8-bit models can offload weights between the CPU and GPU to fit very large models into memory. The weights dispatched to the CPU are stored in **float32** and aren't converted to 8-bit. For example, enable offloading for [bigscience/bloom-1b7](https://huggingface.co/bigscience/bloom-1b7) through [BitsAndBytesConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.BitsAndBytesConfig).
 
 ```py
 from transformers import AutoModelForCausalLM, BitsAndBytesConfig
@@ -206,7 +206,7 @@ model_8bit = AutoModelForCausalLM.from_pretrained(
 
 An "outlier" is a hidden state value greater than a certain threshold, and these values are computed in fp16. While the values are usually normally distributed ([-3.5, 3.5]), this distribution can be very different for large models ([-60, 6] or [6, 60]). 8-bit quantization works well for values ~5, but beyond that, there is a significant performance penalty. A good default threshold value is 6, but a lower threshold may be needed for more unstable models (small models or finetuning).
 
-To find the best threshold for your model, experiment with the `llm_int8_threshold` parameter in [BitsAndBytesConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.BitsAndBytesConfig). For example, setting the threshold to `0.0` significantly speeds up inference at the potential cost of some accuracy loss.
+To find the best threshold for your model, experiment with the `llm_int8_threshold` parameter in [BitsAndBytesConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.BitsAndBytesConfig). For example, setting the threshold to `0.0` significantly speeds up inference at the potential cost of some accuracy loss.
 
 ```py
 from transformers import AutoModelForCausalLM, BitsAndBytesConfig
@@ -228,7 +228,7 @@ model_8bit = AutoModelForCausalLM.from_pretrained(
 
 ### Skip module conversion
 
-For some models, like [Jukebox](model_doc/jukebox), you don't need to quantize every module to 8-bit because it can actually cause instability. With Jukebox, there are several `lm_head` modules that should be skipped using the `llm_int8_skip_modules` parameter in [BitsAndBytesConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.BitsAndBytesConfig).
+For some models, like [Jukebox](model_doc/jukebox), you don't need to quantize every module to 8-bit because it can actually cause instability. With Jukebox, there are several `lm_head` modules that should be skipped using the `llm_int8_skip_modules` parameter in [BitsAndBytesConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.BitsAndBytesConfig).
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
@@ -257,7 +257,7 @@ This section explores some of the specific features of 4-bit quantization, such 
 
 ### Compute data type
 
-Change the data type from float32 (the default value) to bf16 in [BitsAndBytesConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.BitsAndBytesConfig) to speedup computation.
+Change the data type from float32 (the default value) to bf16 in [BitsAndBytesConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.BitsAndBytesConfig) to speedup computation.
 
 ```py
 import torch
@@ -300,7 +300,7 @@ model_double_quant = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-13
 
 ## Dequantizing bitsandbytes models
 
-Once quantized, you can [dequantize()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.dequantize) a model to the original precision but this may result in some quality loss. Make sure you have enough GPU memory to fit the dequantized model.
+Once quantized, you can [dequantize()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.dequantize) a model to the original precision but this may result in some quality loss. Make sure you have enough GPU memory to fit the dequantized model.
 
 ```python
 from transformers import AutoModelForCausalLM, BitsAndBytesConfig, AutoTokenizer
@@ -315,5 +315,5 @@ Learn more about the details of 8-bit quantization in [A Gentle Introduction to 
 
 Try 4-bit quantization in this [notebook](https://colab.research.google.com/drive/1ge2F1QSK8Q7h0hn3YKuBCOAS0bK8E0wf) and learn more about its details in [Making LLMs even more accessible with bitsandbytes, 4-bit quantization and QLoRA](https://huggingface.co/blog/4bit-transformers-bitsandbytes).
 
-### Selecting a quantization method
-https://huggingface.co/docs/transformers/v5.14.0/quantization/selecting.md
+### AWQ
+https://huggingface.co/docs/transformers/v5.15.0/quantization/awq.md

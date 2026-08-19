@@ -12,16 +12,16 @@ torchrun --nproc_per_node=1 examples/llama/convert_hf_to_nanotron.py \
 
 ## Transformers integration
 
-1. Load a supported Transformers model, like `Llama`, with the [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) function. This reads the `config.json` file from the checkpoint directory and creates a [LlamaConfig](/docs/transformers/v5.14.0/en/model_doc/llama#transformers.LlamaConfig).
-2. Nanotron maps [LlamaConfig](/docs/transformers/v5.14.0/en/model_doc/llama#transformers.LlamaConfig) to it's own config format and creates a Nanotron model.
+1. Load a supported Transformers model, like `Llama`, with the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) function. This reads the `config.json` file from the checkpoint directory and creates a [LlamaConfig](/docs/transformers/v5.15.0/en/model_doc/llama2#transformers.LlamaConfig).
+2. Nanotron maps [LlamaConfig](/docs/transformers/v5.15.0/en/model_doc/llama2#transformers.LlamaConfig) to it's own config format and creates a Nanotron model.
 3. Convert Transformers weights to Nanotron. A weight mapping guides how to map Nanotron parameter names to Transformers parameter names. This includes handling transformations such as fusing the QKV projections and the gate/up projections.
 
-Nanotron also relies on [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer) for turning text into token ids during preprocessing and generation.
+Nanotron also relies on [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer) for turning text into token ids during preprocessing and generation.
 
 ## Resources
 
-- [Nanontron](https://github.com/huggingface/nanotron) repository
+- [Nanotron](https://github.com/huggingface/nanotron) repository
 - [Ultrascale Playbook](https://huggingface.co/spaces/nanotron/ultrascale-playbook) describes how to efficiently scale training with Nanotron
 
-### ExecuTorch
-https://huggingface.co/docs/transformers/v5.14.0/community_integrations/executorch.md
+### llama.cpp
+https://huggingface.co/docs/transformers/v5.15.0/community_integrations/llama_cpp.md

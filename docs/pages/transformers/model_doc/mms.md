@@ -18,7 +18,7 @@ for the same number of languages, as well as a language identification model for
 Experiments show that our multilingual speech recognition model more than halves the word error rate of
 Whisper on 54 languages of the FLEURS benchmark while being trained on a small fraction of the labeled data.*
 
-Here are the different models open sourced in the MMS project. The models and code are originally released [here](https://github.com/facebookresearch/fairseq/tree/main/examples/mms). We have add them to the `transformers` framework, making them easier to use.
+Here are the different models open sourced in the MMS project. The models and code are originally released [here](https://github.com/facebookresearch/fairseq/tree/main/examples/mms). We have added them to the `transformers` framework, making them easier to use.
 
 ### Automatic Speech Recognition (ASR)
 
@@ -26,10 +26,10 @@ The ASR model checkpoints  can be found here : [mms-1b-fl102](https://huggingfac
 
 Tips:
 
-- All ASR models accept a float array corresponding to the raw waveform of the speech signal. The raw waveform should be pre-processed with [Wav2Vec2FeatureExtractor](/docs/transformers/v5.14.0/en/model_doc/wav2vec2#transformers.Wav2Vec2FeatureExtractor).
+- All ASR models accept a float array corresponding to the raw waveform of the speech signal. The raw waveform should be pre-processed with [Wav2Vec2FeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2FeatureExtractor).
 - The models were trained using connectionist temporal classification (CTC) so the model output has to be decoded using
-  [Wav2Vec2CTCTokenizer](/docs/transformers/v5.14.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer).
-- You can load different language adapter weights for different languages via [load_adapter()](/docs/transformers/v5.14.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC.load_adapter). Language adapters only consists of roughly 2 million parameters
+  [Wav2Vec2CTCTokenizer](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer).
+- You can load different language adapter weights for different languages via [load_adapter()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC.load_adapter). Language adapters only consists of roughly 2 million parameters
   and can therefore be efficiently loaded on the fly when needed.
 
 #### Loading
@@ -102,7 +102,7 @@ model = Wav2Vec2ForCTC.from_pretrained(model_id, device_map="auto")
 ```
 
 Now we process the audio data, pass the processed audio data to the model and transcribe the model output,
-just like we usually do for [Wav2Vec2ForCTC](/docs/transformers/v5.14.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC).
+just like we usually do for [Wav2Vec2ForCTC](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC).
 
 ```py
 inputs = processor(en_sample, sampling_rate=16_000, return_tensors="pt").to(model.device)
@@ -116,7 +116,7 @@ transcription = processor.decode(ids)
 ```
 
 We can now keep the same model in memory and simply switch out the language adapters by
-calling the convenient [load_adapter()](/docs/transformers/v5.14.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC.load_adapter) function for the model and [set_target_lang()](/docs/transformers/v5.14.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer.set_target_lang) for the tokenizer.
+calling the convenient [load_adapter()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC.load_adapter) function for the model and [set_target_lang()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer.set_target_lang) for the tokenizer.
 We pass the target language as an input - `"fra"` for French.
 
 ```py
@@ -371,5 +371,5 @@ details on how to finetune with models for various downstream tasks.
 
 MMS-TTS uses the same model architecture as VITS, refer to [VITS's documentation page](vits) for API reference.
 
-### DeepSeek-V4
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/deepseek_v4.md
+### TimmWrapper
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/timm_wrapper.md

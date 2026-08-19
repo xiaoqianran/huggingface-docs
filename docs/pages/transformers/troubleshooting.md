@@ -31,8 +31,8 @@ CUDA out of memory. Tried to allocate 256.00 MiB (GPU 0; 11.17 GiB total capacit
 
 Here are some potential solutions you can try to lessen memory use:
 
-- Reduce the [per_device_train_batch_size](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments.per_device_train_batch_size) value in [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments).
-- Try using [gradient_accumulation_steps](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments.gradient_accumulation_steps) in [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments) to effectively increase overall batch size.
+- Reduce the [per_device_train_batch_size](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments.per_device_train_batch_size) value in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments).
+- Try using [gradient_accumulation_steps](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments.gradient_accumulation_steps) in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) to effectively increase overall batch size.
 
 Refer to the Performance [guide](performance) for more details about memory-saving techniques.
 
@@ -125,7 +125,7 @@ tensor([[ 0.0082, -0.2307],
 
 ## ValueError: Unrecognized configuration class XYZ for this kind of AutoModel
 
-Generally, we recommend using the [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel) class to load pretrained instances of models. This class
+Generally, we recommend using the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class to load pretrained instances of models. This class
 can automatically infer and load the correct architecture from a given checkpoint based on the configuration. If you see
 this `ValueError` when loading a model from a checkpoint, this means the Auto class couldn't find a mapping from
 the configuration in the given checkpoint to the kind of model you are trying to load. Most commonly, this happens when a
@@ -141,5 +141,5 @@ ValueError: Unrecognized configuration class <class 'transformers.models.gpt2.co
 Model type should be one of AlbertConfig, BartConfig, BertConfig, BigBirdConfig, BigBirdPegasusConfig, BloomConfig, ...
 ```
 
-### Auto-generating docstrings
-https://huggingface.co/docs/transformers/v5.14.0/auto_docstring.md
+### Response Parsing
+https://huggingface.co/docs/transformers/v5.15.0/chat_response_parsing.md

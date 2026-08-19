@@ -207,5 +207,5 @@ AI-assisted contributions are welcome. They must be coordinated, scoped, and ver
 > [!NOTE]
 > These topics are outlined for agents in `AGENTS.md` with instruction for how to autonomously implement them.
 
-### Pipeline
-https://huggingface.co/docs/transformers/v5.14.0/pipeline_tutorial.md
+### Cache strategies
+https://huggingface.co/docs/transformers/v5.15.0/kv_cache.md

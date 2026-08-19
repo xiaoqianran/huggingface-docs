@@ -43,90 +43,78 @@ This model was contributed by [thomwolf](https://huggingface.co/thomwolf). The o
 
 ## XLNetConfig[[transformers.XLNetConfig]]
 
-- **vocab_size** (`int`, *optional*, defaults to `32000`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **d_model** (`int`, *optional*, defaults to `1024`) --
-  Size of the encoder layers and the pooler layer.
-- **n_layer** (`int`, *optional*, defaults to `24`) --
-  Number of hidden layers in the Transformer decoder.
-- **n_head** (`int`, *optional*, defaults to `16`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **d_inner** (`int`, *optional*, defaults to `4096`) --
-  Dimension of the MLP representations.
-- **d_head** (`int`, *optional*) --
-  The attention head dimension. If None, it will default to hidden_size // num_attention_heads
-- **ff_activation** (`str` or `Callable`, *optional*, defaults to `"gelu"`) --
-  The non-linear activation function (function or string) in the If string, `"gelu"`, `"relu"`, `"silu"` and
-  `"gelu_new"` are supported.
-- **attn_type** (`str`, *optional*, defaults to `"bi"`) --
-  The attention type used by the model. Set `"bi"` for XLNet, `"uni"` for Transformer-XL.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-12`) --
-  The epsilon used by the layer normalization layers.
-- **dropout** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The ratio for all dropout layers.
-- **mem_len** (`int` or `None`, *optional*) --
-  The number of tokens to cache. The key/value pairs that have already been pre-computed in a previous
-  forward pass won't be re-computed. See the
-  [quickstart](https://huggingface.co/transformers/quickstart.html#using-the-past) for more information.
-- **reuse_len** (`int`, *optional*) --
-  The number of tokens in the current batch to be cached and reused in the future.
-- **use_mems_eval** (`bool`, *optional*, defaults to `True`) --
-  Whether or not the model should make use of the recurrent memory mechanism in evaluation mode.
-- **use_mems_train** (`bool`, *optional*, defaults to `False`) --
-  Whether or not the model should make use of the recurrent memory mechanism in train mode.
-  
-  For pretraining, it is recommended to set `use_mems_train` to `True`. For fine-tuning, it is recommended to
-  set `use_mems_train` to `False` as discussed
-  [here](https://github.com/zihangdai/xlnet/issues/41#issuecomment-505102587). If `use_mems_train` is set to
-  `True`, one has to make sure that the train batches are correctly pre-processed, *e.g.* `batch_1 = [[This
-  line is], [This is the]]` and `batch_2 = [[ the first line], [ second line]]` and that all batches are of
-  equal size.
-  
-- **bi_data** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to use bidirectional input pipeline. Usually set to `True` during pretraining and `False`
-  during finetuning.
-- **clamp_len** (`int`, *optional*, defaults to -1) --
-  Clamp all relative distances larger than clamp_len. Setting this attribute to -1 means no clamping.
-- **same_length** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to use the same attention length for each token.
-- **summary_type** (`str`, *optional*, defaults to "last") --
-  Argument used when doing sequence summary. Used in the sequence classification and multiple choice models.
-  Has to be one of the following options:
-  - `"last"`: Take the last token hidden state (like XLNet).
-  - `"first"`: Take the first token hidden state (like BERT).
-  - `"mean"`: Take the mean of all tokens hidden states.
-  - `"cls_index"`: Supply a Tensor of classification token position (like GPT/GPT-2).
-  - `"attn"`: Not implemented now, use multi-head attention.
-- **summary_use_proj** (`bool`, *optional*, defaults to `True`) --
-  Argument used when doing sequence summary. Used in the sequence classification and multiple choice models.
-  Whether or not to add a projection after the vector extraction.
-- **summary_activation** (`str`, *optional*) --
-  Argument used when doing sequence summary. Used in the sequence classification and multiple choice models.
-  Pass `"tanh"` for a tanh activation to the output, any other value will result in no activation.
-- **summary_last_dropout** (`float`, *optional*, defaults to 0.1) --
-  Used in the sequence classification and multiple choice models.
-  The dropout ratio to be used after the projection and activation.
-- **start_n_top** (`int`, *optional*, defaults to 5) --
-  Used in the SQuAD evaluation script.
-- **end_n_top** (`int`, *optional*, defaults to 5) --
-  Used in the SQuAD evaluation script.
-- **pad_token_id** (`int`, *optional*, defaults to `5`) --
-  Token id used for padding in the vocabulary.
-- **bos_token_id** (`int`, *optional*, defaults to `1`) --
-  Token id used for beginning-of-stream in the vocabulary.
-- **eos_token_id** (`Union[int, list[int]]`, *optional*, defaults to `2`) --
-  Token id used for end-of-stream in the vocabulary.
-- **tie_word_embeddings** (`bool`, *optional*, defaults to `True`) --
-  Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
+#### transformers.XLNetConfig[[transformers.XLNetConfig]]
+
+```python
+transformers.XLNetConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 32000, d_model: int = 1024, n_layer: int = 24, n_head: int = 16, d_inner: int = 4096, d_head: int | None = None, ff_activation: str = 'gelu', attn_type: str = 'bi', initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, dropout: float | int = 0.1, mem_len: int | None = 512, reuse_len: int | None = None, use_mems_eval: bool = True, use_mems_train: bool = False, bi_data: bool = False, clamp_len: int = -1, same_length: bool = False, summary_type: str = 'last', summary_use_proj: bool = True, summary_activation: str = 'tanh', summary_last_dropout: float | int = 0.1, start_n_top: int = 5, end_n_top: int = 5, pad_token_id: int | None = 5, bos_token_id: int | None = 1, eos_token_id: int | list[int] | None = 2, tie_word_embeddings: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/configuration_xlnet.py#L28)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `32000`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+d_model (`int`, *optional*, defaults to `1024`) : Size of the encoder layers and the pooler layer.
+
+n_layer (`int`, *optional*, defaults to `24`) : Number of hidden layers in the Transformer decoder.
+
+n_head (`int`, *optional*, defaults to `16`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+d_inner (`int`, *optional*, defaults to `4096`) : Dimension of the MLP representations.
+
+d_head (`int`, *optional*) : The attention head dimension. If None, it will default to hidden_size // num_attention_heads
+
+ff_activation (`str` or `Callable`, *optional*, defaults to `"gelu"`) : The non-linear activation function (function or string) in the If string, `"gelu"`, `"relu"`, `"silu"` and `"gelu_new"` are supported.
+
+attn_type (`str`, *optional*, defaults to `"bi"`) : The attention type used by the model. Set `"bi"` for XLNet, `"uni"` for Transformer-XL.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-12`) : The epsilon used by the layer normalization layers.
+
+dropout (`Union[float, int]`, *optional*, defaults to `0.1`) : The ratio for all dropout layers.
+
+mem_len (`int` or `None`, *optional*) : The number of tokens to cache. The key/value pairs that have already been pre-computed in a previous forward pass won't be re-computed. See the [quickstart](https://huggingface.co/transformers/quickstart.html#using-the-past) for more information.
+
+reuse_len (`int`, *optional*) : The number of tokens in the current batch to be cached and reused in the future.
+
+use_mems_eval (`bool`, *optional*, defaults to `True`) : Whether or not the model should make use of the recurrent memory mechanism in evaluation mode.
+
+use_mems_train (`bool`, *optional*, defaults to `False`) : Whether or not the model should make use of the recurrent memory mechanism in train mode.  For pretraining, it is recommended to set `use_mems_train` to `True`. For fine-tuning, it is recommended to set `use_mems_train` to `False` as discussed [here](https://github.com/zihangdai/xlnet/issues/41#issuecomment-505102587). If `use_mems_train` is set to `True`, one has to make sure that the train batches are correctly pre-processed, *e.g.* `batch_1 = [[This line is], [This is the]]` and `batch_2 = [[ the first line], [ second line]]` and that all batches are of equal size. 
+
+bi_data (`bool`, *optional*, defaults to `False`) : Whether or not to use bidirectional input pipeline. Usually set to `True` during pretraining and `False` during finetuning.
+
+clamp_len (`int`, *optional*, defaults to -1) : Clamp all relative distances larger than clamp_len. Setting this attribute to -1 means no clamping.
+
+same_length (`bool`, *optional*, defaults to `False`) : Whether or not to use the same attention length for each token.
+
+summary_type (`str`, *optional*, defaults to "last") : Argument used when doing sequence summary. Used in the sequence classification and multiple choice models. Has to be one of the following options: - `"last"`: Take the last token hidden state (like XLNet). - `"first"`: Take the first token hidden state (like BERT). - `"mean"`: Take the mean of all tokens hidden states. - `"cls_index"`: Supply a Tensor of classification token position (like GPT/GPT-2). - `"attn"`: Not implemented now, use multi-head attention.
+
+summary_use_proj (`bool`, *optional*, defaults to `True`) : Argument used when doing sequence summary. Used in the sequence classification and multiple choice models. Whether or not to add a projection after the vector extraction.
+
+summary_activation (`str`, *optional*) : Argument used when doing sequence summary. Used in the sequence classification and multiple choice models. Pass `"tanh"` for a tanh activation to the output, any other value will result in no activation.
+
+summary_last_dropout (`float`, *optional*, defaults to 0.1) : Used in the sequence classification and multiple choice models. The dropout ratio to be used after the projection and activation.
+
+start_n_top (`int`, *optional*, defaults to 5) : Used in the SQuAD evaluation script.
+
+end_n_top (`int`, *optional*, defaults to 5) : Used in the SQuAD evaluation script.
+
+pad_token_id (`int`, *optional*, defaults to `5`) : Token id used for padding in the vocabulary.
+
+bos_token_id (`int`, *optional*, defaults to `1`) : Token id used for beginning-of-stream in the vocabulary.
+
+eos_token_id (`Union[int, list[int]]`, *optional*, defaults to `2`) : Token id used for end-of-stream in the vocabulary.
+
+tie_word_embeddings (`bool`, *optional*, defaults to `True`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
 
 This is the configuration class to store the configuration of a XLNetModel. It is used to instantiate a Xlnet
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [xlnet/xlnet-large-cased](https://huggingface.co/xlnet/xlnet-large-cased)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -145,311 +133,306 @@ Examples:
 
 ## XLNetTokenizer[[transformers.XLNetTokenizer]]
 
-'"}, {"name": "eos_token", "val": " = ''"}, {"name": "unk_token", "val": " = ''"}, {"name": "sep_token", "val": " = ''"}, {"name": "pad_token", "val": " = ''"}, {"name": "cls_token", "val": " = ''"}, {"name": "mask_token", "val": " = ''"}, {"name": "_spm_precompiled_charsmap", "val": " = None"}, {"name": "additional_special_tokens", "val": " = None"}, {"name": "**kwargs", "val": ""}]}>
-- **vocab** (`list of tuples`, *optional*) --
-  List of (token, score) tuples for Unigram model. If not provided, an empty list is used.
-- **unk_id** (`int`, *optional*, defaults to 0) --
-  The ID of the unknown token in the vocabulary.
-- **do_lower_case** (`bool`, *optional*, defaults to `False`) --
-  Whether to lowercase the input when tokenizing.
-- **remove_space** (`bool`, *optional*, defaults to `True`) --
-  Whether to strip the text when tokenizing (removing excess spaces before and after the string).
-- **keep_accents** (`bool`, *optional*, defaults to `False`) --
-  Whether to keep accents when tokenizing.
-- **bos_token** (`str`, *optional*, defaults to `"<s>"`) --
-  The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.
+#### transformers.XLNetTokenizer[[transformers.XLNetTokenizer]]
 
-  
+```python
+transformers.XLNetTokenizer(vocab: str | list[tuple[str, float]] | None = None, unk_id: int = 0, do_lower_case = False, remove_space = True, keep_accents = False, bos_token = '<s>', eos_token = '</s>', unk_token = '<unk>', sep_token = '<sep>', pad_token = '<pad>', cls_token = '<cls>', mask_token = '<mask>', _spm_precompiled_charsmap = None, additional_special_tokens = None, **kwargs)
+```
 
-  When building a sequence using special tokens, this is not the token that is used for the beginning of
-  sequence. The token used is the `cls_token`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/tokenization_xlnet.py#L38)
 
-  
+**Parameters:**
 
-- **eos_token** (`str`, *optional*, defaults to `"</s>"`) --
-  The end of sequence token.
+vocab (`list of tuples`, *optional*) : List of (token, score) tuples for Unigram model. If not provided, an empty list is used.
 
-  
+unk_id (`int`, *optional*, defaults to 0) : The ID of the unknown token in the vocabulary.
 
-  When building a sequence using special tokens, this is not the token that is used for the end of sequence.
-  The token used is the `sep_token`.
+do_lower_case (`bool`, *optional*, defaults to `False`) : Whether to lowercase the input when tokenizing.
 
-  
+remove_space (`bool`, *optional*, defaults to `True`) : Whether to strip the text when tokenizing (removing excess spaces before and after the string).
 
-- **unk_token** (`str`, *optional*, defaults to `"<unk>"`) --
-  The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this
-  token instead.
-- **sep_token** (`str`, *optional*, defaults to `"<sep>"`) --
-  The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for
-  sequence classification or for a text and a question for question answering. It is also used as the last
-  token of a sequence built with special tokens.
-- **pad_token** (`str`, *optional*, defaults to `"<pad>"`) --
-  The token used for padding, for example when batching sequences of different lengths.
-- **cls_token** (`str`, *optional*, defaults to `"<cls>"`) --
-  The classifier token which is used when doing sequence classification (classification of the whole sequence
-  instead of per-token classification). It is the first token of the sequence when built with special tokens.
-- **mask_token** (`str`, *optional*, defaults to `"<mask>"`) --
-  The token used for masking values. This is the token used when training this model with masked language
-  modeling. This is the token which the model will try to predict.
-- **additional_special_tokens** (`list[str]`, *optional*, defaults to `["<eop>", "<eod>"]`) --
-  Additional special tokens used by the tokenizer.
+keep_accents (`bool`, *optional*, defaults to `False`) : Whether to keep accents when tokenizing.
+
+bos_token (`str`, *optional*, defaults to `"<s>"`) : The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.    When building a sequence using special tokens, this is not the token that is used for the beginning of sequence. The token used is the `cls_token`.   
+
+eos_token (`str`, *optional*, defaults to `"</s>"`) : The end of sequence token.    When building a sequence using special tokens, this is not the token that is used for the end of sequence. The token used is the `sep_token`.   
+
+unk_token (`str`, *optional*, defaults to `"<unk>"`) : The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this token instead.
+
+sep_token (`str`, *optional*, defaults to `"<sep>"`) : The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for sequence classification or for a text and a question for question answering. It is also used as the last token of a sequence built with special tokens.
+
+pad_token (`str`, *optional*, defaults to `"<pad>"`) : The token used for padding, for example when batching sequences of different lengths.
+
+cls_token (`str`, *optional*, defaults to `"<cls>"`) : The classifier token which is used when doing sequence classification (classification of the whole sequence instead of per-token classification). It is the first token of the sequence when built with special tokens.
+
+mask_token (`str`, *optional*, defaults to `"<mask>"`) : The token used for masking values. This is the token used when training this model with masked language modeling. This is the token which the model will try to predict.
+
+additional_special_tokens (`list[str]`, *optional*, defaults to `["<eop>", "<eod>"]`) : Additional special tokens used by the tokenizer.
 
 Construct a XLNet tokenizer (backed by HuggingFace's *tokenizers* library). Based on
 [Unigram](https://huggingface.co/docs/tokenizers/python/latest/components.html?highlight=unigram#models).
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
-- **token_ids_0** -- List of IDs for the (possibly already formatted) sequence.
-- **token_ids_1** -- Unused when `already_has_special_tokens=True`. Must be None in that case.
-- **already_has_special_tokens** -- Whether the sequence is already formatted with special tokens.A list of integers in the range [0, 1]1 for a special token, 0 for a sequence token.
+#### get_special_tokens_mask[[transformers.XLNetTokenizer.get_special_tokens_mask]]
+
+```python
+get_special_tokens_mask(token_ids_0: list[int], token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_base.py#L1311)
+
+**Parameters:**
+
+token_ids_0 : List of IDs for the (possibly already formatted) sequence.
+
+token_ids_1 : Unused when `already_has_special_tokens=True`. Must be None in that case.
+
+already_has_special_tokens : Whether the sequence is already formatted with special tokens.
+
+**Returns:** A list of integers in the range [0, 1]
+
+1 for a special token, 0 for a sequence token.
 
 Retrieve sequence ids from a token list that has no special tokens added.
 
 For fast tokenizers, data collators call this with `already_has_special_tokens=True` to build a mask over an
 already-formatted sequence. In that case, we compute the mask by checking membership in `all_special_ids`.
 
+#### save_vocabulary[[transformers.XLNetTokenizer.save_vocabulary]]
+
+```python
+save_vocabulary(save_directory: str, filename_prefix: str | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_tokenizers.py#L509)
+
 ## XLNetTokenizerFast[[transformers.XLNetTokenizer]]
 
-'"}, {"name": "eos_token", "val": " = ''"}, {"name": "unk_token", "val": " = ''"}, {"name": "sep_token", "val": " = ''"}, {"name": "pad_token", "val": " = ''"}, {"name": "cls_token", "val": " = ''"}, {"name": "mask_token", "val": " = ''"}, {"name": "_spm_precompiled_charsmap", "val": " = None"}, {"name": "additional_special_tokens", "val": " = None"}, {"name": "**kwargs", "val": ""}]}>
-- **vocab** (`list of tuples`, *optional*) --
-  List of (token, score) tuples for Unigram model. If not provided, an empty list is used.
-- **unk_id** (`int`, *optional*, defaults to 0) --
-  The ID of the unknown token in the vocabulary.
-- **do_lower_case** (`bool`, *optional*, defaults to `False`) --
-  Whether to lowercase the input when tokenizing.
-- **remove_space** (`bool`, *optional*, defaults to `True`) --
-  Whether to strip the text when tokenizing (removing excess spaces before and after the string).
-- **keep_accents** (`bool`, *optional*, defaults to `False`) --
-  Whether to keep accents when tokenizing.
-- **bos_token** (`str`, *optional*, defaults to `"<s>"`) --
-  The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.
+#### transformers.XLNetTokenizer[[transformers.XLNetTokenizer]]
 
-  
+```python
+transformers.XLNetTokenizer(vocab: str | list[tuple[str, float]] | None = None, unk_id: int = 0, do_lower_case = False, remove_space = True, keep_accents = False, bos_token = '<s>', eos_token = '</s>', unk_token = '<unk>', sep_token = '<sep>', pad_token = '<pad>', cls_token = '<cls>', mask_token = '<mask>', _spm_precompiled_charsmap = None, additional_special_tokens = None, **kwargs)
+```
 
-  When building a sequence using special tokens, this is not the token that is used for the beginning of
-  sequence. The token used is the `cls_token`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/tokenization_xlnet.py#L38)
 
-  
+**Parameters:**
 
-- **eos_token** (`str`, *optional*, defaults to `"</s>"`) --
-  The end of sequence token.
+vocab (`list of tuples`, *optional*) : List of (token, score) tuples for Unigram model. If not provided, an empty list is used.
 
-  
+unk_id (`int`, *optional*, defaults to 0) : The ID of the unknown token in the vocabulary.
 
-  When building a sequence using special tokens, this is not the token that is used for the end of sequence.
-  The token used is the `sep_token`.
+do_lower_case (`bool`, *optional*, defaults to `False`) : Whether to lowercase the input when tokenizing.
 
-  
+remove_space (`bool`, *optional*, defaults to `True`) : Whether to strip the text when tokenizing (removing excess spaces before and after the string).
 
-- **unk_token** (`str`, *optional*, defaults to `"<unk>"`) --
-  The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this
-  token instead.
-- **sep_token** (`str`, *optional*, defaults to `"<sep>"`) --
-  The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for
-  sequence classification or for a text and a question for question answering. It is also used as the last
-  token of a sequence built with special tokens.
-- **pad_token** (`str`, *optional*, defaults to `"<pad>"`) --
-  The token used for padding, for example when batching sequences of different lengths.
-- **cls_token** (`str`, *optional*, defaults to `"<cls>"`) --
-  The classifier token which is used when doing sequence classification (classification of the whole sequence
-  instead of per-token classification). It is the first token of the sequence when built with special tokens.
-- **mask_token** (`str`, *optional*, defaults to `"<mask>"`) --
-  The token used for masking values. This is the token used when training this model with masked language
-  modeling. This is the token which the model will try to predict.
-- **additional_special_tokens** (`list[str]`, *optional*, defaults to `["<eop>", "<eod>"]`) --
-  Additional special tokens used by the tokenizer.
+keep_accents (`bool`, *optional*, defaults to `False`) : Whether to keep accents when tokenizing.
+
+bos_token (`str`, *optional*, defaults to `"<s>"`) : The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.    When building a sequence using special tokens, this is not the token that is used for the beginning of sequence. The token used is the `cls_token`.   
+
+eos_token (`str`, *optional*, defaults to `"</s>"`) : The end of sequence token.    When building a sequence using special tokens, this is not the token that is used for the end of sequence. The token used is the `sep_token`.   
+
+unk_token (`str`, *optional*, defaults to `"<unk>"`) : The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this token instead.
+
+sep_token (`str`, *optional*, defaults to `"<sep>"`) : The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for sequence classification or for a text and a question for question answering. It is also used as the last token of a sequence built with special tokens.
+
+pad_token (`str`, *optional*, defaults to `"<pad>"`) : The token used for padding, for example when batching sequences of different lengths.
+
+cls_token (`str`, *optional*, defaults to `"<cls>"`) : The classifier token which is used when doing sequence classification (classification of the whole sequence instead of per-token classification). It is the first token of the sequence when built with special tokens.
+
+mask_token (`str`, *optional*, defaults to `"<mask>"`) : The token used for masking values. This is the token used when training this model with masked language modeling. This is the token which the model will try to predict.
+
+additional_special_tokens (`list[str]`, *optional*, defaults to `["<eop>", "<eod>"]`) : Additional special tokens used by the tokenizer.
 
 Construct a XLNet tokenizer (backed by HuggingFace's *tokenizers* library). Based on
 [Unigram](https://huggingface.co/docs/tokenizers/python/latest/components.html?highlight=unigram#models).
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 ## XLNet specific outputs[[transformers.models.xlnet.modeling_xlnet.XLNetModelOutput]]
 
-- **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, num_predict, hidden_size)`) --
-  Sequence of hidden-states at the last layer of the model.
+#### transformers.models.xlnet.modeling_xlnet.XLNetModelOutput[[transformers.models.xlnet.modeling_xlnet.XLNetModelOutput]]
 
-  `num_predict` corresponds to `target_mapping.shape[1]`. If `target_mapping` is `None`, then `num_predict`
-  corresponds to `sequence_length`.
-- **mems** (`list[torch.FloatTensor]` of length `config.n_layers`) --
-  Contains pre-computed hidden-states. Can be used (see `mems` input) to speed up sequential decoding. The
-  token ids which have their past given to this model should not be passed as `input_ids` as they have
-  already been computed.
-- **hidden_states** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) --
-  Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
-  one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
+```python
+transformers.models.xlnet.modeling_xlnet.XLNetModelOutput(last_hidden_state: FloatTensor, mems: list[torch.FloatTensor] | None = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
+```
 
-  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) --
-  Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
-  sequence_length)`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L661)
 
-  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
-  heads.
+**Parameters:**
 
-Output type of [XLNetModel](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetModel).
+last_hidden_state (`torch.FloatTensor` of shape `(batch_size, num_predict, hidden_size)`) : Sequence of hidden-states at the last layer of the model.  `num_predict` corresponds to `target_mapping.shape[1]`. If `target_mapping` is `None`, then `num_predict` corresponds to `sequence_length`.
 
-- **loss** (`torch.FloatTensor` of shape *(1,)*, *optional*, returned when `labels` is provided) --
-  Language modeling loss (for next-token prediction).
-- **logits** (`torch.FloatTensor` of shape `(batch_size, num_predict, config.vocab_size)`) --
-  Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
+mems (`list[torch.FloatTensor]` of length `config.n_layers`) : Contains pre-computed hidden-states. Can be used (see `mems` input) to speed up sequential decoding. The token ids which have their past given to this model should not be passed as `input_ids` as they have already been computed.
 
-  `num_predict` corresponds to `target_mapping.shape[1]`. If `target_mapping` is `None`, then `num_predict`
-  corresponds to `sequence_length`.
-- **mems** (`list[torch.FloatTensor]` of length `config.n_layers`) --
-  Contains pre-computed hidden-states. Can be used (see `mems` input) to speed up sequential decoding. The
-  token ids which have their past given to this model should not be passed as `input_ids` as they have
-  already been computed.
-- **hidden_states** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) --
-  Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
-  one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
+hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
 
-  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) --
-  Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
-  sequence_length)`.
+attentions (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
-  heads.
+Output type of [XLNetModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetModel).
 
-Output type of [XLNetLMHeadModel](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetLMHeadModel).
+#### transformers.models.xlnet.modeling_xlnet.XLNetLMHeadModelOutput[[transformers.models.xlnet.modeling_xlnet.XLNetLMHeadModelOutput]]
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `label` is provided) --
-  Classification (or regression if config.num_labels==1) loss.
-- **logits** (`torch.FloatTensor` of shape `(batch_size, config.num_labels)`) --
-  Classification (or regression if config.num_labels==1) scores (before SoftMax).
-- **mems** (`list[torch.FloatTensor]` of length `config.n_layers`) --
-  Contains pre-computed hidden-states. Can be used (see `mems` input) to speed up sequential decoding. The
-  token ids which have their past given to this model should not be passed as `input_ids` as they have
-  already been computed.
-- **hidden_states** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) --
-  Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
-  one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
+```python
+transformers.models.xlnet.modeling_xlnet.XLNetLMHeadModelOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, mems: list[torch.FloatTensor] | None = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
+```
 
-  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) --
-  Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
-  sequence_length)`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L686)
 
-  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
-  heads.
+**Parameters:**
 
-Output type of [XLNetForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetForSequenceClassification).
+loss (`torch.FloatTensor` of shape *(1,)*, *optional*, returned when `labels` is provided) : Language modeling loss (for next-token prediction).
 
-- **loss** (`torch.FloatTensor` of shape *(1,)*, *optional*, returned when `labels` is provided) --
-  Classification loss.
-- **logits** (`torch.FloatTensor` of shape `(batch_size, num_choices)`) --
-  *num_choices* is the second dimension of the input tensors. (see *input_ids* above).
+logits (`torch.FloatTensor` of shape `(batch_size, num_predict, config.vocab_size)`) : Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).  `num_predict` corresponds to `target_mapping.shape[1]`. If `target_mapping` is `None`, then `num_predict` corresponds to `sequence_length`.
 
-  Classification scores (before SoftMax).
-- **mems** (`list[torch.FloatTensor]` of length `config.n_layers`) --
-  Contains pre-computed hidden-states. Can be used (see `mems` input) to speed up sequential decoding. The
-  token ids which have their past given to this model should not be passed as `input_ids` as they have
-  already been computed.
-- **hidden_states** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) --
-  Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
-  one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
+mems (`list[torch.FloatTensor]` of length `config.n_layers`) : Contains pre-computed hidden-states. Can be used (see `mems` input) to speed up sequential decoding. The token ids which have their past given to this model should not be passed as `input_ids` as they have already been computed.
 
-  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) --
-  Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
-  sequence_length)`.
+hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
 
-  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
-  heads.
+attentions (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-Output type of [XLNetForMultipleChoice](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetForMultipleChoice).
+Output type of [XLNetLMHeadModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetLMHeadModel).
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) --
-  Classification loss.
-- **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.num_labels)`) --
-  Classification scores (before SoftMax).
-- **mems** (`list[torch.FloatTensor]` of length `config.n_layers`) --
-  Contains pre-computed hidden-states. Can be used (see `mems` input) to speed up sequential decoding. The
-  token ids which have their past given to this model should not be passed as `input_ids` as they have
-  already been computed.
-- **hidden_states** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) --
-  Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
-  one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
+#### transformers.models.xlnet.modeling_xlnet.XLNetForSequenceClassificationOutput[[transformers.models.xlnet.modeling_xlnet.XLNetForSequenceClassificationOutput]]
 
-  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) --
-  Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
-  sequence_length)`.
+```python
+transformers.models.xlnet.modeling_xlnet.XLNetForSequenceClassificationOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, mems: list[torch.FloatTensor] | None = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
+```
 
-  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
-  heads.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L714)
+
+**Parameters:**
+
+loss (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `label` is provided) : Classification (or regression if config.num_labels==1) loss.
+
+logits (`torch.FloatTensor` of shape `(batch_size, config.num_labels)`) : Classification (or regression if config.num_labels==1) scores (before SoftMax).
+
+mems (`list[torch.FloatTensor]` of length `config.n_layers`) : Contains pre-computed hidden-states. Can be used (see `mems` input) to speed up sequential decoding. The token ids which have their past given to this model should not be passed as `input_ids` as they have already been computed.
+
+hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
+
+attentions (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
+
+Output type of [XLNetForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForSequenceClassification).
+
+#### transformers.models.xlnet.modeling_xlnet.XLNetForMultipleChoiceOutput[[transformers.models.xlnet.modeling_xlnet.XLNetForMultipleChoiceOutput]]
+
+```python
+transformers.models.xlnet.modeling_xlnet.XLNetForMultipleChoiceOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, mems: list[torch.FloatTensor] | None = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L764)
+
+**Parameters:**
+
+loss (`torch.FloatTensor` of shape *(1,)*, *optional*, returned when `labels` is provided) : Classification loss.
+
+logits (`torch.FloatTensor` of shape `(batch_size, num_choices)`) : *num_choices* is the second dimension of the input tensors. (see *input_ids* above).  Classification scores (before SoftMax).
+
+mems (`list[torch.FloatTensor]` of length `config.n_layers`) : Contains pre-computed hidden-states. Can be used (see `mems` input) to speed up sequential decoding. The token ids which have their past given to this model should not be passed as `input_ids` as they have already been computed.
+
+hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
+
+attentions (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
+
+Output type of [XLNetForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForMultipleChoice).
+
+#### transformers.models.xlnet.modeling_xlnet.XLNetForTokenClassificationOutput[[transformers.models.xlnet.modeling_xlnet.XLNetForTokenClassificationOutput]]
+
+```python
+transformers.models.xlnet.modeling_xlnet.XLNetForTokenClassificationOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, mems: list[torch.FloatTensor] | None = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L739)
+
+**Parameters:**
+
+loss (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) : Classification loss.
+
+logits (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.num_labels)`) : Classification scores (before SoftMax).
+
+mems (`list[torch.FloatTensor]` of length `config.n_layers`) : Contains pre-computed hidden-states. Can be used (see `mems` input) to speed up sequential decoding. The token ids which have their past given to this model should not be passed as `input_ids` as they have already been computed.
+
+hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
+
+attentions (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
 
 Output type of `XLNetForTokenClassificationOutput`.
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) --
-  Total span extraction loss is the sum of a Cross-Entropy for the start and end positions.
-- **start_logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length,)`) --
-  Span-start scores (before SoftMax).
-- **end_logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length,)`) --
-  Span-end scores (before SoftMax).
-- **mems** (`list[torch.FloatTensor]` of length `config.n_layers`) --
-  Contains pre-computed hidden-states. Can be used (see `mems` input) to speed up sequential decoding. The
-  token ids which have their past given to this model should not be passed as `input_ids` as they have
-  already been computed.
-- **hidden_states** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) --
-  Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
-  one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
+#### transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringSimpleOutput[[transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringSimpleOutput]]
 
-  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) --
-  Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
-  sequence_length)`.
+```python
+transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringSimpleOutput(loss: typing.Optional[torch.FloatTensor] = None, start_logits: typing.Optional[torch.FloatTensor] = None, end_logits: typing.Optional[torch.FloatTensor] = None, mems: list[torch.FloatTensor] | None = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
+```
 
-  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
-  heads.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L791)
 
-Output type of [XLNetForQuestionAnsweringSimple](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnsweringSimple).
+**Parameters:**
 
-- **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned if both `start_positions` and `end_positions` are provided) --
-  Classification loss as the sum of start token, end token (and is_impossible if provided) classification
-  losses.
-- **start_top_log_probs** (`torch.FloatTensor` of shape `(batch_size, config.start_n_top)`, *optional*, returned if `start_positions` or `end_positions` is not provided) --
-  Log probabilities for the top config.start_n_top start token possibilities (beam-search).
-- **start_top_index** (`torch.LongTensor` of shape `(batch_size, config.start_n_top)`, *optional*, returned if `start_positions` or `end_positions` is not provided) --
-  Indices for the top config.start_n_top start token possibilities (beam-search).
-- **end_top_log_probs** (`torch.FloatTensor` of shape `(batch_size, config.start_n_top * config.end_n_top)`, *optional*, returned if `start_positions` or `end_positions` is not provided) --
-  Log probabilities for the top `config.start_n_top * config.end_n_top` end token possibilities
-  (beam-search).
-- **end_top_index** (`torch.LongTensor` of shape `(batch_size, config.start_n_top * config.end_n_top)`, *optional*, returned if `start_positions` or `end_positions` is not provided) --
-  Indices for the top `config.start_n_top * config.end_n_top` end token possibilities (beam-search).
-- **cls_logits** (`torch.FloatTensor` of shape `(batch_size,)`, *optional*, returned if `start_positions` or `end_positions` is not provided) --
-  Log probabilities for the `is_impossible` label of the answers.
-- **mems** (`list[torch.FloatTensor]` of length `config.n_layers`) --
-  Contains pre-computed hidden-states. Can be used (see `mems` input) to speed up sequential decoding. The
-  token ids which have their past given to this model should not be passed as `input_ids` as they have
-  already been computed.
-- **hidden_states** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) --
-  Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
-  one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
+loss (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) : Total span extraction loss is the sum of a Cross-Entropy for the start and end positions.
 
-  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
-- **attentions** (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) --
-  Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length,
-  sequence_length)`.
+start_logits (`torch.FloatTensor` of shape `(batch_size, sequence_length,)`) : Span-start scores (before SoftMax).
 
-  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention
-  heads.
+end_logits (`torch.FloatTensor` of shape `(batch_size, sequence_length,)`) : Span-end scores (before SoftMax).
 
-Output type of [XLNetForQuestionAnswering](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnswering).
+mems (`list[torch.FloatTensor]` of length `config.n_layers`) : Contains pre-computed hidden-states. Can be used (see `mems` input) to speed up sequential decoding. The token ids which have their past given to this model should not be passed as `input_ids` as they have already been computed.
+
+hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
+
+attentions (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
+
+Output type of [XLNetForQuestionAnsweringSimple](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnsweringSimple).
+
+#### transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringOutput[[transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringOutput]]
+
+```python
+transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringOutput(loss: typing.Optional[torch.FloatTensor] = None, start_top_log_probs: typing.Optional[torch.FloatTensor] = None, start_top_index: typing.Optional[torch.LongTensor] = None, end_top_log_probs: typing.Optional[torch.FloatTensor] = None, end_top_index: typing.Optional[torch.LongTensor] = None, cls_logits: typing.Optional[torch.FloatTensor] = None, mems: list[torch.FloatTensor] | None = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L819)
+
+**Parameters:**
+
+loss (`torch.FloatTensor` of shape `(1,)`, *optional*, returned if both `start_positions` and `end_positions` are provided) : Classification loss as the sum of start token, end token (and is_impossible if provided) classification losses.
+
+start_top_log_probs (`torch.FloatTensor` of shape `(batch_size, config.start_n_top)`, *optional*, returned if `start_positions` or `end_positions` is not provided) : Log probabilities for the top config.start_n_top start token possibilities (beam-search).
+
+start_top_index (`torch.LongTensor` of shape `(batch_size, config.start_n_top)`, *optional*, returned if `start_positions` or `end_positions` is not provided) : Indices for the top config.start_n_top start token possibilities (beam-search).
+
+end_top_log_probs (`torch.FloatTensor` of shape `(batch_size, config.start_n_top * config.end_n_top)`, *optional*, returned if `start_positions` or `end_positions` is not provided) : Log probabilities for the top `config.start_n_top * config.end_n_top` end token possibilities (beam-search).
+
+end_top_index (`torch.LongTensor` of shape `(batch_size, config.start_n_top * config.end_n_top)`, *optional*, returned if `start_positions` or `end_positions` is not provided) : Indices for the top `config.start_n_top * config.end_n_top` end token possibilities (beam-search).
+
+cls_logits (`torch.FloatTensor` of shape `(batch_size,)`, *optional*, returned if `start_positions` or `end_positions` is not provided) : Log probabilities for the `is_impossible` label of the answers.
+
+mems (`list[torch.FloatTensor]` of length `config.n_layers`) : Contains pre-computed hidden-states. Can be used (see `mems` input) to speed up sequential decoding. The token ids which have their past given to this model should not be passed as `input_ids` as they have already been computed.
+
+hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
+
+attentions (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
+
+Output type of [XLNetForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnswering).
 
 ## XLNetModel[[transformers.XLNetModel]]
 
-- **config** ([XLNetModel](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.XLNetModel[[transformers.XLNetModel]]
+
+```python
+transformers.XLNetModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L853)
+
+**Parameters:**
+
+config ([XLNetModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Xlnet Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -457,74 +440,47 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.XLNetModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, mems: typing.Optional[torch.Tensor] = None, perm_mask: typing.Optional[torch.Tensor] = None, target_mapping: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, input_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_mems: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L978)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **mems** (`list[torch.FloatTensor]` of length `config.n_layers`) --
-  Contains pre-computed hidden-states (see `mems` output below) . Can be used to speed up sequential
-  decoding. The token ids which have their past given to this model should not be passed as `input_ids` as
-  they have already been computed.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  `use_mems` has to be set to `True` to make use of `mems`.
-- **perm_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length, sequence_length)`, *optional*) --
-  Mask to indicate the attention pattern for each input token with values selected in `[0, 1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - if `perm_mask[k, i, j] = 0`, i attend to j in batch k;
-  - if `perm_mask[k, i, j] = 1`, i does not attend to j in batch k.
+mems (`list[torch.FloatTensor]` of length `config.n_layers`) : Contains pre-computed hidden-states (see `mems` output below) . Can be used to speed up sequential decoding. The token ids which have their past given to this model should not be passed as `input_ids` as they have already been computed.  `use_mems` has to be set to `True` to make use of `mems`.
 
-  If not set, each token attends to all the others (full bidirectional attention). Only used during
-  pretraining (to define factorization order) or for sequential decoding (generation).
-- **target_mapping** (`torch.FloatTensor` of shape `(batch_size, num_predict, sequence_length)`, *optional*) --
-  Mask to indicate the output tokens to use. If `target_mapping[k, i, j] = 1`, the i-th predict in batch k is
-  on the j-th token. Only used during pretraining for partial prediction or for sequential decoding
-  (generation).
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+perm_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length, sequence_length)`, *optional*) : Mask to indicate the attention pattern for each input token with values selected in `[0, 1]`:  - if `perm_mask[k, i, j] = 0`, i attend to j in batch k; - if `perm_mask[k, i, j] = 1`, i does not attend to j in batch k.  If not set, each token attends to all the others (full bidirectional attention). Only used during pretraining (to define factorization order) or for sequential decoding (generation).
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+target_mapping (`torch.FloatTensor` of shape `(batch_size, num_predict, sequence_length)`, *optional*) : Mask to indicate the output tokens to use. If `target_mapping[k, i, j] = 1`, the i-th predict in batch k is on the j-th token. Only used during pretraining for partial prediction or for sequential decoding (generation).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **input_mask** (`torch.FloatTensor` of shape `batch_size, sequence_length`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Negative of `attention_mask`, i.e. with 0 for
-  real tokens and 1 for padding which is kept for compatibility with the original code base.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  Mask values selected in `[0, 1]`:
+input_mask (`torch.FloatTensor` of shape `batch_size, sequence_length`, *optional*) : Mask to avoid performing attention on padding token indices. Negative of `attention_mask`, i.e. with 0 for real tokens and 1 for padding which is kept for compatibility with the original code base.  Mask values selected in `[0, 1]`:  - 1 for tokens that are **masked**, - 0 for tokens that are **not masked**.  You can only uses one of `input_mask` and `attention_mask`.
 
-  - 1 for tokens that are **masked**,
-  - 0 for tokens that are **not masked**.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-  You can only uses one of `input_mask` and `attention_mask`.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **use_mems** (`bool`, *optional*) --
-  Whether to use memory states to speed up sequential decoding. If set to `True`, the model will use the hidden
-  states from previous forward passes to compute attention, which can significantly improve performance for
-  sequential decoding tasks.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[XLNetModelOutput](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetModelOutput) or `tuple(torch.FloatTensor)`A [XLNetModelOutput](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetModelOutput) or a tuple of
+use_mems (`bool`, *optional*) : Whether to use memory states to speed up sequential decoding. If set to `True`, the model will use the hidden states from previous forward passes to compute attention, which can significantly improve performance for sequential decoding tasks.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [XLNetModelOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetModelOutput) or `tuple(torch.FloatTensor)`
+
+A [XLNetModelOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
-The [XLNetModel](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
+
+The [XLNetModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -549,14 +505,21 @@ the latter silently ignores them.
 
 ## XLNetLMHeadModel[[transformers.XLNetLMHeadModel]]
 
-- **config** ([XLNetLMHeadModel](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetLMHeadModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.XLNetLMHeadModel[[transformers.XLNetLMHeadModel]]
+
+```python
+transformers.XLNetLMHeadModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1213)
+
+**Parameters:**
+
+config ([XLNetLMHeadModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetLMHeadModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 XLNet Model with a language modeling head on top (linear layer with weights tied to the input embeddings).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -564,90 +527,51 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.XLNetLMHeadModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, mems: typing.Optional[torch.Tensor] = None, perm_mask: typing.Optional[torch.Tensor] = None, target_mapping: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, input_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_mems: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1288)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **mems** (`list[torch.FloatTensor]` of length `config.n_layers`) --
-  Contains pre-computed hidden-states (see `mems` output below) . Can be used to speed up sequential
-  decoding. The token ids which have their past given to this model should not be passed as `input_ids` as
-  they have already been computed.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  `use_mems` has to be set to `True` to make use of `mems`.
-- **perm_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length, sequence_length)`, *optional*) --
-  Mask to indicate the attention pattern for each input token with values selected in `[0, 1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - if `perm_mask[k, i, j] = 0`, i attend to j in batch k;
-  - if `perm_mask[k, i, j] = 1`, i does not attend to j in batch k.
+mems (`list[torch.FloatTensor]` of length `config.n_layers`) : Contains pre-computed hidden-states (see `mems` output below) . Can be used to speed up sequential decoding. The token ids which have their past given to this model should not be passed as `input_ids` as they have already been computed.  `use_mems` has to be set to `True` to make use of `mems`.
 
-  If not set, each token attends to all the others (full bidirectional attention). Only used during
-  pretraining (to define factorization order) or for sequential decoding (generation).
-- **target_mapping** (`torch.FloatTensor` of shape `(batch_size, num_predict, sequence_length)`, *optional*) --
-  Mask to indicate the output tokens to use. If `target_mapping[k, i, j] = 1`, the i-th predict in batch k is
-  on the j-th token. Only used during pretraining for partial prediction or for sequential decoding
-  (generation).
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+perm_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length, sequence_length)`, *optional*) : Mask to indicate the attention pattern for each input token with values selected in `[0, 1]`:  - if `perm_mask[k, i, j] = 0`, i attend to j in batch k; - if `perm_mask[k, i, j] = 1`, i does not attend to j in batch k.  If not set, each token attends to all the others (full bidirectional attention). Only used during pretraining (to define factorization order) or for sequential decoding (generation).
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+target_mapping (`torch.FloatTensor` of shape `(batch_size, num_predict, sequence_length)`, *optional*) : Mask to indicate the output tokens to use. If `target_mapping[k, i, j] = 1`, the i-th predict in batch k is on the j-th token. Only used during pretraining for partial prediction or for sequential decoding (generation).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **input_mask** (`torch.FloatTensor` of shape `batch_size, sequence_length`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Negative of `attention_mask`, i.e. with 0 for
-  real tokens and 1 for padding which is kept for compatibility with the original code base.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  Mask values selected in `[0, 1]`:
+input_mask (`torch.FloatTensor` of shape `batch_size, sequence_length`, *optional*) : Mask to avoid performing attention on padding token indices. Negative of `attention_mask`, i.e. with 0 for real tokens and 1 for padding which is kept for compatibility with the original code base.  Mask values selected in `[0, 1]`:  - 1 for tokens that are **masked**, - 0 for tokens that are **not masked**.  You can only uses one of `input_mask` and `attention_mask`.
 
-  - 1 for tokens that are **masked**,
-  - 0 for tokens that are **not masked**.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-  You can only uses one of `input_mask` and `attention_mask`.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size, num_predict)`, *optional*) --
-  Labels for masked language modeling. `num_predict` corresponds to `target_mapping.shape[1]`. If
-  `target_mapping` is `None`, then `num_predict` corresponds to `sequence_length`.
+labels (`torch.LongTensor` of shape `(batch_size, num_predict)`, *optional*) : Labels for masked language modeling. `num_predict` corresponds to `target_mapping.shape[1]`. If `target_mapping` is `None`, then `num_predict` corresponds to `sequence_length`.  The labels should correspond to the masked input words that should be predicted and depends on `target_mapping`. Note in order to perform standard auto-regressive language modeling a ** token has to be added to the `input_ids` (see the `prepare_inputs_for_generation` function and examples below)  Indices are selected in `[-100, 0, ..., config.vocab_size]` All labels set to `-100` are ignored, the loss is only computed for labels in `[0, ..., config.vocab_size]`
 
-  The labels should correspond to the masked input words that should be predicted and depends on
-  `target_mapping`. Note in order to perform standard auto-regressive language modeling a ** token has
-  to be added to the `input_ids` (see the `prepare_inputs_for_generation` function and examples below)
+use_mems (`bool`, *optional*) : Whether to use memory states to speed up sequential decoding. If set to `True`, the model will use the hidden states from previous forward passes to compute attention, which can significantly improve performance for sequential decoding tasks.
 
-  Indices are selected in `[-100, 0, ..., config.vocab_size]` All labels set to `-100` are ignored, the loss
-  is only computed for labels in `[0, ..., config.vocab_size]`
-- **use_mems** (`bool`, *optional*) --
-  Whether to use memory states to speed up sequential decoding. If set to `True`, the model will use the hidden
-  states from previous forward passes to compute attention, which can significantly improve performance for
-  sequential decoding tasks.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
-- **logits_to_keep** (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) --
-  If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all
-  `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that
-  token can save memory, which becomes pretty significant for long sequences or large vocabulary size.
-  If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension.
-  This is useful when using packed tensor format (single dimension for batch and sequence length).[XLNetLMHeadModelOutput](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetLMHeadModelOutput) or `tuple(torch.FloatTensor)`A [XLNetLMHeadModelOutput](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetLMHeadModelOutput) or a tuple of
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
+
+**Returns:** [XLNetLMHeadModelOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetLMHeadModelOutput) or `tuple(torch.FloatTensor)`
+
+A [XLNetLMHeadModelOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetLMHeadModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
-The [XLNetLMHeadModel](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetLMHeadModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
+
+The [XLNetLMHeadModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetLMHeadModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -728,15 +652,22 @@ Examples:
 
 ## XLNetForSequenceClassification[[transformers.XLNetForSequenceClassification]]
 
-- **config** ([XLNetForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetForSequenceClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.XLNetForSequenceClassification[[transformers.XLNetForSequenceClassification]]
+
+```python
+transformers.XLNetForSequenceClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1462)
+
+**Parameters:**
+
+config ([XLNetForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 XLNet Model with a sequence classification/regression head on top (a linear layer on top of the pooled output) e.g.
 for GLUE tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -744,78 +675,49 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.XLNetForSequenceClassification.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, mems: typing.Optional[torch.Tensor] = None, perm_mask: typing.Optional[torch.Tensor] = None, target_mapping: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, input_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_mems: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1475)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **mems** (`list[torch.FloatTensor]` of length `config.n_layers`) --
-  Contains pre-computed hidden-states (see `mems` output below) . Can be used to speed up sequential
-  decoding. The token ids which have their past given to this model should not be passed as `input_ids` as
-  they have already been computed.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  `use_mems` has to be set to `True` to make use of `mems`.
-- **perm_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length, sequence_length)`, *optional*) --
-  Mask to indicate the attention pattern for each input token with values selected in `[0, 1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - if `perm_mask[k, i, j] = 0`, i attend to j in batch k;
-  - if `perm_mask[k, i, j] = 1`, i does not attend to j in batch k.
+mems (`list[torch.FloatTensor]` of length `config.n_layers`) : Contains pre-computed hidden-states (see `mems` output below) . Can be used to speed up sequential decoding. The token ids which have their past given to this model should not be passed as `input_ids` as they have already been computed.  `use_mems` has to be set to `True` to make use of `mems`.
 
-  If not set, each token attends to all the others (full bidirectional attention). Only used during
-  pretraining (to define factorization order) or for sequential decoding (generation).
-- **target_mapping** (`torch.FloatTensor` of shape `(batch_size, num_predict, sequence_length)`, *optional*) --
-  Mask to indicate the output tokens to use. If `target_mapping[k, i, j] = 1`, the i-th predict in batch k is
-  on the j-th token. Only used during pretraining for partial prediction or for sequential decoding
-  (generation).
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+perm_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length, sequence_length)`, *optional*) : Mask to indicate the attention pattern for each input token with values selected in `[0, 1]`:  - if `perm_mask[k, i, j] = 0`, i attend to j in batch k; - if `perm_mask[k, i, j] = 1`, i does not attend to j in batch k.  If not set, each token attends to all the others (full bidirectional attention). Only used during pretraining (to define factorization order) or for sequential decoding (generation).
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+target_mapping (`torch.FloatTensor` of shape `(batch_size, num_predict, sequence_length)`, *optional*) : Mask to indicate the output tokens to use. If `target_mapping[k, i, j] = 1`, the i-th predict in batch k is on the j-th token. Only used during pretraining for partial prediction or for sequential decoding (generation).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **input_mask** (`torch.FloatTensor` of shape `batch_size, sequence_length`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Negative of `attention_mask`, i.e. with 0 for
-  real tokens and 1 for padding which is kept for compatibility with the original code base.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  Mask values selected in `[0, 1]`:
+input_mask (`torch.FloatTensor` of shape `batch_size, sequence_length`, *optional*) : Mask to avoid performing attention on padding token indices. Negative of `attention_mask`, i.e. with 0 for real tokens and 1 for padding which is kept for compatibility with the original code base.  Mask values selected in `[0, 1]`:  - 1 for tokens that are **masked**, - 0 for tokens that are **not masked**.  You can only uses one of `input_mask` and `attention_mask`.
 
-  - 1 for tokens that are **masked**,
-  - 0 for tokens that are **not masked**.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-  You can only uses one of `input_mask` and `attention_mask`.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the sequence classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
-- **use_mems** (`bool`, *optional*) --
-  Whether to use memory states to speed up sequential decoding. If set to `True`, the model will use the hidden
-  states from previous forward passes to compute attention, which can significantly improve performance for
-  sequential decoding tasks.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[XLNetForSequenceClassificationOutput](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForSequenceClassificationOutput) or `tuple(torch.FloatTensor)`A [XLNetForSequenceClassificationOutput](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForSequenceClassificationOutput) or a tuple of
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+use_mems (`bool`, *optional*) : Whether to use memory states to speed up sequential decoding. If set to `True`, the model will use the hidden states from previous forward passes to compute attention, which can significantly improve performance for sequential decoding tasks.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [XLNetForSequenceClassificationOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForSequenceClassificationOutput) or `tuple(torch.FloatTensor)`
+
+A [XLNetForSequenceClassificationOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForSequenceClassificationOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
-The [XLNetForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetForSequenceClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
+
+The [XLNetForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -894,15 +796,22 @@ Example of multi-label classification:
 
 ## XLNetForMultipleChoice[[transformers.XLNetForMultipleChoice]]
 
-- **config** ([XLNetForMultipleChoice](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetForMultipleChoice)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.XLNetForMultipleChoice[[transformers.XLNetForMultipleChoice]]
+
+```python
+transformers.XLNetForMultipleChoice(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1698)
+
+**Parameters:**
+
+config ([XLNetForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForMultipleChoice)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Xlnet Model with a multiple choice classification head on top (a linear layer on top of the pooled output and a
 softmax) e.g. for RocStories/SWAG tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -910,77 +819,49 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) --
-  Indices of input sequence tokens in the vocabulary.
+#### forward[[transformers.XLNetForMultipleChoice.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, input_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, mems: typing.Optional[torch.Tensor] = None, perm_mask: typing.Optional[torch.Tensor] = None, target_mapping: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_mems: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0,
-  1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1709)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+**Parameters:**
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **input_mask** (`torch.FloatTensor` of shape `batch_size, num_choices, sequence_length`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Negative of `attention_mask`, i.e. with 0 for
-  real tokens and 1 for padding which is kept for compatibility with the original code base.
+input_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  Mask values selected in `[0, 1]`:
+token_type_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  - 1 for tokens that are **masked**,
-  - 0 for tokens that are **not masked**.
+input_mask (`torch.FloatTensor` of shape `batch_size, num_choices, sequence_length`, *optional*) : Mask to avoid performing attention on padding token indices. Negative of `attention_mask`, i.e. with 0 for real tokens and 1 for padding which is kept for compatibility with the original code base.  Mask values selected in `[0, 1]`:  - 1 for tokens that are **masked**, - 0 for tokens that are **not masked**.  You can only uses one of `input_mask` and `attention_mask`.
 
-  You can only uses one of `input_mask` and `attention_mask`.
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+mems (`list[torch.FloatTensor]` of length `config.n_layers`) : Contains pre-computed hidden-states (see `mems` output below) . Can be used to speed up sequential decoding. The token ids which have their past given to this model should not be passed as `input_ids` as they have already been computed.  `use_mems` has to be set to `True` to make use of `mems`.
 
-  [What are attention masks?](../glossary#attention-mask)
-- **mems** (`list[torch.FloatTensor]` of length `config.n_layers`) --
-  Contains pre-computed hidden-states (see `mems` output below) . Can be used to speed up sequential
-  decoding. The token ids which have their past given to this model should not be passed as `input_ids` as
-  they have already been computed.
+perm_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length, sequence_length)`, *optional*) : Mask to indicate the attention pattern for each input token with values selected in `[0, 1]`:  - if `perm_mask[k, i, j] = 0`, i attend to j in batch k; - if `perm_mask[k, i, j] = 1`, i does not attend to j in batch k.  If not set, each token attends to all the others (full bidirectional attention). Only used during pretraining (to define factorization order) or for sequential decoding (generation).
 
-  `use_mems` has to be set to `True` to make use of `mems`.
-- **perm_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length, sequence_length)`, *optional*) --
-  Mask to indicate the attention pattern for each input token with values selected in `[0, 1]`:
+target_mapping (`torch.FloatTensor` of shape `(batch_size, num_predict, sequence_length)`, *optional*) : Mask to indicate the output tokens to use. If `target_mapping[k, i, j] = 1`, the i-th predict in batch k is on the j-th token. Only used during pretraining for partial prediction or for sequential decoding (generation).
 
-  - if `perm_mask[k, i, j] = 0`, i attend to j in batch k;
-  - if `perm_mask[k, i, j] = 1`, i does not attend to j in batch k.
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, num_choices, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-  If not set, each token attends to all the others (full bidirectional attention). Only used during
-  pretraining (to define factorization order) or for sequential decoding (generation).
-- **target_mapping** (`torch.FloatTensor` of shape `(batch_size, num_predict, sequence_length)`, *optional*) --
-  Mask to indicate the output tokens to use. If `target_mapping[k, i, j] = 1`, the i-th predict in batch k is
-  on the j-th token. Only used during pretraining for partial prediction or for sequential decoding
-  (generation).
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, num_choices, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the multiple choice classification loss. Indices should be in `[0, ...,
-- **use_mems** (`bool`, *optional*) --
-  Whether to use memory states to speed up sequential decoding. If set to `True`, the model will use the hidden
-  states from previous forward passes to compute attention, which can significantly improve performance for
-  sequential decoding tasks.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[XLNetForMultipleChoiceOutput](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForMultipleChoiceOutput) or `tuple(torch.FloatTensor)`A [XLNetForMultipleChoiceOutput](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForMultipleChoiceOutput) or a tuple of
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the multiple choice classification loss. Indices should be in `[0, ...,
+
+use_mems (`bool`, *optional*) : Whether to use memory states to speed up sequential decoding. If set to `True`, the model will use the hidden states from previous forward passes to compute attention, which can significantly improve performance for sequential decoding tasks.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [XLNetForMultipleChoiceOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForMultipleChoiceOutput) or `tuple(torch.FloatTensor)`
+
+A [XLNetForMultipleChoiceOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForMultipleChoiceOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
-The [XLNetForMultipleChoice](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetForMultipleChoice) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
+
+The [XLNetForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForMultipleChoice) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1027,15 +908,22 @@ Example:
 
 ## XLNetForTokenClassification[[transformers.XLNetForTokenClassification]]
 
-- **config** ([XLNetForTokenClassification](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetForTokenClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.XLNetForTokenClassification[[transformers.XLNetForTokenClassification]]
+
+```python
+transformers.XLNetForTokenClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1590)
+
+**Parameters:**
+
+config ([XLNetForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Xlnet transformer with a token classification head on top (a linear layer on top of the hidden-states
 output) e.g. for Named-Entity-Recognition (NER) tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1043,79 +931,49 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.XLNetForTokenClassification.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, mems: typing.Optional[torch.Tensor] = None, perm_mask: typing.Optional[torch.Tensor] = None, target_mapping: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, input_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_mems: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1601)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **mems** (`list[torch.FloatTensor]` of length `config.n_layers`) --
-  Contains pre-computed hidden-states (see `mems` output below) . Can be used to speed up sequential
-  decoding. The token ids which have their past given to this model should not be passed as `input_ids` as
-  they have already been computed.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  `use_mems` has to be set to `True` to make use of `mems`.
-- **perm_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length, sequence_length)`, *optional*) --
-  Mask to indicate the attention pattern for each input token with values selected in `[0, 1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - if `perm_mask[k, i, j] = 0`, i attend to j in batch k;
-  - if `perm_mask[k, i, j] = 1`, i does not attend to j in batch k.
+mems (`list[torch.FloatTensor]` of length `config.n_layers`) : Contains pre-computed hidden-states (see `mems` output below) . Can be used to speed up sequential decoding. The token ids which have their past given to this model should not be passed as `input_ids` as they have already been computed.  `use_mems` has to be set to `True` to make use of `mems`.
 
-  If not set, each token attends to all the others (full bidirectional attention). Only used during
-  pretraining (to define factorization order) or for sequential decoding (generation).
-- **target_mapping** (`torch.FloatTensor` of shape `(batch_size, num_predict, sequence_length)`, *optional*) --
-  Mask to indicate the output tokens to use. If `target_mapping[k, i, j] = 1`, the i-th predict in batch k is
-  on the j-th token. Only used during pretraining for partial prediction or for sequential decoding
-  (generation).
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+perm_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length, sequence_length)`, *optional*) : Mask to indicate the attention pattern for each input token with values selected in `[0, 1]`:  - if `perm_mask[k, i, j] = 0`, i attend to j in batch k; - if `perm_mask[k, i, j] = 1`, i does not attend to j in batch k.  If not set, each token attends to all the others (full bidirectional attention). Only used during pretraining (to define factorization order) or for sequential decoding (generation).
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+target_mapping (`torch.FloatTensor` of shape `(batch_size, num_predict, sequence_length)`, *optional*) : Mask to indicate the output tokens to use. If `target_mapping[k, i, j] = 1`, the i-th predict in batch k is on the j-th token. Only used during pretraining for partial prediction or for sequential decoding (generation).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **input_mask** (`torch.FloatTensor` of shape `batch_size, sequence_length`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Negative of `attention_mask`, i.e. with 0 for
-  real tokens and 1 for padding which is kept for compatibility with the original code base.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  Mask values selected in `[0, 1]`:
+input_mask (`torch.FloatTensor` of shape `batch_size, sequence_length`, *optional*) : Mask to avoid performing attention on padding token indices. Negative of `attention_mask`, i.e. with 0 for real tokens and 1 for padding which is kept for compatibility with the original code base.  Mask values selected in `[0, 1]`:  - 1 for tokens that are **masked**, - 0 for tokens that are **not masked**.  You can only uses one of `input_mask` and `attention_mask`.
 
-  - 1 for tokens that are **masked**,
-  - 0 for tokens that are **not masked**.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-  You can only uses one of `input_mask` and `attention_mask`.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the multiple choice classification loss. Indices should be in `[0, ..., num_choices]`
-  where *num_choices* is the size of the second dimension of the input tensors. (see *input_ids* above)
-- **use_mems** (`bool`, *optional*) --
-  Whether to use memory states to speed up sequential decoding. If set to `True`, the model will use the hidden
-  states from previous forward passes to compute attention, which can significantly improve performance for
-  sequential decoding tasks.emory states to speed up sequential decoding. If set to `True`, the model will use the hidden
-  states from previous forward passes to compute attention, which can significantly improve performance for
-  sequential decoding tasks.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[XLNetForTokenClassificationOutput](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForTokenClassificationOutput) or `tuple(torch.FloatTensor)`A [XLNetForTokenClassificationOutput](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForTokenClassificationOutput) or a tuple of
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the multiple choice classification loss. Indices should be in `[0, ..., num_choices]` where *num_choices* is the size of the second dimension of the input tensors. (see *input_ids* above)
+
+use_mems (`bool`, *optional*) : Whether to use memory states to speed up sequential decoding. If set to `True`, the model will use the hidden states from previous forward passes to compute attention, which can significantly improve performance for sequential decoding tasks. Memory states to speed up sequential decoding. If set to `True`, the model will use the hidden states from previous forward passes to compute attention, which can significantly improve performance for sequential decoding tasks.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [XLNetForTokenClassificationOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForTokenClassificationOutput) or `tuple(torch.FloatTensor)`
+
+A [XLNetForTokenClassificationOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForTokenClassificationOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
-The [XLNetForTokenClassification](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetForTokenClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
+
+The [XLNetForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1169,15 +1027,22 @@ Example:
 
 ## XLNetForQuestionAnsweringSimple[[transformers.XLNetForQuestionAnsweringSimple]]
 
-- **config** ([XLNetForQuestionAnsweringSimple](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnsweringSimple)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.XLNetForQuestionAnsweringSimple[[transformers.XLNetForQuestionAnsweringSimple]]
+
+```python
+transformers.XLNetForQuestionAnsweringSimple(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1842)
+
+**Parameters:**
+
+config ([XLNetForQuestionAnsweringSimple](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnsweringSimple)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 XLNet Model with a span classification head on top for extractive question-answering tasks like SQuAD (a linear
 layers on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1185,82 +1050,51 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.XLNetForQuestionAnsweringSimple.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, mems: typing.Optional[torch.Tensor] = None, perm_mask: typing.Optional[torch.Tensor] = None, target_mapping: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, input_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, start_positions: typing.Optional[torch.Tensor] = None, end_positions: typing.Optional[torch.Tensor] = None, use_mems: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1853)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **mems** (`list[torch.FloatTensor]` of length `config.n_layers`) --
-  Contains pre-computed hidden-states (see `mems` output below) . Can be used to speed up sequential
-  decoding. The token ids which have their past given to this model should not be passed as `input_ids` as
-  they have already been computed.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  `use_mems` has to be set to `True` to make use of `mems`.
-- **perm_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length, sequence_length)`, *optional*) --
-  Mask to indicate the attention pattern for each input token with values selected in `[0, 1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - if `perm_mask[k, i, j] = 0`, i attend to j in batch k;
-  - if `perm_mask[k, i, j] = 1`, i does not attend to j in batch k.
+mems (`list[torch.FloatTensor]` of length `config.n_layers`) : Contains pre-computed hidden-states (see `mems` output below) . Can be used to speed up sequential decoding. The token ids which have their past given to this model should not be passed as `input_ids` as they have already been computed.  `use_mems` has to be set to `True` to make use of `mems`.
 
-  If not set, each token attends to all the others (full bidirectional attention). Only used during
-  pretraining (to define factorization order) or for sequential decoding (generation).
-- **target_mapping** (`torch.FloatTensor` of shape `(batch_size, num_predict, sequence_length)`, *optional*) --
-  Mask to indicate the output tokens to use. If `target_mapping[k, i, j] = 1`, the i-th predict in batch k is
-  on the j-th token. Only used during pretraining for partial prediction or for sequential decoding
-  (generation).
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+perm_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length, sequence_length)`, *optional*) : Mask to indicate the attention pattern for each input token with values selected in `[0, 1]`:  - if `perm_mask[k, i, j] = 0`, i attend to j in batch k; - if `perm_mask[k, i, j] = 1`, i does not attend to j in batch k.  If not set, each token attends to all the others (full bidirectional attention). Only used during pretraining (to define factorization order) or for sequential decoding (generation).
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+target_mapping (`torch.FloatTensor` of shape `(batch_size, num_predict, sequence_length)`, *optional*) : Mask to indicate the output tokens to use. If `target_mapping[k, i, j] = 1`, the i-th predict in batch k is on the j-th token. Only used during pretraining for partial prediction or for sequential decoding (generation).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **input_mask** (`torch.FloatTensor` of shape `batch_size, sequence_length`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Negative of `attention_mask`, i.e. with 0 for
-  real tokens and 1 for padding which is kept for compatibility with the original code base.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  Mask values selected in `[0, 1]`:
+input_mask (`torch.FloatTensor` of shape `batch_size, sequence_length`, *optional*) : Mask to avoid performing attention on padding token indices. Negative of `attention_mask`, i.e. with 0 for real tokens and 1 for padding which is kept for compatibility with the original code base.  Mask values selected in `[0, 1]`:  - 1 for tokens that are **masked**, - 0 for tokens that are **not masked**.  You can only uses one of `input_mask` and `attention_mask`.
 
-  - 1 for tokens that are **masked**,
-  - 0 for tokens that are **not masked**.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-  You can only uses one of `input_mask` and `attention_mask`.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **start_positions** (`torch.Tensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the start of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.
-- **end_positions** (`torch.Tensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the end of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.
-- **use_mems** (`bool`, *optional*) --
-  Whether to use memory states to speed up sequential decoding. If set to `True`, the model will use the hidden
-  states from previous forward passes to compute attention, which can significantly improve performance for
-  sequential decoding tasks.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[XLNetForQuestionAnsweringSimpleOutput](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringSimpleOutput) or `tuple(torch.FloatTensor)`A [XLNetForQuestionAnsweringSimpleOutput](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringSimpleOutput) or a tuple of
+start_positions (`torch.Tensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the start of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+end_positions (`torch.Tensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the end of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+use_mems (`bool`, *optional*) : Whether to use memory states to speed up sequential decoding. If set to `True`, the model will use the hidden states from previous forward passes to compute attention, which can significantly improve performance for sequential decoding tasks.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [XLNetForQuestionAnsweringSimpleOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringSimpleOutput) or `tuple(torch.FloatTensor)`
+
+A [XLNetForQuestionAnsweringSimpleOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringSimpleOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
-The [XLNetForQuestionAnsweringSimple](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnsweringSimple) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
+
+The [XLNetForQuestionAnsweringSimple](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnsweringSimple) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1316,15 +1150,22 @@ Example:
 
 ## XLNetForQuestionAnswering[[transformers.XLNetForQuestionAnswering]]
 
-- **config** ([XLNetForQuestionAnswering](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnswering)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.XLNetForQuestionAnswering[[transformers.XLNetForQuestionAnswering]]
+
+```python
+transformers.XLNetForQuestionAnswering(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1963)
+
+**Parameters:**
+
+config ([XLNetForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Xlnet transformer with a span classification head on top for extractive question-answering tasks like
 SQuAD (a linear layer on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1332,90 +1173,57 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.XLNetForQuestionAnswering.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, mems: typing.Optional[torch.Tensor] = None, perm_mask: typing.Optional[torch.Tensor] = None, target_mapping: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, input_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, start_positions: typing.Optional[torch.Tensor] = None, end_positions: typing.Optional[torch.Tensor] = None, is_impossible: typing.Optional[torch.Tensor] = None, cls_index: typing.Optional[torch.Tensor] = None, p_mask: typing.Optional[torch.Tensor] = None, use_mems: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1977)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **mems** (`list[torch.FloatTensor]` of length `config.n_layers`) --
-  Contains pre-computed hidden-states (see `mems` output below) . Can be used to speed up sequential
-  decoding. The token ids which have their past given to this model should not be passed as `input_ids` as
-  they have already been computed.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  `use_mems` has to be set to `True` to make use of `mems`.
-- **perm_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length, sequence_length)`, *optional*) --
-  Mask to indicate the attention pattern for each input token with values selected in `[0, 1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - if `perm_mask[k, i, j] = 0`, i attend to j in batch k;
-  - if `perm_mask[k, i, j] = 1`, i does not attend to j in batch k.
+mems (`list[torch.FloatTensor]` of length `config.n_layers`) : Contains pre-computed hidden-states (see `mems` output below) . Can be used to speed up sequential decoding. The token ids which have their past given to this model should not be passed as `input_ids` as they have already been computed.  `use_mems` has to be set to `True` to make use of `mems`.
 
-  If not set, each token attends to all the others (full bidirectional attention). Only used during
-  pretraining (to define factorization order) or for sequential decoding (generation).
-- **target_mapping** (`torch.FloatTensor` of shape `(batch_size, num_predict, sequence_length)`, *optional*) --
-  Mask to indicate the output tokens to use. If `target_mapping[k, i, j] = 1`, the i-th predict in batch k is
-  on the j-th token. Only used during pretraining for partial prediction or for sequential decoding
-  (generation).
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+perm_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length, sequence_length)`, *optional*) : Mask to indicate the attention pattern for each input token with values selected in `[0, 1]`:  - if `perm_mask[k, i, j] = 0`, i attend to j in batch k; - if `perm_mask[k, i, j] = 1`, i does not attend to j in batch k.  If not set, each token attends to all the others (full bidirectional attention). Only used during pretraining (to define factorization order) or for sequential decoding (generation).
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+target_mapping (`torch.FloatTensor` of shape `(batch_size, num_predict, sequence_length)`, *optional*) : Mask to indicate the output tokens to use. If `target_mapping[k, i, j] = 1`, the i-th predict in batch k is on the j-th token. Only used during pretraining for partial prediction or for sequential decoding (generation).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **input_mask** (`torch.FloatTensor` of shape `batch_size, sequence_length`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Negative of `attention_mask`, i.e. with 0 for
-  real tokens and 1 for padding which is kept for compatibility with the original code base.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  Mask values selected in `[0, 1]`:
+input_mask (`torch.FloatTensor` of shape `batch_size, sequence_length`, *optional*) : Mask to avoid performing attention on padding token indices. Negative of `attention_mask`, i.e. with 0 for real tokens and 1 for padding which is kept for compatibility with the original code base.  Mask values selected in `[0, 1]`:  - 1 for tokens that are **masked**, - 0 for tokens that are **not masked**.  You can only uses one of `input_mask` and `attention_mask`.
 
-  - 1 for tokens that are **masked**,
-  - 0 for tokens that are **not masked**.
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-  You can only uses one of `input_mask` and `attention_mask`.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **start_positions** (`torch.Tensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the start of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.
-- **end_positions** (`torch.Tensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the end of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.
-- **is_impossible** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels whether a question has an answer or no answer (SQuAD 2.0)
-- **cls_index** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the classification token to use as input for computing plausibility of the
-  answer.
-- **p_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Optional mask of tokens which can't be in answers (e.g. [CLS], [PAD], ...). 1.0 means token should be
-  masked. 0.0 mean token is not masked.
-- **use_mems** (`bool`, *optional*) --
-  Whether to use memory states to speed up sequential decoding. If set to `True`, the model will use the hidden
-  states from previous forward passes to compute attention, which can significantly improve performance for
-  sequential decoding tasks.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[XLNetForQuestionAnsweringOutput](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringOutput) or `tuple(torch.FloatTensor)`A [XLNetForQuestionAnsweringOutput](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringOutput) or a tuple of
+start_positions (`torch.Tensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the start of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+end_positions (`torch.Tensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the end of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+is_impossible (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels whether a question has an answer or no answer (SQuAD 2.0)
+
+cls_index (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the classification token to use as input for computing plausibility of the answer.
+
+p_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Optional mask of tokens which can't be in answers (e.g. [CLS], [PAD], ...). 1.0 means token should be masked. 0.0 mean token is not masked.
+
+use_mems (`bool`, *optional*) : Whether to use memory states to speed up sequential decoding. If set to `True`, the model will use the hidden states from previous forward passes to compute attention, which can significantly improve performance for sequential decoding tasks.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [XLNetForQuestionAnsweringOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringOutput) or `tuple(torch.FloatTensor)`
+
+A [XLNetForQuestionAnsweringOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
-The [XLNetForQuestionAnswering](/docs/transformers/v5.14.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnswering) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
+
+The [XLNetForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1461,5 +1269,5 @@ Example:
 >>> loss = outputs.loss
 ```
 
-### GLPN
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/glpn.md
+### Switch Transformers
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/switch_transformers.md

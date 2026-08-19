@@ -1,10 +1,10 @@
 # Processors
 
-Multimodal models require a preprocessor capable of handling inputs that combine more than one modality. Depending on the input modality, a processor needs to convert text into an array of tensors, images into pixel values, and audio into an array with tensors with the correct sampling rate.
+Multimodal models require a preprocessor capable of handling inputs that combine more than one modality. Depending on the input modality, a processor needs to convert text into an array of tensors, images into pixel values, and audio into an array of tensors with the correct sampling rate.
 
-For example, [PaliGemma](./model_doc/paligemma) is a vision-language model that uses the [SigLIP](./model_doc/siglip) image processor and the [Llama](./model_doc/llama) tokenizer. A [ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin) class wraps both of these preprocessor types, providing a single and unified processor class for a multimodal model.
+For example, [PaliGemma](./model_doc/paligemma) is a vision-language model that uses the [SigLIP](./model_doc/siglip) image processor and the [Llama](./model_doc/llama) tokenizer. A [ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin) class wraps both of these preprocessor types, providing a single and unified processor class for a multimodal model.
 
-Call [from_pretrained()](/docs/transformers/v5.14.0/en/model_doc/donut#transformers.DonutProcessor.from_pretrained) to load a processor. Pass the input type to the processor to generate the expected model inputs, input ids and pixel values.
+Call [from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutProcessor.from_pretrained) to load a processor. Pass the input type to the processor to generate the expected model inputs, input ids and pixel values.
 
 ```py
 from transformers import AutoProcessor, PaliGemmaForConditionalGeneration
@@ -25,13 +25,13 @@ This guide describes the processor class and how to preprocess multimodal inputs
 
 ## Processor classes
 
-All processors inherit from the [ProcessorMixin](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin) class which provides methods like [from_pretrained()](/docs/transformers/v5.14.0/en/model_doc/donut#transformers.DonutProcessor.from_pretrained), [save_pretrained()](/docs/transformers/v5.14.0/en/model_doc/donut#transformers.DonutProcessor.save_pretrained), and [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) for loading, saving, and sharing processors to the Hub.
+All processors inherit from the [ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin) class which provides methods like [from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutProcessor.from_pretrained), [save_pretrained()](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutProcessor.save_pretrained), and [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) for loading, saving, and sharing processors to the Hub.
 
-There are two ways to load a processor, with an [AutoProcessor](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoProcessor) and with a model-specific processor class.
+There are two ways to load a processor, with an [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) and with a model-specific processor class.
 
 The [AutoClass](./model_doc/auto) API provides a simple interface to load processors without directly specifying the specific model class it belongs to.
 
-Use [from_pretrained()](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoProcessor.from_pretrained) to load a processor.
+Use [from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor.from_pretrained) to load a processor.
 
 ```py
 from transformers import AutoProcessor
@@ -39,7 +39,7 @@ from transformers import AutoProcessor
 processor = AutoProcessor.from_pretrained("google/paligemma-3b-pt-224")
 ```
 
-Processors are also associated with a specific pretrained multimodal model class. You can load a processor directly from the model class with [from_pretrained()](/docs/transformers/v5.14.0/en/model_doc/donut#transformers.DonutProcessor.from_pretrained).
+Processors are also associated with a specific pretrained multimodal model class. You can load a processor directly from the model class with [from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutProcessor.from_pretrained).
 
 ```py
 from transformers import WhisperProcessor
@@ -47,7 +47,7 @@ from transformers import WhisperProcessor
 processor = WhisperProcessor.from_pretrained("openai/whisper-tiny")
 ```
 
-You could also separately load the two preprocessor types, [WhisperTokenizerFast](/docs/transformers/v5.14.0/en/model_doc/whisper#transformers.WhisperTokenizer) and [WhisperFeatureExtractor](/docs/transformers/v5.14.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor).
+You could also separately load the two preprocessor types, [WhisperTokenizerFast](/docs/transformers/v5.15.0/en/model_doc/whisper#transformers.WhisperTokenizer) and [WhisperFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/whisper#transformers.WhisperFeatureExtractor).
 
 ```py
 from transformers import WhisperTokenizerFast, WhisperFeatureExtractor, WhisperProcessor
@@ -105,5 +105,5 @@ Apply the `prepare_dataset` function to preprocess the dataset. The processor re
 prepare_dataset(dataset[0])
 ```
 
-### Optimizing LLMs for Speed and Memory
-https://huggingface.co/docs/transformers/v5.14.0/llm_tutorial_optimization.md
+### Add vision processing components
+https://huggingface.co/docs/transformers/v5.15.0/add_vision_processing_components.md

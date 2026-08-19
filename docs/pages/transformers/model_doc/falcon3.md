@@ -13,5 +13,5 @@ Knowledge distillation for better tiny models: To provide compact and efficient 
 - [Blog post](https://huggingface.co/blog/falcon3)
 - [Models on Huggingface](https://huggingface.co/collections/tiiuae/falcon3-67605ae03578be86e4e87026)
 
-### XLM-RoBERTa-XL
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/xlm-roberta-xl.md
+### T5v1.1
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/t5v1.1.md

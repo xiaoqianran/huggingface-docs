@@ -78,5 +78,5 @@ Values of `-1` indicate unallocated blocks.
 - **Sequence 1** (32 cached tokens): cache in `KV_cache[0]` and `KV_cache[1]`. A second block is needed since 32 + 1 > 32.
 - **Sequence 2** (70 cached tokens): cache in `KV_cache[3]`, `KV_cache[5]`, and `KV_cache[6]`. Note that blocks are not necessarily contiguous, which is the key advantage of paged cache. The new token fits in the third block.
 
-### Loading models
-https://huggingface.co/docs/transformers/v5.14.0/models.md
+### Customizing models
+https://huggingface.co/docs/transformers/v5.15.0/custom_models.md

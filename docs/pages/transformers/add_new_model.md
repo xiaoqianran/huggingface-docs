@@ -36,24 +36,24 @@ This section describes how the model and configuration classes interact and the 
 
 ### Model and configuration
 
-All Transformers' models inherit from a base [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel) and [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) class. The configuration is the models blueprint.
+All Transformers' models inherit from a base [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) and [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) class. The configuration is the models blueprint.
 
-There is never more than two levels of abstraction for any model to keep the code readable. The example model here, BrandNewLlama, inherits from `BrandNewLlamaPreTrainedModel` and [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). It is important that a new model only depends on [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel) so that it can use the [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) and [save_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) methods.
+There is never more than two levels of abstraction for any model to keep the code readable. The example model here, BrandNewLlama, inherits from `BrandNewLlamaPreTrainedModel` and [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). It is important that a new model only depends on [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) so that it can use the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) and [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) methods.
 
 Other important functions like the forward method are defined in the `modeling.py` file.
 
 Specific model heads (for example, sequence classification or language modeling) should call the base model in the forward pass rather than inheriting from it to keep abstraction low.
 
-New models require a configuration, for example `BrandNewLlamaConfig`, that is stored as an attribute of [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel).
+New models require a configuration, for example `BrandNewLlamaConfig`, that is stored as an attribute of [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
 
 ```py
 model = BrandNewLlamaModel.from_pretrained("username/brand_new_llama")
 model.config
 ```
 
-[PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) provides the [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained) and [save_pretrained()](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig.save_pretrained) methods.
+[PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) provides the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained) and [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.save_pretrained) methods.
 
-When you use [PreTrainedModel.save_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), it automatically calls [PreTrainedConfig.save_pretrained()](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig.save_pretrained) so that both the model and configuration are saved together.
+When you use [PreTrainedModel.save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), it automatically calls [PreTrainedConfig.save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.save_pretrained) so that both the model and configuration are saved together.
 
 A model is saved to a `model.safetensors` file and a configuration is saved to a `config.json` file.
 
@@ -90,7 +90,7 @@ In addition to learning more about your model, use the tips below to help you ad
 > Each contributor has a unique style and workflow for adding models to Transformers. For an example, take a look at how [Gemma](https://github.com/huggingface/transformers/pull/29167) was added.
 
 - Don't reinvent the wheel! Take your time to explore existing models and tokenizers to see what you can copy and reuse. [Grep](https://www.gnu.org/software/grep/) and [ripgrep](https://github.com/BurntSushi/ripgrep) are great tools for this.
-- This is more of an engineering than a science challenge. Focus on the more practical (setting up an efficient debugging environment for example) instead of the theorertical aspects of the model.
+- This is more of an engineering than a science challenge. Focus on the more practical (setting up an efficient debugging environment for example) instead of the theoretical aspects of the model.
 - Don't be shy to ask for help! We are here to support you. 🤗
 
 ## Dev environment
@@ -192,7 +192,7 @@ This can be difficult if the original model repository is lacking documentation 
 Orient yourself with the original repository by doing the following.
 
 - Locate the pretrained weights.
-- Figure out how to the load pretrained weights into the model.
+- Figure out how to load pretrained weights into the model.
 - Figure out how to run the tokenizer independently of the model.
 - Trace one forward pass to understand which classes and functions are required. These are probably the only classes and functions you'll have to implement.
 - Locate all the important components (model class, model subclasses, self-attention layer, etc.) of the model.
@@ -277,7 +277,7 @@ The automatically generated code in the `modeling.py` file has the same architec
 
 ### Model initialization
 
-At this point, your code doesn't have to be clean or even fully correct, It is more efficient to quickly create a first draft and then iteratively improve on it. The most important thing is that your model can be instantiated from Transformers. The command below creates a model from the configuration with random weights, verifying that the `__init__` method works.
+At this point, your code doesn't have to be clean or even fully correct. It is more efficient to quickly create a first draft and then iteratively improve on it. The most important thing is that your model can be instantiated from Transformers. The command below creates a model from the configuration with random weights, verifying that the `__init__` method works.
 
 ```py
 from transformers import BrandNewLlama, BrandNewLlamaConfig
@@ -304,9 +304,9 @@ def _init_weights(self, module):
         init.ones_(module.weight)
 ```
 
-Always initialize weights through the `transformers.initialization` helpers. In-place operations such as `module.bias.zero_()` or anything that touches `module.weight.data` bypass `_is_hf_initialized` that flags which parameters are already loaded. [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) runs `_init_weights` after loading the checkpoint, so in-place operations silently overwrite the loaded weights with random values. This is enforced for Transformers models by the [TRF012](./modeling_rules#trf012) rule.
+Always initialize weights through the `transformers.initialization` helpers. In-place operations such as `module.bias.zero_()` or anything that touches `module.weight.data` bypass `_is_hf_initialized` that flags which parameters are already loaded. [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) runs `_init_weights` after loading the checkpoint, so in-place operations silently overwrite the loaded weights with random values. This is enforced for Transformers models by the [TRF012](./modeling_rules#trf012) rule.
 
-The initialization scheme can look different if you need to adapt it to your model. A submodule with its own `reset_parameters` method can call it directly. For example, [Wav2Vec2ForPreTraining](/docs/transformers/v5.14.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForPreTraining) initializes [nn.Linear](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html) in its last two linear layers. The call is safe because [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) patches the underlying `torch.nn.init` functions to respect the `_is_hf_initialized` flag while it runs `_init_weights`, so loaded weights aren't overwritten.
+The initialization scheme can look different if you need to adapt it to your model. A submodule with its own `reset_parameters` method can call it directly. For example, [Wav2Vec2ForPreTraining](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForPreTraining) initializes [nn.Linear](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html) in its last two linear layers. The call is safe because [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) patches the underlying `torch.nn.init` functions to respect the `_is_hf_initialized` flag while it runs `_init_weights`, so loaded weights aren't overwritten.
 
 ```py
 def _init_weights(self, module):
@@ -474,13 +474,13 @@ SET RUN_SLOW=1 pytest -sv tests/models/brand_new_llama/test_modeling_brand_new_l
 
 All features unique to BrandNewLlama should be tested in a separate test under `BrandNewLlamaModelTester/BrandNewLlamaModelTest`. This test is often overlooked, but it is extremely important because:
 
-- it helps transfer knowledge you acquired during the process to the community by showing how the models novel features work
+- it helps transfer knowledge you acquired during the process to the community by showing how the model's novel features work
 - future contributors can quickly test changes to the model by running these special tests
 
 ## Implement tokenizer
 
 > [!TIP]
-> We recommend adding a fast tokenizer ([PreTrainedTokenizerFast](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend)) to give users the best performance. Feel free to tag [@ArthurZucker](https://github.com/ArthurZucker) or [@itazap](https://github.com/itazap) in your PR for help on how to add [PreTrainedTokenizerFast](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend).
+> We recommend adding a fast tokenizer ([PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend)) to give users the best performance. Feel free to tag [@ArthurZucker](https://github.com/ArthurZucker) or [@itazap](https://github.com/itazap) in your PR for help on how to add [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend).
 
 With the model out of the way, time to focus on the tokenizer. The tokenizer should be identical or very similar to an existing tokenizer in Transformers.
 
@@ -507,14 +507,14 @@ When both implementations have the same `input_ids`, add a tokenizer test file. 
 ## Implement image processor
 
 > [!TIP]
-> Image processors now use a backend-based architecture. The default backend is [TorchvisionBackend](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.TorchvisionBackend), which uses the [torchvision](https://pytorch.org/vision/stable/index.html) library and can perform image processing on the GPU. A PIL/NumPy alternative backend ([PilBackend](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.PilBackend)) is also provided. Both backends are imported from `image_processing_backends`. Feel free to tag [@yonigozlan](https://github.com/yonigozlan) for help.
+> Image processors now use a backend-based architecture. The default backend is [TorchvisionBackend](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.TorchvisionBackend), which uses the [torchvision](https://pytorch.org/vision/stable/index.html) library and can perform image processing on the GPU. A PIL/NumPy alternative backend ([PilBackend](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.PilBackend)) is also provided. Both backends are imported from `image_processing_backends`. Feel free to tag [@yonigozlan](https://github.com/yonigozlan) for help.
 
 While this example doesn't include an image processor, you may need to implement one if your model requires image inputs. The image processor is responsible for converting images into a format suitable for your model. Before implementing a new one, check whether an existing image processor in the Transformers library can be reused, as many models share similar image processing techniques. Note that you can also use [modular](./modular_transformers) for image processors to reuse existing components.
 
 If you do need to implement a new image processor, each model has two processor files:
 
-- `image_processing_<model>.py`: the **default** torchvision-backed processor (`<Model>ImageProcessor`), inheriting from [TorchvisionBackend](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.TorchvisionBackend). This replaces the old "fast" processor.
-- `image_processing_pil_<model>.py`: the PIL/NumPy alternative processor (`<Model>ImageProcessorPil`), inheriting from [PilBackend](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.PilBackend). This replaces the old "slow" processor.
+- `image_processing_<model>.py`: the **default** torchvision-backed processor (`<Model>ImageProcessor`), inheriting from [TorchvisionBackend](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.TorchvisionBackend). This replaces the old "fast" processor.
+- `image_processing_pil_<model>.py`: the PIL/NumPy alternative processor (`<Model>ImageProcessorPil`), inheriting from [PilBackend](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.PilBackend). This replaces the old "slow" processor.
 
 The torchvision backend file also defines any custom kwargs class that the PIL file imports. Both files use the `@auto_docstring` decorator — do not add manual class docstrings. Refer to the [IMAGE_PROCESSOR_REFACTORING_GUIDE.md](https://github.com/huggingface/transformers/blob/main/IMAGE_PROCESSOR_REFACTORING_GUIDE.md) for a step-by-step walkthrough and complete examples.
 
@@ -587,7 +587,7 @@ Convert and upload all checkpoints to the [Hub](https://hf.co/models). Add a mod
 
 You should also consult with the Transformers team to decide on an appropriate name for the model, and getting the required access rights to upload the model.
 
-Use the [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method to upload the model.
+Use the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method to upload the model.
 
 ```py
 brand_new_bert.push_to_hub("brand_new_llama")
@@ -608,5 +608,5 @@ This is a very significant contribution. Your work makes Transformers more acces
 - [Model structure rules](./modeling_rules) — static rules enforced on all `modeling_*.py` and `configuration_*.py` files. Run `make typing` to check them before opening a PR.
 - [Pull request checks](./pr_checks) — full reference for what CI checks run on your PR and how to pass them.
 
-### Contribute to 🤗 Transformers
-https://huggingface.co/docs/transformers/v5.14.0/contributing.md
+### Apple Silicon
+https://huggingface.co/docs/transformers/v5.15.0/perf_train_special.md

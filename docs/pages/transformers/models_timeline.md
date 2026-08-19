@@ -12,5 +12,5 @@ Use the filters to narrow models by modality or task. Set custom date ranges to 
 	style="transform: scale(0.8); transform-origin: top left; max-width: calc(100%/0.8); height: 1150px; margin-bottom: calc(-0.2*1150px);"
 >
 
-### Legacy model contribution
-https://huggingface.co/docs/transformers/v5.14.0/add_new_model.md
+### Optimizers and schedulers
+https://huggingface.co/docs/transformers/v5.15.0/optimizers.md

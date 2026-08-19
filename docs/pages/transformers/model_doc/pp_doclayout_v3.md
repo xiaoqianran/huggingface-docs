@@ -14,7 +14,7 @@ Unlike its predecessor, PP-DocLayoutV3 eliminates decoupled stages by embedding 
 
 ### Single input inference
 
-The example below demonstrates how to generate text with PP-DocLayoutV3 using [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel).
+The example below demonstrates how to generate text with PP-DocLayoutV3 using [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 import requests
@@ -53,7 +53,7 @@ for result in results:
 
 ### Batched inference
 
-PP-DocLayoutV3 also supports batched inference. Here is how you can do it with PP-DocLayoutV3 using [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel):
+PP-DocLayoutV3 also supports batched inference. Here is how you can do it with PP-DocLayoutV3 using [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel):
 
 ```python
 import requests
@@ -96,15 +96,22 @@ for result in results:
 
 ## PPDocLayoutV3ForObjectDetection[[transformers.PPDocLayoutV3ForObjectDetection]]
 
-- **config** ([PPDocLayoutV3Config](/docs/transformers/v5.14.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.PPDocLayoutV3ForObjectDetection[[transformers.PPDocLayoutV3ForObjectDetection]]
+
+```python
+transformers.PPDocLayoutV3ForObjectDetection(config: PPDocLayoutV3Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_doclayout_v3/modeling_pp_doclayout_v3.py#L2014)
+
+**Parameters:**
+
+config ([PPDocLayoutV3Config](/docs/transformers/v5.15.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PP-DocLayoutV3 Model (consisting of a backbone and encoder-decoder) outputs bounding boxes and logits sorted according to reading order,
 which are further decoded into scores and classes.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -112,29 +119,31 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses
-  `image_processor_class` for processing images).
-- **pixel_mask** (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) --
-  Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:
+#### forward[[transformers.PPDocLayoutV3ForObjectDetection.forward]]
 
-  - 1 for pixels that are real (i.e. **not masked**),
-  - 0 for pixels that are padding (i.e. **masked**).
+```python
+forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
+```
 
-  [What are attention masks?](../glossary#attention-mask)
-- **encoder_outputs** (`torch.FloatTensor`, *optional*) --
-  Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`)
-  `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of
-  hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
-- **labels** (`list[Dict]` of len `(batch_size,)`, *optional*) --
-  Labels for computing the bipartite matching loss. List of dicts, each dictionary containing at least the
-  following 2 keys: 'class_labels' and 'boxes' (the class labels and bounding boxes of an image in the batch
-  respectively). The class labels themselves should be a `torch.LongTensor` of len `(number of bounding boxes
-  in the image,)` and the boxes a `torch.FloatTensor` of shape `(number of bounding boxes in the image, 4)`.</paramsdesc><rettype>`PPDocLayoutV3ForObjectDetectionOutput` or `tuple(torch.FloatTensor)`</rettype><retdesc>A `PPDocLayoutV3ForObjectDetectionOutput` or a tuple of
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_doclayout_v3/modeling_pp_doclayout_v3.py#L2032)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
+
+pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
+
+encoder_outputs (`torch.FloatTensor`, *optional*) : Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
+
+labels (`list[Dict]` of len `(batch_size,)`, *optional*) : Labels for computing the bipartite matching loss. List of dicts, each dictionary containing at least the following 2 keys: 'class_labels' and 'boxes' (the class labels and bounding boxes of an image in the batch respectively). The class labels themselves should be a `torch.LongTensor` of len `(number of bounding boxes in the image,)` and the boxes a `torch.FloatTensor` of shape `(number of bounding boxes in the image, 4)`.
+
+**Returns:** `PPDocLayoutV3ForObjectDetectionOutput` or `tuple(torch.FloatTensor)`
+
+A `PPDocLayoutV3ForObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
-The [PPDocLayoutV3ForObjectDetection](/docs/transformers/v5.14.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3ForObjectDetection) forward method, overrides the `__call__` special method.
+
+The [PPDocLayoutV3ForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3ForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -235,14 +244,21 @@ Order 13: footer: 0.93 [338.4, 2255.52, 986.15, 2284.37]
 
 ## PPDocLayoutV3Model[[transformers.PPDocLayoutV3Model]]
 
-- **config** ([PPDocLayoutV3Config](/docs/transformers/v5.14.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3Config)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.PPDocLayoutV3Model[[transformers.PPDocLayoutV3Model]]
+
+```python
+transformers.PPDocLayoutV3Model(config: PPDocLayoutV3Config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_doclayout_v3/modeling_pp_doclayout_v3.py#L1577)
+
+**Parameters:**
+
+config ([PPDocLayoutV3Config](/docs/transformers/v5.15.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PP-DocLayoutV3 Model (consisting of a backbone and encoder-decoder) outputting raw hidden states without any head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -250,29 +266,31 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses
-  `image_processor_class` for processing images).
-- **pixel_mask** (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) --
-  Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:
+#### forward[[transformers.PPDocLayoutV3Model.forward]]
 
-  - 1 for pixels that are real (i.e. **not masked**),
-  - 0 for pixels that are padding (i.e. **masked**).
+```python
+forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
+```
 
-  [What are attention masks?](../glossary#attention-mask)
-- **encoder_outputs** (`torch.FloatTensor`, *optional*) --
-  Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`)
-  `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of
-  hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
-- **labels** (`list[Dict]` of len `(batch_size,)`, *optional*) --
-  Labels for computing the bipartite matching loss. List of dicts, each dictionary containing at least the
-  following 2 keys: 'class_labels' and 'boxes' (the class labels and bounding boxes of an image in the batch
-  respectively). The class labels themselves should be a `torch.LongTensor` of len `(number of bounding boxes
-  in the image,)` and the boxes a `torch.FloatTensor` of shape `(number of bounding boxes in the image, 4)`.</paramsdesc><rettype>`PPDocLayoutV3ModelOutput` or `tuple(torch.FloatTensor)`</rettype><retdesc>A `PPDocLayoutV3ModelOutput` or a tuple of
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_doclayout_v3/modeling_pp_doclayout_v3.py#L1714)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
+
+pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
+
+encoder_outputs (`torch.FloatTensor`, *optional*) : Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
+
+labels (`list[Dict]` of len `(batch_size,)`, *optional*) : Labels for computing the bipartite matching loss. List of dicts, each dictionary containing at least the following 2 keys: 'class_labels' and 'boxes' (the class labels and bounding boxes of an image in the batch respectively). The class labels themselves should be a `torch.LongTensor` of len `(number of bounding boxes in the image,)` and the boxes a `torch.FloatTensor` of shape `(number of bounding boxes in the image, 4)`.
+
+**Returns:** `PPDocLayoutV3ModelOutput` or `tuple(torch.FloatTensor)`
+
+A `PPDocLayoutV3ModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
-The [PPDocLayoutV3Model](/docs/transformers/v5.14.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3Model) forward method, overrides the `__call__` special method.
+
+The [PPDocLayoutV3Model](/docs/transformers/v5.15.0/en/model_doc/pp_doclayout_v3#transformers.PPDocLayoutV3Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -347,109 +365,112 @@ Examples:
 
 ## PPDocLayoutV3Config[[transformers.PPDocLayoutV3Config]]
 
-- **is_encoder_decoder** (`bool`, *optional*, defaults to `True`) --
-  Whether the model is used as an encoder/decoder or not.
-- **initializer_range** (`float`, *optional*, defaults to `0.01`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **initializer_bias_prior_prob** (`float`, *optional*) --
-  The prior probability used by the bias initializer to initialize biases for `enc_score_head` and `class_embed`.
-  If `None`, `prior_prob` computed as `prior_prob = 1 / (num_labels + 1)` while initializing model weights.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-05`) --
-  The epsilon used by the layer normalization layers.
-- **batch_norm_eps** (`float`, *optional*, defaults to `1e-05`) --
-  The epsilon used by the batch normalization layers.
-- **tie_word_embeddings** (`bool`, *optional*, defaults to `True`) --
-  Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
-- **backbone_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The configuration of the backbone model.
-- **freeze_backbone_batch_norms** (`bool`, *optional*, defaults to `True`) --
-  Whether to freeze the batch normalization layers in the backbone.
-- **encoder_hidden_dim** (`int`, *optional*, defaults to `256`) --
-  Dimension of the hidden representations.
-- **encoder_in_channels** (`list`, *optional*, defaults to `[512, 1024, 2048]`) --
-  Multi level features input for encoder.
-- **feat_strides** (`list[int]`, *optional*, defaults to `[8, 16, 32]`) --
-  Strides used in each feature map.
-- **encoder_layers** (`int`, *optional*, defaults to `1`) --
-  Number of hidden layers in the Transformer encoder. Will use the same value as `num_layers` if not set.
-- **encoder_ffn_dim** (`int`, *optional*, defaults to `1024`) --
-  Dimensionality of the "intermediate" (often named feed-forward) layer in encoder.
-- **encoder_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer encoder.
-- **dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The ratio for all dropout layers.
-- **activation_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for activations inside the fully connected layer.
-- **encode_proj_layers** (`list[int]`, *optional*, defaults to `[2]`) --
-  Indexes of the projected layers to be used in the encoder.
-- **positional_encoding_temperature** (`int`, *optional*, defaults to 10000) --
-  The temperature parameter used to create the positional encodings.
-- **encoder_activation_function** (`str`, *optional*, defaults to `"gelu"`) --
-  The non-linear activation function (function or string) in the encoder and pooler. If string, `"gelu"`,
-  `"relu"`, `"silu"` and `"gelu_new"` are supported.
-- **activation_function** (`str`, *optional*, defaults to `silu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **eval_size** (`tuple[int, int]`, *optional*) --
-  Height and width used to computes the effective height and width of the position embeddings after taking
-  into account the stride.
-- **normalize_before** (`bool`, *optional*, defaults to `False`) --
-  Determine whether to apply layer normalization in the transformer encoder layer before self-attention and
-  feed-forward modules.
-- **hidden_expansion** (`float`, *optional*, defaults to 1.0) --
-  Expansion ratio to enlarge the dimension size of RepVGGBlock and CSPRepLayer.
-- **mask_feature_channels** (`list[int]`, *optional*, defaults to `[64, 64]`) --
-  The channels of the multi-level features for mask enhancement.
-- **x4_feat_dim** (`int`, *optional*, defaults to 128) --
-  The dimension of the x4 feature map.
-- **d_model** (`int`, *optional*, defaults to 256) --
-  Dimension of the layers exclude hybrid encoder.
-- **num_prototypes** (`int`, *optional*, defaults to 32) --
-  Dimension of the layers exclude mask query head.
-- **label_noise_ratio** (`float`, *optional*, defaults to 0.4) --
-  The fraction of denoising labels to which random noise should be added.
-- **box_noise_scale** (`float`, *optional*, defaults to 0.4) --
-  Scale or magnitude of noise to be added to the bounding boxes.
-- **mask_enhanced** (`bool`, *optional*, defaults to `True`) --
-  Whether to use enhanced masked attention.
-- **num_queries** (`int`, *optional*, defaults to 300) --
-  Number of object queries.
-- **decoder_in_channels** (`list`, *optional*, defaults to `[256, 256, 256]`) --
-  Multi level features dimension for decoder
-- **decoder_ffn_dim** (`int`, *optional*, defaults to 1024) --
-  Dimension of the "intermediate" (often named feed-forward) layer in decoder.
-- **num_feature_levels** (`int`, *optional*, defaults to 3) --
-  The number of input feature levels.
-- **decoder_n_points** (`int`, *optional*, defaults to 4) --
-  The number of sampled keys in each feature level for each attention head in the decoder.
-- **decoder_layers** (`int`, *optional*, defaults to `6`) --
-  Number of hidden layers in the Transformer decoder. Will use the same value as `num_layers` if not set.
-- **decoder_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **decoder_activation_function** (`str`, *optional*, defaults to `"relu"`) --
-  The non-linear activation function (function or string) in the decoder. If string, `"gelu"`,
-  `"relu"`, `"silu"` and `"gelu_new"` are supported.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **num_denoising** (`int`, *optional*, defaults to 100) --
-  The total number of denoising tasks or queries to be used for contrastive denoising.
-- **learn_initial_query** (`bool`, *optional*, defaults to `False`) --
-  Indicates whether the initial query embeddings for the decoder should be learned during training
-- **anchor_image_size** (`tuple[int, int]`, *optional*) --
-  Height and width of the input image used during evaluation to generate the bounding box anchors. If None, automatic generate anchor is applied.
-- **disable_custom_kernels** (`bool`, *optional*, defaults to `True`) --
-  Whether to disable custom kernels.
-- **global_pointer_head_size** (`int`, *optional*, defaults to 64) --
-  The size of the global pointer head.
-- **gp_dropout_value** (`float`, *optional*, defaults to 0.1) --
-  The dropout probability in the global pointer head.
+#### transformers.PPDocLayoutV3Config[[transformers.PPDocLayoutV3Config]]
+
+```python
+transformers.PPDocLayoutV3Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, initializer_range: float = 0.01, initializer_bias_prior_prob: float | None = None, layer_norm_eps: float = 1e-05, batch_norm_eps: float = 1e-05, tie_word_embeddings: bool = True, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, freeze_backbone_batch_norms: bool = True, encoder_hidden_dim: int = 256, encoder_in_channels: list[int] | tuple[int, ...] = (512, 1024, 2048), feat_strides: list[int] | tuple[int, ...] = (8, 16, 32), encoder_layers: int = 1, encoder_ffn_dim: int = 1024, encoder_attention_heads: int = 8, dropout: float | int = 0.0, activation_dropout: float | int = 0.0, encode_proj_layers: list[int] | tuple[int, ...] = (2,), positional_encoding_temperature: int = 10000, encoder_activation_function: str = 'gelu', activation_function: str = 'silu', eval_size: int | None = None, normalize_before: bool = False, hidden_expansion: float = 1.0, mask_feature_channels: list[int] | tuple[int, ...] = (64, 64), x4_feat_dim: int = 128, d_model: int = 256, num_prototypes: int = 32, label_noise_ratio: float = 0.4, box_noise_scale: float = 0.4, mask_enhanced: bool = True, num_queries: int = 300, decoder_in_channels: list[int] | tuple[int, ...] = (256, 256, 256), decoder_ffn_dim: int = 1024, num_feature_levels: int = 3, decoder_n_points: int = 4, decoder_layers: int = 6, decoder_attention_heads: int = 8, decoder_activation_function: str = 'relu', attention_dropout: float | int = 0.0, num_denoising: int = 100, learn_initial_query: bool = False, anchor_image_size: int | None = None, disable_custom_kernels: bool = True, global_pointer_head_size: int = 64, gp_dropout_value: float | int = 0.1)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_doclayout_v3/configuration_pp_doclayout_v3.py#L31)
+
+**Parameters:**
+
+is_encoder_decoder (`bool`, *optional*, defaults to `True`) : Whether the model is used as an encoder/decoder or not.
+
+initializer_range (`float`, *optional*, defaults to `0.01`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+initializer_bias_prior_prob (`float`, *optional*) : The prior probability used by the bias initializer to initialize biases for `enc_score_head` and `class_embed`. If `None`, `prior_prob` computed as `prior_prob = 1 / (num_labels + 1)` while initializing model weights.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-05`) : The epsilon used by the layer normalization layers.
+
+batch_norm_eps (`float`, *optional*, defaults to `1e-05`) : The epsilon used by the batch normalization layers.
+
+tie_word_embeddings (`bool`, *optional*, defaults to `True`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
+
+backbone_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The configuration of the backbone model.
+
+freeze_backbone_batch_norms (`bool`, *optional*, defaults to `True`) : Whether to freeze the batch normalization layers in the backbone.
+
+encoder_hidden_dim (`int`, *optional*, defaults to `256`) : Dimension of the hidden representations.
+
+encoder_in_channels (`list`, *optional*, defaults to `[512, 1024, 2048]`) : Multi level features input for encoder.
+
+feat_strides (`list[int]`, *optional*, defaults to `[8, 16, 32]`) : Strides used in each feature map.
+
+encoder_layers (`int`, *optional*, defaults to `1`) : Number of hidden layers in the Transformer encoder. Will use the same value as `num_layers` if not set.
+
+encoder_ffn_dim (`int`, *optional*, defaults to `1024`) : Dimensionality of the "intermediate" (often named feed-forward) layer in encoder.
+
+encoder_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer encoder.
+
+dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The ratio for all dropout layers.
+
+activation_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for activations inside the fully connected layer.
+
+encode_proj_layers (`list[int]`, *optional*, defaults to `[2]`) : Indexes of the projected layers to be used in the encoder.
+
+positional_encoding_temperature (`int`, *optional*, defaults to 10000) : The temperature parameter used to create the positional encodings.
+
+encoder_activation_function (`str`, *optional*, defaults to `"gelu"`) : The non-linear activation function (function or string) in the encoder and pooler. If string, `"gelu"`, `"relu"`, `"silu"` and `"gelu_new"` are supported.
+
+activation_function (`str`, *optional*, defaults to `silu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+eval_size (`tuple[int, int]`, *optional*) : Height and width used to computes the effective height and width of the position embeddings after taking into account the stride.
+
+normalize_before (`bool`, *optional*, defaults to `False`) : Determine whether to apply layer normalization in the transformer encoder layer before self-attention and feed-forward modules.
+
+hidden_expansion (`float`, *optional*, defaults to 1.0) : Expansion ratio to enlarge the dimension size of RepVGGBlock and CSPRepLayer.
+
+mask_feature_channels (`list[int]`, *optional*, defaults to `[64, 64]`) : The channels of the multi-level features for mask enhancement.
+
+x4_feat_dim (`int`, *optional*, defaults to 128) : The dimension of the x4 feature map.
+
+d_model (`int`, *optional*, defaults to 256) : Dimension of the layers exclude hybrid encoder.
+
+num_prototypes (`int`, *optional*, defaults to 32) : Dimension of the layers exclude mask query head.
+
+label_noise_ratio (`float`, *optional*, defaults to 0.4) : The fraction of denoising labels to which random noise should be added.
+
+box_noise_scale (`float`, *optional*, defaults to 0.4) : Scale or magnitude of noise to be added to the bounding boxes.
+
+mask_enhanced (`bool`, *optional*, defaults to `True`) : Whether to use enhanced masked attention.
+
+num_queries (`int`, *optional*, defaults to 300) : Number of object queries.
+
+decoder_in_channels (`list`, *optional*, defaults to `[256, 256, 256]`) : Multi level features dimension for decoder
+
+decoder_ffn_dim (`int`, *optional*, defaults to 1024) : Dimension of the "intermediate" (often named feed-forward) layer in decoder.
+
+num_feature_levels (`int`, *optional*, defaults to 3) : The number of input feature levels.
+
+decoder_n_points (`int`, *optional*, defaults to 4) : The number of sampled keys in each feature level for each attention head in the decoder.
+
+decoder_layers (`int`, *optional*, defaults to `6`) : Number of hidden layers in the Transformer decoder. Will use the same value as `num_layers` if not set.
+
+decoder_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+decoder_activation_function (`str`, *optional*, defaults to `"relu"`) : The non-linear activation function (function or string) in the decoder. If string, `"gelu"`, `"relu"`, `"silu"` and `"gelu_new"` are supported.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+num_denoising (`int`, *optional*, defaults to 100) : The total number of denoising tasks or queries to be used for contrastive denoising.
+
+learn_initial_query (`bool`, *optional*, defaults to `False`) : Indicates whether the initial query embeddings for the decoder should be learned during training
+
+anchor_image_size (`tuple[int, int]`, *optional*) : Height and width of the input image used during evaluation to generate the bounding box anchors. If None, automatic generate anchor is applied.
+
+disable_custom_kernels (`bool`, *optional*, defaults to `True`) : Whether to disable custom kernels.
+
+global_pointer_head_size (`int`, *optional*, defaults to 64) : The size of the global pointer head.
+
+gp_dropout_value (`float`, *optional*, defaults to 0.1) : The dropout probability in the global pointer head.
 
 This is the configuration class to store the configuration of a PPDocLayoutV3Model. It is used to instantiate a Pp Doclayout V3
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PP-DocLayoutV3_safetensors](https://huggingface.co/PaddlePaddle/PP-DocLayoutV3_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -468,21 +489,137 @@ Examples:
 
 ## PPDocLayoutV3ImageProcessor[[transformers.PPDocLayoutV3ImageProcessor]]
 
-- ****kwargs** ([ImagesKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ImagesKwargs), *optional*) --
-  Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class
-  for the complete list of supported arguments.
+#### transformers.PPDocLayoutV3ImageProcessor[[transformers.PPDocLayoutV3ImageProcessor]]
+
+```python
+transformers.PPDocLayoutV3ImageProcessor(**kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_doclayout_v3/image_processing_pp_doclayout_v3.py#L39)
+
+**Parameters:**
+
+do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'height' : 800, 'width': 800}`): Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `Resampling.BICUBIC`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*, defaults to `0.00392156862745098`) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*, defaults to `[0, 0, 0]`) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*, defaults to `[1, 1, 1]`) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models. Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors. --
+
 Constructs a PPDocLayoutV3ImageProcessor image processor.
 
-- **images** (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) --
-  Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If
-  passing in images with pixel values between 0 and 1, set `do_rescale=False`.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
-- ****kwargs** ([ImagesKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ImagesKwargs), *optional*) --
-  Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class
-  for the complete list of supported arguments.`~image_processing_base.BatchFeature`- **data** (`dict`) -- Dictionary of lists/arrays/tensors returned by the __call__ method ('pixel_values', etc.).
+disable_grouping (`bool`, *kwargs*, *optional*):
+Whether to disable grouping of images by size to process them individually and not in batches.
+If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on
+empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+image_seq_length (`int`, *kwargs*, *optional*):
+The number of image tokens to be used for each image in the input.
+Added for backward compatibility but this should be set as a processor attribute in future models.
+
+#### preprocess[[transformers.PPDocLayoutV3ImageProcessor.preprocess]]
+
+```python
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+
+**Parameters:**
+
+images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+**Returns:** `~image_processing_base.BatchFeature`
+
+- **data** (`dict`) -- Dictionary of lists/arrays/tensors returned by the __call__ method ('pixel_values', etc.).
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
-### ConvNeXt V2
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/convnextv2.md
+### ViTMSN
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/vit_msn.md

@@ -17,9 +17,9 @@ If you stare at this for a while, you should realize that this is actually very 
 the message, followed by an end-of-sequence token. If `add_generation_prompt=True`, it adds
 the starting header for an assistant message to the end of the conversation.
 
-Load the written template as a string and assign it to the tokenizer's `chat_template` attribute. Once set, the template is used whenever you call [apply_chat_template()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template). It is also saved
-with the tokenizer whenever [save_pretrained()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.save_pretrained) or [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) is called. The template is saved in the `chat_template.jinja` file in the tokenizer directory. You can
-edit this file directly to change the template, which is often easier than manipulating a template string.
+Load the written template as a string and assign it to the tokenizer's `chat_template` attribute. Once set, the template is used whenever you call [apply_chat_template()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template). It is also saved
+with the tokenizer whenever [save_pretrained()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.save_pretrained) or [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) is called. The template is saved in the `chat_template.jinja` file in the tokenizer directory. You can
+edit this file directly to change the template, which is often easier than manipulating a template string. See [Storing and loading chat templates](#storing-and-loading-chat-templates) below for the other on-disk shapes Transformers supports.
 
 ## Template writing tips
 
@@ -92,7 +92,7 @@ We strongly recommend using `-` to ensure only the intended content is printed.
 ### Special variables and callables
 
 The only constants in a template are the `messages` variable and the `add_generation_prompt` boolean. However, you have
-access to **any other keyword arguments that are passed** to the [apply_chat_template()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template) method.
+access to **any other keyword arguments that are passed** to the [apply_chat_template()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template) method.
 
 This provides flexibility and enables support for use-cases we may not have thought of while designing the spec. The most common additional variable is `tools`, which contains a list of tools in JSON schema format. Although you can use any variable name you like, we highly recommend sticking to convention and using `tools` for this purpose. This makes templates more compatible with the standard API.
 
@@ -127,6 +127,53 @@ You could also load an edited template back into the tokenizer.
 
 ```py
 tokenizer.chat_template = open("template.jinja").read()
+```
+
+## Storing and loading chat templates
+
+Chat templates are stored on disk in several different formats. Modern checkpoints save templates as standalone `.jinja` files while older checkpoints embed them in the tokenizer or processor config.
+
+### Storage formats
+
+Templates may be stored in any of the following formats.
+
+- `chat_template.jinja` (recommended). A standalone Jinja file at the root of the repository, containing a single chat template. This is what [save_pretrained()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.save_pretrained) writes by default. Storing the template in its own file makes it easy to inspect, edit, and diff. Both tokenizers and processors load `chat_template.jinja` the same way.
+- `additional_chat_templates/<name>.jinja`. A directory of standalone Jinja files used when a model ships multiple named templates (for example, a `default` template and a separate `tool_use` template). The `default` template still goes in `chat_template.jinja` at the repo root, but every other named template goes in `additional_chat_templates/<name>.jinja`, where the filename stem is the template name.
+
+> [!WARNING]
+> The legacy formats below are kept for backward-compatible loading only. Don't write chat templates to either of them.
+
+- `chat_template` field in `tokenizer_config.json`. A load-only legacy format used before standalone `.jinja` files. The template is embedded as a JSON string in `tokenizer_config.json`. When a model has multiple named templates, the field is a list of `{"name": ..., "template": ...}` dicts instead of a single string. Existing repositories that use this format continue to load, but [save_pretrained()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.save_pretrained) writes the modern `.jinja` format instead.
+
+- `chat_template.json`. A load-only legacy format used by older multimodal processor checkpoints. A JSON file of the form `{"chat_template": "<template string>"}`. Existing repositories that use this format continue to load, but [save_pretrained()](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutProcessor.save_pretrained) writes the modern `.jinja` format instead. A processor repository that mixes a legacy `chat_template.json` with modern `.jinja` files raises an error on load.
+
+### Loading precedence
+
+When calling [from_pretrained()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.from_pretrained), Transformers resolves the storage formats with a fixed precedence. Standalone `.jinja` files take priority over templates embedded in the config. The loader:
+
+1. Reads any `chat_template` field present in `tokenizer_config.json` (or, for processors, the legacy `chat_template.json`).
+2. Reads `chat_template.jinja` at the repo root if it exists, and uses it as the `default` template, overriding step 1.
+3. Reads every `.jinja` file in `additional_chat_templates/`, keyed by the filename stem, and merges them in.
+
+If the result has a single `default` template, `~PreTrainedTokenizer.chat_template` is set to that string. If multiple named templates exist, `chat_template` becomes a dict of `{name: template_string}`. In that case, [apply_chat_template()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template) picks the `tool_use` entry when tools are passed, and `default` otherwise.
+
+### Saving
+
+[save_pretrained()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.save_pretrained) and [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) writes the `.jinja` format by default. A single string template becomes `chat_template.jinja`. A dict of named templates writes the `default` entry to `chat_template.jinja` and one file per remaining entry under `additional_chat_templates/`. The `chat_template` field is removed from `tokenizer_config.json` to avoid duplication.
+
+There is no supported way to save a template in one of the legacy formats. They are only kept for loading older repositories.
+
+### Updating an older repository
+
+Migrate an embedded template in `tokenizer_config.json` or `chat_template.json` to the recommended `.jinja` format by loading and saving it again.
+
+The load step normalizes whichever legacy format the repository uses in `chat_template`, and `~PushToHubMixin.push_to_hub` returns a `chat_template.jinja` file.
+
+```py
+from transformers import AutoTokenizer
+
+tokenizer = AutoTokenizer.from_pretrained("your-org/your-model")
+tokenizer.push_to_hub("your-org/your-model")
 ```
 
 ## Templates for tools
@@ -241,7 +288,7 @@ Some templates may not even need the `name` key, in which case, you can write yo
 
 ## Contribute
 
-Once a template is ready, set it to the `chat_template` attribute in the tokenizer and test it with [apply_chat_template()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template). If it works as expected, then upload it to the Hub with [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub).
+Once a template is ready, set it to the `chat_template` attribute in the tokenizer and test it with [apply_chat_template()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template). If it works as expected, then upload it to the Hub with [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub).
 
 Even if you're not the model owner, it is still helpful to add a template for a model with an empty or incorrect chat template. Open a [pull request](https://hf.co/docs/hub/repositories-pull-requests-discussions) on the model repository to add the template!
 
@@ -250,5 +297,5 @@ tokenizer.chat_template = template
 tokenizer.push_to_hub("amazing_company/cool_model", commit_message="Add chat template", create_pr=True)
 ```
 
-### Pull request checks
-https://huggingface.co/docs/transformers/v5.14.0/pr_checks.md
+### Building a GPU workstation
+https://huggingface.co/docs/transformers/v5.15.0/perf_hardware.md

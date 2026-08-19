@@ -18,7 +18,7 @@ templates allow users to ignore the messy details of what specific formats and c
 and use a universal API of message dicts that works with any model.
 
 The best way to understand response templates is to see them in action. The main entry point is the
-[parse_response()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.parse_response) method, which accepts either a single sequence or a batch:
+[parse_response()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.parse_response) method, which accepts either a single sequence or a batch:
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -42,8 +42,8 @@ prompt to understand the message. All of the prefix before the final turn is dis
 at a time. We just need the prefix to ensure we're seeing the entire final message, and not miss any prefilled
 fields!
 
-Because a missing prefix can silently mis-parse a prefilled message, `prefix` is required when parsing with a
-new-style `response_template`: omitting it raises an error. In the rare case where you are sure the generation
+Because a missing prefix can silently mis-parse a prefilled message, `prefix` is required. Omitting it raises an
+error. In the rare case where you are sure the generation
 already contains the complete message and no prefix context is needed, pass `prefix=""` (or an empty list of
 token ids) to opt out explicitly.
 
@@ -72,6 +72,11 @@ message, final_events = parser.finalize()
 for event in final_events:
     render(event)
 ```
+
+If the request includes tools, pass them through as well (`get_response_parser(..., tools=tools)`).
+Tool-call arguments are then typed from the calling tool's JSON Schema as each region closes, so
+streaming consumers see schema-typed arguments on `region_close` rather than only after `finalize()`.
+See [Typing tool-call arguments](#typing-tool-call-arguments) for details.
 
 The parser will emit **events** as text from the generation process is fed in. This indicates which region is currently being generated. When
 the region is complete, it will be emitted in a separate event with the fully parsed content. At the end of generation,
@@ -373,6 +378,36 @@ input = "<meta>name: alice\nage: 30</meta>"
 
 Note `age` keeps `"30"` as a string; add a `value_parser` of `{"name": "int"}` to parse it to `30`.
 
+### Typing tool-call arguments
+
+Sometimes, the response parser may parse model outputs with the wrong type. For example,
+it might parse the float `1.5` as "1.50". This can cause problems with tool calling, if tools expect
+an argument in one type but receive it in another. To avoid this,
+you can pass the request's `tools` to [parse_response()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.parse_response) or
+`ResponseParser` to cast them using each tool's JSON Schema `parameters`.
+Tools are accepted in the same format as [apply_chat_template()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template): JSON
+schemas, or Python functions with type hints and docstrings that are auto-converted to schemas.
+
+```python
+tools = [{
+    "type": "function",
+    "function": {
+        "name": "set_alarm",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "hour": {"type": "integer"},
+                "enabled": {"type": "boolean"},
+                "label": {"type": "string"},
+            },
+        },
+    },
+}]
+message = parse_response(model_out, template, prefix="", tools=tools)
+# message["tool_calls"][0]["function"]["arguments"] ==
+# {"hour": 7, "enabled": True, "label": "wake up"}
+```
+
 ### Transform
 
 For most fields, the `transform` key is unnecessary. It's used when the parsed body needs to be reshaped into the final
@@ -501,5 +536,5 @@ follow the simple guidelines below, then response templates should be much less 
   not used in response templates. We'll try to dissuade model authors from using them, so you can hopefully safely 
   ignore them.
 
-### Dynamic weight loading
-https://huggingface.co/docs/transformers/v5.14.0/weightconverter.md
+### Expert parallelism
+https://huggingface.co/docs/transformers/v5.15.0/expert_parallelism.md

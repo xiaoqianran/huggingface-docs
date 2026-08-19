@@ -24,7 +24,7 @@ pip install -q transformers
 
 ## Zero-shot object detection pipeline
 
-The simplest way to try out inference with models is to use it in a [pipeline()](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.pipeline). Instantiate a pipeline
+The simplest way to try out inference with models is to use it in a [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline). Instantiate a pipeline
 for zero-shot object detection from a [checkpoint on the Hugging Face Hub](https://huggingface.co/models?pipeline_tag=zero-shot-object-detection):
 
 ```python
@@ -130,7 +130,7 @@ Use the processor to prepare the inputs for the model.
 
 ```py
 >>> text_labels = ["hat", "book", "sunglasses", "camera"]
->>> inputs = processor(text=text_labels, images=image, return_tensors="pt")to(model.device)
+>>> inputs = processor(text=text_labels, images=image, return_tensors="pt").to(model.device)
 ```
 
 Pass the inputs through the model, post-process, and visualize the results. Since the image processor resized images before
@@ -259,7 +259,7 @@ In the preprocessing step, instead of text queries, you now need to use `query_i
 >>> inputs = processor(images=image_target, query_images=query_image, return_tensors="pt")
 ```
 
-For predictions, instead of passing the inputs to the model, pass them to [image_guided_detection()](/docs/transformers/v5.14.0/en/model_doc/owlvit#transformers.OwlViTForObjectDetection.image_guided_detection). Draw the predictions
+For predictions, instead of passing the inputs to the model, pass them to [image_guided_detection()](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTForObjectDetection.image_guided_detection). Draw the predictions
 as before except now there are no labels.
 
 ```py
@@ -280,5 +280,5 @@ as before except now there are no labels.
 >>> image_target
 ```
 
-### Monocular depth estimation
-https://huggingface.co/docs/transformers/v5.14.0/tasks/monocular_depth_estimation.md
+### Object detection
+https://huggingface.co/docs/transformers/v5.15.0/tasks/object_detection.md

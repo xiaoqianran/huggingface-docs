@@ -71,37 +71,46 @@ sf.write("reconstruction.wav", reconstruction.T, sampling_rate)
 
 ## XcodecConfig[[transformers.XcodecConfig]]
 
-- **target_bandwidths** (`List[float]`, *optional*, defaults to `[0.5, 1, 1.5, 2, 4]`) --
-  The range of different bandwidths (in kbps) the model can encode audio with.
-- **sample_rate** (`int`, *optional*, defaults to `16000`) --
-  The sampling rate at which the audio files should be digitalized expressed in hertz (Hz).
-- **kernel_size** (`int`, *optional*, defaults to `3`) --
-  The size of the convolutional kernel.
-- **channel_ratios** (`List[float]`, *optional*, defaults to `[1, 1]`) --
-  Expansion factors for the number of output channels in each semantic block.
-- **strides** (`List[int]`, *optional*, defaults to `[1, 1]`) --
-  Strides for each semantic encoder block.
-- **block_dilations** (`List[int]`, *optional*, defaults to `[1, 1]`) --
-  Dilation factors for the residual units in semantic blocks.
-- **unit_kernel_size** (`int`, *optional*, defaults to 3) --
-  Kernel size inside each ResidualUnit in semantic blocks.
-- **codebook_size** (`int`, *optional*, defaults to `1024`) --
-  The number of parallel codebooks used by the model.
-- **codebook_dim** (`int`, *optional*) --
-  Dimensionality of each codebook embedding vector.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **acoustic_model_config** (`Union[Dict, DacConfig]`, *optional*) --
-  An instance of the configuration for the acoustic (DAC) model.
-- **semantic_model_config** (`Union[Dict, HubertConfig, WavLMConfig]`, *optional*) --
-  An instance of the configuration object for the semantic (HuBERT) model.
+#### transformers.XcodecConfig[[transformers.XcodecConfig]]
+
+```python
+transformers.XcodecConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, target_bandwidths: list[int | float] | tuple[int | float, ...] = (0.5, 1, 1.5, 2, 4), sample_rate: int = 16000, kernel_size: int = 3, channel_ratios: list[int] | tuple[int, ...] = (1, 1), strides: list[int] | tuple[int, ...] = (1, 1), block_dilations: list[int] | tuple[int, ...] = (1, 1), unit_kernel_size: int = 3, codebook_size: int = 1024, codebook_dim: int | None = None, initializer_range: float = 0.02, acoustic_model_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, semantic_model_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xcodec/configuration_xcodec.py#L28)
+
+**Parameters:**
+
+target_bandwidths (`List[float]`, *optional*, defaults to `[0.5, 1, 1.5, 2, 4]`) : The range of different bandwidths (in kbps) the model can encode audio with.
+
+sample_rate (`int`, *optional*, defaults to `16000`) : The sampling rate at which the audio files should be digitalized expressed in hertz (Hz).
+
+kernel_size (`int`, *optional*, defaults to `3`) : The size of the convolutional kernel.
+
+channel_ratios (`List[float]`, *optional*, defaults to `[1, 1]`) : Expansion factors for the number of output channels in each semantic block.
+
+strides (`List[int]`, *optional*, defaults to `[1, 1]`) : Strides for each semantic encoder block.
+
+block_dilations (`List[int]`, *optional*, defaults to `[1, 1]`) : Dilation factors for the residual units in semantic blocks.
+
+unit_kernel_size (`int`, *optional*, defaults to 3) : Kernel size inside each ResidualUnit in semantic blocks.
+
+codebook_size (`int`, *optional*, defaults to `1024`) : The number of parallel codebooks used by the model.
+
+codebook_dim (`int`, *optional*) : Dimensionality of each codebook embedding vector.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+acoustic_model_config (`Union[Dict, DacConfig]`, *optional*) : An instance of the configuration for the acoustic (DAC) model.
+
+semantic_model_config (`Union[Dict, HubertConfig, WavLMConfig]`, *optional*) : An instance of the configuration object for the semantic (HuBERT) model.
 
 This is the configuration class to store the configuration of a XcodecModel. It is used to instantiate a Xcodec
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Manel/X-Codec](https://huggingface.co/Manel/X-Codec)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -120,13 +129,21 @@ Example:
 
 ## XcodecModel[[transformers.XcodecModel]]
 
-- **config** ([XcodecModel](/docs/transformers/v5.14.0/en/model_doc/xcodec#transformers.XcodecModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.XcodecModel[[transformers.XcodecModel]]
+
+```python
+transformers.XcodecModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xcodec/modeling_xcodec.py#L445)
+
+**Parameters:**
+
+config ([XcodecModel](/docs/transformers/v5.15.0/en/model_doc/xcodec#transformers.XcodecModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+
 The Xcodec neural audio codec model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -134,33 +151,69 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "return_dict", "val": ": bool | None = None"}]}>
-- **audio_codes** (`torch.LongTensor`  of shape `(batch_size, num_quantizers, codes_length)`) --
-  Discrete code indices computed using `model.encode`.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput)Decoded audio values of shape `(batch_size, channels, num_samples)` obtained using the decoder part of
+#### decode[[transformers.XcodecModel.decode]]
+
+```python
+decode(audio_codes: Tensor, return_dict: bool | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xcodec/modeling_xcodec.py#L541)
+
+**Parameters:**
+
+audio_codes (`torch.LongTensor`  of shape `(batch_size, num_quantizers, codes_length)`) : Discrete code indices computed using `model.encode`.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput)
+
+**Returns:**
+
+Decoded audio values of shape `(batch_size, channels, num_samples)` obtained using the decoder part of
 Xcodec.
 
-)>"}, {"name": "bandwidth", "val": ": float | None = None"}, {"name": "return_dict", "val": ": bool | None = None"}]}>
-- **input_values** (`torch.FloatTensor` of shape `(batch_size, channels, num_samples)`) --
-  Float values of the input audio waveform.
-- **bandwidth** (`float`, *optional*) --
-  The target bandwidth in (kbps) supports only values in `config.target_bandwidths`.
-  Defaults to the highest available bandwidth `4.0` kbps.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput).`torch.LongTensor` of shape `(batch_size, num_quantizers, codes_length)` containing the discrete encoded audio codes.
+#### encode[[transformers.XcodecModel.encode]]
 
-)>"}, {"name": "audio_codes", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "bandwidth", "val": ": float | None = None"}, {"name": "**kwargs", "val": ": Unpack"}]}>
-- **input_values** (`torch.FloatTensor` of shape `(batch_size, channels, num_samples)`) --
-  The raw float values of the input audio waveform.
-- **audio_codes** (`torch.LongTensor`  of shape `(batch_size, num_quantizers, codes_length)` --
-  Discrete code indices computed using `model.encode`.
-- **bandwidth** (`float`, *optional*) --
-  Target bandwidth in kbps. Must be one of `config.target_bandwidths`. Defaults to the highest available bandwidth.
-- **bandwidth** (`float`, *optional*) --
-  Target bandwidth in kbps. Must be one of `config.target_bandwidths`. Defaults to the highest available bandwidth.`XcodecOutput` or tuple `(audio_codes, audio_values)`- `audio_codes` of shape `(batch_size, num_quantizers, codes_length)`: the quantized discrete codes.
+```python
+encode(input_values: Tensor, bandwidth: float | None = None, return_dict: bool | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xcodec/modeling_xcodec.py#L489)
+
+**Parameters:**
+
+input_values (`torch.FloatTensor` of shape `(batch_size, channels, num_samples)`) : Float values of the input audio waveform.
+
+bandwidth (`float`, *optional*) : The target bandwidth in (kbps) supports only values in `config.target_bandwidths`. Defaults to the highest available bandwidth `4.0` kbps.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput).
+
+**Returns:**
+
+`torch.LongTensor` of shape `(batch_size, num_quantizers, codes_length)` containing the discrete encoded audio codes.
+
+#### forward[[transformers.XcodecModel.forward]]
+
+```python
+forward(input_values: Tensor, audio_codes: typing.Optional[torch.Tensor] = None, bandwidth: float | None = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xcodec/modeling_xcodec.py#L569)
+
+**Parameters:**
+
+input_values (`torch.FloatTensor` of shape `(batch_size, channels, num_samples)`) : The raw float values of the input audio waveform.
+
+audio_codes (`torch.LongTensor`  of shape `(batch_size, num_quantizers, codes_length)` : Discrete code indices computed using `model.encode`.
+
+bandwidth (`float`, *optional*) : Target bandwidth in kbps. Must be one of `config.target_bandwidths`. Defaults to the highest available bandwidth.
+
+bandwidth (`float`, *optional*) : Target bandwidth in kbps. Must be one of `config.target_bandwidths`. Defaults to the highest available bandwidth.
+
+**Returns:** `XcodecOutput` or tuple `(audio_codes, audio_values)`
+
+- `audio_codes` of shape `(batch_size, num_quantizers, codes_length)`: the quantized discrete codes.
 - `audio_values` of shape `(batch_size, channels, num_samples)`: the reconstructed audio waveform given the codes.
-The [XcodecModel](/docs/transformers/v5.14.0/en/model_doc/xcodec#transformers.XcodecModel) forward method, overrides the `__call__` special method.
+
+The [XcodecModel](/docs/transformers/v5.15.0/en/model_doc/xcodec#transformers.XcodecModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -187,5 +240,5 @@ Example:
 >>> audio_values = outputs.audio_values
 ```
 
-### SAM2 Video
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/sam2_video.md
+### SAM
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/sam.md

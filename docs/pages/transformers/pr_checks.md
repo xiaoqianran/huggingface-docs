@@ -52,7 +52,7 @@ The repository consistency check is similar to `make check-repo`, except it stop
 
 | Category | What it validates | Auto-fixed? |
 |---|---|---|
-| Init files | Every new public object must appear in both `_import_structure` (lazy loading) and the `if TYPE_CHECKING` block (type checker imports) in `__init__.py` | Manual |
+| Init files | `src/transformers/models/__init__.py` matches the import structure on disk, so the `if TYPE_CHECKING` block (type checker imports) exposes the same models as the lazy runtime half | `make fix-repo` |
 | Copies and modular | `# Copied from` blocks match their source and modular-generated files are up to date | `make fix-repo` |
 | Docstrings and docs | Argument docstrings match function signatures and documentation table of contents | `make fix-repo` |
 | Auto-generated files | Dummies, pipeline typing, doctest list, metadata, dependency table | `make fix-repo` |
@@ -103,6 +103,7 @@ Tests are split across parallel CI jobs, and each job picks up files by path pat
 - `pipelines_torch`: pipeline tests
 - `tests_training_ci`: training loop tests
 - `tests_tensor_parallel_ci`: tensor parallel tests
+- `tests_fsdp_ci`: FSDP tests
 
 ### Slow tests
 
@@ -139,5 +140,5 @@ The basic forms of `# Copied from` include the following.
 
 The `with model->newModel` syntax applies string replacements after copying. Separate multiple replacements with commas, which are applied from left to right. The `all-casing` option replaces every casing variant at once (`Bert`, `bert`, `BERT` become `MobileBert`, `mobilebert`, `MOBILEBERT`).
 
-### Cache strategies
-https://huggingface.co/docs/transformers/v5.14.0/kv_cache.md
+### Extending the exporters
+https://huggingface.co/docs/transformers/v5.15.0/exporters_extend.md

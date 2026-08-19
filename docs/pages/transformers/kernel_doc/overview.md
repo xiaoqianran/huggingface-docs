@@ -31,5 +31,5 @@ For deterministic behavior, try the following.
 - [Kernels](https://github.com/huggingface/kernels) GitHub repository
 - [Enhance Your Models in 5 Minutes with the Hugging Face Kernel Hub](https://huggingface.co/blog/hello-hf-kernels) blog post
 
-### Writing kernels
-https://huggingface.co/docs/transformers/v5.14.0/kernel_doc/writing_kernels.md
+### NeMo Automodel
+https://huggingface.co/docs/transformers/v5.15.0/community_integrations/nemo_automodel_pretraining.md

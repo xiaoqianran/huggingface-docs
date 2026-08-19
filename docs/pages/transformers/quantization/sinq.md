@@ -40,7 +40,7 @@ pip install sinq
 ### Quantize in a few lines
 
 Quantizing any 🤗 Hugging Face model with SINQ is simple and takes only a few lines of code. 
-First, create a [SinqConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.SinqConfig) and specify the following parameters:
+First, create a [SinqConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.SinqConfig) and specify the following parameters:
 
 | Flag | Description | Type | Options | Default |
 |------|-------------|---------|---------|----------|
@@ -137,12 +137,14 @@ qmodel = AutoModelForCausalLM.from_pretrained(hf_hub_model)
 Below is a minimal example showing how to evaluate a SINQ-quantized model on a benchmark dataset:
 
 ```python
+import torch
 from lm_eval import evaluator
 from lm_eval.models.huggingface import HFLM
 
+device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
+
 # Wrap the already quantized model and tokenizer with HFLM
 lm = HFLM(pretrained=qmodel, tokenizer=tok, device=device)
-device = "cuda:0"
 
 # Evaluate (many tasks available on lm-eval such as MMLU and HellaSwag)
 results = evaluator.simple_evaluate(
@@ -175,5 +177,5 @@ If you find **SINQ** useful in your research or applications
 Currently, the A-SINQ method is not supported in Hugging Face. Please refer to the official [SINQ repository](https://github.com/huawei-csl/SINQ/tree/main) to quantize a model with this strategy.
 At the moment the SINQ quantization strategy and SINQ quantized models do not support Multi-GPU option, so if your system counts multiple GPUs please specify which one should be used.
 
-### GPTQ
-https://huggingface.co/docs/transformers/v5.14.0/quantization/gptq.md
+### HQQ
+https://huggingface.co/docs/transformers/v5.15.0/quantization/hqq.md

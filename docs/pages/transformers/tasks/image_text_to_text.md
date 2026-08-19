@@ -85,7 +85,7 @@ messages = [
 ]
 ```
 
-We will now call the processors' [apply_chat_template()](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to preprocess its output along with the image inputs.
+We will now call the processors' [apply_chat_template()](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to preprocess its output along with the image inputs.
 
 ```python
 inputs = processor.apply_chat_template(messages, add_generation_prompt=True, tokenize=True, return_dict=True, return_tensors="pt").to(device)
@@ -106,7 +106,7 @@ print(generated_texts)
 
 ## Pipeline
 
-The fastest way to get started is to use the [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) API. Specify the `"image-text-to-text"` task and the model you want to use.
+The fastest way to get started is to use the [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) API. Specify the `"image-text-to-text"` task and the model you want to use.
 
 ```python
 from transformers import pipeline
@@ -136,7 +136,7 @@ messages = [
  ]
 ```
 
-Pass the chat template formatted text and image to [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) and set `return_full_text=False` to remove the input from the generated output.
+Pass the chat template formatted text and image to [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) and set `return_full_text=False` to remove the input from the generated output.
 
 ```python
 outputs = pipe(text=messages, max_new_tokens=20, return_full_text=False)
@@ -187,9 +187,9 @@ outputs[0]['input_text']
 """
 ```
 
-We can use [text streaming](../generation_features#streaming) for a better generation experience. Transformers supports streaming with the [TextStreamer](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.TextStreamer) or [TextIteratorStreamer](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.TextIteratorStreamer) classes. We will use the [TextIteratorStreamer](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.TextIteratorStreamer) with IDEFICS-8B.
+We can use [text streaming](../generation_features#streaming) for a better generation experience. Transformers supports streaming with the [TextStreamer](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.TextStreamer) or [TextIteratorStreamer](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.TextIteratorStreamer) classes. We will use the [TextIteratorStreamer](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.TextIteratorStreamer) with IDEFICS-8B.
 
-Assume we have an application that keeps chat history and takes in the new user input. We will preprocess the inputs as usual and initialize [TextIteratorStreamer](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.TextIteratorStreamer) to handle the generation in a separate thread. This allows you to stream the generated text tokens in real-time. Any generation arguments can be passed to [TextIteratorStreamer](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.TextIteratorStreamer).
+Assume we have an application that keeps chat history and takes in the new user input. We will preprocess the inputs as usual and initialize [TextIteratorStreamer](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.TextIteratorStreamer) to handle the generation in a separate thread. This allows you to stream the generated text tokens in real-time. Any generation arguments can be passed to [TextIteratorStreamer](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.TextIteratorStreamer).
 
 ```python
 import time
@@ -276,7 +276,7 @@ First, install dependencies.
 pip install -U optimum-quanto bitsandbytes
 ```
 
-To quantize a model during loading, we need to first create [QuantoConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.QuantoConfig). Then load the model as usual, but pass `quantization_config` during model initialization.
+To quantize a model during loading, we need to first create [QuantoConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.QuantoConfig). Then load the model as usual, but pass `quantization_config` during model initialization.
 
 ```python
 from transformers import AutoModelForImageTextToText, QuantoConfig
@@ -388,5 +388,5 @@ Here are some more resources for the image-text-to-text task.
 - [Vision Language Models Explained](https://huggingface.co/blog/vlms) is a blog post that covers everything about vision language models and supervised fine-tuning using [TRL](https://huggingface.co/docs/trl/en/index).
 - [Learn how to fine-tune vision language models using TRL](https://huggingface.co/blog/trl-vlm-alignment)
 
-### Masked language modeling
-https://huggingface.co/docs/transformers/v5.14.0/tasks/masked_language_modeling.md
+### Audio-text-to-text
+https://huggingface.co/docs/transformers/v5.15.0/tasks/audio_text_to_text.md

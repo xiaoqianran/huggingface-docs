@@ -7,7 +7,7 @@
 >
 > Click on the EfficientLoFTR models in the right sidebar for more examples of how to apply EfficientLoFTR to different computer vision tasks.
 
-The example below demonstrates how to match keypoints between two images with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to match keypoints between two images with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -75,7 +75,7 @@ processed_outputs = processor.post_process_keypoint_matching(outputs, image_size
 
 - The model produces semi-dense matches, offering a good balance between the density of matches and computational efficiency. It excels in handling large viewpoint changes and texture-poor scenarios.
 
-- For better visualization and analysis, use the [post_process_keypoint_matching()](/docs/transformers/v5.14.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRImageProcessor.post_process_keypoint_matching) method to get matches in a more readable format.
+- For better visualization and analysis, use the [post_process_keypoint_matching()](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRImageProcessor.post_process_keypoint_matching) method to get matches in a more readable format.
 
     ```py
     # Process outputs for visualization
@@ -108,65 +108,70 @@ processed_outputs = processor.post_process_keypoint_matching(outputs, image_size
 
 ## EfficientLoFTRConfig[[transformers.EfficientLoFTRConfig]]
 
-- **stage_num_blocks** (`List`, *optional*, defaults to [1, 2, 4, 14]) --
-  The number of blocks in each stages
-- **out_features** (`list[int]`, *optional*) --
-  Names of the intermediate hidden states (feature maps) to return from the backbone. One of `"stem"`,
-  `"stage1"`, `"stage2"`, etc.
-- **stage_stride** (`List`, *optional*, defaults to [2, 1, 2, 2]) --
-  The stride used in each stage
-- **hidden_size** (`int`, *optional*, defaults to `256`) --
-  Dimension of the hidden representations.
-- **activation_function** (`str`, *optional*, defaults to `relu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **q_aggregation_kernel_size** (`int`, *optional*, defaults to 4) --
-  The kernel size of the aggregation of query states in the fusion network
-- **kv_aggregation_kernel_size** (`int`, *optional*, defaults to 4) --
-  The kernel size of the aggregation of key and value states in the fusion network
-- **q_aggregation_stride** (`int`, *optional*, defaults to 4) --
-  The stride of the aggregation of query states in the fusion network
-- **kv_aggregation_stride** (`int`, *optional*, defaults to 4) --
-  The stride of the aggregation of key and value states in the fusion network
-- **num_attention_layers** (`int`, *optional*, defaults to 4) --
-  Number of attention layers in the LocalFeatureTransformer
-- **num_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **attention_bias** (`bool`, *optional*, defaults to `False`) --
-  Whether to use a bias in the query, key, value and output projection layers during self-attention.
-- **mlp_activation_function** (`str`, *optional*, defaults to `"leaky_relu"`) --
-  Activation function used in the attention mlp layer.
-- **coarse_matching_skip_softmax** (`bool`, *optional*, defaults to `False`) --
-  Whether to skip softmax or not at the coarse matching step.
-- **coarse_matching_threshold** (`float`, *optional*, defaults to 0.2) --
-  The threshold for the minimum score required for a match.
-- **coarse_matching_temperature** (`float`, *optional*, defaults to 0.1) --
-  The temperature to apply to the coarse similarity matrix
-- **coarse_matching_border_removal** (`int`, *optional*, defaults to 2) --
-  The size of the border to remove during coarse matching
-- **fine_kernel_size** (`int`, *optional*, defaults to 8) --
-  Kernel size used for the fine feature matching
-- **batch_norm_eps** (`float`, *optional*, defaults to 1e-05) --
-  The epsilon used by the batch normalization layers
-- **rope_parameters** (`dict`, *optional*) --
-  Dictionary containing the configuration parameters for the RoPE embeddings. The dictionary should contain
-  a value for `rope_theta` and optionally parameters used for scaling in case you want to use RoPE
-  with longer `max_position_embeddings`.
-- **fine_matching_slice_dim** (`int`, *optional*, defaults to 8) --
-  The size of the slice used to divide the fine features for the first and second fine matching stages.
-- **fine_matching_regress_temperature** (`float`, *optional*, defaults to 10.0) --
-  The temperature to apply to the fine similarity matrix
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+#### transformers.EfficientLoFTRConfig[[transformers.EfficientLoFTRConfig]]
+
+```python
+transformers.EfficientLoFTRConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, stage_num_blocks: list[int] | None = None, out_features: list[int] | None = None, stage_stride: list[int] | None = None, hidden_size: int = 256, activation_function: str = 'relu', q_aggregation_kernel_size: int = 4, kv_aggregation_kernel_size: int = 4, q_aggregation_stride: int = 4, kv_aggregation_stride: int = 4, num_attention_layers: int = 4, num_attention_heads: int = 8, attention_dropout: float | int = 0.0, attention_bias: bool = False, mlp_activation_function: str = 'leaky_relu', coarse_matching_skip_softmax: bool = False, coarse_matching_threshold: float = 0.2, coarse_matching_temperature: float = 0.1, coarse_matching_border_removal: int = 2, fine_kernel_size: int = 8, batch_norm_eps: float = 1e-05, rope_parameters: dict | None = None, fine_matching_slice_dim: int = 8, fine_matching_regress_temperature: float = 10.0, initializer_range: float = 0.02)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/configuration_efficientloftr.py#L24)
+
+**Parameters:**
+
+stage_num_blocks (`List`, *optional*, defaults to [1, 2, 4, 14]) : The number of blocks in each stages
+
+out_features (`list[int]`, *optional*) : Names of the intermediate hidden states (feature maps) to return from the backbone. One of `"stem"`, `"stage1"`, `"stage2"`, etc.
+
+stage_stride (`List`, *optional*, defaults to [2, 1, 2, 2]) : The stride used in each stage
+
+hidden_size (`int`, *optional*, defaults to `256`) : Dimension of the hidden representations.
+
+activation_function (`str`, *optional*, defaults to `relu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+q_aggregation_kernel_size (`int`, *optional*, defaults to 4) : The kernel size of the aggregation of query states in the fusion network
+
+kv_aggregation_kernel_size (`int`, *optional*, defaults to 4) : The kernel size of the aggregation of key and value states in the fusion network
+
+q_aggregation_stride (`int`, *optional*, defaults to 4) : The stride of the aggregation of query states in the fusion network
+
+kv_aggregation_stride (`int`, *optional*, defaults to 4) : The stride of the aggregation of key and value states in the fusion network
+
+num_attention_layers (`int`, *optional*, defaults to 4) : Number of attention layers in the LocalFeatureTransformer
+
+num_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+attention_bias (`bool`, *optional*, defaults to `False`) : Whether to use a bias in the query, key, value and output projection layers during self-attention.
+
+mlp_activation_function (`str`, *optional*, defaults to `"leaky_relu"`) : Activation function used in the attention mlp layer.
+
+coarse_matching_skip_softmax (`bool`, *optional*, defaults to `False`) : Whether to skip softmax or not at the coarse matching step.
+
+coarse_matching_threshold (`float`, *optional*, defaults to 0.2) : The threshold for the minimum score required for a match.
+
+coarse_matching_temperature (`float`, *optional*, defaults to 0.1) : The temperature to apply to the coarse similarity matrix
+
+coarse_matching_border_removal (`int`, *optional*, defaults to 2) : The size of the border to remove during coarse matching
+
+fine_kernel_size (`int`, *optional*, defaults to 8) : Kernel size used for the fine feature matching
+
+batch_norm_eps (`float`, *optional*, defaults to 1e-05) : The epsilon used by the batch normalization layers
+
+rope_parameters (`dict`, *optional*) : Dictionary containing the configuration parameters for the RoPE embeddings. The dictionary should contain a value for `rope_theta` and optionally parameters used for scaling in case you want to use RoPE with longer `max_position_embeddings`.
+
+fine_matching_slice_dim (`int`, *optional*, defaults to 8) : The size of the slice used to divide the fine features for the first and second fine matching stages.
+
+fine_matching_regress_temperature (`float`, *optional*, defaults to 10.0) : The temperature to apply to the fine similarity matrix
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
 This is the configuration class to store the configuration of a EfficientLoFTRModel. It is used to instantiate a Efficientloftr
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [zju-community/efficientloftr](https://huggingface.co/zju-community/efficientloftr)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 ```python
@@ -184,102 +189,343 @@ Examples:
 
 ## EfficientLoFTRImageProcessor[[transformers.EfficientLoFTRImageProcessor]]
 
-- **do_grayscale** (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) --
-  Whether to convert the image to grayscale. Can be overridden by `do_grayscale` in the `preprocess` method.
-- ****kwargs** ([ImagesKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ImagesKwargs), *optional*) --
-  Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class
-  for the complete list of supported arguments.
+#### transformers.EfficientLoFTRImageProcessor[[transformers.EfficientLoFTRImageProcessor]]
+
+```python
+transformers.EfficientLoFTRImageProcessor(**kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_efficientloftr.py#L110)
+
+**Parameters:**
+
+do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'height' : 480, 'width': 640}`): Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `Resampling.BILINEAR`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*, defaults to `0.00392156862745098`) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*, defaults to `None`) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+do_grayscale (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) : Whether to convert the image to grayscale. Can be overridden by `do_grayscale` in the `preprocess` method.
+
 Constructs a EfficientLoFTRImageProcessor image processor.
 
-- **images** (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) --
-  Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If
-  passing in images with pixel values between 0 and 1, set `do_rescale=False`.
-- **do_grayscale** (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) --
-  Whether to convert the image to grayscale. Can be overridden by `do_grayscale` in the `preprocess` method.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
-- ****kwargs** ([ImagesKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ImagesKwargs), *optional*) --
-  Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class
-  for the complete list of supported arguments.`~image_processing_base.BatchFeature`- **data** (`dict`) -- Dictionary of lists/arrays/tensors returned by the __call__ method ('pixel_values', etc.).
+#### preprocess[[transformers.EfficientLoFTRImageProcessor.preprocess]]
+
+```python
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_efficientloftr.py#L124)
+
+**Parameters:**
+
+images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+do_grayscale (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) : Whether to convert the image to grayscale. Can be overridden by `do_grayscale` in the `preprocess` method.
+
+**Returns:** `~image_processing_base.BatchFeature`
+
+- **data** (`dict`) -- Dictionary of lists/arrays/tensors returned by the __call__ method ('pixel_values', etc.).
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
-- **outputs** (`EfficientLoFTRKeypointMatchingOutput`) --
-  Raw outputs of the model.
-- **target_sizes** (`torch.Tensor` or `List[Tuple[Tuple[int, int]]]`, *optional*) --
-  Tensor of shape `(batch_size, 2, 2)` or list of tuples of tuples (`Tuple[int, int]`) containing the
-  target size `(height, width)` of each image in the batch. This must be the original image size (before
-  any processing).
-- **threshold** (`float`, *optional*, defaults to 0.0) --
-  Threshold to filter out the matches with low scores.`List[Dict]`A list of dictionaries, each dictionary containing the keypoints in the first and second image
+#### post_process_keypoint_matching[[transformers.EfficientLoFTRImageProcessor.post_process_keypoint_matching]]
+
+```python
+post_process_keypoint_matching(outputs: EfficientLoFTRKeypointMatchingOutput, target_sizes: transformers.utils.generic.TensorType | list[tuple], threshold: float = 0.0)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_efficientloftr.py#L180)
+
+**Parameters:**
+
+outputs (`EfficientLoFTRKeypointMatchingOutput`) : Raw outputs of the model.
+
+target_sizes (`torch.Tensor` or `List[Tuple[Tuple[int, int]]]`, *optional*) : Tensor of shape `(batch_size, 2, 2)` or list of tuples of tuples (`Tuple[int, int]`) containing the target size `(height, width)` of each image in the batch. This must be the original image size (before any processing).
+
+threshold (`float`, *optional*, defaults to 0.0) : Threshold to filter out the matches with low scores.
+
+**Returns:** `List[Dict]`
+
+A list of dictionaries, each dictionary containing the keypoints in the first and second image
 of the pair, the matching scores and the matching indices.
 
 Converts the raw output of `EfficientLoFTRKeypointMatchingOutput` into lists of keypoints, scores and descriptors
 with coordinates absolute to the original image sizes.
 
-- **images** --
-  Image pairs to plot. Same as `EfficientLoFTRImageProcessor.preprocess`. Expects either a list of 2
-  images or a list of list of 2 images list with pixel values ranging from 0 to 255.
-- **keypoint_matching_output** (List[Dict[str, torch.Tensor]]]) --
-  A post processed keypoint matching output`List[PIL.Image.Image]`A list of PIL images, each containing the image pairs side by side with the detected
+#### visualize_keypoint_matching[[transformers.EfficientLoFTRImageProcessor.visualize_keypoint_matching]]
+
+```python
+visualize_keypoint_matching(images, keypoint_matching_output: list)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_efficientloftr.py#L239)
+
+**Parameters:**
+
+images : Image pairs to plot. Same as `EfficientLoFTRImageProcessor.preprocess`. Expects either a list of 2 images or a list of list of 2 images list with pixel values ranging from 0 to 255.
+
+keypoint_matching_output (List[Dict[str, torch.Tensor]]]) : A post processed keypoint matching output
+
+**Returns:** `List[PIL.Image.Image]`
+
+A list of PIL images, each containing the image pairs side by side with the detected
 keypoints as well as the matching between them.
 
 Plots the image pairs side by side with the detected keypoints as well as the matching between them.
 
 ## EfficientLoFTRImageProcessorPil[[transformers.EfficientLoFTRImageProcessorPil]]
 
-- **do_grayscale** (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) --
-  Whether to convert the image to grayscale. Can be overridden by `do_grayscale` in the `preprocess` method.
-- ****kwargs** ([ImagesKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ImagesKwargs), *optional*) --
-  Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class
-  for the complete list of supported arguments.
+#### transformers.EfficientLoFTRImageProcessorPil[[transformers.EfficientLoFTRImageProcessorPil]]
+
+```python
+transformers.EfficientLoFTRImageProcessorPil(**kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_pil_efficientloftr.py#L108)
+
+**Parameters:**
+
+do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*, defaults to `{'height' : 480, 'width': 640}`): Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*, defaults to `False`) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*, defaults to `Resampling.BILINEAR`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*, defaults to `0.00392156862745098`) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*, defaults to `None`) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+do_grayscale (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) : Whether to convert the image to grayscale. Can be overridden by `do_grayscale` in the `preprocess` method.
+
 Constructs a EfficientLoFTRImageProcessor image processor.
 
-- **images** (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) --
-  Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If
-  passing in images with pixel values between 0 and 1, set `do_rescale=False`.
-- **do_grayscale** (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) --
-  Whether to convert the image to grayscale. Can be overridden by `do_grayscale` in the `preprocess` method.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
-- ****kwargs** ([ImagesKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ImagesKwargs), *optional*) --
-  Additional image preprocessing options. Model-specific kwargs are listed above; see the TypedDict class
-  for the complete list of supported arguments.`~image_processing_base.BatchFeature`- **data** (`dict`) -- Dictionary of lists/arrays/tensors returned by the __call__ method ('pixel_values', etc.).
+#### preprocess[[transformers.EfficientLoFTRImageProcessorPil.preprocess]]
+
+```python
+preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_pil_efficientloftr.py#L122)
+
+**Parameters:**
+
+images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+do_convert_rgb (`bool`, *kwargs*, *optional*) : Whether to convert the image to RGB.
+
+do_resize (`bool`, *kwargs*, *optional*) : Whether to resize the image.
+
+size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Describes the maximum input dimensions to the model.
+
+default_to_square (`bool`, *kwargs*, *optional*) : Whether to default to a square image when resizing, if size is an int.
+
+crop_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : Size of the output image after applying `center_crop`.
+
+resample (`Annotated[Union[int, PILImageResampling, NoneType], None]`, *kwargs*) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`. Only has an effect if `do_resize` is set to `True`.
+
+do_rescale (`bool`, *kwargs*, *optional*) : Whether to rescale the image.
+
+rescale_factor (`float`, *kwargs*, *optional*) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+do_normalize (`bool`, *kwargs*, *optional*) : Whether to normalize the image.
+
+image_mean (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image mean to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+image_std (`Union[float, list[float], tuple[float, ...]]`, *kwargs*, *optional*) : Image standard deviation to use for normalization. Only has an effect if `do_normalize` is set to `True`.
+
+do_pad (`bool`, *kwargs*, *optional*) : Whether to pad the image. Padding is done either to the largest size in the batch or to a fixed square size per image. The exact padding strategy depends on the model.
+
+pad_size (`Annotated[int | list[int] | tuple[int, ...] | dict[str, int] | None, None]`, *kwargs*) : The size in `{"height": int, "width" int}` to pad the images to. Must be larger than any image size provided for preprocessing. If `pad_size` is not provided, images will be padded to the largest height and width in the batch. Applied only when `do_pad=True.`
+
+do_center_crop (`bool`, *kwargs*, *optional*) : Whether to center crop the image.
+
+data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : Only `ChannelDimension.FIRST` is supported. Added for compatibility with slow processors.
+
+input_data_format (`Union[str, ~image_utils.ChannelDimension]`, *kwargs*, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+
+device (`Annotated[Union[str, torch.device, NoneType], None]`, *kwargs*) : The device to process the videos on. If unset, the device is inferred from the input videos.
+
+return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwargs*) : Returns stacked tensors if set to `'pt'`, otherwise returns a list of tensors.
+
+disable_grouping (`bool`, *kwargs*, *optional*) : Whether to disable grouping of images by size to process them individually and not in batches. If None, will be set to True if the images are on CPU, and False otherwise. This choice is based on empirical observations, as detailed here: https://github.com/huggingface/transformers/pull/38157
+
+image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to be used for each image in the input. Added for backward compatibility but this should be set as a processor attribute in future models.
+
+do_grayscale (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) : Whether to convert the image to grayscale. Can be overridden by `do_grayscale` in the `preprocess` method.
+
+**Returns:** `~image_processing_base.BatchFeature`
+
+- **data** (`dict`) -- Dictionary of lists/arrays/tensors returned by the __call__ method ('pixel_values', etc.).
 - **tensor_type** (`Union[None, str, TensorType]`, *optional*) -- You can give a tensor_type here to convert the lists of integers in PyTorch/Numpy Tensors at
   initialization.
 
-- **outputs** (`EfficientLoFTRKeypointMatchingOutput`) --
-  Raw outputs of the model.
-- **target_sizes** (`torch.Tensor` or `List[Tuple[Tuple[int, int]]]`, *optional*) --
-  Tensor of shape `(batch_size, 2, 2)` or list of tuples of tuples (`Tuple[int, int]`) containing the
-  target size `(height, width)` of each image in the batch. This must be the original image size (before
-  any processing).
-- **threshold** (`float`, *optional*, defaults to 0.0) --
-  Threshold to filter out the matches with low scores.`List[Dict]`A list of dictionaries, each dictionary containing the keypoints in the first and second image
+#### post_process_keypoint_matching[[transformers.EfficientLoFTRImageProcessorPil.post_process_keypoint_matching]]
+
+```python
+post_process_keypoint_matching(outputs: EfficientLoFTRKeypointMatchingOutput, target_sizes: transformers.utils.generic.TensorType | list[tuple], threshold: float = 0.0)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_pil_efficientloftr.py#L163)
+
+**Parameters:**
+
+outputs (`EfficientLoFTRKeypointMatchingOutput`) : Raw outputs of the model.
+
+target_sizes (`torch.Tensor` or `List[Tuple[Tuple[int, int]]]`, *optional*) : Tensor of shape `(batch_size, 2, 2)` or list of tuples of tuples (`Tuple[int, int]`) containing the target size `(height, width)` of each image in the batch. This must be the original image size (before any processing).
+
+threshold (`float`, *optional*, defaults to 0.0) : Threshold to filter out the matches with low scores.
+
+**Returns:** `List[Dict]`
+
+A list of dictionaries, each dictionary containing the keypoints in the first and second image
 of the pair, the matching scores and the matching indices.
 
 Converts the raw output of `EfficientLoFTRKeypointMatchingOutput` into lists of keypoints, scores and descriptors
 with coordinates absolute to the original image sizes.
 
-- **images** (`ImageInput`) --
-  Image pairs to plot. Same as `EfficientLoFTRImageProcessor.preprocess`. Expects either a list of 2
-  images or a list of list of 2 images list with pixel values ranging from 0 to 255.
-- **keypoint_matching_output** (List[Dict[str, torch.Tensor]]]) --
-  A post processed keypoint matching output`List[PIL.Image.Image]`A list of PIL images, each containing the image pairs side by side with the detected
+#### visualize_keypoint_matching[[transformers.EfficientLoFTRImageProcessorPil.visualize_keypoint_matching]]
+
+```python
+visualize_keypoint_matching(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], keypoint_matching_output: list)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_pil_efficientloftr.py#L225)
+
+**Parameters:**
+
+images (`ImageInput`) : Image pairs to plot. Same as `EfficientLoFTRImageProcessor.preprocess`. Expects either a list of 2 images or a list of list of 2 images list with pixel values ranging from 0 to 255.
+
+keypoint_matching_output (List[Dict[str, torch.Tensor]]]) : A post processed keypoint matching output
+
+**Returns:** `List[PIL.Image.Image]`
+
+A list of PIL images, each containing the image pairs side by side with the detected
 keypoints as well as the matching between them.
 
 Plots the image pairs side by side with the detected keypoints as well as the matching between them.
 
 ## EfficientLoFTRModel[[transformers.EfficientLoFTRModel]]
 
-- **config** ([EfficientLoFTRConfig](/docs/transformers/v5.14.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.EfficientLoFTRModel[[transformers.EfficientLoFTRModel]]
+
+```python
+transformers.EfficientLoFTRModel(config: EfficientLoFTRConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/modeling_efficientloftr.py#L698)
+
+**Parameters:**
+
+config ([EfficientLoFTRConfig](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 EfficientLoFTR model taking images as inputs and outputting the features of the images.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -287,17 +533,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [EfficientLoFTRImageProcessor](/docs/transformers/v5.14.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRImageProcessor). See `EfficientLoFTRImageProcessor.__call__()` for details (`processor_class` uses
-  [EfficientLoFTRImageProcessor](/docs/transformers/v5.14.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRImageProcessor) for processing images).
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.`BackboneOutput` or `tuple(torch.FloatTensor)`A `BackboneOutput` or a tuple of
+#### forward[[transformers.EfficientLoFTRModel.forward]]
+
+```python
+forward(pixel_values: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/modeling_efficientloftr.py#L709)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [EfficientLoFTRImageProcessor](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRImageProcessor). See `EfficientLoFTRImageProcessor.__call__()` for details (`processor_class` uses [EfficientLoFTRImageProcessor](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRImageProcessor) for processing images).
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+**Returns:** `BackboneOutput` or `tuple(torch.FloatTensor)`
+
+A `BackboneOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EfficientLoFTRConfig](/docs/transformers/v5.14.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRConfig)) and inputs.
-The [EfficientLoFTRModel](/docs/transformers/v5.14.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([EfficientLoFTRConfig](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRConfig)) and inputs.
+
+The [EfficientLoFTRModel](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -344,14 +600,21 @@ Examples:
 
 ## EfficientLoFTRForKeypointMatching[[transformers.EfficientLoFTRForKeypointMatching]]
 
-- **config** ([EfficientLoFTRConfig](/docs/transformers/v5.14.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.EfficientLoFTRForKeypointMatching[[transformers.EfficientLoFTRForKeypointMatching]]
+
+```python
+transformers.EfficientLoFTRForKeypointMatching(config: EfficientLoFTRConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/modeling_efficientloftr.py#L921)
+
+**Parameters:**
+
+config ([EfficientLoFTRConfig](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 EfficientLoFTR model taking images as inputs and outputting the matching of them.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -359,17 +622,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses
-  `image_processor_class` for processing images).
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.`EfficientLoFTRKeypointMatchingOutput` or `tuple(torch.FloatTensor)`A `EfficientLoFTRKeypointMatchingOutput` or a tuple of
+#### forward[[transformers.EfficientLoFTRForKeypointMatching.forward]]
+
+```python
+forward(pixel_values: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/modeling_efficientloftr.py#L1286)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+**Returns:** `EfficientLoFTRKeypointMatchingOutput` or `tuple(torch.FloatTensor)`
+
+A `EfficientLoFTRKeypointMatchingOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
-The [EfficientLoFTRForKeypointMatching](/docs/transformers/v5.14.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRForKeypointMatching) forward method, overrides the `__call__` special method.
+
+The [EfficientLoFTRForKeypointMatching](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRForKeypointMatching) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -412,5 +685,5 @@ Examples:
 >>>     outputs = model(**inputs)
 ```
 
-### XLM-V
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/xlm-v.md
+### LLaVa-NeXT-Video
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/llava_next_video.md

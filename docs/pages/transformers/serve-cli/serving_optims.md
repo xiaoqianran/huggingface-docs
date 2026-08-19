@@ -84,5 +84,5 @@ transformers serve \
   --dtype "bfloat16"
 ```
 
-### Cursor
-https://huggingface.co/docs/transformers/v5.14.0/serve-cli/cursor.md
+### Writing kernels
+https://huggingface.co/docs/transformers/v5.15.0/kernel_doc/writing_kernels.md

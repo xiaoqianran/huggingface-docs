@@ -22,9 +22,9 @@ Transformers provides data collators for various tasks (see all available [data 
 
 ## DataCollatorWithPadding
 
-For simple use cases like adding an extra field, subclass [DataCollatorWithPadding](/docs/transformers/v5.14.0/en/main_classes/data_collator#transformers.DataCollatorWithPadding) and extend its `__call__` method. The example below adds a `"score"` field.
+For simple use cases like adding an extra field, subclass [DataCollatorWithPadding](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DataCollatorWithPadding) and extend its `__call__` method. The example below adds a `"score"` field.
 
-1. Remove the custom field first because [pad()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.pad) doesn't recognize it.
+1. Remove the custom field first because [pad()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.pad) doesn't recognize it.
 2. Call the parent class to handle `input_ids` and `attention_mask`.
 3. Add the `"score"` field back to the batch.
 
@@ -46,7 +46,7 @@ class DataCollatorWithScore(DataCollatorWithPadding):
         return batch
 ```
 
-Pass the custom data collator to [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) like any other data collator.
+Pass the custom data collator to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) like any other data collator.
 
 ```py
 trainer = Trainer(
@@ -104,5 +104,5 @@ class DataCollatorForPreference(DataCollatorMixin):
 
 - See all available [data collators](./main_classes/data_collator) for common tasks like token classification.
 
-### Attention backends
-https://huggingface.co/docs/transformers/v5.14.0/attention_interface.md
+### CPU
+https://huggingface.co/docs/transformers/v5.15.0/perf_train_cpu.md

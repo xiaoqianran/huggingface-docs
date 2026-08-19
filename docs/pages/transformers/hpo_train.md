@@ -1,6 +1,6 @@
 # Hyperparameter search
 
-Hyperparameters like learning rate, batch size, and number of epochs significantly affect training results. [Trainer.hyperparameter_search()](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer.hyperparameter_search) finds the best combination by running multiple trials, each with a different set of values, and returning the best one.
+Hyperparameters like learning rate, batch size, and number of epochs significantly affect training results. [Trainer.hyperparameter_search()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.hyperparameter_search) finds the best combination by running multiple trials, each with a different set of values, and returning the best one.
 
 Each trial initializes a fresh model with `model_init`, samples new hyperparameters, runs a full training loop, and reports an objective to the search backend. The backend uses each objective to inform the next trial. After all trials complete, the best hyperparameters are returned in a `~trainer.utils.BestRun`.
 
@@ -22,7 +22,7 @@ trainer = Trainer(
 )
 ```
 
-Don't pass `model=` and `model_init=` together or [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) raises an error.
+Don't pass `model=` and `model_init=` together or [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) raises an error.
 
 ## Define the search space
 
@@ -89,7 +89,7 @@ best_run = trainer.hyperparameter_search(
 )
 ```
 
-[hyperparameter_search()](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer.hyperparameter_search) returns a `~trainer.utils.BestRun` containing the objective value and best hyperparameter combination.
+[hyperparameter_search()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.hyperparameter_search) returns a `~trainer.utils.BestRun` containing the objective value and best hyperparameter combination.
 
 ```py
 best_run = trainer.hyperparameter_search(...)
@@ -98,7 +98,7 @@ best_run.objective        # 0.38  (best eval loss)
 best_run.hyperparameters  # {"learning_rate": 5e-5, "num_train_epochs": 4, ...}
 ```
 
-Apply the best hyperparameters to [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments) and retrain on the full dataset.
+Apply the best hyperparameters to [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) and retrain on the full dataset.
 
-### Parallelism methods
-https://huggingface.co/docs/transformers/v5.14.0/perf_train_gpu_many.md
+### Troubleshoot
+https://huggingface.co/docs/transformers/v5.15.0/troubleshooting.md

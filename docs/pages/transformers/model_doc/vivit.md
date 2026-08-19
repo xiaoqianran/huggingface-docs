@@ -50,46 +50,54 @@ On a local benchmark (A100-40GB, PyTorch 2.3.0, OS Ubuntu 22.04) with `float32` 
 
 ## VivitConfig[[transformers.VivitConfig]]
 
-- **image_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) --
-  The size (resolution) of each image.
-- **num_frames** (`int`, *optional*, defaults to 32) --
-  The number of frames in each video.
-- **tubelet_size** (`list[int]`, *optional*, defaults to `[2, 16, 16]`) --
-  The size (resolution) of each tubelet.
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **intermediate_size** (`int`, *optional*, defaults to `3072`) --
-  Dimension of the MLP representations.
-- **hidden_act** (`str`, *optional*, defaults to `gelu_fast`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **attention_probs_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **qkv_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a bias to the queries, keys and values.
-- **pooler_output_size** (`int`, *optional*) --
-  Dimensionality of the pooler layer. If None, defaults to `hidden_size`.
-- **pooler_act** (`str`, *optional*, defaults to `"tanh"`) --
-  The activation function to be used by the pooler.
+#### transformers.VivitConfig[[transformers.VivitConfig]]
+
+```python
+transformers.VivitConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, image_size: int | list[int] | tuple[int, int] = 224, num_frames: int = 32, tubelet_size: list[int] | tuple[int, ...] = (2, 16, 16), num_channels: int = 3, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu_fast', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-06, qkv_bias: bool = True, pooler_output_size: int | None = None, pooler_act: str = 'tanh')
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vivit/configuration_vivit.py#L24)
+
+**Parameters:**
+
+image_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) : The size (resolution) of each image.
+
+num_frames (`int`, *optional*, defaults to 32) : The number of frames in each video.
+
+tubelet_size (`list[int]`, *optional*, defaults to `[2, 16, 16]`) : The size (resolution) of each tubelet.
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+intermediate_size (`int`, *optional*, defaults to `3072`) : Dimension of the MLP representations.
+
+hidden_act (`str`, *optional*, defaults to `gelu_fast`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+attention_probs_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+qkv_bias (`bool`, *optional*, defaults to `True`) : Whether to add a bias to the queries, keys and values.
+
+pooler_output_size (`int`, *optional*) : Dimensionality of the pooler layer. If None, defaults to `hidden_size`.
+
+pooler_act (`str`, *optional*, defaults to `"tanh"`) : The activation function to be used by the pooler.
 
 This is the configuration class to store the configuration of a VivitModel. It is used to instantiate a Vivit
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/vivit-b-16x2-kinetics400](https://huggingface.co/google/vivit-b-16x2-kinetics400)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -108,104 +116,119 @@ Example:
 
 ## VivitImageProcessor[[transformers.VivitImageProcessor]]
 
-"}, {"name": "do_center_crop", "val": ": bool = True"}, {"name": "crop_size", "val": ": dict[str, int] | None = None"}, {"name": "do_rescale", "val": ": bool = True"}, {"name": "rescale_factor", "val": ": int | float = 0.00784313725490196"}, {"name": "offset", "val": ": bool = True"}, {"name": "do_normalize", "val": ": bool = True"}, {"name": "image_mean", "val": ": float | list[float] | None = None"}, {"name": "image_std", "val": ": float | list[float] | None = None"}, {"name": "**kwargs", "val": ""}]}>
-- **do_resize** (`bool`, *optional*, defaults to `True`) --
-  Whether to resize the image's (height, width) dimensions to the specified `size`. Can be overridden by the
-  `do_resize` parameter in the `preprocess` method.
-- **size** (`dict[str, int]` *optional*, defaults to `{"shortest_edge" -- 256}`):
-  Size of the output image after resizing. The shortest edge of the image will be resized to
-  `size["shortest_edge"]` while maintaining the aspect ratio of the original image. Can be overridden by
-  `size` in the `preprocess` method.
-- **resample** (`PILImageResampling`, *optional*, defaults to `Resampling.BILINEAR`) --
-  Resampling filter to use if resizing the image. Can be overridden by the `resample` parameter in the
-  `preprocess` method.
-- **do_center_crop** (`bool`, *optional*, defaults to `True`) --
-  Whether to center crop the image to the specified `crop_size`. Can be overridden by the `do_center_crop`
-  parameter in the `preprocess` method.
-- **crop_size** (`dict[str, int]`, *optional*, defaults to `{"height" -- 224, "width": 224}`):
-  Size of the image after applying the center crop. Can be overridden by the `crop_size` parameter in the
-  `preprocess` method.
-- **do_rescale** (`bool`, *optional*, defaults to `True`) --
-  Whether to rescale the image by the specified scale `rescale_factor`. Can be overridden by the `do_rescale`
-  parameter in the `preprocess` method.
-- **rescale_factor** (`int` or `float`, *optional*, defaults to `1/127.5`) --
-  Defines the scale factor to use if rescaling the image. Can be overridden by the `rescale_factor` parameter
-  in the `preprocess` method.
-- **offset** (`bool`, *optional*, defaults to `True`) --
-  Whether to scale the image in both negative and positive directions. Can be overridden by the `offset` in
-  the `preprocess` method.
-- **do_normalize** (`bool`, *optional*, defaults to `True`) --
-  Whether to normalize the image. Can be overridden by the `do_normalize` parameter in the `preprocess`
-  method.
-- **image_mean** (`float` or `list[float]`, *optional*, defaults to `IMAGENET_STANDARD_MEAN`) --
-  Mean to use if normalizing the image. This is a float or list of floats the length of the number of
-  channels in the image. Can be overridden by the `image_mean` parameter in the `preprocess` method.
-- **image_std** (`float` or `list[float]`, *optional*, defaults to `IMAGENET_STANDARD_STD`) --
-  Standard deviation to use if normalizing the image. This is a float or list of floats the length of the
-  number of channels in the image. Can be overridden by the `image_std` parameter in the `preprocess` method.
+#### transformers.VivitImageProcessor[[transformers.VivitImageProcessor]]
+
+```python
+transformers.VivitImageProcessor(do_resize: bool = True, size: dict[str, int] | None = None, resample: Resampling = <Resampling.BILINEAR: 2>, do_center_crop: bool = True, crop_size: dict[str, int] | None = None, do_rescale: bool = True, rescale_factor: int | float = 0.00784313725490196, offset: bool = True, do_normalize: bool = True, image_mean: float | list[float] | None = None, image_std: float | list[float] | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vivit/image_processing_vivit.py#L63)
+
+**Parameters:**
+
+do_resize (`bool`, *optional*, defaults to `True`) : Whether to resize the image's (height, width) dimensions to the specified `size`. Can be overridden by the `do_resize` parameter in the `preprocess` method.
+
+size (`dict[str, int]` *optional*, defaults to `{"shortest_edge" : 256}`): Size of the output image after resizing. The shortest edge of the image will be resized to `size["shortest_edge"]` while maintaining the aspect ratio of the original image. Can be overridden by `size` in the `preprocess` method.
+
+resample (`PILImageResampling`, *optional*, defaults to `Resampling.BILINEAR`) : Resampling filter to use if resizing the image. Can be overridden by the `resample` parameter in the `preprocess` method.
+
+do_center_crop (`bool`, *optional*, defaults to `True`) : Whether to center crop the image to the specified `crop_size`. Can be overridden by the `do_center_crop` parameter in the `preprocess` method.
+
+crop_size (`dict[str, int]`, *optional*, defaults to `{"height" : 224, "width": 224}`): Size of the image after applying the center crop. Can be overridden by the `crop_size` parameter in the `preprocess` method.
+
+do_rescale (`bool`, *optional*, defaults to `True`) : Whether to rescale the image by the specified scale `rescale_factor`. Can be overridden by the `do_rescale` parameter in the `preprocess` method.
+
+rescale_factor (`int` or `float`, *optional*, defaults to `1/127.5`) : Defines the scale factor to use if rescaling the image. Can be overridden by the `rescale_factor` parameter in the `preprocess` method.
+
+offset (`bool`, *optional*, defaults to `True`) : Whether to scale the image in both negative and positive directions. Can be overridden by the `offset` in the `preprocess` method.
+
+do_normalize (`bool`, *optional*, defaults to `True`) : Whether to normalize the image. Can be overridden by the `do_normalize` parameter in the `preprocess` method.
+
+image_mean (`float` or `list[float]`, *optional*, defaults to `IMAGENET_STANDARD_MEAN`) : Mean to use if normalizing the image. This is a float or list of floats the length of the number of channels in the image. Can be overridden by the `image_mean` parameter in the `preprocess` method.
+
+image_std (`float` or `list[float]`, *optional*, defaults to `IMAGENET_STANDARD_STD`) : Standard deviation to use if normalizing the image. This is a float or list of floats the length of the number of channels in the image. Can be overridden by the `image_std` parameter in the `preprocess` method.
 
 Constructs a Vivit image processor.
 
-"}, {"name": "input_data_format", "val": ": str | transformers.image_utils.ChannelDimension | None = None"}]}>
-- **videos** (`ImageInput`) --
-  Video frames to preprocess. Expects a single or batch of video frames with pixel values ranging from 0
-  to 255. If passing in frames with pixel values between 0 and 1, set `do_rescale=False`.
-- **do_resize** (`bool`, *optional*, defaults to `self.do_resize`) --
-  Whether to resize the image.
-- **size** (`dict[str, int]`, *optional*, defaults to `self.size`) --
-  Size of the image after applying resize.
-- **resample** (`PILImageResampling`, *optional*, defaults to `self.resample`) --
-  Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`, Only
-  has an effect if `do_resize` is set to `True`.
-- **do_center_crop** (`bool`, *optional*, defaults to `self.do_centre_crop`) --
-  Whether to centre crop the image.
-- **crop_size** (`dict[str, int]`, *optional*, defaults to `self.crop_size`) --
-  Size of the image after applying the centre crop.
-- **do_rescale** (`bool`, *optional*, defaults to `self.do_rescale`) --
-  Whether to rescale the image values between `[-1 - 1]` if `offset` is `True`, `[0, 1]` otherwise.
-- **rescale_factor** (`float`, *optional*, defaults to `self.rescale_factor`) --
-  Rescale factor to rescale the image by if `do_rescale` is set to `True`.
-- **offset** (`bool`, *optional*, defaults to `self.offset`) --
-  Whether to scale the image in both negative and positive directions.
-- **do_normalize** (`bool`, *optional*, defaults to `self.do_normalize`) --
-  Whether to normalize the image.
-- **image_mean** (`float` or `list[float]`, *optional*, defaults to `self.image_mean`) --
-  Image mean.
-- **image_std** (`float` or `list[float]`, *optional*, defaults to `self.image_std`) --
-  Image standard deviation.
-- **return_tensors** (`str` or `TensorType`, *optional*) --
-  The type of tensors to return. Can be one of:
-  - Unset: Return a list of `np.ndarray`.
-  - `TensorType.PYTORCH` or `'pt'`: Return a batch of type `torch.Tensor`.
-  - `TensorType.NUMPY` or `'np'`: Return a batch of type `np.ndarray`.
-- **data_format** (`ChannelDimension` or `str`, *optional*, defaults to `ChannelDimension.FIRST`) --
-  The channel dimension format for the output image. Can be one of:
-  - `ChannelDimension.FIRST`: image in (num_channels, height, width) format.
-  - `ChannelDimension.LAST`: image in (height, width, num_channels) format.
-  - Unset: Use the inferred channel dimension format of the input image.
-- **input_data_format** (`ChannelDimension` or `str`, *optional*) --
-  The channel dimension format for the input image. If unset, the channel dimension format is inferred
-  from the input image. Can be one of:
-  - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format.
-  - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format.
-  - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
+#### preprocess[[transformers.VivitImageProcessor.preprocess]]
+
+```python
+preprocess(videos: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], do_resize: bool | None = None, size: dict[str, int] | None = None, resample: PIL.Image.Resampling | None = None, do_center_crop: bool | None = None, crop_size: dict[str, int] | None = None, do_rescale: bool | None = None, rescale_factor: float | None = None, offset: bool | None = None, do_normalize: bool | None = None, image_mean: float | list[float] | None = None, image_std: float | list[float] | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, data_format: ChannelDimension = <ChannelDimension.FIRST: 'channels_first'>, input_data_format: str | transformers.image_utils.ChannelDimension | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vivit/image_processing_vivit.py#L285)
+
+**Parameters:**
+
+videos (`ImageInput`) : Video frames to preprocess. Expects a single or batch of video frames with pixel values ranging from 0 to 255. If passing in frames with pixel values between 0 and 1, set `do_rescale=False`.
+
+do_resize (`bool`, *optional*, defaults to `self.do_resize`) : Whether to resize the image.
+
+size (`dict[str, int]`, *optional*, defaults to `self.size`) : Size of the image after applying resize.
+
+resample (`PILImageResampling`, *optional*, defaults to `self.resample`) : Resampling filter to use if resizing the image. This can be one of the enum `PILImageResampling`, Only has an effect if `do_resize` is set to `True`.
+
+do_center_crop (`bool`, *optional*, defaults to `self.do_centre_crop`) : Whether to centre crop the image.
+
+crop_size (`dict[str, int]`, *optional*, defaults to `self.crop_size`) : Size of the image after applying the centre crop.
+
+do_rescale (`bool`, *optional*, defaults to `self.do_rescale`) : Whether to rescale the image values between `[-1 - 1]` if `offset` is `True`, `[0, 1]` otherwise.
+
+rescale_factor (`float`, *optional*, defaults to `self.rescale_factor`) : Rescale factor to rescale the image by if `do_rescale` is set to `True`.
+
+offset (`bool`, *optional*, defaults to `self.offset`) : Whether to scale the image in both negative and positive directions.
+
+do_normalize (`bool`, *optional*, defaults to `self.do_normalize`) : Whether to normalize the image.
+
+image_mean (`float` or `list[float]`, *optional*, defaults to `self.image_mean`) : Image mean.
+
+image_std (`float` or `list[float]`, *optional*, defaults to `self.image_std`) : Image standard deviation.
+
+return_tensors (`str` or `TensorType`, *optional*) : The type of tensors to return. Can be one of: - Unset: Return a list of `np.ndarray`. - `TensorType.PYTORCH` or `'pt'`: Return a batch of type `torch.Tensor`. - `TensorType.NUMPY` or `'np'`: Return a batch of type `np.ndarray`.
+
+data_format (`ChannelDimension` or `str`, *optional*, defaults to `ChannelDimension.FIRST`) : The channel dimension format for the output image. Can be one of: - `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `ChannelDimension.LAST`: image in (height, width, num_channels) format. - Unset: Use the inferred channel dimension format of the input image.
+
+input_data_format (`ChannelDimension` or `str`, *optional*) : The channel dimension format for the input image. If unset, the channel dimension format is inferred from the input image. Can be one of: - `"channels_first"` or `ChannelDimension.FIRST`: image in (num_channels, height, width) format. - `"channels_last"` or `ChannelDimension.LAST`: image in (height, width, num_channels) format. - `"none"` or `ChannelDimension.NONE`: image in (height, width) format.
 
 Preprocess an image or batch of images.
 
 ## VivitVideoProcessor[[transformers.VivitVideoProcessor]]
 
+#### transformers.VivitVideoProcessor[[transformers.VivitVideoProcessor]]
+
+```python
+transformers.VivitVideoProcessor(**kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vivit/video_processing_vivit.py#L20)
+
+#### preprocess[[transformers.VivitVideoProcessor.preprocess]]
+
+```python
+preprocess(videos, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vivit/video_processing_vivit.py#L44)
+
 ## VivitModel[[transformers.VivitModel]]
 
-- **config** ([VivitConfig](/docs/transformers/v5.14.0/en/model_doc/vivit#transformers.VivitConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
-- **add_pooling_layer** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a pooling layer
+#### transformers.VivitModel[[transformers.VivitModel]]
+
+```python
+transformers.VivitModel(config: VivitConfig, add_pooling_layer: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vivit/modeling_vivit.py#L318)
+
+**Parameters:**
+
+config ([VivitConfig](/docs/transformers/v5.15.0/en/model_doc/vivit#transformers.VivitConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+
+add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare Vivit Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -213,22 +236,29 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [VivitImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vivit#transformers.VivitImageProcessor). See `VivitImageProcessor.__call__()` for details (`processor_class` uses
-  [VivitImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vivit#transformers.VivitImageProcessor) for processing images).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+#### forward[[transformers.VivitModel.forward]]
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, interpolate_pos_encoding: bool = False, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are attention masks?](../glossary#attention-mask)[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vivit/modeling_vivit.py#L333)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [VivitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vivit#transformers.VivitImageProcessor). See `VivitImageProcessor.__call__()` for details (`processor_class` uses [VivitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vivit#transformers.VivitImageProcessor) for processing images).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VivitConfig](/docs/transformers/v5.14.0/en/model_doc/vivit#transformers.VivitConfig)) and inputs.
-The [VivitModel](/docs/transformers/v5.14.0/en/model_doc/vivit#transformers.VivitModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([VivitConfig](/docs/transformers/v5.15.0/en/model_doc/vivit#transformers.VivitConfig)) and inputs.
+
+The [VivitModel](/docs/transformers/v5.15.0/en/model_doc/vivit#transformers.VivitModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -322,10 +352,17 @@ Examples:
 
 ## VivitForVideoClassification[[transformers.VivitForVideoClassification]]
 
-- **config** ([VivitConfig](/docs/transformers/v5.14.0/en/model_doc/vivit#transformers.VivitConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.VivitForVideoClassification[[transformers.VivitForVideoClassification]]
+
+```python
+transformers.VivitForVideoClassification(config: VivitConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vivit/modeling_vivit.py#L447)
+
+**Parameters:**
+
+config ([VivitConfig](/docs/transformers/v5.15.0/en/model_doc/vivit#transformers.VivitConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 ViViT Transformer model with a video classification head on top (a linear layer on top of the final hidden state of the
 [CLS] token) e.g. for Kinetics-400.
@@ -334,7 +371,7 @@ Note that it's possible to fine-tune ViT on higher resolution images than the on
 setting `interpolate_pos_encoding` to `True` in the forward of the model. This will interpolate the pre-trained
 position embeddings to the higher resolution.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -342,19 +379,29 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [VivitImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vivit#transformers.VivitImageProcessor). See `VivitImageProcessor.__call__()` for details (`processor_class` uses
-  [VivitImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vivit#transformers.VivitImageProcessor) for processing images).
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the image classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.[ImageClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`A [ImageClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
+#### forward[[transformers.VivitForVideoClassification.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vivit/modeling_vivit.py#L460)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [VivitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vivit#transformers.VivitImageProcessor). See `VivitImageProcessor.__call__()` for details (`processor_class` uses [VivitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vivit#transformers.VivitImageProcessor) for processing images).
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VivitConfig](/docs/transformers/v5.14.0/en/model_doc/vivit#transformers.VivitConfig)) and inputs.
-The [VivitForVideoClassification](/docs/transformers/v5.14.0/en/model_doc/vivit#transformers.VivitForVideoClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([VivitConfig](/docs/transformers/v5.15.0/en/model_doc/vivit#transformers.VivitConfig)) and inputs.
+
+The [VivitForVideoClassification](/docs/transformers/v5.15.0/en/model_doc/vivit#transformers.VivitForVideoClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -445,5 +492,5 @@ Examples:
 LABEL_116
 ```
 
-### OLMo Hybrid
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/olmo_hybrid.md
+### JinaEmbeddingsV3
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/jina_embeddings_v3.md

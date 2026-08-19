@@ -7,7 +7,7 @@ You can find all the original LayoutLM checkpoints under the [LayoutLM](https://
 > [!TIP]
 > Click on the LayoutLM models in the right sidebar for more examples of how to apply LayoutLM to different vision and language tasks.
 
-The example below demonstrates question answering with the [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates question answering with the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 import torch
@@ -54,7 +54,7 @@ print(" ".join(words[start : end + 1]))
 
 - The original LayoutLM was not designed with a unified processing workflow. Instead, it expects preprocessed text (`words`) and bounding boxes (`boxes`) from an external OCR engine (like [Pytesseract](https://pypi.org/project/pytesseract/)) and provide them as additional inputs to the tokenizer.
 
-- The [forward()](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMModel.forward) method expects the input `bbox` (bounding boxes of the input tokens). Each bounding box should be in the format `(x0, y0, x1, y1)`.  `(x0, y0)` corresponds to the upper left corner of the bounding box and `{x1, y1)` corresponds to the lower right corner. The bounding boxes need to be normalized on a 0-1000 scale as shown below.
+- The [forward()](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMModel.forward) method expects the input `bbox` (bounding boxes of the input tokens). Each bounding box should be in the format `(x0, y0, x1, y1)`.  `(x0, y0)` corresponds to the upper left corner of the bounding box and `(x1, y1)` corresponds to the lower right corner. The bounding boxes need to be normalized on a 0-1000 scale as shown below.
 
 ```python
 def normalize_bbox(bbox, width, height):
@@ -90,52 +90,58 @@ A list of official Hugging Face and community (indicated by 🌎) resources to h
 
 ## LayoutLMConfig[[transformers.LayoutLMConfig]]
 
-- **vocab_size** (`int`, *optional*, defaults to `30522`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **intermediate_size** (`int`, *optional*, defaults to `3072`) --
-  Dimension of the MLP representations.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **attention_probs_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The dropout ratio for the attention probabilities.
-- **max_position_embeddings** (`int`, *optional*, defaults to `512`) --
-  The maximum sequence length that this model might ever be used with.
-- **type_vocab_size** (`int`, *optional*, defaults to `2`) --
-  The vocabulary size of the `token_type_ids`.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-12`) --
-  The epsilon used by the layer normalization layers.
-- **pad_token_id** (`int`, *optional*, defaults to `0`) --
-  Token id used for padding in the vocabulary.
-- **eos_token_id** (`Union[int, list[int]]`, *optional*) --
-  Token id used for end-of-stream in the vocabulary.
-- **bos_token_id** (`int`, *optional*) --
-  Token id used for beginning-of-stream in the vocabulary.
-- **use_cache** (`bool`, *optional*, defaults to `True`) --
-  Whether or not the model should return the last key/values attentions (not used by all models). Only
-  relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
-- **max_2d_position_embeddings** (`int`, *optional*, defaults to 1024) --
-  The maximum value that the 2D position embedding might ever used. Typically set this to something large
-  just in case (e.g., 1024).
-- **tie_word_embeddings** (`bool`, *optional*, defaults to `True`) --
-  Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
+#### transformers.LayoutLMConfig[[transformers.LayoutLMConfig]]
+
+```python
+transformers.LayoutLMConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 30522, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.1, max_position_embeddings: int = 512, type_vocab_size: int = 2, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, pad_token_id: int | None = 0, eos_token_id: int | list[int] | None = None, bos_token_id: int | None = None, use_cache: bool = True, max_2d_position_embeddings: int = 1024, tie_word_embeddings: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlm/configuration_layoutlm.py#L24)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `30522`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+intermediate_size (`int`, *optional*, defaults to `3072`) : Dimension of the MLP representations.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.1`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+attention_probs_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.1`) : The dropout ratio for the attention probabilities.
+
+max_position_embeddings (`int`, *optional*, defaults to `512`) : The maximum sequence length that this model might ever be used with.
+
+type_vocab_size (`int`, *optional*, defaults to `2`) : The vocabulary size of the `token_type_ids`.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-12`) : The epsilon used by the layer normalization layers.
+
+pad_token_id (`int`, *optional*, defaults to `0`) : Token id used for padding in the vocabulary.
+
+eos_token_id (`Union[int, list[int]]`, *optional*) : Token id used for end-of-stream in the vocabulary.
+
+bos_token_id (`int`, *optional*) : Token id used for beginning-of-stream in the vocabulary.
+
+use_cache (`bool`, *optional*, defaults to `True`) : Whether or not the model should return the last key/values attentions (not used by all models). Only relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
+
+max_2d_position_embeddings (`int`, *optional*, defaults to 1024) : The maximum value that the 2D position embedding might ever used. Typically set this to something large just in case (e.g., 1024).
+
+tie_word_embeddings (`bool`, *optional*, defaults to `True`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
 
 This is the configuration class to store the configuration of a LayoutLMModel. It is used to instantiate a Layoutlm
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/layoutlm-base-uncased](https://huggingface.co/microsoft/layoutlm-base-uncased)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -154,139 +160,96 @@ Examples:
 
 ## LayoutLMTokenizer[[transformers.BertTokenizer]]
 
-- **vocab** (`str` or `dict[str, int]`, *optional*) --
-  Custom vocabulary dictionary. If not provided, vocabulary is loaded from `vocab_file`.
-- **do_lower_case** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to lowercase the input when tokenizing.
-- **unk_token** (`str`, *optional*, defaults to `"[UNK]"`) --
-  The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this
-  token instead.
-- **sep_token** (`str`, *optional*, defaults to `"[SEP]"`) --
-  The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for
-  sequence classification or for a text and a question for question answering. It is also used as the last
-  token of a sequence built with special tokens.
-- **pad_token** (`str`, *optional*, defaults to `"[PAD]"`) --
-  The token used for padding, for example when batching sequences of different lengths.
-- **cls_token** (`str`, *optional*, defaults to `"[CLS]"`) --
-  The classifier token which is used when doing sequence classification (classification of the whole sequence
-  instead of per-token classification). It is the first token of the sequence when built with special tokens.
-- **mask_token** (`str`, *optional*, defaults to `"[MASK]"`) --
-  The token used for masking values. This is the token used when training this model with masked language
-  modeling. This is the token which the model will try to predict.
-- **tokenize_chinese_chars** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to tokenize Chinese characters.
-- **strip_accents** (`bool`, *optional*) --
-  Whether or not to strip all accents. If this option is not specified, then it will be determined by the
-  value for `lowercase` (as in the original BERT).
+#### transformers.BertTokenizer[[transformers.BertTokenizer]]
+
+```python
+transformers.BertTokenizer(vocab: str | dict[str, int] | None = None, do_lower_case: bool = True, unk_token: str = '[UNK]', sep_token: str = '[SEP]', pad_token: str = '[PAD]', cls_token: str = '[CLS]', mask_token: str = '[MASK]', tokenize_chinese_chars: bool = True, strip_accents: bool | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bert/tokenization_bert.py#L41)
+
+**Parameters:**
+
+vocab (`str` or `dict[str, int]`, *optional*) : Custom vocabulary dictionary. If not provided, vocabulary is loaded from `vocab_file`.
+
+do_lower_case (`bool`, *optional*, defaults to `True`) : Whether or not to lowercase the input when tokenizing.
+
+unk_token (`str`, *optional*, defaults to `"[UNK]"`) : The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this token instead.
+
+sep_token (`str`, *optional*, defaults to `"[SEP]"`) : The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for sequence classification or for a text and a question for question answering. It is also used as the last token of a sequence built with special tokens.
+
+pad_token (`str`, *optional*, defaults to `"[PAD]"`) : The token used for padding, for example when batching sequences of different lengths.
+
+cls_token (`str`, *optional*, defaults to `"[CLS]"`) : The classifier token which is used when doing sequence classification (classification of the whole sequence instead of per-token classification). It is the first token of the sequence when built with special tokens.
+
+mask_token (`str`, *optional*, defaults to `"[MASK]"`) : The token used for masking values. This is the token used when training this model with masked language modeling. This is the token which the model will try to predict.
+
+tokenize_chinese_chars (`bool`, *optional*, defaults to `True`) : Whether or not to tokenize Chinese characters.
+
+strip_accents (`bool`, *optional*) : Whether or not to strip all accents. If this option is not specified, then it will be determined by the value for `lowercase` (as in the original BERT).
 
 Construct a BERT tokenizer (backed by HuggingFace's tokenizers library). Based on WordPiece.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
-- **text** (`str`, `list[str]`, `list[list[str]]`, *optional*) --
-  The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings
-  (pretokenized string). If the sequences are provided as list of strings (pretokenized), you must set
-  `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
-- **text_pair** (`str`, `list[str]`, `list[list[str]]`, *optional*) --
-  The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings
-  (pretokenized string). If the sequences are provided as list of strings (pretokenized), you must set
-  `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
-- **text_target** (`str`, `list[str]`, `list[list[str]]`, *optional*) --
-  The sequence or batch of sequences to be encoded as target texts. Each sequence can be a string or a
-  list of strings (pretokenized string). If the sequences are provided as list of strings (pretokenized),
-  you must set `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
-- **text_pair_target** (`str`, `list[str]`, `list[list[str]]`, *optional*) --
-  The sequence or batch of sequences to be encoded as target texts. Each sequence can be a string or a
-  list of strings (pretokenized string). If the sequences are provided as list of strings (pretokenized),
-  you must set `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
-- **tokenizer_kwargs** (`dict[str, Any]`, *optional*) --
-  Additional kwargs to pass to the tokenizer. These will be merged with the explicit parameters and
-  other kwargs, with explicit parameters taking precedence.
+#### __call__[[transformers.BertTokenizer.__call__]]
 
-- **add_special_tokens** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to add special tokens when encoding the sequences. This will use the underlying
-  `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are
-  automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens
-  automatically.
-- **padding** (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) --
-  Activates and controls padding. Accepts the following values:
+```python
+__call__(text: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_pair: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_target: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_pair_target: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, add_special_tokens: bool = True, padding: bool | str | PaddingStrategy = False, truncation: bool | str | TruncationStrategy | None = None, max_length: int | None = None, stride: int = 0, is_split_into_words: bool = False, pad_to_multiple_of: int | None = None, padding_side: str | None = None, return_tensors: str | TensorType | None = None, return_token_type_ids: bool | None = None, return_attention_mask: bool | None = None, return_overflowing_tokens: bool = False, return_special_tokens_mask: bool = False, return_offsets_mapping: bool = False, return_length: bool = False, verbose: bool = True, tokenizer_kwargs: dict[str, Any] | None = None, **kwargs)
+```
 
-  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single
-    sequence is provided).
-  - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum
-    acceptable input length for the model if that argument is not provided.
-  - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different
-    lengths).
-- **truncation** (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) --
-  Activates and controls truncation. Accepts the following values:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_base.py#L2417)
 
-  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or
-    to the maximum acceptable input length for the model if that argument is not provided. This will
-    truncate token by token, removing a token from the longest sequence in the pair if a pair of
-    sequences (or a batch of pairs) is provided.
-  - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the
-    maximum acceptable input length for the model if that argument is not provided. This will only
-    truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided.
-  - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the
-    maximum acceptable input length for the model if that argument is not provided. This will only
-    truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided.
-  - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths
-    greater than the model maximum admissible input size).
-- **max_length** (`int`, *optional*) --
-  Controls the maximum length to use by one of the truncation/padding parameters.
+**Parameters:**
 
-  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length
-  is required by one of the truncation/padding parameters. If the model has no specific maximum input
-  length (like XLNet) truncation/padding to a maximum length will be deactivated.
-- **stride** (`int`, *optional*, defaults to 0) --
-  If set to a number along with `max_length`, the overflowing tokens returned when
-  `return_overflowing_tokens=True` will contain some tokens from the end of the truncated sequence
-  returned to provide some overlap between truncated and overflowing sequences. The value of this
-  argument defines the number of overlapping tokens.
-- **is_split_into_words** (`bool`, *optional*, defaults to `False`) --
-  Whether or not the input is already pre-tokenized (e.g., split into words). If set to `True`, the
-  tokenizer assumes the input is already split into words (for instance, by splitting it on whitespace)
-  which it will tokenize. This is useful for NER or token classification.
-- **pad_to_multiple_of** (`int`, *optional*) --
-  If set will pad the sequence to a multiple of the provided value. Requires `padding` to be activated.
-  This is especially useful to enable the use of Tensor Cores on NVIDIA hardware with compute capability
-  `>= 7.5` (Volta).
-- **padding_side** (`str`, *optional*) --
-  The side on which the model should have padding applied. Should be selected between ['right', 'left'].
-  Default value is picked from the class attribute of the same name.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  If set, will return tensors instead of list of python integers. Acceptable values are:
+text (`str`, `list[str]`, `list[list[str]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If the sequences are provided as list of strings (pretokenized), you must set `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
 
-  - `'pt'`: Return PyTorch `torch.Tensor` objects.
-  - `'np'`: Return Numpy `np.ndarray` objects.
+text_pair (`str`, `list[str]`, `list[list[str]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If the sequences are provided as list of strings (pretokenized), you must set `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
 
-- **return_token_type_ids** (`bool`, *optional*) --
-  Whether to return token type IDs. If left to the default, will return the token type IDs according to
-  the specific tokenizer's default, defined by the `return_outputs` attribute.
+text_target (`str`, `list[str]`, `list[list[str]]`, *optional*) : The sequence or batch of sequences to be encoded as target texts. Each sequence can be a string or a list of strings (pretokenized string). If the sequences are provided as list of strings (pretokenized), you must set `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **return_attention_mask** (`bool`, *optional*) --
-  Whether to return the attention mask. If left to the default, will return the attention mask according
-  to the specific tokenizer's default, defined by the `return_outputs` attribute.
+text_pair_target (`str`, `list[str]`, `list[list[str]]`, *optional*) : The sequence or batch of sequences to be encoded as target texts. Each sequence can be a string or a list of strings (pretokenized string). If the sequences are provided as list of strings (pretokenized), you must set `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
 
-  [What are attention masks?](../glossary#attention-mask)
-- **return_overflowing_tokens** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to return overflowing token sequences. If a pair of sequences of input ids (or a batch
-  of pairs) is provided with `truncation_strategy = longest_first` or `True`, an error is raised instead
-  of returning overflowing tokens.
-- **return_special_tokens_mask** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to return special tokens mask information.
-- **return_offsets_mapping** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to return `(char_start, char_end)` for each token.
+tokenizer_kwargs (`dict[str, Any]`, *optional*) : Additional kwargs to pass to the tokenizer. These will be merged with the explicit parameters and other kwargs, with explicit parameters taking precedence. 
 
-  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend), if using
-  Python's tokenizer, this method will raise `NotImplementedError`.
-- **return_length**  (`bool`, *optional*, defaults to `False`) --
-  Whether or not to return the lengths of the encoded inputs.
-- **verbose** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to print more information and warnings.
-- ****kwargs** -- passed to the `self.tokenize()` method[BatchEncoding](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.BatchEncoding)A [BatchEncoding](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
+add_special_tokens (`bool`, *optional*, defaults to `True`) : Whether or not to add special tokens when encoding the sequences. This will use the underlying `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens automatically.
+
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
+
+max_length (`int`, *optional*) : Controls the maximum length to use by one of the truncation/padding parameters.  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length is required by one of the truncation/padding parameters. If the model has no specific maximum input length (like XLNet) truncation/padding to a maximum length will be deactivated.
+
+stride (`int`, *optional*, defaults to 0) : If set to a number along with `max_length`, the overflowing tokens returned when `return_overflowing_tokens=True` will contain some tokens from the end of the truncated sequence returned to provide some overlap between truncated and overflowing sequences. The value of this argument defines the number of overlapping tokens.
+
+is_split_into_words (`bool`, *optional*, defaults to `False`) : Whether or not the input is already pre-tokenized (e.g., split into words). If set to `True`, the tokenizer assumes the input is already split into words (for instance, by splitting it on whitespace) which it will tokenize. This is useful for NER or token classification.
+
+pad_to_multiple_of (`int`, *optional*) : If set will pad the sequence to a multiple of the provided value. Requires `padding` to be activated. This is especially useful to enable the use of Tensor Cores on NVIDIA hardware with compute capability `>= 7.5` (Volta).
+
+padding_side (`str`, *optional*) : The side on which the model should have padding applied. Should be selected between ['right', 'left']. Default value is picked from the class attribute of the same name.
+
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects. 
+
+return_token_type_ids (`bool`, *optional*) : Whether to return token type IDs. If left to the default, will return the token type IDs according to the specific tokenizer's default, defined by the `return_outputs` attribute.  [What are token type IDs?](../glossary#token-type-ids)
+
+return_attention_mask (`bool`, *optional*) : Whether to return the attention mask. If left to the default, will return the attention mask according to the specific tokenizer's default, defined by the `return_outputs` attribute.  [What are attention masks?](../glossary#attention-mask)
+
+return_overflowing_tokens (`bool`, *optional*, defaults to `False`) : Whether or not to return overflowing token sequences. If a pair of sequences of input ids (or a batch of pairs) is provided with `truncation_strategy = longest_first` or `True`, an error is raised instead of returning overflowing tokens.
+
+return_special_tokens_mask (`bool`, *optional*, defaults to `False`) : Whether or not to return special tokens mask information.
+
+return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
+
+return_length  (`bool`, *optional*, defaults to `False`) : Whether or not to return the lengths of the encoded inputs.
+
+verbose (`bool`, *optional*, defaults to `True`) : Whether or not to print more information and warnings.
+
+- ****kwargs** : passed to the `self.tokenize()` method
+
+**Returns:** [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding)
+
+A [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model.
 
@@ -315,139 +278,96 @@ sequences.
 
 ## LayoutLMTokenizerFast[[transformers.BertTokenizer]]
 
-- **vocab** (`str` or `dict[str, int]`, *optional*) --
-  Custom vocabulary dictionary. If not provided, vocabulary is loaded from `vocab_file`.
-- **do_lower_case** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to lowercase the input when tokenizing.
-- **unk_token** (`str`, *optional*, defaults to `"[UNK]"`) --
-  The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this
-  token instead.
-- **sep_token** (`str`, *optional*, defaults to `"[SEP]"`) --
-  The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for
-  sequence classification or for a text and a question for question answering. It is also used as the last
-  token of a sequence built with special tokens.
-- **pad_token** (`str`, *optional*, defaults to `"[PAD]"`) --
-  The token used for padding, for example when batching sequences of different lengths.
-- **cls_token** (`str`, *optional*, defaults to `"[CLS]"`) --
-  The classifier token which is used when doing sequence classification (classification of the whole sequence
-  instead of per-token classification). It is the first token of the sequence when built with special tokens.
-- **mask_token** (`str`, *optional*, defaults to `"[MASK]"`) --
-  The token used for masking values. This is the token used when training this model with masked language
-  modeling. This is the token which the model will try to predict.
-- **tokenize_chinese_chars** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to tokenize Chinese characters.
-- **strip_accents** (`bool`, *optional*) --
-  Whether or not to strip all accents. If this option is not specified, then it will be determined by the
-  value for `lowercase` (as in the original BERT).
+#### transformers.BertTokenizer[[transformers.BertTokenizer]]
+
+```python
+transformers.BertTokenizer(vocab: str | dict[str, int] | None = None, do_lower_case: bool = True, unk_token: str = '[UNK]', sep_token: str = '[SEP]', pad_token: str = '[PAD]', cls_token: str = '[CLS]', mask_token: str = '[MASK]', tokenize_chinese_chars: bool = True, strip_accents: bool | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bert/tokenization_bert.py#L41)
+
+**Parameters:**
+
+vocab (`str` or `dict[str, int]`, *optional*) : Custom vocabulary dictionary. If not provided, vocabulary is loaded from `vocab_file`.
+
+do_lower_case (`bool`, *optional*, defaults to `True`) : Whether or not to lowercase the input when tokenizing.
+
+unk_token (`str`, *optional*, defaults to `"[UNK]"`) : The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this token instead.
+
+sep_token (`str`, *optional*, defaults to `"[SEP]"`) : The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for sequence classification or for a text and a question for question answering. It is also used as the last token of a sequence built with special tokens.
+
+pad_token (`str`, *optional*, defaults to `"[PAD]"`) : The token used for padding, for example when batching sequences of different lengths.
+
+cls_token (`str`, *optional*, defaults to `"[CLS]"`) : The classifier token which is used when doing sequence classification (classification of the whole sequence instead of per-token classification). It is the first token of the sequence when built with special tokens.
+
+mask_token (`str`, *optional*, defaults to `"[MASK]"`) : The token used for masking values. This is the token used when training this model with masked language modeling. This is the token which the model will try to predict.
+
+tokenize_chinese_chars (`bool`, *optional*, defaults to `True`) : Whether or not to tokenize Chinese characters.
+
+strip_accents (`bool`, *optional*) : Whether or not to strip all accents. If this option is not specified, then it will be determined by the value for `lowercase` (as in the original BERT).
 
 Construct a BERT tokenizer (backed by HuggingFace's tokenizers library). Based on WordPiece.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
-- **text** (`str`, `list[str]`, `list[list[str]]`, *optional*) --
-  The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings
-  (pretokenized string). If the sequences are provided as list of strings (pretokenized), you must set
-  `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
-- **text_pair** (`str`, `list[str]`, `list[list[str]]`, *optional*) --
-  The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings
-  (pretokenized string). If the sequences are provided as list of strings (pretokenized), you must set
-  `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
-- **text_target** (`str`, `list[str]`, `list[list[str]]`, *optional*) --
-  The sequence or batch of sequences to be encoded as target texts. Each sequence can be a string or a
-  list of strings (pretokenized string). If the sequences are provided as list of strings (pretokenized),
-  you must set `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
-- **text_pair_target** (`str`, `list[str]`, `list[list[str]]`, *optional*) --
-  The sequence or batch of sequences to be encoded as target texts. Each sequence can be a string or a
-  list of strings (pretokenized string). If the sequences are provided as list of strings (pretokenized),
-  you must set `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
-- **tokenizer_kwargs** (`dict[str, Any]`, *optional*) --
-  Additional kwargs to pass to the tokenizer. These will be merged with the explicit parameters and
-  other kwargs, with explicit parameters taking precedence.
+#### __call__[[transformers.BertTokenizer.__call__]]
 
-- **add_special_tokens** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to add special tokens when encoding the sequences. This will use the underlying
-  `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are
-  automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens
-  automatically.
-- **padding** (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) --
-  Activates and controls padding. Accepts the following values:
+```python
+__call__(text: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_pair: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_target: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_pair_target: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, add_special_tokens: bool = True, padding: bool | str | PaddingStrategy = False, truncation: bool | str | TruncationStrategy | None = None, max_length: int | None = None, stride: int = 0, is_split_into_words: bool = False, pad_to_multiple_of: int | None = None, padding_side: str | None = None, return_tensors: str | TensorType | None = None, return_token_type_ids: bool | None = None, return_attention_mask: bool | None = None, return_overflowing_tokens: bool = False, return_special_tokens_mask: bool = False, return_offsets_mapping: bool = False, return_length: bool = False, verbose: bool = True, tokenizer_kwargs: dict[str, Any] | None = None, **kwargs)
+```
 
-  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single
-    sequence is provided).
-  - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum
-    acceptable input length for the model if that argument is not provided.
-  - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different
-    lengths).
-- **truncation** (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) --
-  Activates and controls truncation. Accepts the following values:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_base.py#L2417)
 
-  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or
-    to the maximum acceptable input length for the model if that argument is not provided. This will
-    truncate token by token, removing a token from the longest sequence in the pair if a pair of
-    sequences (or a batch of pairs) is provided.
-  - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the
-    maximum acceptable input length for the model if that argument is not provided. This will only
-    truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided.
-  - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the
-    maximum acceptable input length for the model if that argument is not provided. This will only
-    truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided.
-  - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths
-    greater than the model maximum admissible input size).
-- **max_length** (`int`, *optional*) --
-  Controls the maximum length to use by one of the truncation/padding parameters.
+**Parameters:**
 
-  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length
-  is required by one of the truncation/padding parameters. If the model has no specific maximum input
-  length (like XLNet) truncation/padding to a maximum length will be deactivated.
-- **stride** (`int`, *optional*, defaults to 0) --
-  If set to a number along with `max_length`, the overflowing tokens returned when
-  `return_overflowing_tokens=True` will contain some tokens from the end of the truncated sequence
-  returned to provide some overlap between truncated and overflowing sequences. The value of this
-  argument defines the number of overlapping tokens.
-- **is_split_into_words** (`bool`, *optional*, defaults to `False`) --
-  Whether or not the input is already pre-tokenized (e.g., split into words). If set to `True`, the
-  tokenizer assumes the input is already split into words (for instance, by splitting it on whitespace)
-  which it will tokenize. This is useful for NER or token classification.
-- **pad_to_multiple_of** (`int`, *optional*) --
-  If set will pad the sequence to a multiple of the provided value. Requires `padding` to be activated.
-  This is especially useful to enable the use of Tensor Cores on NVIDIA hardware with compute capability
-  `>= 7.5` (Volta).
-- **padding_side** (`str`, *optional*) --
-  The side on which the model should have padding applied. Should be selected between ['right', 'left'].
-  Default value is picked from the class attribute of the same name.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  If set, will return tensors instead of list of python integers. Acceptable values are:
+text (`str`, `list[str]`, `list[list[str]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If the sequences are provided as list of strings (pretokenized), you must set `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
 
-  - `'pt'`: Return PyTorch `torch.Tensor` objects.
-  - `'np'`: Return Numpy `np.ndarray` objects.
+text_pair (`str`, `list[str]`, `list[list[str]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If the sequences are provided as list of strings (pretokenized), you must set `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
 
-- **return_token_type_ids** (`bool`, *optional*) --
-  Whether to return token type IDs. If left to the default, will return the token type IDs according to
-  the specific tokenizer's default, defined by the `return_outputs` attribute.
+text_target (`str`, `list[str]`, `list[list[str]]`, *optional*) : The sequence or batch of sequences to be encoded as target texts. Each sequence can be a string or a list of strings (pretokenized string). If the sequences are provided as list of strings (pretokenized), you must set `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **return_attention_mask** (`bool`, *optional*) --
-  Whether to return the attention mask. If left to the default, will return the attention mask according
-  to the specific tokenizer's default, defined by the `return_outputs` attribute.
+text_pair_target (`str`, `list[str]`, `list[list[str]]`, *optional*) : The sequence or batch of sequences to be encoded as target texts. Each sequence can be a string or a list of strings (pretokenized string). If the sequences are provided as list of strings (pretokenized), you must set `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
 
-  [What are attention masks?](../glossary#attention-mask)
-- **return_overflowing_tokens** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to return overflowing token sequences. If a pair of sequences of input ids (or a batch
-  of pairs) is provided with `truncation_strategy = longest_first` or `True`, an error is raised instead
-  of returning overflowing tokens.
-- **return_special_tokens_mask** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to return special tokens mask information.
-- **return_offsets_mapping** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to return `(char_start, char_end)` for each token.
+tokenizer_kwargs (`dict[str, Any]`, *optional*) : Additional kwargs to pass to the tokenizer. These will be merged with the explicit parameters and other kwargs, with explicit parameters taking precedence. 
 
-  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend), if using
-  Python's tokenizer, this method will raise `NotImplementedError`.
-- **return_length**  (`bool`, *optional*, defaults to `False`) --
-  Whether or not to return the lengths of the encoded inputs.
-- **verbose** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to print more information and warnings.
-- ****kwargs** -- passed to the `self.tokenize()` method[BatchEncoding](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.BatchEncoding)A [BatchEncoding](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
+add_special_tokens (`bool`, *optional*, defaults to `True`) : Whether or not to add special tokens when encoding the sequences. This will use the underlying `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens automatically.
+
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
+
+max_length (`int`, *optional*) : Controls the maximum length to use by one of the truncation/padding parameters.  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length is required by one of the truncation/padding parameters. If the model has no specific maximum input length (like XLNet) truncation/padding to a maximum length will be deactivated.
+
+stride (`int`, *optional*, defaults to 0) : If set to a number along with `max_length`, the overflowing tokens returned when `return_overflowing_tokens=True` will contain some tokens from the end of the truncated sequence returned to provide some overlap between truncated and overflowing sequences. The value of this argument defines the number of overlapping tokens.
+
+is_split_into_words (`bool`, *optional*, defaults to `False`) : Whether or not the input is already pre-tokenized (e.g., split into words). If set to `True`, the tokenizer assumes the input is already split into words (for instance, by splitting it on whitespace) which it will tokenize. This is useful for NER or token classification.
+
+pad_to_multiple_of (`int`, *optional*) : If set will pad the sequence to a multiple of the provided value. Requires `padding` to be activated. This is especially useful to enable the use of Tensor Cores on NVIDIA hardware with compute capability `>= 7.5` (Volta).
+
+padding_side (`str`, *optional*) : The side on which the model should have padding applied. Should be selected between ['right', 'left']. Default value is picked from the class attribute of the same name.
+
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects. 
+
+return_token_type_ids (`bool`, *optional*) : Whether to return token type IDs. If left to the default, will return the token type IDs according to the specific tokenizer's default, defined by the `return_outputs` attribute.  [What are token type IDs?](../glossary#token-type-ids)
+
+return_attention_mask (`bool`, *optional*) : Whether to return the attention mask. If left to the default, will return the attention mask according to the specific tokenizer's default, defined by the `return_outputs` attribute.  [What are attention masks?](../glossary#attention-mask)
+
+return_overflowing_tokens (`bool`, *optional*, defaults to `False`) : Whether or not to return overflowing token sequences. If a pair of sequences of input ids (or a batch of pairs) is provided with `truncation_strategy = longest_first` or `True`, an error is raised instead of returning overflowing tokens.
+
+return_special_tokens_mask (`bool`, *optional*, defaults to `False`) : Whether or not to return special tokens mask information.
+
+return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
+
+return_length  (`bool`, *optional*, defaults to `False`) : Whether or not to return the lengths of the encoded inputs.
+
+verbose (`bool`, *optional*, defaults to `True`) : Whether or not to print more information and warnings.
+
+- ****kwargs** : passed to the `self.tokenize()` method
+
+**Returns:** [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding)
+
+A [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model.
 
@@ -476,14 +396,21 @@ sequences.
 
 ## LayoutLMModel[[transformers.LayoutLMModel]]
 
-- **config** ([LayoutLMModel](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.LayoutLMModel[[transformers.LayoutLMModel]]
+
+```python
+transformers.LayoutLMModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlm/modeling_layoutlm.py#L412)
+
+**Parameters:**
+
+config ([LayoutLMModel](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Layoutlm Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -491,43 +418,35 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.LayoutLMModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, bbox: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **bbox** (`torch.LongTensor` of shape `(batch_size, sequence_length, 4)`, *optional*) --
-  Bounding boxes of each input sequence tokens. Selected in the range `[0,
-  config.max_2d_position_embeddings-1]`. Each bounding box should be a normalized version in (x0, y0, x1, y1)
-  format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1,
-  y1) represents the position of the lower right corner. See [Overview](#Overview) for normalization.
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlm/modeling_layoutlm.py#L430)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+bbox (`torch.LongTensor` of shape `(batch_size, sequence_length, 4)`, *optional*) : Bounding boxes of each input sequence tokens. Selected in the range `[0, config.max_2d_position_embeddings-1]`. Each bounding box should be a normalized version in (x0, y0, x1, y1) format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1, y1) represents the position of the lower right corner. See [Overview](#Overview) for normalization.
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
+
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LayoutLMConfig](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMConfig)) and inputs.
-The [LayoutLMModel](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([LayoutLMConfig](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMConfig)) and inputs.
+
+The [LayoutLMModel](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -582,14 +501,21 @@ Examples:
 
 ## LayoutLMForMaskedLM[[transformers.LayoutLMForMaskedLM]]
 
-- **config** ([LayoutLMForMaskedLM](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMForMaskedLM)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.LayoutLMForMaskedLM[[transformers.LayoutLMForMaskedLM]]
+
+```python
+transformers.LayoutLMForMaskedLM(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlm/modeling_layoutlm.py#L528)
+
+**Parameters:**
+
+config ([LayoutLMForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMForMaskedLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Layoutlm Model with a `language modeling` head on top."
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -597,47 +523,37 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.LayoutLMForMaskedLM.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, bbox: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **bbox** (`torch.LongTensor` of shape `(batch_size, sequence_length, 4)`, *optional*) --
-  Bounding boxes of each input sequence tokens. Selected in the range `[0,
-  config.max_2d_position_embeddings-1]`. Each bounding box should be a normalized version in (x0, y0, x1, y1)
-  format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1,
-  y1) represents the position of the lower right corner. See [Overview](#Overview) for normalization.
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlm/modeling_layoutlm.py#L553)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+bbox (`torch.LongTensor` of shape `(batch_size, sequence_length, 4)`, *optional*) : Bounding boxes of each input sequence tokens. Selected in the range `[0, config.max_2d_position_embeddings-1]`. Each bounding box should be a normalized version in (x0, y0, x1, y1) format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1, y1) represents the position of the lower right corner. See [Overview](#Overview) for normalization.
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should be in `[-100, 0, ...,
-  config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are ignored (masked), the
-  loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`[MaskedLMOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`A [MaskedLMOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
+token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
+
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should be in `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`
+
+**Returns:** [MaskedLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`
+
+A [MaskedLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LayoutLMConfig](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMConfig)) and inputs.
-The [LayoutLMForMaskedLM](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMForMaskedLM) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([LayoutLMConfig](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMConfig)) and inputs.
+
+The [LayoutLMForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMForMaskedLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -695,15 +611,22 @@ Examples:
 
 ## LayoutLMForSequenceClassification[[transformers.LayoutLMForSequenceClassification]]
 
-- **config** ([LayoutLMForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMForSequenceClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.LayoutLMForSequenceClassification[[transformers.LayoutLMForSequenceClassification]]
+
+```python
+transformers.LayoutLMForSequenceClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlm/modeling_layoutlm.py#L649)
+
+**Parameters:**
+
+config ([LayoutLMForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 LayoutLM Model with a sequence classification head on top (a linear layer on top of the pooled output) e.g. for
 document image classification tasks such as the [RVL-CDIP](https://www.cs.cmu.edu/~aharley/rvl-cdip/) dataset.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -711,47 +634,37 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.LayoutLMForSequenceClassification.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, bbox: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **bbox** (`torch.LongTensor` of shape `(batch_size, sequence_length, 4)`, *optional*) --
-  Bounding boxes of each input sequence tokens. Selected in the range `[0,
-  config.max_2d_position_embeddings-1]`. Each bounding box should be a normalized version in (x0, y0, x1, y1)
-  format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1,
-  y1) represents the position of the lower right corner. See [Overview](#Overview) for normalization.
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlm/modeling_layoutlm.py#L663)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+bbox (`torch.LongTensor` of shape `(batch_size, sequence_length, 4)`, *optional*) : Bounding boxes of each input sequence tokens. Selected in the range `[0, config.max_2d_position_embeddings-1]`. Each bounding box should be a normalized version in (x0, y0, x1, y1) format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1, y1) represents the position of the lower right corner. See [Overview](#Overview) for normalization.
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the sequence classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).[SequenceClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`A [SequenceClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
+
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LayoutLMConfig](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMConfig)) and inputs.
-The [LayoutLMForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMForSequenceClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([LayoutLMConfig](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMConfig)) and inputs.
+
+The [LayoutLMForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -809,16 +722,23 @@ Examples:
 
 ## LayoutLMForTokenClassification[[transformers.LayoutLMForTokenClassification]]
 
-- **config** ([LayoutLMForTokenClassification](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMForTokenClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.LayoutLMForTokenClassification[[transformers.LayoutLMForTokenClassification]]
+
+```python
+transformers.LayoutLMForTokenClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlm/modeling_layoutlm.py#L777)
+
+**Parameters:**
+
+config ([LayoutLMForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 LayoutLM Model with a token classification head on top (a linear layer on top of the hidden-states output) e.g. for
 sequence labeling (information extraction) tasks such as the [FUNSD](https://guillaumejaume.github.io/FUNSD/)
 dataset and the [SROIE](https://rrc.cvc.uab.es/?ch=13) dataset.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -826,45 +746,37 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.LayoutLMForTokenClassification.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, bbox: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **bbox** (`torch.LongTensor` of shape `(batch_size, sequence_length, 4)`, *optional*) --
-  Bounding boxes of each input sequence tokens. Selected in the range `[0,
-  config.max_2d_position_embeddings-1]`. Each bounding box should be a normalized version in (x0, y0, x1, y1)
-  format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1,
-  y1) represents the position of the lower right corner. See [Overview](#Overview) for normalization.
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlm/modeling_layoutlm.py#L791)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+bbox (`torch.LongTensor` of shape `(batch_size, sequence_length, 4)`, *optional*) : Bounding boxes of each input sequence tokens. Selected in the range `[0, config.max_2d_position_embeddings-1]`. Each bounding box should be a normalized version in (x0, y0, x1, y1) format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1, y1) represents the position of the lower right corner. See [Overview](#Overview) for normalization.
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the token classification loss. Indices should be in `[0, ..., config.num_labels - 1]`.[TokenClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`A [TokenClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
+token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
+
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the token classification loss. Indices should be in `[0, ..., config.num_labels - 1]`.
+
+**Returns:** [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LayoutLMConfig](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMConfig)) and inputs.
-The [LayoutLMForTokenClassification](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMForTokenClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([LayoutLMConfig](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMConfig)) and inputs.
+
+The [LayoutLMForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -922,17 +834,24 @@ Examples:
 
 ## LayoutLMForQuestionAnswering[[transformers.LayoutLMForQuestionAnswering]]
 
-- **config** ([LayoutLMForQuestionAnswering](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMForQuestionAnswering)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
-- **has_visual_segment_embedding** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to add visual segment embeddings.
+#### transformers.LayoutLMForQuestionAnswering[[transformers.LayoutLMForQuestionAnswering]]
+
+```python
+transformers.LayoutLMForQuestionAnswering(config, has_visual_segment_embedding = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlm/modeling_layoutlm.py#L879)
+
+**Parameters:**
+
+config ([LayoutLMForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+
+has_visual_segment_embedding (`bool`, *optional*, defaults to `True`) : Whether or not to add visual segment embeddings.
 
 The Layoutlm transformer with a span classification head on top for extractive question-answering tasks like
 SQuAD (a linear layer on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -940,51 +859,39 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.LayoutLMForQuestionAnswering.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, bbox: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, start_positions: typing.Optional[torch.LongTensor] = None, end_positions: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **bbox** (`torch.LongTensor` of shape `(batch_size, sequence_length, 4)`, *optional*) --
-  Bounding boxes of each input sequence tokens. Selected in the range `[0,
-  config.max_2d_position_embeddings-1]`. Each bounding box should be a normalized version in (x0, y0, x1, y1)
-  format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1,
-  y1) represents the position of the lower right corner. See [Overview](#Overview) for normalization.
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlm/modeling_layoutlm.py#L897)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+bbox (`torch.LongTensor` of shape `(batch_size, sequence_length, 4)`, *optional*) : Bounding boxes of each input sequence tokens. Selected in the range `[0, config.max_2d_position_embeddings-1]`. Each bounding box should be a normalized version in (x0, y0, x1, y1) format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1, y1) represents the position of the lower right corner. See [Overview](#Overview) for normalization.
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **start_positions** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the start of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.
-- **end_positions** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the end of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.[QuestionAnsweringModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`A [QuestionAnsweringModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
+token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
+
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+start_positions (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the start of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+end_positions (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the end of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+**Returns:** [QuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`
+
+A [QuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LayoutLMConfig](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMConfig)) and inputs.
-The [LayoutLMForQuestionAnswering](/docs/transformers/v5.14.0/en/model_doc/layoutlm#transformers.LayoutLMForQuestionAnswering) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([LayoutLMConfig](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMConfig)) and inputs.
+
+The [LayoutLMForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1045,5 +952,5 @@ of what it thinks the answer is (the span of the answer within the texts parsed 
 M. Hamann P. Harper, P. Martinez
 ```
 
-### Idefics2
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/idefics2.md
+### MGP-STR
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/mgp-str.md

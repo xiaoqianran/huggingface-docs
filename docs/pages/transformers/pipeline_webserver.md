@@ -1,10 +1,10 @@
 # Web server inference
 
-A web server is a system that waits for requests and serves them as they come in. This means you can use [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) as an inference engine on a web server, since you can use an iterator (similar to how you would [iterate over a dataset](./pipeline_tutorial#large-datasets)) to handle each incoming request.
+A web server is a system that waits for requests and serves them as they come in. This means you can use [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) as an inference engine on a web server, since you can use an iterator (similar to how you would [iterate over a dataset](./pipeline_tutorial#large-datasets)) to handle each incoming request.
 
-Designing a web server with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) is unique though because they're fundamentally different. Web servers are multiplexed (multithreaded, async, etc.) to handle multiple requests concurrently. [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) and its underlying model on the other hand are not designed for parallelism because they take a lot of memory. It's best to give a [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) all the available resources when they're running or for a compute intensive job.
+Designing a web server with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) is unique though because they're fundamentally different. Web servers are multiplexed (multithreaded, async, etc.) to handle multiple requests concurrently. [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) and its underlying model on the other hand are not designed for parallelism because they take a lot of memory. It's best to give a [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) all the available resources when they're running or for a compute intensive job.
 
-This guide shows how to work around this difference by using a web server to handle the lighter load of receiving and sending requests, and having a single thread to handle the heavier load of running [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline).
+This guide shows how to work around this difference by using a web server to handle the lighter load of receiving and sending requests, and having a single thread to handle the heavier load of running [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline).
 
 ## Create a server
 
@@ -94,7 +94,7 @@ This should return the output below.
 
 ## Queuing requests
 
-The server's queuing mechanism can be used for some interesting applications such as dynamic batching. Dynamic batching accumulates several requests first before processing them with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline).
+The server's queuing mechanism can be used for some interesting applications such as dynamic batching. Dynamic batching accumulates several requests first before processing them with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline).
 
 The example below is written in pseudocode for readability rather than performance, in particular, you'll notice that:
 
@@ -146,5 +146,5 @@ For this reason, it's better to run PyTorch on its own separate thread or proces
 
 Dynamic batching can be very effective when used in the correct setting, but it's not necessary when you're only passing 1 request at a time (see [batch inference](./pipeline_tutorial#batch-inference) for more details).
 
-### GGUF
-https://huggingface.co/docs/transformers/v5.14.0/gguf.md
+### Continuous batching
+https://huggingface.co/docs/transformers/v5.15.0/continuous_batching.md

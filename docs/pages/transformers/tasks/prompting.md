@@ -34,7 +34,7 @@ This guide covers prompt engineering best practices, techniques, and examples fo
     Base models are excellent at completing text given an initial prompt, but they're not as good at following instructions. Instruction-tuned models are specifically trained versions of the base models on instructional or conversational data. This makes instruction-tuned models a better fit for prompting.
 
     > [!WARNING]
-    > Modern LLMs are typically decoder-only models, but there are some encoder-decoder LLMs like [Flan-T5](../model_doc/flan-t5) or [BART](../model_doc/bart) that may be used for prompting. Load these models directly with the [AutoModelForSeq2SeqLM](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModelForSeq2SeqLM) class (instead of using [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline)) and generate outputs from the model itself.
+    > Modern LLMs are typically decoder-only models, but there are some encoder-decoder LLMs like [Flan-T5](../model_doc/flan-t5) or [BART](../model_doc/bart) that may be used for prompting. Load these models directly with the [AutoModelForSeq2SeqLM](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForSeq2SeqLM) class (instead of using [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline)) and generate outputs from the model itself.
 
 2. Start with a short and simple prompt, and iterate on it to get better results.
 
@@ -232,5 +232,5 @@ for output in outputs:
 Result: A blender or food processor is the modern tool
 ```
 
-### Translation
-https://huggingface.co/docs/transformers/v5.14.0/tasks/translation.md
+### Image captioning
+https://huggingface.co/docs/transformers/v5.15.0/tasks/image_captioning.md

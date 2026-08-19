@@ -190,7 +190,7 @@ Start by loading a smaller subset of the SceneParse150 dataset from the 🤗 Dat
 >>> ds = load_dataset("merve/scene_parse_150", split="train[:50]")
 ```
 
-Split the dataset's `train` split into a train and test set with the `train_test_split` method:
+Split the dataset's `train` split into a train and test set with the [train_test_split](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset.train_test_split) method:
 
 ```py
 >>> ds = ds.train_test_split(test_size=0.2)
@@ -233,7 +233,7 @@ You'll also want to create a dictionary that maps a label id to a label class wh
 
 You could also create and use your own dataset if you prefer to train with the [run_semantic_segmentation.py](https://github.com/huggingface/transformers/blob/main/examples/pytorch/semantic-segmentation/run_semantic_segmentation.py) script instead of a notebook instance. The script requires:
 
-1. a `DatasetDict` with two `Image` columns, "image" and "label"
+1. a [DatasetDict](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.DatasetDict) with two [Image](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Image) columns, "image" and "label"
 
      ```py
      from datasets import Dataset, DatasetDict, Image
@@ -316,7 +316,7 @@ Now create two preprocessing functions to prepare the images and annotations for
 ...     return inputs
 ```
 
-To apply the `jitter` over the entire dataset, use the 🤗 Datasets `set_transform` function. The transform is applied on the fly which is faster and consumes less disk space:
+To apply the `jitter` over the entire dataset, use the 🤗 Datasets [set_transform](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset.set_transform) function. The transform is applied on the fly which is faster and consumes less disk space:
 
 ```py
 >>> train_ds.set_transform(train_transforms)
@@ -370,9 +370,9 @@ Your `compute_metrics` function is ready to go now, and you'll return to it when
 
 ### Train
 
-If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#finetune-with-trainer)!
+If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#finetune-with-trainer)!
 
-You're ready to start training your model now! Load SegFormer with [AutoModelForSemanticSegmentation](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModelForSemanticSegmentation), and pass the model the mapping between label ids and label classes:
+You're ready to start training your model now! Load SegFormer with [AutoModelForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForSemanticSegmentation), and pass the model the mapping between label ids and label classes:
 
 ```py
 >>> from transformers import AutoModelForSemanticSegmentation, TrainingArguments, Trainer
@@ -382,9 +382,9 @@ You're ready to start training your model now! Load SegFormer with [AutoModelFor
 
 At this point, only three steps remain:
 
-1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments). It is important you don't remove unused columns because this'll drop the `image` column. Without the `image` column, you can't create `pixel_values`. Set `remove_unused_columns=False` to prevent this behavior! The only other required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model). At the end of each epoch, the [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) will evaluate the IoU metric and save the training checkpoint.
-2. Pass the training arguments to [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, tokenizer, data collator, and `compute_metrics` function.
-3. Call [train()](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
+1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments). It is important you don't remove unused columns because this'll drop the `image` column. Without the `image` column, you can't create `pixel_values`. Set `remove_unused_columns=False` to prevent this behavior! The only other required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model). At the end of each epoch, the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) will evaluate the IoU metric and save the training checkpoint.
+2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, tokenizer, data collator, and `compute_metrics` function.
+3. Call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
 
 ```py
 >>> training_args = TrainingArguments(
@@ -417,7 +417,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -649,5 +649,5 @@ Then you can combine and plot your image and the predicted segmentation map:
 >>> plt.show()
 ```
 
-### Video classification
-https://huggingface.co/docs/transformers/v5.14.0/tasks/video_classification.md
+### Summarization
+https://huggingface.co/docs/transformers/v5.15.0/tasks/summarization.md

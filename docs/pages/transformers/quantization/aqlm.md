@@ -10,7 +10,7 @@ Run the command below to install the AQLM library with kernel support for both G
 pip install aqlm[gpu,cpu]
 ```
 
-Load an AQLM-quantized model with [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Load an AQLM-quantized model with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```python
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -39,5 +39,5 @@ Run the AQLM demo [notebook](https://colab.research.google.com/drive/1-xZmBRXT5F
 
 For more example demo notebooks, visit the AQLM [repository](https://github.com/Vahe1994/AQLM).
 
-### Four Over Six
-https://huggingface.co/docs/transformers/v5.14.0/quantization/fouroversix.md
+### Optimum
+https://huggingface.co/docs/transformers/v5.15.0/quantization/optimum.md

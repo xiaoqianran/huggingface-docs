@@ -1,6 +1,6 @@
 # Installation
 
-Transformers works with [PyTorch](https://pytorch.org/get-started/locally/). It has been tested on Python 3.10+ and PyTorch 2.4+.
+Transformers works with [PyTorch](https://pytorch.org/get-started/locally/). It has been tested on Python 3.10+ and PyTorch 2.5+.
 
 ## Virtual environment
 
@@ -24,11 +24,7 @@ Install Transformers with the following command.
 
 [uv](https://docs.astral.sh/uv/) is a fast Rust-based Python package and project manager.
 
-```bash
-uv pip install transformers
-```
-
-For GPU acceleration, install the appropriate CUDA drivers for [PyTorch](https://pytorch.org/get-started/locally).
+To install Transformers with PyTorch for NVIDIA GPU (CUDA), install the appropriate CUDA drivers for [PyTorch](https://pytorch.org/get-started/locally).
 
 Run the command below to check if your system detects an NVIDIA GPU.
 
@@ -36,11 +32,27 @@ Run the command below to check if your system detects an NVIDIA GPU.
 nvidia-smi
 ```
 
+```bash
+uv pip install "transformers[torch]"
+```
+
 To install a CPU-only version of Transformers, run the following command.
 
 ```bash
 uv pip install torch --index-url https://download.pytorch.org/whl/cpu
 uv pip install transformers
+```
+
+To install Transformers with PyTorch for Intel GPU (XPU), install the appropriate [Intel GPU (XPU) drivers for PyTorch](https://www.intel.com/content/www/us/en/developer/articles/tool/pytorch-prerequisites-for-intel-gpu/2-13.html) and add the Intel GPU (XPU) PyTorch index URL.
+
+After installing the drivers, run the command below to [check if your system detects an Intel GPU](https://dgpu-docs.intel.com/driver/verification.html).
+
+```bash
+xpu-smi
+```
+
+```bash
+uv pip install "transformers[torch]" --extra-index-url https://download.pytorch.org/whl/xpu
 ```
 
 Test whether the install was successful with the following command. It should return a label and score for the provided text.
@@ -103,7 +115,7 @@ After installation, you can configure the Transformers cache location or set up 
 
 ### Cache directory
 
-When you load a pretrained model with [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), the model is downloaded from the Hub and locally cached.
+When you load a pretrained model with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), the model is downloaded from the Hub and locally cached.
 
 Every time you load a model, it checks whether the cached model is up-to-date. If it's the same, then the local model is loaded. If it's not the same, the newer model is downloaded and cached.
 
@@ -117,7 +129,7 @@ Cache a model in a different directory by changing the path in the following she
 
 ### Offline mode
 
-To use Transformers in an offline or firewalled environment requires the downloaded and cached files ahead of time. Download a model repository from the Hub with the [snapshot_download](https://huggingface.co/docs/huggingface_hub/v1.23.0/en/package_reference/file_download#huggingface_hub.snapshot_download) method.
+To use Transformers in an offline or firewalled environment requires the downloaded and cached files ahead of time. Download a model repository from the Hub with the [snapshot_download](https://huggingface.co/docs/huggingface_hub/v1.28.0/en/package_reference/file_download#huggingface_hub.snapshot_download) method.
 
 > [!TIP]
 > Refer to the [Download files from the Hub](https://hf.co/docs/huggingface_hub/guides/download) guide for more options for downloading files from the Hub. You can download files from specific revisions, download from the CLI, and even filter which files to download from a repository.
@@ -135,7 +147,7 @@ HF_HUB_OFFLINE=1 \
 python examples/pytorch/language-modeling/run_clm.py --model_name_or_path meta-llama/Llama-2-7b-hf --dataset_name wikitext ...
 ```
 
-Another option for only loading cached files is to set `local_files_only=True` in [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Another option for only loading cached files is to set `local_files_only=True` in [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```py
 from transformers import LlamaForCausalLM
@@ -143,5 +155,5 @@ from transformers import LlamaForCausalLM
 model = LlamaForCausalLM.from_pretrained("./path/to/local/directory", local_files_only=True)
 ```
 
-### Tokenization algorithms
-https://huggingface.co/docs/transformers/v5.14.0/tokenizer_summary.md
+### Debugging
+https://huggingface.co/docs/transformers/v5.15.0/debugging.md

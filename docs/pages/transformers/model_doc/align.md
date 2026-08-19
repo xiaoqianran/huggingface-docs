@@ -7,7 +7,7 @@ You can find all the original ALIGN checkpoints under the [Kakao Brain](https://
 > [!TIP]
 > Click on the ALIGN models in the right sidebar for more examples of how to apply ALIGN to different vision and text related tasks.
 
-The example below demonstrates zero-shot image classification with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates zero-shot image classification with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
 
   
 
@@ -64,7 +64,7 @@ for label, score in zip(candidate_labels, probs):
 
 ## Notes
 
-- ALIGN projects the text and visual features into latent space and the dot product between the projected image and text features is used as the similarity score. The example below demonstrates how to calculate the image-text similarity score with [AlignProcessor](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignProcessor) and [AlignModel](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignModel).
+- ALIGN projects the text and visual features into latent space and the dot product between the projected image and text features is used as the similarity score. The example below demonstrates how to calculate the image-text similarity score with [AlignProcessor](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignProcessor) and [AlignModel](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignModel).
 
   ```py
   # Example of using ALIGN for image-text similarity
@@ -120,23 +120,32 @@ for label, score in zip(candidate_labels, probs):
 
 ## AlignConfig[[transformers.AlignConfig]]
 
-- **text_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the text backbone.
-- **vision_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the vision backbone.
-- **projection_dim** (`int`, *optional*, defaults to `640`) --
-  Dimensionality of text and vision projection layers.
-- **temperature_init_value** (`float`, *optional*, defaults to 1.0) --
-  The initial value of the *temperature* parameter. Default is used as per the original ALIGN implementation.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+#### transformers.AlignConfig[[transformers.AlignConfig]]
+
+```python
+transformers.AlignConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, projection_dim: int = 640, temperature_init_value: float = 1.0, initializer_range: float = 0.02)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/align/configuration_align.py#L157)
+
+**Parameters:**
+
+text_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the text backbone.
+
+vision_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the vision backbone.
+
+projection_dim (`int`, *optional*, defaults to `640`) : Dimensionality of text and vision projection layers.
+
+temperature_init_value (`float`, *optional*, defaults to 1.0) : The initial value of the *temperature* parameter. Default is used as per the original ALIGN implementation.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
 This is the configuration class to store the configuration of a AlignModel. It is used to instantiate a Align
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [kakaobrain/align-base](https://huggingface.co/kakaobrain/align-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -164,44 +173,52 @@ Example:
 
 ## AlignTextConfig[[transformers.AlignTextConfig]]
 
-- **vocab_size** (`int`, *optional*, defaults to `30522`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **intermediate_size** (`int`, *optional*, defaults to `3072`) --
-  Dimension of the MLP representations.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **attention_probs_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The dropout ratio for the attention probabilities.
-- **max_position_embeddings** (`int`, *optional*, defaults to `512`) --
-  The maximum sequence length that this model might ever be used with.
-- **type_vocab_size** (`int`, *optional*, defaults to `2`) --
-  The vocabulary size of the `token_type_ids`.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-12`) --
-  The epsilon used by the layer normalization layers.
-- **pad_token_id** (`int`, *optional*, defaults to `0`) --
-  Token id used for padding in the vocabulary.
-- **bos_token_id** (`int`, *optional*) --
-  Token id used for beginning-of-stream in the vocabulary.
-- **eos_token_id** (`Union[int, list[int]]`, *optional*) --
-  Token id used for end-of-stream in the vocabulary.
+#### transformers.AlignTextConfig[[transformers.AlignTextConfig]]
+
+```python
+transformers.AlignTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 30522, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.1, max_position_embeddings: int = 512, type_vocab_size: int = 2, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, pad_token_id: int | None = 0, bos_token_id: int | None = None, eos_token_id: int | list[int] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/align/configuration_align.py#L27)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `30522`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+intermediate_size (`int`, *optional*, defaults to `3072`) : Dimension of the MLP representations.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.1`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+attention_probs_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.1`) : The dropout ratio for the attention probabilities.
+
+max_position_embeddings (`int`, *optional*, defaults to `512`) : The maximum sequence length that this model might ever be used with.
+
+type_vocab_size (`int`, *optional*, defaults to `2`) : The vocabulary size of the `token_type_ids`.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-12`) : The epsilon used by the layer normalization layers.
+
+pad_token_id (`int`, *optional*, defaults to `0`) : Token id used for padding in the vocabulary.
+
+bos_token_id (`int`, *optional*) : Token id used for beginning-of-stream in the vocabulary.
+
+eos_token_id (`Union[int, list[int]]`, *optional*) : Token id used for end-of-stream in the vocabulary.
 
 This is the configuration class to store the configuration of a AlignModel. It is used to instantiate a Align
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [kakaobrain/align-base](https://huggingface.co/kakaobrain/align-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -220,55 +237,62 @@ Example:
 
 ## AlignVisionConfig[[transformers.AlignVisionConfig]]
 
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **image_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `600`) --
-  The size (resolution) of each image.
-- **width_coefficient** (`float`, *optional*, defaults to 2.0) --
-  Scaling coefficient for network width at each stage.
-- **depth_coefficient** (`float`, *optional*, defaults to 3.1) --
-  Scaling coefficient for network depth at each stage.
-- **depth_divisor** (`int`, *optional*, defaults to 8) --
-  A unit of network width.
-- **kernel_sizes** (`list[int]`, *optional*, defaults to `[3, 3, 5, 3, 5, 5, 3]`) --
-  List of kernel sizes to be used in each block.
-- **in_channels** (`list[int]`, *optional*, defaults to `[32, 16, 24, 40, 80, 112, 192]`) --
-  List of input channel sizes to be used in each block for convolutional layers.
-- **out_channels** (`list[int]`, *optional*, defaults to `[16, 24, 40, 80, 112, 192, 320]`) --
-  List of output channel sizes to be used in each block for convolutional layers.
-- **depthwise_padding** (`list[int]`, *optional*, defaults to `[]`) --
-  List of block indices with square padding.
-- **strides** (`list[int]`, *optional*, defaults to `[1, 2, 2, 2, 1, 2, 1]`) --
-  List of stride sizes to be used in each block for convolutional layers.
-- **num_block_repeats** (`list[int]`, *optional*, defaults to `[1, 2, 2, 3, 3, 4, 1]`) --
-  List of the number of times each block is to repeated.
-- **expand_ratios** (`list[int]`, *optional*, defaults to `[1, 6, 6, 6, 6, 6, 6]`) --
-  List of scaling coefficient of each block.
-- **squeeze_expansion_ratio** (`float`, *optional*, defaults to 0.25) --
-  Squeeze expansion ratio.
-- **hidden_act** (`str`, *optional*, defaults to `swish`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dim** (`int`, *optional*, defaults to 1280) --
-  The hidden dimension of the layer before the classification head.
-- **pooling_type** (`str` or `function`, *optional*, defaults to `"mean"`) --
-  Type of final pooling to be applied before the dense classification head. Available options are [`"mean"`,
-  `"max"`]
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **batch_norm_eps** (`float`, *optional*, defaults to `0.001`) --
-  The epsilon used by the batch normalization layers.
-- **batch_norm_momentum** (`float`, *optional*, defaults to 0.99) --
-  The momentum used by the batch normalization layers.
-- **drop_connect_rate** (`float`, *optional*, defaults to 0.2) --
-  The drop rate for skip connections.
+#### transformers.AlignVisionConfig[[transformers.AlignVisionConfig]]
+
+```python
+transformers.AlignVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 600, width_coefficient: float = 2.0, depth_coefficient: float = 3.1, depth_divisor: int = 8, kernel_sizes: list[int] | tuple[int, ...] = (3, 3, 5, 3, 5, 5, 3), in_channels: list[int] | tuple[int, ...] = (32, 16, 24, 40, 80, 112, 192), out_channels: list[int] | tuple[int, ...] = (16, 24, 40, 80, 112, 192, 320), depthwise_padding: list | tuple[int, ...] = (), strides: list[int] | tuple[int, ...] = (1, 2, 2, 2, 1, 2, 1), num_block_repeats: list[int] | tuple[int, ...] = (1, 2, 2, 3, 3, 4, 1), expand_ratios: list[int] | tuple[int, ...] = (1, 6, 6, 6, 6, 6, 6), squeeze_expansion_ratio: float = 0.25, hidden_act: str = 'swish', hidden_dim: int = 2560, pooling_type: str = 'mean', initializer_range: float = 0.02, batch_norm_eps: float = 0.001, batch_norm_momentum: float = 0.99, drop_connect_rate: float | int = 0.2)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/align/configuration_align.py#L66)
+
+**Parameters:**
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+image_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `600`) : The size (resolution) of each image.
+
+width_coefficient (`float`, *optional*, defaults to 2.0) : Scaling coefficient for network width at each stage.
+
+depth_coefficient (`float`, *optional*, defaults to 3.1) : Scaling coefficient for network depth at each stage.
+
+depth_divisor (`int`, *optional*, defaults to 8) : A unit of network width.
+
+kernel_sizes (`list[int]`, *optional*, defaults to `[3, 3, 5, 3, 5, 5, 3]`) : List of kernel sizes to be used in each block.
+
+in_channels (`list[int]`, *optional*, defaults to `[32, 16, 24, 40, 80, 112, 192]`) : List of input channel sizes to be used in each block for convolutional layers.
+
+out_channels (`list[int]`, *optional*, defaults to `[16, 24, 40, 80, 112, 192, 320]`) : List of output channel sizes to be used in each block for convolutional layers.
+
+depthwise_padding (`list[int]`, *optional*, defaults to `[]`) : List of block indices with square padding.
+
+strides (`list[int]`, *optional*, defaults to `[1, 2, 2, 2, 1, 2, 1]`) : List of stride sizes to be used in each block for convolutional layers.
+
+num_block_repeats (`list[int]`, *optional*, defaults to `[1, 2, 2, 3, 3, 4, 1]`) : List of the number of times each block is to repeated.
+
+expand_ratios (`list[int]`, *optional*, defaults to `[1, 6, 6, 6, 6, 6, 6]`) : List of scaling coefficient of each block.
+
+squeeze_expansion_ratio (`float`, *optional*, defaults to 0.25) : Squeeze expansion ratio.
+
+hidden_act (`str`, *optional*, defaults to `swish`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dim (`int`, *optional*, defaults to 1280) : The hidden dimension of the layer before the classification head.
+
+pooling_type (`str` or `function`, *optional*, defaults to `"mean"`) : Type of final pooling to be applied before the dense classification head. Available options are [`"mean"`, `"max"`]
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+batch_norm_eps (`float`, *optional*, defaults to `0.001`) : The epsilon used by the batch normalization layers.
+
+batch_norm_momentum (`float`, *optional*, defaults to 0.99) : The momentum used by the batch normalization layers.
+
+drop_connect_rate (`float`, *optional*, defaults to 0.2) : The drop rate for skip connections.
 
 This is the configuration class to store the configuration of a AlignModel. It is used to instantiate a Align
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [kakaobrain/align-base](https://huggingface.co/kakaobrain/align-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -287,47 +311,64 @@ Example:
 
 ## AlignProcessor[[transformers.AlignProcessor]]
 
-- **image_processor** (`EfficientNetImageProcessor`) --
-  The image processor is a required input.
-- **tokenizer** (`BertTokenizer`) --
-  The tokenizer is a required input.
+#### transformers.AlignProcessor[[transformers.AlignProcessor]]
+
+```python
+transformers.AlignProcessor(image_processor, tokenizer)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/align/processing_align.py#L33)
+
+**Parameters:**
+
+image_processor (`EfficientNetImageProcessor`) : The image processor is a required input.
+
+tokenizer (`BertTokenizer`) : The tokenizer is a required input.
+
 Constructs a AlignProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[AlignProcessor](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignProcessor) offers all the functionalities of [EfficientNetImageProcessor](/docs/transformers/v5.14.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor) and [BertTokenizer](/docs/transformers/v5.14.0/en/model_doc/electra#transformers.BertTokenizer). See the
-[~EfficientNetImageProcessor](/docs/transformers/v5.14.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor) and [~BertTokenizer](/docs/transformers/v5.14.0/en/model_doc/electra#transformers.BertTokenizer) for more information.
+[AlignProcessor](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignProcessor) offers all the functionalities of [EfficientNetImageProcessor](/docs/transformers/v5.15.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor) and [BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer). See the
+[~EfficientNetImageProcessor](/docs/transformers/v5.15.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor) and [~BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer) for more information.
 
-- **images** (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) --
-  Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If
-  passing in images with pixel values between 0 and 1, set `do_rescale=False`.
-- **text** (`Union[str, list[str], list[list[str]]]`, *optional*) --
-  The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings
-  (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
-- **videos** (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor], list[list[PIL.Image.Image]], list[list[numpy.ndarray]], list[list[torch.Tensor]], ~video_utils.URL, list[~video_utils.URL], list[list[~video_utils.URL]], ~video_utils.Path, list[~video_utils.Path], list[list[~video_utils.Path]]]`, *optional*) --
-  Video to preprocess. Expects a single or batch of videos with pixel values ranging from 0 to 255. If
-  passing in videos with pixel values between 0 and 1, set `do_rescale=False`.
-- **audio** (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) --
-  The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor.
-  In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels,
-  and T is the sample length of the audio.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  If set, will return tensors of a particular framework. Acceptable values are:
+#### __call__[[transformers.AlignProcessor.__call__]]
 
-  - `'pt'`: Return PyTorch `torch.Tensor` objects.
-  - `'np'`: Return NumPy `np.ndarray` objects.
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) --
-  Additional processing options for each modality (text, images, videos, audio). Model-specific parameters
-  are listed above; see the TypedDict class for the complete list of supported arguments.
+```python
+__call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+
+**Parameters:**
+
+images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+text (`Union[str, list[str], list[list[str]]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
+
+videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor], list[list[PIL.Image.Image]], list[list[numpy.ndarray]], list[list[torch.Tensor]], ~video_utils.URL, list[~video_utils.URL], list[list[~video_utils.URL]], ~video_utils.Path, list[~video_utils.Path], list[list[~video_utils.Path]]]`, *optional*) : Video to preprocess. Expects a single or batch of videos with pixel values ranging from 0 to 255. If passing in videos with pixel values between 0 and 1, set `do_rescale=False`.
+
+audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
+
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## AlignModel[[transformers.AlignModel]]
 
-- **config** ([AlignConfig](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.AlignModel[[transformers.AlignModel]]
+
+```python
+transformers.AlignModel(config: AlignConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/align/modeling_align.py#L988)
+
+**Parameters:**
+
+config ([AlignConfig](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Align Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -335,44 +376,37 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.AlignModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, return_loss: bool | None = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [EfficientNetImageProcessor](/docs/transformers/v5.14.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor). See `EfficientNetImageProcessor.__call__()` for details ([AlignProcessor](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignProcessor) uses
-  [EfficientNetImageProcessor](/docs/transformers/v5.14.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor) for processing images).
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/align/modeling_align.py#L1084)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [EfficientNetImageProcessor](/docs/transformers/v5.15.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor). See `EfficientNetImageProcessor.__call__()` for details ([AlignProcessor](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignProcessor) uses [EfficientNetImageProcessor](/docs/transformers/v5.15.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor) for processing images).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **return_loss** (`bool`, *optional*) --
-  Whether or not to return the contrastive loss.`AlignOutput` or `tuple(torch.FloatTensor)`A `AlignOutput` or a tuple of
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+return_loss (`bool`, *optional*) : Whether or not to return the contrastive loss.
+
+**Returns:** `AlignOutput` or `tuple(torch.FloatTensor)`
+
+A `AlignOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([AlignConfig](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignConfig)) and inputs.
-The [AlignModel](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([AlignConfig](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignConfig)) and inputs.
+
+The [AlignModel](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -383,10 +417,10 @@ the latter silently ignores them.
   similarity scores.
 - **logits_per_text** (`torch.FloatTensor` of shape `(text_batch_size, image_batch_size)`) -- The scaled dot product scores between `text_embeds` and `image_embeds`. This represents the text-image
   similarity scores.
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [AlignTextModel](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignTextModel).
-- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The output of [AlignVisionModel](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignVisionModel).
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [AlignTextModel](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignTextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPoolingAndNoAttention`, *optional*) -- The output of the [AlignVisionModel](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignVisionModel).
+- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [AlignTextModel](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignTextModel).
+- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The output of [AlignVisionModel](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignVisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [AlignTextModel](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignTextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPoolingAndNoAttention`, *optional*) -- The output of the [AlignVisionModel](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignVisionModel).
 
 Examples:
 
@@ -411,37 +445,31 @@ Examples:
 >>> probs = logits_per_image.softmax(dim=1)  # we can take the softmax to get the label probabilities
 ```
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### get_text_features[[transformers.AlignModel.get_text_features]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+get_text_features(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/align/modeling_align.py#L1021)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([AlignConfig](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignConfig)) and inputs.
+elements depending on the configuration ([AlignConfig](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -472,12 +500,23 @@ Examples:
 ...     text_features = model.get_text_features(**inputs)
 ```
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [EfficientNetImageProcessor](/docs/transformers/v5.14.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor). See `EfficientNetImageProcessor.__call__()` for details ([AlignProcessor](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignProcessor) uses
-  [EfficientNetImageProcessor](/docs/transformers/v5.14.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor) for processing images).[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### get_image_features[[transformers.AlignModel.get_image_features]]
+
+```python
+get_image_features(pixel_values: FloatTensor, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/align/modeling_align.py#L1059)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [EfficientNetImageProcessor](/docs/transformers/v5.15.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor). See `EfficientNetImageProcessor.__call__()` for details ([AlignProcessor](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignProcessor) uses [EfficientNetImageProcessor](/docs/transformers/v5.15.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor) for processing images).
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([AlignConfig](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignConfig)) and inputs.
+elements depending on the configuration ([AlignConfig](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -514,16 +553,23 @@ Examples:
 
 ## AlignTextModel[[transformers.AlignTextModel]]
 
-- **config** ([AlignTextConfig](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignTextConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
-- **add_pooling_layer** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a pooling layer
+#### transformers.AlignTextModel[[transformers.AlignTextModel]]
+
+```python
+transformers.AlignTextModel(config: AlignTextConfig, add_pooling_layer: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/align/modeling_align.py#L805)
+
+**Parameters:**
+
+config ([AlignTextConfig](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+
+add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The text model from ALIGN without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -531,38 +577,33 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.AlignTextModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/align/modeling_align.py#L836)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([AlignConfig](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignConfig)) and inputs.
-The [AlignTextModel](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignTextModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([AlignConfig](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignConfig)) and inputs.
+
+The [AlignTextModel](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -600,14 +641,21 @@ Examples:
 
 ## AlignVisionModel[[transformers.AlignVisionModel]]
 
-- **config** ([AlignVisionConfig](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignVisionConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.AlignVisionModel[[transformers.AlignVisionModel]]
+
+```python
+transformers.AlignVisionModel(config: AlignVisionConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/align/modeling_align.py#L911)
+
+**Parameters:**
+
+config ([AlignVisionConfig](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The vision model from ALIGN without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -615,13 +663,25 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [EfficientNetImageProcessor](/docs/transformers/v5.14.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor). See `EfficientNetImageProcessor.__call__()` for details ([AlignProcessor](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignProcessor) uses
-  [EfficientNetImageProcessor](/docs/transformers/v5.14.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor) for processing images).`BaseModelOutputWithPoolingAndNoAttention` or `tuple(torch.FloatTensor)`A `BaseModelOutputWithPoolingAndNoAttention` or a tuple of
+#### forward[[transformers.AlignVisionModel.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/align/modeling_align.py#L939)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [EfficientNetImageProcessor](/docs/transformers/v5.15.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor). See `EfficientNetImageProcessor.__call__()` for details ([AlignProcessor](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignProcessor) uses [EfficientNetImageProcessor](/docs/transformers/v5.15.0/en/model_doc/efficientnet#transformers.EfficientNetImageProcessor) for processing images).
+
+**Returns:** `BaseModelOutputWithPoolingAndNoAttention` or `tuple(torch.FloatTensor)`
+
+A `BaseModelOutputWithPoolingAndNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([AlignConfig](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignConfig)) and inputs.
-The [AlignVisionModel](/docs/transformers/v5.14.0/en/model_doc/align#transformers.AlignVisionModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([AlignConfig](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignConfig)) and inputs.
+
+The [AlignVisionModel](/docs/transformers/v5.15.0/en/model_doc/align#transformers.AlignVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -656,5 +716,5 @@ Examples:
 >>> pooled_output = outputs.pooler_output  # pooled CLS states
 ```
 
-### UniSpeech
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/unispeech.md
+### EfficientLoFTR
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/efficientloftr.md

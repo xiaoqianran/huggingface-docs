@@ -94,5 +94,5 @@ ort_model.save_pretrained("onnx/")
 tokenizer.save_pretrained("onnx/")
 ```
 
-### Fine-tuning
-https://huggingface.co/docs/transformers/v5.14.0/training.md
+### Feature extractors
+https://huggingface.co/docs/transformers/v5.15.0/feature_extractors.md

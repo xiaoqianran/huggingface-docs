@@ -25,7 +25,7 @@ Ulysses sequence parallelism (SP) trains on very long sequences by splitting the
 
 ## Configure
 
-Sequence parallelism requires Accelerate v1.12.0 and at least 2 GPUs. Configure sequence parallelism in Accelerate's `ParallelismConfig` and pass it to [parallelism_config](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments.parallelism_config) or an [Accelerate config file](./accelerate#accelerate-config-file).
+Sequence parallelism requires Accelerate v1.12.0 and at least 2 GPUs. Configure sequence parallelism in Accelerate's `ParallelismConfig` and pass it to [parallelism_config](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments.parallelism_config) or an [Accelerate config file](./accelerate#accelerate-config-file).
 
 ```py
 from accelerate.utils import ParallelismConfig, DeepSpeedSequenceParallelConfig
@@ -47,7 +47,7 @@ training_args = TrainingArguments(
 )
 ```
 
-Run [accelerate launch](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-launch) with a [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer)-based script.
+Run [accelerate launch](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-launch) with a [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer)-based script.
 
 ```shell
 accelerate launch --num_processes 4 train.py \
@@ -73,7 +73,7 @@ parallelism_config:
   parallelism_config_sp_attn_implementation: flash_attention_2
 ```
 
-Run [accelerate launch](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-launch) with a [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer)-based script.
+Run [accelerate launch](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-launch) with a [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer)-based script.
 
 ```shell
 accelerate launch --config_file alst_config.yaml train.py \
@@ -85,7 +85,7 @@ accelerate launch --config_file alst_config.yaml train.py \
 The following fields are important for configuring sequence parallelism.
 
 > [!TIP]
-> The [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) automatically handles DataLoader sharding, `position_ids` generation, label shifting, and loss aggregation across SP ranks. If you're writing a custom training loop, see the Accelerate [Sequence Parallelism](https://huggingface.co/docs/accelerate/concept_guides/sequence_parallelism) guide instead.
+> The [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) automatically handles DataLoader sharding, `position_ids` generation, label shifting, and loss aggregation across SP ranks. If you're writing a custom training loop, see the Accelerate [Sequence Parallelism](https://huggingface.co/docs/accelerate/concept_guides/sequence_parallelism) guide instead.
 
 - `sp_backend` must be set to `"deepspeed"` to use Ulysses sequence parallelism.
 
@@ -133,5 +133,5 @@ parallelism_config = ParallelismConfig(
 - The [parallelism methods](./perf_train_gpu_many) guide shows how to combine sequence parallelism with other strategies like ZeRO.
 - The [Ulysses Sequence Parallelism: Training with Million-Token Contexts](https://huggingface.co/blog/ulysses-sp) blog post explains how Ulysses works and how it's integrated in Accelerate, Trainer, and SFTTrainer.
 
-### Generation strategies
-https://huggingface.co/docs/transformers/v5.14.0/generation_strategies.md
+### Generation features
+https://huggingface.co/docs/transformers/v5.15.0/generation_features.md

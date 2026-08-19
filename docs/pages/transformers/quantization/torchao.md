@@ -63,12 +63,12 @@ For a complete list of available configurations, see the [quantization API docum
 
 You can manually choose the quantization types and settings or automatically select the quantization types.
 
-Create a [TorchAoConfig](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.TorchAoConfig) and specify the quantization type and `group_size` of the weights to quantize (for int8 weight only and int4 weight only). Set the `cache_implementation` to `"static"` to automatically [torch.compile](https://pytorch.org/tutorials/intermediate/torch_compile_tutorial.html) the forward method.
+Create a [TorchAoConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.TorchAoConfig) and specify the quantization type and `group_size` of the weights to quantize (for int8 weight only and int4 weight only). Set the `cache_implementation` to `"static"` to automatically [torch.compile](https://pytorch.org/tutorials/intermediate/torch_compile_tutorial.html) the forward method.
 
 We'll show examples for recommended quantization methods based on hardwares, e.g. A100 GPU, H100 GPU, CPU.
 
 > [!WARNING]
-> torchao automatically compiles the model during the first inference if we set `cache_implementation="static"`. The model is recompiled every time batch size or `max_new_tokens` is modified. Pass `disable_compile=True` in [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to quantize without compilation.
+> torchao automatically compiles the model during the first inference if we set `cache_implementation="static"`. The model is recompiled every time batch size or `max_new_tokens` is modified. Pass `disable_compile=True` in [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to quantize without compilation.
 
 ### H100 GPU
 
@@ -119,32 +119,6 @@ quantized_model = AutoModelForCausalLM.from_pretrained(
 tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B-Instruct")
 input_text = "What are we having for dinner?"
 input_ids = tokenizer(input_text, return_tensors="pt").to(quantized_model.device, quantized_model.dtype)
-
-# auto-compile the quantized model with `cache_implementation="static"` to get speed up
-output = quantized_model.generate(**input_ids, max_new_tokens=10, cache_implementation="static")
-print(tokenizer.decode(output[0], skip_special_tokens=True))
-```
-
-```py
-import torch
-from transformers import TorchAoConfig, AutoModelForCausalLM, AutoTokenizer
-from torchao.quantization import Int4WeightOnlyConfig
-from torchao.dtypes import MarlinSparseLayout
-
-quant_config = Int4WeightOnlyConfig(layout=MarlinSparseLayout())
-quantization_config = TorchAoConfig(quant_type=quant_config)
-
-# Load and quantize the model with sparsity. A sparse checkpoint is needed to accelerate without accuracy loss
-quantized_model = AutoModelForCausalLM.from_pretrained(
-    "RedHatAI/Sparse-Llama-3.1-8B-2of4",
-    dtype=torch.float16,
-    device_map="auto",
-    quantization_config=quantization_config
-)
-
-tokenizer = AutoTokenizer.from_pretrained("RedHatAI/Sparse-Llama-3.1-8B-2of4")
-input_text = "What are we having for dinner?"
-input_ids = tokenizer(input_text, return_tensors="pt").to(model.device)
 
 # auto-compile the quantized model with `cache_implementation="static"` to get speed up
 output = quantized_model.generate(**input_ids, max_new_tokens=10, cache_implementation="static")
@@ -204,32 +178,6 @@ quantized_model = AutoModelForCausalLM.from_pretrained(
 )
 
 tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B-Instruct")
-input_text = "What are we having for dinner?"
-input_ids = tokenizer(input_text, return_tensors="pt").to(quantized_model.device, quantized_model.dtype)
-
-# auto-compile the quantized model with `cache_implementation="static"` to get speed up
-output = quantized_model.generate(**input_ids, max_new_tokens=10, cache_implementation="static")
-print(tokenizer.decode(output[0], skip_special_tokens=True))
-```
-
-```py
-import torch
-from transformers import TorchAoConfig, AutoModelForCausalLM, AutoTokenizer
-from torchao.quantization import Int4WeightOnlyConfig
-from torchao.dtypes import MarlinSparseLayout
-
-quant_config = Int4WeightOnlyConfig(layout=MarlinSparseLayout())
-quantization_config = TorchAoConfig(quant_type=quant_config)
-
-# Load and quantize the model with sparsity. A sparse checkpoint is needed to accelerate without accuracy loss
-quantized_model = AutoModelForCausalLM.from_pretrained(
-    "RedHatAI/Sparse-Llama-3.1-8B-2of4",
-    dtype=torch.float16,
-    device_map="auto",
-    quantization_config=quantization_config
-)
-
-tokenizer = AutoTokenizer.from_pretrained("RedHatAI/Sparse-Llama-3.1-8B-2of4")
 input_text = "What are we having for dinner?"
 input_ids = tokenizer(input_text, return_tensors="pt").to(quantized_model.device, quantized_model.dtype)
 
@@ -518,7 +466,7 @@ print("Response:", correct_output_text[0][len(prompt) :])
 # Load model from saved checkpoint
 reloaded_model = AutoModelForCausalLM.from_pretrained(
     save_to,
-    device_map="cuda:0",
+    device_map=torch.accelerator.current_accelerator(),
     torch_dtype=torch.bfloat16,
     # quantization_config=quantization_config,
 )
@@ -600,9 +548,9 @@ For int4, the model can only be loaded on the same device it was quantized on be
 import torch
 from transformers import TorchAoConfig, AutoModelForCausalLM, AutoTokenizer
 from torchao.quantization import Int4WeightOnlyConfig
-from torchao.dtypes import Int4CPULayout
+from torchao.quantization.quantize_.workflows import Int4PackingFormat
 
-quant_config = Int4WeightOnlyConfig(group_size=128, layout=Int4CPULayout())
+quant_config = Int4WeightOnlyConfig(group_size=128, int4_packing_format=Int4PackingFormat.PLAIN_INT32)
 quantization_config = TorchAoConfig(quant_type=quant_config)
 
 # Load and quantize the model
@@ -662,5 +610,5 @@ Refer to [Other Available Quantization Techniques](https://github.com/pytorch/ao
 
 If you encounter any issues with the Transformers integration, please open an issue on the [Transformers](https://github.com/huggingface/transformers/issues) repository. For issues directly related to torchao, please open an issue on the [torchao](https://github.com/pytorch/ao/issues) repository.
 
-### Bitsandbytes
-https://huggingface.co/docs/transformers/v5.14.0/quantization/bitsandbytes.md
+### MXFP4
+https://huggingface.co/docs/transformers/v5.15.0/quantization/mxfp4.md

@@ -23,46 +23,54 @@ the number of input frames per clip changes based on the model size so you shoul
 
 ## TimesformerConfig[[transformers.TimesformerConfig]]
 
-- **image_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) --
-  The size (resolution) of each image.
-- **patch_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `16`) --
-  The size (resolution) of each patch.
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **num_frames** (`int`, *optional*, defaults to 8) --
-  The number of frames in each video.
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **intermediate_size** (`int`, *optional*, defaults to `3072`) --
-  Dimension of the MLP representations.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **attention_probs_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the layer normalization layers.
-- **qkv_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a bias to the queries, keys and values.
-- **attention_type** (`str`, *optional*, defaults to `"divided_space_time"`) --
-  The attention type to use. Must be one of `"divided_space_time"`, `"space_only"`, `"joint_space_time"`.
-- **drop_path_rate** (`int`, *optional*, defaults to `0`) --
-  Drop path rate for the patch fusion.
+#### transformers.TimesformerConfig[[transformers.TimesformerConfig]]
+
+```python
+transformers.TimesformerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, num_frames: int = 8, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-06, qkv_bias: bool = True, attention_type: str = 'divided_space_time', drop_path_rate: int = 0)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesformer/configuration_timesformer.py#L24)
+
+**Parameters:**
+
+image_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) : The size (resolution) of each image.
+
+patch_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `16`) : The size (resolution) of each patch.
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+num_frames (`int`, *optional*, defaults to 8) : The number of frames in each video.
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+intermediate_size (`int`, *optional*, defaults to `3072`) : Dimension of the MLP representations.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+attention_probs_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the layer normalization layers.
+
+qkv_bias (`bool`, *optional*, defaults to `True`) : Whether to add a bias to the queries, keys and values.
+
+attention_type (`str`, *optional*, defaults to `"divided_space_time"`) : The attention type to use. Must be one of `"divided_space_time"`, `"space_only"`, `"joint_space_time"`.
+
+drop_path_rate (`int`, *optional*, defaults to `0`) : Drop path rate for the patch fusion.
 
 This is the configuration class to store the configuration of a TimesformerModel. It is used to instantiate a Timesformer
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/timesformer-base-finetuned-k600](https://huggingface.co/facebook/timesformer-base-finetuned-k600)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -81,16 +89,39 @@ Example:
 
 ## TimesformerVideoProcessor[[transformers.TimesformerVideoProcessor]]
 
+#### transformers.TimesformerVideoProcessor[[transformers.TimesformerVideoProcessor]]
+
+```python
+transformers.TimesformerVideoProcessor(**kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesformer/video_processing_timesformer.py#L20)
+
+#### preprocess[[transformers.TimesformerVideoProcessor.preprocess]]
+
+```python
+preprocess(videos, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesformer/video_processing_timesformer.py#L36)
+
 ## TimesformerModel[[transformers.TimesformerModel]]
 
-- **config** ([TimesformerModel](/docs/transformers/v5.14.0/en/model_doc/timesformer#transformers.TimesformerModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.TimesformerModel[[transformers.TimesformerModel]]
+
+```python
+transformers.TimesformerModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesformer/modeling_timesformer.py#L463)
+
+**Parameters:**
+
+config ([TimesformerModel](/docs/transformers/v5.15.0/en/model_doc/timesformer#transformers.TimesformerModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Timesformer Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -98,21 +129,31 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [VideoMAEImageProcessor](/docs/transformers/v5.14.0/en/model_doc/videomae#transformers.VideoMAEImageProcessor). See `VideoMAEImageProcessor.__call__()` for details (`processor_class` uses
-  [VideoMAEImageProcessor](/docs/transformers/v5.14.0/en/model_doc/videomae#transformers.VideoMAEImageProcessor) for processing images).
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[BaseModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`A [BaseModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+#### forward[[transformers.TimesformerModel.forward]]
+
+```python
+forward(pixel_values: FloatTensor, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesformer/modeling_timesformer.py#L479)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoMAEImageProcessor](/docs/transformers/v5.15.0/en/model_doc/videomae#transformers.VideoMAEImageProcessor). See `VideoMAEImageProcessor.__call__()` for details (`processor_class` uses [VideoMAEImageProcessor](/docs/transformers/v5.15.0/en/model_doc/videomae#transformers.VideoMAEImageProcessor) for processing images).
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TimesformerConfig](/docs/transformers/v5.14.0/en/model_doc/timesformer#transformers.TimesformerConfig)) and inputs.
-The [TimesformerModel](/docs/transformers/v5.14.0/en/model_doc/timesformer#transformers.TimesformerModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([TimesformerConfig](/docs/transformers/v5.15.0/en/model_doc/timesformer#transformers.TimesformerConfig)) and inputs.
+
+The [TimesformerModel](/docs/transformers/v5.15.0/en/model_doc/timesformer#transformers.TimesformerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -202,15 +243,22 @@ Examples:
 
 ## TimesformerForVideoClassification[[transformers.TimesformerForVideoClassification]]
 
-- **config** ([TimesformerForVideoClassification](/docs/transformers/v5.14.0/en/model_doc/timesformer#transformers.TimesformerForVideoClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.TimesformerForVideoClassification[[transformers.TimesformerForVideoClassification]]
+
+```python
+transformers.TimesformerForVideoClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesformer/modeling_timesformer.py#L596)
+
+**Parameters:**
+
+config ([TimesformerForVideoClassification](/docs/transformers/v5.15.0/en/model_doc/timesformer#transformers.TimesformerForVideoClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 TimeSformer Model transformer with a video classification head on top (a linear layer on top of the final hidden state
 of the [CLS] token) e.g. for ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -218,25 +266,33 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [VideoMAEImageProcessor](/docs/transformers/v5.14.0/en/model_doc/videomae#transformers.VideoMAEImageProcessor). See `VideoMAEImageProcessor.__call__()` for details (`processor_class` uses
-  [VideoMAEImageProcessor](/docs/transformers/v5.14.0/en/model_doc/videomae#transformers.VideoMAEImageProcessor) for processing images).
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the image classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[ImageClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`A [ImageClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
+#### forward[[transformers.TimesformerForVideoClassification.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesformer/modeling_timesformer.py#L609)
+
+**Parameters:**
+
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoMAEImageProcessor](/docs/transformers/v5.15.0/en/model_doc/videomae#transformers.VideoMAEImageProcessor). See `VideoMAEImageProcessor.__call__()` for details (`processor_class` uses [VideoMAEImageProcessor](/docs/transformers/v5.15.0/en/model_doc/videomae#transformers.VideoMAEImageProcessor) for processing images).
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TimesformerConfig](/docs/transformers/v5.14.0/en/model_doc/timesformer#transformers.TimesformerConfig)) and inputs.
-The [TimesformerForVideoClassification](/docs/transformers/v5.14.0/en/model_doc/timesformer#transformers.TimesformerForVideoClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([TimesformerConfig](/docs/transformers/v5.15.0/en/model_doc/timesformer#transformers.TimesformerConfig)) and inputs.
+
+The [TimesformerForVideoClassification](/docs/transformers/v5.15.0/en/model_doc/timesformer#transformers.TimesformerForVideoClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -327,5 +383,5 @@ Examples:
 eating spaghetti
 ```
 
-### Youtu-LLM
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/youtu.md
+### CohereAsr
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/cohere_asr.md

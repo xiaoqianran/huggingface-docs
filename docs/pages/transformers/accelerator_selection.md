@@ -59,5 +59,5 @@ export ZE_ENABLE_PCI_ID_DEVICE_ORDER=1
 
 For more on device enumeration and sorting on Intel XPU, see the [Level Zero](https://github.com/oneapi-src/level-zero/blob/master/README.md?plain=1#L87) documentation.
 
-### Ulysses sequence parallelism
-https://huggingface.co/docs/transformers/v5.14.0/deepspeed_alst.md
+### Model structure rules
+https://huggingface.co/docs/transformers/v5.15.0/modeling_rules.md

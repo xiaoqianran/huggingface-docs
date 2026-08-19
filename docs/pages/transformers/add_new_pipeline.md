@@ -1,20 +1,20 @@
 # Adding a new pipeline
 
-Make [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) your own by subclassing it and implementing a few methods. Share the code with the community on the [Hub](https://hf.co) and register the pipeline with Transformers so that everyone can quickly and easily use it.
+Make [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) your own by subclassing it and implementing a few methods. Share the code with the community on the [Hub](https://hf.co) and register the pipeline with Transformers so that everyone can quickly and easily use it.
 
 This guide will walk you through the process of adding a new pipeline to Transformers.
 
 ## Design choices
 
-At a minimum, you only need to provide [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) with an appropriate input for a task. This is also where you should begin when designing your pipeline.
+At a minimum, you only need to provide [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) with an appropriate input for a task. This is also where you should begin when designing your pipeline.
 
-Decide what input types [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) can accept. It can be strings, raw bytes, dictionaries, and so on. Try to keep the inputs in pure Python where possible because it's more compatible. Next, decide on the output [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) should return. Again, keeping the output in Python is the simplest and best option because it's easier to work with.
+Decide what input types [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) can accept. It can be strings, raw bytes, dictionaries, and so on. Try to keep the inputs in pure Python where possible because it's more compatible. Next, decide on the output [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) should return. Again, keeping the output in Python is the simplest and best option because it's easier to work with.
 
-Keeping the inputs and outputs simple, and ideally JSON-serializable, makes it easier for users to run your [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) without needing to learn new object types. It's also common to support many different input types for even greater ease of use. For example, making an audio file acceptable from a filename, URL, or raw bytes gives the user more flexibility in how they provide the audio data.
+Keeping the inputs and outputs simple, and ideally JSON-serializable, makes it easier for users to run your [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) without needing to learn new object types. It's also common to support many different input types for even greater ease of use. For example, making an audio file acceptable from a filename, URL, or raw bytes gives the user more flexibility in how they provide the audio data.
 
 ## Create a pipeline
 
-With an input and output decided, you can start implementing [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline). Your pipeline should inherit from the base [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) class and include 4 methods.
+With an input and output decided, you can start implementing [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline). Your pipeline should inherit from the base [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) class and include 4 methods.
 
 ```py
 from transformers import Pipeline
@@ -53,7 +53,7 @@ def postprocess(self, model_outputs, top_k=5):
     return best_class
 ```
 
-4. `_sanitize_parameters` lets users pass additional parameters to [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline). This could be during initialization or when [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) is called. `_sanitize_parameters` returns 3 dicts of additional keyword arguments that are passed directly to `preprocess`, `_forward`, and `postprocess`. Don't add anything if a user didn't call the pipeline with extra parameters. This keeps the default arguments in the function definition which is always more natural.
+4. `_sanitize_parameters` lets users pass additional parameters to [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline). This could be during initialization or when [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) is called. `_sanitize_parameters` returns 3 dicts of additional keyword arguments that are passed directly to `preprocess`, `_forward`, and `postprocess`. Don't add anything if a user didn't call the pipeline with extra parameters. This keeps the default arguments in the function definition which is always more natural.
 
 For example, add a `top_k` parameter in `postprocess` to return the top 5 most likely classes. Then in `_sanitize_parameters`, check if the user passed in `top_k` and add it to `postprocess_kwargs`.
 
@@ -106,7 +106,7 @@ PIPELINE_REGISTRY.register_pipeline(
 
 Share your pipeline with the community on the [Hub](https://hf.co) or you can add it directly to Transformers.
 
-It's faster to upload your pipeline code to the Hub because it doesn't require a review from the Transformers team. Adding the pipeline to Transformers may be slower because it requires a review and you need to add tests to ensure your [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) works.
+It's faster to upload your pipeline code to the Hub because it doesn't require a review from the Transformers team. Adding the pipeline to Transformers may be slower because it requires a review and you need to add tests to ensure your [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) works.
 
 ### Upload to the Hub
 
@@ -174,7 +174,7 @@ The [register_pipeline](https://github.com/huggingface/transformers/blob/9feae5f
   },
 ```
 
-Call [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) to push the pipeline to the Hub. The Python file containing the code is copied to the Hub, and the pipelines model and tokenizer are also saved and pushed to the Hub. Your pipeline should now be available on the Hub under your namespace.
+Call [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) to push the pipeline to the Hub. The Python file containing the code is copied to the Hub, and the pipelines model and tokenizer are also saved and pushed to the Hub. Your pipeline should now be available on the Hub under your namespace.
 
 ```py
 from transformers import pipeline
@@ -208,5 +208,5 @@ Finally, you should also implement the following 4 tests.
 1. [test_small_model_pt](https://github.com/huggingface/transformers/blob/db70426854fe7850f2c5834d633aff637f14772e/tests/pipelines/test_pipelines_text_classification.py#L59), use a small model for these pipelines to make sure they return the correct outputs. The results don't have to make sense. Each pipeline should return the same result.
 1. [test_large_model_pt](https://github.com/huggingface/transformers/blob/db70426854fe7850f2c5834d633aff637f14772e/tests/pipelines/test_pipelines_zero_shot_image_classification.py#L187), use a realistic model for these pipelines to make sure they return meaningful results. These tests are slow and should be marked as slow.
 
-### Subclassing Trainer methods
-https://huggingface.co/docs/transformers/v5.14.0/trainer_customize.md
+### Backbones
+https://huggingface.co/docs/transformers/v5.15.0/backbones.md

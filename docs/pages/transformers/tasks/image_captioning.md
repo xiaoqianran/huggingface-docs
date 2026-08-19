@@ -49,7 +49,7 @@ The dataset has two features, `image` and `text`.
 
 Many image captioning datasets contain multiple captions per image. In those cases, a common strategy is to randomly sample a caption amongst the available ones during training.
 
-Split the dataset's train split into a train and test set with the `train_test_split` method:
+Split the dataset's train split into a train and test set with the [train_test_split](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset.train_test_split) method:
 
 ```python
 ds = ds["train"].train_test_split(test_size=0.1)
@@ -112,7 +112,7 @@ With the dataset ready, you can now set up the model for fine-tuning.
 
 ## Load a base model
 
-Load the ["microsoft/git-base"](https://huggingface.co/microsoft/git-base) into a [AutoModelForCausalLM](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModelForCausalLM) object.
+Load the ["microsoft/git-base"](https://huggingface.co/microsoft/git-base) into a [AutoModelForCausalLM](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForCausalLM) object.
 
 ```python
 from transformers import AutoModelForCausalLM
@@ -143,9 +143,9 @@ def compute_metrics(eval_pred):
 
 ## Train
 
-Now, you are ready to start fine-tuning the model. You will use the 🤗 [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) for this.
+Now, you are ready to start fine-tuning the model. You will use the 🤗 [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) for this.
 
-First, define the training arguments using [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments).
+First, define the training arguments using [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments).
 
 ```python
 from transformers import TrainingArguments, Trainer
@@ -185,7 +185,7 @@ trainer = Trainer(
 )
 ```
 
-To start training, simply call [train()](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer.train) on the [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) object.
+To start training, simply call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) on the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) object.
 
 ```python
 trainer.train()
@@ -193,7 +193,7 @@ trainer.train()
 
 You should see the training loss drop smoothly as training progresses.
 
-Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
 
 ```python
 trainer.push_to_hub()
@@ -238,5 +238,5 @@ a drawing of a pink and blue pokemon
 
 Looks like the fine-tuned model generated a pretty good caption!
 
-### Keypoint Detection
-https://huggingface.co/docs/transformers/v5.14.0/tasks/keypoint_detection.md
+### Multimodal Generation
+https://huggingface.co/docs/transformers/v5.15.0/tasks/any_to_any.md

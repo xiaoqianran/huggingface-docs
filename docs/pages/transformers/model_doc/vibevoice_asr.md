@@ -301,7 +301,7 @@ num_runs = 20
 
 # Load processor + model
 processor = AutoProcessor.from_pretrained(model_id)
-model = VibeVoiceAsrForConditionalGeneration.from_pretrained(model_id, device_map="cuda")
+model = VibeVoiceAsrForConditionalGeneration.from_pretrained(model_id, device_map="auto")
 
 # Prepare static inputs
 chat_template = [
@@ -325,7 +325,7 @@ inputs = processor.apply_chat_template(
     chat_template,
     tokenize=True,
     return_dict=True,
-).to("cuda", torch.bfloat16)
+).to(model.device, torch.bfloat16)
 
 # Benchmark without compile
 print("Warming up without compile...")
@@ -333,15 +333,15 @@ with torch.no_grad():
     for _ in range(num_warmup):
         _ = model(**inputs)
 
-torch.cuda.synchronize()
+torch.accelerator.synchronize()
 
 print("\nBenchmarking without torch.compile...")
-torch.cuda.synchronize()
+torch.accelerator.synchronize()
 start = time.time()
 with torch.no_grad():
     for _ in range(num_runs):
         _ = model(**inputs)
-torch.cuda.synchronize()
+torch.accelerator.synchronize()
 no_compile_time = (time.time() - start) / num_runs
 print(f"Average time without compile: {no_compile_time:.4f}s")
 
@@ -354,15 +354,15 @@ with torch.no_grad():
     for _ in range(num_warmup):
         _ = model(**inputs)
 
-torch.cuda.synchronize()
+torch.accelerator.synchronize()
 
 print("\nBenchmarking with torch.compile...")
-torch.cuda.synchronize()
+torch.accelerator.synchronize()
 start = time.time()
 with torch.no_grad():
     for _ in range(num_runs):
         _ = model(**inputs)
-torch.cuda.synchronize()
+torch.accelerator.synchronize()
 compile_time = (time.time() - start) / num_runs
 print(f"Average time with compile: {compile_time:.4f}s")
 
@@ -413,27 +413,36 @@ print(transcription)
 
 ## VibeVoiceAsrConfig[[transformers.VibeVoiceAsrConfig]]
 
-- **acoustic_tokenizer_encoder_config** (`Union[VibeVoiceAcousticTokenizerConfig, dict]`, *optional*) --
-  The config object or dictionary of the acoustic tokenizer. This tokenizer extracts acoustic features from audio.
-- **semantic_tokenizer_encoder_config** (`Union[VibeVoiceAcousticTokenizerConfig, dict]`, *optional*) --
-  The config object or dictionary of the semantic tokenizer. This tokenizer extracts semantic features from audio.
-- **text_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the text backbone.
-- **audio_token_id** (`int`, *optional*, defaults to `151648`) --
-  The audio token index used as a placeholder for input audio.
-- **audio_bos_token_id** (`int`, *optional*, defaults to 151646) --
-  The audio begin-of-sequence token index.
-- **audio_eos_token_id** (`int`, *optional*, defaults to 151647) --
-  The audio end-of-sequence token index.
-- **acoustic_tokenizer_chunk_size** (`int`, *optional*, defaults to 1440000) --
-  The chunk size (in number of samples) to use when tokenizer audio inputs. Default corresponds to 60 seconds at 24kHz.
+#### transformers.VibeVoiceAsrConfig[[transformers.VibeVoiceAsrConfig]]
+
+```python
+transformers.VibeVoiceAsrConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, acoustic_tokenizer_encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, semantic_tokenizer_encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, audio_token_id: int = 151648, audio_bos_token_id: int = 151646, audio_eos_token_id: int = 151647, acoustic_tokenizer_chunk_size: int = 1440000)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vibevoice_asr/configuration_vibevoice_asr.py#L31)
+
+**Parameters:**
+
+acoustic_tokenizer_encoder_config (`Union[VibeVoiceAcousticTokenizerConfig, dict]`, *optional*) : The config object or dictionary of the acoustic tokenizer. This tokenizer extracts acoustic features from audio.
+
+semantic_tokenizer_encoder_config (`Union[VibeVoiceAcousticTokenizerConfig, dict]`, *optional*) : The config object or dictionary of the semantic tokenizer. This tokenizer extracts semantic features from audio.
+
+text_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the text backbone.
+
+audio_token_id (`int`, *optional*, defaults to `151648`) : The audio token index used as a placeholder for input audio.
+
+audio_bos_token_id (`int`, *optional*, defaults to 151646) : The audio begin-of-sequence token index.
+
+audio_eos_token_id (`int`, *optional*, defaults to 151647) : The audio end-of-sequence token index.
+
+acoustic_tokenizer_chunk_size (`int`, *optional*, defaults to 1440000) : The chunk size (in number of samples) to use when tokenizer audio inputs. Default corresponds to 60 seconds at 24kHz.
 
 This is the configuration class to store the configuration of a VibeVoiceAsrModel. It is used to instantiate a Vibevoice Asr
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/VibeVoice-ASR-HF](https://huggingface.co/microsoft/VibeVoice-ASR-HF)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -459,65 +468,96 @@ Example:
 
 ## VibeVoiceAsrProcessor[[transformers.VibeVoiceAsrProcessor]]
 
-'"}, {"name": "audio_bos_token", "val": " = '<|object_ref_start|>'"}, {"name": "audio_eos_token", "val": " = '<|object_ref_end|>'"}, {"name": "audio_duration_token", "val": " = '<|AUDIO_DURATION|>'"}]}>
-- **feature_extractor** (`VibeVoiceAcousticTokenizerFeatureExtractor`) --
-  The feature extractor for audio processing.
-- **tokenizer** (`Qwen2TokenizerFast`) --
-  The tokenizer for text processing.
-- **chat_template** (`str`, *optional*) --
-  A Jinja template which will be used to convert lists of messages in a chat into a tokenizable string.
-- **audio_token** (`str`, *optional*, defaults to `"<|box_start|>"`) --
-  The audio token placeholder to use in the chat template.
-- **audio_bos_token** (`str`, *optional*, defaults to `"<|object_ref_start|>"`) --
-  The audio begin-of-sequence token placeholder to use in the chat template.
-- **audio_eos_token** (`str`, *optional*, defaults to `"<|object_ref_end|>"`) --
-  The audio end-of-sequence token placeholder to use in the chat template.
-- **audio_duration_token** (`str`, *optional*, defaults to `"<|AUDIO_DURATION|>"`) --
-  The audio duration token placeholder to use in the chat template.
+#### transformers.VibeVoiceAsrProcessor[[transformers.VibeVoiceAsrProcessor]]
 
-Constructs a VibeVoice ASR processor which wraps [VibeVoiceAcousticTokenizerFeatureExtractor](/docs/transformers/v5.14.0/en/model_doc/vibevoice_acoustic_tokenizer#transformers.VibeVoiceAcousticTokenizerFeatureExtractor) and
-[Qwen2TokenizerFast](/docs/transformers/v5.14.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer) into a single processor that inherits both the audio feature extraction and
+```python
+transformers.VibeVoiceAsrProcessor(feature_extractor, tokenizer, chat_template = None, audio_token = 'REDACTED', audio_bos_token = 'REDACTED', audio_eos_token = 'REDACTED', audio_duration_token = 'REDACTED')
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vibevoice_asr/processing_vibevoice_asr.py#L48)
+
+**Parameters:**
+
+feature_extractor (`VibeVoiceAcousticTokenizerFeatureExtractor`) : The feature extractor for audio processing.
+
+tokenizer (`Qwen2TokenizerFast`) : The tokenizer for text processing.
+
+chat_template (`str`, *optional*) : A Jinja template which will be used to convert lists of messages in a chat into a tokenizable string.
+
+audio_token (`str`, *optional*, defaults to `"<|box_start|>"`) : The audio token placeholder to use in the chat template.
+
+audio_bos_token (`str`, *optional*, defaults to `"<|object_ref_start|>"`) : The audio begin-of-sequence token placeholder to use in the chat template.
+
+audio_eos_token (`str`, *optional*, defaults to `"<|object_ref_end|>"`) : The audio end-of-sequence token placeholder to use in the chat template.
+
+audio_duration_token (`str`, *optional*, defaults to `"<|AUDIO_DURATION|>"`) : The audio duration token placeholder to use in the chat template.
+
+Constructs a VibeVoice ASR processor which wraps [VibeVoiceAcousticTokenizerFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/vibevoice_acoustic_tokenizer#transformers.VibeVoiceAcousticTokenizerFeatureExtractor) and
+[Qwen2TokenizerFast](/docs/transformers/v5.15.0/en/model_doc/qwen2#transformers.Qwen2Tokenizer) into a single processor that inherits both the audio feature extraction and
 tokenizer functionalities.
 
-See the [__call__()](/docs/transformers/v5.14.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrProcessor.__call__) for more information.
+See the [__call__()](/docs/transformers/v5.15.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrProcessor.__call__) for more information.
 
-- **text** (`str`, `List[str]`) --
-  The input text(s) to process, typically prepared by apply_chat_template with audio token placeholders.
-- **audio** (`List[Union[str, np.ndarray]]`) --
-  Audio samples for transcription. Should match the number of audio token placeholders in text.
-- **output_labels** (bool, *optional*, default=False) --
-  Whether to return labels for training.
-- ****kwargs** --
-  Additional keyword arguments passed to the tokenizer and feature extractor.[BatchFeature](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BatchFeature)A dictionary with tokenized text (`input_ids`, `attention_mask`) and
-audio features (`input_features`, `input_features_mask`).
+#### __call__[[transformers.VibeVoiceAsrProcessor.__call__]]
 
-Main method to process text inputs with optional audio samples for ASR.
+```python
+__call__(text: str | list[str], audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, output_labels: bool | None = False, **kwargs: Unpack)
+```
 
-This method processes text inputs (typically prepared by apply_chat_template) and optional audio samples
-for transcription. It replaces the audio duration placeholder and expands audio token placeholders based
-on the actual audio length.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vibevoice_asr/processing_vibevoice_asr.py#L96)
 
-- **audio** (`str`, `list[str]`, `np.ndarray`, `torch.Tensor`, `list[np.ndarray]`, `list[torch.Tensor]`) --
-  Audio to transcribe. Strings are interpreted as local paths or URLs and will be loaded automatically by
-  the chat template loader; NumPy arrays and PyTorch tensors are forwarded directly.
-- **prompt** (`str` or `list[str]`, *optional*) --
-  Custom prompt(s) to include in the user turn as extra context. A list must be the same length as the
-  batch. When `None`, no additional context is provided.
-- ****kwargs** --
-  Additional keyword arguments forwarded to [apply_chat_template()](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) (for example
-  `text_kwargs`, `audio_kwargs`, ...).[BatchFeature](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BatchFeature)Processor outputs ready to be passed to [VibeVoiceAsrForConditionalGeneration.generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
+**Parameters:**
+
+text (`Union[str, list[str]]`) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
+
+audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
+
+output_labels (`bool`, *optional*, default=False) : Whether to return labels for training.
+
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+
+**Returns:** [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature)
+
+A dictionary with tokenized text (`input_ids`, `attention_mask`) and
+audio features (`input_values`, `padding_mask`).
+
+#### apply_transcription_request[[transformers.VibeVoiceAsrProcessor.apply_transcription_request]]
+
+```python
+apply_transcription_request(audio: typing.Union[str, list[str], numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], prompt: str | list[str] | None = None, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vibevoice_asr/processing_vibevoice_asr.py#L179)
+
+**Parameters:**
+
+audio (`str`, `list[str]`, `np.ndarray`, `torch.Tensor`, `list[np.ndarray]`, `list[torch.Tensor]`) : Audio to transcribe. Strings are interpreted as local paths or URLs and will be loaded automatically by the chat template loader; NumPy arrays and PyTorch tensors are forwarded directly.
+
+prompt (`str` or `list[str]`, *optional*) : Custom prompt(s) to include in the user turn as extra context. A list must be the same length as the batch. When `None`, no additional context is provided.
+
+- ****kwargs** : Additional keyword arguments forwarded to [apply_chat_template()](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) (for example `text_kwargs`, `audio_kwargs`, ...).
+
+**Returns:** [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature)
+
+Processor outputs ready to be passed to [VibeVoiceAsrForConditionalGeneration.generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
 
 Prepare inputs for automatic speech recognition without manually writing the chat template.
 
-- **return_format** (`str`, *optional*, defaults to `"raw"`) --
-  Options are:
-  - `"raw"`: Return a list of raw decoded strings from the tokenizer, without any parsing.
-  - `"parsed"`: Return a list of list of parsed dictionary objects for each speaker utterance with timestamps.
-  - `"transcription_only"`: Return a list of extracted transcription strings.
+#### decode[[transformers.VibeVoiceAsrProcessor.decode]]
 
-  `skip_special_tokens` is automatically enforced (hard-set) to `True` for `"parsed"` and `"transcription_only"`.
+```python
+decode(*args, return_format = 'raw', **kwargs)
+```
 
-Forward arguments to [decode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.decode) and optionally parse the dict-like output.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vibevoice_asr/processing_vibevoice_asr.py#L232)
+
+**Parameters:**
+
+return_format (`str`, *optional*, defaults to `"raw"`) : Options are: - `"raw"`: Return a list of raw decoded strings from the tokenizer, without any parsing. - `"parsed"`: Return a list of list of parsed dictionary objects for each speaker utterance with timestamps. - `"transcription_only"`: Return a list of extracted transcription strings.  `skip_special_tokens` is automatically enforced (hard-set) to `True` for `"parsed"` and `"transcription_only"`.
+
+Forward arguments to [decode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.decode) and optionally parse the dict-like output.
 
 VibeVoice ASR outputs transcriptions in a dictionary-like format, e.g.:
 ```
@@ -533,15 +573,22 @@ VibeVoice ASR outputs transcriptions in a dictionary-like format, e.g.:
 
 ## VibeVoiceAsrModel[[transformers.VibeVoiceAsrModel]]
 
-- **config** ([VibeVoiceAsrConfig](/docs/transformers/v5.14.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.VibeVoiceAsrModel[[transformers.VibeVoiceAsrModel]]
+
+```python
+transformers.VibeVoiceAsrModel(config: VibeVoiceAsrConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vibevoice_asr/modeling_vibevoice_asr.py#L305)
+
+**Parameters:**
+
+config ([VibeVoiceAsrConfig](/docs/transformers/v5.15.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The VibeVoice ASR model (acoustic tokenizer + semantic tokenizer + multi-modal projector + language model),
 without a language modeling head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -549,50 +596,37 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.VibeVoiceAsrModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, input_values: typing.Optional[torch.FloatTensor] = None, padding_mask: typing.Optional[torch.BoolTensor] = None, acoustic_tokenizer_chunk_size: int | None = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vibevoice_asr/modeling_vibevoice_asr.py#L392)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  The model will output the same cache format that is fed as input.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **input_values** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file
-  into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library
-  (`pip install torchcodec`) or the soundfile library (`pip install soundfile`).
-  To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion
-  into a tensor of type `torch.FloatTensor`. See [VibeVoiceAsrProcessor.__call__()](/docs/transformers/v5.14.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrProcessor.__call__) for details.
-- **padding_mask** (`torch.BoolTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing operations on padding feature indices.
-- **acoustic_tokenizer_chunk_size** (`int`, *optional*) --
-  Size of audio chunks processed by the acoustic and semantic tokenizers.`VibeVoiceAsrModelOutputWithPast` or `tuple(torch.FloatTensor)`A `VibeVoiceAsrModelOutputWithPast` or a tuple of
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+input_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [VibeVoiceAsrProcessor.__call__()](/docs/transformers/v5.15.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrProcessor.__call__) for details.
+
+padding_mask (`torch.BoolTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing operations on padding feature indices.
+
+acoustic_tokenizer_chunk_size (`int`, *optional*) : Size of audio chunks processed by the acoustic and semantic tokenizers.
+
+**Returns:** `VibeVoiceAsrModelOutputWithPast` or `tuple(torch.FloatTensor)`
+
+A `VibeVoiceAsrModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VibeVoiceAsrConfig](/docs/transformers/v5.14.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrConfig)) and inputs.
-The [VibeVoiceAsrModel](/docs/transformers/v5.14.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([VibeVoiceAsrConfig](/docs/transformers/v5.15.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrConfig)) and inputs.
+
+The [VibeVoiceAsrModel](/docs/transformers/v5.15.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -602,7 +636,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance.
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance.
 - **hidden_states** (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) -- Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, +
   one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.
 
@@ -616,14 +650,21 @@ the latter silently ignores them.
 
 ## VibeVoiceAsrForConditionalGeneration[[transformers.VibeVoiceAsrForConditionalGeneration]]
 
-- **config** ([VibeVoiceAsrConfig](/docs/transformers/v5.14.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.VibeVoiceAsrForConditionalGeneration[[transformers.VibeVoiceAsrForConditionalGeneration]]
+
+```python
+transformers.VibeVoiceAsrForConditionalGeneration(config: VibeVoiceAsrConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vibevoice_asr/modeling_vibevoice_asr.py#L449)
+
+**Parameters:**
+
+config ([VibeVoiceAsrConfig](/docs/transformers/v5.15.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The VibeVoice ASR model with pre-trained acoustic tokenizers and a language model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -631,60 +672,41 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.VibeVoiceAsrForConditionalGeneration.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, input_values: typing.Optional[torch.FloatTensor] = None, padding_mask: typing.Optional[torch.BoolTensor] = None, acoustic_tokenizer_chunk_size: int | None = None, labels: typing.Optional[torch.LongTensor] = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vibevoice_asr/modeling_vibevoice_asr.py#L459)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  The model will output the same cache format that is fed as input.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **input_values** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file
-  into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library
-  (`pip install torchcodec`) or the soundfile library (`pip install soundfile`).
-  To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion
-  into a tensor of type `torch.FloatTensor`. See [VibeVoiceAsrProcessor.__call__()](/docs/transformers/v5.14.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrProcessor.__call__) for details.
-- **padding_mask** (`torch.BoolTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing operations on padding feature indices.
-- **acoustic_tokenizer_chunk_size** (`int`, *optional*) --
-  Size of audio chunks processed by the acoustic and semantic tokenizers.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
-- **logits_to_keep** (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) --
-  If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all
-  `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that
-  token can save memory, which becomes pretty significant for long sequences or large vocabulary size.
-  If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension.
-  This is useful when using packed tensor format (single dimension for batch and sequence length).`VibeVoiceAsrCausalLMOutputWithPast` or `tuple(torch.FloatTensor)`A `VibeVoiceAsrCausalLMOutputWithPast` or a tuple of
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+input_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [VibeVoiceAsrProcessor.__call__()](/docs/transformers/v5.15.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrProcessor.__call__) for details.
+
+padding_mask (`torch.BoolTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing operations on padding feature indices.
+
+acoustic_tokenizer_chunk_size (`int`, *optional*) : Size of audio chunks processed by the acoustic and semantic tokenizers.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
+
+**Returns:** `VibeVoiceAsrCausalLMOutputWithPast` or `tuple(torch.FloatTensor)`
+
+A `VibeVoiceAsrCausalLMOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VibeVoiceAsrConfig](/docs/transformers/v5.14.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrConfig)) and inputs.
-The [VibeVoiceAsrForConditionalGeneration](/docs/transformers/v5.14.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrForConditionalGeneration) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([VibeVoiceAsrConfig](/docs/transformers/v5.15.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrConfig)) and inputs.
+
+The [VibeVoiceAsrForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/vibevoice_asr#transformers.VibeVoiceAsrForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -714,5 +736,13 @@ Example:
 >>> model = VibeVoiceAsrForConditionalGeneration.from_pretrained(model_id, dtype="auto", device_map="auto")
 ```
 
-### RoBERTa-PreLayerNorm
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/roberta-prelayernorm.md
+#### get_audio_features[[transformers.VibeVoiceAsrForConditionalGeneration.get_audio_features]]
+
+```python
+get_audio_features(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vibevoice_asr/modeling_vibevoice_asr.py#L456)
+
+### Nemotron ASR Streaming
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/nemotron_asr_streaming.md

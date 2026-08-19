@@ -28,7 +28,7 @@ transformers serve
 
 ## v1/chat/completions
 
-The `v1/chat/completions` API is based on the [Chat Completions API](https://platform.openai.com/docs/api-reference/chat). It supports text, image, audio, and video requests for LLMs, VLMs, and multimodal models. Use it with `curl`, the [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.23.0/en/package_reference/inference_client#huggingface_hub.InferenceClient), or the [OpenAI](https://platform.openai.com/docs/quickstart) client.
+The `v1/chat/completions` API is based on the [Chat Completions API](https://platform.openai.com/docs/api-reference/chat). It supports text, image, audio, and video requests for LLMs, VLMs, and multimodal models. Use it with `curl`, the [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.28.0/en/package_reference/inference_client#huggingface_hub.InferenceClient), or the [OpenAI](https://platform.openai.com/docs/quickstart) client.
 
 ### Text-based completions
 
@@ -42,7 +42,7 @@ result = client.chat_completion(messages, model="Qwen/Qwen2.5-0.5B-Instruct", ma
 print(result.choices[0].message.content)
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.23.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.28.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```shell
 The Transformers library is primarily known for its ability to create and manipulate large-scale language models [...]
@@ -61,7 +61,7 @@ for chunk in stream:
         print(token, end="")
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.23.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.28.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```shell
 The Transformers library is primarily known for its ability to create and manipulate large-scale language models [...]
@@ -202,7 +202,7 @@ result = client.chat_completion(messages, model="Qwen/Qwen2.5-VL-7B-Instruct", m
 print(result.choices[0].message.content)
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.23.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.28.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```xmp
 The image depicts an astronaut in a space suit standing on what appears to be the surface of the moon, given the barren, rocky landscape and the dark sky in the background. The astronaut is holding a large egg that has cracked open, revealing a small creature inside. The scene is imaginative and playful, combining elements of space exploration with a whimsical twist involving the egg and the creature.
@@ -234,7 +234,7 @@ for chunk in stream:
         print(token, end="")
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.23.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.28.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```xmp
 The image depicts an astronaut in a space suit standing on what appears to be the surface of the moon, given the barren, rocky landscape and the dark sky in the background. The astronaut is holding a large egg that has cracked open, revealing a small creature inside. The scene is imaginative and playful, combining elements of space exploration with a whimsical twist involving the egg and the creature.
@@ -423,7 +423,7 @@ result = client.chat_completion(messages, model="google/gemma-4-E2B-it", max_tok
 print(result.choices[0].message.content)
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.23.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.28.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```
 This week, I traveled to Chicago to deliver my final farewell address to the nation, following in the tradition of presidents before me. It was an opportunity to say thank you. Whether we've seen eye to eye or rarely agreed at all, my conversations with you, the American people, in living rooms and schools, at farms and on factory floors, at diners, and on distant military outposts, all these conversations are what have kept me honest.
@@ -455,7 +455,7 @@ for chunk in stream:
         print(token, end="")
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.23.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.28.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```
 This week, I traveled to Chicago to deliver my final farewell address to the nation, following in the tradition of presidents before me. It was an opportunity to say thank you. Whether we've seen eye to eye or rarely agreed at all, my conversations with you, the American people, in living rooms and schools, at farms and on factory floors, at diners, and on distant military outposts, all these conversations are what have kept me honest.
@@ -661,7 +661,7 @@ result = client.chat_completion(messages, model="google/gemma-4-E2B-it", max_tok
 print(result.choices[0].message.content)
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.23.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.28.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```
 The video captures a live music performance at a music festival or a large concert. There are several musicians on stage, including a central figure playing an acoustic guitar and singing. The foreground is filled with the backs of the audience, indicating a large crowd watching the show. The stage is dramatically lit with bright spotlights and blue and white stage lighting, with haze and smoke creating an immersive atmosphere.
@@ -690,7 +690,7 @@ for chunk in stream:
         print(token, end="")
 ```
 
-The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.23.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
+The [InferenceClient](https://huggingface.co/docs/huggingface_hub/v1.28.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) returns a printed string.
 
 ```
 The video captures a live music performance at a music festival or a large concert. There are several musicians on stage, including a central figure playing an acoustic guitar and singing. The foreground is filled with the backs of the audience, indicating a large crowd watching the show. The stage is dramatically lit with bright spotlights and blue and white stage lighting, with haze and smoke creating an immersive atmosphere.
@@ -1639,7 +1639,7 @@ tools = [
 ]
 ```
 
-Customize generation by passing [GenerationConfig](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationConfig) parameters to the `extra_body` argument in [create](https://platform.openai.com/docs/api-reference/responses/create).
+Customize generation by passing [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig) parameters to the `extra_body` argument in [create](https://platform.openai.com/docs/api-reference/responses/create).
 
 ```py
 generation_config = {
@@ -1736,7 +1736,12 @@ Reasoning models emit a hidden chain-of-thought before the final answer. The ser
 - Chat Completions returns reasoning as `reasoning_content` on the assistant message.
 - The Responses API returns reasoning as a `reasoning` output item that precedes the `message` item.
 
-Reasoning detection relies on the model's chat template and tokenizer. Models with custom thinking delimiters (Gemma 4) declare them with the tokenizer's `response_schema`. Models with inline `<think>...</think>` tags (Qwen3, DeepSeek-R1) work with the default schema.
+Reasoning detection relies on a [response template](../chat_response_parsing), which tells the server where a thinking span starts and ends. The server looks for one in two places, in order.
+
+1. The tokenizer's `response_template` attribute, if the model ships one.
+2. A built-in fallback matched on the model architecture, for tokenizers that don't ship a template yet.
+
+Models with neither are served without response parsing. The raw decoded text is returned as `content` and no reasoning field is surfaced, even if the model emits `<think>...</think>` tags.
 
 ### Enable reasoning on the server
 
@@ -1925,5 +1930,5 @@ transformers serve Qwen/Qwen2.5-0.5B-Instruct \
   --dtype "bfloat16"
 ```
 
-### tiny-agents
-https://huggingface.co/docs/transformers/v5.14.0/serve-cli/tiny_agents.md
+### Cursor
+https://huggingface.co/docs/transformers/v5.15.0/serve-cli/cursor.md

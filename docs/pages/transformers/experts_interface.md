@@ -23,7 +23,7 @@ The switch reaches MoE layers in the top-level model and in any sub-config backb
 
 ## Set an experts backend
 
-Use the `experts_implementation` argument in [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to instantiate a model with a specific experts backend.
+Use the `experts_implementation` argument in [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to instantiate a model with a specific experts backend.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -35,13 +35,13 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-Switch between experts backends at runtime without reloading the model using [set_experts_implementation()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.set_experts_implementation).
+Switch between experts backends at runtime without reloading the model using [set_experts_implementation()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.set_experts_implementation).
 
 ```py
 model.set_experts_implementation("eager")
 ```
 
-Read the backend that's currently running with [get_experts_implementation()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.get_experts_implementation). It returns a `dict` with one entry for the model, and one entry per sub-config.
+Read the backend that's currently running with [get_experts_implementation()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.get_experts_implementation). It returns a `dict` with one entry for the model, and one entry per sub-config.
 
 ```py
 model.get_experts_implementation()
@@ -101,7 +101,7 @@ The kernel is loaded lazily on the first forward.
 
 ### FP8 and FP4 quantized experts
 
-DeepSeek-style checkpoints are usually pre-quantized and carry their own quantization config, so you don't need to pass a [FineGrainedFP8Config](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.FineGrainedFP8Config). The `"deepgemm"` backend automatically picks the FP8 (or FP4 on Blackwell) grouped-GEMM kernel. DeepGEMM requires dynamic per-row activation scales (`activation_scheme="dynamic"`) and rejects static (per-tensor) activation quantization.
+DeepSeek-style checkpoints are usually pre-quantized and carry their own quantization config, so you don't need to pass a [FineGrainedFP8Config](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.FineGrainedFP8Config). The `"deepgemm"` backend automatically picks the FP8 (or FP4 on Blackwell) grouped-GEMM kernel. DeepGEMM requires dynamic per-row activation scales (`activation_scheme="dynamic"`) and rejects static (per-tensor) activation quantization.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -117,7 +117,7 @@ For FP4-packed expert weights (DeepSeek V4-style), the GPU must be SM100+ (Black
 > [!NOTE]
 > On Blackwell (SM100+), the `"deepgemm"` and `"deepgemm_megamoe"` experts kernels require power-of-two UE8M0 expert scales. A checkpoint quantized with plain `float32` scales (`scale_fmt="float"`) raises a `ValueError` on the first forward instead of silently corrupting the output. Load a checkpoint quantized with `scale_fmt="ue8m0"`, or switch to `grouped_mm` or `batched_mm`, which consume `float32` block scales directly. Hopper (SM90+) consumes `float32` scales on the DeepGEMM path without conversion.
 
-The main reason to pass a [FineGrainedFP8Config](/docs/transformers/v5.14.0/en/main_classes/quantization#transformers.FineGrainedFP8Config) for a pre-quantized checkpoint is to dequantize it back to `bfloat16`, in which case the experts run in `bfloat16` rather than on the FP8/FP4 DeepGEMM path.
+The main reason to pass a [FineGrainedFP8Config](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.FineGrainedFP8Config) for a pre-quantized checkpoint is to dequantize it back to `bfloat16`, in which case the experts run in `bfloat16` rather than on the FP8/FP4 DeepGEMM path.
 
 ```py
 from transformers import AutoModelForCausalLM, FineGrainedFP8Config
@@ -195,7 +195,8 @@ model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen1.5-MoE-A2.7B",
     dtype="bfloat16",
     experts_implementation="grouped_mm",
-).eval().cuda()
+    device_map="auto",
+).eval()
 
 # Works for grouped_mm (no CUDA graphs)
 model.forward = torch.compile(model.forward, mode="max-autotune-no-cudagraphs")
@@ -205,5 +206,5 @@ model.forward = torch.compile(model.forward, mode="max-autotune-no-cudagraphs")
 
 This [benchmark](https://github.com/user-attachments/files/24125816/bench.py) compares different input sizes and experts implementations with and without `torch.compile`.
 
-### Padding-free training
-https://huggingface.co/docs/transformers/v5.14.0/padding_free.md
+### Trainer features
+https://huggingface.co/docs/transformers/v5.15.0/trainer_recipes.md

@@ -7,7 +7,7 @@ You can find all the original AltCLIP checkpoints under the [AltClip](https://hu
 > [!TIP]
 > Click on the AltCLIP models in the right sidebar for more examples of how to apply AltCLIP to different tasks.
 
-The examples below demonstrates how to calculate similarity scores between an image and one or more captions with the [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel) class.
+The examples below demonstrate how to calculate similarity scores between an image and one or more captions with the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 import requests
@@ -68,29 +68,37 @@ for label, prob in zip(labels, probs[0]):
 ## Notes
 
 - AltCLIP uses bidirectional attention instead of causal attention and it uses the `[CLS]` token in XLM-R to represent a text embedding.
-- Use [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor) to resize (or rescale) and normalize images for the model.
-- [AltCLIPProcessor](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPProcessor) combines [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor) and [XLMRobertaTokenizer](/docs/transformers/v5.14.0/en/model_doc/xlm-roberta#transformers.XLMRobertaTokenizer) into a single instance to encode text and prepare images.
+- Use [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor) to resize (or rescale) and normalize images for the model.
+- [AltCLIPProcessor](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPProcessor) combines [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor) and [XLMRobertaTokenizer](/docs/transformers/v5.15.0/en/model_doc/xlm-roberta#transformers.XLMRobertaTokenizer) into a single instance to encode text and prepare images.
 
 ## AltCLIPConfig[[transformers.AltCLIPConfig]]
 
-- **text_config** (`Union[dict, ~models.altclip.configuration_altclip.AltCLIPTextConfig]`, *optional*) --
-  The config object or dictionary of the text backbone.
-- **vision_config** (`Union[dict, ~models.altclip.configuration_altclip.AltCLIPVisionConfig]`, *optional*) --
-  The config object or dictionary of the vision backbone.
-- **projection_dim** (`int`, *optional*, defaults to `768`) --
-  Dimensionality of text and vision projection layers.
-- **logit_scale_init_value** (`Union[float, int]`, *optional*, defaults to `2.6592`) --
-  The initial value of the *logit_scale* parameter.
-- **initializer_factor** (`float`, *optional*, defaults to `1.0`) --
-  A factor for initializing all weight matrices (should be kept to 1, used internally for initialization
-  testing).
+#### transformers.AltCLIPConfig[[transformers.AltCLIPConfig]]
+
+```python
+transformers.AltCLIPConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.models.altclip.configuration_altclip.AltCLIPTextConfig | None = None, vision_config: dict | transformers.models.altclip.configuration_altclip.AltCLIPVisionConfig | None = None, projection_dim: int = 768, logit_scale_init_value: float | int | None = 2.6592, initializer_factor: float | None = 1.0)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/altclip/configuration_altclip.py#L127)
+
+**Parameters:**
+
+text_config (`Union[dict, ~models.altclip.configuration_altclip.AltCLIPTextConfig]`, *optional*) : The config object or dictionary of the text backbone.
+
+vision_config (`Union[dict, ~models.altclip.configuration_altclip.AltCLIPVisionConfig]`, *optional*) : The config object or dictionary of the vision backbone.
+
+projection_dim (`int`, *optional*, defaults to `768`) : Dimensionality of text and vision projection layers.
+
+logit_scale_init_value (`Union[float, int]`, *optional*, defaults to `2.6592`) : The initial value of the *logit_scale* parameter.
+
+initializer_factor (`float`, *optional*, defaults to `1.0`) : A factor for initializing all weight matrices (should be kept to 1, used internally for initialization testing).
 
 This is the configuration class to store the configuration of a AltCLIPModel. It is used to instantiate a Altclip
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [BAAI/AltCLIP](https://huggingface.co/BAAI/AltCLIP)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -117,49 +125,56 @@ Example:
 
 ## AltCLIPTextConfig[[transformers.AltCLIPTextConfig]]
 
-- **vocab_size** (`int`, *optional*, defaults to `250002`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **hidden_size** (`int`, *optional*, defaults to `1024`) --
-  Dimension of the hidden representations.
-- **intermediate_size** (`int`, *optional*, defaults to `4096`) --
-  Dimension of the MLP representations.
-- **num_hidden_layers** (`int`, *optional*, defaults to `24`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `16`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **max_position_embeddings** (`int`, *optional*, defaults to `514`) --
-  The maximum sequence length that this model might ever be used with.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-05`) --
-  The epsilon used by the layer normalization layers.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **initializer_factor** (`float`, *optional*, defaults to `0.02`) --
-  A factor for initializing all weight matrices (should be kept to 1, used internally for initialization
-  testing).
-- **pad_token_id** (`int`, *optional*, defaults to `1`) --
-  Token id used for padding in the vocabulary.
-- **bos_token_id** (`int`, *optional*, defaults to `0`) --
-  Token id used for beginning-of-stream in the vocabulary.
-- **eos_token_id** (`int`, *optional*, defaults to `2`) --
-  Token id used for end-of-stream in the vocabulary.
-- **hidden_dropout_prob** (`Union[int, float]`, *optional*, defaults to `0.1`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **attention_probs_dropout_prob** (`Union[int, float]`, *optional*, defaults to `0`) --
-  The dropout ratio for the attention probabilities.
-- **type_vocab_size** (`int`, *optional*, defaults to `1`) --
-  The vocabulary size of the `token_type_ids`.
-- **project_dim** (`int`, *optional*, defaults to 768) --
-  The dimensions of the teacher model before the mapping layer.
+#### transformers.AltCLIPTextConfig[[transformers.AltCLIPTextConfig]]
+
+```python
+transformers.AltCLIPTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 250002, hidden_size: int = 1024, intermediate_size: int = 4096, num_hidden_layers: int = 24, num_attention_heads: int = 16, max_position_embeddings: int = 514, hidden_act: str = 'gelu', layer_norm_eps: float | None = 1e-05, initializer_range: float = 0.02, initializer_factor: float = 0.02, pad_token_id: int | None = 1, bos_token_id: int | None = 0, eos_token_id: int | None = 2, hidden_dropout_prob: int | float = 0.1, attention_probs_dropout_prob: int | float = 0, type_vocab_size: int = 1, project_dim: int = 768)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/altclip/configuration_altclip.py#L30)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `250002`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+hidden_size (`int`, *optional*, defaults to `1024`) : Dimension of the hidden representations.
+
+intermediate_size (`int`, *optional*, defaults to `4096`) : Dimension of the MLP representations.
+
+num_hidden_layers (`int`, *optional*, defaults to `24`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `16`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+max_position_embeddings (`int`, *optional*, defaults to `514`) : The maximum sequence length that this model might ever be used with.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-05`) : The epsilon used by the layer normalization layers.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+initializer_factor (`float`, *optional*, defaults to `0.02`) : A factor for initializing all weight matrices (should be kept to 1, used internally for initialization testing).
+
+pad_token_id (`int`, *optional*, defaults to `1`) : Token id used for padding in the vocabulary.
+
+bos_token_id (`int`, *optional*, defaults to `0`) : Token id used for beginning-of-stream in the vocabulary.
+
+eos_token_id (`int`, *optional*, defaults to `2`) : Token id used for end-of-stream in the vocabulary.
+
+hidden_dropout_prob (`Union[int, float]`, *optional*, defaults to `0.1`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+attention_probs_dropout_prob (`Union[int, float]`, *optional*, defaults to `0`) : The dropout ratio for the attention probabilities.
+
+type_vocab_size (`int`, *optional*, defaults to `1`) : The vocabulary size of the `token_type_ids`.
+
+project_dim (`int`, *optional*, defaults to 768) : The dimensions of the teacher model before the mapping layer.
 
 This is the configuration class to store the configuration of a AltCLIPModel. It is used to instantiate a Altclip
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [BAAI/AltCLIP](https://huggingface.co/BAAI/AltCLIP)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -178,41 +193,48 @@ Examples:
 
 ## AltCLIPVisionConfig[[transformers.AltCLIPVisionConfig]]
 
-- **hidden_size** (`int`, *optional*, defaults to `768`) --
-  Dimension of the hidden representations.
-- **intermediate_size** (`int`, *optional*, defaults to `3072`) --
-  Dimension of the MLP representations.
-- **projection_dim** (`int`, *optional*, defaults to `512`) --
-  Dimensionality of text and vision projection layers.
-- **num_hidden_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **num_attention_heads** (`int`, *optional*, defaults to `12`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **image_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) --
-  The size (resolution) of each image.
-- **patch_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `32`) --
-  The size (resolution) of each patch.
-- **hidden_act** (`str`, *optional*, defaults to `quick_gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-05`) --
-  The epsilon used by the layer normalization layers.
-- **attention_dropout** (`Union[int, float]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **initializer_factor** (`float`, *optional*, defaults to `1.0`) --
-  A factor for initializing all weight matrices (should be kept to 1, used internally for initialization
-  testing).
+#### transformers.AltCLIPVisionConfig[[transformers.AltCLIPVisionConfig]]
+
+```python
+transformers.AltCLIPVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, intermediate_size: int = 3072, projection_dim: int = 512, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] | None = 224, patch_size: int | list[int] | tuple[int, int] | None = 32, hidden_act: str = 'quick_gelu', layer_norm_eps: float = 1e-05, attention_dropout: int | float | None = 0.0, initializer_range: float = 0.02, initializer_factor: float = 1.0)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/altclip/configuration_altclip.py#L82)
+
+**Parameters:**
+
+hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
+
+intermediate_size (`int`, *optional*, defaults to `3072`) : Dimension of the MLP representations.
+
+projection_dim (`int`, *optional*, defaults to `512`) : Dimensionality of text and vision projection layers.
+
+num_hidden_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+num_attention_heads (`int`, *optional*, defaults to `12`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+image_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) : The size (resolution) of each image.
+
+patch_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `32`) : The size (resolution) of each patch.
+
+hidden_act (`str`, *optional*, defaults to `quick_gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-05`) : The epsilon used by the layer normalization layers.
+
+attention_dropout (`Union[int, float]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+initializer_factor (`float`, *optional*, defaults to `1.0`) : A factor for initializing all weight matrices (should be kept to 1, used internally for initialization testing).
 
 This is the configuration class to store the configuration of a AltCLIPModel. It is used to instantiate a Altclip
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [BAAI/AltCLIP](https://huggingface.co/BAAI/AltCLIP)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -231,14 +253,21 @@ Example:
 
 ## AltCLIPModel[[transformers.AltCLIPModel]]
 
-- **config** ([AltCLIPConfig](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.AltCLIPModel[[transformers.AltCLIPModel]]
+
+```python
+transformers.AltCLIPModel(config: AltCLIPConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/altclip/modeling_altclip.py#L928)
+
+**Parameters:**
+
+config ([AltCLIPConfig](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Altclip Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -246,42 +275,37 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.AltCLIPModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, return_loss: bool | None = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([AltCLIPProcessor](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPProcessor) uses
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/altclip/modeling_altclip.py#L1022)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([AltCLIPProcessor](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPProcessor) uses [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are position IDs?](../glossary#position-ids)
-- **return_loss** (`bool`, *optional*) --
-  Whether or not to return the contrastive loss.
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.`AltCLIPOutput` or `tuple(torch.FloatTensor)`A `AltCLIPOutput` or a tuple of
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
+
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+return_loss (`bool`, *optional*) : Whether or not to return the contrastive loss.
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** `AltCLIPOutput` or `tuple(torch.FloatTensor)`
+
+A `AltCLIPOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([AltCLIPConfig](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPConfig)) and inputs.
-The [AltCLIPModel](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([AltCLIPConfig](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPConfig)) and inputs.
+
+The [AltCLIPModel](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -292,10 +316,10 @@ the latter silently ignores them.
   similarity scores.
 - **logits_per_text** (`torch.FloatTensor` of shape `(text_batch_size, image_batch_size)`) -- The scaled dot product scores between `text_embeds` and `image_embeds`. This represents the text-image
   similarity scores.
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [AltCLIPTextModel](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPTextModel).
-- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of [AltCLIPVisionModel](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPVisionModel).
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [AltCLIPTextModel](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPTextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [AltCLIPVisionModel](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPVisionModel).
+- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [AltCLIPTextModel](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPTextModel).
+- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of [AltCLIPVisionModel](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPVisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [AltCLIPTextModel](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPTextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [AltCLIPVisionModel](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPVisionModel).
 
 Examples:
 
@@ -318,14 +342,25 @@ Examples:
 >>> probs = logits_per_image.softmax(dim=1)  # we can take the softmax to get the label probabilities
 ```
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([AltCLIPProcessor](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPProcessor) uses
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### get_image_features[[transformers.AltCLIPModel.get_image_features]]
+
+```python
+get_image_features(pixel_values: FloatTensor, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/altclip/modeling_altclip.py#L985)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([AltCLIPProcessor](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPProcessor) uses [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([AltCLIPConfig](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPConfig)) and inputs.
+elements depending on the configuration ([AltCLIPConfig](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -360,34 +395,29 @@ Examples:
 ...     image_features = model.get_image_features(**inputs)
 ```
 
-)>"}, {"name": "attention_mask", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "token_type_ids", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "position_ids", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "**kwargs", "val": ": Unpack"}]}>
-- **input_ids** (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, sequence_length)`) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### get_text_features[[transformers.AltCLIPModel.get_text_features]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+get_text_features(input_ids: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/altclip/modeling_altclip.py#L949)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([AltCLIPConfig](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPConfig)) and inputs.
+elements depending on the configuration ([AltCLIPConfig](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -420,38 +450,41 @@ Examples:
 
 ## AltCLIPTextModel[[transformers.AltCLIPTextModel]]
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### transformers.AltCLIPTextModel[[transformers.AltCLIPTextModel]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+transformers.AltCLIPTextModel(config)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/altclip/modeling_altclip.py#L835)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+#### forward[[transformers.AltCLIPTextModel.forward]]
 
-  [What are attention masks?](../glossary#attention-mask)
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/altclip/modeling_altclip.py#L848)
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+**Parameters:**
 
-  [What are position IDs?](../glossary#position-ids)
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.`BaseModelOutputWithPoolingAndProjection` or `tuple(torch.FloatTensor)`A `BaseModelOutputWithPoolingAndProjection` or a tuple of
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
+
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+**Returns:** `BaseModelOutputWithPoolingAndProjection` or `tuple(torch.FloatTensor)`
+
+A `BaseModelOutputWithPoolingAndProjection` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([AltCLIPConfig](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPConfig)) and inputs.
-The [AltCLIPTextModel](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPTextModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([AltCLIPConfig](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPConfig)) and inputs.
+
+The [AltCLIPTextModel](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -494,14 +527,21 @@ Examples:
 
 ## AltCLIPVisionModel[[transformers.AltCLIPVisionModel]]
 
-- **config** ([AltCLIPVisionConfig](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPVisionConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.AltCLIPVisionModel[[transformers.AltCLIPVisionModel]]
+
+```python
+transformers.AltCLIPVisionModel(config: AltCLIPVisionConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/altclip/modeling_altclip.py#L682)
+
+**Parameters:**
+
+config ([AltCLIPVisionConfig](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The vision model from ALTCLIP without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -509,15 +549,27 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([AltCLIPProcessor](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPProcessor) uses
-  [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.[BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPooling](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+#### forward[[transformers.AltCLIPVisionModel.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, interpolate_pos_encoding: bool | None = False, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/altclip/modeling_altclip.py#L698)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor). See `CLIPImageProcessor.__call__()` for details ([AltCLIPProcessor](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPProcessor) uses [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor) for processing images).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([AltCLIPConfig](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPConfig)) and inputs.
-The [AltCLIPVisionModel](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPVisionModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([AltCLIPConfig](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPConfig)) and inputs.
+
+The [AltCLIPVisionModel](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -562,36 +614,46 @@ Examples:
 
 ## AltCLIPProcessor[[transformers.AltCLIPProcessor]]
 
-- **image_processor** (`CLIPImageProcessor`) --
-  The image processor is a required input.
-- **tokenizer** (`tokenizer_class`) --
-  The tokenizer is a required input.
+#### transformers.AltCLIPProcessor[[transformers.AltCLIPProcessor]]
+
+```python
+transformers.AltCLIPProcessor(image_processor = None, tokenizer = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/altclip/processing_altclip.py#L23)
+
+**Parameters:**
+
+image_processor (`CLIPImageProcessor`) : The image processor is a required input.
+
+tokenizer (`tokenizer_class`) : The tokenizer is a required input.
+
 Constructs a AltCLIPProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[AltCLIPProcessor](/docs/transformers/v5.14.0/en/model_doc/altclip#transformers.AltCLIPProcessor) offers all the functionalities of [CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor) and `tokenizer_class`. See the
-[~CLIPImageProcessor](/docs/transformers/v5.14.0/en/model_doc/clip#transformers.CLIPImageProcessor) and `~tokenizer_class` for more information.
+[AltCLIPProcessor](/docs/transformers/v5.15.0/en/model_doc/altclip#transformers.AltCLIPProcessor) offers all the functionalities of [CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor) and `tokenizer_class`. See the
+[~CLIPImageProcessor](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPImageProcessor) and `~tokenizer_class` for more information.
 
-- **images** (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) --
-  Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If
-  passing in images with pixel values between 0 and 1, set `do_rescale=False`.
-- **text** (`Union[str, list[str], list[list[str]]]`, *optional*) --
-  The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings
-  (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
-- **videos** (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor], list[list[PIL.Image.Image]], list[list[numpy.ndarray]], list[list[torch.Tensor]], ~video_utils.URL, list[~video_utils.URL], list[list[~video_utils.URL]], ~video_utils.Path, list[~video_utils.Path], list[list[~video_utils.Path]]]`, *optional*) --
-  Video to preprocess. Expects a single or batch of videos with pixel values ranging from 0 to 255. If
-  passing in videos with pixel values between 0 and 1, set `do_rescale=False`.
-- **audio** (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) --
-  The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor.
-  In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels,
-  and T is the sample length of the audio.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  If set, will return tensors of a particular framework. Acceptable values are:
+#### __call__[[transformers.AltCLIPProcessor.__call__]]
 
-  - `'pt'`: Return PyTorch `torch.Tensor` objects.
-  - `'np'`: Return NumPy `np.ndarray` objects.
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) --
-  Additional processing options for each modality (text, images, videos, audio). Model-specific parameters
-  are listed above; see the TypedDict class for the complete list of supported arguments.
+```python
+__call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
+```
 
-### Mllama
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/mllama.md
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+
+**Parameters:**
+
+images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+text (`Union[str, list[str], list[list[str]]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
+
+videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor], list[list[PIL.Image.Image]], list[list[numpy.ndarray]], list[list[torch.Tensor]], ~video_utils.URL, list[~video_utils.URL], list[list[~video_utils.URL]], ~video_utils.Path, list[~video_utils.Path], list[list[~video_utils.Path]]]`, *optional*) : Video to preprocess. Expects a single or batch of videos with pixel values ranging from 0 to 255. If passing in videos with pixel values between 0 and 1, set `do_rescale=False`.
+
+audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
+
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+
+### Doge
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/doge.md

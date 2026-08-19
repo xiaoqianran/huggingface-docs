@@ -26,7 +26,7 @@ Currently 6 checkpoints are available for MatCha:
 
 The models finetuned on `chart2text-pew` and `chart2text-statista` are more suited for summarization, whereas the models finetuned on `plotqa` and `chartqa` are more suited for question answering.
 
-You can use these models as follows (example on a ChatQA dataset):
+You can use these models as follows (example on a ChartQA dataset):
 
 ```python
 import requests
@@ -57,5 +57,5 @@ scheduler = get_cosine_schedule_with_warmup(optimizer, num_warmup_steps=1000, nu
 
 MatCha is a model that is trained using `Pix2Struct` architecture. You can find more information about `Pix2Struct` in the [Pix2Struct documentation](https://huggingface.co/docs/transformers/main/en/model_doc/pix2struct).
 
-### BART
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/bart.md
+### GPT-NeoX
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/gpt_neox.md

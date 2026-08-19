@@ -49,62 +49,76 @@ with torch.no_grad():
 
 ## TimesFmConfig[[transformers.TimesFmConfig]]
 
-- **patch_length** (`int`, *optional*, defaults to 32) --
-  The length of one patch in the input sequence.
-- **context_length** (`int`, *optional*, defaults to 512) --
-  The length of the input context.
-- **horizon_length** (`int`, *optional*, defaults to 128) --
-  The length of the prediction horizon.
-- **freq_size** (`int`, *optional*, defaults to 3) --
-  The number of frequency embeddings.
-- **num_hidden_layers** (`int`, *optional*, defaults to `50`) --
-  Number of hidden layers in the Transformer decoder.
-- **hidden_size** (`int`, *optional*, defaults to `1280`) --
-  Dimension of the hidden representations.
-- **intermediate_size** (`int`, *optional*, defaults to `1280`) --
-  Dimension of the MLP representations.
-- **head_dim** (`int`, *optional*, defaults to `80`) --
-  The attention head dimension. If None, it will default to hidden_size // num_attention_heads
-- **num_attention_heads** (`int`, *optional*, defaults to `16`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **tolerance** (`float`, *optional*, defaults to 1e-06) --
-  The tolerance for the quantile loss.
-- **rms_norm_eps** (`float`, *optional*, defaults to `1e-06`) --
-  The epsilon used by the rms normalization layers.
-- **quantiles** (`list[float]`, *optional*, defaults to `[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]`) --
-  The quantiles to predict.
-- **pad_val** (`float`, *optional*, defaults to 1123581321.0) --
-  The value used to pad the predictions.
-- **attention_dropout** (`float`, *optional*, defaults to 0.0) --
-  The dropout probability for the attention scores.
-- **use_positional_embedding** (`bool`, *optional*, defaults to `False`) --
-  Whether to add positional embeddings.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **min_timescale** (`int`, *optional*, defaults to 1) --
-  The start of the geometric positional index. Determines the periodicity of
-  the added signal.
-- **max_timescale** (`int`, *optional*, defaults to 10000) --
-  The end of the geometric positional index. Determines the frequency of the
-  added signal.
+#### transformers.TimesFmConfig[[transformers.TimesFmConfig]]
+
+```python
+transformers.TimesFmConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, patch_length: int = 32, context_length: int = 512, horizon_length: int = 128, freq_size: int = 3, num_hidden_layers: int = 50, hidden_size: int = 1280, intermediate_size: int = 1280, head_dim: int = 80, num_attention_heads: int = 16, tolerance: float = 1e-06, rms_norm_eps: float = 1e-06, quantiles: list[float] | tuple[float, ...] = (0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9), pad_val: float = 1123581321.0, attention_dropout: float | int = 0.0, use_positional_embedding: bool = False, initializer_range: float = 0.02, min_timescale: int = 1, max_timescale: int = 10000)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm/configuration_timesfm.py#L24)
+
+**Parameters:**
+
+patch_length (`int`, *optional*, defaults to 32) : The length of one patch in the input sequence.
+
+context_length (`int`, *optional*, defaults to 512) : The length of the input context.
+
+horizon_length (`int`, *optional*, defaults to 128) : The length of the prediction horizon.
+
+freq_size (`int`, *optional*, defaults to 3) : The number of frequency embeddings.
+
+num_hidden_layers (`int`, *optional*, defaults to `50`) : Number of hidden layers in the Transformer decoder.
+
+hidden_size (`int`, *optional*, defaults to `1280`) : Dimension of the hidden representations.
+
+intermediate_size (`int`, *optional*, defaults to `1280`) : Dimension of the MLP representations.
+
+head_dim (`int`, *optional*, defaults to `80`) : The attention head dimension. If None, it will default to hidden_size // num_attention_heads
+
+num_attention_heads (`int`, *optional*, defaults to `16`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+tolerance (`float`, *optional*, defaults to 1e-06) : The tolerance for the quantile loss.
+
+rms_norm_eps (`float`, *optional*, defaults to `1e-06`) : The epsilon used by the rms normalization layers.
+
+quantiles (`list[float]`, *optional*, defaults to `[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]`) : The quantiles to predict.
+
+pad_val (`float`, *optional*, defaults to 1123581321.0) : The value used to pad the predictions.
+
+attention_dropout (`float`, *optional*, defaults to 0.0) : The dropout probability for the attention scores.
+
+use_positional_embedding (`bool`, *optional*, defaults to `False`) : Whether to add positional embeddings.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+min_timescale (`int`, *optional*, defaults to 1) : The start of the geometric positional index. Determines the periodicity of the added signal.
+
+max_timescale (`int`, *optional*, defaults to 10000) : The end of the geometric positional index. Determines the frequency of the added signal.
 
 This is the configuration class to store the configuration of a TimesFmModel. It is used to instantiate a Timesfm
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/timesfm-2.0-500m-pytorch](https://huggingface.co/google/timesfm-2.0-500m-pytorch)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## TimesFmModel[[transformers.TimesFmModel]]
 
-- **config** ([TimesFmConfig](/docs/transformers/v5.14.0/en/model_doc/timesfm#transformers.TimesFmConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.TimesFmModel[[transformers.TimesFmModel]]
+
+```python
+transformers.TimesFmModel(config: TimesFmConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm/modeling_timesfm.py#L332)
+
+**Parameters:**
+
+config ([TimesFmConfig](/docs/transformers/v5.15.0/en/model_doc/timesfm#transformers.TimesFmConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Timesfm Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -112,16 +126,29 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "past_values_padding", "val": ": LongTensor"}, {"name": "freq", "val": ": )>"}, {"name": "**kwargs", "val": ": Unpack"}]}>
-- **past_values** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) --
-  Past values of the time series that serves as input to the model.
-- **past_values_padding** (`torch.LongTensor` of shape `(batch_size, sequence_length)`) --
-  The padding indicator of the time series.
-- **freq** (`torch.LongTensor` of shape `(batch_size,)`) --
-  Frequency indices for the time series data.`TimesFmOutput` or `tuple(torch.FloatTensor)`A `TimesFmOutput` or a tuple of
+#### forward[[transformers.TimesFmModel.forward]]
+
+```python
+forward(past_values: Tensor, past_values_padding: LongTensor, freq: Tensor, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm/modeling_timesfm.py#L368)
+
+**Parameters:**
+
+past_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Past values of the time series that serves as input to the model.
+
+past_values_padding (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : The padding indicator of the time series.
+
+freq (`torch.LongTensor` of shape `(batch_size,)`) : Frequency indices for the time series data.
+
+**Returns:** `TimesFmOutput` or `tuple(torch.FloatTensor)`
+
+A `TimesFmOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TimesFmConfig](/docs/transformers/v5.14.0/en/model_doc/timesfm#transformers.TimesFmConfig)) and inputs.
-The [TimesFmModel](/docs/transformers/v5.14.0/en/model_doc/timesfm#transformers.TimesFmModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([TimesFmConfig](/docs/transformers/v5.15.0/en/model_doc/timesfm#transformers.TimesFmConfig)) and inputs.
+
+The [TimesFmModel](/docs/transformers/v5.15.0/en/model_doc/timesfm#transformers.TimesFmModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -142,26 +169,47 @@ the latter silently ignores them.
 
 ## TimesFmModelForPrediction[[transformers.TimesFmModelForPrediction]]
 
+#### transformers.TimesFmModelForPrediction[[transformers.TimesFmModelForPrediction]]
+
+```python
+transformers.TimesFmModelForPrediction(config: TimesFmConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm/modeling_timesfm.py#L569)
+
 TimesFM model for quantile and mean prediction.
 
-- **past_values** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) --
-  Past values of the time series that serves as input to the model.
-- **freq** (`torch.LongTensor` of shape `(batch_size,)`) --
-  Frequency indices for the time series data.
-- **window_size** (`int`, *optional*) --
-  Window size of trend + residual decomposition. If None then we do not do decomposition.
-- **future_values** (`torch.Tensor`, *optional*) --
-  Optional future time series values to be used for loss computation.
-- **forecast_context_len** (`int`, *optional*) --
-  Optional max context length.
-- **return_forecast_on_context** (`bool`, *optional*) --
-  True to return the forecast on the context when available, i.e. after the first input patch.
-- **truncate_negative** (`bool`, *optional*) --
-  Truncate to only non-negative values if any of the contexts have non-negative values,
-  otherwise do nothing.`TimesFmOutputForPrediction` or `tuple(torch.FloatTensor)`A `TimesFmOutputForPrediction` or a tuple of
+#### forward[[transformers.TimesFmModelForPrediction.forward]]
+
+```python
+forward(past_values: Sequence, freq: collections.abc.Sequence[typing.Union[torch.Tensor, int]] | None = None, window_size: int | None = None, future_values: typing.Optional[torch.Tensor] = None, forecast_context_len: int | None = None, return_forecast_on_context: bool = False, truncate_negative: bool = False, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm/modeling_timesfm.py#L651)
+
+**Parameters:**
+
+past_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Past values of the time series that serves as input to the model.
+
+freq (`torch.LongTensor` of shape `(batch_size,)`) : Frequency indices for the time series data.
+
+window_size (`int`, *optional*) : Window size of trend + residual decomposition. If None then we do not do decomposition.
+
+future_values (`torch.Tensor`, *optional*) : Optional future time series values to be used for loss computation.
+
+forecast_context_len (`int`, *optional*) : Optional max context length.
+
+return_forecast_on_context (`bool`, *optional*) : True to return the forecast on the context when available, i.e. after the first input patch.
+
+truncate_negative (`bool`, *optional*) : Truncate to only non-negative values if any of the contexts have non-negative values, otherwise do nothing.
+
+**Returns:** `TimesFmOutputForPrediction` or `tuple(torch.FloatTensor)`
+
+A `TimesFmOutputForPrediction` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TimesFmConfig](/docs/transformers/v5.14.0/en/model_doc/timesfm#transformers.TimesFmConfig)) and inputs.
-The [TimesFmModelForPrediction](/docs/transformers/v5.14.0/en/model_doc/timesfm#transformers.TimesFmModelForPrediction) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([TimesFmConfig](/docs/transformers/v5.15.0/en/model_doc/timesfm#transformers.TimesFmConfig)) and inputs.
+
+The [TimesFmModelForPrediction](/docs/transformers/v5.15.0/en/model_doc/timesfm#transformers.TimesFmModelForPrediction) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -198,5 +246,5 @@ Example:
 >>>     quantile_forecast_conv = outputs.full_predictions
 ```
 
-### FastSpeech2Conformer
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/fastspeech2_conformer.md
+### GPT-J
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/gptj.md

@@ -5,8 +5,8 @@ Transformers is designed to be fast and easy to use so that everyone can start l
 The number of user-facing abstractions is limited to only three classes for instantiating a model, and two APIs for inference or training. This quickstart introduces you to Transformers' key features and shows you how to:
 
 - load a pretrained model
-- run inference with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline)
-- fine-tune a model with [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer)
+- run inference with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline)
+- fine-tune a model with [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer)
 
 ## Set up
 
@@ -14,7 +14,7 @@ To start, we recommend creating a Hugging Face [account](https://hf.co/join). An
 
 Create a [User Access Token](https://hf.co/docs/hub/security-tokens#user-access-tokens) and log in to your account.
 
-Paste your User Access Token into [notebook_login](https://huggingface.co/docs/huggingface_hub/v1.23.0/en/package_reference/authentication#huggingface_hub.notebook_login) when prompted to log in.
+Paste your User Access Token into [notebook_login](https://huggingface.co/docs/huggingface_hub/v1.28.0/en/package_reference/authentication#huggingface_hub.notebook_login) when prompted to log in.
 
 ```py
 from huggingface_hub import notebook_login
@@ -71,13 +71,13 @@ Each pretrained model inherits from three base classes.
 
 | **Class** | **Description** |
 |---|---|
-| [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) | A file that specifies a models attributes such as the number of attention heads or vocabulary size. |
-| [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel) | A model (or architecture) defined by the model attributes from the configuration file. A pretrained model only returns the raw hidden states. For a specific task, use the appropriate model head to convert the raw hidden states into a meaningful result (for example, [LlamaModel](/docs/transformers/v5.14.0/en/model_doc/llama#transformers.LlamaModel) versus [LlamaForCausalLM](/docs/transformers/v5.14.0/en/model_doc/llama#transformers.LlamaForCausalLM)). |
-| Preprocessor | A class for converting raw inputs (text, images, audio, multimodal) into numerical inputs to the model. For example, [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend) converts text into tensors and [ImageProcessingMixin](/docs/transformers/v5.14.0/en/internal/image_processing_utils#transformers.ImageProcessingMixin) converts pixels into tensors. |
+| [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) | A file that specifies a model's attributes such as the number of attention heads or vocabulary size. |
+| [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) | A model (or architecture) defined by the model attributes from the configuration file. A pretrained model only returns the raw hidden states. For a specific task, use the appropriate model head to convert the raw hidden states into a meaningful result (for example, [LlamaModel](/docs/transformers/v5.15.0/en/model_doc/llama2#transformers.LlamaModel) versus [LlamaForCausalLM](/docs/transformers/v5.15.0/en/model_doc/llama2#transformers.LlamaForCausalLM)). |
+| Preprocessor | A class for converting raw inputs (text, images, audio, multimodal) into numerical inputs to the model. For example, [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) converts text into tensors and [ImageProcessingMixin](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.ImageProcessingMixin) converts pixels into tensors. |
 
 We recommend using the [AutoClass](./model_doc/auto) API to load models and preprocessors because it automatically infers the appropriate architecture for each task and machine learning framework based on the name or path to the pretrained weights and configuration file.
 
-Use [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load the weights and configuration file from the Hub into the model and preprocessor class.
+Use [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load the weights and configuration file from the Hub into the model and preprocessor class.
 
 When you load a model, configure the following parameters to ensure the model is optimally loaded.
 
@@ -99,7 +99,7 @@ model_inputs = tokenizer(["The secret to baking a good cake is "], return_tensor
 
 The model is now ready for inference or training.
 
-For inference, pass the tokenized inputs to [generate()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to generate text. Decode the token ids back into text with [batch_decode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode).
+For inference, pass the tokenized inputs to [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to generate text. Decode the token ids back into text with [batch_decode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode).
 
 ```py
 generated_ids = model.generate(**model_inputs, max_length=30)
@@ -112,12 +112,12 @@ tokenizer.batch_decode(generated_ids)[0]
 
 ## Pipeline
 
-The [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) class is the most convenient way to inference with a pretrained model. It supports many tasks such as text generation, image segmentation, automatic speech recognition, document question answering, and more.
+The [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) class is the most convenient way to run inference with a pretrained model. It supports many tasks such as text generation, image segmentation, automatic speech recognition, document question answering, and more.
 
 > [!TIP]
 > Refer to the [Pipeline](./main_classes/pipelines) API reference for a complete list of available tasks.
 
-Create a [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) object and select a task. By default, [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) downloads and caches a default pretrained model for a given task. Pass the model name to the `model` parameter to choose a specific model.
+Create a [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) object and select a task. By default, [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) downloads and caches a default pretrained model for a given task. Pass the model name to the `model` parameter to choose a specific model.
 
 Use `Accelerator` to automatically detect an available accelerator for inference.
 
@@ -127,13 +127,13 @@ from accelerate import Accelerator
 
 device = Accelerator().device
 
-pipeline = pipeline("text-generation", model="meta-llama/Llama-2-7b-hf", device=device)
+pipe = pipeline("text-generation", model="meta-llama/Llama-2-7b-hf", device=device)
 ```
 
-Prompt [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) with some initial text to generate more text.
+Prompt [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) with some initial text to generate more text.
 
 ```py
-pipeline("The secret to baking a good cake is ", max_length=50)
+pipe("The secret to baking a good cake is ", max_length=50)
 [{'generated_text': 'The secret to baking a good cake is 100% in the batter. The secret to a great cake is the icing.\nThis is why we’ve created the best buttercream frosting reci'}]
 ```
 
@@ -148,7 +148,7 @@ device = Accelerator().device
 pipeline = pipeline("image-segmentation", model="facebook/detr-resnet-50-panoptic", device=device)
 ```
 
-Pass an image - a URL or local path to the image - to [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline).
+Pass an image - a URL or local path to the image - to [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline).
 
    
 
@@ -171,7 +171,7 @@ device = Accelerator().device
 pipeline = pipeline("automatic-speech-recognition", model="openai/whisper-large-v3", device=device)
 ```
 
-Pass an audio file to [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline).
+Pass an audio file to [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline).
 
 ```py
 pipeline("https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/1.flac")
@@ -180,9 +180,9 @@ pipeline("https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/1.flac")
 
 ## Trainer
 
-[Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) is a complete training and evaluation loop for PyTorch models. It abstracts away a lot of the boilerplate usually involved in manually writing a training loop, so you can start training faster and focus on training design choices. You only need a model, dataset, a preprocessor, and a data collator to build batches of data from the dataset.
+[Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) is a complete training and evaluation loop for PyTorch models. It abstracts away a lot of the boilerplate usually involved in manually writing a training loop, so you can start training faster and focus on training design choices. You only need a model, dataset, a preprocessor, and a data collator to build batches of data from the dataset.
 
-Use the [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments) class to customize the training process. It provides many options for training, evaluation, and more. Experiment with training hyperparameters and features like batch size, learning rate, mixed precision, torch.compile, and more to meet your training needs. You could also use the default training parameters to quickly produce a baseline.
+Use the [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) class to customize the training process. It provides many options for training, evaluation, and more. Experiment with training hyperparameters and features like batch size, learning rate, mixed precision, torch.compile, and more to meet your training needs. You could also use the default training parameters to quickly produce a baseline.
 
 Load a model, tokenizer, and dataset for training.
 
@@ -195,7 +195,7 @@ tokenizer = AutoTokenizer.from_pretrained("distilbert/distilbert-base-uncased")
 dataset = load_dataset("rotten_tomatoes")
 ```
 
-Create a function to tokenize the text and convert it into PyTorch tensors. Apply this function to the whole dataset with the `map` method.
+Create a function to tokenize the text and convert it into PyTorch tensors. Apply this function to the whole dataset with the [map](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset.map) method.
 
 ```py
 def tokenize_dataset(dataset):
@@ -211,7 +211,7 @@ from transformers import DataCollatorWithPadding
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 ```
 
-Next, set up [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments) with the training features and hyperparameters.
+Next, set up [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) with the training features and hyperparameters.
 
 ```py
 from transformers import TrainingArguments
@@ -226,7 +226,7 @@ training_args = TrainingArguments(
 )
 ```
 
-Finally, pass all these separate components to [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) and call [train()](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer.train) to start.
+Finally, pass all these separate components to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) and call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) to start.
 
 ```py
 from transformers import Trainer
@@ -243,7 +243,7 @@ trainer = Trainer(
 trainer.train()
 ```
 
-Share your model and tokenizer to the Hub with [push_to_hub()](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer.push_to_hub).
+Share your model and tokenizer to the Hub with [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub).
 
 ```py
 trainer.push_to_hub()
@@ -256,10 +256,10 @@ Congratulations, you just trained your first model with Transformers!
 Now that you have a better understanding of Transformers and what it offers, it's time to keep exploring and learning what interests you the most.
 
 - **Base classes**: Learn more about the configuration, model and processor classes. This will help you understand how to create and customize models, preprocess different types of inputs (audio, images, multimodal), and how to share your model.
-- **Inference**: Explore the [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) further, inference and chatting with LLMs, agents, and how to optimize inference with your machine learning framework and hardware.
-- **Training**: Study the [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) in more detail, as well as distributed training and optimizing training on specific hardware.
+- **Inference**: Explore the [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) further, inference and chatting with LLMs, agents, and how to optimize inference with your machine learning framework and hardware.
+- **Training**: Study the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) in more detail, as well as distributed training and optimizing training on specific hardware.
 - **Quantization**: Reduce memory and storage requirements with quantization and speed up inference by representing weights with fewer bits.
 - **Resources**: Looking for end-to-end recipes for how to train and inference with a model for a specific task? Check out the task recipes!
 
-### Paged attention
-https://huggingface.co/docs/transformers/v5.14.0/paged_attention.md
+### Caching
+https://huggingface.co/docs/transformers/v5.15.0/cache_explanation.md

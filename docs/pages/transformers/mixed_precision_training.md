@@ -40,7 +40,7 @@ If your model is numerically stable in bf16/fp16, you can skip mixed precision e
 
 ## tf32
 
-[tf32](https://blogs.nvidia.com/blog/tensorfloat-32-precision-format/) is a compute mode on Ampere GPUs that uses 10-bit mantissa for matmuls instead of 23-bits. This can give you a speedup, especially when paired with bf16/fp16. PyTorch enables tf32 for matmuls by default on Ampere and newer GPUs, but setting it explicitly in [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments) ensures it's active regardless of the PyTorch version or environment defaults.
+[tf32](https://blogs.nvidia.com/blog/tensorfloat-32-precision-format/) is a compute mode on Ampere GPUs that uses 10-bit mantissa for matmuls instead of 23-bits. This can give you a speedup, especially when paired with bf16/fp16. PyTorch enables tf32 for matmuls by default on Ampere and newer GPUs, but setting it explicitly in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) ensures it's active regardless of the PyTorch version or environment defaults.
 
 ```py
 from transformers import TrainingArguments
@@ -53,5 +53,5 @@ args = TrainingArguments(..., bf16=True, tf32=True)
 - See the [Kernels](./kernels) guide to learn how to speed up training with custom fused kernels.
 - See the [torch.compile](./torch_compile) guide to learn how to compile the forward and backward pass for additional throughput.
 
-### Tracing model intermediate outputs
-https://huggingface.co/docs/transformers/v5.14.0/model_output_tracing.md
+### Training scripts
+https://huggingface.co/docs/transformers/v5.15.0/run_scripts.md

@@ -36,146 +36,134 @@ Tips:
 
 ## FlaubertConfig[[transformers.FlaubertConfig]]
 
-- **pre_norm** (`bool`, *optional*, defaults to `False`) --
-  Whether to apply the layer normalization before or after the feed forward layer following the attention in
-  each layer (Vaswani et al., Tensor2Tensor for Neural Machine Translation. 2018)
-- **layerdrop** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The LayerDrop probability. See the [LayerDrop paper](see https://huggingface.co/papers/1909.11556) for
-  more details.
-- **vocab_size** (`int`, *optional*, defaults to `30145`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **emb_dim** (`int`, *optional*, defaults to 2048) --
-  The dimensionality of embedding layer.
-- **n_layers** (`int`, *optional*, defaults to `12`) --
-  Number of hidden layers in the Transformer decoder.
-- **n_heads** (`int`, *optional*, defaults to `16`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **dropout** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The ratio for all dropout layers.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The dropout ratio for the attention probabilities.
-- **gelu_activation** (`bool`, *optional*, defaults to True) --
-  Whether to use GeLU activation function.
-- **sinusoidal_embeddings** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to use sinusoidal positional embeddings instead of absolute positional embeddings.
-- **causal** (`bool`, *optional*, defaults to `False`) --
-  Whether or not the model should behave in a causal manner. Causal models use a triangular attention mask in
-  order to only attend to the left-side context instead if a bidirectional context.
-- **asm** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to use an adaptive log softmax projection layer instead of a linear layer for the prediction
-  layer.
-- **n_langs** (`int`, *optional*, defaults to 1) --
-  The number of languages the model handles. Set to 1 for monolingual models.
-- **use_lang_emb** (`bool`, *optional*, defaults to `True`) --
-  Whether to use language embeddings. Some models use additional language embeddings, see [the multilingual
-  models page](http://huggingface.co/transformers/multilingual.html#xlm-language-embeddings) for information
-  on how to use them.
-- **embed_init_std** (`float`, *optional*, defaults to 2048^-0.5) --
-  The standard deviation of the truncated_normal_initializer for initializing the embedding matrices.
-- **max_position_embeddings** (`int`, *optional*, defaults to `512`) --
-  The maximum sequence length that this model might ever be used with.
-- **embed_init_std** (`float`, *optional*, defaults to `2048**-0.5`) --
-  Initializer std for embedding layers.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-12`) --
-  The epsilon used by the layer normalization layers.
-- **init_std** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **bos_index** (`int`, *optional*, defaults to 0) --
-  The index of the beginning of sentence token in the vocabulary.
-- **eos_index** (`int`, *optional*, defaults to 1) --
-  The index of the end of sentence token in the vocabulary.
-- **pad_index** (`int`, *optional*, defaults to 2) --
-  The index of the padding token in the vocabulary.
-- **unk_index** (`int`, *optional*, defaults to 3) --
-  The index of the unknown token in the vocabulary.
-- **mask_index** (`int`, *optional*, defaults to 5) --
-  The index of the masking token in the vocabulary.
-- **is_encoder** (`bool`, *optional*, defaults to True) --
-  Whether the model is used as an encoder.
-- **summary_type** (`string`, *optional*, defaults to "first") --
-  Argument used when doing sequence summary. Used in the sequence classification and multiple choice models.
-  Has to be one of the following options:
-  - `"last"`: Take the last token hidden state (like XLNet).
-  - `"first"`: Take the first token hidden state (like BERT).
-  - `"mean"`: Take the mean of all tokens hidden states.
-  - `"cls_index"`: Supply a Tensor of classification token position (like GPT/GPT-2).
-  - `"attn"`: Not implemented now, use multi-head attention.
-- **summary_use_proj** (`bool`, *optional*, defaults to `True`) --
-  Argument used when doing sequence summary. Used in the sequence classification and multiple choice models.
-  Whether or not to add a projection after the vector extraction.
-- **summary_activation** (`str`, *optional*) --
-  Argument used when doing sequence summary. Used in the sequence classification and multiple choice models.
-  Pass `"tanh"` for a tanh activation to the output, any other value will result in no activation.
-- **summary_proj_to_labels** (`bool`, *optional*, defaults to `True`) --
-  Used in the sequence classification and multiple choice models.
-  Whether the projection outputs should have `config.num_labels` or `config.hidden_size` classes.
-- **summary_first_dropout** (`float`, *optional*, defaults to 0.1) --
-  Used in the sequence classification and multiple choice models.
-  The dropout ratio to be used after the projection and activation.
-- **start_n_top** (`int`, *optional*, defaults to 5) --
-  Used in the SQuAD evaluation script.
-- **end_n_top** (`int`, *optional*, defaults to 5) --
-  Used in the SQuAD evaluation script.
-- **mask_token_id** (`int`, *optional*, defaults to 0) --
-  Model agnostic parameter to identify masked tokens when generating text in an MLM context.
-- **lang_id** (`int`, *optional*, defaults to 1) --
-  The ID of the language used by the model. This parameter is used when generating text in a given language.
-- **pad_token_id** (`int`, *optional*, defaults to `2`) --
-  Token id used for padding in the vocabulary.
-- **bos_token_id** (`int`, *optional*, defaults to `0`) --
-  Token id used for beginning-of-stream in the vocabulary.
-- **eos_token_id** (`Union[int, list[int]]`, *optional*, defaults to `1`) --
-  Token id used for end-of-stream in the vocabulary.
-- **tie_word_embeddings** (`bool`, *optional*, defaults to `True`) --
-  Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
+#### transformers.FlaubertConfig[[transformers.FlaubertConfig]]
+
+```python
+transformers.FlaubertConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, pre_norm: bool = False, layerdrop: float | int = 0.0, vocab_size: int = 30145, emb_dim: int = 2048, n_layers: int = 12, n_heads: int = 16, dropout: float | int = 0.1, attention_dropout: float | int = 0.1, gelu_activation: bool = True, sinusoidal_embeddings: bool = False, causal: bool = False, asm: bool = False, n_langs: int = 1, use_lang_emb: bool = True, max_position_embeddings: int = 512, embed_init_std: float = 0.02209708691207961, layer_norm_eps: float = 1e-12, init_std: float = 0.02, bos_index: int = 0, eos_index: int = 1, pad_index: int = 2, unk_index: int = 3, mask_index: int = 5, is_encoder: bool = True, summary_type: str = 'first', summary_use_proj: bool = True, summary_activation: str | None = None, summary_proj_to_labels: bool = True, summary_first_dropout: float | int = 0.1, start_n_top: int = 5, end_n_top: int = 5, mask_token_id: int = 0, lang_id: int = 0, pad_token_id: int | None = 2, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 1, tie_word_embeddings: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/configuration_flaubert.py#L24)
+
+**Parameters:**
+
+pre_norm (`bool`, *optional*, defaults to `False`) : Whether to apply the layer normalization before or after the feed forward layer following the attention in each layer (Vaswani et al., Tensor2Tensor for Neural Machine Translation. 2018)
+
+layerdrop (`Union[float, int]`, *optional*, defaults to `0.0`) : The LayerDrop probability. See the [LayerDrop paper](see https://huggingface.co/papers/1909.11556) for more details.
+
+vocab_size (`int`, *optional*, defaults to `30145`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+emb_dim (`int`, *optional*, defaults to 2048) : The dimensionality of embedding layer.
+
+n_layers (`int`, *optional*, defaults to `12`) : Number of hidden layers in the Transformer decoder.
+
+n_heads (`int`, *optional*, defaults to `16`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+dropout (`Union[float, int]`, *optional*, defaults to `0.1`) : The ratio for all dropout layers.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.1`) : The dropout ratio for the attention probabilities.
+
+gelu_activation (`bool`, *optional*, defaults to True) : Whether to use GeLU activation function.
+
+sinusoidal_embeddings (`bool`, *optional*, defaults to `False`) : Whether or not to use sinusoidal positional embeddings instead of absolute positional embeddings.
+
+causal (`bool`, *optional*, defaults to `False`) : Whether or not the model should behave in a causal manner. Causal models use a triangular attention mask in order to only attend to the left-side context instead if a bidirectional context.
+
+asm (`bool`, *optional*, defaults to `False`) : Whether or not to use an adaptive log softmax projection layer instead of a linear layer for the prediction layer.
+
+n_langs (`int`, *optional*, defaults to 1) : The number of languages the model handles. Set to 1 for monolingual models.
+
+use_lang_emb (`bool`, *optional*, defaults to `True`) : Whether to use language embeddings. Some models use additional language embeddings, see [the multilingual models page](http://huggingface.co/transformers/multilingual.html#xlm-language-embeddings) for information on how to use them.
+
+embed_init_std (`float`, *optional*, defaults to 2048^-0.5) : The standard deviation of the truncated_normal_initializer for initializing the embedding matrices.
+
+max_position_embeddings (`int`, *optional*, defaults to `512`) : The maximum sequence length that this model might ever be used with.
+
+embed_init_std (`float`, *optional*, defaults to `2048**-0.5`) : Initializer std for embedding layers.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-12`) : The epsilon used by the layer normalization layers.
+
+init_std (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+bos_index (`int`, *optional*, defaults to 0) : The index of the beginning of sentence token in the vocabulary.
+
+eos_index (`int`, *optional*, defaults to 1) : The index of the end of sentence token in the vocabulary.
+
+pad_index (`int`, *optional*, defaults to 2) : The index of the padding token in the vocabulary.
+
+unk_index (`int`, *optional*, defaults to 3) : The index of the unknown token in the vocabulary.
+
+mask_index (`int`, *optional*, defaults to 5) : The index of the masking token in the vocabulary.
+
+is_encoder (`bool`, *optional*, defaults to True) : Whether the model is used as an encoder.
+
+summary_type (`string`, *optional*, defaults to "first") : Argument used when doing sequence summary. Used in the sequence classification and multiple choice models. Has to be one of the following options: - `"last"`: Take the last token hidden state (like XLNet). - `"first"`: Take the first token hidden state (like BERT). - `"mean"`: Take the mean of all tokens hidden states. - `"cls_index"`: Supply a Tensor of classification token position (like GPT/GPT-2). - `"attn"`: Not implemented now, use multi-head attention.
+
+summary_use_proj (`bool`, *optional*, defaults to `True`) : Argument used when doing sequence summary. Used in the sequence classification and multiple choice models. Whether or not to add a projection after the vector extraction.
+
+summary_activation (`str`, *optional*) : Argument used when doing sequence summary. Used in the sequence classification and multiple choice models. Pass `"tanh"` for a tanh activation to the output, any other value will result in no activation.
+
+summary_proj_to_labels (`bool`, *optional*, defaults to `True`) : Used in the sequence classification and multiple choice models. Whether the projection outputs should have `config.num_labels` or `config.hidden_size` classes.
+
+summary_first_dropout (`float`, *optional*, defaults to 0.1) : Used in the sequence classification and multiple choice models. The dropout ratio to be used after the projection and activation.
+
+start_n_top (`int`, *optional*, defaults to 5) : Used in the SQuAD evaluation script.
+
+end_n_top (`int`, *optional*, defaults to 5) : Used in the SQuAD evaluation script.
+
+mask_token_id (`int`, *optional*, defaults to 0) : Model agnostic parameter to identify masked tokens when generating text in an MLM context.
+
+lang_id (`int`, *optional*, defaults to 1) : The ID of the language used by the model. This parameter is used when generating text in a given language.
+
+pad_token_id (`int`, *optional*, defaults to `2`) : Token id used for padding in the vocabulary.
+
+bos_token_id (`int`, *optional*, defaults to `0`) : Token id used for beginning-of-stream in the vocabulary.
+
+eos_token_id (`Union[int, list[int]]`, *optional*, defaults to `1`) : Token id used for end-of-stream in the vocabulary.
+
+tie_word_embeddings (`bool`, *optional*, defaults to `True`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
 
 This is the configuration class to store the configuration of a FlaubertModel. It is used to instantiate a Flaubert
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [flaubert/flaubert_base_uncased](https://huggingface.co/flaubert/flaubert_base_uncased)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## FlaubertTokenizer[[transformers.FlaubertTokenizer]]
 
-'"}, {"name": "bos_token", "val": " = ''"}, {"name": "sep_token", "val": " = ''"}, {"name": "pad_token", "val": " = ''"}, {"name": "cls_token", "val": " = ''"}, {"name": "mask_token", "val": " = ''"}, {"name": "additional_special_tokens", "val": " = ['', '', '', '', '', '', '', '', '', '']"}, {"name": "lang2id", "val": " = None"}, {"name": "id2lang", "val": " = None"}, {"name": "**kwargs", "val": ""}]}>
-- **vocab_file** (`str`) --
-  Vocabulary file.
-- **merges_file** (`str`) --
-  Merges file.
-- **do_lowercase** (`bool`, *optional*, defaults to `False`) --
-  Controls lower casing.
-- **unk_token** (`str`, *optional*, defaults to `"<unk>"`) --
-  The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this
-  token instead.
-- **bos_token** (`str`, *optional*, defaults to `"<s>"`) --
-  The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.
+#### transformers.FlaubertTokenizer[[transformers.FlaubertTokenizer]]
 
-  
+```python
+transformers.FlaubertTokenizer(vocab_file, merges_file, do_lowercase = False, unk_token = '<unk>', bos_token = '<s>', sep_token = '</s>', pad_token = '<pad>', cls_token = '</s>', mask_token = '<special1>', additional_special_tokens = ['<special0>', '<special1>', '<special2>', '<special3>', '<special4>', '<special5>', '<special6>', '<special7>', '<special8>', '<special9>'], lang2id = None, id2lang = None, **kwargs)
+```
 
-  When building a sequence using special tokens, this is not the token that is used for the beginning of
-  sequence. The token used is the `cls_token`.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/tokenization_flaubert.py#L121)
 
-  
+**Parameters:**
 
-- **sep_token** (`str`, *optional*, defaults to `"</s>"`) --
-  The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for
-  sequence classification or for a text and a question for question answering. It is also used as the last
-  token of a sequence built with special tokens.
-- **pad_token** (`str`, *optional*, defaults to `"<pad>"`) --
-  The token used for padding, for example when batching sequences of different lengths.
-- **cls_token** (`str`, *optional*, defaults to `"</s>"`) --
-  The classifier token which is used when doing sequence classification (classification of the whole sequence
-  instead of per-token classification). It is the first token of the sequence when built with special tokens.
-- **mask_token** (`str`, *optional*, defaults to `"<special1>"`) --
-  The token used for masking values. This is the token used when training this model with masked language
-  modeling. This is the token which the model will try to predict.
-- **additional_special_tokens** (`List[str]`, *optional*, defaults to `['<special0>', '<special1>', '<special2>', '<special3>', '<special4>', '<special5>', '<special6>', '<special7>', '<special8>', '<special9>']`) --
-  List of additional special tokens.
-- **lang2id** (`Dict[str, int]`, *optional*) --
-  Dictionary mapping languages string identifiers to their IDs.
-- **id2lang** (`Dict[int, str]`, *optional*) --
-  Dictionary mapping language IDs to their string identifiers.
+vocab_file (`str`) : Vocabulary file.
+
+merges_file (`str`) : Merges file.
+
+do_lowercase (`bool`, *optional*, defaults to `False`) : Controls lower casing.
+
+unk_token (`str`, *optional*, defaults to `"<unk>"`) : The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this token instead.
+
+bos_token (`str`, *optional*, defaults to `"<s>"`) : The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.    When building a sequence using special tokens, this is not the token that is used for the beginning of sequence. The token used is the `cls_token`.   
+
+sep_token (`str`, *optional*, defaults to `"</s>"`) : The separator token, which is used when building a sequence from multiple sequences, e.g. two sequences for sequence classification or for a text and a question for question answering. It is also used as the last token of a sequence built with special tokens.
+
+pad_token (`str`, *optional*, defaults to `"<pad>"`) : The token used for padding, for example when batching sequences of different lengths.
+
+cls_token (`str`, *optional*, defaults to `"</s>"`) : The classifier token which is used when doing sequence classification (classification of the whole sequence instead of per-token classification). It is the first token of the sequence when built with special tokens.
+
+mask_token (`str`, *optional*, defaults to `"<special1>"`) : The token used for masking values. This is the token used when training this model with masked language modeling. This is the token which the model will try to predict.
+
+additional_special_tokens (`List[str]`, *optional*, defaults to `['<special0>', '<special1>', '<special2>', '<special3>', '<special4>', '<special5>', '<special6>', '<special7>', '<special8>', '<special9>']`) : List of additional special tokens.
+
+lang2id (`Dict[str, int]`, *optional*) : Dictionary mapping languages string identifiers to their IDs.
+
+id2lang (`Dict[int, str]`, *optional*) : Dictionary mapping language IDs to their string identifiers.
 
 Construct a Flaubert tokenizer. Based on Byte-Pair Encoding. The tokenization process is the following:
 
@@ -185,13 +173,26 @@ Construct a Flaubert tokenizer. Based on Byte-Pair Encoding. The tokenization pr
   "__classify__") to a vocabulary.
 - The argument `do_lowercase` controls lower casing (automatically set for pretrained vocabularies).
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
-- **token_ids_0** (`List[int]`) --
-  List of IDs to which the special tokens will be added.
-- **token_ids_1** (`List[int]`, *optional*) --
-  Optional second list of IDs for sequence pairs.`List[int]`List of [input IDs](../glossary#input-ids) with the appropriate special tokens.
+#### build_inputs_with_special_tokens[[transformers.FlaubertTokenizer.build_inputs_with_special_tokens]]
+
+```python
+build_inputs_with_special_tokens(token_ids_0: list, token_ids_1: list[int] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/tokenization_flaubert.py#L430)
+
+**Parameters:**
+
+token_ids_0 (`List[int]`) : List of IDs to which the special tokens will be added.
+
+token_ids_1 (`List[int]`, *optional*) : Optional second list of IDs for sequence pairs.
+
+**Returns:** `List[int]`
+
+List of [input IDs](../glossary#input-ids) with the appropriate special tokens.
 
 Build model inputs from a sequence or a pair of sequence for sequence classification tasks by concatenating and
 adding special tokens. An XLM sequence has the following format:
@@ -199,28 +200,56 @@ adding special tokens. An XLM sequence has the following format:
 - single sequence: `<s> X </s>`
 - pair of sequences: `<s> A </s> B </s>`
 
+#### convert_tokens_to_string[[transformers.FlaubertTokenizer.convert_tokens_to_string]]
+
+```python
+convert_tokens_to_string(tokens)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/tokenization_flaubert.py#L424)
+
 Converts a sequence of tokens (string) in a single string.
 
-- **token_ids_0** (`List[int]`) --
-  List of IDs.
-- **token_ids_1** (`List[int]`, *optional*) --
-  Optional second list of IDs for sequence pairs.
-- **already_has_special_tokens** (`bool`, *optional*, defaults to `False`) --
-  Whether or not the token list is already formatted with special tokens for the model.`List[int]`A list of integers in the range [0, 1]: 1 for a special token, 0 for a sequence token.
+#### get_special_tokens_mask[[transformers.FlaubertTokenizer.get_special_tokens_mask]]
+
+```python
+get_special_tokens_mask(token_ids_0: list, token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/tokenization_flaubert.py#L458)
+
+**Parameters:**
+
+token_ids_0 (`List[int]`) : List of IDs.
+
+token_ids_1 (`List[int]`, *optional*) : Optional second list of IDs for sequence pairs.
+
+already_has_special_tokens (`bool`, *optional*, defaults to `False`) : Whether or not the token list is already formatted with special tokens for the model.
+
+**Returns:** `List[int]`
+
+A list of integers in the range [0, 1]: 1 for a special token, 0 for a sequence token.
 
 Retrieve sequence ids from a token list that has no special tokens added. This method is called when adding
 special tokens using the tokenizer `prepare_for_model` method.
 
 ## FlaubertModel[[transformers.FlaubertModel]]
 
-- **config** ([FlaubertModel](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.FlaubertModel[[transformers.FlaubertModel]]
+
+```python
+transformers.FlaubertModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/modeling_flaubert.py#L692)
+
+**Parameters:**
+
+config ([FlaubertModel](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Flaubert Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -228,63 +257,45 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.FlaubertModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, langs: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, lengths: typing.Optional[torch.LongTensor] = None, cache: dict[str, torch.FloatTensor] | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/modeling_flaubert.py#L765)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **langs** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  A parallel sequence of tokens to be used to indicate the language of each token in the input. Indices are
-  languages ids which can be obtained from the language names by using two conversion mappings provided in
-  the configuration of the model (only provided for multilingual models). More precisely, the *language name
-  to language id* mapping is in `model.config.lang2id` (which is a dictionary string to int) and the
-  *language id to language name* mapping is in `model.config.id2lang` (dictionary int to string).
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  See usage examples detailed in the [multilingual documentation](../multilingual).
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+langs (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : A parallel sequence of tokens to be used to indicate the language of each token in the input. Indices are languages ids which can be obtained from the language names by using two conversion mappings provided in the configuration of the model (only provided for multilingual models). More precisely, the *language name to language id* mapping is in `model.config.lang2id` (which is a dictionary string to int) and the *language id to language name* mapping is in `model.config.id2lang` (dictionary int to string).  See usage examples detailed in the [multilingual documentation](../multilingual).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **lengths** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Length of each sentence that can be used to avoid performing attention on padding token indices. You can
-  also use `attention_mask` for the same result (see above), kept here for compatibility. Indices selected in
-  `[0, ..., input_ids.size(-1)]`:
-- **cache** (`dict[str, torch.FloatTensor]`, *optional*) --
-  Dictionary strings to `torch.FloatTensor` that contains precomputed hidden-states (key and values in the
-  attention blocks) as computed by the model (see `cache` output below). Can be used to speed up sequential
-  decoding. The dictionary object will be modified in-place during the forward pass to add newly computed
-  hidden-states.
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[BaseModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`A [BaseModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+lengths (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Length of each sentence that can be used to avoid performing attention on padding token indices. You can also use `attention_mask` for the same result (see above), kept here for compatibility. Indices selected in `[0, ..., input_ids.size(-1)]`:
+
+cache (`dict[str, torch.FloatTensor]`, *optional*) : Dictionary strings to `torch.FloatTensor` that contains precomputed hidden-states (key and values in the attention blocks) as computed by the model (see `cache` output below). Can be used to speed up sequential decoding. The dictionary object will be modified in-place during the forward pass to add newly computed hidden-states.
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FlaubertConfig](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertConfig)) and inputs.
-The [FlaubertModel](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([FlaubertConfig](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertConfig)) and inputs.
+
+The [FlaubertModel](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -303,15 +314,22 @@ the latter silently ignores them.
 
 ## FlaubertWithLMHeadModel[[transformers.FlaubertWithLMHeadModel]]
 
-- **config** ([FlaubertWithLMHeadModel](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertWithLMHeadModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.FlaubertWithLMHeadModel[[transformers.FlaubertWithLMHeadModel]]
+
+```python
+transformers.FlaubertWithLMHeadModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/modeling_flaubert.py#L942)
+
+**Parameters:**
+
+config ([FlaubertWithLMHeadModel](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertWithLMHeadModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Flaubert Model transformer with a language modeling head on top (linear layer with weights tied to the input
 embeddings).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -319,68 +337,47 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>] | None = None"}, {"name": "inputs_embeds", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "labels", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "output_attentions", "val": ": bool | None = None"}, {"name": "output_hidden_states", "val": ": bool | None = None"}, {"name": "return_dict", "val": ": bool | None = None"}, {"name": "**kwargs", "val": ""}]}>
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.FlaubertWithLMHeadModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, langs: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, lengths: typing.Optional[torch.Tensor] = None, cache: dict[str, torch.Tensor] | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/modeling_flaubert.py#L974)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **langs** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  A parallel sequence of tokens to be used to indicate the language of each token in the input. Indices are
-  languages ids which can be obtained from the language names by using two conversion mappings provided in
-  the configuration of the model (only provided for multilingual models). More precisely, the *language name
-  to language id* mapping is in `model.config.lang2id` (which is a dictionary string to int) and the
-  *language id to language name* mapping is in `model.config.id2lang` (dictionary int to string).
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  See usage examples detailed in the [multilingual documentation](../multilingual).
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+langs (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : A parallel sequence of tokens to be used to indicate the language of each token in the input. Indices are languages ids which can be obtained from the language names by using two conversion mappings provided in the configuration of the model (only provided for multilingual models). More precisely, the *language name to language id* mapping is in `model.config.lang2id` (which is a dictionary string to int) and the *language id to language name* mapping is in `model.config.id2lang` (dictionary int to string).  See usage examples detailed in the [multilingual documentation](../multilingual).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **lengths** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Length of each sentence that can be used to avoid performing attention on padding token indices. You can
-  also use `attention_mask` for the same result (see above), kept here for compatibility. Indices selected in
-  `[0, ..., input_ids.size(-1)]`:
-- **cache** (`dict[str, torch.FloatTensor]`, *optional*) --
-  Dictionary strings to `torch.FloatTensor` that contains precomputed hidden-states (key and values in the
-  attention blocks) as computed by the model (see `cache` output below). Can be used to speed up sequential
-  decoding. The dictionary object will be modified in-place during the forward pass to add newly computed
-  hidden-states.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for language modeling. Note that the labels **are shifted** inside the model, i.e. you can set
-  `labels = input_ids` Indices are selected in `[-100, 0, ..., config.vocab_size]` All labels set to `-100`
-  are ignored (masked), the loss is only computed for labels in `[0, ..., config.vocab_size]`
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[MaskedLMOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`A [MaskedLMOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+lengths (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Length of each sentence that can be used to avoid performing attention on padding token indices. You can also use `attention_mask` for the same result (see above), kept here for compatibility. Indices selected in `[0, ..., input_ids.size(-1)]`:
+
+cache (`dict[str, torch.FloatTensor]`, *optional*) : Dictionary strings to `torch.FloatTensor` that contains precomputed hidden-states (key and values in the attention blocks) as computed by the model (see `cache` output below). Can be used to speed up sequential decoding. The dictionary object will be modified in-place during the forward pass to add newly computed hidden-states.
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for language modeling. Note that the labels **are shifted** inside the model, i.e. you can set `labels = input_ids` Indices are selected in `[-100, 0, ..., config.vocab_size]` All labels set to `-100` are ignored (masked), the loss is only computed for labels in `[0, ..., config.vocab_size]`
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [MaskedLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`
+
+A [MaskedLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FlaubertConfig](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertConfig)) and inputs.
-The [FlaubertWithLMHeadModel](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertWithLMHeadModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([FlaubertConfig](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertConfig)) and inputs.
+
+The [FlaubertWithLMHeadModel](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertWithLMHeadModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -415,15 +412,22 @@ Example:
 
 ## FlaubertForSequenceClassification[[transformers.FlaubertForSequenceClassification]]
 
-- **config** ([FlaubertForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertForSequenceClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.FlaubertForSequenceClassification[[transformers.FlaubertForSequenceClassification]]
+
+```python
+transformers.FlaubertForSequenceClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/modeling_flaubert.py#L1051)
+
+**Parameters:**
+
+config ([FlaubertForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Flaubert Model with a sequence classification/regression head on top (a linear layer on top of the pooled output)
 e.g. for GLUE tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -431,66 +435,47 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>] | None = None"}, {"name": "inputs_embeds", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "labels", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "output_attentions", "val": ": bool | None = None"}, {"name": "output_hidden_states", "val": ": bool | None = None"}, {"name": "return_dict", "val": ": bool | None = None"}, {"name": "**kwargs", "val": ""}]}>
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.FlaubertForSequenceClassification.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, langs: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, lengths: typing.Optional[torch.Tensor] = None, cache: dict[str, torch.Tensor] | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/modeling_flaubert.py#L1063)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **langs** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  A parallel sequence of tokens to be used to indicate the language of each token in the input. Indices are
-  languages ids which can be obtained from the language names by using two conversion mappings provided in
-  the configuration of the model (only provided for multilingual models). More precisely, the *language name
-  to language id* mapping is in `model.config.lang2id` (which is a dictionary string to int) and the
-  *language id to language name* mapping is in `model.config.id2lang` (dictionary int to string).
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  See usage examples detailed in the [multilingual documentation](../multilingual).
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+langs (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : A parallel sequence of tokens to be used to indicate the language of each token in the input. Indices are languages ids which can be obtained from the language names by using two conversion mappings provided in the configuration of the model (only provided for multilingual models). More precisely, the *language name to language id* mapping is in `model.config.lang2id` (which is a dictionary string to int) and the *language id to language name* mapping is in `model.config.id2lang` (dictionary int to string).  See usage examples detailed in the [multilingual documentation](../multilingual).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **lengths** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Length of each sentence that can be used to avoid performing attention on padding token indices. You can
-  also use *attention_mask* for the same result (see above), kept here for compatibility. Indices selected in
-  `[0, ..., input_ids.size(-1)]`.
-- **cache** (`dict[str, torch.FloatTensor]`, *optional*) --
-  Instance of `EncoderDecoderCache` that contains precomputed KV states. Can be used to speed up sequential
-  decoding.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the sequence classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[SequenceClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`A [SequenceClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+lengths (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Length of each sentence that can be used to avoid performing attention on padding token indices. You can also use *attention_mask* for the same result (see above), kept here for compatibility. Indices selected in `[0, ..., input_ids.size(-1)]`.
+
+cache (`dict[str, torch.FloatTensor]`, *optional*) : Instance of `EncoderDecoderCache` that contains precomputed KV states. Can be used to speed up sequential decoding.
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FlaubertConfig](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertConfig)) and inputs.
-The [FlaubertForSequenceClassification](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertForSequenceClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([FlaubertConfig](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertConfig)) and inputs.
+
+The [FlaubertForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -566,15 +551,22 @@ Example of multi-label classification:
 
 ## FlaubertForMultipleChoice[[transformers.FlaubertForMultipleChoice]]
 
-- **config** ([FlaubertForMultipleChoice](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertForMultipleChoice)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.FlaubertForMultipleChoice[[transformers.FlaubertForMultipleChoice]]
+
+```python
+transformers.FlaubertForMultipleChoice(config, *inputs, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/modeling_flaubert.py#L1504)
+
+**Parameters:**
+
+config ([FlaubertForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertForMultipleChoice)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Flaubert Model with a multiple choice classification head on top (a linear layer on top of the pooled output and a
 softmax) e.g. for RocStories/SWAG tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -582,68 +574,47 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>] | None = None"}, {"name": "inputs_embeds", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "labels", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "output_attentions", "val": ": bool | None = None"}, {"name": "output_hidden_states", "val": ": bool | None = None"}, {"name": "return_dict", "val": ": bool | None = None"}, {"name": "**kwargs", "val": ""}]}>
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) --
-  Indices of input sequence tokens in the vocabulary.
+#### forward[[transformers.FlaubertForMultipleChoice.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, langs: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, lengths: typing.Optional[torch.Tensor] = None, cache: dict[str, torch.Tensor] | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/modeling_flaubert.py#L1515)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **langs** (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) --
-  A parallel sequence of tokens to be used to indicate the language of each token in the input. Indices are
-  languages ids which can be obtained from the language names by using two conversion mappings provided in
-  the configuration of the model (only provided for multilingual models). More precisely, the *language name
-  to language id* mapping is in `model.config.lang2id` (which is a dictionary string to int) and the
-  *language id to language name* mapping is in `model.config.id2lang` (dictionary int to string).
+input_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  See usage examples detailed in the [multilingual documentation](../multilingual).
-- **token_type_ids** (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0,
-  1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+langs (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) : A parallel sequence of tokens to be used to indicate the language of each token in the input. Indices are languages ids which can be obtained from the language names by using two conversion mappings provided in the configuration of the model (only provided for multilingual models). More precisely, the *language name to language id* mapping is in `model.config.lang2id` (which is a dictionary string to int) and the *language id to language name* mapping is in `model.config.id2lang` (dictionary int to string).  See usage examples detailed in the [multilingual documentation](../multilingual).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0,
-  config.max_position_embeddings - 1]`.
+token_type_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **lengths** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Length of each sentence that can be used to avoid performing attention on padding token indices. You can
-  also use *attention_mask* for the same result (see above), kept here for compatibility. Indices selected in
-  `[0, ..., input_ids.size(-1)]`.
-- **cache** (`dict[str, torch.FloatTensor]`, *optional*) --
-  Instance of `EncoderDecoderCache` that contains precomputed KV states. Can be used to speed up sequential
-  decoding.
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, num_choices, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the multiple choice classification loss. Indices should be in `[0, ...,
-  num_choices-1]` where `num_choices` is the size of the second dimension of the input tensors. (See
-  `input_ids` above)
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[MultipleChoiceModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or `tuple(torch.FloatTensor)`A [MultipleChoiceModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or a tuple of
+position_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.max_position_embeddings - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+lengths (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Length of each sentence that can be used to avoid performing attention on padding token indices. You can also use *attention_mask* for the same result (see above), kept here for compatibility. Indices selected in `[0, ..., input_ids.size(-1)]`.
+
+cache (`dict[str, torch.FloatTensor]`, *optional*) : Instance of `EncoderDecoderCache` that contains precomputed KV states. Can be used to speed up sequential decoding.
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, num_choices, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the multiple choice classification loss. Indices should be in `[0, ..., num_choices-1]` where `num_choices` is the size of the second dimension of the input tensors. (See `input_ids` above)
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [MultipleChoiceModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or `tuple(torch.FloatTensor)`
+
+A [MultipleChoiceModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MultipleChoiceModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FlaubertConfig](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertConfig)) and inputs.
-The [FlaubertForMultipleChoice](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertForMultipleChoice) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([FlaubertConfig](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertConfig)) and inputs.
+
+The [FlaubertForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertForMultipleChoice) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -687,15 +658,22 @@ Example:
 
 ## FlaubertForTokenClassification[[transformers.FlaubertForTokenClassification]]
 
-- **config** ([FlaubertForTokenClassification](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertForTokenClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.FlaubertForTokenClassification[[transformers.FlaubertForTokenClassification]]
+
+```python
+transformers.FlaubertForTokenClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/modeling_flaubert.py#L1157)
+
+**Parameters:**
+
+config ([FlaubertForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Flaubert transformer with a token classification head on top (a linear layer on top of the hidden-states
 output) e.g. for Named-Entity-Recognition (NER) tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -703,64 +681,47 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>] | None = None"}, {"name": "inputs_embeds", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "labels", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "output_attentions", "val": ": bool | None = None"}, {"name": "output_hidden_states", "val": ": bool | None = None"}, {"name": "return_dict", "val": ": bool | None = None"}, {"name": "**kwargs", "val": ""}]}>
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.FlaubertForTokenClassification.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, langs: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, lengths: typing.Optional[torch.Tensor] = None, cache: dict[str, torch.Tensor] | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/modeling_flaubert.py#L1169)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **langs** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  A parallel sequence of tokens to be used to indicate the language of each token in the input. Indices are
-  languages ids which can be obtained from the language names by using two conversion mappings provided in
-  the configuration of the model (only provided for multilingual models). More precisely, the *language name
-  to language id* mapping is in `model.config.lang2id` (which is a dictionary string to int) and the
-  *language id to language name* mapping is in `model.config.id2lang` (dictionary int to string).
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  See usage examples detailed in the [multilingual documentation](../multilingual).
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+langs (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : A parallel sequence of tokens to be used to indicate the language of each token in the input. Indices are languages ids which can be obtained from the language names by using two conversion mappings provided in the configuration of the model (only provided for multilingual models). More precisely, the *language name to language id* mapping is in `model.config.lang2id` (which is a dictionary string to int) and the *language id to language name* mapping is in `model.config.id2lang` (dictionary int to string).  See usage examples detailed in the [multilingual documentation](../multilingual).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **lengths** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Length of each sentence that can be used to avoid performing attention on padding token indices. You can
-  also use *attention_mask* for the same result (see above), kept here for compatibility. Indices selected in
-  `[0, ..., input_ids.size(-1)]`.
-- **cache** (`dict[str, torch.FloatTensor]`, *optional*) --
-  Instance of `EncoderDecoderCache` that contains precomputed KV states. Can be used to speed up sequential
-  decoding.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the token classification loss. Indices should be in `[0, ..., config.num_labels - 1]`.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[TokenClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`A [TokenClassifierOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+lengths (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Length of each sentence that can be used to avoid performing attention on padding token indices. You can also use *attention_mask* for the same result (see above), kept here for compatibility. Indices selected in `[0, ..., input_ids.size(-1)]`.
+
+cache (`dict[str, torch.FloatTensor]`, *optional*) : Instance of `EncoderDecoderCache` that contains precomputed KV states. Can be used to speed up sequential decoding.
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the token classification loss. Indices should be in `[0, ..., config.num_labels - 1]`.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
+
+A [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FlaubertConfig](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertConfig)) and inputs.
-The [FlaubertForTokenClassification](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertForTokenClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([FlaubertConfig](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertConfig)) and inputs.
+
+The [FlaubertForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -811,15 +772,22 @@ Example:
 
 ## FlaubertForQuestionAnsweringSimple[[transformers.FlaubertForQuestionAnsweringSimple]]
 
-- **config** ([FlaubertForQuestionAnsweringSimple](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertForQuestionAnsweringSimple)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.FlaubertForQuestionAnsweringSimple[[transformers.FlaubertForQuestionAnsweringSimple]]
+
+```python
+transformers.FlaubertForQuestionAnsweringSimple(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/modeling_flaubert.py#L1250)
+
+**Parameters:**
+
+config ([FlaubertForQuestionAnsweringSimple](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertForQuestionAnsweringSimple)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Flaubert Model with a span classification head on top for extractive question-answering tasks like SQuAD (a linear
 layers on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -827,70 +795,49 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>] | None = None"}, {"name": "inputs_embeds", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "start_positions", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "end_positions", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "output_attentions", "val": ": bool | None = None"}, {"name": "output_hidden_states", "val": ": bool | None = None"}, {"name": "return_dict", "val": ": bool | None = None"}, {"name": "**kwargs", "val": ""}]}>
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.FlaubertForQuestionAnsweringSimple.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, langs: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, lengths: typing.Optional[torch.Tensor] = None, cache: dict[str, torch.Tensor] | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, start_positions: typing.Optional[torch.Tensor] = None, end_positions: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/modeling_flaubert.py#L1260)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **langs** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  A parallel sequence of tokens to be used to indicate the language of each token in the input. Indices are
-  languages ids which can be obtained from the language names by using two conversion mappings provided in
-  the configuration of the model (only provided for multilingual models). More precisely, the *language name
-  to language id* mapping is in `model.config.lang2id` (which is a dictionary string to int) and the
-  *language id to language name* mapping is in `model.config.id2lang` (dictionary int to string).
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  See usage examples detailed in the [multilingual documentation](../multilingual).
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+langs (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : A parallel sequence of tokens to be used to indicate the language of each token in the input. Indices are languages ids which can be obtained from the language names by using two conversion mappings provided in the configuration of the model (only provided for multilingual models). More precisely, the *language name to language id* mapping is in `model.config.lang2id` (which is a dictionary string to int) and the *language id to language name* mapping is in `model.config.id2lang` (dictionary int to string).  See usage examples detailed in the [multilingual documentation](../multilingual).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **lengths** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Length of each sentence that can be used to avoid performing attention on padding token indices. You can
-  also use *attention_mask* for the same result (see above), kept here for compatibility. Indices selected in
-  `[0, ..., input_ids.size(-1)]`.
-- **cache** (`dict[str, torch.FloatTensor]`, *optional*) --
-  Instance of `EncoderDecoderCache` that contains precomputed KV states. Can be used to speed up sequential
-  decoding.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **start_positions** (`torch.Tensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the start of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.
-- **end_positions** (`torch.Tensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the end of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[QuestionAnsweringModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`A [QuestionAnsweringModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+lengths (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Length of each sentence that can be used to avoid performing attention on padding token indices. You can also use *attention_mask* for the same result (see above), kept here for compatibility. Indices selected in `[0, ..., input_ids.size(-1)]`.
+
+cache (`dict[str, torch.FloatTensor]`, *optional*) : Instance of `EncoderDecoderCache` that contains precomputed KV states. Can be used to speed up sequential decoding.
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+start_positions (`torch.Tensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the start of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+end_positions (`torch.Tensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the end of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [QuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`
+
+A [QuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FlaubertConfig](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertConfig)) and inputs.
-The [FlaubertForQuestionAnsweringSimple](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertForQuestionAnsweringSimple) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([FlaubertConfig](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertConfig)) and inputs.
+
+The [FlaubertForQuestionAnsweringSimple](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertForQuestionAnsweringSimple) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -943,15 +890,22 @@ Example:
 
 ## FlaubertForQuestionAnswering[[transformers.FlaubertForQuestionAnswering]]
 
-- **config** ([FlaubertForQuestionAnswering](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertForQuestionAnswering)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.FlaubertForQuestionAnswering[[transformers.FlaubertForQuestionAnswering]]
+
+```python
+transformers.FlaubertForQuestionAnswering(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/modeling_flaubert.py#L1385)
+
+**Parameters:**
+
+config ([FlaubertForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Flaubert transformer with a span classification head on top for extractive question-answering tasks like
 SQuAD (a linear layer on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -959,78 +913,55 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>] | None = None"}, {"name": "inputs_embeds", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "start_positions", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "end_positions", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "is_impossible", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "cls_index", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "p_mask", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "output_attentions", "val": ": bool | None = None"}, {"name": "output_hidden_states", "val": ": bool | None = None"}, {"name": "return_dict", "val": ": bool | None = None"}, {"name": "**kwargs", "val": ""}]}>
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.FlaubertForQuestionAnswering.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, langs: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, lengths: typing.Optional[torch.Tensor] = None, cache: dict[str, torch.Tensor] | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, start_positions: typing.Optional[torch.Tensor] = None, end_positions: typing.Optional[torch.Tensor] = None, is_impossible: typing.Optional[torch.Tensor] = None, cls_index: typing.Optional[torch.Tensor] = None, p_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flaubert/modeling_flaubert.py#L1395)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **langs** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  A parallel sequence of tokens to be used to indicate the language of each token in the input. Indices are
-  languages ids which can be obtained from the language names by using two conversion mappings provided in
-  the configuration of the model (only provided for multilingual models). More precisely, the *language name
-  to language id* mapping is in `model.config.lang2id` (which is a dictionary string to int) and the
-  *language id to language name* mapping is in `model.config.id2lang` (dictionary int to string).
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  See usage examples detailed in the [multilingual documentation](../multilingual).
-- **token_type_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - 0 corresponds to a *sentence A* token,
-  - 1 corresponds to a *sentence B* token.
+langs (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : A parallel sequence of tokens to be used to indicate the language of each token in the input. Indices are languages ids which can be obtained from the language names by using two conversion mappings provided in the configuration of the model (only provided for multilingual models). More precisely, the *language name to language id* mapping is in `model.config.lang2id` (which is a dictionary string to int) and the *language id to language name* mapping is in `model.config.id2lang` (dictionary int to string).  See usage examples detailed in the [multilingual documentation](../multilingual).
 
-  [What are token type IDs?](../glossary#token-type-ids)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **lengths** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Length of each sentence that can be used to avoid performing attention on padding token indices. You can
-  also use *attention_mask* for the same result (see above), kept here for compatibility. Indices selected in
-  `[0, ..., input_ids.size(-1)]`.
-- **cache** (`dict[str, torch.FloatTensor]`, *optional*) --
-  Instance of `EncoderDecoderCache` that contains precomputed KV states. Can be used to speed up sequential
-  decoding.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **start_positions** (`torch.Tensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the start of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.
-- **end_positions** (`torch.Tensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the end of the labelled span for computing the token classification loss.
-  Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence
-  are not taken into account for computing the loss.
-- **is_impossible** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels whether a question has an answer or no answer (SQuAD 2.0)
-- **cls_index** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for position (index) of the classification token to use as input for computing plausibility of the
-  answer.
-- **p_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Optional mask of tokens which can't be in answers (e.g. [CLS], [PAD], ...). 1.0 means token should be
-  masked. 0.0 mean token is not masked.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.`FlaubertForQuestionAnsweringOutput` or `tuple(torch.FloatTensor)`A `FlaubertForQuestionAnsweringOutput` or a tuple of
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
+
+lengths (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Length of each sentence that can be used to avoid performing attention on padding token indices. You can also use *attention_mask* for the same result (see above), kept here for compatibility. Indices selected in `[0, ..., input_ids.size(-1)]`.
+
+cache (`dict[str, torch.FloatTensor]`, *optional*) : Instance of `EncoderDecoderCache` that contains precomputed KV states. Can be used to speed up sequential decoding.
+
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+start_positions (`torch.Tensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the start of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+end_positions (`torch.Tensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the end of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
+
+is_impossible (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels whether a question has an answer or no answer (SQuAD 2.0)
+
+cls_index (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the classification token to use as input for computing plausibility of the answer.
+
+p_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Optional mask of tokens which can't be in answers (e.g. [CLS], [PAD], ...). 1.0 means token should be masked. 0.0 mean token is not masked.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** `FlaubertForQuestionAnsweringOutput` or `tuple(torch.FloatTensor)`
+
+A `FlaubertForQuestionAnsweringOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FlaubertConfig](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertConfig)) and inputs.
-The [FlaubertForQuestionAnswering](/docs/transformers/v5.14.0/en/model_doc/flaubert#transformers.FlaubertForQuestionAnswering) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([FlaubertConfig](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertConfig)) and inputs.
+
+The [FlaubertForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/flaubert#transformers.FlaubertForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1073,5 +1004,5 @@ Example:
 >>> loss = outputs.loss
 ```
 
-### SAM2
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/sam2.md
+### GLM-4.5, GLM-4.6, GLM-4.7
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/glm4_moe.md

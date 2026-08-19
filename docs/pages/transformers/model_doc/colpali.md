@@ -129,19 +129,28 @@ print(scores)
 
 ## ColPaliConfig[[transformers.ColPaliConfig]]
 
-- **vlm_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the vision-language backbone.
-- **text_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The config object or dictionary of the text backbone.
-- **embedding_dim** (`int`, *optional*, defaults to `128`) --
-  Dimensionality of the embeddings and hidden states.
+#### transformers.ColPaliConfig[[transformers.ColPaliConfig]]
+
+```python
+transformers.ColPaliConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vlm_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, embedding_dim: int = 128)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/colpali/configuration_colpali.py#L28)
+
+**Parameters:**
+
+vlm_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the vision-language backbone.
+
+text_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the text backbone.
+
+embedding_dim (`int`, *optional*, defaults to `128`) : Dimensionality of the embeddings and hidden states.
 
 This is the configuration class to store the configuration of a ColpaliModel. It is used to instantiate a Colpali
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [vidore/colpali-v1.2](https://huggingface.co/vidore/colpali-v1.2)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -154,48 +163,74 @@ model = ColPaliForRetrieval(config)
 
 ## ColPaliProcessor[[transformers.ColPaliProcessor]]
 
-- **image_processor** (`SiglipImageProcessor`) --
-  The image processor is a required input.
-- **tokenizer** (`tokenizer_class`) --
-  The tokenizer is a required input.
-- **chat_template** (`str`) --
-  A Jinja template to convert lists of messages in a chat into a tokenizable string.
-- **visual_prompt_prefix** (`str`, *optional*, defaults to `"Describe the image."`) --
-  A string that gets tokenized and prepended to the image tokens.
-- **query_prefix** (`str`, *optional*, defaults to `"Question -- "`):
-  A prefix to be used for the query.
+#### transformers.ColPaliProcessor[[transformers.ColPaliProcessor]]
+
+```python
+transformers.ColPaliProcessor(image_processor = None, tokenizer = None, chat_template = None, visual_prompt_prefix: str = 'Describe the image.', query_prefix: str = 'Question: ')
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/colpali/processing_colpali.py#L54)
+
+**Parameters:**
+
+image_processor (`SiglipImageProcessor`) : The image processor is a required input.
+
+tokenizer (`tokenizer_class`) : The tokenizer is a required input.
+
+chat_template (`str`) : A Jinja template to convert lists of messages in a chat into a tokenizable string.
+
+visual_prompt_prefix (`str`, *optional*, defaults to `"Describe the image."`) : A string that gets tokenized and prepended to the image tokens.
+
+query_prefix (`str`, *optional*, defaults to `"Question : "`): A prefix to be used for the query.
+
 Constructs a ColPaliProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[ColPaliProcessor](/docs/transformers/v5.14.0/en/model_doc/colpali#transformers.ColPaliProcessor) offers all the functionalities of [SiglipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/siglip#transformers.SiglipImageProcessor) and `tokenizer_class`. See the
-[~SiglipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/siglip#transformers.SiglipImageProcessor) and `~tokenizer_class` for more information.
+[ColPaliProcessor](/docs/transformers/v5.15.0/en/model_doc/colpali#transformers.ColPaliProcessor) offers all the functionalities of [SiglipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipImageProcessor) and `tokenizer_class`. See the
+[~SiglipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipImageProcessor) and `~tokenizer_class` for more information.
 
-- **images** (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) --
-  Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If
-  passing in images with pixel values between 0 and 1, set `do_rescale=False`.
-- **text** (`Union[str, list[str], list[list[str]]]`, *optional*) --
-  The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings
-  (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
-- **return_tensors** (`str` or [TensorType](/docs/transformers/v5.14.0/en/internal/file_utils#transformers.TensorType), *optional*) --
-  If set, will return tensors of a particular framework. Acceptable values are:
+#### __call__[[transformers.ColPaliProcessor.__call__]]
 
-  - `'pt'`: Return PyTorch `torch.Tensor` objects.
-  - `'np'`: Return NumPy `np.ndarray` objects.
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.14.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) --
-  Additional processing options for each modality (text, images, videos, audio). Model-specific parameters
-  are listed above; see the TypedDict class for the complete list of supported arguments.[BatchFeature](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BatchFeature)A [BatchFeature](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
+```python
+__call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] = None, **kwargs: Unpack)
+```
 
-- **input_ids** -- List of token ids to be fed to a model.
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/colpali/processing_colpali.py#L94)
+
+**Parameters:**
+
+images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]`, *optional*) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
+
+text (`Union[str, list[str], list[list[str]]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
+
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+
+**Returns:** [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature)
+
+A [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
+
+- **input_ids** -- List of token ids to be fed to a model. Returned when `text` is not `None`. If `suffix`
+  is provided, the `input_ids` will also contain the suffix input ids.
 - **attention_mask** -- List of indices specifying which tokens should be attended to by the model (when
   `return_attention_mask=True` or if *"attention_mask"* is in `self.model_input_names` and if `text` is not
   `None`).
 - **pixel_values** -- Pixel values to be fed to a model. Returned when `images` is not `None`.
+- **labels** -- Labels compatible with training if `suffix` is not None
 
 ## ColPaliForRetrieval[[transformers.ColPaliForRetrieval]]
 
-- **config** ([ColPaliConfig](/docs/transformers/v5.14.0/en/model_doc/colpali#transformers.ColPaliConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.ColPaliForRetrieval[[transformers.ColPaliForRetrieval]]
+
+```python
+transformers.ColPaliForRetrieval(config: ColPaliConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/colpali/modeling_colpali.py#L89)
+
+**Parameters:**
+
+config ([ColPaliConfig](/docs/transformers/v5.15.0/en/model_doc/colpali#transformers.ColPaliConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The ColPali architecture leverages VLMs to construct efficient multi-vector embeddings directly
 from document images (“screenshots”) for document retrieval. The model is trained to maximize the similarity
@@ -208,7 +243,7 @@ single model that can take into account both the textual and visual content (lay
 ColPali is part of the ColVision model family, which was first introduced in the following paper:
 [*ColPali: Efficient Document Retrieval with Vision Language Models*](https://huggingface.co/papers/2407.01449).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -216,27 +251,29 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.ColPaliForRetrieval.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [SiglipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/siglip#transformers.SiglipImageProcessor). See `SiglipImageProcessor.__call__()` for details ([ColPaliProcessor](/docs/transformers/v5.14.0/en/model_doc/colpali#transformers.ColPaliProcessor) uses
-  [SiglipImageProcessor](/docs/transformers/v5.14.0/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/colpali/modeling_colpali.py#L107)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)`ColPaliForRetrievalOutput` or `tuple(torch.FloatTensor)`A `ColPaliForRetrievalOutput` or a tuple of
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipImageProcessor). See `SiglipImageProcessor.__call__()` for details ([ColPaliProcessor](/docs/transformers/v5.15.0/en/model_doc/colpali#transformers.ColPaliProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
+
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
+
+**Returns:** `ColPaliForRetrievalOutput` or `tuple(torch.FloatTensor)`
+
+A `ColPaliForRetrievalOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ColPaliConfig](/docs/transformers/v5.14.0/en/model_doc/colpali#transformers.ColPaliConfig)) and inputs.
-The [ColPaliForRetrieval](/docs/transformers/v5.14.0/en/model_doc/colpali#transformers.ColPaliForRetrieval) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([ColPaliConfig](/docs/transformers/v5.15.0/en/model_doc/colpali#transformers.ColPaliConfig)) and inputs.
+
+The [ColPaliForRetrieval](/docs/transformers/v5.15.0/en/model_doc/colpali#transformers.ColPaliForRetrieval) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -244,7 +281,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **embeddings** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- The embeddings of the model.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -265,5 +302,5 @@ Example:
 ```python
 ```
 
-### TimesFM
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/timesfm.md
+### mLUKE
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/mluke.md

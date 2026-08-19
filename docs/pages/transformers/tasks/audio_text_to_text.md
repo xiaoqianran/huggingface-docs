@@ -151,7 +151,7 @@ Instantiate the data collator:
 ## Train
 
 > [!TIP]
-> If you aren't familiar with fine-tuning a model with the [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training)!
+> If you aren't familiar with fine-tuning a model with the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training)!
 
 Load the Audio Flamingo model. We use `bfloat16` precision and `device_map="auto"` for efficient memory usage:
 
@@ -198,7 +198,7 @@ Load the Audio Flamingo model. We use `bfloat16` precision and `device_map="auto
 
 ### Setup training
 
-Define training hyperparameters in [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments). Note that we use `max_steps` instead of epochs since we're using a streaming dataset:
+Define training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments). Note that we use `max_steps` instead of epochs since we're using a streaming dataset:
 
 ```py
 >>> from transformers import TrainingArguments, Trainer
@@ -224,7 +224,7 @@ Define training hyperparameters in [TrainingArguments](/docs/transformers/v5.14.
 ... )
 ```
 
-Pass the training arguments to [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) along with the model, datasets, and data collator:
+Pass the training arguments to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) along with the model, datasets, and data collator:
 
 ```py
 >>> trainer = Trainer(
@@ -312,7 +312,7 @@ Generate a response:
 
 ## Pipeline
 
-You can also use the [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) API for quick inference. First, merge the LoRA adapter with the base model, then create a pipeline:
+You can also use the [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) API for quick inference. First, merge the LoRA adapter with the base model, then create a pipeline:
 
 ```py
 >>> from transformers import pipeline
@@ -339,5 +339,5 @@ You can also use the [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipel
 - [PEFT documentation](https://huggingface.co/docs/peft) for more LoRA configuration options and other adapter methods.
 - [Audio Flamingo 3 model card](https://huggingface.co/nvidia/audio-flamingo-3-hf) for model-specific details and capabilities.
 
-### Automatic speech recognition
-https://huggingface.co/docs/transformers/v5.14.0/tasks/asr.md
+### Keypoint Detection
+https://huggingface.co/docs/transformers/v5.15.0/tasks/keypoint_detection.md

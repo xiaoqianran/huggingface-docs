@@ -12,7 +12,7 @@ Use the Space below to help you pick a quantization method depending on your har
 | [AutoRound](./auto_round)                 | 🔴                   | 🟢               | 🟢          |   🔴        |   🔴                                |   🟢              |   🔴               | 2/3/4/8      |    🔴              |       🟢                      |    🟢                       |      https://github.com/intel/auto-round                                       |
 | [AWQ](./awq)                              | 🔴                   | 🟢              | 🟢        | 🟢        | 🔴                                 | 🟢              | ?               | 4            | 🟢               | 🟢                          | 🟢                      | https://github.com/casper-hansen/AutoAWQ    |
 | [bitsandbytes](./bitsandbytes)            | 🟢                   | 🟢 |     🟢     | 🟡 | 🟡                    | 🟢 | 🟢 | 4/8          | 🟢               | 🟢                          | 🟢                      | https://github.com/bitsandbytes-foundation/bitsandbytes |
-| [compressed-tensors](./compressed_tensors) | 🔴                   | 🟢              |     🟢     | 🟢        | 🔴                                 | 🔴              | 🔴              | 1/8          | 🟢               | 🟢                          | 🟢                      | https://github.com/neuralmagic/compressed-tensors |
+| [compressed-tensors](./compressed_tensors) | 🔴                   | 🟢              |     🟢     | 🟢        | 🔴                                 | 🟢              | 🔴              | 1/8          | 🟢               | 🟢                          | 🟢                      | https://github.com/neuralmagic/compressed-tensors |
 | [EETQ](./eetq)                            | 🟢                   | 🔴              | 🟢        | 🔴        | 🔴                                 | 🔴              | ?               | 8            | 🟢               | 🟢                          | 🟢                      | https://github.com/NetEase-FuXi/EETQ        |
 | [Four Over Six](./fouroversix)            | 🟢                   | 🟢              | 🟢        | 🔴        | 🔴                                 | 🔴              | 🟢              | 4            | 🔴               | 🟢                          | 🟢                      | https://github.com/mit-han-lab/fouroversix |
 | [FP-Quant](./fp_quant)                          | 🟢                   | 🔴              | 🟢        | 🔴        | 🔴                                 | 🔴              | 🟢              | 4           | 🔴               | 🟢                          | 🟢                      | https://github.com/IST-DASLab/FP-Quant      |
@@ -46,5 +46,5 @@ If you are looking for a user-friendly quantization experience, you can use the 
 * [MLX Space](https://huggingface.co/spaces/mlx-community/mlx-my-repo)
 * [AutoQuant Notebook](https://colab.research.google.com/drive/1b6nqC7UZVt8bx4MksX7s656GXPM-eWw4?usp=sharing#scrollTo=ZC9Nsr9u5WhN)
 
-### AutoRound
-https://huggingface.co/docs/transformers/v5.14.0/quantization/auto_round.md
+### GPTQ
+https://huggingface.co/docs/transformers/v5.15.0/quantization/gptq.md

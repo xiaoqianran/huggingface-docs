@@ -66,5 +66,5 @@ There are three main types of training ops.
 - See the [Mixed precision training](./mixed_precision_training) guide to learn how to use lower precision data types to reduce memory and speed up training.
 - See the [Kernels](./kernels) guide to learn how to speed up training with custom fused kernels.
 
-### Accelerator selection
-https://huggingface.co/docs/transformers/v5.14.0/accelerator_selection.md
+### Trainer
+https://huggingface.co/docs/transformers/v5.15.0/trainer.md

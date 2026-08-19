@@ -95,86 +95,92 @@ model = DabDetrForObjectDetection(config)
 
 ## DabDetrConfig[[transformers.DabDetrConfig]]
 
-- **is_encoder_decoder** (`bool`, *optional*, defaults to `True`) --
-  Whether the model is used as an encoder/decoder or not.
-- **backbone_config** (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) --
-  The configuration of the backbone model.
-- **num_queries** (`int`, *optional*, defaults to 300) --
-  Number of object queries, i.e. detection slots. This is the maximal number of objects
-  [DabDetrModel](/docs/transformers/v5.14.0/en/model_doc/dab-detr#transformers.DabDetrModel) can detect in a single image. For COCO, we recommend 100 queries.
-- **encoder_layers** (`int`, *optional*, defaults to `6`) --
-  Number of hidden layers in the Transformer encoder. Will use the same value as `num_layers` if not set.
-- **encoder_ffn_dim** (`int`, *optional*, defaults to `2048`) --
-  Dimensionality of the "intermediate" (often named feed-forward) layer in encoder.
-- **encoder_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer encoder.
-- **decoder_layers** (`int`, *optional*, defaults to `6`) --
-  Number of hidden layers in the Transformer decoder. Will use the same value as `num_layers` if not set.
-- **decoder_ffn_dim** (`int`, *optional*, defaults to `2048`) --
-  Dimensionality of the "intermediate" (often named feed-forward) layer in decoder.
-- **decoder_attention_heads** (`int`, *optional*, defaults to `8`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **activation_function** (`str`, *optional*, defaults to `prelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **hidden_size** (`int`, *optional*, defaults to `256`) --
-  Dimension of the hidden representations.
-- **dropout** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The ratio for all dropout layers.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **activation_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for activations inside the fully connected layer.
-- **init_std** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **init_xavier_std** (`float`, *optional*, defaults to `1.0`) --
-  The scaling factor used for the Xavier initialization of the cross-attention weights.
-- **auxiliary_loss** (`bool`, *optional*, defaults to `False`) --
-  Whether auxiliary decoding losses (losses at each decoder layer) are to be used.
-- **dilation** (`bool`, *optional*, defaults to `False`) --
-  Whether to replace stride with dilation in the last convolutional block (DC5). Only supported when `use_timm_backbone` = `True`.
-- **class_cost** (`int`, *optional*, defaults to `2`) --
-  Relative weight of the classification error in the Hungarian matching cost.
-- **bbox_cost** (`int`, *optional*, defaults to `5`) --
-  Relative weight of the L1 bounding box error in the Hungarian matching cost.
-- **giou_cost** (`int`, *optional*, defaults to `2`) --
-  Relative weight of the generalized IoU loss in the Hungarian matching cost.
-- **cls_loss_coefficient** (`int`, *optional*, defaults to `2`) --
-  Relative weight of the classification loss in the panoptic segmentation loss.
-- **bbox_loss_coefficient** (`int`, *optional*, defaults to `5`) --
-  Relative weight of the L1 bounding box loss in the panoptic segmentation loss.
-- **giou_loss_coefficient** (`int`, *optional*, defaults to `2`) --
-  Relative weight of the generalized IoU loss in the panoptic segmentation loss.
-- **focal_alpha** (`float`, *optional*, defaults to `0.25`) --
-  Alpha parameter in the focal loss.
-- **temperature_height** (`int`, *optional*, defaults to 20) --
-  Temperature parameter to tune the flatness of positional attention (HEIGHT)
-- **temperature_width** (`int`, *optional*, defaults to 20) --
-  Temperature parameter to tune the flatness of positional attention (WIDTH)
-- **query_dim** (`int`, *optional*, defaults to 4) --
-  Query dimension parameter represents the size of the output vector.
-- **random_refpoints_xy** (`bool`, *optional*, defaults to `False`) --
-  Whether to fix the x and y coordinates of the anchor boxes with random initialization.
-- **keep_query_pos** (`bool`, *optional*, defaults to `False`) --
-  Whether to concatenate the projected positional embedding from the object query into the original query (key) in every decoder layer.
-- **num_patterns** (`int`, *optional*, defaults to 0) --
-  Number of pattern embeddings.
-- **normalize_before** (`bool`, *optional*, defaults to `False`) --
-  Whether we use a normalization layer in the Encoder or not.
-- **sine_position_embedding_scale** (`float`, *optional*, defaults to 'None') --
-  Scaling factor applied to the normalized positional encodings.
-- **initializer_bias_prior_prob** (`float`, *optional*) --
-  The prior probability used by the bias initializer to initialize biases for `enc_score_head` and `class_embed`.
-  If `None`, `prior_prob` computed as `prior_prob = 1 / (num_labels + 1)` while initializing model weights.
-- **tie_word_embeddings** (`bool`, *optional*, defaults to `True`) --
-  Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
+#### transformers.DabDetrConfig[[transformers.DabDetrConfig]]
+
+```python
+transformers.DabDetrConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, num_queries: int = 300, encoder_layers: int = 6, encoder_ffn_dim: int = 2048, encoder_attention_heads: int = 8, decoder_layers: int = 6, decoder_ffn_dim: int = 2048, decoder_attention_heads: int = 8, activation_function: str = 'prelu', hidden_size: int = 256, dropout: float | int = 0.1, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, init_std: float = 0.02, init_xavier_std: float = 1.0, auxiliary_loss: bool = False, dilation: bool = False, class_cost: int = 2, bbox_cost: int = 5, giou_cost: int = 2, cls_loss_coefficient: int = 2, bbox_loss_coefficient: int = 5, giou_loss_coefficient: int = 2, focal_alpha: float = 0.25, temperature_height: int = 20, temperature_width: int = 20, query_dim: int = 4, random_refpoints_xy: bool = False, keep_query_pos: bool = False, num_patterns: int = 0, normalize_before: bool = False, sine_position_embedding_scale: float | None = None, initializer_bias_prior_prob: float | None = None, tie_word_embeddings: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dab_detr/configuration_dab_detr.py#L26)
+
+**Parameters:**
+
+is_encoder_decoder (`bool`, *optional*, defaults to `True`) : Whether the model is used as an encoder/decoder or not.
+
+backbone_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The configuration of the backbone model.
+
+num_queries (`int`, *optional*, defaults to 300) : Number of object queries, i.e. detection slots. This is the maximal number of objects [DabDetrModel](/docs/transformers/v5.15.0/en/model_doc/dab-detr#transformers.DabDetrModel) can detect in a single image. For COCO, we recommend 100 queries.
+
+encoder_layers (`int`, *optional*, defaults to `6`) : Number of hidden layers in the Transformer encoder. Will use the same value as `num_layers` if not set.
+
+encoder_ffn_dim (`int`, *optional*, defaults to `2048`) : Dimensionality of the "intermediate" (often named feed-forward) layer in encoder.
+
+encoder_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer encoder.
+
+decoder_layers (`int`, *optional*, defaults to `6`) : Number of hidden layers in the Transformer decoder. Will use the same value as `num_layers` if not set.
+
+decoder_ffn_dim (`int`, *optional*, defaults to `2048`) : Dimensionality of the "intermediate" (often named feed-forward) layer in decoder.
+
+decoder_attention_heads (`int`, *optional*, defaults to `8`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+activation_function (`str`, *optional*, defaults to `prelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+hidden_size (`int`, *optional*, defaults to `256`) : Dimension of the hidden representations.
+
+dropout (`Union[float, int]`, *optional*, defaults to `0.1`) : The ratio for all dropout layers.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+activation_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for activations inside the fully connected layer.
+
+init_std (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+init_xavier_std (`float`, *optional*, defaults to `1.0`) : The scaling factor used for the Xavier initialization of the cross-attention weights.
+
+auxiliary_loss (`bool`, *optional*, defaults to `False`) : Whether auxiliary decoding losses (losses at each decoder layer) are to be used.
+
+dilation (`bool`, *optional*, defaults to `False`) : Whether to replace stride with dilation in the last convolutional block (DC5). Only supported when `use_timm_backbone` = `True`.
+
+class_cost (`int`, *optional*, defaults to `2`) : Relative weight of the classification error in the Hungarian matching cost.
+
+bbox_cost (`int`, *optional*, defaults to `5`) : Relative weight of the L1 bounding box error in the Hungarian matching cost.
+
+giou_cost (`int`, *optional*, defaults to `2`) : Relative weight of the generalized IoU loss in the Hungarian matching cost.
+
+cls_loss_coefficient (`int`, *optional*, defaults to `2`) : Relative weight of the classification loss in the panoptic segmentation loss.
+
+bbox_loss_coefficient (`int`, *optional*, defaults to `5`) : Relative weight of the L1 bounding box loss in the panoptic segmentation loss.
+
+giou_loss_coefficient (`int`, *optional*, defaults to `2`) : Relative weight of the generalized IoU loss in the panoptic segmentation loss.
+
+focal_alpha (`float`, *optional*, defaults to `0.25`) : Alpha parameter in the focal loss.
+
+temperature_height (`int`, *optional*, defaults to 20) : Temperature parameter to tune the flatness of positional attention (HEIGHT)
+
+temperature_width (`int`, *optional*, defaults to 20) : Temperature parameter to tune the flatness of positional attention (WIDTH)
+
+query_dim (`int`, *optional*, defaults to 4) : Query dimension parameter represents the size of the output vector.
+
+random_refpoints_xy (`bool`, *optional*, defaults to `False`) : Whether to fix the x and y coordinates of the anchor boxes with random initialization.
+
+keep_query_pos (`bool`, *optional*, defaults to `False`) : Whether to concatenate the projected positional embedding from the object query into the original query (key) in every decoder layer.
+
+num_patterns (`int`, *optional*, defaults to 0) : Number of pattern embeddings.
+
+normalize_before (`bool`, *optional*, defaults to `False`) : Whether we use a normalization layer in the Encoder or not.
+
+sine_position_embedding_scale (`float`, *optional*, defaults to 'None') : Scaling factor applied to the normalized positional encodings.
+
+initializer_bias_prior_prob (`float`, *optional*) : The prior probability used by the bias initializer to initialize biases for `enc_score_head` and `class_embed`. If `None`, `prior_prob` computed as `prior_prob = 1 / (num_labels + 1)` while initializing model weights.
+
+tie_word_embeddings (`bool`, *optional*, defaults to `True`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
 
 This is the configuration class to store the configuration of a Dab DetrModel. It is used to instantiate a Dab Detr
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [IDEA-Research/dab-detr-resnet-50](https://huggingface.co/IDEA-Research/dab-detr-resnet-50)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -193,15 +199,22 @@ Examples:
 
 ## DabDetrModel[[transformers.DabDetrModel]]
 
-- **config** ([DabDetrConfig](/docs/transformers/v5.14.0/en/model_doc/dab-detr#transformers.DabDetrConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.DabDetrModel[[transformers.DabDetrModel]]
+
+```python
+transformers.DabDetrModel(config: DabDetrConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dab_detr/modeling_dab_detr.py#L1143)
+
+**Parameters:**
+
+config ([DabDetrConfig](/docs/transformers/v5.15.0/en/model_doc/dab-detr#transformers.DabDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare DAB-DETR Model (consisting of a backbone and encoder-decoder Transformer) outputting raw
 hidden-states, intermediate hidden states, reference points, output coordinates without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -209,40 +222,41 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses
-  `image_processor_class` for processing images).
-- **pixel_mask** (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) --
-  Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:
+#### forward[[transformers.DabDetrModel.forward]]
 
-  - 1 for pixels that are real (i.e. **not masked**),
-  - 0 for pixels that are padding (i.e. **masked**).
+```python
+forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are attention masks?](../glossary#attention-mask)
-- **decoder_attention_mask** (`torch.FloatTensor` of shape `(batch_size, num_queries)`, *optional*) --
-  Not used by default. Can be used to mask object queries.
-- **encoder_outputs** (`torch.FloatTensor`, *optional*) --
-  Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`)
-  `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of
-  hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing the flattened feature map (output of the backbone + projection layer), you
-  can choose to directly pass a flattened representation of an image.
-- **decoder_inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, num_queries, hidden_size)`, *optional*) --
-  Optionally, instead of initializing the queries with a tensor of zeros, you can choose to directly pass an
-  embedded representation.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.`DabDetrModelOutput` or `tuple(torch.FloatTensor)`A `DabDetrModelOutput` or a tuple of
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dab_detr/modeling_dab_detr.py#L1195)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
+
+pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
+
+decoder_attention_mask (`torch.FloatTensor` of shape `(batch_size, num_queries)`, *optional*) : Not used by default. Can be used to mask object queries.
+
+encoder_outputs (`torch.FloatTensor`, *optional*) : Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing the flattened feature map (output of the backbone + projection layer), you can choose to directly pass a flattened representation of an image.
+
+decoder_inputs_embeds (`torch.FloatTensor` of shape `(batch_size, num_queries, hidden_size)`, *optional*) : Optionally, instead of initializing the queries with a tensor of zeros, you can choose to directly pass an embedded representation.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** `DabDetrModelOutput` or `tuple(torch.FloatTensor)`
+
+A `DabDetrModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DabDetrConfig](/docs/transformers/v5.14.0/en/model_doc/dab-detr#transformers.DabDetrConfig)) and inputs.
-The [DabDetrModel](/docs/transformers/v5.14.0/en/model_doc/dab-detr#transformers.DabDetrModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([DabDetrConfig](/docs/transformers/v5.15.0/en/model_doc/dab-detr#transformers.DabDetrConfig)) and inputs.
+
+The [DabDetrModel](/docs/transformers/v5.15.0/en/model_doc/dab-detr#transformers.DabDetrModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -252,7 +266,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
   blocks) that can be used (see `past_key_values` input) to speed up sequential decoding.
@@ -314,15 +328,22 @@ Examples:
 
 ## DabDetrForObjectDetection[[transformers.DabDetrForObjectDetection]]
 
-- **config** ([DabDetrConfig](/docs/transformers/v5.14.0/en/model_doc/dab-detr#transformers.DabDetrConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.DabDetrForObjectDetection[[transformers.DabDetrForObjectDetection]]
+
+```python
+transformers.DabDetrForObjectDetection(config: DabDetrConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dab_detr/modeling_dab_detr.py#L1415)
+
+**Parameters:**
+
+config ([DabDetrConfig](/docs/transformers/v5.15.0/en/model_doc/dab-detr#transformers.DabDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 DAB_DETR Model (consisting of a backbone and encoder-decoder Transformer) with object detection heads on
 top, for tasks such as COCO detection.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -330,45 +351,43 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses
-  `image_processor_class` for processing images).
-- **pixel_mask** (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) --
-  Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:
+#### forward[[transformers.DabDetrForObjectDetection.forward]]
 
-  - 1 for pixels that are real (i.e. **not masked**),
-  - 0 for pixels that are padding (i.e. **masked**).
+```python
+forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
 
-  [What are attention masks?](../glossary#attention-mask)
-- **decoder_attention_mask** (`torch.FloatTensor` of shape `(batch_size, num_queries)`, *optional*) --
-  Not used by default. Can be used to mask object queries.
-- **encoder_outputs** (`torch.FloatTensor`, *optional*) --
-  Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`)
-  `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of
-  hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing the flattened feature map (output of the backbone + projection layer), you
-  can choose to directly pass a flattened representation of an image.
-- **decoder_inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, num_queries, hidden_size)`, *optional*) --
-  Optionally, instead of initializing the queries with a tensor of zeros, you can choose to directly pass an
-  embedded representation.
-- **labels** (`list[Dict]` of len `(batch_size,)`, *optional*) --
-  Labels for computing the bipartite matching loss. List of dicts, each dictionary containing at least the
-  following 2 keys: 'class_labels' and 'boxes' (the class labels and bounding boxes of an image in the batch
-  respectively). The class labels themselves should be a `torch.LongTensor` of len `(number of bounding boxes
-  in the image,)` and the boxes a `torch.FloatTensor` of shape `(number of bounding boxes in the image, 4)`.
-- **output_attentions** (`bool`, *optional*) --
-  Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned
-  tensors for more detail.
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.`DabDetrObjectDetectionOutput` or `tuple(torch.FloatTensor)`A `DabDetrObjectDetectionOutput` or a tuple of
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dab_detr/modeling_dab_detr.py#L1444)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
+
+pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
+
+decoder_attention_mask (`torch.FloatTensor` of shape `(batch_size, num_queries)`, *optional*) : Not used by default. Can be used to mask object queries.
+
+encoder_outputs (`torch.FloatTensor`, *optional*) : Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
+
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing the flattened feature map (output of the backbone + projection layer), you can choose to directly pass a flattened representation of an image.
+
+decoder_inputs_embeds (`torch.FloatTensor` of shape `(batch_size, num_queries, hidden_size)`, *optional*) : Optionally, instead of initializing the queries with a tensor of zeros, you can choose to directly pass an embedded representation.
+
+labels (`list[Dict]` of len `(batch_size,)`, *optional*) : Labels for computing the bipartite matching loss. List of dicts, each dictionary containing at least the following 2 keys: 'class_labels' and 'boxes' (the class labels and bounding boxes of an image in the batch respectively). The class labels themselves should be a `torch.LongTensor` of len `(number of bounding boxes in the image,)` and the boxes a `torch.FloatTensor` of shape `(number of bounding boxes in the image, 4)`.
+
+output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** `DabDetrObjectDetectionOutput` or `tuple(torch.FloatTensor)`
+
+A `DabDetrObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DabDetrConfig](/docs/transformers/v5.14.0/en/model_doc/dab-detr#transformers.DabDetrConfig)) and inputs.
-The [DabDetrForObjectDetection](/docs/transformers/v5.14.0/en/model_doc/dab-detr#transformers.DabDetrForObjectDetection) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([DabDetrConfig](/docs/transformers/v5.15.0/en/model_doc/dab-detr#transformers.DabDetrConfig)) and inputs.
+
+The [DabDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/dab-detr#transformers.DabDetrForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -448,5 +467,5 @@ Detected remote with confidence 0.683 at location [334.48, 73.49, 366.37, 190.01
 Detected couch with confidence 0.535 at location [0.52, 1.19, 640.35, 475.1]
 ```
 
-### OneFormer
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/oneformer.md
+### Byte Latent Transformer (BLT)
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/blt.md

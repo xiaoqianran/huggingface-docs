@@ -13,7 +13,7 @@ MPS requires the entire model to fit in unified memory, so `device_map="auto"` c
 
 Loading weights to MPS is faster and uses less memory with safetensors `0.8.0` and PyTorch 2.9 or later. When `device_map="mps"` or `"auto"`, weights are mapped into Metal buffers without an intermediate copy, which roughly halves the memory footprint during loading and makes it about 5-6x faster. On older PyTorch versions, loading will fall back to the standard load path.
 
-[Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) detects MPS automatically with `torch.backends.mps.is_available` and sets the device to `mps` without any configuration changes.
+[Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) detects MPS automatically with `torch.backends.mps.is_available` and sets the device to `mps` without any configuration changes.
 
 ## Mixed precision
 
@@ -28,9 +28,26 @@ training_args = TrainingArguments(
 )
 ```
 
+## Graph cache
+
+MPS compiles a separate Metal kernel for each unique tensor shape and stores them in a graph cache with no eviction policy. Training with variable-length inputs (padded sequences, dynamic batches) grows the cache on every new shape and can eventually exhaust unified memory.
+
+Set `torch_empty_cache_steps` in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) to bound this growth. On MPS, [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) clears the graph cache alongside the device cache every `torch_empty_cache_steps` steps, at a throughput cost. You need to opt-in to clear both caches. When `torch_empty_cache_steps` is unset (the default), neither cache is cleared and behavior is unchanged.
+
+```python
+from transformers import TrainingArguments
+
+training_args = TrainingArguments(
+    output_dir="./outputs",
+    torch_empty_cache_steps=1,  # clear caches every step
+)
+```
+
+Graph cache clearing requires PyTorch 2.13 or later. On older versions, [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) skips the graph cache call and only clears the device cache.
+
 ## Next steps
 
 - Read the [Introducing Accelerated PyTorch Training on Mac](https://pytorch.org/blog/introducing-accelerated-pytorch-training-on-mac/) blog post for background on the MPS backend.
 
-### Debugging
-https://huggingface.co/docs/transformers/v5.14.0/debugging.md
+### Heterogeneous model configurations
+https://huggingface.co/docs/transformers/v5.15.0/heterogeneous_configurations.md

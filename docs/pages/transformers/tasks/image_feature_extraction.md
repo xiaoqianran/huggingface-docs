@@ -115,5 +115,5 @@ print(similarity_score)
 # tensor([0.6061], device='cuda:0', grad_fn=<SumBackward1>)
 ```
 
-### Image captioning
-https://huggingface.co/docs/transformers/v5.14.0/tasks/image_captioning.md
+### Image tasks with IDEFICS
+https://huggingface.co/docs/transformers/v5.15.0/tasks/idefics.md

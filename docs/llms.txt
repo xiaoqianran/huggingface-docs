@@ -22,6 +22,6 @@
 - [timm](https://huggingface.co/docs/timm) — 77 pages
 - [Tokenizers](https://huggingface.co/docs/tokenizers) — 18 pages
 - [Transformers.js](https://huggingface.co/docs/transformers.js) — 39 pages
-- [Transformers](https://huggingface.co/docs/transformers) — 722 pages
+- [Transformers](https://huggingface.co/docs/transformers) — 727 pages
 - [TRL](https://huggingface.co/docs/trl) — 63 pages
 - [Xet](https://huggingface.co/docs/xet) — 12 pages

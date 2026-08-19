@@ -78,6 +78,12 @@ You can specify the following operators: `==`, `>`, `>=`, `<`, `<=`, `!=`.
 
 ## Methods[[transformers.utils.import_utils.define_import_structure]]
 
+#### transformers.utils.import_utils.define_import_structure[[transformers.utils.import_utils.define_import_structure]]
+
+```python
+transformers.utils.import_utils.define_import_structure(module_path: str, prefix: str | None = None)
+```
+
 This method takes a module_path as input and creates an import structure digestible by a _LazyModule.
 
 Here's an example of an output import structure at the src.transformers.models level:
@@ -99,13 +105,32 @@ The import structure is a dict defined with frozensets as keys, and dicts of str
 
 If `prefix` is not None, it will add that prefix to all keys in the returned dict.
 
+#### transformers.utils.import_utils.requires[[transformers.utils.import_utils.requires]]
+
+```python
+transformers.utils.import_utils.requires(backends = ())
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/import_utils.py#L2865)
+
 This decorator enables two things:
 - Attaching a `__backends` tuple to an object to see what are the necessary backends for it
   to execute correctly without instantiating it
 - The '@requires' string is used to dynamically import objects
 
-- **obj** -- object to be checked
-- **backends** -- list or tuple of backends to check.
+#### transformers.requires_backends[[transformers.requires_backends]]
+
+```python
+transformers.requires_backends(obj, backends)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/import_utils.py#L2318)
+
+**Parameters:**
+
+obj : object to be checked
+
+backends : list or tuple of backends to check.
 
 Method that automatically raises in case the specified backends are not available. It is often used during class
 
@@ -117,5 +142,5 @@ requires_backends(self, ["torch"])
 
 The backends should be defined in the `BACKEND_MAPPING` defined in `transformers.utils.import_utils`.
 
-### Utilities for Trainer
-https://huggingface.co/docs/transformers/v5.14.0/internal/trainer_utils.md
+### Environment Variables
+https://huggingface.co/docs/transformers/v5.15.0/reference/environment_variables.md

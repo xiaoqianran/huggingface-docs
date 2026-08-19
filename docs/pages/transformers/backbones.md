@@ -4,7 +4,7 @@ Higher-level computer visions tasks, such as object detection or image segmentat
 
     
 
-Load a backbone with [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained) and use the `out_indices` parameter to determine which layer, given by the index, to extract a feature map from.
+Load a backbone with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained) and use the `out_indices` parameter to determine which layer, given by the index, to extract a feature map from.
 
 ```py
 from transformers import AutoBackbone
@@ -23,9 +23,9 @@ There are two backbone classes.
 
 Refer to the [Backbone](./main_classes/backbones) API documentation to check which models support a backbone.
 
-There are two ways to load a Transformers backbone, [AutoBackbone](/docs/transformers/v5.14.0/en/main_classes/backbones#transformers.AutoBackbone) and a model-specific backbone class.
+There are two ways to load a Transformers backbone, [AutoBackbone](/docs/transformers/v5.15.0/en/main_classes/backbones#transformers.AutoBackbone) and a model-specific backbone class.
 
-The [AutoClass](./model_doc/auto) API automatically loads a pretrained vision model with [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained) as a backbone if it's supported.
+The [AutoClass](./model_doc/auto) API automatically loads a pretrained vision model with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained) as a backbone if it's supported.
 
 Set the `out_indices` parameter to the layer you'd like to get the feature map from. If you know the name of the layer, you could also use `out_features`. These parameters can be used interchangeably, but if you use both, make sure they refer to the same layer.
 
@@ -68,7 +68,7 @@ model = MaskFormerForInstanceSegmentation(config)
 
 ## timm backbones
 
-[timm](https://hf.co/docs/timm/index) is a collection of vision models for training and inference. Transformers supports timm models as backbones with the [TimmBackbone](/docs/transformers/v5.14.0/en/main_classes/backbones#transformers.TimmBackbone) and [TimmBackboneConfig](/docs/transformers/v5.14.0/en/main_classes/backbones#transformers.TimmBackboneConfig) classes. Set the necessary backbone checkpoint in `backbone` to create a model with Timm backbone with randomly initialized weights.
+[timm](https://hf.co/docs/timm/index) is a collection of vision models for training and inference. Transformers supports timm models as backbones with the [TimmBackbone](/docs/transformers/v5.15.0/en/main_classes/backbones#transformers.TimmBackbone) and [TimmBackboneConfig](/docs/transformers/v5.15.0/en/main_classes/backbones#transformers.TimmBackboneConfig) classes. Set the necessary backbone checkpoint in `backbone` to create a model with Timm backbone with randomly initialized weights.
 
 ```py
 from transformers import MaskFormerConfig, MaskFormerForInstanceSegmentation
@@ -78,7 +78,7 @@ config = MaskFormerConfig(backbone_config=backbone_config)
 model = MaskFormerForInstanceSegmentation(config)
 ```
 
-You could also explicitly call the [TimmBackboneConfig](/docs/transformers/v5.14.0/en/main_classes/backbones#transformers.TimmBackboneConfig) class to load and create a pretrained timm backbone.
+You could also explicitly call the [TimmBackboneConfig](/docs/transformers/v5.15.0/en/main_classes/backbones#transformers.TimmBackboneConfig) class to load and create a pretrained timm backbone.
 
 ```py
 from transformers import TimmBackboneConfig
@@ -86,7 +86,7 @@ from transformers import TimmBackboneConfig
 backbone_config = TimmBackboneConfig("resnet50")
 ```
 
-Pass the backbone configuration to the model configuration and instantiate the model head, [MaskFormerForInstanceSegmentation](/docs/transformers/v5.14.0/en/model_doc/maskformer#transformers.MaskFormerForInstanceSegmentation), with the backbone.
+Pass the backbone configuration to the model configuration and instantiate the model head, [MaskFormerForInstanceSegmentation](/docs/transformers/v5.15.0/en/model_doc/maskformer#transformers.MaskFormerForInstanceSegmentation), with the backbone.
 
 ```py
 from transformers import MaskFormerConfig, MaskFormerForInstanceSegmentation
@@ -125,5 +125,5 @@ list(feature_maps[0].shape)
 [1, 96, 56, 56]
 ```
 
-### Intel Gaudi
-https://huggingface.co/docs/transformers/v5.14.0/perf_train_gaudi.md
+### Tokenizers
+https://huggingface.co/docs/transformers/v5.15.0/fast_tokenizers.md

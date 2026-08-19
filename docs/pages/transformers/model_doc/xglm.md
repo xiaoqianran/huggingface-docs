@@ -31,56 +31,62 @@ This model was contributed by [Suraj](https://huggingface.co/valhalla). The orig
 
 ## XGLMConfig[[transformers.XGLMConfig]]
 
-- **vocab_size** (`int`, *optional*, defaults to `256008`) --
-  Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
-- **max_position_embeddings** (`int`, *optional*, defaults to `2048`) --
-  The maximum sequence length that this model might ever be used with.
-- **d_model** (`int`, *optional*, defaults to `1024`) --
-  Size of the encoder layers and the pooler layer.
-- **ffn_dim** (`int`, *optional*, defaults to `4096`) --
-  Dimension of the MLP representations.
-- **num_layers** (`int`, *optional*, defaults to `24`) --
-  Number of hidden layers in the Transformer decoder.
-- **attention_heads** (`int`, *optional*, defaults to `16`) --
-  Number of attention heads for each attention layer in the Transformer decoder.
-- **activation_function** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **dropout** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The ratio for all dropout layers.
-- **attention_dropout** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  The dropout ratio for the attention probabilities.
-- **activation_dropout** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for activations inside the fully connected layer.
-- **layerdrop** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The LayerDrop probability. See the [LayerDrop paper](see https://huggingface.co/papers/1909.11556) for
-  more details.
-- **init_std** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **scale_embedding** (`bool`, *optional*, defaults to `True`) --
-  Whether to scale embeddings by dividing by sqrt(d_model).
-- **use_cache** (`bool`, *optional*, defaults to `True`) --
-  Whether or not the model should return the last key/values attentions (not used by all models). Only
-  relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
-- **decoder_start_token_id** (`int`, *optional*, defaults to `2`) --
-  If an encoder-decoder model starts decoding with a different token than `bos`, the id of that token.
-- **pad_token_id** (`int`, *optional*, defaults to `1`) --
-  Token id used for padding in the vocabulary.
-- **bos_token_id** (`int`, *optional*, defaults to `0`) --
-  Token id used for beginning-of-stream in the vocabulary.
-- **eos_token_id** (`Union[int, list[int]]`, *optional*, defaults to `2`) --
-  Token id used for end-of-stream in the vocabulary.
-- **add_cross_attention** (`bool`, *optional*, defaults to `False`) --
-  Whether cross-attention layers should be added to the model.
-- **tie_word_embeddings** (`bool`, *optional*, defaults to `True`) --
-  Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
+#### transformers.XGLMConfig[[transformers.XGLMConfig]]
+
+```python
+transformers.XGLMConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 256008, max_position_embeddings: int = 2048, d_model: int = 1024, ffn_dim: int = 4096, num_layers: int = 24, attention_heads: int = 16, activation_function: str = 'gelu', dropout: float | int = 0.1, attention_dropout: float | int = 0.1, activation_dropout: float | int = 0.0, layerdrop: float | int = 0.0, init_std: float = 0.02, scale_embedding: bool = True, use_cache: bool = True, decoder_start_token_id: int = 2, pad_token_id: int | None = 1, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 2, add_cross_attention: bool = False, tie_word_embeddings: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xglm/configuration_xglm.py#L24)
+
+**Parameters:**
+
+vocab_size (`int`, *optional*, defaults to `256008`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
+
+max_position_embeddings (`int`, *optional*, defaults to `2048`) : The maximum sequence length that this model might ever be used with.
+
+d_model (`int`, *optional*, defaults to `1024`) : Size of the encoder layers and the pooler layer.
+
+ffn_dim (`int`, *optional*, defaults to `4096`) : Dimension of the MLP representations.
+
+num_layers (`int`, *optional*, defaults to `24`) : Number of hidden layers in the Transformer decoder.
+
+attention_heads (`int`, *optional*, defaults to `16`) : Number of attention heads for each attention layer in the Transformer decoder.
+
+activation_function (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+dropout (`Union[float, int]`, *optional*, defaults to `0.1`) : The ratio for all dropout layers.
+
+attention_dropout (`Union[float, int]`, *optional*, defaults to `0.1`) : The dropout ratio for the attention probabilities.
+
+activation_dropout (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for activations inside the fully connected layer.
+
+layerdrop (`Union[float, int]`, *optional*, defaults to `0.0`) : The LayerDrop probability. See the [LayerDrop paper](see https://huggingface.co/papers/1909.11556) for more details.
+
+init_std (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+scale_embedding (`bool`, *optional*, defaults to `True`) : Whether to scale embeddings by dividing by sqrt(d_model).
+
+use_cache (`bool`, *optional*, defaults to `True`) : Whether or not the model should return the last key/values attentions (not used by all models). Only relevant if `config.is_decoder=True` or when the model is a decoder-only generative model.
+
+decoder_start_token_id (`int`, *optional*, defaults to `2`) : If an encoder-decoder model starts decoding with a different token than `bos`, the id of that token.
+
+pad_token_id (`int`, *optional*, defaults to `1`) : Token id used for padding in the vocabulary.
+
+bos_token_id (`int`, *optional*, defaults to `0`) : Token id used for beginning-of-stream in the vocabulary.
+
+eos_token_id (`Union[int, list[int]]`, *optional*, defaults to `2`) : Token id used for end-of-stream in the vocabulary.
+
+add_cross_attention (`bool`, *optional*, defaults to `False`) : Whether cross-attention layers should be added to the model.
+
+tie_word_embeddings (`bool`, *optional*, defaults to `True`) : Whether to tie weight embeddings according to model's `tied_weights_keys` mapping.
 
 This is the configuration class to store the configuration of a XGLMModel. It is used to instantiate a Xglm
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/xglm-564M](https://huggingface.co/facebook/xglm-564M)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -99,81 +105,128 @@ Example:
 
 ## XGLMTokenizer[[transformers.XGLMTokenizer]]
 
-'"}, {"name": "eos_token", "val": ": str = ''"}, {"name": "sep_token", "val": ": str = ''"}, {"name": "cls_token", "val": ": str = ''"}, {"name": "unk_token", "val": ": str = ''"}, {"name": "pad_token", "val": ": str = ''"}, {"name": "_spm_precompiled_charsmap", "val": ": str | None = None"}, {"name": "add_prefix_space", "val": ": bool = True"}, {"name": "**kwargs", "val": ""}]}>
-- **tokenizer_file** (`str`, *optional*) --
-  Path to a tokenizers JSON file containing the serialization of a tokenizer.
-- **bos_token** (`str`, *optional*, defaults to `"<s>"`) --
-  The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.
-- **eos_token** (`str`, *optional*, defaults to `"</s>"`) --
-  The end of sequence token.
-- **sep_token** (`str`, *optional*, defaults to `"</s>"`) --
-  The separator token, which is used when building a sequence from multiple sequences.
-- **cls_token** (`str`, *optional*, defaults to `"<s>"`) --
-  The classifier token which is used when doing sequence classification.
-- **unk_token** (`str`, *optional*, defaults to `"<unk>"`) --
-  The unknown token.
-- **pad_token** (`str`, *optional*, defaults to `"<pad>"`) --
-  The token used for padding.
-- **vocab** (`str`, `dict` or `list`, *optional*) --
-  Custom vocabulary dictionary. If not provided, a minimal vocabulary is created.
-- **merges** (`list[tuple[str, str]]`, *optional*) --
-  Custom merge rules for BPE. If not provided, merges are generated from the vocabulary.
-- **add_prefix_space** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a prefix space before encoding.
+#### transformers.XGLMTokenizer[[transformers.XGLMTokenizer]]
+
+```python
+transformers.XGLMTokenizer(vocab: str | list[tuple[str, float]] | None = None, bos_token: str = '<s>', eos_token: str = '</s>', sep_token: str = '</s>', cls_token: str = '<s>', unk_token: str = '<unk>', pad_token: str = '<pad>', _spm_precompiled_charsmap: str | None = None, add_prefix_space: bool = True, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xglm/tokenization_xglm.py#L28)
+
+**Parameters:**
+
+tokenizer_file (`str`, *optional*) : Path to a tokenizers JSON file containing the serialization of a tokenizer.
+
+bos_token (`str`, *optional*, defaults to `"<s>"`) : The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.
+
+eos_token (`str`, *optional*, defaults to `"</s>"`) : The end of sequence token.
+
+sep_token (`str`, *optional*, defaults to `"</s>"`) : The separator token, which is used when building a sequence from multiple sequences.
+
+cls_token (`str`, *optional*, defaults to `"<s>"`) : The classifier token which is used when doing sequence classification.
+
+unk_token (`str`, *optional*, defaults to `"<unk>"`) : The unknown token.
+
+pad_token (`str`, *optional*, defaults to `"<pad>"`) : The token used for padding.
+
+vocab (`str`, `dict` or `list`, *optional*) : Custom vocabulary dictionary. If not provided, a minimal vocabulary is created.
+
+merges (`list[tuple[str, str]]`, *optional*) : Custom merge rules for BPE. If not provided, merges are generated from the vocabulary.
+
+add_prefix_space (`bool`, *optional*, defaults to `True`) : Whether to add a prefix space before encoding.
 
 Construct a XGLM tokenizer (backed by HuggingFace's tokenizers library). Based on BPE.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
-- **token_ids_0** -- List of IDs for the (possibly already formatted) sequence.
-- **token_ids_1** -- Unused when `already_has_special_tokens=True`. Must be None in that case.
-- **already_has_special_tokens** -- Whether the sequence is already formatted with special tokens.A list of integers in the range [0, 1]1 for a special token, 0 for a sequence token.
+#### get_special_tokens_mask[[transformers.XGLMTokenizer.get_special_tokens_mask]]
+
+```python
+get_special_tokens_mask(token_ids_0: list[int], token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_base.py#L1311)
+
+**Parameters:**
+
+token_ids_0 : List of IDs for the (possibly already formatted) sequence.
+
+token_ids_1 : Unused when `already_has_special_tokens=True`. Must be None in that case.
+
+already_has_special_tokens : Whether the sequence is already formatted with special tokens.
+
+**Returns:** A list of integers in the range [0, 1]
+
+1 for a special token, 0 for a sequence token.
 
 Retrieve sequence ids from a token list that has no special tokens added.
 
 For fast tokenizers, data collators call this with `already_has_special_tokens=True` to build a mask over an
 already-formatted sequence. In that case, we compute the mask by checking membership in `all_special_ids`.
 
+#### save_vocabulary[[transformers.XGLMTokenizer.save_vocabulary]]
+
+```python
+save_vocabulary(save_directory: str, filename_prefix: str | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_tokenizers.py#L509)
+
 ## XGLMTokenizerFast[[transformers.XGLMTokenizer]]
 
-'"}, {"name": "eos_token", "val": ": str = ''"}, {"name": "sep_token", "val": ": str = ''"}, {"name": "cls_token", "val": ": str = ''"}, {"name": "unk_token", "val": ": str = ''"}, {"name": "pad_token", "val": ": str = ''"}, {"name": "_spm_precompiled_charsmap", "val": ": str | None = None"}, {"name": "add_prefix_space", "val": ": bool = True"}, {"name": "**kwargs", "val": ""}]}>
-- **tokenizer_file** (`str`, *optional*) --
-  Path to a tokenizers JSON file containing the serialization of a tokenizer.
-- **bos_token** (`str`, *optional*, defaults to `"<s>"`) --
-  The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.
-- **eos_token** (`str`, *optional*, defaults to `"</s>"`) --
-  The end of sequence token.
-- **sep_token** (`str`, *optional*, defaults to `"</s>"`) --
-  The separator token, which is used when building a sequence from multiple sequences.
-- **cls_token** (`str`, *optional*, defaults to `"<s>"`) --
-  The classifier token which is used when doing sequence classification.
-- **unk_token** (`str`, *optional*, defaults to `"<unk>"`) --
-  The unknown token.
-- **pad_token** (`str`, *optional*, defaults to `"<pad>"`) --
-  The token used for padding.
-- **vocab** (`str`, `dict` or `list`, *optional*) --
-  Custom vocabulary dictionary. If not provided, a minimal vocabulary is created.
-- **merges** (`list[tuple[str, str]]`, *optional*) --
-  Custom merge rules for BPE. If not provided, merges are generated from the vocabulary.
-- **add_prefix_space** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a prefix space before encoding.
+#### transformers.XGLMTokenizer[[transformers.XGLMTokenizer]]
+
+```python
+transformers.XGLMTokenizer(vocab: str | list[tuple[str, float]] | None = None, bos_token: str = '<s>', eos_token: str = '</s>', sep_token: str = '</s>', cls_token: str = '<s>', unk_token: str = '<unk>', pad_token: str = '<pad>', _spm_precompiled_charsmap: str | None = None, add_prefix_space: bool = True, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xglm/tokenization_xglm.py#L28)
+
+**Parameters:**
+
+tokenizer_file (`str`, *optional*) : Path to a tokenizers JSON file containing the serialization of a tokenizer.
+
+bos_token (`str`, *optional*, defaults to `"<s>"`) : The beginning of sequence token that was used during pretraining. Can be used a sequence classifier token.
+
+eos_token (`str`, *optional*, defaults to `"</s>"`) : The end of sequence token.
+
+sep_token (`str`, *optional*, defaults to `"</s>"`) : The separator token, which is used when building a sequence from multiple sequences.
+
+cls_token (`str`, *optional*, defaults to `"<s>"`) : The classifier token which is used when doing sequence classification.
+
+unk_token (`str`, *optional*, defaults to `"<unk>"`) : The unknown token.
+
+pad_token (`str`, *optional*, defaults to `"<pad>"`) : The token used for padding.
+
+vocab (`str`, `dict` or `list`, *optional*) : Custom vocabulary dictionary. If not provided, a minimal vocabulary is created.
+
+merges (`list[tuple[str, str]]`, *optional*) : Custom merge rules for BPE. If not provided, merges are generated from the vocabulary.
+
+add_prefix_space (`bool`, *optional*, defaults to `True`) : Whether to add a prefix space before encoding.
 
 Construct a XGLM tokenizer (backed by HuggingFace's tokenizers library). Based on BPE.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 ## XGLMModel[[transformers.XGLMModel]]
 
-- **config** ([XGLMConfig](/docs/transformers/v5.14.0/en/model_doc/xglm#transformers.XGLMConfig)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.XGLMModel[[transformers.XGLMModel]]
+
+```python
+transformers.XGLMModel(config: XGLMConfig)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xglm/modeling_xglm.py#L358)
+
+**Parameters:**
+
+config ([XGLMConfig](/docs/transformers/v5.15.0/en/model_doc/xglm#transformers.XGLMConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Xglm Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -181,58 +234,39 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.XGLMModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, encoder_hidden_states: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xglm/modeling_xglm.py#L389)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **encoder_hidden_states** (`torch.FloatTensor` of shape `(batch_size, encoder_sequence_length, hidden_size)`, *optional*) --
-  Sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of
-  the decoder.
-- **encoder_attention_mask** (`torch.LongTensor` of shape `(batch_size, encoder_sequence_length)`, *optional*) --
-  Mask to avoid performing cross-attention on padding tokens indices of encoder input_ids. Mask values
-  selected in `[0, 1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-  [What are attention masks?](../glossary#attention-mask)
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+encoder_hidden_states (`torch.FloatTensor` of shape `(batch_size, encoder_sequence_length, hidden_size)`, *optional*) : Sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+encoder_attention_mask (`torch.LongTensor` of shape `(batch_size, encoder_sequence_length)`, *optional*) : Mask to avoid performing cross-attention on padding tokens indices of encoder input_ids. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  The model will output the same cache format that is fed as input.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
-  `past_key_values`).[BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or `tuple(torch.FloatTensor)`A [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or a tuple of
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+
+**Returns:** [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or `tuple(torch.FloatTensor)`
+
+A [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XGLMConfig](/docs/transformers/v5.14.0/en/model_doc/xglm#transformers.XGLMConfig)) and inputs.
-The [XGLMModel](/docs/transformers/v5.14.0/en/model_doc/xglm#transformers.XGLMModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([XGLMConfig](/docs/transformers/v5.15.0/en/model_doc/xglm#transformers.XGLMConfig)) and inputs.
+
+The [XGLMModel](/docs/transformers/v5.15.0/en/model_doc/xglm#transformers.XGLMModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -242,7 +276,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -264,15 +298,22 @@ the latter silently ignores them.
 
 ## XGLMForCausalLM[[transformers.XGLMForCausalLM]]
 
-- **config** ([XGLMForCausalLM](/docs/transformers/v5.14.0/en/model_doc/xglm#transformers.XGLMForCausalLM)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.XGLMForCausalLM[[transformers.XGLMForCausalLM]]
+
+```python
+transformers.XGLMForCausalLM(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xglm/modeling_xglm.py#L494)
+
+**Parameters:**
+
+config ([XGLMForCausalLM](/docs/transformers/v5.15.0/en/model_doc/xglm#transformers.XGLMForCausalLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The XGLM Model transformer with a language modeling head on top (linear layer with weights tied to the input
 embeddings).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -280,68 +321,43 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.XGLMForCausalLM.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, encoder_hidden_states: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: Unpack)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xglm/modeling_xglm.py#L506)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **position_ids** (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  [What are position IDs?](../glossary#position-ids)
-- **encoder_hidden_states** (`torch.FloatTensor` of shape `(batch_size, encoder_sequence_length, hidden_size)`, *optional*) --
-  Sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of
-  the decoder.
-- **encoder_attention_mask** (`torch.LongTensor` of shape `(batch_size, encoder_sequence_length)`, *optional*) --
-  Mask to avoid performing cross-attention on padding tokens indices of encoder input_ids. Mask values
-  selected in `[0, 1]`:
+attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-  [What are attention masks?](../glossary#attention-mask)
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+encoder_hidden_states (`torch.FloatTensor` of shape `(batch_size, encoder_sequence_length, hidden_size)`, *optional*) : Sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+encoder_attention_mask (`torch.LongTensor` of shape `(batch_size, encoder_sequence_length)`, *optional*) : Mask to avoid performing cross-attention on padding tokens indices of encoder input_ids. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  The model will output the same cache format that is fed as input.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **inputs_embeds** (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss. Indices should either be in `[0, ...,
-  config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
-  `past_key_values`).
-- **logits_to_keep** (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) --
-  If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all
-  `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that
-  token can save memory, which becomes pretty significant for long sequences or large vocabulary size.
-  If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension.
-  This is useful when using packed tensor format (single dimension for batch and sequence length).[CausalLMOutputWithCrossAttentions](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or `tuple(torch.FloatTensor)`A [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or a tuple of
+inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
+
+use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+
+logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
+
+**Returns:** [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or `tuple(torch.FloatTensor)`
+
+A [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XGLMConfig](/docs/transformers/v5.14.0/en/model_doc/xglm#transformers.XGLMConfig)) and inputs.
-The [XGLMForCausalLM](/docs/transformers/v5.14.0/en/model_doc/xglm#transformers.XGLMForCausalLM) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([XGLMConfig](/docs/transformers/v5.15.0/en/model_doc/xglm#transformers.XGLMConfig)) and inputs.
+
+The [XGLMForCausalLM](/docs/transformers/v5.15.0/en/model_doc/xglm#transformers.XGLMForCausalLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -363,7 +379,7 @@ the latter silently ignores them.
 
   Cross attentions weights after the attention softmax, used to compute the weighted average in the
   cross-attention heads.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -373,5 +389,5 @@ Example:
 ```python
 ```
 
-### BitNet
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/bitnet.md
+### EXAONE 4.5
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/exaone4_5.md

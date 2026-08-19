@@ -18,5 +18,5 @@ This model was contributed by [DanielHesslow](https://huggingface.co/Seledorn). 
 
 As UL2 has the same architecture as T5v1.1,  refer to [T5's documentation page](t5) for API reference, tips, code examples and notebooks.
 
-### UnivNet
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/univnet.md
+### Longformer
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/longformer.md

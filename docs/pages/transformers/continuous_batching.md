@@ -3,11 +3,11 @@
 Continuous batching maximizes GPU utilization by dynamically rescheduling the batch at every generation step. As requests finish, new ones join immediately instead of waiting for the whole batch to complete. The GPU stays full and throughput stays high.
 
 > [!TIP]
-> For production deployments, use [transformers serve](./serve-cli/serving_optims#continuous-batching). It builds on [ContinuousBatchingManager](/docs/transformers/v5.14.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager) and exposes an OpenAI-compatible HTTP endpoint.
+> For production deployments, use [transformers serve](./serve-cli/serving_optims#continuous-batching). It builds on [ContinuousBatchingManager](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager) and exposes an OpenAI-compatible HTTP endpoint.
 
 ## generate_batch
 
-Continuous batching is supported through [generate_batch()](/docs/transformers/v5.14.0/en/main_classes/continuous_batching#transformers.ContinuousMixin.generate_batch). Pass a list of tokenized prompts and get back results for all of them when they're done. `generate_batch` handles scheduling internally and blocks until all requests are complete.
+Continuous batching is supported through [generate_batch()](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousMixin.generate_batch). Pass a list of tokenized prompts and get back results for all of them when they're done. `generate_batch` handles scheduling internally and blocks until all requests are complete.
 
 For serving and streaming use cases, use [ContinuousBatchingManager](#continuousbatchingmanager) directly to manage requests.
 
@@ -19,13 +19,13 @@ from transformers.generation import ContinuousBatchingConfig, GenerationConfig
 model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen3-4B",
     attn_implementation="flash_attention_2",
-    device_map="cuda",
+    device_map="auto",
     dtype=torch.bfloat16,
 )
 tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen3-4B")
 
 prompts = [
-    "Whats up?",
+    "What's up?",
     "Name a cat breed.",
     "Write a detailed history of quantum mechanics.",
 ]
@@ -45,9 +45,9 @@ for request_id, output in outputs.items():
 
 ## ContinuousBatchingManager
 
-[ContinuousBatchingManager](/docs/transformers/v5.14.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager) runs a background thread and lets you submit requests and retrieve results independently. Every generation step, it checks for finished requests and schedules new ones to join the batch. This is useful for streaming, real-time serving, or submitting requests as they arrive.
+[ContinuousBatchingManager](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager) runs a background thread and lets you submit requests and retrieve results independently. Every generation step, it checks for finished requests and schedules new ones to join the batch. This is useful for streaming, real-time serving, or submitting requests as they arrive.
 
-Use [continuous_batching_context_manager()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.ContinuousMixin.continuous_batching_context_manager) to start and stop the manager safely. The example below contains variable length inputs. As soon as the shortest prompt is complete, it leaves the batch while the longer prompts continue generating. With static batching, you'd have to pad them all to the same length. Continuous batching frees up the completed prompt so you can start processing the next prompt immediately.
+Use [continuous_batching_context_manager()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.ContinuousMixin.continuous_batching_context_manager) to start and stop the manager safely. The example below contains variable length inputs. As soon as the shortest prompt is complete, it leaves the batch while the longer prompts continue generating. With static batching, you'd have to pad them all to the same length. Continuous batching frees up the completed prompt so you can start processing the next prompt immediately.
 
 ```py
 with model.continuous_batching_context_manager(generation_config=generation_config) as manager:
@@ -72,7 +72,7 @@ with model.continuous_batching_context_manager(generation_config=generation_conf
         print(f"[{result.request_id}] {text}")
 ```
 
-You could also call [init_continuous_batching()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.ContinuousMixin.init_continuous_batching) to manage the lifecycle yourself.
+You could also call [init_continuous_batching()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.ContinuousMixin.init_continuous_batching) to manage the lifecycle yourself.
 
 ```py
 manager = model.init_continuous_batching(generation_config=generation_config)
@@ -85,7 +85,7 @@ manager.start()
 
 The manager runs a background thread and holds distributed resources. Shutdown happens in two stages so you can choose what to do with in-flight work.
 
-Call [stop()](/docs/transformers/v5.14.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.stop) to halt the background thread. By default, the manager stops accepting new submissions and waits for queued and active requests to finish before the thread exits.
+Call [stop()](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.stop) to halt the background thread. By default, the manager stops accepting new submissions and waits for queued and active requests to finish before the thread exits.
 
 ```py
 manager.stop()
@@ -97,31 +97,31 @@ Pass `hard_stop=True` to abandon pending work immediately. Queued and active req
 manager.stop(hard_stop=True)
 ```
 
-Once `stop` is called, [add_request()](/docs/transformers/v5.14.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.add_request) and [add_requests()](/docs/transformers/v5.14.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.add_requests) drop new submissions and log a warning. You can still call `start` again to run another generation session with the same manager.
+Once `stop` is called, [add_request()](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.add_request) and [add_requests()](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.add_requests) drop new submissions and log a warning. You can still call `start` again to run another generation session with the same manager.
 
-Call [destroy()](/docs/transformers/v5.14.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.destroy) to release distributed resources. `destroy` stops the manager first if it's still running, and the manager cannot be restarted afterwards. Use it when you're done with continuous batching for the lifetime of the process.
+Call [destroy()](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.destroy) to release distributed resources. `destroy` stops the manager first if it's still running, and the manager cannot be restarted afterwards. Use it when you're done with continuous batching for the lifetime of the process.
 
 ```py
 manager.destroy()
 ```
 
-[continuous_batching_context_manager()](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.ContinuousMixin.continuous_batching_context_manager) handles this process. It calls `stop` on exit and `destroy` unless you pass `persistent_manager=True` to cache the manager on the model for the next session.
+[continuous_batching_context_manager()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.ContinuousMixin.continuous_batching_context_manager) handles this process. It calls `stop` on exit and `destroy` unless you pass `persistent_manager=True` to cache the manager on the model for the next session.
 
 ### Adding requests
 
-[add_request()](/docs/transformers/v5.14.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.add_request) submits a single request. Provide a `request_id` or let the manager generate one automatically.
+[add_request()](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.add_request) submits a single request. Provide a `request_id` or let the manager generate one automatically.
 
 ```py
 manager.add_request(input_ids=input_ids, request_id="my_request")
 ```
 
-[add_requests()](/docs/transformers/v5.14.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.add_requests) submits a batch at once. It sorts inputs automatically to maximize prefix cache hits when block sharing is enabled.
+[add_requests()](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.add_requests) submits a batch at once. It sorts inputs automatically to maximize prefix cache hits when block sharing is enabled.
 
 ```py
 manager.add_requests(inputs=inputs)
 ```
 
-Cancel a request with [cancel_request()](/docs/transformers/v5.14.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.cancel_request).
+Cancel a request with [cancel_request()](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.cancel_request).
 
 ```py
 manager.cancel_request(request_id="my_request")
@@ -139,7 +139,7 @@ manager.add_request(input_ids=inputs_a, temperature=0.9, top_p=0.95)
 manager.add_request(input_ids=inputs_b, temperature=0.1, top_k=10)
 ```
 
-Each parameter in [GenerationConfig](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationConfig) must be a non-default value in order to create the associated logits processor at runtime. For example, set `temperature` to a value other than `None` or `1` to support per-request temperature control. Requests with temperatures of `1` can still be created afterwards.
+Each parameter in [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig) must be a non-default value in order to create the associated logits processor at runtime. For example, set `temperature` to a value other than `None` or `1` to support per-request temperature control. Requests with temperatures of `1` can still be created afterwards.
 
 ### Retrieving results
 
@@ -150,7 +150,7 @@ for result in manager:
     print(tokenizer.decode(result.generated_tokens, skip_special_tokens=True))
 ```
 
-[get_result()](/docs/transformers/v5.14.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.get_result) fetches the next result from the output queue. Pass a `request_id` to filter for a specific request. If the next result in the queue doesn't match, it's requeued and the method returns `None`.
+[get_result()](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.get_result) fetches the next result from the output queue. Pass a `request_id` to filter for a specific request. If the next result in the queue doesn't match, it's requeued and the method returns `None`.
 
 ```py
 # next available result
@@ -162,7 +162,7 @@ result = manager.get_result(request_id="my_request")
 
 ### Streaming
 
-Set `streaming=True` on a request, then use [request_id_iter()](/docs/transformers/v5.14.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.request_id_iter) to iterate over partial outputs as tokens are generated.
+Set `streaming=True` on a request, then use [request_id_iter()](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingManager.request_id_iter) to iterate over partial outputs as tokens are generated.
 
 ```py
 from transformers.generation.continuous_batching import RequestStatus
@@ -178,7 +178,7 @@ for chunk in manager.request_id_iter(request_id="streamed"):
 
 ## ContinuousBatchingConfig
 
-[ContinuousBatchingConfig](/docs/transformers/v5.14.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig) controls the KV cache, scheduling, CUDA graphs, memory usage, and more. Pass it alongside [GenerationConfig](/docs/transformers/v5.14.0/en/main_classes/text_generation#transformers.GenerationConfig) to customize continuous batching.
+[ContinuousBatchingConfig](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig) controls the KV cache, scheduling, CUDA graphs, memory usage, and more. Pass it alongside [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig) to customize continuous batching.
 
 By default, `max_batch_tokens` is `8192`, bounded by available GPU memory and never below `256`, while `num_blocks` fills the remaining memory. Use the table below to help you pick the appropriate features.
 
@@ -253,7 +253,7 @@ The default depends on the scheduler. For the FIFO scheduler, it's `0.15` and fo
 
 ### Log probabilities
 
-[ContinuousBatchingConfig](/docs/transformers/v5.14.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig) returns each generated token's log probability when `return_logprobs=True`. This is useful for RL where logprobs are an input to some of the training loops.
+[ContinuousBatchingConfig](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig) returns each generated token's log probability when `return_logprobs=True`. This is useful for RL where logprobs are an input to some of the training loops.
 
 ```py
 cb_config = ContinuousBatchingConfig(return_logprobs=True)
@@ -312,7 +312,7 @@ The level ranges from `0` to `3`. Level `0` is the default and skips compilation
 cb_config = ContinuousBatchingConfig(default_compile_level=1)
 ```
 
-The level supplies a default [CompileConfig](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.CompileConfig) to the varlen and decode execution paths. It only applies to a path that has no explicit config, so `varlen_compile_config` and `decode_compile_config` take precedence when set. Under FlashAttention, the varlen path skips compilation because `max_seqlen_k` triggers frequent recompilation, so the level affects only the decode path in that case.
+The level supplies a default [CompileConfig](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.CompileConfig) to the varlen and decode execution paths. It only applies to a path that has no explicit config, so `varlen_compile_config` and `decode_compile_config` take precedence when set. Under FlashAttention, the varlen path skips compilation because `max_seqlen_k` triggers frequent recompilation, so the level affects only the decode path in that case.
 
 ### Decode fast path
 
@@ -387,10 +387,17 @@ Continuous batching requires a paged attention backend. Set `attn_implementation
 model = AutoModelForCausalLM.from_pretrained(
     "Qwen/Qwen3-4B",
     attn_implementation="paged|flash_attention_2",
-    device_map="cuda",
+    device_map="auto",
     dtype=torch.bfloat16,
 )
 ```
+
+Also, continuous batching works much better with flash attention rather than eager or SDPA, mostly because Flash does not require an attention mask.
+Hence, when flash attention is available, if a model uses `attn_implementation="eager"` or `attn_implementation="sdpa"`, the attention implementation will be replaced by flash.
+This works if flash is accessible through the `flash_attn` package or the `kernels` package.  
+To avoid this, you may set `attn_implementation="paged|eager"` or `attn_implementation="paged|sdpa"`, and continuous batching will interpret this as the user 
+specifically requesting those implementations. This can be useful in the context of testing or in a setting where flash attention is hard to enable (although, thanks
+to the `kernels` package, this is becoming rare).
 
 ## Tensor parallelism
 
@@ -408,7 +415,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen3-32B")
 
-inputs = [tokenizer.encode(p) for p in ["Whats up?", "Name a cat breed."]]
+inputs = [tokenizer.encode(p) for p in ["What's up?", "Name a cat breed."]]
 generation_config = GenerationConfig(max_new_tokens=64, eos_token_id=tokenizer.eos_token_id)
 
 outputs = model.generate_batch(inputs=inputs, generation_config=generation_config)
@@ -439,7 +446,7 @@ model = AutoModelForCausalLM.from_pretrained(
     "google/gemma-2-2b",
     config=config,
     attn_implementation="paged|sdpa",
-    device_map="cuda",
+    device_map="auto",
     dtype=torch.bfloat16,
 )
 ```
@@ -451,5 +458,5 @@ Prefix caching is disabled automatically when sliding window attention is active
 - The [Continuous batching blog post](https://huggingface.co/blog/continuous_batching) covers KV caching, chunked prefill, and dynamic scheduling with performance benchmark numbers.
 - For a deeper look at how the continuous batching system works, see the [Continuous batching architecture](./continuous_batching_architecture) doc.
 
-### Data collators
-https://huggingface.co/docs/transformers/v5.14.0/data_collators.md
+### Perplexity of fixed-length models
+https://huggingface.co/docs/transformers/v5.15.0/perplexity.md

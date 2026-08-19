@@ -5,7 +5,7 @@ Image processors convert images into pixel values, tensors that represent image 
 - center-crop or resize an image
 - normalize or rescale pixel values
 
-Use [from_pretrained()](/docs/transformers/v5.14.0/en/internal/image_processing_utils#transformers.ImageProcessingMixin.from_pretrained) to load an image processors configuration (image size, whether to normalize and rescale, etc.) from a vision model on the Hugging Face [Hub](https://hf.co) or local directory. The configuration for each pretrained model is saved in a [preprocessor_config.json](https://huggingface.co/google/vit-base-patch16-224/blob/main/preprocessor_config.json) file.
+Use [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.ImageProcessingMixin.from_pretrained) to load an image processors configuration (image size, whether to normalize and rescale, etc.) from a vision model on the Hugging Face [Hub](https://hf.co) or local directory. The configuration for each pretrained model is saved in a [preprocessor_config.json](https://huggingface.co/google/vit-base-patch16-224/blob/main/preprocessor_config.json) file.
 
 ```py
 from transformers import AutoImageProcessor
@@ -30,16 +30,16 @@ This guide covers the image processor class and how to preprocess images for vis
 
 Image processors use a backend-based architecture with two backends:
 
-- [TorchvisionBackend](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.TorchvisionBackend) — the default [torchvision-backed](https://pytorch.org/vision/stable/index.html) implementation. GPU-accelerated and up to 33x faster than the PIL backend for batches of [torch.Tensor](https://pytorch.org/docs/stable/tensors.html) inputs. All models support this backend; newer models only support this one.
-- [PilBackend](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.PilBackend) — the PIL/NumPy alternative. Portable and CPU-only. Only available for older models, where it is useful to reproduce the exact numerical outputs of the original implementation.
+- [TorchvisionBackend](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.TorchvisionBackend) — the default [torchvision-backed](https://pytorch.org/vision/stable/index.html) implementation. GPU-accelerated and up to 33x faster than the PIL backend for batches of [torch.Tensor](https://pytorch.org/docs/stable/tensors.html) inputs. All models support this backend; newer models only support this one.
+- [PilBackend](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.PilBackend) — the PIL/NumPy alternative. Portable and CPU-only. Only available for older models, where it is useful to reproduce the exact numerical outputs of the original implementation.
 
-The active backend on a loaded processor can be inspected with its `backend` attribute (e.g., `processor.backend == "torchvision"`). Each image processor subclasses [ImageProcessingMixin](/docs/transformers/v5.14.0/en/internal/image_processing_utils#transformers.ImageProcessingMixin) which provides the [from_pretrained()](/docs/transformers/v5.14.0/en/internal/image_processing_utils#transformers.ImageProcessingMixin.from_pretrained) and [save_pretrained()](/docs/transformers/v5.14.0/en/internal/image_processing_utils#transformers.ImageProcessingMixin.save_pretrained) methods.
+The active backend on a loaded processor can be inspected with its `backend` attribute (e.g., `processor.backend == "torchvision"`). Each image processor subclasses [ImageProcessingMixin](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.ImageProcessingMixin) which provides the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.ImageProcessingMixin.from_pretrained) and [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.ImageProcessingMixin.save_pretrained) methods.
 
-There are two ways you can load an image processor: with [AutoImageProcessor](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoImageProcessor) or directly from a model-specific class.
+There are two ways you can load an image processor: with [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor) or directly from a model-specific class.
 
 The [AutoClass](./model_doc/auto) API provides a convenient method to load an image processor without directly specifying the model the image processor is associated with.
 
-Use [from_pretrained()](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoImageProcessor.from_pretrained) with the `backend` argument to select the backend. When `backend` is omitted (the default), torchvision is picked when it is installed and PIL is used otherwise. Note that `backend="pil"` is only supported for older models; newer models only expose the torchvision backend.
+Use [from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor.from_pretrained) with the `backend` argument to select the backend. When `backend` is omitted (the default), torchvision is picked when it is installed and PIL is used otherwise. Note that `backend="pil"` is only supported for older models; newer models only expose the torchvision backend.
 
 > [!NOTE]
 > A small set of older models (Chameleon, Flava, Idefics3, SmolVLM) use Lanczos interpolation. Their default backend depends on your torchvision version. With torchvision > 0.27, Lanczos is supported natively and these models default to torchvision. Older torchvision version falls back to BICUBIC, so the default is PIL to preserve the original outputs. Pass `backend="torchvision"` explicitly to override the default.
@@ -77,7 +77,7 @@ image_processor = ViTImageProcessorPil.from_pretrained("google/vit-base-patch16-
 
 ## Torchvision backend processors
 
-[TorchvisionBackend](/docs/transformers/v5.14.0/en/main_classes/image_processor#transformers.TorchvisionBackend) is the **default** backend. Make sure [torchvision](https://pytorch.org/get-started/locally/#mac-installation) is installed, then load it with `backend="torchvision"` (or simply omit `backend`, since torchvision is selected automatically when available).
+[TorchvisionBackend](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.TorchvisionBackend) is the **default** backend. Make sure [torchvision](https://pytorch.org/get-started/locally/#mac-installation) is installed, then load it with `backend="torchvision"` (or simply omit `backend`, since torchvision is selected automatically when available).
 
 ```py
 from transformers import AutoImageProcessor
@@ -85,15 +85,18 @@ from transformers import AutoImageProcessor
 processor = AutoImageProcessor.from_pretrained("facebook/detr-resnet-50", backend="torchvision")
 ```
 
-Control which device processing is performed on with the `device` argument. Processing is performed on the same device as the input by default if the inputs are tensors, otherwise it falls back to CPU. The example below runs processing on a GPU.
+Control which device processing is performed on with the `device` argument. Processing is performed on the same device as the input by default if the inputs are tensors, otherwise it falls back to CPU. The example below runs processing on an accelerator.
 
 ```py
+import torch
 from torchvision.io import read_image
 from transformers import DetrImageProcessor
 
+device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
+
 images = read_image("image.jpg")
 processor = DetrImageProcessor.from_pretrained("facebook/detr-resnet-50")
-images_processed = processor(images, return_tensors="pt", device="cuda")
+images_processed = processor(images, return_tensors="pt", device=device)
 ```
 
 Benchmarks
@@ -152,7 +155,7 @@ def transforms(examples):
     return examples
 ```
 
-Apply the combined augmentation and preprocessing function to the entire dataset on the fly with `set_transform`.
+Apply the combined augmentation and preprocessing function to the entire dataset on the fly with [set_transform](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset.set_transform).
 
 ```py
 dataset.set_transform(transforms)
@@ -197,5 +200,5 @@ def collate_fn(batch):
     return batch
 ```
 
-### Multimodal processors
-https://huggingface.co/docs/transformers/v5.14.0/multimodal_processing.md
+### Optimizing LLMs for Speed and Memory
+https://huggingface.co/docs/transformers/v5.15.0/llm_tutorial_optimization.md

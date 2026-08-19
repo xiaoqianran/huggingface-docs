@@ -1,6 +1,6 @@
 # Customizing model components
 
-Another way to customize a model is to modify their components, rather than writing a new model entirely, allowing you to tailor a model to your specific use case. For example, you can add new layers or optimize the attention mechanism of an architecture. Customizations are applied directly to a Transformers model so that you can continue to use features such as [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer), [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel), and the [PEFT](https://huggingface.co/docs/peft/en/index) library.
+Another way to customize a model is to modify their components, rather than writing a new model entirely, allowing you to tailor a model to your specific use case. For example, you can add new layers or optimize the attention mechanism of an architecture. Customizations are applied directly to a Transformers model so that you can continue to use features such as [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel), and the [PEFT](https://huggingface.co/docs/peft/en/index) library.
 
 This guide will show you how to customize a models attention mechanism in order to apply [Low-Rank Adaptation (LoRA)](https://huggingface.co/docs/peft/conceptual_guides/adapter#low-rank-adaptation-lora) to it.
 
@@ -88,9 +88,9 @@ class SamVisionAttentionSplit(SamVisionAttention, nn.Module):
         return outputs
 ```
 
-Assign the custom `SamVisionAttentionSplit` class to the original models `SamVisionAttention` module to replace it. All instances of `SamVisionAttention` in the model is replaced with the split attention version.
+Assign the custom `SamVisionAttentionSplit` class to the original models `SamVisionAttention` module to replace it. All instances of `SamVisionAttention` in the model are replaced with the split attention version.
 
-Load the model with [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Load the model with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```py
 from transformers import SamModel
@@ -136,5 +136,5 @@ model.print_trainable_parameters()
 "trainable params: 589,824 || all params: 94,274,096 || trainable%: 0.6256"
 ```
 
-### FSDP2
-https://huggingface.co/docs/transformers/v5.14.0/fsdp.md
+### Attention backends
+https://huggingface.co/docs/transformers/v5.15.0/attention_interface.md

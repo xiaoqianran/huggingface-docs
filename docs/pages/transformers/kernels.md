@@ -4,7 +4,7 @@ Custom kernels target specific ops like matrix multiplications, attention, and n
 
 ## Hub kernels
 
-The [Hub](https://huggingface.co/kernels-community) hosts community kernels you can load with [KernelConfig](/docs/transformers/v5.14.0/en/main_classes/kernels#transformers.KernelConfig). Pass the config to `kernel_config` in [from_pretrained()](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel.from_pretrained). Once the kernel is loaded, it's active for training. Read the [Loading kernels](./kernel_doc/loading_kernels#kernelconfig) guide for all available options.
+The [Hub](https://huggingface.co/kernels-community) hosts community kernels you can load with [KernelConfig](/docs/transformers/v5.15.0/en/main_classes/kernels#transformers.KernelConfig). Pass the config to `kernel_config` in [from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel.from_pretrained). Once the kernel is loaded, it's active for training. Read the [Loading kernels](./kernel_doc/loading_kernels#kernelconfig) guide for all available options.
 
 ```py
 from transformers import AutoModelForCausalLM, KernelConfig
@@ -29,7 +29,7 @@ model = AutoModelForCausalLM.from_pretrained(
 pip install liger-kernel
 ```
 
-Set `use_liger_kernel=True` in [TrainingArguments](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.TrainingArguments) to patch the corresponding model layers with Liger's kernels.
+Set `use_liger_kernel=True` in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) to patch the corresponding model layers with Liger's kernels.
 
 > [!TIP]
 > See the [patching](https://github.com/linkedin/Liger-Kernel#patching) page for a complete list of supported models.
@@ -65,5 +65,5 @@ training_args = TrainingArguments(
 - See the [Attention backends](./attention_interface) guide for details on kernels like FlashAttention that reduce memory usage.
 - See the [torch.compile](./torch_compile) guide to learn how to compile the forward and backward pass for your entire training step.
 
-### Tensor parallelism
-https://huggingface.co/docs/transformers/v5.14.0/tensor_parallelism.md
+### Installation
+https://huggingface.co/docs/transformers/v5.15.0/installation.md

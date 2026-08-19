@@ -43,7 +43,7 @@ Start with a smaller dataset by including the `max_train_samples`, `max_eval_sam
 
 The example below fine-tunes [T5-small](https://huggingface.co/google-t5/t5-small) on the [CNN/DailyMail](https://huggingface.co/datasets/abisee/cnn_dailymail) dataset. T5 requires an additional `source_prefix` parameter to prompt it to summarize.
 
-The example script downloads and preprocesses a dataset, and then fine-tunes it with [Trainer](/docs/transformers/v5.14.0/en/main_classes/trainer#transformers.Trainer) with a supported model architecture.
+The example script downloads and preprocesses a dataset, and then fine-tunes it with [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) with a supported model architecture.
 
 Resuming training from a checkpoint is very useful if training is interrupted because you don't have to start over again:
 
@@ -153,5 +153,5 @@ python examples/pytorch/summarization/run_summarization.py \
     --predict_with_generate \
 ```
 
-### Continuous batching architecture
-https://huggingface.co/docs/transformers/v5.14.0/continuous_batching_architecture.md
+### Chat message patterns
+https://huggingface.co/docs/transformers/v5.15.0/chat_content_patterns.md

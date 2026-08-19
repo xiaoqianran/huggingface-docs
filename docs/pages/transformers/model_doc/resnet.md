@@ -19,38 +19,45 @@ This model was contributed by [Francesco](https://huggingface.co/Francesco). The
 
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with ResNet.
 
-- [ResNetForImageClassification](/docs/transformers/v5.14.0/en/model_doc/resnet#transformers.ResNetForImageClassification) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-classification) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/image_classification.ipynb).
+- [ResNetForImageClassification](/docs/transformers/v5.15.0/en/model_doc/resnet#transformers.ResNetForImageClassification) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-classification) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/image_classification.ipynb).
 - See also: [Image classification task guide](../tasks/image_classification)
 
 If you're interested in submitting a resource to be included here, please feel free to open a Pull Request and we'll review it! The resource should ideally demonstrate something new instead of duplicating an existing resource.
 
 ## ResNetConfig[[transformers.ResNetConfig]]
 
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **embedding_size** (`int`, *optional*, defaults to `64`) --
-  Dimensionality of the embeddings and hidden states.
-- **hidden_sizes** (`Union[list[int], tuple[int, ...]]`, *optional*, defaults to `(256, 512, 1024, 2048)`) --
-  Dimensionality (hidden size) at each stage of the model.
-- **depths** (`Union[list[int], tuple[int, ...]]`, *optional*, defaults to `(3, 4, 6, 3)`) --
-  Depth of each layer in the Transformer.
-- **layer_type** (`str`, *optional*, defaults to `"bottleneck"`) --
-  The layer to use, it can be either `"basic"` (used for smaller models, like resnet-18 or resnet-34) or
-  `"bottleneck"` (used for larger models like resnet-50 and above).
-- **hidden_act** (`str`, *optional*, defaults to `relu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **downsample_in_first_stage** (`bool`, *optional*, defaults to `False`) --
-  If `True`, the first stage will downsample the inputs using a `stride` of 2.
-- **downsample_in_bottleneck** (`bool`, *optional*, defaults to `False`) --
-  If `True`, the first conv 1x1 in ResNetBottleNeckLayer will downsample the inputs using a `stride` of 2.
+#### transformers.ResNetConfig[[transformers.ResNetConfig]]
+
+```python
+transformers.ResNetConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, num_channels: int = 3, embedding_size: int = 64, hidden_sizes: list[int] | tuple[int, ...] | None = (256, 512, 1024, 2048), depths: list[int] | tuple[int, ...] | None = (3, 4, 6, 3), layer_type: str = 'bottleneck', hidden_act: str = 'relu', downsample_in_first_stage: bool = False, downsample_in_bottleneck: bool = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/resnet/configuration_resnet.py#L27)
+
+**Parameters:**
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+embedding_size (`int`, *optional*, defaults to `64`) : Dimensionality of the embeddings and hidden states.
+
+hidden_sizes (`Union[list[int], tuple[int, ...]]`, *optional*, defaults to `(256, 512, 1024, 2048)`) : Dimensionality (hidden size) at each stage of the model.
+
+depths (`Union[list[int], tuple[int, ...]]`, *optional*, defaults to `(3, 4, 6, 3)`) : Depth of each layer in the Transformer.
+
+layer_type (`str`, *optional*, defaults to `"bottleneck"`) : The layer to use, it can be either `"basic"` (used for smaller models, like resnet-18 or resnet-34) or `"bottleneck"` (used for larger models like resnet-50 and above).
+
+hidden_act (`str`, *optional*, defaults to `relu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+downsample_in_first_stage (`bool`, *optional*, defaults to `False`) : If `True`, the first stage will downsample the inputs using a `stride` of 2.
+
+downsample_in_bottleneck (`bool`, *optional*, defaults to `False`) : If `True`, the first conv 1x1 in ResNetBottleNeckLayer will downsample the inputs using a `stride` of 2.
 
 This is the configuration class to store the configuration of a ResNetModel. It is used to instantiate a Resnet
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/resnet-50](https://huggingface.co/microsoft/resnet-50)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -66,16 +73,33 @@ Example:
 >>> configuration = model.config
 ```
 
+#### validate_layer_type[[transformers.ResNetConfig.validate_layer_type]]
+
+```python
+validate_layer_type()
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/resnet/configuration_resnet.py#L72)
+
+Check that `layer_types` is correctly defined.
+
 ## ResNetModel[[transformers.ResNetModel]]
 
-- **config** ([ResNetModel](/docs/transformers/v5.14.0/en/model_doc/resnet#transformers.ResNetModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.ResNetModel[[transformers.ResNetModel]]
+
+```python
+transformers.ResNetModel(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/resnet/modeling_resnet.py#L291)
+
+**Parameters:**
+
+config ([ResNetModel](/docs/transformers/v5.15.0/en/model_doc/resnet#transformers.ResNetModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Resnet Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -83,19 +107,29 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-)>"}, {"name": "output_hidden_states", "val": ": bool | None = None"}, {"name": "return_dict", "val": ": bool | None = None"}, {"name": "**kwargs", "val": ""}]}>
-- **pixel_values** (`doc_builder.mock_imports.torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [ConvNextImageProcessor](/docs/transformers/v5.14.0/en/model_doc/convnext#transformers.ConvNextImageProcessor). See `ConvNextImageProcessor.__call__()` for details (`processor_class` uses
-  [ConvNextImageProcessor](/docs/transformers/v5.14.0/en/model_doc/convnext#transformers.ConvNextImageProcessor) for processing images).
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.`BaseModelOutputWithPoolingAndNoAttention` or `tuple(torch.FloatTensor)`A `BaseModelOutputWithPoolingAndNoAttention` or a tuple of
+#### forward[[transformers.ResNetModel.forward]]
+
+```python
+forward(pixel_values: Tensor, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/resnet/modeling_resnet.py#L301)
+
+**Parameters:**
+
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [ConvNextImageProcessor](/docs/transformers/v5.15.0/en/model_doc/convnext#transformers.ConvNextImageProcessor). See `ConvNextImageProcessor.__call__()` for details (`processor_class` uses [ConvNextImageProcessor](/docs/transformers/v5.15.0/en/model_doc/convnext#transformers.ConvNextImageProcessor) for processing images).
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** `BaseModelOutputWithPoolingAndNoAttention` or `tuple(torch.FloatTensor)`
+
+A `BaseModelOutputWithPoolingAndNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ResNetConfig](/docs/transformers/v5.14.0/en/model_doc/resnet#transformers.ResNetConfig)) and inputs.
-The [ResNetModel](/docs/transformers/v5.14.0/en/model_doc/resnet#transformers.ResNetModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([ResNetConfig](/docs/transformers/v5.15.0/en/model_doc/resnet#transformers.ResNetConfig)) and inputs.
+
+The [ResNetModel](/docs/transformers/v5.15.0/en/model_doc/resnet#transformers.ResNetModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -115,15 +149,22 @@ Example:
 
 ## ResNetForImageClassification[[transformers.ResNetForImageClassification]]
 
-- **config** ([ResNetForImageClassification](/docs/transformers/v5.14.0/en/model_doc/resnet#transformers.ResNetForImageClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.ResNetForImageClassification[[transformers.ResNetForImageClassification]]
+
+```python
+transformers.ResNetForImageClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/resnet/modeling_resnet.py#L340)
+
+**Parameters:**
+
+config ([ResNetForImageClassification](/docs/transformers/v5.15.0/en/model_doc/resnet#transformers.ResNetForImageClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 ResNet Model with an image classification head on top (a linear layer on top of the pooled features), e.g. for
 ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -131,21 +172,31 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [ConvNextImageProcessor](/docs/transformers/v5.14.0/en/model_doc/convnext#transformers.ConvNextImageProcessor). See `ConvNextImageProcessor.__call__()` for details (`processor_class` uses
-  [ConvNextImageProcessor](/docs/transformers/v5.14.0/en/model_doc/convnext#transformers.ConvNextImageProcessor) for processing images).
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the image classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
-- **output_hidden_states** (`bool`, *optional*) --
-  Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for
-  more detail.
-- **return_dict** (`bool`, *optional*) --
-  Whether or not to return a [ModelOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.[ImageClassifierOutputWithNoAttention](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.FloatTensor)`A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
+#### forward[[transformers.ResNetForImageClassification.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/resnet/modeling_resnet.py#L353)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ConvNextImageProcessor](/docs/transformers/v5.15.0/en/model_doc/convnext#transformers.ConvNextImageProcessor). See `ConvNextImageProcessor.__call__()` for details (`processor_class` uses [ConvNextImageProcessor](/docs/transformers/v5.15.0/en/model_doc/convnext#transformers.ConvNextImageProcessor) for processing images).
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
+
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+
+**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.FloatTensor)`
+
+A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ResNetConfig](/docs/transformers/v5.14.0/en/model_doc/resnet#transformers.ResNetConfig)) and inputs.
-The [ResNetForImageClassification](/docs/transformers/v5.14.0/en/model_doc/resnet#transformers.ResNetForImageClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([ResNetConfig](/docs/transformers/v5.15.0/en/model_doc/resnet#transformers.ResNetConfig)) and inputs.
+
+The [ResNetForImageClassification](/docs/transformers/v5.15.0/en/model_doc/resnet#transformers.ResNetForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -181,5 +232,5 @@ Example:
 ...
 ```
 
-### GOT-OCR2
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/got_ocr2.md
+### RoCBert
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/roc_bert.md

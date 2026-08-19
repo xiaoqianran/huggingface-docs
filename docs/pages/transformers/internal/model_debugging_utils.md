@@ -224,6 +224,14 @@ If you pass `do_prune_layers=False` to your model debugger, ALL the layers will 
 first and last layer will be shown. This is useful when some layers (typically cross-attention) appear only after N
 layers.
 
+#### transformers.model_addition_debugger_context[[transformers.model_addition_debugger_context]]
+
+```python
+transformers.model_addition_debugger_context(model, debug_path: str | None = None, do_prune_layers: bool = True, use_repr: bool = True)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/model_debugging_utils.py#L391)
+
 # Model addition debugger - context manager for model adders
 This context manager is a power user tool intended for model adders.
 
@@ -461,5 +469,5 @@ This tool requires GPU/CPU resources to run the embedding model (`Qwen/Qwen3-Emb
 
 Results are suggestions based on code similarity and should be manually reviewed before modularization. High similarity scores don't guarantee perfect compatibility.
 
-### Nanotron
-https://huggingface.co/docs/transformers/v5.14.0/community_integrations/nanotron.md
+### Custom Layers and Utilities
+https://huggingface.co/docs/transformers/v5.15.0/internal/modeling_utils.md

@@ -7,7 +7,7 @@ You can find all official Swin Transformer checkpoints under the [Microsoft](htt
 > [!TIP]
 > Click on the Swin Transformer models in the right sidebar for more examples of how to apply Swin Transformer to different image tasks.
 
-The example below demonstrates how to classify an image with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to classify an image with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -56,48 +56,56 @@ print(f"The predicted class label is: {predicted_class_label}")
 
 ## SwinConfig[[transformers.SwinConfig]]
 
-- **image_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) --
-  The size (resolution) of each image.
-- **patch_size** (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `4`) --
-  The size (resolution) of each patch.
-- **num_channels** (`int`, *optional*, defaults to `3`) --
-  The number of input channels.
-- **embed_dim** (`int`, *optional*, defaults to `96`) --
-  Dimensionality of the embeddings and hidden states.
-- **depths** (`list(int)`, *optional*, defaults to `[2, 2, 6, 2]`) --
-  Depth of each layer in the Transformer encoder.
-- **num_heads** (`list(int)`, *optional*, defaults to `[3, 6, 12, 24]`) --
-  Number of attention heads in each layer of the Transformer encoder.
-- **window_size** (`int`, *optional*, defaults to 7) --
-  Size of windows.
-- **mlp_ratio** (`Union[float, int]`, *optional*, defaults to `4.0`) --
-  Ratio of the MLP hidden dim to the embedding dim.
-- **qkv_bias** (`bool`, *optional*, defaults to `True`) --
-  Whether to add a bias to the queries, keys and values.
-- **hidden_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
-- **attention_probs_dropout_prob** (`Union[float, int]`, *optional*, defaults to `0.0`) --
-  The dropout ratio for the attention probabilities.
-- **drop_path_rate** (`Union[float, int]`, *optional*, defaults to `0.1`) --
-  Drop path rate for the patch fusion.
-- **hidden_act** (`str`, *optional*, defaults to `gelu`) --
-  The non-linear activation function (function or string) in the decoder. For example, `"gelu"`,
-  `"relu"`, `"silu"`, etc.
-- **use_absolute_embeddings** (`bool`, *optional*, defaults to `False`) --
-  Whether to use absolute position embeddings.
-- **initializer_range** (`float`, *optional*, defaults to `0.02`) --
-  The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
-- **layer_norm_eps** (`float`, *optional*, defaults to `1e-05`) --
-  The epsilon used by the layer normalization layers.
-- **encoder_stride** (`int`, *optional*, defaults to 32) --
-  Factor to increase the spatial resolution by in the decoder head for masked image modeling.
+#### transformers.SwinConfig[[transformers.SwinConfig]]
+
+```python
+transformers.SwinConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 4, num_channels: int = 3, embed_dim: int = 96, depths: list[int] | tuple[int, ...] = (2, 2, 6, 2), num_heads: list[int] | tuple[int, ...] = (3, 6, 12, 24), window_size: int = 7, mlp_ratio: float | int = 4.0, qkv_bias: bool = True, hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, drop_path_rate: float | int = 0.1, hidden_act: str = 'gelu', use_absolute_embeddings: bool = False, initializer_range: float = 0.02, layer_norm_eps: float = 1e-05, encoder_stride: int = 32, _out_features: list[str] | None = None, _out_indices: list[int] | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/swin/configuration_swin.py#L25)
+
+**Parameters:**
+
+image_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `224`) : The size (resolution) of each image.
+
+patch_size (`Union[int, list[int], tuple[int, int]]`, *optional*, defaults to `4`) : The size (resolution) of each patch.
+
+num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
+
+embed_dim (`int`, *optional*, defaults to `96`) : Dimensionality of the embeddings and hidden states.
+
+depths (`list(int)`, *optional*, defaults to `[2, 2, 6, 2]`) : Depth of each layer in the Transformer encoder.
+
+num_heads (`list(int)`, *optional*, defaults to `[3, 6, 12, 24]`) : Number of attention heads in each layer of the Transformer encoder.
+
+window_size (`int`, *optional*, defaults to 7) : Size of windows.
+
+mlp_ratio (`Union[float, int]`, *optional*, defaults to `4.0`) : Ratio of the MLP hidden dim to the embedding dim.
+
+qkv_bias (`bool`, *optional*, defaults to `True`) : Whether to add a bias to the queries, keys and values.
+
+hidden_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
+
+attention_probs_dropout_prob (`Union[float, int]`, *optional*, defaults to `0.0`) : The dropout ratio for the attention probabilities.
+
+drop_path_rate (`Union[float, int]`, *optional*, defaults to `0.1`) : Drop path rate for the patch fusion.
+
+hidden_act (`str`, *optional*, defaults to `gelu`) : The non-linear activation function (function or string) in the decoder. For example, `"gelu"`, `"relu"`, `"silu"`, etc.
+
+use_absolute_embeddings (`bool`, *optional*, defaults to `False`) : Whether to use absolute position embeddings.
+
+initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
+
+layer_norm_eps (`float`, *optional*, defaults to `1e-05`) : The epsilon used by the layer normalization layers.
+
+encoder_stride (`int`, *optional*, defaults to 32) : Factor to increase the spatial resolution by in the decoder head for masked image modeling.
 
 This is the configuration class to store the configuration of a SwinModel. It is used to instantiate a Swin
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/swin-tiny-patch4-window7-224](https://huggingface.co/microsoft/swin-tiny-patch4-window7-224)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -116,18 +124,25 @@ Example:
 
 ## SwinModel[[transformers.SwinModel]]
 
-- **config** ([SwinModel](/docs/transformers/v5.14.0/en/model_doc/swin#transformers.SwinModel)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
-- **add_pooling_layer** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to apply pooling layer.
-- **use_mask_token** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to create and apply mask tokens in the embedding layer.
+#### transformers.SwinModel[[transformers.SwinModel]]
+
+```python
+transformers.SwinModel(config, add_pooling_layer = True, use_mask_token = False)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/swin/modeling_swin.py#L825)
+
+**Parameters:**
+
+config ([SwinModel](/docs/transformers/v5.15.0/en/model_doc/swin#transformers.SwinModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+
+add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether or not to apply pooling layer.
+
+use_mask_token (`bool`, *optional*, defaults to `False`) : Whether or not to create and apply mask tokens in the embedding layer.
 
 The bare Swin Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -135,17 +150,29 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
-- **bool_masked_pos** (`torch.BoolTensor` of shape `(batch_size, num_patches)`, *optional*) --
-  Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.`SwinModelOutput` or `tuple(torch.FloatTensor)`A `SwinModelOutput` or a tuple of
+#### forward[[transformers.SwinModel.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/swin/modeling_swin.py#L847)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+
+bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`, *optional*) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** `SwinModelOutput` or `tuple(torch.FloatTensor)`
+
+A `SwinModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SwinConfig](/docs/transformers/v5.14.0/en/model_doc/swin#transformers.SwinConfig)) and inputs.
-The [SwinModel](/docs/transformers/v5.14.0/en/model_doc/swin#transformers.SwinModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([SwinConfig](/docs/transformers/v5.15.0/en/model_doc/swin#transformers.SwinConfig)) and inputs.
+
+The [SwinModel](/docs/transformers/v5.15.0/en/model_doc/swin#transformers.SwinModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -175,17 +202,24 @@ Example:
 
 ## SwinForMaskedImageModeling[[transformers.SwinForMaskedImageModeling]]
 
-- **config** ([SwinForMaskedImageModeling](/docs/transformers/v5.14.0/en/model_doc/swin#transformers.SwinForMaskedImageModeling)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.SwinForMaskedImageModeling[[transformers.SwinForMaskedImageModeling]]
+
+```python
+transformers.SwinForMaskedImageModeling(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/swin/modeling_swin.py#L904)
+
+**Parameters:**
+
+config ([SwinForMaskedImageModeling](/docs/transformers/v5.15.0/en/model_doc/swin#transformers.SwinForMaskedImageModeling)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Swin Model with a decoder on top for masked image modeling, as proposed in [SimMIM](https://huggingface.co/papers/2111.09886).
 
 Note that we provide a script to pre-train this model on custom data in our [examples
 directory](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-pretraining).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -193,17 +227,29 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
-- **bool_masked_pos** (`torch.BoolTensor` of shape `(batch_size, num_patches)`) --
-  Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.`SwinMaskedImageModelingOutput` or `tuple(torch.FloatTensor)`A `SwinMaskedImageModelingOutput` or a tuple of
+#### forward[[transformers.SwinForMaskedImageModeling.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/swin/modeling_swin.py#L921)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+
+bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** `SwinMaskedImageModelingOutput` or `tuple(torch.FloatTensor)`
+
+A `SwinMaskedImageModelingOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SwinConfig](/docs/transformers/v5.14.0/en/model_doc/swin#transformers.SwinConfig)) and inputs.
-The [SwinForMaskedImageModeling](/docs/transformers/v5.14.0/en/model_doc/swin#transformers.SwinForMaskedImageModeling) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([SwinConfig](/docs/transformers/v5.15.0/en/model_doc/swin#transformers.SwinConfig)) and inputs.
+
+The [SwinForMaskedImageModeling](/docs/transformers/v5.15.0/en/model_doc/swin#transformers.SwinForMaskedImageModeling) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -254,10 +300,17 @@ Examples:
 
 ## SwinForImageClassification[[transformers.SwinForImageClassification]]
 
-- **config** ([SwinForImageClassification](/docs/transformers/v5.14.0/en/model_doc/swin#transformers.SwinForImageClassification)) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+#### transformers.SwinForImageClassification[[transformers.SwinForImageClassification]]
+
+```python
+transformers.SwinForImageClassification(config)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/swin/modeling_swin.py#L1012)
+
+**Parameters:**
+
+config ([SwinForImageClassification](/docs/transformers/v5.15.0/en/model_doc/swin#transformers.SwinForImageClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Swin Model transformer with an image classification head on top (a linear layer on top of the final hidden state of
 the [CLS] token) e.g. for ImageNet.
@@ -266,7 +319,7 @@ Note that it's possible to fine-tune Swin on higher resolution images than the o
 setting `interpolate_pos_encoding` to `True` in the forward of the model. This will interpolate the pre-trained
 position embeddings to the higher resolution.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -274,19 +327,29 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **pixel_values** (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) --
-  The tensors corresponding to the input images. Pixel values can be obtained using
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses
-  [ViTImageProcessor](/docs/transformers/v5.14.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
-- **labels** (`torch.LongTensor` of shape `(batch_size,)`, *optional*) --
-  Labels for computing the image classification/regression loss. Indices should be in `[0, ...,
-  config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-  `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
-- **interpolate_pos_encoding** (`bool`, *optional*, defaults to `False`) --
-  Whether to interpolate the pre-trained position encodings.`SwinImageClassifierOutput` or `tuple(torch.FloatTensor)`A `SwinImageClassifierOutput` or a tuple of
+#### forward[[transformers.SwinForImageClassification.forward]]
+
+```python
+forward(pixel_values: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/swin/modeling_swin.py#L1027)
+
+**Parameters:**
+
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+
+labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+
+interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
+
+**Returns:** `SwinImageClassifierOutput` or `tuple(torch.FloatTensor)`
+
+A `SwinImageClassifierOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SwinConfig](/docs/transformers/v5.14.0/en/model_doc/swin#transformers.SwinConfig)) and inputs.
-The [SwinForImageClassification](/docs/transformers/v5.14.0/en/model_doc/swin#transformers.SwinForImageClassification) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([SwinConfig](/docs/transformers/v5.15.0/en/model_doc/swin#transformers.SwinConfig)) and inputs.
+
+The [SwinForImageClassification](/docs/transformers/v5.15.0/en/model_doc/swin#transformers.SwinForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -333,5 +396,5 @@ Example:
 ...
 ```
 
-### Grounding DINO
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/grounding-dino.md
+### TimesFM
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/timesfm.md

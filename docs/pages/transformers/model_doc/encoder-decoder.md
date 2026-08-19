@@ -1,13 +1,13 @@
 # Encoder Decoder Models
 
-[`EncoderDecoderModel`](https://huggingface.co/papers/1706.03762) initializes a sequence-to-sequence model with any pretrained autoencoder and pretrained autoregressive model. It is effective for sequence generation tasks as demonstrated in [Text Summarization with Pretrained Encoders](https://huggingface.co/papers/1908.08345) which uses [BertModel](/docs/transformers/v5.14.0/en/model_doc/bert#transformers.BertModel) as the encoder and decoder.
+[`EncoderDecoderModel`](https://huggingface.co/papers/1706.03762) initializes a sequence-to-sequence model with any pretrained autoencoder and pretrained autoregressive model. It is effective for sequence generation tasks as demonstrated in [Text Summarization with Pretrained Encoders](https://huggingface.co/papers/1908.08345) which uses [BertModel](/docs/transformers/v5.15.0/en/model_doc/bert#transformers.BertModel) as the encoder and decoder.
 
 > [!TIP]
 > This model was contributed by [thomwolf](https://huggingface.co/thomwolf).
 >
 > Click on the Encoder Decoder models in the right sidebar for more examples of how to apply Encoder Decoder to different language tasks.
 
-The example below demonstrates how to generate text with [Pipeline](/docs/transformers/v5.14.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
+The example below demonstrates how to generate text with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -25,9 +25,9 @@ print(tokenizer.decode(summary[0], skip_special_tokens=True))
 
 ## Notes
 
-- [EncoderDecoderModel](/docs/transformers/v5.14.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderModel) can be initialized using any pretrained encoder and decoder. But depending on the decoder architecture, the cross-attention layers may be randomly initialized.
+- [EncoderDecoderModel](/docs/transformers/v5.15.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderModel) can be initialized using any pretrained encoder and decoder. But depending on the decoder architecture, the cross-attention layers may be randomly initialized.
 
-These models require downstream fine-tuning, as discussed in this [blog post](https://huggingface.co/blog/warm-starting-encoder-decoder). Use [from_encoder_decoder_pretrained()](/docs/transformers/v5.14.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderModel.from_encoder_decoder_pretrained) to combine encoder and decoder checkpoints.
+These models require downstream fine-tuning, as discussed in this [blog post](https://huggingface.co/blog/warm-starting-encoder-decoder). Use [from_encoder_decoder_pretrained()](/docs/transformers/v5.15.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderModel.from_encoder_decoder_pretrained) to combine encoder and decoder checkpoints.
 
 ```python
 from transformers import BertTokenizer, EncoderDecoderModel
@@ -64,7 +64,7 @@ labels = tokenizer(
 loss = model(input_ids=input_ids, labels=labels).loss
 ```
 
-- [EncoderDecoderModel](/docs/transformers/v5.14.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderModel) can be randomly initialized from an encoder and a decoder config as shown below.
+- [EncoderDecoderModel](/docs/transformers/v5.15.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderModel) can be randomly initialized from an encoder and a decoder config as shown below.
 
 ```python
 from transformers import BertConfig, EncoderDecoderConfig, EncoderDecoderModel
@@ -103,19 +103,28 @@ print("Translated text:", translated_text)
 
 ## EncoderDecoderConfig[[transformers.EncoderDecoderConfig]]
 
-- **is_encoder_decoder** (`bool`, *optional*, defaults to `True`) --
-  Whether the model is used as an encoder/decoder or not.
-- **pad_token_id** (`int`, *optional*) --
-  Token id used for padding in the vocabulary.
-- **decoder_start_token_id** (`int`, *optional*) --
-  If an encoder-decoder model starts decoding with a different token than `bos`, the id of that token.
+#### transformers.EncoderDecoderConfig[[transformers.EncoderDecoderConfig]]
+
+```python
+transformers.EncoderDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool | None = True, pad_token_id: int | None = None, decoder_start_token_id: int | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/encoder_decoder/configuration_encoder_decoder.py#L29)
+
+**Parameters:**
+
+is_encoder_decoder (`bool`, *optional*, defaults to `True`) : Whether the model is used as an encoder/decoder or not.
+
+pad_token_id (`int`, *optional*) : Token id used for padding in the vocabulary.
+
+decoder_start_token_id (`int`, *optional*) : If an encoder-decoder model starts decoding with a different token than `bos`, the id of that token.
 
 This is the configuration class to store the configuration of a Encoder DecoderModel. It is used to instantiate a Encoder Decoder
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [](https://huggingface.co/)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -146,25 +155,42 @@ Examples:
 >>> model = EncoderDecoderModel.from_pretrained("my-model", config=encoder_decoder_config)
 ```
 
-[EncoderDecoderConfig](/docs/transformers/v5.14.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderConfig)An instance of a configuration object
+#### from_encoder_decoder_configs[[transformers.EncoderDecoderConfig.from_encoder_decoder_configs]]
 
-Instantiate a [EncoderDecoderConfig](/docs/transformers/v5.14.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderConfig) (or a derived class) from a pre-trained encoder model configuration and
+```python
+from_encoder_decoder_configs(encoder_config: PreTrainedConfig, decoder_config: PreTrainedConfig, **kwargs)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/encoder_decoder/configuration_encoder_decoder.py#L84)
+
+**Returns:** [EncoderDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderConfig)
+
+An instance of a configuration object
+
+Instantiate a [EncoderDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderConfig) (or a derived class) from a pre-trained encoder model configuration and
 decoder model configuration.
 
 ## EncoderDecoderModel[[transformers.EncoderDecoderModel]]
 
-- **config** ([PreTrainedConfig](/docs/transformers/v5.14.0/en/main_classes/configuration#transformers.PreTrainedConfig), *optional*) --
-  Model configuration class with all the parameters of the model. Initializing with a config file does not
-  load the weights associated with the model, only the configuration. Check out the
-  [from_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
-- **encoder** (`PreTrainedModel`, *optional*) --
-  The encoder model to use.
-- **decoder** (`PreTrainedModel`, *optional*) --
-  The decoder model to use.
+#### transformers.EncoderDecoderModel[[transformers.EncoderDecoderModel]]
+
+```python
+transformers.EncoderDecoderModel(config: transformers.configuration_utils.PreTrainedConfig | None = None, encoder: transformers.modeling_utils.PreTrainedModel | None = None, decoder: transformers.modeling_utils.PreTrainedModel | None = None)
+```
+
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/encoder_decoder/modeling_encoder_decoder.py#L65)
+
+**Parameters:**
+
+config ([PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig), *optional*) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+
+encoder (`PreTrainedModel`, *optional*) : The encoder model to use.
+
+decoder (`PreTrainedModel`, *optional*) : The decoder model to use.
 
 The bare Encoder Decoder Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -172,71 +198,43 @@ This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/n
 Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
 and behavior.
 
-- **input_ids** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.
+#### forward[[transformers.EncoderDecoderModel.forward]]
 
-  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.14.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+```python
+forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.BoolTensor] = None, encoder_outputs: tuple[torch.FloatTensor] | None = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, **kwargs)
+```
 
-  [What are input IDs?](../glossary#input-ids)
-- **attention_mask** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/encoder_decoder/modeling_encoder_decoder.py#L317)
 
-  - 1 for tokens that are **not masked**,
-  - 0 for tokens that are **masked**.
+**Parameters:**
 
-  [What are attention masks?](../glossary#attention-mask)
-- **decoder_input_ids** (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) --
-  Indices of decoder input sequence tokens in the vocabulary.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-  Indices can be obtained using [PreTrainedTokenizer](/docs/transformers/v5.14.0/en/main_classes/tokenizer#transformers.PythonBackend). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and
-  [PreTrainedTokenizer.__call__()](/docs/transformers/v5.14.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-  [What are input IDs?](../glossary#input-ids)
+decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)  If `past_key_values` is used, optionally only the last `decoder_input_ids` have to be input (see `past_key_values`).  For training, `decoder_input_ids` are automatically created by the model by shifting the `labels` to the right, replacing -100 by the `pad_token_id` and prepending them with the `decoder_start_token_id`.
 
-  If `past_key_values` is used, optionally only the last `decoder_input_ids` have to be input (see
-  `past_key_values`).
+decoder_attention_mask (`torch.BoolTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also be used by default.
 
-  For training, `decoder_input_ids` are automatically created by the model by shifting the `labels` to the
-  right, replacing -100 by the `pad_token_id` and prepending them with the `decoder_start_token_id`.
-- **decoder_attention_mask** (`torch.BoolTensor` of shape `(batch_size, target_sequence_length)`, *optional*) --
-  Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also
-  be used by default.
-- **encoder_outputs** (`tuple[torch.FloatTensor]`, *optional*) --
-  Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`)
-  `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of
-  hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
-- **past_key_values** (`~cache_utils.Cache`, *optional*) --
-  Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
-  blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values`
-  returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.
+encoder_outputs (`tuple[torch.FloatTensor]`, *optional*) : Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
 
-  Only [Cache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
-  If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-  The model will output the same cache format that is fed as input.
+inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't
-  have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids`
-  of shape `(batch_size, sequence_length)`.
-- **inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This
-  is useful if you want more control over how to convert `input_ids` indices into associated vectors than the
-  model's internal embedding lookup matrix.
-- **decoder_inputs_embeds** (`torch.FloatTensor` of shape `(batch_size, target_sequence_length, hidden_size)`, *optional*) --
-  Optionally, instead of passing `decoder_input_ids` you can choose to directly pass an embedded
-  representation. This is useful if you want more control over how to convert `decoder_input_ids` indices
-  into associated vectors than the model's internal embedding lookup matrix.
-- **labels** (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) --
-  Labels for computing the masked language modeling loss for the decoder. Indices should be in `[-100, 0,
-  ..., config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are ignored
-  (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`
-- **use_cache** (`bool`, *optional*) --
-  If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see
-  `past_key_values`).[Seq2SeqLMOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or `tuple(torch.FloatTensor)`A [Seq2SeqLMOutput](/docs/transformers/v5.14.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or a tuple of
+decoder_inputs_embeds (`torch.FloatTensor` of shape `(batch_size, target_sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `decoder_input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `decoder_input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
+
+labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss for the decoder. Indices should be in `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`
+
+use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
+
+**Returns:** [Seq2SeqLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or `tuple(torch.FloatTensor)`
+
+A [Seq2SeqLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EncoderDecoderConfig](/docs/transformers/v5.14.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderConfig)) and inputs.
-The [EncoderDecoderModel](/docs/transformers/v5.14.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderModel) forward method, overrides the `__call__` special method.
+elements depending on the configuration ([EncoderDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderConfig)) and inputs.
+
+The [EncoderDecoderModel](/docs/transformers/v5.15.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -244,7 +242,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss.
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.14.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
   blocks) that can be used (see `past_key_values` input) to speed up sequential decoding.
@@ -302,32 +300,23 @@ Examples:
 >>> generated = model.generate(input_ids)
 ```
 
-- **encoder_pretrained_model_name_or_path** (`str`, *optional*) --
-  Information necessary to initiate the encoder. Can be either:
+#### from_encoder_decoder_pretrained[[transformers.EncoderDecoderModel.from_encoder_decoder_pretrained]]
 
-  - A string, the *model id* of a pretrained model hosted inside a model repo on huggingface.co.
-  - A path to a *directory* containing model weights saved using
-    [save_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `./my_model_directory/`.
+```python
+from_encoder_decoder_pretrained(encoder_pretrained_model_name_or_path: str | None = None, decoder_pretrained_model_name_or_path: str | None = None, *model_args, **kwargs)
+```
 
-- **decoder_pretrained_model_name_or_path** (`str`, *optional*, defaults to `None`) --
-  Information necessary to initiate the decoder. Can be either:
+[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/encoder_decoder/modeling_encoder_decoder.py#L182)
 
-  - A string, the *model id* of a pretrained model hosted inside a model repo on huggingface.co.
-  - A path to a *directory* containing model weights saved using
-    [save_pretrained()](/docs/transformers/v5.14.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `./my_model_directory/`.
+**Parameters:**
 
-- **model_args** (remaining positional arguments, *optional*) --
-  All remaining positional arguments will be passed to the underlying model's `__init__` method.
+encoder_pretrained_model_name_or_path (`str`, *optional*) : Information necessary to initiate the encoder. Can be either:  - A string, the *model id* of a pretrained model hosted inside a model repo on huggingface.co. - A path to a *directory* containing model weights saved using [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `./my_model_directory/`. 
 
-- **kwargs** (remaining dictionary of keyword arguments, *optional*) --
-  Can be used to update the configuration object (after it being loaded) and initiate the model (e.g.,
-  `output_attentions=True`).
+decoder_pretrained_model_name_or_path (`str`, *optional*, defaults to `None`) : Information necessary to initiate the decoder. Can be either:  - A string, the *model id* of a pretrained model hosted inside a model repo on huggingface.co. - A path to a *directory* containing model weights saved using [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained), e.g., `./my_model_directory/`. 
 
-  - To update the encoder configuration, use the prefix *encoder_* for each configuration parameter.
-  - To update the decoder configuration, use the prefix *decoder_* for each configuration parameter.
-  - To update the parent model configuration, do not use a prefix for each configuration parameter.
+model_args (remaining positional arguments, *optional*) : All remaining positional arguments will be passed to the underlying model's `__init__` method. 
 
-  Behaves differently depending on whether a `config` is provided or automatically loaded.
+kwargs (remaining dictionary of keyword arguments, *optional*) : Can be used to update the configuration object (after it being loaded) and initiate the model (e.g., `output_attentions=True`).  - To update the encoder configuration, use the prefix *encoder_* for each configuration parameter. - To update the decoder configuration, use the prefix *decoder_* for each configuration parameter. - To update the parent model configuration, do not use a prefix for each configuration parameter.  Behaves differently depending on whether a `config` is provided or automatically loaded.
 
 Instantiate an encoder and a decoder from one or two base classes of the library from pretrained model
 checkpoints.
@@ -348,5 +337,5 @@ Example:
 >>> model = EncoderDecoderModel.from_pretrained("./bert2bert")
 ```
 
-### Cohere2 MoE
-https://huggingface.co/docs/transformers/v5.14.0/model_doc/cohere2_moe.md
+### LW-DETR
+https://huggingface.co/docs/transformers/v5.15.0/model_doc/lw_detr.md
