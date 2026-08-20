@@ -9,8 +9,8 @@
       "translatedAt": "2026-08-14T08:22:56.624Z"
     },
     "hub/academia-hub.md": {
-      "hash": "e38f6ab2dd739ae43a123e3df93ea0cd8fb8dd61",
-      "translatedAt": "2026-08-14T08:22:59.070Z"
+      "hash": "f704511fcd9d3930e2675a6c7b886850cc34f7d3",
+      "translatedAt": "2026-08-20T07:49:22.616Z"
     },
     "hub/advanced-compute-options.md": {
       "hash": "d5aa97674e5a4745983dcf3d01b37f7e97d7a205",
@@ -2001,10 +2001,10 @@
       "translatedAt": "2026-08-11T13:59:27.535Z"
     }
   },
-  "updatedAt": "2026-08-19T07:47:04.508Z",
+  "updatedAt": "2026-08-20T07:49:22.616Z",
   "stats": {
-    "translated": 6,
-    "skipped": 394,
+    "translated": 1,
+    "skipped": 399,
     "failed": 0,
     "total": 400
   }
