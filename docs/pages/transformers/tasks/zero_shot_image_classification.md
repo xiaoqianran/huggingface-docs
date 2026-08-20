@@ -26,7 +26,7 @@ pip install -q "transformers[torch]" pillow
 
 ## Zero-shot image classification pipeline
 
-The simplest way to try out inference with a model supporting zero-shot image classification is to use the corresponding [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline).
+The simplest way to try out inference with a model supporting zero-shot image classification is to use the corresponding [pipeline()](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.pipeline).
 Instantiate a pipeline from a [checkpoint on the Hugging Face Hub](https://huggingface.co/models?pipeline_tag=zero-shot-image-classification&sort=downloads):
 
 ```python
@@ -127,4 +127,4 @@ Pass the inputs through the model, and post-process the results:
 ```
 
 ### Knowledge Distillation for Computer Vision
-https://huggingface.co/docs/transformers/v5.15.0/tasks/knowledge_distillation_for_image_classification.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/knowledge_distillation_for_image_classification.md

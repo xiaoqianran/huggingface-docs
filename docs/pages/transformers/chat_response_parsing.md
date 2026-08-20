@@ -18,7 +18,7 @@ templates allow users to ignore the messy details of what specific formats and c
 and use a universal API of message dicts that works with any model.
 
 The best way to understand response templates is to see them in action. The main entry point is the
-[parse_response()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.parse_response) method, which accepts either a single sequence or a batch:
+[parse_response()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.parse_response) method, which accepts either a single sequence or a batch:
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -383,9 +383,9 @@ Note `age` keeps `"30"` as a string; add a `value_parser` of `{"name": "int"}` t
 Sometimes, the response parser may parse model outputs with the wrong type. For example,
 it might parse the float `1.5` as "1.50". This can cause problems with tool calling, if tools expect
 an argument in one type but receive it in another. To avoid this,
-you can pass the request's `tools` to [parse_response()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.parse_response) or
+you can pass the request's `tools` to [parse_response()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.parse_response) or
 `ResponseParser` to cast them using each tool's JSON Schema `parameters`.
-Tools are accepted in the same format as [apply_chat_template()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template): JSON
+Tools are accepted in the same format as [apply_chat_template()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template): JSON
 schemas, or Python functions with type hints and docstrings that are auto-converted to schemas.
 
 ```python
@@ -537,4 +537,4 @@ follow the simple guidelines below, then response templates should be much less 
   ignore them.
 
 ### Expert parallelism
-https://huggingface.co/docs/transformers/v5.15.0/expert_parallelism.md
+https://huggingface.co/docs/transformers/v5.15.1/expert_parallelism.md

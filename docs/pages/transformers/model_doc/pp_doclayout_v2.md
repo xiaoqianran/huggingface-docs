@@ -12,7 +12,7 @@ PP-DocLayoutV2 is composed of two sequentially connected networks. The first is 
 
 ### Single input inference
 
-The example below demonstrates how to generate text with PP-DocLayoutV2 using [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel).
+The example below demonstrates how to generate text with PP-DocLayoutV2 using [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 import requests
@@ -52,7 +52,7 @@ for result in results:
 
 ### Batched inference
 
-Here is how you can do it with PP-DocLayoutV2 using [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel):
+Here is how you can do it with PP-DocLayoutV2 using [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel):
 
 ```python
 import requests
@@ -99,7 +99,7 @@ for result in results:
 transformers.PPDocLayoutV2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, initializer_range: float = 0.01, initializer_bias_prior_prob: float | None = None, layer_norm_eps: float = 1e-05, batch_norm_eps: float = 1e-05, backbone_config: transformers.configuration_utils.PreTrainedConfig | dict | None = None, freeze_backbone_batch_norms: bool = True, encoder_hidden_dim: int = 256, encoder_in_channels: list[int] | tuple[int, ...] | None = (512, 1024, 2048), feat_strides: list[int] | tuple[int, ...] | None = (8, 16, 32), encoder_layers: int = 1, encoder_ffn_dim: int = 1024, encoder_attention_heads: int = 8, dropout: float | int = 0.0, activation_dropout: float | int = 0.0, encode_proj_layers: list[int] | tuple[int, ...] | None = (2,), positional_encoding_temperature: int = 10000, encoder_activation_function: str = 'gelu', activation_function: str = 'silu', eval_size: list[int] | None = None, normalize_before: bool = False, hidden_expansion: float = 1.0, d_model: int = 256, num_queries: int = 300, decoder_in_channels: list[int] | tuple[int, ...] | None = (256, 256, 256), decoder_ffn_dim: int = 1024, num_feature_levels: int = 3, decoder_n_points: int = 4, decoder_layers: int = 6, decoder_attention_heads: int = 8, decoder_activation_function: str = 'relu', attention_dropout: float | int = 0.0, num_denoising: int = 100, label_noise_ratio: float = 0.5, box_noise_scale: float = 1.0, learn_initial_query: bool = False, anchor_image_size: list[int] | None = None, disable_custom_kernels: bool = True, class_thresholds: list[float] | None = None, class_order: list[int] | None = None, reading_order_config: transformers.configuration_utils.PreTrainedConfig | dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_doclayout_v2/configuration_pp_doclayout_v2.py#L107)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_doclayout_v2/configuration_pp_doclayout_v2.py#L107)
 
 **Parameters:**
 
@@ -189,8 +189,8 @@ This is the configuration class to store the configuration of a Pp Doclayout V2M
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PP-DocLayoutV2_safetensors](https://huggingface.co/PaddlePaddle/PP-DocLayoutV2_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -215,16 +215,16 @@ Examples:
 transformers.PPDocLayoutV2ForObjectDetection(config: PPDocLayoutV2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_doclayout_v2/modeling_pp_doclayout_v2.py#L2345)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_doclayout_v2/modeling_pp_doclayout_v2.py#L2345)
 
 **Parameters:**
 
-config ([PPDocLayoutV2Config](/docs/transformers/v5.15.0/en/model_doc/pp_doclayout_v2#transformers.PPDocLayoutV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPDocLayoutV2Config](/docs/transformers/v5.15.1/en/model_doc/pp_doclayout_v2#transformers.PPDocLayoutV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PP-DocLayoutV2 Model (consisting of a backbone and encoder-decoder) outputting bounding boxes, logits and order_logits to be further
 decoded into scores, classes and their reading order.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -238,7 +238,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_doclayout_v2/modeling_pp_doclayout_v2.py#L2371)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_doclayout_v2/modeling_pp_doclayout_v2.py#L2371)
 
 **Parameters:**
 
@@ -260,7 +260,7 @@ A `PPDocLayoutV2ForObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [PPDocLayoutV2ForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/pp_doclayout_v2#transformers.PPDocLayoutV2ForObjectDetection) forward method, overrides the `__call__` special method.
+The [PPDocLayoutV2ForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/pp_doclayout_v2#transformers.PPDocLayoutV2ForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -269,7 +269,7 @@ the latter silently ignores them.
 - **logits** (`torch.FloatTensor` of shape `(batch_size, num_queries, num_classes + 1)`) -- Classification logits (including no-object) for all queries.
 - **pred_boxes** (`torch.FloatTensor` of shape `(batch_size, num_queries, 4)`) -- Normalized boxes coordinates for all queries, represented as (center_x, center_y, width, height). These
   values are normalized in [0, 1], relative to the size of each individual image in the batch (disregarding
-  possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.15.0/en/model_doc/rt_detr#transformers.RTDetrImageProcessor.post_process_object_detection) to retrieve the
+  possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.15.1/en/model_doc/rt_detr#transformers.RTDetrImageProcessor.post_process_object_detection) to retrieve the
   unnormalized (absolute) bounding boxes.
 - **order_logits** (`tuple` of `torch.FloatTensor` of shape `(batch_size, num_queries, num_queries)`) -- Order logits for all queries. The first dimension of each tensor is the batch size. The second dimension is the number of queries.
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, num_queries, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the decoder of the model.
@@ -367,15 +367,15 @@ Order 14: footer: 0.93 [338.6, 2255.94, 985.67, 2283.57]
 transformers.PPDocLayoutV2Model(config: PPDocLayoutV2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_doclayout_v2/modeling_pp_doclayout_v2.py#L2018)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_doclayout_v2/modeling_pp_doclayout_v2.py#L2018)
 
 **Parameters:**
 
-config ([PPDocLayoutV2Config](/docs/transformers/v5.15.0/en/model_doc/pp_doclayout_v2#transformers.PPDocLayoutV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPDocLayoutV2Config](/docs/transformers/v5.15.1/en/model_doc/pp_doclayout_v2#transformers.PPDocLayoutV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PP-DocLayoutV2 Model (consisting of a backbone and encoder-decoder) outputting raw hidden states without any head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -389,7 +389,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_doclayout_v2/modeling_pp_doclayout_v2.py#L2139)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_doclayout_v2/modeling_pp_doclayout_v2.py#L2139)
 
 **Parameters:**
 
@@ -409,7 +409,7 @@ A `PPDocLayoutV2ModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [PPDocLayoutV2Model](/docs/transformers/v5.15.0/en/model_doc/pp_doclayout_v2#transformers.PPDocLayoutV2Model) forward method, overrides the `__call__` special method.
+The [PPDocLayoutV2Model](/docs/transformers/v5.15.1/en/model_doc/pp_doclayout_v2#transformers.PPDocLayoutV2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -488,17 +488,17 @@ Examples:
 transformers.PPDocLayoutV2ReadingOrder(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_doclayout_v2/modeling_pp_doclayout_v2.py#L808)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_doclayout_v2/modeling_pp_doclayout_v2.py#L808)
 
 **Parameters:**
 
-config ([PPDocLayoutV2ReadingOrder](/docs/transformers/v5.15.0/en/model_doc/pp_doclayout_v2#transformers.PPDocLayoutV2ReadingOrder)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPDocLayoutV2ReadingOrder](/docs/transformers/v5.15.1/en/model_doc/pp_doclayout_v2#transformers.PPDocLayoutV2ReadingOrder)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PP-DocLayoutV2 ReadingOrder Model. This model consists of an encoder and a GlobalPointer head.
 It takes layout features as input and outputs logits representing the relative ordering relationships
 between elements, which are used to determine the final reading sequence.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -512,7 +512,7 @@ and behavior.
 forward(boxes, labels = None, mask = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_doclayout_v2/modeling_pp_doclayout_v2.py#L826)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_doclayout_v2/modeling_pp_doclayout_v2.py#L826)
 
 **Parameters:**
 
@@ -522,7 +522,7 @@ labels (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : T
 
 mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Boolean or Binary mask indicating valid detected elements after threshold filtering. - True: Valid layout element. - False: Padding/Empty element. Used to determine the sequence length (`num_pred`) for the pointer mechanism.
 
-The [PPDocLayoutV2ReadingOrder](/docs/transformers/v5.15.0/en/model_doc/pp_doclayout_v2#transformers.PPDocLayoutV2ReadingOrder) forward method, overrides the `__call__` special method.
+The [PPDocLayoutV2ReadingOrder](/docs/transformers/v5.15.1/en/model_doc/pp_doclayout_v2#transformers.PPDocLayoutV2ReadingOrder) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -536,7 +536,7 @@ the latter silently ignores them.
 transformers.PPDocLayoutV2ImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_doclayout_v2/image_processing_pp_doclayout_v2.py#L34)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_doclayout_v2/image_processing_pp_doclayout_v2.py#L34)
 
 **Parameters:**
 
@@ -658,7 +658,7 @@ Added for backward compatibility but this should be set as a processor attribute
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -711,4 +711,4 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
   initialization.
 
 ### KOSMOS-2
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/kosmos-2.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/kosmos-2.md

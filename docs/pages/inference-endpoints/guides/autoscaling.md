@@ -60,5 +60,5 @@ You can adjust this threshold value to meet your specific requirements under End
 
 Similarly to the hardware metrics, you can track the pending requests in the Analytics tab, or read more about it [here](./analytics#pendingrequests).
 
-### Foundations
-https://huggingface.co/docs/inference-endpoints/guides/foundations.md
+### Analytics and Metrics
+https://huggingface.co/docs/inference-endpoints/guides/analytics.md

@@ -70,7 +70,7 @@ If you are interested in submitting a resource to be included here, please feel 
 transformers.PromptDepthAnythingConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, patch_size: int | list[int] | tuple[int, int] = 14, initializer_range: float = 0.02, reassemble_hidden_size: int = 384, reassemble_factors: list[int | float] | tuple[int | float, ...] = (4, 2, 1, 0.5), neck_hidden_sizes: list[int] | tuple[int, ...] = (48, 96, 192, 384), fusion_hidden_size: int = 64, head_in_index: int = -1, head_hidden_size: int = 32, depth_estimation_type: str = 'relative', max_depth: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/prompt_depth_anything/configuration_prompt_depth_anything.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/prompt_depth_anything/configuration_prompt_depth_anything.py#L30)
 
 **Parameters:**
 
@@ -100,8 +100,8 @@ This is the configuration class to store the configuration of a Prompt Depth Any
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [LiheYoung/depth-anything-small-hf](https://huggingface.co/LiheYoung/depth-anything-small-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -126,15 +126,15 @@ Example:
 transformers.PromptDepthAnythingForDepthEstimation(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/prompt_depth_anything/modeling_prompt_depth_anything.py#L374)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/prompt_depth_anything/modeling_prompt_depth_anything.py#L374)
 
 **Parameters:**
 
-config ([PromptDepthAnythingForDepthEstimation](/docs/transformers/v5.15.0/en/model_doc/prompt_depth_anything#transformers.PromptDepthAnythingForDepthEstimation)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PromptDepthAnythingForDepthEstimation](/docs/transformers/v5.15.1/en/model_doc/prompt_depth_anything#transformers.PromptDepthAnythingForDepthEstimation)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Prompt Depth Anything Model with a depth estimation head on top (consisting of 3 convolutional layers) e.g. for KITTI, NYUv2.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -148,23 +148,23 @@ and behavior.
 forward(pixel_values: FloatTensor, prompt_depth: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/prompt_depth_anything/modeling_prompt_depth_anything.py#L385)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/prompt_depth_anything/modeling_prompt_depth_anything.py#L385)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PromptDepthAnythingImageProcessor](/docs/transformers/v5.15.0/en/model_doc/prompt_depth_anything#transformers.PromptDepthAnythingImageProcessor). See `PromptDepthAnythingImageProcessor.__call__()` for details (`processor_class` uses [PromptDepthAnythingImageProcessor](/docs/transformers/v5.15.0/en/model_doc/prompt_depth_anything#transformers.PromptDepthAnythingImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PromptDepthAnythingImageProcessor](/docs/transformers/v5.15.1/en/model_doc/prompt_depth_anything#transformers.PromptDepthAnythingImageProcessor). See `PromptDepthAnythingImageProcessor.__call__()` for details (`processor_class` uses [PromptDepthAnythingImageProcessor](/docs/transformers/v5.15.1/en/model_doc/prompt_depth_anything#transformers.PromptDepthAnythingImageProcessor) for processing images).
 
 prompt_depth (`torch.FloatTensor` of shape `(batch_size, 1, height, width)`, *optional*) : Prompt depth is the sparse or low-resolution depth obtained from multi-view geometry or a low-resolution depth sensor. It generally has shape (height, width), where height and width can be smaller than those of the images. It is optional and can be None, which means no prompt depth will be used. If it is None, the output will be a monocular relative depth. The values are recommended to be in meters, but this is not necessary.
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
-**Returns:** [DepthEstimatorOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [DepthEstimatorOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or `tuple(torch.FloatTensor)`
 
-A [DepthEstimatorOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or a tuple of
+A [DepthEstimatorOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PromptDepthAnythingConfig](/docs/transformers/v5.15.0/en/model_doc/prompt_depth_anything#transformers.PromptDepthAnythingConfig)) and inputs.
+elements depending on the configuration ([PromptDepthAnythingConfig](/docs/transformers/v5.15.1/en/model_doc/prompt_depth_anything#transformers.PromptDepthAnythingConfig)) and inputs.
 
-The [PromptDepthAnythingForDepthEstimation](/docs/transformers/v5.15.0/en/model_doc/prompt_depth_anything#transformers.PromptDepthAnythingForDepthEstimation) forward method, overrides the `__call__` special method.
+The [PromptDepthAnythingForDepthEstimation](/docs/transformers/v5.15.1/en/model_doc/prompt_depth_anything#transformers.PromptDepthAnythingForDepthEstimation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -230,7 +230,7 @@ Example:
 transformers.PromptDepthAnythingImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/prompt_depth_anything/image_processing_prompt_depth_anything.py#L106)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/prompt_depth_anything/image_processing_prompt_depth_anything.py#L106)
 
 **Parameters:**
 
@@ -290,7 +290,7 @@ Constructs a PromptDepthAnythingImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], prompt_depth: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/prompt_depth_anything/image_processing_prompt_depth_anything.py#L126)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/prompt_depth_anything/image_processing_prompt_depth_anything.py#L126)
 
 **Parameters:**
 
@@ -358,7 +358,7 @@ prompt_scale_to_meter (`float`, *kwargs*, *optional*) : Scale factor to convert 
 post_process_depth_estimation(outputs: DepthEstimatorOutput, target_sizes: transformers.utils.generic.TensorType | list[tuple[int, int]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/prompt_depth_anything/image_processing_prompt_depth_anything.py#L315)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/prompt_depth_anything/image_processing_prompt_depth_anything.py#L315)
 
 **Parameters:**
 
@@ -382,7 +382,7 @@ Only supports PyTorch.
 transformers.PromptDepthAnythingImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/prompt_depth_anything/image_processing_pil_prompt_depth_anything.py#L102)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/prompt_depth_anything/image_processing_pil_prompt_depth_anything.py#L102)
 
 **Parameters:**
 
@@ -442,7 +442,7 @@ Constructs a PromptDepthAnythingImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], prompt_depth: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/prompt_depth_anything/image_processing_pil_prompt_depth_anything.py#L122)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/prompt_depth_anything/image_processing_pil_prompt_depth_anything.py#L122)
 
 **Parameters:**
 
@@ -510,7 +510,7 @@ prompt_scale_to_meter (`float`, *kwargs*, *optional*) : Scale factor to convert 
 post_process_depth_estimation(outputs: DepthEstimatorOutput, target_sizes: transformers.utils.generic.TensorType | list[tuple[int, int]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/prompt_depth_anything/image_processing_pil_prompt_depth_anything.py#L292)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/prompt_depth_anything/image_processing_pil_prompt_depth_anything.py#L292)
 
 **Parameters:**
 
@@ -527,4 +527,4 @@ Converts the raw output of `DepthEstimatorOutput` into final depth predictions a
 Only supports PyTorch.
 
 ### Youtu-LLM
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/youtu.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/youtu.md

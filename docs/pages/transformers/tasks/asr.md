@@ -129,7 +129,7 @@ To apply the preprocessing function over the entire dataset, use 🤗 Datasets [
 >>> encoded_minds = minds.map(prepare_dataset, remove_columns=minds.column_names["train"], num_proc=4)
 ```
 
-🤗 Transformers doesn't have a data collator for ASR, so you'll need to adapt the [DataCollatorWithPadding](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DataCollatorWithPadding) to create a batch of examples. It'll also dynamically pad your text and labels to the length of the longest element in its batch (instead of the entire dataset) so they are a uniform length. While it is possible to pad your text in the `tokenizer` function by setting `padding=True`, dynamic padding is more efficient.
+🤗 Transformers doesn't have a data collator for ASR, so you'll need to adapt the [DataCollatorWithPadding](/docs/transformers/v5.15.1/en/main_classes/data_collator#transformers.DataCollatorWithPadding) to create a batch of examples. It'll also dynamically pad your text and labels to the length of the longest element in its batch (instead of the entire dataset) so they are a uniform length. While it is possible to pad your text in the `tokenizer` function by setting `padding=True`, dynamic padding is more efficient.
 
 Unlike other data collators, this specific data collator needs to apply a different padding method to `input_values` and `labels`:
 
@@ -201,9 +201,9 @@ Your `compute_metrics` function is ready to go now, and you'll return to it when
 
 ## Train
 
-If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#train-with-pytorch-trainer)!
+If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#train-with-pytorch-trainer)!
 
-You are now ready to start training your model! Load Wav2Vec2 with [AutoModelForCTC](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForCTC). Specify the reduction to apply with the `ctc_loss_reduction` parameter. It is often better to use the average instead of the default summation:
+You are now ready to start training your model! Load Wav2Vec2 with [AutoModelForCTC](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForCTC). Specify the reduction to apply with the `ctc_loss_reduction` parameter. It is often better to use the average instead of the default summation:
 
 ```py
 >>> from transformers import AutoModelForCTC, TrainingArguments, Trainer
@@ -217,9 +217,9 @@ You are now ready to start training your model! Load Wav2Vec2 with [AutoModelFor
 
 At this point, only three steps remain:
 
-1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model). At the end of each epoch, the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) will evaluate the WER and save the training checkpoint.
-2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, tokenizer, data collator, and `compute_metrics` function.
-3. Call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) to fine-tune your model.
+1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model). At the end of each epoch, the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) will evaluate the WER and save the training checkpoint.
+2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, tokenizer, data collator, and `compute_metrics` function.
+3. Call [train()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.train) to fine-tune your model.
 
 ```py
 >>> training_args = TrainingArguments(
@@ -257,7 +257,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so it can be accessible to everyone:
+Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so it can be accessible to everyone:
 
 ```py
 >>> trainer.push_to_hub()
@@ -280,7 +280,7 @@ Load an audio file you'd like to run inference on. Remember to resample the samp
 >>> audio_file = dataset[0]["audio"]["path"]
 ```
 
-The simplest way to try out your fine-tuned model for inference is to use it in a [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline). Instantiate a `pipeline` for automatic speech recognition with your model, and pass your audio file to it:
+The simplest way to try out your fine-tuned model for inference is to use it in a [pipeline()](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.pipeline). Instantiate a `pipeline` for automatic speech recognition with your model, and pass your audio file to it:
 
 ```py
 >>> from transformers import pipeline
@@ -325,4 +325,4 @@ Get the predicted `input_ids` with the highest probability, and use the processo
 ```
 
 ### Multiple choice
-https://huggingface.co/docs/transformers/v5.15.0/tasks/multiple_choice.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/multiple_choice.md

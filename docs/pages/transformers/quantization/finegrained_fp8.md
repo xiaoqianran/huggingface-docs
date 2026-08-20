@@ -18,7 +18,7 @@ Install Accelerate and upgrade to the latest version of PyTorch.
 pip install --upgrade accelerate torch
 ```
 
-Create a [FineGrainedFP8Config](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.FineGrainedFP8Config) class and pass it to [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to quantize it. The weights are loaded in full precision (`torch.float32`) by default regardless of the actual data type the weights are stored in. Set `dtype="auto"` to load the weights in the data type defined in a models `config.json` file to automatically load the most memory-optimal data type.
+Create a [FineGrainedFP8Config](/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.FineGrainedFP8Config) class and pass it to [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to quantize it. The weights are loaded in full precision (`torch.float32`) by default regardless of the actual data type the weights are stored in. Set `dtype="auto"` to load the weights in the data type defined in a models `config.json` file to automatically load the most memory-optimal data type.
 
 ```py
 from transformers import FineGrainedFP8Config, AutoModelForCausalLM, AutoTokenizer
@@ -35,7 +35,7 @@ output = quantized_model.generate(**input_ids, max_new_tokens=10)
 print(tokenizer.decode(output[0], skip_special_tokens=True))
 ```
 
-Use [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) to save the quantized model and reload it with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Use [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) to save the quantized model and reload it with [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```py
 quant_path = "/path/to/save/quantized/model"
@@ -57,7 +57,7 @@ Transformers finds the toolkit by checking `CUDA_HOME`, then `CUDA_PATH`, then `
 
 If the kernel cannot load (missing `kernels`, unsupported GPU, no CUDA toolkit, or an `nvcc` older than the required version), Transformers logs a warning once and falls back to the Triton finegrained-fp8 kernel. Static activation quantization always stays on the Triton path.
 
-To force the Triton fallback even when DeepGEMM is available, set `TRANSFORMERS_DISABLE_DEEPGEMM_LINEAR=1`. This only affects the FP8 linear dispatch and leaves the `"deepgemm"` experts backend untouched, which you switch with [set_experts_implementation()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.set_experts_implementation).
+To force the Triton fallback even when DeepGEMM is available, set `TRANSFORMERS_DISABLE_DEEPGEMM_LINEAR=1`. This only affects the FP8 linear dispatch and leaves the `"deepgemm"` experts backend untouched, which you switch with [set_experts_implementation()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.set_experts_implementation).
 
 For MoE experts, the DeepGEMM path is opt-in. Pass `experts_implementation="deepgemm"` (or `"deepgemm_megamoe"` on Blackwell) at load time to route the expert matmuls through DeepGEMM. See the [Experts backends](../experts_interface) guide for the full set of options.
 
@@ -68,4 +68,4 @@ DeepSeek V4-style checkpoints store FP8 weight scales in the packed `float8_e8m0
 On Blackwell (SM100+), the DeepGEMM experts kernels only supports UE8M0 scales. A checkpoint with plain `float32` scales (`scale_fmt="float"`) raises a `ValueError`. Use a `scale_fmt="ue8m0"` checkpoint, or run the experts with `grouped_mm` or `batched_mm`, which support `float32` scales directly. Hopper (SM90+) supports `float32` scales on the DeepGEMM path without conversion. See the [Experts backends](../experts_interface) guide for the experts backend options.
 
 ### FP-Quant
-https://huggingface.co/docs/transformers/v5.15.0/quantization/fp_quant.md
+https://huggingface.co/docs/transformers/v5.15.1/quantization/fp_quant.md

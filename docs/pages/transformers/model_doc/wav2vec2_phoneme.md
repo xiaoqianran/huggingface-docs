@@ -26,7 +26,7 @@ The original code can be found [here](https://github.com/pytorch/fairseq/tree/ma
 - Wav2Vec2Phoneme uses the exact same architecture as Wav2Vec2
 - Wav2Vec2Phoneme is a speech model that accepts a float array corresponding to the raw waveform of the speech signal.
 - Wav2Vec2Phoneme model was trained using connectionist temporal classification (CTC) so the model output has to be
-  decoded using [Wav2Vec2PhonemeCTCTokenizer](/docs/transformers/v5.15.0/en/model_doc/wav2vec2_phoneme#transformers.Wav2Vec2PhonemeCTCTokenizer).
+  decoded using [Wav2Vec2PhonemeCTCTokenizer](/docs/transformers/v5.15.1/en/model_doc/wav2vec2_phoneme#transformers.Wav2Vec2PhonemeCTCTokenizer).
 - Wav2Vec2Phoneme can be fine-tuned on multiple languages at once and decode unseen languages in a single forward pass
   to a sequence of phonemes
 - By default, the model outputs a sequence of phonemes. In order to transform the phonemes to a sequence of words one
@@ -43,7 +43,7 @@ except for the tokenizer.
 transformers.Wav2Vec2PhonemeCTCTokenizer(vocab_file, bos_token = '<s>', eos_token = '</s>', unk_token = '<unk>', pad_token = '<pad>', phone_delimiter_token = ' ', word_delimiter_token = None, do_phonemize = True, phonemizer_lang = 'en-us', phonemizer_backend = 'espeak', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2_phoneme/tokenization_wav2vec2_phoneme.py#L71)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2_phoneme/tokenization_wav2vec2_phoneme.py#L71)
 
 **Parameters:**
 
@@ -63,11 +63,11 @@ phonemizer_lang (`str`, *optional*, defaults to `"en-us"`) : The language of the
 
 phonemizer_backend (`str`, *optional*. defaults to `"espeak"`) : The backend phonetization library that shall be used by the phonemizer library. Defaults to `espeak-ng`. See the [phonemizer package](https://github.com/bootphon/phonemizer#readme). for more information. 
 
-- ****kwargs** : Additional keyword arguments passed along to [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)
+- ****kwargs** : Additional keyword arguments passed along to [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend)
 
 Constructs a Wav2Vec2PhonemeCTC tokenizer.
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains some of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) which contains some of the main methods. Users should refer to
 the superclass for more information regarding such methods.
 
 #### __call__[[transformers.Wav2Vec2PhonemeCTCTokenizer.__call__]]
@@ -76,7 +76,7 @@ the superclass for more information regarding such methods.
 __call__(text: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_pair: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_target: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_pair_target: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, add_special_tokens: bool = True, padding: bool | str | PaddingStrategy = False, truncation: bool | str | TruncationStrategy | None = None, max_length: int | None = None, stride: int = 0, is_split_into_words: bool = False, pad_to_multiple_of: int | None = None, padding_side: str | None = None, return_tensors: str | TensorType | None = None, return_token_type_ids: bool | None = None, return_attention_mask: bool | None = None, return_overflowing_tokens: bool = False, return_special_tokens_mask: bool = False, return_offsets_mapping: bool = False, return_length: bool = False, verbose: bool = True, tokenizer_kwargs: dict[str, Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_base.py#L2417)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_base.py#L2417)
 
 **Parameters:**
 
@@ -92,9 +92,9 @@ tokenizer_kwargs (`dict[str, Any]`, *optional*) : Additional kwargs to pass to t
 
 add_special_tokens (`bool`, *optional*, defaults to `True`) : Whether or not to add special tokens when encoding the sequences. This will use the underlying `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens automatically.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
-truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
 
 max_length (`int`, *optional*) : Controls the maximum length to use by one of the truncation/padding parameters.  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length is required by one of the truncation/padding parameters. If the model has no specific maximum input length (like XLNet) truncation/padding to a maximum length will be deactivated.
 
@@ -106,7 +106,7 @@ pad_to_multiple_of (`int`, *optional*) : If set will pad the sequence to a multi
 
 padding_side (`str`, *optional*) : The side on which the model should have padding applied. Should be selected between ['right', 'left']. Default value is picked from the class attribute of the same name.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects. 
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects. 
 
 return_token_type_ids (`bool`, *optional*) : Whether to return token type IDs. If left to the default, will return the token type IDs according to the specific tokenizer's default, defined by the `return_outputs` attribute.  [What are token type IDs?](../glossary#token-type-ids)
 
@@ -116,7 +116,7 @@ return_overflowing_tokens (`bool`, *optional*, defaults to `False`) : Whether or
 
 return_special_tokens_mask (`bool`, *optional*, defaults to `False`) : Whether or not to return special tokens mask information.
 
-return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
+return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
 
 return_length  (`bool`, *optional*, defaults to `False`) : Whether or not to return the lengths of the encoded inputs.
 
@@ -124,9 +124,9 @@ verbose (`bool`, *optional*, defaults to `True`) : Whether or not to print more 
 
 - ****kwargs** : passed to the `self.tokenize()` method
 
-**Returns:** [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding)
+**Returns:** [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding)
 
-A [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
+A [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model.
 
@@ -159,7 +159,7 @@ sequences.
 batch_decode(sequences: typing.Union[list[int], list[list[int]], numpy.ndarray, ForwardRef('torch.Tensor')], skip_special_tokens: bool = False, clean_up_tokenization_spaces: bool | None = None, output_char_offsets: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2_phoneme/tokenization_wav2vec2_phoneme.py#L505)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2_phoneme/tokenization_wav2vec2_phoneme.py#L505)
 
 **Parameters:**
 
@@ -188,7 +188,7 @@ Convert a list of lists of token ids into a list of strings by calling decode.
 decode(token_ids: typing.Union[int, list[int], numpy.ndarray, ForwardRef('torch.Tensor')], skip_special_tokens: bool = False, clean_up_tokenization_spaces: bool | None = None, output_char_offsets: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2_phoneme/tokenization_wav2vec2_phoneme.py#L449)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2_phoneme/tokenization_wav2vec2_phoneme.py#L449)
 
 **Parameters:**
 
@@ -219,7 +219,7 @@ Similar to doing `self.convert_tokens_to_string(self.convert_ids_to_tokens(token
 phonemize(text: str, phonemizer_lang: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2_phoneme/tokenization_wav2vec2_phoneme.py#L253)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2_phoneme/tokenization_wav2vec2_phoneme.py#L253)
 
 ### mT5
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/mt5.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/mt5.md

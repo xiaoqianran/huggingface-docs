@@ -19,6 +19,7 @@ With Academia Hub, you get **an all-in-one subscription to the Hugging Face Hub 
   
   
   
+  
 
 ## What's included in the subscription
 1. **Storage:** 1 TB of private and 1 TB of public storage per seat, including our new Storage Buckets!

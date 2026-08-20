@@ -47,7 +47,7 @@ print({label: p.item() for label, p in zip(labels, probs[0])})
 transformers.PeVideoConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, video_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pe_video/configuration_pe_video.py#L91)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pe_video/configuration_pe_video.py#L91)
 
 **Parameters:**
 
@@ -59,8 +59,8 @@ This is the configuration class to store the configuration of a PeVideoModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/pe-av-large](https://huggingface.co/facebook/pe-av-large)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ```python
 >>> from transformers import PeVideoModel, PeVideoConfig
@@ -83,7 +83,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.PeVideoEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, hidden_size: int = 1792, intermediate_size: int = 4800, num_hidden_layers: int = 6, num_attention_heads: int = 14, num_key_value_heads: int | None = None, head_dim: int = 128, hidden_act: str = 'silu', max_position_embeddings: int = 10000, initializer_range: float = 0.02, rms_norm_eps: float = 1e-05, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = False, attention_dropout: float | int = 0.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pe_video/configuration_pe_video.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pe_video/configuration_pe_video.py#L27)
 
 **Parameters:**
 
@@ -119,8 +119,8 @@ This is the configuration class to store the configuration of a PeVideoModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/pe-av-large](https://huggingface.co/facebook/pe-av-large)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -145,7 +145,7 @@ Example:
 transformers.PeVideoVideoProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pe_video/video_processing_pe_video.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pe_video/video_processing_pe_video.py#L24)
 
 ## PeVideoProcessor[[transformers.PeVideoProcessor]]
 
@@ -155,7 +155,7 @@ transformers.PeVideoVideoProcessor(**kwargs: Unpack)
 transformers.PeVideoProcessor(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pe_video/processing_pe_video.py#L4)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pe_video/processing_pe_video.py#L4)
 
 ## PeVideoEncoder[[transformers.PeVideoEncoder]]
 
@@ -165,15 +165,15 @@ transformers.PeVideoProcessor(*args, **kwargs)
 transformers.PeVideoEncoder(config: PeVideoEncoderConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pe_video/modeling_pe_video.py#L511)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pe_video/modeling_pe_video.py#L511)
 
 **Parameters:**
 
-config ([PeVideoEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/pe_video#transformers.PeVideoEncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PeVideoEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/pe_video#transformers.PeVideoEncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The PeVideo Encoder model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -187,21 +187,21 @@ and behavior.
 forward(pixel_values_videos: Tensor, padding_mask_videos: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pe_video/modeling_pe_video.py#L530)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pe_video/modeling_pe_video.py#L530)
 
 **Parameters:**
 
-pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [PeVideoVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/pe_video#transformers.PeVideoVideoProcessor). See `PeVideoVideoProcessor.__call__()` for details ([PeVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/pe_video#transformers.PeVideoProcessor) uses [PeVideoVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/pe_video#transformers.PeVideoVideoProcessor) for processing videos).
+pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [PeVideoVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/pe_video#transformers.PeVideoVideoProcessor). See `PeVideoVideoProcessor.__call__()` for details ([PeVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/pe_video#transformers.PeVideoProcessor) uses [PeVideoVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/pe_video#transformers.PeVideoVideoProcessor) for processing videos).
 
 padding_mask_videos (`torch.Tensor` of shape `(batch_size, num_frames)`, *optional*) : Mask to avoid performing attention on padding video frames. Mask values selected in `[0, 1]`:  - 1 for frames that are **not masked**, - 0 for frames that are **masked**.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PeVideoConfig](/docs/transformers/v5.15.0/en/model_doc/pe_video#transformers.PeVideoConfig)) and inputs.
+elements depending on the configuration ([PeVideoConfig](/docs/transformers/v5.15.1/en/model_doc/pe_video#transformers.PeVideoConfig)) and inputs.
 
-The [PeVideoEncoder](/docs/transformers/v5.15.0/en/model_doc/pe_video#transformers.PeVideoEncoder) forward method, overrides the `__call__` special method.
+The [PeVideoEncoder](/docs/transformers/v5.15.1/en/model_doc/pe_video#transformers.PeVideoEncoder) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -230,7 +230,7 @@ the latter silently ignores them.
 transformers.PeVideoModel(config: PeVideoConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pe_video/modeling_pe_video.py#L577)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pe_video/modeling_pe_video.py#L577)
 
 #### forward[[transformers.PeVideoModel.forward]]
 
@@ -238,13 +238,13 @@ transformers.PeVideoModel(config: PeVideoConfig)
 forward(input_ids: Tensor, pixel_values_videos: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, padding_mask_videos: typing.Optional[torch.Tensor] = None, return_loss: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pe_video/modeling_pe_video.py#L627)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pe_video/modeling_pe_video.py#L627)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [PeVideoVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/pe_video#transformers.PeVideoVideoProcessor). See `PeVideoVideoProcessor.__call__()` for details ([PeVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/pe_video#transformers.PeVideoProcessor) uses [PeVideoVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/pe_video#transformers.PeVideoVideoProcessor) for processing videos).
+pixel_values_videos (`torch.Tensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [PeVideoVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/pe_video#transformers.PeVideoVideoProcessor). See `PeVideoVideoProcessor.__call__()` for details ([PeVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/pe_video#transformers.PeVideoProcessor) uses [PeVideoVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/pe_video#transformers.PeVideoVideoProcessor) for processing videos).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -256,9 +256,9 @@ return_loss (`bool`, *optional*) : Whether or not to return the loss.
 
 A `PeVideoOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PeVideoConfig](/docs/transformers/v5.15.0/en/model_doc/pe_video#transformers.PeVideoConfig)) and inputs.
+elements depending on the configuration ([PeVideoConfig](/docs/transformers/v5.15.1/en/model_doc/pe_video#transformers.PeVideoConfig)) and inputs.
 
-The [PeVideoModel](/docs/transformers/v5.15.0/en/model_doc/pe_video#transformers.PeVideoModel) forward method, overrides the `__call__` special method.
+The [PeVideoModel](/docs/transformers/v5.15.1/en/model_doc/pe_video#transformers.PeVideoModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -272,4 +272,4 @@ the latter silently ignores them.
 - **video_outputs** (`BaseModelOutputWithPooling`, *optional*) -- Model outputs for the video encoder, including last hidden state and pooled output.
 
 ### InstructBlipVideo
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/instructblipvideo.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/instructblipvideo.md

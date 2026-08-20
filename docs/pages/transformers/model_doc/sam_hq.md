@@ -102,15 +102,15 @@ A list of official Hugging Face and community (indicated by 🌎) resources to h
 transformers.SamHQConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, prompt_encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, mask_decoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, initializer_range: float = 0.02, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam_hq/configuration_sam_hq.py#L153)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam_hq/configuration_sam_hq.py#L153)
 
 **Parameters:**
 
 vision_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the vision backbone.
 
-prompt_encoder_config (Union[`dict`, `SamHQPromptEncoderConfig`], *optional*) : Dictionary of configuration options used to initialize [SamHQPromptEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/sam_hq#transformers.SamHQPromptEncoderConfig).
+prompt_encoder_config (Union[`dict`, `SamHQPromptEncoderConfig`], *optional*) : Dictionary of configuration options used to initialize [SamHQPromptEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/sam_hq#transformers.SamHQPromptEncoderConfig).
 
-mask_decoder_config (Union[`dict`, `SamHQMaskDecoderConfig`], *optional*) : Dictionary of configuration options used to initialize [SamHQMaskDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/sam_hq#transformers.SamHQMaskDecoderConfig).
+mask_decoder_config (Union[`dict`, `SamHQMaskDecoderConfig`], *optional*) : Dictionary of configuration options used to initialize [SamHQMaskDecoderConfig](/docs/transformers/v5.15.1/en/model_doc/sam_hq#transformers.SamHQMaskDecoderConfig).
 
 initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
@@ -120,8 +120,8 @@ This is the configuration class to store the configuration of a SamHQModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [syscv-community/sam-hq-vit-base](https://huggingface.co/syscv-community/sam-hq-vit-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## SamHQVisionConfig[[transformers.SamHQVisionConfig]]
 
@@ -131,7 +131,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.SamHQVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, output_channels: int = 256, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 1024, patch_size: int | list[int] | tuple[int, int] = 16, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, attention_dropout: float | int = 0.0, initializer_range: float = 1e-10, qkv_bias: bool = True, mlp_ratio: float = 4.0, use_abs_pos: bool = True, use_rel_pos: bool = True, window_size: int = 14, global_attn_indexes: list[int] | tuple[int, ...] = (2, 5, 8, 11), num_pos_feats: int = 128, mlp_dim: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam_hq/configuration_sam_hq.py#L54)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam_hq/configuration_sam_hq.py#L54)
 
 **Parameters:**
 
@@ -177,8 +177,8 @@ This is the configuration class to store the configuration of a SamHQModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [syscv-community/sam-hq-vit-base](https://huggingface.co/syscv-community/sam-hq-vit-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -206,7 +206,7 @@ Example:
 transformers.SamHQMaskDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, hidden_act: str = 'relu', mlp_dim: int = 2048, num_hidden_layers: int = 2, num_attention_heads: int = 8, attention_downsample_rate: int = 2, num_multimask_outputs: int = 3, iou_head_depth: int = 3, iou_head_hidden_dim: int = 256, layer_norm_eps: float = 1e-06, vit_dim: int = 768)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam_hq/configuration_sam_hq.py#L119)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam_hq/configuration_sam_hq.py#L119)
 
 **Parameters:**
 
@@ -236,8 +236,8 @@ This is the configuration class to store the configuration of a SamHQModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [syscv-community/sam-hq-vit-base](https://huggingface.co/syscv-community/sam-hq-vit-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## SamHQPromptEncoderConfig[[transformers.SamHQPromptEncoderConfig]]
 
@@ -247,7 +247,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.SamHQPromptEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, image_size: int | list[int] | tuple[int, int] = 1024, patch_size: int | list[int] | tuple[int, int] = 16, mask_input_channels: int = 16, num_point_embeddings: int = 4, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam_hq/configuration_sam_hq.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam_hq/configuration_sam_hq.py#L29)
 
 **Parameters:**
 
@@ -269,8 +269,8 @@ This is the configuration class to store the configuration of a SamHQModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [syscv-community/sam-hq-vit-base](https://huggingface.co/syscv-community/sam-hq-vit-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## SamHQProcessor[[transformers.SamHQProcessor]]
 
@@ -280,7 +280,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.SamHQProcessor(image_processor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam_hq/processing_sam_hq.py#L83)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam_hq/processing_sam_hq.py#L83)
 
 **Parameters:**
 
@@ -288,8 +288,8 @@ image_processor (`SamImageProcessor`) : The image processor is a required input.
 
 Constructs a SamHQProcessor which wraps a image processor into a single processor.
 
-[SamHQProcessor](/docs/transformers/v5.15.0/en/model_doc/sam_hq#transformers.SamHQProcessor) offers all the functionalities of [SamImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamImageProcessor). See the
-[~SamImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamImageProcessor) for more information.
+[SamHQProcessor](/docs/transformers/v5.15.1/en/model_doc/sam_hq#transformers.SamHQProcessor) offers all the functionalities of [SamImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamImageProcessor). See the
+[~SamImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamImageProcessor) for more information.
 
 #### __call__[[transformers.SamHQProcessor.__call__]]
 
@@ -297,7 +297,7 @@ Constructs a SamHQProcessor which wraps a image processor into a single processo
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam_hq/processing_sam_hq.py#L93)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam_hq/processing_sam_hq.py#L93)
 
 **Parameters:**
 
@@ -317,9 +317,9 @@ mask_size (`dict[str, *kwargs*, int]`, *optional*) : Dictionary specifying the t
 
 mask_pad_size (`dict[str, *kwargs*, int]`, *optional*) : Dictionary specifying the padding size for masks with keys `"height"` and `"width"`. This is used when batching masks of different sizes to ensure consistent dimensions.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 **Returns:** `~feature_extraction_utils.BatchFeature`
 
@@ -337,15 +337,15 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 transformers.SamHQVisionModel(config: SamHQVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam_hq/modeling_sam_hq.py#L1075)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam_hq/modeling_sam_hq.py#L1075)
 
 **Parameters:**
 
-config ([SamHQVisionConfig](/docs/transformers/v5.15.0/en/model_doc/sam_hq#transformers.SamHQVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SamHQVisionConfig](/docs/transformers/v5.15.1/en/model_doc/sam_hq#transformers.SamHQVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The vision model from SamHQ without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -359,19 +359,19 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam_hq/modeling_sam_hq.py#L1087)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam_hq/modeling_sam_hq.py#L1087)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SamImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamImageProcessor). See `SamImageProcessor.__call__()` for details ([SamHQProcessor](/docs/transformers/v5.15.0/en/model_doc/sam_hq#transformers.SamHQProcessor) uses [SamImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SamImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamImageProcessor). See `SamImageProcessor.__call__()` for details ([SamHQProcessor](/docs/transformers/v5.15.1/en/model_doc/sam_hq#transformers.SamHQProcessor) uses [SamImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamImageProcessor) for processing images).
 
 **Returns:** `SamHQVisionEncoderOutput` or `tuple(torch.FloatTensor)`
 
 A `SamHQVisionEncoderOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SamHQConfig](/docs/transformers/v5.15.0/en/model_doc/sam_hq#transformers.SamHQConfig)) and inputs.
+elements depending on the configuration ([SamHQConfig](/docs/transformers/v5.15.1/en/model_doc/sam_hq#transformers.SamHQConfig)) and inputs.
 
-The [SamHQVisionModel](/docs/transformers/v5.15.0/en/model_doc/sam_hq#transformers.SamHQVisionModel) forward method, overrides the `__call__` special method.
+The [SamHQVisionModel](/docs/transformers/v5.15.1/en/model_doc/sam_hq#transformers.SamHQVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -400,15 +400,15 @@ the latter silently ignores them.
 transformers.SamHQModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam_hq/modeling_sam_hq.py#L1233)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam_hq/modeling_sam_hq.py#L1233)
 
 **Parameters:**
 
-config ([SamHQModel](/docs/transformers/v5.15.0/en/model_doc/sam_hq#transformers.SamHQModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SamHQModel](/docs/transformers/v5.15.1/en/model_doc/sam_hq#transformers.SamHQModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Segment Anything Model HQ (SAM-HQ) for generating masks, given an input image and optional 2D location and bounding boxes.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -422,11 +422,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, input_points: typing.Optional[torch.FloatTensor] = None, input_labels: typing.Optional[torch.LongTensor] = None, input_boxes: typing.Optional[torch.FloatTensor] = None, input_masks: typing.Optional[torch.LongTensor] = None, image_embeddings: typing.Optional[torch.FloatTensor] = None, multimask_output: bool = True, hq_token_only: bool = False, attention_similarity: typing.Optional[torch.FloatTensor] = None, target_embedding: typing.Optional[torch.FloatTensor] = None, intermediate_embeddings: list[torch.FloatTensor] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam_hq/modeling_sam_hq.py#L1317)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam_hq/modeling_sam_hq.py#L1317)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SamImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamImageProcessor). See `SamImageProcessor.__call__()` for details ([SamHQProcessor](/docs/transformers/v5.15.0/en/model_doc/sam_hq#transformers.SamHQProcessor) uses [SamImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SamImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamImageProcessor). See `SamImageProcessor.__call__()` for details ([SamHQProcessor](/docs/transformers/v5.15.1/en/model_doc/sam_hq#transformers.SamHQProcessor) uses [SamImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamImageProcessor) for processing images).
 
 input_points (`torch.FloatTensor` of shape `(batch_size, num_points, 2)`) : Input 2D spatial points, this is used by the prompt encoder to encode the prompt. Generally yields to much better results. The points can be obtained by passing a list of list of list to the processor that will create corresponding `torch` tensors of dimension 4. The first dimension is the image batch size, the second dimension is the point batch size (i.e. how many segmentation masks do we want the model to predict per input point), the third dimension is the number of points per segmentation mask (it is possible to pass multiple points for a single mask), and the last dimension is the x (vertical) and y (horizontal) coordinates of the point. If a different number of points is passed either for each image, or for each mask, the processor will create "PAD" points that will correspond to the (0, 0) coordinate, and the computation of the embedding will be skipped for these points using the labels.
 
@@ -452,7 +452,7 @@ intermediate_embeddings (`List[torch.FloatTensor]`, *optional*) : Intermediate e
 
 `list[dict[str, torch.Tensor]]`
 
-The [SamHQModel](/docs/transformers/v5.15.0/en/model_doc/sam_hq#transformers.SamHQModel) forward method, overrides the `__call__` special method.
+The [SamHQModel](/docs/transformers/v5.15.1/en/model_doc/sam_hq#transformers.SamHQModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -488,4 +488,4 @@ Example:
 ```
 
 ### Helium
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/helium.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/helium.md

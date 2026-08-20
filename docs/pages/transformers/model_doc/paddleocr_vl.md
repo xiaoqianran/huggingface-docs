@@ -37,7 +37,7 @@ The following examples are all based on text recognition, with the prompt `OCR:`
 
 ### Single input inference
 
-The example below demonstrates how to generate text with PaddleOCRVL using [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel).
+The example below demonstrates how to generate text with PaddleOCRVL using [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 from transformers import pipeline
@@ -85,7 +85,7 @@ print(result)
 
 ### Batched inference
 
-PaddleOCRVL also supports batched inference. We advise users to use `padding_side="left"` when computing batched generation as it leads to more accurate results. Here is how you can do it with PaddleOCRVL using [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel):
+PaddleOCRVL also supports batched inference. We advise users to use `padding_side="left"` when computing batched generation as it leads to more accurate results. Here is how you can do it with PaddleOCRVL using [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel):
 
 ```python
 from transformers import pipeline
@@ -160,7 +160,7 @@ model = AutoModelForImageTextToText.from_pretrained("PaddlePaddle/PaddleOCR-VL",
 transformers.PaddleOCRVLForConditionalGeneration(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L1301)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L1301)
 
 #### forward[[transformers.PaddleOCRVLForConditionalGeneration.forward]]
 
@@ -168,17 +168,17 @@ transformers.PaddleOCRVLForConditionalGeneration(config)
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, mm_token_type_ids: typing.Optional[torch.IntTensor] = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L1325)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L1325)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -186,11 +186,11 @@ labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*)
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PaddleOCRVLImageProcessor](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor). See `PaddleOCRVLImageProcessor.__call__()` for details ([PaddleOCRVLProcessor](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLProcessor) uses [PaddleOCRVLImageProcessor](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PaddleOCRVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor). See `PaddleOCRVLImageProcessor.__call__()` for details ([PaddleOCRVLProcessor](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLProcessor) uses [PaddleOCRVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details. 
+mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details. 
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
@@ -198,9 +198,9 @@ logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an
 
 A `PaddleOCRVLCausalLMOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PaddleOCRVLConfig](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLConfig)) and inputs.
+elements depending on the configuration ([PaddleOCRVLConfig](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLConfig)) and inputs.
 
-The [PaddleOCRVLForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [PaddleOCRVLForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -208,7 +208,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -266,7 +266,7 @@ Example:
 get_image_features(pixel_values: FloatTensor, image_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L1312)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L1312)
 
 **Parameters:**
 
@@ -274,11 +274,11 @@ pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_siz
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PaddleOCRVLConfig](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLConfig)) and inputs.
+elements depending on the configuration ([PaddleOCRVLConfig](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -333,7 +333,7 @@ Example:
 transformers.PaddleOCRVLConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_id: int = 100295, video_token_id: int = 100296, vision_start_token_id: int = 101305, vision_end_token_id: int = 101306, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/configuration_paddleocr_vl.py#L141)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/configuration_paddleocr_vl.py#L141)
 
 **Parameters:**
 
@@ -355,8 +355,8 @@ This is the configuration class to store the configuration of a PaddleOCRVLModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PaddleOCR-VL](https://huggingface.co/PaddlePaddle/PaddleOCR-VL)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -381,7 +381,7 @@ Example:
 transformers.PaddleOCRVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 1152, intermediate_size: int = 4304, num_hidden_layers: int = 27, num_attention_heads: int = 16, num_channels: int = 3, image_size: int = 384, patch_size: int = 14, hidden_act: str = 'gelu_pytorch_tanh', layer_norm_eps: float = 1e-06, attention_dropout: float | int = 0.0, spatial_merge_size: int = 2)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/configuration_paddleocr_vl.py#L37)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/configuration_paddleocr_vl.py#L37)
 
 **Parameters:**
 
@@ -411,8 +411,8 @@ This is the configuration class to store the configuration of a PaddleOCRVLModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PaddleOCR-VL](https://huggingface.co/PaddlePaddle/PaddleOCR-VL)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -437,7 +437,7 @@ Example:
 transformers.PaddleOCRTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 103424, hidden_size: int = 1024, intermediate_size: int = 3072, num_hidden_layers: int = 18, num_attention_heads: int = 16, num_key_value_heads: int | None = 2, hidden_act: str = 'silu', max_position_embeddings: int = 131072, initializer_range: float = 0.02, rms_norm_eps: float = 1e-05, use_cache: bool | None = True, pad_token_id: int | None = 0, bos_token_id: int | None = 1, eos_token_id: int | list[int] | None = 2, tie_word_embeddings: bool = True, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, use_bias: bool | None = False, head_dim: int | None = 128)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/configuration_paddleocr_vl.py#L73)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/configuration_paddleocr_vl.py#L73)
 
 **Parameters:**
 
@@ -481,8 +481,8 @@ This is the configuration class to store the configuration of a PaddleOCRVLModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PaddleOCR-VL](https://huggingface.co/PaddlePaddle/PaddleOCR-VL)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -507,15 +507,15 @@ Example:
 transformers.PaddleOCRTextModel(config: PaddleOCRTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L462)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L462)
 
 **Parameters:**
 
-config ([PaddleOCRTextConfig](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PaddleOCRTextConfig](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Paddleocr Vl Text Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -529,29 +529,29 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L479)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L479)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+A [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PaddleOCRVLConfig](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLConfig)) and inputs.
+elements depending on the configuration ([PaddleOCRVLConfig](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLConfig)) and inputs.
 
-The [PaddleOCRTextModel](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRTextModel) forward method, overrides the `__call__` special method.
+The [PaddleOCRTextModel](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -561,7 +561,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -584,7 +584,7 @@ the latter silently ignores them.
 transformers.PaddleOCRVisionModel(config: PaddleOCRVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L927)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L927)
 
 #### forward[[transformers.PaddleOCRVisionModel.forward]]
 
@@ -592,7 +592,7 @@ transformers.PaddleOCRVisionModel(config: PaddleOCRVisionConfig)
 forward(pixel_values: FloatTensor, grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L940)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L940)
 
 **Parameters:**
 
@@ -608,7 +608,7 @@ grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The tempo
 transformers.PaddleOCRVLImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/image_processing_paddleocr_vl.py#L90)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/image_processing_paddleocr_vl.py#L90)
 
 **Parameters:**
 
@@ -666,7 +666,7 @@ Constructs a PaddleOCRVLImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/image_processing_paddleocr_vl.py#L129)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/image_processing_paddleocr_vl.py#L129)
 
 **Parameters:**
 
@@ -732,7 +732,7 @@ merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the 
 transformers.PaddleOCRVLImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/image_processing_pil_paddleocr_vl.py#L88)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/image_processing_pil_paddleocr_vl.py#L88)
 
 **Parameters:**
 
@@ -790,7 +790,7 @@ Constructs a PaddleOCRVLImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/image_processing_pil_paddleocr_vl.py#L190)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/image_processing_pil_paddleocr_vl.py#L190)
 
 **Parameters:**
 
@@ -856,15 +856,15 @@ merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the 
 transformers.PaddleOCRVLModel(config: PaddleOCRVLConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L981)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L981)
 
 **Parameters:**
 
-config ([PaddleOCRVLConfig](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PaddleOCRVLConfig](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Paddleocr Vl Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -878,35 +878,35 @@ and behavior.
 forward(input_ids: LongTensor = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: list[torch.FloatTensor] | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, mm_token_type_ids: typing.Optional[torch.IntTensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L1244)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L1244)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`list[torch.FloatTensor]`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`list[torch.FloatTensor]`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PaddleOCRVLImageProcessor](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor). See `PaddleOCRVLImageProcessor.__call__()` for details ([PaddleOCRVLProcessor](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLProcessor) uses [PaddleOCRVLImageProcessor](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PaddleOCRVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor). See `PaddleOCRVLImageProcessor.__call__()` for details ([PaddleOCRVLProcessor](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLProcessor) uses [PaddleOCRVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
+mm_token_type_ids (`torch.IntTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details.
 
 **Returns:** `PaddleOCRVLModelOutputWithPast` or `tuple(torch.FloatTensor)`
 
 A `PaddleOCRVLModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PaddleOCRVLConfig](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLConfig)) and inputs.
+elements depending on the configuration ([PaddleOCRVLConfig](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLConfig)) and inputs.
 
-The [PaddleOCRVLModel](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLModel) forward method, overrides the `__call__` special method.
+The [PaddleOCRVLModel](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -916,7 +916,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -939,19 +939,19 @@ the latter silently ignores them.
 get_image_features(pixel_values: FloatTensor, image_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L1153)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L1153)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PaddleOCRVLImageProcessor](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor). See `PaddleOCRVLImageProcessor.__call__()` for details ([PaddleOCRVLProcessor](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLProcessor) uses [PaddleOCRVLImageProcessor](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PaddleOCRVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor). See `PaddleOCRVLImageProcessor.__call__()` for details ([PaddleOCRVLProcessor](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLProcessor) uses [PaddleOCRVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PaddleOCRVLConfig](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLConfig)) and inputs.
+elements depending on the configuration ([PaddleOCRVLConfig](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -974,7 +974,7 @@ elements depending on the configuration ([PaddleOCRVLConfig](/docs/transformers/
 get_placeholder_mask(input_ids: LongTensor, inputs_embeds: FloatTensor, image_features: FloatTensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L1171)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L1171)
 
 Obtains multimodal placeholder mask from `input_ids` or `inputs_embeds`, and checks that the placeholder token count is
 equal to the length of multimodal features. If the lengths are different, an error is raised.
@@ -985,7 +985,7 @@ equal to the length of multimodal features. If the lengths are different, an err
 get_rope_index(input_ids: LongTensor, mm_token_type_ids: IntTensor, image_grid_thw: typing.Optional[torch.LongTensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L1049)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L1049)
 
 **Parameters:**
 
@@ -1029,7 +1029,7 @@ Text tokens follow standard 1D RoPE and the position IDs grow consequently with 
 get_vision_position_ids(start_position: int, grid_thw: typing.Union[list[int, int, int], torch.Tensor], temp_merge_size: int = 1, spatial_merge_size: int = 1, time_interval: int = 1, device: typing.Union[torch.device, str, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L997)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L997)
 
 **Parameters:**
 
@@ -1064,18 +1064,18 @@ merge sizes used in the vision backbone. The resulting positions are offset by `
 transformers.PaddleOCRVLProcessor(image_processor = None, tokenizer = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/processing_paddleocr_vl.py#L38)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/processing_paddleocr_vl.py#L38)
 
 **Parameters:**
 
-image_processor ([PaddleOCRVLImageProcessor](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor), *optional*) : The image processor is a required input.
+image_processor ([PaddleOCRVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor), *optional*) : The image processor is a required input.
 
 tokenizer (`LLamaTokenizerFast`, *optional*) : The tokenizer is a required input.
 
 chat_template (`str`, *optional*) : A Jinja template which will be used to convert lists of messages in a chat into a tokenizable string.
 
-[PaddleOCRVLProcessor](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLProcessor) offers all the functionalities of [PaddleOCRVLImageProcessor](/docs/transformers/v5.15.0/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor) and `LLamaTokenizerFast`. See the
-[__call__()](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) and [decode()](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutProcessor.decode) for more information.
+[PaddleOCRVLProcessor](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLProcessor) offers all the functionalities of [PaddleOCRVLImageProcessor](/docs/transformers/v5.15.1/en/model_doc/paddleocr_vl#transformers.PaddleOCRVLImageProcessor) and `LLamaTokenizerFast`. See the
+[__call__()](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) and [decode()](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutProcessor.decode) for more information.
 
 #### __call__[[transformers.PaddleOCRVLProcessor.__call__]]
 
@@ -1083,7 +1083,7 @@ chat_template (`str`, *optional*) : A Jinja template which will be used to conve
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L651)
 
 **Parameters:**
 
@@ -1095,9 +1095,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## PaddleOCRVisionTransformer[[transformers.PaddleOCRVisionTransformer]]
 
@@ -1107,7 +1107,7 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 transformers.PaddleOCRVisionTransformer(config: PaddleOCRVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L872)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L872)
 
 #### forward[[transformers.PaddleOCRVisionTransformer.forward]]
 
@@ -1115,7 +1115,7 @@ transformers.PaddleOCRVisionTransformer(config: PaddleOCRVisionConfig)
 forward(pixel_values: FloatTensor, attention_mask: typing.Optional[torch.Tensor] = None, grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L892)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/paddleocr_vl/modeling_paddleocr_vl.py#L892)
 
 **Parameters:**
 
@@ -1126,4 +1126,4 @@ attention_mask (`torch.Tensor`, *optional*) : The attention_mask used in forward
 grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
 ### ModernBERT
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/modernbert.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/modernbert.md

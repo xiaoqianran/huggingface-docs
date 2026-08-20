@@ -67,4 +67,4 @@ There are three main types of training ops.
 - See the [Kernels](./kernels) guide to learn how to speed up training with custom fused kernels.
 
 ### Trainer
-https://huggingface.co/docs/transformers/v5.15.0/trainer.md
+https://huggingface.co/docs/transformers/v5.15.1/trainer.md

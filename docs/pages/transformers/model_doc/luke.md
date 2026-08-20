@@ -25,12 +25,12 @@ This model was contributed by [ikuyamada](https://huggingface.co/ikuyamada) and 
 
 ## Usage tips
 
-- This implementation is the same as [RobertaModel](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaModel) with the addition of entity embeddings as well
+- This implementation is the same as [RobertaModel](/docs/transformers/v5.15.1/en/model_doc/roberta#transformers.RobertaModel) with the addition of entity embeddings as well
   as an entity-aware self-attention mechanism, which improves performance on tasks involving reasoning about entities.
 - LUKE treats entities as input tokens; therefore, it takes `entity_ids`, `entity_attention_mask`,
   `entity_token_type_ids` and `entity_position_ids` as extra input. You can obtain those using
-  [LukeTokenizer](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeTokenizer).
-- [LukeTokenizer](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeTokenizer) takes `entities` and `entity_spans` (character-based start and end
+  [LukeTokenizer](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeTokenizer).
+- [LukeTokenizer](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeTokenizer) takes `entities` and `entity_spans` (character-based start and end
   positions of the entities in the input text) as extra input. `entities` typically consist of [MASK] entities or
   Wikipedia entities. The brief description when inputting these entities are as follows:
 
@@ -47,17 +47,17 @@ This model was contributed by [ikuyamada](https://huggingface.co/ikuyamada) and 
 
 - There are three head models for the former use case:
 
-  - [LukeForEntityClassification](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForEntityClassification), for tasks to classify a single entity in an input text such as
+  - [LukeForEntityClassification](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForEntityClassification), for tasks to classify a single entity in an input text such as
     entity typing, e.g. the [Open Entity dataset](https://www.cs.utexas.edu/~eunsol/html_pages/open_entity.html).
     This model places a linear head on top of the output entity representation.
-  - [LukeForEntityPairClassification](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForEntityPairClassification), for tasks to classify the relationship between two entities
+  - [LukeForEntityPairClassification](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForEntityPairClassification), for tasks to classify the relationship between two entities
     such as relation classification, e.g. the [TACRED dataset](https://nlp.stanford.edu/projects/tacred/). This
     model places a linear head on top of the concatenated output representation of the pair of given entities.
-  - [LukeForEntitySpanClassification](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForEntitySpanClassification), for tasks to classify the sequence of entity spans, such as
+  - [LukeForEntitySpanClassification](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForEntitySpanClassification), for tasks to classify the sequence of entity spans, such as
     named entity recognition (NER). This model places a linear head on top of the output entity representations. You
     can address NER using this model by inputting all possible entity spans in the text to the model.
 
-  [LukeTokenizer](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeTokenizer) has a `task` argument, which enables you to easily create an input to these
+  [LukeTokenizer](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeTokenizer) has a `task` argument, which enables you to easily create an input to these
   head models by specifying `task="entity_classification"`, `task="entity_pair_classification"`, or
   `task="entity_span_classification"`. Please refer to the example code of each head models.
 
@@ -101,7 +101,7 @@ print("Predicted class:", model.config.id2label[predicted_class_idx])
 
 ## Resources
 
-- [A demo notebook on how to fine-tune [LukeForEntityPairClassification](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForEntityPairClassification) for relation classification](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/LUKE)
+- [A demo notebook on how to fine-tune [LukeForEntityPairClassification](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForEntityPairClassification) for relation classification](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/LUKE)
 - [Notebooks showcasing how you to reproduce the results as reported in the paper with the HuggingFace implementation of LUKE](https://github.com/studio-ousia/luke/tree/master/notebooks)
 - [Text classification task guide](../tasks/sequence_classification)
 - [Token classification task guide](../tasks/token_classification)
@@ -117,13 +117,13 @@ print("Predicted class:", model.config.id2label[predicted_class_idx])
 transformers.LukeConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 50267, entity_vocab_size: int = 500000, hidden_size: int = 768, entity_emb_size: int = 256, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.1, max_position_embeddings: int = 512, type_vocab_size: int = 2, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, use_entity_aware_attention: bool = True, classifier_dropout: float | int | None = None, pad_token_id: int | None = 1, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 2, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/configuration_luke.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/configuration_luke.py#L24)
 
 **Parameters:**
 
 vocab_size (`int`, *optional*, defaults to `50267`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
 
-entity_vocab_size (`int`, *optional*, defaults to 500000) : Entity vocabulary size of the LUKE model. Defines the number of different entities that can be represented by the `entity_ids` passed when calling [LukeModel](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeModel).
+entity_vocab_size (`int`, *optional*, defaults to 500000) : Entity vocabulary size of the LUKE model. Defines the number of different entities that can be represented by the `entity_ids` passed when calling [LukeModel](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeModel).
 
 hidden_size (`int`, *optional*, defaults to `768`) : Dimension of the hidden representations.
 
@@ -165,8 +165,8 @@ This is the configuration class to store the configuration of a LukeModel. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [studio-ousia/luke-base](https://huggingface.co/studio-ousia/luke-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -191,7 +191,7 @@ Examples:
 transformers.LukeTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, entity_vocab: str | dict | list | None = None, errors = 'replace', bos_token = '<s>', eos_token = '</s>', sep_token = '</s>', cls_token = '<s>', unk_token = '<unk>', pad_token = '<pad>', mask_token = '<mask>', add_prefix_space = False, task = None, max_entity_length = 32, max_mention_length = 30, entity_token_1 = '<ent>', entity_token_2 = '<ent2>', entity_unk_token = '[UNK]', entity_pad_token = '[PAD]', entity_mask_token = '[MASK]', entity_mask2_token = '[MASK2]', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/tokenization_luke.py#L131)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/tokenization_luke.py#L131)
 
 **Parameters:**
 
@@ -255,7 +255,7 @@ call it on some text, but since the model was not pretrained this way, it might 
 
 When used with `is_split_into_words=True`, this tokenizer will add a space before each word (even the first one).
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods. It also creates entity sequences, namely
 `entity_ids`, `entity_attention_mask`, `entity_token_type_ids`, and `entity_position_ids` to be used by the LUKE
 model.
@@ -266,11 +266,11 @@ model.
 __call__(text: str | list[str], text_pair: str | list[str] | None = None, entity_spans: list[tuple[int, int]] | list[list[tuple[int, int]]] | None = None, entity_spans_pair: list[tuple[int, int]] | list[list[tuple[int, int]]] | None = None, entities: list[str] | list[list[str]] | None = None, entities_pair: list[str] | list[list[str]] | None = None, add_special_tokens: bool = True, padding: bool | str | transformers.utils.generic.PaddingStrategy = False, truncation: bool | str | transformers.tokenization_utils_base.TruncationStrategy = None, max_length: int | None = None, max_entity_length: int | None = None, stride: int = 0, is_split_into_words: bool | None = False, pad_to_multiple_of: int | None = None, padding_side: str | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, return_token_type_ids: bool | None = None, return_attention_mask: bool | None = None, return_overflowing_tokens: bool = False, return_special_tokens_mask: bool = False, return_offsets_mapping: bool = False, return_length: bool = False, verbose: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/tokenization_luke.py#L425)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/tokenization_luke.py#L425)
 
-**Returns:** [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding)
+**Returns:** [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding)
 
-A [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
+A [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model.
 
@@ -319,7 +319,7 @@ Whether or not to add special tokens when encoding the sequences. This will use 
 `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are
 automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens
 automatically.
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`):
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`):
 Activates and controls padding. Accepts the following values:
 
 - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single
@@ -328,7 +328,7 @@ Activates and controls padding. Accepts the following values:
   acceptable input length for the model if that argument is not provided.
 - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different
   lengths).
-truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`):
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`):
 Activates and controls truncation. Accepts the following values:
 
 - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or
@@ -365,7 +365,7 @@ This is especially useful to enable the use of Tensor Cores on NVIDIA hardware w
 padding_side (`str`, *optional*):
 The side on which the model should have padding applied. Should be selected between ['right', 'left'].
 Default value is picked from the class attribute of the same name.
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*):
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*):
 If set, will return tensors instead of list of python integers. Acceptable values are:
 
 - `'pt'`: Return PyTorch `torch.Tensor` objects.
@@ -390,7 +390,7 @@ Whether or not to return special tokens mask information.
 return_offsets_mapping (`bool`, *optional*, defaults to `False`):
 Whether or not to return `(char_start, char_end)` for each token.
 
-This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend), if using
+This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend), if using
 Python's tokenizer, this method will raise `NotImplementedError`.
 return_length  (`bool`, *optional*, defaults to `False`):
 Whether or not to return the lengths of the encoded inputs.
@@ -404,7 +404,7 @@ Whether or not to print more information and warnings.
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_tokenizers.py#L509)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_tokenizers.py#L509)
 
 ## LukeModel[[transformers.LukeModel]]
 
@@ -414,17 +414,17 @@ save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 transformers.LukeModel(config: LukeConfig, add_pooling_layer: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L788)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L788)
 
 **Parameters:**
 
-config ([LukeConfig](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LukeConfig](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare LUKE model transformer outputting raw hidden-states for both word tokens and entities without any
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -438,11 +438,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, entity_ids: typing.Optional[torch.LongTensor] = None, entity_attention_mask: typing.Optional[torch.FloatTensor] = None, entity_token_type_ids: typing.Optional[torch.LongTensor] = None, entity_position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L818)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L818)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -450,7 +450,7 @@ token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *op
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
 
 entity_attention_mask (`torch.FloatTensor` of shape `(batch_size, entity_length)`, *optional*) : Mask to avoid performing attention on padding entity token indices. Mask values selected in `[0, 1]`:  - 1 for entity tokens that are **not masked**, - 0 for entity tokens that are **masked**.
 
@@ -464,15 +464,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `BaseLukeModelOutputWithPooling` or `tuple(torch.FloatTensor)`
 
 A `BaseLukeModelOutputWithPooling` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeConfig)) and inputs.
+elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeConfig)) and inputs.
 
-The [LukeModel](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeModel) forward method, overrides the `__call__` special method.
+The [LukeModel](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -539,16 +539,16 @@ Examples:
 transformers.LukeForMaskedLM(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1019)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1019)
 
 **Parameters:**
 
-config ([LukeForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForMaskedLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LukeForMaskedLM](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForMaskedLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The LUKE model with a language modeling head and entity prediction head on top for masked language modeling and
 masked entity prediction.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -562,11 +562,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, entity_ids: typing.Optional[torch.LongTensor] = None, entity_attention_mask: typing.Optional[torch.LongTensor] = None, entity_token_type_ids: typing.Optional[torch.LongTensor] = None, entity_position_ids: typing.Optional[torch.LongTensor] = None, labels: typing.Optional[torch.LongTensor] = None, entity_labels: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1044)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1044)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -574,7 +574,7 @@ token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *op
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
 
 entity_attention_mask (`torch.FloatTensor` of shape `(batch_size, entity_length)`, *optional*) : Mask to avoid performing attention on padding entity token indices. Mask values selected in `[0, 1]`:  - 1 for entity tokens that are **not masked**, - 0 for entity tokens that are **masked**.
 
@@ -592,15 +592,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `LukeMaskedLMOutput` or `tuple(torch.FloatTensor)`
 
 A `LukeMaskedLMOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeConfig)) and inputs.
+elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeConfig)) and inputs.
 
-The [LukeForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForMaskedLM) forward method, overrides the `__call__` special method.
+The [LukeForMaskedLM](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForMaskedLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -662,16 +662,16 @@ Example:
 transformers.LukeForEntityClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1166)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1166)
 
 **Parameters:**
 
-config ([LukeForEntityClassification](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForEntityClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LukeForEntityClassification](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForEntityClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The LUKE model with a classification head on top (a linear layer on top of the hidden state of the first entity
 token) for entity classification tasks, such as Open Entity.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -685,11 +685,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, entity_ids: typing.Optional[torch.LongTensor] = None, entity_attention_mask: typing.Optional[torch.FloatTensor] = None, entity_token_type_ids: typing.Optional[torch.LongTensor] = None, entity_position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1179)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1179)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -697,7 +697,7 @@ token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *op
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
 
 entity_attention_mask (`torch.FloatTensor` of shape `(batch_size, entity_length)`, *optional*) : Mask to avoid performing attention on padding entity token indices. Mask values selected in `[0, 1]`:  - 1 for entity tokens that are **not masked**, - 0 for entity tokens that are **masked**.
 
@@ -713,15 +713,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `EntityClassificationOutput` or `tuple(torch.FloatTensor)`
 
 A `EntityClassificationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeConfig)) and inputs.
+elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeConfig)) and inputs.
 
-The [LukeForEntityClassification](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForEntityClassification) forward method, overrides the `__call__` special method.
+The [LukeForEntityClassification](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForEntityClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -768,16 +768,16 @@ Predicted class: person
 transformers.LukeForEntityPairClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1295)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1295)
 
 **Parameters:**
 
-config ([LukeForEntityPairClassification](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForEntityPairClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LukeForEntityPairClassification](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForEntityPairClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The LUKE model with a classification head on top (a linear layer on top of the hidden states of the two entity
 tokens) for entity pair classification tasks, such as TACRED.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -791,11 +791,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, entity_ids: typing.Optional[torch.LongTensor] = None, entity_attention_mask: typing.Optional[torch.FloatTensor] = None, entity_token_type_ids: typing.Optional[torch.LongTensor] = None, entity_position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1308)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1308)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -803,7 +803,7 @@ token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *op
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
 
 entity_attention_mask (`torch.FloatTensor` of shape `(batch_size, entity_length)`, *optional*) : Mask to avoid performing attention on padding entity token indices. Mask values selected in `[0, 1]`:  - 1 for entity tokens that are **not masked**, - 0 for entity tokens that are **masked**.
 
@@ -819,15 +819,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `EntityPairClassificationOutput` or `tuple(torch.FloatTensor)`
 
 A `EntityPairClassificationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeConfig)) and inputs.
+elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeConfig)) and inputs.
 
-The [LukeForEntityPairClassification](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForEntityPairClassification) forward method, overrides the `__call__` special method.
+The [LukeForEntityPairClassification](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForEntityPairClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -877,16 +877,16 @@ Predicted class: per:cities_of_residence
 transformers.LukeForEntitySpanClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1429)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1429)
 
 **Parameters:**
 
-config ([LukeForEntitySpanClassification](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForEntitySpanClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LukeForEntitySpanClassification](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForEntitySpanClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The LUKE model with a span classification head on top (a linear layer on top of the hidden states output) for tasks
 such as named entity recognition.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -900,11 +900,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, entity_ids: typing.Optional[torch.LongTensor] = None, entity_attention_mask: typing.Optional[torch.LongTensor] = None, entity_token_type_ids: typing.Optional[torch.LongTensor] = None, entity_position_ids: typing.Optional[torch.LongTensor] = None, entity_start_positions: typing.Optional[torch.LongTensor] = None, entity_end_positions: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1442)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1442)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -912,7 +912,7 @@ token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *op
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
 
 entity_attention_mask (`torch.FloatTensor` of shape `(batch_size, entity_length)`, *optional*) : Mask to avoid performing attention on padding entity token indices. Mask values selected in `[0, 1]`:  - 1 for entity tokens that are **not masked**, - 0 for entity tokens that are **masked**.
 
@@ -932,15 +932,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `EntitySpanClassificationOutput` or `tuple(torch.FloatTensor)`
 
 A `EntitySpanClassificationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeConfig)) and inputs.
+elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeConfig)) and inputs.
 
-The [LukeForEntitySpanClassification](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForEntitySpanClassification) forward method, overrides the `__call__` special method.
+The [LukeForEntitySpanClassification](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForEntitySpanClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -998,16 +998,16 @@ Los Angeles LOC
 transformers.LukeForSequenceClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1587)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1587)
 
 **Parameters:**
 
-config ([LukeForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LukeForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The LUKE Model transformer with a sequence classification/regression head on top (a linear layer on top of the
 pooled output) e.g. for GLUE tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1021,11 +1021,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, entity_ids: typing.Optional[torch.LongTensor] = None, entity_attention_mask: typing.Optional[torch.FloatTensor] = None, entity_token_type_ids: typing.Optional[torch.LongTensor] = None, entity_position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1600)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1600)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1033,7 +1033,7 @@ token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *op
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
 
 entity_attention_mask (`torch.FloatTensor` of shape `(batch_size, entity_length)`, *optional*) : Mask to avoid performing attention on padding entity token indices. Mask values selected in `[0, 1]`:  - 1 for entity tokens that are **not masked**, - 0 for entity tokens that are **masked**.
 
@@ -1049,15 +1049,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `LukeSequenceClassifierOutput` or `tuple(torch.FloatTensor)`
 
 A `LukeSequenceClassifierOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeConfig)) and inputs.
+elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeConfig)) and inputs.
 
-The [LukeForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForSequenceClassification) forward method, overrides the `__call__` special method.
+The [LukeForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1142,16 +1142,16 @@ Example of multi-label classification:
 transformers.LukeForMultipleChoice(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1934)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1934)
 
 **Parameters:**
 
-config ([LukeForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForMultipleChoice)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LukeForMultipleChoice](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForMultipleChoice)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Luke Model with a multiple choice classification head on top (a linear layer on top of the pooled output and a
 softmax) e.g. for RocStories/SWAG tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1165,11 +1165,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, entity_ids: typing.Optional[torch.LongTensor] = None, entity_attention_mask: typing.Optional[torch.FloatTensor] = None, entity_token_type_ids: typing.Optional[torch.LongTensor] = None, entity_position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1947)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1947)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1177,7 +1177,7 @@ token_type_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_
 
 position_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.max_position_embeddings - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
 
 entity_attention_mask (`torch.FloatTensor` of shape `(batch_size, entity_length)`, *optional*) : Mask to avoid performing attention on padding entity token indices. Mask values selected in `[0, 1]`:  - 1 for entity tokens that are **not masked**, - 0 for entity tokens that are **masked**.
 
@@ -1193,15 +1193,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `LukeMultipleChoiceModelOutput` or `tuple(torch.FloatTensor)`
 
 A `LukeMultipleChoiceModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeConfig)) and inputs.
+elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeConfig)) and inputs.
 
-The [LukeForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForMultipleChoice) forward method, overrides the `__call__` special method.
+The [LukeForMultipleChoice](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForMultipleChoice) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1254,17 +1254,17 @@ Example:
 transformers.LukeForTokenClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1713)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1713)
 
 **Parameters:**
 
-config ([LukeForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LukeForTokenClassification](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The LUKE Model with a token classification head on top (a linear layer on top of the hidden-states output). To
 solve Named-Entity Recognition (NER) task using LUKE, `LukeForEntitySpanClassification` is more suitable than this
 class.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1278,11 +1278,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, entity_ids: typing.Optional[torch.LongTensor] = None, entity_attention_mask: typing.Optional[torch.FloatTensor] = None, entity_token_type_ids: typing.Optional[torch.LongTensor] = None, entity_position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1727)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1727)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1290,7 +1290,7 @@ token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *op
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
 
 entity_attention_mask (`torch.FloatTensor` of shape `(batch_size, entity_length)`, *optional*) : Mask to avoid performing attention on padding entity token indices. Mask values selected in `[0, 1]`:  - 1 for entity tokens that are **not masked**, - 0 for entity tokens that are **masked**.
 
@@ -1306,15 +1306,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `LukeTokenClassifierOutput` or `tuple(torch.FloatTensor)`
 
 A `LukeTokenClassifierOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeConfig)) and inputs.
+elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeConfig)) and inputs.
 
-The [LukeForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForTokenClassification) forward method, overrides the `__call__` special method.
+The [LukeForTokenClassification](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1374,16 +1374,16 @@ Example:
 transformers.LukeForQuestionAnswering(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1816)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1816)
 
 **Parameters:**
 
-config ([LukeForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LukeForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Luke transformer with a span classification head on top for extractive question-answering tasks like
 SQuAD (a linear layer on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1397,11 +1397,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.FloatTensor] = None, entity_ids: typing.Optional[torch.LongTensor] = None, entity_attention_mask: typing.Optional[torch.FloatTensor] = None, entity_token_type_ids: typing.Optional[torch.LongTensor] = None, entity_position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, start_positions: typing.Optional[torch.LongTensor] = None, end_positions: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/luke/modeling_luke.py#L1828)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/luke/modeling_luke.py#L1828)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1409,7 +1409,7 @@ token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *op
 
 position_ids (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+entity_ids (`torch.LongTensor` of shape `(batch_size, entity_length)`) : Indices of entity tokens in the entity vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
 
 entity_attention_mask (`torch.FloatTensor` of shape `(batch_size, entity_length)`, *optional*) : Mask to avoid performing attention on padding entity token indices. Mask values selected in `[0, 1]`:  - 1 for entity tokens that are **not masked**, - 0 for entity tokens that are **masked**.
 
@@ -1427,15 +1427,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `LukeQuestionAnsweringModelOutput` or `tuple(torch.FloatTensor)`
 
 A `LukeQuestionAnsweringModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeConfig)) and inputs.
+elements depending on the configuration ([LukeConfig](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeConfig)) and inputs.
 
-The [LukeForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeForQuestionAnswering) forward method, overrides the `__call__` special method.
+The [LukeForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1490,4 +1490,4 @@ Example:
 ```
 
 ### FNet
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/fnet.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/fnet.md

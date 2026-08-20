@@ -32,4 +32,4 @@ For deterministic behavior, try the following.
 - [Enhance Your Models in 5 Minutes with the Hugging Face Kernel Hub](https://huggingface.co/blog/hello-hf-kernels) blog post
 
 ### NeMo Automodel
-https://huggingface.co/docs/transformers/v5.15.0/community_integrations/nemo_automodel_pretraining.md
+https://huggingface.co/docs/transformers/v5.15.1/community_integrations/nemo_automodel_pretraining.md

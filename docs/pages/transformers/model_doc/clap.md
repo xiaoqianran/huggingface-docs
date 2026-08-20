@@ -11,7 +11,7 @@ You can find all the original CLAP checkpoints under the [CLAP](https://huggingf
 >
 > Click on the CLAP models in the right sidebar for more examples of how to apply CLAP to different audio retrieval and classification tasks.
 
-The example below demonstrates how to extract text embeddings with the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to extract text embeddings with the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 import torch
@@ -40,7 +40,7 @@ print(f"Text embeddings: {text_features}")
 transformers.ClapConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, audio_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, logit_scale_init_value: float = 14.285714285714285, projection_dim: int = 512, projection_hidden_act: str = 'relu', initializer_factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/configuration_clap.py#L145)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/configuration_clap.py#L145)
 
 **Parameters:**
 
@@ -60,8 +60,8 @@ This is the configuration class to store the configuration of a ClapModel. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [laion/clap-htsat-fused](https://huggingface.co/laion/clap-htsat-fused)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -95,7 +95,7 @@ Example:
 transformers.ClapTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 50265, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.1, max_position_embeddings: int = 514, type_vocab_size: int = 1, initializer_factor: float = 1.0, layer_norm_eps: float = 1e-12, projection_dim: int = 512, pad_token_id: int | None = 1, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 2, projection_hidden_act: str = 'relu')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/configuration_clap.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/configuration_clap.py#L27)
 
 **Parameters:**
 
@@ -137,8 +137,8 @@ This is the configuration class to store the configuration of a ClapModel. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [laion/clap-htsat-fused](https://huggingface.co/laion/clap-htsat-fused)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -163,7 +163,7 @@ Examples:
 transformers.ClapAudioConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, window_size: int = 8, num_mel_bins: int = 64, spec_size: int = 256, hidden_act: str = 'gelu', patch_size: int | list[int] | tuple[int, int] = 4, patch_stride: int | list[int] | tuple[int, ...] = (4, 4), num_classes: int = 527, hidden_size: int = 768, projection_dim: int = 512, depths: list[int] | tuple[int, ...] = (2, 2, 6, 2), num_attention_heads: list[int] | tuple[int, ...] = (4, 8, 16, 32), enable_fusion: bool = False, hidden_dropout_prob: float | int = 0.1, fusion_type: str | None = None, patch_embed_input_channels: int = 1, flatten_patch_embeds: bool = True, patch_embeds_hidden_size: int = 96, enable_patch_layer_norm: bool = True, drop_path_rate: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, qkv_bias: bool = True, mlp_ratio: float = 4.0, aff_block_r: int = 4, num_hidden_layers: int = 4, projection_hidden_act: str = 'relu', layer_norm_eps: float = 1e-05, initializer_factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/configuration_clap.py#L68)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/configuration_clap.py#L68)
 
 **Parameters:**
 
@@ -225,8 +225,8 @@ This is the configuration class to store the configuration of a ClapModel. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [laion/clap-htsat-fused](https://huggingface.co/laion/clap-htsat-fused)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -251,7 +251,7 @@ Example:
 transformers.ClapFeatureExtractor(feature_size = 64, sampling_rate = 48000, hop_length = 480, max_length_s = 10, fft_window_size = 1024, padding_value = 0.0, return_attention_mask = False, frequency_min: float = 0, frequency_max: float = 14000, top_db: int | None = None, truncation: str = 'fusion', padding: str = 'repeatpad', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/feature_extraction_clap.py#L36)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/feature_extraction_clap.py#L36)
 
 **Parameters:**
 
@@ -281,7 +281,7 @@ padding (`str`, *optional*, defaults to `"repeatpad"`) : Padding pattern for sho
 
 Constructs a CLAP feature extractor.
 
-This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
+This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
 most of the main methods. Users should refer to this superclass for more information regarding those methods.
 
 This class extracts mel-filter bank features from raw speech using a custom numpy implementation of the *Short Time
@@ -293,7 +293,7 @@ Fourier Transform* (STFT) which should match pytorch's `torch.stft` equivalent.
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/feature_extraction_clap.py#L141)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/feature_extraction_clap.py#L141)
 
 **Returns:** `dict[str, Any]`
 
@@ -310,7 +310,7 @@ Serializes this instance to a Python dictionary.
 transformers.ClapProcessor(feature_extractor, tokenizer)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/processing_clap.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/processing_clap.py#L26)
 
 **Parameters:**
 
@@ -320,8 +320,8 @@ tokenizer (`RobertaTokenizer`) : The tokenizer is a required input.
 
 Constructs a ClapProcessor which wraps a feature extractor and a tokenizer into a single processor.
 
-[ClapProcessor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapProcessor) offers all the functionalities of [ClapFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapFeatureExtractor) and [RobertaTokenizer](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaTokenizer). See the
-[~ClapFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapFeatureExtractor) and [~RobertaTokenizer](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaTokenizer) for more information.
+[ClapProcessor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapProcessor) offers all the functionalities of [ClapFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapFeatureExtractor) and [RobertaTokenizer](/docs/transformers/v5.15.1/en/model_doc/roberta#transformers.RobertaTokenizer). See the
+[~ClapFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapFeatureExtractor) and [~RobertaTokenizer](/docs/transformers/v5.15.1/en/model_doc/roberta#transformers.RobertaTokenizer) for more information.
 
 #### __call__[[transformers.ClapProcessor.__call__]]
 
@@ -329,7 +329,7 @@ Constructs a ClapProcessor which wraps a feature extractor and a tokenizer into 
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L651)
 
 **Parameters:**
 
@@ -341,9 +341,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## ClapModel[[transformers.ClapModel]]
 
@@ -353,15 +353,15 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 transformers.ClapModel(config: ClapConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/modeling_clap.py#L1432)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/modeling_clap.py#L1432)
 
 **Parameters:**
 
-config ([ClapConfig](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ClapConfig](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Clap Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -375,13 +375,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.FloatTensor] = None, is_longer: typing.Optional[torch.BoolTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, return_loss: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/modeling_clap.py#L1537)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/modeling_clap.py#L1537)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [ClapFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapFeatureExtractor). See `ClapFeatureExtractor.__call__()` for details ([ClapProcessor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapProcessor) uses [ClapFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapFeatureExtractor) for processing audios).
+input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [ClapFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapFeatureExtractor). See `ClapFeatureExtractor.__call__()` for details ([ClapProcessor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapProcessor) uses [ClapFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapFeatureExtractor) for processing audios).
 
 is_longer (`torch.FloatTensor`, of shape `(batch_size, 1)`, *optional*) : Whether the audio clip is longer than `max_length`. If `True`, a feature fusion will be enabled to enhance the features.
 
@@ -395,9 +395,9 @@ return_loss (`bool`, *optional*) : Whether or not to return the contrastive loss
 
 A `ClapOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ClapConfig](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapConfig)) and inputs.
+elements depending on the configuration ([ClapConfig](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapConfig)) and inputs.
 
-The [ClapModel](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapModel) forward method, overrides the `__call__` special method.
+The [ClapModel](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -408,10 +408,10 @@ the latter silently ignores them.
   similarity scores.
 - **logits_per_text** (`torch.FloatTensor` of shape `(text_batch_size, audio_batch_size)`) -- The scaled dot product scores between `text_embeds` and `audio_embeds`. This represents the text-audio
   similarity scores.
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [ClapTextModel](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapTextModel).
-- **audio_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The audio embeddings obtained by applying the projection layer to the pooled output of [ClapAudioModel](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapAudioModel).
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [ClapTextModel](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapTextModel).
-- **audio_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [ClapAudioModel](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapAudioModel).
+- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [ClapTextModel](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapTextModel).
+- **audio_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The audio embeddings obtained by applying the projection layer to the pooled output of [ClapAudioModel](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapAudioModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [ClapTextModel](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapTextModel).
+- **audio_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [ClapAudioModel](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapAudioModel).
 
 Examples:
 
@@ -440,21 +440,21 @@ Examples:
 get_text_features(input_ids: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/modeling_clap.py#L1467)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/modeling_clap.py#L1467)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ClapConfig](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapConfig)) and inputs.
+elements depending on the configuration ([ClapConfig](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -491,21 +491,21 @@ Examples:
 get_audio_features(input_features: Tensor, is_longer: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/modeling_clap.py#L1501)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/modeling_clap.py#L1501)
 
 **Parameters:**
 
-input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`) : The tensors corresponding to the input audio features. Audio features can be obtained using [ClapFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapFeatureExtractor). See `ClapFeatureExtractor.__call__()` for details ([ClapProcessor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapProcessor) uses [ClapFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapFeatureExtractor) for processing audios).
+input_features (`torch.Tensor` of shape `(batch_size, sequence_length, feature_dim)`) : The tensors corresponding to the input audio features. Audio features can be obtained using [ClapFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapFeatureExtractor). See `ClapFeatureExtractor.__call__()` for details ([ClapProcessor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapProcessor) uses [ClapFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapFeatureExtractor) for processing audios).
 
 is_longer (`torch.FloatTensor`, of shape `(batch_size, 1)`, *optional*) : Whether the audio clip is longer than `max_length`. If `True`, a feature fusion will be enabled to enhance the features.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ClapConfig](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapConfig)) and inputs.
+elements depending on the configuration ([ClapConfig](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -545,11 +545,11 @@ Examples:
 transformers.ClapTextModel(config, add_pooling_layer = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/modeling_clap.py#L1346)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/modeling_clap.py#L1346)
 
 **Parameters:**
 
-config ([ClapTextModel](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapTextModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ClapTextModel](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapTextModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
@@ -564,7 +564,7 @@ to `True`. To be used in a Seq2Seq model, the model needs to initialized with bo
 
 .. _*Attention is all you need*: https://huggingface.co/papers/1706.03762
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -578,11 +578,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/modeling_clap.py#L1376)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/modeling_clap.py#L1376)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -592,13 +592,13 @@ position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ClapConfig](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapConfig)) and inputs.
+elements depending on the configuration ([ClapConfig](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapConfig)) and inputs.
 
-The [ClapTextModel](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapTextModel) forward method, overrides the `__call__` special method.
+The [ClapTextModel](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -627,15 +627,15 @@ the latter silently ignores them.
 transformers.ClapTextModelWithProjection(config: ClapTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/modeling_clap.py#L1623)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/modeling_clap.py#L1623)
 
 **Parameters:**
 
-config ([ClapTextConfig](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ClapTextConfig](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Clap Model with a projection layer on top (a linear layer on top of the pooled output).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -649,11 +649,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/modeling_clap.py#L1644)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/modeling_clap.py#L1644)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -663,9 +663,9 @@ position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional
 
 A `ClapTextModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ClapConfig](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapConfig)) and inputs.
+elements depending on the configuration ([ClapConfig](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapConfig)) and inputs.
 
-The [ClapTextModelWithProjection](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapTextModelWithProjection) forward method, overrides the `__call__` special method.
+The [ClapTextModelWithProjection](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapTextModelWithProjection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -705,7 +705,7 @@ Examples:
 transformers.ClapAudioModel(config: ClapAudioConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/modeling_clap.py#L1282)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/modeling_clap.py#L1282)
 
 #### forward[[transformers.ClapAudioModel.forward]]
 
@@ -713,21 +713,21 @@ transformers.ClapAudioModel(config: ClapAudioConfig)
 forward(input_features: typing.Optional[torch.FloatTensor] = None, is_longer: typing.Optional[torch.BoolTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/modeling_clap.py#L1296)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/modeling_clap.py#L1296)
 
 **Parameters:**
 
-input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [ClapFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapFeatureExtractor). See `ClapFeatureExtractor.__call__()` for details ([ClapProcessor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapProcessor) uses [ClapFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapFeatureExtractor) for processing audios).
+input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [ClapFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapFeatureExtractor). See `ClapFeatureExtractor.__call__()` for details ([ClapProcessor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapProcessor) uses [ClapFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapFeatureExtractor) for processing audios).
 
 is_longer (`torch.FloatTensor`, of shape `(batch_size, 1)`, *optional*) : Whether the audio clip is longer than `max_length`. If `True`, a feature fusion will be enabled to enhance the features.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ClapConfig](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapConfig)) and inputs.
+elements depending on the configuration ([ClapConfig](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapConfig)) and inputs.
 
-The [ClapAudioModel](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapAudioModel) forward method, overrides the `__call__` special method.
+The [ClapAudioModel](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapAudioModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -774,15 +774,15 @@ Examples:
 transformers.ClapAudioModelWithProjection(config: ClapAudioConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/modeling_clap.py#L1685)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/modeling_clap.py#L1685)
 
 **Parameters:**
 
-config ([ClapAudioConfig](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ClapAudioConfig](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapAudioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Clap Model with a projection layer on top (a linear layer on top of the pooled output).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -796,11 +796,11 @@ and behavior.
 forward(input_features: typing.Optional[torch.FloatTensor] = None, is_longer: typing.Optional[torch.BoolTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clap/modeling_clap.py#L1700)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clap/modeling_clap.py#L1700)
 
 **Parameters:**
 
-input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [ClapFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapFeatureExtractor). See `ClapFeatureExtractor.__call__()` for details ([ClapProcessor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapProcessor) uses [ClapFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapFeatureExtractor) for processing audios).
+input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [ClapFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapFeatureExtractor). See `ClapFeatureExtractor.__call__()` for details ([ClapProcessor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapProcessor) uses [ClapFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapFeatureExtractor) for processing audios).
 
 is_longer (`torch.FloatTensor`, of shape `(batch_size, 1)`, *optional*) : Whether the audio clip is longer than `max_length`. If `True`, a feature fusion will be enabled to enhance the features.
 
@@ -808,9 +808,9 @@ is_longer (`torch.FloatTensor`, of shape `(batch_size, 1)`, *optional*) : Whethe
 
 A `ClapAudioModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ClapConfig](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapConfig)) and inputs.
+elements depending on the configuration ([ClapConfig](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapConfig)) and inputs.
 
-The [ClapAudioModelWithProjection](/docs/transformers/v5.15.0/en/model_doc/clap#transformers.ClapAudioModelWithProjection) forward method, overrides the `__call__` special method.
+The [ClapAudioModelWithProjection](/docs/transformers/v5.15.1/en/model_doc/clap#transformers.ClapAudioModelWithProjection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -846,4 +846,4 @@ Examples:
 ```
 
 ### T5
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/t5.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/t5.md

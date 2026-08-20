@@ -100,5 +100,5 @@ pattern.
 To help mitigate service interruptions on an Inference Endpoint that needs to be highly available, please make sure to use at least 2 replicas,
 ie min replicas set to 2.
 
-### vLLM
-https://huggingface.co/docs/inference-endpoints/engines/vllm.md
+### Pricing
+https://huggingface.co/docs/inference-endpoints/support/pricing.md

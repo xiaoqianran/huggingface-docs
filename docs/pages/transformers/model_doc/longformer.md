@@ -7,7 +7,7 @@ You can find all the original Longformer checkpoints under the [Ai2](https://hug
 > [!TIP]
 > Click on the Longformer models in the right sidebar for more examples of how to apply Longformer to different language tasks.
 
-The example below demonstrates how to fill the `<mask>` token with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) and from the command line.
+The example below demonstrates how to fill the `<mask>` token with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) and from the command line.
 
 ```python
 from transformers import pipeline
@@ -48,8 +48,8 @@ tokenizer.decode(predictions).split()
 ## Notes
 
 - Longformer is based on [RoBERTa](https://huggingface.co/docs/transformers/en/model_doc/roberta) and doesn't have `token_type_ids`. You don't need to indicate which token belongs to which segment. You only need to separate the segments with the separation token `</s>` or `tokenizer.sep_token`.
-- You can set which tokens can attend locally and which tokens attend globally with the `global_attention_mask` at inference (see this [example](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerModel.forward.example) for more details). A value of `0` means a token attends locally and a value of `1` means a token attends globally.
-- [LongformerForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerForMaskedLM) is trained like [RobertaForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaForMaskedLM) and should be used as shown below.
+- You can set which tokens can attend locally and which tokens attend globally with the `global_attention_mask` at inference (see this [example](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerModel.forward.example) for more details). A value of `0` means a token attends locally and a value of `1` means a token attends globally.
+- [LongformerForMaskedLM](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerForMaskedLM) is trained like [RobertaForMaskedLM](/docs/transformers/v5.15.1/en/model_doc/roberta#transformers.RobertaForMaskedLM) and should be used as shown below.
 
   ```py
     input_ids = tokenizer.encode("This is a sentence from [MASK] training data", return_tensors="pt").to(model.device)
@@ -65,7 +65,7 @@ tokenizer.decode(predictions).split()
 transformers.LongformerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, attention_window: list[int] | int = 512, sep_token_id: int | None = 2, pad_token_id: int | None = 1, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 2, vocab_size: int = 30522, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.1, max_position_embeddings: int = 512, type_vocab_size: int = 2, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, onnx_export: bool = False, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/configuration_longformer.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/configuration_longformer.py#L24)
 
 **Parameters:**
 
@@ -111,8 +111,8 @@ This is the configuration class to store the configuration of a LongformerModel.
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [allenai/longformer-base-4096](https://huggingface.co/allenai/longformer-base-4096)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -137,7 +137,7 @@ Example:
 transformers.RobertaTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, errors: str = 'replace', bos_token: str = '<s>', eos_token: str = '</s>', sep_token: str = '</s>', cls_token: str = '<s>', unk_token: str = '<unk>', pad_token: str = '<pad>', mask_token: str = '<mask>', add_prefix_space: bool = False, trim_offsets: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/roberta/tokenization_roberta.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/roberta/tokenization_roberta.py#L28)
 
 **Parameters:**
 
@@ -187,7 +187,7 @@ call it on some text, but since the model was not pretrained this way, it might 
 
 When used with `is_split_into_words=True`, this tokenizer needs to be instantiated with `add_prefix_space=True`.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 ## LongformerTokenizerFast[[transformers.RobertaTokenizer]]
@@ -198,7 +198,7 @@ this superclass for more information regarding those methods.
 transformers.RobertaTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, errors: str = 'replace', bos_token: str = '<s>', eos_token: str = '</s>', sep_token: str = '</s>', cls_token: str = '<s>', unk_token: str = '<unk>', pad_token: str = '<pad>', mask_token: str = '<mask>', add_prefix_space: bool = False, trim_offsets: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/roberta/tokenization_roberta.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/roberta/tokenization_roberta.py#L28)
 
 **Parameters:**
 
@@ -248,7 +248,7 @@ call it on some text, but since the model was not pretrained this way, it might 
 
 When used with `is_split_into_words=True`, this tokenizer needs to be instantiated with `add_prefix_space=True`.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 ## Longformer specific outputs[[transformers.models.longformer.modeling_longformer.LongformerBaseModelOutput]]
@@ -259,7 +259,7 @@ this superclass for more information regarding those methods.
 transformers.models.longformer.modeling_longformer.LongformerBaseModelOutput(last_hidden_state: FloatTensor, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None, global_attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L41)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L41)
 
 **Parameters:**
 
@@ -279,7 +279,7 @@ Base class for Longformer's outputs, with potential hidden states, local and glo
 transformers.models.longformer.modeling_longformer.LongformerBaseModelOutputWithPooling(last_hidden_state: FloatTensor, pooler_output: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None, global_attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L79)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L79)
 
 **Parameters:**
 
@@ -301,7 +301,7 @@ Base class for Longformer's outputs that also contains a pooling of the last hid
 transformers.models.longformer.modeling_longformer.LongformerMaskedLMOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None, global_attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L122)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L122)
 
 **Parameters:**
 
@@ -323,7 +323,7 @@ Base class for masked language models outputs.
 transformers.models.longformer.modeling_longformer.LongformerQuestionAnsweringModelOutput(loss: typing.Optional[torch.FloatTensor] = None, start_logits: typing.Optional[torch.FloatTensor] = None, end_logits: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None, global_attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L165)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L165)
 
 **Parameters:**
 
@@ -347,7 +347,7 @@ Base class for outputs of question answering Longformer models.
 transformers.models.longformer.modeling_longformer.LongformerSequenceClassifierOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None, global_attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L207)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L207)
 
 **Parameters:**
 
@@ -369,7 +369,7 @@ Base class for outputs of sentence classification models.
 transformers.models.longformer.modeling_longformer.LongformerMultipleChoiceModelOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None, global_attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L250)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L250)
 
 **Parameters:**
 
@@ -391,7 +391,7 @@ Base class for outputs of multiple choice Longformer models.
 transformers.models.longformer.modeling_longformer.LongformerTokenClassifierOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None, global_attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L295)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L295)
 
 **Parameters:**
 
@@ -415,17 +415,17 @@ Base class for outputs of token classification models.
 transformers.LongformerModel(config, add_pooling_layer = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L1296)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L1296)
 
 **Parameters:**
 
-config ([LongformerModel](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LongformerModel](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare Longformer Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -439,11 +439,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, global_attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L1404)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L1404)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -459,15 +459,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [LongformerBaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerBaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [LongformerBaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerBaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [LongformerBaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerBaseModelOutputWithPooling) or a tuple of
+A [LongformerBaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerBaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LongformerConfig](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerConfig)) and inputs.
+elements depending on the configuration ([LongformerConfig](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerConfig)) and inputs.
 
-The [LongformerModel](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerModel) forward method, overrides the `__call__` special method.
+The [LongformerModel](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -545,15 +545,15 @@ Examples:
 transformers.LongformerForMaskedLM(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L1542)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L1542)
 
 **Parameters:**
 
-config ([LongformerForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerForMaskedLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LongformerForMaskedLM](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerForMaskedLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Longformer Model with a `language modeling` head on top."
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -567,11 +567,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, global_attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L1563)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L1563)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -589,15 +589,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [LongformerMaskedLMOutput](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerMaskedLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [LongformerMaskedLMOutput](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerMaskedLMOutput) or `tuple(torch.FloatTensor)`
 
-A [LongformerMaskedLMOutput](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerMaskedLMOutput) or a tuple of
+A [LongformerMaskedLMOutput](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerMaskedLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LongformerConfig](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerConfig)) and inputs.
+elements depending on the configuration ([LongformerConfig](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerConfig)) and inputs.
 
-The [LongformerForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerForMaskedLM) forward method, overrides the `__call__` special method.
+The [LongformerForMaskedLM](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerForMaskedLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -665,16 +665,16 @@ Let's try a very long input.
 transformers.LongformerForSequenceClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L1663)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L1663)
 
 **Parameters:**
 
-config ([LongformerForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LongformerForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Longformer Model transformer with a sequence classification/regression head on top (a linear layer on top of the
 pooled output) e.g. for GLUE tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -688,11 +688,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, global_attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L1675)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L1675)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -710,15 +710,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [LongformerSequenceClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerSequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [LongformerSequenceClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerSequenceClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [LongformerSequenceClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerSequenceClassifierOutput) or a tuple of
+A [LongformerSequenceClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerSequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LongformerConfig](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerConfig)) and inputs.
+elements depending on the configuration ([LongformerConfig](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerConfig)) and inputs.
 
-The [LongformerForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerForSequenceClassification) forward method, overrides the `__call__` special method.
+The [LongformerForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -815,16 +815,16 @@ Example of multi-label classification:
 transformers.LongformerForMultipleChoice(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L1996)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L1996)
 
 **Parameters:**
 
-config ([LongformerForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerForMultipleChoice)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LongformerForMultipleChoice](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerForMultipleChoice)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Longformer Model with a multiple choice classification head on top (a linear layer on top of the pooled output and a
 softmax) e.g. for RocStories/SWAG tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -838,11 +838,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, global_attention_mask: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L2007)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L2007)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
@@ -860,15 +860,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [LongformerMultipleChoiceModelOutput](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerMultipleChoiceModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [LongformerMultipleChoiceModelOutput](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerMultipleChoiceModelOutput) or `tuple(torch.FloatTensor)`
 
-A [LongformerMultipleChoiceModelOutput](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerMultipleChoiceModelOutput) or a tuple of
+A [LongformerMultipleChoiceModelOutput](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerMultipleChoiceModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LongformerConfig](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerConfig)) and inputs.
+elements depending on the configuration ([LongformerConfig](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerConfig)) and inputs.
 
-The [LongformerForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerForMultipleChoice) forward method, overrides the `__call__` special method.
+The [LongformerForMultipleChoice](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerForMultipleChoice) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -933,16 +933,16 @@ Example:
 transformers.LongformerForTokenClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L1915)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L1915)
 
 **Parameters:**
 
-config ([LongformerForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LongformerForTokenClassification](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Longformer transformer with a token classification head on top (a linear layer on top of the hidden-states
 output) e.g. for Named-Entity-Recognition (NER) tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -956,11 +956,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, global_attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L1927)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L1927)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -978,15 +978,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [LongformerTokenClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerTokenClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [LongformerTokenClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerTokenClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [LongformerTokenClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerTokenClassifierOutput) or a tuple of
+A [LongformerTokenClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerTokenClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LongformerConfig](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerConfig)) and inputs.
+elements depending on the configuration ([LongformerConfig](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerConfig)) and inputs.
 
-The [LongformerForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerForTokenClassification) forward method, overrides the `__call__` special method.
+The [LongformerForTokenClassification](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1058,16 +1058,16 @@ Example:
 transformers.LongformerForQuestionAnswering(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L1786)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L1786)
 
 **Parameters:**
 
-config ([LongformerForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LongformerForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Longformer transformer with a span classification head on top for extractive question-answering tasks like
 SQuAD (a linear layer on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1081,11 +1081,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, global_attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, start_positions: typing.Optional[torch.Tensor] = None, end_positions: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/longformer/modeling_longformer.py#L1797)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/longformer/modeling_longformer.py#L1797)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1105,15 +1105,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [LongformerQuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerQuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [LongformerQuestionAnsweringModelOutput](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerQuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`
 
-A [LongformerQuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerQuestionAnsweringModelOutput) or a tuple of
+A [LongformerQuestionAnsweringModelOutput](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.models.longformer.modeling_longformer.LongformerQuestionAnsweringModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LongformerConfig](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerConfig)) and inputs.
+elements depending on the configuration ([LongformerConfig](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerConfig)) and inputs.
 
-The [LongformerForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerForQuestionAnswering) forward method, overrides the `__call__` special method.
+The [LongformerForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1176,4 +1176,4 @@ Examples:
 ```
 
 ### Sapiens2
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/sapiens2.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/sapiens2.md

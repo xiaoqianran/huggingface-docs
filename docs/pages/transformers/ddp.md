@@ -36,9 +36,9 @@ accelerate launch --num_processes 4 train.py
 
 ## Configure DDP
 
-Pass these [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) to control DDP behavior.
+Pass these [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) to control DDP behavior.
 
-- `gradient_accumulation_steps()` determines when to perform the all-reduce. [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) skips the all-reduce on intermediate accumulation steps and runs it only on the final micro-batch. For example, with `gradient_accumulation_steps=4`, the all-reduce runs every 4 backward passes.
+- `gradient_accumulation_steps()` determines when to perform the all-reduce. [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) skips the all-reduce on intermediate accumulation steps and runs it only on the final micro-batch. For example, with `gradient_accumulation_steps=4`, the all-reduce runs every 4 backward passes.
 - `~TrainingArguments.ddp_find_unused_parameters` traverses the autograd graph at the end of the forward pass for parameters that won't receive a gradient and marks them as ready so they don't block the all-reduce. Don't use with `gradient_checkpointing()` because gradient checkpointing discards intermediate activations and recomputes them on the fly.
 - `~TrainingArguments.ddp_bucket_cap_mb` is the bucket size for batching gradients into a single all-reduce during the backward pass. A larger bucket means fewer all-reduce calls and less launch overhead.
 - `~TrainingArguments.ddp_broadcast_buffers` synchronizes model buffers (such as BatchNorm running statistics) from rank 0 to all other ranks at the start of every forward pass. Disable if your model only uses LayerNorm. Don't use with `gradient_checkpointing()`.
@@ -66,4 +66,4 @@ args = TrainingArguments(
 - Read the [Data Parallelism](https://nanotron-ultrascale-playbook.static.hf.space/index.html#data_parallelism) chapter from The Ultra-Scale Playbook for more information about how DDP works.
 
 ### Data collators
-https://huggingface.co/docs/transformers/v5.15.0/data_collators.md
+https://huggingface.co/docs/transformers/v5.15.1/data_collators.md

@@ -1,6 +1,6 @@
 # PEFT[[transformers.integrations.PeftAdapterMixin]]
 
-The [PeftAdapterMixin](/docs/transformers/v5.15.0/en/main_classes/peft#transformers.integrations.PeftAdapterMixin) provides functions from the [PEFT](https://huggingface.co/docs/peft/index) library for managing adapters with Transformers. This mixin supports all non-prompt-learning PEFT methods (LoRA, IA3, AdaLoRA, and others). Prefix tuning methods (prompt tuning, prompt learning) aren't supported because they can't be injected into a torch module.
+The [PeftAdapterMixin](/docs/transformers/v5.15.1/en/main_classes/peft#transformers.integrations.PeftAdapterMixin) provides functions from the [PEFT](https://huggingface.co/docs/peft/index) library for managing adapters with Transformers. This mixin supports all non-prompt-learning PEFT methods (LoRA, IA3, AdaLoRA, and others). Prefix tuning methods (prompt tuning, prompt learning) aren't supported because they can't be injected into a torch module.
 
 #### transformers.integrations.PeftAdapterMixin[[transformers.integrations.PeftAdapterMixin]]
 
@@ -8,7 +8,7 @@ The [PeftAdapterMixin](/docs/transformers/v5.15.0/en/main_classes/peft#transform
 transformers.integrations.PeftAdapterMixin()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/peft.py#L57)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/peft.py#L57)
 
 A class containing all functions for loading and using adapters weights that are supported in PEFT library. For
 more details about adapters and injecting them on a transformer-based model, check out the documentation of PEFT
@@ -32,7 +32,7 @@ With this mixin, if the correct PEFT version is installed (>= 0.19.1), it is pos
 load_adapter(peft_model_id: str | None = None, adapter_name: str | None = None, peft_config: dict[str, typing.Any] | None = None, adapter_state_dict: dict[str, 'torch.Tensor'] | None = None, low_cpu_mem_usage: bool = False, is_trainable: bool = False, hotswap: typing.Union[bool, typing.Literal['auto']] = 'auto', local_files_only: bool = False, adapter_kwargs: dict[str, typing.Any] | None = None, load_config: typing.Optional[ForwardRef('LoadStateDictConfig')] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/peft.py#L80)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/peft.py#L80)
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ Requires PEFT to be installed as a backend to load the adapter weights.
 add_adapter(adapter_config, adapter_name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/peft.py#L390)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/peft.py#L390)
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ Note that the newly added adapter is not automatically activated. To activate it
 set_adapter(adapter_name: list[str] | str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/peft.py#L430)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/peft.py#L430)
 
 **Parameters:**
 
@@ -107,7 +107,7 @@ Sets a specific adapter by forcing the model to use a that adapter and disable t
 disable_adapters()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/peft.py#L471)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/peft.py#L471)
 
 If you are not familiar with adapters and PEFT methods, we invite you to read more about them on the PEFT
 official documentation: https://huggingface.co/docs/peft
@@ -120,7 +120,7 @@ Disable all adapters that are attached to the model. This leads to inferring wit
 enable_adapters()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/peft.py#L490)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/peft.py#L490)
 
 If you are not familiar with adapters and PEFT methods, we invite you to read more about them on the PEFT
 official documentation: https://huggingface.co/docs/peft
@@ -133,7 +133,7 @@ Enable adapters that are attached to the model.
 enable_peft_hotswap(target_rank: int = 128, check_compiled: typing.Literal['error', 'warn', 'ignore'] = 'error')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/peft.py#L353)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/peft.py#L353)
 
 **Parameters:**
 
@@ -156,7 +156,7 @@ without calling this method first.
 active_adapters()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/peft.py#L508)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/peft.py#L508)
 
 If you are not familiar with adapters and PEFT methods, we invite you to read more about them on the PEFT
 official documentation: https://huggingface.co/docs/peft
@@ -173,7 +173,7 @@ a single string.
 get_adapter_state_dict(adapter_name: str | None = None, state_dict: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/peft.py#L537)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/peft.py#L537)
 
 **Parameters:**
 
@@ -193,7 +193,7 @@ If no adapter_name is passed, the active adapter is used.
 delete_adapter(adapter_names: list[str] | str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/peft.py#L622)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/peft.py#L622)
 
 **Parameters:**
 
@@ -202,4 +202,4 @@ adapter_names (`Union[list[str], str]`) : The name(s) of the adapter(s) to delet
 Delete a PEFT adapter from the underlying model.
 
 ### ExecuTorch
-https://huggingface.co/docs/transformers/v5.15.0/main_classes/executorch.md
+https://huggingface.co/docs/transformers/v5.15.1/main_classes/executorch.md

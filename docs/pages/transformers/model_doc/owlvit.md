@@ -19,7 +19,7 @@ This model was contributed by [adirik](https://huggingface.co/adirik). The origi
 
 OWL-ViT is a zero-shot text-conditioned object detection model. OWL-ViT uses [CLIP](clip) as its multi-modal backbone, with a ViT-like Transformer to get visual features and a causal language model to get the text features. To use CLIP for detection, OWL-ViT removes the final token pooling layer of the vision model and attaches a lightweight classification and box head to each transformer output token. Open-vocabulary classification is enabled by replacing the fixed classification layer weights with the class-name embeddings obtained from the text model. The authors first train CLIP from scratch and fine-tune it end-to-end with the classification and box heads on standard detection datasets using a bipartite matching loss. One or multiple text queries per image can be used to perform zero-shot text-conditioned object detection.
 
-[OwlViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTImageProcessor) can be used to resize (or rescale) and normalize images for the model and [CLIPTokenizer](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPTokenizer) is used to encode the text. [OwlViTProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTProcessor) wraps [OwlViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTImageProcessor) and [CLIPTokenizer](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPTokenizer) into a single instance to both encode the text and prepare the images. The following example shows how to perform object detection using [OwlViTProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTProcessor) and [OwlViTForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTForObjectDetection).
+[OwlViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTImageProcessor) can be used to resize (or rescale) and normalize images for the model and [CLIPTokenizer](/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer) is used to encode the text. [OwlViTProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTProcessor) wraps [OwlViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTImageProcessor) and [CLIPTokenizer](/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer) into a single instance to both encode the text and prepare the images. The following example shows how to perform object detection using [OwlViTProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTProcessor) and [OwlViTForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTForObjectDetection).
 
 ```python
 import requests
@@ -65,7 +65,7 @@ A demo notebook on using OWL-ViT for zero- and one-shot (image-guided) object de
 transformers.OwlViTConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, return_dict: bool = True, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, projection_dim: int = 512, logit_scale_init_value: float = 2.6592, initializer_factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/configuration_owlvit.py#L101)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/configuration_owlvit.py#L101)
 
 **Parameters:**
 
@@ -85,8 +85,8 @@ This is the configuration class to store the configuration of a OwlViTModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/owlvit-base-patch16](https://huggingface.co/google/owlvit-base-patch16)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## OwlViTTextConfig[[transformers.OwlViTTextConfig]]
 
@@ -96,7 +96,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.OwlViTTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 49408, hidden_size: int = 512, intermediate_size: int = 2048, num_hidden_layers: int = 12, num_attention_heads: int = 8, max_position_embeddings: int = 16, hidden_act: str = 'quick_gelu', layer_norm_eps: float = 1e-05, attention_dropout: float | int = 0.0, initializer_range: float = 0.02, initializer_factor: float = 1.0, pad_token_id: int | None = 0, bos_token_id: int | None = 49406, eos_token_id: int | list[int] | None = 49407)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/configuration_owlvit.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/configuration_owlvit.py#L27)
 
 **Parameters:**
 
@@ -132,8 +132,8 @@ This is the configuration class to store the configuration of a OwlViTModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/owlvit-base-patch16](https://huggingface.co/google/owlvit-base-patch16)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -158,7 +158,7 @@ Example:
 transformers.OwlViTVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 768, patch_size: int | list[int] | tuple[int, int] = 32, hidden_act: str = 'quick_gelu', layer_norm_eps: float = 1e-05, attention_dropout: float | int = 0.0, initializer_range: float = 0.02, initializer_factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/configuration_owlvit.py#L65)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/configuration_owlvit.py#L65)
 
 **Parameters:**
 
@@ -190,8 +190,8 @@ This is the configuration class to store the configuration of a OwlViTModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/owlvit-base-patch16](https://huggingface.co/google/owlvit-base-patch16)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -216,7 +216,7 @@ Example:
 transformers.OwlViTImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/image_processing_owlvit.py#L102)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/image_processing_owlvit.py#L102)
 
 **Parameters:**
 
@@ -268,7 +268,7 @@ Constructs a OwlViTImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -328,7 +328,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.OwlViTImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/image_processing_pil_owlvit.py#L108)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/image_processing_pil_owlvit.py#L108)
 
 **Parameters:**
 
@@ -380,7 +380,7 @@ Constructs a OwlViTImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -438,7 +438,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 post_process_object_detection(outputs: OwlViTObjectDetectionOutput, threshold: float = 0.1, target_sizes: transformers.utils.generic.TensorType | list[tuple] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/image_processing_pil_owlvit.py#L132)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/image_processing_pil_owlvit.py#L132)
 
 **Parameters:**
 
@@ -455,7 +455,7 @@ A list of dictionaries, each dictionary containing the following keys:
 - "labels": Indexes of the classes predicted by the model on the image.
 - "boxes": Image bounding boxes in (top_left_x, top_left_y, bottom_right_x, bottom_right_y) format.
 
-Converts the raw output of [OwlViTForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
+Converts the raw output of [OwlViTForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
 bottom_right_x, bottom_right_y) format.
 
 #### post_process_image_guided_detection[[transformers.OwlViTImageProcessorPil.post_process_image_guided_detection]]
@@ -464,7 +464,7 @@ bottom_right_x, bottom_right_y) format.
 post_process_image_guided_detection(outputs, threshold = 0.0, nms_threshold = 0.3, target_sizes = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/image_processing_pil_owlvit.py#L188)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/image_processing_pil_owlvit.py#L188)
 
 **Parameters:**
 
@@ -482,7 +482,7 @@ A list of dictionaries, each dictionary containing the scores, labels and boxes 
 in the batch as predicted by the model. All labels are set to None as
 `OwlViTForObjectDetection.image_guided_detection` perform one-shot object detection.
 
-Converts the output of [OwlViTForObjectDetection.image_guided_detection()](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTForObjectDetection.image_guided_detection) into the format expected by the COCO
+Converts the output of [OwlViTForObjectDetection.image_guided_detection()](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTForObjectDetection.image_guided_detection) into the format expected by the COCO
 api.
 
 ## OwlViTProcessor[[transformers.OwlViTProcessor]]
@@ -493,7 +493,7 @@ api.
 transformers.OwlViTProcessor(image_processor = None, tokenizer = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/processing_owlvit.py#L62)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/processing_owlvit.py#L62)
 
 **Parameters:**
 
@@ -503,8 +503,8 @@ tokenizer (`CLIPTokenizer`) : The tokenizer is a required input.
 
 Constructs a OwlViTProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[OwlViTProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTProcessor) offers all the functionalities of [OwlViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTImageProcessor) and [CLIPTokenizer](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPTokenizer). See the
-[~OwlViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTImageProcessor) and [~CLIPTokenizer](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPTokenizer) for more information.
+[OwlViTProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTProcessor) offers all the functionalities of [OwlViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTImageProcessor) and [CLIPTokenizer](/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer). See the
+[~OwlViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTImageProcessor) and [~CLIPTokenizer](/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer) for more information.
 
 #### __call__[[transformers.OwlViTProcessor.__call__]]
 
@@ -512,7 +512,7 @@ Constructs a OwlViTProcessor which wraps a image processor and a tokenizer into 
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/processing_owlvit.py#L66)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/processing_owlvit.py#L66)
 
 **Parameters:**
 
@@ -522,13 +522,13 @@ text (`Union[str, list[str], list[list[str]]]`, *optional*) : The sequence or ba
 
 query_images (`ImageInput`, *kwargs*, *optional*) : Query images to use for image-guided object detection. When provided, these images serve as visual queries to find similar objects in the main `images`. The query images override any text prompts, and the model performs image-to-image matching instead of text-to-image matching.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature)
 
-A [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
+A [BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
 - **input_ids** -- List of token ids to be fed to a model. Returned when `text` is not `None`.
 - **attention_mask** -- List of indices specifying which tokens should be attended to by the model (when
   `return_attention_mask=True` or if *"attention_mask"* is in `self.model_input_names` and if `text` is not
@@ -542,7 +542,7 @@ A [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#tran
 post_process_grounded_object_detection(outputs: OwlViTObjectDetectionOutput, threshold: float = 0.1, target_sizes: transformers.utils.generic.TensorType | list[tuple] | None = None, text_labels: list[list[str]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/processing_owlvit.py#L149)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/processing_owlvit.py#L149)
 
 **Parameters:**
 
@@ -562,7 +562,7 @@ A list of dictionaries, each dictionary containing the following keys:
 - "boxes": Image bounding boxes in (top_left_x, top_left_y, bottom_right_x, bottom_right_y) format.
 - "text_labels": The text labels for each predicted bounding box on the image.
 
-Converts the raw output of [OwlViTForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
+Converts the raw output of [OwlViTForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
 bottom_right_x, bottom_right_y) format.
 
 #### post_process_image_guided_detection[[transformers.OwlViTProcessor.post_process_image_guided_detection]]
@@ -571,7 +571,7 @@ bottom_right_x, bottom_right_y) format.
 post_process_image_guided_detection(outputs: OwlViTImageGuidedObjectDetectionOutput, threshold: float = 0.0, nms_threshold: float = 0.3, target_sizes: transformers.utils.generic.TensorType | list[tuple] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/processing_owlvit.py#L197)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/processing_owlvit.py#L197)
 
 **Parameters:**
 
@@ -590,7 +590,7 @@ A list of dictionaries, each dictionary containing the following keys:
 - "boxes": Image bounding boxes in (top_left_x, top_left_y, bottom_right_x, bottom_right_y) format.
 - "labels": Set to `None`.
 
-Converts the output of [OwlViTForObjectDetection.image_guided_detection()](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTForObjectDetection.image_guided_detection) into the format expected by the COCO
+Converts the output of [OwlViTForObjectDetection.image_guided_detection()](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTForObjectDetection.image_guided_detection) into the format expected by the COCO
 api.
 
 ## OwlViTModel[[transformers.OwlViTModel]]
@@ -601,15 +601,15 @@ api.
 transformers.OwlViTModel(config: OwlViTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/modeling_owlvit.py#L809)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/modeling_owlvit.py#L809)
 
 **Parameters:**
 
-config ([OwlViTConfig](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([OwlViTConfig](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Owlvit Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -623,13 +623,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, return_loss: bool | None = None, interpolate_pos_encoding: bool = False, return_base_image_embeds: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/modeling_owlvit.py#L903)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/modeling_owlvit.py#L903)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [OwlViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTImageProcessor). See `OwlViTImageProcessor.__call__()` for details ([OwlViTProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTProcessor) uses [OwlViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [OwlViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTImageProcessor). See `OwlViTImageProcessor.__call__()` for details ([OwlViTProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTProcessor) uses [OwlViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTImageProcessor) for processing images).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -643,9 +643,9 @@ return_base_image_embeds (`bool`, *optional*) : Whether or not to return the bas
 
 A `OwlViTOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTConfig)) and inputs.
+elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTConfig)) and inputs.
 
-The [OwlViTModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTModel) forward method, overrides the `__call__` special method.
+The [OwlViTModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -656,11 +656,11 @@ the latter silently ignores them.
   similarity scores.
 - **logits_per_text** (`torch.FloatTensor` of shape `(text_batch_size, image_batch_size)`) -- The scaled dot product scores between `text_embeds` and `image_embeds`. This represents the text-image
   similarity scores.
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size * num_max_text_queries, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [OwlViTTextModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTTextModel).
+- **text_embeds** (`torch.FloatTensor` of shape `(batch_size * num_max_text_queries, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [OwlViTTextModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTTextModel).
 - **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of
-  [OwlViTVisionModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTVisionModel).
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [OwlViTTextModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTTextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [OwlViTVisionModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTVisionModel).
+  [OwlViTVisionModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTVisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [OwlViTTextModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTTextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [OwlViTVisionModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTVisionModel).
 
 Examples:
 ```python
@@ -686,19 +686,19 @@ Examples:
 get_text_features(input_ids: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/modeling_owlvit.py#L832)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/modeling_owlvit.py#L832)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size * num_max_text_queries, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size * num_max_text_queries, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTConfig)) and inputs.
+elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -735,19 +735,19 @@ Examples:
 get_image_features(pixel_values: Tensor, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/modeling_owlvit.py#L869)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/modeling_owlvit.py#L869)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [OwlViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTImageProcessor). See `OwlViTImageProcessor.__call__()` for details ([OwlViTProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTProcessor) uses [OwlViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [OwlViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTImageProcessor). See `OwlViTImageProcessor.__call__()` for details ([OwlViTProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTProcessor) uses [OwlViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTImageProcessor) for processing images).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTConfig)) and inputs.
+elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -789,7 +789,7 @@ Examples:
 transformers.OwlViTTextModel(config: OwlViTTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/modeling_owlvit.py#L666)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/modeling_owlvit.py#L666)
 
 #### forward[[transformers.OwlViTTextModel.forward]]
 
@@ -797,21 +797,21 @@ transformers.OwlViTTextModel(config: OwlViTTextConfig)
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/modeling_owlvit.py#L682)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/modeling_owlvit.py#L682)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size * num_max_text_queries, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size * num_max_text_queries, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTConfig)) and inputs.
+elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTConfig)) and inputs.
 
-The [OwlViTTextModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTTextModel) forward method, overrides the `__call__` special method.
+The [OwlViTTextModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -854,7 +854,7 @@ Examples:
 transformers.OwlViTVisionModel(config: OwlViTVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/modeling_owlvit.py#L759)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/modeling_owlvit.py#L759)
 
 #### forward[[transformers.OwlViTVisionModel.forward]]
 
@@ -862,21 +862,21 @@ transformers.OwlViTVisionModel(config: OwlViTVisionConfig)
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/modeling_owlvit.py#L773)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/modeling_owlvit.py#L773)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [OwlViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTImageProcessor). See `OwlViTImageProcessor.__call__()` for details ([OwlViTProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTProcessor) uses [OwlViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [OwlViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTImageProcessor). See `OwlViTImageProcessor.__call__()` for details ([OwlViTProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTProcessor) uses [OwlViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTImageProcessor) for processing images).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTConfig)) and inputs.
+elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTConfig)) and inputs.
 
-The [OwlViTVisionModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTVisionModel) forward method, overrides the `__call__` special method.
+The [OwlViTVisionModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -925,7 +925,7 @@ Examples:
 transformers.OwlViTForObjectDetection(config: OwlViTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/modeling_owlvit.py#L1050)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/modeling_owlvit.py#L1050)
 
 #### forward[[transformers.OwlViTForObjectDetection.forward]]
 
@@ -933,13 +933,13 @@ transformers.OwlViTForObjectDetection(config: OwlViTConfig)
 forward(input_ids: Tensor, pixel_values: FloatTensor, attention_mask: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/modeling_owlvit.py#L1375)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/modeling_owlvit.py#L1375)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size * num_max_text_queries, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids).
+input_ids (`torch.LongTensor` of shape `(batch_size * num_max_text_queries, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids).
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [OwlViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTImageProcessor). See `OwlViTImageProcessor.__call__()` for details ([OwlViTProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTProcessor) uses [OwlViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [OwlViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTImageProcessor). See `OwlViTImageProcessor.__call__()` for details ([OwlViTProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTProcessor) uses [OwlViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTImageProcessor) for processing images).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -949,9 +949,9 @@ interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to 
 
 A `OwlViTObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTConfig)) and inputs.
+elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTConfig)) and inputs.
 
-The [OwlViTForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTForObjectDetection) forward method, overrides the `__call__` special method.
+The [OwlViTForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -966,13 +966,13 @@ the latter silently ignores them.
   values are normalized in [0, 1], relative to the size of each individual image in the batch (disregarding
   possible padding). You can use `post_process_object_detection()` to retrieve the
   unnormalized bounding boxes.
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, num_max_text_queries, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [OwlViTTextModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTTextModel).
-- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, patch_size, patch_size, output_dim`) -- Pooled output of [OwlViTVisionModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTVisionModel). OWL-ViT represents images as a set of image patches and computes
+- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, num_max_text_queries, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [OwlViTTextModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTTextModel).
+- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, patch_size, patch_size, output_dim`) -- Pooled output of [OwlViTVisionModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTVisionModel). OWL-ViT represents images as a set of image patches and computes
   image embeddings for each patch.
 - **class_embeds** (`torch.FloatTensor` of shape `(batch_size, num_patches, hidden_size)`) -- Class embeddings of all image patches. OWL-ViT represents images as a set of image patches where the total
   number of patches is (image_size / patch_size)**2.
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [OwlViTTextModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTTextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [OwlViTVisionModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTVisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [OwlViTTextModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTTextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [OwlViTVisionModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTVisionModel).
 
 Examples:
 ```python
@@ -1015,11 +1015,11 @@ Detected a photo of a cat with confidence 0.717 at location [1.46, 55.26, 315.55
 image_guided_detection(pixel_values: FloatTensor, query_pixel_values: typing.Optional[torch.FloatTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/owlvit/modeling_owlvit.py#L1290)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/owlvit/modeling_owlvit.py#L1290)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [OwlViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTImageProcessor). See `OwlViTImageProcessor.__call__()` for details ([OwlViTProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTProcessor) uses [OwlViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [OwlViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTImageProcessor). See `OwlViTImageProcessor.__call__()` for details ([OwlViTProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTProcessor) uses [OwlViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTImageProcessor) for processing images).
 
 query_pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, height, width)`) : Pixel values of query image(s) to be detected. Pass in one query image per target image.
 
@@ -1029,12 +1029,12 @@ interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to 
 
 A `OwlViTImageGuidedObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTConfig)) and inputs.
+elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTConfig)) and inputs.
 
 - **logits** (`torch.FloatTensor` of shape `(batch_size, num_patches, num_queries)`) -- Classification logits (including no-object) for all queries.
-- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, patch_size, patch_size, output_dim`) -- Pooled output of [OwlViTVisionModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTVisionModel). OWL-ViT represents images as a set of image patches and computes
+- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, patch_size, patch_size, output_dim`) -- Pooled output of [OwlViTVisionModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTVisionModel). OWL-ViT represents images as a set of image patches and computes
   image embeddings for each patch.
-- **query_image_embeds** (`torch.FloatTensor` of shape `(batch_size, patch_size, patch_size, output_dim`) -- Pooled output of [OwlViTVisionModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTVisionModel). OWL-ViT represents images as a set of image patches and computes
+- **query_image_embeds** (`torch.FloatTensor` of shape `(batch_size, patch_size, patch_size, output_dim`) -- Pooled output of [OwlViTVisionModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTVisionModel). OWL-ViT represents images as a set of image patches and computes
   image embeddings for each patch.
 - **target_pred_boxes** (`torch.FloatTensor` of shape `(batch_size, num_patches, 4)`) -- Normalized boxes coordinates for all queries, represented as (center_x, center_y, width, height). These
   values are normalized in [0, 1], relative to the size of each individual target image in the batch
@@ -1046,8 +1046,8 @@ elements depending on the configuration ([OwlViTConfig](/docs/transformers/v5.15
   retrieve the unnormalized bounding boxes.
 - **class_embeds** (`torch.FloatTensor` of shape `(batch_size, num_patches, hidden_size)`) -- Class embeddings of all image patches. OWL-ViT represents images as a set of image patches where the total
   number of patches is (image_size / patch_size)**2.
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [OwlViTTextModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTTextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [OwlViTVisionModel](/docs/transformers/v5.15.0/en/model_doc/owlvit#transformers.OwlViTVisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [OwlViTTextModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTTextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [OwlViTVisionModel](/docs/transformers/v5.15.1/en/model_doc/owlvit#transformers.OwlViTVisionModel).
 
 Examples:
 ```python
@@ -1084,4 +1084,4 @@ Detected similar object with confidence 1.0 at location [334.84, 25.33, 636.16, 
 ```
 
 ### BLIP-2
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/blip-2.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/blip-2.md

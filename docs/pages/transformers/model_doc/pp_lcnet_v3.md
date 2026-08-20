@@ -14,7 +14,7 @@
 transformers.PPLCNetV3Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, scale: float | int = 1.0, block_configs: list | None = None, stem_channels: int = 16, stem_stride: int = 2, reduction: int = 4, divisor: int = 8, hidden_act: str = 'hardswish', _out_features: list[str] | None = None, _out_indices: list[int] | None = None, conv_symmetric_num: int = 4)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_lcnet_v3/configuration_pp_lcnet_v3.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_lcnet_v3/configuration_pp_lcnet_v3.py#L31)
 
 **Parameters:**
 
@@ -38,8 +38,8 @@ This is the configuration class to store the configuration of a Pp Lcnet V3Model
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/Not_yet_released](https://huggingface.co/PaddlePaddle/Not_yet_released)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## PPLCNetV3Backbone[[transformers.PPLCNetV3Backbone]]
 
@@ -49,15 +49,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.PPLCNetV3Backbone(config: PPLCNetV3Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_lcnet_v3/modeling_pp_lcnet_v3.py#L326)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_lcnet_v3/modeling_pp_lcnet_v3.py#L326)
 
 **Parameters:**
 
-config ([PPLCNetV3Config](/docs/transformers/v5.15.0/en/model_doc/pp_lcnet_v3#transformers.PPLCNetV3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPLCNetV3Config](/docs/transformers/v5.15.1/en/model_doc/pp_lcnet_v3#transformers.PPLCNetV3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PPLCNetV3 backbone model for feature extraction.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -71,7 +71,7 @@ and behavior.
 forward(pixel_values: Tensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_lcnet_v3/modeling_pp_lcnet_v3.py#L339)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_lcnet_v3/modeling_pp_lcnet_v3.py#L339)
 
 **Parameters:**
 
@@ -81,9 +81,9 @@ pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, im
 
 A `BackboneOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PPLCNetV3Config](/docs/transformers/v5.15.0/en/model_doc/pp_lcnet_v3#transformers.PPLCNetV3Config)) and inputs.
+elements depending on the configuration ([PPLCNetV3Config](/docs/transformers/v5.15.1/en/model_doc/pp_lcnet_v3#transformers.PPLCNetV3Config)) and inputs.
 
-The [PPLCNetV3Backbone](/docs/transformers/v5.15.0/en/model_doc/pp_lcnet_v3#transformers.PPLCNetV3Backbone) forward method, overrides the `__call__` special method.
+The [PPLCNetV3Backbone](/docs/transformers/v5.15.1/en/model_doc/pp_lcnet_v3#transformers.PPLCNetV3Backbone) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -120,4 +120,4 @@ Examples:
 ```
 
 ### GlmAsr
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/glmasr.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/glmasr.md

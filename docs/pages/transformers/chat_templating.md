@@ -1,6 +1,6 @@
 # Chat templates
 
-The [chat basics](./conversations) guide covers how to store chat histories and generate text from chat models using [TextGenerationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.TextGenerationPipeline).
+The [chat basics](./conversations) guide covers how to store chat histories and generate text from chat models using [TextGenerationPipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.TextGenerationPipeline).
 
 This guide is intended for more advanced users, and covers the underlying classes and methods, as well as the key concepts for understanding what's actually going on when you chat with a model.
 
@@ -81,7 +81,7 @@ How many helicopters can a human eat in one sitting?</s>
 <|assistant|>
 ```
 
-Pass the tokenized chat to [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to generate a response.
+Pass the tokenized chat to [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) to generate a response.
 
 ```py
 outputs = model.generate(tokenized_chat, max_new_tokens=128) 
@@ -103,7 +103,7 @@ Matey, I'm afraid I must inform ye that humans cannot eat helicopters. Helicopte
 
 ### add_generation_prompt
 
-You may have noticed the [add_generation_prompt](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template.add_generation_prompt) argument in the above examples.
+You may have noticed the [add_generation_prompt](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template.add_generation_prompt) argument in the above examples.
 This argument adds tokens to the end of the chat that indicate the start of an `assistant` response. Remember: Beneath all the chat abstractions, chat models are still just language models that continue a sequence of tokens!
 If you include tokens that tell it that it's now in an `assistant` response, it will correctly write a response, but if you don't include these tokens, the model may get confused and do something strange, like **continuing** the user's message instead of replying to it!
 
@@ -143,11 +143,11 @@ Can I ask a question?<|im_end|>
 
 When `add_generation_prompt=True`, `<|im_start|>assistant` is added at the end to indicate the start of an `assistant` message. This lets the model know an `assistant` response is next.
 
-Not all models require generation prompts, and some models, like [Llama](./model_doc/llama), don't have any special tokens before the `assistant` response. In these cases, [add_generation_prompt](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template.add_generation_prompt) has no effect.
+Not all models require generation prompts, and some models, like [Llama](./model_doc/llama), don't have any special tokens before the `assistant` response. In these cases, [add_generation_prompt](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template.add_generation_prompt) has no effect.
 
 ### continue_final_message
 
-The [continue_final_message](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template.continue_final_message) parameter controls whether the final message in the chat should be continued or not instead of starting a new one. It removes end of sequence tokens so that the model continues generation from the final message.
+The [continue_final_message](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template.continue_final_message) parameter controls whether the final message in the chat should be continued or not instead of starting a new one. It removes end of sequence tokens so that the model continues generation from the final message.
 
 This is useful for “prefilling” a model response. In the example below, the model generates text that continues the JSON string rather than starting a new message. It can be very useful for improving the accuracy of instruction following when you know how to start its replies.
 
@@ -162,7 +162,7 @@ model.generate(**formatted_chat)
 ```
 
 > [!WARNING]
-> You shouldn't use [add_generation_prompt](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template.add_generation_prompt) and [continue_final_message](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template.continue_final_message) together. The former adds tokens that start a new message, while the latter removes end of sequence tokens. Using them together returns an error.
+> You shouldn't use [add_generation_prompt](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template.add_generation_prompt) and [continue_final_message](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template.continue_final_message) together. The former adds tokens that start a new message, while the latter removes end of sequence tokens. Using them together returns an error.
 
 Pass a field name as a string to prefill that field instead of `content`. Reasoning models often expose a separate field, like `reasoning_content` on Qwen or `thinking` on Gemma. Prefilling `content` closes the reasoning block before generation starts, so the model can't continue inside it. Prefilling the reasoning field directly leaves the block open.
 
@@ -177,7 +177,7 @@ formatted_chat = tokenizer.apply_chat_template(chat, tokenize=False, continue_fi
 
 The named field must exist on the final message and must be referenced by the chat template. An error is raised when either check fails.
 
-[TextGenerationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.TextGenerationPipeline) sets [add_generation_prompt](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template.add_generation_prompt) to `True` by default to start a new message. However, if the final message in the chat has the `assistant` role, it assumes the message is a prefill and switches to `continue_final_message=True`. This is because most models don't support multiple consecutive assistant messages. To override this behavior, explicitly pass the [continue_final_message](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template.continue_final_message) argument to the pipeline.
+[TextGenerationPipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.TextGenerationPipeline) sets [add_generation_prompt](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template.add_generation_prompt) to `True` by default to start a new message. However, if the final message in the chat has the `assistant` role, it assumes the message is a prefill and switches to `continue_final_message=True`. This is because most models don't support multiple consecutive assistant messages. To override this behavior, explicitly pass the [continue_final_message](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template.continue_final_message) argument to the pipeline.
 
 ## Model training
 
@@ -215,4 +215,4 @@ The sun.</s>
 After this step, you can continue following the [training recipe](./tasks/language_modeling) for causal language models using the `formatted_chat` column.
 
 ### Tracing model intermediate outputs
-https://huggingface.co/docs/transformers/v5.15.0/model_output_tracing.md
+https://huggingface.co/docs/transformers/v5.15.1/model_output_tracing.md

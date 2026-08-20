@@ -20,7 +20,7 @@ Those processors inherit from the following base class that implements the savin
 transformers.ProcessorMixin(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L597)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L597)
 
 This is a mixin used to provide saving/loading functionality for all processor classes.
 
@@ -30,7 +30,7 @@ This is a mixin used to provide saving/loading functionality for all processor c
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L651)
 
 **Parameters:**
 
@@ -42,9 +42,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 #### prepare_inputs_layout[[transformers.ProcessorMixin.prepare_inputs_layout]]
 
@@ -52,7 +52,7 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 prepare_inputs_layout(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L712)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L712)
 
 Normalize and prefetch inputs before processing. Wraps text in a list for multimodal
 processors, fetches remote images and audio if URLs are provided, and ensures audio
@@ -64,7 +64,7 @@ is properly batched. Returns the normalized `(images, text, videos, audio)` tupl
 validate_inputs(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L742)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L742)
 
 Validate that at least one input is provided and that no deprecated keyword arguments
 are used. Raises `ValueError` otherwise.
@@ -77,7 +77,7 @@ Override when the processor needs additional validation on the input args.
 get_text_with_replacements(text: list, images_replacements: list = [], videos_replacements: list = [], audio_replacements: list = [])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L815)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L815)
 
 **Parameters:**
 
@@ -123,7 +123,7 @@ other supported modalities.
 create_mm_token_type_ids(input_ids: list)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L920)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L920)
 
 **Parameters:**
 
@@ -147,7 +147,7 @@ Each position is assigned an integer indicating which modality it belongs to:
 apply_chat_template(conversation: list[dict[str, str]] | list[list[dict[str, str]]], chat_template: str | None = None, tools: list[dict] | None = None, documents: list[dict[str, str]] | None = None, add_generation_prompt: bool = False, continue_final_message: bool | str = False, return_assistant_tokens_mask: bool = False, tokenize: bool = False, return_tensors: str | transformers.utils.generic.TensorType | None = None, return_dict: bool = False, load_audio_from_video: bool = False, processor_kwargs: dict | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L1976)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L1976)
 
 **Parameters:**
 
@@ -180,7 +180,7 @@ fields.
 
 #### transformers.ProcessingKwargs[[transformers.ProcessingKwargs]]
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L433)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L433)
 
 Base class for kwargs passing to processors.
 In case a model has specific kwargs that are not present in the base class or default values for existing keys,
@@ -220,15 +220,15 @@ CustomProcessorKwargs.__annotations__["images_kwargs"] = CustomImagesKwargs  # p
 
 #### transformers.TextKwargs[[transformers.TextKwargs]]
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L166)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L166)
 
 **Parameters:**
 
 add_special_tokens (`bool`, *optional*) : Whether or not to add special tokens when encoding the sequences.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*) : Activates and controls padding.
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*) : Activates and controls padding.
 
-truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*) : Activates and controls truncation.
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*) : Activates and controls truncation.
 
 max_length (`int`, *optional*) : Controls the maximum length to use by one of the truncation/padding parameters.
 
@@ -258,14 +258,14 @@ return_mm_token_type_ids (`bool`, *optional*) : Whether to return multimodal tok
 
 return_text_replacement_offsets (`bool`, *optional*) : Whether to return character offsets for each mm placeholder and its replacement.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
 Keyword arguments for text processing. For extended documentation, check out tokenization_utils_base methods and
 docstrings associated.
 
 #### transformers.ImagesKwargs[[transformers.ImagesKwargs]]
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L235)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L235)
 
 **Parameters:**
 
@@ -303,7 +303,7 @@ input_data_format (`ChannelDimension` or `str`, *optional*) : The channel dimens
 
 device (`Union[str, torch.Tensor]`, *optional*) : The device to use for processing (e.g. "cpu", "cuda"), only relevant for torchvision backend.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
 disable_grouping (`bool`, *optional*) : Whether to group images by shapes when processing or not, only relevant for torchvision backend.
 
@@ -314,7 +314,7 @@ class methods and docstrings.
 
 #### transformers.VideosKwargs[[transformers.VideosKwargs]]
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L308)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L308)
 
 **Parameters:**
 
@@ -360,13 +360,13 @@ device (`Union[str, torch.Tensor]`, *optional*) : The device to use for processi
 
 return_metadata (`bool`, *optional*) : Whether to return video metadata or not.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
 Keyword arguments for video processing.
 
 #### transformers.AudioKwargs[[transformers.AudioKwargs]]
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L385)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L385)
 
 **Parameters:**
 
@@ -374,7 +374,7 @@ sampling_rate (`int`, *optional*) : The sampling rate at which the `raw_speech` 
 
 raw_speech (`np.ndarray`, `list[float]`, `list[np.ndarray]`, `list[list[float]]`) : The sequence or batch of sequences to be padded. Each sequence can be a numpy array, a list of float values, a list of numpy arrays or a list of list of float values. Must be mono channel audio, not stereo, i.e. single float per timestep.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'`
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'`
 
 max_length (`int`, *optional*) : Maximum length of the returned list and optionally padding length (see above).
 
@@ -382,9 +382,9 @@ truncation (`bool`, *optional*) : Activates truncation to cut input sequences lo
 
 pad_to_multiple_of (`int`, *optional*) : If set, will pad the sequence to a multiple of the provided value.
 
-return_attention_mask (`bool`, *optional*) : Whether or not [__call__()](/docs/transformers/v5.15.0/en/model_doc/audio-spectrogram-transformer#transformers.ASTFeatureExtractor.__call__) should return `attention_mask`.
+return_attention_mask (`bool`, *optional*) : Whether or not [__call__()](/docs/transformers/v5.15.1/en/model_doc/audio-spectrogram-transformer#transformers.ASTFeatureExtractor.__call__) should return `attention_mask`.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
 load_audio_backend (`str`, *optional*) : Backend used by `load_audio()` to decode/resample audio referenced by URL/path in `apply_chat_template`. One of `"auto"`, `"torchcodec"`, `"librosa"`, `"torchaudio"`.
 
@@ -393,10 +393,10 @@ Keyword arguments for audio processing.
 ## Deprecated processors[[transformers.DataProcessor]]
 
 All processors follow the same architecture which is that of the
-[DataProcessor](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.DataProcessor). The processor returns a list of
-[InputExample](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.InputExample). These
-[InputExample](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.InputExample) can be converted to
-[InputFeatures](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.InputFeatures) in order to be fed to the model.
+[DataProcessor](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.DataProcessor). The processor returns a list of
+[InputExample](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.InputExample). These
+[InputExample](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.InputExample) can be converted to
+[InputFeatures](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.InputFeatures) in order to be fed to the model.
 
 #### transformers.DataProcessor[[transformers.DataProcessor]]
 
@@ -404,7 +404,7 @@ All processors follow the same architecture which is that of the
 transformers.DataProcessor()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/utils.py#L78)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/utils.py#L78)
 
 Base class for data converters for sequence classification data sets.
 
@@ -414,9 +414,9 @@ Base class for data converters for sequence classification data sets.
 get_dev_examples(data_dir)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/utils.py#L95)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/utils.py#L95)
 
-Gets a collection of [InputExample](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.InputExample) for the dev set.
+Gets a collection of [InputExample](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.InputExample) for the dev set.
 
 #### get_example_from_tensor_dict[[transformers.DataProcessor.get_example_from_tensor_dict]]
 
@@ -424,7 +424,7 @@ Gets a collection of [InputExample](/docs/transformers/v5.15.0/en/main_classes/p
 get_example_from_tensor_dict(tensor_dict)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/utils.py#L81)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/utils.py#L81)
 
 **Parameters:**
 
@@ -438,7 +438,7 @@ Gets an example from a dict.
 get_labels()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/utils.py#L103)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/utils.py#L103)
 
 Gets the list of labels for this data set.
 
@@ -448,9 +448,9 @@ Gets the list of labels for this data set.
 get_test_examples(data_dir)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/utils.py#L99)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/utils.py#L99)
 
-Gets a collection of [InputExample](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.InputExample) for the test set.
+Gets a collection of [InputExample](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.InputExample) for the test set.
 
 #### get_train_examples[[transformers.DataProcessor.get_train_examples]]
 
@@ -458,9 +458,9 @@ Gets a collection of [InputExample](/docs/transformers/v5.15.0/en/main_classes/p
 get_train_examples(data_dir)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/utils.py#L91)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/utils.py#L91)
 
-Gets a collection of [InputExample](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.InputExample) for the train set.
+Gets a collection of [InputExample](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.InputExample) for the train set.
 
 #### tfds_map[[transformers.DataProcessor.tfds_map]]
 
@@ -468,7 +468,7 @@ Gets a collection of [InputExample](/docs/transformers/v5.15.0/en/main_classes/p
 tfds_map(example)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/utils.py#L107)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/utils.py#L107)
 
 Some tensorflow_datasets datasets are not formatted the same way the GLUE datasets are. This method converts
 examples to the correct format.
@@ -479,7 +479,7 @@ examples to the correct format.
 transformers.InputExample(guid: str, text_a: str, text_b: str | None = None, label: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/utils.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/utils.py#L28)
 
 **Parameters:**
 
@@ -499,7 +499,7 @@ A single training/test example for simple sequence classification.
 to_json_string()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/utils.py#L47)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/utils.py#L47)
 
 Serializes this instance to a JSON string.
 
@@ -509,7 +509,7 @@ Serializes this instance to a JSON string.
 transformers.InputFeatures(input_ids: list, attention_mask: list[int] | None = None, token_type_ids: list[int] | None = None, label: int | float | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/utils.py#L53)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/utils.py#L53)
 
 **Parameters:**
 
@@ -529,7 +529,7 @@ A single set of features of data. Property names are the same names as the corre
 to_json_string()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/utils.py#L73)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/utils.py#L73)
 
 Serializes this instance to a JSON string.
 
@@ -555,7 +555,7 @@ Those processors are:
 - `~data.processors.utils.WnliProcessor`
 
 Additionally, the following method can be used to load values from a data file and convert them to a list of
-[InputExample](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.InputExample).
+[InputExample](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.InputExample).
 
 #### transformers.glue_convert_examples_to_features[[transformers.glue_convert_examples_to_features]]
 
@@ -563,7 +563,7 @@ Additionally, the following method can be used to load values from a data file a
 transformers.glue_convert_examples_to_features(examples: list, tokenizer: PythonBackend, max_length: int | None = None, task = None, label_list = None, output_mode = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/glue.py#L35)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/glue.py#L35)
 
 **Parameters:**
 
@@ -625,7 +625,7 @@ They both inherit from the abstract class `~data.processors.utils.SquadProcessor
 transformers.data.processors.squad.SquadProcessor()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/squad.py#L433)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/squad.py#L433)
 
 Processor for the SQuAD data set. overridden by SquadV1Processor and SquadV2Processor, used by the version 1.1 and
 version 2.0 of SQuAD, respectively.
@@ -636,7 +636,7 @@ version 2.0 of SQuAD, respectively.
 get_dev_examples(data_dir, filename = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/squad.py#L521)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/squad.py#L521)
 
 **Parameters:**
 
@@ -652,7 +652,7 @@ Returns the evaluation example from the data directory.
 get_examples_from_dataset(dataset, evaluate = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/squad.py#L466)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/squad.py#L466)
 
 **Parameters:**
 
@@ -683,7 +683,7 @@ Examples:
 get_train_examples(data_dir, filename = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/squad.py#L499)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/squad.py#L499)
 
 **Parameters:**
 
@@ -702,13 +702,13 @@ Additionally, the following method can be used to convert SQuAD examples into
 transformers.squad_convert_examples_to_features(examples, tokenizer, max_seq_length, doc_stride, max_query_length, is_training, padding_strategy = 'max_length', return_dataset = False, threads = 1, tqdm_enabled = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/processors/squad.py#L313)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/processors/squad.py#L313)
 
 **Parameters:**
 
 examples : list of `SquadExample`
 
-tokenizer : an instance of a child of [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)
+tokenizer : an instance of a child of [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend)
 
 max_seq_length : The maximum sequence length of the inputs.
 
@@ -793,4 +793,4 @@ features = squad_convert_examples_to_features(
 Another example using these processors is given in the [run_squad.py](https://github.com/huggingface/transformers/tree/main/examples/legacy/question-answering/run_squad.py) script.
 
 ### Configuration
-https://huggingface.co/docs/transformers/v5.15.0/main_classes/configuration.md
+https://huggingface.co/docs/transformers/v5.15.1/main_classes/configuration.md

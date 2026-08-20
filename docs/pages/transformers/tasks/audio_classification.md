@@ -162,9 +162,9 @@ Your `compute_metrics` function is ready to go now, and you'll return to it when
 
 ## Train
 
-If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#train-with-pytorch-trainer)!
+If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#train-with-pytorch-trainer)!
 
-You're ready to start training your model now! Load Wav2Vec2 with [AutoModelForAudioClassification](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForAudioClassification) along with the number of expected labels, and the label mappings:
+You're ready to start training your model now! Load Wav2Vec2 with [AutoModelForAudioClassification](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForAudioClassification) along with the number of expected labels, and the label mappings:
 
 ```py
 >>> from transformers import AutoModelForAudioClassification, TrainingArguments, Trainer
@@ -177,9 +177,9 @@ You're ready to start training your model now! Load Wav2Vec2 with [AutoModelForA
 
 At this point, only three steps remain:
 
-1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir`, which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model). At the end of each epoch, the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) will evaluate the accuracy and save the training checkpoint.
-2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, tokenizer, data collator, and `compute_metrics` function.
-3. Call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) to fine-tune your model.
+1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir`, which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model). At the end of each epoch, the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) will evaluate the accuracy and save the training checkpoint.
+2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, tokenizer, data collator, and `compute_metrics` function.
+3. Call [train()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.train) to fine-tune your model.
 
 ```py
 >>> training_args = TrainingArguments(
@@ -211,7 +211,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -234,7 +234,7 @@ Load an audio file for inference. Remember to resample the sampling rate of the 
 >>> audio_file = dataset[0]["audio"]["path"]
 ```
 
-The simplest way to try out your fine-tuned model for inference is to use it in a [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline). Instantiate a `pipeline` for audio classification with your model, and pass your audio file to it:
+The simplest way to try out your fine-tuned model for inference is to use it in a [pipeline()](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.pipeline). Instantiate a `pipeline` for audio classification with your model, and pass your audio file to it:
 
 ```py
 >>> from transformers import pipeline
@@ -283,4 +283,4 @@ Get the class with the highest probability, and use the model's `id2label` mappi
 ```
 
 ### Image classification
-https://huggingface.co/docs/transformers/v5.15.0/tasks/image_classification.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/image_classification.md

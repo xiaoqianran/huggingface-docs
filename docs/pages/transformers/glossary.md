@@ -50,7 +50,7 @@ We can see that 0s have been added on the right of the first sentence to make it
 ```
 
 This can then be converted into a tensor in PyTorch. The attention mask is a binary tensor indicating the
-position of the padded indices so that the model does not attend to them. For the [BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer), `1` indicates a
+position of the padded indices so that the model does not attend to them. For the [BertTokenizer](/docs/transformers/v5.15.1/en/model_doc/layoutlm#transformers.BertTokenizer), `1` indicates a
 value that should be attended to, while `0` indicates a padded value. This attention mask is in the dictionary returned
 by the tokenizer under the key "attention_mask":
 
@@ -71,7 +71,7 @@ See [causal language modeling](#causal-language-modeling) and [decoder models](#
 
 ### backbone
 
-The backbone is the network (embeddings and layers) that outputs the raw hidden states or features. It is usually connected to a [head](#head) which accepts the features as its input to make a prediction. For example, [ViTModel](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTModel) is a backbone without a specific head on top. Other models can also use [ViTModel](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTModel) as a backbone such as [DPT](model_doc/dpt).
+The backbone is the network (embeddings and layers) that outputs the raw hidden states or features. It is usually connected to a [head](#head) which accepts the features as its input to make a prediction. For example, [ViTModel](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTModel) is a backbone without a specific head on top. Other models can also use [ViTModel](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTModel) as a backbone such as [DPT](model_doc/dpt).
 
 ## C
 
@@ -147,7 +147,7 @@ embeddings of both feed forward layers `[batch_size, config.hidden_size]_0, ...,
 individually and concat them afterward to `[batch_size, sequence_length, config.hidden_size]` with `n = sequence_length`, which trades increased computation time against reduced memory use, but yields a mathematically
 **equivalent** result.
 
-For models employing the function [apply_chunking_to_forward()](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.apply_chunking_to_forward), the `chunk_size` defines the number of output
+For models employing the function [apply_chunking_to_forward()](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.apply_chunking_to_forward), the `chunk_size` defines the number of output
 embeddings that are computed in parallel and thus defines the trade-off between memory and time complexity. If
 `chunk_size` is set to 0, no feed forward chunking is done.
 
@@ -163,9 +163,9 @@ See the [Fine-tune a pretrained model](https://huggingface.co/docs/transformers/
 
 The model head refers to the last layer of a neural network that accepts the raw hidden states and projects them onto a different dimension. There is a different model head for each task. For example:
 
-* [GPT2ForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/gpt2#transformers.GPT2ForSequenceClassification) is a sequence classification head - a linear layer - on top of the base [GPT2Model](/docs/transformers/v5.15.0/en/model_doc/gpt2#transformers.GPT2Model).
-* [ViTForImageClassification](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTForImageClassification) is an image classification head - a linear layer on top of the final hidden state of the `CLS` token - on top of the base [ViTModel](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTModel).
-* [Wav2Vec2ForCTC](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC) is a language modeling head with [CTC](#connectionist-temporal-classification-ctc) on top of the base [Wav2Vec2Model](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Model).
+* [GPT2ForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/gpt2#transformers.GPT2ForSequenceClassification) is a sequence classification head - a linear layer - on top of the base [GPT2Model](/docs/transformers/v5.15.1/en/model_doc/gpt2#transformers.GPT2Model).
+* [ViTForImageClassification](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTForImageClassification) is an image classification head - a linear layer on top of the final hidden state of the `CLS` token - on top of the base [ViTModel](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTModel).
+* [Wav2Vec2ForCTC](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC) is a language modeling head with [CTC](#connectionist-temporal-classification-ctc) on top of the base [Wav2Vec2Model](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Model).
 
 ## I
 
@@ -239,7 +239,7 @@ we will see
 [CLS] A Titan RTX has 24GB of VRAM [SEP]
 ```
 
-because this is the way a [BertModel](/docs/transformers/v5.15.0/en/model_doc/bert#transformers.BertModel) is going to expect its inputs.
+because this is the way a [BertModel](/docs/transformers/v5.15.1/en/model_doc/bert#transformers.BertModel) is going to expect its inputs.
 
 ## L
 
@@ -251,31 +251,31 @@ predictions and the expected value (the label).
 
 These labels are different according to the model head, for example:
 
-- For sequence classification models, ([BertForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/bert#transformers.BertForSequenceClassification)), the model expects a tensor of dimension
+- For sequence classification models, ([BertForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/bert#transformers.BertForSequenceClassification)), the model expects a tensor of dimension
   `(batch_size)` with each value of the batch corresponding to the expected label of the entire sequence.
-- For token classification models, ([BertForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/bert#transformers.BertForTokenClassification)), the model expects a tensor of dimension
+- For token classification models, ([BertForTokenClassification](/docs/transformers/v5.15.1/en/model_doc/bert#transformers.BertForTokenClassification)), the model expects a tensor of dimension
   `(batch_size, seq_length)` with each value corresponding to the expected label of each individual token.
-- For masked language modeling, ([BertForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/bert#transformers.BertForMaskedLM)), the model expects a tensor of dimension `(batch_size,
+- For masked language modeling, ([BertForMaskedLM](/docs/transformers/v5.15.1/en/model_doc/bert#transformers.BertForMaskedLM)), the model expects a tensor of dimension `(batch_size,
   seq_length)` with each value corresponding to the expected label of each individual token: the labels being the token
   ID for the masked token, and values to be ignored for the rest (usually -100).
-- For sequence to sequence tasks, ([BartForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/bart#transformers.BartForConditionalGeneration), [MBartForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/mbart#transformers.MBartForConditionalGeneration)), the model
+- For sequence to sequence tasks, ([BartForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/bart#transformers.BartForConditionalGeneration), [MBartForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/mbart#transformers.MBartForConditionalGeneration)), the model
   expects a tensor of dimension `(batch_size, tgt_seq_length)` with each value corresponding to the target sequences
   associated with each input sequence. During training, both BART and T5 will make the appropriate
   `decoder_input_ids` and decoder attention masks internally. They usually do not need to be supplied. This does not
   apply to models leveraging the Encoder-Decoder framework.
-- For image classification models, ([ViTForImageClassification](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTForImageClassification)), the model expects a tensor of dimension
+- For image classification models, ([ViTForImageClassification](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTForImageClassification)), the model expects a tensor of dimension
   `(batch_size)` with each value of the batch corresponding to the expected label of each individual image.
-- For semantic segmentation models, ([SegformerForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerForSemanticSegmentation)), the model expects a tensor of dimension
+- For semantic segmentation models, ([SegformerForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerForSemanticSegmentation)), the model expects a tensor of dimension
   `(batch_size, height, width)` with each value of the batch corresponding to the expected label of each individual pixel.
-- For object detection models, ([DetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForObjectDetection)), the model expects a list of dictionaries with a
+- For object detection models, ([DetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForObjectDetection)), the model expects a list of dictionaries with a
   `class_labels` and `boxes` key where each value of the batch corresponds to the expected label and number of bounding boxes of each individual image.
-- For automatic speech recognition models, ([Wav2Vec2ForCTC](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC)), the model expects a tensor of dimension `(batch_size,
+- For automatic speech recognition models, ([Wav2Vec2ForCTC](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC)), the model expects a tensor of dimension `(batch_size,
   target_length)` with each value corresponding to the expected label of each individual token.
 
 Each model's labels may be different, so be sure to always check the documentation of each model for more information
 about their specific labels!
 
-The base models ([BertModel](/docs/transformers/v5.15.0/en/model_doc/bert#transformers.BertModel)) do not accept labels, as these are the base transformer models, simply outputting
+The base models ([BertModel](/docs/transformers/v5.15.1/en/model_doc/bert#transformers.BertModel)) do not accept labels, as these are the base transformer models, simply outputting
 features.
 
 ### large language models (LLM)
@@ -466,7 +466,7 @@ The tokenizer returns this mask as the "token_type_ids" entry:
 The first sequence, the "context" used for the question, has all its tokens represented by a `0`, whereas the second
 sequence, corresponding to the "question", has all its tokens represented by a `1`.
 
-Some models, like [XLNetModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetModel) use an additional token represented by a `2`.
+Some models, like [XLNetModel](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetModel) use an additional token represented by a `2`.
 
 ### transfer learning
 
@@ -492,4 +492,4 @@ to be modified. This method also supports various offloading techniques to compe
 Learn more about ZeRO [here](perf_train_gpu_many#zero-data-parallelism).
 
 ### Tool use
-https://huggingface.co/docs/transformers/v5.15.0/chat_extras.md
+https://huggingface.co/docs/transformers/v5.15.1/chat_extras.md

@@ -230,7 +230,7 @@ layers.
 transformers.model_addition_debugger_context(model, debug_path: str | None = None, do_prune_layers: bool = True, use_repr: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/model_debugging_utils.py#L391)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/model_debugging_utils.py#L391)
 
 # Model addition debugger - context manager for model adders
 This context manager is a power user tool intended for model adders.
@@ -470,4 +470,4 @@ This tool requires GPU/CPU resources to run the embedding model (`Qwen/Qwen3-Emb
 Results are suggestions based on code similarity and should be manually reviewed before modularization. High similarity scores don't guarantee perfect compatibility.
 
 ### Custom Layers and Utilities
-https://huggingface.co/docs/transformers/v5.15.0/internal/modeling_utils.md
+https://huggingface.co/docs/transformers/v5.15.1/internal/modeling_utils.md

@@ -131,7 +131,7 @@ print("Audio values shape:", output.audio_values.shape)
 transformers.Xcodec2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 1024, intermediate_size: int = 4096, num_hidden_layers: int = 12, num_attention_heads: int = 16, num_key_value_heads: int = 16, hidden_act: str = 'silu', max_position_embeddings: int = 4096, initializer_range: float = 0.02, rms_norm_eps: float = 1e-06, pad_token_id: int | None = None, tie_word_embeddings: bool = False, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = False, attention_dropout: int | float | None = 0.0, head_dim: int = 64, encoder_hidden_size: int = 48, downsampling_ratios: list[int] | tuple[int, ...] = (2, 2, 4, 4, 5), semantic_model_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, sampling_rate: int = 16000, activation_dropout: float = 0.1, quantization_dim: int = 2048, quantization_levels: list[int] | tuple[int, ...] = (4, 4, 4, 4, 4, 4, 4, 4))
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xcodec2/configuration_xcodec2.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xcodec2/configuration_xcodec2.py#L33)
 
 **Parameters:**
 
@@ -183,8 +183,8 @@ This is the configuration class to store the configuration of a Xcodec2Model. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [HKUSTAudio/xcodec2-hf](https://huggingface.co/HKUSTAudio/xcodec2-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -209,7 +209,7 @@ Example:
 transformers.Xcodec2FeatureExtractor(feature_size = 80, sampling_rate = 16000, padding_value = 1.0, hop_length = 320, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xcodec2/feature_extraction_xcodec2.py#L37)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xcodec2/feature_extraction_xcodec2.py#L37)
 
 **Parameters:**
 
@@ -224,7 +224,7 @@ hop_length (`int`, *optional*, defaults to 320) : Number of audio samples encode
 Constructs a Xcodec2 feature extractor, which computes mel-filter bank features for the semantic encoder and padded
 audio for the acoustic encoder.
 
-This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains most of the main methods. Users
+This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains most of the main methods. Users
 should refer to this superclass for more information regarding those methods.
 
 #### __call__[[transformers.Xcodec2FeatureExtractor.__call__]]
@@ -233,19 +233,19 @@ should refer to this superclass for more information regarding those methods.
 __call__(audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], padding: bool | str | transformers.utils.generic.PaddingStrategy = True, max_length: int | None = None, truncation: bool = False, return_tensors: str | transformers.utils.generic.TensorType | None = None, sampling_rate: int | None = None, device: str = 'cpu', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xcodec2/feature_extraction_xcodec2.py#L85)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xcodec2/feature_extraction_xcodec2.py#L85)
 
 **Parameters:**
 
 audio (`np.ndarray`, `torch.Tensor`, `list[np.ndarray]`, `list[torch.Tensor]`) : Numpy array or torch tensor with shape (num_channels, sequence_length). A list of such arrays or tensors can also be provided for a batch of inputs.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
 max_length (`int`, *optional*) : Maximum length of the returned list and optionally padding length (see above).
 
 truncation (`bool`) : Activates truncation to cut input sequences longer than *max_length* to *max_length*.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'tf'`: Return TensorFlow `tf.constant` objects. - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'tf'`: Return TensorFlow `tf.constant` objects. - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
 
 sampling_rate (`int`, *optional*) : The sample rate at which the `audio` input was sampled. It is strongly recommended to pass `sampling_rate` at the forward call to prevent silent errors.
 
@@ -261,15 +261,15 @@ kwargs (*optional*) : Remaining dictionary of keyword arguments that will be pas
 transformers.Xcodec2Model(config: Xcodec2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xcodec2/modeling_xcodec2.py#L953)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xcodec2/modeling_xcodec2.py#L953)
 
 **Parameters:**
 
-config ([Xcodec2Config](/docs/transformers/v5.15.0/en/model_doc/xcodec2#transformers.Xcodec2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Xcodec2Config](/docs/transformers/v5.15.1/en/model_doc/xcodec2#transformers.Xcodec2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Xcodec2 neural audio codec model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -283,7 +283,7 @@ and behavior.
 decode(audio_codes: typing.Optional[torch.Tensor] = None, latents: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xcodec2/modeling_xcodec2.py#L1026)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xcodec2/modeling_xcodec2.py#L1026)
 
 **Parameters:**
 
@@ -307,7 +307,7 @@ elements depending on the configuration (`None`) and inputs.
 encode(input_values: Tensor, input_features: Tensor, padding_mask: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, output_latents: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xcodec2/modeling_xcodec2.py#L972)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xcodec2/modeling_xcodec2.py#L972)
 
 **Parameters:**
 
@@ -339,7 +339,7 @@ elements depending on the configuration (`None`) and inputs.
 forward(input_values: Tensor, input_features: Tensor, padding_mask: typing.Optional[torch.Tensor] = None, input_features_mask: typing.Optional[torch.Tensor] = None, output_latents: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xcodec2/modeling_xcodec2.py#L1051)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xcodec2/modeling_xcodec2.py#L1051)
 
 **Parameters:**
 
@@ -359,7 +359,7 @@ A `Xcodec2Output` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [Xcodec2Model](/docs/transformers/v5.15.0/en/model_doc/xcodec2#transformers.Xcodec2Model) forward method, overrides the `__call__` special method.
+The [Xcodec2Model](/docs/transformers/v5.15.1/en/model_doc/xcodec2#transformers.Xcodec2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -393,4 +393,4 @@ Examples:
 ```
 
 ### ByT5
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/byt5.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/byt5.md

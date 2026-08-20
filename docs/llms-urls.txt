@@ -858,6 +858,7 @@ https://huggingface.co/docs/inference-endpoints/guides/configuration.md
 https://huggingface.co/docs/inference-endpoints/guides/custom_router.md
 https://huggingface.co/docs/inference-endpoints/guides/foundations.md
 https://huggingface.co/docs/inference-endpoints/guides/logs.md
+https://huggingface.co/docs/inference-endpoints/guides/mcp_server.md
 https://huggingface.co/docs/inference-endpoints/guides/private_link.md
 https://huggingface.co/docs/inference-endpoints/guides/security.md
 https://huggingface.co/docs/inference-endpoints/index.md
@@ -910,6 +911,7 @@ https://huggingface.co/docs/kernels/builder/ide-setup.md
 https://huggingface.co/docs/kernels/builder/local-dev.md
 https://huggingface.co/docs/kernels/builder/metal.md
 https://huggingface.co/docs/kernels/builder/security.md
+https://huggingface.co/docs/kernels/builder/triton-autotune.md
 https://huggingface.co/docs/kernels/builder/why-nix.md
 https://huggingface.co/docs/kernels/builder/writing-kernels.md
 https://huggingface.co/docs/kernels/cli-benchmark.md

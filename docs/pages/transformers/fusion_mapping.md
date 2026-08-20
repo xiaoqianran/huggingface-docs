@@ -12,7 +12,7 @@ It builds on:
 
 ## Quick start
 
-Fusion is enabled through [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) with `fusion_config`:
+Fusion is enabled through [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) with `fusion_config`:
 
 ```python
 from transformers import AutoModelForImageTextToText
@@ -30,12 +30,12 @@ If `fusion_config` is stored in the model config, `from_pretrained()` will reuse
 
 Fusion registration happens before the model is instantiated:
 
-1. [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) uses the explicit `fusion_config` argument or falls back to `config.fusion_config`.
+1. [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) uses the explicit `fusion_config` argument or falls back to `config.fusion_config`.
 2. The fusion registry validates the requested fusion names.
 3. Each enabled fusion meta-initializes the target model class, optionally filters candidate modules by name, and uses `is_fusable(...)` to discover compatible module classes.
-4. Fused replacement classes are registered through [register_patch_mapping()](/docs/transformers/v5.15.0/en/monkey_patching#transformers.monkey_patching.register_patch_mapping).
+4. Fused replacement classes are registered through [register_patch_mapping()](/docs/transformers/v5.15.1/en/monkey_patching#transformers.monkey_patching.register_patch_mapping).
 5. Matching `~WeightTransform` rules are generated from the config so checkpoint loading can map weights into the fused runtime layout.
-6. By default, [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) uses the reverse conversion path to restore the original checkpoint layout. Pass `save_original_format=False` to keep the converted runtime layout instead.
+6. By default, [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) uses the reverse conversion path to restore the original checkpoint layout. Pass `save_original_format=False` to keep the converted runtime layout instead.
 
 This lets a fusion use a different runtime module structure while still loading from the original checkpoint format, and by default saving back to it as well.
 
@@ -79,7 +79,7 @@ Once registered, the new fusion becomes available through `fusion_config`.
 transformers.fusion_mapping.ModuleFusionSpec()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/fusion_mapping.py#L44)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/fusion_mapping.py#L44)
 
 Base recipe for a fusion family.
 
@@ -93,7 +93,7 @@ checkpoints between the original and fused layouts.
 get_empty_log(model_name: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/fusion_mapping.py#L54)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/fusion_mapping.py#L54)
 
 Return the log message emitted when no compatible modules are found.
 
@@ -103,7 +103,7 @@ Return the log message emitted when no compatible modules are found.
 is_fusable(module: Module)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/fusion_mapping.py#L58)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/fusion_mapping.py#L58)
 
 Return whether `module` is compatible with this fusion family.
 
@@ -113,7 +113,7 @@ Return whether `module` is compatible with this fusion family.
 make_fused_class(original_cls: type)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/fusion_mapping.py#L62)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/fusion_mapping.py#L62)
 
 Build the runtime replacement class for a compatible module class.
 
@@ -123,7 +123,7 @@ Build the runtime replacement class for a compatible module class.
 make_transforms(config: PretrainedConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/fusion_mapping.py#L66)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/fusion_mapping.py#L66)
 
 Build the weight transforms needed to load and save the fused runtime layout.
 
@@ -133,7 +133,7 @@ Build the weight transforms needed to load and save the fused runtime layout.
 transformers.fusion_mapping.PatchEmbeddingsFusionSpec()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/fusion_mapping.py#L94)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/fusion_mapping.py#L94)
 
 Fuse compatible Conv3d patch embeddings into flattened Linear projections.
 
@@ -143,7 +143,7 @@ Fuse compatible Conv3d patch embeddings into flattened Linear projections.
 transformers.fusion_mapping._register_module_fusion(config: PretrainedConfig, fusion_name: str, spec: ModuleFusionSpec)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/fusion_mapping.py#L190)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/fusion_mapping.py#L190)
 
 Register one fusion family for `cls`.
 
@@ -160,7 +160,7 @@ Notes:
 transformers.fusion_mapping.register_fusion_patches(config, fusion_config: collections.abc.Mapping[str, bool | collections.abc.Mapping[str, typing.Any]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/fusion_mapping.py#L255)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/fusion_mapping.py#L255)
 
 Register requested runtime fusions for `cls`.
 
@@ -170,4 +170,4 @@ This function:
 - registers monkey patches and checkpoint transforms before model instantiation
 
 ### Continuous batching architecture
-https://huggingface.co/docs/transformers/v5.15.0/continuous_batching_architecture.md
+https://huggingface.co/docs/transformers/v5.15.1/continuous_batching_architecture.md

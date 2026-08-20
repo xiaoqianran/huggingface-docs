@@ -9,7 +9,7 @@ You can find all the original [LED] checkpoints under the [Ai2](https://huggingf
 >
 > Click on the LED models in the right sidebar for more examples of how to apply LED to different language tasks.
 
-The example below demonstrates how to summarize text with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
+The example below demonstrates how to summarize text with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel), and from the command line.
 
 ```python
 import torch
@@ -77,10 +77,10 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 
 ## Notes
 
-- [LEDForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/led#transformers.LEDForConditionalGeneration) is an extension of [BartForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/bart#transformers.BartForConditionalGeneration) exchanging the traditional self-attention layer with Longformer's chunked self-attention layer. [LEDTokenizer](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaTokenizer) is an alias of [BartTokenizer](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaTokenizer).
-- LED pads the `input_ids` to be a multiple of `config.attention_window` if required. A small speedup is gained when [LEDTokenizer](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaTokenizer) is used with the `pad_to_multiple_of` argument.
+- [LEDForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/led#transformers.LEDForConditionalGeneration) is an extension of [BartForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/bart#transformers.BartForConditionalGeneration) exchanging the traditional self-attention layer with Longformer's chunked self-attention layer. [LEDTokenizer](/docs/transformers/v5.15.1/en/model_doc/roberta#transformers.RobertaTokenizer) is an alias of [BartTokenizer](/docs/transformers/v5.15.1/en/model_doc/roberta#transformers.RobertaTokenizer).
+- LED pads the `input_ids` to be a multiple of `config.attention_window` if required. A small speedup is gained when [LEDTokenizer](/docs/transformers/v5.15.1/en/model_doc/roberta#transformers.RobertaTokenizer) is used with the `pad_to_multiple_of` argument.
 - LED works best on long-range sequence-to-sequence tasks where the `input_ids` are significantly longer than 1024 tokens.
-- LED uses global attention by means of the `global_attention_mask` (see [LongformerModel](/docs/transformers/v5.15.0/en/model_doc/longformer#transformers.LongformerModel)). For summarization, it is advised to put global attention only on the first `<s>` token. For question answering, it is advised to put global attention on all tokens of the question.
+- LED uses global attention by means of the `global_attention_mask` (see [LongformerModel](/docs/transformers/v5.15.1/en/model_doc/longformer#transformers.LongformerModel)). For summarization, it is advised to put global attention only on the first `<s>` token. For question answering, it is advised to put global attention on all tokens of the question.
 - To fine-tune LED on all 16384 parameters, gradient checkpointing can be enabled in case training leads to out-of-memory (OOM) errors. Enable gradient checkpointing by adding `model.gradient_checkpointing_enable()` and setting `use_cache=False` to disable the caching mechanism to save memory.
 - Inputs should be padded on the right because LED uses absolute position embeddings.
 
@@ -97,7 +97,7 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 transformers.LEDConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, vocab_size: int = 50265, max_encoder_position_embeddings: int = 16384, max_decoder_position_embeddings: int = 1024, encoder_layers: int = 12, encoder_ffn_dim: int = 4096, encoder_attention_heads: int = 16, decoder_layers: int = 12, decoder_ffn_dim: int = 4096, decoder_attention_heads: int = 16, encoder_layerdrop: float | int = 0.0, decoder_layerdrop: float | int = 0.0, use_cache: bool = True, activation_function: str = 'gelu', d_model: int = 1024, dropout: float | int = 0.1, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, init_std: float = 0.02, decoder_start_token_id: int = 2, classifier_dropout: float | int = 0.0, pad_token_id: int | None = 1, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 2, attention_window: list[int] | int = 512, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/led/configuration_led.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/led/configuration_led.py#L24)
 
 **Parameters:**
 
@@ -157,8 +157,8 @@ This is the configuration class to store the configuration of a LEDModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [allenai/led-base-16384](https://huggingface.co/allenai/led-base-16384)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -183,7 +183,7 @@ Example:
 transformers.RobertaTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, errors: str = 'replace', bos_token: str = '<s>', eos_token: str = '</s>', sep_token: str = '</s>', cls_token: str = '<s>', unk_token: str = '<unk>', pad_token: str = '<pad>', mask_token: str = '<mask>', add_prefix_space: bool = False, trim_offsets: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/roberta/tokenization_roberta.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/roberta/tokenization_roberta.py#L28)
 
 **Parameters:**
 
@@ -233,7 +233,7 @@ call it on some text, but since the model was not pretrained this way, it might 
 
 When used with `is_split_into_words=True`, this tokenizer needs to be instantiated with `add_prefix_space=True`.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 #### get_special_tokens_mask[[transformers.RobertaTokenizer.get_special_tokens_mask]]
@@ -242,7 +242,7 @@ this superclass for more information regarding those methods.
 get_special_tokens_mask(token_ids_0: list[int], token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_base.py#L1311)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_base.py#L1311)
 
 **Parameters:**
 
@@ -267,7 +267,7 @@ already-formatted sequence. In that case, we compute the mask by checking member
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_tokenizers.py#L509)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_tokenizers.py#L509)
 
 ## LEDTokenizerFast[[transformers.RobertaTokenizer]]
 
@@ -277,7 +277,7 @@ save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 transformers.RobertaTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, errors: str = 'replace', bos_token: str = '<s>', eos_token: str = '</s>', sep_token: str = '</s>', cls_token: str = '<s>', unk_token: str = '<unk>', pad_token: str = '<pad>', mask_token: str = '<mask>', add_prefix_space: bool = False, trim_offsets: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/roberta/tokenization_roberta.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/roberta/tokenization_roberta.py#L28)
 
 **Parameters:**
 
@@ -327,7 +327,7 @@ call it on some text, but since the model was not pretrained this way, it might 
 
 When used with `is_split_into_words=True`, this tokenizer needs to be instantiated with `add_prefix_space=True`.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 ## LED specific outputs[[transformers.models.led.modeling_led.LEDEncoderBaseModelOutput]]
@@ -338,7 +338,7 @@ this superclass for more information regarding those methods.
 transformers.models.led.modeling_led.LEDEncoderBaseModelOutput(last_hidden_state: FloatTensor, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None, global_attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/led/modeling_led.py#L1083)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/led/modeling_led.py#L1083)
 
 **Parameters:**
 
@@ -358,13 +358,13 @@ Base class for LEDEncoder's outputs, with potential hidden states, local and glo
 transformers.models.led.modeling_led.LEDSeq2SeqModelOutput(last_hidden_state: typing.Optional[torch.FloatTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, decoder_hidden_states: tuple[torch.FloatTensor, ...] | None = None, decoder_attentions: tuple[torch.FloatTensor, ...] | None = None, cross_attentions: tuple[torch.FloatTensor, ...] | None = None, encoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, encoder_hidden_states: tuple[torch.FloatTensor, ...] | None = None, encoder_attentions: tuple[torch.FloatTensor, ...] | None = None, encoder_global_attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/led/modeling_led.py#L1122)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/led/modeling_led.py#L1122)
 
 **Parameters:**
 
 last_hidden_state (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) : Sequence of hidden-states at the output of the last layer of the decoder of the model.  If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1, hidden_size)` is output.
 
-past_key_values (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the attention blocks) of the decoder that can be used (see `past_key_values` input) to speed up sequential decoding.
+past_key_values (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the attention blocks) of the decoder that can be used (see `past_key_values` input) to speed up sequential decoding.
 
 decoder_hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the decoder at the output of each layer plus the initial embedding outputs.
 
@@ -389,7 +389,7 @@ decoding.
 transformers.models.led.modeling_led.LEDSeq2SeqLMOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, decoder_hidden_states: tuple[torch.FloatTensor, ...] | None = None, decoder_attentions: tuple[torch.FloatTensor, ...] | None = None, cross_attentions: tuple[torch.FloatTensor, ...] | None = None, encoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, encoder_hidden_states: tuple[torch.FloatTensor, ...] | None = None, encoder_attentions: tuple[torch.FloatTensor, ...] | None = None, encoder_global_attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/led/modeling_led.py#L1160)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/led/modeling_led.py#L1160)
 
 **Parameters:**
 
@@ -397,7 +397,7 @@ loss (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is
 
 logits (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) : Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
 
-past_key_values (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the attention blocks) of the decoder that can be used (see `past_key_values` input) to speed up sequential decoding.
+past_key_values (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the attention blocks) of the decoder that can be used (see `past_key_values` input) to speed up sequential decoding.
 
 decoder_hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the decoder at the output of each layer plus the initial embedding outputs.
 
@@ -421,7 +421,7 @@ Base class for sequence-to-sequence language models outputs.
 transformers.models.led.modeling_led.LEDSeq2SeqSequenceClassifierOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, decoder_hidden_states: tuple[torch.FloatTensor, ...] | None = None, decoder_attentions: tuple[torch.FloatTensor, ...] | None = None, cross_attentions: tuple[torch.FloatTensor, ...] | None = None, encoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, encoder_hidden_states: tuple[torch.FloatTensor, ...] | None = None, encoder_attentions: tuple[torch.FloatTensor, ...] | None = None, encoder_global_attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/led/modeling_led.py#L1198)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/led/modeling_led.py#L1198)
 
 **Parameters:**
 
@@ -429,7 +429,7 @@ loss (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `label` is 
 
 logits (`torch.FloatTensor` of shape `(batch_size, config.num_labels)`) : Classification (or regression if config.num_labels==1) scores (before SoftMax).
 
-past_key_values (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the attention blocks) of the decoder that can be used (see `past_key_values` input) to speed up sequential decoding.
+past_key_values (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the attention blocks) of the decoder that can be used (see `past_key_values` input) to speed up sequential decoding.
 
 decoder_hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the decoder at the output of each layer plus the initial embedding outputs.
 
@@ -453,7 +453,7 @@ Base class for outputs of sequence-to-sequence sentence classification models.
 transformers.models.led.modeling_led.LEDSeq2SeqQuestionAnsweringModelOutput(loss: typing.Optional[torch.FloatTensor] = None, start_logits: typing.Optional[torch.FloatTensor] = None, end_logits: typing.Optional[torch.FloatTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, decoder_hidden_states: tuple[torch.FloatTensor, ...] | None = None, decoder_attentions: tuple[torch.FloatTensor, ...] | None = None, cross_attentions: tuple[torch.FloatTensor, ...] | None = None, encoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, encoder_hidden_states: tuple[torch.FloatTensor, ...] | None = None, encoder_attentions: tuple[torch.FloatTensor, ...] | None = None, encoder_global_attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/led/modeling_led.py#L1236)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/led/modeling_led.py#L1236)
 
 **Parameters:**
 
@@ -463,7 +463,7 @@ start_logits (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *opt
 
 end_logits (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Span-end scores (before SoftMax).
 
-past_key_values (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the attention blocks) of the decoder that can be used (see `past_key_values` input) to speed up sequential decoding.
+past_key_values (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the attention blocks) of the decoder that can be used (see `past_key_values` input) to speed up sequential decoding.
 
 decoder_hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the decoder at the output of each layer plus the initial embedding outputs.
 
@@ -489,15 +489,15 @@ Base class for outputs of sequence-to-sequence question answering models.
 transformers.LEDModel(config: LEDConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/led/modeling_led.py#L1739)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/led/modeling_led.py#L1739)
 
 **Parameters:**
 
-config ([LEDConfig](/docs/transformers/v5.15.0/en/model_doc/led#transformers.LEDConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LEDConfig](/docs/transformers/v5.15.1/en/model_doc/led#transformers.LEDConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Led Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -511,15 +511,15 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: tuple[tuple[torch.FloatTensor]] | None = None, global_attention_mask: typing.Optional[torch.FloatTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/led/modeling_led.py#L1765)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/led/modeling_led.py#L1765)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using `LedTokenizer`. See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)  LED uses the `eos_token_id` as the starting token for `decoder_input_ids` generation. If `past_key_values` is used, optionally only the last `decoder_input_ids` have to be input (see `past_key_values`).
+decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using `LedTokenizer`. See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)  LED uses the `eos_token_id` as the starting token for `decoder_input_ids` generation. If `past_key_values` is used, optionally only the last `decoder_input_ids` have to be input (see `past_key_values`).
 
 decoder_attention_mask (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also be used by default.  If you want to change padding behavior, you should read `modeling_led._prepare_decoder_inputs` and modify to your needs. See diagram 1 in [the paper](https://huggingface.co/papers/1910.13461) for more information on the default strategy.
 
@@ -527,7 +527,7 @@ encoder_outputs (`tuple[tuple[torch.FloatTensor]]`, *optional*) : Tuple consists
 
 global_attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to decide the attention given on each token, local attention or global attention for the encoder. Tokens with global attention attends to all other tokens, and all other tokens attend to them. This is important for task-specific finetuning because it makes the model more flexible at representing the task. For example, for classification, the  token should be given global attention. For QA, all question tokens should also have global attention. Please refer to the [Longformer paper](https://huggingface.co/papers/2004.05150) for more details. Mask values selected in `[0, 1]`:  - 0 for local attention (a sliding window attention), - 1 for global attention (tokens that attend to all other tokens, and all other tokens attend to them).
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -539,15 +539,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [LEDSeq2SeqModelOutput](/docs/transformers/v5.15.0/en/model_doc/led#transformers.models.led.modeling_led.LEDSeq2SeqModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [LEDSeq2SeqModelOutput](/docs/transformers/v5.15.1/en/model_doc/led#transformers.models.led.modeling_led.LEDSeq2SeqModelOutput) or `tuple(torch.FloatTensor)`
 
-A [LEDSeq2SeqModelOutput](/docs/transformers/v5.15.0/en/model_doc/led#transformers.models.led.modeling_led.LEDSeq2SeqModelOutput) or a tuple of
+A [LEDSeq2SeqModelOutput](/docs/transformers/v5.15.1/en/model_doc/led#transformers.models.led.modeling_led.LEDSeq2SeqModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LEDConfig](/docs/transformers/v5.15.0/en/model_doc/led#transformers.LEDConfig)) and inputs.
+elements depending on the configuration ([LEDConfig](/docs/transformers/v5.15.1/en/model_doc/led#transformers.LEDConfig)) and inputs.
 
-The [LEDModel](/docs/transformers/v5.15.0/en/model_doc/led#transformers.LEDModel) forward method, overrides the `__call__` special method.
+The [LEDModel](/docs/transformers/v5.15.1/en/model_doc/led#transformers.LEDModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -557,7 +557,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the attention blocks) of the decoder that can be
   used (see `past_key_values` input) to speed up sequential decoding.
@@ -600,15 +600,15 @@ the latter silently ignores them.
 transformers.LEDForConditionalGeneration(config: LEDConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/led/modeling_led.py#L1881)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/led/modeling_led.py#L1881)
 
 **Parameters:**
 
-config ([LEDConfig](/docs/transformers/v5.15.0/en/model_doc/led#transformers.LEDConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LEDConfig](/docs/transformers/v5.15.1/en/model_doc/led#transformers.LEDConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The LED Model with a language modeling head. Can be used for summarization.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -622,15 +622,15 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: tuple[tuple[torch.FloatTensor]] | None = None, global_attention_mask: typing.Optional[torch.FloatTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/led/modeling_led.py#L1913)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/led/modeling_led.py#L1913)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using `LedTokenizer`. See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)  LED uses the `eos_token_id` as the starting token for `decoder_input_ids` generation. If `past_key_values` is used, optionally only the last `decoder_input_ids` have to be input (see `past_key_values`).
+decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using `LedTokenizer`. See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)  LED uses the `eos_token_id` as the starting token for `decoder_input_ids` generation. If `past_key_values` is used, optionally only the last `decoder_input_ids` have to be input (see `past_key_values`).
 
 decoder_attention_mask (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also be used by default.  If you want to change padding behavior, you should read `modeling_led._prepare_decoder_inputs` and modify to your needs. See diagram 1 in [the paper](https://huggingface.co/papers/1910.13461) for more information on the default strategy.
 
@@ -638,7 +638,7 @@ encoder_outputs (`tuple[tuple[torch.FloatTensor]]`, *optional*) : Tuple consists
 
 global_attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to decide the attention given on each token, local attention or global attention for the encoder. Tokens with global attention attends to all other tokens, and all other tokens attend to them. This is important for task-specific finetuning because it makes the model more flexible at representing the task. For example, for classification, the  token should be given global attention. For QA, all question tokens should also have global attention. Please refer to the [Longformer paper](https://huggingface.co/papers/2004.05150) for more details. Mask values selected in `[0, 1]`:  - 0 for local attention (a sliding window attention), - 1 for global attention (tokens that attend to all other tokens, and all other tokens attend to them).
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -652,15 +652,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [LEDSeq2SeqLMOutput](/docs/transformers/v5.15.0/en/model_doc/led#transformers.models.led.modeling_led.LEDSeq2SeqLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [LEDSeq2SeqLMOutput](/docs/transformers/v5.15.1/en/model_doc/led#transformers.models.led.modeling_led.LEDSeq2SeqLMOutput) or `tuple(torch.FloatTensor)`
 
-A [LEDSeq2SeqLMOutput](/docs/transformers/v5.15.0/en/model_doc/led#transformers.models.led.modeling_led.LEDSeq2SeqLMOutput) or a tuple of
+A [LEDSeq2SeqLMOutput](/docs/transformers/v5.15.1/en/model_doc/led#transformers.models.led.modeling_led.LEDSeq2SeqLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LEDConfig](/docs/transformers/v5.15.0/en/model_doc/led#transformers.LEDConfig)) and inputs.
+elements depending on the configuration ([LEDConfig](/docs/transformers/v5.15.1/en/model_doc/led#transformers.LEDConfig)) and inputs.
 
-The [LEDForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/led#transformers.LEDForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [LEDForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/led#transformers.LEDForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -668,7 +668,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss.
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the attention blocks) of the decoder that can be
   used (see `past_key_values` input) to speed up sequential decoding.
@@ -762,16 +762,16 @@ Example Conditional generation :
 transformers.LEDForQuestionAnswering(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/led/modeling_led.py#L2071)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/led/modeling_led.py#L2071)
 
 **Parameters:**
 
-config ([LEDForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/led#transformers.LEDForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LEDForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/led#transformers.LEDForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Led transformer with a span classification head on top for extractive question-answering tasks like
 SQuAD (a linear layer on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -785,15 +785,15 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: tuple[tuple[torch.FloatTensor]] | None = None, global_attention_mask: typing.Optional[torch.FloatTensor] = None, start_positions: typing.Optional[torch.LongTensor] = None, end_positions: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/led/modeling_led.py#L2084)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/led/modeling_led.py#L2084)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using `LedTokenizer`. See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)  LED uses the `eos_token_id` as the starting token for `decoder_input_ids` generation. If `past_key_values` is used, optionally only the last `decoder_input_ids` have to be input (see `past_key_values`).
+decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using `LedTokenizer`. See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)  LED uses the `eos_token_id` as the starting token for `decoder_input_ids` generation. If `past_key_values` is used, optionally only the last `decoder_input_ids` have to be input (see `past_key_values`).
 
 decoder_attention_mask (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also be used by default.  If you want to change padding behavior, you should read `modeling_led._prepare_decoder_inputs` and modify to your needs. See diagram 1 in [the paper](https://huggingface.co/papers/1910.13461) for more information on the default strategy.
 
@@ -815,15 +815,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [LEDSeq2SeqQuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/model_doc/led#transformers.models.led.modeling_led.LEDSeq2SeqQuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [LEDSeq2SeqQuestionAnsweringModelOutput](/docs/transformers/v5.15.1/en/model_doc/led#transformers.models.led.modeling_led.LEDSeq2SeqQuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`
 
-A [LEDSeq2SeqQuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/model_doc/led#transformers.models.led.modeling_led.LEDSeq2SeqQuestionAnsweringModelOutput) or a tuple of
+A [LEDSeq2SeqQuestionAnsweringModelOutput](/docs/transformers/v5.15.1/en/model_doc/led#transformers.models.led.modeling_led.LEDSeq2SeqQuestionAnsweringModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LEDConfig](/docs/transformers/v5.15.0/en/model_doc/led#transformers.LEDConfig)) and inputs.
+elements depending on the configuration ([LEDConfig](/docs/transformers/v5.15.1/en/model_doc/led#transformers.LEDConfig)) and inputs.
 
-The [LEDForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/led#transformers.LEDForQuestionAnswering) forward method, overrides the `__call__` special method.
+The [LEDForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/led#transformers.LEDForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -832,7 +832,7 @@ the latter silently ignores them.
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Total span extraction loss is the sum of a Cross-Entropy for the start and end positions.
 - **start_logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) -- Span-start scores (before SoftMax).
 - **end_logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) -- Span-end scores (before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the attention blocks) of the decoder that can be
   used (see `past_key_values` input) to speed up sequential decoding.
@@ -900,4 +900,4 @@ Example:
 ```
 
 ### DeBERTa-v2
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/deberta-v2.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/deberta-v2.md

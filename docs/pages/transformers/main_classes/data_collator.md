@@ -4,7 +4,7 @@ Data collators are objects that will form a batch by using a list of dataset ele
 the same type as the elements of `train_dataset` or `eval_dataset`.
 
 To be able to build batches, data collators may apply some processing (like padding). Some of them (like
-[DataCollatorForLanguageModeling](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DataCollatorForLanguageModeling)) also apply some random data augmentation (like random masking)
+[DataCollatorForLanguageModeling](/docs/transformers/v5.15.1/en/main_classes/data_collator#transformers.DataCollatorForLanguageModeling)) also apply some random data augmentation (like random masking)
 on the formed batch.
 
 Examples of use can be found in the [example scripts](../examples) or [example notebooks](../notebooks).
@@ -17,7 +17,7 @@ Examples of use can be found in the [example scripts](../examples) or [example n
 transformers.default_data_collator(features: list, return_tensors = 'pt')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L71)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L71)
 
 Very simple data collator that simply collates batches of dict-like objects and performs special handling for
 potential keys named:
@@ -36,7 +36,7 @@ to the model. See glue and ner for example of how it's useful.
 transformers.DefaultDataCollator(return_tensors: str = 'pt')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L95)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L95)
 
 **Parameters:**
 
@@ -62,13 +62,13 @@ helpful if you need to set a return_tensors value at initialization.
 transformers.DataCollatorWithPadding(tokenizer: PreTrainedTokenizerBase, padding: bool | str | transformers.utils.generic.PaddingStrategy = True, max_length: int | None = None, pad_to_multiple_of: int | None = None, return_tensors: str = 'pt')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L191)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L191)
 
 **Parameters:**
 
-tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) or [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend)) : The tokenizer used for encoding the data.
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) or [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend)) : The tokenizer used for encoding the data.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'` (default): Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'`: No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'` (default): Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'`: No padding (i.e., can output a batch with sequences of different lengths).
 
 max_length (`int`, *optional*) : Maximum length of the returned list and optionally padding length (see above).
 
@@ -86,13 +86,13 @@ Data collator that will dynamically pad the inputs received.
 transformers.DataCollatorForTokenClassification(tokenizer: PreTrainedTokenizerBase, padding: bool | str | transformers.utils.generic.PaddingStrategy = True, max_length: int | None = None, pad_to_multiple_of: int | None = None, label_pad_token_id: int = -100, return_tensors: str = 'pt')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L243)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L243)
 
 **Parameters:**
 
-tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) or [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend)) : The tokenizer used for encoding the data.
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) or [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend)) : The tokenizer used for encoding the data.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'` (default): Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'`: No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'` (default): Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'`: No padding (i.e., can output a batch with sequences of different lengths).
 
 max_length (`int`, *optional*) : Maximum length of the returned list and optionally padding length (see above).
 
@@ -112,15 +112,15 @@ Data collator that will dynamically pad the inputs received, as well as the labe
 transformers.DataCollatorForSeq2Seq(tokenizer: PreTrainedTokenizerBase, model: typing.Optional[typing.Any] = None, padding: bool | str | transformers.utils.generic.PaddingStrategy = True, max_length: int | None = None, pad_to_multiple_of: int | None = None, label_pad_token_id: int = -100, return_tensors: str = 'pt')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L487)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L487)
 
 **Parameters:**
 
-tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) or [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend)) : The tokenizer used for encoding the data.
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) or [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend)) : The tokenizer used for encoding the data.
 
-model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel), *optional*) : The model that is being trained. If set and has the *prepare_decoder_input_ids_from_labels*, use it to prepare the *decoder_input_ids*  This is useful when using *label_smoothing* to avoid calculating loss twice.
+model ([PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel), *optional*) : The model that is being trained. If set and has the *prepare_decoder_input_ids_from_labels*, use it to prepare the *decoder_input_ids*  This is useful when using *label_smoothing* to avoid calculating loss twice.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'` (default): Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'`: No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'` (default): Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'`: No padding (i.e., can output a batch with sequences of different lengths).
 
 max_length (`int`, *optional*) : Maximum length of the returned list and optionally padding length (see above).
 
@@ -140,11 +140,11 @@ Data collator that will dynamically pad the inputs received, as well as the labe
 transformers.DataCollatorForLanguageModeling(tokenizer: PreTrainedTokenizerBase, mlm: bool = True, whole_word_mask: bool = False, mlm_probability: float | None = 0.15, mask_replace_prob: float = 0.8, random_replace_prob: float = 0.1, pad_to_multiple_of: int | None = None, return_tensors: str = 'pt', seed: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L619)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L619)
 
 **Parameters:**
 
-tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) or [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend)) : The tokenizer used for encoding the data.
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) or [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend)) : The tokenizer used for encoding the data.
 
 mlm (`bool`, *optional*, defaults to `True`) : Whether or not to use masked language modeling. If set to `False`, the labels are the same as the inputs with the padding tokens ignored (by setting them to -100). Otherwise, the labels are -100 for non-masked tokens and the value to predict for the masked token.
 
@@ -166,8 +166,8 @@ Data collator used for language modeling. Inputs are dynamically padded to the m
 are not all of the same length.
 
 For best performance, this data collator should be used with a dataset having items that are dictionaries or
-BatchEncoding, with the `"special_tokens_mask"` key, as returned by a [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) or a
-[PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) with the argument `return_special_tokens_mask=True`.
+BatchEncoding, with the `"special_tokens_mask"` key, as returned by a [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) or a
+[PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) with the argument `return_special_tokens_mask=True`.
 
 1. Default Behavior:
    - `mask_replace_prob=0.8`, `random_replace_prob=0.1`.
@@ -195,7 +195,7 @@ remaining proportion will consist of masked tokens left unchanged.
 numpy_mask_tokens(inputs: typing.Any, special_tokens_mask: typing.Optional[typing.Any] = None, offset_mapping: typing.Optional[typing.Any] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L890)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L890)
 
 Prepare masked tokens inputs/labels for masked language modeling.
 
@@ -205,7 +205,7 @@ Prepare masked tokens inputs/labels for masked language modeling.
 torch_mask_tokens(inputs: typing.Any, special_tokens_mask: typing.Optional[typing.Any] = None, offset_mapping: typing.Optional[typing.Any] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L796)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L796)
 
 Prepare masked tokens inputs/labels for masked language modeling.
 
@@ -217,7 +217,7 @@ Prepare masked tokens inputs/labels for masked language modeling.
 transformers.DataCollatorForWholeWordMask(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L1019)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L1019)
 
 Data collator used for language modeling that masks entire words.
 
@@ -230,7 +230,7 @@ Data collator used for language modeling that masks entire words.
 numpy_mask_tokens(inputs: typing.Any, special_tokens_mask: typing.Optional[typing.Any] = None, offset_mapping: typing.Optional[typing.Any] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L890)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L890)
 
 Prepare masked tokens inputs/labels for masked language modeling.
 
@@ -240,7 +240,7 @@ Prepare masked tokens inputs/labels for masked language modeling.
 torch_mask_tokens(inputs: typing.Any, special_tokens_mask: typing.Optional[typing.Any] = None, offset_mapping: typing.Optional[typing.Any] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L796)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L796)
 
 Prepare masked tokens inputs/labels for masked language modeling.
 
@@ -252,7 +252,7 @@ Prepare masked tokens inputs/labels for masked language modeling.
 transformers.DataCollatorForPermutationLanguageModeling(tokenizer: PreTrainedTokenizerBase, plm_probability: float = 0.16666666666666666, max_span_length: int = 5, return_tensors: str = 'pt')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L1139)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L1139)
 
 Data collator used for permutation language modeling.
 
@@ -265,7 +265,7 @@ Data collator used for permutation language modeling.
 numpy_mask_tokens(inputs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L1265)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L1265)
 
 The masked tokens to be predicted for a particular sequence are determined by the following algorithm:
 
@@ -284,7 +284,7 @@ The masked tokens to be predicted for a particular sequence are determined by th
 torch_mask_tokens(inputs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L1166)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L1166)
 
 The masked tokens to be predicted for a particular sequence are determined by the following algorithm:
 
@@ -305,7 +305,7 @@ The masked tokens to be predicted for a particular sequence are determined by th
 transformers.DataCollatorWithFlattening(*args, return_position_ids = True, separator_id = -100, return_flash_attn_kwargs = False, return_seq_idx = False, position_ids_start = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L1364)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L1364)
 
 **Parameters:**
 
@@ -343,13 +343,13 @@ the position embeddings and degrades their outputs, so set `position_ids_start` 
 transformers.DataCollatorForMultipleChoice(tokenizer: PreTrainedTokenizerBase, padding: bool | str | transformers.utils.generic.PaddingStrategy = True, max_length: int | None = None, pad_to_multiple_of: int | None = None, return_tensors: str = 'pt')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/data/data_collator.py#L420)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/data/data_collator.py#L420)
 
 **Parameters:**
 
-tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) or [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend)) : The tokenizer used for encoding the data.
+tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) or [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend)) : The tokenizer used for encoding the data.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences according to the model's padding side and padding index among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences according to the model's padding side and padding index among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
 max_length (`int`, *optional*) : Maximum length of the returned list and optionally padding length (see above).
 
@@ -361,4 +361,4 @@ Data collator that dynamically pads a batch of nested examples for multiple choi
 of all examples have the same length.
 
 ### Model outputs
-https://huggingface.co/docs/transformers/v5.15.0/main_classes/output.md
+https://huggingface.co/docs/transformers/v5.15.1/main_classes/output.md

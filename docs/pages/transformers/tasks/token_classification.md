@@ -94,7 +94,7 @@ As you saw in the example `tokens` field above, it looks like the input has alre
 
 However, this adds some special tokens `[CLS]` and `[SEP]` and the subword tokenization creates a mismatch between the input and labels. A single word corresponding to a single label may now be split into two subwords. You'll need to realign the tokens and labels by:
 
-1. Mapping all tokens to their corresponding word with the [word_ids](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding.word_ids) method.
+1. Mapping all tokens to their corresponding word with the [word_ids](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding.word_ids) method.
 2. Assigning the label `-100` to the special tokens `[CLS]` and `[SEP]` so they're ignored by the PyTorch loss function (see [CrossEntropyLoss](https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html)).
 3. Only labeling the first token of a given word. Assign `-100` to other subtokens from the same word.
 
@@ -129,7 +129,7 @@ To apply the preprocessing function over the entire dataset, use 🤗 Datasets [
 >>> tokenized_wnut = wnut.map(tokenize_and_align_labels, batched=True)
 ```
 
-Now create a batch of examples using [DataCollatorWithPadding](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DataCollatorWithPadding). It's more efficient to *dynamically pad* the sentences to the longest length in a batch during collation, instead of padding the whole dataset to the maximum length.
+Now create a batch of examples using [DataCollatorWithPadding](/docs/transformers/v5.15.1/en/main_classes/data_collator#transformers.DataCollatorWithPadding). It's more efficient to *dynamically pad* the sentences to the longest length in a batch during collation, instead of padding the whole dataset to the maximum length.
 
 ```py
 >>> from transformers import DataCollatorForTokenClassification
@@ -215,9 +215,9 @@ Before you start training your model, create a map of the expected ids to their 
 ... }
 ```
 
-If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#train-with-pytorch-trainer)!
+If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#train-with-pytorch-trainer)!
 
-You're ready to start training your model now! Load DistilBERT with [AutoModelForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForTokenClassification) along with the number of expected labels, and the label mappings:
+You're ready to start training your model now! Load DistilBERT with [AutoModelForTokenClassification](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForTokenClassification) along with the number of expected labels, and the label mappings:
 
 ```py
 >>> from transformers import AutoModelForTokenClassification, TrainingArguments, Trainer
@@ -229,9 +229,9 @@ You're ready to start training your model now! Load DistilBERT with [AutoModelFo
 
 At this point, only three steps remain:
 
-1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model). At the end of each epoch, the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) will evaluate the seqeval scores and save the training checkpoint.
-2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, tokenizer, data collator, and `compute_metrics` function.
-3. Call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
+1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model). At the end of each epoch, the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) will evaluate the seqeval scores and save the training checkpoint.
+2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, tokenizer, data collator, and `compute_metrics` function.
+3. Call [train()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
 
 ```py
 >>> training_args = TrainingArguments(
@@ -260,7 +260,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -279,7 +279,7 @@ Grab some text you'd like to run inference on:
 >>> text = "The Golden State Warriors are an American professional basketball team based in San Francisco."
 ```
 
-The simplest way to try out your finetuned model for inference is to use it in a [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline). Instantiate a `pipeline` for NER with your model, and pass your text to it:
+The simplest way to try out your finetuned model for inference is to use it in a [pipeline()](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.pipeline). Instantiate a `pipeline` for NER with your model, and pass your text to it:
 
 ```py
 >>> from transformers import pipeline
@@ -365,4 +365,4 @@ Get the class with the highest probability, and use the model's `id2label` mappi
 ```
 
 ### Mask Generation
-https://huggingface.co/docs/transformers/v5.15.0/tasks/mask_generation.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/mask_generation.md

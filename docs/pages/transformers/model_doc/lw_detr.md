@@ -17,7 +17,7 @@ The original code can be found [here](https://github.com/Atten4Vis/LW-DETR).
 >
 > Click on the LW-DETR models in the right sidebar for more examples of how to apply LW-DETR to different object detection tasks.
 
-The example below demonstrates how to perform object detection with the [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) and the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to perform object detection with the [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) and the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 
@@ -64,7 +64,7 @@ for result in results:
 
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with LwDetr.
 
-- Scripts for finetuning [LwDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrForObjectDetection) with [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) or [Accelerate](https://huggingface.co/docs/accelerate/index) can be found [here](https://github.com/huggingface/transformers/tree/main/examples/pytorch/object-detection).
+- Scripts for finetuning [LwDetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/lw_detr#transformers.LwDetrForObjectDetection) with [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) or [Accelerate](https://huggingface.co/docs/accelerate/index) can be found [here](https://github.com/huggingface/transformers/tree/main/examples/pytorch/object-detection).
 - See also: [Object detection task guide](../tasks/object_detection).
 
 ## LwDetrConfig[[transformers.LwDetrConfig]]
@@ -75,7 +75,7 @@ A list of official Hugging Face and community (indicated by 🌎) resources to h
 transformers.LwDetrConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, projector_scale_factors: list[float] | tuple[float, ...] = (), hidden_expansion: float = 0.5, c2f_num_blocks: int = 3, activation_function: str = 'silu', batch_norm_eps: float = 1e-05, dropout: float | int = 0.0, decoder_ffn_dim: int = 2048, decoder_n_points: int = 4, decoder_layers: int = 3, decoder_self_attention_heads: int = 8, decoder_cross_attention_heads: int = 16, decoder_activation_function: str = 'relu', num_queries: int = 300, attention_bias: bool = True, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, group_detr: int = 13, init_std: float = 0.02, disable_custom_kernels: bool = True, class_cost: int | float = 2, bbox_cost: int | float = 5, giou_cost: int | float = 2, class_loss_coefficient: int | float = 1, dice_loss_coefficient: int | float = 1, bbox_loss_coefficient: int | float = 5, giou_loss_coefficient: int | float = 2, eos_coefficient: float = 0.1, focal_alpha: float = 0.25, auxiliary_loss: bool = True, d_model: int = 256)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/configuration_lw_detr.py#L109)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lw_detr/configuration_lw_detr.py#L109)
 
 **Parameters:**
 
@@ -105,7 +105,7 @@ decoder_cross_attention_heads (`int`, *optional*, defaults to 16) : Number of at
 
 decoder_activation_function (`str`, *optional*, defaults to `"relu"`) : The non-linear activation function in the decoder. Supported values are `"relu"`, `"silu"`, `"gelu"`.
 
-num_queries (`int`, *optional*, defaults to 300) : Number of object queries, i.e. detection slots. This is the maximal number of objects [LwDetrModel](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrModel) can detect in a single image.
+num_queries (`int`, *optional*, defaults to 300) : Number of object queries, i.e. detection slots. This is the maximal number of objects [LwDetrModel](/docs/transformers/v5.15.1/en/model_doc/lw_detr#transformers.LwDetrModel) can detect in a single image.
 
 attention_bias (`bool`, *optional*, defaults to `True`) : Whether to use a bias in the query, key, value and output projection layers during self-attention.
 
@@ -145,8 +145,8 @@ This is the configuration class to store the configuration of a LwDetrModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [AnnaZhang/lwdetr_small_60e_coco](https://huggingface.co/AnnaZhang/lwdetr_small_60e_coco)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -171,7 +171,7 @@ Examples:
 transformers.LwDetrViTConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, mlp_ratio: int = 4, hidden_act: str = 'gelu', dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-06, image_size: int | list[int] | tuple[int, int] = 256, pretrain_image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, qkv_bias: bool = True, window_block_indices: list[int] | tuple[int, ...] = (), use_absolute_position_embeddings: bool = True, _out_features: list[str] | None = None, _out_indices: list[int] | None = None, cae_init_values: float = 0.1, num_windows: int = 16)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/configuration_lw_detr.py#L35)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lw_detr/configuration_lw_detr.py#L35)
 
 **Parameters:**
 
@@ -213,8 +213,8 @@ This is the configuration class to store the configuration of a LwDetrModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [AnnaZhang/lwdetr_small_60e_coco](https://huggingface.co/AnnaZhang/lwdetr_small_60e_coco)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -239,16 +239,16 @@ Example:
 transformers.LwDetrModel(config: LwDetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/modeling_lw_detr.py#L1200)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lw_detr/modeling_lw_detr.py#L1200)
 
 **Parameters:**
 
-config ([LwDetrConfig](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LwDetrConfig](/docs/transformers/v5.15.1/en/model_doc/lw_detr#transformers.LwDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare LW Detr Model (consisting of a backbone and decoder Transformer) outputting raw
 hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -262,11 +262,11 @@ and behavior.
 forward(pixel_values: FloatTensor = None, pixel_mask: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/modeling_lw_detr.py#L1306)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lw_detr/modeling_lw_detr.py#L1306)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeformableDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor). See `DeformableDetrImageProcessor.__call__()` for details (`processor_class` uses [DeformableDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeformableDetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor). See `DeformableDetrImageProcessor.__call__()` for details (`processor_class` uses [DeformableDetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -274,9 +274,9 @@ pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional
 
 A `LwDetrModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LwDetrConfig](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) and inputs.
+elements depending on the configuration ([LwDetrConfig](/docs/transformers/v5.15.1/en/model_doc/lw_detr#transformers.LwDetrConfig)) and inputs.
 
-The [LwDetrModel](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrModel) forward method, overrides the `__call__` special method.
+The [LwDetrModel](/docs/transformers/v5.15.1/en/model_doc/lw_detr#transformers.LwDetrModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -337,16 +337,16 @@ Examples:
 transformers.LwDetrForObjectDetection(config: LwDetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/modeling_lw_detr.py#L1536)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lw_detr/modeling_lw_detr.py#L1536)
 
 **Parameters:**
 
-config ([LwDetrConfig](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LwDetrConfig](/docs/transformers/v5.15.1/en/model_doc/lw_detr#transformers.LwDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 LW DETR Model (consisting of a backbone and decoder Transformer) with object detection heads on
 top, for tasks such as COCO detection.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -360,11 +360,11 @@ and behavior.
 forward(pixel_values: FloatTensor = None, pixel_mask: typing.Optional[torch.LongTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/modeling_lw_detr.py#L1550)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lw_detr/modeling_lw_detr.py#L1550)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeformableDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor). See `DeformableDetrImageProcessor.__call__()` for details (`processor_class` uses [DeformableDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeformableDetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor). See `DeformableDetrImageProcessor.__call__()` for details (`processor_class` uses [DeformableDetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -374,9 +374,9 @@ labels (`list[Dict]` of len `(batch_size,)`, *optional*) : Labels for computing 
 
 A `LwDetrObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LwDetrConfig](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) and inputs.
+elements depending on the configuration ([LwDetrConfig](/docs/transformers/v5.15.1/en/model_doc/lw_detr#transformers.LwDetrConfig)) and inputs.
 
-The [LwDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrForObjectDetection) forward method, overrides the `__call__` special method.
+The [LwDetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/lw_detr#transformers.LwDetrForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -459,15 +459,15 @@ Detected remote with confidence 0.633 at location [40.79, 72.78, 176.76, 117.25]
 transformers.LwDetrViTBackbone(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/modeling_lw_detr.py#L342)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lw_detr/modeling_lw_detr.py#L342)
 
 **Parameters:**
 
-config ([LwDetrViTBackbone](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrViTBackbone)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LwDetrViTBackbone](/docs/transformers/v5.15.1/en/model_doc/lw_detr#transformers.LwDetrViTBackbone)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Lw Detr backbone.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -481,19 +481,19 @@ and behavior.
 forward(pixel_values: Tensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lw_detr/modeling_lw_detr.py#L356)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lw_detr/modeling_lw_detr.py#L356)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DeformableDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor). See `DeformableDetrImageProcessor.__call__()` for details (`processor_class` uses [DeformableDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DeformableDetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor). See `DeformableDetrImageProcessor.__call__()` for details (`processor_class` uses [DeformableDetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deformable_detr#transformers.DeformableDetrImageProcessor) for processing images).
 
 **Returns:** `BackboneOutput` or `tuple(torch.FloatTensor)`
 
 A `BackboneOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LwDetrConfig](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrConfig)) and inputs.
+elements depending on the configuration ([LwDetrConfig](/docs/transformers/v5.15.1/en/model_doc/lw_detr#transformers.LwDetrConfig)) and inputs.
 
-The [LwDetrViTBackbone](/docs/transformers/v5.15.0/en/model_doc/lw_detr#transformers.LwDetrViTBackbone) forward method, overrides the `__call__` special method.
+The [LwDetrViTBackbone](/docs/transformers/v5.15.1/en/model_doc/lw_detr#transformers.LwDetrViTBackbone) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -531,4 +531,4 @@ Examples:
 ```
 
 ### Gemma3n
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/gemma3n.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/gemma3n.md

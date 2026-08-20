@@ -8,7 +8,7 @@ You can find all the original checkpoints under the [VinAI](https://huggingface.
 > This model was contributed by [dqnguyen](https://huggingface.co/dqnguyen).
 > Check out the right sidebar for examples of how to apply BARTpho to different language tasks.
 
-The example below demonstrates how to summarize text with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to summarize text with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import AutoTokenizer, BartForConditionalGeneration
@@ -45,7 +45,7 @@ tokenizer.batch_decode(outputs, skip_special_tokens=True, clean_up_tokenization_
 transformers.BartphoTokenizer(vocab_file, monolingual_vocab_file, bos_token = '<s>', eos_token = '</s>', sep_token = '</s>', cls_token = '<s>', unk_token = '<unk>', pad_token = '<pad>', mask_token = '<mask>', sp_model_kwargs: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bartpho/tokenization_bartpho.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bartpho/tokenization_bartpho.py#L32)
 
 **Parameters:**
 
@@ -71,9 +71,9 @@ sp_model_kwargs (`dict`, *optional*) : Will be passed to the `SentencePieceProce
 
 sp_model (`SentencePieceProcessor`) : The *SentencePiece* processor that is used for every conversion (string, tokens and IDs).
 
-Adapted from [XLMRobertaTokenizer](/docs/transformers/v5.15.0/en/model_doc/xlm-roberta#transformers.XLMRobertaTokenizer). Based on [SentencePiece](https://github.com/google/sentencepiece).
+Adapted from [XLMRobertaTokenizer](/docs/transformers/v5.15.1/en/model_doc/xlm-roberta#transformers.XLMRobertaTokenizer). Based on [SentencePiece](https://github.com/google/sentencepiece).
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 #### build_inputs_with_special_tokens[[transformers.BartphoTokenizer.build_inputs_with_special_tokens]]
@@ -82,7 +82,7 @@ this superclass for more information regarding those methods.
 build_inputs_with_special_tokens(token_ids_0: list, token_ids_1: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bartpho/tokenization_bartpho.py#L160)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bartpho/tokenization_bartpho.py#L160)
 
 **Parameters:**
 
@@ -106,7 +106,7 @@ adding special tokens. An BARTPho sequence has the following format:
 create_token_type_ids_from_sequences(token_ids_0: list, token_ids_1: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bartpho/tokenization_bartpho.py#L214)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bartpho/tokenization_bartpho.py#L214)
 
 **Parameters:**
 
@@ -127,7 +127,7 @@ make use of token type ids, therefore a list of zeros is returned.
 get_special_tokens_mask(token_ids_0: list, token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bartpho/tokenization_bartpho.py#L186)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bartpho/tokenization_bartpho.py#L186)
 
 **Parameters:**
 
@@ -150,9 +150,9 @@ special tokens using the tokenizer `prepare_for_model` method.
 get_vocab()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bartpho/tokenization_bartpho.py#L244)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bartpho/tokenization_bartpho.py#L244)
 
 Override to use fairseq vocabulary
 
 ### Glmga
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/glmga.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/glmga.md

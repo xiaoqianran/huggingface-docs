@@ -29,10 +29,10 @@ BridgeTower consists of a visual encoder, a textual encoder and cross-modal enco
 The goal of this approach was to build a bridge between each uni-modal encoder and the cross-modal encoder to enable comprehensive and detailed interaction at each layer of the cross-modal encoder.
 In principle, one can apply any visual, textual or cross-modal encoder in the proposed architecture.
 
-The [BridgeTowerProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) wraps [RobertaTokenizer](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaTokenizer) and [BridgeTowerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor) into a single instance to both
+The [BridgeTowerProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) wraps [RobertaTokenizer](/docs/transformers/v5.15.1/en/model_doc/roberta#transformers.RobertaTokenizer) and [BridgeTowerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor) into a single instance to both
 encode the text and prepare the images respectively.
 
-The following example shows how to run contrastive learning using [BridgeTowerProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) and [BridgeTowerForContrastiveLearning](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerForContrastiveLearning).
+The following example shows how to run contrastive learning using [BridgeTowerProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) and [BridgeTowerForContrastiveLearning](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerForContrastiveLearning).
 
 ```python
 import requests
@@ -56,7 +56,7 @@ for text in texts:
     scores[text] = outputs
 ```
 
-The following example shows how to run image-text retrieval using [BridgeTowerProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) and [BridgeTowerForImageAndTextRetrieval](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerForImageAndTextRetrieval).
+The following example shows how to run image-text retrieval using [BridgeTowerProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) and [BridgeTowerForImageAndTextRetrieval](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerForImageAndTextRetrieval).
 
 ```python
 import requests
@@ -80,7 +80,7 @@ for text in texts:
     scores[text] = outputs.logits[0, 1].item()
 ```
 
-The following example shows how to run masked language modeling using [BridgeTowerProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) and [BridgeTowerForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerForMaskedLM).
+The following example shows how to run masked language modeling using [BridgeTowerProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) and [BridgeTowerForMaskedLM](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerForMaskedLM).
 
 ```python
 from transformers import BridgeTowerProcessor, BridgeTowerForMaskedLM
@@ -108,7 +108,7 @@ print(results)
 
 Tips:
 
-- This implementation of BridgeTower uses [RobertaTokenizer](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaTokenizer) to generate text embeddings and OpenAI's CLIP/ViT model to compute visual embeddings.
+- This implementation of BridgeTower uses [RobertaTokenizer](/docs/transformers/v5.15.1/en/model_doc/roberta#transformers.RobertaTokenizer) to generate text embeddings and OpenAI's CLIP/ViT model to compute visual embeddings.
 - Checkpoints for pre-trained [bridgeTower-base](https://huggingface.co/BridgeTower/bridgetower-base) and [bridgetower masked language modeling and image text matching](https://huggingface.co/BridgeTower/bridgetower-base-itm-mlm) are released.
 - Please refer to [Table 5](https://huggingface.co/papers/2206.08657) for BridgeTower's performance on Image Retrieval and other down stream tasks.
 
@@ -120,7 +120,7 @@ Tips:
 transformers.BridgeTowerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, share_cross_modal_transformer_layers: bool = True, hidden_act: str = 'gelu', hidden_size: int = 768, initializer_factor: float | int = 1, layer_norm_eps: float = 1e-05, share_link_tower_layers: bool = False, link_tower_type: str = 'add', num_attention_heads: int = 12, num_hidden_layers: int = 6, tie_word_embeddings: bool = False, init_layernorm_from_vision_encoder: bool = False, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bridgetower/configuration_bridgetower.py#L104)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bridgetower/configuration_bridgetower.py#L104)
 
 **Parameters:**
 
@@ -154,8 +154,8 @@ This is the configuration class to store the configuration of a BridgeTowerModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [BridgeTower/bridgetower-base](https://huggingface.co/BridgeTower/bridgetower-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -180,7 +180,7 @@ Example:
 transformers.BridgeTowerTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 50265, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, initializer_factor: float | int = 1, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.1, max_position_embeddings: int = 514, type_vocab_size: int = 1, layer_norm_eps: float = 1e-05, pad_token_id: int | None = 1, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 2, use_cache: bool = True, is_decoder: bool = False, add_cross_attention: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bridgetower/configuration_bridgetower.py#L65)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bridgetower/configuration_bridgetower.py#L65)
 
 **Parameters:**
 
@@ -224,8 +224,8 @@ This is the configuration class to store the configuration of a BridgeTowerModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [BridgeTower/bridgetower-base](https://huggingface.co/BridgeTower/bridgetower-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -247,7 +247,7 @@ Example:
 transformers.BridgeTowerVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, num_hidden_layers: int = 12, num_channels: int = 3, patch_size: int | list[int] | tuple[int, int] = 16, image_size: int | list[int] | tuple[int, int] = 288, initializer_factor: float | int = 1, layer_norm_eps: float = 1e-05, stop_gradient: bool = False, share_layernorm: bool = True, remove_last_layer: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bridgetower/configuration_bridgetower.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bridgetower/configuration_bridgetower.py#L27)
 
 **Parameters:**
 
@@ -275,8 +275,8 @@ This is the configuration class to store the configuration of a BridgeTowerModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [BridgeTower/bridgetower-base](https://huggingface.co/BridgeTower/bridgetower-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -298,7 +298,7 @@ Example:
 transformers.BridgeTowerImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bridgetower/image_processing_bridgetower.py#L81)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bridgetower/image_processing_bridgetower.py#L81)
 
 **Parameters:**
 
@@ -352,7 +352,7 @@ Constructs a BridgeTowerImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -412,7 +412,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.BridgeTowerImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bridgetower/image_processing_pil_bridgetower.py#L75)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bridgetower/image_processing_pil_bridgetower.py#L75)
 
 **Parameters:**
 
@@ -466,7 +466,7 @@ Constructs a BridgeTowerImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -526,7 +526,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.BridgeTowerProcessor(image_processor, tokenizer)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bridgetower/processing_bridgetower.py#L42)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bridgetower/processing_bridgetower.py#L42)
 
 **Parameters:**
 
@@ -536,8 +536,8 @@ tokenizer (`RobertaTokenizer`) : The tokenizer is a required input.
 
 Constructs a BridgeTowerProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[BridgeTowerProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) offers all the functionalities of [BridgeTowerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor) and [RobertaTokenizer](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaTokenizer). See the
-[~BridgeTowerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor) and [~RobertaTokenizer](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaTokenizer) for more information.
+[BridgeTowerProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) offers all the functionalities of [BridgeTowerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor) and [RobertaTokenizer](/docs/transformers/v5.15.1/en/model_doc/roberta#transformers.RobertaTokenizer). See the
+[~BridgeTowerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor) and [~RobertaTokenizer](/docs/transformers/v5.15.1/en/model_doc/roberta#transformers.RobertaTokenizer) for more information.
 
 #### __call__[[transformers.BridgeTowerProcessor.__call__]]
 
@@ -545,7 +545,7 @@ Constructs a BridgeTowerProcessor which wraps a image processor and a tokenizer 
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L651)
 
 **Parameters:**
 
@@ -557,9 +557,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## BridgeTowerModel[[transformers.BridgeTowerModel]]
 
@@ -569,15 +569,15 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 transformers.BridgeTowerModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bridgetower/modeling_bridgetower.py#L1079)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bridgetower/modeling_bridgetower.py#L1079)
 
 **Parameters:**
 
-config ([BridgeTowerModel](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([BridgeTowerModel](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare BridgeTower Model transformer outputting BridgeTowerModelOutput object without any specific head on
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -591,17 +591,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, image_embeds: typing.Optional[torch.FloatTensor] = None, image_token_type_idx: int | None = None, labels: typing.Optional[torch.LongTensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bridgetower/modeling_bridgetower.py#L1152)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bridgetower/modeling_bridgetower.py#L1152)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BridgeTowerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor). See `BridgeTowerImageProcessor.__call__()` for details ([BridgeTowerProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) uses [BridgeTowerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BridgeTowerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor). See `BridgeTowerImageProcessor.__call__()` for details ([BridgeTowerProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) uses [BridgeTowerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -619,9 +619,9 @@ interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to 
 
 A `BridgeTowerModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([BridgeTowerConfig](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerConfig)) and inputs.
+elements depending on the configuration ([BridgeTowerConfig](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerConfig)) and inputs.
 
-The [BridgeTowerModel](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerModel) forward method, overrides the `__call__` special method.
+The [BridgeTowerModel](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -671,15 +671,15 @@ odict_keys(['text_features', 'image_features', 'pooler_output'])
 transformers.BridgeTowerForContrastiveLearning(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bridgetower/modeling_bridgetower.py#L1620)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bridgetower/modeling_bridgetower.py#L1620)
 
 **Parameters:**
 
-config ([BridgeTowerForContrastiveLearning](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerForContrastiveLearning)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([BridgeTowerForContrastiveLearning](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerForContrastiveLearning)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 BridgeTower Model with a image-text contrastive head on top computing image-text contrastive loss.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -693,17 +693,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, image_embeds: typing.Optional[torch.FloatTensor] = None, return_loss: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bridgetower/modeling_bridgetower.py#L1634)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bridgetower/modeling_bridgetower.py#L1634)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BridgeTowerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor). See `BridgeTowerImageProcessor.__call__()` for details ([BridgeTowerProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) uses [BridgeTowerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BridgeTowerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor). See `BridgeTowerImageProcessor.__call__()` for details ([BridgeTowerProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) uses [BridgeTowerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -717,9 +717,9 @@ return_loss (`bool`, *optional*) : Whether or not to return the contrastive loss
 
 A `BridgeTowerContrastiveOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([BridgeTowerConfig](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerConfig)) and inputs.
+elements depending on the configuration ([BridgeTowerConfig](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerConfig)) and inputs.
 
-The [BridgeTowerForContrastiveLearning](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerForContrastiveLearning) forward method, overrides the `__call__` special method.
+The [BridgeTowerForContrastiveLearning](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerForContrastiveLearning) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -784,15 +784,15 @@ Loss with swapped images 2.126
 transformers.BridgeTowerForMaskedLM(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bridgetower/modeling_bridgetower.py#L1417)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bridgetower/modeling_bridgetower.py#L1417)
 
 **Parameters:**
 
-config ([BridgeTowerForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerForMaskedLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([BridgeTowerForMaskedLM](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerForMaskedLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 BridgeTower Model with a language modeling head on top as done during pretraining.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -806,17 +806,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, image_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bridgetower/modeling_bridgetower.py#L1435)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bridgetower/modeling_bridgetower.py#L1435)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BridgeTowerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor). See `BridgeTowerImageProcessor.__call__()` for details ([BridgeTowerProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) uses [BridgeTowerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BridgeTowerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor). See `BridgeTowerImageProcessor.__call__()` for details ([BridgeTowerProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) uses [BridgeTowerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -826,13 +826,13 @@ image_embeds (`torch.FloatTensor` of shape `(batch_size, num_patches, hidden_siz
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should be in `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`
 
-**Returns:** [MaskedLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [MaskedLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`
 
-A [MaskedLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
+A [MaskedLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([BridgeTowerConfig](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerConfig)) and inputs.
+elements depending on the configuration ([BridgeTowerConfig](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerConfig)) and inputs.
 
-The [BridgeTowerForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerForMaskedLM) forward method, overrides the `__call__` special method.
+The [BridgeTowerForMaskedLM](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerForMaskedLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -886,16 +886,16 @@ Examples:
 transformers.BridgeTowerForImageAndTextRetrieval(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bridgetower/modeling_bridgetower.py#L1518)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bridgetower/modeling_bridgetower.py#L1518)
 
 **Parameters:**
 
-config ([BridgeTowerForImageAndTextRetrieval](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerForImageAndTextRetrieval)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([BridgeTowerForImageAndTextRetrieval](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerForImageAndTextRetrieval)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 BridgeTower Model transformer with a classifier head on top (a linear layer on top of the final hidden state of the
 [CLS] token) for image-to-text matching.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -909,17 +909,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_mask: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, image_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bridgetower/modeling_bridgetower.py#L1529)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bridgetower/modeling_bridgetower.py#L1529)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BridgeTowerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor). See `BridgeTowerImageProcessor.__call__()` for details ([BridgeTowerProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) uses [BridgeTowerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BridgeTowerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor). See `BridgeTowerImageProcessor.__call__()` for details ([BridgeTowerProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerProcessor) uses [BridgeTowerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -929,13 +929,13 @@ image_embeds (`torch.FloatTensor` of shape `(batch_size, num_patches, hidden_siz
 
 labels (`torch.LongTensor` of shape `(batch_size, 1)`, *optional*) : Labels for computing the image-text matching loss. 0 means the pairs don't match and 1 means they match. The pairs with 0 will be skipped for calculation.
 
-**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+A [SequenceClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([BridgeTowerConfig](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerConfig)) and inputs.
+elements depending on the configuration ([BridgeTowerConfig](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerConfig)) and inputs.
 
-The [BridgeTowerForImageAndTextRetrieval](/docs/transformers/v5.15.0/en/model_doc/bridgetower#transformers.BridgeTowerForImageAndTextRetrieval) forward method, overrides the `__call__` special method.
+The [BridgeTowerForImageAndTextRetrieval](/docs/transformers/v5.15.1/en/model_doc/bridgetower#transformers.BridgeTowerForImageAndTextRetrieval) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -979,4 +979,4 @@ Examples:
 ```
 
 ### ALIGN
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/align.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/align.md

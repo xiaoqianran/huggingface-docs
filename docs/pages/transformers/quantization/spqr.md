@@ -7,7 +7,7 @@ The [SpQR](https://hf.co/papers/2306.03078) quantization algorithm involves a 16
 > [!TIP]
 > To quantize a model with SpQR, refer to the [Vahe1994/SpQR](https://github.com/Vahe1994/SpQR) repository.
 
-Load a SpQR-quantized model with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Load a SpQR-quantized model with [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```python
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -22,4 +22,4 @@ tokenizer = AutoTokenizer.from_pretrained("elvircrn/Llama-2-7b-SPQR-3Bit-16x16-r
 ```
 
 ### VPTQ
-https://huggingface.co/docs/transformers/v5.15.0/quantization/vptq.md
+https://huggingface.co/docs/transformers/v5.15.1/quantization/vptq.md

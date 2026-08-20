@@ -14,4 +14,4 @@ Knowledge distillation for better tiny models: To provide compact and efficient 
 - [Models on Huggingface](https://huggingface.co/collections/tiiuae/falcon3-67605ae03578be86e4e87026)
 
 ### T5v1.1
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/t5v1.1.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/t5v1.1.md

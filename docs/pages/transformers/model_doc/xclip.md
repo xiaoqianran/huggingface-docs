@@ -37,7 +37,7 @@ If you're interested in submitting a resource to be included here, please feel f
 transformers.XCLIPProcessor(image_processor = None, tokenizer = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/x_clip/processing_x_clip.py#L23)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/x_clip/processing_x_clip.py#L23)
 
 **Parameters:**
 
@@ -47,7 +47,7 @@ tokenizer (`tokenizer_class`) : The tokenizer is a required input.
 
 Constructs a XCLIPProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[XCLIPProcessor](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPProcessor) offers all the functionalities of `image_processor_class` and `tokenizer_class`. See the
+[XCLIPProcessor](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPProcessor) offers all the functionalities of `image_processor_class` and `tokenizer_class`. See the
 `~image_processor_class` and `~tokenizer_class` for more information.
 
 #### __call__[[transformers.XCLIPProcessor.__call__]]
@@ -56,7 +56,7 @@ Constructs a XCLIPProcessor which wraps a image processor and a tokenizer into a
 __call__(images = None, text = None, videos = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/x_clip/processing_x_clip.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/x_clip/processing_x_clip.py#L28)
 
 ## XCLIPConfig[[transformers.XCLIPConfig]]
 
@@ -66,7 +66,7 @@ __call__(images = None, text = None, videos = None, **kwargs)
 transformers.XCLIPConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, projection_dim: int = 512, prompt_layers: int = 2, prompt_alpha: float = 0.1, prompt_hidden_act: str = 'quick_gelu', prompt_num_attention_heads: int = 8, prompt_attention_dropout: float | int = 0.0, prompt_projection_dropout: float | int = 0.0, logit_scale_init_value: float = 2.6592, initializer_factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/x_clip/configuration_x_clip.py#L119)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/x_clip/configuration_x_clip.py#L119)
 
 **Parameters:**
 
@@ -96,8 +96,8 @@ This is the configuration class to store the configuration of a X ClipModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/xclip-base-patch32](https://huggingface.co/microsoft/xclip-base-patch32)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## XCLIPTextConfig[[transformers.XCLIPTextConfig]]
 
@@ -107,7 +107,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.XCLIPTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 49408, hidden_size: int = 512, intermediate_size: int = 2048, num_hidden_layers: int = 12, num_attention_heads: int = 8, max_position_embeddings: int = 77, hidden_act: str = 'quick_gelu', layer_norm_eps: float = 1e-05, attention_dropout: float | int = 0.0, initializer_range: float = 0.02, initializer_factor: float = 1.0, pad_token_id: int | None = 1, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 2)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/x_clip/configuration_x_clip.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/x_clip/configuration_x_clip.py#L27)
 
 **Parameters:**
 
@@ -143,8 +143,8 @@ This is the configuration class to store the configuration of a X ClipModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/xclip-base-patch32](https://huggingface.co/microsoft/xclip-base-patch32)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -169,7 +169,7 @@ Example:
 transformers.XCLIPVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, mit_hidden_size: int = 512, mit_intermediate_size: int = 2048, mit_num_hidden_layers: int = 1, mit_num_attention_heads: int = 8, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 32, num_frames: int = 8, hidden_act: str = 'quick_gelu', layer_norm_eps: float = 1e-05, attention_dropout: float | int = 0.0, initializer_range: float = 0.02, initializer_factor: float = 1.0, drop_path_rate: float | int = 0.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/x_clip/configuration_x_clip.py#L65)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/x_clip/configuration_x_clip.py#L65)
 
 **Parameters:**
 
@@ -213,8 +213,8 @@ This is the configuration class to store the configuration of a X ClipModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/xclip-base-patch32](https://huggingface.co/microsoft/xclip-base-patch32)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -239,15 +239,15 @@ Example:
 transformers.XCLIPModel(config: XCLIPConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/x_clip/modeling_x_clip.py#L914)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/x_clip/modeling_x_clip.py#L914)
 
 **Parameters:**
 
-config ([XCLIPConfig](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([XCLIPConfig](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare X Clip Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -261,11 +261,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, return_loss: bool | None = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/x_clip/modeling_x_clip.py#L981)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/x_clip/modeling_x_clip.py#L981)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
 
@@ -281,9 +281,9 @@ interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to 
 
 A `XCLIPOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XCLIPConfig](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPConfig)) and inputs.
+elements depending on the configuration ([XCLIPConfig](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPConfig)) and inputs.
 
-The [XCLIPModel](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPModel) forward method, overrides the `__call__` special method.
+The [XCLIPModel](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -292,13 +292,13 @@ the latter silently ignores them.
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `return_loss` is `True`) -- Contrastive loss for video-text similarity.
 - **logits_per_text** (`torch.FloatTensor` of shape `(text_batch_size, video_batch_size)`) -- The scaled dot product scores between `text_embeds` and `video_embeds`. This represents the text-video
   similarity scores.
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [XCLIPTextModel](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPTextModel).
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [XCLIPTextModel](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPTextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [XCLIPVisionModel](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPVisionModel).
+- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [XCLIPTextModel](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPTextModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [XCLIPTextModel](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPTextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [XCLIPVisionModel](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPVisionModel).
 - **logits_per_video** (`torch.FloatTensor` of shape `(video_batch_size, text_batch_size)`) -- The scaled dot product scores between `video_embeds` and `text_embeds`. This represents the video-text
   similarity scores.
 - **video_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The video embeddings obtained by applying the projection layer to the pooled output of
-  [XCLIPVisionModel](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPVisionModel).
+  [XCLIPVisionModel](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPVisionModel).
 - **mit_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of `XCLIPMultiframeIntegrationTransformer` (MIT for short).
 
 Examples:
@@ -386,21 +386,21 @@ tensor([[1.9496e-04, 9.9960e-01, 2.0825e-04]])
 get_text_features(input_ids: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/x_clip/modeling_x_clip.py#L946)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/x_clip/modeling_x_clip.py#L946)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XCLIPConfig](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPConfig)) and inputs.
+elements depending on the configuration ([XCLIPConfig](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -437,17 +437,17 @@ Examples:
 get_video_features(pixel_values: Tensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/x_clip/modeling_x_clip.py#L1141)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/x_clip/modeling_x_clip.py#L1141)
 
 **Parameters:**
 
 pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details (`processor_class` uses `image_processor_class` for processing images).
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XCLIPConfig](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPConfig)) and inputs.
+elements depending on the configuration ([XCLIPConfig](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -539,15 +539,15 @@ Examples:
 transformers.XCLIPTextModel(config: XCLIPTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/x_clip/modeling_x_clip.py#L549)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/x_clip/modeling_x_clip.py#L549)
 
 **Parameters:**
 
-config ([XCLIPTextConfig](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([XCLIPTextConfig](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The text model from XCLIP without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -561,23 +561,23 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/x_clip/modeling_x_clip.py#L563)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/x_clip/modeling_x_clip.py#L563)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XCLIPConfig](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPConfig)) and inputs.
+elements depending on the configuration ([XCLIPConfig](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPConfig)) and inputs.
 
-The [XCLIPTextModel](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPTextModel) forward method, overrides the `__call__` special method.
+The [XCLIPTextModel](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -621,15 +621,15 @@ Examples:
 transformers.XCLIPVisionModel(config: XCLIPVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/x_clip/modeling_x_clip.py#L647)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/x_clip/modeling_x_clip.py#L647)
 
 **Parameters:**
 
-config ([XCLIPVisionConfig](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([XCLIPVisionConfig](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The vision model from XCLIP without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -643,7 +643,7 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor], interpolate_pos_encoding: bool | None = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/x_clip/modeling_x_clip.py#L663)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/x_clip/modeling_x_clip.py#L663)
 
 **Parameters:**
 
@@ -651,13 +651,13 @@ pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_siz
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XCLIPConfig](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPConfig)) and inputs.
+elements depending on the configuration ([XCLIPConfig](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPConfig)) and inputs.
 
-The [XCLIPVisionModel](/docs/transformers/v5.15.0/en/model_doc/xclip#transformers.XCLIPVisionModel) forward method, overrides the `__call__` special method.
+The [XCLIPVisionModel](/docs/transformers/v5.15.1/en/model_doc/xclip#transformers.XCLIPVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -750,4 +750,4 @@ Examples:
 ```
 
 ### PoolFormer
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/poolformer.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/poolformer.md

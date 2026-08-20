@@ -67,4 +67,4 @@ print(tokenizer.batch_decode(res)[0])
 ```
 
 ### BitNet
-https://huggingface.co/docs/transformers/v5.15.0/quantization/bitnet.md
+https://huggingface.co/docs/transformers/v5.15.1/quantization/bitnet.md

@@ -77,5 +77,5 @@ If a model is supported by TGI, the Inference Endpoints UI will indicate this by
 
 We also recommend reading the [TGI documentation](https://huggingface.co/docs/text-generation-inference) for more in-depth information.
 
-### Create your own transcription app
-https://huggingface.co/docs/inference-endpoints/tutorials/transcription.md
+### Deploy with your own container
+https://huggingface.co/docs/inference-endpoints/engines/custom_container.md

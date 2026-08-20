@@ -90,5 +90,5 @@ You might also find these blogs helpful:
 
 Or try out the [Quick Start](./quick_start)!
 
-### About Inference Endpoints
-https://huggingface.co/docs/inference-endpoints/about.md
+### Create your own transcription app
+https://huggingface.co/docs/inference-endpoints/tutorials/transcription.md

@@ -44,7 +44,7 @@ configuration classes and their parameters. PhoBERT-specific tokenizer is docume
 transformers.PhobertTokenizer(vocab_file, merges_file, bos_token = '<s>', eos_token = '</s>', sep_token = '</s>', cls_token = '<s>', unk_token = '<unk>', pad_token = '<pad>', mask_token = '<mask>', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/phobert/tokenization_phobert.py#L49)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/phobert/tokenization_phobert.py#L49)
 
 **Parameters:**
 
@@ -68,7 +68,7 @@ mask_token (`str`, *optional*, defaults to `"<mask>"`) : The token used for mask
 
 Construct a PhoBERT tokenizer. Based on Byte-Pair-Encoding.
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 #### add_from_file[[transformers.PhobertTokenizer.add_from_file]]
@@ -77,7 +77,7 @@ this superclass for more information regarding those methods.
 add_from_file(f)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/phobert/tokenization_phobert.py#L325)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/phobert/tokenization_phobert.py#L325)
 
 Loads a pre-existing dictionary from a text file and adds its symbols to this instance.
 
@@ -87,7 +87,7 @@ Loads a pre-existing dictionary from a text file and adds its symbols to this in
 build_inputs_with_special_tokens(token_ids_0: list, token_ids_1: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/phobert/tokenization_phobert.py#L144)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/phobert/tokenization_phobert.py#L144)
 
 **Parameters:**
 
@@ -111,7 +111,7 @@ adding special tokens. A PhoBERT sequence has the following format:
 convert_tokens_to_string(tokens)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/phobert/tokenization_phobert.py#L291)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/phobert/tokenization_phobert.py#L291)
 
 Converts a sequence of tokens (string) in a single string.
 
@@ -121,7 +121,7 @@ Converts a sequence of tokens (string) in a single string.
 create_token_type_ids_from_sequences(token_ids_0: list, token_ids_1: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/phobert/tokenization_phobert.py#L198)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/phobert/tokenization_phobert.py#L198)
 
 **Parameters:**
 
@@ -142,7 +142,7 @@ make use of token type ids, therefore a list of zeros is returned.
 get_special_tokens_mask(token_ids_0: list, token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/phobert/tokenization_phobert.py#L170)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/phobert/tokenization_phobert.py#L170)
 
 **Parameters:**
 
@@ -160,4 +160,4 @@ Retrieve sequence ids from a token list that has no special tokens added. This m
 special tokens using the tokenizer `prepare_for_model` method.
 
 ### PEGASUS-X
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/pegasus_x.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/pegasus_x.md

@@ -29,5 +29,5 @@ You can find the models that are supported by TGI by either:
 
 We also recommend reading the [TEI documentation](https://huggingface.co/docs/text-embeddings-inference/index) for more in-depth information.
 
-### SGLang
-https://huggingface.co/docs/inference-endpoints/engines/sglang.md
+### Inference Toolkit
+https://huggingface.co/docs/inference-endpoints/engines/toolkit.md

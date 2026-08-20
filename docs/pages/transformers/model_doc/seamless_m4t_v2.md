@@ -14,7 +14,7 @@ SeamlessM4T-v2 enables multiple tasks without relying on separate models:
 - Text-to-text translation (T2TT)
 - Automatic speech recognition (ASR)
 
-[SeamlessM4Tv2Model](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model) can perform all the above tasks, but each task also has its own dedicated sub-model.
+[SeamlessM4Tv2Model](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model) can perform all the above tasks, but each task also has its own dedicated sub-model.
 
 The abstract from the paper is the following:
 
@@ -53,7 +53,7 @@ text_inputs = processor(text = "Hello, my dog is cute", src_lang="eng", return_t
 
 ### Speech
 
-[SeamlessM4Tv2Model](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model) can *seamlessly* generate text or speech with few or no changes. Let's target Russian voice translation:
+[SeamlessM4Tv2Model](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model) can *seamlessly* generate text or speech with few or no changes. Let's target Russian voice translation:
 
 ```python
 audio_array_from_text = model.generate(**text_inputs, tgt_lang="rus")[0].cpu().numpy().squeeze()
@@ -64,7 +64,7 @@ With basically the same code, I've translated English text and Arabic speech to 
 
 ### Text
 
-Similarly, you can generate translated text from audio files or from text with the same model. You only have to pass `generate_speech=False` to [SeamlessM4Tv2Model.generate()](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model.generate).
+Similarly, you can generate translated text from audio files or from text with the same model. You only have to pass `generate_speech=False` to [SeamlessM4Tv2Model.generate()](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model.generate).
 This time, let's translate to French.
 
 ```python
@@ -81,7 +81,7 @@ translated_text_from_text = processor.decode(output_tokens[0].tolist()[0], skip_
 
 #### 1. Use dedicated models
 
-[SeamlessM4Tv2Model](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model) is transformers top level model to generate speech and text, but you can also use dedicated models that perform the task without additional components, thus reducing the memory footprint.
+[SeamlessM4Tv2Model](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model) is transformers top level model to generate speech and text, but you can also use dedicated models that perform the task without additional components, thus reducing the memory footprint.
 For example, you can replace the audio-to-audio generation snippet with the model dedicated to the S2ST task, the rest is exactly the same code:
 
 ```python
@@ -98,7 +98,7 @@ from transformers import SeamlessM4Tv2ForTextToText
 model = SeamlessM4Tv2ForTextToText.from_pretrained("facebook/seamless-m4t-v2-large", device_map="auto")
 ```
 
-Feel free to try out [SeamlessM4Tv2ForSpeechToText](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForSpeechToText) and [SeamlessM4Tv2ForTextToSpeech](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForTextToSpeech) as well.
+Feel free to try out [SeamlessM4Tv2ForSpeechToText](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForSpeechToText) and [SeamlessM4Tv2ForTextToSpeech](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForTextToSpeech) as well.
 
 #### 2. Change the speaker identity
 
@@ -110,7 +110,7 @@ You can use different [generation strategies](../generation_strategies) for text
 
 #### 4. Generate speech and text at the same time
 
-Use `return_intermediate_token_ids=True` with [SeamlessM4Tv2Model](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model) to return both speech and text !
+Use `return_intermediate_token_ids=True` with [SeamlessM4Tv2Model](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model) to return both speech and text !
 
 ## Model architecture
 
@@ -157,17 +157,17 @@ This model was contributed by [ylacombe](https://huggingface.co/ylacombe). The o
 transformers.SeamlessM4Tv2Model(config, current_modality = 'text')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L3870)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L3870)
 
 **Parameters:**
 
-config ([SeamlessM4Tv2Model](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SeamlessM4Tv2Model](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 current_modality (`str`, *optional*, defaults to `"text"`) : Default modality. Used to initialize the model.
 
 The original SeamlessM4Tv2 Model transformer which can be used for every tasks available (S2ST, S2TT, T2TT, T2ST).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -181,13 +181,13 @@ and behavior.
 generate(input_ids: typing.Optional[torch.Tensor] = None, input_features: typing.Optional[torch.Tensor] = None, return_intermediate_token_ids: bool | None = None, tgt_lang: str | None = None, speaker_id: int | None = 0, generate_speech: bool | None = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L4082)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L4082)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [SeamlessM4TTokenizer](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TTokenizer) or [SeamlessM4TProcessor](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TProcessor). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [SeamlessM4TTokenizer](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TTokenizer) or [SeamlessM4TProcessor](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TProcessor). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, num_banks)`, *optional*) : Input audio features. This should be returned by the [SeamlessM4TFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor) class or the [SeamlessM4TProcessor](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TProcessor) class. See [SeamlessM4TFeatureExtractor.__call__()](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor.__call__) for details.
+input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, num_banks)`, *optional*) : Input audio features. This should be returned by the [SeamlessM4TFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor) class or the [SeamlessM4TProcessor](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TProcessor) class. See [SeamlessM4TFeatureExtractor.__call__()](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor.__call__) for details.
 
 return_intermediate_token_ids (`bool`, *optional*) : If `True`, also returns the intermediate generated text and unit tokens. Set to `True` if you also want to get translated text alongside the audio. Note that if `generate_speech=False`, this parameter will be ignored and the text tokens are returned.
 
@@ -197,7 +197,7 @@ speaker_id (`int`, *optional*, defaults to 0) : The id of the speaker used for s
 
 generate_speech (`bool`, *optional*, defaults to `True`) : If `False`, will only returns the text tokens and won't generate speech. 
 
-kwargs (*optional*) : Remaining dictionary of keyword arguments that will be passed to [GenerationMixin.generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate). Keyword arguments are of two types:  - Without a prefix, they will be entered as `**kwargs` for the `generate` method of each sub-model, except for `decoder_input_ids` which will only be passed through the text components. - With a *text_* or *speech_* prefix, they will be input for the `generate` method of the text model and speech model respectively. It has the priority over the keywords without a prefix.  This means you can, for example, specify a generation strategy for one generation but not for the other.
+kwargs (*optional*) : Remaining dictionary of keyword arguments that will be passed to [GenerationMixin.generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate). Keyword arguments are of two types:  - Without a prefix, they will be entered as `**kwargs` for the `generate` method of each sub-model, except for `decoder_input_ids` which will only be passed through the text components. - With a *text_* or *speech_* prefix, they will be input for the `generate` method of the text model and speech model respectively. It has the priority over the keywords without a prefix.  This means you can, for example, specify a generation strategy for one generation but not for the other.
 
 **Returns:** `Union[SeamlessM4Tv2GenerationOutput, tuple[Tensor], ModelOutput]`
 
@@ -226,15 +226,15 @@ guide](./generation_strategies).
 transformers.SeamlessM4Tv2ForTextToSpeech(config: SeamlessM4Tv2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L3157)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L3157)
 
 **Parameters:**
 
-config ([SeamlessM4Tv2Config](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SeamlessM4Tv2Config](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The text-to-speech SeamlessM4Tv2 Model transformer which can be used for T2ST.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -248,11 +248,11 @@ and behavior.
 generate(input_ids: typing.Optional[torch.Tensor] = None, return_intermediate_token_ids: bool | None = None, tgt_lang: str | None = None, speaker_id: int | None = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L3307)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L3307)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [SeamlessM4TTokenizer](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TTokenizer) or [SeamlessM4TProcessor](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TProcessor). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [SeamlessM4TTokenizer](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TTokenizer) or [SeamlessM4TProcessor](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TProcessor). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 return_intermediate_token_ids (`bool`, *optional*) : If `True`, also returns the intermediate generated text and unit tokens. Set to `True` if you also want to get translated text alongside the audio.
 
@@ -260,7 +260,7 @@ tgt_lang (`str`, *optional*) : The language to use as target language for transl
 
 speaker_id (`int`, *optional*, defaults to 0) : The id of the speaker used for speech synthesis. Must be lower than `config.vocoder_num_spkrs`.
 
-kwargs (*optional*) : Remaining dictionary of keyword arguments that will be passed to [GenerationMixin.generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate). Keyword arguments are of two types:  - Without a prefix, they will be entered as `**kwargs` for the `generate` method of each sub-model, except for `decoder_input_ids` which will only be passed through the text components. - With a *text_* or *speech_* prefix, they will be input for the `generate` method of the text model and speech model respectively. It has the priority over the keywords without a prefix.  This means you can, for example, specify a generation strategy for one generation but not for the other.
+kwargs (*optional*) : Remaining dictionary of keyword arguments that will be passed to [GenerationMixin.generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate). Keyword arguments are of two types:  - Without a prefix, they will be entered as `**kwargs` for the `generate` method of each sub-model, except for `decoder_input_ids` which will only be passed through the text components. - With a *text_* or *speech_* prefix, they will be input for the `generate` method of the text model and speech model respectively. It has the priority over the keywords without a prefix.  This means you can, for example, specify a generation strategy for one generation but not for the other.
 
 **Returns:** `Union[SeamlessM4Tv2GenerationOutput, tuple[Tensor]]`
 
@@ -288,15 +288,15 @@ guide](./generation_strategies).
 transformers.SeamlessM4Tv2ForSpeechToSpeech(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L3511)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L3511)
 
 **Parameters:**
 
-config ([SeamlessM4Tv2ForSpeechToSpeech](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForSpeechToSpeech)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SeamlessM4Tv2ForSpeechToSpeech](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForSpeechToSpeech)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The speech-to-speech SeamlessM4Tv2 Model transformer which can be used for S2ST.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -310,11 +310,11 @@ and behavior.
 generate(input_features: typing.Optional[torch.Tensor] = None, return_intermediate_token_ids: bool | None = None, tgt_lang: str | None = None, speaker_id: int | None = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L3660)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L3660)
 
 **Parameters:**
 
-input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, num_banks)`) : Input audio features. This should be returned by the [SeamlessM4TFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor) class or the [SeamlessM4TProcessor](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TProcessor) class. See [SeamlessM4TFeatureExtractor.__call__()](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor.__call__) for details.
+input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, num_banks)`) : Input audio features. This should be returned by the [SeamlessM4TFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor) class or the [SeamlessM4TProcessor](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TProcessor) class. See [SeamlessM4TFeatureExtractor.__call__()](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor.__call__) for details.
 
 return_intermediate_token_ids (`bool`, *optional*) : If `True`, also returns the intermediate generated text and unit tokens. Set to `True` if you also want to get translated text alongside the audio.
 
@@ -322,7 +322,7 @@ tgt_lang (`str`, *optional*) : The language to use as target language for transl
 
 speaker_id (`int`, *optional*, defaults to 0) : The id of the speaker used for speech synthesis. Must be lower than `config.vocoder_num_spkrs`. 
 
-kwargs (*optional*) : Remaining dictionary of keyword arguments that will be passed to [GenerationMixin.generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate). Keyword arguments are of two types:  - Without a prefix, they will be entered as `**kwargs` for the `generate` method of each sub-model, except for `decoder_input_ids` which will only be passed through the text components. - With a *text_* or *speech_* prefix, they will be input for the `generate` method of the text model and speech model respectively. It has the priority over the keywords without a prefix.  This means you can, for example, specify a generation strategy for one generation but not for the other.
+kwargs (*optional*) : Remaining dictionary of keyword arguments that will be passed to [GenerationMixin.generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate). Keyword arguments are of two types:  - Without a prefix, they will be entered as `**kwargs` for the `generate` method of each sub-model, except for `decoder_input_ids` which will only be passed through the text components. - With a *text_* or *speech_* prefix, they will be input for the `generate` method of the text model and speech model respectively. It has the priority over the keywords without a prefix.  This means you can, for example, specify a generation strategy for one generation but not for the other.
 
 **Returns:** `Union[SeamlessM4Tv2GenerationOutput, tuple[Tensor]]`
 
@@ -350,15 +350,15 @@ guide](./generation_strategies).
 transformers.SeamlessM4Tv2ForTextToText(config: SeamlessM4Tv2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L2642)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L2642)
 
 **Parameters:**
 
-config ([SeamlessM4Tv2Config](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SeamlessM4Tv2Config](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The text-to-text SeamlessM4Tv2 Model transformer which can be used for T2TT.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -372,21 +372,21 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: tuple[tuple[torch.FloatTensor]] | None = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L2678)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L2678)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are decoder input IDs?](../glossary#decoder-input-ids)  Bart uses the `eos_token_id` as the starting token for `decoder_input_ids` generation. If `past_key_values` is used, optionally only the last `decoder_input_ids` have to be input (see `past_key_values`).  For translation and summarization training, `decoder_input_ids` should be provided. If no `decoder_input_ids` is provided, the model will create this tensor by shifting the `input_ids` to the right for denoising pre-training following the paper.
+decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are decoder input IDs?](../glossary#decoder-input-ids)  Bart uses the `eos_token_id` as the starting token for `decoder_input_ids` generation. If `past_key_values` is used, optionally only the last `decoder_input_ids` have to be input (see `past_key_values`).  For translation and summarization training, `decoder_input_ids` should be provided. If no `decoder_input_ids` is provided, the model will create this tensor by shifting the `input_ids` to the right for denoising pre-training following the paper.
 
 decoder_attention_mask (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also be used by default.  If you want to change padding behavior, you should read `modeling_bart._prepare_decoder_attention_mask` and modify to your needs. See diagram 1 in [the paper](https://huggingface.co/papers/1910.13461) for more information on the default strategy.
 
 encoder_outputs (`tuple[tuple[torch.FloatTensor]]`, *optional*) : Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape`(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.  labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*): Labels for computing the masked language modeling loss. Indices should be in `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`
 
@@ -400,15 +400,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [Seq2SeqLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [Seq2SeqLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or `tuple(torch.FloatTensor)`
 
-A [Seq2SeqLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or a tuple of
+A [Seq2SeqLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SeamlessM4Tv2Config](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Config)) and inputs.
+elements depending on the configuration ([SeamlessM4Tv2Config](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Config)) and inputs.
 
-The [SeamlessM4Tv2ForTextToText](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForTextToText) forward method, overrides the `__call__` special method.
+The [SeamlessM4Tv2ForTextToText](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForTextToText) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -416,7 +416,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss.
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
   blocks) that can be used (see `past_key_values` input) to speed up sequential decoding.
@@ -451,15 +451,15 @@ the latter silently ignores them.
 generate(input_ids = None, tgt_lang = None, generation_config = None, logits_processor = None, stopping_criteria = None, prefix_allowed_tokens_fn = None, synced_gpus = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L2776)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L2776)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of varying shape depending on the modality, *optional*) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [SeamlessM4TTokenizer](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TTokenizer) or [SeamlessM4TProcessor](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TProcessor). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of varying shape depending on the modality, *optional*) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [SeamlessM4TTokenizer](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TTokenizer) or [SeamlessM4TProcessor](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TProcessor). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 tgt_lang (`str`, *optional*) : The language to use as target language for translation.
 
-generation_config (`~generation.GenerationConfig`, *optional*) : The generation configuration to be used as base parametrization for the generation call. `**kwargs` passed to generate matching the attributes of `generation_config` will override them. If `generation_config` is not provided, the default will be used, which had the following loading priority: 1) from the `generation_config.json` model file, if it exists; 2) from the model configuration. Please note that unspecified parameters will inherit [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig)'s default values, whose documentation should be checked to parameterize generation.
+generation_config (`~generation.GenerationConfig`, *optional*) : The generation configuration to be used as base parametrization for the generation call. `**kwargs` passed to generate matching the attributes of `generation_config` will override them. If `generation_config` is not provided, the default will be used, which had the following loading priority: 1) from the `generation_config.json` model file, if it exists; 2) from the model configuration. Please note that unspecified parameters will inherit [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig)'s default values, whose documentation should be checked to parameterize generation.
 
 logits_processor (`LogitsProcessorList`, *optional*) : Custom logits processors that complement the default logits processors built from arguments and generation config. If a logit processor is passed that is already created with the arguments or a generation config an error is thrown. This feature is intended for advanced users.
 
@@ -471,13 +471,13 @@ synced_gpus (`bool`, *optional*, defaults to `False`) : Whether to continue runn
 
 kwargs (`dict[str, Any]`, *optional*) : Ad hoc parametrization of `generate_config` and/or additional model-specific kwargs that will be forwarded to the `forward` function of the model.
 
-**Returns:** [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) or `torch.LongTensor`
+**Returns:** [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) or `torch.LongTensor`
 
-A [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) (if `return_dict_in_generate=True`
+A [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) (if `return_dict_in_generate=True`
 or when `config.return_dict_in_generate=True`) or a `torch.FloatTensor`. The possible
-[ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) types are:
-- [GenerateEncoderDecoderOutput](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.generation.GenerateEncoderDecoderOutput),
-- [GenerateBeamEncoderDecoderOutput](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.generation.GenerateBeamEncoderDecoderOutput)
+[ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) types are:
+- [GenerateEncoderDecoderOutput](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.generation.GenerateEncoderDecoderOutput),
+- [GenerateBeamEncoderDecoderOutput](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.generation.GenerateBeamEncoderDecoderOutput)
 
 Generates sequences of token ids.
 
@@ -496,15 +496,15 @@ guide](./generation_strategies).
 transformers.SeamlessM4Tv2ForSpeechToText(config: SeamlessM4Tv2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L2893)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L2893)
 
 **Parameters:**
 
-config ([SeamlessM4Tv2Config](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SeamlessM4Tv2Config](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The speech-to-text SeamlessM4Tv2 Model transformer which can be used for S2TT.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -518,21 +518,21 @@ and behavior.
 forward(input_features: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: tuple[tuple[torch.FloatTensor]] | None = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L2931)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L2931)
 
 **Parameters:**
 
-input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, num_banks)`) : Input audio features. This should be returned by the [SeamlessM4TFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor) class or the [SeamlessM4TProcessor](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TProcessor) class. See [SeamlessM4TFeatureExtractor.__call__()](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor.__call__) for details.
+input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, num_banks)`) : Input audio features. This should be returned by the [SeamlessM4TFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor) class or the [SeamlessM4TProcessor](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TProcessor) class. See [SeamlessM4TFeatureExtractor.__call__()](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor.__call__) for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are decoder input IDs?](../glossary#decoder-input-ids)  Bart uses the `eos_token_id` as the starting token for `decoder_input_ids` generation. If `past_key_values` is used, optionally only the last `decoder_input_ids` have to be input (see `past_key_values`).  For translation and summarization training, `decoder_input_ids` should be provided. If no `decoder_input_ids` is provided, the model will create this tensor by shifting the `input_ids` to the right for denoising pre-training following the paper.
+decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are decoder input IDs?](../glossary#decoder-input-ids)  Bart uses the `eos_token_id` as the starting token for `decoder_input_ids` generation. If `past_key_values` is used, optionally only the last `decoder_input_ids` have to be input (see `past_key_values`).  For translation and summarization training, `decoder_input_ids` should be provided. If no `decoder_input_ids` is provided, the model will create this tensor by shifting the `input_ids` to the right for denoising pre-training following the paper.
 
 decoder_attention_mask (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also be used by default.  If you want to change padding behavior, you should read `modeling_bart._prepare_decoder_attention_mask` and modify to your needs. See diagram 1 in [the paper](https://huggingface.co/papers/1910.13461) for more information on the default strategy.
 
 encoder_outputs (`tuple[tuple[torch.FloatTensor]]`, *optional*) : Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape`(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.  labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*): Labels for computing the masked language modeling loss. Indices should be in `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`
 
@@ -546,15 +546,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [Seq2SeqLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [Seq2SeqLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or `tuple(torch.FloatTensor)`
 
-A [Seq2SeqLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or a tuple of
+A [Seq2SeqLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SeamlessM4Tv2Config](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Config)) and inputs.
+elements depending on the configuration ([SeamlessM4Tv2Config](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Config)) and inputs.
 
-The [SeamlessM4Tv2ForSpeechToText](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForSpeechToText) forward method, overrides the `__call__` special method.
+The [SeamlessM4Tv2ForSpeechToText](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForSpeechToText) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -562,7 +562,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss.
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
   blocks) that can be used (see `past_key_values` input) to speed up sequential decoding.
@@ -630,15 +630,15 @@ Example:
 generate(input_features = None, tgt_lang = None, generation_config = None, logits_processor = None, stopping_criteria = None, prefix_allowed_tokens_fn = None, synced_gpus = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L3038)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seamless_m4t_v2/modeling_seamless_m4t_v2.py#L3038)
 
 **Parameters:**
 
-input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, num_banks)`) : Input audio features. This should be returned by the [SeamlessM4TFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor) class or the [SeamlessM4TProcessor](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TProcessor) class. See [SeamlessM4TFeatureExtractor.__call__()](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor.__call__) for details. 
+input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, num_banks)`) : Input audio features. This should be returned by the [SeamlessM4TFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor) class or the [SeamlessM4TProcessor](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TProcessor) class. See [SeamlessM4TFeatureExtractor.__call__()](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor.__call__) for details. 
 
 tgt_lang (`str`, *optional*) : The language to use as target language for translation.
 
-generation_config (`~generation.GenerationConfig`, *optional*) : The generation configuration to be used as base parametrization for the generation call. `**kwargs` passed to generate matching the attributes of `generation_config` will override them. If `generation_config` is not provided, the default will be used, which had the following loading priority: 1) from the `generation_config.json` model file, if it exists; 2) from the model configuration. Please note that unspecified parameters will inherit [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig)'s default values, whose documentation should be checked to parameterize generation.
+generation_config (`~generation.GenerationConfig`, *optional*) : The generation configuration to be used as base parametrization for the generation call. `**kwargs` passed to generate matching the attributes of `generation_config` will override them. If `generation_config` is not provided, the default will be used, which had the following loading priority: 1) from the `generation_config.json` model file, if it exists; 2) from the model configuration. Please note that unspecified parameters will inherit [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig)'s default values, whose documentation should be checked to parameterize generation.
 
 logits_processor (`LogitsProcessorList`, *optional*) : Custom logits processors that complement the default logits processors built from arguments and generation config. If a logit processor is passed that is already created with the arguments or a generation config an error is thrown. This feature is intended for advanced users.
 
@@ -650,13 +650,13 @@ synced_gpus (`bool`, *optional*, defaults to `False`) : Whether to continue runn
 
 kwargs (`dict[str, Any]`, *optional*) : Ad hoc parametrization of `generate_config` and/or additional model-specific kwargs that will be forwarded to the `forward` function of the model.
 
-**Returns:** [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) or `torch.LongTensor`
+**Returns:** [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) or `torch.LongTensor`
 
-A [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) (if `return_dict_in_generate=True`
+A [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) (if `return_dict_in_generate=True`
 or when `config.return_dict_in_generate=True`) or a `torch.FloatTensor`. The possible
-[ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) types are:
-- [GenerateEncoderDecoderOutput](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.generation.GenerateEncoderDecoderOutput),
-- [GenerateBeamEncoderDecoderOutput](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.generation.GenerateBeamEncoderDecoderOutput)
+[ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) types are:
+- [GenerateEncoderDecoderOutput](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.generation.GenerateEncoderDecoderOutput),
+- [GenerateBeamEncoderDecoderOutput](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.generation.GenerateBeamEncoderDecoderOutput)
 
 Generates sequences of token ids.
 
@@ -675,7 +675,7 @@ guide](./generation_strategies).
 transformers.SeamlessM4Tv2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, vocab_size: int = 256102, t2u_vocab_size: int = 10082, char_vocab_size: int = 10943, hidden_size: int = 1024, initializer_range: float = 0.02, layer_norm_eps: float = 1e-05, use_cache: bool = True, max_position_embeddings: int = 4096, encoder_layerdrop: float | int = 0.05, decoder_layerdrop: float | int = 0.05, activation_function: str = 'relu', dropout: float | int = 0.1, attention_dropout: float | int = 0.1, activation_dropout: float | int = 0.0, scale_embedding: bool = True, encoder_layers: int = 24, encoder_ffn_dim: int = 8192, encoder_attention_heads: int = 16, decoder_layers: int = 24, decoder_ffn_dim: int = 8192, decoder_attention_heads: int = 16, decoder_start_token_id: int = 3, max_new_tokens: int | None = 256, pad_token_id: int | None = 0, bos_token_id: int | None = 2, eos_token_id: int | list[int] | None = 3, speech_encoder_layers: int = 24, speech_encoder_attention_heads: int = 16, speech_encoder_intermediate_size: int = 4096, speech_encoder_hidden_act: str = 'swish', speech_encoder_dropout: float | int = 0.0, add_adapter: bool = True, speech_encoder_layerdrop: float | int = 0.1, feature_projection_input_dim: int = 160, adaptor_kernel_size: int = 8, adaptor_stride: int = 8, adaptor_dropout: float | int = 0.1, num_adapter_layers: int = 1, position_embeddings_type: str = 'relative_key', conv_depthwise_kernel_size: int = 31, left_max_position_embeddings: int = 64, right_max_position_embeddings: int = 8, speech_encoder_chunk_size: int = 20000, speech_encoder_left_chunk_num: int = 128, t2u_bos_token_id: int | None = 0, t2u_pad_token_id: int | None = 1, t2u_eos_token_id: int | list[int] | None = 2, t2u_encoder_layers: int = 6, t2u_encoder_ffn_dim: int = 8192, t2u_encoder_attention_heads: int = 16, t2u_decoder_layers: int = 6, t2u_decoder_ffn_dim: int = 8192, t2u_decoder_attention_heads: int = 16, t2u_max_position_embeddings: int = 4096, t2u_variance_predictor_embed_dim: int = 1024, t2u_variance_predictor_hidden_dim: int = 256, t2u_variance_predictor_kernel_size: int = 3, t2u_variance_pred_dropout: float | int = 0.5, sampling_rate: int = 16000, upsample_initial_channel: int = 512, upsample_rates: list[int] | tuple[int, ...] = (5, 4, 4, 2, 2), upsample_kernel_sizes: list[int] | tuple[int, ...] = (11, 8, 8, 4, 4), resblock_kernel_sizes: list[int] | tuple[int, ...] = (3, 7, 11), resblock_dilation_sizes: list | tuple = ((1, 3, 5), (1, 3, 5), (1, 3, 5)), leaky_relu_slope: float = 0.1, unit_hifi_gan_vocab_size: int = 10000, unit_embed_dim: int = 1280, lang_embed_dim: int = 256, spkr_embed_dim: int = 256, vocoder_num_langs: int = 36, vocoder_num_spkrs: int = 200, variance_predictor_kernel_size: int = 3, var_pred_dropout: float | int = 0.5, vocoder_offset: int = 4, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seamless_m4t_v2/configuration_seamless_m4t_v2.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seamless_m4t_v2/configuration_seamless_m4t_v2.py#L24)
 
 **Parameters:**
 
@@ -683,9 +683,9 @@ is_encoder_decoder (`bool`, *optional*, defaults to `True`) : Whether the model 
 
 vocab_size (`int`, *optional*, defaults to `256102`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
 
-t2u_vocab_size (`int`, *optional*, defaults to 10082) : Unit vocabulary size of the SeamlessM4Tv2 model. Defines the number of different "unit tokens" that can be represented by the `inputs_ids` passed when calling the Text-To-Units sub-model of [~SeamlessM4Tv2Model](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model), [~SeamlessM4Tv2ForSpeechToSpeech](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForSpeechToSpeech) or [~SeamlessM4Tv2ForTextToSpeech](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForTextToSpeech).
+t2u_vocab_size (`int`, *optional*, defaults to 10082) : Unit vocabulary size of the SeamlessM4Tv2 model. Defines the number of different "unit tokens" that can be represented by the `inputs_ids` passed when calling the Text-To-Units sub-model of [~SeamlessM4Tv2Model](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model), [~SeamlessM4Tv2ForSpeechToSpeech](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForSpeechToSpeech) or [~SeamlessM4Tv2ForTextToSpeech](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForTextToSpeech).
 
-char_vocab_size (`int`, *optional*, defaults to 10943) : Character vocabulary size of the SeamlessM4Tv2 model. Defines the number of different character tokens that can be represented by the `char_inputs_ids` passed when calling the Text-To-Units sub-model of [~SeamlessM4Tv2Model](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model), [~SeamlessM4Tv2ForSpeechToSpeech](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForSpeechToSpeech) or [~SeamlessM4Tv2ForTextToSpeech](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForTextToSpeech).
+char_vocab_size (`int`, *optional*, defaults to 10943) : Character vocabulary size of the SeamlessM4Tv2 model. Defines the number of different character tokens that can be represented by the `char_inputs_ids` passed when calling the Text-To-Units sub-model of [~SeamlessM4Tv2Model](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model), [~SeamlessM4Tv2ForSpeechToSpeech](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForSpeechToSpeech) or [~SeamlessM4Tv2ForTextToSpeech](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForTextToSpeech).
 
 hidden_size (`int`, *optional*, defaults to `1024`) : Dimension of the hidden representations.
 
@@ -747,7 +747,7 @@ add_adapter (`bool`, *optional*, defaults to `True`) : Add an adapter layer on t
 
 speech_encoder_layerdrop (`float`, *optional*, defaults to 0.1) : The LayerDrop probability for the speech encoder. See the [LayerDrop paper](see https://huggingface.co/papers/1909.11556) for more details.
 
-feature_projection_input_dim (`int`, *optional*, defaults to 160) : Input dimension of the input feature projection of the speech encoder, i.e the dimension after processing input audios with [SeamlessM4TFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor).
+feature_projection_input_dim (`int`, *optional*, defaults to 160) : Input dimension of the input feature projection of the speech encoder, i.e the dimension after processing input audios with [SeamlessM4TFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t#transformers.SeamlessM4TFeatureExtractor).
 
 adaptor_kernel_size (`int`, *optional*, defaults to 8) : Kernel size of the convolutional layers in the adapter network. Only relevant if `add_adapter is True`.
 
@@ -811,7 +811,7 @@ resblock_dilation_sizes (`tuple[tuple[int]]` or `list[list[int]]`, *optional*, d
 
 leaky_relu_slope (`float`, *optional*, defaults to 0.1) : The angle of the negative slope used by the leaky ReLU activation in the vocoder. Applies to the vocoder only.
 
-unit_hifi_gan_vocab_size (`int`, *optional*, defaults to 10000) : Vocabulary size of the SeamlessM4Tv2 vocoder. Defines the number of different unit tokens that can be represented by the `inputs_ids` passed when calling the vocoder of [~SeamlessM4Tv2Model](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model), [~SeamlessM4Tv2ForSpeechToSpeech](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForSpeechToSpeech) or [~SeamlessM4Tv2ForTextToSpeech](/docs/transformers/v5.15.0/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForTextToSpeech).
+unit_hifi_gan_vocab_size (`int`, *optional*, defaults to 10000) : Vocabulary size of the SeamlessM4Tv2 vocoder. Defines the number of different unit tokens that can be represented by the `inputs_ids` passed when calling the vocoder of [~SeamlessM4Tv2Model](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2Model), [~SeamlessM4Tv2ForSpeechToSpeech](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForSpeechToSpeech) or [~SeamlessM4Tv2ForTextToSpeech](/docs/transformers/v5.15.1/en/model_doc/seamless_m4t_v2#transformers.SeamlessM4Tv2ForTextToSpeech).
 
 unit_embed_dim (`int`, *optional*, defaults to 1280) : The projection dimension of the input ids given to the hifi-gan vocoder. Applies to the vocoder only.
 
@@ -835,8 +835,8 @@ This is the configuration class to store the configuration of a SeamlessM4Tv2Mod
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/hf-seamless-m4t-medium](https://huggingface.co/facebook/hf-seamless-m4t-medium)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ```python
 >>> from transformers import SeamlessM4Tv2Model, SeamlessM4Tv2Config
@@ -852,4 +852,4 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 ```
 
 ### Nemotron
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/nemotron.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/nemotron.md

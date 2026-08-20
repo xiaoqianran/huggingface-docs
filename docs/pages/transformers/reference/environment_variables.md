@@ -42,4 +42,4 @@ model = pipeline(task="text-generation", model="facebook/opt-30b", device_map="a
 ```
 
 ### Video-text-to-text
-https://huggingface.co/docs/transformers/v5.15.0/tasks/video_text_to_text.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/video_text_to_text.md

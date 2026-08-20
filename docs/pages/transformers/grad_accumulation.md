@@ -29,7 +29,7 @@ args = TrainingArguments(
 
 ## Loss scaling
 
-For a [custom loss function](./trainer_recipes#custom-loss-function), include `num_items_in_batch` so [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) divides the loss by the number of prediction targets across all mini-batches. This normalizes by tokens rather than a fixed step count with `gradient_accumulation_steps`. Otherwise, [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) divides loss by `gradient_accumulation_steps`.
+For a [custom loss function](./trainer_recipes#custom-loss-function), include `num_items_in_batch` so [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) divides the loss by the number of prediction targets across all mini-batches. This normalizes by tokens rather than a fixed step count with `gradient_accumulation_steps`. Otherwise, [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) divides loss by `gradient_accumulation_steps`.
 
 ```py
 import torch.nn.functional as F
@@ -40,7 +40,7 @@ def compute_loss(outputs, labels, num_items_in_batch=None):
     return loss / num_items_in_batch
 ```
 
-For causal LM models, `num_items_in_batch` counts the *shifted* labels. The loss shifts labels so the prediction at position `i` targets the token at position `i + 1`, which leaves position 0 of every sequence without a target. [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) excludes those positions and counts over `labels[..., 1:]`, so the denominator matches the number of prediction targets the loss uses. When a data collator supplies `shift_labels` directly, such as a padding-free collator, [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) counts over that tensor instead. Other loss types, like masked LM and classification, count the full label tensor.
+For causal LM models, `num_items_in_batch` counts the *shifted* labels. The loss shifts labels so the prediction at position `i` targets the token at position `i + 1`, which leaves position 0 of every sequence without a target. [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) excludes those positions and counts over `labels[..., 1:]`, so the denominator matches the number of prediction targets the loss uses. When a data collator supplies `shift_labels` directly, such as a padding-free collator, [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) counts over that tensor instead. Other loss types, like masked LM and classification, count the full label tensor.
 
 ## Next steps
 
@@ -50,4 +50,4 @@ For causal LM models, `num_items_in_batch` counts the *shifted* labels. The loss
 - Read the [Gradient Accumulation Fix](https://unsloth.ai/blog/gradient) blog post to learn how gradient accumulation is computed.
 
 ### 🤗 Transformers Notebooks
-https://huggingface.co/docs/transformers/v5.15.0/notebooks.md
+https://huggingface.co/docs/transformers/v5.15.1/notebooks.md

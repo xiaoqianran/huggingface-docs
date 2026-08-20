@@ -12,7 +12,7 @@ PP-OCRv5_mobile_rec is one of the PP-OCRv5_rec series, the latest generation of 
 
 ### Single input inference
 
-The example below demonstrates how to detect text with PP-OCRv5_mobile_rec using the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel).
+The example below demonstrates how to detect text with PP-OCRv5_mobile_rec using the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 import requests
@@ -36,7 +36,7 @@ for result in results:
 
 ### Batched inference
 
-Here is how you can do it with PP-OCRv5_mobile_rec using the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel):
+Here is how you can do it with PP-OCRv5_mobile_rec using the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel):
 
 ```python
 import requests
@@ -65,15 +65,15 @@ for result in results:
 transformers.PPOCRV5MobileRecForTextRecognition(config: PPOCRV5MobileRecConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_mobile_rec/modeling_pp_ocrv5_mobile_rec.py#L374)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_mobile_rec/modeling_pp_ocrv5_mobile_rec.py#L374)
 
 **Parameters:**
 
-config ([PPOCRV5MobileRecConfig](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPOCRV5MobileRecConfig](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PPOCRV5MobileRec model for text recognition tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -87,19 +87,19 @@ and behavior.
 forward(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_mobile_rec/modeling_pp_ocrv5_mobile_rec.py#L384)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_mobile_rec/modeling_pp_ocrv5_mobile_rec.py#L384)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor). See `PPOCRV5ServerRecImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor). See `PPOCRV5ServerRecImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor) for processing images).
 
 **Returns:** `BaseModelOutputWithNoAttention` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PPOCRV5MobileRecConfig](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecConfig)) and inputs.
+elements depending on the configuration ([PPOCRV5MobileRecConfig](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecConfig)) and inputs.
 
-The [PPOCRV5MobileRecForTextRecognition](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecForTextRecognition) forward method, overrides the `__call__` special method.
+The [PPOCRV5MobileRecForTextRecognition](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecForTextRecognition) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -119,7 +119,7 @@ the latter silently ignores them.
 transformers.PPOCRV5MobileRecConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_act: str = 'silu', backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, hidden_size: int = 120, mlp_ratio: float = 2.0, depth: int = 2, head_out_channels: int = 18385, conv_kernel_size: list | None = None, qkv_bias: bool = True, num_attention_heads: int = 8, attention_dropout: float | int = 0.0, layer_norm_eps: float = 1e-06)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_mobile_rec/configuration_pp_ocrv5_mobile_rec.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_mobile_rec/configuration_pp_ocrv5_mobile_rec.py#L32)
 
 **Parameters:**
 
@@ -149,8 +149,8 @@ This is the configuration class to store the configuration of a PPOCRV5MobileRec
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PP-OCRv5_mobile_rec_safetensors](https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_rec_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## PPOCRV5MobileRecModel[[transformers.PPOCRV5MobileRecModel]]
 
@@ -160,15 +160,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.PPOCRV5MobileRecModel(config: PPOCRV5MobileRecConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_mobile_rec/modeling_pp_ocrv5_mobile_rec.py#L322)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_mobile_rec/modeling_pp_ocrv5_mobile_rec.py#L322)
 
 **Parameters:**
 
-config ([PPOCRV5MobileRecConfig](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPOCRV5MobileRecConfig](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PPOCRV5MobileRec model, consisting of Backbone and Head networks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -182,19 +182,19 @@ and behavior.
 forward(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_mobile_rec/modeling_pp_ocrv5_mobile_rec.py#L330)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_mobile_rec/modeling_pp_ocrv5_mobile_rec.py#L330)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor). See `PPOCRV5ServerRecImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor). See `PPOCRV5ServerRecImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor) for processing images).
 
 **Returns:** `BaseModelOutputWithNoAttention` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PPOCRV5MobileRecConfig](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecConfig)) and inputs.
+elements depending on the configuration ([PPOCRV5MobileRecConfig](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecConfig)) and inputs.
 
-The [PPOCRV5MobileRecModel](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecModel) forward method, overrides the `__call__` special method.
+The [PPOCRV5MobileRecModel](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -214,15 +214,15 @@ the latter silently ignores them.
 transformers.PPOCRV5MobileRecModel(config: PPOCRV5MobileRecConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_mobile_rec/modeling_pp_ocrv5_mobile_rec.py#L322)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_mobile_rec/modeling_pp_ocrv5_mobile_rec.py#L322)
 
 **Parameters:**
 
-config ([PPOCRV5MobileRecConfig](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPOCRV5MobileRecConfig](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PPOCRV5MobileRec model, consisting of Backbone and Head networks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -236,19 +236,19 @@ and behavior.
 forward(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_mobile_rec/modeling_pp_ocrv5_mobile_rec.py#L330)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_mobile_rec/modeling_pp_ocrv5_mobile_rec.py#L330)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor). See `PPOCRV5ServerRecImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor). See `PPOCRV5ServerRecImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor) for processing images).
 
 **Returns:** `BaseModelOutputWithNoAttention` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PPOCRV5MobileRecConfig](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecConfig)) and inputs.
+elements depending on the configuration ([PPOCRV5MobileRecConfig](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecConfig)) and inputs.
 
-The [PPOCRV5MobileRecModel](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecModel) forward method, overrides the `__call__` special method.
+The [PPOCRV5MobileRecModel](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_mobile_rec#transformers.PPOCRV5MobileRecModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -261,4 +261,4 @@ the latter silently ignores them.
   Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
 
 ### GLM-OCR
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/glm_ocr.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/glm_ocr.md

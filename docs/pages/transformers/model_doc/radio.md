@@ -2,7 +2,7 @@
 
 [RADIO](https://huggingface.co/papers/2312.06709) (Reduce All Domains Into One) is a family of vision foundation models from NVIDIA trained by multi-teacher distillation (e.g. CLIP, DINOv2, SAM) into a single ViT backbone. It produces both an image-level `summary` embedding and dense spatial `features`, and supports variable input resolutions through a Cropped Position Embedding (CPE) patch generator.
 
-The example below demonstrates how to extract image features with the [RadioModel](/docs/transformers/v5.15.0/en/model_doc/radio#transformers.RadioModel) class.
+The example below demonstrates how to extract image features with the [RadioModel](/docs/transformers/v5.15.1/en/model_doc/radio#transformers.RadioModel) class.
 
 ```python
 import requests
@@ -42,7 +42,7 @@ features = outputs.features   # (1, 196, 1280) dense spatial features
 transformers.RadioConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 1280, num_hidden_layers: int = 32, num_attention_heads: int = 16, mlp_ratio: float = 4.0, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, attention_probs_dropout_prob: float = 0.0, hidden_dropout_prob: float = 0.0, drop_path_rate: float = 0.0, use_swiglu_ffn: bool = False, qkv_bias: bool = True, layerscale_value: float = 1.0, num_channels: int = 3, patch_size: int = 16, image_size: int = 224, max_img_size: int = 2048, num_cls_tokens: int = 3, num_registers: int = 7, summary_idxs: list[int] | None = None, norm_mean: list[float] | tuple[float, float, float] = (0.48145466, 0.4578275, 0.40821073), norm_std: list[float] | tuple[float, float, float] = (0.26862954, 0.26130258, 0.27577711), initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/radio/configuration_radio.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/radio/configuration_radio.py#L28)
 
 **Parameters:**
 
@@ -94,8 +94,8 @@ This is the configuration class to store the configuration of a RadioModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nvidia/C-RADIOv4-H](https://huggingface.co/nvidia/C-RADIOv4-H)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## RadioModel[[transformers.RadioModel]]
 
@@ -105,15 +105,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.RadioModel(config: RadioConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/radio/modeling_radio.py#L413)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/radio/modeling_radio.py#L413)
 
 **Parameters:**
 
-config ([RadioConfig](/docs/transformers/v5.15.0/en/model_doc/radio#transformers.RadioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([RadioConfig](/docs/transformers/v5.15.1/en/model_doc/radio#transformers.RadioConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Radio Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -127,7 +127,7 @@ and behavior.
 forward(pixel_values: Tensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/radio/modeling_radio.py#L433)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/radio/modeling_radio.py#L433)
 
 **Parameters:**
 
@@ -137,9 +137,9 @@ pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, im
 
 A `RadioModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([RadioConfig](/docs/transformers/v5.15.0/en/model_doc/radio#transformers.RadioConfig)) and inputs.
+elements depending on the configuration ([RadioConfig](/docs/transformers/v5.15.1/en/model_doc/radio#transformers.RadioConfig)) and inputs.
 
-The [RadioModel](/docs/transformers/v5.15.0/en/model_doc/radio#transformers.RadioModel) forward method, overrides the `__call__` special method.
+The [RadioModel](/docs/transformers/v5.15.1/en/model_doc/radio#transformers.RadioModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -153,4 +153,4 @@ the latter silently ignores them.
 - **attentions** (`tuple[torch.FloatTensor]`, *optional*, returned when `output_attentions=True`) -- Tuple of `(batch_size, num_heads, sequence_length, sequence_length)` attention weights, one per layer.
 
 ### Qwen3-Omni-MOE
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/qwen3_omni_moe.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/qwen3_omni_moe.md

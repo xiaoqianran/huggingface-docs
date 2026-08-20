@@ -129,4 +129,4 @@ Below you can see the outputs.
          style="height: 200px; object-fit: contain;">
 
 ### Training Vision Models using Backbone API
-https://huggingface.co/docs/transformers/v5.15.0/tasks/training_vision_backbone.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/training_vision_backbone.md

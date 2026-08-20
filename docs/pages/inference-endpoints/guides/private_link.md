@@ -11,7 +11,7 @@ through how to set it up.
 
 ### 1. Configure the Private Link
 
-Under the "Security Level" setting you can toggle open the "AWS Private Link" section. The Private Link ensures the endpoint is only available through an intra-region secured AWS PrivateLink connection.
+Under the **Network** section, enable the **Use AWS PrivateLink** checkbox under VPC Config. The Private Link ensures the endpoint is only available through an intra-region secured AWS PrivateLink connection.
 
 After providing your AWS Account ID and any other required information, click Create Endpoint. The endpoint creation process will begin.
 
@@ -49,5 +49,5 @@ allows you to connect multiple endpoints to the same VPC Endpoint.
 
 ![shared private link](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/6_7_private_service_tooltip.png)
 
-### Autoscaling
-https://huggingface.co/docs/inference-endpoints/guides/autoscaling.md
+### Foundations
+https://huggingface.co/docs/inference-endpoints/guides/foundations.md

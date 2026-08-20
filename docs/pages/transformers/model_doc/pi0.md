@@ -42,7 +42,7 @@ print(actions)
 transformers.PI0Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vlm_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, dit_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, chunk_size: int = 50, max_state_dim: int = 32, max_action_dim: int = 32, num_inference_steps: int = 10, time_sampling_beta_alpha: float = 1.5, time_sampling_beta_beta: float = 1.0, time_sampling_scale: float = 0.999, time_sampling_offset: float = 0.001, min_period: float = 0.004, max_period: float = 4.0, loss_reduction: str = 'mean')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pi0/configuration_pi0.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pi0/configuration_pi0.py#L29)
 
 **Parameters:**
 
@@ -76,8 +76,8 @@ This is the configuration class to store the configuration of a PI0Model. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [lerobot/pi0_base](https://huggingface.co/lerobot/pi0_base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -95,7 +95,7 @@ Example:
 transformers.PI0Processor(image_processor = None, tokenizer = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pi0/processing_pi0.py#L49)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pi0/processing_pi0.py#L49)
 
 **Parameters:**
 
@@ -107,8 +107,8 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a PI0Processor which wraps a image processor and a tokenizer into a single processor.
 
-[PI0Processor](/docs/transformers/v5.15.0/en/model_doc/pi0#transformers.PI0Processor) offers all the functionalities of [PI0ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pi0#transformers.PI0ImageProcessor) and `tokenizer_class`. See the
-[~PI0ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pi0#transformers.PI0ImageProcessor) and `~tokenizer_class` for more information.
+[PI0Processor](/docs/transformers/v5.15.1/en/model_doc/pi0#transformers.PI0Processor) offers all the functionalities of [PI0ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pi0#transformers.PI0ImageProcessor) and `tokenizer_class`. See the
+[~PI0ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pi0#transformers.PI0ImageProcessor) and `~tokenizer_class` for more information.
 
 #### __call__[[transformers.PI0Processor.__call__]]
 
@@ -116,7 +116,7 @@ Constructs a PI0Processor which wraps a image processor and a tokenizer into a s
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], list[typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']]], list[list[typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']]]], NoneType], text: str | list[str] | list[list[str]] | None = None, actions: typing.Union[list, numpy.ndarray, torch.Tensor, NoneType] = None, state: typing.Union[list, numpy.ndarray, torch.Tensor, NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pi0/processing_pi0.py#L86)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pi0/processing_pi0.py#L86)
 
 **Parameters:**
 
@@ -128,13 +128,13 @@ actions (`list | np.ndarray | torch.Tensor`, *optional*) : Actions to be predict
 
 state (`list | np.ndarray | torch.Tensor`, *optional*) : Robotic states to be predicted by the model. If provided, padding, mean and std normalization will be applied.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature)
 
-A [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
+A [BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model. Returned when `text` is not `None`. If `suffix`
   is provided, the `input_ids` will also contain the suffix input ids.
@@ -154,7 +154,7 @@ A [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#tran
 transformers.PI0ImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pi0/image_processing_pi0.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pi0/image_processing_pi0.py#L26)
 
 **Parameters:**
 
@@ -206,7 +206,7 @@ Constructs a PI0ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -266,15 +266,15 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.PI0Model(config: PI0Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pi0/modeling_pi0.py#L104)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pi0/modeling_pi0.py#L104)
 
 **Parameters:**
 
-config ([PI0Config](/docs/transformers/v5.15.0/en/model_doc/pi0#transformers.PI0Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PI0Config](/docs/transformers/v5.15.1/en/model_doc/pi0#transformers.PI0Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Pi0 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -288,15 +288,15 @@ and behavior.
 forward(action_embeds: Tensor, input_ids: typing.Optional[torch.Tensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, pixel_attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pi0/modeling_pi0.py#L141)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pi0/modeling_pi0.py#L141)
 
 **Parameters:**
 
 action_embeds (`torch.Tensor`, *optional*) : The embeddings of input actions and robot states.
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PI0ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pi0#transformers.PI0ImageProcessor). See `PI0ImageProcessor.__call__()` for details ([PI0Processor](/docs/transformers/v5.15.0/en/model_doc/pi0#transformers.PI0Processor) uses [PI0ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pi0#transformers.PI0ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PI0ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pi0#transformers.PI0ImageProcessor). See `PI0ImageProcessor.__call__()` for details ([PI0Processor](/docs/transformers/v5.15.1/en/model_doc/pi0#transformers.PI0Processor) uses [PI0ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pi0#transformers.PI0ImageProcessor) for processing images).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -306,15 +306,15 @@ position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *opti
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+A [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PI0Config](/docs/transformers/v5.15.0/en/model_doc/pi0#transformers.PI0Config)) and inputs.
+elements depending on the configuration ([PI0Config](/docs/transformers/v5.15.1/en/model_doc/pi0#transformers.PI0Config)) and inputs.
 
-The [PI0Model](/docs/transformers/v5.15.0/en/model_doc/pi0#transformers.PI0Model) forward method, overrides the `__call__` special method.
+The [PI0Model](/docs/transformers/v5.15.1/en/model_doc/pi0#transformers.PI0Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -324,7 +324,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -345,7 +345,7 @@ the latter silently ignores them.
 embed_prefix(input_ids, pixel_values, pixel_attention_mask, attention_mask = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pi0/modeling_pi0.py#L117)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pi0/modeling_pi0.py#L117)
 
 ## PI0ForConditionalGeneration[[transformers.PI0ForConditionalGeneration]]
 
@@ -355,7 +355,7 @@ embed_prefix(input_ids, pixel_values, pixel_attention_mask, attention_mask = Non
 transformers.PI0ForConditionalGeneration(config: PI0Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pi0/modeling_pi0.py#L221)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pi0/modeling_pi0.py#L221)
 
 PI0 model with action projection heads and flow matching.
 
@@ -365,7 +365,7 @@ PI0 model with action projection heads and flow matching.
 forward(state: FloatTensor, noise: typing.Optional[torch.FloatTensor] = None, timestep: typing.Optional[torch.FloatTensor] = None, input_ids: typing.Optional[torch.Tensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, pixel_attention_mask: typing.Optional[torch.BoolTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, actions: FloatTensor = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pi0/modeling_pi0.py#L234)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pi0/modeling_pi0.py#L234)
 
 **Parameters:**
 
@@ -375,9 +375,9 @@ noise (`torch.Tensor`, *optional*) : Random noise at current timestep that needs
 
 timestep (`torch.Tensor`, *optional*) : Current denoising timestep.
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PI0ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pi0#transformers.PI0ImageProcessor). See `PI0ImageProcessor.__call__()` for details ([PI0Processor](/docs/transformers/v5.15.0/en/model_doc/pi0#transformers.PI0Processor) uses [PI0ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pi0#transformers.PI0ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PI0ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pi0#transformers.PI0ImageProcessor). See `PI0ImageProcessor.__call__()` for details ([PI0Processor](/docs/transformers/v5.15.1/en/model_doc/pi0#transformers.PI0Processor) uses [PI0ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pi0#transformers.PI0ImageProcessor) for processing images).
 
 pixel_attention_mask (`torch.Tensor`, *optional*) : The mask indicating padded positions in the input image.
 
@@ -387,17 +387,17 @@ position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *opti
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 actions (`torch.Tensor`, *optional*) : Input actions that need to be predicted. Used only when training to compute loss.
 
-**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [CausalLMOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or `tuple(torch.FloatTensor)`
 
-A [CausalLMOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
+A [CausalLMOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PI0Config](/docs/transformers/v5.15.0/en/model_doc/pi0#transformers.PI0Config)) and inputs.
+elements depending on the configuration ([PI0Config](/docs/transformers/v5.15.1/en/model_doc/pi0#transformers.PI0Config)) and inputs.
 
-The [PI0ForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/pi0#transformers.PI0ForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [PI0ForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/pi0#transformers.PI0ForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -405,7 +405,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -455,9 +455,9 @@ Example:
 sample_actions(state: FloatTensor, input_ids: LongTensor, pixel_values: FloatTensor, noise: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, pixel_attention_mask: typing.Optional[torch.BoolTensor] = None, num_steps: int | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pi0/modeling_pi0.py#L322)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pi0/modeling_pi0.py#L322)
 
 Run flow matching inference to generate actions.
 
 ### Qwen3-VL
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/qwen3_vl.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/qwen3_vl.md

@@ -1,6 +1,6 @@
 # Exporters
 
-Export any [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) to ONNX, ExecuTorch, or a standalone PyTorch program, regardless of the target runtime.
+Export any [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel) to ONNX, ExecuTorch, or a standalone PyTorch program, regardless of the target runtime.
 
 ```python
 exporter = DynamoExporter()  # or OnnxExporter, ExecutorchExporter
@@ -58,7 +58,7 @@ pip install transformers "torch==2.12.0" "executorch==1.3.1"
 
 ## Export a model
 
-All exporters share the same interface. Create an exporter with a config, and call [export()](/docs/transformers/v5.15.0/en/main_classes/exporters#transformers.exporters.HfExporter.export).
+All exporters share the same interface. Create an exporter with a config, and call [export()](/docs/transformers/v5.15.1/en/main_classes/exporters#transformers.exporters.HfExporter.export).
 
 Switch between runtimes by swapping the exporter class.
 
@@ -100,7 +100,7 @@ ort_inputs = {k: v.numpy() for k, v in inputs.items()}
 outputs = session.run(None, ort_inputs)
 ```
 
-[backend](/docs/transformers/v5.15.0/en/main_classes/exporters#transformers.exporters.ExecutorchConfig.backend) defaults to `xnnpack` which targets the CPU and works on CPU-only installations. `cuda` targets the GPU and requires a CUDA-enabled environment. Requesting it without CUDA raises a `RuntimeError`.
+[backend](/docs/transformers/v5.15.1/en/main_classes/exporters#transformers.exporters.ExecutorchConfig.backend) defaults to `xnnpack` which targets the CPU and works on CPU-only installations. `cuda` targets the GPU and requires a CUDA-enabled environment. Requesting it without CUDA raises a `RuntimeError`.
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -215,8 +215,8 @@ expose `~HfExporter.export_for_generation`, which splits both stages and exports
 
 For multi-modal generative models, the prefill additionally splits into an image or audio
 encoder, the language model, and `lm_head`. Encoder and language-model discovery uses
-[get_encoder()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.get_encoder) (`modality="image"` or `"audio"`) and
-[get_decoder()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.get_decoder) accessors, so any new architecture using these
+[get_encoder()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.get_encoder) (`modality="image"` or `"audio"`) and
+[get_decoder()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.get_decoder) accessors, so any new architecture using these
 work out of the box.
 
 A projector component appears only when the model exposes one
@@ -280,7 +280,7 @@ components = exporter.export_for_generation(model, inputs, config=config)
 
 ### How `export_for_generation` works
 
-[decompose_for_generation()](/docs/transformers/v5.15.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation) runs `model.generate(**inputs, max_new_tokens=2)`
+[decompose_for_generation()](/docs/transformers/v5.15.1/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation) runs `model.generate(**inputs, max_new_tokens=2)`
 once and hooks `model.forward` to capture the real prefill and decode kwargs (and the
 per-submodule kwargs via hooks on each encoder/projector/language model if the model is
 multi-modal). That's why it works for any architecture, including decoder-only, SSM,
@@ -311,7 +311,7 @@ for name, (submodel, subinputs) in components.items():
 
 By default the `decode` component is a **single-token** step — one query token against the KV cache —
 so `torch.export` specializes its query-sequence axis to 1. Pass `multi_token_decode=True` to capture
-`decode` as a **multi-token** decode instead: [decompose_for_generation()](/docs/transformers/v5.15.0/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation) merges two
+`decode` as a **multi-token** decode instead: [decompose_for_generation()](/docs/transformers/v5.15.1/en/main_classes/exporters#transformers.exporters.utils.decompose_for_generation) merges two
 consecutive decode steps (it captures with `max_new_tokens=3`) into one forward, so that axis stays
 symbolic. A single graph then serves every query length — one token (ordinary decoding), many tokens
 at once (continuation-from-past, e.g. accepting a chunk of speculative tokens), and a plain prefill
@@ -634,4 +634,4 @@ For `ExecutorchExporter` with the XNNPACK backend, the exporter swaps MoE expert
 [Extending the exporters](./exporters_extend).
 
 ### Video Processor
-https://huggingface.co/docs/transformers/v5.15.0/video_processors.md
+https://huggingface.co/docs/transformers/v5.15.1/video_processors.md

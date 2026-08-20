@@ -23,7 +23,7 @@ Note: Meta (FAIR) released a new version of [Wav2Vec2-BERT 2.0](https://huggingf
 
 - Wav2Vec2 is a speech model that accepts a float array corresponding to the raw waveform of the speech signal.
 - Wav2Vec2 model was trained using connectionist temporal classification (CTC) so the model output has to be decoded
-  using [Wav2Vec2CTCTokenizer](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer).
+  using [Wav2Vec2CTCTokenizer](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer).
 
 ## Using Flash Attention 2
 
@@ -41,7 +41,7 @@ pip install -U flash-attn --no-build-isolation
 
 ### Usage
 
-To load a model using Flash Attention 2, we can pass the argument `attn_implementation="flash_attention_2"` to [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). We'll also load the model in half-precision (e.g. `torch.float16`), since it results in almost no degradation to audio quality but significantly lower memory usage and faster inference:
+To load a model using Flash Attention 2, we can pass the argument `attn_implementation="flash_attention_2"` to [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). We'll also load the model in half-precision (e.g. `torch.float16`), since it results in almost no degradation to audio quality but significantly lower memory usage and faster inference:
 
 ```python
 from transformers import Wav2Vec2Model
@@ -59,14 +59,14 @@ Below is an expected speedup diagram comparing the pure inference time between t
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with Wav2Vec2. If you're interested in submitting a resource to be included here, please feel free to open a Pull Request and we'll review it! The resource should ideally demonstrate something new instead of duplicating an existing resource.
 
 - A notebook on how to [leverage a pretrained Wav2Vec2 model for emotion classification](https://colab.research.google.com/github/m3hrdadfi/soxan/blob/main/notebooks/Emotion_recognition_in_Greek_speech_using_Wav2Vec2.ipynb). 🌎
-- [Wav2Vec2ForCTC](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/audio-classification) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/audio_classification.ipynb).
+- [Wav2Vec2ForCTC](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/audio-classification) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/audio_classification.ipynb).
 - [Audio classification task guide](../tasks/audio_classification)
 
 - A blog post on [boosting Wav2Vec2 with n-grams in 🤗 Transformers](https://huggingface.co/blog/wav2vec2-with-ngram).
 - A blog post on how to [finetune Wav2Vec2 for English ASR with 🤗 Transformers](https://huggingface.co/blog/fine-tune-wav2vec2-english).
 - A blog post on [finetuning XLS-R for Multi-Lingual ASR with 🤗 Transformers](https://huggingface.co/blog/fine-tune-xlsr-wav2vec2).
 - A notebook on how to [create YouTube captions from any video by transcribing audio with Wav2Vec2](https://colab.research.google.com/github/Muennighoff/ytclipcc/blob/main/wav2vec_youtube_captions.ipynb). 🌎
-- [Wav2Vec2ForCTC](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC) is supported by a notebook on [how to finetune a speech recognition model in English](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/speech_recognition.ipynb), and [how to finetune a speech recognition model in any language](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/multi_lingual_speech_recognition.ipynb).
+- [Wav2Vec2ForCTC](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC) is supported by a notebook on [how to finetune a speech recognition model in English](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/speech_recognition.ipynb), and [how to finetune a speech recognition model in any language](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/multi_lingual_speech_recognition.ipynb).
 - [Automatic speech recognition task guide](../tasks/asr)
 
 🚀 Deploy
@@ -81,7 +81,7 @@ A list of official Hugging Face and community (indicated by 🌎) resources to h
 transformers.Wav2Vec2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int | None = 32, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout: float | int = 0.1, activation_dropout: float | int = 0.1, attention_dropout: float | int = 0.1, feat_proj_dropout: float | int = 0.0, feat_quantizer_dropout: float | int = 0.0, final_dropout: float | int = 0.1, layerdrop: float | int = 0.1, initializer_range: float = 0.02, layer_norm_eps: float = 1e-05, feat_extract_norm: str = 'group', feat_extract_activation: str = 'gelu', conv_dim: list[int] | tuple[int, ...] = (512, 512, 512, 512, 512, 512, 512), conv_stride: list[int] | tuple[int, ...] = (5, 2, 2, 2, 2, 2, 2), conv_kernel: list[int] | tuple[int, ...] = (10, 3, 3, 3, 3, 2, 2), conv_bias: bool = False, num_conv_pos_embeddings: int = 128, num_conv_pos_embedding_groups: int = 16, do_stable_layer_norm: bool = False, apply_spec_augment: bool = True, mask_time_prob: float | int = 0.05, mask_time_length: int = 10, mask_time_min_masks: int = 2, mask_feature_prob: float | int = 0.0, mask_feature_length: int = 10, mask_feature_min_masks: int = 0, num_codevectors_per_group: int = 320, num_codevector_groups: int = 2, contrastive_logits_temperature: float = 0.1, num_negatives: int = 100, codevector_dim: int = 256, proj_codevector_dim: int = 256, diversity_loss_weight: float = 0.1, ctc_loss_reduction: str = 'sum', ctc_zero_infinity: bool = False, use_weighted_layer_sum: bool = False, classifier_proj_size: int = 256, tdnn_dim: list[int] | tuple[int, ...] = (512, 512, 512, 512, 1500), tdnn_kernel: list[int] | tuple[int, ...] = (5, 3, 3, 1, 1), tdnn_dilation: list[int] | tuple[int, ...] = (1, 2, 3, 1, 1), xvector_output_dim: int = 512, pad_token_id: int | None = 0, bos_token_id: int | None = 1, eos_token_id: int | list[int] | None = 2, add_adapter: bool = False, adapter_kernel_size: int = 3, adapter_stride: int = 2, num_adapter_layers: int = 3, output_hidden_size: int | None = None, adapter_attn_dim: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/configuration_wav2vec2.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/configuration_wav2vec2.py#L27)
 
 **Parameters:**
 
@@ -107,7 +107,7 @@ feat_proj_dropout (`float`, *optional*, defaults to 0.0) : The dropout probabili
 
 feat_quantizer_dropout (`float`, *optional*, defaults to 0.0) : The dropout probability for the output of the feature encoder that's used by the quantizer.
 
-final_dropout (`float`, *optional*, defaults to 0.1) : The dropout probability for the final projection layer of [Wav2Vec2ForCTC](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC).
+final_dropout (`float`, *optional*, defaults to 0.1) : The dropout probability for the final projection layer of [Wav2Vec2ForCTC](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC).
 
 layerdrop (`Union[float, int]`, *optional*, defaults to `0.1`) : The LayerDrop probability. See the [LayerDrop paper](see https://huggingface.co/papers/1909.11556) for more details.
 
@@ -165,11 +165,11 @@ proj_codevector_dim (`int`, *optional*, defaults to 256) : Dimensionality of the
 
 diversity_loss_weight (`int`, *optional*, defaults to 0.1) : The weight of the codebook diversity loss component.
 
-ctc_loss_reduction (`str`, *optional*, defaults to `"sum"`) : Specifies the reduction to apply to the output of `torch.nn.CTCLoss`. Only relevant when training an instance of [Wav2Vec2ForCTC](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC).
+ctc_loss_reduction (`str`, *optional*, defaults to `"sum"`) : Specifies the reduction to apply to the output of `torch.nn.CTCLoss`. Only relevant when training an instance of [Wav2Vec2ForCTC](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC).
 
-ctc_zero_infinity (`bool`, *optional*, defaults to `False`) : Whether to zero infinite losses and the associated gradients of `torch.nn.CTCLoss`. Infinite losses mainly occur when the inputs are too short to be aligned to the targets. Only relevant when training an instance of [Wav2Vec2ForCTC](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC).
+ctc_zero_infinity (`bool`, *optional*, defaults to `False`) : Whether to zero infinite losses and the associated gradients of `torch.nn.CTCLoss`. Infinite losses mainly occur when the inputs are too short to be aligned to the targets. Only relevant when training an instance of [Wav2Vec2ForCTC](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC).
 
-use_weighted_layer_sum (`bool`, *optional*, defaults to `False`) : Whether to use a weighted average of layer outputs with learned weights. Only relevant when using an instance of [Wav2Vec2ForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForSequenceClassification).
+use_weighted_layer_sum (`bool`, *optional*, defaults to `False`) : Whether to use a weighted average of layer outputs with learned weights. Only relevant when using an instance of [Wav2Vec2ForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForSequenceClassification).
 
 classifier_proj_size (`int`, *optional*, defaults to 256) : Dimensionality of the projection before token mean-pooling for classification.
 
@@ -203,8 +203,8 @@ This is the configuration class to store the configuration of a Wav2Vec2Model. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/wav2vec2-base-960h](https://huggingface.co/facebook/wav2vec2-base-960h)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -229,7 +229,7 @@ Example:
 transformers.Wav2Vec2CTCTokenizer(vocab_file, bos_token = '<s>', eos_token = '</s>', unk_token = '<unk>', pad_token = '<pad>', word_delimiter_token = '|', replace_word_delimiter_char = ' ', do_lower_case = False, target_lang = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/tokenization_wav2vec2.py#L101)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/tokenization_wav2vec2.py#L101)
 
 **Parameters:**
 
@@ -249,11 +249,11 @@ do_lower_case (`bool`, *optional*, defaults to `False`) : Whether or not to acce
 
 target_lang (`str`, *optional*) : A target language the tokenizer should set by default. `target_lang` has to be defined for multi-lingual, nested vocabulary such as [facebook/mms-1b-all](https://huggingface.co/facebook/mms-1b-all). 
 
-- ****kwargs** : Additional keyword arguments passed along to [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)
+- ****kwargs** : Additional keyword arguments passed along to [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend)
 
 Constructs a Wav2Vec2CTC tokenizer.
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains some of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) which contains some of the main methods. Users should refer to
 the superclass for more information regarding such methods.
 
 #### __call__[[transformers.Wav2Vec2CTCTokenizer.__call__]]
@@ -262,7 +262,7 @@ the superclass for more information regarding such methods.
 __call__(text: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_pair: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_target: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_pair_target: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, add_special_tokens: bool = True, padding: bool | str | PaddingStrategy = False, truncation: bool | str | TruncationStrategy | None = None, max_length: int | None = None, stride: int = 0, is_split_into_words: bool = False, pad_to_multiple_of: int | None = None, padding_side: str | None = None, return_tensors: str | TensorType | None = None, return_token_type_ids: bool | None = None, return_attention_mask: bool | None = None, return_overflowing_tokens: bool = False, return_special_tokens_mask: bool = False, return_offsets_mapping: bool = False, return_length: bool = False, verbose: bool = True, tokenizer_kwargs: dict[str, Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_base.py#L2417)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_base.py#L2417)
 
 **Parameters:**
 
@@ -278,9 +278,9 @@ tokenizer_kwargs (`dict[str, Any]`, *optional*) : Additional kwargs to pass to t
 
 add_special_tokens (`bool`, *optional*, defaults to `True`) : Whether or not to add special tokens when encoding the sequences. This will use the underlying `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens automatically.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
-truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
 
 max_length (`int`, *optional*) : Controls the maximum length to use by one of the truncation/padding parameters.  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length is required by one of the truncation/padding parameters. If the model has no specific maximum input length (like XLNet) truncation/padding to a maximum length will be deactivated.
 
@@ -292,7 +292,7 @@ pad_to_multiple_of (`int`, *optional*) : If set will pad the sequence to a multi
 
 padding_side (`str`, *optional*) : The side on which the model should have padding applied. Should be selected between ['right', 'left']. Default value is picked from the class attribute of the same name.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects. 
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects. 
 
 return_token_type_ids (`bool`, *optional*) : Whether to return token type IDs. If left to the default, will return the token type IDs according to the specific tokenizer's default, defined by the `return_outputs` attribute.  [What are token type IDs?](../glossary#token-type-ids)
 
@@ -302,7 +302,7 @@ return_overflowing_tokens (`bool`, *optional*, defaults to `False`) : Whether or
 
 return_special_tokens_mask (`bool`, *optional*, defaults to `False`) : Whether or not to return special tokens mask information.
 
-return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
+return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
 
 return_length  (`bool`, *optional*, defaults to `False`) : Whether or not to return the lengths of the encoded inputs.
 
@@ -310,9 +310,9 @@ verbose (`bool`, *optional*, defaults to `True`) : Whether or not to print more 
 
 - ****kwargs** : passed to the `self.tokenize()` method
 
-**Returns:** [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding)
+**Returns:** [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding)
 
-A [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
+A [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model.
 
@@ -345,7 +345,7 @@ sequences.
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/tokenization_wav2vec2.py#L641)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/tokenization_wav2vec2.py#L641)
 
 #### decode[[transformers.Wav2Vec2CTCTokenizer.decode]]
 
@@ -353,7 +353,7 @@ save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 decode(token_ids: typing.Union[int, list[int], numpy.ndarray, ForwardRef('torch.Tensor')], skip_special_tokens: bool = False, clean_up_tokenization_spaces: bool | None = None, output_char_offsets: bool = False, output_word_offsets: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/tokenization_wav2vec2.py#L536)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/tokenization_wav2vec2.py#L536)
 
 **Parameters:**
 
@@ -430,7 +430,7 @@ Example:
 batch_decode(sequences: typing.Union[list[int], list[list[int]], numpy.ndarray, ForwardRef('torch.Tensor')], skip_special_tokens: bool = False, clean_up_tokenization_spaces: bool | None = None, output_char_offsets: bool = False, output_word_offsets: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/tokenization_wav2vec2.py#L466)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/tokenization_wav2vec2.py#L466)
 
 **Parameters:**
 
@@ -440,9 +440,9 @@ skip_special_tokens (`bool`, *optional*, defaults to `False`) : Whether or not t
 
 clean_up_tokenization_spaces (`bool`, *optional*) : Whether or not to clean up the tokenization spaces.
 
-output_char_offsets (`bool`, *optional*, defaults to `False`) : Whether or not to output character offsets. Character offsets can be used in combination with the sampling rate and model downsampling rate to compute the time-stamps of transcribed characters.    Please take a look at the Example of [decode()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer.decode) to better understand how to make use of `output_char_offsets`. [batch_decode()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer.batch_decode) works the same way with batched output.   
+output_char_offsets (`bool`, *optional*, defaults to `False`) : Whether or not to output character offsets. Character offsets can be used in combination with the sampling rate and model downsampling rate to compute the time-stamps of transcribed characters.    Please take a look at the Example of [decode()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer.decode) to better understand how to make use of `output_char_offsets`. [batch_decode()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer.batch_decode) works the same way with batched output.   
 
-output_word_offsets (`bool`, *optional*, defaults to `False`) : Whether or not to output word offsets. Word offsets can be used in combination with the sampling rate and model downsampling rate to compute the time-stamps of transcribed words.    Please take a look at the Example of [decode()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer.decode) to better understand how to make use of `output_word_offsets`. [batch_decode()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer.batch_decode) works the same way with batched output.   
+output_word_offsets (`bool`, *optional*, defaults to `False`) : Whether or not to output word offsets. Word offsets can be used in combination with the sampling rate and model downsampling rate to compute the time-stamps of transcribed words.    Please take a look at the Example of [decode()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer.decode) to better understand how to make use of `output_word_offsets`. [batch_decode()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer.batch_decode) works the same way with batched output.   
 
 kwargs (additional keyword arguments, *optional*) : Will be passed to the underlying model specific decode method.
 
@@ -460,7 +460,7 @@ Convert a list of lists of token ids into a list of strings by calling decode.
 set_target_lang(target_lang: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/tokenization_wav2vec2.py#L184)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/tokenization_wav2vec2.py#L184)
 
 Set the target language of a nested multi-lingual dictionary
 
@@ -472,7 +472,7 @@ Set the target language of a nested multi-lingual dictionary
 transformers.Wav2Vec2FeatureExtractor(feature_size = 1, sampling_rate = 16000, padding_value = 0.0, return_attention_mask = False, do_normalize = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/feature_extraction_wav2vec2.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/feature_extraction_wav2vec2.py#L28)
 
 **Parameters:**
 
@@ -484,11 +484,11 @@ padding_value (`float`, *optional*, defaults to 0.0) : The value that is used to
 
 do_normalize (`bool`, *optional*, defaults to `True`) : Whether or not to zero-mean unit-variance normalize the input. Normalizing can help to significantly improve the performance for some models, *e.g.*, [wav2vec2-lv60](https://huggingface.co/models?search=lv60).
 
-return_attention_mask (`bool`, *optional*, defaults to `False`) : Whether or not [__call__()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2FeatureExtractor.__call__) should return `attention_mask`.    Wav2Vec2 models that have set `config.feat_extract_norm == "group"`, such as [wav2vec2-base](https://huggingface.co/facebook/wav2vec2-base-960h), have **not** been trained using `attention_mask`. For such models, `input_values` should simply be padded with 0 and no `attention_mask` should be passed.  For Wav2Vec2 models that have set `config.feat_extract_norm == "layer"`, such as [wav2vec2-lv60](https://huggingface.co/facebook/wav2vec2-large-960h-lv60-self), `attention_mask` should be passed for batched inference.  
+return_attention_mask (`bool`, *optional*, defaults to `False`) : Whether or not [__call__()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2FeatureExtractor.__call__) should return `attention_mask`.    Wav2Vec2 models that have set `config.feat_extract_norm == "group"`, such as [wav2vec2-base](https://huggingface.co/facebook/wav2vec2-base-960h), have **not** been trained using `attention_mask`. For such models, `input_values` should simply be padded with 0 and no `attention_mask` should be passed.  For Wav2Vec2 models that have set `config.feat_extract_norm == "layer"`, such as [wav2vec2-lv60](https://huggingface.co/facebook/wav2vec2-large-960h-lv60-self), `attention_mask` should be passed for batched inference.  
 
 Constructs a Wav2Vec2 feature extractor.
 
-This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
+This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
 most of the main methods. Users should refer to this superclass for more information regarding those methods.
 
 #### __call__[[transformers.Wav2Vec2FeatureExtractor.__call__]]
@@ -497,13 +497,13 @@ most of the main methods. Users should refer to this superclass for more informa
 __call__(raw_speech: numpy.ndarray | list[float] | list[numpy.ndarray] | list[list[float]], padding: bool | str | transformers.utils.generic.PaddingStrategy = False, max_length: int | None = None, truncation: bool = False, pad_to_multiple_of: int | None = None, return_attention_mask: bool | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, sampling_rate: int | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/feature_extraction_wav2vec2.py#L99)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/feature_extraction_wav2vec2.py#L99)
 
 **Parameters:**
 
 raw_speech (`np.ndarray`, `list[float]`, `list[np.ndarray]`, `list[list[float]]`) : The sequence or batch of sequences to be padded. Each sequence can be a numpy array, a list of float values, a list of numpy arrays or a list of list of float values. Must be mono channel audio, not stereo, i.e. single float per timestep.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
 max_length (`int`, *optional*) : Maximum length of the returned list and optionally padding length (see above).
 
@@ -513,7 +513,7 @@ pad_to_multiple_of (`int`, *optional*) : If set will pad the sequence to a multi
 
 return_attention_mask (`bool`, *optional*) : Whether to return the attention mask. If left to the default, will return the attention mask according to the specific feature_extractor's default.  [What are attention masks?](../glossary#attention-mask)    Wav2Vec2 models that have set `config.feat_extract_norm == "group"`, such as [wav2vec2-base](https://huggingface.co/facebook/wav2vec2-base-960h), have **not** been trained using `attention_mask`. For such models, `input_values` should simply be padded with 0 and no `attention_mask` should be passed.  For Wav2Vec2 models that have set `config.feat_extract_norm == "layer"`, such as [wav2vec2-lv60](https://huggingface.co/facebook/wav2vec2-large-960h-lv60-self), `attention_mask` should be passed for batched inference.   
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
 
 sampling_rate (`int`, *optional*) : The sampling rate at which the `raw_speech` input was sampled. It is strongly recommended to pass `sampling_rate` at the forward call to prevent silent errors.
 
@@ -529,7 +529,7 @@ Main method to featurize and prepare for the model one or several sequence(s).
 transformers.Wav2Vec2Processor(feature_extractor, tokenizer)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/processing_wav2vec2.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/processing_wav2vec2.py#L28)
 
 **Parameters:**
 
@@ -539,8 +539,8 @@ tokenizer (`Wav2Vec2CTCTokenizer`) : The tokenizer is a required input.
 
 Constructs a Wav2Vec2Processor which wraps a feature extractor and a tokenizer into a single processor.
 
-[Wav2Vec2Processor](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor) offers all the functionalities of [Wav2Vec2FeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2FeatureExtractor) and [Wav2Vec2CTCTokenizer](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer). See the
-[~Wav2Vec2FeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2FeatureExtractor) and [~Wav2Vec2CTCTokenizer](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer) for more information.
+[Wav2Vec2Processor](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor) offers all the functionalities of [Wav2Vec2FeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2FeatureExtractor) and [Wav2Vec2CTCTokenizer](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer). See the
+[~Wav2Vec2FeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2FeatureExtractor) and [~Wav2Vec2CTCTokenizer](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer) for more information.
 
 #### __call__[[transformers.Wav2Vec2Processor.__call__]]
 
@@ -548,7 +548,7 @@ Constructs a Wav2Vec2Processor which wraps a feature extractor and a tokenizer i
 __call__(audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/processing_wav2vec2.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/processing_wav2vec2.py#L32)
 
 **Parameters:**
 
@@ -556,9 +556,9 @@ audio (`Union[numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tenso
 
 text (`Union[str, list[str]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 **Returns:**
 
@@ -570,20 +570,20 @@ This method returns the results of each `call` method. If both are used, the out
 pad(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/processing_wav2vec2.py#L65)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/processing_wav2vec2.py#L65)
 
 **Parameters:**
 
-input_features : When the first argument is a dictionary containing a batch of tensors, or the `input_features` argument is present, it is passed to [Wav2Vec2FeatureExtractor.pad()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad).
+input_features : When the first argument is a dictionary containing a batch of tensors, or the `input_features` argument is present, it is passed to [Wav2Vec2FeatureExtractor.pad()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad).
 
-labels : When the `label` argument is present, it is passed to [PreTrainedTokenizer.pad()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.pad).
+labels : When the `label` argument is present, it is passed to [PreTrainedTokenizer.pad()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.pad).
 
 **Returns:**
 
 This method returns the results of each `pad` method. If both are used, the output is a dictionary containing the results of both.
 
 This method operates on batches of extracted features and/or tokenized text. It forwards all arguments to
-[Wav2Vec2FeatureExtractor.pad()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad) and/or [PreTrainedTokenizer.pad()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.pad) depending on the input modality and returns their outputs. If both modalities are passed, [Wav2Vec2FeatureExtractor.pad()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad) and [PreTrainedTokenizer.pad()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.pad) are called.
+[Wav2Vec2FeatureExtractor.pad()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad) and/or [PreTrainedTokenizer.pad()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.pad) depending on the input modality and returns their outputs. If both modalities are passed, [Wav2Vec2FeatureExtractor.pad()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad) and [PreTrainedTokenizer.pad()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.pad) are called.
 
 #### from_pretrained[[transformers.Wav2Vec2Processor.from_pretrained]]
 
@@ -591,19 +591,19 @@ This method operates on batches of extracted features and/or tokenized text. It 
 from_pretrained(pretrained_model_name_or_path: str | os.PathLike, cache_dir: str | os.PathLike | None = None, force_download: bool = False, local_files_only: bool = False, token: str | bool | None = None, revision: str = 'main', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L1682)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L1682)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained feature_extractor hosted inside a model repo on huggingface.co. - a path to a *directory* containing a feature extractor file saved using the [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.save_pretrained) method, e.g., `./my_model_directory/`. - a path to a saved feature extractor JSON *file*, e.g., `./my_model_directory/preprocessor_config.json`.
+pretrained_model_name_or_path (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained feature_extractor hosted inside a model repo on huggingface.co. - a path to a *directory* containing a feature extractor file saved using the [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.save_pretrained) method, e.g., `./my_model_directory/`. - a path to a saved feature extractor JSON *file*, e.g., `./my_model_directory/preprocessor_config.json`.
 
-- ****kwargs** : Additional keyword arguments passed along to both [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained) and `~tokenization_utils_base.PreTrainedTokenizer.from_pretrained`.
+- ****kwargs** : Additional keyword arguments passed along to both [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained) and `~tokenization_utils_base.PreTrainedTokenizer.from_pretrained`.
 
 Instantiate a processor associated with a pretrained model.
 
 This class method is simply calling the feature extractor
-[from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained), image processor
-[ImageProcessingMixin](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.ImageProcessingMixin) and the tokenizer
+[from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained), image processor
+[ImageProcessingMixin](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.ImageProcessingMixin) and the tokenizer
 `~tokenization_utils_base.PreTrainedTokenizer.from_pretrained` methods. Please refer to the docstrings of the
 methods above for more information.
 
@@ -613,7 +613,7 @@ methods above for more information.
 save_pretrained(save_directory, push_to_hub: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L1107)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L1107)
 
 **Parameters:**
 
@@ -621,13 +621,13 @@ save_directory (`str` or `os.PathLike`) : Directory where the feature extractor 
 
 push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push your model to the Hugging Face model hub after saving it. You can specify the repository you want to push to with `repo_id` (will default to the name of `save_directory` in your namespace).
 
-kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
 
 Saves the attributes of this processor (feature extractor, tokenizer...) in the specified directory so that it
-can be reloaded using the [from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutProcessor.from_pretrained) method.
+can be reloaded using the [from_pretrained()](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutProcessor.from_pretrained) method.
 
-This class method is simply calling [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.save_pretrained) and
-[save_pretrained()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.save_pretrained). Please refer to the docstrings of the
+This class method is simply calling [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.save_pretrained) and
+[save_pretrained()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.save_pretrained). Please refer to the docstrings of the
 methods above for more information.
 
 #### batch_decode[[transformers.Wav2Vec2Processor.batch_decode]]
@@ -636,9 +636,9 @@ methods above for more information.
 batch_decode(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L1930)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L1930)
 
-This method forwards all its arguments to PreTrainedTokenizer's [batch_decode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode). Please
+This method forwards all its arguments to PreTrainedTokenizer's [batch_decode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode). Please
 refer to the docstring of this method for more information.
 
 #### decode[[transformers.Wav2Vec2Processor.decode]]
@@ -647,9 +647,9 @@ refer to the docstring of this method for more information.
 decode(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L1939)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L1939)
 
-This method forwards all its arguments to PreTrainedTokenizer's [decode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.decode). Please refer to
+This method forwards all its arguments to PreTrainedTokenizer's [decode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.decode). Please refer to
 the docstring of this method for more information.
 
 ## Wav2Vec2ProcessorWithLM[[transformers.Wav2Vec2ProcessorWithLM]]
@@ -660,7 +660,7 @@ the docstring of this method for more information.
 transformers.Wav2Vec2ProcessorWithLM(feature_extractor: FeatureExtractionMixin, tokenizer: PreTrainedTokenizerBase, decoder: BeamSearchDecoderCTC)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L69)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L69)
 
 **Parameters:**
 
@@ -672,7 +672,7 @@ decoder (`BeamSearchDecoderCTC`) : An instance of `pyctcdecode.BeamSearchDecoder
 
 Constructs a Wav2Vec2ProcessorWithLM which wraps a feature extractor and a tokenizer into a single processor.
 
-[Wav2Vec2ProcessorWithLM](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM) offers all the functionalities of `feature_extractor_class` and `tokenizer_class`. See the
+[Wav2Vec2ProcessorWithLM](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM) offers all the functionalities of `feature_extractor_class` and `tokenizer_class`. See the
 `~feature_extractor_class` and `~tokenizer_class` for more information.
 
 #### __call__[[transformers.Wav2Vec2ProcessorWithLM.__call__]]
@@ -681,11 +681,11 @@ Constructs a Wav2Vec2ProcessorWithLM which wraps a feature extractor and a token
 __call__(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L208)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L208)
 
 **Parameters:**
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
 #### pad[[transformers.Wav2Vec2ProcessorWithLM.pad]]
 
@@ -693,12 +693,12 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 pad(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L233)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L233)
 
 When used in normal mode, this method forwards all its arguments to the feature extractor's
 `~FeatureExtractionMixin.pad` and returns its output. If used in the context
 `~Wav2Vec2ProcessorWithLM.as_target_processor` this method forwards all its arguments to
-Wav2Vec2CTCTokenizer's [pad()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.pad). Please refer to the docstring of the above two methods
+Wav2Vec2CTCTokenizer's [pad()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.pad). Please refer to the docstring of the above two methods
 for more information.
 
 #### from_pretrained[[transformers.Wav2Vec2ProcessorWithLM.from_pretrained]]
@@ -707,19 +707,19 @@ for more information.
 from_pretrained(pretrained_model_name_or_path, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L106)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L106)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained feature_extractor hosted inside a model repo on huggingface.co. - a path to a *directory* containing a feature extractor file saved using the [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.save_pretrained) method, e.g., `./my_model_directory/`. - a path to a saved feature extractor JSON *file*, e.g., `./my_model_directory/preprocessor_config.json`.
+pretrained_model_name_or_path (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained feature_extractor hosted inside a model repo on huggingface.co. - a path to a *directory* containing a feature extractor file saved using the [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.save_pretrained) method, e.g., `./my_model_directory/`. - a path to a saved feature extractor JSON *file*, e.g., `./my_model_directory/preprocessor_config.json`.
 
-- ****kwargs** : Additional keyword arguments passed along to both [SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) and [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)
+- ****kwargs** : Additional keyword arguments passed along to both [SequenceFeatureExtractor](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) and [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend)
 
-Instantiate a [Wav2Vec2ProcessorWithLM](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM) from a pretrained Wav2Vec2 processor.
+Instantiate a [Wav2Vec2ProcessorWithLM](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM) from a pretrained Wav2Vec2 processor.
 
 This class method is simply calling the feature extractor's
-[from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained), Wav2Vec2CTCTokenizer's
-[from_pretrained()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.from_pretrained), and
+[from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained), Wav2Vec2CTCTokenizer's
+[from_pretrained()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.from_pretrained), and
 `pyctcdecode.BeamSearchDecoderCTC.load_from_hf_hub`.
 
 Please refer to the docstrings of the methods above for more information.
@@ -730,7 +730,7 @@ Please refer to the docstrings of the methods above for more information.
 save_pretrained(save_directory)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L102)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L102)
 
 #### batch_decode[[transformers.Wav2Vec2ProcessorWithLM.batch_decode]]
 
@@ -738,7 +738,7 @@ save_pretrained(save_directory)
 batch_decode(logits: ndarray, pool: multiprocessing.pool.Pool | None = None, num_processes: int | None = None, beam_width: int | None = None, beam_prune_logp: float | None = None, token_min_logp: float | None = None, hotwords: collections.abc.Iterable[str] | None = None, hotword_weight: float | None = None, alpha: float | None = None, beta: float | None = None, unk_score_offset: float | None = None, lm_score_boundary: bool | None = None, output_word_offsets: bool = False, n_best: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L260)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L260)
 
 **Parameters:**
 
@@ -768,7 +768,7 @@ lm_score_boundary (`bool`, *optional*) : Whether to have kenlm respect boundarie
 
 output_word_offsets (`bool`, *optional*, defaults to `False`) : Whether or not to output word offsets. Word offsets can be used in combination with the sampling rate and model downsampling rate to compute the time-stamps of transcribed words.
 
-n_best (`int`, *optional*, defaults to `1`) : Number of best hypotheses to return. If `n_best` is greater than 1, the returned `text` will be a list of lists of strings, `logit_score` will be a list of lists of floats, and `lm_score` will be a list of lists of floats, where the length of the outer list will correspond to the batch size and the length of the inner list will correspond to the number of returned hypotheses . The value should be >= 1.    Please take a look at the Example of [decode()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM.decode) to better understand how to make use of `output_word_offsets`. [batch_decode()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM.batch_decode) works the same way with batched output.  
+n_best (`int`, *optional*, defaults to `1`) : Number of best hypotheses to return. If `n_best` is greater than 1, the returned `text` will be a list of lists of strings, `logit_score` will be a list of lists of floats, and `lm_score` will be a list of lists of floats, where the length of the outer list will correspond to the batch size and the length of the inner list will correspond to the number of returned hypotheses . The value should be >= 1.    Please take a look at the Example of [decode()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM.decode) to better understand how to make use of `output_word_offsets`. [batch_decode()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM.batch_decode) works the same way with batched output.  
 
 **Returns:**
 
@@ -791,7 +791,7 @@ See [Decoding multiple audios](#decoding-multiple-audios).
 decode(logits: ndarray, beam_width: int | None = None, beam_prune_logp: float | None = None, token_min_logp: float | None = None, hotwords: collections.abc.Iterable[str] | None = None, hotword_weight: float | None = None, alpha: float | None = None, beta: float | None = None, unk_score_offset: float | None = None, lm_score_boundary: bool | None = None, output_word_offsets: bool = False, n_best: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L445)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L445)
 
 **Parameters:**
 
@@ -870,8 +870,8 @@ Example:
 
 ### Decoding multiple audios
 
-If you are planning to decode multiple batches of audios, you should consider using [batch_decode()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM.batch_decode) and passing an instantiated `multiprocessing.Pool`.
-Otherwise, [batch_decode()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM.batch_decode) performance will be slower than calling [decode()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM.decode) for each audio individually, as it internally instantiates a new `Pool` for every call. See the example below:
+If you are planning to decode multiple batches of audios, you should consider using [batch_decode()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM.batch_decode) and passing an instantiated `multiprocessing.Pool`.
+Otherwise, [batch_decode()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM.batch_decode) performance will be slower than calling [decode()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ProcessorWithLM.decode) for each audio individually, as it internally instantiates a new `Pool` for every call. See the example below:
 
 ```python
 # Let's see how to use a user-managed pool for batch decoding multiple audios
@@ -929,7 +929,7 @@ result["transcription"][:2]
 transformers.models.wav2vec2_with_lm.processing_wav2vec2_with_lm.Wav2Vec2DecoderWithLMOutput(text: list[list[str]] | list[str] | str, logit_score: list[list[float]] | list[float] | float = None, lm_score: list[list[float]] | list[float] | float = None, word_offsets: list[list[list[dict[str, int | str]]]] | list[list[dict[str, int | str]]] | list[dict[str, int | str]] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L46)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py#L46)
 
 **Parameters:**
 
@@ -949,7 +949,7 @@ Output type of `Wav2Vec2DecoderWithLM`, with transcription.
 transformers.modeling_outputs.Wav2Vec2BaseModelOutput(last_hidden_state: typing.Optional[torch.FloatTensor] = None, extract_features: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/modeling_outputs.py#L1297)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/modeling_outputs.py#L1297)
 
 **Parameters:**
 
@@ -969,7 +969,7 @@ Base class for models that have been trained with the Wav2Vec2 loss objective.
 transformers.models.wav2vec2.modeling_wav2vec2.Wav2Vec2ForPreTrainingOutput(loss: typing.Optional[torch.FloatTensor] = None, projected_states: typing.Optional[torch.FloatTensor] = None, projected_quantized_states: typing.Optional[torch.FloatTensor] = None, codevector_perplexity: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor] | None = None, attentions: tuple[torch.FloatTensor] | None = None, contrastive_loss: typing.Optional[torch.FloatTensor] = None, diversity_loss: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L72)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L72)
 
 **Parameters:**
 
@@ -989,7 +989,7 @@ contrastive_loss (`*optional*`, returned when `sample_negative_indices` are pass
 
 diversity_loss (`*optional*`, returned when `sample_negative_indices` are passed, `torch.FloatTensor` of shape `(1,)`) : The diversity loss (L_d) as stated in the [official paper](https://huggingface.co/papers/2006.11477).
 
-Output type of [Wav2Vec2ForPreTraining](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForPreTraining), with potential hidden states and attentions.
+Output type of [Wav2Vec2ForPreTraining](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForPreTraining), with potential hidden states and attentions.
 
 ## Wav2Vec2Model[[transformers.Wav2Vec2Model]]
 
@@ -999,15 +999,15 @@ Output type of [Wav2Vec2ForPreTraining](/docs/transformers/v5.15.0/en/model_doc/
 transformers.Wav2Vec2Model(config: Wav2Vec2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1244)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1244)
 
 **Parameters:**
 
-config ([Wav2Vec2Config](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Wav2Vec2Config](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Wav2Vec2 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1021,11 +1021,11 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor], attention_mask: typing.Optional[torch.Tensor] = None, mask_time_indices: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1318)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1318)
 
 **Parameters:**
 
-input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
+input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1035,15 +1035,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [Wav2Vec2BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.Wav2Vec2BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [Wav2Vec2BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.Wav2Vec2BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [Wav2Vec2BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.Wav2Vec2BaseModelOutput) or a tuple of
+A [Wav2Vec2BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.Wav2Vec2BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Wav2Vec2Config](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) and inputs.
+elements depending on the configuration ([Wav2Vec2Config](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) and inputs.
 
-The [Wav2Vec2Model](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Model) forward method, overrides the `__call__` special method.
+The [Wav2Vec2Model](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1069,17 +1069,17 @@ the latter silently ignores them.
 transformers.Wav2Vec2ForCTC(config, target_lang: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1597)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1597)
 
 **Parameters:**
 
-config ([Wav2Vec2ForCTC](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Wav2Vec2ForCTC](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
-target_lang (`str`, *optional*) : Language id of adapter weights. Adapter weights are stored in the format adapter..safetensors or adapter..bin. Only relevant when using an instance of [Wav2Vec2ForCTC](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC) with adapters. Uses 'eng' by default.
+target_lang (`str`, *optional*) : Language id of adapter weights. Adapter weights are stored in the format adapter..safetensors or adapter..bin. Only relevant when using an instance of [Wav2Vec2ForCTC](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC) with adapters. Uses 'eng' by default.
 
 Wav2Vec2 Model with a `language modeling` head on top for Connectionist Temporal Classification (CTC).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1093,11 +1093,11 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor], attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, labels: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1666)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1666)
 
 **Parameters:**
 
-input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
+input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1105,17 +1105,17 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 labels (`torch.LongTensor` of shape `(batch_size, target_length)`, *optional*) : Labels for connectionist temporal classification. Note that `target_length` has to be smaller or equal to the sequence length of the output logits. Indices are selected in `[-100, 0, ..., config.vocab_size - 1]`. All labels set to `-100` are ignored (masked), the loss is only computed for labels in `[0, ..., config.vocab_size - 1]`.
 
-**Returns:** [CausalLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [CausalLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or `tuple(torch.FloatTensor)`
 
-A [CausalLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or a tuple of
+A [CausalLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Wav2Vec2Config](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) and inputs.
+elements depending on the configuration ([Wav2Vec2Config](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) and inputs.
 
-The [Wav2Vec2ForCTC](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC) forward method, overrides the `__call__` special method.
+The [Wav2Vec2ForCTC](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForCTC) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1172,7 +1172,7 @@ Example:
 load_adapter(target_lang: str, force_load = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1067)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1067)
 
 **Parameters:**
 
@@ -1220,16 +1220,16 @@ Examples:
 transformers.Wav2Vec2ForSequenceClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1745)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1745)
 
 **Parameters:**
 
-config ([Wav2Vec2ForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Wav2Vec2ForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Wav2Vec2 Model with a sequence classification head on top (a linear layer over the pooled output) for tasks like
 SUPERB Keyword Spotting.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1243,11 +1243,11 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor], attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, labels: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1778)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1778)
 
 **Parameters:**
 
-input_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
+input_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1255,17 +1255,17 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+A [SequenceClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Wav2Vec2Config](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) and inputs.
+elements depending on the configuration ([Wav2Vec2Config](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) and inputs.
 
-The [Wav2Vec2ForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForSequenceClassification) forward method, overrides the `__call__` special method.
+The [Wav2Vec2ForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1347,15 +1347,15 @@ Example of multi-label classification:
 transformers.Wav2Vec2ForAudioFrameClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1850)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1850)
 
 **Parameters:**
 
-config ([Wav2Vec2ForAudioFrameClassification](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForAudioFrameClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Wav2Vec2ForAudioFrameClassification](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForAudioFrameClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Wav2Vec2 Model with a frame classification head on top for tasks like Speaker Diarization.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1369,11 +1369,11 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor], attention_mask: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1882)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1882)
 
 **Parameters:**
 
-input_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
+input_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1383,15 +1383,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [TokenClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
+A [TokenClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Wav2Vec2Config](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) and inputs.
+elements depending on the configuration ([Wav2Vec2Config](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) and inputs.
 
-The [Wav2Vec2ForAudioFrameClassification](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForAudioFrameClassification) forward method, overrides the `__call__` special method.
+The [Wav2Vec2ForAudioFrameClassification](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForAudioFrameClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1443,15 +1443,15 @@ Example:
 transformers.Wav2Vec2ForXVector(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L2004)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L2004)
 
 **Parameters:**
 
-config ([Wav2Vec2ForXVector](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForXVector)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Wav2Vec2ForXVector](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForXVector)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Wav2Vec2 Model with an XVector feature extraction head on top for tasks like Speaker Verification.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1465,11 +1465,11 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor], attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, labels: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L2054)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L2054)
 
 **Parameters:**
 
-input_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
+input_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1477,17 +1477,17 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-**Returns:** [XVectorOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.XVectorOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [XVectorOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.XVectorOutput) or `tuple(torch.FloatTensor)`
 
-A [XVectorOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.XVectorOutput) or a tuple of
+A [XVectorOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.XVectorOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Wav2Vec2Config](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) and inputs.
+elements depending on the configuration ([Wav2Vec2Config](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) and inputs.
 
-The [Wav2Vec2ForXVector](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForXVector) forward method, overrides the `__call__` special method.
+The [Wav2Vec2ForXVector](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForXVector) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1547,15 +1547,15 @@ Example:
 transformers.Wav2Vec2ForPreTraining(config: Wav2Vec2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1383)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1383)
 
 **Parameters:**
 
-config ([Wav2Vec2Config](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Wav2Vec2Config](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Wav2Vec2 Model with a quantizer and `VQ` head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1569,11 +1569,11 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor], attention_mask: typing.Optional[torch.Tensor] = None, mask_time_indices: typing.Optional[torch.BoolTensor] = None, sampled_negative_indices: typing.Optional[torch.BoolTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1431)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/wav2vec2/modeling_wav2vec2.py#L1431)
 
 **Parameters:**
 
-input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
+input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1585,15 +1585,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [Wav2Vec2ForPreTrainingOutput](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.models.wav2vec2.modeling_wav2vec2.Wav2Vec2ForPreTrainingOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [Wav2Vec2ForPreTrainingOutput](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.models.wav2vec2.modeling_wav2vec2.Wav2Vec2ForPreTrainingOutput) or `tuple(torch.FloatTensor)`
 
-A [Wav2Vec2ForPreTrainingOutput](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.models.wav2vec2.modeling_wav2vec2.Wav2Vec2ForPreTrainingOutput) or a tuple of
+A [Wav2Vec2ForPreTrainingOutput](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.models.wav2vec2.modeling_wav2vec2.Wav2Vec2ForPreTrainingOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Wav2Vec2Config](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) and inputs.
+elements depending on the configuration ([Wav2Vec2Config](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Config)) and inputs.
 
-The [Wav2Vec2ForPreTraining](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2ForPreTraining) forward method, overrides the `__call__` special method.
+The [Wav2Vec2ForPreTraining](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2ForPreTraining) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1666,4 +1666,4 @@ tensor(True)
 ```
 
 ### SAM3
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/sam3.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/sam3.md

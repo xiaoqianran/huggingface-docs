@@ -9,7 +9,7 @@ You can find all the original SigLIP checkpoints under the [SigLIP](https://hugg
 > [!TIP]
 > Click on the SigLIP models in the right sidebar for more examples of how to apply SigLIP to different image and text tasks.
 
-The example below demonstrates how to generate similarity scores between texts and image(s) with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to generate similarity scores between texts and image(s) with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -77,8 +77,8 @@ print(f"{probs[0][0]:.1%} that image 0 is '{candidate_labels[0]}'")
 ## Notes
 
 - Training is supported for DDP and FSDP on single-node multi-GPU setups. However, it does not use [torch.distributed](https://pytorch.org/tutorials/beginner/dist_overview.html) utilities which may limit the scalability of batch size.
-- When using the standalone [SiglipTokenizer](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipTokenizer) or [SiglipProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipProcessor), make sure to pass `padding="max_length"` because that is how the model was trained.
-- To get the same results as the [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline), a prompt template of `"This is a photo of {label}."` should be passed to the processor.
+- When using the standalone [SiglipTokenizer](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipTokenizer) or [SiglipProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipProcessor), make sure to pass `padding="max_length"` because that is how the model was trained.
+- To get the same results as the [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline), a prompt template of `"This is a photo of {label}."` should be passed to the processor.
 - Toggle the `attn_implementation` parameter to either `"sdpa"` or `"flash_attention_2"` to use a more memory-efficient attention.
 
     ```py
@@ -101,7 +101,7 @@ print(f"{probs[0][0]:.1%} that image 0 is '{candidate_labels[0]}'")
 transformers.SiglipConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, initializer_factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/configuration_siglip.py#L104)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/configuration_siglip.py#L104)
 
 **Parameters:**
 
@@ -115,8 +115,8 @@ This is the configuration class to store the configuration of a SiglipModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/siglip-base-patch16-224](https://huggingface.co/google/siglip-base-patch16-224)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -150,7 +150,7 @@ Example:
 transformers.SiglipTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 32000, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, max_position_embeddings: int = 64, hidden_act: str = 'gelu_pytorch_tanh', layer_norm_eps: float = 1e-06, attention_dropout: float | int = 0.0, pad_token_id: int | None = 1, bos_token_id: int | None = 49406, eos_token_id: int | list[int] | None = 49407, projection_size: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/configuration_siglip.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/configuration_siglip.py#L27)
 
 **Parameters:**
 
@@ -184,8 +184,8 @@ This is the configuration class to store the configuration of a SiglipModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/siglip-base-patch16-224](https://huggingface.co/google/siglip-base-patch16-224)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -210,7 +210,7 @@ Example:
 transformers.SiglipVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 16, hidden_act: str = 'gelu_pytorch_tanh', layer_norm_eps: float = 1e-06, attention_dropout: float | int = 0.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/configuration_siglip.py#L70)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/configuration_siglip.py#L70)
 
 **Parameters:**
 
@@ -238,8 +238,8 @@ This is the configuration class to store the configuration of a SiglipModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/siglip-base-patch16-224](https://huggingface.co/google/siglip-base-patch16-224)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -264,7 +264,7 @@ Example:
 transformers.SiglipTokenizer(vocab_file, eos_token = '</s>', unk_token = '<unk>', pad_token = '</s>', additional_special_tokens = None, sp_model_kwargs: dict[str, typing.Any] | None = None, model_max_length = 64, do_lower_case = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/tokenization_siglip.py#L44)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/tokenization_siglip.py#L44)
 
 **Parameters:**
 
@@ -286,7 +286,7 @@ do_lower_case (`bool`, *optional*, defaults to `True`) : Whether or not to lower
 
 Construct a Siglip tokenizer. Based on [SentencePiece](https://github.com/google/sentencepiece).
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 #### build_inputs_with_special_tokens[[transformers.SiglipTokenizer.build_inputs_with_special_tokens]]
@@ -295,7 +295,7 @@ this superclass for more information regarding those methods.
 build_inputs_with_special_tokens(token_ids_0: list, token_ids_1: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/tokenization_siglip.py#L203)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/tokenization_siglip.py#L203)
 
 **Parameters:**
 
@@ -319,7 +319,7 @@ adding special tokens. A sequence has the following format:
 get_special_tokens_mask(token_ids_0: list, token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/tokenization_siglip.py#L142)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/tokenization_siglip.py#L142)
 
 **Parameters:**
 
@@ -342,7 +342,7 @@ special tokens using the tokenizer `prepare_for_model` method.
 create_token_type_ids_from_sequences(token_ids_0: list, token_ids_1: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/tokenization_siglip.py#L181)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/tokenization_siglip.py#L181)
 
 **Parameters:**
 
@@ -363,7 +363,7 @@ use of token type ids, therefore a list of zeros is returned.
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/tokenization_siglip.py#L335)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/tokenization_siglip.py#L335)
 
 ## SiglipImageProcessor[[transformers.SiglipImageProcessor]]
 
@@ -373,7 +373,7 @@ save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 transformers.SiglipImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/image_processing_siglip.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/image_processing_siglip.py#L26)
 
 **Parameters:**
 
@@ -443,7 +443,7 @@ Added for backward compatibility but this should be set as a processor attribute
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -503,7 +503,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.SiglipImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/image_processing_pil_siglip.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/image_processing_pil_siglip.py#L26)
 
 **Parameters:**
 
@@ -565,7 +565,7 @@ Added for backward compatibility but this should be set as a processor attribute
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -625,7 +625,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.SiglipProcessor(image_processor, tokenizer)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/processing_siglip.py#L23)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/processing_siglip.py#L23)
 
 **Parameters:**
 
@@ -635,8 +635,8 @@ tokenizer (`SiglipTokenizer`) : The tokenizer is a required input.
 
 Constructs a SiglipProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[SiglipProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipProcessor) offers all the functionalities of [SiglipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipImageProcessor) and [SiglipTokenizer](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipTokenizer). See the
-[~SiglipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipImageProcessor) and [~SiglipTokenizer](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipTokenizer) for more information.
+[SiglipProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipProcessor) offers all the functionalities of [SiglipImageProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipImageProcessor) and [SiglipTokenizer](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipTokenizer). See the
+[~SiglipImageProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipImageProcessor) and [~SiglipTokenizer](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipTokenizer) for more information.
 
 #### __call__[[transformers.SiglipProcessor.__call__]]
 
@@ -644,7 +644,7 @@ Constructs a SiglipProcessor which wraps a image processor and a tokenizer into 
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L651)
 
 **Parameters:**
 
@@ -656,9 +656,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## SiglipModel[[transformers.SiglipModel]]
 
@@ -668,15 +668,15 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 transformers.SiglipModel(config: SiglipConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/modeling_siglip.py#L647)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/modeling_siglip.py#L647)
 
 **Parameters:**
 
-config ([SiglipConfig](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SiglipConfig](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Siglip Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -690,13 +690,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, return_loss: bool | None = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/modeling_siglip.py#L737)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/modeling_siglip.py#L737)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipImageProcessor). See `SiglipImageProcessor.__call__()` for details ([SiglipProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipImageProcessor). See `SiglipImageProcessor.__call__()` for details ([SiglipProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -710,9 +710,9 @@ interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to 
 
 A `SiglipOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SiglipConfig](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipConfig)) and inputs.
+elements depending on the configuration ([SiglipConfig](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipConfig)) and inputs.
 
-The [SiglipModel](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipModel) forward method, overrides the `__call__` special method.
+The [SiglipModel](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -723,10 +723,10 @@ the latter silently ignores them.
   similarity scores.
 - **logits_per_text** (`torch.FloatTensor` of shape `(text_batch_size, image_batch_size)`) -- The scaled dot product scores between `text_embeds` and `image_embeds`. This represents the text-image
   similarity scores.
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [SiglipTextModel](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipTextModel).
-- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of [SiglipVisionModel](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipVisionModel).
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [SiglipTextModel](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipTextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [SiglipVisionModel](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipVisionModel).
+- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [SiglipTextModel](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipTextModel).
+- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of [SiglipVisionModel](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipVisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [SiglipTextModel](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipTextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [SiglipVisionModel](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipVisionModel).
 
 Examples:
 
@@ -763,21 +763,21 @@ Examples:
 get_text_features(input_ids: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/modeling_siglip.py#L672)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/modeling_siglip.py#L672)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SiglipConfig](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipConfig)) and inputs.
+elements depending on the configuration ([SiglipConfig](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -815,19 +815,19 @@ Examples:
 get_image_features(pixel_values: FloatTensor, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/modeling_siglip.py#L703)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/modeling_siglip.py#L703)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipImageProcessor). See `SiglipImageProcessor.__call__()` for details ([SiglipProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipImageProcessor). See `SiglipImageProcessor.__call__()` for details ([SiglipProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SiglipConfig](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipConfig)) and inputs.
+elements depending on the configuration ([SiglipConfig](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -871,15 +871,15 @@ Examples:
 transformers.SiglipTextModel(config: SiglipTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/modeling_siglip.py#L471)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/modeling_siglip.py#L471)
 
 **Parameters:**
 
-config ([SiglipTextConfig](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SiglipTextConfig](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The text model from SigLIP without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -893,23 +893,23 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/modeling_siglip.py#L488)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/modeling_siglip.py#L488)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SiglipConfig](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipConfig)) and inputs.
+elements depending on the configuration ([SiglipConfig](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipConfig)) and inputs.
 
-The [SiglipTextModel](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipTextModel) forward method, overrides the `__call__` special method.
+The [SiglipTextModel](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -954,15 +954,15 @@ Examples:
 transformers.SiglipVisionModel(config: SiglipVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/modeling_siglip.py#L553)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/modeling_siglip.py#L553)
 
 **Parameters:**
 
-config ([SiglipVisionConfig](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SiglipVisionConfig](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The vision model from SigLIP without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -976,21 +976,21 @@ and behavior.
 forward(pixel_values, interpolate_pos_encoding: bool | None = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/modeling_siglip.py#L573)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/modeling_siglip.py#L573)
 
 **Parameters:**
 
-pixel_values (`` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipImageProcessor). See `SiglipImageProcessor.__call__()` for details ([SiglipProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
+pixel_values (`` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipImageProcessor). See `SiglipImageProcessor.__call__()` for details ([SiglipProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SiglipConfig](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipConfig)) and inputs.
+elements depending on the configuration ([SiglipConfig](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipConfig)) and inputs.
 
-The [SiglipVisionModel](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipVisionModel) forward method, overrides the `__call__` special method.
+The [SiglipVisionModel](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1041,16 +1041,16 @@ Examples:
 transformers.SiglipForImageClassification(config: SiglipConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/modeling_siglip.py#L835)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/modeling_siglip.py#L835)
 
 **Parameters:**
 
-config ([SiglipConfig](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SiglipConfig](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 SigLIP vision encoder with an image classification head on top (a linear layer on top of the pooled final hidden states of
 the patch tokens) e.g. for ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1064,23 +1064,23 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/siglip/modeling_siglip.py#L859)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/siglip/modeling_siglip.py#L859)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipImageProcessor). See `SiglipImageProcessor.__call__()` for details ([SiglipProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SiglipImageProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipImageProcessor). See `SiglipImageProcessor.__call__()` for details ([SiglipProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipProcessor) uses [SiglipImageProcessor](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
+A [ImageClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SiglipConfig](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipConfig)) and inputs.
+elements depending on the configuration ([SiglipConfig](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipConfig)) and inputs.
 
-The [SiglipForImageClassification](/docs/transformers/v5.15.0/en/model_doc/siglip#transformers.SiglipForImageClassification) forward method, overrides the `__call__` special method.
+The [SiglipForImageClassification](/docs/transformers/v5.15.1/en/model_doc/siglip#transformers.SiglipForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1126,4 +1126,4 @@ Predicted class: LABEL_1
 ```
 
 ### CodeGen
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/codegen.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/codegen.md

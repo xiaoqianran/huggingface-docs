@@ -7,7 +7,7 @@ You can find all the original ByT5 checkpoints under the [Google](https://huggin
 > [!TIP]
 > Refer to the [T5](./t5) docs for more examples of how to apply ByT5 to different language tasks.
 
-The example below demonstrates how to generate text with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) and from the command line.
+The example below demonstrates how to generate text with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) and from the command line.
 
 ```python
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
@@ -87,7 +87,7 @@ print(tokenizer.decode(output[0], skip_special_tokens=True))
 transformers.ByT5Tokenizer(eos_token = '</s>', unk_token = '<unk>', pad_token = '<pad>', extra_ids = 125, additional_special_tokens = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/byt5/tokenization_byt5.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/byt5/tokenization_byt5.py#L25)
 
 **Parameters:**
 
@@ -103,7 +103,7 @@ additional_special_tokens (`list[str]`, *optional*) : Additional special tokens 
 
 Construct a ByT5 tokenizer. ByT5 simply uses raw bytes utf-8 encoding.
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 #### build_inputs_with_special_tokens[[transformers.ByT5Tokenizer.build_inputs_with_special_tokens]]
@@ -112,7 +112,7 @@ this superclass for more information regarding those methods.
 build_inputs_with_special_tokens(token_ids_0: list, token_ids_1: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/byt5/tokenization_byt5.py#L169)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/byt5/tokenization_byt5.py#L169)
 
 **Parameters:**
 
@@ -136,7 +136,7 @@ adding special tokens. A sequence has the following format:
 convert_tokens_to_string(tokens)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/byt5/tokenization_byt5.py#L215)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/byt5/tokenization_byt5.py#L215)
 
 Converts a sequence of tokens (string) in a single string.
 
@@ -146,7 +146,7 @@ Converts a sequence of tokens (string) in a single string.
 create_token_type_ids_from_sequences(token_ids_0: list, token_ids_1: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/byt5/tokenization_byt5.py#L147)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/byt5/tokenization_byt5.py#L147)
 
 **Parameters:**
 
@@ -167,7 +167,7 @@ make use of token type ids, therefore a list of zeros is returned.
 get_special_tokens_mask(token_ids_0: list, token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/byt5/tokenization_byt5.py#L108)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/byt5/tokenization_byt5.py#L108)
 
 **Parameters:**
 
@@ -185,4 +185,4 @@ Retrieve sequence ids from a token list that has no special tokens added. This m
 special tokens using the tokenizer `prepare_for_model` method.
 
 ### LiLT
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/lilt.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/lilt.md

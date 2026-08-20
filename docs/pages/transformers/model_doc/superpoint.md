@@ -12,7 +12,7 @@ You can find all the original SuperPoint checkpoints under the [Magic Leap Commu
 >
 > Click on the SuperPoint models in the right sidebar for more examples of how to apply SuperPoint to different computer vision tasks.
 
-The example below demonstrates how to detect interest points in an image with the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to detect interest points in an image with the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 import requests
@@ -103,7 +103,7 @@ processed_outputs = processor.post_process_keypoint_detection(outputs, [image_si
 transformers.SuperPointConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, encoder_hidden_sizes: list[int] | tuple[int, ...] = (64, 64, 128, 128), decoder_hidden_size: int = 256, keypoint_decoder_dim: int = 65, descriptor_decoder_dim: int = 256, keypoint_threshold: float = 0.005, max_keypoints: int = -1, nms_radius: int = 4, border_removal_distance: int = 4, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superpoint/configuration_superpoint.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superpoint/configuration_superpoint.py#L24)
 
 **Parameters:**
 
@@ -129,8 +129,8 @@ This is the configuration class to store the configuration of a SuperpointModel.
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [magic-leap-community/superpoint](https://huggingface.co/magic-leap-community/superpoint)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -152,7 +152,7 @@ Example:
 transformers.SuperPointImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superpoint/image_processing_superpoint.py#L70)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superpoint/image_processing_superpoint.py#L70)
 
 **Parameters:**
 
@@ -206,7 +206,7 @@ Constructs a SuperPointImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -266,7 +266,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.SuperPointImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superpoint/image_processing_pil_superpoint.py#L72)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superpoint/image_processing_pil_superpoint.py#L72)
 
 **Parameters:**
 
@@ -320,7 +320,7 @@ Constructs a SuperPointImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -378,7 +378,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 post_process_keypoint_detection(outputs: SuperPointKeypointDescriptionOutput, target_sizes: transformers.utils.generic.TensorType | list[tuple])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superpoint/image_processing_pil_superpoint.py#L113)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superpoint/image_processing_pil_superpoint.py#L113)
 
 **Parameters:**
 
@@ -391,7 +391,7 @@ target_sizes (`torch.Tensor` or `list[tuple[int, int]]`) : Tensor of shape `(bat
 A list of dictionaries, each dictionary containing the keypoints in absolute format according
 to target_sizes, scores and descriptors for an image in the batch as predicted by the model.
 
-Converts the raw output of [SuperPointForKeypointDetection](/docs/transformers/v5.15.0/en/model_doc/superpoint#transformers.SuperPointForKeypointDetection) into lists of keypoints, scores and descriptors
+Converts the raw output of [SuperPointForKeypointDetection](/docs/transformers/v5.15.1/en/model_doc/superpoint#transformers.SuperPointForKeypointDetection) into lists of keypoints, scores and descriptors
 with coordinates absolute to the original image sizes.
 
 ## SuperPointForKeypointDetection[[transformers.SuperPointForKeypointDetection]]
@@ -402,15 +402,15 @@ with coordinates absolute to the original image sizes.
 transformers.SuperPointForKeypointDetection(config: SuperPointConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superpoint/modeling_superpoint.py#L352)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superpoint/modeling_superpoint.py#L352)
 
 **Parameters:**
 
-config ([SuperPointConfig](/docs/transformers/v5.15.0/en/model_doc/superpoint#transformers.SuperPointConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SuperPointConfig](/docs/transformers/v5.15.1/en/model_doc/superpoint#transformers.SuperPointConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 SuperPoint model outputting keypoints and descriptors.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -424,25 +424,25 @@ and behavior.
 forward(pixel_values: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superpoint/modeling_superpoint.py#L373)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superpoint/modeling_superpoint.py#L373)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SuperPointImageProcessor](/docs/transformers/v5.15.0/en/model_doc/superpoint#transformers.SuperPointImageProcessor). See `SuperPointImageProcessor.__call__()` for details (`processor_class` uses [SuperPointImageProcessor](/docs/transformers/v5.15.0/en/model_doc/superpoint#transformers.SuperPointImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SuperPointImageProcessor](/docs/transformers/v5.15.1/en/model_doc/superpoint#transformers.SuperPointImageProcessor). See `SuperPointImageProcessor.__call__()` for details (`processor_class` uses [SuperPointImageProcessor](/docs/transformers/v5.15.1/en/model_doc/superpoint#transformers.SuperPointImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `SuperPointKeypointDescriptionOutput` or `tuple(torch.FloatTensor)`
 
 A `SuperPointKeypointDescriptionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SuperPointConfig](/docs/transformers/v5.15.0/en/model_doc/superpoint#transformers.SuperPointConfig)) and inputs.
+elements depending on the configuration ([SuperPointConfig](/docs/transformers/v5.15.1/en/model_doc/superpoint#transformers.SuperPointConfig)) and inputs.
 
-The [SuperPointForKeypointDetection](/docs/transformers/v5.15.0/en/model_doc/superpoint#transformers.SuperPointForKeypointDetection) forward method, overrides the `__call__` special method.
+The [SuperPointForKeypointDetection](/docs/transformers/v5.15.1/en/model_doc/superpoint#transformers.SuperPointForKeypointDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -479,4 +479,4 @@ Examples:
 ```
 
 ### GPT-Sw3
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/gpt-sw3.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/gpt-sw3.md

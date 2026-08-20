@@ -30,7 +30,7 @@ Thanks to the weight conversion mapping, RfDetr is compatible with models from t
 > Click on the RF-DETR models in the right sidebar for more examples of how to apply RF-DETR to different object
 > detection tasks.
 
-The example below demonstrates how to perform object detection with the [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) and the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to perform object detection with the [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) and the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -150,7 +150,7 @@ sv.plot_image(annotated_image)
 
 ## Resources
 
-- Scripts for finetuning [RfDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrForObjectDetection) with [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer)
+- Scripts for finetuning [RfDetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrForObjectDetection) with [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer)
   or [Accelerate](https://huggingface.co/docs/accelerate/index) can be
   found [here](https://github.com/huggingface/transformers/tree/main/examples/pytorch/object-detection).
 - See also: [Object detection task guide](../tasks/object_detection).
@@ -163,7 +163,7 @@ sv.plot_image(annotated_image)
 transformers.RfDetrConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, hidden_expansion: float = 0.5, c2f_num_blocks: int = 3, activation_function: str = 'silu', dropout: float = 0.1, decoder_ffn_dim: int = 2048, decoder_n_points: int = 4, decoder_layers: int = 3, decoder_self_attention_heads: int = 8, decoder_cross_attention_heads: int = 16, decoder_activation_function: str = 'relu', num_queries: int = 300, attention_bias: bool = True, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, group_detr: int = 13, init_std: float = 0.02, disable_custom_kernels: bool = True, class_cost: int | float = 2, bbox_cost: int | float = 5, giou_cost: int | float = 2, class_loss_coefficient: int | float = 1, dice_loss_coefficient: int | float = 1, bbox_loss_coefficient: int | float = 5, giou_loss_coefficient: int | float = 2, eos_coefficient: float = 0.1, focal_alpha: float = 0.25, auxiliary_loss: bool = True, d_model: int = 256, layer_norm_eps: float = 1e-05, num_feature_levels: int = 1, mask_loss_coefficient: int | float = 1, mask_point_sample_ratio: int = 16, mask_downsample_ratio: int = 4, mask_class_loss_coefficient: int | float = 5.0, mask_dice_loss_coefficient: int | float = 5.0, segmentation_head_activation_function: str = 'gelu', intermediate_size: int = 1024)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rf_detr/configuration_rf_detr.py#L103)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rf_detr/configuration_rf_detr.py#L103)
 
 **Parameters:**
 
@@ -189,7 +189,7 @@ decoder_cross_attention_heads (`int`, *optional*, defaults to 16) : Number of at
 
 decoder_activation_function (`str`, *optional*, defaults to `"relu"`) : The non-linear activation function in the decoder. Supported values are `"relu"`, `"silu"`, `"gelu"`.
 
-num_queries (`int`, *optional*, defaults to 300) : Number of object queries, i.e. detection slots. This is the maximal number of objects [RfDetrModel](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrModel) can detect in a single image.
+num_queries (`int`, *optional*, defaults to 300) : Number of object queries, i.e. detection slots. This is the maximal number of objects [RfDetrModel](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrModel) can detect in a single image.
 
 attention_bias (`bool`, *optional*, defaults to `True`) : Whether to use a bias in the query, key, value and output projection layers during self-attention.
 
@@ -247,8 +247,8 @@ This is the configuration class to store the configuration of a RfDetrModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Roboflow/rf-detr-base](https://huggingface.co/Roboflow/rf-detr-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -273,7 +273,7 @@ Examples:
 transformers.RfDetrDinov2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, mlp_ratio: int = 4, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-06, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 14, num_channels: int = 3, qkv_bias: bool = True, layerscale_value: float = 1.0, drop_path_rate: float | int = 0.0, use_swiglu_ffn: bool = False, _out_features: list[str] | None = None, _out_indices: list[int] | None = None, apply_layernorm: bool = True, reshape_hidden_states: bool = True, use_mask_token: bool = True, num_windows: int = 4)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rf_detr/configuration_rf_detr.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rf_detr/configuration_rf_detr.py#L30)
 
 **Parameters:**
 
@@ -321,8 +321,8 @@ This is the configuration class to store the configuration of a RfDetrModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Roboflow/rf-detr-base](https://huggingface.co/Roboflow/rf-detr-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -347,7 +347,7 @@ Example:
 transformers.RfDetrImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rf_detr/image_processing_rf_detr.py#L216)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rf_detr/image_processing_rf_detr.py#L216)
 
 **Parameters:**
 
@@ -403,7 +403,7 @@ Constructs a RfDetrImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], annotations: dict[str, int | str | list[dict]] | list[dict[str, int | str | list[dict]]] | None = None, return_segmentation_masks: bool | None = None, masks_path: str | pathlib.Path | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rf_detr/image_processing_rf_detr.py#L452)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rf_detr/image_processing_rf_detr.py#L452)
 
 **Parameters:**
 
@@ -471,7 +471,7 @@ do_convert_annotations (`bool`, *kwargs*, *optional*, defaults to `True`) : Cont
 post_process_object_detection(outputs, threshold: float = 0.5, target_sizes: transformers.utils.generic.TensorType | list[tuple] | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rf_detr/image_processing_rf_detr.py#L589)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rf_detr/image_processing_rf_detr.py#L589)
 
 **Parameters:**
 
@@ -486,7 +486,7 @@ target_sizes (`torch.Tensor` or `list[tuple[int, int]]`, *optional*) : Tensor of
 A list of dictionaries, each dictionary containing the scores, labels and boxes for an image
 in the batch as predicted by the model.
 
-Converts the raw output of [RfDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
+Converts the raw output of [RfDetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
 bottom_right_x, bottom_right_y) format. Only supports PyTorch.
 
 #### post_process_instance_segmentation[[transformers.RfDetrImageProcessor.post_process_instance_segmentation]]
@@ -495,7 +495,7 @@ bottom_right_x, bottom_right_y) format. Only supports PyTorch.
 post_process_instance_segmentation(outputs, threshold: float = 0.5, mask_threshold: float = 0.0, target_sizes: list[tuple[int, int]] | None = None, return_coco_annotation: bool = False, return_binary_maps: bool = False, top_k: int | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rf_detr/image_processing_rf_detr.py#L643)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rf_detr/image_processing_rf_detr.py#L643)
 
 **Parameters:**
 
@@ -531,16 +531,16 @@ Converts the output of [*RfDetrForInstanceSegmentation*] into instance segmentat
 transformers.RfDetrModel(config: RfDetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rf_detr/modeling_rf_detr.py#L1385)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rf_detr/modeling_rf_detr.py#L1385)
 
 **Parameters:**
 
-config ([RfDetrConfig](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([RfDetrConfig](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare LW Detr Model (consisting of a backbone and decoder Transformer) outputting raw
 hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -554,11 +554,11 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rf_detr/modeling_rf_detr.py#L1492)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rf_detr/modeling_rf_detr.py#L1492)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [RfDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrImageProcessor). See `RfDetrImageProcessor.__call__()` for details (`processor_class` uses [RfDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [RfDetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrImageProcessor). See `RfDetrImageProcessor.__call__()` for details (`processor_class` uses [RfDetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -566,7 +566,7 @@ pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional
 
 A `RfDetrModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([RfDetrConfig](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrConfig)) and inputs.
+elements depending on the configuration ([RfDetrConfig](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrConfig)) and inputs.
 
 Forward pass of the RF-DETR model. The pipeline proceeds as follows:
 
@@ -637,16 +637,16 @@ Examples:
 transformers.RfDetrForObjectDetection(config: RfDetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rf_detr/modeling_rf_detr.py#L1733)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rf_detr/modeling_rf_detr.py#L1733)
 
 **Parameters:**
 
-config ([RfDetrConfig](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([RfDetrConfig](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 LW DETR Model (consisting of a backbone and decoder Transformer) with object detection heads on
 top, for tasks such as COCO detection.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -660,11 +660,11 @@ and behavior.
 forward(pixel_values: FloatTensor = None, pixel_mask: typing.Optional[torch.LongTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rf_detr/modeling_rf_detr.py#L1747)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rf_detr/modeling_rf_detr.py#L1747)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [RfDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrImageProcessor). See `RfDetrImageProcessor.__call__()` for details (`processor_class` uses [RfDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [RfDetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrImageProcessor). See `RfDetrImageProcessor.__call__()` for details (`processor_class` uses [RfDetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -674,7 +674,7 @@ labels (`list[Dict]` of len `(batch_size,)`, *optional*) : Labels for computing 
 
 A `RfDetrObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([RfDetrConfig](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrConfig)) and inputs.
+elements depending on the configuration ([RfDetrConfig](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrConfig)) and inputs.
 
 The forward pass proceeds as follows:
 
@@ -760,7 +760,7 @@ Detected remote with confidence 0.633 at location [40.79, 72.78, 176.76, 117.25]
 transformers.RfDetrForInstanceSegmentation(config: RfDetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rf_detr/modeling_rf_detr.py#L1999)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rf_detr/modeling_rf_detr.py#L1999)
 
 #### forward[[transformers.RfDetrForInstanceSegmentation.forward]]
 
@@ -768,11 +768,11 @@ transformers.RfDetrForInstanceSegmentation(config: RfDetrConfig)
 forward(pixel_values: FloatTensor = None, pixel_mask: typing.Optional[torch.LongTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rf_detr/modeling_rf_detr.py#L2081)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rf_detr/modeling_rf_detr.py#L2081)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [RfDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrImageProcessor). See `RfDetrImageProcessor.__call__()` for details (`processor_class` uses [RfDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [RfDetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrImageProcessor). See `RfDetrImageProcessor.__call__()` for details (`processor_class` uses [RfDetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrImageProcessor) for processing images).
 
 pixel_mask (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -801,15 +801,15 @@ Forward pass of the RF-DETR model for instance segmentation. The pipeline procee
 transformers.RfDetrDinov2Backbone(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rf_detr/modeling_rf_detr.py#L522)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rf_detr/modeling_rf_detr.py#L522)
 
 **Parameters:**
 
-config ([RfDetrDinov2Backbone](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrDinov2Backbone)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([RfDetrDinov2Backbone](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrDinov2Backbone)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 RfDetrDinov2 backbone, to be used with frameworks like DETR and MaskFormer.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -823,19 +823,19 @@ and behavior.
 forward(pixel_values: Tensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rf_detr/modeling_rf_detr.py#L538)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rf_detr/modeling_rf_detr.py#L538)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [RfDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrImageProcessor). See `RfDetrImageProcessor.__call__()` for details (`processor_class` uses [RfDetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [RfDetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrImageProcessor). See `RfDetrImageProcessor.__call__()` for details (`processor_class` uses [RfDetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrImageProcessor) for processing images).
 
 **Returns:** `BackboneOutput` or `tuple(torch.FloatTensor)`
 
 A `BackboneOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([RfDetrConfig](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrConfig)) and inputs.
+elements depending on the configuration ([RfDetrConfig](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrConfig)) and inputs.
 
-The [RfDetrDinov2Backbone](/docs/transformers/v5.15.0/en/model_doc/rf_detr#transformers.RfDetrDinov2Backbone) forward method, overrides the `__call__` special method.
+The [RfDetrDinov2Backbone](/docs/transformers/v5.15.1/en/model_doc/rf_detr#transformers.RfDetrDinov2Backbone) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -878,4 +878,4 @@ Examples:
 ```
 
 ### SegFormer
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/segformer.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/segformer.md

@@ -6,7 +6,7 @@ This guide will demonstrate how to define tools, how to pass them to a chat mode
 
 ## Passing tools
 
-When a model supports tool-use, pass functions to the `tools` argument of [apply_chat_template()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template).
+When a model supports tool-use, pass functions to the `tools` argument of [apply_chat_template()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template).
 The tools are passed as either a [JSON schema](https://json-schema.org/learn) or Python functions. If you pass Python functions,
 the arguments, argument types, and function docstring are parsed in order to generate the JSON schema automatically.
 
@@ -63,7 +63,7 @@ messages = [
 ]
 ```
 
-Next, pass `messages` and a list of tools to [apply_chat_template()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template). Tokenize the chat and generate a response.
+Next, pass `messages` and a list of tools to [apply_chat_template()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template). Tokenize the chat and generate a response.
 
 ```py
 inputs = tokenizer.apply_chat_template(messages, tools=tools, add_generation_prompt=True, return_dict=True, return_tensors="pt")
@@ -81,7 +81,7 @@ The chat model called the `get_current_temperature` tool with the correct parame
 
 A model **cannot actually call the tool itself**. It requests a tool call, and it's your job to handle the call and append it and the result to the chat history. For
 models that support [response parsing](./chat_response_parsing), the response parsing will be handled automatically, and you can just use
-[parse_response()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.parse_response) to extract the tool call. For other models, you'll need to manually translate the output
+[parse_response()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.parse_response) to extract the tool call. For other models, you'll need to manually translate the output
 string into a tool call dict.
 
 Regardless of the approach you use, the tool call should go in the `tool_calls` key of an `assistant` message. This is the recommended API, and should be supported by the chat template of most tool-using models.
@@ -123,7 +123,7 @@ Another way to define tools is by passing a [JSON schema](https://json-schema.or
 You can also manually call the low-level functions that convert Python functions to JSON schemas, and then check or edit the generated schemas. This is usually not necessary, but is useful for understanding the underlying mechanics. It's particularly important
 for chat template authors who need to access the JSON schema to render the tool definitions.
 
-The [apply_chat_template()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template) method uses the [get_json_schema](https://github.com/huggingface/transformers/blob/14561209291255e51c55260306c7d00c159381a5/src/transformers/utils/chat_template_utils.py#L205) function to convert Python callables to a JSON schema. This includes methods: `self` and `cls` are treated as implicit receiver arguments and are ignored.
+The [apply_chat_template()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template) method uses the [get_json_schema](https://github.com/huggingface/transformers/blob/14561209291255e51c55260306c7d00c159381a5/src/transformers/utils/chat_template_utils.py#L205) function to convert Python callables to a JSON schema. This includes methods: `self` and `cls` are treated as implicit receiver arguments and are ignored.
 
 ```py
 from transformers.utils import get_json_schema
@@ -166,7 +166,7 @@ print(schema)
 }
 ```
 
-We won't go into the details of JSON schema itself here, since it's already [very well documented](https://json-schema.org/) elsewhere. We will, however, mention that you can pass JSON schema dicts to the `tools` argument of [apply_chat_template()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template) instead of Python functions:
+We won't go into the details of JSON schema itself here, since it's already [very well documented](https://json-schema.org/) elsewhere. We will, however, mention that you can pass JSON schema dicts to the `tools` argument of [apply_chat_template()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.apply_chat_template) instead of Python functions:
 
 ```py
 # A simple function that takes no arguments
@@ -211,4 +211,4 @@ model_input = tokenizer.apply_chat_template(
 ```
 
 ### Gradient accumulation
-https://huggingface.co/docs/transformers/v5.15.0/grad_accumulation.md
+https://huggingface.co/docs/transformers/v5.15.1/grad_accumulation.md

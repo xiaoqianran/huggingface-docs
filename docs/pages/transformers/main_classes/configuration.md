@@ -1,6 +1,6 @@
 # Configuration
 
-The base class [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) implements the common methods for loading/saving a configuration
+The base class [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) implements the common methods for loading/saving a configuration
 either from a local file or directory, or from a pretrained model configuration provided by the library (downloaded
 from HuggingFace's AWS S3 repository).
 
@@ -16,17 +16,17 @@ Each derived config class implements model specific attributes. Common attribute
 transformers.PreTrainedConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L147)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L147)
 
 **Parameters:**
 
-name_or_path (`str`, *optional*, defaults to `""`) : Store the string that was passed to [PreTrainedModel.from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) as `pretrained_model_name_or_path` if the configuration was created with such a method.
+name_or_path (`str`, *optional*, defaults to `""`) : Store the string that was passed to [PreTrainedModel.from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) as `pretrained_model_name_or_path` if the configuration was created with such a method.
 
 output_hidden_states (`bool`, *optional*, defaults to `False`) : Whether or not the model should return all hidden-states.
 
 output_attentions (`bool`, *optional*, defaults to `False`) : Whether or not the model should returns all attentions.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not the model should return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not the model should return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 is_encoder_decoder (`bool`, *optional*, defaults to `False`) : Whether the model is used as an encoder/decoder or not.
 
@@ -59,11 +59,11 @@ initialize a model does **not** load the model weights. It only affects the mode
 Class attributes (overridden by derived classes):
 
 - **model_type** (`str`) -- An identifier for the model type, serialized into the JSON file, and used to recreate
-  the correct object in [AutoConfig](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoConfig).
+  the correct object in [AutoConfig](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoConfig).
 - **has_no_defaults_at_init** (`bool`) -- Whether the config class can be initialized without providing input arguments.
   Some configurations requires inputs to be defined at init and have no default values, usually these are composite configs,
-  (but not necessarily) such as [EncoderDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderConfig) or [~RagConfig](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagConfig). They have to be initialized from
-  two or more configs of type [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig).
+  (but not necessarily) such as [EncoderDecoderConfig](/docs/transformers/v5.15.1/en/model_doc/encoder-decoder#transformers.EncoderDecoderConfig) or [~RagConfig](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagConfig). They have to be initialized from
+  two or more configs of type [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig).
 - **keys_to_ignore_at_inference** (`list[str]`) -- A list of keys to ignore by default when looking at dictionary
   outputs of the model during inference.
 - **attribute_map** (`dict[str, str]`) -- A dict that maps model specific attribute names to the standardized
@@ -96,7 +96,7 @@ information about the individual parameters.
 push_to_hub(repo_id: str, commit_message: str | None = None, commit_description: str | None = None, private: bool | None = None, token: bool | str | None = None, revision: str | None = None, create_pr: bool = False, max_shard_size: int | str | None = '50GB', tags: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/hub.py#L743)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/hub.py#L743)
 
 **Parameters:**
 
@@ -140,7 +140,7 @@ config.push_to_hub("huggingface/my-finetuned-bert")
 dict_dtype_to_str(d: dict)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L1208)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L1208)
 
 Checks whether the passed dictionary and its nested dicts have a *dtype* key and if it's not None,
 converts torch.dtype to a string of just the type. For example, `torch.float32` get converted into *"float32"*
@@ -152,19 +152,19 @@ string, which can then be stored in the json format.
 from_dict(config_dict: dict, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L860)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L860)
 
 **Parameters:**
 
-config_dict (`dict[str, Any]`) : Dictionary that will be used to instantiate the configuration object. Such a dictionary can be retrieved from a pretrained checkpoint by leveraging the [get_config_dict()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.get_config_dict) method.
+config_dict (`dict[str, Any]`) : Dictionary that will be used to instantiate the configuration object. Such a dictionary can be retrieved from a pretrained checkpoint by leveraging the [get_config_dict()](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig.get_config_dict) method.
 
 kwargs (`dict[str, Any]`) : Additional parameters from which to initialize the configuration object.
 
-**Returns:** [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig)
+**Returns:** [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig)
 
 The configuration object instantiated from those parameters.
 
-Instantiates a [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) from a Python dictionary of parameters.
+Instantiates a [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) from a Python dictionary of parameters.
 
 #### from_json_file[[transformers.PreTrainedConfig.from_json_file]]
 
@@ -172,17 +172,17 @@ Instantiates a [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/con
 from_json_file(json_file: str | os.PathLike)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L925)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L925)
 
 **Parameters:**
 
 json_file (`str` or `os.PathLike`) : Path to the JSON file containing the parameters.
 
-**Returns:** [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig)
+**Returns:** [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig)
 
 The configuration object instantiated from that JSON file.
 
-Instantiates a [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) from the path to a JSON file of parameters.
+Instantiates a [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) from the path to a JSON file of parameters.
 
 #### from_pretrained[[transformers.PreTrainedConfig.from_pretrained]]
 
@@ -190,11 +190,11 @@ Instantiates a [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/con
 from_pretrained(pretrained_model_name_or_path: str | os.PathLike, cache_dir: str | os.PathLike | None = None, force_download: bool = False, local_files_only: bool = False, token: str | bool | None = None, revision: str = 'main', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L616)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L616)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained model configuration hosted inside a model repo on huggingface.co. - a path to a *directory* containing a configuration file saved using the [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.save_pretrained) method, e.g., `./my_model_directory/`. - a path to a saved configuration JSON *file*, e.g., `./my_model_directory/configuration.json`.
+pretrained_model_name_or_path (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained model configuration hosted inside a model repo on huggingface.co. - a path to a *directory* containing a configuration file saved using the [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig.save_pretrained) method, e.g., `./my_model_directory/`. - a path to a saved configuration JSON *file*, e.g., `./my_model_directory/configuration.json`.
 
 cache_dir (`str` or `os.PathLike`, *optional*) : Path to a directory in which a downloaded pretrained model configuration should be cached if the standard cache should not be used.
 
@@ -212,11 +212,11 @@ subfolder (`str`, *optional*, defaults to `""`) : In case the relevant files are
 
 kwargs (`dict[str, Any]`, *optional*) : The values in kwargs of any keys which are configuration attributes will be used to override the loaded values. Behavior concerning key/value pairs whose keys are *not* configuration attributes is controlled by the `return_unused_kwargs` keyword parameter.
 
-**Returns:** [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig)
+**Returns:** [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig)
 
 The configuration object instantiated from this pretrained model.
 
-Instantiate a [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) (or a derived class) from a pretrained model configuration.
+Instantiate a [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) (or a derived class) from a pretrained model configuration.
 
 Examples:
 
@@ -245,7 +245,7 @@ assert unused_kwargs == {"foo": False}
 get_config_dict(pretrained_model_name_or_path: str | os.PathLike, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L727)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L727)
 
 **Parameters:**
 
@@ -256,7 +256,7 @@ pretrained_model_name_or_path (`str` or `os.PathLike`) : The identifier of the p
 The dictionary(ies) that will be used to instantiate the configuration object.
 
 From a `pretrained_model_name_or_path`, resolve to a dictionary of parameters, to be used for instantiating a
-[PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) using `from_dict`.
+[PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) using `from_dict`.
 
 #### get_mtp_config[[transformers.PreTrainedConfig.get_mtp_config]]
 
@@ -264,7 +264,7 @@ From a `pretrained_model_name_or_path`, resolve to a dictionary of parameters, t
 get_mtp_config()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L1379)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L1379)
 
 Returns the mtp text config to be used to create the MTP model. Since the MTP layers are created by instantiating
 the same classes as the main model, we need to overwrite index-specific properties of the config such as `layer_types`
@@ -277,7 +277,7 @@ the indexing of layers at 0).
 get_text_config(decoder = None, encoder = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L1302)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L1302)
 
 **Parameters:**
 
@@ -301,7 +301,7 @@ There are three possible outcomes of using this method:
 is_custom_code()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L1280)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L1280)
 
 Return whether the current config is custom code, i.e. either code loaded from the hub, or defined in any
 user-specific module/session.
@@ -312,7 +312,7 @@ user-specific module/session.
 is_remote_code()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L1274)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L1274)
 
 Return whether the current config is custom code, i.e. code loaded from the hub, or class that we just
 registered via `register_for_auto_class`.
@@ -323,7 +323,7 @@ registered via `register_for_auto_class`.
 register_for_auto_class(auto_class = 'AutoConfig')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L1252)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L1252)
 
 **Parameters:**
 
@@ -338,7 +338,7 @@ the library are already mapped with `AutoConfig`.
 save_pretrained(save_directory: str | os.PathLike, push_to_hub: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L554)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L554)
 
 **Parameters:**
 
@@ -346,10 +346,10 @@ save_directory (`str` or `os.PathLike`) : Directory where the configuration JSON
 
 push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push your model to the Hugging Face model hub after saving it. You can specify the repository you want to push to with `repo_id` (will default to the name of `save_directory` in your namespace).
 
-kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
 
 Save a configuration object to the directory `save_directory`, so that it can be re-loaded using the
-[from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained) class method.
+[from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained) class method.
 
 #### to_dict[[transformers.PreTrainedConfig.to_dict]]
 
@@ -357,7 +357,7 @@ Save a configuration object to the directory `save_directory`, so that it can be
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L1074)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L1074)
 
 **Returns:** `dict[str, Any]`
 
@@ -371,7 +371,7 @@ Serializes this instance to a Python dictionary.
 to_diff_dict()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L1009)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L1009)
 
 **Returns:** dict[str, Any]
 
@@ -387,7 +387,7 @@ Python dictionary.
 to_json_file(json_file_path: str | os.PathLike, use_diff: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L1146)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L1146)
 
 **Parameters:**
 
@@ -403,7 +403,7 @@ Save this instance to a JSON file.
 to_json_string(use_diff: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L1124)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L1124)
 
 **Parameters:**
 
@@ -421,7 +421,7 @@ Serializes this instance to a JSON string.
 update(config_dict: dict)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L1160)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L1160)
 
 **Parameters:**
 
@@ -435,7 +435,7 @@ Updates attributes of this class with attributes from `config_dict`.
 update_from_string(update_str: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L1170)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L1170)
 
 **Parameters:**
 
@@ -454,7 +454,7 @@ The keys to change have to already exist in the config object.
 validate()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/huggingface_hub/dataclasses.py#L247)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/huggingface_hub/dataclasses.py#L247)
 
 Run class validators on the instance.
 
@@ -464,7 +464,7 @@ Run class validators on the instance.
 validate_architecture()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L491)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L491)
 
 Part of `@strict`-powered validation. Validates the architecture of the config.
 
@@ -474,7 +474,7 @@ Part of `@strict`-powered validation. Validates the architecture of the config.
 validate_layer_type()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L524)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L524)
 
 Check that `mlp_layer_types` and `layer_types` is correctly defined.
 
@@ -484,9 +484,9 @@ Check that `mlp_layer_types` and `layer_types` is correctly defined.
 validate_token_ids()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/configuration_utils.py#L508)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/configuration_utils.py#L508)
 
 Part of `@strict`-powered validation. Validates the contents of the special tokens.
 
 ### Trainer
-https://huggingface.co/docs/transformers/v5.15.0/main_classes/trainer.md
+https://huggingface.co/docs/transformers/v5.15.1/main_classes/trainer.md

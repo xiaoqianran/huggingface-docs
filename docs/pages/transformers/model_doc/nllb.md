@@ -15,7 +15,7 @@ You can find all the original NLLB checkpoints under the [AI at Meta](https://hu
 > This model was contributed by [Lysandre](https://huggingface.co/lysandre).
 > Click on the NLLB models in the right sidebar for more examples of how to apply NLLB to different translation tasks.
 
-The example below demonstrates how to translate text with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to translate text with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -117,7 +117,7 @@ visualizer("UN Chief says there is no military solution in Syria")
 transformers.NllbTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, bos_token = '<s>', eos_token = '</s>', sep_token = '</s>', cls_token = '<s>', unk_token = '<unk>', pad_token = '<pad>', mask_token = '<mask>', src_lang = None, tgt_lang = None, _spm_precompiled_charsmap: str | None = None, additional_special_tokens = None, extra_special_tokens = None, legacy_behaviour = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nllb/tokenization_nllb.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/nllb/tokenization_nllb.py#L33)
 
 **Parameters:**
 
@@ -146,7 +146,7 @@ legacy_behaviour (`bool`, *optional*, defaults to `False`) : Whether to use lega
 Construct an NLLB tokenizer (backed by HuggingFace's *tokenizers* library). Based on
 [Unigram](https://huggingface.co/docs/tokenizers/python/latest/components.html?highlight=unigram#models).
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 The tokenization method is `<tokens> <eos> <language code>` for source language documents, and `
@@ -171,7 +171,7 @@ Examples:
 set_src_lang_special_tokens(src_lang)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nllb/tokenization_nllb.py#L267)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/nllb/tokenization_nllb.py#L267)
 
 Reset the special tokens to the source lang setting.
 - In legacy mode: No prefix and suffix=[eos, src_lang_code].
@@ -183,7 +183,7 @@ Reset the special tokens to the source lang setting.
 set_tgt_lang_special_tokens(lang: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nllb/tokenization_nllb.py#L292)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/nllb/tokenization_nllb.py#L292)
 
 Reset the special tokens to the target lang setting.
 - In legacy mode: No prefix and suffix=[eos, tgt_lang_code].
@@ -197,7 +197,7 @@ Reset the special tokens to the target lang setting.
 transformers.NllbTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, bos_token = '<s>', eos_token = '</s>', sep_token = '</s>', cls_token = '<s>', unk_token = '<unk>', pad_token = '<pad>', mask_token = '<mask>', src_lang = None, tgt_lang = None, _spm_precompiled_charsmap: str | None = None, additional_special_tokens = None, extra_special_tokens = None, legacy_behaviour = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nllb/tokenization_nllb.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/nllb/tokenization_nllb.py#L33)
 
 **Parameters:**
 
@@ -226,7 +226,7 @@ legacy_behaviour (`bool`, *optional*, defaults to `False`) : Whether to use lega
 Construct an NLLB tokenizer (backed by HuggingFace's *tokenizers* library). Based on
 [Unigram](https://huggingface.co/docs/tokenizers/python/latest/components.html?highlight=unigram#models).
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 The tokenization method is `<tokens> <eos> <language code>` for source language documents, and `
@@ -251,7 +251,7 @@ Examples:
 set_src_lang_special_tokens(src_lang)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nllb/tokenization_nllb.py#L267)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/nllb/tokenization_nllb.py#L267)
 
 Reset the special tokens to the source lang setting.
 - In legacy mode: No prefix and suffix=[eos, src_lang_code].
@@ -263,11 +263,11 @@ Reset the special tokens to the source lang setting.
 set_tgt_lang_special_tokens(lang: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nllb/tokenization_nllb.py#L292)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/nllb/tokenization_nllb.py#L292)
 
 Reset the special tokens to the target lang setting.
 - In legacy mode: No prefix and suffix=[eos, tgt_lang_code].
 - In default mode: Prefix=[tgt_lang_code], suffix = [eos]
 
 ### MiniMax-M3-VL
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/minimax_m3_vl.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/minimax_m3_vl.md

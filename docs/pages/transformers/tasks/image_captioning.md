@@ -112,7 +112,7 @@ With the dataset ready, you can now set up the model for fine-tuning.
 
 ## Load a base model
 
-Load the ["microsoft/git-base"](https://huggingface.co/microsoft/git-base) into a [AutoModelForCausalLM](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForCausalLM) object.
+Load the ["microsoft/git-base"](https://huggingface.co/microsoft/git-base) into a [AutoModelForCausalLM](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForCausalLM) object.
 
 ```python
 from transformers import AutoModelForCausalLM
@@ -143,9 +143,9 @@ def compute_metrics(eval_pred):
 
 ## Train
 
-Now, you are ready to start fine-tuning the model. You will use the 🤗 [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) for this.
+Now, you are ready to start fine-tuning the model. You will use the 🤗 [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) for this.
 
-First, define the training arguments using [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments).
+First, define the training arguments using [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments).
 
 ```python
 from transformers import TrainingArguments, Trainer
@@ -185,7 +185,7 @@ trainer = Trainer(
 )
 ```
 
-To start training, simply call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) on the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) object.
+To start training, simply call [train()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.train) on the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) object.
 
 ```python
 trainer.train()
@@ -193,7 +193,7 @@ trainer.train()
 
 You should see the training loss drop smoothly as training progresses.
 
-Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
 
 ```python
 trainer.push_to_hub()
@@ -239,4 +239,4 @@ a drawing of a pink and blue pokemon
 Looks like the fine-tuned model generated a pretty good caption!
 
 ### Multimodal Generation
-https://huggingface.co/docs/transformers/v5.15.0/tasks/any_to_any.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/any_to_any.md

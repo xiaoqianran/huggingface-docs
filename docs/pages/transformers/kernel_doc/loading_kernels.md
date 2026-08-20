@@ -13,7 +13,7 @@ Install the kernels package. We recommend the latest version which provides the 
 pip install -U kernels
 ```
 
-Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load the most performant kernels available on the Hub for your device. This replaces supported PyTorch operations with the kernel implementation.
+Set `use_kernels=True` in [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load the most performant kernels available on the Hub for your device. This replaces supported PyTorch operations with the kernel implementation.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -135,7 +135,7 @@ loss = model(input_ids, labels=labels).loss
 loss.backward()
 ```
 
-Explicitly enable training and inference modes with the `mode` argument in the [kernelize()](/docs/transformers/v5.15.0/en/main_classes/kernels#transformers.kernelize) function. Training mode also supports an additional torch.compile mode.
+Explicitly enable training and inference modes with the `mode` argument in the [kernelize()](/docs/transformers/v5.15.1/en/main_classes/kernels#transformers.kernelize) function. Training mode also supports an additional torch.compile mode.
 
 ```py
 from kernels import Mode
@@ -153,7 +153,7 @@ kernelize(model, mode=Mode.TRAINING | Mode.TORCH_COMPILE)
 
 ## KernelConfig
 
-[KernelConfig](/docs/transformers/v5.15.0/en/main_classes/kernels#transformers.KernelConfig) customizes which kernels are used in a model.
+[KernelConfig](/docs/transformers/v5.15.1/en/main_classes/kernels#transformers.KernelConfig) customizes which kernels are used in a model.
 
 The `:` separator names a specific kernel entry inside the repository and maps it to a layer.
 
@@ -193,7 +193,7 @@ kernel_config = KernelConfig(
 
 ## Module fusion
 
-Fuse adjacent modules into a single kernel by passing a tuple of `(class_name, path_pattern)` pairs as the key in [KernelConfig](/docs/transformers/v5.15.0/en/main_classes/kernels#transformers.KernelConfig). All patterns must share the same parent module. `*` matches any single path segment.
+Fuse adjacent modules into a single kernel by passing a tuple of `(class_name, path_pattern)` pairs as the key in [KernelConfig](/docs/transformers/v5.15.1/en/main_classes/kernels#transformers.KernelConfig). All patterns must share the same parent module. `*` matches any single path segment.
 
 ```python
 from transformers import AutoModelForCausalLM, KernelConfig
@@ -218,7 +218,7 @@ Fusion requires the kernel repo to provide a companion `KernelNameLayout` class 
 
 ## Local kernels
 
-Load kernels from local file paths with `use_local_kernel=True` in [KernelConfig](/docs/transformers/v5.15.0/en/main_classes/kernels#transformers.KernelConfig). This loads from a local filesystem path instead of a Hub repository.
+Load kernels from local file paths with `use_local_kernel=True` in [KernelConfig](/docs/transformers/v5.15.1/en/main_classes/kernels#transformers.KernelConfig). This loads from a local filesystem path instead of a Hub repository.
 
 Local kernels use `/abs/path:layer_name` instead of the Hub format `org/repo:layer_name`.
 
@@ -241,7 +241,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ## Disabling kernels
 
-Disable kernels for specific layers with an empty kernel mapping in [KernelConfig](/docs/transformers/v5.15.0/en/main_classes/kernels#transformers.KernelConfig).
+Disable kernels for specific layers with an empty kernel mapping in [KernelConfig](/docs/transformers/v5.15.1/en/main_classes/kernels#transformers.KernelConfig).
 
 ```py
 from transformers import AutoModelForCausalLM, KernelConfig
@@ -297,4 +297,4 @@ Not all kernels support all devices. The library falls back to standard PyTorch 
 - Discover kernels in the [kernels-community](https://huggingface.co/kernels-community) org
 
 ### Kernels
-https://huggingface.co/docs/transformers/v5.15.0/kernel_doc/overview.md
+https://huggingface.co/docs/transformers/v5.15.1/kernel_doc/overview.md

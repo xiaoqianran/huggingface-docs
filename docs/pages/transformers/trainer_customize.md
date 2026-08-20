@@ -1,15 +1,15 @@
 # Subclassing Trainer methods
 
-Subclass [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) methods to change training behavior without rewriting the entire loop. Subclassing modifies the *training loop*, for example the forward pass or loss computation.
+Subclass [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) methods to change training behavior without rewriting the entire loop. Subclassing modifies the *training loop*, for example the forward pass or loss computation.
 
-Before subclassing, consider whether you need to change *what* [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) computes or *when* and *whether* it acts. For timing and conditional logic, use a [Callback](./trainer_callbacks) instead. Callbacks control when things happen (logging, evaluation, early stopping) and subclassing changes what happens (loss computation, data loading, optimization).
+Before subclassing, consider whether you need to change *what* [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) computes or *when* and *whether* it acts. For timing and conditional logic, use a [Callback](./trainer_callbacks) instead. Callbacks control when things happen (logging, evaluation, early stopping) and subclassing changes what happens (loss computation, data loading, optimization).
 
 > [!NOTE]
-> See the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) API docs for a complete list of methods you can subclass. Private methods (prefixed with `_`) like `_save_checkpoint` or `_evaluate` can also be overridden, but these may change without notice.
+> See the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) API docs for a complete list of methods you can subclass. Private methods (prefixed with `_`) like `_save_checkpoint` or `_evaluate` can also be overridden, but these may change without notice.
 
 ## get_train_dataloader
 
-The standard [get_train_dataloader()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.get_train_dataloader) method loads one batch, trains on it, discards it, and loads the next batch.
+The standard [get_train_dataloader()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.get_train_dataloader) method loads one batch, trains on it, discards it, and loads the next batch.
 
 ```py
 def get_train_dataloader(self):
@@ -19,7 +19,7 @@ def get_train_dataloader(self):
 )
 ```
 
-[GRPO](https://huggingface.co/docs/trl/en/grpo_trainer) is an online reinforcement learning algorithm that generates completions before training on them. Generating completions every step is expensive because it's autoregressive. A 512-token completion requires ~512 sequential forward passes compared to one forward pass for a training step. [GRPOTrainer](https://huggingface.co/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) subclasses [get_train_dataloader()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.get_train_dataloader) to batch generation across multiple steps.
+[GRPO](https://huggingface.co/docs/trl/en/grpo_trainer) is an online reinforcement learning algorithm that generates completions before training on them. Generating completions every step is expensive because it's autoregressive. A 512-token completion requires ~512 sequential forward passes compared to one forward pass for a training step. [GRPOTrainer](https://huggingface.co/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) subclasses [get_train_dataloader()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.get_train_dataloader) to batch generation across multiple steps.
 
 `trl.GRPOTrainer.get_train_dataloader` loads *batches* of generation prompts for multiple training steps at once by multiplying batch size by a `steps_per_generation` argument. If `train_batch_size=4` and `steps_per_generation=8`, the dataloader produces batches of 32, cutting generation cost by 8x.
 
@@ -33,7 +33,7 @@ def get_train_dataloader(self):
 
 ## compute_loss
 
-[compute_loss()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.compute_loss) returns the cross-entropy loss calculated by the model.
+[compute_loss()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.compute_loss) returns the cross-entropy loss calculated by the model.
 
 ```py
 def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
@@ -45,14 +45,14 @@ def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=N
     return (loss, outputs) if return_outputs else loss
 ```
 
-[DPO](https://huggingface.co/docs/trl/en/dpo_trainer) measures how strongly the policy model prefers a chosen response over a rejected one, relative to a reference model. [DPOTrainer](https://huggingface.co/docs/trl/v1.10.0/en/bema_for_reference_model#trl.DPOTrainer) subclasses [compute_loss()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.compute_loss) because the loss computation differs from standard cross-entropy in several ways:
+[DPO](https://huggingface.co/docs/trl/en/dpo_trainer) measures how strongly the policy model prefers a chosen response over a rejected one, relative to a reference model. [DPOTrainer](https://huggingface.co/docs/trl/v1.10.0/en/bema_for_reference_model#trl.DPOTrainer) subclasses [compute_loss()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.compute_loss) because the loss computation differs from standard cross-entropy in several ways:
 
 - the model never sees labels; it only returns logits for DPO to calculate log-probs from
 - chosen and rejected responses are concatenated
 - a reference model calculates its own log-probs
 - the loss is a function of `π_chosen`, `π_rejected`, `π_ref_chosen`, `π_ref_rejected`
 
-None of the above fits the standard [Trainer.compute_loss()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.compute_loss) method.
+None of the above fits the standard [Trainer.compute_loss()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.compute_loss) method.
 
 ```py
 def compute_loss(
@@ -79,8 +79,8 @@ def compute_loss(
 
 ## Next steps
 
-- For more real-world examples, see how [GRPOTrainer](https://huggingface.co/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) and [DPOTrainer](https://huggingface.co/docs/trl/v1.10.0/en/bema_for_reference_model#trl.DPOTrainer) extend [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) in TRL, or how [Axolotl](https://github.com/axolotl-ai-cloud/axolotl/tree/main/src/axolotl/core/trainers) builds custom trainers on top of it.
+- For more real-world examples, see how [GRPOTrainer](https://huggingface.co/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) and [DPOTrainer](https://huggingface.co/docs/trl/v1.10.0/en/bema_for_reference_model#trl.DPOTrainer) extend [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) in TRL, or how [Axolotl](https://github.com/axolotl-ai-cloud/axolotl/tree/main/src/axolotl/core/trainers) builds custom trainers on top of it.
 - Check the [Callbacks](./trainer_callbacks) guide if you only need to customize what happens during a training event such as logging metrics at the end of a training step.
 
 ### Overview
-https://huggingface.co/docs/transformers/v5.15.0/optimization_overview.md
+https://huggingface.co/docs/transformers/v5.15.1/optimization_overview.md

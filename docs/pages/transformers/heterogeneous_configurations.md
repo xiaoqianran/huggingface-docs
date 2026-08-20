@@ -91,8 +91,8 @@ config.per_layer_config[27].skip
 # ["attention"]
 ```
 
-Configurations that use `per_layer_config` support the same [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.save_pretrained) and
-[from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained) round trip as other configurations.
+Configurations that use `per_layer_config` support the same [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig.save_pretrained) and
+[from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig.from_pretrained) round trip as other configurations.
 
 Each architecture defines in its code which attributes are used at the layer level. `per_layer_config` provides the mechanism for
 recording those layer-level differences and resolving them against the global config.
@@ -189,4 +189,4 @@ Use sparse serialization for compact configs. Use explicit serialization when re
 from seeing the full per-layer layout.
 
 ### Image processors
-https://huggingface.co/docs/transformers/v5.15.0/image_processors.md
+https://huggingface.co/docs/transformers/v5.15.1/image_processors.md

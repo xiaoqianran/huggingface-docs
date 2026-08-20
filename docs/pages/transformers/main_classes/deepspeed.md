@@ -1,10 +1,10 @@
 # DeepSpeed
 
-[DeepSpeed](https://github.com/deepspeedai/DeepSpeed), powered by Zero Redundancy Optimizer (ZeRO), is an optimization library for training and fitting very large models onto a GPU. It is available in several ZeRO stages, where each stage progressively saves more GPU memory by partitioning the optimizer state, gradients, parameters, and enabling offloading to a CPU or NVMe. DeepSpeed is integrated with the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) class and most of the setup is automatically taken care of for you.
+[DeepSpeed](https://github.com/deepspeedai/DeepSpeed), powered by Zero Redundancy Optimizer (ZeRO), is an optimization library for training and fitting very large models onto a GPU. It is available in several ZeRO stages, where each stage progressively saves more GPU memory by partitioning the optimizer state, gradients, parameters, and enabling offloading to a CPU or NVMe. DeepSpeed is integrated with the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) class and most of the setup is automatically taken care of for you.
 
-However, if you want to use DeepSpeed without the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), Transformers provides a `HfDeepSpeedConfig` class.
+However, if you want to use DeepSpeed without the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), Transformers provides a `HfDeepSpeedConfig` class.
 
-Learn more about using DeepSpeed with [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) in the [DeepSpeed](../deepspeed) guide.
+Learn more about using DeepSpeed with [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) in the [DeepSpeed](../deepspeed) guide.
 
 ## HfDeepSpeedConfig[[transformers.integrations.HfDeepSpeedConfig]]
 
@@ -14,7 +14,7 @@ Learn more about using DeepSpeed with [Trainer](/docs/transformers/v5.15.0/en/ma
 transformers.integrations.HfDeepSpeedConfig(config_file_or_dict)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/deepspeed.py#L57)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/deepspeed.py#L57)
 
 **Parameters:**
 
@@ -26,9 +26,9 @@ A `weakref` of this object is stored in the module's globals to be able to acces
 things like the Trainer object is not available (e.g. `from_pretrained` and `_get_resized_embeddings`). Therefore
 it's important that this object remains alive while the program is still running.
 
-[Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) uses the `HfTrainerDeepSpeedConfig` subclass instead. That subclass has logic to sync the configuration
-with values of [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) by replacing special placeholder values: `"auto"`. Without this special logic
+[Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) uses the `HfTrainerDeepSpeedConfig` subclass instead. That subclass has logic to sync the configuration
+with values of [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) by replacing special placeholder values: `"auto"`. Without this special logic
 the DeepSpeed configuration is not modified in any way.
 
 ### Data Collator
-https://huggingface.co/docs/transformers/v5.15.0/main_classes/data_collator.md
+https://huggingface.co/docs/transformers/v5.15.1/main_classes/data_collator.md

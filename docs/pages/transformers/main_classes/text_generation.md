@@ -2,9 +2,9 @@
 
 Each framework has a generate method for text generation implemented in their respective `GenerationMixin` class:
 
-- PyTorch [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) is implemented in [GenerationMixin](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin).
+- PyTorch [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) is implemented in [GenerationMixin](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin).
 
-You can parameterize the generate method with a [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig) class instance. Please refer to this class for the complete list of generation parameters, which control the behavior of the generation method.
+You can parameterize the generate method with a [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig) class instance. Please refer to this class for the complete list of generation parameters, which control the behavior of the generation method.
 
 To learn how to inspect a model's generation configuration, what are the defaults, how to change the parameters ad hoc,
 and how to create and save a customized generation configuration, refer to the
@@ -19,7 +19,7 @@ like token streaming.
 transformers.GenerationConfig(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/configuration_utils.py#L100)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/configuration_utils.py#L100)
 
 **Parameters that control the length of the output:**
 
@@ -49,7 +49,7 @@ use_mtp : (`bool`): Whether or not to use Multi-Token Prediction (MTP) if the mo
 
 use_cache (`bool`) : Whether or not the model should use the past last key/values attentions (if applicable to the model) to speed up decoding.
 
-cache_implementation (`str`, *optional*) : Name of the cache class that will be instantiated in `generate`, for faster decoding. Possible values are:  - `"dynamic"`: [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) - `"static"`: [StaticCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.StaticCache) - `"offloaded"`: `DynamicCache(offloaded=True)` - `"offloaded_static"`: `StaticCache(offloaded=True)` - `"quantized"`: [QuantizedCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.QuantizedCache)  If none is specified, we will use the default cache for the model (which is often [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache)). See our [cache documentation](https://huggingface.co/docs/transformers/en/kv_cache) for further information.
+cache_implementation (`str`, *optional*) : Name of the cache class that will be instantiated in `generate`, for faster decoding. Possible values are:  - `"dynamic"`: [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) - `"static"`: [StaticCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.StaticCache) - `"offloaded"`: `DynamicCache(offloaded=True)` - `"offloaded_static"`: `StaticCache(offloaded=True)` - `"quantized"`: [QuantizedCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.QuantizedCache)  If none is specified, we will use the default cache for the model (which is often [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache)). See our [cache documentation](https://huggingface.co/docs/transformers/en/kv_cache) for further information.
 
 cache_config (`dict`, *optional*, default to `None`) : Arguments used in the key-value cache class can be passed in `cache_config`.
 
@@ -81,7 +81,7 @@ length_penalty (`float`, *optional*) : Exponential penalty to the length that is
 
 no_repeat_ngram_size (`int`, *optional*) : If set to int > 0, all ngrams of that size can only occur once.
 
-bad_words_ids (`list[list[int]]`, *optional*) : List of list of token ids that are not allowed to be generated. Check [NoBadWordsLogitsProcessor](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.NoBadWordsLogitsProcessor) for further documentation and examples.
+bad_words_ids (`list[list[int]]`, *optional*) : List of list of token ids that are not allowed to be generated. Check [NoBadWordsLogitsProcessor](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.NoBadWordsLogitsProcessor) for further documentation and examples.
 
 renormalize_logits (`bool`) : Whether to renormalize the logits after applying all the logits processors (including the custom ones). It's highly recommended to set this flag to `True` as the search algorithms suppose the score logits are normalized but some logit processors break the normalization.
 
@@ -97,13 +97,13 @@ suppress_tokens (`list[int]`, *optional*) : A list of tokens that will be suppre
 
 begin_suppress_tokens  (`list[int]`, *optional*) : A list of tokens that will be suppressed at the beginning of the generation. The `SuppressBeginTokens` logit processor will set their log probs to `-inf` so that they are not sampled.
 
-sequence_bias (`dict[tuple[int], float]`, *optional*)) : Dictionary that maps a sequence of tokens to its bias term. Positive biases increase the odds of the sequence being selected, while negative biases do the opposite. Check [SequenceBiasLogitsProcessor](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.SequenceBiasLogitsProcessor) for further documentation and examples.
+sequence_bias (`dict[tuple[int], float]`, *optional*)) : Dictionary that maps a sequence of tokens to its bias term. Positive biases increase the odds of the sequence being selected, while negative biases do the opposite. Check [SequenceBiasLogitsProcessor](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.SequenceBiasLogitsProcessor) for further documentation and examples.
 
 token_healing (`bool`) : Heal tail tokens of prompts by replacing them with their appropriate extensions. This enhances the quality of completions for prompts affected by greedy tokenization bias.
 
 guidance_scale (`float`, *optional*) : The guidance scale for classifier free guidance (CFG). CFG is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages the model to generate samples that are more closely linked to the input prompt, usually at the expense of poorer quality.
 
-watermarking_config (`BaseWatermarkingConfig` or `dict`, *optional*) : Arguments used to watermark the model outputs by adding a small bias to randomly selected set of "green" tokens. See the docs of [SynthIDTextWatermarkingConfig](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.SynthIDTextWatermarkingConfig) and [WatermarkingConfig](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.WatermarkingConfig) for more details. If passed as `Dict`, it will be converted to a `WatermarkingConfig` internally.
+watermarking_config (`BaseWatermarkingConfig` or `dict`, *optional*) : Arguments used to watermark the model outputs by adding a small bias to randomly selected set of "green" tokens. See the docs of [SynthIDTextWatermarkingConfig](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.SynthIDTextWatermarkingConfig) and [WatermarkingConfig](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.WatermarkingConfig) for more details. If passed as `Dict`, it will be converted to a `WatermarkingConfig` internally.
 
 **Parameters that define the output variables of generate:**
 
@@ -117,7 +117,7 @@ output_scores (`bool`) : Whether or not to return the prediction scores. See `sc
 
 output_logits (`bool`) : Whether or not to return the unprocessed prediction logit scores. See `logits` under returned tensors for more details.
 
-return_dict_in_generate (`bool`) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput), as opposed to returning exclusively the generated sequence. This flag must be set to `True` to return the generation cache (when `use_cache` is `True`) or optional outputs (see flags starting with `output_`)
+return_dict_in_generate (`bool`) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput), as opposed to returning exclusively the generated sequence. This flag must be set to `True` to return the generation cache (when `use_cache` is `True`) or optional outputs (see flags starting with `output_`)
 
 **Special tokens that can be used at generation time:**
 
@@ -188,11 +188,11 @@ generation config.
 from_pretrained(pretrained_model_name: str | os.PathLike, config_file_name: str | os.PathLike | None = None, cache_dir: str | os.PathLike | None = None, force_download: bool = False, local_files_only: bool = False, token: str | bool | None = None, revision: str = 'main', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/configuration_utils.py#L931)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/configuration_utils.py#L931)
 
 **Parameters:**
 
-pretrained_model_name (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained model configuration hosted inside a model repo on huggingface.co. - a path to a *directory* containing a configuration file saved using the [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig.save_pretrained) method, e.g., `./my_model_directory/`.
+pretrained_model_name (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained model configuration hosted inside a model repo on huggingface.co. - a path to a *directory* containing a configuration file saved using the [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig.save_pretrained) method, e.g., `./my_model_directory/`.
 
 config_file_name (`str` or `os.PathLike`, *optional*, defaults to `"generation_config.json"`) : Name of the generation configuration JSON file to be loaded from `pretrained_model_name`.
 
@@ -212,11 +212,11 @@ subfolder (`str`, *optional*, defaults to `""`) : In case the relevant files are
 
 kwargs (`dict[str, Any]`, *optional*) : The values in kwargs of any keys which are configuration attributes will be used to override the loaded values. Behavior concerning key/value pairs whose keys are *not* configuration attributes is controlled by the `return_unused_kwargs` keyword parameter.
 
-**Returns:** [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig)
+**Returns:** [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig)
 
 The configuration object instantiated from this pretrained model.
 
-Instantiate a [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig) from a generation configuration file.
+Instantiate a [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig) from a generation configuration file.
 
 Examples:
 
@@ -252,18 +252,18 @@ Examples:
 from_model_config(model_config: typing.Union[ForwardRef('PreTrainedConfig'), dict])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/configuration_utils.py#L1265)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/configuration_utils.py#L1265)
 
 **Parameters:**
 
 model_config (`PreTrainedConfig | dict`) : The model config that will be used to instantiate the generation config.
 
-**Returns:** [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig)
+**Returns:** [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig)
 
 The configuration object instantiated from those parameters.
 
-Instantiates a [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig) from a [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig). This function is useful to convert legacy
-[PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) objects, which may contain generation parameters, into a stand-alone [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig).
+Instantiates a [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig) from a [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig). This function is useful to convert legacy
+[PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) objects, which may contain generation parameters, into a stand-alone [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig).
 
 #### save_pretrained[[transformers.GenerationConfig.save_pretrained]]
 
@@ -271,7 +271,7 @@ Instantiates a [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/tex
 save_pretrained(save_directory: str | os.PathLike, config_file_name: str | os.PathLike | None = None, push_to_hub: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/configuration_utils.py#L872)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/configuration_utils.py#L872)
 
 **Parameters:**
 
@@ -281,10 +281,10 @@ config_file_name (`str` or `os.PathLike`, *optional*, defaults to `"generation_c
 
 push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push your model to the Hugging Face model hub after saving it. You can specify the repository you want to push to with `repo_id` (will default to the name of `save_directory` in your namespace).
 
-kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
 
 Save a generation configuration object to the directory `save_directory`, so that it can be re-loaded using the
-[from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig.from_pretrained) class method.
+[from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig.from_pretrained) class method.
 
 #### update[[transformers.GenerationConfig.update]]
 
@@ -292,7 +292,7 @@ Save a generation configuration object to the directory `save_directory`, so tha
 update(defaults_only = False, allow_custom_entries = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/configuration_utils.py#L1315)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/configuration_utils.py#L1315)
 
 **Parameters:**
 
@@ -315,7 +315,7 @@ returning all the unused kwargs.
 validate(strict = False, user_set_attributes: set[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/configuration_utils.py#L647)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/configuration_utils.py#L647)
 
 **Parameters:**
 
@@ -323,7 +323,7 @@ strict (bool) : If True, raise an exception for any issues found. If False, only
 
 user_set_attributes (set[str], *optional*) : Names of attributes the caller explicitly provided. When supplied, "minor issue" warnings about conflicting flag combinations (e.g. sampling-only flags set while `do_sample=False`) only fire if the conflicting flag is in this set -- avoiding noisy warnings when the value was inherited from a model's default `generation_config.json`. When `None`, all set attributes are considered user-set (backward-compatible behavior for direct `validate()` calls).
 
-Validates the values of the attributes of the [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig) instance. Raises exceptions in the presence
+Validates the values of the attributes of the [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig) instance. Raises exceptions in the presence
 of parameterization that can be detected as incorrect from the configuration instance alone.
 
 Note that some parameters not validated here are best validated at generate runtime, as they may depend on
@@ -335,7 +335,7 @@ other inputs and/or the model, such as parameters related to the generation leng
 get_generation_mode(assistant_model: typing.Optional[ForwardRef('PreTrainedModel')] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/configuration_utils.py#L534)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/configuration_utils.py#L534)
 
 **Parameters:**
 
@@ -345,7 +345,7 @@ assistant_model (`PreTrainedModel`, *optional*) : The assistant model to be used
 
 The generation mode triggered by the instance.
 
-Returns the generation mode triggered by the [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig) instance.
+Returns the generation mode triggered by the [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig) instance.
 
 ## GenerationMixin[[transformers.GenerationMixin]]
 
@@ -355,7 +355,7 @@ Returns the generation mode triggered by the [GenerationConfig](/docs/transforme
 transformers.GenerationMixin()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/utils.py#L359)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/utils.py#L359)
 
 A class containing all functions for auto-regressive text generation, to be used as a mixin in model classes.
 Inheriting from this class causes the model to have special generation-related behavior, such as loading a
@@ -374,7 +374,7 @@ approximately shares the same interface to public methods like `generate`. Three
   However, its `generate` does not share the same interface as `GenerationMixin.generate`. In this case,
   `BarkModel` should NOT inherit from `GenerationMixin`, as it breaks the `generate` interface.
 
-The class exposes [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate), which can be used for:
+The class exposes [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate), which can be used for:
 - *greedy decoding* if `num_beams=1` and `do_sample=False`
 - *multinomial sampling* if `num_beams=1` and `do_sample=True`
 - *beam-search decoding* if `num_beams>1` and `do_sample=False`
@@ -389,13 +389,13 @@ To learn more about decoding strategies refer to the [text generation strategies
 generate(inputs: typing.Optional[torch.Tensor] = None, generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, logits_processor: transformers.generation.logits_process.LogitsProcessorList | None = None, stopping_criteria: transformers.generation.stopping_criteria.StoppingCriteriaList | None = None, prefix_allowed_tokens_fn: collections.abc.Callable[[int, torch.Tensor], list[int]] | None = None, synced_gpus: bool | None = None, assistant_model: typing.Optional[ForwardRef('PreTrainedModel')] = None, streamer: typing.Optional[ForwardRef('BaseStreamer')] = None, negative_prompt_ids: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, custom_generate: str | collections.abc.Callable | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/utils.py#L2260)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/utils.py#L2260)
 
 **Parameters:**
 
 inputs (`torch.Tensor` of varying shape depending on the modality, *optional*) : The sequence used as a prompt for the generation or as model inputs to the encoder. If `None` the method initializes it with `bos_token_id` and a batch size of 1. For decoder-only models `inputs` should be in the format of `input_ids`. For encoder-decoder models *inputs* can represent any of `input_ids`, `input_values`, `input_features`, or `pixel_values`.
 
-generation_config ([GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig), *optional*) : The generation configuration to be used as base parametrization for the generation call. `**kwargs` passed to generate matching the attributes of `generation_config` will override them. If `generation_config` is not provided, the default will be used, which has the following loading priority: 1) from the `generation_config.json` model file, if it exists; 2) from the model configuration. Please note that unspecified parameters will inherit [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig)'s default values, whose documentation should be checked to parameterize generation.
+generation_config ([GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig), *optional*) : The generation configuration to be used as base parametrization for the generation call. `**kwargs` passed to generate matching the attributes of `generation_config` will override them. If `generation_config` is not provided, the default will be used, which has the following loading priority: 1) from the `generation_config.json` model file, if it exists; 2) from the model configuration. Please note that unspecified parameters will inherit [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig)'s default values, whose documentation should be checked to parameterize generation.
 
 logits_processor (`LogitsProcessorList`, *optional*) : Custom logits processors that complement the default logits processors built from arguments and generation config. If a logit processor is passed that is already created with the arguments or a generation config an error is thrown. This feature is intended for advanced users.
 
@@ -417,22 +417,22 @@ custom_generate (`str` or `Callable`, *optional*) : One of the following: - `str
 
 kwargs (`dict[str, Any]`, *optional*) : Ad hoc parametrization of `generation_config` and/or additional model-specific kwargs that will be forwarded to the `forward` function of the model. If the model is an encoder-decoder model, encoder specific kwargs should not be prefixed and decoder specific kwargs should be prefixed with *decoder_*.
 
-**Returns:** [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) or `torch.LongTensor`
+**Returns:** [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) or `torch.LongTensor`
 
-A [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) (if `return_dict_in_generate=True`
+A [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) (if `return_dict_in_generate=True`
 or when `config.return_dict_in_generate=True`) or a `torch.LongTensor`.
 
 If the model is *not* an encoder-decoder model (`model.config.is_encoder_decoder=False`), the possible
-[ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) types are:
+[ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) types are:
 
-- [GenerateDecoderOnlyOutput](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.generation.GenerateDecoderOnlyOutput),
-- [GenerateBeamDecoderOnlyOutput](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.generation.GenerateBeamDecoderOnlyOutput)
+- [GenerateDecoderOnlyOutput](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.generation.GenerateDecoderOnlyOutput),
+- [GenerateBeamDecoderOnlyOutput](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.generation.GenerateBeamDecoderOnlyOutput)
 
 If the model is an encoder-decoder model (`model.config.is_encoder_decoder=True`), the possible
-[ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) types are:
+[ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) types are:
 
-- [GenerateEncoderDecoderOutput](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.generation.GenerateEncoderDecoderOutput),
-- [GenerateBeamEncoderDecoderOutput](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.generation.GenerateBeamEncoderDecoderOutput)
+- [GenerateEncoderDecoderOutput](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.generation.GenerateEncoderDecoderOutput),
+- [GenerateBeamEncoderDecoderOutput](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.generation.GenerateBeamEncoderDecoderOutput)
 
 Generates sequences of token ids for models with a language modeling head.
 
@@ -449,7 +449,7 @@ guide](../generation_strategies).
 compute_transition_scores(sequences: Tensor, scores: tuple, beam_indices: typing.Optional[torch.Tensor] = None, normalize_logits: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/utils.py#L1433)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/utils.py#L1433)
 
 **Parameters:**
 
@@ -529,7 +529,7 @@ True
 transformers.ContinuousMixin()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L1083)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L1083)
 
 Mixin class for models to add continuous batching capabilities. Continuous batching has three entry points:
 - `init_continuous_batching`, which is the actual entry point for continuous batching
@@ -545,7 +545,7 @@ two.
 continuous_batching_context_manager(generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, block: bool = True, timeout: float | None = None, continuous_batching_config: transformers.generation.configuration_utils.ContinuousBatchingConfig | None = None, persistent_manager: bool = False, warmup: bool = True, workload_hints: transformers.generation.continuous_batching.utils.WorkloadHints | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L1161)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L1161)
 
 A context manager to safely use the continuous batching manager. Arguments are similar to the ones of
 `init_continuous_batching`, except for:
@@ -559,7 +559,7 @@ A context manager to safely use the continuous batching manager. Arguments are s
 destroy_cached_continuous_batching_manager()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L1154)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L1154)
 
 Destroy the cached continuous batching manager and free GPU resources.
 
@@ -569,7 +569,7 @@ Destroy the cached continuous batching manager and free GPU resources.
 generate_batch(inputs: list, generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, continuous_batching_config: transformers.generation.configuration_utils.ContinuousBatchingConfig | None = None, record_timestamps: bool = False, progress_bar: bool = True, persistent_manager: bool = False, warmup: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L1201)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L1201)
 
 **Parameters:**
 
@@ -599,7 +599,7 @@ Generate sequences for a batch of prompts using continuous batching.
 init_continuous_batching(generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, continuous_batching_config: transformers.generation.configuration_utils.ContinuousBatchingConfig | None = None, workload_hints: transformers.generation.continuous_batching.utils.WorkloadHints | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L1095)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L1095)
 
 **Parameters:**
 
@@ -623,7 +623,7 @@ Initialize a manager for continuous batching inference.
 transformers.ContinuousBatchingManager(model: ProtoPretrainedModel, generation_config: GenerationConfig, continuous_batching_config: ContinuousBatchingConfig, workload_hints: transformers.generation.continuous_batching.utils.WorkloadHints | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L553)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L553)
 
 Manager for handling continuous batching of generation requests. It provides a user interface for submitting
 generation requests, retrieving results, and managing the background generation thread. This class should not be
@@ -638,7 +638,7 @@ created directly, but through one of the following entry points (all methods of 
 add_request(input_ids: list, request_id: str | None = None, max_new_tokens: int | None = None, streaming: bool = False, record_timestamps: bool = False, eos_token_id: int | list[int] | None = None, **logit_processor_kwargs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L763)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L763)
 
 **Parameters:**
 
@@ -668,7 +668,7 @@ Add a new generation request to the queue. If the process is not a TP driver, th
 add_requests(inputs: list, max_new_tokens: int | None = None, streaming: bool = False, record_timestamps: bool = False, **logit_processor_kwargs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L820)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L820)
 
 Utility function to batch `add_request` and return their IDs. Check its documentation for more details.
 
@@ -678,7 +678,7 @@ Utility function to batch `add_request` and return their IDs. Check its document
 cancel_request(request_id: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L855)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L855)
 
 Cancel a request by its ID. If this called from a process that is not a TP driver, it's a no-op: only TP
 driver processes interact with the manager.
@@ -689,7 +689,7 @@ driver processes interact with the manager.
 destroy()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L754)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L754)
 
 Terminate the manager and release distributed resources. Safe to call multiple times. After calling this,
 the manager cannot be restarted.
@@ -700,7 +700,7 @@ the manager cannot be restarted.
 get_result(request_id: str | None = None, timeout: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L864)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L864)
 
 Retrieve one result from the output queue. If an ID is provided, returns the first matching request. If a
 timeout is provided, returns None after the timeout (in seconds).
@@ -711,7 +711,7 @@ timeout is provided, returns None after the timeout (in seconds).
 is_running()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L675)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L675)
 
 Returns True if the background generation thread has been started and is still alive.
 
@@ -721,7 +721,7 @@ Returns True if the background generation thread has been started and is still a
 join(stop_trigger_time: float, timeout: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L739)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L739)
 
 Wait for the background thread to finish. Wait can be capped using the timeout argument (in seconds).
 
@@ -731,7 +731,7 @@ Wait for the background thread to finish. Wait can be capped using the timeout a
 register_result_handler(request_id: str, callback: Callable)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L898)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L898)
 
 **Parameters:**
 
@@ -751,7 +751,7 @@ is automatically cleaned up when the request finishes.
 request_id_iter(request_id: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L885)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L885)
 
 Iterate over results matching a specific request id (blocking).
 
@@ -764,7 +764,7 @@ use `register_result_handler` instead.
 start()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L679)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L679)
 
 Start the background generation thread.
 
@@ -774,7 +774,7 @@ Start the background generation thread.
 stop(block: bool = True, timeout: float | None = None, keep_for_next_session: bool = False, hard_stop: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L689)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L689)
 
 Stop the background generation thread. If the `block` flag is set to True, then this method waits for the
 thread to stop for a maximum time of `timeout` seconds (None means no timeout). If the `keep_for_next_session`
@@ -787,7 +787,7 @@ the background generation thread will be stopped immediately and pending request
 switch_to_cb_friendly_attn(model: ProtoPretrainedModel)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L631)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L631)
 
 Switch the attn implementation to one that is CB friendly: try to find a flash implementation if flash is
 requested and, in any cases, switch to a paged implementation.
@@ -798,7 +798,7 @@ requested and, in any cases, switch to a paged implementation.
 warmup()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L665)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L665)
 
 Pre-capture CUDA graphs for varlen and decode paths by running dummy batches. Initializes the batch
 processor if not already done.
@@ -811,7 +811,7 @@ processor if not already done.
 transformers.generation.Scheduler(cache: PagedAttentionCache, safety_margin: float, max_requests_per_batch: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/scheduler.py#L22)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/scheduler.py#L22)
 
 Abstract base class for scheduling requests in the continuous batch processor. Schedulers manage the lifecycle of
 requests from when they are added to the waiting queue to when they are scheduled for processing. Different
@@ -823,7 +823,7 @@ schedulers implement different strategies for prioritizing and batching requests
 add_waiting_request(state: RequestState)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/scheduler.py#L61)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/scheduler.py#L61)
 
 Adds a request to the waiting list.
 
@@ -833,7 +833,7 @@ Adds a request to the waiting list.
 clear_cancelled_requests()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/scheduler.py#L99)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/scheduler.py#L99)
 
 Remove all cancelled requests from active and waiting queues.
 
@@ -843,7 +843,7 @@ Remove all cancelled requests from active and waiting queues.
 finish_request(request_id: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/scheduler.py#L81)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/scheduler.py#L81)
 
 Completes processing of a request and frees its allocated cache blocks. This method is called
 when a request has finished generation or encountered an error.
@@ -854,7 +854,7 @@ when a request has finished generation or encountered an error.
 get_active_request_static_outputs(request_id: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/scheduler.py#L88)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/scheduler.py#L88)
 
 Gets generated tokens for an active request.
 
@@ -864,7 +864,7 @@ Gets generated tokens for an active request.
 has_pending_requests()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/scheduler.py#L77)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/scheduler.py#L77)
 
 Checks if there are requests ready to be processed.
 
@@ -874,7 +874,7 @@ Checks if there are requests ready to be processed.
 request_is_cancelled(request_id: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/scheduler.py#L116)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/scheduler.py#L116)
 
 Checks if a request has been cancelled or removed.
 
@@ -884,7 +884,7 @@ Checks if a request has been cancelled or removed.
 reset()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/scheduler.py#L49)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/scheduler.py#L49)
 
 Reset scheduler state for a new generation loop.
 
@@ -894,7 +894,7 @@ Reset scheduler state for a new generation loop.
 schedule_batch(token_budget: int, cache_budget: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/scheduler.py#L66)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/scheduler.py#L66)
 
 Schedules requests for the next batch based on available token and cache budgets. This method selects which
 requests should be processed in the current batch, considering the budgets and the scheduler's prioritization
@@ -909,7 +909,7 @@ fast path can be used, the total number of query tokens and the maximum number o
 set_request_cancellation(request_id: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/scheduler.py#L94)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/scheduler.py#L94)
 
 Marks a request for cancellation.
 
@@ -921,7 +921,7 @@ Marks a request for cancellation.
 transformers.generation.FIFOScheduler(cache: PagedAttentionCache, safety_margin: float | None, max_requests_per_batch: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/scheduler.py#L331)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/scheduler.py#L331)
 
 This scheduler processes requests in the order they arrive, meaning decoding requests has priority over
 prefilling requests.
@@ -934,11 +934,11 @@ prefilling requests.
 transformers.generation.PrefillFirstScheduler(cache: PagedAttentionCache, safety_margin: float | None, max_requests_per_batch: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/scheduler.py#L380)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/scheduler.py#L380)
 
 Scheduler that prioritizes split prefill requests over decoding requests. This scheduler ensures that split
 prefill requests (which are continuations of partially processed prompts) are completed before processing new
 decoding requests.
 
 ### Video Processor
-https://huggingface.co/docs/transformers/v5.15.0/main_classes/video_processor.md
+https://huggingface.co/docs/transformers/v5.15.1/main_classes/video_processor.md

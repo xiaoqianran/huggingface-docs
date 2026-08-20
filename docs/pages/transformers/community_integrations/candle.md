@@ -27,4 +27,4 @@ let model = Model::new(args.use_flash_attn, &config, vb)?;
 - [Candle](https://github.com/huggingface/candle) documentation
 
 ### SGLang
-https://huggingface.co/docs/transformers/v5.15.0/community_integrations/sglang.md
+https://huggingface.co/docs/transformers/v5.15.1/community_integrations/sglang.md

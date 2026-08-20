@@ -8,7 +8,7 @@ You can find all of the original BARThez checkpoints under the [BARThez](https:/
 > This model was contributed by [moussakam](https://huggingface.co/moussakam).
 > Refer to the [BART](./bart) docs for more usage examples.
 
-The example below demonstrates how to predict the `<mask>` token with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
+The example below demonstrates how to predict the `<mask>` token with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel), and from the command line.
 
 ```python
 from transformers import pipeline
@@ -54,7 +54,7 @@ print(f"The predicted token is: {predicted_token}")
 transformers.BarthezTokenizer(vocab: str | dict | list | None = None, bos_token = '<s>', eos_token = '</s>', sep_token = '</s>', cls_token = '<s>', unk_token = '<unk>', pad_token = '<pad>', mask_token = '<mask>', add_prefix_space = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/barthez/tokenization_barthez.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/barthez/tokenization_barthez.py#L32)
 
 **Parameters:**
 
@@ -78,10 +78,10 @@ vocab (`str`, `dict` or `list`, *optional*) : Custom vocabulary dictionary. If n
 
 add_prefix_space (`bool`, *optional*, defaults to `True`) : Whether or not to add an initial space to the input. This allows to treat the leading word just as any other word.
 
-Adapted from [CamembertTokenizer](/docs/transformers/v5.15.0/en/model_doc/camembert#transformers.CamembertTokenizer) and [BartTokenizer](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaTokenizer). Construct a "fast" BARThez tokenizer. Based on
+Adapted from [CamembertTokenizer](/docs/transformers/v5.15.1/en/model_doc/camembert#transformers.CamembertTokenizer) and [BartTokenizer](/docs/transformers/v5.15.1/en/model_doc/roberta#transformers.RobertaTokenizer). Construct a "fast" BARThez tokenizer. Based on
 [SentencePiece](https://github.com/google/sentencepiece).
 
-This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 ## BarthezTokenizerFast[[transformers.BarthezTokenizer]]
@@ -92,7 +92,7 @@ refer to this superclass for more information regarding those methods.
 transformers.BarthezTokenizer(vocab: str | dict | list | None = None, bos_token = '<s>', eos_token = '</s>', sep_token = '</s>', cls_token = '<s>', unk_token = '<unk>', pad_token = '<pad>', mask_token = '<mask>', add_prefix_space = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/barthez/tokenization_barthez.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/barthez/tokenization_barthez.py#L32)
 
 **Parameters:**
 
@@ -116,11 +116,11 @@ vocab (`str`, `dict` or `list`, *optional*) : Custom vocabulary dictionary. If n
 
 add_prefix_space (`bool`, *optional*, defaults to `True`) : Whether or not to add an initial space to the input. This allows to treat the leading word just as any other word.
 
-Adapted from [CamembertTokenizer](/docs/transformers/v5.15.0/en/model_doc/camembert#transformers.CamembertTokenizer) and [BartTokenizer](/docs/transformers/v5.15.0/en/model_doc/roberta#transformers.RobertaTokenizer). Construct a "fast" BARThez tokenizer. Based on
+Adapted from [CamembertTokenizer](/docs/transformers/v5.15.1/en/model_doc/camembert#transformers.CamembertTokenizer) and [BartTokenizer](/docs/transformers/v5.15.1/en/model_doc/roberta#transformers.RobertaTokenizer). Construct a "fast" BARThez tokenizer. Based on
 [SentencePiece](https://github.com/google/sentencepiece).
 
-This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 ### LASR
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/lasr.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/lasr.md

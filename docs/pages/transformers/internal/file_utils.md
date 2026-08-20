@@ -12,7 +12,7 @@ Most of those are only useful if you are studying the general code in the librar
 transformers.utils.ExplicitEnum(value, names = None, module = None, qualname = None, type = None, start = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/generic.py#L567)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/generic.py#L567)
 
 Enum with more explicit error message for missing values.
 
@@ -22,9 +22,9 @@ Enum with more explicit error message for missing values.
 transformers.utils.PaddingStrategy(value, names = None, module = None, qualname = None, type = None, start = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/generic.py#L579)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/generic.py#L579)
 
-Possible values for the `padding` argument in [PreTrainedTokenizerBase.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__). Useful for tab-completion in an
+Possible values for the `padding` argument in [PreTrainedTokenizerBase.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__). Useful for tab-completion in an
 IDE.
 
 #### transformers.TensorType[[transformers.TensorType]]
@@ -33,9 +33,9 @@ IDE.
 transformers.TensorType(value, names = None, module = None, qualname = None, type = None, start = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/generic.py#L590)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/generic.py#L590)
 
-Possible values for the `return_tensors` argument in [PreTrainedTokenizerBase.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__). Useful for
+Possible values for the `return_tensors` argument in [PreTrainedTokenizerBase.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__). Useful for
 tab-completion in an IDE.
 
 ## Special Decorators[[transformers.add_start_docstrings]]
@@ -46,7 +46,7 @@ tab-completion in an IDE.
 transformers.add_start_docstrings(*docstr)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/doc.py#L38)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/doc.py#L38)
 
 #### transformers.utils.add_start_docstrings_to_model_forward[[transformers.utils.add_start_docstrings_to_model_forward]]
 
@@ -54,7 +54,7 @@ transformers.add_start_docstrings(*docstr)
 transformers.utils.add_start_docstrings_to_model_forward(*docstr)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/doc.py#L46)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/doc.py#L46)
 
 #### transformers.add_end_docstrings[[transformers.add_end_docstrings]]
 
@@ -62,7 +62,7 @@ transformers.utils.add_start_docstrings_to_model_forward(*docstr)
 transformers.add_end_docstrings(*docstr)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/doc.py#L82)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/doc.py#L82)
 
 #### transformers.utils.add_code_sample_docstrings[[transformers.utils.add_code_sample_docstrings]]
 
@@ -70,7 +70,7 @@ transformers.add_end_docstrings(*docstr)
 transformers.utils.add_code_sample_docstrings(*docstr, processor_class = None, checkpoint = None, output_type = None, config_class = None, mask = '[MASK]', qa_target_start_index = 14, qa_target_end_index = 15, model_cls = None, modality = None, expected_output = None, expected_loss = None, real_checkpoint = None, revision = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/doc.py#L969)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/doc.py#L969)
 
 #### transformers.utils.replace_return_docstrings[[transformers.utils.replace_return_docstrings]]
 
@@ -78,7 +78,7 @@ transformers.utils.add_code_sample_docstrings(*docstr, processor_class = None, c
 transformers.utils.replace_return_docstrings(output_type = None, config_class = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/doc.py#L1063)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/doc.py#L1063)
 
 ## Other Utilities[[transformers.utils._LazyModule]]
 
@@ -88,9 +88,9 @@ transformers.utils.replace_return_docstrings(output_type = None, config_class = 
 transformers.utils._LazyModule(name: str, module_file: str, import_structure: dict, module_spec: _frozen_importlib.ModuleSpec | None = None, extra_objects: dict[str, object] | None = None, explicit_import_shortcut: dict[str, list[str]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/import_utils.py#L2370)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/import_utils.py#L2370)
 
 Module class that surfaces all objects but only performs associated imports when the objects are requested.
 
 ### Utilities for Image Processors
-https://huggingface.co/docs/transformers/v5.15.0/internal/image_processing_utils.md
+https://huggingface.co/docs/transformers/v5.15.1/internal/image_processing_utils.md

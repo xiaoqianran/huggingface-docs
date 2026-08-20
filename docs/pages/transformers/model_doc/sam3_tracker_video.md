@@ -251,15 +251,15 @@ Tracked 2 objects through 180 frames
 transformers.Sam3TrackerVideoConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, prompt_encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, mask_decoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, initializer_range: float = 0.02, num_maskmem: int = 7, sigmoid_scale_for_mem_enc: float = 20.0, sigmoid_bias_for_mem_enc: float = -10.0, enable_occlusion_spatial_embedding: bool = True, multimask_output_in_sam: bool = True, multimask_min_pt_num: int = 0, multimask_max_pt_num: int = 1, multimask_output_for_tracking: bool = True, max_object_pointers_in_encoder: int = 16, max_cond_frame_num: int = 4, enable_temporal_pos_encoding_for_object_pointers: bool = True, memory_attention_hidden_size: int = 256, memory_attention_num_layers: int = 4, memory_attention_num_attention_heads: int = 1, memory_attention_downsample_rate: int = 1, memory_attention_feed_forward_hidden_size: int = 2048, memory_attention_feed_forward_hidden_act: str = 'relu', memory_attention_dropout: float | int = 0.1, memory_attention_rope_theta: int = 10000, memory_attention_rope_feat_sizes: list | None = None, memory_attention_rope_dropout: float | int = 0.1, memory_encoder_hidden_size: int = 256, memory_encoder_output_channels: int = 64, mask_downsampler_embed_dim: int = 256, mask_downsampler_kernel_size: int = 3, mask_downsampler_stride: int = 2, mask_downsampler_padding: int = 1, mask_downsampler_total_stride: int = 16, mask_downsampler_hidden_act: str = 'gelu', memory_fuser_num_layers: int = 2, memory_fuser_embed_dim: int = 256, memory_fuser_intermediate_dim: int = 1024, memory_fuser_kernel_size: int = 7, memory_fuser_padding: int = 3, memory_fuser_layer_scale_init_value: float = 1e-06, memory_fuser_hidden_act: str = 'gelu')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/configuration_sam3_tracker_video.py#L94)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/configuration_sam3_tracker_video.py#L94)
 
 **Parameters:**
 
 vision_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the vision backbone.
 
-prompt_encoder_config (Union[`dict`, `Sam3TrackerVideoPromptEncoderConfig`], *optional*) : Dictionary of configuration options used to initialize [Sam3TrackerVideoPromptEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/sam3_tracker_video#transformers.Sam3TrackerVideoPromptEncoderConfig).
+prompt_encoder_config (Union[`dict`, `Sam3TrackerVideoPromptEncoderConfig`], *optional*) : Dictionary of configuration options used to initialize [Sam3TrackerVideoPromptEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/sam3_tracker_video#transformers.Sam3TrackerVideoPromptEncoderConfig).
 
-mask_decoder_config (Union[`dict`, `Sam3TrackerVideoMaskDecoderConfig`], *optional*) : Dictionary of configuration options used to initialize [Sam3TrackerVideoMaskDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/sam3_tracker_video#transformers.Sam3TrackerVideoMaskDecoderConfig).
+mask_decoder_config (Union[`dict`, `Sam3TrackerVideoMaskDecoderConfig`], *optional*) : Dictionary of configuration options used to initialize [Sam3TrackerVideoMaskDecoderConfig](/docs/transformers/v5.15.1/en/model_doc/sam3_tracker_video#transformers.Sam3TrackerVideoMaskDecoderConfig).
 
 initializer_range (`float`, *optional*, defaults to 0.02) : Standard deviation for parameter initialization.
 
@@ -339,8 +339,8 @@ This is the configuration class to store the configuration of a Sam3TrackerVideo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sam3](https://huggingface.co/facebook/sam3)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -379,7 +379,7 @@ Example:
 transformers.Sam3TrackerVideoMaskDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, hidden_act: str = 'gelu', mlp_dim: int = 2048, num_hidden_layers: int = 2, num_attention_heads: int = 8, attention_downsample_rate: int = 2, num_multimask_outputs: int = 3, iou_head_depth: int = 3, iou_head_hidden_dim: int = 256, dynamic_multimask_via_stability: bool = True, dynamic_multimask_stability_delta: float = 0.05, dynamic_multimask_stability_thresh: float = 0.98)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/configuration_sam3_tracker_video.py#L56)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/configuration_sam3_tracker_video.py#L56)
 
 **Parameters:**
 
@@ -411,8 +411,8 @@ This is the configuration class to store the configuration of a Sam3TrackerVideo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sam3](https://huggingface.co/facebook/sam3)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Sam3TrackerVideoPromptEncoderConfig[[transformers.Sam3TrackerVideoPromptEncoderConfig]]
 
@@ -422,7 +422,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.Sam3TrackerVideoPromptEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, image_size: int | list[int] | tuple[int, int] = 1008, patch_size: int | list[int] | tuple[int, int] = 14, mask_input_channels: int = 16, num_point_embeddings: int = 4, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, scale: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/configuration_sam3_tracker_video.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/configuration_sam3_tracker_video.py#L31)
 
 **Parameters:**
 
@@ -446,8 +446,8 @@ This is the configuration class to store the configuration of a Sam3TrackerVideo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sam3](https://huggingface.co/facebook/sam3)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Sam3TrackerVideoProcessor[[transformers.Sam3TrackerVideoProcessor]]
 
@@ -457,7 +457,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.Sam3TrackerVideoProcessor(image_processor, video_processor, target_size: int | None = None, point_pad_value: int = -10, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/processing_sam3_tracker_video.py#L39)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/processing_sam3_tracker_video.py#L39)
 
 **Parameters:**
 
@@ -471,8 +471,8 @@ point_pad_value (`int`, *optional*, defaults to -10) : The value used for paddin
 
 Constructs a Sam3TrackerVideoProcessor which wraps a image processor and a video processor into a single processor.
 
-[Sam3TrackerVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/sam3_tracker_video#transformers.Sam3TrackerVideoProcessor) offers all the functionalities of [Sam3ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam3#transformers.Sam3ImageProcessor) and `video_processor_class`. See the
-[~Sam3ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam3#transformers.Sam3ImageProcessor) and `~video_processor_class` for more information.
+[Sam3TrackerVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/sam3_tracker_video#transformers.Sam3TrackerVideoProcessor) offers all the functionalities of [Sam3ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam3#transformers.Sam3ImageProcessor) and `video_processor_class`. See the
+[~Sam3ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam3#transformers.Sam3ImageProcessor) and `~video_processor_class` for more information.
 
 #### __call__[[transformers.Sam3TrackerVideoProcessor.__call__]]
 
@@ -480,7 +480,7 @@ Constructs a Sam3TrackerVideoProcessor which wraps a image processor and a video
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, input_points: typing.Union[list[list[list[list[float]]]], torch.Tensor, NoneType] = None, input_labels: typing.Union[list[list[list[int]]], torch.Tensor, NoneType] = None, input_boxes: typing.Union[list[list[list[float]]], torch.Tensor, NoneType] = None, original_sizes: typing.Union[list[list[float]], torch.Tensor, NoneType] = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/processing_sam3_tracker_video.py#L57)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/processing_sam3_tracker_video.py#L57)
 
 **Parameters:**
 
@@ -498,7 +498,7 @@ original_sizes (`list[list[float]]`, `torch.Tensor`, *optional*) : The original 
 
 return_tensors (`Union[str, ~utils.generic.TensorType]`, *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-**Returns:** A [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields
+**Returns:** A [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields
 
 - `pixel_values` (`torch.Tensor`): The processed image(s).
 - `original_sizes` (`list[list[float]]`): The original sizes of the images.
@@ -513,7 +513,7 @@ return_tensors (`Union[str, ~utils.generic.TensorType]`, *optional*) : If set, w
 post_process_masks(masks, original_sizes, mask_threshold = 0.0, binarize = True, max_hole_area = 0.0, max_sprinkle_area = 0.0, apply_non_overlapping_constraints = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/processing_sam3_tracker_video.py#L463)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/processing_sam3_tracker_video.py#L463)
 
 **Parameters:**
 
@@ -544,7 +544,7 @@ Remove padding and upscale masks to the original image size.
 init_video_session(video: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, inference_device: typing.Union[str, ForwardRef('torch.device')] = 'cpu', inference_state_device: typing.Union[str, ForwardRef('torch.device'), NoneType] = None, processing_device: typing.Union[str, ForwardRef('torch.device'), NoneType] = None, video_storage_device: typing.Union[str, ForwardRef('torch.device'), NoneType] = None, max_vision_features_cache_size: int = 1, dtype: dtype = torch.float32)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/processing_sam3_tracker_video.py#L514)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/processing_sam3_tracker_video.py#L514)
 
 **Parameters:**
 
@@ -571,7 +571,7 @@ If a video is provided (async inference), the video will be processed and stored
 add_inputs_to_inference_session(inference_session: Sam3TrackerVideoInferenceSession, frame_idx: int, obj_ids: list[int] | int, input_points: typing.Union[list[list[list[list[float]]]], torch.Tensor, NoneType] = None, input_labels: typing.Union[list[list[list[int]]], torch.Tensor, NoneType] = None, input_boxes: typing.Union[list[list[list[float]]], torch.Tensor, NoneType] = None, input_masks: typing.Union[numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor], NoneType] = None, original_size: tuple[int, int] | None = None, clear_old_inputs: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/processing_sam3_tracker_video.py#L567)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/processing_sam3_tracker_video.py#L567)
 
 **Parameters:**
 
@@ -603,7 +603,7 @@ Process new points, boxes, or masks for a video frame and add them to the infere
 transformers.Sam3TrackerVideoInferenceSession(video: typing.Optional[torch.FloatTensor] = None, video_height: int | None = None, video_width: int | None = None, inference_device: typing.Union[torch.device, str] = 'cpu', inference_state_device: typing.Union[torch.device, str] = 'cpu', video_storage_device: typing.Union[torch.device, str] = 'cpu', dtype: typing.Union[torch.dtype, str] = 'float32', max_vision_features_cache_size: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L109)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L109)
 
 **Parameters:**
 
@@ -631,7 +631,7 @@ Manages video inference session parameters, state and cache.
 add_mask_inputs(obj_idx: int, frame_idx: int, inputs: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L229)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L229)
 
 Add mask inputs with automatic device placement.
 
@@ -641,7 +641,7 @@ Add mask inputs with automatic device placement.
 add_new_frame(pixel_values: Tensor, frame_idx: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L304)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L304)
 
 Add new frame with automatic device placement.
 
@@ -651,7 +651,7 @@ Add new frame with automatic device placement.
 add_point_inputs(obj_idx: int, frame_idx: int, inputs: dict)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L215)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L215)
 
 Add point inputs with automatic device placement.
 
@@ -661,7 +661,7 @@ Add point inputs with automatic device placement.
 get_frame(frame_idx: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L320)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L320)
 
 Get frame from video.
 
@@ -671,7 +671,7 @@ Get frame from video.
 get_obj_num()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L210)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L210)
 
 Get the total number of unique object ids received so far in this session.
 
@@ -681,7 +681,7 @@ Get the total number of unique object ids received so far in this session.
 get_output(obj_idx: int, frame_idx: int, output_key: str, is_conditioning_frame: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L277)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L277)
 
 **Parameters:**
 
@@ -701,7 +701,7 @@ Get output with smart device management.
 obj_id_to_idx(obj_id: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L184)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L184)
 
 Map object ID to index, creating new entry if needed.
 
@@ -711,7 +711,7 @@ Map object ID to index, creating new entry if needed.
 obj_idx_to_id(obj_idx: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L206)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L206)
 
 Map model-side object index to client-side object id.
 
@@ -721,7 +721,7 @@ Map model-side object index to client-side object id.
 remove_mask_inputs(obj_idx: int, frame_idx: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L235)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L235)
 
 Remove mask inputs.
 
@@ -731,7 +731,7 @@ Remove mask inputs.
 remove_point_inputs(obj_idx: int, frame_idx: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L225)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L225)
 
 Remove point inputs.
 
@@ -741,7 +741,7 @@ Remove point inputs.
 reset_inference_session()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L336)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L336)
 
 Reset tracking data and cache.
 
@@ -751,7 +751,7 @@ Reset tracking data and cache.
 reset_tracking_data()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L324)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L324)
 
 Reset tracking data but keep cache.
 
@@ -761,7 +761,7 @@ Reset tracking data but keep cache.
 store_output(obj_idx: int, frame_idx: int, output_key: str | None = None, output_value: typing.Union[torch.Tensor, dict, NoneType] = None, is_conditioning_frame: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L240)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L240)
 
 **Parameters:**
 
@@ -786,17 +786,17 @@ If output_key is None, the output is stored as a dictionary.
 transformers.Sam3TrackerVideoModel(config: Sam3TrackerVideoConfig, remove_vision_encoder: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L1611)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L1611)
 
 **Parameters:**
 
-config ([Sam3TrackerVideoConfig](/docs/transformers/v5.15.0/en/model_doc/sam3_tracker_video#transformers.Sam3TrackerVideoConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Sam3TrackerVideoConfig](/docs/transformers/v5.15.1/en/model_doc/sam3_tracker_video#transformers.Sam3TrackerVideoConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 remove_vision_encoder (`bool`, *optional*, defaults to `False`) : Whether to remove the vision encoder. If True, the vision encoder will be set to None.
 
 The bare Sam3 Tracker Video Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -810,7 +810,7 @@ and behavior.
 forward(inference_session: Sam3TrackerVideoInferenceSession, frame_idx: int | None = None, frame: typing.Optional[torch.Tensor] = None, reverse: bool = False, run_mem_encoder: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L1753)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L1753)
 
 **Parameters:**
 
@@ -828,7 +828,7 @@ run_mem_encoder (`bool`, *optional*, defaults to `True`) : Whether to run the me
 
 A `Sam3TrackerVideoSegmentationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Sam3TrackerVideoConfig](/docs/transformers/v5.15.0/en/model_doc/sam3_tracker_video#transformers.Sam3TrackerVideoConfig)) and inputs.
+elements depending on the configuration ([Sam3TrackerVideoConfig](/docs/transformers/v5.15.1/en/model_doc/sam3_tracker_video#transformers.Sam3TrackerVideoConfig)) and inputs.
 
 Propagate the objects through a streamed video frame.
 
@@ -843,7 +843,7 @@ Propagate the objects through a streamed video frame.
 propagate_in_video_iterator(inference_session: Sam3TrackerVideoInferenceSession, start_frame_idx: int | None = None, max_frame_num_to_track: int | None = None, reverse: bool = False, show_progress_bar: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L2776)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L2776)
 
 **Parameters:**
 
@@ -861,7 +861,7 @@ show_progress_bar (`bool`, *optional*, defaults to `False`) : Whether to show a 
 
 A `Sam3TrackerVideoSegmentationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Sam3TrackerVideoConfig](/docs/transformers/v5.15.0/en/model_doc/sam3_tracker_video#transformers.Sam3TrackerVideoConfig)) and inputs.
+elements depending on the configuration ([Sam3TrackerVideoConfig](/docs/transformers/v5.15.1/en/model_doc/sam3_tracker_video#transformers.Sam3TrackerVideoConfig)) and inputs.
 
 Propagate the objects through the video frames. Used when initializing an inference session with a whole video.
 Yields Sam3TrackerVideoSegmentationOutput for each frame.
@@ -877,7 +877,7 @@ Yields Sam3TrackerVideoSegmentationOutput for each frame.
 get_image_features(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L1878)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam3_tracker_video/modeling_sam3_tracker_video.py#L1878)
 
 **Parameters:**
 
@@ -887,7 +887,7 @@ pixel_values (`torch.FloatTensor`) : Input pixel values of shape `(batch_size, n
 
 A `Sam3TrackerVideoVisionEncoderOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Sam3TrackerVideoConfig](/docs/transformers/v5.15.0/en/model_doc/sam3_tracker_video#transformers.Sam3TrackerVideoConfig)) and inputs.
+elements depending on the configuration ([Sam3TrackerVideoConfig](/docs/transformers/v5.15.1/en/model_doc/sam3_tracker_video#transformers.Sam3TrackerVideoConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, height, width, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -909,4 +909,4 @@ elements depending on the configuration ([Sam3TrackerVideoConfig](/docs/transfor
   `(batch_size, hidden_size, height, width)`. Positional encodings corresponding to the `fpn_hidden_states`.
 
 ### Time Series Transformer
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/time_series_transformer.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/time_series_transformer.md

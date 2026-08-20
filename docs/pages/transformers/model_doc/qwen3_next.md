@@ -47,4 +47,4 @@ If you are looking for a user-friendly quantization experience, you can use the 
 * [AutoQuant Notebook](https://colab.research.google.com/drive/1b6nqC7UZVt8bx4MksX7s656GXPM-eWw4?usp=sharing#scrollTo=ZC9Nsr9u5WhN)
 
 ### GPTQ
-https://huggingface.co/docs/transformers/v5.15.0/quantization/gptq.md
+https://huggingface.co/docs/transformers/v5.15.1/quantization/gptq.md

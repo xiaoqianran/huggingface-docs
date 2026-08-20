@@ -9,7 +9,7 @@ You can find all the original DETR checkpoints under the [AI at Meta](https://hu
 >
 > Click on the DETR models in the right sidebar for more examples of how to apply DETR to different object detection and segmentation tasks.
 
-The example below demonstrates how to perform object detection with the [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to perform object detection with the [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 
@@ -54,7 +54,7 @@ for result in results:
 
 How DETR works
 
-Here's a TLDR explaining how [DetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForObjectDetection) works:
+Here's a TLDR explaining how [DetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForObjectDetection) works:
 
 First, an image is sent through a pre-trained convolutional backbone (in the paper, the authors use ResNet-50/ResNet-101). Let's assume we also add a batch dimension. This means that the input to the backbone is a tensor of shape `(batch_size, 3, height, width)`, assuming the image has 3 color channels (RGB). The CNN backbone outputs a new lower-resolution feature map, typically of shape `(batch_size, 2048, height/32, width/32)`. This is then projected to match the hidden dimension of the Transformer of DETR, which is `256` by default, using a `nn.Conv2D` layer. So now, we have a tensor of shape `(batch_size, 256, height/32, width/32).` Next, the feature map is flattened and transposed to obtain a tensor of shape `(batch_size, seq_len, d_model)` = `(batch_size, width/32*height/32, 256)`. So a difference with NLP models is that the sequence length is actually longer than usual, but with a smaller `d_model` (which in NLP is typically 768 or higher).
 
@@ -62,17 +62,17 @@ Next, this is sent through the encoder, outputting `encoder_hidden_states` of th
 
 The model is trained using a **bipartite matching loss**: so what we actually do is compare the predicted classes + bounding boxes of each of the N = 100 object queries to the ground truth annotations, padded up to the same length N (so if an image only contains 4 objects, 96 annotations will just have a "no object" as class and "no bounding box" as bounding box). The [Hungarian matching algorithm](https://en.wikipedia.org/wiki/Hungarian_algorithm) is used to find an optimal one-to-one mapping of each of the N queries to each of the N annotations. Next, standard cross-entropy (for the classes) and a linear combination of the L1 and [generalized IoU loss](https://giou.stanford.edu/) (for the bounding boxes) are used to optimize the parameters of the model.
 
-DETR can be naturally extended to perform panoptic segmentation (which unifies semantic segmentation and instance segmentation). [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation) adds a segmentation mask head on top of [DetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForObjectDetection). The mask head can be trained either jointly, or in a two steps process, where one first trains a [DetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForObjectDetection) model to detect bounding boxes around both "things" (instances) and "stuff" (background things like trees, roads, sky), then freeze all the weights and train only the mask head for 25 epochs. Experimentally, these two approaches give similar results. Note that predicting boxes is required for the training to be possible, since the Hungarian matching is computed using distances between boxes.
+DETR can be naturally extended to perform panoptic segmentation (which unifies semantic segmentation and instance segmentation). [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation) adds a segmentation mask head on top of [DetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForObjectDetection). The mask head can be trained either jointly, or in a two steps process, where one first trains a [DetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForObjectDetection) model to detect bounding boxes around both "things" (instances) and "stuff" (background things like trees, roads, sky), then freeze all the weights and train only the mask head for 25 epochs. Experimentally, these two approaches give similar results. Note that predicting boxes is required for the training to be possible, since the Hungarian matching is computed using distances between boxes.
 
 ## Notes
 
-- DETR uses so-called **object queries** to detect objects in an image. The number of queries determines the maximum number of objects that can be detected in a single image, and is set to 100 by default (see parameter `num_queries` of [DetrConfig](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrConfig)). Note that it's good to have some slack (in COCO, the authors used 100, while the maximum number of objects in a COCO image is ~70).
+- DETR uses so-called **object queries** to detect objects in an image. The number of queries determines the maximum number of objects that can be detected in a single image, and is set to 100 by default (see parameter `num_queries` of [DetrConfig](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrConfig)). Note that it's good to have some slack (in COCO, the authors used 100, while the maximum number of objects in a COCO image is ~70).
 - The decoder of DETR updates the query embeddings in parallel. This is different from language models like GPT-2, which use autoregressive decoding instead of parallel. Hence, no causal attention mask is used.
-- DETR adds position embeddings to the hidden states at each self-attention and cross-attention layer before projecting to queries and keys. For the position embeddings of the image, one can choose between fixed sinusoidal or learned absolute position embeddings. By default, the parameter `position_embedding_type` of [DetrConfig](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrConfig) is set to `"sine"`.
-- During training, the authors of DETR did find it helpful to use auxiliary losses in the decoder, especially to help the model output the correct number of objects of each class. If you set the parameter `auxiliary_loss` of [DetrConfig](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrConfig) to `True`, then prediction feedforward neural networks and Hungarian losses are added after each decoder layer (with the FFNs sharing parameters).
+- DETR adds position embeddings to the hidden states at each self-attention and cross-attention layer before projecting to queries and keys. For the position embeddings of the image, one can choose between fixed sinusoidal or learned absolute position embeddings. By default, the parameter `position_embedding_type` of [DetrConfig](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrConfig) is set to `"sine"`.
+- During training, the authors of DETR did find it helpful to use auxiliary losses in the decoder, especially to help the model output the correct number of objects of each class. If you set the parameter `auxiliary_loss` of [DetrConfig](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrConfig) to `True`, then prediction feedforward neural networks and Hungarian losses are added after each decoder layer (with the FFNs sharing parameters).
 - If you want to train the model in a distributed environment across multiple nodes, then one should update the *num_boxes* variable in the *DetrLoss* class of *modeling_detr.py*. When training on multiple nodes, this should be set to the average number of target boxes across all nodes, as can be seen in the original implementation [here](https://github.com/facebookresearch/detr/blob/a54b77800eb8e64e3ad0d8237789fcbf2f8350c5/models/detr.py#L227-L232).
-- [DetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForObjectDetection) and [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation) can be initialized with any convolutional backbone available in the [timm library](https://github.com/rwightman/pytorch-image-models). Initializing with a MobileNet backbone for example can be done by setting the `backbone` attribute of [DetrConfig](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrConfig) to `"tf_mobilenetv3_small_075"`, and then initializing the model with that config.
-- DETR resizes the input images such that the shortest side is at least a certain amount of pixels while the longest is at most 1333 pixels. At training time, scale augmentation is used such that the shortest side is randomly set to at least 480 and at most 800 pixels. At inference time, the shortest side is set to 800. One can use [DetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor) to prepare images (and optional annotations in COCO format) for the model. Due to this resizing, images in a batch can have different sizes. DETR solves this by padding images up to the largest size in a batch, and by creating a pixel mask that indicates which pixels are real/which are padding. Alternatively, one can also define a custom `collate_fn` in order to batch images together, using `~transformers.DetrImageProcessor.pad_and_create_pixel_mask`.
+- [DetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForObjectDetection) and [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation) can be initialized with any convolutional backbone available in the [timm library](https://github.com/rwightman/pytorch-image-models). Initializing with a MobileNet backbone for example can be done by setting the `backbone` attribute of [DetrConfig](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrConfig) to `"tf_mobilenetv3_small_075"`, and then initializing the model with that config.
+- DETR resizes the input images such that the shortest side is at least a certain amount of pixels while the longest is at most 1333 pixels. At training time, scale augmentation is used such that the shortest side is randomly set to at least 480 and at most 800 pixels. At inference time, the shortest side is set to 800. One can use [DetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor) to prepare images (and optional annotations in COCO format) for the model. Due to this resizing, images in a batch can have different sizes. DETR solves this by padding images up to the largest size in a batch, and by creating a pixel mask that indicates which pixels are real/which are padding. Alternatively, one can also define a custom `collate_fn` in order to batch images together, using `~transformers.DetrImageProcessor.pad_and_create_pixel_mask`.
 - The size of the images will determine the amount of memory being used, and will thus determine the `batch_size`. It is advised to use a batch size of 2 per GPU. See [this Github thread](https://github.com/facebookresearch/detr/issues/150) for more info.
 
 There are three other ways to instantiate a DETR model (depending on what you prefer):
@@ -106,18 +106,18 @@ As a summary, consider the following table:
 | Task | Object detection | Instance segmentation | Panoptic segmentation |
 |------|------------------|-----------------------|-----------------------|
 | **Description** | Predicting bounding boxes and class labels around objects in an image | Predicting masks around objects (i.e. instances) in an image | Predicting masks around both objects (i.e. instances) as well as "stuff" (i.e. background things like trees and roads) in an image |
-| **Model** | [DetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForObjectDetection) | [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation) | [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation) |
+| **Model** | [DetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForObjectDetection) | [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation) | [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation) |
 | **Example dataset** | COCO detection | COCO detection, COCO panoptic | COCO panoptic                           |
-| **Format of annotations to provide to**  [DetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor) | {'image_id': `int`, 'annotations': `list[Dict]`} each Dict being a COCO object annotation  | {'image_id': `int`, 'annotations': `list[Dict]`}  (in case of COCO detection) or {'file_name': `str`, 'image_id': `int`, 'segments_info': `list[Dict]`} (in case of COCO panoptic) | {'file_name': `str`, 'image_id': `int`, 'segments_info': `list[Dict]`} and masks_path (path to directory containing PNG files of the masks) |
+| **Format of annotations to provide to**  [DetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor) | {'image_id': `int`, 'annotations': `list[Dict]`} each Dict being a COCO object annotation  | {'image_id': `int`, 'annotations': `list[Dict]`}  (in case of COCO detection) or {'file_name': `str`, 'image_id': `int`, 'segments_info': `list[Dict]`} (in case of COCO panoptic) | {'file_name': `str`, 'image_id': `int`, 'segments_info': `list[Dict]`} and masks_path (path to directory containing PNG files of the masks) |
 | **Postprocessing** (i.e. converting the output of the model to Pascal VOC format) | `~transformers.DetrImageProcessor.post_process` | `~transformers.DetrImageProcessor.post_process_segmentation` | `~transformers.DetrImageProcessor.post_process_segmentation`, `~transformers.DetrImageProcessor.post_process_panoptic` |
 | **evaluators** | `CocoEvaluator` with `iou_types="bbox"` | `CocoEvaluator` with `iou_types="bbox"` or `"segm"` | `CocoEvaluator` with `iou_types="bbox"` or `"segm"`, `PanopticEvaluator` |
 
-- In short, one should prepare the data either in COCO detection or COCO panoptic format, then use [DetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor) to create `pixel_values`, `pixel_mask` and optional `labels`, which can then be used to train (or fine-tune) a model.
-- For evaluation, one should first convert the outputs of the model using one of the postprocessing methods of [DetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor). These can be provided to either `CocoEvaluator` or `PanopticEvaluator`, which allow you to calculate metrics like mean Average Precision (mAP) and Panoptic Quality (PQ). The latter objects are implemented in the [original repository](https://github.com/facebookresearch/detr). See the [example notebooks](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/DETR) for more info regarding evaluation.
+- In short, one should prepare the data either in COCO detection or COCO panoptic format, then use [DetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor) to create `pixel_values`, `pixel_mask` and optional `labels`, which can then be used to train (or fine-tune) a model.
+- For evaluation, one should first convert the outputs of the model using one of the postprocessing methods of [DetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor). These can be provided to either `CocoEvaluator` or `PanopticEvaluator`, which allow you to calculate metrics like mean Average Precision (mAP) and Panoptic Quality (PQ). The latter objects are implemented in the [original repository](https://github.com/facebookresearch/detr). See the [example notebooks](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/DETR) for more info regarding evaluation.
 
 ## Resources
 
-- Refer to these [notebooks](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/DETR) for examples of fine-tuning [DetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForObjectDetection) and [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation) on a custom dataset.
+- Refer to these [notebooks](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/DETR) for examples of fine-tuning [DetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForObjectDetection) and [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation) on a custom dataset.
 
 ## DetrConfig[[transformers.DetrConfig]]
 
@@ -127,7 +127,7 @@ As a summary, consider the following table:
 transformers.DetrConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, num_channels: int = 3, num_queries: int = 100, encoder_layers: int = 6, encoder_ffn_dim: int = 2048, encoder_attention_heads: int = 8, decoder_layers: int = 6, decoder_ffn_dim: int = 2048, decoder_attention_heads: int = 8, encoder_layerdrop: float | int = 0.0, decoder_layerdrop: float | int = 0.0, activation_function: str = 'relu', d_model: int = 256, dropout: float | int = 0.1, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, init_std: float = 0.02, init_xavier_std: float = 1.0, auxiliary_loss: bool = False, position_embedding_type: str = 'sine', dilation: bool = False, class_cost: int = 1, bbox_cost: int = 5, giou_cost: int = 2, mask_loss_coefficient: int = 1, dice_loss_coefficient: int = 1, bbox_loss_coefficient: int = 5, giou_loss_coefficient: int = 2, eos_coefficient: float = 0.1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/configuration_detr.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/configuration_detr.py#L26)
 
 **Parameters:**
 
@@ -137,7 +137,7 @@ backbone_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional
 
 num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
 
-num_queries (`int`, *optional*, defaults to 100) : Number of object queries, i.e. detection slots. This is the maximal number of objects [ConditionalDetrModel](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrModel) can detect in a single image. For COCO, we recommend 100 queries.
+num_queries (`int`, *optional*, defaults to 100) : Number of object queries, i.e. detection slots. This is the maximal number of objects [ConditionalDetrModel](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrModel) can detect in a single image. For COCO, we recommend 100 queries.
 
 encoder_layers (`int`, *optional*, defaults to `6`) : Number of hidden layers in the Transformer encoder. Will use the same value as `num_layers` if not set.
 
@@ -195,8 +195,8 @@ This is the configuration class to store the configuration of a DetrModel. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/detr-resnet-50](https://huggingface.co/facebook/detr-resnet-50)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -221,7 +221,7 @@ Examples:
 transformers.DetrImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/image_processing_detr.py#L424)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/image_processing_detr.py#L424)
 
 **Parameters:**
 
@@ -277,7 +277,7 @@ Constructs a DetrImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], annotations: dict[str, int | str | list[dict]] | list[dict[str, int | str | list[dict]]] | None = None, return_segmentation_masks: bool | None = None, masks_path: str | pathlib.Path | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/image_processing_detr.py#L669)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/image_processing_detr.py#L669)
 
 **Parameters:**
 
@@ -345,7 +345,7 @@ do_convert_annotations (`bool`, *kwargs*, *optional*, defaults to `True`) : Cont
 post_process_object_detection(outputs, threshold: float = 0.5, target_sizes: transformers.utils.generic.TensorType | list[tuple] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/image_processing_detr.py#L805)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/image_processing_detr.py#L805)
 
 **Parameters:**
 
@@ -360,7 +360,7 @@ target_sizes (`torch.Tensor` or `list[tuple[int, int]]`, *optional*) : Tensor of
 A list of dictionaries, each dictionary containing the scores, labels and boxes for an image
 in the batch as predicted by the model.
 
-Converts the raw output of [DetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
+Converts the raw output of [DetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
 bottom_right_x, bottom_right_y) format. Only supports PyTorch.
 
 #### post_process_semantic_segmentation[[transformers.DetrImageProcessor.post_process_semantic_segmentation]]
@@ -369,11 +369,11 @@ bottom_right_x, bottom_right_y) format. Only supports PyTorch.
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple[int, int]] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/image_processing_detr.py#L858)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/image_processing_detr.py#L858)
 
 **Parameters:**
 
-outputs ([DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation)) : Raw outputs of the model.
+outputs ([DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[tuple[int, int]]`, *optional*) : A list of tuples (`tuple[int, int]`) containing the target size (height, width) of each image in the batch. If unset, predictions will not be resized.
 
@@ -388,7 +388,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation) into semantic segmentation maps. Only supports PyTorch.
+Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation) into semantic segmentation maps. Only supports PyTorch.
 
 #### post_process_instance_segmentation[[transformers.DetrImageProcessor.post_process_instance_segmentation]]
 
@@ -396,11 +396,11 @@ Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.0/en/model
 post_process_instance_segmentation(outputs, threshold: float = 0.5, mask_threshold: float = 0.5, overlap_mask_area_threshold: float = 0.8, target_sizes: list[tuple[int, int]] | None = None, return_coco_annotation: bool | None = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/image_processing_detr.py#L929)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/image_processing_detr.py#L929)
 
 **Parameters:**
 
-outputs ([DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation)) : Raw outputs of the model.
+outputs ([DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation)) : Raw outputs of the model.
 
 threshold (`float`, *optional*, defaults to 0.5) : The probability score threshold to keep predicted instance masks.
 
@@ -423,7 +423,7 @@ A list of dictionaries, one per image, each dictionary containing two keys:
   - **label_id** -- An integer representing the label / semantic class id corresponding to `segment_id`.
   - **score** -- Prediction score of segment with `segment_id`.
 
-Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation) into instance segmentation predictions. Only supports PyTorch.
+Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation) into instance segmentation predictions. Only supports PyTorch.
 
 #### post_process_panoptic_segmentation[[transformers.DetrImageProcessor.post_process_panoptic_segmentation]]
 
@@ -431,11 +431,11 @@ Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.0/en/model
 post_process_panoptic_segmentation(outputs, threshold: float = 0.5, mask_threshold: float = 0.5, overlap_mask_area_threshold: float = 0.8, label_ids_to_fuse: set[int] | None = None, target_sizes: list[tuple[int, int]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/image_processing_detr.py#L1012)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/image_processing_detr.py#L1012)
 
 **Parameters:**
 
-outputs ([DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation)) : The outputs from [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation).
+outputs ([DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation)) : The outputs from [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation).
 
 threshold (`float`, *optional*, defaults to 0.5) : The probability score threshold to keep predicted instance masks.
 
@@ -460,7 +460,7 @@ A list of dictionaries, one per image, each dictionary containing two keys:
     Multiple instances of the same class / label were fused and assigned a single `segment_id`.
   - **score** -- Prediction score of segment with `segment_id`.
 
-Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation) into image panoptic segmentation predictions. Only supports
+Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation) into image panoptic segmentation predictions. Only supports
 PyTorch.
 
 ## DetrImageProcessorPil[[transformers.DetrImageProcessorPil]]
@@ -471,7 +471,7 @@ PyTorch.
 transformers.DetrImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/image_processing_pil_detr.py#L431)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/image_processing_pil_detr.py#L431)
 
 **Parameters:**
 
@@ -527,7 +527,7 @@ Constructs a DetrImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], annotations: dict[str, int | str | list[dict]] | list[dict[str, int | str | list[dict]]] | None = None, return_segmentation_masks: bool | None = None, masks_path: str | pathlib.Path | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/image_processing_pil_detr.py#L699)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/image_processing_pil_detr.py#L699)
 
 **Parameters:**
 
@@ -595,7 +595,7 @@ do_convert_annotations (`bool`, *kwargs*, *optional*, defaults to `True`) : Cont
 post_process_object_detection(outputs, threshold: float = 0.5, target_sizes: transformers.utils.generic.TensorType | list[tuple] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/image_processing_pil_detr.py#L844)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/image_processing_pil_detr.py#L844)
 
 **Parameters:**
 
@@ -610,7 +610,7 @@ target_sizes (`torch.Tensor` or `list[tuple[int, int]]`, *optional*) : Tensor of
 A list of dictionaries, each dictionary containing the scores, labels and boxes for an image
 in the batch as predicted by the model.
 
-Converts the raw output of [DetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
+Converts the raw output of [DetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
 bottom_right_x, bottom_right_y) format. Only supports PyTorch.
 
 #### post_process_semantic_segmentation[[transformers.DetrImageProcessorPil.post_process_semantic_segmentation]]
@@ -619,11 +619,11 @@ bottom_right_x, bottom_right_y) format. Only supports PyTorch.
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple[int, int]] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/image_processing_pil_detr.py#L903)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/image_processing_pil_detr.py#L903)
 
 **Parameters:**
 
-outputs ([DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation)) : Raw outputs of the model.
+outputs ([DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[tuple[int, int]]`, *optional*) : A list of tuples (`tuple[int, int]`) containing the target size (height, width) of each image in the batch. If unset, predictions will not be resized.
 
@@ -638,7 +638,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation) into semantic segmentation maps. Only supports PyTorch.
+Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation) into semantic segmentation maps. Only supports PyTorch.
 
 #### post_process_instance_segmentation[[transformers.DetrImageProcessorPil.post_process_instance_segmentation]]
 
@@ -646,11 +646,11 @@ Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.0/en/model
 post_process_instance_segmentation(outputs, threshold: float = 0.5, mask_threshold: float = 0.5, overlap_mask_area_threshold: float = 0.8, target_sizes: list[tuple[int, int]] | None = None, return_coco_annotation: bool | None = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/image_processing_pil_detr.py#L980)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/image_processing_pil_detr.py#L980)
 
 **Parameters:**
 
-outputs ([DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation)) : Raw outputs of the model.
+outputs ([DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation)) : Raw outputs of the model.
 
 threshold (`float`, *optional*, defaults to 0.5) : The probability score threshold to keep predicted instance masks.
 
@@ -673,7 +673,7 @@ A list of dictionaries, one per image, each dictionary containing two keys:
   - **label_id** -- An integer representing the label / semantic class id corresponding to `segment_id`.
   - **score** -- Prediction score of segment with `segment_id`.
 
-Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation) into instance segmentation predictions. Only supports PyTorch.
+Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation) into instance segmentation predictions. Only supports PyTorch.
 
 #### post_process_panoptic_segmentation[[transformers.DetrImageProcessorPil.post_process_panoptic_segmentation]]
 
@@ -681,11 +681,11 @@ Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.0/en/model
 post_process_panoptic_segmentation(outputs, threshold: float = 0.5, mask_threshold: float = 0.5, overlap_mask_area_threshold: float = 0.8, label_ids_to_fuse: set[int] | None = None, target_sizes: list[tuple[int, int]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/image_processing_pil_detr.py#L1069)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/image_processing_pil_detr.py#L1069)
 
 **Parameters:**
 
-outputs ([DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation)) : The outputs from [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation).
+outputs ([DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation)) : The outputs from [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation).
 
 threshold (`float`, *optional*, defaults to 0.5) : The probability score threshold to keep predicted instance masks.
 
@@ -710,7 +710,7 @@ A list of dictionaries, one per image, each dictionary containing two keys:
     Multiple instances of the same class / label were fused and assigned a single `segment_id`.
   - **score** -- Prediction score of segment with `segment_id`.
 
-Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation) into image panoptic segmentation predictions. Only supports
+Converts the output of [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation) into image panoptic segmentation predictions. Only supports
 PyTorch.
 
 ## DETR specific outputs[[transformers.models.detr.modeling_detr.DetrModelOutput]]
@@ -721,13 +721,13 @@ PyTorch.
 transformers.models.detr.modeling_detr.DetrModelOutput(last_hidden_state: typing.Optional[torch.FloatTensor] = None, past_key_values: transformers.cache_utils.EncoderDecoderCache | None = None, decoder_hidden_states: tuple[torch.FloatTensor, ...] | None = None, decoder_attentions: tuple[torch.FloatTensor, ...] | None = None, cross_attentions: tuple[torch.FloatTensor, ...] | None = None, encoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, encoder_hidden_states: tuple[torch.FloatTensor, ...] | None = None, encoder_attentions: tuple[torch.FloatTensor, ...] | None = None, intermediate_hidden_states: typing.Optional[torch.FloatTensor] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/modeling_detr.py#L76)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/modeling_detr.py#L76)
 
 **Parameters:**
 
 last_hidden_state (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) : Sequence of hidden-states at the output of the last layer of the decoder of the model.  If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1, hidden_size)` is output.
 
-past_key_values (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `past_key_values` input) to speed up sequential decoding.
+past_key_values (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [EncoderDecoderCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used (see `past_key_values` input) to speed up sequential decoding.
 
 decoder_hidden_states (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hidden_states=True` is passed or when `config.output_hidden_states=True`) : Tuple of `torch.FloatTensor` (one for the output of the embeddings, if the model has an embedding layer, + one for the output of each layer) of shape `(batch_size, sequence_length, hidden_size)`.  Hidden-states of the decoder at the output of each layer plus the optional initial embedding outputs.
 
@@ -753,7 +753,7 @@ gone through a layernorm. This is useful when training the model with auxiliary 
 transformers.models.detr.modeling_detr.DetrObjectDetectionOutput(loss: typing.Optional[torch.FloatTensor] = None, loss_dict: dict | None = None, logits: typing.Optional[torch.FloatTensor] = None, pred_boxes: typing.Optional[torch.FloatTensor] = None, auxiliary_outputs: list[dict] | None = None, last_hidden_state: typing.Optional[torch.FloatTensor] = None, decoder_hidden_states: tuple[torch.FloatTensor] | None = None, decoder_attentions: tuple[torch.FloatTensor] | None = None, cross_attentions: tuple[torch.FloatTensor] | None = None, encoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, encoder_hidden_states: tuple[torch.FloatTensor] | None = None, encoder_attentions: tuple[torch.FloatTensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/modeling_detr.py#L92)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/modeling_detr.py#L92)
 
 **Parameters:**
 
@@ -763,7 +763,7 @@ loss_dict (`Dict`, *optional*) : A dictionary containing the individual losses. 
 
 logits (`torch.FloatTensor` of shape `(batch_size, num_queries, num_classes + 1)`) : Classification logits (including no-object) for all queries.
 
-pred_boxes (`torch.FloatTensor` of shape `(batch_size, num_queries, 4)`) : Normalized boxes coordinates for all queries, represented as (center_x, center_y, width, height). These values are normalized in [0, 1], relative to the size of each individual image in the batch (disregarding possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor.post_process_object_detection) to retrieve the unnormalized bounding boxes.
+pred_boxes (`torch.FloatTensor` of shape `(batch_size, num_queries, 4)`) : Normalized boxes coordinates for all queries, represented as (center_x, center_y, width, height). These values are normalized in [0, 1], relative to the size of each individual image in the batch (disregarding possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor.post_process_object_detection) to retrieve the unnormalized bounding boxes.
 
 auxiliary_outputs (`list[Dict]`, *optional*) : Optional, only returned when auxiliary losses are activated (i.e. `config.auxiliary_loss` is set to `True`) and labels are provided. It is a list of dictionaries containing the two above keys (`logits` and `pred_boxes`) for each decoder layer.
 
@@ -781,7 +781,7 @@ encoder_hidden_states (`tuple[torch.FloatTensor]`, *optional*, returned when `ou
 
 encoder_attentions (`tuple[torch.FloatTensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights of the encoder, after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-Output type of [DetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForObjectDetection).
+Output type of [DetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForObjectDetection).
 
 #### transformers.models.detr.modeling_detr.DetrSegmentationOutput[[transformers.models.detr.modeling_detr.DetrSegmentationOutput]]
 
@@ -789,7 +789,7 @@ Output type of [DetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/
 transformers.models.detr.modeling_detr.DetrSegmentationOutput(loss: typing.Optional[torch.FloatTensor] = None, loss_dict: dict | None = None, logits: typing.Optional[torch.FloatTensor] = None, pred_boxes: typing.Optional[torch.FloatTensor] = None, pred_masks: typing.Optional[torch.FloatTensor] = None, auxiliary_outputs: list[dict] | None = None, last_hidden_state: typing.Optional[torch.FloatTensor] = None, decoder_hidden_states: tuple[torch.FloatTensor] | None = None, decoder_attentions: tuple[torch.FloatTensor] | None = None, cross_attentions: tuple[torch.FloatTensor] | None = None, encoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, encoder_hidden_states: tuple[torch.FloatTensor] | None = None, encoder_attentions: tuple[torch.FloatTensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/modeling_detr.py#L135)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/modeling_detr.py#L135)
 
 **Parameters:**
 
@@ -799,9 +799,9 @@ loss_dict (`Dict`, *optional*) : A dictionary containing the individual losses. 
 
 logits (`torch.FloatTensor` of shape `(batch_size, num_queries, num_classes + 1)`) : Classification logits (including no-object) for all queries.
 
-pred_boxes (`torch.FloatTensor` of shape `(batch_size, num_queries, 4)`) : Normalized boxes coordinates for all queries, represented as (center_x, center_y, width, height). These values are normalized in [0, 1], relative to the size of each individual image in the batch (disregarding possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor.post_process_object_detection) to retrieve the unnormalized bounding boxes.
+pred_boxes (`torch.FloatTensor` of shape `(batch_size, num_queries, 4)`) : Normalized boxes coordinates for all queries, represented as (center_x, center_y, width, height). These values are normalized in [0, 1], relative to the size of each individual image in the batch (disregarding possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor.post_process_object_detection) to retrieve the unnormalized bounding boxes.
 
-pred_masks (`torch.FloatTensor` of shape `(batch_size, num_queries, height/4, width/4)`) : Segmentation masks logits for all queries. See also [post_process_semantic_segmentation()](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor.post_process_semantic_segmentation) or [post_process_instance_segmentation()](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor.post_process_instance_segmentation) [post_process_panoptic_segmentation()](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor.post_process_panoptic_segmentation) to evaluate semantic, instance and panoptic segmentation masks respectively.
+pred_masks (`torch.FloatTensor` of shape `(batch_size, num_queries, height/4, width/4)`) : Segmentation masks logits for all queries. See also [post_process_semantic_segmentation()](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor.post_process_semantic_segmentation) or [post_process_instance_segmentation()](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor.post_process_instance_segmentation) [post_process_panoptic_segmentation()](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor.post_process_panoptic_segmentation) to evaluate semantic, instance and panoptic segmentation masks respectively.
 
 auxiliary_outputs (`list[Dict]`, *optional*) : Optional, only returned when auxiliary losses are activated (i.e. `config.auxiliary_loss` is set to `True`) and labels are provided. It is a list of dictionaries containing the two above keys (`logits` and `pred_boxes`) for each decoder layer.
 
@@ -819,7 +819,7 @@ encoder_hidden_states (`tuple[torch.FloatTensor]`, *optional*, returned when `ou
 
 encoder_attentions (`tuple[torch.FloatTensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights of the encoder, after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-Output type of [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation).
+Output type of [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation).
 
 ## DetrModel[[transformers.DetrModel]]
 
@@ -829,16 +829,16 @@ Output type of [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/det
 transformers.DetrModel(config: DetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/modeling_detr.py#L1115)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/modeling_detr.py#L1115)
 
 **Parameters:**
 
-config ([DetrConfig](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DetrConfig](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare DETR Model (consisting of a backbone and encoder-decoder Transformer) outputting raw hidden-states without
 any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -852,7 +852,7 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_mask: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.FloatTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/modeling_detr.py#L1144)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/modeling_detr.py#L1144)
 
 **Parameters:**
 
@@ -868,13 +868,13 @@ inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidde
 
 decoder_inputs_embeds (`torch.FloatTensor` of shape `(batch_size, num_queries, hidden_size)`, *optional*) : Optionally, instead of initializing the queries with a tensor of zeros, you can choose to directly pass an embedded representation. Useful for tasks that require custom query initialization.
 
-**Returns:** [DetrModelOutput](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.models.detr.modeling_detr.DetrModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [DetrModelOutput](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.models.detr.modeling_detr.DetrModelOutput) or `tuple(torch.FloatTensor)`
 
-A [DetrModelOutput](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.models.detr.modeling_detr.DetrModelOutput) or a tuple of
+A [DetrModelOutput](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.models.detr.modeling_detr.DetrModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [DetrModel](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrModel) forward method, overrides the `__call__` special method.
+The [DetrModel](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -884,7 +884,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
   blocks) that can be used (see `past_key_values` input) to speed up sequential decoding.
@@ -951,16 +951,16 @@ Examples:
 transformers.DetrForObjectDetection(config: DetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/modeling_detr.py#L1309)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/modeling_detr.py#L1309)
 
 **Parameters:**
 
-config ([DetrConfig](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DetrConfig](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 DETR Model (consisting of a backbone and encoder-decoder Transformer) with object detection heads on top, for tasks
 such as COCO detection.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -974,7 +974,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.FloatTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/modeling_detr.py#L1327)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/modeling_detr.py#L1327)
 
 **Parameters:**
 
@@ -992,13 +992,13 @@ decoder_inputs_embeds (`torch.FloatTensor` of shape `(batch_size, num_queries, h
 
 labels (`list[Dict]` of len `(batch_size,)`, *optional*) : Labels for computing the bipartite matching loss. List of dicts, each dictionary containing at least the following 2 keys: 'class_labels' and 'boxes' (the class labels and bounding boxes of an image in the batch respectively). The class labels themselves should be a `torch.LongTensor` of len `(number of bounding boxes in the image,)` and the boxes a `torch.FloatTensor` of shape `(number of bounding boxes in the image, 4)`.
 
-**Returns:** [DetrObjectDetectionOutput](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.models.detr.modeling_detr.DetrObjectDetectionOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [DetrObjectDetectionOutput](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.models.detr.modeling_detr.DetrObjectDetectionOutput) or `tuple(torch.FloatTensor)`
 
-A [DetrObjectDetectionOutput](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.models.detr.modeling_detr.DetrObjectDetectionOutput) or a tuple of
+A [DetrObjectDetectionOutput](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.models.detr.modeling_detr.DetrObjectDetectionOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [DetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForObjectDetection) forward method, overrides the `__call__` special method.
+The [DetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1011,7 +1011,7 @@ the latter silently ignores them.
 - **logits** (`torch.FloatTensor` of shape `(batch_size, num_queries, num_classes + 1)`) -- Classification logits (including no-object) for all queries.
 - **pred_boxes** (`torch.FloatTensor` of shape `(batch_size, num_queries, 4)`) -- Normalized boxes coordinates for all queries, represented as (center_x, center_y, width, height). These
   values are normalized in [0, 1], relative to the size of each individual image in the batch (disregarding
-  possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor.post_process_object_detection) to retrieve the
+  possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor.post_process_object_detection) to retrieve the
   unnormalized bounding boxes.
 - **auxiliary_outputs** (`list[Dict]`, *optional*) -- Optional, only returned when auxiliary losses are activated (i.e. `config.auxiliary_loss` is set to `True`)
   and labels are provided. It is a list of dictionaries containing the two above keys (`logits` and
@@ -1088,16 +1088,16 @@ Detected cat with confidence 0.999 at location [345.4, 23.85, 640.37, 368.72]
 transformers.DetrForSegmentation(config: DetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/modeling_detr.py#L1446)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/modeling_detr.py#L1446)
 
 **Parameters:**
 
-config ([DetrConfig](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DetrConfig](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 DETR Model (consisting of a backbone and encoder-decoder Transformer) with a segmentation head on top, for tasks
 such as COCO panoptic.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1111,7 +1111,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.FloatTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/detr/modeling_detr.py#L1468)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/detr/modeling_detr.py#L1468)
 
 **Parameters:**
 
@@ -1129,13 +1129,13 @@ decoder_inputs_embeds (`torch.FloatTensor` of shape `(batch_size, num_queries, h
 
 labels (`list[Dict]` of len `(batch_size,)`, *optional*) : Labels for computing the bipartite matching loss, DICE/F-1 loss and Focal loss. List of dicts, each dictionary containing at least the following 3 keys: 'class_labels', 'boxes' and 'masks' (the class labels, bounding boxes and segmentation masks of an image in the batch respectively). The class labels themselves should be a `torch.LongTensor` of len `(number of bounding boxes in the image,)`, the boxes a `torch.FloatTensor` of shape `(number of bounding boxes in the image, 4)` and the masks a `torch.FloatTensor` of shape `(number of bounding boxes in the image, height, width)`.
 
-**Returns:** [DetrSegmentationOutput](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.models.detr.modeling_detr.DetrSegmentationOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [DetrSegmentationOutput](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.models.detr.modeling_detr.DetrSegmentationOutput) or `tuple(torch.FloatTensor)`
 
-A [DetrSegmentationOutput](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.models.detr.modeling_detr.DetrSegmentationOutput) or a tuple of
+A [DetrSegmentationOutput](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.models.detr.modeling_detr.DetrSegmentationOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [DetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForSegmentation) forward method, overrides the `__call__` special method.
+The [DetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1148,12 +1148,12 @@ the latter silently ignores them.
 - **logits** (`torch.FloatTensor` of shape `(batch_size, num_queries, num_classes + 1)`) -- Classification logits (including no-object) for all queries.
 - **pred_boxes** (`torch.FloatTensor` of shape `(batch_size, num_queries, 4)`) -- Normalized boxes coordinates for all queries, represented as (center_x, center_y, width, height). These
   values are normalized in [0, 1], relative to the size of each individual image in the batch (disregarding
-  possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor.post_process_object_detection) to retrieve the
+  possible padding). You can use [post_process_object_detection()](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor.post_process_object_detection) to retrieve the
   unnormalized bounding boxes.
 - **pred_masks** (`torch.FloatTensor` of shape `(batch_size, num_queries, height/4, width/4)`) -- Segmentation masks logits for all queries. See also
-  [post_process_semantic_segmentation()](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor.post_process_semantic_segmentation) or
-  [post_process_instance_segmentation()](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor.post_process_instance_segmentation)
-  [post_process_panoptic_segmentation()](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor.post_process_panoptic_segmentation) to evaluate semantic, instance and panoptic
+  [post_process_semantic_segmentation()](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor.post_process_semantic_segmentation) or
+  [post_process_instance_segmentation()](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor.post_process_instance_segmentation)
+  [post_process_panoptic_segmentation()](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor.post_process_panoptic_segmentation) to evaluate semantic, instance and panoptic
   segmentation masks respectively.
 - **auxiliary_outputs** (`list[Dict]`, *optional*) -- Optional, only returned when auxiliary losses are activated (i.e. `config.auxiliary_loss` is set to `True`)
   and labels are provided. It is a list of dictionaries containing the two above keys (`logits` and
@@ -1225,4 +1225,4 @@ torch.Size([300, 500])
 ```
 
 ### PP-OCRv6_medium_det
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/pp_ocrv6_medium_det.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/pp_ocrv6_medium_det.md

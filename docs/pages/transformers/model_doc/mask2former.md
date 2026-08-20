@@ -15,15 +15,15 @@ This model was contributed by [Shivalika Singh](https://huggingface.co/shivi) an
 
 ## Usage tips
 
-- Mask2Former uses the same preprocessing and postprocessing steps as [MaskFormer](maskformer). Use [Mask2FormerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor) or [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor) to prepare images and optional targets for the model.
-- To get the final segmentation, depending on the task, you can call [post_process_semantic_segmentation()](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor.post_process_semantic_segmentation) or [post_process_instance_segmentation()](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor.post_process_instance_segmentation) or [post_process_panoptic_segmentation()](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor.post_process_panoptic_segmentation). All three tasks can be solved using [Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation) output, panoptic segmentation accepts an optional `label_ids_to_fuse` argument to fuse instances of the target object/s (e.g. sky) together.
+- Mask2Former uses the same preprocessing and postprocessing steps as [MaskFormer](maskformer). Use [Mask2FormerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor) or [AutoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor) to prepare images and optional targets for the model.
+- To get the final segmentation, depending on the task, you can call [post_process_semantic_segmentation()](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor.post_process_semantic_segmentation) or [post_process_instance_segmentation()](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor.post_process_instance_segmentation) or [post_process_panoptic_segmentation()](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor.post_process_panoptic_segmentation). All three tasks can be solved using [Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation) output, panoptic segmentation accepts an optional `label_ids_to_fuse` argument to fuse instances of the target object/s (e.g. sky) together.
 
 ## Resources
 
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with Mask2Former.
 
 - Demo notebooks regarding inference + fine-tuning Mask2Former on custom data can be found [here](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/Mask2Former).
-- Scripts for finetuning `Mask2Former` with [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) or [Accelerate](https://huggingface.co/docs/accelerate/index) can be found [here](https://github.com/huggingface/transformers/tree/main/examples/pytorch/instance-segmentation).
+- Scripts for finetuning `Mask2Former` with [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) or [Accelerate](https://huggingface.co/docs/accelerate/index) can be found [here](https://github.com/huggingface/transformers/tree/main/examples/pytorch/instance-segmentation).
 
 If you're interested in submitting a resource to be included here, please feel free to open a Pull Request and we will review it.
 The resource should ideally demonstrate something new instead of duplicating an existing resource.
@@ -36,7 +36,7 @@ The resource should ideally demonstrate something new instead of duplicating an 
 transformers.Mask2FormerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, feature_size: int = 256, mask_feature_size: int = 256, hidden_dim: int = 256, encoder_feedforward_dim: int = 1024, activation_function: str = 'relu', encoder_layers: int = 6, decoder_layers: int = 10, num_attention_heads: int = 8, dropout: float | int = 0.0, dim_feedforward: int = 2048, pre_norm: bool = False, enforce_input_projection: bool = False, common_stride: int = 4, ignore_value: int = 255, num_queries: int = 100, no_object_weight: float = 0.1, class_weight: float = 2.0, mask_weight: float = 5.0, dice_weight: float = 5.0, train_num_points: int = 12544, oversample_ratio: float = 3.0, importance_sample_ratio: float = 0.75, init_std: float = 0.02, init_xavier_std: float = 1.0, use_auxiliary_loss: bool = True, feature_strides: list[int] | tuple[int, ...] = (4, 8, 16, 32), output_auxiliary_logits: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/configuration_mask2former.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/configuration_mask2former.py#L29)
 
 **Parameters:**
 
@@ -100,8 +100,8 @@ This is the configuration class to store the configuration of a Mask2FormerModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/mask2former-swin-small-coco-instance](https://huggingface.co/facebook/mask2former-swin-small-coco-instance)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -126,7 +126,7 @@ Examples:
 transformers.models.mask2former.modeling_mask2former.Mask2FormerModelOutput(encoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, pixel_decoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, transformer_decoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, encoder_hidden_states: tuple[torch.FloatTensor] | None = None, pixel_decoder_hidden_states: tuple[torch.FloatTensor] | None = None, transformer_decoder_hidden_states: tuple[torch.FloatTensor] | None = None, transformer_decoder_intermediate_states: tuple[torch.FloatTensor] | None = None, masks_queries_logits: tuple[torch.FloatTensor] | None = None, attentions: tuple[torch.FloatTensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/modeling_mask2former.py#L143)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/modeling_mask2former.py#L143)
 
 **Parameters:**
 
@@ -150,7 +150,7 @@ attentions (`tuple(tuple(torch.FloatTensor))`, *optional*, returned when `output
 
 attentions (`tuple[torch.FloatTensor]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-Class for outputs of [Mask2FormerModel](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerModel). This class returns all the needed hidden states to compute the logits.
+Class for outputs of [Mask2FormerModel](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerModel). This class returns all the needed hidden states to compute the logits.
 
 #### transformers.models.mask2former.modeling_mask2former.Mask2FormerForUniversalSegmentationOutput[[transformers.models.mask2former.modeling_mask2former.Mask2FormerForUniversalSegmentationOutput]]
 
@@ -158,7 +158,7 @@ Class for outputs of [Mask2FormerModel](/docs/transformers/v5.15.0/en/model_doc/
 transformers.models.mask2former.modeling_mask2former.Mask2FormerForUniversalSegmentationOutput(loss: typing.Optional[torch.FloatTensor] = None, class_queries_logits: typing.Optional[torch.FloatTensor] = None, masks_queries_logits: typing.Optional[torch.FloatTensor] = None, auxiliary_logits: list[dict[str, torch.FloatTensor]] | None = None, encoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, pixel_decoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, transformer_decoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, encoder_hidden_states: tuple[torch.FloatTensor] | None = None, pixel_decoder_hidden_states: tuple[torch.FloatTensor] | None = None, transformer_decoder_hidden_states: typing.Optional[torch.FloatTensor] = None, attentions: tuple[torch.FloatTensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/modeling_mask2former.py#L196)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/modeling_mask2former.py#L196)
 
 **Parameters:**
 
@@ -186,9 +186,9 @@ attentions (`tuple(tuple(torch.FloatTensor))`, *optional*, returned when `output
 
 Class for outputs of `Mask2FormerForUniversalSegmentationOutput`.
 
-This output can be directly passed to [post_process_semantic_segmentation()](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor.post_process_semantic_segmentation) or
-[post_process_instance_segmentation()](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor.post_process_instance_segmentation) or
-[post_process_panoptic_segmentation()](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor.post_process_panoptic_segmentation) to compute final segmentation maps. Please, see
+This output can be directly passed to [post_process_semantic_segmentation()](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor.post_process_semantic_segmentation) or
+[post_process_instance_segmentation()](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor.post_process_instance_segmentation) or
+[post_process_panoptic_segmentation()](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor.post_process_panoptic_segmentation) to compute final segmentation maps. Please, see
 [`~Mask2FormerImageProcessor] for details regarding usage.
 
 ## Mask2FormerModel[[transformers.Mask2FormerModel]]
@@ -199,15 +199,15 @@ This output can be directly passed to [post_process_semantic_segmentation()](/do
 transformers.Mask2FormerModel(config: Mask2FormerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/modeling_mask2former.py#L2202)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/modeling_mask2former.py#L2202)
 
 **Parameters:**
 
-config ([Mask2FormerConfig](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Mask2FormerConfig](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Mask2Former Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -221,11 +221,11 @@ and behavior.
 forward(pixel_values: Tensor, pixel_mask: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, output_attentions: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/modeling_mask2former.py#L2212)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/modeling_mask2former.py#L2212)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Mask2FormerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor). See `Mask2FormerImageProcessor.__call__()` for details (`processor_class` uses [Mask2FormerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Mask2FormerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor). See `Mask2FormerImageProcessor.__call__()` for details (`processor_class` uses [Mask2FormerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor) for processing images).
 
 pixel_mask (`torch.Tensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -233,15 +233,15 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [Mask2FormerModelOutput](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.models.mask2former.modeling_mask2former.Mask2FormerModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [Mask2FormerModelOutput](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.models.mask2former.modeling_mask2former.Mask2FormerModelOutput) or `tuple(torch.FloatTensor)`
 
-A [Mask2FormerModelOutput](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.models.mask2former.modeling_mask2former.Mask2FormerModelOutput) or a tuple of
+A [Mask2FormerModelOutput](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.models.mask2former.modeling_mask2former.Mask2FormerModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Mask2FormerConfig](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerConfig)) and inputs.
+elements depending on the configuration ([Mask2FormerConfig](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerConfig)) and inputs.
 
-The [Mask2FormerModel](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerModel) forward method, overrides the `__call__` special method.
+The [Mask2FormerModel](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -280,15 +280,15 @@ the latter silently ignores them.
 transformers.Mask2FormerForUniversalSegmentation(config: Mask2FormerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/modeling_mask2former.py#L2278)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/modeling_mask2former.py#L2278)
 
 **Parameters:**
 
-config ([Mask2FormerConfig](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Mask2FormerConfig](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Mask2Former Model with heads on top for instance/semantic/panoptic segmentation.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -302,11 +302,11 @@ and behavior.
 forward(pixel_values: Tensor, mask_labels: list[torch.Tensor] | None = None, class_labels: list[torch.Tensor] | None = None, pixel_mask: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, output_auxiliary_logits: bool | None = None, output_attentions: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/modeling_mask2former.py#L2331)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/modeling_mask2former.py#L2331)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Mask2FormerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor). See `Mask2FormerImageProcessor.__call__()` for details (`processor_class` uses [Mask2FormerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [Mask2FormerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor). See `Mask2FormerImageProcessor.__call__()` for details (`processor_class` uses [Mask2FormerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerImageProcessor) for processing images).
 
 mask_labels (`list[torch.Tensor]`, *optional*) : List of mask labels of shape `(num_labels, height, width)` to be fed to a model
 
@@ -320,15 +320,15 @@ output_auxiliary_logits (`bool`, *optional*) : Whether or not to output auxiliar
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [Mask2FormerForUniversalSegmentationOutput](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.models.mask2former.modeling_mask2former.Mask2FormerForUniversalSegmentationOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [Mask2FormerForUniversalSegmentationOutput](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.models.mask2former.modeling_mask2former.Mask2FormerForUniversalSegmentationOutput) or `tuple(torch.FloatTensor)`
 
-A [Mask2FormerForUniversalSegmentationOutput](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.models.mask2former.modeling_mask2former.Mask2FormerForUniversalSegmentationOutput) or a tuple of
+A [Mask2FormerForUniversalSegmentationOutput](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.models.mask2former.modeling_mask2former.Mask2FormerForUniversalSegmentationOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Mask2FormerConfig](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerConfig)) and inputs.
+elements depending on the configuration ([Mask2FormerConfig](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerConfig)) and inputs.
 
-The [Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation) forward method, overrides the `__call__` special method.
+The [Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -472,7 +472,7 @@ torch.Size([338, 676])
 transformers.Mask2FormerImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/image_processing_mask2former.py#L263)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/image_processing_mask2former.py#L263)
 
 **Parameters:**
 
@@ -532,7 +532,7 @@ Constructs a Mask2FormerImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, instance_id_to_semantic_id: list[dict[int, int]] | dict[int, int] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/image_processing_mask2former.py#L386)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/image_processing_mask2former.py#L386)
 
 **Parameters:**
 
@@ -602,11 +602,11 @@ size_divisor (`int`, *kwargs*, *optional*, defaults to `32`) : Some backbones ne
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple[int, int]] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/image_processing_mask2former.py#L550)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/image_processing_mask2former.py#L550)
 
 **Parameters:**
 
-outputs ([Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation)) : Raw outputs of the model.
+outputs ([Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[tuple[int, int]]`, *optional*) : List of length (batch_size), where each list item (`tuple[int, int]]`) corresponds to the requested final size (height, width) of each prediction. If left to None, predictions will not be resized.
 
@@ -621,7 +621,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation) into semantic segmentation maps. Only supports
+Converts the output of [Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation) into semantic segmentation maps. Only supports
 PyTorch.
 
 #### post_process_instance_segmentation[[transformers.Mask2FormerImageProcessor.post_process_instance_segmentation]]
@@ -630,11 +630,11 @@ PyTorch.
 post_process_instance_segmentation(outputs, threshold: float = 0.5, mask_threshold: float = 0.5, overlap_mask_area_threshold: float = 0.8, target_sizes: list[tuple[int, int]] | None = None, return_coco_annotation: bool | None = False, return_binary_maps: bool | None = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/image_processing_mask2former.py#L627)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/image_processing_mask2former.py#L627)
 
 **Parameters:**
 
-outputs ([Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation)) : Raw outputs of the model.
+outputs ([Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation)) : Raw outputs of the model.
 
 threshold (`float`, *optional*, defaults to 0.5) : The probability score threshold to keep predicted instance masks.
 
@@ -670,11 +670,11 @@ to `True` to get the correct segmentation result.
 post_process_panoptic_segmentation(outputs, threshold: float = 0.5, mask_threshold: float = 0.5, overlap_mask_area_threshold: float = 0.8, label_ids_to_fuse: set[int] | None = None, target_sizes: list[tuple[int, int]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/image_processing_mask2former.py#L748)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/image_processing_mask2former.py#L748)
 
 **Parameters:**
 
-outputs (`Mask2FormerForUniversalSegmentationOutput`) : The outputs from [Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation).
+outputs (`Mask2FormerForUniversalSegmentationOutput`) : The outputs from [Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation).
 
 threshold (`float`, *optional*, defaults to 0.5) : The probability score threshold to keep predicted instance masks.
 
@@ -710,7 +710,7 @@ predictions. Only supports PyTorch.
 transformers.Mask2FormerImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/image_processing_pil_mask2former.py#L274)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/image_processing_pil_mask2former.py#L274)
 
 #### preprocess[[transformers.Mask2FormerImageProcessorPil.preprocess]]
 
@@ -718,7 +718,7 @@ transformers.Mask2FormerImageProcessorPil(**kwargs: Unpack)
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, instance_id_to_semantic_id: list[dict[int, int]] | dict[int, int] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/image_processing_pil_mask2former.py#L442)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/image_processing_pil_mask2former.py#L442)
 
 **Parameters:**
 
@@ -788,11 +788,11 @@ size_divisor (`int`, *kwargs*, *optional*, defaults to `32`) : Some backbones ne
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple[int, int]] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/image_processing_pil_mask2former.py#L587)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/image_processing_pil_mask2former.py#L587)
 
 **Parameters:**
 
-outputs ([Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation)) : Raw outputs of the model.
+outputs ([Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[tuple[int, int]]`, *optional*) : List of length (batch_size), where each list item (`tuple[int, int]]`) corresponds to the requested final size (height, width) of each prediction. If left to None, predictions will not be resized.
 
@@ -807,7 +807,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation) into semantic segmentation maps. Only supports
+Converts the output of [Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation) into semantic segmentation maps. Only supports
 PyTorch.
 
 #### post_process_instance_segmentation[[transformers.Mask2FormerImageProcessorPil.post_process_instance_segmentation]]
@@ -816,11 +816,11 @@ PyTorch.
 post_process_instance_segmentation(outputs, threshold: float = 0.5, mask_threshold: float = 0.5, overlap_mask_area_threshold: float = 0.8, target_sizes: list[tuple[int, int]] | None = None, return_coco_annotation: bool | None = False, return_binary_maps: bool | None = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/image_processing_pil_mask2former.py#L665)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/image_processing_pil_mask2former.py#L665)
 
 **Parameters:**
 
-outputs ([Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation)) : Raw outputs of the model.
+outputs ([Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation)) : Raw outputs of the model.
 
 threshold (`float`, *optional*, defaults to 0.5) : The probability score threshold to keep predicted instance masks.
 
@@ -856,11 +856,11 @@ to `True` to get the correct segmentation result.
 post_process_panoptic_segmentation(outputs, threshold: float = 0.5, mask_threshold: float = 0.5, overlap_mask_area_threshold: float = 0.8, label_ids_to_fuse: set[int] | None = None, target_sizes: list[tuple[int, int]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mask2former/image_processing_pil_mask2former.py#L788)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mask2former/image_processing_pil_mask2former.py#L788)
 
 **Parameters:**
 
-outputs (`Mask2FormerForUniversalSegmentationOutput`) : The outputs from [Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation).
+outputs (`Mask2FormerForUniversalSegmentationOutput`) : The outputs from [Mask2FormerForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/mask2former#transformers.Mask2FormerForUniversalSegmentation).
 
 threshold (`float`, *optional*, defaults to 0.5) : The probability score threshold to keep predicted instance masks.
 
@@ -889,4 +889,4 @@ Converts the output of `Mask2FormerForUniversalSegmentationOutput` into image pa
 predictions. Only supports PyTorch.
 
 ### ViLT
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/vilt.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/vilt.md

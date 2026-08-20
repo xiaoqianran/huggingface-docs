@@ -60,5 +60,5 @@ It gives your organization more control over access controls, dedicated support 
 - You can request a quote for a contract-based-invoice which allows for more payment options + prepaid credits
 - and more!
 
-### API Reference (Swagger)
-https://huggingface.co/docs/inference-endpoints/api_reference.md
+### Inference Endpoints
+https://huggingface.co/docs/inference-endpoints/index.md

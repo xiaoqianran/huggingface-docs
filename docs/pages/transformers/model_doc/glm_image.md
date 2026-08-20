@@ -136,7 +136,7 @@ print(f"Output tokens: {output_tokens}")
 transformers.GlmImageConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vq_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_id: int = 167855, image_start_token_id: int = 16384, image_end_token_id: int = 16385, tie_word_embeddings: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/configuration_glm_image.py#L147)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/configuration_glm_image.py#L147)
 
 **Parameters:**
 
@@ -158,8 +158,8 @@ This is the configuration class to store the configuration of a GlmImageModel. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [zai-org/GLM-Image](https://huggingface.co/zai-org/GLM-Image)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ```python
 >>> from transformers import Glm4vForConditionalGeneration, Glm4vConfig
@@ -182,7 +182,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.GlmImageVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, depth: int = 40, hidden_size: int = 1536, hidden_act: str = 'gelu', attention_bias: bool = True, attention_dropout: float | int = 0.0, num_heads: int = 16, in_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 2048, patch_size: int | list[int] | tuple[int, int] = 16, spatial_merge_size: int = 1, intermediate_size: int = 6144, initializer_range: float = 0.02, layer_norm_eps: float = 1e-06)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/configuration_glm_image.py#L43)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/configuration_glm_image.py#L43)
 
 **Parameters:**
 
@@ -216,8 +216,8 @@ This is the configuration class to store the configuration of a GlmImageModel. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [zai-org/GLM-Image](https://huggingface.co/zai-org/GLM-Image)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -242,7 +242,7 @@ Example:
 transformers.GlmImageTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 168064, hidden_size: int = 4096, intermediate_size: int = 13696, num_hidden_layers: int = 40, num_attention_heads: int = 32, num_key_value_heads: int | None = 2, hidden_act: str = 'silu', max_position_embeddings: int = 131072, initializer_range: float = 0.02, rms_norm_eps: float = 1e-05, use_cache: bool = True, attention_dropout: float | int = 0.0, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, pad_token_id: int = 167841, vision_vocab_size: int = 16512, attention_bias: bool = True, eos_token_id: int | list[int] | None = 16385)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/configuration_glm_image.py#L80)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/configuration_glm_image.py#L80)
 
 **Parameters:**
 
@@ -274,7 +274,7 @@ rope_parameters (`Union[~modeling_rope_utils.RopeParameters, dict]`, *optional*)
 
 pad_token_id (`int`, *optional*, defaults to `167841`) : Token id used for padding in the vocabulary.
 
-vision_vocab_size (`int`, *optional*, defaults to 16512) : Vision vocabulary size of the GlmImage model. Defines the number of different tokens that can be represented by the `inputs_ids` passed when calling [GlmImageVisionModel](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageVisionModel)
+vision_vocab_size (`int`, *optional*, defaults to 16512) : Vision vocabulary size of the GlmImage model. Defines the number of different tokens that can be represented by the `inputs_ids` passed when calling [GlmImageVisionModel](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageVisionModel)
 
 attention_bias (`bool`, *optional*, defaults to `True`) : Whether to use a bias in the query, key, value and output projection layers during self-attention.
 
@@ -284,8 +284,8 @@ This is the configuration class to store the configuration of a GlmImageModel. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [zai-org/GLM-Image](https://huggingface.co/zai-org/GLM-Image)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -310,7 +310,7 @@ Example:
 transformers.GlmImageVQVAEConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, embed_dim: int = 2048, num_embeddings: int = 16384, latent_channels: int = 1536, in_channels: int = 3, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/configuration_glm_image.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/configuration_glm_image.py#L30)
 
 **Parameters:**
 
@@ -328,8 +328,8 @@ This is the configuration class to store the configuration of a GlmImageModel. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [zai-org/GLM-Image](https://huggingface.co/zai-org/GLM-Image)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## GlmImageImageProcessor[[transformers.GlmImageImageProcessor]]
 
@@ -339,7 +339,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.GlmImageImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/image_processing_glm_image.py#L98)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/image_processing_glm_image.py#L98)
 
 **Parameters:**
 
@@ -401,7 +401,7 @@ Constructs a GlmImageImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/image_processing_glm_image.py#L137)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/image_processing_glm_image.py#L137)
 
 **Parameters:**
 
@@ -473,7 +473,7 @@ merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the 
 transformers.GlmImageImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/image_processing_pil_glm_image.py#L96)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/image_processing_pil_glm_image.py#L96)
 
 **Parameters:**
 
@@ -535,7 +535,7 @@ Constructs a GlmImageImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/image_processing_pil_glm_image.py#L198)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/image_processing_pil_glm_image.py#L198)
 
 **Parameters:**
 
@@ -607,18 +607,18 @@ merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the 
 transformers.GlmImageProcessor(image_processor = None, tokenizer = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/processing_glm_image.py#L59)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/processing_glm_image.py#L59)
 
 **Parameters:**
 
-image_processor ([GlmImageProcessor](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageProcessor), *optional*) : The image processor is a required input.
+image_processor ([GlmImageProcessor](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageProcessor), *optional*) : The image processor is a required input.
 
-tokenizer ([PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend), *optional*) : The tokenizer is a required input.
+tokenizer ([PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend), *optional*) : The tokenizer is a required input.
 
 chat_template (`str`, *optional*) : A Jinja template which will be used to convert lists of messages in a chat into a tokenizable string.
 
 Constructs a GLM-Image processor which wraps a GLM-Image image processor and a GLM-Image tokenizer into a single processor.
-[__call__()](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageProcessor.__call__) and [decode()](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutProcessor.decode) for more information.
+[__call__()](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageProcessor.__call__) and [decode()](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutProcessor.decode) for more information.
 
 #### __call__[[transformers.GlmImageProcessor.__call__]]
 
@@ -626,7 +626,7 @@ Constructs a GLM-Image processor which wraps a GLM-Image image processor and a G
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/processing_glm_image.py#L83)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/processing_glm_image.py#L83)
 
 **Parameters:**
 
@@ -634,11 +634,11 @@ images (`PIL.Image.Image`, `np.ndarray`, `torch.Tensor`, `List[PIL.Image.Image]`
 
 text (`str`, `List[str]`, `List[List[str]]`) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If the sequences are provided as list of strings (pretokenized), you must set `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are: - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature)
 
-A [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
+A [BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model. Returned when `text` is not `None`.
 - **attention_mask** -- List of indices specifying which tokens should be attended to by the model (when
@@ -648,7 +648,7 @@ A [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#tran
 - **image_grid_thw** -- List of image 3D grid in LLM. Returned when `images` is not `None`.
 
 Main method to prepare for the model one or several sequences(s) and image(s). This method forwards the `text`
-and `kwargs` arguments to PreTrainedTokenizerFast's [__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) if `text` is not `None` to encode
+and `kwargs` arguments to PreTrainedTokenizerFast's [__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) if `text` is not `None` to encode
 the text.
 
 ## GlmImageVisionModel[[transformers.GlmImageVisionModel]]
@@ -659,7 +659,7 @@ the text.
 transformers.GlmImageVisionModel(config: GlmImageVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/modeling_glm_image.py#L558)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/modeling_glm_image.py#L558)
 
 #### forward[[transformers.GlmImageVisionModel.forward]]
 
@@ -667,7 +667,7 @@ transformers.GlmImageVisionModel(config: GlmImageVisionConfig)
 forward(pixel_values: Tensor, grid_thw: Tensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/modeling_glm_image.py#L592)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/modeling_glm_image.py#L592)
 
 **Parameters:**
 
@@ -679,7 +679,7 @@ grid_thw (`torch.Tensor` of shape `(num_images, 3)`) : The temporal, height and 
 
 Hidden states.
 
-The [GlmImageVisionModel](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageVisionModel) forward method, overrides the `__call__` special method.
+The [GlmImageVisionModel](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -693,15 +693,15 @@ the latter silently ignores them.
 transformers.GlmImageTextModel(config: GlmImageTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/modeling_glm_image.py#L789)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/modeling_glm_image.py#L789)
 
 **Parameters:**
 
-config ([GlmImageTextConfig](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([GlmImageTextConfig](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Glm Image Text Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -715,29 +715,29 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/modeling_glm_image.py#L813)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/modeling_glm_image.py#L813)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+A [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [GlmImageTextModel](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageTextModel) forward method, overrides the `__call__` special method.
+The [GlmImageTextModel](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -747,7 +747,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -770,18 +770,18 @@ the latter silently ignores them.
 transformers.GlmImageVQVAE(config: GlmImageVQVAEConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/modeling_glm_image.py#L530)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/modeling_glm_image.py#L530)
 
 **Parameters:**
 
-config ([GlmImageVQVAEConfig](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageVQVAEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([GlmImageVQVAEConfig](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageVQVAEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The VQ-VAE model used in GlmImage for encoding/decoding images into discrete tokens.
 This model follows the "Make-a-scene: Scene-based text-to-image generation with human priors" paper from
 [ Oran Gafni, Adam Polyak, Oron Ashual, Shelly Sheynin, Devi Parikh, and Yaniv
 Taigman](https://huggingface.co/papers/2203.13131).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -809,15 +809,15 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 transformers.GlmImageModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/modeling_glm_image.py#L894)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/modeling_glm_image.py#L894)
 
 **Parameters:**
 
-config ([GlmImageModel](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([GlmImageModel](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Glm Image Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -831,17 +831,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, images_per_sample: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/modeling_glm_image.py#L1223)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/modeling_glm_image.py#L1223)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -857,7 +857,7 @@ A `GlmImageModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [GlmImageModel](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageModel) forward method, overrides the `__call__` special method.
+The [GlmImageModel](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -867,7 +867,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -890,19 +890,19 @@ the latter silently ignores them.
 get_image_features(pixel_values: FloatTensor, image_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/modeling_glm_image.py#L1136)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/modeling_glm_image.py#L1136)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GlmImageImageProcessor](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageImageProcessor). See `GlmImageImageProcessor.__call__()` for details ([GlmImageProcessor](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageProcessor) uses [GlmImageImageProcessor](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GlmImageImageProcessor](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageImageProcessor). See `GlmImageImageProcessor.__call__()` for details ([GlmImageProcessor](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageProcessor) uses [GlmImageImageProcessor](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([GlmImageConfig](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageConfig)) and inputs.
+elements depending on the configuration ([GlmImageConfig](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -927,7 +927,7 @@ elements depending on the configuration ([GlmImageConfig](/docs/transformers/v5.
 transformers.GlmImageForConditionalGeneration(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/modeling_glm_image.py#L1363)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/modeling_glm_image.py#L1363)
 
 #### forward[[transformers.GlmImageForConditionalGeneration.forward]]
 
@@ -935,7 +935,7 @@ transformers.GlmImageForConditionalGeneration(config)
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, images_per_sample: typing.Optional[torch.LongTensor] = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/modeling_glm_image.py#L1390)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/modeling_glm_image.py#L1390)
 
 images_per_sample (`torch.LongTensor` of shape `(batch_size,)`, *optional*):
 Number of images (including target grids) for each sample in the batch.
@@ -979,19 +979,19 @@ Example:
 get_image_features(pixel_values: FloatTensor, image_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/glm_image/modeling_glm_image.py#L1378)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/glm_image/modeling_glm_image.py#L1378)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GlmImageImageProcessor](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageImageProcessor). See `GlmImageImageProcessor.__call__()` for details ([GlmImageProcessor](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageProcessor) uses [GlmImageImageProcessor](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GlmImageImageProcessor](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageImageProcessor). See `GlmImageImageProcessor.__call__()` for details ([GlmImageProcessor](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageProcessor) uses [GlmImageImageProcessor](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([GlmImageConfig](/docs/transformers/v5.15.0/en/model_doc/glm_image#transformers.GlmImageConfig)) and inputs.
+elements depending on the configuration ([GlmImageConfig](/docs/transformers/v5.15.1/en/model_doc/glm_image#transformers.GlmImageConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -1009,4 +1009,4 @@ elements depending on the configuration ([GlmImageConfig](/docs/transformers/v5.
   heads.
 
 ### IDEFICS
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/idefics.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/idefics.md

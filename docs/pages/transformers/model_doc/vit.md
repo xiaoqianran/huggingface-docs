@@ -7,7 +7,7 @@ You can find all the original ViT checkpoints under the [Google](https://hugging
 > [!TIP]
 > Click on the ViT models in the right sidebar for more examples of how to apply ViT to different computer vision tasks.
 
-The example below demonstrates how to classify an image with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to classify an image with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -52,7 +52,7 @@ print(f"The predicted class label is: {predicted_class_label}")
 ## Notes
 
 - The best results are obtained with supervised pretraining, and during fine-tuning, it may be better to use images with a resolution higher than 224x224.
-- Use [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) to resize (or rescale) and normalize images to the expected size.
+- Use [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) to resize (or rescale) and normalize images to the expected size.
 - The patch and image resolution are reflected in the checkpoint name. For example, google/vit-base-patch16-224, is the **base-sized** architecture with a patch resolution of 16x16 and fine-tuning resolution of 224x224.
 
 ## ViTConfig[[transformers.ViTConfig]]
@@ -63,7 +63,7 @@ print(f"The predicted class label is: {predicted_class_label}")
 transformers.ViTConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, qkv_bias: bool = True, encoder_stride: int = 16, pooler_output_size: int | None = None, pooler_act: str = 'tanh')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vit/configuration_vit.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vit/configuration_vit.py#L24)
 
 **Parameters:**
 
@@ -103,8 +103,8 @@ This is the configuration class to store the configuration of a ViTModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/vit-base-patch16-224](https://huggingface.co/google/vit-base-patch16-224)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -129,7 +129,7 @@ Example:
 transformers.ViTImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vit/image_processing_vit.py#L20)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vit/image_processing_vit.py#L20)
 
 #### preprocess[[transformers.ViTImageProcessor.preprocess]]
 
@@ -137,7 +137,7 @@ transformers.ViTImageProcessor(**kwargs: Unpack)
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -197,7 +197,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.ViTImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vit/image_processing_pil_vit.py#L20)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vit/image_processing_pil_vit.py#L20)
 
 #### preprocess[[transformers.ViTImageProcessorPil.preprocess]]
 
@@ -205,7 +205,7 @@ transformers.ViTImageProcessorPil(**kwargs: Unpack)
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -265,11 +265,11 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.ViTModel(config: ViTConfig, add_pooling_layer: bool = True, use_mask_token: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vit/modeling_vit.py#L336)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vit/modeling_vit.py#L336)
 
 **Parameters:**
 
-config ([ViTConfig](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ViTConfig](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
@@ -277,7 +277,7 @@ use_mask_token (`bool`, *optional*, defaults to `False`) : Whether to use a mask
 
 The bare Vit Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -291,11 +291,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, interpolate_pos_encoding: bool | None = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vit/modeling_vit.py#L353)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vit/modeling_vit.py#L353)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`, *optional*) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
@@ -303,13 +303,13 @@ interpolate_pos_encoding (`bool`, *optional*) : Whether to interpolate the pre-t
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ViTConfig](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTConfig)) and inputs.
+elements depending on the configuration ([ViTConfig](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTConfig)) and inputs.
 
-The [ViTModel](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTModel) forward method, overrides the `__call__` special method.
+The [ViTModel](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -343,18 +343,18 @@ Example:
 transformers.ViTForMaskedImageModeling(config: ViTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vit/modeling_vit.py#L403)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vit/modeling_vit.py#L403)
 
 **Parameters:**
 
-config ([ViTConfig](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ViTConfig](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 ViT Model with a decoder on top for masked image modeling, as proposed in [SimMIM](https://huggingface.co/papers/2111.09886).
 
 Note that we provide a script to pre-train this model on custom data in our [examples
 directory](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-pretraining).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -368,11 +368,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, interpolate_pos_encoding: bool | None = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vit/modeling_vit.py#L421)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vit/modeling_vit.py#L421)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
@@ -384,9 +384,9 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 A `MaskedImageModelingOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ViTConfig](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTConfig)) and inputs.
+elements depending on the configuration ([ViTConfig](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTConfig)) and inputs.
 
-The [ViTForMaskedImageModeling](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTForMaskedImageModeling) forward method, overrides the `__call__` special method.
+The [ViTForMaskedImageModeling](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTForMaskedImageModeling) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -437,11 +437,11 @@ Examples:
 transformers.ViTForImageClassification(config: ViTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vit/modeling_vit.py#L522)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vit/modeling_vit.py#L522)
 
 **Parameters:**
 
-config ([ViTConfig](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ViTConfig](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 ViT Model transformer with an image classification head on top (a linear layer on top of the final hidden state of
 the [CLS] token) e.g. for ImageNet.
@@ -450,7 +450,7 @@ Note that it's possible to fine-tune ViT on higher resolution images than the on
 setting `interpolate_pos_encoding` to `True` in the forward of the model. This will interpolate the pre-trained
 position embeddings to the higher resolution.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -464,11 +464,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool | None = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vit/modeling_vit.py#L535)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vit/modeling_vit.py#L535)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
@@ -476,13 +476,13 @@ interpolate_pos_encoding (`bool`, *optional*) : Whether to interpolate the pre-t
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
+A [ImageClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ViTConfig](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTConfig)) and inputs.
+elements depending on the configuration ([ViTConfig](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTConfig)) and inputs.
 
-The [ViTForImageClassification](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTForImageClassification) forward method, overrides the `__call__` special method.
+The [ViTForImageClassification](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -524,4 +524,4 @@ Example:
 ```
 
 ### EXAONE MoE
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/exaone_moe.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/exaone_moe.md

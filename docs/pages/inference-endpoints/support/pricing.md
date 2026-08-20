@@ -128,5 +128,5 @@ $0.5/hr * ((730hr * 1 replica) + (182.5hr * 2 replicas)) = $547.5/month
 
 ![advanced-chart](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/advanced-chart.png)
 
-### FAQs
-https://huggingface.co/docs/inference-endpoints/support/faq.md
+### Custom Router
+https://huggingface.co/docs/inference-endpoints/guides/custom_router.md

@@ -49,4 +49,4 @@ GPU1    PHB      X      0-11            N/A
 -  See the [Which GPU(s) to Get for Deep Learning](https://timdettmers.com/2023/01/30/which-gpu-for-deep-learning/) blog post for a deeper comparison of GPUs.
 
 ### Philosophy
-https://huggingface.co/docs/transformers/v5.15.0/philosophy.md
+https://huggingface.co/docs/transformers/v5.15.1/philosophy.md

@@ -1,8 +1,8 @@
 # Callbacks
 
-[TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) hooks into specific training events (epoch start, evaluation, training end) to modify training state or control flow. Use callbacks to log metrics to experiment trackers like Trackio, customize when saving and evaluation happen, or add other custom behavior. Stack multiple callbacks to combine features.
+[TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) hooks into specific training events (epoch start, evaluation, training end) to modify training state or control flow. Use callbacks to log metrics to experiment trackers like Trackio, customize when saving and evaluation happen, or add other custom behavior. Stack multiple callbacks to combine features.
 
-Callbacks can't modify the training loop itself, like the forward pass. To change what [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) computes, [subclass](./trainer_customize) its methods instead.
+Callbacks can't modify the training loop itself, like the forward pass. To change what [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) computes, [subclass](./trainer_customize) its methods instead.
 
 The diagram below shows every event a callback can hook into.
 
@@ -29,10 +29,10 @@ on_push_begin
 
 ## Creating a callback
 
-Subclass [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) and override one or more event methods from the diagram above. The example below demonstrates three hooks:
+Subclass [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) and override one or more event methods from the diagram above. The example below demonstrates three hooks:
 
-- `on_epoch_begin` prints the current epoch from [TrainerState](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerState) (a live value) and the learning rate from [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) (a static value).
-- `on_step_end` reads the current learning rate from the lr_scheduler (passed via `**kwargs`) and sets `should_evaluate` on [TrainerControl](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerControl) (see [TrainerControl](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerControl) for a complete list of control objects) to trigger an evaluation when it drops below the threshold.
+- `on_epoch_begin` prints the current epoch from [TrainerState](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerState) (a live value) and the learning rate from [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) (a static value).
+- `on_step_end` reads the current learning rate from the lr_scheduler (passed via `**kwargs`) and sets `should_evaluate` on [TrainerControl](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerControl) (see [TrainerControl](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerControl) for a complete list of control objects) to trigger an evaluation when it drops below the threshold.
 - `on_train_end` prints the best metric and the step where it occurred.
 
 ```python
@@ -57,7 +57,7 @@ class EpochLoggerCallback(TrainerCallback):
         print(f"Training complete! Best metric: {state.best_metric} at step {state.best_global_step}")
 ```
 
-Register the callback with [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) in the `callbacks` argument. You can also pass multiple callbacks as a list.
+Register the callback with [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) in the `callbacks` argument. You can also pass multiple callbacks as a list.
 
 ```python
 trainer = Trainer(
@@ -72,18 +72,18 @@ Transformers includes several built-in callbacks that are active by default. Add
 
 ### DefaultFlowCallback
 
-[DefaultFlowCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.DefaultFlowCallback) manages the default logging, evaluation, and checkpoint schedule based on the `logging_strategy`, `eval_strategy`, and `save_strategy` values in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments). At the right step or epoch, it sets the corresponding `control` flags (`should_log`, `should_evaluate`, `should_save`). It also sets `should_training_stop` when `global_step` reaches `max_steps`.
+[DefaultFlowCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.DefaultFlowCallback) manages the default logging, evaluation, and checkpoint schedule based on the `logging_strategy`, `eval_strategy`, and `save_strategy` values in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments). At the right step or epoch, it sets the corresponding `control` flags (`should_log`, `should_evaluate`, `should_save`). It also sets `should_training_stop` when `global_step` reaches `max_steps`.
 
 Overriding this callback is the main way to customize *when* logging, evaluation, or saving happens.
 
 ### ProgressCallback and PrinterCallback
 
-[Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) automatically picks between these two callbacks based on the [disable_tqdm](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments.disable_tqdm) field in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments).
+[Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) automatically picks between these two callbacks based on the [disable_tqdm](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments.disable_tqdm) field in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments).
 
-- [ProgressCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.ProgressCallback) is used by default. It displays a tqdm progress bar during training and a separate bar during evaluation or prediction, and prints the latest metrics on each `on_log` event. During distributed training, it only runs on the main process to avoid duplicate output.
-- [PrinterCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.PrinterCallback) is used when `disable_tqdm=True`. It prints the log dictionary to stdout on every `on_log` event with no progress bar.
+- [ProgressCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.ProgressCallback) is used by default. It displays a tqdm progress bar during training and a separate bar during evaluation or prediction, and prints the latest metrics on each `on_log` event. During distributed training, it only runs on the main process to avoid duplicate output.
+- [PrinterCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.PrinterCallback) is used when `disable_tqdm=True`. It prints the log dictionary to stdout on every `on_log` event with no progress bar.
 
-You can also swap them manually with [remove_callback()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.remove_callback) and [add_callback()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.add_callback).
+You can also swap them manually with [remove_callback()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.remove_callback) and [add_callback()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.add_callback).
 
 ```py
 from transformers import PrinterCallback
@@ -95,9 +95,9 @@ trainer.add_callback(PrinterCallback)
 
 ### EarlyStoppingCallback
 
-[EarlyStoppingCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.EarlyStoppingCallback) stops training when an evaluation metric stops improving. After each evaluation, it checks whether the metric improved by more than `early_stopping_threshold`. If the metric hasn't improved for `early_stopping_patience` consecutive evaluations, training stops.
+[EarlyStoppingCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.EarlyStoppingCallback) stops training when an evaluation metric stops improving. After each evaluation, it checks whether the metric improved by more than `early_stopping_threshold`. If the metric hasn't improved for `early_stopping_patience` consecutive evaluations, training stops.
 
-[EarlyStoppingCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.EarlyStoppingCallback) requires two [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments):
+[EarlyStoppingCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.EarlyStoppingCallback) requires two [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments):
 
 - `metric_for_best_model`, the evaluation metric to monitor
 - `eval_strategy`, whether to evaluate on `"steps"` or `"epoch"`
@@ -114,7 +114,7 @@ trainer = Trainer(
 ## Next steps
 
 - See all available [integrated callbacks](./main_classes/callback#available-callbacks) for logging to experiment trackers.
-- The [Subclassing Trainer methods](./trainer_customize) guide covers overriding [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) methods when you need to change what the training loop computes.
+- The [Subclassing Trainer methods](./trainer_customize) guide covers overriding [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) methods when you need to change what the training loop computes.
 
 ### GPU memory usage
-https://huggingface.co/docs/transformers/v5.15.0/model_memory_anatomy.md
+https://huggingface.co/docs/transformers/v5.15.1/model_memory_anatomy.md

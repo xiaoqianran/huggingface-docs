@@ -13,7 +13,7 @@ You can find all the original RAG checkpoints under the [AI at Meta](https://hug
 >
 > Click on the RAG models in the right sidebar for more examples of how to apply RAG to different language tasks.
 
-The examples below demonstrate how to generate text with [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel).
+The examples below demonstrate how to generate text with [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 from transformers import RagRetriever, RagSequenceForGeneration, RagTokenizer
@@ -68,7 +68,7 @@ print(tokenizer.batch_decode(generated, skip_special_tokens=True)[0])
 transformers.RagConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, vocab_size: int | None = None, prefix: str | None = None, bos_token_id: int | None = None, pad_token_id: int | None = None, eos_token_id: int | list[int] | None = None, decoder_start_token_id: int | None = None, title_sep: str = ' / ', doc_sep: str = ' // ', n_docs: int = 5, max_combined_length: int = 300, retrieval_vector_size: int = 768, retrieval_batch_size: int = 8, dataset: str = 'wiki_dpr', dataset_split: str = 'train', index_name: str = 'compressed', index_path: str | None = None, passages_path: str | None = None, use_dummy_dataset: bool = False, reduce_loss: bool = False, label_smoothing: float = 0.0, do_deduplication: bool = True, exclude_bos_score: bool = False, do_marginalize: bool = False, output_retrieved: bool = False, use_cache: bool = True, dataset_revision: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/configuration_rag.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/configuration_rag.py#L25)
 
 **Parameters:**
 
@@ -86,17 +86,17 @@ eos_token_id (`Union[int, list[int]]`, *optional*) : Token id used for end-of-st
 
 decoder_start_token_id (`int`, *optional*) : If an encoder-decoder model starts decoding with a different token than `bos`, the id of that token.
 
-title_sep (`str`, *optional*, defaults to  `" / "`) : Separator inserted between the title and the text of the retrieved document when calling [RagRetriever](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagRetriever).
+title_sep (`str`, *optional*, defaults to  `" / "`) : Separator inserted between the title and the text of the retrieved document when calling [RagRetriever](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagRetriever).
 
-doc_sep (`str`, *optional*, defaults to  `" // "`) : Separator inserted between the text of the retrieved document and the original input when calling [RagRetriever](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagRetriever).
+doc_sep (`str`, *optional*, defaults to  `" // "`) : Separator inserted between the text of the retrieved document and the original input when calling [RagRetriever](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagRetriever).
 
 n_docs (`int`, *optional*, defaults to 5) : Number of documents to retrieve.
 
 max_combined_length (`int`, *optional*, defaults to 300) : Max length of contextualized input returned by `__call__()`.
 
-retrieval_vector_size (`int`, *optional*, defaults to 768) : Dimensionality of the document embeddings indexed by [RagRetriever](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagRetriever).
+retrieval_vector_size (`int`, *optional*, defaults to 768) : Dimensionality of the document embeddings indexed by [RagRetriever](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagRetriever).
 
-retrieval_batch_size (`int`, *optional*, defaults to 8) : Retrieval batch size, defined as the number of queries issues concurrently to the faiss index encapsulated [RagRetriever](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagRetriever).
+retrieval_batch_size (`int`, *optional*, defaults to 8) : Retrieval batch size, defined as the number of queries issues concurrently to the faiss index encapsulated [RagRetriever](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagRetriever).
 
 dataset (`str`, *optional*, defaults to `"wiki_dpr"`) : A dataset identifier of the indexed dataset in HuggingFace Datasets (list all available datasets and ids using `datasets.list_datasets()`).
 
@@ -130,8 +130,8 @@ This is the configuration class to store the configuration of a RagModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [](https://huggingface.co/)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 #### from_question_encoder_generator_configs[[transformers.RagConfig.from_question_encoder_generator_configs]]
 
@@ -139,13 +139,13 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 from_question_encoder_generator_configs(question_encoder_config: PreTrainedConfig, generator_config: PreTrainedConfig, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/configuration_rag.py#L126)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/configuration_rag.py#L126)
 
-**Returns:** [EncoderDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderConfig)
+**Returns:** [EncoderDecoderConfig](/docs/transformers/v5.15.1/en/model_doc/encoder-decoder#transformers.EncoderDecoderConfig)
 
 An instance of a configuration object
 
-Instantiate a [EncoderDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/encoder-decoder#transformers.EncoderDecoderConfig) (or a derived class) from a pre-trained encoder model configuration and
+Instantiate a [EncoderDecoderConfig](/docs/transformers/v5.15.1/en/model_doc/encoder-decoder#transformers.EncoderDecoderConfig) (or a derived class) from a pre-trained encoder model configuration and
 decoder model configuration.
 
 ## RagTokenizer[[transformers.RagTokenizer]]
@@ -156,7 +156,7 @@ decoder model configuration.
 transformers.RagTokenizer(question_encoder, generator)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/tokenization_rag.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/tokenization_rag.py#L25)
 
 ## Rag specific outputs[[transformers.models.rag.modeling_rag.RetrievAugLMMarginOutput]]
 
@@ -166,7 +166,7 @@ transformers.RagTokenizer(question_encoder, generator)
 transformers.models.rag.modeling_rag.RetrievAugLMMarginOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, doc_scores: typing.Optional[torch.FloatTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, retrieved_doc_embeds: typing.Optional[torch.FloatTensor] = None, retrieved_doc_ids: typing.Optional[torch.LongTensor] = None, context_input_ids: typing.Optional[torch.LongTensor] = None, context_attention_mask: typing.Optional[torch.LongTensor] = None, question_encoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, question_enc_hidden_states: tuple[torch.FloatTensor, ...] | None = None, question_enc_attentions: tuple[torch.FloatTensor, ...] | None = None, generator_enc_last_hidden_state: typing.Optional[torch.FloatTensor] = None, generator_enc_hidden_states: tuple[torch.FloatTensor, ...] | None = None, generator_enc_attentions: tuple[torch.FloatTensor, ...] | None = None, generator_dec_hidden_states: tuple[torch.FloatTensor, ...] | None = None, generator_dec_attentions: tuple[torch.FloatTensor, ...] | None = None, generator_cross_attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/modeling_rag.py#L42)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/modeling_rag.py#L42)
 
 **Parameters:**
 
@@ -176,7 +176,7 @@ logits (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab
 
 doc_scores (`torch.FloatTensor` of shape `(batch_size, config.n_docs)`) : Score between each retrieved document embeddings (see `retrieved_doc_embeds`) and `question_encoder_last_hidden_state`.
 
-past_key_values (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains precomputed hidden-states (key and values in the attention blocks) of the decoder that can be used (see `past_key_values` input) to speed up sequential decoding.
+past_key_values (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains precomputed hidden-states (key and values in the attention blocks) of the decoder that can be used (see `past_key_values` input) to speed up sequential decoding.
 
 retrieved_doc_embeds (`torch.FloatTensor` of shape `(batch_size, config.n_docs, hidden_size)`, *optional*, returned when *output_retrieved=True*) : Embedded documents retrieved by the retriever. Is used with `question_encoder_last_hidden_state` to compute the `doc_scores`.
 
@@ -212,7 +212,7 @@ Base class for retriever augmented marginalized models outputs.
 transformers.models.rag.modeling_rag.RetrievAugLMOutput(logits: typing.Optional[torch.FloatTensor] = None, doc_scores: typing.Optional[torch.FloatTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, retrieved_doc_embeds: typing.Optional[torch.FloatTensor] = None, retrieved_doc_ids: typing.Optional[torch.LongTensor] = None, context_input_ids: typing.Optional[torch.LongTensor] = None, context_attention_mask: typing.Optional[torch.LongTensor] = None, question_encoder_last_hidden_state: typing.Optional[torch.FloatTensor] = None, question_enc_hidden_states: tuple[torch.FloatTensor, ...] | None = None, question_enc_attentions: tuple[torch.FloatTensor, ...] | None = None, generator_enc_last_hidden_state: typing.Optional[torch.FloatTensor] = None, generator_enc_hidden_states: tuple[torch.FloatTensor, ...] | None = None, generator_enc_attentions: tuple[torch.FloatTensor, ...] | None = None, generator_dec_hidden_states: tuple[torch.FloatTensor, ...] | None = None, generator_dec_attentions: tuple[torch.FloatTensor, ...] | None = None, generator_cross_attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/modeling_rag.py#L134)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/modeling_rag.py#L134)
 
 **Parameters:**
 
@@ -220,7 +220,7 @@ logits (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab
 
 doc_scores (`torch.FloatTensor` of shape `(batch_size, config.n_docs)`) : Score between each retrieved document embeddings (see `retrieved_doc_embeds`) and `question_encoder_last_hidden_state`.
 
-past_key_values (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains precomputed hidden-states (key and values in the attention blocks) of the decoder that can be used (see `past_key_values` input) to speed up sequential decoding.
+past_key_values (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) : It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).  Contains precomputed hidden-states (key and values in the attention blocks) of the decoder that can be used (see `past_key_values` input) to speed up sequential decoding.
 
 retrieved_doc_embeds (`torch.FloatTensor` of shape `(batch_size, config.n_docs, hidden_size)`, *optional*, returned when *output_retrieved=True*) : Embedded documents retrieved by the retriever. Is used with `question_encoder_last_hidden_state` to compute the `doc_scores`.
 
@@ -256,15 +256,15 @@ generator_cross_attentions (`tuple(torch.FloatTensor)`, *optional*, returned whe
 transformers.RagRetriever(config, question_encoder_tokenizer, generator_tokenizer, index = None, init_retrieval = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/retrieval_rag.py#L347)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/retrieval_rag.py#L347)
 
 **Parameters:**
 
-config ([RagConfig](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagConfig)) : The configuration of the RAG model this Retriever is used with. Contains parameters indicating which `Index` to build. You can load your own custom dataset with `config.index_name="custom"` or use a canonical one (default) from the datasets library with `config.index_name="wiki_dpr"` for example.
+config ([RagConfig](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagConfig)) : The configuration of the RAG model this Retriever is used with. Contains parameters indicating which `Index` to build. You can load your own custom dataset with `config.index_name="custom"` or use a canonical one (default) from the datasets library with `config.index_name="wiki_dpr"` for example.
 
-question_encoder_tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)) : The tokenizer that was used to tokenize the question. It is used to decode the question and then use the generator_tokenizer.
+question_encoder_tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend)) : The tokenizer that was used to tokenize the question. It is used to decode the question and then use the generator_tokenizer.
 
-generator_tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend)) : The tokenizer used for the generator part of the RagModel.
+generator_tokenizer ([PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend)) : The tokenizer used for the generator part of the RagModel.
 
 index (`Index`, optional, defaults to the one defined by the configuration) : If specified, use this index instead of the one built using the configuration
 
@@ -313,7 +313,7 @@ Examples:
 init_retrieval()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/retrieval_rag.py#L482)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/retrieval_rag.py#L482)
 
 Retriever initialization function. It loads the index into memory.
 
@@ -323,7 +323,7 @@ Retriever initialization function. It loads the index into memory.
 postprocess_docs(docs, input_strings, prefix, n_docs, return_tensors = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/retrieval_rag.py#L490)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/retrieval_rag.py#L490)
 
 **Parameters:**
 
@@ -346,7 +346,7 @@ Postprocessing retrieved `docs` and combining them with `input_strings`.
 retrieve(question_hidden_states: ndarray, n_docs: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/retrieval_rag.py#L559)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/retrieval_rag.py#L559)
 
 **Parameters:**
 
@@ -373,11 +373,11 @@ Retrieves documents for specified `question_hidden_states`.
 transformers.RagModel(config: transformers.configuration_utils.PreTrainedConfig | None = None, question_encoder: transformers.modeling_utils.PreTrainedModel | None = None, generator: transformers.modeling_utils.PreTrainedModel | None = None, retriever: transformers.models.rag.retrieval_rag.RagRetriever | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/modeling_rag.py#L372)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/modeling_rag.py#L372)
 
 **Parameters:**
 
-config ([PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig), *optional*) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig), *optional*) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 question_encoder (`PreTrainedModel`, *optional*) : The model responsible for encoding the question into hidden states for retrieval.
 
@@ -387,7 +387,7 @@ retriever (`RagRetriever`, *optional*) : The component responsible for retrievin
 
 The bare Rag Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -401,23 +401,23 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, encoder_outputs: tuple[tuple[torch.FloatTensor]] | None = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.BoolTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, doc_scores: typing.Optional[torch.FloatTensor] = None, context_input_ids: typing.Optional[torch.LongTensor] = None, context_attention_mask: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, output_retrieved: bool | None = None, n_docs: int | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/modeling_rag.py#L425)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/modeling_rag.py#L425)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. [RagConfig](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagConfig), used to initialize the model, specifies which generator to use, it also specifies a compatible generator tokenizer. Use that tokenizer class to obtain the indices.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. [RagConfig](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagConfig), used to initialize the model, specifies which generator to use, it also specifies a compatible generator tokenizer. Use that tokenizer class to obtain the indices.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-encoder_outputs (`tuple(tuple(torch.FloatTensor)`, *optional*) : Tuple consists of (`generator_enc_last_hidden_state`, *optional*: `generator_enc_hidden_states`, *optional*: `generator_enc_attentions`). `generator_enc_last_hidden_state` of shape `(batch_size, n_docs * sequence_length, hidden_size)` is a sequence of hidden-states at the output of the last layer of the generator's encoder.  Used by the ([RagModel](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagModel)) model during decoding.
+encoder_outputs (`tuple(tuple(torch.FloatTensor)`, *optional*) : Tuple consists of (`generator_enc_last_hidden_state`, *optional*: `generator_enc_hidden_states`, *optional*: `generator_enc_attentions`). `generator_enc_last_hidden_state` of shape `(batch_size, n_docs * sequence_length, hidden_size)` is a sequence of hidden-states at the output of the last layer of the generator's encoder.  Used by the ([RagModel](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagModel)) model during decoding.
 
 decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Provide for generation tasks. `None` by default, construct as per instructions for the generator model you're using with your RAG instance.
 
-decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are decoder input IDs?](../glossary#decoder-input-ids)
+decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are decoder input IDs?](../glossary#decoder-input-ids)
 
 decoder_attention_mask (`torch.BoolTensor` of shape `(batch_size,  target_sequence_length)`, *optional*) : Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also be used by default.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 doc_scores (`torch.FloatTensor` of shape `(batch_size, config.n_docs)`) : Score between each retrieved document embeddings (see `retrieved_doc_embeds`) and `question_encoder_last_hidden_state`. If the model has is not initialized with a `retriever` `doc_scores` has to be provided to the forward pass. `doc_scores` can be computed via `question_encoder_last_hidden_state` and `retrieved_doc_embeds`, see examples for more information.
 
@@ -435,13 +435,13 @@ output_retrieved (`bool`, *optional*) : Whether or not to return the `retrieved_
 
 n_docs (`int`, *optional*) : The number of documents to retrieve.
 
-**Returns:** [RetrievAugLMOutput](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.models.rag.modeling_rag.RetrievAugLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [RetrievAugLMOutput](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.models.rag.modeling_rag.RetrievAugLMOutput) or `tuple(torch.FloatTensor)`
 
-A [RetrievAugLMOutput](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.models.rag.modeling_rag.RetrievAugLMOutput) or a tuple of
+A [RetrievAugLMOutput](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.models.rag.modeling_rag.RetrievAugLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([RagConfig](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagConfig)) and inputs.
+elements depending on the configuration ([RagConfig](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagConfig)) and inputs.
 
-The [RagModel](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagModel) forward method, overrides the `__call__` special method.
+The [RagModel](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -451,7 +451,7 @@ the latter silently ignores them.
   each vocabulary token.
 - **doc_scores** (`torch.FloatTensor` of shape `(batch_size, config.n_docs)`) -- Score between each retrieved document embeddings (see `retrieved_doc_embeds`) and
   `question_encoder_last_hidden_state`.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains precomputed hidden-states (key and values in the attention blocks) of the decoder that can be used
   (see `past_key_values` input) to speed up sequential decoding.
@@ -522,11 +522,11 @@ Example:
 transformers.RagSequenceForGeneration(config: transformers.configuration_utils.PreTrainedConfig | None = None, question_encoder: transformers.modeling_utils.PreTrainedModel | None = None, generator: transformers.modeling_utils.PreTrainedModel | None = None, retriever: transformers.models.rag.retrieval_rag.RagRetriever | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/modeling_rag.py#L663)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/modeling_rag.py#L663)
 
 **Parameters:**
 
-config ([PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig), *optional*) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig), *optional*) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 question_encoder (`PreTrainedModel`, *optional*) : The model responsible for encoding the question into hidden states for retrieval.
 
@@ -536,7 +536,7 @@ retriever (`RagRetriever`, *optional*) : The component responsible for retrievin
 
 A RAG-sequence model implementation. It performs RAG-sequence specific marginalization in the forward pass.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -550,23 +550,23 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, encoder_outputs: tuple[tuple[torch.Tensor]] | None = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.BoolTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, context_input_ids: typing.Optional[torch.LongTensor] = None, context_attention_mask: typing.Optional[torch.LongTensor] = None, doc_scores: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, output_retrieved: bool | None = None, exclude_bos_score: bool | None = None, reduce_loss: bool | None = None, labels: typing.Optional[torch.LongTensor] = None, n_docs: int | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/modeling_rag.py#L702)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/modeling_rag.py#L702)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. [RagConfig](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagConfig), used to initialize the model, specifies which generator to use, it also specifies a compatible generator tokenizer. Use that tokenizer class to obtain the indices.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. [RagConfig](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagConfig), used to initialize the model, specifies which generator to use, it also specifies a compatible generator tokenizer. Use that tokenizer class to obtain the indices.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-encoder_outputs (`tuple(tuple(torch.FloatTensor)`, *optional*) : Tuple consists of (`generator_enc_last_hidden_state`, *optional*: `generator_enc_hidden_states`, *optional*: `generator_enc_attentions`). `generator_enc_last_hidden_state` of shape `(batch_size, n_docs * sequence_length, hidden_size)` is a sequence of hidden-states at the output of the last layer of the generator's encoder.  Used by the ([RagModel](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagModel)) model during decoding.
+encoder_outputs (`tuple(tuple(torch.FloatTensor)`, *optional*) : Tuple consists of (`generator_enc_last_hidden_state`, *optional*: `generator_enc_hidden_states`, *optional*: `generator_enc_attentions`). `generator_enc_last_hidden_state` of shape `(batch_size, n_docs * sequence_length, hidden_size)` is a sequence of hidden-states at the output of the last layer of the generator's encoder.  Used by the ([RagModel](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagModel)) model during decoding.
 
 decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Provide for generation tasks. `None` by default, construct as per instructions for the generator model you're using with your RAG instance.
 
-decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are decoder input IDs?](../glossary#decoder-input-ids)
+decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are decoder input IDs?](../glossary#decoder-input-ids)
 
 decoder_attention_mask (`torch.BoolTensor` of shape `(batch_size,  target_sequence_length)`, *optional*) : Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also be used by default.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 context_input_ids (`torch.LongTensor` of shape `(batch_size * config.n_docs, config.max_combined_length)`, *optional*, returned when *output_retrieved=True*) : Input IDs post-processed from the retrieved documents and the question encoder `input_ids` by the retriever. If the model was not initialized with a `retriever` ``context_input_ids` has to be provided to the forward pass. `context_input_ids` are returned by `__call__()`.
 
@@ -590,13 +590,13 @@ labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*)
 
 n_docs (`int`, *optional*) : The number of documents to retrieve.
 
-**Returns:** [RetrievAugLMMarginOutput](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.models.rag.modeling_rag.RetrievAugLMMarginOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [RetrievAugLMMarginOutput](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.models.rag.modeling_rag.RetrievAugLMMarginOutput) or `tuple(torch.FloatTensor)`
 
-A [RetrievAugLMMarginOutput](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.models.rag.modeling_rag.RetrievAugLMMarginOutput) or a tuple of
+A [RetrievAugLMMarginOutput](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.models.rag.modeling_rag.RetrievAugLMMarginOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([RagConfig](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagConfig)) and inputs.
+elements depending on the configuration ([RagConfig](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagConfig)) and inputs.
 
-The [RagSequenceForGeneration](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagSequenceForGeneration) forward method, overrides the `__call__` special method.
+The [RagSequenceForGeneration](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagSequenceForGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -607,7 +607,7 @@ the latter silently ignores them.
   each vocabulary token.
 - **doc_scores** (`torch.FloatTensor` of shape `(batch_size, config.n_docs)`) -- Score between each retrieved document embeddings (see `retrieved_doc_embeds`) and
   `question_encoder_last_hidden_state`.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains precomputed hidden-states (key and values in the attention blocks) of the decoder that can be used
   (see `past_key_values` input) to speed up sequential decoding.
@@ -696,7 +696,7 @@ Example:
 generate(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, context_input_ids: typing.Optional[torch.LongTensor] = None, context_attention_mask: typing.Optional[torch.LongTensor] = None, doc_scores: typing.Optional[torch.FloatTensor] = None, do_deduplication: bool | None = None, num_return_sequences: int | None = None, num_beams: int | None = None, n_docs: int | None = None, **model_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/modeling_rag.py#L875)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/modeling_rag.py#L875)
 
 **Parameters:**
 
@@ -712,13 +712,13 @@ doc_scores (`torch.FloatTensor` of shape `(batch_size, config.n_docs)`) : Score 
 
 do_deduplication (`bool`, *optional*) : Whether or not to deduplicate the generations from different context documents for a given input. Has to be set to `False` if used while training with distributed backend.
 
-num_return_sequences(`int`, *optional*, defaults to 1) : The number of independently computed returned sequences for each element in the batch. Note that this is not the value we pass to the `generator`'s `[generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate)` function, where we set `num_return_sequences` to `num_beams`.
+num_return_sequences(`int`, *optional*, defaults to 1) : The number of independently computed returned sequences for each element in the batch. Note that this is not the value we pass to the `generator`'s `[generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate)` function, where we set `num_return_sequences` to `num_beams`.
 
 num_beams (`int`, *optional*, defaults to 1) : Number of beams for beam search. 1 means no beam search.
 
 n_docs (`int`, *optional*, defaults to `config.n_docs`) : Number of documents to retrieve and/or number of documents for which to generate an answer.
 
-kwargs (`dict[str, Any]`, *optional*) : Additional kwargs will be passed to [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate).
+kwargs (`dict[str, Any]`, *optional*) : Additional kwargs will be passed to [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate).
 
 **Returns:** `torch.LongTensor` of shape `(batch_size * num_return_sequences, sequence_length)`
 
@@ -726,7 +726,7 @@ The generated
 sequences. The second dimension (sequence length) is either equal to `max_length` or shorter if all batches
 finished early due to the `eos_token_id`.
 
-Implements RAG sequence "thorough" decoding. Read the [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate)` documentation
+Implements RAG sequence "thorough" decoding. Read the [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate)` documentation
 for more information on how to set other generate input parameters.
 
 ## RagTokenForGeneration[[transformers.RagTokenForGeneration]]
@@ -737,11 +737,11 @@ for more information on how to set other generate input parameters.
 transformers.RagTokenForGeneration(config: transformers.configuration_utils.PreTrainedConfig | None = None, question_encoder: transformers.modeling_utils.PreTrainedModel | None = None, generator: transformers.modeling_utils.PreTrainedModel | None = None, retriever: transformers.models.rag.retrieval_rag.RagRetriever | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/modeling_rag.py#L1102)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/modeling_rag.py#L1102)
 
 **Parameters:**
 
-config ([PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig), *optional*) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig), *optional*) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 question_encoder (`PreTrainedModel`, *optional*) : The model responsible for encoding the question into hidden states for retrieval.
 
@@ -751,7 +751,7 @@ retriever (`RagRetriever`, *optional*) : The component responsible for retrievin
 
 A RAG-token model implementation. It performs RAG-token specific marginalization in the forward pass.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -765,23 +765,23 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, encoder_outputs: tuple[tuple[torch.Tensor]] | None = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.BoolTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, context_input_ids: typing.Optional[torch.LongTensor] = None, context_attention_mask: typing.Optional[torch.LongTensor] = None, doc_scores: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, output_retrieved: bool | None = None, do_marginalize: bool | None = None, reduce_loss: bool | None = None, labels: typing.Optional[torch.LongTensor] = None, n_docs: int | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/modeling_rag.py#L1227)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/modeling_rag.py#L1227)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. [RagConfig](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagConfig), used to initialize the model, specifies which generator to use, it also specifies a compatible generator tokenizer. Use that tokenizer class to obtain the indices.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. [RagConfig](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagConfig), used to initialize the model, specifies which generator to use, it also specifies a compatible generator tokenizer. Use that tokenizer class to obtain the indices.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-encoder_outputs (`tuple(tuple(torch.FloatTensor)`, *optional*) : Tuple consists of (`generator_enc_last_hidden_state`, *optional*: `generator_enc_hidden_states`, *optional*: `generator_enc_attentions`). `generator_enc_last_hidden_state` of shape `(batch_size, n_docs * sequence_length, hidden_size)` is a sequence of hidden-states at the output of the last layer of the generator's encoder.  Used by the ([RagModel](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagModel)) model during decoding.
+encoder_outputs (`tuple(tuple(torch.FloatTensor)`, *optional*) : Tuple consists of (`generator_enc_last_hidden_state`, *optional*: `generator_enc_hidden_states`, *optional*: `generator_enc_attentions`). `generator_enc_last_hidden_state` of shape `(batch_size, n_docs * sequence_length, hidden_size)` is a sequence of hidden-states at the output of the last layer of the generator's encoder.  Used by the ([RagModel](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagModel)) model during decoding.
 
 decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Provide for generation tasks. `None` by default, construct as per instructions for the generator model you're using with your RAG instance.
 
-decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are decoder input IDs?](../glossary#decoder-input-ids)
+decoder_input_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`, *optional*) : Indices of decoder input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are decoder input IDs?](../glossary#decoder-input-ids)
 
 decoder_attention_mask (`torch.BoolTensor` of shape `(batch_size,  target_sequence_length)`, *optional*) : Default behavior: generate a tensor that ignores pad tokens in `decoder_input_ids`. Causal mask will also be used by default.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 context_input_ids (`torch.LongTensor` of shape `(batch_size * config.n_docs, config.max_combined_length)`, *optional*, returned when *output_retrieved=True*) : Input IDs post-processed from the retrieved documents and the question encoder `input_ids` by the retriever. If the model was not initialized with a `retriever` ``context_input_ids` has to be provided to the forward pass. `context_input_ids` are returned by `__call__()`.
 
@@ -805,13 +805,13 @@ labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*)
 
 n_docs (`int`, *optional*) : The number of documents to retrieve.
 
-**Returns:** [RetrievAugLMMarginOutput](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.models.rag.modeling_rag.RetrievAugLMMarginOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [RetrievAugLMMarginOutput](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.models.rag.modeling_rag.RetrievAugLMMarginOutput) or `tuple(torch.FloatTensor)`
 
-A [RetrievAugLMMarginOutput](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.models.rag.modeling_rag.RetrievAugLMMarginOutput) or a tuple of
+A [RetrievAugLMMarginOutput](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.models.rag.modeling_rag.RetrievAugLMMarginOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([RagConfig](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagConfig)) and inputs.
+elements depending on the configuration ([RagConfig](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagConfig)) and inputs.
 
-The [RagTokenForGeneration](/docs/transformers/v5.15.0/en/model_doc/rag#transformers.RagTokenForGeneration) forward method, overrides the `__call__` special method.
+The [RagTokenForGeneration](/docs/transformers/v5.15.1/en/model_doc/rag#transformers.RagTokenForGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -822,7 +822,7 @@ the latter silently ignores them.
   each vocabulary token.
 - **doc_scores** (`torch.FloatTensor` of shape `(batch_size, config.n_docs)`) -- Score between each retrieved document embeddings (see `retrieved_doc_embeds`) and
   `question_encoder_last_hidden_state`.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains precomputed hidden-states (key and values in the attention blocks) of the decoder that can be used
   (see `past_key_values` input) to speed up sequential decoding.
@@ -919,7 +919,7 @@ Example:
 generate(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, context_input_ids: typing.Optional[torch.LongTensor] = None, context_attention_mask: typing.Optional[torch.LongTensor] = None, doc_scores: typing.Optional[torch.FloatTensor] = None, n_docs: int | None = None, generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, prefix_allowed_tokens_fn: collections.abc.Callable[[int, torch.Tensor], list[int]] | None = None, logits_processor: transformers.generation.logits_process.LogitsProcessorList | None = [], stopping_criteria: transformers.generation.stopping_criteria.StoppingCriteriaList | None = [], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/rag/modeling_rag.py#L1400)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/rag/modeling_rag.py#L1400)
 
 **Parameters:**
 
@@ -935,7 +935,7 @@ doc_scores (`torch.FloatTensor` of shape `(batch_size, config.n_docs)`) : Score 
 
 n_docs (`int`, *optional*, defaults to `config.n_docs`) : Number of documents to retrieve and/or number of documents for which to generate an answer.
 
-generation_config (`~generation.GenerationConfig`, *optional*) : The generation configuration to be used as base parametrization for the generation call. `**kwargs` passed to generate matching the attributes of `generation_config` will override them. If `generation_config` is not provided, the default will be used, which has the following loading priority: 1) from the `generation_config.json` model file, if it exists; 2) from the model configuration. Please note that unspecified parameters will inherit [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig)'s default values, whose documentation should be checked to parameterize generation.
+generation_config (`~generation.GenerationConfig`, *optional*) : The generation configuration to be used as base parametrization for the generation call. `**kwargs` passed to generate matching the attributes of `generation_config` will override them. If `generation_config` is not provided, the default will be used, which has the following loading priority: 1) from the `generation_config.json` model file, if it exists; 2) from the model configuration. Please note that unspecified parameters will inherit [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig)'s default values, whose documentation should be checked to parameterize generation.
 
 prefix_allowed_tokens_fn (`Callable[[int, torch.Tensor], list[int]]`, *optional*) : If provided, this function constraints the beam search to allowed tokens only at each step. If not provided no constraint is applied. This function takes 2 arguments `inputs_ids` and the batch ID `batch_id`. It has to return a list with the allowed tokens for the next generation step conditioned on the previously generated tokens `inputs_ids` and the batch ID `batch_id`. This argument is useful for constrained generation conditioned on the prefix, as described in [Autoregressive Entity Retrieval](https://huggingface.co/papers/2010.00904).
 
@@ -954,4 +954,4 @@ finished early due to the `eos_token_id`.
 Implements RAG token decoding.
 
 ### EnCodec
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/encodec.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/encodec.md

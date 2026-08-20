@@ -153,7 +153,7 @@ Apply the `group_texts` function over the entire dataset:
 >>> lm_dataset = tokenized_eli5.map(group_texts, batched=True, num_proc=4)
 ```
 
-Now create a batch of examples using [DataCollatorForLanguageModeling](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DataCollatorForLanguageModeling). It's more efficient to *dynamically pad* the sentences to the longest length in a batch during collation, instead of padding the whole dataset to the maximum length.
+Now create a batch of examples using [DataCollatorForLanguageModeling](/docs/transformers/v5.15.1/en/main_classes/data_collator#transformers.DataCollatorForLanguageModeling). It's more efficient to *dynamically pad* the sentences to the longest length in a batch during collation, instead of padding the whole dataset to the maximum length.
 
 Use the end-of-sequence token as the padding token and specify `mlm_probability` to randomly mask tokens each time you iterate over the data:
 
@@ -166,9 +166,9 @@ Use the end-of-sequence token as the padding token and specify `mlm_probability`
 
 ## Train
 
-If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#train-with-pytorch-trainer)!
+If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#train-with-pytorch-trainer)!
 
-You're ready to start training your model now! Load DistilRoBERTa with [AutoModelForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForMaskedLM):
+You're ready to start training your model now! Load DistilRoBERTa with [AutoModelForMaskedLM](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForMaskedLM):
 
 ```py
 >>> from transformers import AutoModelForMaskedLM
@@ -178,9 +178,9 @@ You're ready to start training your model now! Load DistilRoBERTa with [AutoMode
 
 At this point, only three steps remain:
 
-1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model).
-2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) along with the model, datasets, and data collator.
-3. Call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
+1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model).
+2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) along with the model, datasets, and data collator.
+3. Call [train()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
 
 ```py
 >>> training_args = TrainingArguments(
@@ -204,7 +204,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, use the [evaluate()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.evaluate) method to evaluate your model and get its perplexity:
+Once training is completed, use the [evaluate()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.evaluate) method to evaluate your model and get its perplexity:
 
 ```py
 >>> import math
@@ -214,7 +214,7 @@ Once training is completed, use the [evaluate()](/docs/transformers/v5.15.0/en/m
 Perplexity: 8.76
 ```
 
-Then share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
+Then share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -233,7 +233,7 @@ Come up with some text you'd like the model to fill in the blank with, and use t
 >>> text = "The Milky Way is a <mask> galaxy."
 ```
 
-The simplest way to try out your finetuned model for inference is to use it in a [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline). Instantiate a `pipeline` for fill-mask with your model, and pass your text to it. If you like, you can use the `top_k` parameter to specify how many predictions to return:
+The simplest way to try out your finetuned model for inference is to use it in a [pipeline()](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.pipeline). Instantiate a `pipeline` for fill-mask with your model, and pass your text to it. If you like, you can use the `top_k` parameter to specify how many predictions to return:
 
 ```py
 >>> from transformers import pipeline
@@ -287,4 +287,4 @@ The Milky Way is a small galaxy.
 ```
 
 ### Text to speech
-https://huggingface.co/docs/transformers/v5.15.0/tasks/text-to-speech.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/text-to-speech.md

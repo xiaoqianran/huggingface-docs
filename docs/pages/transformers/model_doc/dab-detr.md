@@ -101,7 +101,7 @@ model = DabDetrForObjectDetection(config)
 transformers.DabDetrConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, num_queries: int = 300, encoder_layers: int = 6, encoder_ffn_dim: int = 2048, encoder_attention_heads: int = 8, decoder_layers: int = 6, decoder_ffn_dim: int = 2048, decoder_attention_heads: int = 8, activation_function: str = 'prelu', hidden_size: int = 256, dropout: float | int = 0.1, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, init_std: float = 0.02, init_xavier_std: float = 1.0, auxiliary_loss: bool = False, dilation: bool = False, class_cost: int = 2, bbox_cost: int = 5, giou_cost: int = 2, cls_loss_coefficient: int = 2, bbox_loss_coefficient: int = 5, giou_loss_coefficient: int = 2, focal_alpha: float = 0.25, temperature_height: int = 20, temperature_width: int = 20, query_dim: int = 4, random_refpoints_xy: bool = False, keep_query_pos: bool = False, num_patterns: int = 0, normalize_before: bool = False, sine_position_embedding_scale: float | None = None, initializer_bias_prior_prob: float | None = None, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dab_detr/configuration_dab_detr.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dab_detr/configuration_dab_detr.py#L26)
 
 **Parameters:**
 
@@ -109,7 +109,7 @@ is_encoder_decoder (`bool`, *optional*, defaults to `True`) : Whether the model 
 
 backbone_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The configuration of the backbone model.
 
-num_queries (`int`, *optional*, defaults to 300) : Number of object queries, i.e. detection slots. This is the maximal number of objects [DabDetrModel](/docs/transformers/v5.15.0/en/model_doc/dab-detr#transformers.DabDetrModel) can detect in a single image. For COCO, we recommend 100 queries.
+num_queries (`int`, *optional*, defaults to 300) : Number of object queries, i.e. detection slots. This is the maximal number of objects [DabDetrModel](/docs/transformers/v5.15.1/en/model_doc/dab-detr#transformers.DabDetrModel) can detect in a single image. For COCO, we recommend 100 queries.
 
 encoder_layers (`int`, *optional*, defaults to `6`) : Number of hidden layers in the Transformer encoder. Will use the same value as `num_layers` if not set.
 
@@ -179,8 +179,8 @@ This is the configuration class to store the configuration of a Dab DetrModel. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [IDEA-Research/dab-detr-resnet-50](https://huggingface.co/IDEA-Research/dab-detr-resnet-50)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -205,16 +205,16 @@ Examples:
 transformers.DabDetrModel(config: DabDetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dab_detr/modeling_dab_detr.py#L1143)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dab_detr/modeling_dab_detr.py#L1143)
 
 **Parameters:**
 
-config ([DabDetrConfig](/docs/transformers/v5.15.0/en/model_doc/dab-detr#transformers.DabDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DabDetrConfig](/docs/transformers/v5.15.1/en/model_doc/dab-detr#transformers.DabDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare DAB-DETR Model (consisting of a backbone and encoder-decoder Transformer) outputting raw
 hidden-states, intermediate hidden states, reference points, output coordinates without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -228,7 +228,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dab_detr/modeling_dab_detr.py#L1195)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dab_detr/modeling_dab_detr.py#L1195)
 
 **Parameters:**
 
@@ -248,15 +248,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `DabDetrModelOutput` or `tuple(torch.FloatTensor)`
 
 A `DabDetrModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DabDetrConfig](/docs/transformers/v5.15.0/en/model_doc/dab-detr#transformers.DabDetrConfig)) and inputs.
+elements depending on the configuration ([DabDetrConfig](/docs/transformers/v5.15.1/en/model_doc/dab-detr#transformers.DabDetrConfig)) and inputs.
 
-The [DabDetrModel](/docs/transformers/v5.15.0/en/model_doc/dab-detr#transformers.DabDetrModel) forward method, overrides the `__call__` special method.
+The [DabDetrModel](/docs/transformers/v5.15.1/en/model_doc/dab-detr#transformers.DabDetrModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -266,7 +266,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
   blocks) that can be used (see `past_key_values` input) to speed up sequential decoding.
@@ -334,16 +334,16 @@ Examples:
 transformers.DabDetrForObjectDetection(config: DabDetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dab_detr/modeling_dab_detr.py#L1415)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dab_detr/modeling_dab_detr.py#L1415)
 
 **Parameters:**
 
-config ([DabDetrConfig](/docs/transformers/v5.15.0/en/model_doc/dab-detr#transformers.DabDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DabDetrConfig](/docs/transformers/v5.15.1/en/model_doc/dab-detr#transformers.DabDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 DAB_DETR Model (consisting of a backbone and encoder-decoder Transformer) with object detection heads on
 top, for tasks such as COCO detection.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -357,7 +357,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dab_detr/modeling_dab_detr.py#L1444)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dab_detr/modeling_dab_detr.py#L1444)
 
 **Parameters:**
 
@@ -379,15 +379,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `DabDetrObjectDetectionOutput` or `tuple(torch.FloatTensor)`
 
 A `DabDetrObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DabDetrConfig](/docs/transformers/v5.15.0/en/model_doc/dab-detr#transformers.DabDetrConfig)) and inputs.
+elements depending on the configuration ([DabDetrConfig](/docs/transformers/v5.15.1/en/model_doc/dab-detr#transformers.DabDetrConfig)) and inputs.
 
-The [DabDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/dab-detr#transformers.DabDetrForObjectDetection) forward method, overrides the `__call__` special method.
+The [DabDetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/dab-detr#transformers.DabDetrForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -468,4 +468,4 @@ Detected couch with confidence 0.535 at location [0.52, 1.19, 640.35, 475.1]
 ```
 
 ### Byte Latent Transformer (BLT)
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/blt.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/blt.md

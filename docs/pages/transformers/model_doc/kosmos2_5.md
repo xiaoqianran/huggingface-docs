@@ -14,7 +14,7 @@ alt="drawing" width="600"/>
 
  Overview of tasks that KOSMOS-2.5 can handle. Taken from the original paper. 
 
-The examples below demonstrates how to generate with [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel), for both Markdown and OCR tasks.
+The examples below demonstrates how to generate with [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel), for both Markdown and OCR tasks.
 
 ```python
 import requests
@@ -177,7 +177,7 @@ print(generated_text[0])
 transformers.Kosmos2_5Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, latent_query_num: int = 2048, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/kosmos2_5/configuration_kosmos2_5.py#L105)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/kosmos2_5/configuration_kosmos2_5.py#L105)
 
 **Parameters:**
 
@@ -193,8 +193,8 @@ This is the configuration class to store the configuration of a Kosmos2 5Model. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/kosmos-2.5](https://huggingface.co/microsoft/kosmos-2.5)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Kosmos2_5TextConfig[[transformers.Kosmos2_5TextConfig]]
 
@@ -204,7 +204,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.Kosmos2_5TextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 108481, max_position_embeddings: int = 4096, embed_dim: int = 1536, layers: int = 24, ffn_dim: int = 6144, attention_heads: int = 16, activation_function: str = 'gelu', dropout: float | int = 0.1, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, layerdrop: float | int = 0.0, layer_norm_eps: float = 1e-05, init_std: float = 0.02, scale_embedding: bool = True, use_cache: bool = True, tie_word_embeddings: bool = True, pad_token_id: int | None = 1, bos_token_id: int | None = 0, eos_token_id: int | list[int] | None = 2)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/kosmos2_5/configuration_kosmos2_5.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/kosmos2_5/configuration_kosmos2_5.py#L27)
 
 **Parameters:**
 
@@ -250,8 +250,8 @@ This is the configuration class to store the configuration of a Kosmos2 5Model. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/kosmos-2.5](https://huggingface.co/microsoft/kosmos-2.5)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Kosmos2_5VisionConfig[[transformers.Kosmos2_5VisionConfig]]
 
@@ -261,7 +261,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.Kosmos2_5VisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 1536, patch_embed_hidden_size: int = 768, intermediate_size: int = 3968, head_dim: int = 64, num_hidden_layers: int = 18, num_attention_heads: int = 24, dense_act_fn: str = 'gelu_new', layer_norm_eps: float = 1e-06, dropout_rate: float | int = 0.0, attention_dropout: float | int = 0.0, max_num_patches: int = 4096, initializer_factor: float = 1.0, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/kosmos2_5/configuration_kosmos2_5.py#L60)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/kosmos2_5/configuration_kosmos2_5.py#L60)
 
 **Parameters:**
 
@@ -295,8 +295,8 @@ This is the configuration class to store the configuration of a Kosmos2 5Model. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/kosmos-2.5](https://huggingface.co/microsoft/kosmos-2.5)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -321,7 +321,7 @@ Example:
 transformers.Kosmos2_5ImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/kosmos2_5/image_processing_kosmos2_5.py#L67)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/kosmos2_5/image_processing_kosmos2_5.py#L67)
 
 **Parameters:**
 
@@ -377,7 +377,7 @@ Constructs a image_processor_class image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/kosmos2_5/image_processing_kosmos2_5.py#L78)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/kosmos2_5/image_processing_kosmos2_5.py#L78)
 
 **Parameters:**
 
@@ -441,7 +441,7 @@ max_patches (`int`, *kwargs*, *optional*, defaults to 4096) : The maximum number
 transformers.Kosmos2_5ImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/kosmos2_5/image_processing_pil_kosmos2_5.py#L74)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/kosmos2_5/image_processing_pil_kosmos2_5.py#L74)
 
 **Parameters:**
 
@@ -497,7 +497,7 @@ Constructs a image_processor_class image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/kosmos2_5/image_processing_pil_kosmos2_5.py#L85)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/kosmos2_5/image_processing_pil_kosmos2_5.py#L85)
 
 **Parameters:**
 
@@ -561,7 +561,7 @@ max_patches (`int`, *kwargs*, *optional*, defaults to 4096) : The maximum number
 transformers.Kosmos2_5Processor(image_processor, tokenizer, num_image_tokens: int = 2048)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/kosmos2_5/processing_kosmos2_5.py#L45)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/kosmos2_5/processing_kosmos2_5.py#L45)
 
 **Parameters:**
 
@@ -573,7 +573,7 @@ num_image_tokens (`int`, *optional*, defaults to 2048) : Number of image tokens 
 
 Constructs a Kosmos2_5Processor which wraps a image processor and a tokenizer into a single processor.
 
-[Kosmos2_5Processor](/docs/transformers/v5.15.0/en/model_doc/kosmos2_5#transformers.Kosmos2_5Processor) offers all the functionalities of `image_processor_class` and `tokenizer_class`. See the
+[Kosmos2_5Processor](/docs/transformers/v5.15.1/en/model_doc/kosmos2_5#transformers.Kosmos2_5Processor) offers all the functionalities of `image_processor_class` and `tokenizer_class`. See the
 `~image_processor_class` and `~tokenizer_class` for more information.
 
 #### __call__[[transformers.Kosmos2_5Processor.__call__]]
@@ -582,7 +582,7 @@ Constructs a Kosmos2_5Processor which wraps a image processor and a tokenizer in
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/kosmos2_5/processing_kosmos2_5.py#L57)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/kosmos2_5/processing_kosmos2_5.py#L57)
 
 **Parameters:**
 
@@ -590,9 +590,9 @@ images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Imag
 
 text (`Union[str, list[str]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 **Returns:** `~image_processing_base.BatchFeature`
 
@@ -608,15 +608,15 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 transformers.Kosmos2_5Model(config: Kosmos2_5Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/kosmos2_5/modeling_kosmos2_5.py#L1144)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/kosmos2_5/modeling_kosmos2_5.py#L1144)
 
 **Parameters:**
 
-config ([Kosmos2_5Config](/docs/transformers/v5.15.0/en/model_doc/kosmos2_5#transformers.Kosmos2_5Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Kosmos2_5Config](/docs/transformers/v5.15.1/en/model_doc/kosmos2_5#transformers.Kosmos2_5Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 KOSMOS-2.5 Model for generating text and image features. The model consists of a vision encoder and a language model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -630,17 +630,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, flattened_patches: typing.Optional[torch.Tensor] = None, width: typing.Optional[torch.Tensor] = None, height: typing.Optional[torch.Tensor] = None, image_embeds_position_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, image_embeds: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/kosmos2_5/modeling_kosmos2_5.py#L1162)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/kosmos2_5/modeling_kosmos2_5.py#L1162)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default should you provide it.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default should you provide it.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-flattened_patches (`torch.FloatTensor` of shape `(batch_size, max_patches, 2 + patch_height * patch_width * image_channels)`) : Flattened patches of the images. `flattened_patches` can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor). See `Kosmos2_5ImageProcessor.__call__()` for details.
+flattened_patches (`torch.FloatTensor` of shape `(batch_size, max_patches, 2 + patch_height * patch_width * image_channels)`) : Flattened patches of the images. `flattened_patches` can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor). See `Kosmos2_5ImageProcessor.__call__()` for details.
 
-width (`torch.FloatTensor` of shape `(batch_size,)`) : The original width (before resizing) of each image in the batch. This can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor). See `Kosmos2_5ImageProcessor.__call__()` for details.
+width (`torch.FloatTensor` of shape `(batch_size,)`) : The original width (before resizing) of each image in the batch. This can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor). See `Kosmos2_5ImageProcessor.__call__()` for details.
 
-height (`torch.FloatTensor` of shape `(batch_size,)`) : The original height (before resizing) of each image in the batch. This can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor). See `Kosmos2_5ImageProcessor.__call__()` for details.
+height (`torch.FloatTensor` of shape `(batch_size,)`) : The original height (before resizing) of each image in the batch. This can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor). See `Kosmos2_5ImageProcessor.__call__()` for details.
 
 image_embeds_position_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to indicate the location in a sequence to insert the image features. Mask values selected in `[0, 1]`:  - 1 for places where to put the image features, - 0 for places that are not for image features (i.e. for text tokens). 
 
@@ -685,13 +685,13 @@ elements depending on the configuration (`<class 'transformers.models.kosmos2_5.
   Attentions weights given by `Kosmos2ImageToTextProjection`, after the attention softmax, used to compute
   the weighted average in the self-attention heads.
 - **vision_model_output(`BaseModelOutputWithPooling`,** *optional*) -- The output of the `Kosmos2VisionModel`.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
   input) to speed up sequential decoding.
 
-The [Kosmos2_5Model](/docs/transformers/v5.15.0/en/model_doc/kosmos2_5#transformers.Kosmos2_5Model) forward method, overrides the `__call__` special method.
+The [Kosmos2_5Model](/docs/transformers/v5.15.1/en/model_doc/kosmos2_5#transformers.Kosmos2_5Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -738,16 +738,16 @@ Examples:
 transformers.Kosmos2_5ForConditionalGeneration(config: Kosmos2_5Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/kosmos2_5/modeling_kosmos2_5.py#L1405)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/kosmos2_5/modeling_kosmos2_5.py#L1405)
 
 **Parameters:**
 
-config ([Kosmos2_5Config](/docs/transformers/v5.15.0/en/model_doc/kosmos2_5#transformers.Kosmos2_5Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Kosmos2_5Config](/docs/transformers/v5.15.1/en/model_doc/kosmos2_5#transformers.Kosmos2_5Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 KOSMOS-2.5 Model for generating text and bounding boxes given an image. The model consists of a vision encoder and a
 language model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -761,17 +761,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, flattened_patches: typing.Optional[torch.Tensor] = None, width: typing.Optional[torch.Tensor] = None, height: typing.Optional[torch.Tensor] = None, image_embeds_position_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, image_embeds: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/kosmos2_5/modeling_kosmos2_5.py#L1428)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/kosmos2_5/modeling_kosmos2_5.py#L1428)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default should you provide it.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default should you provide it.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-flattened_patches (`torch.FloatTensor` of shape `(batch_size, max_patches, 2 + patch_height * patch_width * image_channels)`) : Flattened patches of the images. `flattened_patches` can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor). See `Kosmos2_5ImageProcessor.__call__()` for details.
+flattened_patches (`torch.FloatTensor` of shape `(batch_size, max_patches, 2 + patch_height * patch_width * image_channels)`) : Flattened patches of the images. `flattened_patches` can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor). See `Kosmos2_5ImageProcessor.__call__()` for details.
 
-width (`torch.FloatTensor` of shape `(batch_size,)`) : The original width (before resizing) of each image in the batch. This can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor). See `Kosmos2_5ImageProcessor.__call__()` for details.
+width (`torch.FloatTensor` of shape `(batch_size,)`) : The original width (before resizing) of each image in the batch. This can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor). See `Kosmos2_5ImageProcessor.__call__()` for details.
 
-height (`torch.FloatTensor` of shape `(batch_size,)`) : The original height (before resizing) of each image in the batch. This can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor). See `Kosmos2_5ImageProcessor.__call__()` for details.
+height (`torch.FloatTensor` of shape `(batch_size,)`) : The original height (before resizing) of each image in the batch. This can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor). See `Kosmos2_5ImageProcessor.__call__()` for details.
 
 image_embeds_position_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to indicate the location in a sequence to insert the image features. Mask values selected in `[0, 1]`:  - 1 for places where to put the image features, - 0 for places that are not for image features (i.e. for text tokens). 
 
@@ -819,13 +819,13 @@ elements depending on the configuration (`<class 'transformers.models.kosmos2_5.
   Attentions weights given by `Kosmos2ImageToTextProjection`, after the attention softmax, used to compute
   the weighted average in the self-attention heads.
 - **vision_model_output(`BaseModelOutputWithPooling`,** *optional*) -- The output of the `Kosmos2VisionModel`.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
   input) to speed up sequential decoding.
 
-The [Kosmos2_5ForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/kosmos2_5#transformers.Kosmos2_5ForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [Kosmos2_5ForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/kosmos2_5#transformers.Kosmos2_5ForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -865,4 +865,4 @@ Examples:
 ```
 
 ### LLaVA-NeXT
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/llava_next.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/llava_next.md

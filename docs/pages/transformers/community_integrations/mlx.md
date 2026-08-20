@@ -38,4 +38,4 @@ print(output)
 - [mlx-vlm](https://github.com/Blaizzy/mlx-vlm) community library with VLM implementations
 
 ### Unsloth
-https://huggingface.co/docs/transformers/v5.15.0/community_integrations/unsloth.md
+https://huggingface.co/docs/transformers/v5.15.1/community_integrations/unsloth.md

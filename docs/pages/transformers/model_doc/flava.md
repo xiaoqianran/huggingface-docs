@@ -27,15 +27,15 @@ This model was contributed by [aps](https://huggingface.co/aps). The original co
 transformers.FlavaConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, image_config: dict[str, typing.Any] | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict[str, typing.Any] | transformers.configuration_utils.PreTrainedConfig | None = None, multimodal_config: dict[str, typing.Any] | transformers.configuration_utils.PreTrainedConfig | None = None, image_codebook_config: dict[str, typing.Any] | transformers.configuration_utils.PreTrainedConfig | None = None, hidden_size: int = 768, layer_norm_eps: float = 1e-12, projection_dim: int = 768, init_codebook: bool = True, logit_scale_init_value: float = 2.6592, initializer_range: float = 0.02, ce_ignore_index: int = -100, mim_weight: float = 1.0, mlm_weight: float = 1.0, global_contrastive_weight: float = 1.0, itm_weight: float = 1.0, mmm_image_weight: float = 1.0, mmm_text_weight: float = 1.0, global_backprop_contrastive: bool = True, skip_unmasked_multimodal_encoder: bool = True, return_loss: bool = True, tie_word_embeddings: bool = True, initializer_factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/configuration_flava.py#L183)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/configuration_flava.py#L183)
 
 **Parameters:**
 
-image_config (`dict`, *optional*) : Dictionary of configuration options used to initialize [FlavaImageConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageConfig).
+image_config (`dict`, *optional*) : Dictionary of configuration options used to initialize [FlavaImageConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageConfig).
 
 text_config (`Union[dict[str, Any], ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the text backbone.
 
-multimodal_config (`dict`, *optional*) : Dictionary of configuration options used to initialize [FlavaMultimodalConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaMultimodalConfig).
+multimodal_config (`dict`, *optional*) : Dictionary of configuration options used to initialize [FlavaMultimodalConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaMultimodalConfig).
 
 image_codebook_config (`dict`, *optional*) : Dictionary of configuration options used to initialize `FlavaCodebookConfig`.
 
@@ -79,8 +79,8 @@ This is the configuration class to store the configuration of a FlavaModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/flava-full](https://huggingface.co/facebook/flava-full)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -107,7 +107,7 @@ Example:
 transformers.FlavaTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 30522, type_vocab_size: int = 2, max_position_embeddings: int = 512, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, pad_token_id: int | None = 0, qkv_bias: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/configuration_flava.py#L71)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/configuration_flava.py#L71)
 
 **Parameters:**
 
@@ -143,8 +143,8 @@ This is the configuration class to store the configuration of a FlavaModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/flava-full](https://huggingface.co/facebook/flava-full)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -169,7 +169,7 @@ Example:
 transformers.FlavaImageConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, qkv_bias: bool = True, mask_token: bool = True, vocab_size: int = 8192)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/configuration_flava.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/configuration_flava.py#L29)
 
 **Parameters:**
 
@@ -207,8 +207,8 @@ This is the configuration class to store the configuration of a FlavaModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/flava-full](https://huggingface.co/facebook/flava-full)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -233,7 +233,7 @@ Example:
 transformers.FlavaMultimodalConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, num_hidden_layers: int = 6, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, qkv_bias: bool = True, use_cls_token: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/configuration_flava.py#L109)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/configuration_flava.py#L109)
 
 **Parameters:**
 
@@ -263,8 +263,8 @@ This is the configuration class to store the configuration of a FlavaModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/flava-full](https://huggingface.co/facebook/flava-full)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -289,7 +289,7 @@ Example:
 transformers.FlavaImageCodebookConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, num_groups: int = 4, input_channels: int = 3, num_blocks_per_group: int = 2, hidden_size: int = 256, vocab_size: int = 8192, freeze: bool = True, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/configuration_flava.py#L147)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/configuration_flava.py#L147)
 
 **Parameters:**
 
@@ -311,8 +311,8 @@ This is the configuration class to store the configuration of a FlavaModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/flava-full](https://huggingface.co/facebook/flava-full)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -336,7 +336,7 @@ Example:
 transformers.FlavaProcessor(image_processor = None, tokenizer = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/processing_flava.py#L23)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/processing_flava.py#L23)
 
 **Parameters:**
 
@@ -346,8 +346,8 @@ tokenizer (`BertTokenizer`) : The tokenizer is a required input.
 
 Constructs a FlavaProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[FlavaProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaProcessor) offers all the functionalities of [FlavaImageProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageProcessor) and [BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer). See the
-[~FlavaImageProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageProcessor) and [~BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer) for more information.
+[FlavaProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaProcessor) offers all the functionalities of [FlavaImageProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageProcessor) and [BertTokenizer](/docs/transformers/v5.15.1/en/model_doc/layoutlm#transformers.BertTokenizer). See the
+[~FlavaImageProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageProcessor) and [~BertTokenizer](/docs/transformers/v5.15.1/en/model_doc/layoutlm#transformers.BertTokenizer) for more information.
 
 #### __call__[[transformers.FlavaProcessor.__call__]]
 
@@ -355,7 +355,7 @@ Constructs a FlavaProcessor which wraps a image processor and a tokenizer into a
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L651)
 
 **Parameters:**
 
@@ -367,9 +367,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## FlavaImageProcessor[[transformers.FlavaImageProcessor]]
 
@@ -379,7 +379,7 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 transformers.FlavaImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/image_processing_flava.py#L213)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/image_processing_flava.py#L213)
 
 **Parameters:**
 
@@ -469,7 +469,7 @@ Constructs a FlavaImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/image_processing_flava.py#L250)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/image_processing_flava.py#L250)
 
 **Parameters:**
 
@@ -567,7 +567,7 @@ codebook_image_std (`Optional[Union[float, *kwargs*, Iterable[float]]]`, *option
 transformers.FlavaImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/image_processing_pil_flava.py#L227)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/image_processing_pil_flava.py#L227)
 
 **Parameters:**
 
@@ -657,7 +657,7 @@ Constructs a FlavaImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/image_processing_pil_flava.py#L264)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/image_processing_pil_flava.py#L264)
 
 **Parameters:**
 
@@ -755,17 +755,17 @@ codebook_image_std (`Optional[Union[float, *kwargs*, Iterable[float]]]`, *option
 transformers.FlavaForPreTraining(config: FlavaConfig, image_codebook: typing.Optional[torch.nn.Module] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L1502)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L1502)
 
 **Parameters:**
 
-config ([FlavaConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FlavaConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 image_codebook (`torch.nn.Module`, *optional*) : If passed, the image codebook will be set to this. Otherwise, it will be initialized using the image_codebook_config defined in the config first as the first parameter.
 
 The FLAVA model for pretraining which outputs losses, embeddings, logits and transformer outputs.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -779,15 +779,15 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, input_ids_masked: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, codebook_pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, bool_masked_pos: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, image_attention_mask: typing.Optional[torch.Tensor] = None, skip_unmasked_multimodal_encoder: bool | None = None, mlm_labels: typing.Optional[torch.Tensor] = None, mim_labels: typing.Optional[torch.Tensor] = None, itm_labels: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool = True, return_dict: bool | None = None, return_loss: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L1551)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L1551)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, text_seq_len)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, text_seq_len)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
 
-input_ids_masked (`torch.LongTensor` of shape `(batch_size, text_seq_len)`) : Indices of input sequence tokens in the vocabulary. These ones are the masked version of the original task to be used with MLM. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer) along with `DataCollatorForMaskedLanguageModeling`. See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
+input_ids_masked (`torch.LongTensor` of shape `(batch_size, text_seq_len)`) : Indices of input sequence tokens in the vocabulary. These ones are the masked version of the original task to be used with MLM. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer) along with `DataCollatorForMaskedLanguageModeling`. See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [FlavaImageProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageProcessor). See `FlavaImageProcessor.__call__()` for details ([FlavaProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaProcessor) uses [FlavaImageProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [FlavaImageProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageProcessor). See `FlavaImageProcessor.__call__()` for details ([FlavaProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaProcessor) uses [FlavaImageProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageProcessor) for processing images).
 
 codebook_pixel_values (`torch.FloatTensor` of shape `(batch_size, num_image_patches, patch_size, patch_size, 3)`, *optional*) : Pixel values for image patches that are used to compute the image codebook labels for masked image modeling.
 
@@ -805,7 +805,7 @@ skip_unmasked_multimodal_encoder (`*bool*`, *optional*) : Skip any calculations 
 
 mlm_labels (`torch.LongTensor` of shape `(batch_size, text_seq_len)`, *optional*) : Labels for computing the left-to-right language and multimodal masked modeling loss (next word prediction). Indices should be in `[-100, 0, ..., text_config.vocab_size - 1]` (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., text_config.vocab_size - 1]`.
 
-mim_labels (`torch.LongTensor` of shape `(batch_size, image_num_patches)`, *optional*) : Labels for computing the image and multimodal masked modeling loss. Indices should be in `[-100, 0, ..., image_config.vocab_size - 1]`. Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., image_config.vocab_size - 1]`. If not passed, they are generated automatically using the image codebook assigned to the model. By default, it uses [FlavaImageCodebook](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageCodebook). See [FlavaImageCodebook](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageCodebook) to understand how to generate mim_labels.
+mim_labels (`torch.LongTensor` of shape `(batch_size, image_num_patches)`, *optional*) : Labels for computing the image and multimodal masked modeling loss. Indices should be in `[-100, 0, ..., image_config.vocab_size - 1]`. Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., image_config.vocab_size - 1]`. If not passed, they are generated automatically using the image codebook assigned to the model. By default, it uses [FlavaImageCodebook](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageCodebook). See [FlavaImageCodebook](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageCodebook) to understand how to generate mim_labels.
 
 itm_labels (`torch.LongTensor` of shape `(batch_size, 1)`, *optional*) : Labels for computing the image-text matching loss. 0 means the pairs don't match and 1 means they match. The pairs with 0 will be skipped for calculation of MMM and global contrastive losses as well.
 
@@ -813,7 +813,7 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*, defaults to `True`) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 return_loss (`bool`, *optional*, default to None) : Whether to return calculated loss or not.
 
@@ -821,9 +821,9 @@ return_loss (`bool`, *optional*, default to None) : Whether to return calculated
 
 A `FlavaForPreTrainingOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FlavaConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaConfig)) and inputs.
+elements depending on the configuration ([FlavaConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaConfig)) and inputs.
 
-The [FlavaForPreTraining](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaForPreTraining) forward method, overrides the `__call__` special method.
+The [FlavaForPreTraining](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaForPreTraining) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -832,19 +832,19 @@ the latter silently ignores them.
 - **loss** (`torch.FloatTensor`, *optional*, returned when `return_loss` is True) -- Total loss calculated for this model.
 - **loss_info** (`~models.flava.modeling_flava.FlavaLosses`, *optional*) -- Detailed info for FLAVA Pretraining losses. Check `FlavaLosses` class description for the information on
   the keys.
-- **image_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `pixel_values` are present) -- The image embeddings which are basically the pooled output of [FlavaImageModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageModel).
-- **image_output** (`BaseModelOutputWithPooling`, *optional*, returned when `pixel_values` are present) -- The output of the [FlavaImageModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageModel).
-- **text_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `input_ids` are present) -- The text embeddings which are basically the pooled output of [FlavaTextModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaTextModel).
-- **text_output** (`BaseModelOutputWithPooling`, *optional*, returned when `input_ids` are present) -- The output of the [FlavaTextModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaTextModel).
-- **multimodal_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `input_ids` and `pixel_values` are present and `skip_unmasked_multimodal_encoder` is `None` or `False`) -- The multimodal embeddings which are basically the pooled output of [FlavaTextModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaTextModel).
-- **multimodal_output** (`BaseModelOutputWithPooling`, returned when `input_ids` and `pixel_values` are present and `skip_unmasked_multimodal_encoder` is `None` or `False`) -- The output of the [FlavaMultimodalModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaMultimodalModel).
-- **image_masked_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `pixel_values` are present) -- The image embeddings which are basically the pooled output of [FlavaImageModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageModel). Uses `bool_masked_pos`
+- **image_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `pixel_values` are present) -- The image embeddings which are basically the pooled output of [FlavaImageModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageModel).
+- **image_output** (`BaseModelOutputWithPooling`, *optional*, returned when `pixel_values` are present) -- The output of the [FlavaImageModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageModel).
+- **text_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `input_ids` are present) -- The text embeddings which are basically the pooled output of [FlavaTextModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaTextModel).
+- **text_output** (`BaseModelOutputWithPooling`, *optional*, returned when `input_ids` are present) -- The output of the [FlavaTextModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaTextModel).
+- **multimodal_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `input_ids` and `pixel_values` are present and `skip_unmasked_multimodal_encoder` is `None` or `False`) -- The multimodal embeddings which are basically the pooled output of [FlavaTextModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaTextModel).
+- **multimodal_output** (`BaseModelOutputWithPooling`, returned when `input_ids` and `pixel_values` are present and `skip_unmasked_multimodal_encoder` is `None` or `False`) -- The output of the [FlavaMultimodalModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaMultimodalModel).
+- **image_masked_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `pixel_values` are present) -- The image embeddings which are basically the pooled output of [FlavaImageModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageModel). Uses `bool_masked_pos`
   to create masked images.
-- **image_masked_output** (`BaseModelOutputWithPooling`, *optional*, returned when `pixel_values` are present) -- The output of the [FlavaImageModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageModel). Uses `bool_masked_pos` to create masked images.
-- **text_masked_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `input_ids_masked` are present) -- The text embeddings which are basically the pooled output of [FlavaTextModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaTextModel).
-- **text_masked_output** (`BaseModelOutputWithPooling`, *optional*, returned when `input_ids_masked` are present) -- The output of the [FlavaTextModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaTextModel).
-- **multimodal_masked_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `input_ids` and `pixel_values` are present) -- The multimodal embeddings which are basically the pooled output of [FlavaTextModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaTextModel).
-- **multimodal_masked_output** (`BaseModelOutputWithPooling`, *optional*, returned when `input_ids_masked` and `pixel_values` are present) -- The output of the [FlavaMultimodalModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaMultimodalModel).
+- **image_masked_output** (`BaseModelOutputWithPooling`, *optional*, returned when `pixel_values` are present) -- The output of the [FlavaImageModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageModel). Uses `bool_masked_pos` to create masked images.
+- **text_masked_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `input_ids_masked` are present) -- The text embeddings which are basically the pooled output of [FlavaTextModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaTextModel).
+- **text_masked_output** (`BaseModelOutputWithPooling`, *optional*, returned when `input_ids_masked` are present) -- The output of the [FlavaTextModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaTextModel).
+- **multimodal_masked_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `input_ids` and `pixel_values` are present) -- The multimodal embeddings which are basically the pooled output of [FlavaTextModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaTextModel).
+- **multimodal_masked_output** (`BaseModelOutputWithPooling`, *optional*, returned when `input_ids_masked` and `pixel_values` are present) -- The output of the [FlavaMultimodalModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaMultimodalModel).
 - **mim_logits** (`torch.FloatTensor` of shape `(batch_size, num_image_patches, image_vocab_size)` or of shape `(total_masked_patches, image_vocab_size)` , *optional*, returned when `pixel_values` are present and `input_ids_masked` are not) -- The logits for MIM unimodal loss. Uses `bool_masked_pos` to get masked patches. The flattened output is
   returned when `bool_masked_pos` has some of the patches masked.
 - **mlm_logits** (`torch.FloatTensor` of shape `(batch_size, text_seq_length, text_vocab_size)` or of shape `(total_masked_seq_length, text_vocab_size)`, *optional*, returned when `input_ids_masked` are present and `pixel_values` are not) -- The logits for MLM unimodal loss. The flattened output is returned when `input_ids_masked` has some of
@@ -898,15 +898,15 @@ Examples:
 transformers.FlavaModel(config: FlavaConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L935)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L935)
 
 **Parameters:**
 
-config ([FlavaConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FlavaConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Flava Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -920,13 +920,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, bool_masked_pos: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, image_attention_mask: typing.Optional[torch.Tensor] = None, skip_multimodal_encoder: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool = True, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L1078)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L1078)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, image_num_patches + text_seq_len)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, image_num_patches + text_seq_len)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [FlavaImageProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageProcessor). See `FlavaImageProcessor.__call__()` for details ([FlavaProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaProcessor) uses [FlavaImageProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [FlavaImageProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageProcessor). See `FlavaImageProcessor.__call__()` for details ([FlavaProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaProcessor) uses [FlavaImageProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageProcessor) for processing images).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -944,26 +944,26 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*, defaults to `True`) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `FlavaModelOutput` or `tuple(torch.FloatTensor)`
 
 A `FlavaModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FlavaConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaConfig)) and inputs.
+elements depending on the configuration ([FlavaConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaConfig)) and inputs.
 
-The [FlavaModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaModel) forward method, overrides the `__call__` special method.
+The [FlavaModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
 the latter silently ignores them.
 
-- **image_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `pixel_values` are present) -- The image embeddings which are basically the pooled output of [FlavaImageModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageModel).
-- **image_output** (`BaseModelOutputWithPooling`, *optional*, returned when `pixel_values` are present) -- The output of the [FlavaImageModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageModel).
-- **text_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `input_ids` are present) -- The text embeddings which are basically the pooled output of [FlavaTextModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaTextModel).
-- **text_output** (`BaseModelOutputWithPooling`, *optional*, returned when `input_ids` are present) -- The output of the [FlavaTextModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaTextModel).
-- **multimodal_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `input_ids` and `pixel_values` are present and `skip_multimodal_encoder` is `None` or `False`) -- The multimodal embeddings which are basically the pooled output of [FlavaTextModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaTextModel).
-- **multimodal_output** (`BaseModelOutputWithPooling`, returned when `input_ids` and `pixel_values` are present and `skip_multimodal_encoder` is `None` or `False`) -- The output of the [FlavaMultimodalModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaMultimodalModel).
+- **image_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `pixel_values` are present) -- The image embeddings which are basically the pooled output of [FlavaImageModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageModel).
+- **image_output** (`BaseModelOutputWithPooling`, *optional*, returned when `pixel_values` are present) -- The output of the [FlavaImageModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageModel).
+- **text_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `input_ids` are present) -- The text embeddings which are basically the pooled output of [FlavaTextModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaTextModel).
+- **text_output** (`BaseModelOutputWithPooling`, *optional*, returned when `input_ids` are present) -- The output of the [FlavaTextModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaTextModel).
+- **multimodal_embeddings** (`torch.FloatTensor` of shape `(batch_size, output_dim)`, *optional*, returned when `input_ids` and `pixel_values` are present and `skip_multimodal_encoder` is `None` or `False`) -- The multimodal embeddings which are basically the pooled output of [FlavaTextModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaTextModel).
+- **multimodal_output** (`BaseModelOutputWithPooling`, returned when `input_ids` and `pixel_values` are present and `skip_multimodal_encoder` is `None` or `False`) -- The output of the [FlavaMultimodalModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaMultimodalModel).
 
 Examples:
 
@@ -1004,11 +1004,11 @@ torch.Size([1, 205, 768])
 get_text_features(input_ids: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L981)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L981)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, text_seq_length)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, text_seq_length)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1016,11 +1016,11 @@ token_type_ids (`torch.LongTensor` of shape `(batch_size, text_seq_length)`, *op
 
 position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FlavaConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaConfig)) and inputs.
+elements depending on the configuration ([FlavaConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -1059,11 +1059,11 @@ Examples:
 get_image_features(pixel_values: Tensor, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, interpolate_pos_encoding: bool | None = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L1032)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L1032)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [FlavaImageProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageProcessor). See `FlavaImageProcessor.__call__()` for details ([FlavaProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaProcessor) uses [FlavaImageProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [FlavaImageProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageProcessor). See `FlavaImageProcessor.__call__()` for details ([FlavaProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaProcessor) uses [FlavaImageProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, image_num_patches)`) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
@@ -1071,11 +1071,11 @@ interpolate_pos_encoding (`bool`, *optional*) : Whether to interpolate the pre-t
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FlavaConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaConfig)) and inputs.
+elements depending on the configuration ([FlavaConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -1119,17 +1119,17 @@ Examples:
 transformers.FlavaImageCodebook(config: FlavaImageCodebookConfig, **kwargs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L1289)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L1289)
 
 **Parameters:**
 
-config ([FlavaImageCodebookConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageCodebookConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FlavaImageCodebookConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageCodebookConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The FLAVA's image codebook model inspired from DALL-E's original encoder. Outputs raw hidden states and can be used
 to generate image tokens for an image based on DALL-E's vocab. Used to generate labels for MIM. Use
 `get_codebook_indices` to get image tokens for an image.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1143,7 +1143,7 @@ and behavior.
 forward(pixel_values: FloatTensor, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L1374)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L1374)
 
 #### get_codebook_indices[[transformers.FlavaImageCodebook.get_codebook_indices]]
 
@@ -1151,7 +1151,7 @@ forward(pixel_values: FloatTensor, **kwargs)
 get_codebook_indices(pixel_values: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L1340)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L1340)
 
 #### get_codebook_probs[[transformers.FlavaImageCodebook.get_codebook_probs]]
 
@@ -1159,7 +1159,7 @@ get_codebook_indices(pixel_values: Tensor)
 get_codebook_probs(pixel_values: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L1370)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L1370)
 
 ## FlavaTextModel[[transformers.FlavaTextModel]]
 
@@ -1169,17 +1169,17 @@ get_codebook_probs(pixel_values: Tensor)
 transformers.FlavaTextModel(config: FlavaTextConfig, add_pooling_layer: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L759)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L759)
 
 **Parameters:**
 
-config ([FlavaTextConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FlavaTextConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare Flava Text Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1193,11 +1193,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L787)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L787)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, text_seq_length)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, text_seq_length)`) : Indices of input sequence tokens in the vocabulary. Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details. [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1209,15 +1209,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FlavaConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaConfig)) and inputs.
+elements depending on the configuration ([FlavaConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaConfig)) and inputs.
 
-The [FlavaTextModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaTextModel) forward method, overrides the `__call__` special method.
+The [FlavaTextModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1246,17 +1246,17 @@ the latter silently ignores them.
 transformers.FlavaImageModel(config: FlavaImageConfig, add_pooling_layer: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L677)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L677)
 
 **Parameters:**
 
-config ([FlavaImageConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FlavaImageConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare Flava Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1270,11 +1270,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, interpolate_pos_encoding: bool | None = None, attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L707)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L707)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [FlavaImageProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageProcessor). See `FlavaImageProcessor.__call__()` for details ([FlavaProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaProcessor) uses [FlavaImageProcessor](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [FlavaImageProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageProcessor). See `FlavaImageProcessor.__call__()` for details ([FlavaProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaProcessor) uses [FlavaImageProcessor](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, image_num_patches)`) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
@@ -1286,15 +1286,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FlavaConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaConfig)) and inputs.
+elements depending on the configuration ([FlavaConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaConfig)) and inputs.
 
-The [FlavaImageModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaImageModel) forward method, overrides the `__call__` special method.
+The [FlavaImageModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaImageModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1323,17 +1323,17 @@ the latter silently ignores them.
 transformers.FlavaMultimodalModel(config: FlavaMultimodalConfig, add_pooling_layer = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L855)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L855)
 
 **Parameters:**
 
-config ([FlavaMultimodalConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaMultimodalConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FlavaMultimodalConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaMultimodalConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare Flava Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1347,7 +1347,7 @@ and behavior.
 forward(hidden_states: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/flava/modeling_flava.py#L879)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/flava/modeling_flava.py#L879)
 
 **Parameters:**
 
@@ -1359,15 +1359,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FlavaConfig](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaConfig)) and inputs.
+elements depending on the configuration ([FlavaConfig](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaConfig)) and inputs.
 
-The [FlavaMultimodalModel](/docs/transformers/v5.15.0/en/model_doc/flava#transformers.FlavaMultimodalModel) forward method, overrides the `__call__` special method.
+The [FlavaMultimodalModel](/docs/transformers/v5.15.1/en/model_doc/flava#transformers.FlavaMultimodalModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1389,4 +1389,4 @@ the latter silently ignores them.
   heads.
 
 ### LayoutLM
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/layoutlm.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/layoutlm.md

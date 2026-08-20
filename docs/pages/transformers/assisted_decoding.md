@@ -10,7 +10,7 @@ This guide covers assisted decoding methods in Transformers.
 
 The method works best when the assistant model is significantly smaller than the main model and uses the same tokenizer. Speculative decoding supports greedy search and sampling but not batched inputs.
 
-Pass `assistant_model` to [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate). Set `do_sample=True` to resample if token validation fails.
+Pass `assistant_model` to [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate). Set `do_sample=True` to resample if token validation fails.
 
 ```py
 import torch
@@ -26,7 +26,7 @@ tokenizer.batch_decode(outputs, skip_special_tokens=True)
 'Hugging Face is an open-source company that provides a platform for developers to build and deploy machine'
 ```
 
-The `assistant_model` argument is also available in the [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) API.
+The `assistant_model` argument is also available in the [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) API.
 
 ```python
 import torch
@@ -60,7 +60,7 @@ tokenizer.batch_decode(outputs, skip_special_tokens=True)
 
 Prompt lookup decoding doesn't need an assistant model. It finds overlapping n-grams in the prompt to propose candidate tokens. If no match exists, it falls back to normal autoregressive decoding. This suits input-grounded tasks like summarization and translation because candidate tokens often mirror local patterns in the source text.
 
-Pass `prompt_lookup_num_tokens` to [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate). This sets how many tokens the algorithm tries to copy from earlier in the prompt when it detects a repeated pattern.
+Pass `prompt_lookup_num_tokens` to [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate). This sets how many tokens the algorithm tries to copy from earlier in the prompt when it detects a repeated pattern.
 
 ```py
 import torch
@@ -94,7 +94,7 @@ Self-speculative decoding uses a model's intermediate layers as the assistant to
 
 Because it's all one model, weights and caches are shared, which boosts speed without extra memory overhead. This technique only works for models trained to support early-exit logits from intermediate layers.
 
-Pass `assistant_early_exit` to [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to set the exit layer.
+Pass `assistant_early_exit` to [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) to set the exit layer.
 
 ```py
 import torch
@@ -114,7 +114,7 @@ Multi-token prediction (MTP) drafts candidate tokens with extra prediction layer
 
 MTP works only with checkpoints trained with MTP layers, such as [DeepSeek-V3](https://huggingface.co/deepseek-ai/DeepSeek-V3) and [GLM-4.5](https://huggingface.co/zai-org/GLM-4.5). These checkpoints carry MTP weights and set `num_mtp_layers` in their config, listed as `num_nextn_predict_layers` in `config.json`.
 
-Pass `use_mtp=True` to [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate), which raises an error if the model has no MTP layers. Like speculative decoding, MTP supports greedy search and sampling but not batched inputs.
+Pass `use_mtp=True` to [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate), which raises an error if the model has no MTP layers. Like speculative decoding, MTP supports greedy search and sampling but not batched inputs.
 
 ```py
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -131,7 +131,7 @@ tokenizer.batch_decode(outputs, skip_special_tokens=True)
 
 Universal assisted decoding (UAD) makes speculative decoding possible even when the main and assistant models have different tokenizers. It lets you pair any small assistant model with the main model. Candidate tokens are re-encoded and the algorithm computes the longest common subsequence so the continuation stays aligned.
 
-Pass `tokenizer`, `assistant_tokenizer`, and `assistant_model` to [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to enable UAD.
+Pass `tokenizer`, `assistant_tokenizer`, and `assistant_model` to [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) to enable UAD.
 
 ```py
 import torch
@@ -172,4 +172,4 @@ This requires candidate logits from the assistant model and is not supported wit
 - Read the [Assisted Generation: a new direction toward low-latency text generation](https://huggingface.co/blog/assisted-generation) blog post for more context about text generation latency and assisted generation.
 
 ### Exporting to production
-https://huggingface.co/docs/transformers/v5.15.0/serialization.md
+https://huggingface.co/docs/transformers/v5.15.1/serialization.md

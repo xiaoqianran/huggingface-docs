@@ -12,7 +12,7 @@ Most of those are only useful if you are studying the code of the models in the 
 transformers.GroupWeightRename(source_patterns: list[str], target_patterns: list[str])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/core_model_loading.py#L1018)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/core_model_loading.py#L1018)
 
 Applies a list of paired WeightRenaming transforms, activated lazily by the first ("guard")
 source pattern.  Use this when two renames share an intermediate name (e.g. `norm0→norm1`
@@ -32,7 +32,7 @@ skipped on the first pass and never retried.
 transformers.WeightConverter(source_patterns: str | list[str], target_patterns: str | list[str], operations: list[ConversionOps])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/core_model_loading.py#L1138)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/core_model_loading.py#L1138)
 
 ### Conversion operations[[transformers.ConversionOps]]
 
@@ -42,7 +42,7 @@ transformers.WeightConverter(source_patterns: str | list[str], target_patterns: 
 transformers.ConversionOps()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/core_model_loading.py#L83)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/core_model_loading.py#L83)
 
 Base class for weight conversion operations.
 
@@ -52,7 +52,7 @@ Base class for weight conversion operations.
 transformers.Chunk(dim: int = 0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/core_model_loading.py#L114)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/core_model_loading.py#L114)
 
 Split a tensor along `dim` into equally sized chunks.
 
@@ -62,7 +62,7 @@ Split a tensor along `dim` into equally sized chunks.
 transformers.Concatenate(dim: int = 0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/core_model_loading.py#L138)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/core_model_loading.py#L138)
 
 Concatenate tensors along `dim`.
 
@@ -72,7 +72,7 @@ Concatenate tensors along `dim`.
 transformers.MergeModulelist(dim: int = 0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/core_model_loading.py#L208)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/core_model_loading.py#L208)
 
 Merge a list of tensors into a single tensor along the first dimension.
 We explicitly define this because for EP or TP you want to make sure you know what you are doing!
@@ -83,7 +83,7 @@ We explicitly define this because for EP or TP you want to make sure you know wh
 transformers.SplitModulelist(dim: int = 0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/core_model_loading.py#L259)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/core_model_loading.py#L259)
 
 Inverse of `MergeModulelist` using explicit split sizes per group.
 
@@ -93,7 +93,7 @@ Inverse of `MergeModulelist` using explicit split sizes per group.
 transformers.PermuteForRope(subconfig_key: str | None = None, permute_layer_names: list[str] | None = None, inverse: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/core_model_loading.py#L414)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/core_model_loading.py#L414)
 
 Applies the permutation required to convert complex RoPE weights to the split sin/cos format.
 
@@ -103,7 +103,7 @@ Applies the permutation required to convert complex RoPE weights to the split si
 transformers.VisionFuseAndPermuteForRope(dim: int = 0, permute_layer_names: list[str] | None = None, inverse: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/core_model_loading.py#L474)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/core_model_loading.py#L474)
 
 Applies the permutation required to convert complex RoPE weights to the split sin/cos format on fused QKV.
 Same as calling `PermuteForRope() + Concatenate()` but lets us call `Permute` only on a subset of chunked tensors.
@@ -116,7 +116,7 @@ NOTE: this conversion applies only to a vision backbone in multimodal models, be
 transformers.VisionUnfuseAndPermuteForRope(dim: int = 0, permute_layer_names: list[str] | None = None, inverse: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/core_model_loading.py#L528)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/core_model_loading.py#L528)
 
 Applies the permutation required to convert complex RoPE weights to the split sin/cos format on fused QKV.
 Same as calling `Chunk() + PermuteForRope()` but lets us call `Permute` only on a subset of chunked tensors.
@@ -131,7 +131,7 @@ NOTE: this conversion applies only to a vision backbone in multimodal models, be
 transformers.GradientCheckpointingLayer(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/modeling_layers.py#L51)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/modeling_layers.py#L51)
 
 Base class for layers with gradient checkpointing.
 
@@ -162,7 +162,7 @@ Example:
 transformers.AttentionInterface()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/modeling_utils.py#L5093)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/modeling_utils.py#L5093)
 
 Dict-like object keeping track of allowed attention functions. You can easily add a new attention function
 with a call to `register()`. If a model needs to locally overwrite an existing attention function, say `sdpa`,
@@ -174,7 +174,7 @@ it needs to declare a new instance of this class inside the `modeling_<model>.py
 register(key: str, value: Callable)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/generic.py#L1130)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/generic.py#L1130)
 
 ## Attention Mask Functions[[transformers.AttentionMaskInterface]]
 
@@ -184,7 +184,7 @@ register(key: str, value: Callable)
 transformers.AttentionMaskInterface()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/masking_utils.py#L711)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/masking_utils.py#L711)
 
 #### register[[transformers.AttentionMaskInterface.register]]
 
@@ -192,7 +192,7 @@ transformers.AttentionMaskInterface()
 register(key: str, value: Callable)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/generic.py#L1130)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/generic.py#L1130)
 
 ## Rotary Position Embedding Functions[[transformers.dynamic_rope_update]]
 
@@ -202,7 +202,7 @@ register(key: str, value: Callable)
 transformers.dynamic_rope_update(rope_forward)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/modeling_rope_utils.py#L34)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/modeling_rope_utils.py#L34)
 
 **Parameters:**
 
@@ -223,7 +223,7 @@ Decorator function to update the RoPE parameters in the forward pass, if the mod
 transformers.Conv1D(nf, nx)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pytorch_utils.py#L95)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/pytorch_utils.py#L95)
 
 **Parameters:**
 
@@ -243,7 +243,7 @@ Basically works like a linear layer but the weights are transposed.
 transformers.apply_chunking_to_forward(forward_fn: Callable[..., torch.Tensor], chunk_size: int, chunk_dim: int, *input_tensors)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pytorch_utils.py#L124)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/pytorch_utils.py#L124)
 
 **Parameters:**
 
@@ -284,7 +284,7 @@ def forward(self, hidden_states):
 transformers.pytorch_utils.prune_linear_layer(layer: nn.Linear, index: torch.LongTensor, dim: int = 0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/pytorch_utils.py#L61)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/pytorch_utils.py#L61)
 
 **Parameters:**
 
@@ -303,4 +303,4 @@ Prune a linear layer to keep only entries in index.
 Used to remove heads.
 
 ### Utilities for Rotary Embedding
-https://huggingface.co/docs/transformers/v5.15.0/internal/rope_utils.md
+https://huggingface.co/docs/transformers/v5.15.1/internal/rope_utils.md

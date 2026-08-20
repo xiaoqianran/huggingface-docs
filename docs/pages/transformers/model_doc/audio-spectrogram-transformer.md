@@ -21,7 +21,7 @@ The original code can be found [here](https://github.com/YuanGongND/ast).
 ## Usage tips
 
 - When fine-tuning the Audio Spectrogram Transformer (AST) on your own dataset, it's recommended to take care of the input normalization (to make
-sure the input has mean of 0 and std of 0.5). [ASTFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/audio-spectrogram-transformer#transformers.ASTFeatureExtractor) takes care of this. Note that it uses the AudioSet
+sure the input has mean of 0 and std of 0.5). [ASTFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/audio-spectrogram-transformer#transformers.ASTFeatureExtractor) takes care of this. Note that it uses the AudioSet
 mean and std by default. You can check [`ast/src/get_norm_stats.py`](https://github.com/YuanGongND/ast/blob/master/src/get_norm_stats.py) to see how
 the authors compute the stats for a downstream dataset.
 - Note that the AST needs a low learning rate (the authors use a 10 times smaller learning rate compared to their CNN model proposed in the
@@ -61,7 +61,7 @@ On a local benchmark (A100-40GB, PyTorch 2.3.0, OS Ubuntu 22.04) with `float32` 
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with the Audio Spectrogram Transformer.
 
 - A notebook illustrating inference with AST for audio classification can be found [here](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/AST).
-- [ASTForAudioClassification](/docs/transformers/v5.15.0/en/model_doc/audio-spectrogram-transformer#transformers.ASTForAudioClassification) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/audio-classification) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/audio_classification.ipynb).
+- [ASTForAudioClassification](/docs/transformers/v5.15.1/en/model_doc/audio-spectrogram-transformer#transformers.ASTForAudioClassification) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/audio-classification) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/audio_classification.ipynb).
 - See also: [Audio classification](../tasks/audio_classification).
 
 If you're interested in submitting a resource to be included here, please feel free to open a Pull Request and we'll review it! The resource should ideally demonstrate something new instead of duplicating an existing resource.
@@ -74,7 +74,7 @@ If you're interested in submitting a resource to be included here, please feel f
 transformers.ASTConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, patch_size: int | list[int] | tuple[int, int] = 16, qkv_bias: bool = True, frequency_stride: int = 10, time_stride: int = 10, max_length: int = 1024, num_mel_bins: int = 128)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/audio_spectrogram_transformer/configuration_audio_spectrogram_transformer.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/audio_spectrogram_transformer/configuration_audio_spectrogram_transformer.py#L24)
 
 **Parameters:**
 
@@ -112,8 +112,8 @@ This is the configuration class to store the configuration of a Audio Spectrogra
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [MIT/ast-finetuned-audioset-10-10-0.4593](https://huggingface.co/MIT/ast-finetuned-audioset-10-10-0.4593)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -138,7 +138,7 @@ Example:
 transformers.ASTFeatureExtractor(feature_size = 1, sampling_rate = 16000, num_mel_bins = 128, max_length = 1024, padding_value = 0.0, do_normalize = True, mean = -4.2677393, std = 4.5689974, return_attention_mask = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/audio_spectrogram_transformer/feature_extraction_audio_spectrogram_transformer.py#L38)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/audio_spectrogram_transformer/feature_extraction_audio_spectrogram_transformer.py#L38)
 
 **Parameters:**
 
@@ -156,11 +156,11 @@ mean (`float`, *optional*, defaults to -4.2677393) : The mean value used to norm
 
 std (`float`, *optional*, defaults to 4.5689974) : The standard deviation value used to normalize the log-Mel features. Uses the AudioSet standard deviation by default.
 
-return_attention_mask (`bool`, *optional*, defaults to `False`) : Whether or not [__call__()](/docs/transformers/v5.15.0/en/model_doc/audio-spectrogram-transformer#transformers.ASTFeatureExtractor.__call__) should return `attention_mask`.
+return_attention_mask (`bool`, *optional*, defaults to `False`) : Whether or not [__call__()](/docs/transformers/v5.15.1/en/model_doc/audio-spectrogram-transformer#transformers.ASTFeatureExtractor.__call__) should return `attention_mask`.
 
 Constructs a Audio Spectrogram Transformer (AST) feature extractor.
 
-This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
+This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
 most of the main methods. Users should refer to this superclass for more information regarding those methods.
 
 This class extracts mel-filter bank features from raw speech using TorchAudio if installed or using numpy
@@ -172,7 +172,7 @@ otherwise, pads/truncates them to a fixed length and normalizes them using a mea
 __call__(raw_speech: numpy.ndarray | list[float] | list[numpy.ndarray] | list[list[float]], sampling_rate: int | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/audio_spectrogram_transformer/feature_extraction_audio_spectrogram_transformer.py#L160)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/audio_spectrogram_transformer/feature_extraction_audio_spectrogram_transformer.py#L160)
 
 **Parameters:**
 
@@ -180,7 +180,7 @@ raw_speech (`np.ndarray`, `list[float]`, `list[np.ndarray]`, `list[list[float]]`
 
 sampling_rate (`int`, *optional*) : The sampling rate at which the `raw_speech` input was sampled. It is strongly recommended to pass `sampling_rate` at the forward call to prevent silent errors.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
 
 Main method to featurize and prepare for the model one or several sequence(s).
 
@@ -192,15 +192,15 @@ Main method to featurize and prepare for the model one or several sequence(s).
 transformers.ASTModel(config: ASTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/audio_spectrogram_transformer/modeling_audio_spectrogram_transformer.py#L257)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/audio_spectrogram_transformer/modeling_audio_spectrogram_transformer.py#L257)
 
 **Parameters:**
 
-config ([ASTConfig](/docs/transformers/v5.15.0/en/model_doc/audio-spectrogram-transformer#transformers.ASTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ASTConfig](/docs/transformers/v5.15.1/en/model_doc/audio-spectrogram-transformer#transformers.ASTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Audio Spectrogram Transformer Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -214,21 +214,21 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/audio_spectrogram_transformer/modeling_audio_spectrogram_transformer.py#L273)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/audio_spectrogram_transformer/modeling_audio_spectrogram_transformer.py#L273)
 
 **Parameters:**
 
-input_values (`torch.FloatTensor` of shape `(batch_size, max_length, num_mel_bins)`) : Float values mel features extracted from the raw audio waveform. Raw audio waveform can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_features`, the [AutoFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoFeatureExtractor) should be used for extracting the mel features, padding and conversion into a tensor of type `torch.FloatTensor`. See [__call__()](/docs/transformers/v5.15.0/en/model_doc/audio-spectrogram-transformer#transformers.ASTFeatureExtractor.__call__)
+input_values (`torch.FloatTensor` of shape `(batch_size, max_length, num_mel_bins)`) : Float values mel features extracted from the raw audio waveform. Raw audio waveform can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_features`, the [AutoFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoFeatureExtractor) should be used for extracting the mel features, padding and conversion into a tensor of type `torch.FloatTensor`. See [__call__()](/docs/transformers/v5.15.1/en/model_doc/audio-spectrogram-transformer#transformers.ASTFeatureExtractor.__call__)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ASTConfig](/docs/transformers/v5.15.0/en/model_doc/audio-spectrogram-transformer#transformers.ASTConfig)) and inputs.
+elements depending on the configuration ([ASTConfig](/docs/transformers/v5.15.1/en/model_doc/audio-spectrogram-transformer#transformers.ASTConfig)) and inputs.
 
-The [ASTModel](/docs/transformers/v5.15.0/en/model_doc/audio-spectrogram-transformer#transformers.ASTModel) forward method, overrides the `__call__` special method.
+The [ASTModel](/docs/transformers/v5.15.1/en/model_doc/audio-spectrogram-transformer#transformers.ASTModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -257,16 +257,16 @@ the latter silently ignores them.
 transformers.ASTForAudioClassification(config: ASTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/audio_spectrogram_transformer/modeling_audio_spectrogram_transformer.py#L327)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/audio_spectrogram_transformer/modeling_audio_spectrogram_transformer.py#L327)
 
 **Parameters:**
 
-config ([ASTConfig](/docs/transformers/v5.15.0/en/model_doc/audio-spectrogram-transformer#transformers.ASTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ASTConfig](/docs/transformers/v5.15.1/en/model_doc/audio-spectrogram-transformer#transformers.ASTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Audio Spectrogram Transformer model with an audio classification head on top (a linear layer on top of the pooled
 output) e.g. for datasets like AudioSet, Speech Commands v2.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -280,23 +280,23 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/audio_spectrogram_transformer/modeling_audio_spectrogram_transformer.py#L340)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/audio_spectrogram_transformer/modeling_audio_spectrogram_transformer.py#L340)
 
 **Parameters:**
 
-input_values (`torch.FloatTensor` of shape `(batch_size, max_length, num_mel_bins)`) : Float values mel features extracted from the raw audio waveform. Raw audio waveform can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_features`, the [AutoFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoFeatureExtractor) should be used for extracting the mel features, padding and conversion into a tensor of type `torch.FloatTensor`. See [__call__()](/docs/transformers/v5.15.0/en/model_doc/audio-spectrogram-transformer#transformers.ASTFeatureExtractor.__call__)
+input_values (`torch.FloatTensor` of shape `(batch_size, max_length, num_mel_bins)`) : Float values mel features extracted from the raw audio waveform. Raw audio waveform can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_features`, the [AutoFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoFeatureExtractor) should be used for extracting the mel features, padding and conversion into a tensor of type `torch.FloatTensor`. See [__call__()](/docs/transformers/v5.15.1/en/model_doc/audio-spectrogram-transformer#transformers.ASTFeatureExtractor.__call__)
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the audio classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+A [SequenceClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ASTConfig](/docs/transformers/v5.15.0/en/model_doc/audio-spectrogram-transformer#transformers.ASTConfig)) and inputs.
+elements depending on the configuration ([ASTConfig](/docs/transformers/v5.15.1/en/model_doc/audio-spectrogram-transformer#transformers.ASTConfig)) and inputs.
 
-The [ASTForAudioClassification](/docs/transformers/v5.15.0/en/model_doc/audio-spectrogram-transformer#transformers.ASTForAudioClassification) forward method, overrides the `__call__` special method.
+The [ASTForAudioClassification](/docs/transformers/v5.15.1/en/model_doc/audio-spectrogram-transformer#transformers.ASTForAudioClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -348,4 +348,4 @@ Example:
 ```
 
 ### dots.llm1
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/dots1.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/dots1.md

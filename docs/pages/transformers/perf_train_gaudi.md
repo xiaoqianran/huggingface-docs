@@ -2,7 +2,7 @@
 
 The Intel Gaudi AI accelerator family includes [Intel Gaudi 1](https://habana.ai/products/gaudi/), [Intel Gaudi 2](https://habana.ai/products/gaudi2/), and [Intel Gaudi 3](https://habana.ai/products/gaudi3/). Each server has 8 Habana Processing Units (HPUs) with 128GB of memory on Gaudi 3, 96GB on Gaudi 2, and 32GB on first-gen Gaudi. The [Gaudi Architecture](https://docs.habana.ai/en/latest/Gaudi_Overview/Gaudi_Architecture.html) overview covers the hardware in depth.
 
-[TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments), [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), and [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) detect Intel Gaudi devices and set the backend to `hpu` automatically.
+[TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments), [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), and [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) detect Intel Gaudi devices and set the backend to `hpu` automatically.
 
 ## Environment variables
 
@@ -33,7 +33,7 @@ training_args = TrainingArguments(
 
 ## torch.compile
 
-Gaudi supports [torch.compile](). [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) automatically sets `torch_compile_backend` to `"hpu_backend"` when HPU is detected.
+Gaudi supports [torch.compile](). [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) automatically sets `torch_compile_backend` to `"hpu_backend"` when HPU is detected.
 
 ```python
 from transformers import TrainingArguments
@@ -63,4 +63,4 @@ training_args = TrainingArguments(
 - Try [Optimum for Intel Gaudi](https://huggingface.co/docs/optimum/main/en/habana/index) for Gaudi-optimized model implementations during training and inference.
 
 ### Subclassing Trainer methods
-https://huggingface.co/docs/transformers/v5.15.0/trainer_customize.md
+https://huggingface.co/docs/transformers/v5.15.1/trainer_customize.md

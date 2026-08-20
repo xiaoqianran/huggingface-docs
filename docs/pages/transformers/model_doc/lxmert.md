@@ -51,7 +51,7 @@ This model was contributed by [eltoto1219](https://huggingface.co/eltoto1219). T
 transformers.LxmertConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 30522, hidden_size: int = 768, num_attention_heads: int = 12, num_qa_labels: int = 9500, num_object_labels: int = 1600, num_attr_labels: int = 400, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.1, max_position_embeddings: int = 512, type_vocab_size: int = 2, initializer_range: float = 0.02, l_layers: int = 9, x_layers: int = 5, r_layers: int = 5, visual_feat_dim: int = 2048, visual_pos_dim: int = 4, visual_loss_normalizer: float = 6.67, task_matched: bool = True, task_mask_lm: bool = True, task_obj_predict: bool = True, task_qa: bool = True, visual_obj_loss: bool = True, visual_attr_loss: bool = True, visual_feat_loss: bool = True, pad_token_id: int | None = None, bos_token_id: int | None = None, eos_token_id: int | list[int] | None = None, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lxmert/configuration_lxmert.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lxmert/configuration_lxmert.py#L24)
 
 **Parameters:**
 
@@ -119,8 +119,8 @@ This is the configuration class to store the configuration of a LxmertModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [unc-nlp/lxmert-base-uncased](https://huggingface.co/unc-nlp/lxmert-base-uncased)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## LxmertTokenizer[[transformers.BertTokenizer]]
 
@@ -130,7 +130,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.BertTokenizer(vocab: str | dict[str, int] | None = None, do_lower_case: bool = True, unk_token: str = '[UNK]', sep_token: str = '[SEP]', pad_token: str = '[PAD]', cls_token: str = '[CLS]', mask_token: str = '[MASK]', tokenize_chinese_chars: bool = True, strip_accents: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bert/tokenization_bert.py#L41)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bert/tokenization_bert.py#L41)
 
 **Parameters:**
 
@@ -154,7 +154,7 @@ strip_accents (`bool`, *optional*) : Whether or not to strip all accents. If thi
 
 Construct a BERT tokenizer (backed by HuggingFace's tokenizers library). Based on WordPiece.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 ## LxmertTokenizerFast[[transformers.BertTokenizer]]
@@ -165,7 +165,7 @@ this superclass for more information regarding those methods.
 transformers.BertTokenizer(vocab: str | dict[str, int] | None = None, do_lower_case: bool = True, unk_token: str = '[UNK]', sep_token: str = '[SEP]', pad_token: str = '[PAD]', cls_token: str = '[CLS]', mask_token: str = '[MASK]', tokenize_chinese_chars: bool = True, strip_accents: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bert/tokenization_bert.py#L41)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bert/tokenization_bert.py#L41)
 
 **Parameters:**
 
@@ -189,7 +189,7 @@ strip_accents (`bool`, *optional*) : Whether or not to strip all accents. If thi
 
 Construct a BERT tokenizer (backed by HuggingFace's tokenizers library). Based on WordPiece.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 ## Lxmert specific outputs[[transformers.models.lxmert.modeling_lxmert.LxmertModelOutput]]
@@ -200,7 +200,7 @@ this superclass for more information regarding those methods.
 transformers.models.lxmert.modeling_lxmert.LxmertModelOutput(language_output: typing.Optional[torch.FloatTensor] = None, vision_output: typing.Optional[torch.FloatTensor] = None, pooled_output: typing.Optional[torch.FloatTensor] = None, language_hidden_states: tuple[torch.FloatTensor] | None = None, vision_hidden_states: tuple[torch.FloatTensor] | None = None, language_attentions: tuple[torch.FloatTensor] | None = None, vision_attentions: tuple[torch.FloatTensor] | None = None, cross_encoder_attentions: tuple[torch.FloatTensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lxmert/modeling_lxmert.py#L49)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lxmert/modeling_lxmert.py#L49)
 
 **Parameters:**
 
@@ -230,7 +230,7 @@ encoder")
 transformers.models.lxmert.modeling_lxmert.LxmertForPreTrainingOutput(loss: typing.Optional[torch.FloatTensor] = None, prediction_logits: typing.Optional[torch.FloatTensor] = None, cross_relationship_score: typing.Optional[torch.FloatTensor] = None, question_answering_score: typing.Optional[torch.FloatTensor] = None, language_hidden_states: tuple[torch.FloatTensor] | None = None, vision_hidden_states: tuple[torch.FloatTensor] | None = None, language_attentions: tuple[torch.FloatTensor] | None = None, vision_attentions: tuple[torch.FloatTensor] | None = None, cross_encoder_attentions: tuple[torch.FloatTensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lxmert/modeling_lxmert.py#L136)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lxmert/modeling_lxmert.py#L136)
 
 **Parameters:**
 
@@ -252,7 +252,7 @@ vision_attentions (`tuple(torch.FloatTensor)`, *optional*, returned when `output
 
 cross_encoder_attentions (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`. Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-Output type of [LxmertForPreTraining](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.LxmertForPreTraining).
+Output type of [LxmertForPreTraining](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.LxmertForPreTraining).
 
 #### transformers.models.lxmert.modeling_lxmert.LxmertForQuestionAnsweringOutput[[transformers.models.lxmert.modeling_lxmert.LxmertForQuestionAnsweringOutput]]
 
@@ -260,7 +260,7 @@ Output type of [LxmertForPreTraining](/docs/transformers/v5.15.0/en/model_doc/lx
 transformers.models.lxmert.modeling_lxmert.LxmertForQuestionAnsweringOutput(loss: typing.Optional[torch.FloatTensor] = None, question_answering_score: typing.Optional[torch.FloatTensor] = None, language_hidden_states: tuple[torch.FloatTensor] | None = None, vision_hidden_states: tuple[torch.FloatTensor] | None = None, language_attentions: tuple[torch.FloatTensor] | None = None, vision_attentions: tuple[torch.FloatTensor] | None = None, cross_encoder_attentions: tuple[torch.FloatTensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lxmert/modeling_lxmert.py#L94)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lxmert/modeling_lxmert.py#L94)
 
 **Parameters:**
 
@@ -278,7 +278,7 @@ vision_attentions (`tuple(torch.FloatTensor)`, *optional*, returned when `output
 
 cross_encoder_attentions (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`. Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-Output type of [LxmertForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.LxmertForQuestionAnswering).
+Output type of [LxmertForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.LxmertForQuestionAnswering).
 
 ## LxmertModel[[transformers.LxmertModel]]
 
@@ -288,15 +288,15 @@ Output type of [LxmertForQuestionAnswering](/docs/transformers/v5.15.0/en/model_
 transformers.LxmertModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lxmert/modeling_lxmert.py#L675)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lxmert/modeling_lxmert.py#L675)
 
 **Parameters:**
 
-config ([LxmertModel](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.LxmertModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LxmertModel](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.LxmertModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Lxmert Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -310,11 +310,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, visual_feats: typing.Optional[torch.FloatTensor] = None, visual_pos: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, visual_attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lxmert/modeling_lxmert.py#L690)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lxmert/modeling_lxmert.py#L690)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 visual_feats (`torch.FloatTensor` of shape `(batch_size, num_visual_features, visual_feat_dim)`) : This input represents visual features. They ROI pooled object features from bounding boxes using a faster-RCNN model)  These are currently not provided by the transformers library.
 
@@ -332,15 +332,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [LxmertModelOutput](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.models.lxmert.modeling_lxmert.LxmertModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [LxmertModelOutput](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.models.lxmert.modeling_lxmert.LxmertModelOutput) or `tuple(torch.FloatTensor)`
 
-A [LxmertModelOutput](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.models.lxmert.modeling_lxmert.LxmertModelOutput) or a tuple of
+A [LxmertModelOutput](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.models.lxmert.modeling_lxmert.LxmertModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LxmertConfig](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.LxmertConfig)) and inputs.
+elements depending on the configuration ([LxmertConfig](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.LxmertConfig)) and inputs.
 
-The [LxmertModel](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.LxmertModel) forward method, overrides the `__call__` special method.
+The [LxmertModel](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.LxmertModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -372,15 +372,15 @@ the latter silently ignores them.
 transformers.LxmertForPreTraining(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lxmert/modeling_lxmert.py#L826)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lxmert/modeling_lxmert.py#L826)
 
 **Parameters:**
 
-config ([LxmertForPreTraining](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.LxmertForPreTraining)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LxmertForPreTraining](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.LxmertForPreTraining)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Lxmert Model with a specified pretraining head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -394,11 +394,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, visual_feats: typing.Optional[torch.FloatTensor] = None, visual_pos: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, visual_attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, obj_labels: dict[str, tuple[torch.FloatTensor, torch.FloatTensor]] | None = None, matched_label: typing.Optional[torch.LongTensor] = None, ans: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lxmert/modeling_lxmert.py#L976)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lxmert/modeling_lxmert.py#L976)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 visual_feats (`torch.FloatTensor` of shape `(batch_size, num_visual_features, visual_feat_dim)`) : This input represents visual features. They ROI pooled object features from bounding boxes using a faster-RCNN model)  These are currently not provided by the transformers library.
 
@@ -424,15 +424,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [LxmertForPreTrainingOutput](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.models.lxmert.modeling_lxmert.LxmertForPreTrainingOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [LxmertForPreTrainingOutput](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.models.lxmert.modeling_lxmert.LxmertForPreTrainingOutput) or `tuple(torch.FloatTensor)`
 
-A [LxmertForPreTrainingOutput](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.models.lxmert.modeling_lxmert.LxmertForPreTrainingOutput) or a tuple of
+A [LxmertForPreTrainingOutput](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.models.lxmert.modeling_lxmert.LxmertForPreTrainingOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LxmertConfig](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.LxmertConfig)) and inputs.
+elements depending on the configuration ([LxmertConfig](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.LxmertConfig)) and inputs.
 
-The [LxmertForPreTraining](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.LxmertForPreTraining) forward method, overrides the `__call__` special method.
+The [LxmertForPreTraining](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.LxmertForPreTraining) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -471,15 +471,15 @@ Example:
 transformers.LxmertForQuestionAnswering(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lxmert/modeling_lxmert.py#L1123)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lxmert/modeling_lxmert.py#L1123)
 
 **Parameters:**
 
-config ([LxmertForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.LxmertForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LxmertForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.LxmertForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Lxmert Model with a visual-answering head on top for downstream QA tasks
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -493,11 +493,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, visual_feats: typing.Optional[torch.FloatTensor] = None, visual_pos: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, visual_attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lxmert/modeling_lxmert.py#L1215)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lxmert/modeling_lxmert.py#L1215)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 visual_feats (`torch.FloatTensor` of shape `(batch_size, num_visual_features, visual_feat_dim)`) : This input represents visual features. They ROI pooled object features from bounding boxes using a faster-RCNN model)  These are currently not provided by the transformers library.
 
@@ -517,15 +517,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [LxmertForQuestionAnsweringOutput](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.models.lxmert.modeling_lxmert.LxmertForQuestionAnsweringOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [LxmertForQuestionAnsweringOutput](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.models.lxmert.modeling_lxmert.LxmertForQuestionAnsweringOutput) or `tuple(torch.FloatTensor)`
 
-A [LxmertForQuestionAnsweringOutput](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.models.lxmert.modeling_lxmert.LxmertForQuestionAnsweringOutput) or a tuple of
+A [LxmertForQuestionAnsweringOutput](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.models.lxmert.modeling_lxmert.LxmertForQuestionAnsweringOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LxmertConfig](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.LxmertConfig)) and inputs.
+elements depending on the configuration ([LxmertConfig](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.LxmertConfig)) and inputs.
 
-The [LxmertForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/lxmert#transformers.LxmertForQuestionAnswering) forward method, overrides the `__call__` special method.
+The [LxmertForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/lxmert#transformers.LxmertForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -581,4 +581,4 @@ Example:
 ```
 
 ### myt5
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/myt5.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/myt5.md

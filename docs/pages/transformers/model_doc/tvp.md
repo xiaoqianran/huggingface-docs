@@ -26,10 +26,10 @@ TVP consists of a visual encoder and cross-modal encoder. A universal set of vis
 The goal of this model is to incorporate trainable prompts into both visual inputs and textual features to temporal video grounding(TVG) problems.
 In principle, one can apply any visual, cross-modal encoder in the proposed architecture.
 
-The [TvpProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpProcessor) wraps [BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer) and [TvpImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpImageProcessor) into a single instance to both
+The [TvpProcessor](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpProcessor) wraps [BertTokenizer](/docs/transformers/v5.15.1/en/model_doc/layoutlm#transformers.BertTokenizer) and [TvpImageProcessor](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpImageProcessor) into a single instance to both
 encode the text and prepare the images respectively.
 
-The following example shows how to run temporal video grounding using [TvpProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpProcessor) and [TvpForVideoGrounding](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpForVideoGrounding).
+The following example shows how to run temporal video grounding using [TvpProcessor](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpProcessor) and [TvpForVideoGrounding](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpForVideoGrounding).
 
 ```python
 import av
@@ -142,7 +142,7 @@ print(f"The time slot of the video corresponding to the text \"{text}\" is from 
 
 Tips:
 
-- This implementation of TVP uses [BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer) to generate text embeddings and Resnet-50 model to compute visual embeddings.
+- This implementation of TVP uses [BertTokenizer](/docs/transformers/v5.15.1/en/model_doc/layoutlm#transformers.BertTokenizer) to generate text embeddings and Resnet-50 model to compute visual embeddings.
 - Checkpoints for pre-trained [tvp-base](https://huggingface.co/Intel/tvp-base) is released.
 - Please refer to [Table 2](https://huggingface.co/papers/2303.04995) for TVP's performance on Temporal Video Grounding task.
 
@@ -154,7 +154,7 @@ Tips:
 transformers.TvpConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, distance_loss_weight: float = 1.0, duration_loss_weight: float = 0.1, visual_prompter_type: str = 'framepad', visual_prompter_apply: str = 'replace', visual_prompt_size: int = 96, max_img_size: int = 448, num_frames: int = 48, vocab_size: int = 30522, type_vocab_size: int = 2, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, max_position_embeddings: int = 512, max_grid_col_position_embeddings: int = 100, max_grid_row_position_embeddings: int = 100, hidden_dropout_prob: float | int = 0.1, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-12, initializer_range: float = 0.02, attention_probs_dropout_prob: float | int = 0.1, pad_token_id: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/configuration_tvp.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/tvp/configuration_tvp.py#L26)
 
 **Parameters:**
 
@@ -208,8 +208,8 @@ This is the configuration class to store the configuration of a TvpModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Intel/tvp-base](https://huggingface.co/Intel/tvp-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## TvpImageProcessor[[transformers.TvpImageProcessor]]
 
@@ -219,7 +219,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.TvpImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/image_processing_tvp.py#L50)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/tvp/image_processing_tvp.py#L50)
 
 **Parameters:**
 
@@ -277,7 +277,7 @@ Constructs a TvpImageProcessor image processor.
 preprocess(videos: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], list[typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']]], list[list[typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']]]]], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/image_processing_tvp.py#L72)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/tvp/image_processing_tvp.py#L72)
 
 **Parameters:**
 
@@ -343,7 +343,7 @@ pad_mode (`str`, *kwargs*, *optional*, defaults to `self.pad_mode`) : Padding mo
 transformers.TvpImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/image_processing_pil_tvp.py#L72)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/tvp/image_processing_pil_tvp.py#L72)
 
 **Parameters:**
 
@@ -401,7 +401,7 @@ Constructs a TvpImageProcessor image processor.
 preprocess(videos: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], list[typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']]], list[list[typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']]]]], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/image_processing_pil_tvp.py#L94)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/tvp/image_processing_pil_tvp.py#L94)
 
 **Parameters:**
 
@@ -467,7 +467,7 @@ pad_mode (`str`, *kwargs*, *optional*, defaults to `self.pad_mode`) : Padding mo
 transformers.TvpProcessor(image_processor = None, tokenizer = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/processing_tvp.py#L34)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/tvp/processing_tvp.py#L34)
 
 **Parameters:**
 
@@ -477,8 +477,8 @@ tokenizer (`BertTokenizer`) : The tokenizer is a required input.
 
 Constructs a TvpProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[TvpProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpProcessor) offers all the functionalities of [TvpImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpImageProcessor) and [BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer). See the
-[~TvpImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpImageProcessor) and [~BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer) for more information.
+[TvpProcessor](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpProcessor) offers all the functionalities of [TvpImageProcessor](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpImageProcessor) and [BertTokenizer](/docs/transformers/v5.15.1/en/model_doc/layoutlm#transformers.BertTokenizer). See the
+[~TvpImageProcessor](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpImageProcessor) and [~BertTokenizer](/docs/transformers/v5.15.1/en/model_doc/layoutlm#transformers.BertTokenizer) for more information.
 
 #### __call__[[transformers.TvpProcessor.__call__]]
 
@@ -486,7 +486,7 @@ Constructs a TvpProcessor which wraps a image processor and a tokenizer into a s
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L651)
 
 **Parameters:**
 
@@ -498,9 +498,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## TvpModel[[transformers.TvpModel]]
 
@@ -510,15 +510,15 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 transformers.TvpModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/modeling_tvp.py#L684)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/tvp/modeling_tvp.py#L684)
 
 **Parameters:**
 
-config ([TvpModel](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([TvpModel](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Tvp Model transformer outputting BaseModelOutputWithPooling object without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -532,13 +532,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, interpolate_pos_encoding: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/modeling_tvp.py#L707)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/tvp/modeling_tvp.py#L707)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [TvpImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpImageProcessor). See `TvpImageProcessor.__call__()` for details ([TvpProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpProcessor) uses [TvpImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [TvpImageProcessor](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpImageProcessor). See `TvpImageProcessor.__call__()` for details ([TvpProcessor](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpProcessor) uses [TvpImageProcessor](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpImageProcessor) for processing images).
 
 attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -546,17 +546,17 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TvpConfig](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpConfig)) and inputs.
+elements depending on the configuration ([TvpConfig](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpConfig)) and inputs.
 
-The [TvpModel](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpModel) forward method, overrides the `__call__` special method.
+The [TvpModel](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -599,15 +599,15 @@ Examples:
 transformers.TvpForVideoGrounding(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/modeling_tvp.py#L803)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/tvp/modeling_tvp.py#L803)
 
 **Parameters:**
 
-config ([TvpForVideoGrounding](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpForVideoGrounding)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([TvpForVideoGrounding](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpForVideoGrounding)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Tvp Model with a video grounding head on top computing IoU, distance, and duration loss.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -621,13 +621,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, labels: tuple[torch.Tensor] | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, interpolate_pos_encoding: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/tvp/modeling_tvp.py#L812)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/tvp/modeling_tvp.py#L812)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [TvpImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpImageProcessor). See `TvpImageProcessor.__call__()` for details ([TvpProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpProcessor) uses [TvpImageProcessor](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [TvpImageProcessor](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpImageProcessor). See `TvpImageProcessor.__call__()` for details ([TvpProcessor](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpProcessor) uses [TvpImageProcessor](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpImageProcessor) for processing images).
 
 attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -637,7 +637,7 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
@@ -645,9 +645,9 @@ interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to 
 
 A `TvpVideoGroundingOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TvpConfig](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpConfig)) and inputs.
+elements depending on the configuration ([TvpConfig](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpConfig)) and inputs.
 
-The [TvpForVideoGrounding](/docs/transformers/v5.15.0/en/model_doc/tvp#transformers.TvpForVideoGrounding) forward method, overrides the `__call__` special method.
+The [TvpForVideoGrounding](/docs/transformers/v5.15.1/en/model_doc/tvp#transformers.TvpForVideoGrounding) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -678,4 +678,4 @@ Examples:
 ```
 
 ### Video Vision Transformer (ViViT)
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/vivit.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/vivit.md

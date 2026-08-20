@@ -1,11 +1,11 @@
 # Loading models
 
-Transformers provides many pretrained models that are ready to use with a single line of code. It requires a model class and the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method.
+Transformers provides many pretrained models that are ready to use with a single line of code. It requires a model class and the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method.
 
-Call [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to download and load a model's weights and configuration stored on the Hugging Face [Hub](https://hf.co/models).
+Call [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to download and load a model's weights and configuration stored on the Hugging Face [Hub](https://hf.co/models).
 
 > [!TIP]
-> The [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method loads weights stored in the [safetensors](https://hf.co/docs/safetensors/index) file format if they're available. Traditionally, PyTorch model weights are serialized with the [pickle](https://docs.python.org/3/library/pickle.html) utility which is known to be insecure. Safetensor files are more secure and faster to load.
+> The [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method loads weights stored in the [safetensors](https://hf.co/docs/safetensors/index) file format if they're available. Traditionally, PyTorch model weights are serialized with the [pickle](https://docs.python.org/3/library/pickle.html) utility which is known to be insecure. Safetensor files are more secure and faster to load.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -24,12 +24,12 @@ All models have a `configuration.py` file with specific attributes like the numb
 
 There are two general types of models you can load:
 
-1. A barebones model, like [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) or [LlamaModel](/docs/transformers/v5.15.0/en/model_doc/llama2#transformers.LlamaModel), that outputs hidden states.
-2. A model with a specific *head* attached, like [AutoModelForCausalLM](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForCausalLM) or [LlamaForCausalLM](/docs/transformers/v5.15.0/en/model_doc/llama2#transformers.LlamaForCausalLM), for performing specific tasks.
+1. A barebones model, like [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) or [LlamaModel](/docs/transformers/v5.15.1/en/model_doc/llama2#transformers.LlamaModel), that outputs hidden states.
+2. A model with a specific *head* attached, like [AutoModelForCausalLM](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForCausalLM) or [LlamaForCausalLM](/docs/transformers/v5.15.1/en/model_doc/llama2#transformers.LlamaForCausalLM), for performing specific tasks.
 
 ## Model classes
 
-To get a pretrained model, you need to load the weights into the model. This is done by calling [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) which accepts weights from the Hugging Face Hub or a local directory.
+To get a pretrained model, you need to load the weights into the model. This is done by calling [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) which accepts weights from the Hugging Face Hub or a local directory.
 
 There are two model classes, the [AutoModel](./model_doc/auto) class and a model-specific class.
 
@@ -83,14 +83,14 @@ Transformers reduces some of these memory-related challenges with fast initializ
 
 ### Sharded checkpoints
 
-[save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) automatically shards checkpoints larger than 50GB. This keeps shard counts low for large models and simplifies file management.
+[save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) automatically shards checkpoints larger than 50GB. This keeps shard counts low for large models and simplifies file management.
 
-Parameters load in parallel and peak memory only depends on model size. Use `max_shard_size` in [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) to set the maximum checkpoint size before sharding.
+Parameters load in parallel and peak memory only depends on model size. Use `max_shard_size` in [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) to set the maximum checkpoint size before sharding.
 
 > [!NOTE]
 > Memory usage for models requiring dynamic weight conversion depends on the model size and the size of the largest parameters in a single conversion. This typically applies to mixture-of-experts (MoE) models where the memory usage is the model size plus the number of experts on one layer. Refer to the [dynamic weight loader](./weightconverter#fast-and-efficient-model-loading) guide to learn more about how models are loaded.
 
-[save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) also creates an index file mapping parameter names to their shard files. The index contains two keys, `metadata` and `weight_map`.
+[save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) also creates an index file mapping parameter names to their shard files. The index contains two keys, `metadata` and `weight_map`.
 
 ```py
 import json
@@ -127,7 +127,7 @@ index["weight_map"]
 > [!TIP]
 > Make sure you have Accelerate v0.9.0 and PyTorch v1.9.0 or later installed to use this feature!
 
-[from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is supercharged with Accelerate's [Big Model Inference](https://hf.co/docs/accelerate/usage_guides/big_modeling) feature.
+[from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is supercharged with Accelerate's [Big Model Inference](https://hf.co/docs/accelerate/usage_guides/big_modeling) feature.
 
 Big Model Inference creates a *model skeleton* on the PyTorch [meta](https://pytorch.org/docs/main/meta.html) device. The meta device doesn't store any real data, only the metadata.
 
@@ -211,7 +211,7 @@ from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained("google/gemma-3-1b-it", dtype=torch.float16)
 ```
 
-[AutoConfig](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoConfig) also accepts `dtype` for models instantiated from scratch.
+[AutoConfig](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoConfig) also accepts `dtype` for models instantiated from scratch.
 
 ```py
 import torch
@@ -223,11 +223,11 @@ model = AutoModel.from_config(my_config)
 
 ## Custom models
 
-Custom models builds on Transformers' configuration and modeling classes, supports the [AutoClass](#autoclass) API, and are loaded with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The difference is that the modeling code is *not* from Transformers.
+Custom models builds on Transformers' configuration and modeling classes, supports the [AutoClass](#autoclass) API, and are loaded with [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). The difference is that the modeling code is *not* from Transformers.
 
 Take extra precaution when loading a custom model. While the Hub includes [malware scanning](https://hf.co/docs/hub/security-malware#malware-scanning) for every repository, you should still be careful to avoid inadvertently executing malicious code.
 
-Set `trust_remote_code=True` in [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load a custom model.
+Set `trust_remote_code=True` in [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load a custom model.
 
 ```py
 from transformers import AutoModelForImageClassification
@@ -247,4 +247,4 @@ model = AutoModelForImageClassification.from_pretrained(
 Refer to the [Customize models](./custom_models) guide for more information.
 
 ### Add a model with modular transformers
-https://huggingface.co/docs/transformers/v5.15.0/modular_transformers.md
+https://huggingface.co/docs/transformers/v5.15.1/modular_transformers.md

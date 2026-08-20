@@ -93,7 +93,7 @@ To apply the preprocessing function over the entire dataset, use 🤗 Datasets [
 >>> tokenized_swag = swag.map(preprocess_function, batched=True)
 ```
 
-To create a batch of examples, it's more efficient to *dynamically pad* the sentences to the longest length in a batch during collation, instead of padding the whole dataset to the maximum length. [DataCollatorForMultipleChoice](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DataCollatorForMultipleChoice) flattens all the model inputs, applies padding, and then unflattens the results.
+To create a batch of examples, it's more efficient to *dynamically pad* the sentences to the longest length in a batch during collation, instead of padding the whole dataset to the maximum length. [DataCollatorForMultipleChoice](/docs/transformers/v5.15.1/en/main_classes/data_collator#transformers.DataCollatorForMultipleChoice) flattens all the model inputs, applies padding, and then unflattens the results.
 
 ```py
 >>> from transformers import DataCollatorForMultipleChoice
@@ -125,9 +125,9 @@ Your `compute_metrics` function is ready to go now, and you'll return to it when
 
 ## Train
 
-If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#train-with-pytorch-trainer)!
+If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#train-with-pytorch-trainer)!
 
-You're ready to start training your model now! Load BERT with [AutoModelForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForMultipleChoice):
+You're ready to start training your model now! Load BERT with [AutoModelForMultipleChoice](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForMultipleChoice):
 
 ```py
 >>> from transformers import AutoModelForMultipleChoice, TrainingArguments, Trainer
@@ -137,9 +137,9 @@ You're ready to start training your model now! Load BERT with [AutoModelForMulti
 
 At this point, only three steps remain:
 
-1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model). At the end of each epoch, the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) will evaluate the accuracy and save the training checkpoint.
-2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, tokenizer, data collator, and `compute_metrics` function.
-3. Call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
+1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model). At the end of each epoch, the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) will evaluate the accuracy and save the training checkpoint.
+2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, tokenizer, data collator, and `compute_metrics` function.
+3. Call [train()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
 
 ```py
 >>> training_args = TrainingArguments(
@@ -168,7 +168,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -218,4 +218,4 @@ Get the class with the highest probability:
 ```
 
 ### Image Segmentation
-https://huggingface.co/docs/transformers/v5.15.0/tasks/semantic_segmentation.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/semantic_segmentation.md

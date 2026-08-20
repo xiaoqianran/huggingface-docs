@@ -88,5 +88,5 @@ You can access the logs by clicking on the **Logs** tab on the endpoint details 
 - **Other problems**  
   For other problems, please refer to the [llama.cpp issues page](https://github.com/ggerganov/llama.cpp/issues). In case you want to create a new issue, please also include the full log output in your bug report.
 
-### Inference Toolkit
-https://huggingface.co/docs/inference-endpoints/engines/toolkit.md
+### vLLM
+https://huggingface.co/docs/inference-endpoints/engines/vllm.md

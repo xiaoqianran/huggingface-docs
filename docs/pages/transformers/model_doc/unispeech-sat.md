@@ -27,9 +27,9 @@ found [here](https://github.com/microsoft/UniSpeech/tree/main/UniSpeech-SAT).
 ## Usage tips
 
 - UniSpeechSat is a speech model that accepts a float array corresponding to the raw waveform of the speech signal.
-  Please use [Wav2Vec2Processor](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor) for the feature extraction.
+  Please use [Wav2Vec2Processor](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor) for the feature extraction.
 - UniSpeechSat model can be fine-tuned using connectionist temporal classification (CTC) so the model output has to be
-  decoded using [Wav2Vec2CTCTokenizer](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer).
+  decoded using [Wav2Vec2CTCTokenizer](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2CTCTokenizer).
 - UniSpeechSat performs especially well on speaker verification, speaker identification, and speaker diarization tasks.
 
 ## Resources
@@ -45,7 +45,7 @@ found [here](https://github.com/microsoft/UniSpeech/tree/main/UniSpeech-SAT).
 transformers.UniSpeechSatConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 32, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout: float | int = 0.1, activation_dropout: float | int = 0.1, attention_dropout: float | int = 0.1, feat_proj_dropout: float | int = 0.0, feat_quantizer_dropout: float | int = 0.0, final_dropout: float | int = 0.1, layerdrop: float | int = 0.1, initializer_range: float = 0.02, layer_norm_eps: float = 1e-05, feat_extract_norm: str = 'group', feat_extract_activation: str = 'gelu', conv_dim: list[int] | tuple[int, ...] = (512, 512, 512, 512, 512, 512, 512), conv_stride: list[int] | tuple[int, ...] = (5, 2, 2, 2, 2, 2, 2), conv_kernel: list[int] | tuple[int, ...] = (10, 3, 3, 3, 3, 2, 2), conv_bias: bool = False, num_conv_pos_embeddings: int = 128, num_conv_pos_embedding_groups: int = 16, do_stable_layer_norm: bool = False, apply_spec_augment: bool = True, mask_time_prob: float | int = 0.05, mask_time_length: int = 10, mask_time_min_masks: int = 2, mask_feature_prob: float | int = 0.0, mask_feature_length: int = 10, mask_feature_min_masks: int = 0, num_codevectors_per_group: int = 320, num_codevector_groups: int = 2, contrastive_logits_temperature: float = 0.1, num_negatives: int = 100, codevector_dim: int = 256, proj_codevector_dim: int = 256, diversity_loss_weight: float = 0.1, ctc_loss_reduction: str = 'mean', ctc_zero_infinity: bool = False, use_weighted_layer_sum: bool = False, classifier_proj_size: int = 256, tdnn_dim: list[int] | tuple[int, ...] = (512, 512, 512, 512, 1500), tdnn_kernel: list[int] | tuple[int, ...] = (5, 3, 3, 1, 1), tdnn_dilation: list[int] | tuple[int, ...] = (1, 2, 3, 1, 1), xvector_output_dim: int = 512, pad_token_id: int = 0, bos_token_id: int = 1, eos_token_id: int = 2, num_clusters: int = 504)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/unispeech_sat/configuration_unispeech_sat.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/unispeech_sat/configuration_unispeech_sat.py#L27)
 
 **Parameters:**
 
@@ -71,7 +71,7 @@ feat_proj_dropout (`float`, *optional*, defaults to 0.0) : The dropout probabili
 
 feat_quantizer_dropout (`float`, *optional*, defaults to 0.0) : The dropout probability for the output of the feature encoder that's used by the quantizer.
 
-final_dropout (`float`, *optional*, defaults to 0.1) : The dropout probability for the final projection layer of [UniSpeechSatForCTC](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatForCTC).
+final_dropout (`float`, *optional*, defaults to 0.1) : The dropout probability for the final projection layer of [UniSpeechSatForCTC](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatForCTC).
 
 layerdrop (`Union[float, int]`, *optional*, defaults to `0.1`) : The LayerDrop probability. See the [LayerDrop paper](see https://huggingface.co/papers/1909.11556) for more details.
 
@@ -127,9 +127,9 @@ diversity_loss_weight (`int`, *optional*, defaults to 0.1) : The weight of the c
 
 ctc_loss_reduction (`str`, *optional*, defaults to `mean`) : Specifies the reduction to apply to the output of `torch.nn.CTCLoss`. Only relevant when training.
 
-ctc_zero_infinity (`bool`, *optional*, defaults to `False`) : Whether to zero infinite losses and the associated gradients of `torch.nn.CTCLoss`. Infinite losses mainly occur when the inputs are too short to be aligned to the targets. Only relevant when training an instance of [UniSpeechSatForCTC](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatForCTC).
+ctc_zero_infinity (`bool`, *optional*, defaults to `False`) : Whether to zero infinite losses and the associated gradients of `torch.nn.CTCLoss`. Infinite losses mainly occur when the inputs are too short to be aligned to the targets. Only relevant when training an instance of [UniSpeechSatForCTC](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatForCTC).
 
-use_weighted_layer_sum (`bool`, *optional*, defaults to `False`) : Whether to use a weighted average of layer outputs with learned weights. Only relevant when using an instance of [UniSpeechSatForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatForSequenceClassification).
+use_weighted_layer_sum (`bool`, *optional*, defaults to `False`) : Whether to use a weighted average of layer outputs with learned weights. Only relevant when using an instance of [UniSpeechSatForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatForSequenceClassification).
 
 classifier_proj_size (`int`, *optional*, defaults to 256) : Dimensionality of the projection before token mean-pooling for classification.
 
@@ -147,14 +147,14 @@ bos_token_id (`int`, *optional*, defaults to `1`) : Token id used for beginning-
 
 eos_token_id (`int`, *optional*, defaults to `2`) : Token id used for end-of-stream in the vocabulary.
 
-num_clusters (`int`, *optional*, defaults to 504) : Number of clusters for weak labeling. Only relevant when using an instance of [UniSpeechSatForPreTraining](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatForPreTraining).
+num_clusters (`int`, *optional*, defaults to 504) : Number of clusters for weak labeling. Only relevant when using an instance of [UniSpeechSatForPreTraining](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatForPreTraining).
 
 This is the configuration class to store the configuration of a Unispeech SatModel. It is used to instantiate a Unispeech Sat
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/unispeech-sat-base-100h-libri-ft](https://huggingface.co/microsoft/unispeech-sat-base-100h-libri-ft)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -179,7 +179,7 @@ Example:
 transformers.models.unispeech_sat.modeling_unispeech_sat.UniSpeechSatForPreTrainingOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, projected_states: typing.Optional[torch.FloatTensor] = None, projected_quantized_states: typing.Optional[torch.FloatTensor] = None, codevector_perplexity: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor] | None = None, attentions: tuple[torch.FloatTensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L62)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L62)
 
 **Parameters:**
 
@@ -207,15 +207,15 @@ Output type of `UniSpeechSatForPreTrainingOutput`, with potential hidden states 
 transformers.UniSpeechSatModel(config: UniSpeechSatConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L926)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L926)
 
 **Parameters:**
 
-config ([UniSpeechSatConfig](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([UniSpeechSatConfig](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Unispeech Sat Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -229,11 +229,11 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor], attention_mask: typing.Optional[torch.Tensor] = None, mask_time_indices: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L989)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L989)
 
 **Parameters:**
 
-input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
+input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -243,15 +243,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [Wav2Vec2BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.Wav2Vec2BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [Wav2Vec2BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.Wav2Vec2BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [Wav2Vec2BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.Wav2Vec2BaseModelOutput) or a tuple of
+A [Wav2Vec2BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.Wav2Vec2BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([UniSpeechSatConfig](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) and inputs.
+elements depending on the configuration ([UniSpeechSatConfig](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) and inputs.
 
-The [UniSpeechSatModel](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatModel) forward method, overrides the `__call__` special method.
+The [UniSpeechSatModel](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -277,17 +277,17 @@ the latter silently ignores them.
 transformers.UniSpeechSatForCTC(config, target_lang: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1170)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1170)
 
 **Parameters:**
 
-config ([UniSpeechSatForCTC](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatForCTC)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([UniSpeechSatForCTC](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatForCTC)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
-target_lang (`str`, *optional*) : Language id of adapter weights. Adapter weights are stored in the format adapter..safetensors or adapter..bin. Only relevant when using an instance of [UniSpeechSatForCTC](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatForCTC) with adapters. Uses 'eng' by default.
+target_lang (`str`, *optional*) : Language id of adapter weights. Adapter weights are stored in the format adapter..safetensors or adapter..bin. Only relevant when using an instance of [UniSpeechSatForCTC](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatForCTC) with adapters. Uses 'eng' by default.
 
 UniSpeechSat Model with a `language modeling` head on top for Connectionist Temporal Classification (CTC).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -301,11 +301,11 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor], attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, labels: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1239)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1239)
 
 **Parameters:**
 
-input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
+input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -313,17 +313,17 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 labels (`torch.LongTensor` of shape `(batch_size, target_length)`, *optional*) : Labels for connectionist temporal classification. Note that `target_length` has to be smaller or equal to the sequence length of the output logits. Indices are selected in `[-100, 0, ..., config.vocab_size - 1]`. All labels set to `-100` are ignored (masked), the loss is only computed for labels in `[0, ..., config.vocab_size - 1]`.
 
-**Returns:** [CausalLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [CausalLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or `tuple(torch.FloatTensor)`
 
-A [CausalLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or a tuple of
+A [CausalLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([UniSpeechSatConfig](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) and inputs.
+elements depending on the configuration ([UniSpeechSatConfig](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) and inputs.
 
-The [UniSpeechSatForCTC](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatForCTC) forward method, overrides the `__call__` special method.
+The [UniSpeechSatForCTC](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatForCTC) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -382,16 +382,16 @@ Example:
 transformers.UniSpeechSatForSequenceClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1318)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1318)
 
 **Parameters:**
 
-config ([UniSpeechSatForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([UniSpeechSatForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 UniSpeechSat Model with a sequence classification head on top (a linear layer over the pooled output) for tasks like
 SUPERB Keyword Spotting.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -405,11 +405,11 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor], attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, labels: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1351)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1351)
 
 **Parameters:**
 
-input_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See `UniSpeechSatProcessor.__call__` for details.
+input_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See `UniSpeechSatProcessor.__call__` for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -417,17 +417,17 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+A [SequenceClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([UniSpeechSatConfig](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) and inputs.
+elements depending on the configuration ([UniSpeechSatConfig](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) and inputs.
 
-The [UniSpeechSatForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatForSequenceClassification) forward method, overrides the `__call__` special method.
+The [UniSpeechSatForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -509,15 +509,15 @@ Example of multi-label classification:
 transformers.UniSpeechSatForAudioFrameClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1423)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1423)
 
 **Parameters:**
 
-config ([UniSpeechSatForAudioFrameClassification](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatForAudioFrameClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([UniSpeechSatForAudioFrameClassification](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatForAudioFrameClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Unispeech Sat Model with a frame classification head on top for tasks like Speaker Diarization.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -531,11 +531,11 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor], attention_mask: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1455)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1455)
 
 **Parameters:**
 
-input_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See `UniSpeechSatProcessor.__call__` for details.
+input_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See `UniSpeechSatProcessor.__call__` for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -545,15 +545,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [TokenClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
+A [TokenClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([UniSpeechSatConfig](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) and inputs.
+elements depending on the configuration ([UniSpeechSatConfig](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) and inputs.
 
-The [UniSpeechSatForAudioFrameClassification](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatForAudioFrameClassification) forward method, overrides the `__call__` special method.
+The [UniSpeechSatForAudioFrameClassification](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatForAudioFrameClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -605,15 +605,15 @@ Example:
 transformers.UniSpeechSatForXVector(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1577)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1577)
 
 **Parameters:**
 
-config ([UniSpeechSatForXVector](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatForXVector)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([UniSpeechSatForXVector](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatForXVector)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 UniSpeechSat Model with an XVector feature extraction head on top for tasks like Speaker Verification.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -627,11 +627,11 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor], attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, labels: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1627)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1627)
 
 **Parameters:**
 
-input_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See `UniSpeechSatProcessor.__call__` for details.
+input_values (`torch.FloatTensor` of shape `(batch_size, sequence_length)`) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See `UniSpeechSatProcessor.__call__` for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -639,17 +639,17 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-**Returns:** [XVectorOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.XVectorOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [XVectorOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.XVectorOutput) or `tuple(torch.FloatTensor)`
 
-A [XVectorOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.XVectorOutput) or a tuple of
+A [XVectorOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.XVectorOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([UniSpeechSatConfig](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) and inputs.
+elements depending on the configuration ([UniSpeechSatConfig](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) and inputs.
 
-The [UniSpeechSatForXVector](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatForXVector) forward method, overrides the `__call__` special method.
+The [UniSpeechSatForXVector](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatForXVector) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -709,15 +709,15 @@ Example:
 transformers.UniSpeechSatForPreTraining(config: UniSpeechSatConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1049)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1049)
 
 **Parameters:**
 
-config ([UniSpeechSatConfig](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([UniSpeechSatConfig](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 UniSpeechSat Model with a vector-quantization module and ctc loss for pre-training.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -731,11 +731,11 @@ and behavior.
 forward(input_values: typing.Optional[torch.Tensor], attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1105)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/unispeech_sat/modeling_unispeech_sat.py#L1105)
 
 **Parameters:**
 
-input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.0/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
+input_values (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Float values of input raw speech waveform. Values can be obtained by loading a `.flac` or `.wav` audio file into an array of type `list[float]`, a `numpy.ndarray` or a `torch.Tensor`, *e.g.* via the torchcodec library (`pip install torchcodec`) or the soundfile library (`pip install soundfile`). To prepare the array into `input_values`, the [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor) should be used for padding and conversion into a tensor of type `torch.FloatTensor`. See [Wav2Vec2Processor.__call__()](/docs/transformers/v5.15.1/en/model_doc/wav2vec2#transformers.Wav2Vec2Processor.__call__) for details.
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -743,15 +743,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [UniSpeechSatForPreTrainingOutput](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.models.unispeech_sat.modeling_unispeech_sat.UniSpeechSatForPreTrainingOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [UniSpeechSatForPreTrainingOutput](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.models.unispeech_sat.modeling_unispeech_sat.UniSpeechSatForPreTrainingOutput) or `tuple(torch.FloatTensor)`
 
-A [UniSpeechSatForPreTrainingOutput](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.models.unispeech_sat.modeling_unispeech_sat.UniSpeechSatForPreTrainingOutput) or a tuple of
+A [UniSpeechSatForPreTrainingOutput](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.models.unispeech_sat.modeling_unispeech_sat.UniSpeechSatForPreTrainingOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([UniSpeechSatConfig](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) and inputs.
+elements depending on the configuration ([UniSpeechSatConfig](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatConfig)) and inputs.
 
-The [UniSpeechSatForPreTraining](/docs/transformers/v5.15.0/en/model_doc/unispeech-sat#transformers.UniSpeechSatForPreTraining) forward method, overrides the `__call__` special method.
+The [UniSpeechSatForPreTraining](/docs/transformers/v5.15.1/en/model_doc/unispeech-sat#transformers.UniSpeechSatForPreTraining) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -788,4 +788,4 @@ Example:
 ```
 
 ### Chameleon
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/chameleon.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/chameleon.md

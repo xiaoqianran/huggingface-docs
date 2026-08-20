@@ -4,7 +4,7 @@ A **Video Processor** is a utility responsible for preparing input features for 
 
 The video processor extends the functionality of image processors by allowing the models to handle videos with a distinct set of arguments compared to images. It serves as the bridge between raw video data and the model, ensuring that input features are optimized for the VLM.
 
-Use [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/video_processor#transformers.BaseVideoProcessor.from_pretrained) to load a video processors configuration (image size, whether to normalize and rescale, etc.) from a video model on the Hugging Face [Hub](https://hf.co) or local directory. The configuration for each pretrained model should be saved in a [video_preprocessor_config.json] file but older models might have the config saved in [preprocessor_config.json](https://huggingface.co/llava-hf/llava-onevision-qwen2-0.5b-ov-hf/blob/main/preprocessor_config.json) file. Note that the latter is less preferred and will be removed in the future.
+Use [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/video_processor#transformers.BaseVideoProcessor.from_pretrained) to load a video processors configuration (image size, whether to normalize and rescale, etc.) from a video model on the Hugging Face [Hub](https://hf.co) or local directory. The configuration for each pretrained model should be saved in a [video_preprocessor_config.json] file but older models might have the config saved in [preprocessor_config.json](https://huggingface.co/llava-hf/llava-onevision-qwen2-0.5b-ov-hf/blob/main/preprocessor_config.json) file. Note that the latter is less preferred and will be removed in the future.
 
 ## Usage Example
 
@@ -34,4 +34,4 @@ processed_video = processor(video, return_tensors="pt")
 ```
 
 ### Adding a new pipeline
-https://huggingface.co/docs/transformers/v5.15.0/add_new_pipeline.md
+https://huggingface.co/docs/transformers/v5.15.1/add_new_pipeline.md

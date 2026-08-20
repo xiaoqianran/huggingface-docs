@@ -17,7 +17,7 @@ Install [trackio](https://github.com/gradio-app/trackio) for experiment tracking
 pip install -Uq albumentations trackio transformers datasets
 ```
 
-Initialize [DetrConfig](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrConfig) with the pre-trained DINOv3 ConvNext backbone. Use `num_labels=1` to detect the license plate bounding boxes. Create [DetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrForObjectDetection) with this configuration. Freeze the backbone to preserve DINOv3 features without updating weights. Load the [DetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor).
+Initialize [DetrConfig](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrConfig) with the pre-trained DINOv3 ConvNext backbone. Use `num_labels=1` to detect the license plate bounding boxes. Create [DetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrForObjectDetection) with this configuration. Freeze the backbone to preserve DINOv3 features without updating weights. Load the [DetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor).
 
 ```py
 from transformers import DetrConfig, DetrForObjectDetection, AutoImageProcessor
@@ -150,7 +150,7 @@ def collate_fn(examples):
     return inputs
 ```
 
-Initialize the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) and set up [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) for model convergence. Pass datasets, data collator, arguments, and model to `Trainer` to start training.
+Initialize the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) and set up [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) for model convergence. Pass datasets, data collator, arguments, and model to `Trainer` to start training.
 
 ```py
 from transformers import Trainer, TrainingArguments
@@ -235,4 +235,4 @@ plot_results(image, results, threshold=0.05)
 ![Results](https://huggingface.co/datasets/huggingface/documentation-images/results/main/transformers/tasks/backbone_training_results.png)
 
 ### Zero-shot object detection
-https://huggingface.co/docs/transformers/v5.15.0/tasks/zero_shot_object_detection.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/zero_shot_object_detection.md

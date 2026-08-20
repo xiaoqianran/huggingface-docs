@@ -135,4 +135,4 @@ treated as forward arguments). Each entry carries a reason naming the model-side
 list is also expected to shrink, not grow.
 
 ### Mixed precision training
-https://huggingface.co/docs/transformers/v5.15.0/mixed_precision_training.md
+https://huggingface.co/docs/transformers/v5.15.1/mixed_precision_training.md

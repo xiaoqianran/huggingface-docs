@@ -28,9 +28,9 @@ tokenizer = AutoTokenizer.from_pretrained("HuggingFaceTB/SmolLM2-135M-Instruct")
 
 The export process uses several Transformers components.
 
-1. [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) loads the model weights in safetensors format.
+1. [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) loads the model weights in safetensors format.
 2. Optimum applies graph optimizations and runs [torch.export](https://docs.pytorch.org/docs/stable/export.html) to create a `model.pte` file targeting your hardware backend.
-3. [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer) or [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor) loads the tokenizer or processor files and runs during inference.
+3. [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer) or [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor) loads the tokenizer or processor files and runs during inference.
 4. At runtime, a C++ runner class executes the `.pte` file on the ExecuTorch runtime.
 
 ```c++
@@ -67,4 +67,4 @@ int main() {
 - [Exporting to production](../serialization#executorch) guide
 
 ### MLX
-https://huggingface.co/docs/transformers/v5.15.0/community_integrations/mlx.md
+https://huggingface.co/docs/transformers/v5.15.1/community_integrations/mlx.md

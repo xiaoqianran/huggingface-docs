@@ -17,7 +17,7 @@ This model was contributed by [DepuMeng](https://huggingface.co/DepuMeng). The o
 
 ## Resources
 
-- Scripts for finetuning [ConditionalDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrForObjectDetection) with [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) or [Accelerate](https://huggingface.co/docs/accelerate/index) can be found [here](https://github.com/huggingface/transformers/tree/main/examples/pytorch/object-detection).
+- Scripts for finetuning [ConditionalDetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrForObjectDetection) with [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) or [Accelerate](https://huggingface.co/docs/accelerate/index) can be found [here](https://github.com/huggingface/transformers/tree/main/examples/pytorch/object-detection).
 - See also: [Object detection task guide](../tasks/object_detection).
 
 ## ConditionalDetrConfig[[transformers.ConditionalDetrConfig]]
@@ -28,7 +28,7 @@ This model was contributed by [DepuMeng](https://huggingface.co/DepuMeng). The o
 transformers.ConditionalDetrConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, num_channels: int = 3, num_queries: int = 300, encoder_layers: int = 6, encoder_ffn_dim: int = 2048, encoder_attention_heads: int = 8, decoder_layers: int = 6, decoder_ffn_dim: int = 2048, decoder_attention_heads: int = 8, encoder_layerdrop: float | int = 0.0, decoder_layerdrop: float | int = 0.0, activation_function: str = 'relu', d_model: int = 256, dropout: float | int = 0.1, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, init_std: float = 0.02, init_xavier_std: float = 1.0, auxiliary_loss: bool = False, position_embedding_type: str = 'sine', dilation: bool = False, class_cost: int = 2, bbox_cost: int = 5, giou_cost: int = 2, mask_loss_coefficient: int = 1, dice_loss_coefficient: int = 1, cls_loss_coefficient: int = 2, bbox_loss_coefficient: int = 5, giou_loss_coefficient: int = 2, focal_alpha: float = 0.25)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/configuration_conditional_detr.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/configuration_conditional_detr.py#L26)
 
 **Parameters:**
 
@@ -38,7 +38,7 @@ backbone_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional
 
 num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
 
-num_queries (`int`, *optional*, defaults to 300) : Number of object queries, i.e. detection slots. This is the maximal number of objects [ConditionalDetrModel](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrModel) can detect in a single image. For COCO, we recommend 100 queries.
+num_queries (`int`, *optional*, defaults to 300) : Number of object queries, i.e. detection slots. This is the maximal number of objects [ConditionalDetrModel](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrModel) can detect in a single image. For COCO, we recommend 100 queries.
 
 encoder_layers (`int`, *optional*, defaults to `6`) : Number of hidden layers in the Transformer encoder. Will use the same value as `num_layers` if not set.
 
@@ -98,8 +98,8 @@ This is the configuration class to store the configuration of a ConditionalDetrM
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/conditional-detr-resnet-50](https://huggingface.co/microsoft/conditional-detr-resnet-50)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -124,7 +124,7 @@ Examples:
 transformers.ConditionalDetrImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/image_processing_conditional_detr.py#L426)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/image_processing_conditional_detr.py#L426)
 
 **Parameters:**
 
@@ -180,7 +180,7 @@ Constructs a ConditionalDetrImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], annotations: dict[str, int | str | list[dict]] | list[dict[str, int | str | list[dict]]] | None = None, return_segmentation_masks: bool | None = None, masks_path: str | pathlib.Path | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/image_processing_conditional_detr.py#L671)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/image_processing_conditional_detr.py#L671)
 
 **Parameters:**
 
@@ -250,7 +250,7 @@ do_convert_annotations (`bool`, *kwargs*, *optional*, defaults to `True`) : Cont
 transformers.ConditionalDetrImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/image_processing_pil_conditional_detr.py#L429)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/image_processing_pil_conditional_detr.py#L429)
 
 **Parameters:**
 
@@ -306,7 +306,7 @@ Constructs a ConditionalDetrImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], annotations: dict[str, int | str | list[dict]] | list[dict[str, int | str | list[dict]]] | None = None, return_segmentation_masks: bool | None = None, masks_path: str | pathlib.Path | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/image_processing_pil_conditional_detr.py#L697)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/image_processing_pil_conditional_detr.py#L697)
 
 **Parameters:**
 
@@ -374,7 +374,7 @@ do_convert_annotations (`bool`, *kwargs*, *optional*, defaults to `True`) : Cont
 post_process_object_detection(outputs, threshold: float = 0.5, target_sizes: transformers.utils.generic.TensorType | list[tuple] = None, top_k: int = 100)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/image_processing_pil_conditional_detr.py#L842)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/image_processing_pil_conditional_detr.py#L842)
 
 **Parameters:**
 
@@ -391,7 +391,7 @@ top_k (`int`, *optional*, defaults to 100) : Keep only top k bounding boxes befo
 A list of dictionaries, each dictionary containing the scores, labels and boxes for an image
 in the batch as predicted by the model.
 
-Converts the raw output of [ConditionalDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrForObjectDetection) into final bounding boxes in (top_left_x,
+Converts the raw output of [ConditionalDetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrForObjectDetection) into final bounding boxes in (top_left_x,
 top_left_y, bottom_right_x, bottom_right_y) format. Only supports PyTorch.
 
 #### post_process_instance_segmentation[[transformers.ConditionalDetrImageProcessorPil.post_process_instance_segmentation]]
@@ -400,11 +400,11 @@ top_left_y, bottom_right_x, bottom_right_y) format. Only supports PyTorch.
 post_process_instance_segmentation(outputs, threshold: float = 0.5, mask_threshold: float = 0.5, overlap_mask_area_threshold: float = 0.8, target_sizes: list[tuple[int, int]] | None = None, return_coco_annotation: bool | None = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/image_processing_pil_conditional_detr.py#L976)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/image_processing_pil_conditional_detr.py#L976)
 
 **Parameters:**
 
-outputs ([ConditionalDetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation)) : Raw outputs of the model.
+outputs ([ConditionalDetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation)) : Raw outputs of the model.
 
 threshold (`float`, *optional*, defaults to 0.5) : The probability score threshold to keep predicted instance masks.
 
@@ -427,7 +427,7 @@ A list of dictionaries, one per image, each dictionary containing two keys:
   - **label_id** -- An integer representing the label / semantic class id corresponding to `segment_id`.
   - **score** -- Prediction score of segment with `segment_id`.
 
-Converts the output of [ConditionalDetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation) into instance segmentation predictions. Only supports PyTorch.
+Converts the output of [ConditionalDetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation) into instance segmentation predictions. Only supports PyTorch.
 
 #### post_process_semantic_segmentation[[transformers.ConditionalDetrImageProcessorPil.post_process_semantic_segmentation]]
 
@@ -435,11 +435,11 @@ Converts the output of [ConditionalDetrForSegmentation](/docs/transformers/v5.15
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple[int, int]] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/image_processing_pil_conditional_detr.py#L903)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/image_processing_pil_conditional_detr.py#L903)
 
 **Parameters:**
 
-outputs ([ConditionalDetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation)) : Raw outputs of the model.
+outputs ([ConditionalDetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[tuple[int, int]]`, *optional*) : A list of tuples (`tuple[int, int]`) containing the target size (height, width) of each image in the batch. If unset, predictions will not be resized.
 
@@ -454,7 +454,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [ConditionalDetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation) into semantic segmentation maps. Only supports PyTorch.
+Converts the output of [ConditionalDetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation) into semantic segmentation maps. Only supports PyTorch.
 
 #### post_process_panoptic_segmentation[[transformers.ConditionalDetrImageProcessorPil.post_process_panoptic_segmentation]]
 
@@ -462,11 +462,11 @@ Converts the output of [ConditionalDetrForSegmentation](/docs/transformers/v5.15
 post_process_panoptic_segmentation(outputs, threshold: float = 0.5, mask_threshold: float = 0.5, overlap_mask_area_threshold: float = 0.8, label_ids_to_fuse: set[int] | None = None, target_sizes: list[tuple[int, int]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/image_processing_pil_conditional_detr.py#L1065)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/image_processing_pil_conditional_detr.py#L1065)
 
 **Parameters:**
 
-outputs ([ConditionalDetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation)) : The outputs from [ConditionalDetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation).
+outputs ([ConditionalDetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation)) : The outputs from [ConditionalDetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation).
 
 threshold (`float`, *optional*, defaults to 0.5) : The probability score threshold to keep predicted instance masks.
 
@@ -491,7 +491,7 @@ A list of dictionaries, one per image, each dictionary containing two keys:
     Multiple instances of the same class / label were fused and assigned a single `segment_id`.
   - **score** -- Prediction score of segment with `segment_id`.
 
-Converts the output of [ConditionalDetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation) into image panoptic segmentation predictions. Only supports
+Converts the output of [ConditionalDetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation) into image panoptic segmentation predictions. Only supports
 PyTorch.
 
 ## ConditionalDetrModel[[transformers.ConditionalDetrModel]]
@@ -502,16 +502,16 @@ PyTorch.
 transformers.ConditionalDetrModel(config: ConditionalDetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/modeling_conditional_detr.py#L1337)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/modeling_conditional_detr.py#L1337)
 
 **Parameters:**
 
-config ([ConditionalDetrConfig](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ConditionalDetrConfig](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare CONDITIONAL_DETR Model (consisting of a backbone and encoder-decoder Transformer) outputting raw hidden-states without
 any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -525,7 +525,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/modeling_conditional_detr.py#L1366)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/modeling_conditional_detr.py#L1366)
 
 **Parameters:**
 
@@ -547,7 +547,7 @@ A `ConditionalDetrModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [ConditionalDetrModel](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrModel) forward method, overrides the `__call__` special method.
+The [ConditionalDetrModel](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -557,7 +557,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
   blocks) that can be used (see `past_key_values` input) to speed up sequential decoding.
@@ -625,16 +625,16 @@ Examples:
 transformers.ConditionalDetrForObjectDetection(config: ConditionalDetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/modeling_conditional_detr.py#L1509)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/modeling_conditional_detr.py#L1509)
 
 **Parameters:**
 
-config ([ConditionalDetrConfig](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ConditionalDetrConfig](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 CONDITIONAL_DETR Model (consisting of a backbone and encoder-decoder Transformer) with object detection heads on top, for tasks
 such as COCO detection.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -648,7 +648,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/modeling_conditional_detr.py#L1523)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/modeling_conditional_detr.py#L1523)
 
 **Parameters:**
 
@@ -672,7 +672,7 @@ A `ConditionalDetrObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [ConditionalDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrForObjectDetection) forward method, overrides the `__call__` special method.
+The [ConditionalDetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -761,16 +761,16 @@ Detected couch with confidence 0.535 at location [0.52, 1.19, 640.35, 475.1]
 transformers.ConditionalDetrForSegmentation(config: ConditionalDetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/modeling_conditional_detr.py#L1655)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/modeling_conditional_detr.py#L1655)
 
 **Parameters:**
 
-config ([ConditionalDetrConfig](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ConditionalDetrConfig](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 CONDITIONAL_DETR Model (consisting of a backbone and encoder-decoder Transformer) with a segmentation head on top, for tasks
 such as COCO panoptic.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -784,7 +784,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.FloatTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/conditional_detr/modeling_conditional_detr.py#L1677)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/conditional_detr/modeling_conditional_detr.py#L1677)
 
 **Parameters:**
 
@@ -808,7 +808,7 @@ A `ConditionalDetrSegmentationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [ConditionalDetrForSegmentation](/docs/transformers/v5.15.0/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation) forward method, overrides the `__call__` special method.
+The [ConditionalDetrForSegmentation](/docs/transformers/v5.15.1/en/model_doc/conditional_detr#transformers.ConditionalDetrForSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -898,4 +898,4 @@ torch.Size([300, 500])
 ```
 
 ### PP-OCRv6_small_rec
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/pp_ocrv6_small_rec.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/pp_ocrv6_small_rec.md

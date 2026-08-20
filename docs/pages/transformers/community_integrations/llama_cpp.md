@@ -24,9 +24,9 @@ llama-server -hf ggml-org/gpt-oss-20b-GGUF
 
 ## Transformers integration
 
-1. [AutoConfig.from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoConfig.from_pretrained) loads the model's `config.json` file to extract metadata.
-2. [AutoTokenizer.from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained) extracts the vocabulary and tokenizer configuration.
-3. Based on the `architectures` field in the config, the script selects a converter class from its internal registry. The registry maps Transformers architecture names (like [LlamaForCausalLM](/docs/transformers/v5.15.0/en/model_doc/llama2#transformers.LlamaForCausalLM)) to corresponding converter classes.
+1. [AutoConfig.from_pretrained()](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoConfig.from_pretrained) loads the model's `config.json` file to extract metadata.
+2. [AutoTokenizer.from_pretrained()](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer.from_pretrained) extracts the vocabulary and tokenizer configuration.
+3. Based on the `architectures` field in the config, the script selects a converter class from its internal registry. The registry maps Transformers architecture names (like [LlamaForCausalLM](/docs/transformers/v5.15.1/en/model_doc/llama2#transformers.LlamaForCausalLM)) to corresponding converter classes.
 4. The converter maps Transformers tensor names (for example, `model.layers.0.self_attn.q_proj.weight`) to GGUF tensor names, transforms tensors, and packages the vocabulary.
 5. The output is a single GGUF file containing the model weights, tokenizer, and metadata.
 
@@ -36,4 +36,4 @@ llama-server -hf ggml-org/gpt-oss-20b-GGUF
 - [Introduction to ggml](https://huggingface.co/blog/introduction-to-ggml) blog post
 
 ### NeMo Automodel
-https://huggingface.co/docs/transformers/v5.15.0/community_integrations/nemo_automodel_finetuning.md
+https://huggingface.co/docs/transformers/v5.15.1/community_integrations/nemo_automodel_finetuning.md

@@ -12,7 +12,7 @@ For usage examples, see the [Continuous batching](../continuous_batching) guide 
 transformers.ContinuousMixin.generate_batch(inputs: list, generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, continuous_batching_config: transformers.generation.configuration_utils.ContinuousBatchingConfig | None = None, record_timestamps: bool = False, progress_bar: bool = True, persistent_manager: bool = False, warmup: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L1201)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L1201)
 
 **Parameters:**
 
@@ -44,7 +44,7 @@ Generate sequences for a batch of prompts using continuous batching.
 transformers.ContinuousBatchingManager(model: ProtoPretrainedModel, generation_config: GenerationConfig, continuous_batching_config: ContinuousBatchingConfig, workload_hints: transformers.generation.continuous_batching.utils.WorkloadHints | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L553)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L553)
 
 Manager for handling continuous batching of generation requests. It provides a user interface for submitting
 generation requests, retrieving results, and managing the background generation thread. This class should not be
@@ -59,7 +59,7 @@ created directly, but through one of the following entry points (all methods of 
 add_request(input_ids: list, request_id: str | None = None, max_new_tokens: int | None = None, streaming: bool = False, record_timestamps: bool = False, eos_token_id: int | list[int] | None = None, **logit_processor_kwargs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L763)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L763)
 
 **Parameters:**
 
@@ -89,7 +89,7 @@ Add a new generation request to the queue. If the process is not a TP driver, th
 add_requests(inputs: list, max_new_tokens: int | None = None, streaming: bool = False, record_timestamps: bool = False, **logit_processor_kwargs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L820)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L820)
 
 Utility function to batch `add_request` and return their IDs. Check its documentation for more details.
 
@@ -99,7 +99,7 @@ Utility function to batch `add_request` and return their IDs. Check its document
 cancel_request(request_id: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L855)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L855)
 
 Cancel a request by its ID. If this called from a process that is not a TP driver, it's a no-op: only TP
 driver processes interact with the manager.
@@ -110,7 +110,7 @@ driver processes interact with the manager.
 destroy()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L754)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L754)
 
 Terminate the manager and release distributed resources. Safe to call multiple times. After calling this,
 the manager cannot be restarted.
@@ -121,7 +121,7 @@ the manager cannot be restarted.
 get_result(request_id: str | None = None, timeout: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L864)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L864)
 
 Retrieve one result from the output queue. If an ID is provided, returns the first matching request. If a
 timeout is provided, returns None after the timeout (in seconds).
@@ -132,7 +132,7 @@ timeout is provided, returns None after the timeout (in seconds).
 is_running()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L675)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L675)
 
 Returns True if the background generation thread has been started and is still alive.
 
@@ -142,7 +142,7 @@ Returns True if the background generation thread has been started and is still a
 join(stop_trigger_time: float, timeout: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L739)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L739)
 
 Wait for the background thread to finish. Wait can be capped using the timeout argument (in seconds).
 
@@ -152,7 +152,7 @@ Wait for the background thread to finish. Wait can be capped using the timeout a
 register_result_handler(request_id: str, callback: Callable)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L898)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L898)
 
 **Parameters:**
 
@@ -172,7 +172,7 @@ is automatically cleaned up when the request finishes.
 request_id_iter(request_id: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L885)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L885)
 
 Iterate over results matching a specific request id (blocking).
 
@@ -185,7 +185,7 @@ use `register_result_handler` instead.
 start()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L679)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L679)
 
 Start the background generation thread.
 
@@ -195,7 +195,7 @@ Start the background generation thread.
 stop(block: bool = True, timeout: float | None = None, keep_for_next_session: bool = False, hard_stop: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L689)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L689)
 
 Stop the background generation thread. If the `block` flag is set to True, then this method waits for the
 thread to stop for a maximum time of `timeout` seconds (None means no timeout). If the `keep_for_next_session`
@@ -208,7 +208,7 @@ the background generation thread will be stopped immediately and pending request
 switch_to_cb_friendly_attn(model: ProtoPretrainedModel)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L631)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L631)
 
 Switch the attn implementation to one that is CB friendly: try to find a flash implementation if flash is
 requested and, in any cases, switch to a paged implementation.
@@ -219,7 +219,7 @@ requested and, in any cases, switch to a paged implementation.
 warmup()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/continuous_batching/continuous_api.py#L665)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/continuous_batching/continuous_api.py#L665)
 
 Pre-capture CUDA graphs for varlen and decode paths by running dummy batches. Initializes the batch
 processor if not already done.
@@ -232,7 +232,7 @@ processor if not already done.
 transformers.ContinuousBatchingConfig(block_size: int = 256, num_blocks: int | None = None, max_batch_tokens: int | None = None, max_memory_percent: float | None = None, max_requests_per_batch: int | None = None, max_blocks_per_request: int | None = None, allow_block_sharing: bool = True, use_async_batching: bool | None = None, use_cuda_graph: bool | tuple[bool, bool] | None = None, q_padding_interval_size: int = 0, kv_padding_interval_size: int = 0, varlen_compile_config: transformers.generation.configuration_utils.CompileConfig | None = None, decode_compile_config: transformers.generation.configuration_utils.CompileConfig | None = None, default_compile_level: int = 0, scheduler_type: str = 'fifo', safety_margin: float | None = None, return_logprobs: bool = False, seed: int | None = None, cpu_offload_space: float | None = 0.0, cpu_offload_space_safety_threshold: float = 0.8, max_queue_size: int = 0, per_request_processors: bool = False, drop_unsupported_processors: bool = True, disable_nccl_graph_mixing: bool = True, cpu_group_timeout: float | None = 300.0, use_default_compile_configs: bool | None = None, max_cached_graphs: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/generation/configuration_utils.py#L1654)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/generation/configuration_utils.py#L1654)
 
 **Parameters:**
 
@@ -294,4 +294,4 @@ Class that holds arguments relative to continuous batching, when using continuou
 `generate_batch` method or the `continuous_batching_context_manager` context manager.
 
 ### Feature Extractor
-https://huggingface.co/docs/transformers/v5.15.0/main_classes/feature_extractor.md
+https://huggingface.co/docs/transformers/v5.15.1/main_classes/feature_extractor.md

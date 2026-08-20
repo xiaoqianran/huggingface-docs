@@ -16,7 +16,7 @@ The recommended approach is the data collator. This guide explains why and cover
 
 Preparing the boundary kwargs up front removes the problems above and behaves identically whether or not you compile.
 
-Use [DataCollatorWithFlattening](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DataCollatorWithFlattening) to flatten each batch and return the boundary information. Set `return_flash_attn_kwargs=True` so the collator precomputes the boundaries instead of leaving them to be inferred from `position_ids` at runtime. Pass it to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) and don't add an `attention_mask`, since the flattened batch already encodes the boundaries and a mask conflicts with the packed layout.
+Use [DataCollatorWithFlattening](/docs/transformers/v5.15.1/en/main_classes/data_collator#transformers.DataCollatorWithFlattening) to flatten each batch and return the boundary information. Set `return_flash_attn_kwargs=True` so the collator precomputes the boundaries instead of leaving them to be inferred from `position_ids` at runtime. Pass it to [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) and don't add an `attention_mask`, since the flattened batch already encodes the boundaries and a mask conflicts with the packed layout.
 
 > [!TIP]
 > Padding-free relies on a FlashAttention implementation for standard attention models, since only the FlashAttention kernels expose the variable-length path that a flattened batch needs.
@@ -91,8 +91,8 @@ When the boundary kwargs are missing, the kernels quietly treat the whole batch 
 ## Next steps
 
 - See the [data collators](./data_collators) guide for other collators.
-- Browse the [DataCollatorWithFlattening](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DataCollatorWithFlattening) API reference for the full set of arguments.
+- Browse the [DataCollatorWithFlattening](/docs/transformers/v5.15.1/en/main_classes/data_collator#transformers.DataCollatorWithFlattening) API reference for the full set of arguments.
 - Read [Improving Hugging Face Training Efficiency Through Packing with Flash Attention](https://huggingface.co/blog/packing-with-FA2) for benchmarks and a deeper walkthrough.
 
 ### Models Timeline
-https://huggingface.co/docs/transformers/v5.15.0/models_timeline.md
+https://huggingface.co/docs/transformers/v5.15.1/models_timeline.md

@@ -31,17 +31,17 @@ axolotl train my_config.yml
 
 Axolotl's [ModelLoader](https://docs.axolotl.ai/docs/api/loaders.model.html#axolotl.loaders.model.ModelLoader) wraps the Transformers load flow.
 
-- The model config builds from [AutoConfig.from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoConfig.from_pretrained). Preload setup configures the [device map](https://huggingface.co/docs/accelerate/concept_guides/big_model_inference#designing-a-device-map), [quantization config](../main_classes/quantization), and [attention backend](../attention_interface).
+- The model config builds from [AutoConfig.from_pretrained()](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoConfig.from_pretrained). Preload setup configures the [device map](https://huggingface.co/docs/accelerate/concept_guides/big_model_inference#designing-a-device-map), [quantization config](../main_classes/quantization), and [attention backend](../attention_interface).
 
-- `ModelLoader` automatically selects the appropriate [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class ([AutoModelForCausalLM](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForCausalLM), [AutoModelForImageTextToText](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForImageTextToText), [AutoModelForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForSequenceClassification)) or a model-specific class from the multimodal mapping. Weights load with the selected loader's `from_pretrained`. When `reinit_weights` is set, Axolotl uses `from_config` for random initialization.
+- `ModelLoader` automatically selects the appropriate [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class ([AutoModelForCausalLM](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForCausalLM), [AutoModelForImageTextToText](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForImageTextToText), [AutoModelForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForSequenceClassification)) or a model-specific class from the multimodal mapping. Weights load with the selected loader's `from_pretrained`. When `reinit_weights` is set, Axolotl uses `from_config` for random initialization.
 
 - Axolotl uses Transformers, [PEFT](https://huggingface.co/docs/peft/index), and [bitsandbytes](https://huggingface.co/docs/bitsandbytes/index) to apply adapters after model initialization when PEFT-based techniques such as LoRA and QLoRA are enabled. A patch manager applies additional optimizations before and after model loading.
 
-- [AxolotlTrainer](https://docs.axolotl.ai/docs/api/core.trainers.base.html#axolotl.core.trainers.base.AxolotlTrainer) extends [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), adding Axolotl mixins while using the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) training loop and APIs.
+- [AxolotlTrainer](https://docs.axolotl.ai/docs/api/core.trainers.base.html#axolotl.core.trainers.base.AxolotlTrainer) extends [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), adding Axolotl mixins while using the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) training loop and APIs.
 
 ## Resources
 
 - [Axolotl](https://docs.axolotl.ai/) docs
 
 ### Models
-https://huggingface.co/docs/transformers/v5.15.0/main_classes/model.md
+https://huggingface.co/docs/transformers/v5.15.1/main_classes/model.md

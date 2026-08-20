@@ -164,7 +164,7 @@ model = VideoLlama3ForConditionalGeneration.from_pretrained(
 transformers.VideoLlama3Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_id: int = 151655, video_token_id: int = 151656, tie_word_embeddings: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/configuration_video_llama_3.py#L63)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/configuration_video_llama_3.py#L63)
 
 **Parameters:**
 
@@ -182,8 +182,8 @@ This is the configuration class to store the configuration of a VideoLlama3Model
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [lkhl/VideoLLaMA3-2B-Image-HF](https://huggingface.co/lkhl/VideoLLaMA3-2B-Image-HF)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## VideoLlama3VisionConfig[[transformers.VideoLlama3VisionConfig]]
 
@@ -193,7 +193,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.VideoLlama3VisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, patch_size: int | list[int] | tuple[int, int] = 16, hidden_act: str = 'gelu_pytorch_tanh', layer_norm_eps: float = 1e-06, attention_dropout: float | int = 0.0, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/configuration_video_llama_3.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/configuration_video_llama_3.py#L29)
 
 **Parameters:**
 
@@ -221,8 +221,8 @@ This is the configuration class to store the configuration of a VideoLlama3Model
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [lkhl/VideoLLaMA3-2B-Image-HF](https://huggingface.co/lkhl/VideoLLaMA3-2B-Image-HF)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -247,7 +247,7 @@ Example:
 transformers.VideoLlama3ImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/image_processing_video_llama_3.py#L85)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/image_processing_video_llama_3.py#L85)
 
 **Parameters:**
 
@@ -309,7 +309,7 @@ Constructs a VideoLlama3ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/image_processing_video_llama_3.py#L128)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/image_processing_video_llama_3.py#L128)
 
 **Parameters:**
 
@@ -381,7 +381,7 @@ merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the 
 transformers.VideoLlama3VideoProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/video_processing_video_llama_3.py#L95)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/video_processing_video_llama_3.py#L95)
 
 **Parameters:**
 
@@ -395,7 +395,7 @@ Constructs a VideoLlama3VideoProcessor video processor.
 preprocess(videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]]], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/video_processing_utils.py#L255)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/video_processing_utils.py#L255)
 
 **Parameters:**
 
@@ -459,7 +459,7 @@ return_tensors (`Annotated[str | ~utils.generic.TensorType | None, None]`, *kwar
 transformers.VideoLlama3ImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/image_processing_pil_video_llama_3.py#L84)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/image_processing_pil_video_llama_3.py#L84)
 
 **Parameters:**
 
@@ -521,7 +521,7 @@ Constructs a VideoLlama3ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/image_processing_pil_video_llama_3.py#L190)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/image_processing_pil_video_llama_3.py#L190)
 
 **Parameters:**
 
@@ -593,7 +593,7 @@ merge_size (`int`, *kwargs*, *optional*, defaults to 2) : The merge size of the 
 transformers.VideoLlama3Processor(image_processor = None, tokenizer = None, video_processor = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/processing_video_llama_3.py#L38)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/processing_video_llama_3.py#L38)
 
 **Parameters:**
 
@@ -607,8 +607,8 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a VideoLlama3Processor which wraps a image processor, a tokenizer, and a video processor into a single processor.
 
-[VideoLlama3Processor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) offers all the functionalities of [VideoLlama3ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor), `tokenizer_class`, and [VideoLlama3VideoProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor). See the
-[~VideoLlama3ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor), `~tokenizer_class`, and [~VideoLlama3VideoProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor) for more information.
+[VideoLlama3Processor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) offers all the functionalities of [VideoLlama3ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor), `tokenizer_class`, and [VideoLlama3VideoProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor). See the
+[~VideoLlama3ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor), `~tokenizer_class`, and [~VideoLlama3VideoProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor) for more information.
 
 #### __call__[[transformers.VideoLlama3Processor.__call__]]
 
@@ -616,7 +616,7 @@ Constructs a VideoLlama3Processor which wraps a image processor, a tokenizer, an
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L651)
 
 **Parameters:**
 
@@ -628,9 +628,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## VideoLlama3Model[[transformers.VideoLlama3Model]]
 
@@ -640,15 +640,15 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 transformers.VideoLlama3Model(config: VideoLlama3Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L499)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L499)
 
 **Parameters:**
 
-config ([VideoLlama3Config](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([VideoLlama3Config](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Video Llama 3 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -662,29 +662,29 @@ and behavior.
 forward(input_ids: LongTensor = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, image_merge_sizes: typing.Optional[torch.LongTensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, video_merge_sizes: typing.Optional[torch.LongTensor] = None, video_compression_mask: typing.Optional[torch.BoolTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L605)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L605)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoLlama3ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor). See `VideoLlama3ImageProcessor.__call__()` for details ([VideoLlama3Processor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) uses [VideoLlama3ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoLlama3ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor). See `VideoLlama3ImageProcessor.__call__()` for details ([VideoLlama3Processor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) uses [VideoLlama3ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
 image_merge_sizes (`torch.Tensor` of shape `(num_images,)`) : The spatial downsampling ratio of each image feature.
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [VideoLlama3VideoProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor). See `VideoLlama3VideoProcessor.__call__()` for details ([VideoLlama3Processor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) uses [VideoLlama3VideoProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor) for processing videos).
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [VideoLlama3VideoProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor). See `VideoLlama3VideoProcessor.__call__()` for details ([VideoLlama3Processor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) uses [VideoLlama3VideoProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor) for processing videos).
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
@@ -696,9 +696,9 @@ video_compression_mask (`torch.BoolTensor` of shape `(num_video_features,)`, *op
 
 A `VideoLlama3ModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoLlama3Config](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) and inputs.
+elements depending on the configuration ([VideoLlama3Config](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) and inputs.
 
-The [VideoLlama3Model](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Model) forward method, overrides the `__call__` special method.
+The [VideoLlama3Model](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -730,21 +730,21 @@ the latter silently ignores them.
 get_video_features(pixel_values_videos: FloatTensor, video_grid_thw: LongTensor, video_merge_sizes: LongTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L513)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L513)
 
 **Parameters:**
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [VideoLlama3VideoProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor). See `VideoLlama3VideoProcessor.__call__()` for details ([VideoLlama3Processor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) uses [VideoLlama3VideoProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor) for processing videos).
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [VideoLlama3VideoProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor). See `VideoLlama3VideoProcessor.__call__()` for details ([VideoLlama3Processor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) uses [VideoLlama3VideoProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor) for processing videos).
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`) : The temporal, height and width of feature shape of each video in LLM.
 
 video_merge_sizes (`torch.Tensor` of shape `(num_videos,)`) : The spatial downsampling ratio of each video feature.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoLlama3Config](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) and inputs.
+elements depending on the configuration ([VideoLlama3Config](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -767,21 +767,21 @@ elements depending on the configuration ([VideoLlama3Config](/docs/transformers/
 get_image_features(pixel_values: FloatTensor, image_grid_thw: LongTensor, image_merge_sizes: LongTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L534)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L534)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoLlama3ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor). See `VideoLlama3ImageProcessor.__call__()` for details ([VideoLlama3Processor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) uses [VideoLlama3ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoLlama3ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor). See `VideoLlama3ImageProcessor.__call__()` for details ([VideoLlama3Processor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) uses [VideoLlama3ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`) : The temporal, height and width of feature shape of each image in LLM.
 
 image_merge_sizes (`torch.Tensor` of shape `(num_images,)`) : The spatial downsampling ratio of each image feature.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoLlama3Config](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) and inputs.
+elements depending on the configuration ([VideoLlama3Config](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -806,7 +806,7 @@ elements depending on the configuration ([VideoLlama3Config](/docs/transformers/
 transformers.VideoLlama3VisionModel(config: VideoLlama3VisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L367)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L367)
 
 #### forward[[transformers.VideoLlama3VisionModel.forward]]
 
@@ -814,23 +814,23 @@ transformers.VideoLlama3VisionModel(config: VideoLlama3VisionConfig)
 forward(pixel_values: Tensor, grid_thw: Tensor, merge_sizes: Tensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L413)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L413)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoLlama3ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor). See `VideoLlama3ImageProcessor.__call__()` for details ([VideoLlama3Processor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) uses [VideoLlama3ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoLlama3ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor). See `VideoLlama3ImageProcessor.__call__()` for details ([VideoLlama3Processor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) uses [VideoLlama3ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor) for processing images).
 
 grid_thw (`torch.LongTensor` of shape `(num_images_or_videos, 3)`) : The temporal, height and width dimensions of feature shape for each image. Each row contains [t, h, w] values.
 
 merge_sizes (`torch.Tensor` of shape `(num_images_or_videos,)`) : The spatial downsampling ratio of each image or video feature.
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+A [BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoLlama3Config](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) and inputs.
+elements depending on the configuration ([VideoLlama3Config](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) and inputs.
 
-The [VideoLlama3VisionModel](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3VisionModel) forward method, overrides the `__call__` special method.
+The [VideoLlama3VisionModel](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3VisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -855,7 +855,7 @@ the latter silently ignores them.
 transformers.VideoLlama3ForConditionalGeneration(config: VideoLlama3Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L715)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L715)
 
 #### forward[[transformers.VideoLlama3ForConditionalGeneration.forward]]
 
@@ -863,17 +863,17 @@ transformers.VideoLlama3ForConditionalGeneration(config: VideoLlama3Config)
 forward(input_ids: LongTensor = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, image_grid_thw: typing.Optional[torch.LongTensor] = None, image_merge_sizes: typing.Optional[torch.LongTensor] = None, pixel_values_videos: typing.Optional[torch.FloatTensor] = None, video_grid_thw: typing.Optional[torch.LongTensor] = None, video_merge_sizes: typing.Optional[torch.LongTensor] = None, video_compression_mask: typing.Optional[torch.BoolTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L752)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L752)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -881,13 +881,13 @@ labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*)
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoLlama3ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor). See `VideoLlama3ImageProcessor.__call__()` for details ([VideoLlama3Processor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) uses [VideoLlama3ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [VideoLlama3ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor). See `VideoLlama3ImageProcessor.__call__()` for details ([VideoLlama3Processor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) uses [VideoLlama3ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3ImageProcessor) for processing images).
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
 image_merge_sizes (`torch.Tensor` of shape `(num_images,)`) : The spatial downsampling ratio of each image feature.
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [VideoLlama3VideoProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor). See `VideoLlama3VideoProcessor.__call__()` for details ([VideoLlama3Processor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) uses [VideoLlama3VideoProcessor](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor) for processing videos).
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [VideoLlama3VideoProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor). See `VideoLlama3VideoProcessor.__call__()` for details ([VideoLlama3Processor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Processor) uses [VideoLlama3VideoProcessor](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3VideoProcessor) for processing videos).
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
@@ -899,9 +899,9 @@ video_compression_mask (`torch.BoolTensor` of shape `(num_video_features,)`, *op
 
 A `VideoLlama3CausalLMOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoLlama3Config](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) and inputs.
+elements depending on the configuration ([VideoLlama3Config](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) and inputs.
 
-The [VideoLlama3ForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3ForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [VideoLlama3ForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3ForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -964,7 +964,7 @@ Example:
 get_video_features(pixel_values_videos: FloatTensor, video_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L726)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L726)
 
 **Parameters:**
 
@@ -972,11 +972,11 @@ pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_channels, im
 
 video_grid_thw (`torch.LongTensor` of shape `(num_videos, 3)`, *optional*) : The temporal, height and width of feature shape of each video in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoLlama3Config](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) and inputs.
+elements depending on the configuration ([VideoLlama3Config](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -1029,7 +1029,7 @@ Example:
 get_image_features(pixel_values: FloatTensor, image_grid_thw: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L739)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/video_llama_3/modeling_video_llama_3.py#L739)
 
 **Parameters:**
 
@@ -1037,11 +1037,11 @@ pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_siz
 
 image_grid_thw (`torch.LongTensor` of shape `(num_images, 3)`, *optional*) : The temporal, height and width of feature shape of each image in LLM.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoLlama3Config](/docs/transformers/v5.15.0/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) and inputs.
+elements depending on the configuration ([VideoLlama3Config](/docs/transformers/v5.15.1/en/model_doc/video_llama_3#transformers.VideoLlama3Config)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -1089,4 +1089,4 @@ Example:
 ```
 
 ### CamemBERT
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/camembert.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/camembert.md

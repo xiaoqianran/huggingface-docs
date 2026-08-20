@@ -5,7 +5,7 @@ operational status and runtime logs of your inference endpoints in real-time.
 
 ## Accessing the Logs Interface
 
-The Logs page is accessible through the main navigation tabs within your endpoint dashboard, alongside Overview, Analytics, Usage & Cost,
+The Logs page is accessible through the main navigation tabs within your endpoint dashboard, alongside Overview, Playground, Analytics,
 and Settings. The interface displays logs for your specific model deployment.
 
 ![banner](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/logs/logs.png)
@@ -30,5 +30,5 @@ The timestamp display defaults to UTC format, ensuring consistent time reference
 The main log display area presents a paginated view of log entries. By default the latest 50 lines are loaded and by clicking the
 "Load More" option you can access additional historical log data.
 
-### Configuration
-https://huggingface.co/docs/inference-endpoints/guides/configuration.md
+### Create a Private Endpoint with AWS PrivateLink
+https://huggingface.co/docs/inference-endpoints/guides/private_link.md

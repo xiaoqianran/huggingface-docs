@@ -55,7 +55,7 @@ with torch.no_grad():
 transformers.TimesFmConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, patch_length: int = 32, context_length: int = 512, horizon_length: int = 128, freq_size: int = 3, num_hidden_layers: int = 50, hidden_size: int = 1280, intermediate_size: int = 1280, head_dim: int = 80, num_attention_heads: int = 16, tolerance: float = 1e-06, rms_norm_eps: float = 1e-06, quantiles: list[float] | tuple[float, ...] = (0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9), pad_val: float = 1123581321.0, attention_dropout: float | int = 0.0, use_positional_embedding: bool = False, initializer_range: float = 0.02, min_timescale: int = 1, max_timescale: int = 10000)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm/configuration_timesfm.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/timesfm/configuration_timesfm.py#L24)
 
 **Parameters:**
 
@@ -99,8 +99,8 @@ This is the configuration class to store the configuration of a TimesFmModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/timesfm-2.0-500m-pytorch](https://huggingface.co/google/timesfm-2.0-500m-pytorch)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## TimesFmModel[[transformers.TimesFmModel]]
 
@@ -110,15 +110,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.TimesFmModel(config: TimesFmConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm/modeling_timesfm.py#L332)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/timesfm/modeling_timesfm.py#L332)
 
 **Parameters:**
 
-config ([TimesFmConfig](/docs/transformers/v5.15.0/en/model_doc/timesfm#transformers.TimesFmConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([TimesFmConfig](/docs/transformers/v5.15.1/en/model_doc/timesfm#transformers.TimesFmConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Timesfm Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -132,7 +132,7 @@ and behavior.
 forward(past_values: Tensor, past_values_padding: LongTensor, freq: Tensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm/modeling_timesfm.py#L368)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/timesfm/modeling_timesfm.py#L368)
 
 **Parameters:**
 
@@ -146,9 +146,9 @@ freq (`torch.LongTensor` of shape `(batch_size,)`) : Frequency indices for the t
 
 A `TimesFmOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TimesFmConfig](/docs/transformers/v5.15.0/en/model_doc/timesfm#transformers.TimesFmConfig)) and inputs.
+elements depending on the configuration ([TimesFmConfig](/docs/transformers/v5.15.1/en/model_doc/timesfm#transformers.TimesFmConfig)) and inputs.
 
-The [TimesFmModel](/docs/transformers/v5.15.0/en/model_doc/timesfm#transformers.TimesFmModel) forward method, overrides the `__call__` special method.
+The [TimesFmModel](/docs/transformers/v5.15.1/en/model_doc/timesfm#transformers.TimesFmModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -175,7 +175,7 @@ the latter silently ignores them.
 transformers.TimesFmModelForPrediction(config: TimesFmConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm/modeling_timesfm.py#L569)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/timesfm/modeling_timesfm.py#L569)
 
 TimesFM model for quantile and mean prediction.
 
@@ -185,7 +185,7 @@ TimesFM model for quantile and mean prediction.
 forward(past_values: Sequence, freq: collections.abc.Sequence[typing.Union[torch.Tensor, int]] | None = None, window_size: int | None = None, future_values: typing.Optional[torch.Tensor] = None, forecast_context_len: int | None = None, return_forecast_on_context: bool = False, truncate_negative: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timesfm/modeling_timesfm.py#L651)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/timesfm/modeling_timesfm.py#L651)
 
 **Parameters:**
 
@@ -207,9 +207,9 @@ truncate_negative (`bool`, *optional*) : Truncate to only non-negative values if
 
 A `TimesFmOutputForPrediction` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TimesFmConfig](/docs/transformers/v5.15.0/en/model_doc/timesfm#transformers.TimesFmConfig)) and inputs.
+elements depending on the configuration ([TimesFmConfig](/docs/transformers/v5.15.1/en/model_doc/timesfm#transformers.TimesFmConfig)) and inputs.
 
-The [TimesFmModelForPrediction](/docs/transformers/v5.15.0/en/model_doc/timesfm#transformers.TimesFmModelForPrediction) forward method, overrides the `__call__` special method.
+The [TimesFmModelForPrediction](/docs/transformers/v5.15.1/en/model_doc/timesfm#transformers.TimesFmModelForPrediction) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -247,4 +247,4 @@ Example:
 ```
 
 ### GPT-J
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/gptj.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/gptj.md

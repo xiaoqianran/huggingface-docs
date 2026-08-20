@@ -16,7 +16,7 @@
 
 ### Single input inference
 
-The example below demonstrates how to classify image with PP-LCNet using [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel).
+The example below demonstrates how to classify image with PP-LCNet using [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 import requests
@@ -51,7 +51,7 @@ print(model.config.id2label[predicted_label])
 
 ### Batched inference
 
-Here is how you can do it with PP-LCNet using [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel):
+Here is how you can do it with PP-LCNet using [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel):
 
 ```python
 import requests
@@ -97,15 +97,15 @@ for label_id in predicted_labels:
 transformers.PPLCNetForImageClassification(config: PPLCNetConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L300)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L300)
 
 **Parameters:**
 
-config ([PPLCNetConfig](/docs/transformers/v5.15.0/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPLCNetConfig](/docs/transformers/v5.15.1/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Pp Lcnet Model with an image classification head on top e.g. for ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -119,19 +119,19 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L327)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L327)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PPLCNetImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor). See `PPLCNetImageProcessor.__call__()` for details (`processor_class` uses [PPLCNetImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PPLCNetImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor). See `PPLCNetImageProcessor.__call__()` for details (`processor_class` uses [PPLCNetImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor) for processing images).
 
 **Returns:** `BaseModelOutputWithNoAttention` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PPLCNetConfig](/docs/transformers/v5.15.0/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) and inputs.
+elements depending on the configuration ([PPLCNetConfig](/docs/transformers/v5.15.1/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) and inputs.
 
-The [PPLCNetForImageClassification](/docs/transformers/v5.15.0/en/model_doc/pp_lcnet#transformers.PPLCNetForImageClassification) forward method, overrides the `__call__` special method.
+The [PPLCNetForImageClassification](/docs/transformers/v5.15.1/en/model_doc/pp_lcnet#transformers.PPLCNetForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -174,7 +174,7 @@ wireless_table
 transformers.PPLCNetConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, scale: float | int = 1.0, block_configs: list | None = None, stem_channels: int = 16, stem_stride: int = 2, reduction: int = 4, class_expand: int = 1280, divisor: int = 8, hidden_act: str = 'hardswish', _out_features: list[str] | None = None, _out_indices: list[int] | None = None, hidden_dropout_prob: float | int = 0.2)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_lcnet/configuration_pp_lcnet.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_lcnet/configuration_pp_lcnet.py#L30)
 
 **Parameters:**
 
@@ -200,8 +200,8 @@ This is the configuration class to store the configuration of a Pp LcnetModel. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PP-LCNet_x1_0_doc_ori_safetensors](https://huggingface.co/PaddlePaddle/PP-LCNet_x1_0_doc_ori_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## PPLCNetBackbone[[transformers.PPLCNetBackbone]]
 
@@ -211,15 +211,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.PPLCNetBackbone(config: PPLCNetConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L247)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L247)
 
 **Parameters:**
 
-config ([PPLCNetConfig](/docs/transformers/v5.15.0/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPLCNetConfig](/docs/transformers/v5.15.1/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PPLCNet backbone model for feature extraction.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -233,19 +233,19 @@ and behavior.
 forward(pixel_values: Tensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L260)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_lcnet/modeling_pp_lcnet.py#L260)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPLCNetImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor). See `PPLCNetImageProcessor.__call__()` for details (`processor_class` uses [PPLCNetImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPLCNetImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor). See `PPLCNetImageProcessor.__call__()` for details (`processor_class` uses [PPLCNetImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_lcnet#transformers.PPLCNetImageProcessor) for processing images).
 
 **Returns:** `BackboneOutput` or `tuple(torch.FloatTensor)`
 
 A `BackboneOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PPLCNetConfig](/docs/transformers/v5.15.0/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) and inputs.
+elements depending on the configuration ([PPLCNetConfig](/docs/transformers/v5.15.1/en/model_doc/pp_lcnet#transformers.PPLCNetConfig)) and inputs.
 
-The [PPLCNetBackbone](/docs/transformers/v5.15.0/en/model_doc/pp_lcnet#transformers.PPLCNetBackbone) forward method, overrides the `__call__` special method.
+The [PPLCNetBackbone](/docs/transformers/v5.15.1/en/model_doc/pp_lcnet#transformers.PPLCNetBackbone) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -289,7 +289,7 @@ Examples:
 transformers.PPLCNetImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_lcnet/image_processing_pp_lcnet.py#L50)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_lcnet/image_processing_pp_lcnet.py#L50)
 
 **Parameters:**
 
@@ -419,7 +419,7 @@ Added for backward compatibility but this should be set as a processor attribute
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -472,4 +472,4 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
   initialization.
 
 ### AltCLIP
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/altclip.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/altclip.md

@@ -69,7 +69,7 @@ outputs.loss.backward()
 transformers.LasrTokenizer(eos_token = '</s>', unk_token = '<unk>', pad_token = '<pad>', _spm_precompiled_charsmap = None, extra_ids = 100, additional_special_tokens = None, vocab = None, vocab_file = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lasr/tokenization_lasr.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lasr/tokenization_lasr.py#L33)
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ vocab (`str`, `dict` or `list`, *optional*) : Custom vocabulary dict. If not pro
 Construct a LASR tokenizer (backed by HuggingFace's *tokenizers* library). Based on
 [Unigram](https://huggingface.co/docs/tokenizers/python/latest/components.html?highlight=unigram#models).
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 #### get_sentinel_token_ids[[transformers.LasrTokenizer.get_sentinel_token_ids]]
@@ -99,7 +99,7 @@ refer to this superclass for more information regarding those methods.
 get_sentinel_token_ids()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lasr/tokenization_lasr.py#L157)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lasr/tokenization_lasr.py#L157)
 
 Get the token IDs for sentinel tokens.
 
@@ -109,7 +109,7 @@ Get the token IDs for sentinel tokens.
 get_sentinel_tokens()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lasr/tokenization_lasr.py#L151)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lasr/tokenization_lasr.py#L151)
 
 Get the list of sentinel tokens (extra_id tokens) from additional_special_tokens.
 
@@ -121,7 +121,7 @@ Get the list of sentinel tokens (extra_id tokens) from additional_special_tokens
 transformers.LasrFeatureExtractor(feature_size = 128, sampling_rate = 16000, hop_length = 160, n_fft = 512, win_length = 400, padding_value = 0.0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lasr/feature_extraction_lasr.py#L70)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lasr/feature_extraction_lasr.py#L70)
 
 **Parameters:**
 
@@ -139,7 +139,7 @@ padding_value (`float`, *optional*, defaults to 0.0) : Padding value used to pad
 
 Constructs a LASR feature extractor.
 
-This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
+This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
 most of the main methods. Users should refer to this superclass for more information regarding those methods.
 
 This class extracts mel-filter bank features from raw speech using a custom numpy implementation of the `Short Time
@@ -151,7 +151,7 @@ Fourier Transform` which should match pytorch's `torch.stft` equivalent.
 __call__(raw_speech: numpy.ndarray | list[float] | list[numpy.ndarray] | list[list[float]], truncation: bool = False, pad_to_multiple_of: int | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, return_attention_mask: bool | None = None, padding: str | None = 'longest', max_length: int | None = None, sampling_rate: int | None = None, do_normalize: bool | None = None, device: str | None = 'cpu', return_token_timestamps: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lasr/feature_extraction_lasr.py#L142)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lasr/feature_extraction_lasr.py#L142)
 
 **Parameters:**
 
@@ -163,7 +163,7 @@ pad_to_multiple_of (`int`, *optional*, defaults to None) : If set will pad the s
 
 return_attention_mask (`bool`, *optional*) : Whether to return the attention mask. If left to the default, will return the attention mask according to the specific feature_extractor's default.  [What are attention masks?](../glossary#attention-mask)    For Parakeet models, `attention_mask` should always be passed for batched inference, to avoid subtle bugs.   
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'tf'`: Return TensorFlow `tf.constant` objects. - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'tf'`: Return TensorFlow `tf.constant` objects. - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
 
 sampling_rate (`int`, *optional*) : The sampling rate at which the `raw_speech` input was sampled. It is strongly recommended to pass `sampling_rate` at the forward call to prevent silent errors and allow automatic speech recognition pipeline.
 
@@ -186,7 +186,7 @@ the STFT computation if available, otherwise a slower NumPy based one.
 transformers.LasrProcessor(feature_extractor, tokenizer)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lasr/processing_lasr.py#L48)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lasr/processing_lasr.py#L48)
 
 **Parameters:**
 
@@ -196,7 +196,7 @@ tokenizer (`tokenizer_class`) : The tokenizer is a required input.
 
 Constructs a LasrProcessor which wraps a feature extractor and a tokenizer into a single processor.
 
-[LasrProcessor](/docs/transformers/v5.15.0/en/model_doc/lasr#transformers.LasrProcessor) offers all the functionalities of `feature_extractor_class` and `tokenizer_class`. See the
+[LasrProcessor](/docs/transformers/v5.15.1/en/model_doc/lasr#transformers.LasrProcessor) offers all the functionalities of `feature_extractor_class` and `tokenizer_class`. See the
 `~feature_extractor_class` and `~tokenizer_class` for more information.
 
 #### __call__[[transformers.LasrProcessor.__call__]]
@@ -205,7 +205,7 @@ Constructs a LasrProcessor which wraps a feature extractor and a tokenizer into 
 __call__(audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor']], text: str | list[str] | list[list[str]] | None = None, sampling_rate: int | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lasr/processing_lasr.py#L54)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lasr/processing_lasr.py#L54)
 
 **Parameters:**
 
@@ -215,9 +215,9 @@ text (`Union[str, list[str], list[list[str]]]`, *optional*) : The sequence or ba
 
 sampling_rate (`int`, *optional*) : The sampling rate of the input audio in Hz. This should match the sampling rate expected by the feature extractor (defaults to 16000 Hz). If provided, it will be validated against the processor's expected sampling rate, and an error will be raised if they don't match. If not provided, a warning will be issued and the default sampling rate will be assumed.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 #### batch_decode[[transformers.LasrProcessor.batch_decode]]
 
@@ -225,9 +225,9 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 batch_decode(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L1930)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L1930)
 
-This method forwards all its arguments to PreTrainedTokenizer's [batch_decode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode). Please
+This method forwards all its arguments to PreTrainedTokenizer's [batch_decode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode). Please
 refer to the docstring of this method for more information.
 
 #### decode[[transformers.LasrProcessor.decode]]
@@ -236,9 +236,9 @@ refer to the docstring of this method for more information.
 decode(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L1939)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L1939)
 
-This method forwards all its arguments to PreTrainedTokenizer's [decode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.decode). Please refer to
+This method forwards all its arguments to PreTrainedTokenizer's [decode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.decode). Please refer to
 the docstring of this method for more information.
 
 ## LasrEncoderConfig[[transformers.LasrEncoderConfig]]
@@ -249,7 +249,7 @@ the docstring of this method for more information.
 transformers.LasrEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 512, num_hidden_layers: int = 17, num_attention_heads: int = 8, intermediate_size: int = 2048, hidden_act: str = 'silu', attention_bias: bool = False, convolution_bias: bool = False, conv_kernel_size: int = 32, subsampling_conv_channels: int = 256, num_mel_bins: int = 128, subsampling_conv_kernel_size: int = 5, subsampling_conv_stride: int = 2, dropout: float | int = 0.1, dropout_positions: float | int = 0.0, layerdrop: float | int = 0.1, activation_dropout: float | int = 0.1, attention_dropout: float | int = 0.1, max_position_embeddings: int = 10000, initializer_range: float = 0.02, layer_norm_eps: float = 1e-06, feed_forward_residual_weights: list[float] | tuple[float, ...] = (1.5, 0.5), conv_residual_weights: list[float] | tuple[float, ...] = (2.0, 1.0), batch_norm_momentum: float = 0.01, rope_parameters: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lasr/configuration_lasr.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lasr/configuration_lasr.py#L29)
 
 **Parameters:**
 
@@ -305,8 +305,8 @@ This is the configuration class to store the configuration of a LasrModel. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/medasr](https://huggingface.co/google/medasr)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -333,15 +333,15 @@ and pre-trained models at [google/medasr](https://huggingface.co/google/medasr).
 transformers.LasrCTCConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 512, ctc_loss_reduction: str = 'mean', ctc_zero_infinity: bool = True, encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, pad_token_id: int = 0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lasr/configuration_lasr.py#L103)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lasr/configuration_lasr.py#L103)
 
 **Parameters:**
 
 vocab_size (`int`, *optional*, defaults to `512`) : Vocabulary size of the model. Defines the number of different tokens that can be represented by the `input_ids`.
 
-ctc_loss_reduction (`str`, *optional*, defaults to `"mean"`) : Specifies the reduction to apply to the output of `torch.nn.CTCLoss`. Only relevant when training an instance of [LasrForCTC](/docs/transformers/v5.15.0/en/model_doc/lasr#transformers.LasrForCTC).
+ctc_loss_reduction (`str`, *optional*, defaults to `"mean"`) : Specifies the reduction to apply to the output of `torch.nn.CTCLoss`. Only relevant when training an instance of [LasrForCTC](/docs/transformers/v5.15.1/en/model_doc/lasr#transformers.LasrForCTC).
 
-ctc_zero_infinity (`bool`, *optional*, defaults to `True`) : Whether to zero infinite losses and the associated gradients of `torch.nn.CTCLoss`. Infinite losses mainly occur when the inputs are too short to be aligned to the targets. Only relevant when training an instance of [LasrForCTC](/docs/transformers/v5.15.0/en/model_doc/lasr#transformers.LasrForCTC).
+ctc_zero_infinity (`bool`, *optional*, defaults to `True`) : Whether to zero infinite losses and the associated gradients of `torch.nn.CTCLoss`. Infinite losses mainly occur when the inputs are too short to be aligned to the targets. Only relevant when training an instance of [LasrForCTC](/docs/transformers/v5.15.1/en/model_doc/lasr#transformers.LasrForCTC).
 
 encoder_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the encoder backbone.
 
@@ -351,8 +351,8 @@ This is the configuration class to store the configuration of a LasrModel. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/medasr](https://huggingface.co/google/medasr)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -376,15 +376,15 @@ and pre-trained models at [google/medasr](https://huggingface.co/google/medasr).
 transformers.LasrEncoder(config: LasrEncoderConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lasr/modeling_lasr.py#L478)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lasr/modeling_lasr.py#L478)
 
 **Parameters:**
 
-config ([LasrEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/lasr#transformers.LasrEncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LasrEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/lasr#transformers.LasrEncoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The LasrEncoder model, based on the Conformer architecture](https://arxiv.org/abs/2005.08100).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -398,7 +398,7 @@ and behavior.
 forward(input_features: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, output_attention_mask: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lasr/modeling_lasr.py#L499)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lasr/modeling_lasr.py#L499)
 
 **Parameters:**
 
@@ -414,7 +414,7 @@ A `LasrEncoderModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [LasrEncoder](/docs/transformers/v5.15.0/en/model_doc/lasr#transformers.LasrEncoder) forward method, overrides the `__call__` special method.
+The [LasrEncoder](/docs/transformers/v5.15.1/en/model_doc/lasr#transformers.LasrEncoder) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -467,15 +467,15 @@ Example:
 transformers.LasrForCTC(config: LasrCTCConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lasr/modeling_lasr.py#L609)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lasr/modeling_lasr.py#L609)
 
 **Parameters:**
 
-config ([LasrCTCConfig](/docs/transformers/v5.15.0/en/model_doc/lasr#transformers.LasrCTCConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LasrCTCConfig](/docs/transformers/v5.15.1/en/model_doc/lasr#transformers.LasrCTCConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Lasr Encoder with a Connectionist Temporal Classification (CTC) head.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -489,7 +489,7 @@ and behavior.
 forward(input_features: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lasr/modeling_lasr.py#L620)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lasr/modeling_lasr.py#L620)
 
 **Parameters:**
 
@@ -499,13 +499,13 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 labels (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
-**Returns:** [CausalLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [CausalLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or `tuple(torch.FloatTensor)`
 
-A [CausalLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or a tuple of
+A [CausalLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [LasrForCTC](/docs/transformers/v5.15.0/en/model_doc/lasr#transformers.LasrForCTC) forward method, overrides the `__call__` special method.
+The [LasrForCTC](/docs/transformers/v5.15.1/en/model_doc/lasr#transformers.LasrForCTC) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -548,7 +548,7 @@ Example:
 generate(input_features: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, return_dict_in_generate: bool = False, compile_config: transformers.generation.configuration_utils.CompileConfig | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/lasr/modeling_lasr.py#L690)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/lasr/modeling_lasr.py#L690)
 
 Example:
 
@@ -571,4 +571,4 @@ Example:
 ```
 
 ### Whisper
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/whisper.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/whisper.md

@@ -14,7 +14,7 @@ You can find all the available Deformable DETR checkpoints under the [SenseTime]
 >
 > Click on the Deformable DETR models in the right sidebar for more examples of how to apply Deformable DETR to different object detection and segmentation tasks.
 
-The example below demonstrates how to perform object detection with the [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) and the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to perform object detection with the [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) and the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 
@@ -59,7 +59,7 @@ for result in results:
 
 ## Resources
 
-- Refer to this set of [notebooks](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/Deformable-DETR) for inference and fine-tuning [DeformableDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrForObjectDetection) on a custom dataset.
+- Refer to this set of [notebooks](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/Deformable-DETR) for inference and fine-tuning [DeformableDetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/deformable_detr#transformers.DeformableDetrForObjectDetection) on a custom dataset.
 
 ## DeformableDetrImageProcessor[[transformers.DeformableDetrImageProcessor]]
 
@@ -69,7 +69,7 @@ for result in results:
 transformers.DeformableDetrImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deformable_detr/image_processing_deformable_detr.py#L269)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deformable_detr/image_processing_deformable_detr.py#L269)
 
 **Parameters:**
 
@@ -125,7 +125,7 @@ Constructs a DeformableDetrImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], annotations: dict[str, int | str | list[dict]] | list[dict[str, int | str | list[dict]]] | None = None, return_segmentation_masks: bool | None = None, masks_path: str | pathlib.Path | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deformable_detr/image_processing_deformable_detr.py#L514)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deformable_detr/image_processing_deformable_detr.py#L514)
 
 **Parameters:**
 
@@ -193,7 +193,7 @@ do_convert_annotations (`bool`, *kwargs*, *optional*, defaults to `True`) : Cont
 post_process_object_detection(outputs, threshold: float = 0.5, target_sizes: transformers.utils.generic.TensorType | list[tuple] = None, top_k: int = 100)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deformable_detr/image_processing_deformable_detr.py#L649)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deformable_detr/image_processing_deformable_detr.py#L649)
 
 **Parameters:**
 
@@ -210,7 +210,7 @@ top_k (`int`, *optional*, defaults to 100) : Keep only top k bounding boxes befo
 A list of dictionaries, each dictionary containing the scores, labels and boxes for an image
 in the batch as predicted by the model.
 
-Converts the raw output of [DeformableDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrForObjectDetection) into final bounding boxes in (top_left_x,
+Converts the raw output of [DeformableDetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/deformable_detr#transformers.DeformableDetrForObjectDetection) into final bounding boxes in (top_left_x,
 top_left_y, bottom_right_x, bottom_right_y) format. Only supports PyTorch.
 
 ## DeformableDetrImageProcessorPil[[transformers.DeformableDetrImageProcessorPil]]
@@ -221,7 +221,7 @@ top_left_y, bottom_right_x, bottom_right_y) format. Only supports PyTorch.
 transformers.DeformableDetrImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deformable_detr/image_processing_pil_deformable_detr.py#L263)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deformable_detr/image_processing_pil_deformable_detr.py#L263)
 
 **Parameters:**
 
@@ -277,7 +277,7 @@ Constructs a DeformableDetrImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], annotations: dict[str, int | str | list[dict]] | list[dict[str, int | str | list[dict]]] | None = None, return_segmentation_masks: bool | None = None, masks_path: str | pathlib.Path | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deformable_detr/image_processing_pil_deformable_detr.py#L531)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deformable_detr/image_processing_pil_deformable_detr.py#L531)
 
 **Parameters:**
 
@@ -345,7 +345,7 @@ do_convert_annotations (`bool`, *kwargs*, *optional*, defaults to `True`) : Cont
 post_process_object_detection(outputs, threshold: float = 0.5, target_sizes: transformers.utils.generic.TensorType | list[tuple] = None, top_k: int = 100)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deformable_detr/image_processing_pil_deformable_detr.py#L676)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deformable_detr/image_processing_pil_deformable_detr.py#L676)
 
 **Parameters:**
 
@@ -362,7 +362,7 @@ top_k (`int`, *optional*, defaults to 100) : Keep only top k bounding boxes befo
 A list of dictionaries, each dictionary containing the scores, labels and boxes for an image
 in the batch as predicted by the model.
 
-Converts the raw output of [DeformableDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrForObjectDetection) into final bounding boxes in (top_left_x,
+Converts the raw output of [DeformableDetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/deformable_detr#transformers.DeformableDetrForObjectDetection) into final bounding boxes in (top_left_x,
 top_left_y, bottom_right_x, bottom_right_y) format. Only supports PyTorch.
 
 ## DeformableDetrConfig[[transformers.DeformableDetrConfig]]
@@ -373,7 +373,7 @@ top_left_y, bottom_right_x, bottom_right_y) format. Only supports PyTorch.
 transformers.DeformableDetrConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, num_channels: int = 3, num_queries: int = 300, max_position_embeddings: int = 1024, encoder_layers: int = 6, encoder_ffn_dim: int = 1024, encoder_attention_heads: int = 8, decoder_layers: int = 6, decoder_ffn_dim: int = 1024, decoder_attention_heads: int = 8, encoder_layerdrop: float | int = 0.0, activation_function: str = 'relu', d_model: int = 256, dropout: float | int = 0.1, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, init_std: float = 0.02, init_xavier_std: float = 1.0, return_intermediate: bool = True, auxiliary_loss: bool = False, position_embedding_type: str = 'sine', dilation: bool = False, num_feature_levels: int = 4, encoder_n_points: int = 4, decoder_n_points: int = 4, two_stage: bool = False, two_stage_num_proposals: int = 300, with_box_refine: bool = False, class_cost: int = 1, bbox_cost: int = 5, giou_cost: int = 2, mask_loss_coefficient: int = 1, dice_loss_coefficient: int = 1, bbox_loss_coefficient: int = 5, giou_loss_coefficient: int = 2, eos_coefficient: float = 0.1, focal_alpha: float = 0.25, disable_custom_kernels: bool = False, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deformable_detr/configuration_deformable_detr.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deformable_detr/configuration_deformable_detr.py#L26)
 
 **Parameters:**
 
@@ -383,7 +383,7 @@ backbone_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional
 
 num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
 
-num_queries (`int`, *optional*, defaults to 300) : Number of object queries, i.e. detection slots. This is the maximal number of objects [DeformableDetrModel](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrModel) can detect in a single image. In case `two_stage` is set to `True`, we use `two_stage_num_proposals` instead.
+num_queries (`int`, *optional*, defaults to 300) : Number of object queries, i.e. detection slots. This is the maximal number of objects [DeformableDetrModel](/docs/transformers/v5.15.1/en/model_doc/deformable_detr#transformers.DeformableDetrModel) can detect in a single image. In case `two_stage` is set to `True`, we use `two_stage_num_proposals` instead.
 
 max_position_embeddings (`int`, *optional*, defaults to `1024`) : The maximum sequence length that this model might ever be used with.
 
@@ -461,8 +461,8 @@ This is the configuration class to store the configuration of a DeformableDetrMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [SenseTime/deformable-detr](https://huggingface.co/SenseTime/deformable-detr)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -487,16 +487,16 @@ Examples:
 transformers.DeformableDetrModel(config: DeformableDetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deformable_detr/modeling_deformable_detr.py#L1144)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deformable_detr/modeling_deformable_detr.py#L1144)
 
 **Parameters:**
 
-config ([DeformableDetrConfig](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DeformableDetrConfig](/docs/transformers/v5.15.1/en/model_doc/deformable_detr#transformers.DeformableDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Deformable DETR Model (consisting of a backbone and encoder-decoder Transformer) outputting raw
 hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -510,7 +510,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.FloatTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deformable_detr/modeling_deformable_detr.py#L1318)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deformable_detr/modeling_deformable_detr.py#L1318)
 
 **Parameters:**
 
@@ -532,7 +532,7 @@ A `DeformableDetrModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [DeformableDetrModel](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrModel) forward method, overrides the `__call__` special method.
+The [DeformableDetrModel](/docs/transformers/v5.15.1/en/model_doc/deformable_detr#transformers.DeformableDetrModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -603,16 +603,16 @@ Examples:
 transformers.DeformableDetrForObjectDetection(config: DeformableDetrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deformable_detr/modeling_deformable_detr.py#L1541)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deformable_detr/modeling_deformable_detr.py#L1541)
 
 **Parameters:**
 
-config ([DeformableDetrConfig](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DeformableDetrConfig](/docs/transformers/v5.15.1/en/model_doc/deformable_detr#transformers.DeformableDetrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Deformable DETR Model (consisting of a backbone and encoder-decoder Transformer) with object detection heads on
 top, for tasks such as COCO detection.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -626,7 +626,7 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.FloatTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deformable_detr/modeling_deformable_detr.py#L1579)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deformable_detr/modeling_deformable_detr.py#L1579)
 
 **Parameters:**
 
@@ -650,7 +650,7 @@ A `DeformableDetrObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [DeformableDetrForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/deformable_detr#transformers.DeformableDetrForObjectDetection) forward method, overrides the `__call__` special method.
+The [DeformableDetrForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/deformable_detr#transformers.DeformableDetrForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -736,4 +736,4 @@ Detected remote with confidence 0.633 at location [40.79, 72.78, 176.76, 117.25]
 ```
 
 ### BridgeTower
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/bridgetower.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/bridgetower.md

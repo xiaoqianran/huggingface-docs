@@ -10,7 +10,7 @@ You can find all the original YOLOS checkpoints under the [HUST Vision Lab](http
 > This model was contributed by [nielsr](https://huggingface.co/nielsr).
 > Click on the YOLOS models in the right sidebar for more examples of how to apply YOLOS to different object detection tasks.
 
-The example below demonstrates how to detect objects with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to detect objects with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -60,11 +60,11 @@ for score, label, box in zip(filtered_scores, filtered_labels, pixel_boxes):
 
 ## Notes
 
-- Use [YolosImageProcessor](/docs/transformers/v5.15.0/en/model_doc/yolos#transformers.YolosImageProcessor) for preparing images (and optional targets) for the model. Contrary to [DETR](./detr), YOLOS doesn't require a `pixel_mask`.
+- Use [YolosImageProcessor](/docs/transformers/v5.15.1/en/model_doc/yolos#transformers.YolosImageProcessor) for preparing images (and optional targets) for the model. Contrary to [DETR](./detr), YOLOS doesn't require a `pixel_mask`.
 
 ## Resources
 
-- Refer to these [notebooks](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/YOLOS) for inference and fine-tuning with [YolosForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/yolos#transformers.YolosForObjectDetection) on a custom dataset.
+- Refer to these [notebooks](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/YOLOS) for inference and fine-tuning with [YolosForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/yolos#transformers.YolosForObjectDetection) on a custom dataset.
 
 ## YolosConfig[[transformers.YolosConfig]]
 
@@ -74,7 +74,7 @@ for score, label, box in zip(filtered_scores, filtered_labels, pixel_boxes):
 transformers.YolosConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, image_size: list[int] | tuple[int, ...] = (512, 864), patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, qkv_bias: bool = True, num_detection_tokens: int = 100, use_mid_position_embeddings: bool = True, auxiliary_loss: bool = False, class_cost: int = 1, bbox_cost: int = 5, giou_cost: int = 2, bbox_loss_coefficient: int = 5, giou_loss_coefficient: int = 2, eos_coefficient: float = 0.1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/yolos/configuration_yolos.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/yolos/configuration_yolos.py#L24)
 
 **Parameters:**
 
@@ -126,8 +126,8 @@ This is the configuration class to store the configuration of a YolosModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [hustvl/yolos-base](https://huggingface.co/hustvl/yolos-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -152,7 +152,7 @@ Example:
 transformers.YolosImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/yolos/image_processing_yolos.py#L292)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/yolos/image_processing_yolos.py#L292)
 
 **Parameters:**
 
@@ -208,7 +208,7 @@ Constructs a YolosImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], annotations: dict[str, int | str | list[dict]] | list[dict[str, int | str | list[dict]]] | None = None, return_segmentation_masks: bool | None = None, masks_path: str | pathlib.Path | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/yolos/image_processing_yolos.py#L537)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/yolos/image_processing_yolos.py#L537)
 
 **Parameters:**
 
@@ -278,7 +278,7 @@ do_convert_annotations (`bool`, *kwargs*, *optional*, defaults to `True`) : Cont
 transformers.YolosImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/yolos/image_processing_pil_yolos.py#L291)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/yolos/image_processing_pil_yolos.py#L291)
 
 **Parameters:**
 
@@ -334,7 +334,7 @@ Constructs a YolosImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], annotations: dict[str, int | str | list[dict]] | list[dict[str, int | str | list[dict]]] | None = None, return_segmentation_masks: bool | None = None, masks_path: str | pathlib.Path | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/yolos/image_processing_pil_yolos.py#L559)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/yolos/image_processing_pil_yolos.py#L559)
 
 **Parameters:**
 
@@ -402,7 +402,7 @@ do_convert_annotations (`bool`, *kwargs*, *optional*, defaults to `True`) : Cont
 pad(image: ndarray, padded_size: tuple, annotation: dict[str, typing.Any] | None = None, update_bboxes: bool = True, fill: int = 0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/yolos/image_processing_pil_yolos.py#L521)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/yolos/image_processing_pil_yolos.py#L521)
 
 #### post_process_object_detection[[transformers.YolosImageProcessorPil.post_process_object_detection]]
 
@@ -410,7 +410,7 @@ pad(image: ndarray, padded_size: tuple, annotation: dict[str, typing.Any] | None
 post_process_object_detection(outputs, threshold: float = 0.5, target_sizes: transformers.utils.generic.TensorType | list[tuple] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/yolos/image_processing_pil_yolos.py#L704)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/yolos/image_processing_pil_yolos.py#L704)
 
 **Parameters:**
 
@@ -425,7 +425,7 @@ target_sizes (`torch.Tensor` or `list[tuple[int, int]]`, *optional*) : Tensor of
 A list of dictionaries, each dictionary containing the scores, labels and boxes for an image
 in the batch as predicted by the model.
 
-Converts the raw output of [YolosForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/yolos#transformers.YolosForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
+Converts the raw output of [YolosForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/yolos#transformers.YolosForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
 bottom_right_x, bottom_right_y) format. Only supports PyTorch.
 
 ## YolosModel[[transformers.YolosModel]]
@@ -436,17 +436,17 @@ bottom_right_x, bottom_right_y) format. Only supports PyTorch.
 transformers.YolosModel(config: YolosConfig, add_pooling_layer: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/yolos/modeling_yolos.py#L461)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/yolos/modeling_yolos.py#L461)
 
 **Parameters:**
 
-config ([YolosConfig](/docs/transformers/v5.15.0/en/model_doc/yolos#transformers.YolosConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([YolosConfig](/docs/transformers/v5.15.1/en/model_doc/yolos#transformers.YolosConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare Yolos Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -460,19 +460,19 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/yolos/modeling_yolos.py#L482)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/yolos/modeling_yolos.py#L482)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [YolosImageProcessor](/docs/transformers/v5.15.0/en/model_doc/yolos#transformers.YolosImageProcessor). See `YolosImageProcessor.__call__()` for details (`processor_class` uses [YolosImageProcessor](/docs/transformers/v5.15.0/en/model_doc/yolos#transformers.YolosImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [YolosImageProcessor](/docs/transformers/v5.15.1/en/model_doc/yolos#transformers.YolosImageProcessor). See `YolosImageProcessor.__call__()` for details (`processor_class` uses [YolosImageProcessor](/docs/transformers/v5.15.1/en/model_doc/yolos#transformers.YolosImageProcessor) for processing images).
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([YolosConfig](/docs/transformers/v5.15.0/en/model_doc/yolos#transformers.YolosConfig)) and inputs.
+elements depending on the configuration ([YolosConfig](/docs/transformers/v5.15.1/en/model_doc/yolos#transformers.YolosConfig)) and inputs.
 
-The [YolosModel](/docs/transformers/v5.15.0/en/model_doc/yolos#transformers.YolosModel) forward method, overrides the `__call__` special method.
+The [YolosModel](/docs/transformers/v5.15.1/en/model_doc/yolos#transformers.YolosModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -506,15 +506,15 @@ Example:
 transformers.YolosForObjectDetection(config: YolosConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/yolos/modeling_yolos.py#L544)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/yolos/modeling_yolos.py#L544)
 
 **Parameters:**
 
-config ([YolosConfig](/docs/transformers/v5.15.0/en/model_doc/yolos#transformers.YolosConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([YolosConfig](/docs/transformers/v5.15.1/en/model_doc/yolos#transformers.YolosConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 YOLOS Model (consisting of a ViT encoder) with object detection heads on top, for tasks such as COCO detection.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -528,11 +528,11 @@ and behavior.
 forward(pixel_values: FloatTensor, labels: list[dict] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/yolos/modeling_yolos.py#L567)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/yolos/modeling_yolos.py#L567)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [YolosImageProcessor](/docs/transformers/v5.15.0/en/model_doc/yolos#transformers.YolosImageProcessor). See `YolosImageProcessor.__call__()` for details (`processor_class` uses [YolosImageProcessor](/docs/transformers/v5.15.0/en/model_doc/yolos#transformers.YolosImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [YolosImageProcessor](/docs/transformers/v5.15.1/en/model_doc/yolos#transformers.YolosImageProcessor). See `YolosImageProcessor.__call__()` for details (`processor_class` uses [YolosImageProcessor](/docs/transformers/v5.15.1/en/model_doc/yolos#transformers.YolosImageProcessor) for processing images).
 
 labels (`list[Dict]` of len `(batch_size,)`, *optional*) : Labels for computing the bipartite matching loss. List of dicts, each dictionary containing at least the following 2 keys: `'class_labels'` and `'boxes'` (the class labels and bounding boxes of an image in the batch respectively). The class labels themselves should be a `torch.LongTensor` of len `(number of bounding boxes in the image,)` and the boxes a `torch.FloatTensor` of shape `(number of bounding boxes in the image, 4)`.
 
@@ -540,9 +540,9 @@ labels (`list[Dict]` of len `(batch_size,)`, *optional*) : Labels for computing 
 
 A `YolosObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([YolosConfig](/docs/transformers/v5.15.0/en/model_doc/yolos#transformers.YolosConfig)) and inputs.
+elements depending on the configuration ([YolosConfig](/docs/transformers/v5.15.1/en/model_doc/yolos#transformers.YolosConfig)) and inputs.
 
-The [YolosForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/yolos#transformers.YolosForObjectDetection) forward method, overrides the `__call__` special method.
+The [YolosForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/yolos#transformers.YolosForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -610,4 +610,4 @@ Detected remote with confidence 0.974 at location [41.63, 72.23, 178.09, 119.99]
 ```
 
 ### Pix2Struct
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/pix2struct.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/pix2struct.md

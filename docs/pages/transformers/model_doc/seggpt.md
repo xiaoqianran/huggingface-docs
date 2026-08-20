@@ -10,10 +10,10 @@ The abstract from the paper is the following:
 
 Tips:
 
-- One can use [SegGptImageProcessor](/docs/transformers/v5.15.0/en/model_doc/seggpt#transformers.SegGptImageProcessor) to prepare image input, prompt and mask to the model.
+- One can use [SegGptImageProcessor](/docs/transformers/v5.15.1/en/model_doc/seggpt#transformers.SegGptImageProcessor) to prepare image input, prompt and mask to the model.
 - One can either use segmentation maps or RGB images as prompt masks. If using the latter make sure to set `do_convert_rgb=False` in the `preprocess` method.
-- It's highly advisable to pass `num_labels` when using `segmentation_maps` (not considering background) during preprocessing and postprocessing with [SegGptImageProcessor](/docs/transformers/v5.15.0/en/model_doc/seggpt#transformers.SegGptImageProcessor) for your use case.
-- When doing inference with [SegGptForImageSegmentation](/docs/transformers/v5.15.0/en/model_doc/seggpt#transformers.SegGptForImageSegmentation) if your `batch_size` is greater than 1 you can use feature ensemble across your images by passing `feature_ensemble=True` in the forward method.
+- It's highly advisable to pass `num_labels` when using `segmentation_maps` (not considering background) during preprocessing and postprocessing with [SegGptImageProcessor](/docs/transformers/v5.15.1/en/model_doc/seggpt#transformers.SegGptImageProcessor) for your use case.
+- When doing inference with [SegGptForImageSegmentation](/docs/transformers/v5.15.1/en/model_doc/seggpt#transformers.SegGptForImageSegmentation) if your `batch_size` is greater than 1 you can use feature ensemble across your images by passing `feature_ensemble=True` in the forward method.
 
 Here's how to use the model for one-shot semantic segmentation:
 
@@ -63,7 +63,7 @@ The original code can be found [here](https://github.com/baaivision/Painter/tree
 transformers.SegGptConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 1024, num_hidden_layers: int = 24, num_attention_heads: int = 16, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-06, image_size: int | list[int] | tuple[int, ...] = (896, 448), patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, qkv_bias: bool = True, mlp_dim: int | None = None, drop_path_rate: float | int = 0.1, pretrain_image_size: int | list[int] | tuple[int, int] = 224, decoder_hidden_size: int = 64, use_relative_position_embeddings: bool = True, merge_index: int = 2, intermediate_hidden_state_indices: list[int] | tuple[int, ...] = (5, 11, 17, 23), beta: float = 0.01)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seggpt/configuration_seggpt.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seggpt/configuration_seggpt.py#L24)
 
 **Parameters:**
 
@@ -109,8 +109,8 @@ This is the configuration class to store the configuration of a SegGptModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [BAAI/seggpt-vit-large](https://huggingface.co/BAAI/seggpt-vit-large)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -135,7 +135,7 @@ Example:
 transformers.SegGptImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seggpt/image_processing_seggpt.py#L73)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seggpt/image_processing_seggpt.py#L73)
 
 **Parameters:**
 
@@ -189,7 +189,7 @@ Constructs a SegGptImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, prompt_images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, prompt_masks: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seggpt/image_processing_seggpt.py#L134)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seggpt/image_processing_seggpt.py#L134)
 
 **Parameters:**
 
@@ -253,7 +253,7 @@ num_labels (`int`, *kwargs*, *optional*) : Number of classes in the segmentation
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple[int, int]] | None = None, num_labels: int | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seggpt/image_processing_seggpt.py#L255)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seggpt/image_processing_seggpt.py#L255)
 
 **Parameters:**
 
@@ -284,7 +284,7 @@ Converts the output of `SegGptImageSegmentationOutput` into segmentation maps. O
 transformers.SegGptImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seggpt/image_processing_pil_seggpt.py#L75)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seggpt/image_processing_pil_seggpt.py#L75)
 
 **Parameters:**
 
@@ -338,7 +338,7 @@ Constructs a SegGptImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, prompt_images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, prompt_masks: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seggpt/image_processing_pil_seggpt.py#L136)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seggpt/image_processing_pil_seggpt.py#L136)
 
 **Parameters:**
 
@@ -402,7 +402,7 @@ num_labels (`int`, *kwargs*, *optional*) : Number of classes in the segmentation
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple[int, int]] | None = None, num_labels: int | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seggpt/image_processing_pil_seggpt.py#L238)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seggpt/image_processing_pil_seggpt.py#L238)
 
 **Parameters:**
 
@@ -433,15 +433,15 @@ Converts the output of `SegGptImageSegmentationOutput` into segmentation maps. O
 transformers.SegGptModel(config: SegGptConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seggpt/modeling_seggpt.py#L613)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seggpt/modeling_seggpt.py#L613)
 
 **Parameters:**
 
-config ([SegGptConfig](/docs/transformers/v5.15.0/en/model_doc/seggpt#transformers.SegGptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SegGptConfig](/docs/transformers/v5.15.1/en/model_doc/seggpt#transformers.SegGptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Seggpt Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -455,15 +455,15 @@ and behavior.
 forward(pixel_values: Tensor, prompt_pixel_values: Tensor, prompt_masks: Tensor, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, feature_ensemble: bool | None = None, embedding_type: str | None = None, labels: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seggpt/modeling_seggpt.py#L627)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seggpt/modeling_seggpt.py#L627)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SegGptImageProcessor](/docs/transformers/v5.15.0/en/model_doc/seggpt#transformers.SegGptImageProcessor). See `SegGptImageProcessor.__call__()` for details (`processor_class` uses [SegGptImageProcessor](/docs/transformers/v5.15.0/en/model_doc/seggpt#transformers.SegGptImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SegGptImageProcessor](/docs/transformers/v5.15.1/en/model_doc/seggpt#transformers.SegGptImageProcessor). See `SegGptImageProcessor.__call__()` for details (`processor_class` uses [SegGptImageProcessor](/docs/transformers/v5.15.1/en/model_doc/seggpt#transformers.SegGptImageProcessor) for processing images).
 
-prompt_pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, height, width)`) : Prompt pixel values. Prompt pixel values can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor). See `SegGptImageProcessor.__call__()` for details.
+prompt_pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, height, width)`) : Prompt pixel values. Prompt pixel values can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor). See `SegGptImageProcessor.__call__()` for details.
 
-prompt_masks (`torch.FloatTensor` of shape `(batch_size, num_channels, height, width)`) : Prompt mask. Prompt mask can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor). See `SegGptImageProcessor.__call__()` for details.
+prompt_masks (`torch.FloatTensor` of shape `(batch_size, num_channels, height, width)`) : Prompt mask. Prompt mask can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor). See `SegGptImageProcessor.__call__()` for details.
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`, *optional*) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
@@ -477,15 +477,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `SegGptEncoderOutput` or `tuple(torch.FloatTensor)`
 
 A `SegGptEncoderOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SegGptConfig](/docs/transformers/v5.15.0/en/model_doc/seggpt#transformers.SegGptConfig)) and inputs.
+elements depending on the configuration ([SegGptConfig](/docs/transformers/v5.15.1/en/model_doc/seggpt#transformers.SegGptConfig)) and inputs.
 
-The [SegGptModel](/docs/transformers/v5.15.0/en/model_doc/seggpt#transformers.SegGptModel) forward method, overrides the `__call__` special method.
+The [SegGptModel](/docs/transformers/v5.15.1/en/model_doc/seggpt#transformers.SegGptModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -540,15 +540,15 @@ Examples:
 transformers.SegGptForImageSegmentation(config: SegGptConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seggpt/modeling_seggpt.py#L819)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seggpt/modeling_seggpt.py#L819)
 
 **Parameters:**
 
-config ([SegGptConfig](/docs/transformers/v5.15.0/en/model_doc/seggpt#transformers.SegGptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SegGptConfig](/docs/transformers/v5.15.1/en/model_doc/seggpt#transformers.SegGptConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 SegGpt model with a decoder on top for one-shot image segmentation.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -562,15 +562,15 @@ and behavior.
 forward(pixel_values: Tensor, prompt_pixel_values: Tensor, prompt_masks: Tensor, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, feature_ensemble: bool | None = None, embedding_type: str | None = None, labels: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/seggpt/modeling_seggpt.py#L830)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/seggpt/modeling_seggpt.py#L830)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SegGptImageProcessor](/docs/transformers/v5.15.0/en/model_doc/seggpt#transformers.SegGptImageProcessor). See `SegGptImageProcessor.__call__()` for details (`processor_class` uses [SegGptImageProcessor](/docs/transformers/v5.15.0/en/model_doc/seggpt#transformers.SegGptImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SegGptImageProcessor](/docs/transformers/v5.15.1/en/model_doc/seggpt#transformers.SegGptImageProcessor). See `SegGptImageProcessor.__call__()` for details (`processor_class` uses [SegGptImageProcessor](/docs/transformers/v5.15.1/en/model_doc/seggpt#transformers.SegGptImageProcessor) for processing images).
 
-prompt_pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, height, width)`) : Prompt pixel values. Prompt pixel values can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor). See `SegGptImageProcessor.__call__()` for details.
+prompt_pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, height, width)`) : Prompt pixel values. Prompt pixel values can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor). See `SegGptImageProcessor.__call__()` for details.
 
-prompt_masks (`torch.FloatTensor` of shape `(batch_size, num_channels, height, width)`) : Prompt mask. Prompt mask can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor). See `SegGptImageProcessor.__call__()` for details.
+prompt_masks (`torch.FloatTensor` of shape `(batch_size, num_channels, height, width)`) : Prompt mask. Prompt mask can be obtained using [AutoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor). See `SegGptImageProcessor.__call__()` for details.
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`, *optional*) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
@@ -584,15 +584,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `SegGptImageSegmentationOutput` or `tuple(torch.FloatTensor)`
 
 A `SegGptImageSegmentationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SegGptConfig](/docs/transformers/v5.15.0/en/model_doc/seggpt#transformers.SegGptConfig)) and inputs.
+elements depending on the configuration ([SegGptConfig](/docs/transformers/v5.15.1/en/model_doc/seggpt#transformers.SegGptConfig)) and inputs.
 
-The [SegGptForImageSegmentation](/docs/transformers/v5.15.0/en/model_doc/seggpt#transformers.SegGptForImageSegmentation) forward method, overrides the `__call__` special method.
+The [SegGptForImageSegmentation](/docs/transformers/v5.15.1/en/model_doc/seggpt#transformers.SegGptForImageSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -638,4 +638,4 @@ Examples:
 ```
 
 ### RecurrentGemma
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/recurrent_gemma.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/recurrent_gemma.md

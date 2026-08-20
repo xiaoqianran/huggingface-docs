@@ -179,7 +179,7 @@ A list of official Hugging Face and community (indicated by 🌎) resources to h
 transformers.Idefics2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, use_cache: bool = True, image_token_id: int = 32001, tie_word_embeddings: bool = False, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, perceiver_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/configuration_idefics2.py#L99)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/configuration_idefics2.py#L99)
 
 **Parameters:**
 
@@ -199,8 +199,8 @@ This is the configuration class to store the configuration of a Idefics2Model. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [HuggingFaceM4/idefics2-8b](https://huggingface.co/HuggingFaceM4/idefics2-8b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -221,7 +221,7 @@ Example:
 transformers.Idefics2VisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 32, hidden_act: str = 'gelu_pytorch_tanh', layer_norm_eps: float = 1e-06, attention_dropout: float | int = 0.0, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/configuration_idefics2.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/configuration_idefics2.py#L27)
 
 **Parameters:**
 
@@ -251,8 +251,8 @@ This is the configuration class to store the configuration of a Idefics2Model. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [HuggingFaceM4/idefics2-8b](https://huggingface.co/HuggingFaceM4/idefics2-8b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -278,7 +278,7 @@ Example:
 transformers.Idefics2PerceiverConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_act: str = 'silu', hidden_size: int = 4096, rms_norm_eps: float = 1e-06, resampler_n_latents: int = 64, resampler_depth: int = 3, resampler_n_heads: int = 16, resampler_head_dim: int = 96, num_key_value_heads: int = 4, attention_dropout: float | int = 0.0, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/configuration_idefics2.py#L63)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/configuration_idefics2.py#L63)
 
 **Parameters:**
 
@@ -306,8 +306,8 @@ This is the configuration class to store the configuration of a Idefics2Model. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [HuggingFaceM4/idefics2-8b](https://huggingface.co/HuggingFaceM4/idefics2-8b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Idefics2Model[[transformers.Idefics2Model]]
 
@@ -317,15 +317,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.Idefics2Model(config: Idefics2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/modeling_idefics2.py#L768)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/modeling_idefics2.py#L768)
 
 **Parameters:**
 
-config ([Idefics2Config](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Idefics2Config](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Idefics2 model consisting of a SIGLIP vision encoder and Mistral language decoder
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -339,21 +339,21 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_attention_mask: typing.Optional[torch.BoolTensor] = None, image_hidden_states: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/modeling_idefics2.py#L870)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/modeling_idefics2.py#L870)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Idefics2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2ImageProcessor). See `Idefics2ImageProcessor.__call__()` for details ([Idefics2Processor](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2Processor) uses [Idefics2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2ImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Idefics2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2ImageProcessor). See `Idefics2ImageProcessor.__call__()` for details ([Idefics2Processor](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2Processor) uses [Idefics2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2ImageProcessor) for processing images).
 
 pixel_attention_mask (`torch.Tensor` of shape `(batch_size, image_size, image_size)`, *optional*) : Mask to avoid performing attention on padding pixel indices.
 
@@ -365,7 +365,7 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 A `Idefics2BaseModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Idefics2Config](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2Config)) and inputs.
+elements depending on the configuration ([Idefics2Config](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2Config)) and inputs.
 
 Inputs fed to the model can have an arbitrary number of images. To account for this, pixel_values fed to
 the model have image padding -> (batch_size, max_num_images, 3, max_heights, max_widths) where
@@ -379,7 +379,7 @@ image_batch_size would be 7 when num_images_per_sample=[1, 3, 1, 2] and max_num_
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`~cache_utils.Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`~cache_utils.Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -403,7 +403,7 @@ image_batch_size would be 7 when num_images_per_sample=[1, 3, 1, 2] and max_num_
 get_image_features(pixel_values: FloatTensor, pixel_attention_mask: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/modeling_idefics2.py#L817)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/modeling_idefics2.py#L817)
 
 **Parameters:**
 
@@ -411,11 +411,11 @@ pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_siz
 
 pixel_attention_mask (`torch.LongTensor`, *optional*) : The attention mask indicating padded regions in the image.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Idefics2Config](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2Config)) and inputs.
+elements depending on the configuration ([Idefics2Config](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2Config)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -440,15 +440,15 @@ elements depending on the configuration ([Idefics2Config](/docs/transformers/v5.
 transformers.Idefics2ForConditionalGeneration(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/modeling_idefics2.py#L965)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/modeling_idefics2.py#L965)
 
 **Parameters:**
 
-config ([Idefics2ForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2ForConditionalGeneration)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Idefics2ForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2ForConditionalGeneration)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Idefics2 Model with a language modeling head. It is made up a SigLIP vision encoder, with a language modeling head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -462,21 +462,21 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_attention_mask: typing.Optional[torch.BoolTensor] = None, image_hidden_states: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/modeling_idefics2.py#L1002)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/modeling_idefics2.py#L1002)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Idefics2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2ImageProcessor). See `Idefics2ImageProcessor.__call__()` for details ([Idefics2Processor](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2Processor) uses [Idefics2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2ImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Idefics2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2ImageProcessor). See `Idefics2ImageProcessor.__call__()` for details ([Idefics2Processor](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2Processor) uses [Idefics2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2ImageProcessor) for processing images).
 
 pixel_attention_mask (`torch.Tensor` of shape `(batch_size, image_size, image_size)`, *optional*) : Mask to avoid performing attention on padding pixel indices.
 
@@ -492,9 +492,9 @@ logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an
 
 A `Idefics2CausalLMOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Idefics2Config](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2Config)) and inputs.
+elements depending on the configuration ([Idefics2Config](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2Config)) and inputs.
 
-The [Idefics2ForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2ForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [Idefics2ForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2ForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -502,7 +502,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss (for next-token prediction).
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -563,7 +563,7 @@ Example:
 get_image_features(pixel_values: FloatTensor, pixel_attention_mask: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/modeling_idefics2.py#L985)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/modeling_idefics2.py#L985)
 
 **Parameters:**
 
@@ -571,11 +571,11 @@ pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_siz
 
 pixel_attention_mask (`torch.LongTensor`, *optional*) : The attention mask indicating padded regions in the image.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Idefics2Config](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2Config)) and inputs.
+elements depending on the configuration ([Idefics2Config](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2Config)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -630,7 +630,7 @@ Example:
 transformers.Idefics2ImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/image_processing_idefics2.py#L114)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/image_processing_idefics2.py#L114)
 
 **Parameters:**
 
@@ -684,7 +684,7 @@ Constructs a Idefics2ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/image_processing_idefics2.py#L132)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/image_processing_idefics2.py#L132)
 
 **Parameters:**
 
@@ -746,7 +746,7 @@ do_image_splitting (`bool`, *kwargs*, *optional*, defaults to `self.do_image_spl
 transformers.Idefics2ImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/image_processing_pil_idefics2.py#L116)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/image_processing_pil_idefics2.py#L116)
 
 **Parameters:**
 
@@ -800,7 +800,7 @@ Constructs a Idefics2ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/image_processing_pil_idefics2.py#L134)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/image_processing_pil_idefics2.py#L134)
 
 **Parameters:**
 
@@ -862,7 +862,7 @@ do_image_splitting (`bool`, *kwargs*, *optional*, defaults to `self.do_image_spl
 transformers.Idefics2Processor(image_processor, tokenizer = None, image_seq_len: int = 64, chat_template: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/processing_idefics2.py#L59)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/processing_idefics2.py#L59)
 
 **Parameters:**
 
@@ -876,8 +876,8 @@ chat_template (`str`, *optional*) : A Jinja template to convert lists of message
 
 Constructs a Idefics2Processor which wraps a image processor and a tokenizer into a single processor.
 
-[Idefics2Processor](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2Processor) offers all the functionalities of [Idefics2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2ImageProcessor) and [LlamaTokenizer](/docs/transformers/v5.15.0/en/model_doc/llama2#transformers.LlamaTokenizer). See the
-[~Idefics2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/idefics2#transformers.Idefics2ImageProcessor) and [~LlamaTokenizer](/docs/transformers/v5.15.0/en/model_doc/llama2#transformers.LlamaTokenizer) for more information.
+[Idefics2Processor](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2Processor) offers all the functionalities of [Idefics2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2ImageProcessor) and [LlamaTokenizer](/docs/transformers/v5.15.1/en/model_doc/llama2#transformers.LlamaTokenizer). See the
+[~Idefics2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/idefics2#transformers.Idefics2ImageProcessor) and [~LlamaTokenizer](/docs/transformers/v5.15.1/en/model_doc/llama2#transformers.LlamaTokenizer) for more information.
 
 #### __call__[[transformers.Idefics2Processor.__call__]]
 
@@ -885,7 +885,7 @@ Constructs a Idefics2Processor which wraps a image processor and a tokenizer int
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], list[typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']]], list[list[typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']]]]] = None, text: typing.Union[str, ForwardRef('PreTokenizedInput'), list[str], list['PreTokenizedInput']] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/idefics2/processing_idefics2.py#L100)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/idefics2/processing_idefics2.py#L100)
 
 **Parameters:**
 
@@ -893,9 +893,9 @@ images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Imag
 
 text (`Union[str, PreTokenizedInput, list[str], list[PreTokenizedInput]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 **Returns:** `~feature_extraction_utils.BatchFeature`
 
@@ -906,4 +906,4 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 - **skip_tensor_conversion** (`list[str]` or `set[str]`, *optional*) -- List or set of keys that should NOT be converted to tensors, even when `tensor_type` is specified.
 
 ### DPT
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/dpt.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/dpt.md

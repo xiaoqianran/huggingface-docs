@@ -14,7 +14,7 @@ pip install flute-kernel
 pip install flute-kernel -i https://flute-ai.github.io/whl/cu12.4
 ```
 
-Create a [HiggsConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.HiggsConfig) with the number of bits to quantize a model to.
+Create a [HiggsConfig](/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.HiggsConfig) with the number of bits to quantize a model to.
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer, HiggsConfig
@@ -55,4 +55,4 @@ Refer to the table below for a benchmark of forward passes/sec for Llama-3.1-8B-
 | 16         | 56                          | 41                               | 120                               |
 
 ### torchao
-https://huggingface.co/docs/transformers/v5.15.0/quantization/torchao.md
+https://huggingface.co/docs/transformers/v5.15.1/quantization/torchao.md

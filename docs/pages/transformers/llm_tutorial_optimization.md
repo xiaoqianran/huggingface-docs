@@ -623,4 +623,4 @@ The reason massive LLMs such as GPT3/4, Llama-2-70b, Claude, PaLM can run so qui
 Going forward, accelerators such as GPUs, TPUs, etc... will only get faster and allow for more memory, but one should nevertheless always make sure to use the best available algorithms and architectures to get the most bang for your buck 🤗
 
 ### Contribute to 🤗 Transformers
-https://huggingface.co/docs/transformers/v5.15.0/contributing.md
+https://huggingface.co/docs/transformers/v5.15.1/contributing.md

@@ -11,7 +11,7 @@ You can find all the original SegFormer checkpoints under the [NVIDIA](https://h
 >
 > Click on the SegFormer models in the right sidebar for more examples of how to apply SegFormer to different vision tasks.
 
-The example below demonstrates semantic segmentation with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates semantic segmentation with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -66,7 +66,7 @@ processor = SegformerImageProcessor(do_reduce_labels=True)
 transformers.SegformerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, num_channels: int = 3, num_encoder_blocks: int = 4, depths: list[int] | tuple[int, ...] = (2, 2, 2, 2), sr_ratios: list[int] | tuple[int, ...] = (8, 4, 2, 1), hidden_sizes: list[int] | tuple[int, ...] = (32, 64, 160, 256), patch_sizes: list[int] | tuple[int, ...] = (7, 3, 3, 3), strides: list[int] | tuple[int, ...] = (4, 2, 2, 2), num_attention_heads: list[int] | tuple[int, ...] = (1, 2, 5, 8), mlp_ratios: list[int] | tuple[int, ...] = (4, 4, 4, 4), hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, classifier_dropout_prob: float | int = 0.1, initializer_range: float = 0.02, drop_path_rate: float | int = 0.1, layer_norm_eps: float = 1e-06, decoder_hidden_size: int = 256, semantic_loss_ignore_index: int = 255, reshape_last_stage: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/configuration_segformer.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/configuration_segformer.py#L24)
 
 **Parameters:**
 
@@ -112,8 +112,8 @@ This is the configuration class to store the configuration of a SegformerModel. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [ByteDance-Seed/Seed-OSS-36B-Instruct](https://huggingface.co/ByteDance-Seed/Seed-OSS-36B-Instruct)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -138,7 +138,7 @@ Example:
 transformers.SegformerImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/image_processing_segformer.py#L55)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/image_processing_segformer.py#L55)
 
 **Parameters:**
 
@@ -192,7 +192,7 @@ Constructs a SegformerImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/image_processing_segformer.py#L75)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/image_processing_segformer.py#L75)
 
 **Parameters:**
 
@@ -254,11 +254,11 @@ do_reduce_labels (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labe
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/image_processing_segformer.py#L192)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/image_processing_segformer.py#L192)
 
 **Parameters:**
 
-outputs ([SegformerForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerForSemanticSegmentation)) : Raw outputs of the model.
+outputs ([SegformerForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerForSemanticSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[Tuple]` of length `batch_size`, *optional*) : List of tuples corresponding to the requested final size (height, width) of each prediction. If unset, predictions will not be resized.
 
@@ -273,7 +273,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [SegformerForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerForSemanticSegmentation) into semantic segmentation maps.
+Converts the output of [SegformerForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerForSemanticSegmentation) into semantic segmentation maps.
 
 ## SegformerImageProcessorPil[[transformers.SegformerImageProcessorPil]]
 
@@ -283,7 +283,7 @@ Converts the output of [SegformerForSemanticSegmentation](/docs/transformers/v5.
 transformers.SegformerImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/image_processing_pil_segformer.py#L58)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/image_processing_pil_segformer.py#L58)
 
 PIL backend for Segformer with reduce_label support.
 
@@ -293,7 +293,7 @@ PIL backend for Segformer with reduce_label support.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/image_processing_pil_segformer.py#L78)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/image_processing_pil_segformer.py#L78)
 
 **Parameters:**
 
@@ -355,11 +355,11 @@ do_reduce_labels (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labe
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/image_processing_pil_segformer.py#L177)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/image_processing_pil_segformer.py#L177)
 
 **Parameters:**
 
-outputs ([SegformerForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerForSemanticSegmentation)) : Raw outputs of the model.
+outputs ([SegformerForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerForSemanticSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[Tuple]` of length `batch_size`, *optional*) : List of tuples corresponding to the requested final size (height, width) of each prediction. If unset, predictions will not be resized.
 
@@ -374,7 +374,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [SegformerForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerForSemanticSegmentation) into semantic segmentation maps.
+Converts the output of [SegformerForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerForSemanticSegmentation) into semantic segmentation maps.
 
 ## SegformerModel[[transformers.SegformerModel]]
 
@@ -384,15 +384,15 @@ Converts the output of [SegformerForSemanticSegmentation](/docs/transformers/v5.
 transformers.SegformerModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/modeling_segformer.py#L376)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/modeling_segformer.py#L376)
 
 **Parameters:**
 
-config ([SegformerModel](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SegformerModel](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Segformer Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -406,19 +406,19 @@ and behavior.
 forward(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/modeling_segformer.py#L390)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/modeling_segformer.py#L390)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SegformerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerImageProcessor). See `SegformerImageProcessor.__call__()` for details (`processor_class` uses [SegformerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SegformerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerImageProcessor). See `SegformerImageProcessor.__call__()` for details (`processor_class` uses [SegformerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerImageProcessor) for processing images).
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+A [BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SegformerConfig](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerConfig)) and inputs.
+elements depending on the configuration ([SegformerConfig](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerConfig)) and inputs.
 
-The [SegformerModel](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerModel) forward method, overrides the `__call__` special method.
+The [SegformerModel](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -448,7 +448,7 @@ Example:
 transformers.SegformerDecodeHead(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/modeling_segformer.py#L478)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/modeling_segformer.py#L478)
 
 #### forward[[transformers.SegformerDecodeHead.forward]]
 
@@ -456,7 +456,7 @@ transformers.SegformerDecodeHead(config)
 forward(encoder_hidden_states: FloatTensor, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/modeling_segformer.py#L502)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/modeling_segformer.py#L502)
 
 ## SegformerForImageClassification[[transformers.SegformerForImageClassification]]
 
@@ -466,16 +466,16 @@ forward(encoder_hidden_states: FloatTensor, **kwargs)
 transformers.SegformerForImageClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/modeling_segformer.py#L410)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/modeling_segformer.py#L410)
 
 **Parameters:**
 
-config ([SegformerForImageClassification](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerForImageClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SegformerForImageClassification](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerForImageClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 SegFormer Model transformer with an image classification head on top (a linear layer on top of the final hidden
 states) e.g. for ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -489,11 +489,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/modeling_segformer.py#L423)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/modeling_segformer.py#L423)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SegformerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerImageProcessor). See `SegformerImageProcessor.__call__()` for details (`processor_class` uses [SegformerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SegformerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerImageProcessor). See `SegformerImageProcessor.__call__()` for details (`processor_class` uses [SegformerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
@@ -501,9 +501,9 @@ labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for co
 
 A `SegFormerImageClassifierOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SegformerConfig](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerConfig)) and inputs.
+elements depending on the configuration ([SegformerConfig](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerConfig)) and inputs.
 
-The [SegformerForImageClassification](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerForImageClassification) forward method, overrides the `__call__` special method.
+The [SegformerForImageClassification](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -552,15 +552,15 @@ Example:
 transformers.SegformerForSemanticSegmentation(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/modeling_segformer.py#L540)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/modeling_segformer.py#L540)
 
 **Parameters:**
 
-config ([SegformerForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerForSemanticSegmentation)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SegformerForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerForSemanticSegmentation)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 SegFormer Model transformer with an all-MLP decode head on top e.g. for ADE20k, CityScapes.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -574,21 +574,21 @@ and behavior.
 forward(pixel_values: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/segformer/modeling_segformer.py#L549)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/segformer/modeling_segformer.py#L549)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SegformerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerImageProcessor). See `SegformerImageProcessor.__call__()` for details (`processor_class` uses [SegformerImageProcessor](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SegformerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerImageProcessor). See `SegformerImageProcessor.__call__()` for details (`processor_class` uses [SegformerImageProcessor](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Ground truth semantic segmentation maps for computing the loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels > 1`, a classification loss is computed (Cross-Entropy).
 
-**Returns:** [SemanticSegmenterOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SemanticSegmenterOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`
 
-A [SemanticSegmenterOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
+A [SemanticSegmenterOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SegformerConfig](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerConfig)) and inputs.
+elements depending on the configuration ([SegformerConfig](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerConfig)) and inputs.
 
-The [SegformerForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/segformer#transformers.SegformerForSemanticSegmentation) forward method, overrides the `__call__` special method.
+The [SegformerForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/segformer#transformers.SegformerForSemanticSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -637,4 +637,4 @@ Examples:
 ```
 
 ### Glm4MoeLite
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/glm4_moe_lite.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/glm4_moe_lite.md

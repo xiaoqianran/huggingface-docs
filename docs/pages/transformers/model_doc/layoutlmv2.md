@@ -52,14 +52,14 @@ python -m pip install torchvision tesseract
 - LayoutLMv2 uses Facebook AI's [Detectron2](https://github.com/facebookresearch/detectron2/) package for its visual
   backbone. See [this link](https://detectron2.readthedocs.io/en/latest/tutorials/install.html) for installation
   instructions.
-- In addition to `input_ids`, [forward()](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Model.forward) expects 2 additional inputs, namely
+- In addition to `input_ids`, [forward()](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Model.forward) expects 2 additional inputs, namely
   `image` and `bbox`. The `image` input corresponds to the original document image in which the text
   tokens occur. The model expects each document image to be of size 224x224. This means that if you have a batch of
   document images, `image` should be a tensor of shape (batch_size, 3, 224, 224). This can be either a
   `torch.Tensor` or a `Detectron2.structures.ImageList`. You don't need to normalize the channels, as this is
   done by the model. Important to note is that the visual backbone expects BGR channels instead of RGB, as all models
   in Detectron2 are pre-trained using the BGR format. The `bbox` input are the bounding boxes (i.e. 2D-positions)
-  of the input text tokens. This is identical to [LayoutLMModel](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.LayoutLMModel). These can be obtained using an
+  of the input text tokens. This is identical to [LayoutLMModel](/docs/transformers/v5.15.1/en/model_doc/layoutlm#transformers.LayoutLMModel). These can be obtained using an
   external OCR engine such as Google's [Tesseract](https://github.com/tesseract-ocr/tesseract) (there's a [Python
   wrapper](https://pypi.org/project/pytesseract/) available). Each bounding box should be in (x0, y0, x1, y1)
   format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1, y1)
@@ -90,19 +90,19 @@ image = Image.open(
 width, height = image.size
 ```
 
-However, this model includes a brand new [LayoutLMv2Processor](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Processor) which can be used to directly
+However, this model includes a brand new [LayoutLMv2Processor](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Processor) which can be used to directly
 prepare data for the model (including applying OCR under the hood). More information can be found in the "Usage"
 section below.
 
-- Internally, [LayoutLMv2Model](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Model) will send the `image` input through its visual backbone to
+- Internally, [LayoutLMv2Model](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Model) will send the `image` input through its visual backbone to
   obtain a lower-resolution feature map, whose shape is equal to the `image_feature_pool_shape` attribute of
-  [LayoutLMv2Config](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Config). This feature map is then flattened to obtain a sequence of image tokens. As
+  [LayoutLMv2Config](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Config). This feature map is then flattened to obtain a sequence of image tokens. As
   the size of the feature map is 7x7 by default, one obtains 49 image tokens. These are then concatenated with the text
   tokens, and send through the Transformer encoder. This means that the last hidden states of the model will have a
   length of 512 + 49 = 561, if you pad the text tokens up to the max length. More generally, the last hidden states
   will have a shape of `seq_length` + `image_feature_pool_shape[0]` *
   `config.image_feature_pool_shape[1]`.
-- When calling [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), a warning will be printed with a long list of
+- When calling [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), a warning will be printed with a long list of
   parameter names that are not initialized. This is not a problem, as these parameters are batch normalization
   statistics, which are going to have values when fine-tuning on a custom dataset.
 - If you want to train the model in a distributed environment, make sure to call `synchronize_batch_norm` on the
@@ -128,9 +128,9 @@ A list of official Hugging Face and community (indicated by 🌎) resources to h
 
 ## Usage: LayoutLMv2Processor
 
-The easiest way to prepare data for the model is to use [LayoutLMv2Processor](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Processor), which internally
-combines a image processor ([LayoutLMv2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2ImageProcessor)) and a tokenizer
-([LayoutLMv2Tokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Tokenizer) or [LayoutLMv2TokenizerFast](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Tokenizer)). The image processor
+The easiest way to prepare data for the model is to use [LayoutLMv2Processor](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Processor), which internally
+combines a image processor ([LayoutLMv2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2ImageProcessor)) and a tokenizer
+([LayoutLMv2Tokenizer](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Tokenizer) or [LayoutLMv2TokenizerFast](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Tokenizer)). The image processor
 handles the image modality, while the tokenizer handles the text modality. A processor combines both, which is ideal
 for a multi-modal model like LayoutLMv2. Note that you can still use both separately, if you only want to handle one
 modality.
@@ -143,19 +143,19 @@ tokenizer = LayoutLMv2TokenizerFast.from_pretrained("microsoft/layoutlmv2-base-u
 processor = LayoutLMv2Processor(image_processor, tokenizer)
 ```
 
-In short, one can provide a document image (and possibly additional data) to [LayoutLMv2Processor](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Processor),
+In short, one can provide a document image (and possibly additional data) to [LayoutLMv2Processor](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Processor),
 and it will create the inputs expected by the model. Internally, the processor first uses
-[LayoutLMv2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2ImageProcessor) to apply OCR on the image to get a list of words and normalized
+[LayoutLMv2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2ImageProcessor) to apply OCR on the image to get a list of words and normalized
 bounding boxes, as well to resize the image to a given size in order to get the `image` input. The words and
-normalized bounding boxes are then provided to [LayoutLMv2Tokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Tokenizer) or
-[LayoutLMv2TokenizerFast](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Tokenizer), which converts them to token-level `input_ids`,
+normalized bounding boxes are then provided to [LayoutLMv2Tokenizer](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Tokenizer) or
+[LayoutLMv2TokenizerFast](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Tokenizer), which converts them to token-level `input_ids`,
 `attention_mask`, `token_type_ids`, `bbox`. Optionally, one can provide word labels to the processor,
 which are turned into token-level `labels`.
 
-[LayoutLMv2Processor](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Processor) uses [PyTesseract](https://pypi.org/project/pytesseract/), a Python
+[LayoutLMv2Processor](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Processor) uses [PyTesseract](https://pypi.org/project/pytesseract/), a Python
 wrapper around Google's Tesseract OCR engine, under the hood. Note that you can still use your own OCR engine of
 choice, and provide the words and normalized boxes yourself. This requires initializing
-[LayoutLMv2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2ImageProcessor) with `apply_ocr` set to `False`.
+[LayoutLMv2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2ImageProcessor) with `apply_ocr` set to `False`.
 
 In total, there are 5 use cases that are supported by the processor. Below, we list them all. Note that each of these
 use cases work for both batched and non-batched inputs (we illustrate them for non-batched inputs).
@@ -284,7 +284,7 @@ print(encoding.keys())
 transformers.LayoutLMv2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 30522, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.1, max_position_embeddings: int = 512, type_vocab_size: int = 2, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, pad_token_id: int | None = 0, max_2d_position_embeddings: int = 1024, max_rel_pos: int = 128, rel_pos_bins: int = 32, fast_qkv: bool = True, max_rel_2d_pos: int = 256, rel_2d_pos_bins: int = 64, convert_sync_batchnorm: bool = True, image_feature_pool_shape: list[int] | tuple[int, ...] = (7, 7, 256), coordinate_size: int = 128, shape_size: int = 128, has_relative_attention_bias: bool = True, has_spatial_attention_bias: bool = True, has_visual_segment_embedding: bool = False, detectron2_config_args: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/configuration_layoutlmv2.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/configuration_layoutlmv2.py#L29)
 
 **Parameters:**
 
@@ -346,8 +346,8 @@ This is the configuration class to store the configuration of a LayoutLMv2Model.
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/layoutlmv2-base-uncased](https://huggingface.co/microsoft/layoutlmv2-base-uncased)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -372,7 +372,7 @@ Example:
 transformers.LayoutLMv2ImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/image_processing_layoutlmv2.py#L118)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/image_processing_layoutlmv2.py#L118)
 
 **Parameters:**
 
@@ -430,7 +430,7 @@ Constructs a LayoutLMv2ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/image_processing_layoutlmv2.py#L131)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/image_processing_layoutlmv2.py#L131)
 
 **Parameters:**
 
@@ -496,7 +496,7 @@ tesseract_config (`str`, *kwargs*, *optional*) : Any additional custom configura
 transformers.LayoutLMv2ImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/image_processing_pil_layoutlmv2.py#L121)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/image_processing_pil_layoutlmv2.py#L121)
 
 **Parameters:**
 
@@ -554,7 +554,7 @@ Constructs a LayoutLMv2ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/image_processing_pil_layoutlmv2.py#L134)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/image_processing_pil_layoutlmv2.py#L134)
 
 **Parameters:**
 
@@ -620,7 +620,7 @@ tesseract_config (`str`, *kwargs*, *optional*) : Any additional custom configura
 transformers.LayoutLMv2Tokenizer(vocab: str | dict[str, int] | None = None, do_lower_case = True, unk_token = '[UNK]', sep_token = '[SEP]', pad_token = '[PAD]', cls_token = '[CLS]', mask_token = '[MASK]', cls_token_box = [0, 0, 0, 0], sep_token_box = [1000, 1000, 1000, 1000], pad_token_box = [0, 0, 0, 0], pad_token_label = -100, only_label_first_subword = True, tokenize_chinese_chars = True, strip_accents = None, model_max_length = 512, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/tokenization_layoutlmv2.py#L112)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/tokenization_layoutlmv2.py#L112)
 
 **Parameters:**
 
@@ -654,7 +654,7 @@ strip_accents (`bool`, *optional*) : Whether or not to strip all accents. If thi
 
 Construct a "fast" LayoutLMv2 tokenizer (backed by HuggingFace's *tokenizers* library). Based on WordPiece.
 
-This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 #### __call__[[transformers.LayoutLMv2Tokenizer.__call__]]
@@ -663,7 +663,7 @@ refer to this superclass for more information regarding those methods.
 __call__(text: str | list[str] | list[list[str]], text_pair: list[str] | list[list[str]] | None = None, boxes: list[list[int]] | list[list[list[int]]] | None = None, word_labels: list[int] | list[list[int]] | None = None, add_special_tokens: bool = True, padding: bool | str | transformers.utils.generic.PaddingStrategy = False, truncation: bool | str | transformers.tokenization_utils_base.TruncationStrategy = None, max_length: int | None = None, stride: int = 0, pad_to_multiple_of: int | None = None, padding_side: str | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, return_token_type_ids: bool | None = None, return_attention_mask: bool | None = None, return_overflowing_tokens: bool = False, return_special_tokens_mask: bool = False, return_offsets_mapping: bool = False, return_length: bool = False, verbose: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/tokenization_layoutlmv2.py#L243)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/tokenization_layoutlmv2.py#L243)
 
 **Parameters:**
 
@@ -677,9 +677,9 @@ word_labels (`List[int]`, `List[List[int]]`, *optional*) : Word-level integer la
 
 add_special_tokens (`bool`, *optional*, defaults to `True`) : Whether or not to encode the sequences with the special tokens relative to their model.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
-truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
 
 max_length (`int`, *optional*) : Controls the maximum length to use by one of the truncation/padding parameters.  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length is required by one of the truncation/padding parameters. If the model has no specific maximum input length (like XLNet) truncation/padding to a maximum length will be deactivated.
 
@@ -695,7 +695,7 @@ return_overflowing_tokens (`bool`, *optional*, defaults to `False`) : Whether or
 
 return_special_tokens_mask (`bool`, *optional*, defaults to `False`) : Whether or not to return special tokens mask information.
 
-return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
+return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
 
 return_length  (`bool`, *optional*, defaults to `False`) : Whether or not to return the lengths of the encoded inputs.
 
@@ -712,7 +712,7 @@ sequences with word-level normalized bounding boxes and optional labels.
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_tokenizers.py#L509)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_tokenizers.py#L509)
 
 ## LayoutLMv2TokenizerFast[[transformers.LayoutLMv2Tokenizer]]
 
@@ -722,7 +722,7 @@ save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 transformers.LayoutLMv2Tokenizer(vocab: str | dict[str, int] | None = None, do_lower_case = True, unk_token = '[UNK]', sep_token = '[SEP]', pad_token = '[PAD]', cls_token = '[CLS]', mask_token = '[MASK]', cls_token_box = [0, 0, 0, 0], sep_token_box = [1000, 1000, 1000, 1000], pad_token_box = [0, 0, 0, 0], pad_token_label = -100, only_label_first_subword = True, tokenize_chinese_chars = True, strip_accents = None, model_max_length = 512, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/tokenization_layoutlmv2.py#L112)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/tokenization_layoutlmv2.py#L112)
 
 **Parameters:**
 
@@ -756,7 +756,7 @@ strip_accents (`bool`, *optional*) : Whether or not to strip all accents. If thi
 
 Construct a "fast" LayoutLMv2 tokenizer (backed by HuggingFace's *tokenizers* library). Based on WordPiece.
 
-This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 #### __call__[[transformers.LayoutLMv2Tokenizer.__call__]]
@@ -765,7 +765,7 @@ refer to this superclass for more information regarding those methods.
 __call__(text: str | list[str] | list[list[str]], text_pair: list[str] | list[list[str]] | None = None, boxes: list[list[int]] | list[list[list[int]]] | None = None, word_labels: list[int] | list[list[int]] | None = None, add_special_tokens: bool = True, padding: bool | str | transformers.utils.generic.PaddingStrategy = False, truncation: bool | str | transformers.tokenization_utils_base.TruncationStrategy = None, max_length: int | None = None, stride: int = 0, pad_to_multiple_of: int | None = None, padding_side: str | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, return_token_type_ids: bool | None = None, return_attention_mask: bool | None = None, return_overflowing_tokens: bool = False, return_special_tokens_mask: bool = False, return_offsets_mapping: bool = False, return_length: bool = False, verbose: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/tokenization_layoutlmv2.py#L243)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/tokenization_layoutlmv2.py#L243)
 
 **Parameters:**
 
@@ -779,9 +779,9 @@ word_labels (`List[int]`, `List[List[int]]`, *optional*) : Word-level integer la
 
 add_special_tokens (`bool`, *optional*, defaults to `True`) : Whether or not to encode the sequences with the special tokens relative to their model.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
-truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
 
 max_length (`int`, *optional*) : Controls the maximum length to use by one of the truncation/padding parameters.  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length is required by one of the truncation/padding parameters. If the model has no specific maximum input length (like XLNet) truncation/padding to a maximum length will be deactivated.
 
@@ -797,7 +797,7 @@ return_overflowing_tokens (`bool`, *optional*, defaults to `False`) : Whether or
 
 return_special_tokens_mask (`bool`, *optional*, defaults to `False`) : Whether or not to return special tokens mask information.
 
-return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
+return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
 
 return_length  (`bool`, *optional*, defaults to `False`) : Whether or not to return the lengths of the encoded inputs.
 
@@ -816,7 +816,7 @@ sequences with word-level normalized bounding boxes and optional labels.
 transformers.LayoutLMv2Processor(image_processor = None, tokenizer = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/processing_layoutlmv2.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/processing_layoutlmv2.py#L24)
 
 **Parameters:**
 
@@ -826,8 +826,8 @@ tokenizer (`LayoutLMv2Tokenizer`) : The tokenizer is a required input.
 
 Constructs a LayoutLMv2Processor which wraps a image processor and a tokenizer into a single processor.
 
-[LayoutLMv2Processor](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Processor) offers all the functionalities of [LayoutLMv2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2ImageProcessor) and [LayoutLMv2Tokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Tokenizer). See the
-[~LayoutLMv2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2ImageProcessor) and [~LayoutLMv2Tokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Tokenizer) for more information.
+[LayoutLMv2Processor](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Processor) offers all the functionalities of [LayoutLMv2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2ImageProcessor) and [LayoutLMv2Tokenizer](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Tokenizer). See the
+[~LayoutLMv2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2ImageProcessor) and [~LayoutLMv2Tokenizer](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Tokenizer) for more information.
 
 #### __call__[[transformers.LayoutLMv2Processor.__call__]]
 
@@ -835,7 +835,7 @@ Constructs a LayoutLMv2Processor which wraps a image processor and a tokenizer i
 __call__(images, text: str | list[str] | list[list[str]] = None, text_pair: list[str] | list[list[str]] | None = None, boxes: list[list[int]] | list[list[list[int]]] | None = None, word_labels: list[int] | list[list[int]] | None = None, add_special_tokens: bool = True, padding: bool | str | transformers.utils.generic.PaddingStrategy = False, truncation: bool | str | transformers.tokenization_utils_base.TruncationStrategy = False, max_length: int | None = None, stride: int = 0, pad_to_multiple_of: int | None = None, return_token_type_ids: bool | None = None, return_attention_mask: bool | None = None, return_overflowing_tokens: bool = False, return_special_tokens_mask: bool = False, return_offsets_mapping: bool = False, return_length: bool = False, verbose: bool = True, return_tensors: str | transformers.utils.generic.TensorType | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/processing_layoutlmv2.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/processing_layoutlmv2.py#L28)
 
 **Parameters:**
 
@@ -851,9 +851,9 @@ word_labels (`list[int] or list[list[int]]`, *optional*) : Word-level integer la
 
 add_special_tokens (`bool`, *optional*, defaults to `True`) : Whether or not to add special tokens when encoding the sequences. This will use the underlying `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens automatically.
 
-padding (bool, str or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (bool, str or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
-truncation (bool, str or [TruncationStrategy](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
+truncation (bool, str or [TruncationStrategy](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
 
 max_length (`int`, *optional*) : Controls the maximum length to use by one of the truncation/padding parameters.  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length is required by one of the truncation/padding parameters. If the model has no specific maximum input length (like XLNet) truncation/padding to a maximum length will be deactivated.
 
@@ -869,7 +869,7 @@ return_overflowing_tokens (`bool`, *optional*, defaults to `False`) : Whether or
 
 return_special_tokens_mask (`bool`, *optional*, defaults to `False`) : Whether or not to return special tokens mask information.
 
-return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
+return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
 
 return_length (`bool`, *optional*, defaults to `False`) : Whether or not to return the lengths of the encoded inputs.
 
@@ -898,15 +898,15 @@ return_tensors (`Union[str, ~utils.generic.TensorType]`, *optional*) : If set, w
 transformers.LayoutLMv2Model(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L551)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L551)
 
 **Parameters:**
 
-config ([LayoutLMv2Model](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Model)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LayoutLMv2Model](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Model)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Layoutlmv2 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -920,11 +920,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, bbox: typing.Optional[torch.LongTensor] = None, image: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L663)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L663)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 bbox (`torch.LongTensor` of shape `((batch_size, sequence_length), 4)`, *optional*) : Bounding boxes of each input sequence tokens. Selected in the range `[0, config.max_2d_position_embeddings-1]`. Each bounding box should be a normalized version in (x0, y0, x1, y1) format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1, y1) represents the position of the lower right corner.
 
@@ -938,13 +938,13 @@ position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *opti
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LayoutLMv2Config](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Config)) and inputs.
+elements depending on the configuration ([LayoutLMv2Config](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Config)) and inputs.
 
-The [LayoutLMv2Model](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Model) forward method, overrides the `__call__` special method.
+The [LayoutLMv2Model](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -998,18 +998,18 @@ torch.Size([1, 342, 768])
 transformers.LayoutLMv2ForSequenceClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L792)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L792)
 
 **Parameters:**
 
-config ([LayoutLMv2ForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2ForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LayoutLMv2ForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2ForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 LayoutLMv2 Model with a sequence classification head on top (a linear layer on top of the concatenation of the
 final hidden state of the [CLS] token, average-pooled initial visual embeddings and average-pooled final visual
 embeddings, e.g. for document image classification tasks such as the
 [RVL-CDIP](https://www.cs.cmu.edu/~aharley/rvl-cdip/) dataset.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1023,11 +1023,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, bbox: typing.Optional[torch.LongTensor] = None, image: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L806)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L806)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `batch_size, sequence_length`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `batch_size, sequence_length`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 bbox (`torch.LongTensor` of shape `(batch_size, sequence_length, 4)`, *optional*) : Bounding boxes of each input sequence tokens. Selected in the range `[0, config.max_2d_position_embeddings-1]`. Each bounding box should be a normalized version in (x0, y0, x1, y1) format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1, y1) represents the position of the lower right corner.
 
@@ -1043,13 +1043,13 @@ inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidde
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+A [SequenceClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LayoutLMv2Config](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Config)) and inputs.
+elements depending on the configuration ([LayoutLMv2Config](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Config)) and inputs.
 
-The [LayoutLMv2ForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2ForSequenceClassification) forward method, overrides the `__call__` special method.
+The [LayoutLMv2ForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2ForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1106,18 +1106,18 @@ Example:
 transformers.LayoutLMv2ForTokenClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L990)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L990)
 
 **Parameters:**
 
-config ([LayoutLMv2ForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2ForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LayoutLMv2ForTokenClassification](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2ForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 LayoutLMv2 Model with a token classification head on top (a linear layer on top of the text part of the hidden
 states) e.g. for sequence labeling (information extraction) tasks such as
 [FUNSD](https://guillaumejaume.github.io/FUNSD/), [SROIE](https://rrc.cvc.uab.es/?ch=13),
 [CORD](https://github.com/clovaai/cord) and [Kleister-NDA](https://github.com/applicaai/kleister-nda).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1131,11 +1131,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, bbox: typing.Optional[torch.LongTensor] = None, image: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L1004)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L1004)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `batch_size, sequence_length`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `batch_size, sequence_length`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 bbox (`torch.LongTensor` of shape `(batch_size, sequence_length, 4)`, *optional*) : Bounding boxes of each input sequence tokens. Selected in the range `[0, config.max_2d_position_embeddings-1]`. Each bounding box should be a normalized version in (x0, y0, x1, y1) format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1, y1) represents the position of the lower right corner.
 
@@ -1151,13 +1151,13 @@ inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidde
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the token classification loss. Indices should be in `[0, ..., config.num_labels - 1]`.
 
-**Returns:** [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [TokenClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
+A [TokenClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LayoutLMv2Config](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Config)) and inputs.
+elements depending on the configuration ([LayoutLMv2Config](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Config)) and inputs.
 
-The [LayoutLMv2ForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2ForTokenClassification) forward method, overrides the `__call__` special method.
+The [LayoutLMv2ForTokenClassification](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2ForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1225,18 +1225,18 @@ Example:
 transformers.LayoutLMv2ForQuestionAnswering(config, has_visual_segment_embedding = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L1127)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L1127)
 
 **Parameters:**
 
-config ([LayoutLMv2ForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2ForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LayoutLMv2ForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2ForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 has_visual_segment_embedding (`bool`, *optional*, defaults to `True`) : Whether or not to add visual segment embeddings.
 
 The Layoutlmv2 transformer with a span classification head on top for extractive question-answering tasks like
 SQuAD (a linear layer on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1250,11 +1250,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, bbox: typing.Optional[torch.LongTensor] = None, image: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, start_positions: typing.Optional[torch.LongTensor] = None, end_positions: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L1145)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/layoutlmv2/modeling_layoutlmv2.py#L1145)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `batch_size, sequence_length`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `batch_size, sequence_length`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 bbox (`torch.LongTensor` of shape `(batch_size, sequence_length, 4)`, *optional*) : Bounding boxes of each input sequence tokens. Selected in the range `[0, config.max_2d_position_embeddings-1]`. Each bounding box should be a normalized version in (x0, y0, x1, y1) format, where (x0, y0) corresponds to the position of the upper left corner in the bounding box, and (x1, y1) represents the position of the lower right corner.
 
@@ -1272,13 +1272,13 @@ start_positions (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labe
 
 end_positions (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for position (index) of the end of the labelled span for computing the token classification loss. Positions are clamped to the length of the sequence (`sequence_length`). Position outside of the sequence are not taken into account for computing the loss.
 
-**Returns:** [QuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [QuestionAnsweringModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`
 
-A [QuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
+A [QuestionAnsweringModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LayoutLMv2Config](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2Config)) and inputs.
+elements depending on the configuration ([LayoutLMv2Config](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2Config)) and inputs.
 
-The [LayoutLMv2ForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/layoutlmv2#transformers.LayoutLMv2ForQuestionAnswering) forward method, overrides the `__call__` special method.
+The [LayoutLMv2ForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/layoutlmv2#transformers.LayoutLMv2ForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1340,4 +1340,4 @@ a prediction of what it thinks the answer is (the span of the answer within the 
 ```
 
 ### Depth Anything V2
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/depth_anything_v2.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/depth_anything_v2.md

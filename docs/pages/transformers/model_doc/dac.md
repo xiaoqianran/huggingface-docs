@@ -55,7 +55,7 @@ audio_values = model(inputs["input_values"]).audio_values
 transformers.DacConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, encoder_hidden_size: int = 64, downsampling_ratios: list[int] | tuple[int, ...] = (2, 4, 8, 8), decoder_hidden_size: int = 1536, n_codebooks: int = 9, codebook_size: int = 1024, codebook_dim: int = 8, quantizer_dropout: float | int = 0.0, commitment_loss_weight: float = 0.25, codebook_loss_weight: float = 1.0, sampling_rate: int = 16000)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dac/configuration_dac.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dac/configuration_dac.py#L27)
 
 **Parameters:**
 
@@ -83,8 +83,8 @@ This is the configuration class to store the configuration of a DacModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [descript/dac_16khz](https://huggingface.co/descript/dac_16khz)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -109,7 +109,7 @@ Example:
 transformers.DacFeatureExtractor(feature_size: int = 1, sampling_rate: int = 16000, padding_value: float = 0.0, hop_length: int = 512, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dac/feature_extraction_dac.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dac/feature_extraction_dac.py#L26)
 
 **Parameters:**
 
@@ -123,7 +123,7 @@ hop_length (`int`, *optional*, defaults to 512) : Overlap length between success
 
 Constructs an Dac feature extractor.
 
-This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
+This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
 most of the main methods. Users should refer to this superclass for more information regarding those methods.
 
 #### __call__[[transformers.DacFeatureExtractor.__call__]]
@@ -132,19 +132,19 @@ most of the main methods. Users should refer to this superclass for more informa
 __call__(raw_audio: numpy.ndarray | list[float] | list[numpy.ndarray] | list[list[float]], padding: bool | str | transformers.utils.generic.PaddingStrategy | None = None, truncation: bool | None = False, max_length: int | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, sampling_rate: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dac/feature_extraction_dac.py#L57)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dac/feature_extraction_dac.py#L57)
 
 **Parameters:**
 
 raw_audio (`np.ndarray`, `list[float]`, `list[np.ndarray]`, `list[list[float]]`) : The sequence or batch of sequences to be processed. Each sequence can be a numpy array, a list of float values, a list of numpy arrays or a list of list of float values. The numpy array must be of shape `(num_samples,)` for mono audio (`feature_size = 1`), or `(2, num_samples)` for stereo audio (`feature_size = 2`).
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
 truncation (`bool`, *optional*, defaults to `False`) : Activates truncation to cut input sequences longer than `max_length` to `max_length`.
 
 max_length (`int`, *optional*) : Maximum length of the returned list and optionally padding length (see above).
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*, default to 'pt') : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*, default to 'pt') : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
 
 sampling_rate (`int`, *optional*) : The sampling rate at which the `audio` input was sampled. It is strongly recommended to pass `sampling_rate` at the forward call to prevent silent errors.
 
@@ -158,15 +158,15 @@ Main method to featurize and prepare for the model one or several sequence(s).
 transformers.DacModel(config: DacConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dac/modeling_dac.py#L563)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dac/modeling_dac.py#L563)
 
 **Parameters:**
 
-config ([DacConfig](/docs/transformers/v5.15.0/en/model_doc/dac#transformers.DacConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DacConfig](/docs/transformers/v5.15.1/en/model_doc/dac#transformers.DacConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The DAC (Descript Audio Codec) model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -180,7 +180,7 @@ and behavior.
 decode(quantized_representation: typing.Optional[torch.Tensor] = None, audio_codes: typing.Optional[torch.Tensor] = None, return_dict: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dac/modeling_dac.py#L609)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dac/modeling_dac.py#L609)
 
 **Parameters:**
 
@@ -194,7 +194,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a `DacD
 
 A `DacDecoderOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DacConfig](/docs/transformers/v5.15.0/en/model_doc/dac#transformers.DacConfig)) and inputs.
+elements depending on the configuration ([DacConfig](/docs/transformers/v5.15.1/en/model_doc/dac#transformers.DacConfig)) and inputs.
 
 - **audio_values** (`torch.FloatTensor`  of shape `(batch_size, input_length)`, *optional*) -- Decoded audio values, obtained using the decoder part of Dac.
 
@@ -204,7 +204,7 @@ elements depending on the configuration ([DacConfig](/docs/transformers/v5.15.0/
 encode(input_values: Tensor, n_quantizers: int | None = None, return_dict: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dac/modeling_dac.py#L582)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dac/modeling_dac.py#L582)
 
 **Parameters:**
 
@@ -212,13 +212,13 @@ input_values (`torch.Tensor of shape `(batch_size, 1, time_steps)`) : Input audi
 
 n_quantizers (`int`, *optional*) : Number of quantizers to use. If None, all quantizers are used. Default is None.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `DacEncoderOutput` or `tuple(torch.FloatTensor)`
 
 A `DacEncoderOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DacConfig](/docs/transformers/v5.15.0/en/model_doc/dac#transformers.DacConfig)) and inputs.
+elements depending on the configuration ([DacConfig](/docs/transformers/v5.15.1/en/model_doc/dac#transformers.DacConfig)) and inputs.
 
 - **loss** (`torch.FloatTensor`, *optional*) -- Loss from the encoder model, comprising the weighted combination of the commitment and codebook losses.
 - **quantized_representation** (`torch.Tensor` of shape `(batch_size, dimension, time_steps)`, *optional*) -- Quantized continuous representation of input.
@@ -231,7 +231,7 @@ elements depending on the configuration ([DacConfig](/docs/transformers/v5.15.0/
 forward(input_values: Tensor, n_quantizers: int | None = None, return_dict: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dac/modeling_dac.py#L642)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dac/modeling_dac.py#L642)
 
 **Parameters:**
 
@@ -239,15 +239,15 @@ input_values (`torch.Tensor` of shape `(batch_size, 1, time_steps)`) : Audio dat
 
 n_quantizers (`int`, *optional*) : Number of quantizers to use. If `None`, all quantizers are used. Default is `None`.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `DacOutput` or `tuple(torch.FloatTensor)`
 
 A `DacOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DacConfig](/docs/transformers/v5.15.0/en/model_doc/dac#transformers.DacConfig)) and inputs.
+elements depending on the configuration ([DacConfig](/docs/transformers/v5.15.1/en/model_doc/dac#transformers.DacConfig)) and inputs.
 
-The [DacModel](/docs/transformers/v5.15.0/en/model_doc/dac#transformers.DacModel) forward method, overrides the `__call__` special method.
+The [DacModel](/docs/transformers/v5.15.1/en/model_doc/dac#transformers.DacModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -282,4 +282,4 @@ Examples:
 ```
 
 ### XLSR-Wav2Vec2
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/xlsr_wav2vec2.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/xlsr_wav2vec2.md

@@ -34,7 +34,7 @@ results = trainer.evaluate(test_dataset)
 
 ## Usage tips
 
-The model can also be used for time series classification and time series regression. See the respective [PatchTSMixerForTimeSeriesClassification](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerForTimeSeriesClassification) and [PatchTSMixerForRegression](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerForRegression) classes.
+The model can also be used for time series classification and time series regression. See the respective [PatchTSMixerForTimeSeriesClassification](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerForTimeSeriesClassification) and [PatchTSMixerForRegression](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerForRegression) classes.
 
 ## Resources
 
@@ -48,7 +48,7 @@ The model can also be used for time series classification and time series regres
 transformers.PatchTSMixerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, context_length: int = 32, patch_length: int = 8, num_input_channels: int = 1, patch_stride: int = 8, num_parallel_samples: int = 100, d_model: int = 8, expansion_factor: int = 2, num_layers: int = 3, dropout: float | int = 0.2, mode: str = 'common_channel', gated_attn: bool = True, norm_mlp: str = 'LayerNorm', self_attn: bool = False, self_attn_heads: int = 1, use_positional_encoding: bool = False, positional_encoding_type: str = 'sincos', scaling: str | bool | None = 'std', loss: str = 'mse', init_std: float = 0.02, norm_eps: float = 1e-05, mask_type: str = 'random', random_mask_ratio: float = 0.5, num_forecast_mask_patches: list[int] | tuple[int, ...] | int | None = (2,), mask_value: int = 0, masked_loss: bool = True, channel_consistent_masking: bool = True, unmasked_channel_indices: list[int] | None = None, head_dropout: float | int = 0.2, distribution_output: str = 'student_t', prediction_length: int = 16, prediction_channel_indices: list | None = None, num_targets: int = 3, output_range: list | None = None, head_aggregation: str | None = 'max_pool')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtsmixer/configuration_patchtsmixer.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/patchtsmixer/configuration_patchtsmixer.py#L24)
 
 **Parameters:**
 
@@ -124,8 +124,8 @@ This is the configuration class to store the configuration of a PatchTSMixerMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [ibm/patchtsmixer-etth1-pretrain](https://huggingface.co/ibm/patchtsmixer-etth1-pretrain)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -150,17 +150,17 @@ Example:
 transformers.PatchTSMixerModel(config: PatchTSMixerConfig, mask_input: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1200)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1200)
 
 **Parameters:**
 
-config ([PatchTSMixerConfig](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PatchTSMixerConfig](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 mask_input (`bool`, *optional*, defaults to `False`) : Whether to mask the input using the `PatchTSMixerMasking` module.
 
 The PatchTSMixer Model for time-series forecasting.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -174,7 +174,7 @@ and behavior.
 forward(past_values: Tensor, observed_mask: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1226)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1226)
 
 **Parameters:**
 
@@ -188,9 +188,9 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 A `PatchTSMixerModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
+elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
 
-The [PatchTSMixerModel](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerModel) forward method, overrides the `__call__` special method.
+The [PatchTSMixerModel](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -213,7 +213,7 @@ the latter silently ignores them.
 transformers.PatchTSMixerForPrediction(config: PatchTSMixerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1481)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1481)
 
 **Parameters:**
 
@@ -231,7 +231,7 @@ config (`PatchTSMixerConfig`) : Configuration.
 forward(past_values: Tensor, observed_mask: typing.Optional[torch.Tensor] = None, future_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_loss: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1523)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1523)
 
 **Parameters:**
 
@@ -249,9 +249,9 @@ return_loss (`bool`,  *optional*) : Whether to return the loss in the `forward` 
 
 A `PatchTSMixerForPredictionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
+elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
 
-The [PatchTSMixerForPrediction](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerForPrediction) forward method, overrides the `__call__` special method.
+The [PatchTSMixerForPrediction](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerForPrediction) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -272,7 +272,7 @@ the latter silently ignores them.
 transformers.PatchTSMixerForTimeSeriesClassification(config: PatchTSMixerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1707)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1707)
 
 **Parameters:**
 
@@ -290,7 +290,7 @@ config (`PatchTSMixerConfig`) : Configuration.
 forward(past_values: Tensor, target_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_loss: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1734)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1734)
 
 **Parameters:**
 
@@ -306,9 +306,9 @@ return_loss (`bool`, *optional*) : Whether to return the loss in the `forward` c
 
 A `PatchTSMixerForTimeSeriesClassificationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
+elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
 
-The [PatchTSMixerForTimeSeriesClassification](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerForTimeSeriesClassification) forward method, overrides the `__call__` special method.
+The [PatchTSMixerForTimeSeriesClassification](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerForTimeSeriesClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -327,15 +327,15 @@ the latter silently ignores them.
 transformers.PatchTSMixerForPretraining(config: PatchTSMixerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1313)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1313)
 
 **Parameters:**
 
-config ([PatchTSMixerConfig](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PatchTSMixerConfig](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 `PatchTSMixer` for mask pretraining.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -349,7 +349,7 @@ and behavior.
 forward(past_values: Tensor, observed_mask: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_loss: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1323)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1323)
 
 **Parameters:**
 
@@ -365,9 +365,9 @@ return_loss (`bool`,  *optional*) : Whether to return the loss in the `forward` 
 
 A `PatchTSMixerForPreTrainingOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
+elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
 
-The [PatchTSMixerForPretraining](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerForPretraining) forward method, overrides the `__call__` special method.
+The [PatchTSMixerForPretraining](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerForPretraining) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -386,15 +386,15 @@ the latter silently ignores them.
 transformers.PatchTSMixerForRegression(config: PatchTSMixerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1875)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1875)
 
 **Parameters:**
 
-config ([PatchTSMixerConfig](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PatchTSMixerConfig](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 `PatchTSMixer` for regression application.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -408,7 +408,7 @@ and behavior.
 forward(past_values: Tensor, target_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_loss: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1913)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/patchtsmixer/modeling_patchtsmixer.py#L1913)
 
 **Parameters:**
 
@@ -424,9 +424,9 @@ return_loss (`bool`, *optional*) : Whether to return the loss in the `forward` c
 
 A `PatchTSMixerForRegressionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
+elements depending on the configuration ([PatchTSMixerConfig](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerConfig)) and inputs.
 
-The [PatchTSMixerForRegression](/docs/transformers/v5.15.0/en/model_doc/patchtsmixer#transformers.PatchTSMixerForRegression) forward method, overrides the `__call__` special method.
+The [PatchTSMixerForRegression](/docs/transformers/v5.15.1/en/model_doc/patchtsmixer#transformers.PatchTSMixerForRegression) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -438,4 +438,4 @@ the latter silently ignores them.
 - **hidden_states** (`tuple(torch.FloatTensor)`, *optional*) -- Hidden-states of the model at the output of each layer plus the optional initial embedding outputs.
 
 ### Qwen3
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/qwen3.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/qwen3.md

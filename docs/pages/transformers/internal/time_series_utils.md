@@ -12,7 +12,7 @@ Most of those are only useful if you are studying the code of the time series mo
 transformers.time_series_utils.NormalOutput(dim: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/time_series_utils.py#L179)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/time_series_utils.py#L179)
 
 Normal distribution output class.
 
@@ -34,7 +34,7 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 transformers.time_series_utils.StudentTOutput(dim: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/time_series_utils.py#L164)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/time_series_utils.py#L164)
 
 Student-T distribution output class.
 
@@ -56,7 +56,7 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 transformers.time_series_utils.NegativeBinomialOutput(dim: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/time_series_utils.py#L193)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/time_series_utils.py#L193)
 
 Negative Binomial distribution output class.
 
@@ -73,4 +73,4 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 `__init__` instead of a mock's.
 
 ### Utilities for `FeatureExtractors`
-https://huggingface.co/docs/transformers/v5.15.0/internal/audio_utils.md
+https://huggingface.co/docs/transformers/v5.15.1/internal/audio_utils.md

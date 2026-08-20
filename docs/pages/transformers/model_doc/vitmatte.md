@@ -21,7 +21,7 @@ alt="drawing" width="600"/>
 
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with ViTMatte.
 
-- A demo notebook regarding inference with [VitMatteForImageMatting](/docs/transformers/v5.15.0/en/model_doc/vitmatte#transformers.VitMatteForImageMatting), including background replacement, can be found [here](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/ViTMatte).
+- A demo notebook regarding inference with [VitMatteForImageMatting](/docs/transformers/v5.15.1/en/model_doc/vitmatte#transformers.VitMatteForImageMatting), including background replacement, can be found [here](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/ViTMatte).
 
 The model expects both the image and trimap (concatenated) as input. Use `ViTMatteImageProcessor` for this purpose.
 
@@ -33,7 +33,7 @@ The model expects both the image and trimap (concatenated) as input. Use `ViTMat
 transformers.VitMatteConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, hidden_size: int = 384, batch_norm_eps: float = 1e-05, initializer_range: float = 0.02, convstream_hidden_sizes: list[int] | tuple[int, ...] = (48, 96, 192), fusion_hidden_sizes: list[int] | tuple[int, ...] = (256, 128, 64, 32))
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vitmatte/configuration_vitmatte.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vitmatte/configuration_vitmatte.py#L26)
 
 **Parameters:**
 
@@ -53,8 +53,8 @@ This is the configuration class to store the configuration of a VitmatteModel. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [hustvl/vitmatte-small-composition-1k](https://huggingface.co/hustvl/vitmatte-small-composition-1k)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -79,7 +79,7 @@ Example:
 transformers.VitMatteImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vitmatte/image_processing_vitmatte.py#L45)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vitmatte/image_processing_vitmatte.py#L45)
 
 **Parameters:**
 
@@ -133,7 +133,7 @@ Constructs a VitMatteImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], trimaps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vitmatte/image_processing_vitmatte.py#L87)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vitmatte/image_processing_vitmatte.py#L87)
 
 **Parameters:**
 
@@ -197,7 +197,7 @@ size_divisor (`int`, *kwargs*, *optional*, defaults to `self.size_divisor`) : Th
 transformers.VitMatteImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vitmatte/image_processing_pil_vitmatte.py#L44)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vitmatte/image_processing_pil_vitmatte.py#L44)
 
 **Parameters:**
 
@@ -251,7 +251,7 @@ Constructs a VitMatteImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], trimaps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vitmatte/image_processing_pil_vitmatte.py#L89)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vitmatte/image_processing_pil_vitmatte.py#L89)
 
 **Parameters:**
 
@@ -315,15 +315,15 @@ size_divisor (`int`, *kwargs*, *optional*, defaults to `self.size_divisor`) : Th
 transformers.VitMatteForImageMatting(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vitmatte/modeling_vitmatte.py#L221)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vitmatte/modeling_vitmatte.py#L221)
 
 **Parameters:**
 
-config ([VitMatteForImageMatting](/docs/transformers/v5.15.0/en/model_doc/vitmatte#transformers.VitMatteForImageMatting)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([VitMatteForImageMatting](/docs/transformers/v5.15.1/en/model_doc/vitmatte#transformers.VitMatteForImageMatting)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 ViTMatte framework leveraging any vision backbone e.g. for ADE20k, CityScapes.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -337,11 +337,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, labels: typing.Optional[torch.Tensor] = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vitmatte/modeling_vitmatte.py#L232)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vitmatte/modeling_vitmatte.py#L232)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [VitMatteImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vitmatte#transformers.VitMatteImageProcessor). See `VitMatteImageProcessor.__call__()` for details (`processor_class` uses [VitMatteImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vitmatte#transformers.VitMatteImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [VitMatteImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vitmatte#transformers.VitMatteImageProcessor). See `VitMatteImageProcessor.__call__()` for details (`processor_class` uses [VitMatteImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vitmatte#transformers.VitMatteImageProcessor) for processing images).
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
@@ -349,9 +349,9 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 labels (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Ground truth image matting for computing the loss.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-The [VitMatteForImageMatting](/docs/transformers/v5.15.0/en/model_doc/vitmatte#transformers.VitMatteForImageMatting) forward method, overrides the `__call__` special method.
+The [VitMatteForImageMatting](/docs/transformers/v5.15.1/en/model_doc/vitmatte#transformers.VitMatteForImageMatting) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -387,4 +387,4 @@ torch.Size([1, 1, 640, 960])
 ```
 
 ### OWLv2
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/owlv2.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/owlv2.md

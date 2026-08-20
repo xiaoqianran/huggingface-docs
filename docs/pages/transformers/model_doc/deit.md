@@ -37,19 +37,19 @@ This model was contributed by [nielsr](https://huggingface.co/nielsr).
   distillation head and the label predicted by the teacher). At inference time, one takes the average prediction
   between both heads as final prediction. (2) is also called "fine-tuning with distillation", because one relies on a
   teacher that has already been fine-tuned on the downstream dataset. In terms of models, (1) corresponds to
-  [DeiTForImageClassification](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTForImageClassification) and (2) corresponds to
-  [DeiTForImageClassificationWithTeacher](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTForImageClassificationWithTeacher).
+  [DeiTForImageClassification](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTForImageClassification) and (2) corresponds to
+  [DeiTForImageClassificationWithTeacher](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTForImageClassificationWithTeacher).
 - Note that the authors also did try soft distillation for (2) (in which case the distillation prediction head is
   trained using KL divergence to match the softmax output of the teacher), but hard distillation gave the best results.
 - All released checkpoints were pre-trained and fine-tuned on ImageNet-1k only. No external data was used. This is in
   contrast with the original ViT model, which used external data like the JFT-300M dataset/Imagenet-21k for
   pre-training.
 - The authors of DeiT also released more efficiently trained ViT models, which you can directly plug into
-  [ViTModel](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTModel) or [ViTForImageClassification](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTForImageClassification). Techniques like data
+  [ViTModel](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTModel) or [ViTForImageClassification](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTForImageClassification). Techniques like data
   augmentation, optimization, and regularization were used in order to simulate training on a much larger dataset
   (while only using ImageNet-1k for pre-training). There are 4 variants available (in 3 different sizes):
   *facebook/deit-tiny-patch16-224*, *facebook/deit-small-patch16-224*, *facebook/deit-base-patch16-224* and
-  *facebook/deit-base-patch16-384*. Note that one should use [DeiTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTImageProcessor) in order to
+  *facebook/deit-base-patch16-384*. Note that one should use [DeiTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTImageProcessor) in order to
   prepare images for the model.
 
 ### Using Scaled Dot Product Attention (SDPA)
@@ -85,12 +85,12 @@ On a local benchmark (A100-40GB, PyTorch 2.3.0, OS Ubuntu 22.04) with `float32` 
 
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with DeiT.
 
-- [DeiTForImageClassification](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTForImageClassification) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-classification) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/image_classification.ipynb).
+- [DeiTForImageClassification](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTForImageClassification) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-classification) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/image_classification.ipynb).
 - See also: [Image classification task guide](../tasks/image_classification)
 
 Besides that:
 
-- [DeiTForMaskedImageModeling](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTForMaskedImageModeling) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-pretraining).
+- [DeiTForMaskedImageModeling](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTForMaskedImageModeling) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-pretraining).
 
 If you're interested in submitting a resource to be included here, please feel free to open a Pull Request and we'll review it! The resource should ideally demonstrate something new instead of duplicating an existing resource.
 
@@ -102,7 +102,7 @@ If you're interested in submitting a resource to be included here, please feel f
 transformers.DeiTConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, qkv_bias: bool = True, encoder_stride: int = 16, pooler_output_size: int | None = None, pooler_act: str = 'tanh')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deit/configuration_deit.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deit/configuration_deit.py#L24)
 
 **Parameters:**
 
@@ -142,8 +142,8 @@ This is the configuration class to store the configuration of a DeiTModel. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/deit-base-distilled-patch16-224](https://huggingface.co/facebook/deit-base-distilled-patch16-224)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -168,7 +168,7 @@ Example:
 transformers.DeiTImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deit/image_processing_deit.py#L22)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deit/image_processing_deit.py#L22)
 
 **Parameters:**
 
@@ -278,7 +278,7 @@ Added for backward compatibility but this should be set as a processor attribute
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -338,7 +338,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.DeiTImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deit/image_processing_pil_deit.py#L22)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deit/image_processing_pil_deit.py#L22)
 
 **Parameters:**
 
@@ -428,7 +428,7 @@ Added for backward compatibility but this should be set as a processor attribute
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -488,11 +488,11 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.DeiTModel(config: DeiTConfig, add_pooling_layer: bool = True, use_mask_token: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deit/modeling_deit.py#L347)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deit/modeling_deit.py#L347)
 
 **Parameters:**
 
-config ([DeiTConfig](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DeiTConfig](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
@@ -500,7 +500,7 @@ use_mask_token (`bool`, *optional*, defaults to `False`) : Whether to use a mask
 
 The bare Deit Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -514,11 +514,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, interpolate_pos_encoding: bool | None = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deit/modeling_deit.py#L364)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deit/modeling_deit.py#L364)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTImageProcessor). See `DeiTImageProcessor.__call__()` for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTImageProcessor). See `DeiTImageProcessor.__call__()` for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`, *optional*) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
@@ -526,13 +526,13 @@ interpolate_pos_encoding (`bool`, *optional*) : Whether to interpolate the pre-t
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
+elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
 
-The [DeiTModel](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTModel) forward method, overrides the `__call__` special method.
+The [DeiTModel](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -566,18 +566,18 @@ Example:
 transformers.DeiTForMaskedImageModeling(config: DeiTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deit/modeling_deit.py#L414)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deit/modeling_deit.py#L414)
 
 **Parameters:**
 
-config ([DeiTConfig](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DeiTConfig](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 DeiT Model with a decoder on top for masked image modeling, as proposed in [SimMIM](https://huggingface.co/papers/2111.09886).
 
 Note that we provide a script to pre-train this model on custom data in our [examples
 directory](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-pretraining).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -591,11 +591,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, interpolate_pos_encoding: bool = False, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deit/modeling_deit.py#L432)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deit/modeling_deit.py#L432)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTImageProcessor). See `DeiTImageProcessor.__call__()` for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTImageProcessor). See `DeiTImageProcessor.__call__()` for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
@@ -607,9 +607,9 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 A `MaskedImageModelingOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
+elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
 
-The [DeiTForMaskedImageModeling](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTForMaskedImageModeling) forward method, overrides the `__call__` special method.
+The [DeiTForMaskedImageModeling](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTForMaskedImageModeling) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -658,11 +658,11 @@ Examples:
 transformers.DeiTForImageClassification(config: DeiTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deit/modeling_deit.py#L525)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deit/modeling_deit.py#L525)
 
 **Parameters:**
 
-config ([DeiTConfig](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DeiTConfig](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 DeiT Model transformer with an image classification head on top (a linear layer on top of the final hidden state of
 the [CLS] token) e.g. for ImageNet.
@@ -671,7 +671,7 @@ Note that it's possible to fine-tune DeiT on higher resolution images than the o
 setting `interpolate_pos_encoding` to `True` in the forward of the model. This will interpolate the pre-trained
 position embeddings to the higher resolution.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -685,11 +685,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool | None = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deit/modeling_deit.py#L538)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deit/modeling_deit.py#L538)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTImageProcessor). See `DeiTImageProcessor.__call__()` for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTImageProcessor). See `DeiTImageProcessor.__call__()` for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
@@ -697,13 +697,13 @@ interpolate_pos_encoding (`bool`, *optional*) : Whether to interpolate the pre-t
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
+A [ImageClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
+elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
 
-The [DeiTForImageClassification](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTForImageClassification) forward method, overrides the `__call__` special method.
+The [DeiTForImageClassification](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -752,11 +752,11 @@ Example:
 transformers.DeiTForImageClassificationWithTeacher(config: DeiTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deit/modeling_deit.py#L614)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deit/modeling_deit.py#L614)
 
 **Parameters:**
 
-config ([DeiTConfig](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DeiTConfig](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 DeiT Model transformer with image classification heads on top (a linear layer on top of the final hidden state of
 the [CLS] token and a linear layer on top of the final hidden state of the distillation token) e.g. for ImageNet.
@@ -766,7 +766,7 @@ the [CLS] token and a linear layer on top of the final hidden state of the disti
 This model supports inference-only. Fine-tuning with distillation (i.e. with a teacher) is not yet
 supported.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -780,11 +780,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool = False, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/deit/modeling_deit.py#L632)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/deit/modeling_deit.py#L632)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTImageProcessor). See `DeiTImageProcessor.__call__()` for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DeiTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTImageProcessor). See `DeiTImageProcessor.__call__()` for details (`processor_class` uses [DeiTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTImageProcessor) for processing images).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
@@ -794,9 +794,9 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 A `DeiTForImageClassificationWithTeacherOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
+elements depending on the configuration ([DeiTConfig](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTConfig)) and inputs.
 
-The [DeiTForImageClassificationWithTeacher](/docs/transformers/v5.15.0/en/model_doc/deit#transformers.DeiTForImageClassificationWithTeacher) forward method, overrides the `__call__` special method.
+The [DeiTForImageClassificationWithTeacher](/docs/transformers/v5.15.1/en/model_doc/deit#transformers.DeiTForImageClassificationWithTeacher) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -842,4 +842,4 @@ Example:
 ```
 
 ### Ernie 4.5
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/ernie4_5.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/ernie4_5.md

@@ -107,7 +107,7 @@ and [Anton Vlasjuk](https://huggingface.co/AntonV). The original code can be fou
 transformers.DiaConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, encoder_config: transformers.models.dia.configuration_dia.DiaEncoderConfig | dict | None = None, decoder_config: transformers.models.dia.configuration_dia.DiaDecoderConfig | dict | None = None, norm_eps: float = 1e-05, pad_token_id: int | None = None, eos_token_id: int | list[int] | None = None, bos_token_id: int | None = None, delay_pattern: list[int] | None = None, initializer_range: float = 0.02, use_cache: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/configuration_dia.py#L87)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/configuration_dia.py#L87)
 
 **Parameters:**
 
@@ -135,8 +135,8 @@ This is the configuration class to store the configuration of a DiaModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nari-labs/Dia-1.6B](https://huggingface.co/nari-labs/Dia-1.6B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -159,7 +159,7 @@ Example:
 get_text_config(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/configuration_dia.py#L164)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/configuration_dia.py#L164)
 
 Defaulting to audio config as it's the decoder in this case which is usually the text backbone
 
@@ -171,7 +171,7 @@ Defaulting to audio config as it's the decoder in this case which is usually the
 transformers.DiaDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, max_position_embeddings: int = 3072, num_hidden_layers: int = 18, hidden_size: int = 2048, intermediate_size: int = 8192, num_attention_heads: int = 16, num_key_value_heads: int = 4, head_dim: int = 128, cross_num_attention_heads: int = 16, cross_head_dim: int = 128, cross_num_key_value_heads: int = 16, cross_hidden_size: int = 1024, norm_eps: float = 1e-05, vocab_size: int = 1028, hidden_act: str = 'silu', num_channels: int = 9, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, initializer_range: float = 0.02, use_cache: bool = True, pad_token_id: int | None = 1025, eos_token_id: int | list[int] | None = 1024, bos_token_id: int | None = 1026)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/configuration_dia.py#L47)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/configuration_dia.py#L47)
 
 **Parameters:**
 
@@ -223,8 +223,8 @@ This is the configuration class to store the configuration of a DiaModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nari-labs/Dia-1.6B](https://huggingface.co/nari-labs/Dia-1.6B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## DiaEncoderConfig[[transformers.DiaEncoderConfig]]
 
@@ -234,7 +234,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.DiaEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, max_position_embeddings: int = 1024, num_hidden_layers: int = 12, hidden_size: int = 1024, num_attention_heads: int = 16, num_key_value_heads: int = 16, head_dim: int = 128, intermediate_size: int = 4096, norm_eps: float = 1e-05, vocab_size: int = 256, hidden_act: str = 'silu', rope_parameters: dict | None = None, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/configuration_dia.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/configuration_dia.py#L28)
 
 **Parameters:**
 
@@ -266,8 +266,8 @@ This is the configuration class to store the configuration of a DiaModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nari-labs/Dia-1.6B](https://huggingface.co/nari-labs/Dia-1.6B)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## DiaTokenizer[[transformers.DiaTokenizer]]
 
@@ -277,7 +277,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.DiaTokenizer(pad_token: str | None = '<pad>', unk_token: str | None = '<pad>', max_length: int | None = 1024, offset: int = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/tokenization_dia.py#L23)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/tokenization_dia.py#L23)
 
 **Parameters:**
 
@@ -291,7 +291,7 @@ offset (`int`, *optional*, defaults to 0) : The offset of the tokenizer.
 
 Construct a Dia tokenizer. Dia simply uses raw bytes utf-8 encoding except for special tokens `[S1]` and `[S2]`.
 
-This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 #### __call__[[transformers.DiaTokenizer.__call__]]
@@ -300,7 +300,7 @@ refer to this superclass for more information regarding those methods.
 __call__(text: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_pair: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_target: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_pair_target: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, add_special_tokens: bool = True, padding: bool | str | PaddingStrategy = False, truncation: bool | str | TruncationStrategy | None = None, max_length: int | None = None, stride: int = 0, is_split_into_words: bool = False, pad_to_multiple_of: int | None = None, padding_side: str | None = None, return_tensors: str | TensorType | None = None, return_token_type_ids: bool | None = None, return_attention_mask: bool | None = None, return_overflowing_tokens: bool = False, return_special_tokens_mask: bool = False, return_offsets_mapping: bool = False, return_length: bool = False, verbose: bool = True, tokenizer_kwargs: dict[str, Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_base.py#L2417)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_base.py#L2417)
 
 **Parameters:**
 
@@ -316,9 +316,9 @@ tokenizer_kwargs (`dict[str, Any]`, *optional*) : Additional kwargs to pass to t
 
 add_special_tokens (`bool`, *optional*, defaults to `True`) : Whether or not to add special tokens when encoding the sequences. This will use the underlying `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens automatically.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
-truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
 
 max_length (`int`, *optional*) : Controls the maximum length to use by one of the truncation/padding parameters.  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length is required by one of the truncation/padding parameters. If the model has no specific maximum input length (like XLNet) truncation/padding to a maximum length will be deactivated.
 
@@ -330,7 +330,7 @@ pad_to_multiple_of (`int`, *optional*) : If set will pad the sequence to a multi
 
 padding_side (`str`, *optional*) : The side on which the model should have padding applied. Should be selected between ['right', 'left']. Default value is picked from the class attribute of the same name.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects. 
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects. 
 
 return_token_type_ids (`bool`, *optional*) : Whether to return token type IDs. If left to the default, will return the token type IDs according to the specific tokenizer's default, defined by the `return_outputs` attribute.  [What are token type IDs?](../glossary#token-type-ids)
 
@@ -340,7 +340,7 @@ return_overflowing_tokens (`bool`, *optional*, defaults to `False`) : Whether or
 
 return_special_tokens_mask (`bool`, *optional*, defaults to `False`) : Whether or not to return special tokens mask information.
 
-return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
+return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
 
 return_length  (`bool`, *optional*, defaults to `False`) : Whether or not to return the lengths of the encoded inputs.
 
@@ -348,9 +348,9 @@ verbose (`bool`, *optional*, defaults to `True`) : Whether or not to print more 
 
 - ****kwargs** : passed to the `self.tokenize()` method
 
-**Returns:** [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding)
+**Returns:** [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding)
 
-A [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
+A [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model.
 
@@ -385,7 +385,7 @@ sequences.
 transformers.DiaFeatureExtractor(feature_size: int = 1, sampling_rate: int = 16000, padding_value: float = 0.0, hop_length: int = 512, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/feature_extraction_dia.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/feature_extraction_dia.py#L26)
 
 **Parameters:**
 
@@ -399,7 +399,7 @@ hop_length (`int`, *optional*, defaults to 512) : Overlap length between success
 
 Constructs an Dia feature extractor.
 
-This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
+This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
 most of the main methods. Users should refer to this superclass for more information regarding those methods.
 
 #### __call__[[transformers.DiaFeatureExtractor.__call__]]
@@ -408,19 +408,19 @@ most of the main methods. Users should refer to this superclass for more informa
 __call__(raw_audio: numpy.ndarray | list[float] | list[numpy.ndarray] | list[list[float]], padding: bool | str | transformers.utils.generic.PaddingStrategy | None = None, truncation: bool | None = False, max_length: int | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, sampling_rate: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/feature_extraction_dia.py#L57)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/feature_extraction_dia.py#L57)
 
 **Parameters:**
 
 raw_audio (`np.ndarray`, `list[float]`, `list[np.ndarray]`, `list[list[float]]`) : The sequence or batch of sequences to be processed. Each sequence can be a numpy array, a list of float values, a list of numpy arrays or a list of list of float values. The numpy array must be of shape `(num_samples,)` for mono audio (`feature_size = 1`), or `(2, num_samples)` for stereo audio (`feature_size = 2`).
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
 truncation (`bool`, *optional*, defaults to `False`) : Activates truncation to cut input sequences longer than `max_length` to `max_length`.
 
 max_length (`int`, *optional*) : Maximum length of the returned list and optionally padding length (see above).
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*, default to 'pt') : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*, default to 'pt') : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
 
 sampling_rate (`int`, *optional*) : The sampling rate at which the `audio` input was sampled. It is strongly recommended to pass `sampling_rate` at the forward call to prevent silent errors.
 
@@ -434,7 +434,7 @@ Main method to featurize and prepare for the model one or several sequence(s).
 transformers.DiaProcessor(feature_extractor, tokenizer, audio_tokenizer)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/processing_dia.py#L84)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/processing_dia.py#L84)
 
 **Parameters:**
 
@@ -442,12 +442,12 @@ feature_extractor (`DiaFeatureExtractor`) : The feature extractor is a required 
 
 tokenizer (`DiaTokenizer`) : The tokenizer is a required input.
 
-audio_tokenizer (`DacModel`) : An instance of [DacModel](/docs/transformers/v5.15.0/en/model_doc/dac#transformers.DacModel) used to encode/decode audio into/from codebooks. It is a required input.
+audio_tokenizer (`DacModel`) : An instance of [DacModel](/docs/transformers/v5.15.1/en/model_doc/dac#transformers.DacModel) used to encode/decode audio into/from codebooks. It is a required input.
 
 Constructs a DiaProcessor which wraps a feature extractor and a tokenizer into a single processor.
 
-[DiaProcessor](/docs/transformers/v5.15.0/en/model_doc/dia#transformers.DiaProcessor) offers all the functionalities of [DiaFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/dia#transformers.DiaFeatureExtractor) and [DiaTokenizer](/docs/transformers/v5.15.0/en/model_doc/dia#transformers.DiaTokenizer). See the
-[~DiaFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/dia#transformers.DiaFeatureExtractor) and [~DiaTokenizer](/docs/transformers/v5.15.0/en/model_doc/dia#transformers.DiaTokenizer) for more information.
+[DiaProcessor](/docs/transformers/v5.15.1/en/model_doc/dia#transformers.DiaProcessor) offers all the functionalities of [DiaFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/dia#transformers.DiaFeatureExtractor) and [DiaTokenizer](/docs/transformers/v5.15.1/en/model_doc/dia#transformers.DiaTokenizer). See the
+[~DiaFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/dia#transformers.DiaFeatureExtractor) and [~DiaTokenizer](/docs/transformers/v5.15.1/en/model_doc/dia#transformers.DiaTokenizer) for more information.
 
 #### __call__[[transformers.DiaProcessor.__call__]]
 
@@ -455,7 +455,7 @@ Constructs a DiaProcessor which wraps a feature extractor and a tokenizer into a
 __call__(text: str | list[str], audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, output_labels: bool | None = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/processing_dia.py#L144)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/processing_dia.py#L144)
 
 **Parameters:**
 
@@ -475,9 +475,9 @@ delay_pattern (`list[int]`, *kwargs*, *optional*, defaults to `[0, 8, 9, 10, 11,
 
 generation (`bool`, *kwargs*, *optional*, defaults to `True`) : Whether the processor is being used for generation (text-to-speech) or training. When `True`, the processor prepares inputs for generation mode where audio is generated from text. When `False`, it prepares inputs for training where both text and audio are provided.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 #### batch_decode[[transformers.DiaProcessor.batch_decode]]
 
@@ -485,7 +485,7 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 batch_decode(decoder_input_ids: torch.Tensor, audio_prompt_len: int | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/processing_dia.py#L247)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/processing_dia.py#L247)
 
 **Parameters:**
 
@@ -494,7 +494,7 @@ decoder_input_ids (`torch.Tensor`) : The complete output sequence of the decoder
 audio_prompt_len (`int`) : The audio prefix length (e.g. when using voice cloning).
 
 Decodes a batch of audio codebook sequences into their respective audio waveforms via the
-`audio_tokenizer`. See [decode()](/docs/transformers/v5.15.0/en/model_doc/dac#transformers.DacModel.decode) for more information.
+`audio_tokenizer`. See [decode()](/docs/transformers/v5.15.1/en/model_doc/dac#transformers.DacModel.decode) for more information.
 
 #### decode[[transformers.DiaProcessor.decode]]
 
@@ -502,10 +502,10 @@ Decodes a batch of audio codebook sequences into their respective audio waveform
 decode(decoder_input_ids: torch.Tensor, audio_prompt_len: int | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/processing_dia.py#L318)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/processing_dia.py#L318)
 
 Decodes a single sequence of audio codebooks into the respective audio waveform via the
-`audio_tokenizer`. See [decode()](/docs/transformers/v5.15.0/en/model_doc/dac#transformers.DacModel.decode) and [batch_decode()](/docs/transformers/v5.15.0/en/model_doc/dia#transformers.DiaProcessor.batch_decode) for more information.
+`audio_tokenizer`. See [decode()](/docs/transformers/v5.15.1/en/model_doc/dac#transformers.DacModel.decode) and [batch_decode()](/docs/transformers/v5.15.1/en/model_doc/dia#transformers.DiaProcessor.batch_decode) for more information.
 
 ## DiaModel[[transformers.DiaModel]]
 
@@ -515,15 +515,15 @@ Decodes a single sequence of audio codebooks into the respective audio waveform 
 transformers.DiaModel(config: DiaConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/modeling_dia.py#L649)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/modeling_dia.py#L649)
 
 **Parameters:**
 
-config ([DiaConfig](/docs/transformers/v5.15.0/en/model_doc/dia#transformers.DiaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DiaConfig](/docs/transformers/v5.15.1/en/model_doc/dia#transformers.DiaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Dia model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -537,17 +537,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, decoder_position_ids: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: transformers.modeling_outputs.BaseModelOutput | tuple | None = None, past_key_values: transformers.cache_utils.EncoderDecoderCache | None = None, use_cache: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/modeling_dia.py#L657)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/modeling_dia.py#L657)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 decoder_input_ids (`torch.LongTensor` of shape `(batch_size * num_codebooks, target_sequence_length) --
 
-or (batch_size, target_sequence_length, num_codebooks)`, *optional*) : 1. (batch_size * num_codebooks, target_sequence_length): corresponds to the general use case where the audio input codebooks are flattened into the batch dimension. This also aligns with the flat- tened audio logits which are used to calculate the loss.  2. (batch_size, sequence_length, num_codebooks): corresponds to the internally used shape of Dia to calculate embeddings and subsequent steps more efficiently.  If no `decoder_input_ids` are provided, it will create a tensor of `bos_token_id` with shape `(batch_size, 1, num_codebooks)`. Indices can be obtained using the [DiaProcessor](/docs/transformers/v5.15.0/en/model_doc/dia#transformers.DiaProcessor). See [DiaProcessor.__call__()](/docs/transformers/v5.15.0/en/model_doc/dia#transformers.DiaProcessor.__call__) for more details.  [What are decoder input IDs?](../glossary#decoder-input-ids)
+or (batch_size, target_sequence_length, num_codebooks)`, *optional*) : 1. (batch_size * num_codebooks, target_sequence_length): corresponds to the general use case where the audio input codebooks are flattened into the batch dimension. This also aligns with the flat- tened audio logits which are used to calculate the loss.  2. (batch_size, sequence_length, num_codebooks): corresponds to the internally used shape of Dia to calculate embeddings and subsequent steps more efficiently.  If no `decoder_input_ids` are provided, it will create a tensor of `bos_token_id` with shape `(batch_size, 1, num_codebooks)`. Indices can be obtained using the [DiaProcessor](/docs/transformers/v5.15.1/en/model_doc/dia#transformers.DiaProcessor). See [DiaProcessor.__call__()](/docs/transformers/v5.15.1/en/model_doc/dia#transformers.DiaProcessor.__call__) for more details.  [What are decoder input IDs?](../glossary#decoder-input-ids)
 
 decoder_position_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`) : Indices of positions of each input sequence tokens in the position embeddings. Used to calculate the position embeddings up to `config.decoder_config.max_position_embeddings`.  [What are position IDs?](../glossary#position-ids)
 
@@ -555,17 +555,17 @@ decoder_attention_mask (`torch.LongTensor` of shape `(batch_size, target_sequenc
 
 encoder_outputs (`Union[~modeling_outputs.BaseModelOutput, tuple]`, *optional*) : Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
 
-past_key_values (`~cache_utils.EncoderDecoderCache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.EncoderDecoderCache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** [Seq2SeqModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [Seq2SeqModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.Seq2SeqModelOutput) or `tuple(torch.FloatTensor)`
 
-A [Seq2SeqModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqModelOutput) or a tuple of
+A [Seq2SeqModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.Seq2SeqModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [DiaModel](/docs/transformers/v5.15.0/en/model_doc/dia#transformers.DiaModel) forward method, overrides the `__call__` special method.
+The [DiaModel](/docs/transformers/v5.15.1/en/model_doc/dia#transformers.DiaModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -575,7 +575,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
   blocks) that can be used (see `past_key_values` input) to speed up sequential decoding.
@@ -612,15 +612,15 @@ the latter silently ignores them.
 transformers.DiaForConditionalGeneration(config: DiaConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/modeling_dia.py#L760)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/modeling_dia.py#L760)
 
 **Parameters:**
 
-config ([DiaConfig](/docs/transformers/v5.15.0/en/model_doc/dia#transformers.DiaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DiaConfig](/docs/transformers/v5.15.1/en/model_doc/dia#transformers.DiaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Dia model consisting of a (byte) text encoder and audio decoder with a prediction head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -634,17 +634,17 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, decoder_position_ids: typing.Optional[torch.LongTensor] = None, decoder_attention_mask: typing.Optional[torch.LongTensor] = None, encoder_outputs: transformers.modeling_outputs.BaseModelOutput | tuple | None = None, past_key_values: transformers.cache_utils.EncoderDecoderCache | None = None, use_cache: bool | None = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/modeling_dia.py#L779)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/modeling_dia.py#L779)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 decoder_input_ids (`torch.LongTensor` of shape `(batch_size * num_codebooks, target_sequence_length) --
 
-or (batch_size, target_sequence_length, num_codebooks)`, *optional*) : 1. (batch_size * num_codebooks, target_sequence_length): corresponds to the general use case where the audio input codebooks are flattened into the batch dimension. This also aligns with the flat- tened audio logits which are used to calculate the loss.  2. (batch_size, sequence_length, num_codebooks): corresponds to the internally used shape of Dia to calculate embeddings and subsequent steps more efficiently.  If no `decoder_input_ids` are provided, it will create a tensor of `bos_token_id` with shape `(batch_size, 1, num_codebooks)`. Indices can be obtained using the [DiaProcessor](/docs/transformers/v5.15.0/en/model_doc/dia#transformers.DiaProcessor). See [DiaProcessor.__call__()](/docs/transformers/v5.15.0/en/model_doc/dia#transformers.DiaProcessor.__call__) for more details.  [What are decoder input IDs?](../glossary#decoder-input-ids)
+or (batch_size, target_sequence_length, num_codebooks)`, *optional*) : 1. (batch_size * num_codebooks, target_sequence_length): corresponds to the general use case where the audio input codebooks are flattened into the batch dimension. This also aligns with the flat- tened audio logits which are used to calculate the loss.  2. (batch_size, sequence_length, num_codebooks): corresponds to the internally used shape of Dia to calculate embeddings and subsequent steps more efficiently.  If no `decoder_input_ids` are provided, it will create a tensor of `bos_token_id` with shape `(batch_size, 1, num_codebooks)`. Indices can be obtained using the [DiaProcessor](/docs/transformers/v5.15.1/en/model_doc/dia#transformers.DiaProcessor). See [DiaProcessor.__call__()](/docs/transformers/v5.15.1/en/model_doc/dia#transformers.DiaProcessor.__call__) for more details.  [What are decoder input IDs?](../glossary#decoder-input-ids)
 
 decoder_position_ids (`torch.LongTensor` of shape `(batch_size, target_sequence_length)`) : Indices of positions of each input sequence tokens in the position embeddings. Used to calculate the position embeddings up to `config.decoder_config.max_position_embeddings`.  [What are position IDs?](../glossary#position-ids)
 
@@ -652,19 +652,19 @@ decoder_attention_mask (`torch.LongTensor` of shape `(batch_size, target_sequenc
 
 encoder_outputs (`Union[~modeling_outputs.BaseModelOutput, tuple]`, *optional*) : Tuple consists of (`last_hidden_state`, *optional*: `hidden_states`, *optional*: `attentions`) `last_hidden_state` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) is a sequence of hidden-states at the output of the last layer of the encoder. Used in the cross-attention of the decoder.
 
-past_key_values (`~cache_utils.EncoderDecoderCache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.EncoderDecoderCache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
 labels (`torch.LongTensor` of shape `(batch_size * num_codebooks,)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.decoder_config.vocab_size - 1]` or -100. Tokens with indices set to `-100` are ignored (masked).
 
-**Returns:** [Seq2SeqLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [Seq2SeqLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or `tuple(torch.FloatTensor)`
 
-A [Seq2SeqLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or a tuple of
+A [Seq2SeqLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.Seq2SeqLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [DiaForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/dia#transformers.DiaForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [DiaForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/dia#transformers.DiaForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -672,7 +672,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `labels` is provided) -- Language modeling loss.
 - **logits** (`torch.FloatTensor` of shape `(batch_size, sequence_length, config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
   blocks) that can be used (see `past_key_values` input) to speed up sequential decoding.
@@ -707,7 +707,7 @@ the latter silently ignores them.
 generate(inputs: typing.Optional[torch.Tensor] = None, generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, logits_processor: transformers.generation.logits_process.LogitsProcessorList | None = None, stopping_criteria: transformers.generation.stopping_criteria.StoppingCriteriaList | None = None, prefix_allowed_tokens_fn: collections.abc.Callable[[int, torch.Tensor], list[int]] | None = None, synced_gpus: bool | None = None, assistant_model: typing.Optional[ForwardRef('PreTrainedModel')] = None, streamer: typing.Optional[ForwardRef('BaseStreamer')] = None, negative_prompt_ids: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, custom_generate: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dia/generation_dia.py#L406)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dia/generation_dia.py#L406)
 
 ### PatchTST
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/patchtst.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/patchtst.md

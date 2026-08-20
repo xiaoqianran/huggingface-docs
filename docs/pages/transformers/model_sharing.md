@@ -26,7 +26,7 @@ Each model repository features versioning, commit history, and diff visualizatio
 
 Versioning is based on [Git](https://git-scm.com/) and [Git Large File Storage (LFS)](https://git-lfs.github.com/), and it enables revisions, a way to specify a model version with a commit hash, tag or branch.
 
-For example, use the `revision` parameter in [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load a specific model version from a commit hash.
+For example, use the `revision` parameter in [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load a specific model version from a commit hash.
 
 ```py
 model = AutoModel.from_pretrained(
@@ -44,13 +44,13 @@ Check out the Hub [Models](https://hf.co/docs/hub/models) documentation for more
 
 ## Uploading a model
 
-There are several ways to upload a model to the Hub depending on your workflow preference. You can push a model with [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), call [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) directly on a model, or use the Hub web interface.
+There are several ways to upload a model to the Hub depending on your workflow preference. You can push a model with [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), call [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) directly on a model, or use the Hub web interface.
 
 ### Trainer
 
-[Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) can push a model directly to the Hub after training. Set `push_to_hub=True` in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) and pass it to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer). Once training is complete, call [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) to upload the model.
+[Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) can push a model directly to the Hub after training. Set `push_to_hub=True` in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) and pass it to [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer). Once training is complete, call [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.push_to_hub) to upload the model.
 
-[push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) automatically adds useful information like training hyperparameters and results to the model card.
+[push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.push_to_hub) automatically adds useful information like training hyperparameters and results to the model card.
 
 ```py
 from transformers import TrainingArguments, Trainer
@@ -68,9 +68,9 @@ trainer.push_to_hub()
 
 ### PushToHubMixin
 
-The [PushToHubMixin](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin) provides functionality for pushing a model or tokenizer to the Hub.
+The [PushToHubMixin](/docs/transformers/v5.15.1/en/main_classes/model#transformers.utils.PushToHubMixin) provides functionality for pushing a model or tokenizer to the Hub.
 
-Call [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) directly on a model to upload it to the Hub. It creates a repository under your namespace with the model name specified in [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub).
+Call [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) directly on a model to upload it to the Hub. It creates a repository under your namespace with the model name specified in [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub).
 
 ```py
 model.push_to_hub("my-awesome-model")
@@ -121,4 +121,4 @@ Take a look at the Llama 3.1 [model card](https://huggingface.co/meta-llama/Meta
 Learn more about other model card metadata (carbon emissions, license, link to paper, etc.) available in the [Model Cards](https://hf.co/docs/hub/model-cards#model-cards) guide.
 
 ### DDP
-https://huggingface.co/docs/transformers/v5.15.0/ddp.md
+https://huggingface.co/docs/transformers/v5.15.1/ddp.md

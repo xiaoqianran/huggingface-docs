@@ -39,8 +39,8 @@ torchrun --nproc-per-node=8 /path/to/script
 ## Transformers integration
 
 - Any LLM or VLM supported in Transformers can also be instantiated through NeMo Automodel. See the [full model coverage](https://docs.nvidia.com/nemo/automodel/latest/model-coverage/overview).
-- Built on top of Hugging Face models with [AutoModel.from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel.from_pretrained), with dynamic high-performance layer swaps and support for more refined parallelisms like Expert Parallelism (EP).
-- Detects the architecture field in [AutoConfig.from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoConfig.from_pretrained) to automatically load custom implementations like Nemotron Nano V3.
+- Built on top of Hugging Face models with [AutoModel.from_pretrained()](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel.from_pretrained), with dynamic high-performance layer swaps and support for more refined parallelisms like Expert Parallelism (EP).
+- Detects the architecture field in [AutoConfig.from_pretrained()](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoConfig.from_pretrained) to automatically load custom implementations like Nemotron Nano V3.
 - Follows the Transformers API closely for drop-in compatibility.
 
 ## Resources
@@ -51,4 +51,4 @@ torchrun --nproc-per-node=8 /path/to/script
 - See the NeMo [fine-tuning](./nemo_automodel_finetuning) guide to learn how to use NeMo for fine-tuning
 
 ### ExecuTorch
-https://huggingface.co/docs/transformers/v5.15.0/community_integrations/executorch.md
+https://huggingface.co/docs/transformers/v5.15.1/community_integrations/executorch.md

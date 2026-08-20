@@ -20,10 +20,10 @@ The original code can be found [here](https://github.com/neonbjb/tortoise-tts).
 
 ## Brief Explanation
 
-- The [ClvpTokenizer](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpTokenizer) tokenizes the text input, and the [ClvpFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpFeatureExtractor) extracts the log mel-spectrogram from the desired audio.
+- The [ClvpTokenizer](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpTokenizer) tokenizes the text input, and the [ClvpFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpFeatureExtractor) extracts the log mel-spectrogram from the desired audio.
 - `ClvpConditioningEncoder` takes those text tokens and audio representations and converts them into embeddings conditioned on the text and audio.
-- The [ClvpForCausalLM](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpForCausalLM) uses those embeddings to generate multiple speech candidates.
-- Each speech candidate is passed through the speech encoder ([ClvpEncoder](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpEncoder)) which converts them into a vector representation, and the text encoder ([ClvpEncoder](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpEncoder)) converts the text tokens into the same latent space.
+- The [ClvpForCausalLM](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpForCausalLM) uses those embeddings to generate multiple speech candidates.
+- Each speech candidate is passed through the speech encoder ([ClvpEncoder](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpEncoder)) which converts them into a vector representation, and the text encoder ([ClvpEncoder](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpEncoder)) converts the text tokens into the same latent space.
 - At the end, we compare each speech vector with the text vector to see which speech vector is most similar to the text vector.
 - `ClvpModelForConditionalGeneration.generate()` compresses all of the logic described above into a single method.  
 
@@ -58,7 +58,7 @@ generated_output = model.generate(**processor_output)
 transformers.ClvpConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, speech_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, decoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, projection_dim: int = 768, logit_scale_init_value: float = 2.6592, initializer_factor: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/configuration_clvp.py#L185)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/configuration_clvp.py#L185)
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ text_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) :
 
 speech_config (`dict`, *optional*) : Dictionary of configuration options used to initialize CLVP speech encoder.
 
-decoder_config (`dict`, *optional*) : Dictionary of configuration options used to initialize [ClvpDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpDecoderConfig).
+decoder_config (`dict`, *optional*) : Dictionary of configuration options used to initialize [ClvpDecoderConfig](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpDecoderConfig).
 
 projection_dim (`int`, *optional*, defaults to `768`) : Dimensionality of text and vision projection layers.
 
@@ -78,8 +78,8 @@ This is the configuration class to store the configuration of a ClvpModelForCond
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [susnato/clvp_dev](https://huggingface.co/susnato/clvp_dev)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -114,7 +114,7 @@ Example:
 transformers.ClvpEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 256, hidden_size: int = 768, intermediate_size: int = 1536, projection_dim: int = 768, num_hidden_layers: int = 20, num_attention_heads: int = 12, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-05, attention_dropout: float | int = 0.1, dropout: float | int = 0.1, use_rotary_embedding: bool = True, use_attention_bias: bool = False, summary_type: str = 'mean', initializer_factor: float = 1.0, bos_token_id: int | None = 255, eos_token_id: int | list[int] | None = 0, pad_token_id: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/configuration_clvp.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/configuration_clvp.py#L29)
 
 **Parameters:**
 
@@ -156,8 +156,8 @@ This is the configuration class to store the configuration of a ClvpModelForCond
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [susnato/clvp_dev](https://huggingface.co/susnato/clvp_dev)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -182,7 +182,7 @@ Example:
 transformers.ClvpDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 8194, max_position_embeddings: int = 608, max_text_tokens: int = 404, hidden_size: int = 1024, num_hidden_layers: int = 30, num_attention_heads: int = 16, n_inner: int | None = None, num_mel_attn_blocks: int = 6, activation_function: str = 'gelu_new', resid_pdrop: float | int = 0.1, embd_pdrop: float | int = 0.1, attention_dropout: float | int = 0.1, layer_norm_epsilon: float = 1e-05, initializer_range: float = 0.02, summary_type: str = 'cls_index', summary_use_proj: bool = True, summary_activation: str | None = None, summary_proj_to_labels: bool = True, summary_first_dropout: float | int = 0.1, use_cache: bool = True, bos_token_id: int | None = 8192, eos_token_id: int | list[int] | None = 8193, pad_token_id: int | None = None, feature_size: int = 80, use_attention_bias: bool = True, initializer_factor: float = 1.0, decoder_fixing_codes: list[int] | tuple[int, ...] = (83, 45, 45, 248), add_cross_attention: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/configuration_clvp.py#L103)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/configuration_clvp.py#L103)
 
 **Parameters:**
 
@@ -246,8 +246,8 @@ This is the configuration class to store the configuration of a ClvpModelForCond
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [susnato/clvp_dev](https://huggingface.co/susnato/clvp_dev)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -272,7 +272,7 @@ Example:
 transformers.ClvpTokenizer(vocab_file, merges_file, errors = 'replace', unk_token = '[UNK]', bos_token = 'REDACTED', eos_token = '[STOP]', pad_token = '[STOP]', add_prefix_space = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/tokenization_clvp.py#L73)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/tokenization_clvp.py#L73)
 
 **Parameters:**
 
@@ -314,7 +314,7 @@ call it on some text, but since the model was not pretrained this way, it might 
 
 When used with `is_split_into_words=True`, this tokenizer will add a space before each word (even the first one).
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 #### save_vocabulary[[transformers.ClvpTokenizer.save_vocabulary]]
@@ -323,7 +323,7 @@ this superclass for more information regarding those methods.
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_python.py#L1362)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_python.py#L1362)
 
 **Parameters:**
 
@@ -350,7 +350,7 @@ multiple vocabulary files, or special file formats).
 transformers.ClvpFeatureExtractor(feature_size = 80, sampling_rate = 22050, default_audio_length = 6, hop_length = 256, chunk_length = 30, n_fft = 1024, padding_value = 0.0, mel_norms = None, return_attention_mask = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/feature_extraction_clvp.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/feature_extraction_clvp.py#L30)
 
 **Parameters:**
 
@@ -374,7 +374,7 @@ return_attention_mask (`bool`, *optional*, defaults to `False`) : Whether to ret
 
 Constructs a CLVP feature extractor.
 
-This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
+This feature extractor inherits from [SequenceFeatureExtractor](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor) which contains
 most of the main methods. Users should refer to this superclass for more information regarding those methods.
 
 This class extracts log-mel-spectrogram features from raw speech using a custom numpy implementation of the `Short
@@ -386,7 +386,7 @@ Time Fourier Transform` which should match pytorch's `torch.stft` equivalent.
 __call__(raw_speech: numpy.ndarray | list[float] | list[numpy.ndarray] | list[list[float]], sampling_rate: int | None = None, truncation: bool = True, pad_to_multiple_of: int | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, return_attention_mask: bool | None = True, padding: str | None = 'max_length', max_length: int | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/feature_extraction_clvp.py#L128)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/feature_extraction_clvp.py#L128)
 
 **Parameters:**
 
@@ -400,7 +400,7 @@ pad_to_multiple_of (`int`, *optional*) : If set will pad the sequence to a multi
 
 return_attention_mask (`bool`, *optional*, defaults to `True`) : Whether to return the attention mask. If left to the default, it will return the attention mask.  [What are attention masks?](../glossary#attention-mask)
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
 
 padding_value (`float`, *optional*, defaults to 0.0) : The value that is used to fill the padding values / vectors.
 
@@ -420,7 +420,7 @@ seconds long and then the log-mel spectrogram is extracted from it.
 transformers.ClvpProcessor(feature_extractor, tokenizer)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/processing_clvp.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/processing_clvp.py#L27)
 
 **Parameters:**
 
@@ -430,8 +430,8 @@ tokenizer (`ClvpTokenizer`) : The tokenizer is a required input.
 
 Constructs a ClvpProcessor which wraps a feature extractor and a tokenizer into a single processor.
 
-[ClvpProcessor](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpProcessor) offers all the functionalities of [ClvpFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpFeatureExtractor) and [ClvpTokenizer](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpTokenizer). See the
-[~ClvpFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpFeatureExtractor) and [~ClvpTokenizer](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpTokenizer) for more information.
+[ClvpProcessor](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpProcessor) offers all the functionalities of [ClvpFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpFeatureExtractor) and [ClvpTokenizer](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpTokenizer). See the
+[~ClvpFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpFeatureExtractor) and [~ClvpTokenizer](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpTokenizer) for more information.
 
 #### __call__[[transformers.ClvpProcessor.__call__]]
 
@@ -439,11 +439,11 @@ Constructs a ClvpProcessor which wraps a feature extractor and a tokenizer into 
 __call__(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/processing_clvp.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/processing_clvp.py#L31)
 
 **Parameters:**
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
 #### decode[[transformers.ClvpProcessor.decode]]
 
@@ -451,9 +451,9 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 decode(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L1939)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L1939)
 
-This method forwards all its arguments to PreTrainedTokenizer's [decode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.decode). Please refer to
+This method forwards all its arguments to PreTrainedTokenizer's [decode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.decode). Please refer to
 the docstring of this method for more information.
 
 #### batch_decode[[transformers.ClvpProcessor.batch_decode]]
@@ -462,9 +462,9 @@ the docstring of this method for more information.
 batch_decode(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L1930)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L1930)
 
-This method forwards all its arguments to PreTrainedTokenizer's [batch_decode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode). Please
+This method forwards all its arguments to PreTrainedTokenizer's [batch_decode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode). Please
 refer to the docstring of this method for more information.
 
 ## ClvpModelForConditionalGeneration[[transformers.ClvpModelForConditionalGeneration]]
@@ -475,15 +475,15 @@ refer to the docstring of this method for more information.
 transformers.ClvpModelForConditionalGeneration(config: ClvpConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/modeling_clvp.py#L1247)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/modeling_clvp.py#L1247)
 
 **Parameters:**
 
-config ([ClvpConfig](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ClvpConfig](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The composite CLVP model with a text encoder, speech encoder and speech decoder model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -497,13 +497,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.FloatTensor] = None, conditioning_encoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, text_encoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, return_loss: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/modeling_clvp.py#L1448)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/modeling_clvp.py#L1448)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [ClvpFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpFeatureExtractor). See [ClvpFeatureExtractor.__call__()](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpFeatureExtractor.__call__) for details ([ClvpProcessor](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpProcessor) uses [ClvpFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpFeatureExtractor) for processing audios).
+input_features (`torch.FloatTensor` of shape `(batch_size, sequence_length, feature_dim)`, *optional*) : The tensors corresponding to the input audio features. Audio features can be obtained using [ClvpFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpFeatureExtractor). See [ClvpFeatureExtractor.__call__()](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpFeatureExtractor.__call__) for details ([ClvpProcessor](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpProcessor) uses [ClvpFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpFeatureExtractor) for processing audios).
 
 conditioning_encoder_inputs_embeds (`torch.FloatTensor`, *optional*) : inputs_embeds for `ClvpConditioningEncoder`. Can be used in place of `input_ids`.
 
@@ -517,9 +517,9 @@ return_loss (`bool`, *optional*) : Whether or not to return the contrastive loss
 
 A `ClvpOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ClvpConfig](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpConfig)) and inputs.
+elements depending on the configuration ([ClvpConfig](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpConfig)) and inputs.
 
-The [ClvpModelForConditionalGeneration](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpModelForConditionalGeneration) forward method, overrides the `__call__` special method.
+The [ClvpModelForConditionalGeneration](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpModelForConditionalGeneration) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -574,15 +574,15 @@ Examples:
 generate(input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, pad_to_max_mel_tokens: int | None = None, output_hidden_states: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/modeling_clvp.py#L1557)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/modeling_clvp.py#L1557)
 
 **Parameters:**
 
-input_ids (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Input text Tokens. Processed from the [ClvpTokenizer](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpTokenizer).
+input_ids (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Input text Tokens. Processed from the [ClvpTokenizer](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpTokenizer).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding text token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-generation_config (`~generation.GenerationConfig`, *optional*) : The generation configuration to be used as base parametrization for the generation call. `**kwargs` passed to generate matching the attributes of `generation_config` will override them. If `generation_config` is not provided, the default will be used, which had the following loading priority: 1) from the `generation_config.json` model file, if it exists; 2) from the model configuration. Please note that unspecified parameters will inherit [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig)'s default values, whose documentation should be checked to parameterize generation.
+generation_config (`~generation.GenerationConfig`, *optional*) : The generation configuration to be used as base parametrization for the generation call. `**kwargs` passed to generate matching the attributes of `generation_config` will override them. If `generation_config` is not provided, the default will be used, which had the following loading priority: 1) from the `generation_config.json` model file, if it exists; 2) from the model configuration. Please note that unspecified parameters will inherit [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig)'s default values, whose documentation should be checked to parameterize generation.
 
 pad_to_max_mel_tokens (`int`, *optional*) : Pads generated speech_ids to the specified value. This is to implement the same logic from the official repo, link: https://github.com/neonbjb/tortoise-tts/blob/80f89987a5abda5e2b082618cd74f9c7411141dc/tortoise/api.py#L430 and to make sure the logits are same. This does not affect generation quality so please don't consider using it since it is less efficient.
 
@@ -603,11 +603,11 @@ Generate method for `ClvpModelForConditionalGeneration`, this method calls the `
 get_text_features(input_ids: typing.Optional[torch.LongTensor] = None, text_encoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/modeling_clvp.py#L1311)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/modeling_clvp.py#L1311)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 text_encoder_inputs_embeds (`torch.FloatTensor`, *optional*) : inputs_embeds for the text encoder model passed in place of `input_ids`.
 
@@ -617,7 +617,7 @@ attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *op
 
 A `ClvpEncoderOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ClvpConfig](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpConfig)) and inputs.
+elements depending on the configuration ([ClvpConfig](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpConfig)) and inputs.
 
 This method can be used to extract text_embeds from a text. The text embeddings obtained by applying the
 projection layer to the pooled output of the CLVP text encoder model.
@@ -658,13 +658,13 @@ Examples:
 get_speech_features(speech_ids: typing.Optional[torch.LongTensor] = None, input_ids: typing.Optional[torch.LongTensor] = None, input_features: typing.Optional[torch.FloatTensor] = None, conditioning_encoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/modeling_clvp.py#L1353)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/modeling_clvp.py#L1353)
 
 **Parameters:**
 
 speech_ids (`torch.LongTensor` of shape `(batch_size, num_speech_ids)`, *optional*) : Speech Tokens. Padding will be ignored by default should you provide it. If speech_ids are provided then input_ids and input_features will be automatically ignored.
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Input text Tokens. Processed from the [ClvpTokenizer](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpTokenizer). If speech_ids is not provided, then input_ids and input_features will be used.
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Input text Tokens. Processed from the [ClvpTokenizer](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpTokenizer). If speech_ids is not provided, then input_ids and input_features will be used.
 
 conditioning_encoder_inputs_embeds (`torch.FloatTensor`, *optional*) : inputs_embeds for `ClvpConditioningEncoder`. Can be used in place of `input_ids`.
 
@@ -713,15 +713,15 @@ Examples:
 transformers.ClvpForCausalLM(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/modeling_clvp.py#L1069)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/modeling_clvp.py#L1069)
 
 **Parameters:**
 
-config ([ClvpForCausalLM](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpForCausalLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ClvpForCausalLM](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpForCausalLM)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The CLVP decoder model with a language modelling head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -735,13 +735,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, use_cache: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/modeling_clvp.py#L1185)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/modeling_clvp.py#L1185)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -755,13 +755,13 @@ labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*)
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or `tuple(torch.FloatTensor)`
+**Returns:** [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or `tuple(torch.FloatTensor)`
 
-A [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or a tuple of
+A [CausalLMOutputWithCrossAttentions](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.CausalLMOutputWithCrossAttentions) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ClvpConfig](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpConfig)) and inputs.
+elements depending on the configuration ([ClvpConfig](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpConfig)) and inputs.
 
-The [ClvpForCausalLM](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpForCausalLM) forward method, overrides the `__call__` special method.
+The [ClvpForCausalLM](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpForCausalLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -783,7 +783,7 @@ the latter silently ignores them.
 
   Cross attentions weights after the attention softmax, used to compute the weighted average in the
   cross-attention heads.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -796,15 +796,15 @@ the latter silently ignores them.
 transformers.ClvpModel(config: ClvpDecoderConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/modeling_clvp.py#L1013)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/modeling_clvp.py#L1013)
 
 **Parameters:**
 
-config ([ClvpDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpDecoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ClvpDecoderConfig](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpDecoderConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Clvp Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -818,11 +818,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/modeling_clvp.py#L1030)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/modeling_clvp.py#L1030)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -830,19 +830,19 @@ token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *op
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or a tuple of
+A [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ClvpConfig](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpConfig)) and inputs.
+elements depending on the configuration ([ClvpConfig](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpConfig)) and inputs.
 
-The [ClvpModel](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpModel) forward method, overrides the `__call__` special method.
+The [ClvpModel](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -852,7 +852,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -880,7 +880,7 @@ the latter silently ignores them.
 transformers.ClvpEncoder(config: ClvpConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/modeling_clvp.py#L815)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/modeling_clvp.py#L815)
 
 **Parameters:**
 
@@ -895,11 +895,11 @@ Transformer encoder consisting of `config.num_hidden_layers` self attention laye
 forward(input_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/modeling_clvp.py#L849)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/modeling_clvp.py#L849)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 inputs_embeds (`torch.LongTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -911,9 +911,9 @@ position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *opti
 
 A `ClvpEncoderOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ClvpConfig](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpConfig)) and inputs.
+elements depending on the configuration ([ClvpConfig](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpConfig)) and inputs.
 
-The [ClvpEncoder](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpEncoder) forward method, overrides the `__call__` special method.
+The [ClvpEncoder](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpEncoder) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -940,7 +940,7 @@ the latter silently ignores them.
 transformers.ClvpDecoder(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/modeling_clvp.py#L905)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/modeling_clvp.py#L905)
 
 Transformer decoder consisting of *config.num_hidden_layers* layers. Each layer is a `ClvpDecoderLayer`
 
@@ -950,11 +950,11 @@ Transformer decoder consisting of *config.num_hidden_layers* layers. Each layer 
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/clvp/modeling_clvp.py#L937)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/clvp/modeling_clvp.py#L937)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -962,19 +962,19 @@ token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *op
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value states are returned and can be used to speed up decoding (see `past_key_values`).
 
-**Returns:** [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or a tuple of
+A [BaseModelOutputWithPastAndCrossAttentions](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPastAndCrossAttentions) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ClvpConfig](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpConfig)) and inputs.
+elements depending on the configuration ([ClvpConfig](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpConfig)) and inputs.
 
-The [ClvpDecoder](/docs/transformers/v5.15.0/en/model_doc/clvp#transformers.ClvpDecoder) forward method, overrides the `__call__` special method.
+The [ClvpDecoder](/docs/transformers/v5.15.1/en/model_doc/clvp#transformers.ClvpDecoder) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -984,7 +984,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -1005,4 +1005,4 @@ the latter silently ignores them.
   weighted average in the cross-attention heads.
 
 ### VisualBERT
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/visual_bert.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/visual_bert.md

@@ -22,8 +22,8 @@ A longer, in-depth article with examples, visualizations and timelines is availa
     `from_pretrained()` method which downloads (if needed), caches and
     loads the related class instance and associated data (configurations' hyperparameters, tokenizers' vocabulary, processors' parameters
     and models' weights) from a pretrained checkpoint provided on [Hugging Face Hub](https://huggingface.co/models) or your own saved checkpoint.
-- On top of those three base classes, the library provides two APIs: [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline) for quickly
-    using a model for inference on a given task and [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) to quickly train or fine-tune a PyTorch model.
+- On top of those three base classes, the library provides two APIs: [pipeline()](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.pipeline) for quickly
+    using a model for inference on a given task and [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) to quickly train or fine-tune a PyTorch model.
 
 ## Core tenets
 
@@ -41,7 +41,7 @@ The following tenets solidified over time, and they're detailed in our new philo
 ## Main classes
 
 - [**Configuration classes**](main_classes/configuration) store the hyperparameters required to build a model. These include the number of layers and hidden size. You don't always need to instantiate these yourself. When using a pretrained model without modification, creating the model automatically instantiates the configuration.
-- **Model classes** are PyTorch models ([torch.nn.Module](https://pytorch.org/docs/stable/nn.html#torch.nn.Module)), wrapped by at least a [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel).
+- **Model classes** are PyTorch models ([torch.nn.Module](https://pytorch.org/docs/stable/nn.html#torch.nn.Module)), wrapped by at least a [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel).
 
 - **Modular transformers.** Contributors write a small `modular_*.py` shard that declares reuse from existing components. The library auto-expands this into the visible `modeling_*.py` file that users read/debug. Maintainers review the shard; users hack the expanded file. This preserves “One Model, One File” without boilerplate drift. See [the contributing documentation](https://huggingface.co/docs/transformers/en/modular_transformers) for more information.
 
@@ -57,4 +57,4 @@ All these classes can be instantiated from pretrained instances, saved locally, 
 - `push_to_hub()` lets you share a model, configuration, and a preprocessing class to the Hub, so it is easily accessible to everyone.
 
 ### Kernels
-https://huggingface.co/docs/transformers/v5.15.0/kernels.md
+https://huggingface.co/docs/transformers/v5.15.1/kernels.md

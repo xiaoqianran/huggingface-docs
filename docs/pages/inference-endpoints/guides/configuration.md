@@ -1,119 +1,139 @@
 # Configuration
+ENDPOINT_URL = "https://your-endpoint-name.endpoints.huggingface.cloud/v1/" # Endpoint URL + version
+HF_TOKEN=REDACTED # Your Hugging Face Hub token from hf.co/settings/tokens
 
-This section describes the configuration options available when creating a new inference endpoint. Each section of
-the interface allows fine-grained control over how the model is deployed, accessed, and scaled.
+# Initialize OpenAI client for your endpoint
+client = OpenAI(
+    base_url=ENDPOINT_URL,
+    api_key=HF_TOKEN,
+)
+```
 
-## Endpoint name, model and organization
+Your OpenAI client is now configured to connect to your Inference Endpoint. For further reading you can check out the client documentation on text embeddings here.
 
-In the top left you can:
-- change the name of the inference endpoint
-- verify to which organization you're deploying this model
-- verify which model you are deploying
-- and which Hugging Face Hub repo you are deploying this model from
+### Step 3: Create the embedding function
 
-![name-org-model](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/1-name-org-model.png)
+Next, we'll create a function to process batches of text and return embeddings. 
 
-## Hardware Configuration
-The Hardware Configuration section allows you to choose the compute backend used to host the model.
-You can select from three major cloud providers:
-- Amazon Web Services (AWS)
-- Microsoft Azure
-- Google Cloud Platform
+```python
+def get_embeddings(examples):
+    """Get embeddings for a batch of texts."""
+    response = client.embeddings.create(
+        model="your-endpoint-name",  # Replace with your actual endpoint name
+        input=examples["context"], # In the squad dataset, the text is in the "context" column
+    )
+    
+    # Extract embeddings from response objects
+    embeddings = [sample.embedding for sample in response.data]
+    
+    return {"embeddings": embeddings} # datasets expects a dictionary with a key "embeddings" and a value of a list of embeddings
+```
 
-![hardware](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/2-hardware.png)
+The `datasets` library will pass our function a batch of examples from the dataset, as a dictionary of batch values. The key will be the name of the column we want to embed, and the value will be a list of values from that column.
 
-You must also choose an accelerator type:
-- CPU
-- GPU
-- INF2 (AWS Inferentia)
+### Step 4: Load and process your dataset
 
-Additionally, you can select the deployment region (e.g., East US) using the dropdown menu. Once the
-provider, accelerator, and region are chosen, a list of available instance types is displayed. Each instance tile includes:
+Load your dataset and apply the embedding function:
 
-- GPU Type and Count
-- Memory (e.g., 48 GB)
-- vCPUs and RAM
-- Hourly Pricing (e.g., $1.80 / h)
+```python
+# Load a sample dataset (you can replace this with your own)
+dataset = load_dataset("squad", split="train[:100]")  # Using first 100 examples for demo
 
-You can select a tile to choose that instance type for your deployment. Instances that are incompatible or unavailable in the
-selected region are grayed out and unclickable.
+# Process the dataset with embeddings
+dataset_with_embeddings = dataset.map(
+    get_embeddings,
+    batched=True,
+    batch_size=10,  # Process in small batches to avoid timeouts
+    desc="Adding embeddings",
+)
+```
 
-## Authentication
+The `datasets` library's `map` function is optimized for performance and will automatically batch the rows for us. Inference Endpoints can also scale to meet the demand of the batch size, so to get the best performance, you should calibrate the batch size with your Inference Endpoints's configuration.
 
-This section determines who can access your deployed endpoint. Available options are:
-- **Private (default)**: Accessible only to you, or members of your Hugging Face organization, using a personal HF access token.
-- **Public**: Anyone can access your endpoint, without authentication.
-- **Authenticated**: Anyone with a Hugging Face account can access it, using their personal HF access tokens.
+For example, select the highest possible batch size for you model and synchronize the batch size with your Inference Endpoint's configuration in `max_concurrent_requests`.
 
-Additionally, if you deploy your Inference Endpoint in AWS, you can use **AWS PrivateLink** for an intra-region secured connection to your AWS VPN.
+### Step 5: Save and Share your results
 
-![auth](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/11-auth.png)
+Finally, let's save our embedded dataset locally or push it to the Hugging Face Hub:
 
-## Autoscaling
+```python
+# Save the processed dataset locally
+dataset_with_embeddings.save_to_disk("./embedded_dataset")
 
-The Autoscaling section configures how many replicas of your model run and whether the system scales down to zero during periods of inactivity. For more
-information we recommend reading the [in-depth guide on autoscaling](./autoscaling).
+# Or push directly to Hugging Face Hub
+dataset_with_embeddings.push_to_hub("your-username/squad-embeddings")
+```
 
-![autoscaling](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/4-autoscaling.png)
+## Next steps
 
-- **Automatic Scale-to-Zero**: A dropdown lets you choose how long the system should wait after the last request before
-scaling down to zero. Default is after 1 hour with no activity.
-- **Number of Replicas**:
-    - Min: Minimum number of replicas to keep running. Note that enabling automatic scale-to-zero requires setting this to 0.
-    - Max: Maximum number of replicas allowed (e.g., 1)
-- **Autoscaling strategy**:
-    - Based on hardware usage: For example, a scale up will be triggered if the average hardware utilisation (%) exceeds this threshold for more than 20 seconds.
-    - Pending requests: A scale up event will be triggered if the average number of pending requests exceeds this threshold for more than 20 seconds.
+Nice work! You've now built an embedding pipeline that can process any dataset. Here's the complete script:
 
-## Inference Engine Configuration
-This section allows you to specify how the container hosting your model behaves. This setting depends on the selected inference engine.
-For configuration details, please read the Inference Engine section.
-![inference-engine](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/9-inference-engine.png)
+Click to view the complete script
 
-## Container Configuration
-Here you can edit the container arguments and container command.
-![container-configs](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/8-container-config.png)
+```python
+import os
+from datasets import load_dataset
+from dotenv import load_dotenv
+from openai import OpenAI
 
-## Environment Variables
-Environment variables can be provided to customize container behavior or pass secrets.
-- **Default Env**: Key-value pairs passed as plain environment variables.
-- **Secret Env**: Key-value pairs stored securely and injected at runtime.
+load_dotenv()
 
-Each section allows you to add multiple entries using the Add button.
+# Configuration
+ENDPOINT_URL = "https://your-endpoint-name.endpoints.huggingface.cloud/v1/"
+HF_TOKEN=REDACTED
 
-![env-vars](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/5-env-vars.png)
+# Initialize OpenAI client for your endpoint
+client = OpenAI(
+    base_url=ENDPOINT_URL,
+    api_key=HF_TOKEN,
+)
 
-## Endpoint Tags
-You can label endpoints with tags (e.g., for-testing) to help organize and manage deployments across environments or teams. In the dashboard
-you will be able to filter and sort endpoints based on these tags.
-Tags are plain text labels added via the Add button.
+def get_embeddings(examples):
+    """Get embeddings for a batch of texts."""
+    response = client.embeddings.create(
+        model="your-endpoint-name",  # Replace with your actual endpoint name
+        input=examples["context"],
+    )
+    
+    # Extract embeddings from response
+    embeddings = [sample.embedding for sample in response.data]
+    
+    return {"embeddings": embeddings}
 
-![tags](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/6-tags.png)
+# Load a sample dataset (you can replace this with your own)
+print("Loading dataset...")
+dataset = load_dataset("squad", split="train[:1000]")  # Using first 1000 examples for demo
 
-## Network
-This section determines from where your deployed endpoint can be accessed. 
+# Process the dataset with embeddings
+print("Processing dataset with embeddings...")
+dataset_with_embeddings = dataset.map(
+    get_embeddings,
+    batched=True,
+    batch_size=10,  # Process in small batches to avoid timeouts
+    desc="Adding embeddings",
+)
 
-By default, your endpoint is accessible from the Internet, and secured with TLS/SSL. Endpoints deployed on an AWS instance can use AWS PrivateLink to restrict access to a specific VPC.
+# Save the processed dataset locally
+print("Saving processed dataset...")
+dataset_with_embeddings.save_to_disk("./embedded_dataset")
 
-To configure it you need to:
-1. check the box to activate AWS PrivateLink for your endpoint.
-2. Add your AWS Account ID: You need to provide the AWS ID of the account that owns the VPC you want to restrict access to.
+# Or push directly to Hugging Face Hub
+print("Pushing to Hugging Face Hub...")
+dataset_with_embeddings.push_to_hub("your-username/squad-embeddings")
 
-Optionally you can enable PrivateLink Sharing. This will enable sharing of the same PrivateLink between different endpoints.
+print("Dataset processing complete!")
+```
 
-![network](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/10-network.png)
+Here are some ways to extend your script:
 
-## Advanced Settings
-Advanced Settings offer more fine-grained control over deployment.
+- **Process multiple datasets**: Modify the script to handle different dataset sources
+- **Add error handling**: Implement retry logic for failed API calls
+- **Optimize batch sizes**: Experiment with different batch sizes for better performance
+- **Add validation**: Check embedding quality and dimensions
+- **Custom preprocessing**: Add text cleaning or normalization steps
+- **Build a Semantic Search Application**: Use the embeddings to build a semantic search application.
 
-![advanced](https://raw.githubusercontent.com/huggingface/hf-endpoints-documentation/main/assets/configuration/7-advanced.png)
+Your embedded datasets are now ready for downstream tasks like semantic search, recommendation systems, or RAG applications!
 
-- **Commit Revision**: Optionally specify a commit hash to which revision of the model repository on the Hugging Face Hub
-you want to download the model artifacts from
-- **Task**: Defines the type of model task. This is usually inferred from the model repository.
-- **Container Arguments**: Pass CLI-style arguments to the container entrypoint.
-- **Container Command**: Override the container entrypoint entirely.
-- **Download Pattern**: Defines which model files are downloaded.
-
-### Analytics and Metrics
-https://huggingface.co/docs/inference-endpoints/guides/analytics.md
+### FAQs
+https://huggingface.co/docs/inference-endpoints/support/faq.md

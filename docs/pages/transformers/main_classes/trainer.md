@@ -1,16 +1,16 @@
 # Trainer
 
-The [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) class provides an API for feature-complete training in PyTorch, and it supports distributed training on multiple GPUs/TPUs, mixed precision for [NVIDIA GPUs](https://nvidia.github.io/apex/), [AMD GPUs](https://rocm.docs.amd.com/en/latest/rocm.html), and [`torch.amp`](https://pytorch.org/docs/stable/amp.html) for PyTorch. [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) goes hand-in-hand with the [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) class, which offers a wide range of options to customize how a model is trained. Together, these two classes provide a complete training API.
+The [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) class provides an API for feature-complete training in PyTorch, and it supports distributed training on multiple GPUs/TPUs, mixed precision for [NVIDIA GPUs](https://nvidia.github.io/apex/), [AMD GPUs](https://rocm.docs.amd.com/en/latest/rocm.html), and [`torch.amp`](https://pytorch.org/docs/stable/amp.html) for PyTorch. [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) goes hand-in-hand with the [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) class, which offers a wide range of options to customize how a model is trained. Together, these two classes provide a complete training API.
 
-[Seq2SeqTrainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Seq2SeqTrainer) and [Seq2SeqTrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Seq2SeqTrainingArguments) inherit from the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) and [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) classes and they're adapted for training models for sequence-to-sequence tasks such as summarization or translation.
+[Seq2SeqTrainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Seq2SeqTrainer) and [Seq2SeqTrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Seq2SeqTrainingArguments) inherit from the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) and [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) classes and they're adapted for training models for sequence-to-sequence tasks such as summarization or translation.
 
-The [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) class is optimized for 🤗 Transformers models and can have surprising behaviors
+The [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) class is optimized for 🤗 Transformers models and can have surprising behaviors
 when used with other models. When using it with your own model, make sure:
 
-- your model always return tuples or subclasses of [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput)
+- your model always return tuples or subclasses of [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput)
 - your model can compute the loss if a `labels` argument is provided and that loss is returned as the first
   element of the tuple (if your model returns tuples)
-- your model can accept multiple label arguments (use `label_names` in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) to indicate their name to the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer)) but none of them should be named `"label"`
+- your model can accept multiple label arguments (use `label_names` in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) to indicate their name to the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer)) but none of them should be named `"label"`
 
 ## Trainer[[api-reference]][[transformers.Trainer]]
 
@@ -20,15 +20,15 @@ when used with other models. When using it with your own model, make sure:
 transformers.Trainer(model: typing.Union[transformers.modeling_utils.PreTrainedModel, torch.nn.Module, NoneType] = None, args: transformers.training_args.TrainingArguments | None = None, data_collator: collections.abc.Callable[[list[typing.Any]], dict[str, typing.Any]] | None = None, train_dataset: Dataset | IterableDataset | datasets.Dataset | None = None, eval_dataset: Dataset | dict[str, Dataset] | datasets.Dataset | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.image_processing_utils.BaseImageProcessor | transformers.feature_extraction_utils.FeatureExtractionMixin | transformers.processing_utils.ProcessorMixin | None = None, model_init: collections.abc.Callable[..., transformers.modeling_utils.PreTrainedModel] | None = None, compute_loss_func: collections.abc.Callable | None = None, compute_metrics: collections.abc.Callable[[transformers.trainer_utils.EvalPrediction], dict] | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple = (None, None), optimizer_cls_and_kwargs: tuple[type[torch.optim.Optimizer], dict[str, typing.Any]] | None = None, preprocess_logits_for_metrics: collections.abc.Callable[[torch.Tensor, torch.Tensor], torch.Tensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L258)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L258)
 
 **Parameters:**
 
-model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) or `torch.nn.Module`, *optional*) : The model to train, evaluate or use for predictions. If not provided, a `model_init` must be passed.    [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) is optimized to work with the [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) provided by the library. You can still use your own models defined as `torch.nn.Module` as long as they work the same way as the 🤗 Transformers models.   
+model ([PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel) or `torch.nn.Module`, *optional*) : The model to train, evaluate or use for predictions. If not provided, a `model_init` must be passed.    [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) is optimized to work with the [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel) provided by the library. You can still use your own models defined as `torch.nn.Module` as long as they work the same way as the 🤗 Transformers models.   
 
-args ([TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments), *optional*) : The arguments to tweak for training. Will default to a basic instance of [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) with the `output_dir` set to a directory named *tmp_trainer* in the current directory if not provided.
+args ([TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments), *optional*) : The arguments to tweak for training. Will default to a basic instance of [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) with the `output_dir` set to a directory named *tmp_trainer* in the current directory if not provided.
 
-data_collator (`DataCollator`, *optional*) : The function to use to form a batch from a list of elements of `train_dataset` or `eval_dataset`. Will default to [default_data_collator()](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.default_data_collator) if no `processing_class` is provided, an instance of [DataCollatorWithPadding](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DataCollatorWithPadding) otherwise if the processing_class is a feature extractor or tokenizer.
+data_collator (`DataCollator`, *optional*) : The function to use to form a batch from a list of elements of `train_dataset` or `eval_dataset`. Will default to [default_data_collator()](/docs/transformers/v5.15.1/en/main_classes/data_collator#transformers.default_data_collator) if no `processing_class` is provided, an instance of [DataCollatorWithPadding](/docs/transformers/v5.15.1/en/main_classes/data_collator#transformers.DataCollatorWithPadding) otherwise if the processing_class is a feature extractor or tokenizer.
 
 train_dataset (`torch.utils.data.Dataset` | `torch.utils.data.IterableDataset` | `datasets.Dataset`, *optional*) : The dataset to use for training. If it is a [Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset), columns not accepted by the `model.forward()` method are automatically removed.  Note that if it's a `torch.utils.data.IterableDataset` with some randomization and you are training in a distributed fashion, your iterable dataset should either use a internal attribute `generator` that is a `torch.Generator` for the randomization that must be identical on all processes (and the Trainer will manually set the seed of this `generator` at each epoch) or have a `set_epoch()` method that internally sets the seed of the RNGs used.  If the dataset does not implement `__len__` (e.g. a streaming `IterableDataset`), `max_steps` must be set, since the total number of training steps cannot be inferred.
 
@@ -36,15 +36,15 @@ eval_dataset (`torch.utils.data.Dataset` | dict[str, `torch.utils.data.Dataset`]
 
 processing_class (`PreTrainedTokenizerBase` or `BaseImageProcessor` or `FeatureExtractionMixin` or `ProcessorMixin`, *optional*) : Processing class used to process the data. If provided, will be used to automatically process the inputs for the model, and it will be saved along the model to make it easier to rerun an interrupted training or reuse the fine-tuned model.
 
-model_init (`Callable[[], PreTrainedModel]`, *optional*) : A function that instantiates the model to be used. If provided, each call to [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) will start from a new instance of the model as given by this function.  The function may have zero argument, or a single one containing the optuna/Ray Tune trial object, to be able to choose different architectures according to hyperparameters (such as layer count, sizes of inner layers, dropout probabilities etc).
+model_init (`Callable[[], PreTrainedModel]`, *optional*) : A function that instantiates the model to be used. If provided, each call to [train()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.train) will start from a new instance of the model as given by this function.  The function may have zero argument, or a single one containing the optuna/Ray Tune trial object, to be able to choose different architectures according to hyperparameters (such as layer count, sizes of inner layers, dropout probabilities etc).
 
-compute_loss_func (`Callable`, *optional*) : A function that accepts the raw model outputs, labels, and the number of items in the entire accumulated batch (batch_size * gradient_accumulation_steps) and returns the loss. For example, see the default [loss function](https://github.com/huggingface/transformers/blob/052e652d6d53c2b26ffde87e039b723949a53493/src/transformers/trainer.py#L3618) used by [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer).
+compute_loss_func (`Callable`, *optional*) : A function that accepts the raw model outputs, labels, and the number of items in the entire accumulated batch (batch_size * gradient_accumulation_steps) and returns the loss. For example, see the default [loss function](https://github.com/huggingface/transformers/blob/052e652d6d53c2b26ffde87e039b723949a53493/src/transformers/trainer.py#L3618) used by [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer).
 
-compute_metrics (`Callable[[EvalPrediction], Dict]`, *optional*) : The function that will be used to compute metrics at evaluation. Must take a [EvalPrediction](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.EvalPrediction) and return a dictionary string to metric values. *Note* When passing TrainingArgs with `batch_eval_metrics` set to `True`, your compute_metrics function must take a boolean `compute_result` argument. This will be triggered after the last eval batch to signal that the function needs to calculate and return the global summary statistics rather than accumulating the batch-level statistics
+compute_metrics (`Callable[[EvalPrediction], Dict]`, *optional*) : The function that will be used to compute metrics at evaluation. Must take a [EvalPrediction](/docs/transformers/v5.15.1/en/internal/trainer_utils#transformers.EvalPrediction) and return a dictionary string to metric values. *Note* When passing TrainingArgs with `batch_eval_metrics` set to `True`, your compute_metrics function must take a boolean `compute_result` argument. This will be triggered after the last eval batch to signal that the function needs to calculate and return the global summary statistics rather than accumulating the batch-level statistics
 
-callbacks (List of [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback), *optional*) : A list of callbacks to customize the training loop. Will add those to the list of default callbacks detailed in [here](callback).  If you want to remove one of the default callbacks used, use the [Trainer.remove_callback()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.remove_callback) method.
+callbacks (List of [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback), *optional*) : A list of callbacks to customize the training loop. Will add those to the list of default callbacks detailed in [here](callback).  If you want to remove one of the default callbacks used, use the [Trainer.remove_callback()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.remove_callback) method.
 
-optimizers (`tuple[torch.optim.Optimizer, torch.optim.lr_scheduler.LambdaLR]`, *optional*, defaults to `(None, None)`) : A tuple containing the optimizer and the scheduler to use. Will default to an instance of `AdamW` on your model and a scheduler given by [get_linear_schedule_with_warmup()](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) controlled by `args`.
+optimizers (`tuple[torch.optim.Optimizer, torch.optim.lr_scheduler.LambdaLR]`, *optional*, defaults to `(None, None)`) : A tuple containing the optimizer and the scheduler to use. Will default to an instance of `AdamW` on your model and a scheduler given by [get_linear_schedule_with_warmup()](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) controlled by `args`.
 
 optimizer_cls_and_kwargs (`tuple[Type[torch.optim.Optimizer], dict[str, Any]]`, *optional*) : A tuple containing the optimizer class and keyword arguments to use. Overrides `optim` and `optim_args` in `args`. Incompatible with the `optimizers` argument.  Unlike `optimizers`, this argument avoids the need to place model parameters on the correct devices before initializing the Trainer.
 
@@ -54,7 +54,7 @@ Trainer is a simple but feature-complete training and eval loop for PyTorch, opt
 
 Important attributes:
 
-- **model** -- Always points to the core model. If using a transformers model, it will be a [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)
+- **model** -- Always points to the core model. If using a transformers model, it will be a [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel)
   subclass.
 - **model_wrapped** -- Always points to the most external model in case one or more other modules wrap the
   original model. This is the model that should be used for the forward pass. For example, under `DeepSpeed`,
@@ -74,13 +74,13 @@ Important attributes:
 add_callback(callback: type[transformers.trainer_callback.TrainerCallback] | transformers.trainer_callback.TrainerCallback)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L4392)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L4392)
 
 **Parameters:**
 
-callback (`type` or [`~transformers.TrainerCallback]`) : A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) class or an instance of a [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback). In the first case, will instantiate a member of that class.
+callback (`type` or [`~transformers.TrainerCallback]`) : A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) class or an instance of a [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback). In the first case, will instantiate a member of that class.
 
-Add a callback to the current list of [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback).
+Add a callback to the current list of [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback).
 
 #### autocast_smart_context_manager[[transformers.Trainer.autocast_smart_context_manager]]
 
@@ -88,7 +88,7 @@ Add a callback to the current list of [TrainerCallback](/docs/transformers/v5.15
 autocast_smart_context_manager(cache_enabled: bool | None = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L2066)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L2066)
 
 A helper wrapper that creates an appropriate context manager for `autocast` while feeding it the desired
 arguments, depending on the situation. We rely on accelerate for autocast, hence we do nothing here.
@@ -99,7 +99,7 @@ arguments, depending on the situation. We rely on accelerate for autocast, hence
 call_model_init(trial: optuna.Trial | dict[str, Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L4283)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L4283)
 
 Invoke `model_init` to get a fresh model instance, optionally conditioned on a hyperparameter trial.
 
@@ -109,7 +109,7 @@ Invoke `model_init` to get a fresh model instance, optionally conditioned on a h
 compute_loss(model: Module, inputs: dict, return_outputs: bool = False, num_items_in_batch: typing.Union[torch.Tensor, int, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L1965)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L1965)
 
 **Parameters:**
 
@@ -136,7 +136,7 @@ make sure to overwrite `self.model_accepts_loss_kwargs` to `False`. Otherwise, t
 compute_loss_context_manager()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L2054)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L2054)
 
 A helper wrapper to group together context managers.
 
@@ -146,7 +146,7 @@ A helper wrapper to group together context managers.
 create_accelerator_and_postprocess()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L771)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L771)
 
 Create the accelerator and perform post-creation setup (FSDP, DeepSpeed, etc.).
 
@@ -156,7 +156,7 @@ Create the accelerator and perform post-creation setup (FSDP, DeepSpeed, etc.).
 create_model_card(language: str | None = None, license: str | None = None, tags: str | list[str] | None = None, model_name: str | None = None, finetuned_from: str | None = None, tasks: str | list[str] | None = None, dataset_tags: str | list[str] | None = None, dataset: str | list[str] | None = None, dataset_args: str | list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L3967)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L3967)
 
 **Parameters:**
 
@@ -186,7 +186,7 @@ Creates a draft of a model card using the information available to the `Trainer`
 create_optimizer(model = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L1168)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L1168)
 
 **Returns:** `torch.optim.Optimizer`
 
@@ -203,7 +203,7 @@ Trainer's init through `optimizers`, or subclass and override this method in a s
 create_optimizer_and_scheduler(num_training_steps: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L1157)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L1157)
 
 Setup the optimizer and the learning rate scheduler.
 
@@ -217,7 +217,7 @@ Trainer's init through `optimizers`, or subclass and override this method (or `c
 create_scheduler(num_training_steps: int, optimizer: typing.Optional[torch.optim.Optimizer] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L1244)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L1244)
 
 **Parameters:**
 
@@ -236,7 +236,7 @@ passed as an argument.
 evaluate(eval_dataset: typing.Union[torch.utils.data.Dataset, dict[str, torch.utils.data.Dataset], NoneType] = None, ignore_keys: list[str] | None = None, metric_key_prefix: str = 'eval')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L2554)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L2554)
 
 **Parameters:**
 
@@ -264,7 +264,7 @@ You can also subclass and override this method to inject custom behavior.
 evaluation_loop(dataloader: DataLoader, description: str, prediction_loss_only: bool | None = None, ignore_keys: list[str] | None = None, metric_key_prefix: str = 'eval')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L2653)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L2653)
 
 Prediction/evaluation loop, shared by `Trainer.evaluate()` and `Trainer.predict()`.
 
@@ -276,7 +276,7 @@ Works both with or without labels.
 floating_point_ops(inputs: dict)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L3928)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L3928)
 
 **Parameters:**
 
@@ -286,7 +286,7 @@ inputs (`dict[str, torch.Tensor | Any]`) : The inputs and targets of the model.
 
 The number of floating-point operations.
 
-For models that inherit from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel), uses that method to compute the number of floating point
+For models that inherit from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel), uses that method to compute the number of floating point
 operations for every backward + forward pass. If using another model, either implement such a method in the
 model or subclass and override this method.
 
@@ -296,7 +296,7 @@ model or subclass and override this method.
 get_batch_samples(epoch_iterator: Iterator, num_batches: int, device: device)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L2124)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L2124)
 
 Collects a specified number of batches from the epoch iterator and optionally counts the number of items in the batches to properly scale the loss.
 
@@ -306,7 +306,7 @@ Collects a specified number of batches from the epoch iterator and optionally co
 get_cp_size()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L2425)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L2425)
 
 Get the context parallel size
 
@@ -316,7 +316,7 @@ Get the context parallel size
 get_decay_parameter_names(model: Module)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L1305)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L1305)
 
 Get all parameter names that weight decay will be applied to.
 
@@ -330,7 +330,7 @@ This function filters out parameters in two ways:
 get_eval_dataloader(eval_dataset: typing.Union[str, torch.utils.data.Dataset, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L901)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L901)
 
 **Parameters:**
 
@@ -346,7 +346,7 @@ Subclass and override this method if you want to inject some custom behavior.
 get_learning_rates()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_pt_utils.py#L989)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_pt_utils.py#L989)
 
 Returns the learning rate of each parameter from self.optimizer.
 
@@ -356,7 +356,7 @@ Returns the learning rate of each parameter from self.optimizer.
 get_num_trainable_parameters()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_pt_utils.py#L981)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_pt_utils.py#L981)
 
 Get the number of trainable parameters.
 
@@ -366,7 +366,7 @@ Get the number of trainable parameters.
 get_optimizer_cls_and_kwargs(args: TrainingArguments, model: transformers.modeling_utils.PreTrainedModel | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L1274)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L1274)
 
 **Parameters:**
 
@@ -386,7 +386,7 @@ Returns the optimizer class and optimizer parameters based on the training argum
 get_optimizer_group(param: typing.Union[str, torch.nn.parameter.Parameter, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_pt_utils.py#L999)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_pt_utils.py#L999)
 
 **Parameters:**
 
@@ -400,7 +400,7 @@ Returns optimizer group for a parameter if given, else returns all optimizer gro
 get_sp_size()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L2417)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L2417)
 
 Get the sequence parallel size
 
@@ -410,7 +410,7 @@ Get the sequence parallel size
 get_test_dataloader(test_dataset: Dataset)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L940)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L940)
 
 **Parameters:**
 
@@ -426,7 +426,7 @@ Subclass and override this method if you want to inject some custom behavior.
 get_total_train_batch_size(args: TrainingArguments)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L2399)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L2399)
 
 Calculates total batch size (micro_batch * grad_accum * dp_world_size).
 
@@ -447,7 +447,7 @@ All dimensions are separate and multiplicative: world_size = dp_size * tp_size *
 get_tp_size()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L2433)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L2433)
 
 Get the tensor parallel size from either the model or DeepSpeed config.
 
@@ -457,7 +457,7 @@ Get the tensor parallel size from either the model or DeepSpeed config.
 get_train_dataloader()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L881)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L881)
 
 Returns the training `~torch.utils.data.DataLoader`.
 
@@ -472,7 +472,7 @@ Subclass and override this method if you want to inject some custom behavior.
 hyperparameter_search(hp_space: collections.abc.Callable[['optuna.Trial'], dict[str, float]] | None = None, compute_objective: collections.abc.Callable[[dict[str, float]], float] | None = None, n_trials: int = 20, direction: str | list[str] = 'minimize', backend: str | transformers.trainer_utils.HPSearchBackend | None = None, hp_name: collections.abc.Callable[['optuna.Trial'], str] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L4202)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L4202)
 
 **Parameters:**
 
@@ -500,9 +500,9 @@ Launch a hyperparameter search using `optuna` or `Ray Tune`. The optimized quant
 by `compute_objective`, which defaults to a function returning the evaluation loss when no metric is provided,
 the sum of all metrics otherwise.
 
-To use this method, you need to have provided a `model_init` when initializing your [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer): we need to
+To use this method, you need to have provided a `model_init` when initializing your [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer): we need to
 reinitialize the model at each new run. This is incompatible with the `optimizers` argument, so you need to
-subclass [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) and override the method [create_optimizer_and_scheduler()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.create_optimizer_and_scheduler) for custom
+subclass [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) and override the method [create_optimizer_and_scheduler()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.create_optimizer_and_scheduler) for custom
 optimizer/scheduler.
 
 #### init_hf_repo[[transformers.Trainer.init_hf_repo]]
@@ -511,7 +511,7 @@ optimizer/scheduler.
 init_hf_repo(token: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L3949)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L3949)
 
 Initializes a git repo in `self.args.hub_model_id`.
 
@@ -521,7 +521,7 @@ Initializes a git repo in `self.args.hub_model_id`.
 is_local_process_zero()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L4432)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L4432)
 
 Whether or not this process is the local (e.g., on one machine if training in a distributed fashion on several
 machines) main process.
@@ -532,7 +532,7 @@ machines) main process.
 is_world_process_zero()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L4439)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L4439)
 
 Whether or not this process is the global main process (when training in a distributed fashion on several
 machines, this is only going to be `True` for one process).
@@ -543,7 +543,7 @@ machines, this is only going to be `True` for one process).
 log(logs: dict, start_time: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L3893)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L3893)
 
 **Parameters:**
 
@@ -561,7 +561,7 @@ Subclass and override this method to inject custom behavior.
 log_metrics(split, metrics)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_pt_utils.py#L837)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_pt_utils.py#L837)
 
 **Parameters:**
 
@@ -624,7 +624,7 @@ The GPU allocated and peak memory reporting is done with `torch.cuda.memory_allo
 `torch.cuda` memory management system doesn't track any memory allocated outside of pytorch. For example, the very
 first cuda call typically loads CUDA kernels, which may take from 0.5 to 2GB of GPU memory.
 
-Note that this tracker doesn't account for memory allocations outside of [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer)'s `__init__`, `train`,
+Note that this tracker doesn't account for memory allocations outside of [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer)'s `__init__`, `train`,
 `evaluate` and `predict` calls.
 
 Because `evaluation` calls may happen during `train`, we can't handle nested invocations because
@@ -634,8 +634,8 @@ it will be possible to change this class to be re-entrant. Until then we will on
 `train`, `evaluate` and `predict` methods. Which means that if `eval` is called during `train`, it's the latter
 that will account for its memory usage and that of the former.
 
-This also means that if any other tool that is used along the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) calls
-`torch.cuda.reset_peak_memory_stats`, the gpu peak memory stats could be invalid. And the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) will disrupt
+This also means that if any other tool that is used along the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) calls
+`torch.cuda.reset_peak_memory_stats`, the gpu peak memory stats could be invalid. And the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) will disrupt
 the normal behavior of any such tools that rely on calling `torch.cuda.reset_peak_memory_stats` themselves.
 
 For best performance you may want to consider turning the memory profiling off for production runs.
@@ -646,7 +646,7 @@ For best performance you may want to consider turning the memory profiling off f
 metrics_format(metrics: dict)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_pt_utils.py#L810)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_pt_utils.py#L810)
 
 **Parameters:**
 
@@ -664,7 +664,7 @@ Reformat Trainer metrics values to a human-readable format.
 num_examples(dataloader: DataLoader)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L958)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L958)
 
 Helper to get number of samples in a `~torch.utils.data.DataLoader` by accessing its dataset. When
 dataloader.dataset does not exist or has no length, estimates as best it can
@@ -675,17 +675,17 @@ dataloader.dataset does not exist or has no length, estimates as best it can
 pop_callback(callback: type[transformers.trainer_callback.TrainerCallback] | transformers.trainer_callback.TrainerCallback)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L4403)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L4403)
 
 **Parameters:**
 
-callback (`type` or [`~transformers.TrainerCallback]`) : A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) class or an instance of a [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback). In the first case, will pop the first member of that class found in the list of callbacks.
+callback (`type` or [`~transformers.TrainerCallback]`) : A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) class or an instance of a [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback). In the first case, will pop the first member of that class found in the list of callbacks.
 
-**Returns:** [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback)
+**Returns:** [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback)
 
 The callback removed, if found.
 
-Remove a callback from the current list of [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) and returns it.
+Remove a callback from the current list of [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) and returns it.
 
 If the callback is not found, returns `None` (and no error is raised).
 
@@ -695,7 +695,7 @@ If the callback is not found, returns `None` (and no error is raised).
 predict(test_dataset: Dataset, ignore_keys: list[str] | None = None, metric_key_prefix: str = 'test')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L2860)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L2860)
 
 **Parameters:**
 
@@ -727,7 +727,7 @@ Returns: *NamedTuple* A namedtuple with the following keys:
 prediction_step(model: Module, inputs: dict, prediction_loss_only: bool, ignore_keys: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L2921)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L2921)
 
 **Parameters:**
 
@@ -754,7 +754,7 @@ Subclass and override to inject custom behavior.
 push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L4041)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L4041)
 
 **Parameters:**
 
@@ -766,7 +766,7 @@ token (`str`, *optional*, defaults to `None`) : Token with write permission to o
 
 revision (`str`, *optional*) : The git revision to commit from. Defaults to the head of the "main" branch.
 
-kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to [create_model_card()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.create_model_card).
+kwargs (`dict[str, Any]`, *optional*) : Additional keyword arguments passed along to [create_model_card()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.create_model_card).
 
 **Returns:**
 
@@ -781,13 +781,13 @@ Upload `self.model` and `self.processing_class` to the 🤗 model hub on the rep
 remove_callback(callback: type[transformers.trainer_callback.TrainerCallback] | transformers.trainer_callback.TrainerCallback)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L4419)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L4419)
 
 **Parameters:**
 
-callback (`type` or [`~transformers.TrainerCallback]`) : A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) class or an instance of a [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback). In the first case, will remove the first member of that class found in the list of callbacks.
+callback (`type` or [`~transformers.TrainerCallback]`) : A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) class or an instance of a [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback). In the first case, will remove the first member of that class found in the list of callbacks.
 
-Remove a callback from the current list of [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback).
+Remove a callback from the current list of [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback).
 
 #### save_metrics[[transformers.Trainer.save_metrics]]
 
@@ -795,7 +795,7 @@ Remove a callback from the current list of [TrainerCallback](/docs/transformers/
 save_metrics(split, metrics, combined = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_pt_utils.py#L928)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_pt_utils.py#L928)
 
 **Parameters:**
 
@@ -809,7 +809,7 @@ Save metrics into a json file for that split, e.g. `train_results.json`.
 
 Under distributed environment this is done only for a process with rank 0.
 
-To understand the metrics please read the docstring of [log_metrics()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.log_metrics). The only difference is that raw
+To understand the metrics please read the docstring of [log_metrics()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.log_metrics). The only difference is that raw
 unformatted numbers are saved in the current method.
 
 #### save_model[[transformers.Trainer.save_model]]
@@ -818,7 +818,7 @@ unformatted numbers are saved in the current method.
 save_model(output_dir: str | None = None, _internal_call: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L3794)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L3794)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
@@ -830,7 +830,7 @@ Will only save from the main process.
 save_state()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_pt_utils.py#L967)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_pt_utils.py#L967)
 
 Saves the Trainer state, since Trainer.save_model saves only the tokenizer with the model.
 
@@ -842,7 +842,7 @@ Under distributed environment this is done only for a process with rank 0.
 set_initial_training_values(args: TrainingArguments, dataloader: DataLoader)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L2329)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L2329)
 
 Calculates and returns the following values:
 - `num_train_epochs`
@@ -859,7 +859,7 @@ Calculates and returns the following values:
 store_flos()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L3917)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L3917)
 
 Store the number of floating-point operations that went into the model.
 
@@ -869,11 +869,11 @@ Store the number of floating-point operations that went into the model.
 train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L1347)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L1347)
 
 **Parameters:**
 
-resume_from_checkpoint (`str` or `bool`, *optional*) : If a `str`, local path to a saved checkpoint as saved by a previous instance of [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer). If a `bool` and equals `True`, load the last checkpoint in *args.output_dir* as saved by a previous instance of [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer). If present, training will resume from the model/optimizer/scheduler states loaded here.
+resume_from_checkpoint (`str` or `bool`, *optional*) : If a `str`, local path to a saved checkpoint as saved by a previous instance of [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer). If a `bool` and equals `True`, load the last checkpoint in *args.output_dir* as saved by a previous instance of [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer). If present, training will resume from the model/optimizer/scheduler states loaded here.
 
 trial (`optuna.Trial` or `dict[str, Any]`, *optional*) : The trial run or the hyperparameter dictionary for hyperparameter search.
 
@@ -891,7 +891,7 @@ Main training entry point.
 training_step(model: Module, inputs: dict, num_items_in_batch: typing.Union[torch.Tensor, int, NoneType] = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer.py#L1892)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer.py#L1892)
 
 **Parameters:**
 
@@ -915,7 +915,7 @@ Subclass and override to inject custom behavior.
 transformers.Seq2SeqTrainer(model: typing.Union[ForwardRef('PreTrainedModel'), torch.nn.Module, NoneType] = None, args: typing.Optional[ForwardRef('TrainingArguments')] = None, data_collator: typing.Optional[ForwardRef('DataCollator')] = None, train_dataset: typing.Union[torch.utils.data.Dataset, ForwardRef('IterableDataset'), ForwardRef('datasets.Dataset'), NoneType] = None, eval_dataset: typing.Union[torch.utils.data.Dataset, dict[str, torch.utils.data.Dataset], NoneType] = None, processing_class: typing.Union[ForwardRef('PreTrainedTokenizerBase'), ForwardRef('BaseImageProcessor'), ForwardRef('FeatureExtractionMixin'), ForwardRef('ProcessorMixin'), NoneType] = None, model_init: collections.abc.Callable[[], 'PreTrainedModel'] | None = None, compute_loss_func: collections.abc.Callable | None = None, compute_metrics: collections.abc.Callable[['EvalPrediction'], dict] | None = None, callbacks: list['TrainerCallback'] | None = None, optimizers: tuple = (None, None), preprocess_logits_for_metrics: collections.abc.Callable[[torch.Tensor, torch.Tensor], torch.Tensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_seq2seq.py#L55)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_seq2seq.py#L55)
 
 #### evaluate[[transformers.Seq2SeqTrainer.evaluate]]
 
@@ -923,7 +923,7 @@ transformers.Seq2SeqTrainer(model: typing.Union[ForwardRef('PreTrainedModel'), t
 evaluate(eval_dataset: typing.Optional[torch.utils.data.Dataset] = None, ignore_keys: list[str] | None = None, metric_key_prefix: str = 'eval', **gen_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_seq2seq.py#L139)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_seq2seq.py#L139)
 
 **Parameters:**
 
@@ -957,7 +957,7 @@ You can also subclass and override this method to inject custom behavior.
 predict(test_dataset: Dataset, ignore_keys: list[str] | None = None, metric_key_prefix: str = 'test', **gen_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_seq2seq.py#L195)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_seq2seq.py#L195)
 
 **Parameters:**
 
@@ -997,7 +997,7 @@ Returns: *NamedTuple* A namedtuple with the following keys:
 transformers.TrainingArguments(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 5e-05, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool = False, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = False, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 500, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: typing.Optional[typing.Any] = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = True, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L180)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L180)
 
 **Parameters:**
 
@@ -1015,7 +1015,7 @@ max_steps (`int`, *optional*, defaults to -1) : Overrides `num_train_epochs`. If
 
 learning_rate (`float`, *optional*, defaults to 5e-5) : The initial learning rate for the optimizer. This is typically the peak learning rate when using a scheduler with warmup.
 
-lr_scheduler_type (`str` or [SchedulerType](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.SchedulerType), *optional*, defaults to `"linear"`) : The learning rate scheduler type to use. See [SchedulerType](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.SchedulerType) for all possible values. Common choices: - "linear" = [get_linear_schedule_with_warmup()](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) - "cosine" = [get_cosine_schedule_with_warmup()](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.get_cosine_schedule_with_warmup) - "constant" =  [get_constant_schedule()](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.get_constant_schedule) - "constant_with_warmup" = [get_constant_schedule_with_warmup()](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.get_constant_schedule_with_warmup)
+lr_scheduler_type (`str` or [SchedulerType](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.SchedulerType), *optional*, defaults to `"linear"`) : The learning rate scheduler type to use. See [SchedulerType](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.SchedulerType) for all possible values. Common choices: - "linear" = [get_linear_schedule_with_warmup()](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) - "cosine" = [get_cosine_schedule_with_warmup()](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.get_cosine_schedule_with_warmup) - "constant" =  [get_constant_schedule()](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.get_constant_schedule) - "constant_with_warmup" = [get_constant_schedule_with_warmup()](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.get_constant_schedule_with_warmup)
 
 lr_scheduler_kwargs (`dict` or `str`, *optional*, defaults to `None`) : The extra arguments for the lr_scheduler. See the documentation of each scheduler for possible values.
 
@@ -1091,7 +1091,7 @@ auto_find_batch_size (`bool`, *optional*, defaults to `False`) : Whether to find
 
 **Logging & Monitoring Training:**
 
-logging_strategy (`str` or [IntervalStrategy](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.IntervalStrategy), *optional*, defaults to `"steps"`) : The logging strategy to adopt during training. Possible values are: - `"no"`: No logging is done during training. - `"epoch"`: Logging is done at the end of each epoch. - `"steps"`: Logging is done every `logging_steps`.
+logging_strategy (`str` or [IntervalStrategy](/docs/transformers/v5.15.1/en/internal/trainer_utils#transformers.IntervalStrategy), *optional*, defaults to `"steps"`) : The logging strategy to adopt during training. Possible values are: - `"no"`: No logging is done during training. - `"epoch"`: Logging is done at the end of each epoch. - `"steps"`: Logging is done every `logging_steps`.
 
 logging_steps (`int` or `float`, *optional*, defaults to 500) : Number of update steps between two logs if `logging_strategy="steps"`. Should be an integer or a float in range `[0,1)`. If smaller than 1, will be interpreted as ratio of total training steps.
 
@@ -1127,7 +1127,7 @@ trackio_static_space_id (`str`, `False`, or `None`, *optional*, defaults to `Non
 
 **Evaluation:**
 
-eval_strategy (`str` or [IntervalStrategy](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.IntervalStrategy), *optional*, defaults to `"no"`) : When to run evaluation. Options: - `"no"`: No evaluation during training - `"steps"`: Evaluate every `eval_steps` - `"epoch"`: Evaluate at the end of each epoch
+eval_strategy (`str` or [IntervalStrategy](/docs/transformers/v5.15.1/en/internal/trainer_utils#transformers.IntervalStrategy), *optional*, defaults to `"no"`) : When to run evaluation. Options: - `"no"`: No evaluation during training - `"steps"`: Evaluate every `eval_steps` - `"epoch"`: Evaluate at the end of each epoch
 
 eval_steps (`int` or `float`, *optional*) : Number of update steps between two evaluations if `eval_strategy="steps"`. Will default to the same value as `logging_steps` if not set. Should be an integer or a float in range `[0,1)`. If smaller than 1, will be interpreted as ratio of total training steps.
 
@@ -1167,7 +1167,7 @@ enable_jit_checkpoint (`bool`, *optional*, defaults to `False`) : Enable Just-In
 
 **Hugging Face Hub Integration:**
 
-push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push the model to the Hub every time the model is saved. If this is activated, `output_dir` will begin a git directory synced with the repo (determined by `hub_model_id`) and the content will be pushed each time a save is triggered (depending on your `save_strategy`). Calling [save_model()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.save_model) will also trigger a push.
+push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push the model to the Hub every time the model is saved. If this is activated, `output_dir` will begin a git directory synced with the repo (determined by `hub_model_id`) and the content will be pushed each time a save is triggered (depending on your `save_strategy`). Calling [save_model()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.save_model) will also trigger a push.
 
 hub_token (`str`, *optional*) : The token to use to push the model to the Hub. Will default to the token in the cache folder obtained with `hf auth login`.
 
@@ -1197,7 +1197,7 @@ restore_callback_states_from_checkpoint (`bool`, *optional*, defaults to `False`
 
 **Reproducibility:**
 
-full_determinism (`bool`, *optional*, defaults to `False`) : If `True`, [enable_full_determinism()](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.enable_full_determinism) is called instead of [set_seed()](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.set_seed) to ensure reproducible results in distributed training. Important: this will negatively impact the performance, so only use it for debugging.
+full_determinism (`bool`, *optional*, defaults to `False`) : If `True`, [enable_full_determinism()](/docs/transformers/v5.15.1/en/internal/trainer_utils#transformers.enable_full_determinism) is called instead of [set_seed()](/docs/transformers/v5.15.1/en/internal/trainer_utils#transformers.set_seed) to ensure reproducible results in distributed training. Important: this will negatively impact the performance, so only use it for debugging.
 
 seed (`int`, *optional*, defaults to 42) : Random seed that will be set at the beginning of training. To ensure reproducibility across runs, use the `~Trainer.model_init` function to instantiate the model if it has some randomly initialized parameters.
 
@@ -1269,18 +1269,18 @@ skip_memory_metrics (`bool`, *optional*, defaults to `True`) : Whether to skip a
 
 **External Script Flags (not used by Trainer):**
 
-do_train (`bool`, *optional*, defaults to `False`) : Whether to run training or not. This argument is not directly used by [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details.
+do_train (`bool`, *optional*, defaults to `False`) : Whether to run training or not. This argument is not directly used by [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details.
 
-do_eval (`bool`, *optional*) : Whether to run evaluation on the validation set or not. Will be set to `True` if `eval_strategy` is different from `"no"`. This argument is not directly used by [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details.
+do_eval (`bool`, *optional*) : Whether to run evaluation on the validation set or not. Will be set to `True` if `eval_strategy` is different from `"no"`. This argument is not directly used by [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details.
 
-do_predict (`bool`, *optional*, defaults to `False`) : Whether to run predictions on the test set or not. This argument is not directly used by [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details.
+do_predict (`bool`, *optional*, defaults to `False`) : Whether to run predictions on the test set or not. This argument is not directly used by [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details.
 
-resume_from_checkpoint (`str`, *optional*) : The path to a folder with a valid checkpoint for your model. This argument is not directly used by [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details.
+resume_from_checkpoint (`str`, *optional*) : The path to a folder with a valid checkpoint for your model. This argument is not directly used by [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details.
 
 Configuration class for controlling all aspects of model training with the Trainer.
 TrainingArguments centralizes all hyperparameters, optimization settings, logging preferences, and infrastructure choices needed for training.
 
-[HfArgumentParser](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.HfArgumentParser) can turn this class into
+[HfArgumentParser](/docs/transformers/v5.15.1/en/internal/trainer_utils#transformers.HfArgumentParser) can turn this class into
 [argparse](https://docs.python.org/3/library/argparse#module-argparse) arguments that can be specified on the
 command line.
 
@@ -1290,7 +1290,7 @@ command line.
 get_process_log_level()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2019)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2019)
 
 Returns the log level to be used depending on whether this process is the main process of node 0, main process
 of node non-0, or a non-main process.
@@ -1309,7 +1309,7 @@ The choice between the main and replica process settings is made according to th
 get_warmup_steps(num_training_steps: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2108)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2108)
 
 Get number of steps used for a linear warmup.
 
@@ -1319,7 +1319,7 @@ Get number of steps used for a linear warmup.
 main_process_first(local = True, desc = 'work')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2057)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2057)
 
 **Parameters:**
 
@@ -1340,7 +1340,7 @@ replicas.
 set_dataloader(train_batch_size: int = 8, eval_batch_size: int = 8, drop_last: bool = False, num_workers: int = 0, pin_memory: bool = True, persistent_workers: bool = False, prefetch_factor: int | None = None, multiprocessing_context: str | None = None, in_order: bool = True, auto_find_batch_size: bool = False, ignore_data_skip: bool = False, sampler_seed: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2639)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2639)
 
 **Parameters:**
 
@@ -1383,11 +1383,11 @@ Example:
 set_evaluate(strategy: str | transformers.trainer_utils.IntervalStrategy = 'no', steps: int = 500, batch_size: int = 8, accumulation_steps: int | None = None, delay: float | None = None, loss_only: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2256)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2256)
 
 **Parameters:**
 
-strategy (`str` or [IntervalStrategy](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.IntervalStrategy), *optional*, defaults to `"no"`) : The evaluation strategy to adopt during training. Possible values are:  - `"no"`: No evaluation is done during training. - `"steps"`: Evaluation is done (and logged) every `steps`. - `"epoch"`: Evaluation is done at the end of each epoch.  Setting a `strategy` different from `"no"` will set `self.do_eval` to `True`.
+strategy (`str` or [IntervalStrategy](/docs/transformers/v5.15.1/en/internal/trainer_utils#transformers.IntervalStrategy), *optional*, defaults to `"no"`) : The evaluation strategy to adopt during training. Possible values are:  - `"no"`: No evaluation is done during training. - `"steps"`: Evaluation is done (and logged) every `steps`. - `"epoch"`: Evaluation is done at the end of each epoch.  Setting a `strategy` different from `"no"` will set `self.do_eval` to `True`.
 
 steps (`int`, *optional*, defaults to 500) : Number of update steps between two evaluations if `strategy="steps"`.
 
@@ -1418,11 +1418,11 @@ Example:
 set_logging(strategy: str | transformers.trainer_utils.IntervalStrategy = 'steps', steps: int = 500, report_to: str | list[str] = 'none', level: str = 'passive', first_step: bool = False, nan_inf_filter: bool = False, on_each_node: bool = False, replica_level: str = 'passive')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2398)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2398)
 
 **Parameters:**
 
-strategy (`str` or [IntervalStrategy](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.IntervalStrategy), *optional*, defaults to `"steps"`) : The logging strategy to adopt during training. Possible values are:  - `"no"`: No logging is done during training. - `"epoch"`: Logging is done at the end of each epoch. - `"steps"`: Logging is done every `logging_steps`. 
+strategy (`str` or [IntervalStrategy](/docs/transformers/v5.15.1/en/internal/trainer_utils#transformers.IntervalStrategy), *optional*, defaults to `"steps"`) : The logging strategy to adopt during training. Possible values are:  - `"no"`: No logging is done during training. - `"epoch"`: Logging is done at the end of each epoch. - `"steps"`: Logging is done every `logging_steps`. 
 
 steps (`int`, *optional*, defaults to 500) : Number of update steps between two logs if `strategy="steps"`.
 
@@ -1457,11 +1457,11 @@ Example:
 set_lr_scheduler(name: str | transformers.trainer_utils.SchedulerType = 'linear', num_epochs: float = 3.0, max_steps: int = -1, warmup_steps: float = 0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2596)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2596)
 
 **Parameters:**
 
-name (`str` or [SchedulerType](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.SchedulerType), *optional*, defaults to `"linear"`) : The scheduler type to use. See the documentation of [SchedulerType](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.SchedulerType) for all possible values.
+name (`str` or [SchedulerType](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.SchedulerType), *optional*, defaults to `"linear"`) : The scheduler type to use. See the documentation of [SchedulerType](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.SchedulerType) for all possible values.
 
 num_epochs(`float`, *optional*, defaults to 3.0) : Total number of training epochs to perform (if not an integer, will perform the decimal part percents of the last epoch before stopping training).
 
@@ -1488,7 +1488,7 @@ Example:
 set_optimizer(name: str | transformers.training_args.OptimizerNames = 'adamw_torch', learning_rate: float = 5e-05, weight_decay: float = 0, beta1: float = 0.9, beta2: float = 0.999, epsilon: float = 1e-08, args: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2545)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2545)
 
 **Parameters:**
 
@@ -1525,13 +1525,13 @@ Example:
 set_push_to_hub(model_id: str, strategy: str | transformers.trainer_utils.HubStrategy = 'every_save', token: str | None = None, private_repo: bool | None = None, always_push: bool = False, revision: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2473)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2473)
 
 **Parameters:**
 
 model_id (`str`) : The name of the repository to keep in sync with the local *output_dir*. It can be a simple model ID in which case the model will be pushed in your namespace. Otherwise it should be the whole repository name, for instance `"user_name/model"`, which allows you to push to an organization you are a member of with `"organization_name/model"`.
 
-strategy (`str` or `HubStrategy`, *optional*, defaults to `"every_save"`) : Defines the scope of what is pushed to the Hub and when. Possible values are:  - `"end"`: push the model, its configuration, the processing_class e.g. tokenizer (if passed along to the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer)) and a draft of a model card when the [save_model()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.save_model) method is called. - `"every_save"`: push the model, its configuration, the processing_class e.g. tokenizer (if passed along to the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer)) and a draft of a model card each time there is a model save. The pushes are asynchronous to not block training, and in case the save are very frequent, a new push is only attempted if the previous one is finished. A last push is made with the final model at the end of training. - `"checkpoint"`: like `"every_save"` but the latest checkpoint is also pushed in a subfolder named last-checkpoint, allowing you to resume training easily with `trainer.train(resume_from_checkpoint="last-checkpoint")`. - `"all_checkpoints"`: like `"checkpoint"` but all checkpoints are pushed like they appear in the output folder (so you will get one checkpoint folder per folder in your final repository) 
+strategy (`str` or `HubStrategy`, *optional*, defaults to `"every_save"`) : Defines the scope of what is pushed to the Hub and when. Possible values are:  - `"end"`: push the model, its configuration, the processing_class e.g. tokenizer (if passed along to the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer)) and a draft of a model card when the [save_model()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.save_model) method is called. - `"every_save"`: push the model, its configuration, the processing_class e.g. tokenizer (if passed along to the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer)) and a draft of a model card each time there is a model save. The pushes are asynchronous to not block training, and in case the save are very frequent, a new push is only attempted if the previous one is finished. A last push is made with the final model at the end of training. - `"checkpoint"`: like `"every_save"` but the latest checkpoint is also pushed in a subfolder named last-checkpoint, allowing you to resume training easily with `trainer.train(resume_from_checkpoint="last-checkpoint")`. - `"all_checkpoints"`: like `"checkpoint"` but all checkpoints are pushed like they appear in the output folder (so you will get one checkpoint folder per folder in your final repository) 
 
 token (`str`, *optional*) : The token to use to push the model to the Hub. Will default to the token in the cache folder obtained with `hf auth login`.
 
@@ -1545,7 +1545,7 @@ A method that regroups all arguments linked to synchronizing checkpoints with th
 
 Calling this method will set `self.push_to_hub` to `True`, which means the `output_dir` will begin a git
 directory synced with the repo (determined by `model_id`) and the content will be pushed each time a save is
-triggered (depending on your `self.save_strategy`). Calling [save_model()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.save_model) will also trigger a push.
+triggered (depending on your `self.save_strategy`). Calling [save_model()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.save_model) will also trigger a push.
 
 Example:
 
@@ -1564,11 +1564,11 @@ Example:
 set_save(strategy: str | transformers.trainer_utils.IntervalStrategy = 'steps', steps: int = 500, total_limit: int | None = None, on_each_node: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2349)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2349)
 
 **Parameters:**
 
-strategy (`str` or [IntervalStrategy](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.IntervalStrategy), *optional*, defaults to `"steps"`) : The checkpoint save strategy to adopt during training. Possible values are:  - `"no"`: No save is done during training. - `"epoch"`: Save is done at the end of each epoch. - `"steps"`: Save is done every `save_steps`. 
+strategy (`str` or [IntervalStrategy](/docs/transformers/v5.15.1/en/internal/trainer_utils#transformers.IntervalStrategy), *optional*, defaults to `"steps"`) : The checkpoint save strategy to adopt during training. Possible values are:  - `"no"`: No save is done during training. - `"epoch"`: Save is done at the end of each epoch. - `"steps"`: Save is done every `save_steps`. 
 
 steps (`int`, *optional*, defaults to 500) : Number of updates steps before two checkpoint saves if `strategy="steps"`.
 
@@ -1595,7 +1595,7 @@ Example:
 set_testing(batch_size: int = 8, loss_only: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2313)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2313)
 
 **Parameters:**
 
@@ -1624,7 +1624,7 @@ Example:
 set_training(learning_rate: float = 5e-05, batch_size: int = 8, weight_decay: float = 0, num_epochs: float = 3, max_steps: int = -1, gradient_accumulation_steps: int = 1, seed: int = 42, gradient_checkpointing: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2179)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2179)
 
 **Parameters:**
 
@@ -1665,7 +1665,7 @@ Example:
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2129)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2129)
 
 Serializes this instance while replace `Enum` by their values (for JSON serialization support). It obfuscates
 the token values by removing their value.
@@ -1676,7 +1676,7 @@ the token values by removing their value.
 to_json_string()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2159)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2159)
 
 Serializes this instance to a JSON string.
 
@@ -1686,7 +1686,7 @@ Serializes this instance to a JSON string.
 to_sanitized_dict()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args.py#L2165)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args.py#L2165)
 
 Sanitized serialization to use with TensorBoard's hparams
 
@@ -1698,7 +1698,7 @@ Sanitized serialization to use with TensorBoard's hparams
 transformers.Seq2SeqTrainingArguments(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 5e-05, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool = False, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = False, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 500, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: typing.Optional[typing.Any] = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = True, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, sortish_sampler: bool = False, predict_with_generate: bool = False, generation_max_length: int | None = None, generation_num_beams: int | None = None, generation_config: str | pathlib.Path | transformers.generation.configuration_utils.GenerationConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args_seq2seq.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args_seq2seq.py#L29)
 
 **Parameters:**
 
@@ -1716,7 +1716,7 @@ max_steps (`int`, *optional*, defaults to -1) : Overrides `num_train_epochs`. If
 
 learning_rate (`float`, *optional*, defaults to 5e-5) : The initial learning rate for the optimizer. This is typically the peak learning rate when using a scheduler with warmup.
 
-lr_scheduler_type (`str` or [SchedulerType](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.SchedulerType), *optional*, defaults to `"linear"`) : The learning rate scheduler type to use. See [SchedulerType](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.SchedulerType) for all possible values. Common choices: - "linear" = [get_linear_schedule_with_warmup()](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) - "cosine" = [get_cosine_schedule_with_warmup()](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.get_cosine_schedule_with_warmup) - "constant" =  [get_constant_schedule()](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.get_constant_schedule) - "constant_with_warmup" = [get_constant_schedule_with_warmup()](/docs/transformers/v5.15.0/en/main_classes/optimizer_schedules#transformers.get_constant_schedule_with_warmup)
+lr_scheduler_type (`str` or [SchedulerType](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.SchedulerType), *optional*, defaults to `"linear"`) : The learning rate scheduler type to use. See [SchedulerType](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.SchedulerType) for all possible values. Common choices: - "linear" = [get_linear_schedule_with_warmup()](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup) - "cosine" = [get_cosine_schedule_with_warmup()](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.get_cosine_schedule_with_warmup) - "constant" =  [get_constant_schedule()](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.get_constant_schedule) - "constant_with_warmup" = [get_constant_schedule_with_warmup()](/docs/transformers/v5.15.1/en/main_classes/optimizer_schedules#transformers.get_constant_schedule_with_warmup)
 
 lr_scheduler_kwargs (`dict` or `str`, *optional*, defaults to `None`) : The extra arguments for the lr_scheduler. See the documentation of each scheduler for possible values.
 
@@ -1792,7 +1792,7 @@ auto_find_batch_size (`bool`, *optional*, defaults to `False`) : Whether to find
 
 **Logging & Monitoring Training:**
 
-logging_strategy (`str` or [IntervalStrategy](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.IntervalStrategy), *optional*, defaults to `"steps"`) : The logging strategy to adopt during training. Possible values are: - `"no"`: No logging is done during training. - `"epoch"`: Logging is done at the end of each epoch. - `"steps"`: Logging is done every `logging_steps`.
+logging_strategy (`str` or [IntervalStrategy](/docs/transformers/v5.15.1/en/internal/trainer_utils#transformers.IntervalStrategy), *optional*, defaults to `"steps"`) : The logging strategy to adopt during training. Possible values are: - `"no"`: No logging is done during training. - `"epoch"`: Logging is done at the end of each epoch. - `"steps"`: Logging is done every `logging_steps`.
 
 logging_steps (`int` or `float`, *optional*, defaults to 500) : Number of update steps between two logs if `logging_strategy="steps"`. Should be an integer or a float in range `[0,1)`. If smaller than 1, will be interpreted as ratio of total training steps.
 
@@ -1828,7 +1828,7 @@ trackio_static_space_id (`str`, `False`, or `None`, *optional*, defaults to `Non
 
 **Evaluation:**
 
-eval_strategy (`str` or [IntervalStrategy](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.IntervalStrategy), *optional*, defaults to `"no"`) : When to run evaluation. Options: - `"no"`: No evaluation during training - `"steps"`: Evaluate every `eval_steps` - `"epoch"`: Evaluate at the end of each epoch
+eval_strategy (`str` or [IntervalStrategy](/docs/transformers/v5.15.1/en/internal/trainer_utils#transformers.IntervalStrategy), *optional*, defaults to `"no"`) : When to run evaluation. Options: - `"no"`: No evaluation during training - `"steps"`: Evaluate every `eval_steps` - `"epoch"`: Evaluate at the end of each epoch
 
 eval_steps (`int` or `float`, *optional*) : Number of update steps between two evaluations if `eval_strategy="steps"`. Will default to the same value as `logging_steps` if not set. Should be an integer or a float in range `[0,1)`. If smaller than 1, will be interpreted as ratio of total training steps.
 
@@ -1868,7 +1868,7 @@ enable_jit_checkpoint (`bool`, *optional*, defaults to `False`) : Enable Just-In
 
 **Hugging Face Hub Integration:**
 
-push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push the model to the Hub every time the model is saved. If this is activated, `output_dir` will begin a git directory synced with the repo (determined by `hub_model_id`) and the content will be pushed each time a save is triggered (depending on your `save_strategy`). Calling [save_model()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.save_model) will also trigger a push.
+push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push the model to the Hub every time the model is saved. If this is activated, `output_dir` will begin a git directory synced with the repo (determined by `hub_model_id`) and the content will be pushed each time a save is triggered (depending on your `save_strategy`). Calling [save_model()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.save_model) will also trigger a push.
 
 hub_token (`str`, *optional*) : The token to use to push the model to the Hub. Will default to the token in the cache folder obtained with `hf auth login`.
 
@@ -1898,7 +1898,7 @@ restore_callback_states_from_checkpoint (`bool`, *optional*, defaults to `False`
 
 **Reproducibility:**
 
-full_determinism (`bool`, *optional*, defaults to `False`) : If `True`, [enable_full_determinism()](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.enable_full_determinism) is called instead of [set_seed()](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.set_seed) to ensure reproducible results in distributed training. Important: this will negatively impact the performance, so only use it for debugging.
+full_determinism (`bool`, *optional*, defaults to `False`) : If `True`, [enable_full_determinism()](/docs/transformers/v5.15.1/en/internal/trainer_utils#transformers.enable_full_determinism) is called instead of [set_seed()](/docs/transformers/v5.15.1/en/internal/trainer_utils#transformers.set_seed) to ensure reproducible results in distributed training. Important: this will negatively impact the performance, so only use it for debugging.
 
 seed (`int`, *optional*, defaults to 42) : Random seed that will be set at the beginning of training. To ensure reproducibility across runs, use the `~Trainer.model_init` function to instantiate the model if it has some randomly initialized parameters.
 
@@ -1970,13 +1970,13 @@ skip_memory_metrics (`bool`, *optional*, defaults to `True`) : Whether to skip a
 
 **External Script Flags (not used by Trainer):**
 
-do_train (`bool`, *optional*, defaults to `False`) : Whether to run training or not. This argument is not directly used by [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details.
+do_train (`bool`, *optional*, defaults to `False`) : Whether to run training or not. This argument is not directly used by [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details.
 
-do_eval (`bool`, *optional*) : Whether to run evaluation on the validation set or not. Will be set to `True` if `eval_strategy` is different from `"no"`. This argument is not directly used by [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details.
+do_eval (`bool`, *optional*) : Whether to run evaluation on the validation set or not. Will be set to `True` if `eval_strategy` is different from `"no"`. This argument is not directly used by [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details.
 
-do_predict (`bool`, *optional*, defaults to `False`) : Whether to run predictions on the test set or not. This argument is not directly used by [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details.
+do_predict (`bool`, *optional*, defaults to `False`) : Whether to run predictions on the test set or not. This argument is not directly used by [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details.
 
-resume_from_checkpoint (`str`, *optional*) : The path to a folder with a valid checkpoint for your model. This argument is not directly used by [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details. 
+resume_from_checkpoint (`str`, *optional*) : The path to a folder with a valid checkpoint for your model. This argument is not directly used by [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), it's intended to be used by your training/evaluation scripts instead. See the [example scripts](https://github.com/huggingface/transformers/tree/main/examples) for more details. 
 
 sortish_sampler (`bool`, *optional*, defaults to `False`) : Whether to use a *sortish sampler* or not. Only possible if the underlying datasets are *Seq2SeqDataset* for now but will become generally available in the near future.  It sorts the inputs according to lengths in order to minimize the padding size, with a bit of randomness for the training set.
 
@@ -1986,12 +1986,12 @@ generation_max_length (`int`, *optional*) : The `max_length` to use on each eval
 
 generation_num_beams (`int`, *optional*) : The `num_beams` to use on each evaluation loop when `predict_with_generate=True`. Will default to the `num_beams` value of the model configuration.
 
-generation_config (`str` or `Path` or [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig), *optional*) : Allows to load a [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig) from the `from_pretrained` method. This can be either:  - a string, the *model id* of a pretrained model configuration hosted inside a model repo on huggingface.co. - a path to a *directory* containing a configuration file saved using the [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig.save_pretrained) method, e.g., `./my_model_directory/`. - a [GenerationConfig](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig) object.
+generation_config (`str` or `Path` or [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig), *optional*) : Allows to load a [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig) from the `from_pretrained` method. This can be either:  - a string, the *model id* of a pretrained model configuration hosted inside a model repo on huggingface.co. - a path to a *directory* containing a configuration file saved using the [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig.save_pretrained) method, e.g., `./my_model_directory/`. - a [GenerationConfig](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationConfig) object.
 
 Configuration class for controlling all aspects of model training with the Trainer.
 TrainingArguments centralizes all hyperparameters, optimization settings, logging preferences, and infrastructure choices needed for training.
 
-[HfArgumentParser](/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.HfArgumentParser) can turn this class into
+[HfArgumentParser](/docs/transformers/v5.15.1/en/internal/trainer_utils#transformers.HfArgumentParser) can turn this class into
 [argparse](https://docs.python.org/3/library/argparse#module-argparse) arguments that can be specified on the
 command line.
 
@@ -2001,10 +2001,10 @@ command line.
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/training_args_seq2seq.py#L84)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/training_args_seq2seq.py#L84)
 
 Serializes this instance while replace `Enum` by their values and `GenerationConfig` by dictionaries (for JSON
 serialization support). It obfuscates the token values by removing their value.
 
 ### Generation
-https://huggingface.co/docs/transformers/v5.15.0/main_classes/text_generation.md
+https://huggingface.co/docs/transformers/v5.15.1/main_classes/text_generation.md

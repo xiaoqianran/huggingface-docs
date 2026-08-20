@@ -10,7 +10,7 @@ PP-OCRv6_tiny_rec is the most lightweight recognition model in the PP-OCRv6 seri
 
 ### Single input inference
 
-The example below demonstrates how to detect text with PP-OCRv6_tiny_rec using the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel).
+The example below demonstrates how to detect text with PP-OCRv6_tiny_rec using the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 from io import BytesIO
@@ -36,7 +36,7 @@ for result in results:
 
 ### Batched inference
 
-Here is how you can do it with PP-OCRv6_tiny_rec using the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel):
+Here is how you can do it with PP-OCRv6_tiny_rec using the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel):
 
 ```python
 from io import BytesIO
@@ -68,15 +68,15 @@ for result in results:
 transformers.PPOCRV6TinyRecForTextRecognition(config: PPOCRV6TinyRecConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv6_tiny_rec/modeling_pp_ocrv6_tiny_rec.py#L118)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv6_tiny_rec/modeling_pp_ocrv6_tiny_rec.py#L118)
 
 **Parameters:**
 
-config ([PPOCRV6TinyRecConfig](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6TinyRecConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPOCRV6TinyRecConfig](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6TinyRecConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PPOCR6TinyRec model for text recognition tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -90,19 +90,19 @@ and behavior.
 forward(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv6_tiny_rec/modeling_pp_ocrv6_tiny_rec.py#L128)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv6_tiny_rec/modeling_pp_ocrv6_tiny_rec.py#L128)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV6SmallRecImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6SmallRecImageProcessor). See `PPOCRV6SmallRecImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV6SmallRecImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6SmallRecImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV6SmallRecImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6SmallRecImageProcessor). See `PPOCRV6SmallRecImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV6SmallRecImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6SmallRecImageProcessor) for processing images).
 
 **Returns:** `BaseModelOutputWithNoAttention` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PPOCRV6TinyRecConfig](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6TinyRecConfig)) and inputs.
+elements depending on the configuration ([PPOCRV6TinyRecConfig](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6TinyRecConfig)) and inputs.
 
-The [PPOCRV6TinyRecForTextRecognition](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6TinyRecForTextRecognition) forward method, overrides the `__call__` special method.
+The [PPOCRV6TinyRecForTextRecognition](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6TinyRecForTextRecognition) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -122,7 +122,7 @@ the latter silently ignores them.
 transformers.PPOCRV6TinyRecConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, hidden_size: int = 120, head_out_channels: int = 6625)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv6_tiny_rec/configuration_pp_ocrv6_tiny_rec.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv6_tiny_rec/configuration_pp_ocrv6_tiny_rec.py#L31)
 
 **Parameters:**
 
@@ -136,8 +136,8 @@ This is the configuration class to store the configuration of a PPOCRV6TinyRecMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PP-OCRv6_tiny_rec_safetensors](https://huggingface.co/PaddlePaddle/PP-OCRv6_tiny_rec_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## PPOCRV6TinyRecModel[[transformers.PPOCRV6TinyRecModel]]
 
@@ -147,15 +147,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.PPOCRV6TinyRecModel(config: PPOCRV6TinyRecConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv6_tiny_rec/modeling_pp_ocrv6_tiny_rec.py#L92)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv6_tiny_rec/modeling_pp_ocrv6_tiny_rec.py#L92)
 
 **Parameters:**
 
-config ([PPOCRV6TinyRecConfig](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6TinyRecConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPOCRV6TinyRecConfig](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6TinyRecConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PPOCRV6TinyRec model, consisting of Backbone and Head networks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -169,19 +169,19 @@ and behavior.
 forward(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv6_tiny_rec/modeling_pp_ocrv6_tiny_rec.py#L100)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv6_tiny_rec/modeling_pp_ocrv6_tiny_rec.py#L100)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV6SmallRecImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6SmallRecImageProcessor). See `PPOCRV6SmallRecImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV6SmallRecImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6SmallRecImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV6SmallRecImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6SmallRecImageProcessor). See `PPOCRV6SmallRecImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV6SmallRecImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6SmallRecImageProcessor) for processing images).
 
 **Returns:** `BaseModelOutputWithNoAttention` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PPOCRV6TinyRecConfig](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6TinyRecConfig)) and inputs.
+elements depending on the configuration ([PPOCRV6TinyRecConfig](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6TinyRecConfig)) and inputs.
 
-The [PPOCRV6TinyRecModel](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6TinyRecModel) forward method, overrides the `__call__` special method.
+The [PPOCRV6TinyRecModel](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv6_tiny_rec#transformers.PPOCRV6TinyRecModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -201,7 +201,7 @@ the latter silently ignores them.
 transformers.PPOCRV6SmallRecImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv6_small_rec/image_processing_pp_ocrv6_small_rec.py#L49)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv6_small_rec/image_processing_pp_ocrv6_small_rec.py#L49)
 
 **Parameters:**
 
@@ -303,7 +303,7 @@ Added for backward compatibility but this should be set as a processor attribute
 get_target_size(shape_list: list)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv6_small_rec/image_processing_pp_ocrv6_small_rec.py#L121)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv6_small_rec/image_processing_pp_ocrv6_small_rec.py#L121)
 
 Calculate the width and height from the widest image in the batch.
 
@@ -313,7 +313,7 @@ Calculate the width and height from the widest image in the batch.
 post_process_text_recognition(predictions)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv6_small_rec/image_processing_pp_ocrv6_small_rec.py#L148)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv6_small_rec/image_processing_pp_ocrv6_small_rec.py#L148)
 
 **Parameters:**
 
@@ -329,4 +329,4 @@ Each dictionary contains:
 Post-processes raw model logits to decode the recognized text and its confidence score.
 
 ### MarianMT
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/marian.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/marian.md

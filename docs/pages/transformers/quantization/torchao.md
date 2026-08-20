@@ -63,12 +63,12 @@ For a complete list of available configurations, see the [quantization API docum
 
 You can manually choose the quantization types and settings or automatically select the quantization types.
 
-Create a [TorchAoConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.TorchAoConfig) and specify the quantization type and `group_size` of the weights to quantize (for int8 weight only and int4 weight only). Set the `cache_implementation` to `"static"` to automatically [torch.compile](https://pytorch.org/tutorials/intermediate/torch_compile_tutorial.html) the forward method.
+Create a [TorchAoConfig](/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.TorchAoConfig) and specify the quantization type and `group_size` of the weights to quantize (for int8 weight only and int4 weight only). Set the `cache_implementation` to `"static"` to automatically [torch.compile](https://pytorch.org/tutorials/intermediate/torch_compile_tutorial.html) the forward method.
 
 We'll show examples for recommended quantization methods based on hardwares, e.g. A100 GPU, H100 GPU, CPU.
 
 > [!WARNING]
-> torchao automatically compiles the model during the first inference if we set `cache_implementation="static"`. The model is recompiled every time batch size or `max_new_tokens` is modified. Pass `disable_compile=True` in [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to quantize without compilation.
+> torchao automatically compiles the model during the first inference if we set `cache_implementation="static"`. The model is recompiled every time batch size or `max_new_tokens` is modified. Pass `disable_compile=True` in [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) to quantize without compilation.
 
 ### H100 GPU
 
@@ -611,4 +611,4 @@ Refer to [Other Available Quantization Techniques](https://github.com/pytorch/ao
 If you encounter any issues with the Transformers integration, please open an issue on the [Transformers](https://github.com/huggingface/transformers/issues) repository. For issues directly related to torchao, please open an issue on the [torchao](https://github.com/pytorch/ao/issues) repository.
 
 ### MXFP4
-https://huggingface.co/docs/transformers/v5.15.0/quantization/mxfp4.md
+https://huggingface.co/docs/transformers/v5.15.1/quantization/mxfp4.md

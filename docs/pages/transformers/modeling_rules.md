@@ -25,7 +25,7 @@ When a rule violation is detected, the error looks like this:
 src/transformers/models/acme/modeling_acme.py:18: TRF013: AcmeModel.__init__ does not call self.post_init().
 ```
 
-Use the rule ID to look up the fix in the [rules reference](#rules-reference). TRF013 is triggered when a [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) subclass doesn't call `self.post_init()`. That method performs essential finalization steps, and omitting it causes runtime bugs.
+Use the rule ID to look up the fix in the [rules reference](#rules-reference). TRF013 is triggered when a [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel) subclass doesn't call `self.post_init()`. That method performs essential finalization steps, and omitting it causes runtime bugs.
 
 ```diff
  class AcmeModel(AcmePreTrainedModel):
@@ -309,4 +309,4 @@ allowlist_models = ["existing_model", "your_model_name"]
 ```
 
 ### Pull request checks
-https://huggingface.co/docs/transformers/v5.15.0/pr_checks.md
+https://huggingface.co/docs/transformers/v5.15.1/pr_checks.md

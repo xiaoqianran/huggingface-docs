@@ -33,7 +33,7 @@ from transformers import LukeModel
 model = LukeModel.from_pretrained("studio-ousia/mluke-base", device_map="auto")
 ```
 
-Note that mLUKE has its own tokenizer, [MLukeTokenizer](/docs/transformers/v5.15.0/en/model_doc/mluke#transformers.MLukeTokenizer). You can initialize it as follows:
+Note that mLUKE has its own tokenizer, [MLukeTokenizer](/docs/transformers/v5.15.1/en/model_doc/mluke#transformers.MLukeTokenizer). You can initialize it as follows:
 
 ```python
 from transformers import MLukeTokenizer
@@ -52,7 +52,7 @@ tips, code examples and notebooks.
 transformers.MLukeTokenizer(bos_token = '<s>', eos_token = '</s>', sep_token = '</s>', cls_token = '<s>', unk_token = '<unk>', pad_token = '<pad>', mask_token = '<mask>', task = None, max_entity_length = 32, max_mention_length = 30, entity_token_1 = '<ent>', entity_token_2 = '<ent2>', entity_unk_token = '[UNK]', entity_pad_token = '[PAD]', entity_mask_token = '[MASK]', entity_mask2_token = '[MASK2]', vocab: str | dict | list | None = None, entity_vocab: str | dict | list | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mluke/tokenization_mluke.py#L129)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mluke/tokenization_mluke.py#L129)
 
 **Parameters:**
 
@@ -90,10 +90,10 @@ sp_model_kwargs (`dict`, *optional*) : Will be passed to the `SentencePieceProce
 
 sp_model (`SentencePieceProcessor`) : The *SentencePiece* processor that is used for every conversion (string, tokens and IDs).
 
-Adapted from [XLMRobertaTokenizer](/docs/transformers/v5.15.0/en/model_doc/xlm-roberta#transformers.XLMRobertaTokenizer) and [LukeTokenizer](/docs/transformers/v5.15.0/en/model_doc/luke#transformers.LukeTokenizer). Based on
+Adapted from [XLMRobertaTokenizer](/docs/transformers/v5.15.1/en/model_doc/xlm-roberta#transformers.XLMRobertaTokenizer) and [LukeTokenizer](/docs/transformers/v5.15.1/en/model_doc/luke#transformers.LukeTokenizer). Based on
 [SentencePiece](https://github.com/google/sentencepiece).
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 #### __call__[[transformers.MLukeTokenizer.__call__]]
@@ -102,11 +102,11 @@ this superclass for more information regarding those methods.
 __call__(text: str | list[str], text_pair: str | list[str] | None = None, entity_spans: list[tuple[int, int]] | list[list[tuple[int, int]]] | None = None, entity_spans_pair: list[tuple[int, int]] | list[list[tuple[int, int]]] | None = None, entities: list[str] | list[list[str]] | None = None, entities_pair: list[str] | list[list[str]] | None = None, add_special_tokens: bool = True, padding: bool | str | transformers.utils.generic.PaddingStrategy = False, truncation: bool | str | transformers.tokenization_utils_base.TruncationStrategy = None, max_length: int | None = None, max_entity_length: int | None = None, stride: int = 0, is_split_into_words: bool | None = False, pad_to_multiple_of: int | None = None, padding_side: str | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, return_token_type_ids: bool | None = None, return_attention_mask: bool | None = None, return_overflowing_tokens: bool = False, return_special_tokens_mask: bool = False, return_offsets_mapping: bool = False, return_length: bool = False, verbose: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mluke/tokenization_mluke.py#L463)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mluke/tokenization_mluke.py#L463)
 
-**Returns:** [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding)
+**Returns:** [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding)
 
-A [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
+A [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model.
 
@@ -155,7 +155,7 @@ Whether or not to add special tokens when encoding the sequences. This will use 
 `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are
 automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens
 automatically.
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`):
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`):
 Activates and controls padding. Accepts the following values:
 
 - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single
@@ -164,7 +164,7 @@ Activates and controls padding. Accepts the following values:
   acceptable input length for the model if that argument is not provided.
 - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different
   lengths).
-truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`):
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`):
 Activates and controls truncation. Accepts the following values:
 
 - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or
@@ -201,7 +201,7 @@ This is especially useful to enable the use of Tensor Cores on NVIDIA hardware w
 padding_side (`str`, *optional*):
 The side on which the model should have padding applied. Should be selected between ['right', 'left'].
 Default value is picked from the class attribute of the same name.
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*):
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*):
 If set, will return tensors instead of list of python integers. Acceptable values are:
 
 - `'pt'`: Return PyTorch `torch.Tensor` objects.
@@ -226,7 +226,7 @@ Whether or not to return special tokens mask information.
 return_offsets_mapping (`bool`, *optional*, defaults to `False`):
 Whether or not to return `(char_start, char_end)` for each token.
 
-This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend), if using
+This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend), if using
 Python's tokenizer, this method will raise `NotImplementedError`.
 return_length  (`bool`, *optional*, defaults to `False`):
 Whether or not to return the lengths of the encoded inputs.
@@ -240,9 +240,9 @@ Whether or not to print more information and warnings.
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mluke/tokenization_mluke.py#L1701)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mluke/tokenization_mluke.py#L1701)
 
 Save only the entity vocabulary file. The tokenizer.json is saved by the parent TokenizersBackend.
 
 ### V-JEPA 2
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/vjepa2.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/vjepa2.md

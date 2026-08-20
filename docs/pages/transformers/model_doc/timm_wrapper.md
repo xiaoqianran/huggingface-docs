@@ -50,7 +50,7 @@ A list of official Hugging Face and community (indicated by 🌎) resources to h
 transformers.TimmWrapperConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, architecture: str = 'resnet50', initializer_range: float = 0.02, do_pooling: bool = True, model_args: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timm_wrapper/configuration_timm_wrapper.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/timm_wrapper/configuration_timm_wrapper.py#L31)
 
 **Parameters:**
 
@@ -66,8 +66,8 @@ This is the configuration class to store the configuration of a TimmWrapperModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [resnet50](https://huggingface.co/resnet50)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -88,7 +88,7 @@ Example:
 transformers.TimmWrapperImageProcessor(pretrained_cfg: dict, architecture: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timm_wrapper/image_processing_timm_wrapper.py#L38)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/timm_wrapper/image_processing_timm_wrapper.py#L38)
 
 **Parameters:**
 
@@ -104,7 +104,7 @@ Wrapper class for timm models to be used within transformers.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], return_tensors: str | transformers.utils.generic.TensorType | None = 'pt')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timm_wrapper/image_processing_timm_wrapper.py#L96)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/timm_wrapper/image_processing_timm_wrapper.py#L96)
 
 **Parameters:**
 
@@ -122,7 +122,7 @@ Preprocess an image or batch of images.
 transformers.TimmWrapperModel(config: TimmWrapperConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timm_wrapper/modeling_timm_wrapper.py#L151)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/timm_wrapper/modeling_timm_wrapper.py#L151)
 
 Wrapper class for timm models to be used in transformers.
 
@@ -132,17 +132,17 @@ Wrapper class for timm models to be used in transformers.
 forward(pixel_values: FloatTensor, output_attentions: bool | None = None, output_hidden_states: bool | list[int] | None = None, return_dict: bool | None = None, do_pooling: bool | None = None, use_cache: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timm_wrapper/modeling_timm_wrapper.py#L165)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/timm_wrapper/modeling_timm_wrapper.py#L165)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [TimmWrapperImageProcessor](/docs/transformers/v5.15.0/en/model_doc/timm_wrapper#transformers.TimmWrapperImageProcessor). See `TimmWrapperImageProcessor.__call__()` for details (`processor_class` uses [TimmWrapperImageProcessor](/docs/transformers/v5.15.0/en/model_doc/timm_wrapper#transformers.TimmWrapperImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [TimmWrapperImageProcessor](/docs/transformers/v5.15.1/en/model_doc/timm_wrapper#transformers.TimmWrapperImageProcessor). See `TimmWrapperImageProcessor.__call__()` for details (`processor_class` uses [TimmWrapperImageProcessor](/docs/transformers/v5.15.1/en/model_doc/timm_wrapper#transformers.TimmWrapperImageProcessor) for processing images).
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. Not compatible with timm wrapped models.
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. Not compatible with timm wrapped models.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 do_pooling (`bool`, *optional*) : Whether to do pooling for the last_hidden_state in `TimmWrapperModel` or not. If `None` is passed, the `do_pooling` value from the config is used.
 
@@ -152,9 +152,9 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 A `TimmWrapperModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TimmWrapperConfig](/docs/transformers/v5.15.0/en/model_doc/timm_wrapper#transformers.TimmWrapperConfig)) and inputs.
+elements depending on the configuration ([TimmWrapperConfig](/docs/transformers/v5.15.1/en/model_doc/timm_wrapper#transformers.TimmWrapperConfig)) and inputs.
 
-The [TimmWrapperModel](/docs/transformers/v5.15.0/en/model_doc/timm_wrapper#transformers.TimmWrapperModel) forward method, overrides the `__call__` special method.
+The [TimmWrapperModel](/docs/transformers/v5.15.1/en/model_doc/timm_wrapper#transformers.TimmWrapperModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -205,7 +205,7 @@ Examples:
 transformers.TimmWrapperForImageClassification(config: TimmWrapperConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timm_wrapper/modeling_timm_wrapper.py#L268)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/timm_wrapper/modeling_timm_wrapper.py#L268)
 
 Wrapper class for timm models to be used in transformers for image classification.
 
@@ -215,11 +215,11 @@ Wrapper class for timm models to be used in transformers for image classificatio
 forward(pixel_values: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | list[int] | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timm_wrapper/modeling_timm_wrapper.py#L291)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/timm_wrapper/modeling_timm_wrapper.py#L291)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [TimmWrapperImageProcessor](/docs/transformers/v5.15.0/en/model_doc/timm_wrapper#transformers.TimmWrapperImageProcessor). See `TimmWrapperImageProcessor.__call__()` for details (`processor_class` uses [TimmWrapperImageProcessor](/docs/transformers/v5.15.0/en/model_doc/timm_wrapper#transformers.TimmWrapperImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [TimmWrapperImageProcessor](/docs/transformers/v5.15.1/en/model_doc/timm_wrapper#transformers.TimmWrapperImageProcessor). See `TimmWrapperImageProcessor.__call__()` for details (`processor_class` uses [TimmWrapperImageProcessor](/docs/transformers/v5.15.1/en/model_doc/timm_wrapper#transformers.TimmWrapperImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
@@ -227,15 +227,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. Not compatible with timm wrapped models.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple. **kwargs: Additional keyword arguments passed along to the `timm` model forward.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple. **kwargs: Additional keyword arguments passed along to the `timm` model forward.
 
-**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
+A [ImageClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TimmWrapperConfig](/docs/transformers/v5.15.0/en/model_doc/timm_wrapper#transformers.TimmWrapperConfig)) and inputs.
+elements depending on the configuration ([TimmWrapperConfig](/docs/transformers/v5.15.1/en/model_doc/timm_wrapper#transformers.TimmWrapperConfig)) and inputs.
 
-The [TimmWrapperForImageClassification](/docs/transformers/v5.15.0/en/model_doc/timm_wrapper#transformers.TimmWrapperForImageClassification) forward method, overrides the `__call__` special method.
+The [TimmWrapperForImageClassification](/docs/transformers/v5.15.1/en/model_doc/timm_wrapper#transformers.TimmWrapperForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -281,4 +281,4 @@ Examples:
 ```
 
 ### Moonshine
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/moonshine.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/moonshine.md

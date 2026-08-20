@@ -2,7 +2,7 @@
 
 [torch.compile](https://docs.pytorch.org/tutorials/intermediate/torch_compile_tutorial.html) compiles PyTorch code to fused kernels to make it run faster. For training, it traces both the forward and backward pass together and compiles them into optimized kernels, reducing the overhead of individual op launches and fusing operations to cut memory bandwidth usage.
 
-Set `torch_compile=True` in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) to enable it. Training compiles both the forward and backward pass, unlike inference which only compiles the forward pass. Compilation happens on the first training step, so expect it to be significantly slower than subsequent steps.
+Set `torch_compile=True` in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) to enable it. Training compiles both the forward and backward pass, unlike inference which only compiles the forward pass. Compilation happens on the first training step, so expect it to be significantly slower than subsequent steps.
 
 ```py
 from transformers import TrainingArguments
@@ -17,7 +17,7 @@ args = TrainingArguments(
 
 ## Backend
 
-When no backend is specified, [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) selects one based on your hardware. On most CPUs and GPUs, the default is `inductor`, which compiles to Triton kernels with AOTAutograd and suits most training workloads. On Intel Gaudi (HPU), the default is `hpu_backend`. On AWS Trainium and Inferentia (Neuron), the default is `neuron`.
+When no backend is specified, [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) selects one based on your hardware. On most CPUs and GPUs, the default is `inductor`, which compiles to Triton kernels with AOTAutograd and suits most training workloads. On Intel Gaudi (HPU), the default is `hpu_backend`. On AWS Trainium and Inferentia (Neuron), the default is `neuron`.
 
 Use `cudagraphs` for fixed-shape inputs.
 
@@ -37,4 +37,4 @@ Use the table below to help select a `torch.compile` mode.
 - See the [torch.compile for inference](./perf_torch_compile) guide for details on fullgraph compilation and inference benchmarks.
 
 ### Chat templates
-https://huggingface.co/docs/transformers/v5.15.0/chat_templating.md
+https://huggingface.co/docs/transformers/v5.15.1/chat_templating.md

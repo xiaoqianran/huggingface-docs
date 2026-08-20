@@ -55,11 +55,11 @@ new_K, new_V = cache.update(k_t, v_t, layer_idx)
 attn_output = attn_layer_idx_fn(q_t, new_K, new_V)
 ```
 
-When you use Transformers' [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) class, the self-attention module performs several critical steps to integrate past and present information.
+When you use Transformers' [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) class, the self-attention module performs several critical steps to integrate past and present information.
 
 1. The attention module concatenates current kv pairs with past kv pairs stored in the cache. This creates attentions weights with the shape `(new_tokens_length, past_kv_length + new_tokens_length)`. The current and past kv pairs are essentially combined to compute the attention scores, ensuring a model is aware of previous context and the current input.
 
-2. When the `forward` method is called iteratively, it's crucial that the attention mask shape matches the combined length of the past and current kv pairs. The attention mask should have the shape `(batch_size, past_kv_length + new_tokens_length)`. This is typically handled internally in [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate), but if you want to implement your own generation loop with [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache), keep this in mind! The attention mask should hold the past and current token values.
+2. When the `forward` method is called iteratively, it's crucial that the attention mask shape matches the combined length of the past and current kv pairs. The attention mask should have the shape `(batch_size, past_kv_length + new_tokens_length)`. This is typically handled internally in [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate), but if you want to implement your own generation loop with [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache), keep this in mind! The attention mask should hold the past and current token values.
 
 ## Cache storage implementation
 
@@ -76,7 +76,7 @@ cache.layers[idx].values = torch.cat([cache.layers[idx].values, value_states], d
 
 Other layer types like `StaticLayer` and `StaticSlidingWindowLayer` have a fixed sequence length that is set when the cache is created. This makes them compatible with `torch.compile`. In the case of `StaticSlidingWindowLayer`, existing tokens are shifted out of the cache when a new token is added.
 
-The example below demonstrates how to create a generation loop with [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache). As discussed, the attention mask is a concatenation of past and current token values.
+The example below demonstrates how to create a generation loop with [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache). As discussed, the attention mask is a concatenation of past and current token values.
 
 ```py
 import torch
@@ -112,4 +112,4 @@ print(tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0])
 ```
 
 ### Multimodal processors
-https://huggingface.co/docs/transformers/v5.15.0/multimodal_processing.md
+https://huggingface.co/docs/transformers/v5.15.1/multimodal_processing.md

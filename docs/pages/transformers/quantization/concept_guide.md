@@ -149,4 +149,4 @@ To explore quantization and related performance optimization concepts more deepl
 - [Accelerating Generative AI with PyTorch Part 2: LLM Optimizations](https://pytorch.org/blog/accelerating-generative-ai-2/)
 
 ### compressed-tensors
-https://huggingface.co/docs/transformers/v5.15.0/quantization/compressed_tensors.md
+https://huggingface.co/docs/transformers/v5.15.1/quantization/compressed_tensors.md

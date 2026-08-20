@@ -9,7 +9,7 @@ You can find all the original Donut checkpoints under the [Naver Clova Informati
 > [!TIP]
 > Click on the Donut models in the right sidebar for more examples of how to apply Donut to different language and vision tasks.
 
-The examples below demonstrate how to perform document understanding tasks using Donut with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) and [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel)
+The examples below demonstrate how to perform document understanding tasks using Donut with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) and [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel)
 
 ```python
 # pip install datasets
@@ -172,7 +172,7 @@ print(answer)
 transformers.DonutSwinConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 4, num_channels: int = 3, embed_dim: int = 96, depths: list[int] | tuple[int, ...] = (2, 2, 6, 2), num_heads: list[int] | tuple[int, ...] = (3, 6, 12, 24), window_size: int = 7, mlp_ratio: float = 4.0, qkv_bias: bool = True, hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, drop_path_rate: float | int = 0.1, hidden_act: str = 'gelu', use_absolute_embeddings: bool = False, initializer_range: float = 0.02, layer_norm_eps: float = 1e-05)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/donut/configuration_donut_swin.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/donut/configuration_donut_swin.py#L24)
 
 **Parameters:**
 
@@ -212,8 +212,8 @@ This is the configuration class to store the configuration of a Donut SwinModel.
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [naver-clova-ix/donut-base](https://huggingface.co/naver-clova-ix/donut-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -238,7 +238,7 @@ Example:
 transformers.DonutImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/donut/image_processing_donut.py#L46)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/donut/image_processing_donut.py#L46)
 
 **Parameters:**
 
@@ -294,7 +294,7 @@ Constructs a image_processor_class image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/donut/image_processing_donut.py#L70)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/donut/image_processing_donut.py#L70)
 
 **Parameters:**
 
@@ -358,7 +358,7 @@ do_align_long_axis (`bool`, *kwargs*, *optional*, defaults to `self.do_align_lon
 transformers.DonutImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/donut/image_processing_pil_donut.py#L46)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/donut/image_processing_pil_donut.py#L46)
 
 **Parameters:**
 
@@ -414,7 +414,7 @@ Constructs a image_processor_class image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/donut/image_processing_pil_donut.py#L70)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/donut/image_processing_pil_donut.py#L70)
 
 **Parameters:**
 
@@ -478,7 +478,7 @@ do_align_long_axis (`bool`, *kwargs*, *optional*, defaults to `self.do_align_lon
 transformers.DonutProcessor(image_processor = None, tokenizer = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/donut/processing_donut.py#L39)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/donut/processing_donut.py#L39)
 
 **Parameters:**
 
@@ -488,7 +488,7 @@ tokenizer (`tokenizer_class`) : The tokenizer is a required input.
 
 Constructs a DonutProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[DonutProcessor](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutProcessor) offers all the functionalities of `image_processor_class` and `tokenizer_class`. See the
+[DonutProcessor](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutProcessor) offers all the functionalities of `image_processor_class` and `tokenizer_class`. See the
 `~image_processor_class` and `~tokenizer_class` for more information.
 
 #### __call__[[transformers.DonutProcessor.__call__]]
@@ -497,7 +497,7 @@ Constructs a DonutProcessor which wraps a image processor and a tokenizer into a
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/donut/processing_donut.py#L45)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/donut/processing_donut.py#L45)
 
 **Parameters:**
 
@@ -505,9 +505,9 @@ images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Imag
 
 text (`Union[str, list[str], list[list[str]]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 #### from_pretrained[[transformers.DonutProcessor.from_pretrained]]
 
@@ -515,19 +515,19 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 from_pretrained(pretrained_model_name_or_path: str | os.PathLike, cache_dir: str | os.PathLike | None = None, force_download: bool = False, local_files_only: bool = False, token: str | bool | None = None, revision: str = 'main', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L1682)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L1682)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained feature_extractor hosted inside a model repo on huggingface.co. - a path to a *directory* containing a feature extractor file saved using the [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.save_pretrained) method, e.g., `./my_model_directory/`. - a path to a saved feature extractor JSON *file*, e.g., `./my_model_directory/preprocessor_config.json`.
+pretrained_model_name_or_path (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained feature_extractor hosted inside a model repo on huggingface.co. - a path to a *directory* containing a feature extractor file saved using the [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.save_pretrained) method, e.g., `./my_model_directory/`. - a path to a saved feature extractor JSON *file*, e.g., `./my_model_directory/preprocessor_config.json`.
 
-- ****kwargs** : Additional keyword arguments passed along to both [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained) and `~tokenization_utils_base.PreTrainedTokenizer.from_pretrained`.
+- ****kwargs** : Additional keyword arguments passed along to both [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained) and `~tokenization_utils_base.PreTrainedTokenizer.from_pretrained`.
 
 Instantiate a processor associated with a pretrained model.
 
 This class method is simply calling the feature extractor
-[from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained), image processor
-[ImageProcessingMixin](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.ImageProcessingMixin) and the tokenizer
+[from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained), image processor
+[ImageProcessingMixin](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.ImageProcessingMixin) and the tokenizer
 `~tokenization_utils_base.PreTrainedTokenizer.from_pretrained` methods. Please refer to the docstrings of the
 methods above for more information.
 
@@ -537,7 +537,7 @@ methods above for more information.
 save_pretrained(save_directory, push_to_hub: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L1107)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L1107)
 
 **Parameters:**
 
@@ -545,13 +545,13 @@ save_directory (`str` or `os.PathLike`) : Directory where the feature extractor 
 
 push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push your model to the Hugging Face model hub after saving it. You can specify the repository you want to push to with `repo_id` (will default to the name of `save_directory` in your namespace).
 
-kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
 
 Saves the attributes of this processor (feature extractor, tokenizer...) in the specified directory so that it
-can be reloaded using the [from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutProcessor.from_pretrained) method.
+can be reloaded using the [from_pretrained()](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutProcessor.from_pretrained) method.
 
-This class method is simply calling [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.save_pretrained) and
-[save_pretrained()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.save_pretrained). Please refer to the docstrings of the
+This class method is simply calling [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.save_pretrained) and
+[save_pretrained()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.save_pretrained). Please refer to the docstrings of the
 methods above for more information.
 
 #### batch_decode[[transformers.DonutProcessor.batch_decode]]
@@ -560,9 +560,9 @@ methods above for more information.
 batch_decode(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L1930)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L1930)
 
-This method forwards all its arguments to PreTrainedTokenizer's [batch_decode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode). Please
+This method forwards all its arguments to PreTrainedTokenizer's [batch_decode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode). Please
 refer to the docstring of this method for more information.
 
 #### decode[[transformers.DonutProcessor.decode]]
@@ -571,9 +571,9 @@ refer to the docstring of this method for more information.
 decode(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L1939)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L1939)
 
-This method forwards all its arguments to PreTrainedTokenizer's [decode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.decode). Please refer to
+This method forwards all its arguments to PreTrainedTokenizer's [decode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.decode). Please refer to
 the docstring of this method for more information.
 
 ## DonutSwinModel[[transformers.DonutSwinModel]]
@@ -584,11 +584,11 @@ the docstring of this method for more information.
 transformers.DonutSwinModel(config, add_pooling_layer = True, use_mask_token = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/donut/modeling_donut_swin.py#L785)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/donut/modeling_donut_swin.py#L785)
 
 **Parameters:**
 
-config ([DonutSwinModel](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutSwinModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DonutSwinModel](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutSwinModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
@@ -596,7 +596,7 @@ use_mask_token (`bool`, *optional*, defaults to `False`) : Whether to use a mask
 
 The bare Donut Swin Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -610,11 +610,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, interpolate_pos_encoding: bool = False, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/donut/modeling_donut_swin.py#L809)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/donut/modeling_donut_swin.py#L809)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DonutImageProcessor](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutImageProcessor). See `DonutImageProcessor.__call__()` for details (`processor_class` uses [DonutImageProcessor](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DonutImageProcessor](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutImageProcessor). See `DonutImageProcessor.__call__()` for details (`processor_class` uses [DonutImageProcessor](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
@@ -624,15 +624,15 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `DonutSwinModelOutput` or `tuple(torch.FloatTensor)`
 
 A `DonutSwinModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DonutSwinConfig](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutSwinConfig)) and inputs.
+elements depending on the configuration ([DonutSwinConfig](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutSwinConfig)) and inputs.
 
-The [DonutSwinModel](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutSwinModel) forward method, overrides the `__call__` special method.
+The [DonutSwinModel](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutSwinModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -663,11 +663,11 @@ the latter silently ignores them.
 transformers.DonutSwinForImageClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/donut/modeling_donut_swin.py#L881)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/donut/modeling_donut_swin.py#L881)
 
 **Parameters:**
 
-config ([DonutSwinForImageClassification](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutSwinForImageClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DonutSwinForImageClassification](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutSwinForImageClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 DonutSwin Model transformer with an image classification head on top (a linear layer on top of the final hidden state of
 the [CLS] token) e.g. for ImageNet.
@@ -676,7 +676,7 @@ Note that it's possible to fine-tune DonutSwin on higher resolution images than 
 setting `interpolate_pos_encoding` to `True` in the forward of the model. This will interpolate the pre-trained
 position embeddings to the higher resolution.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -690,11 +690,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, interpolate_pos_encoding: bool = False, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/donut/modeling_donut_swin.py#L896)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/donut/modeling_donut_swin.py#L896)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DonutImageProcessor](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutImageProcessor). See `DonutImageProcessor.__call__()` for details (`processor_class` uses [DonutImageProcessor](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DonutImageProcessor](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutImageProcessor). See `DonutImageProcessor.__call__()` for details (`processor_class` uses [DonutImageProcessor](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
@@ -704,15 +704,15 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `DonutSwinImageClassifierOutput` or `tuple(torch.FloatTensor)`
 
 A `DonutSwinImageClassifierOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DonutSwinConfig](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutSwinConfig)) and inputs.
+elements depending on the configuration ([DonutSwinConfig](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutSwinConfig)) and inputs.
 
-The [DonutSwinForImageClassification](/docs/transformers/v5.15.0/en/model_doc/donut#transformers.DonutSwinForImageClassification) forward method, overrides the `__call__` special method.
+The [DonutSwinForImageClassification](/docs/transformers/v5.15.1/en/model_doc/donut#transformers.DonutSwinForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -760,4 +760,4 @@ Example:
 ```
 
 ### DEIMv2
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/deimv2.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/deimv2.md

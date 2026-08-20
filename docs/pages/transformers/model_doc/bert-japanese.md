@@ -64,7 +64,7 @@ API reference information.
 transformers.BertJapaneseTokenizer(vocab_file, spm_file = None, do_lower_case = False, do_word_tokenize = True, do_subword_tokenize = True, word_tokenizer_type = 'basic', subword_tokenizer_type = 'wordpiece', never_split = None, unk_token = '[UNK]', sep_token = '[SEP]', pad_token = '[PAD]', cls_token = '[CLS]', mask_token = '[MASK]', mecab_kwargs = None, sudachi_kwargs = None, jumanpp_kwargs = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bert_japanese/tokenization_bert_japanese.py#L58)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bert_japanese/tokenization_bert_japanese.py#L58)
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ jumanpp_kwargs (`dict`, *optional*) : Dictionary passed to the `JumanppTokenizer
 
 Construct a BERT tokenizer for Japanese text.
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer
 to: this superclass for more information regarding those methods.
 
 #### convert_tokens_to_string[[transformers.BertJapaneseTokenizer.convert_tokens_to_string]]
@@ -99,9 +99,9 @@ to: this superclass for more information regarding those methods.
 convert_tokens_to_string(tokens)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bert_japanese/tokenization_bert_japanese.py#L256)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bert_japanese/tokenization_bert_japanese.py#L256)
 
 Converts a sequence of tokens (string) in a single string.
 
 ### SAM3-LiteText
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/sam3_lite_text.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/sam3_lite_text.md

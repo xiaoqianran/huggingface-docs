@@ -159,7 +159,7 @@ Apply the `group_texts` function over the entire dataset:
 >>> lm_dataset = tokenized_eli5.map(group_texts, batched=True, num_proc=4)
 ```
 
-Now create a batch of examples using [DataCollatorForLanguageModeling](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DataCollatorForLanguageModeling). It's more efficient to *dynamically pad* the
+Now create a batch of examples using [DataCollatorForLanguageModeling](/docs/transformers/v5.15.1/en/main_classes/data_collator#transformers.DataCollatorForLanguageModeling). It's more efficient to *dynamically pad* the
 sentences to the longest length in a batch during collation, instead of padding the whole dataset to the maximum length.
 
 Use the end-of-sequence token as the padding token and set `mlm=False`. This will use the inputs as labels shifted to the right by one element:
@@ -173,9 +173,9 @@ Use the end-of-sequence token as the padding token and set `mlm=False`. This wil
 
 ## Train
 
-If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), take a look at the [basic tutorial](../training#train-with-pytorch-trainer)!
+If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), take a look at the [basic tutorial](../training#train-with-pytorch-trainer)!
 
-You're ready to start training your model now! Load DistilGPT2 with [AutoModelForCausalLM](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForCausalLM):
+You're ready to start training your model now! Load DistilGPT2 with [AutoModelForCausalLM](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForCausalLM):
 
 ```py
 >>> from transformers import AutoModelForCausalLM, TrainingArguments, Trainer
@@ -185,9 +185,9 @@ You're ready to start training your model now! Load DistilGPT2 with [AutoModelFo
 
 At this point, only three steps remain:
 
-1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model).
-2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) along with the model, datasets, and data collator.
-3. Call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
+1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model).
+2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) along with the model, datasets, and data collator.
+3. Call [train()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
 
 ```py
 >>> training_args = TrainingArguments(
@@ -210,7 +210,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, use the [evaluate()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.evaluate) method to evaluate your model and get its perplexity:
+Once training is completed, use the [evaluate()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.evaluate) method to evaluate your model and get its perplexity:
 
 ```py
 >>> import math
@@ -220,7 +220,7 @@ Once training is completed, use the [evaluate()](/docs/transformers/v5.15.0/en/m
 Perplexity: 49.61
 ```
 
-Then share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
+Then share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -239,7 +239,7 @@ Come up with a prompt you'd like to generate text from:
 >>> prompt = "Somatic hypermutation allows the immune system to"
 ```
 
-The simplest way to try out your finetuned model for inference is to use it in a [pipeline()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.pipeline). Instantiate a `pipeline` for text generation with your model, and pass your text to it:
+The simplest way to try out your finetuned model for inference is to use it in a [pipeline()](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.pipeline). Instantiate a `pipeline` for text generation with your model, and pass your text to it:
 
 ```py
 >>> from transformers import pipeline
@@ -258,7 +258,7 @@ Tokenize the text and return the `input_ids` as PyTorch tensors:
 >>> inputs = tokenizer(prompt, return_tensors="pt").input_ids
 ```
 
-Use the [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) method to generate text.
+Use the [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) method to generate text.
 For more details about the different text generation strategies and parameters for controlling generation, check out the [Text generation strategies](../generation_strategies) page.
 
 ```py
@@ -276,4 +276,4 @@ Decode the generated token ids back into text:
 ```
 
 ### Video classification
-https://huggingface.co/docs/transformers/v5.15.0/tasks/video_classification.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/video_classification.md

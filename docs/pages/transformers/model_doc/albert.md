@@ -14,7 +14,7 @@ You can find all the original ALBERT checkpoints under the [ALBERT community](ht
 > [!TIP]
 > Click on the ALBERT models in the right sidebar for more examples of how to apply ALBERT to different language tasks.
 
-The example below demonstrates how to predict the `[MASK]` token with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
+The example below demonstrates how to predict the `[MASK]` token with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel), and from the command line.
 
 ```python
 from transformers import pipeline
@@ -80,7 +80,7 @@ The resources provided in the following sections consist of a list of official H
 
 **Multiple choice**
 
-- [AlbertForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/albert#transformers.AlbertForMultipleChoice) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/multiple-choice) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/multiple_choice.ipynb).
+- [AlbertForMultipleChoice](/docs/transformers/v5.15.1/en/model_doc/albert#transformers.AlbertForMultipleChoice) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/multiple-choice) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/multiple_choice.ipynb).
 - Check the [Multiple choice task guide](../tasks/multiple_choice) on how to use the model.
 
 ## AlbertConfig[[transformers.AlbertConfig]]
@@ -91,7 +91,7 @@ The resources provided in the following sections consist of a list of official H
 transformers.AlbertConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 30000, embedding_size: int = 128, hidden_size: int = 4096, num_hidden_layers: int = 12, num_hidden_groups: int = 1, num_attention_heads: int = 64, intermediate_size: int = 16384, inner_group_num: int = 1, hidden_act: str = 'gelu_new', hidden_dropout_prob: int | float = 0.0, attention_probs_dropout_prob: int | float = 0.0, max_position_embeddings: int = 512, type_vocab_size: int = 2, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, classifier_dropout_prob: int | float = 0.1, pad_token_id: int | None = 0, bos_token_id: int | None = 2, eos_token_id: int | list[int] | None = 3, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/albert/configuration_albert.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/albert/configuration_albert.py#L25)
 
 **Parameters:**
 
@@ -139,8 +139,8 @@ This is the configuration class to store the configuration of a AlbertModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [albert/albert-xxlarge-v2](https://huggingface.co/albert/albert-xxlarge-v2)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -176,7 +176,7 @@ Examples:
 transformers.AlbertTokenizer(vocab: str | list[tuple[str, float]] | None = None, do_lower_case: bool = True, keep_accents: bool = False, bos_token: str = '[CLS]', eos_token: str = '[SEP]', unk_token: str = '<unk>', sep_token: str = '[SEP]', pad_token: str = '<pad>', cls_token: str = '[CLS]', mask_token: str = '[MASK]', _spm_precompiled_charsmap: str | None = None, add_prefix_space: bool = True, trim_offsets: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/albert/tokenization_albert.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/albert/tokenization_albert.py#L28)
 
 **Parameters:**
 
@@ -208,7 +208,7 @@ vocab_file (`str`, *optional*) : [SentencePiece](https://github.com/google/sente
 
 Construct a "fast" ALBERT tokenizer (backed by HuggingFace's *tokenizers* library). Based on
 [Unigram](https://huggingface.co/docs/tokenizers/python/latest/components.html?highlight=unigram#models). This
-tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
+tokenizer inherits from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods
 
 ## Albert specific outputs[[transformers.models.albert.modeling_albert.AlbertForPreTrainingOutput]]
@@ -219,7 +219,7 @@ this superclass for more information regarding those methods
 transformers.models.albert.modeling_albert.AlbertForPreTrainingOutput(loss: typing.Optional[torch.FloatTensor] = None, prediction_logits: typing.Optional[torch.FloatTensor] = None, sop_logits: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor] | None = None, attentions: tuple[torch.FloatTensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/albert/modeling_albert.py#L317)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/albert/modeling_albert.py#L317)
 
 **Parameters:**
 
@@ -259,16 +259,16 @@ Output type of `AlbertForPreTraining`.
 transformers.AlbertForMultipleChoice(config: AlbertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/albert/modeling_albert.py#L859)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/albert/modeling_albert.py#L859)
 
 **Parameters:**
 
-config ([AlbertConfig](/docs/transformers/v5.15.0/en/model_doc/albert#transformers.AlbertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([AlbertConfig](/docs/transformers/v5.15.1/en/model_doc/albert#transformers.AlbertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Albert Model with a multiple choice classification head on top (a linear layer on top of the pooled output and a
 softmax) e.g. for RocStories/SWAG tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -282,11 +282,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.FloatTensor] = None, token_type_ids: typing.Optional[torch.LongTensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/albert/modeling_albert.py#L870)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/albert/modeling_albert.py#L870)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) and [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) and [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -298,13 +298,13 @@ inputs_embeds (`torch.FloatTensor` of shape `(batch_size, num_choices, sequence_
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the multiple choice classification loss. Indices should be in `[0, ..., num_choices-1]` where *num_choices* is the size of the second dimension of the input tensors. (see *input_ids* above)
 
-**Returns:** [AlbertForPreTrainingOutput](/docs/transformers/v5.15.0/en/model_doc/albert#transformers.models.albert.modeling_albert.AlbertForPreTrainingOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [AlbertForPreTrainingOutput](/docs/transformers/v5.15.1/en/model_doc/albert#transformers.models.albert.modeling_albert.AlbertForPreTrainingOutput) or `tuple(torch.FloatTensor)`
 
-A [AlbertForPreTrainingOutput](/docs/transformers/v5.15.0/en/model_doc/albert#transformers.models.albert.modeling_albert.AlbertForPreTrainingOutput) or a tuple of
+A [AlbertForPreTrainingOutput](/docs/transformers/v5.15.1/en/model_doc/albert#transformers.models.albert.modeling_albert.AlbertForPreTrainingOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([AlbertConfig](/docs/transformers/v5.15.0/en/model_doc/albert#transformers.AlbertConfig)) and inputs.
+elements depending on the configuration ([AlbertConfig](/docs/transformers/v5.15.1/en/model_doc/albert#transformers.AlbertConfig)) and inputs.
 
-The [AlbertForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/albert#transformers.AlbertForMultipleChoice) forward method, overrides the `__call__` special method.
+The [AlbertForMultipleChoice](/docs/transformers/v5.15.1/en/model_doc/albert#transformers.AlbertForMultipleChoice) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -356,4 +356,4 @@ Example:
 [[autodoc]] AlbertForQuestionAnswering - forward
 
 ### SwiftFormer
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/swiftformer.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/swiftformer.md

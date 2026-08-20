@@ -1,14 +1,14 @@
 # Pipeline
 
-The [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) is a simple but powerful inference API that is readily available for a variety of machine learning tasks with any model from the Hugging Face [Hub](https://hf.co/models).
+The [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) is a simple but powerful inference API that is readily available for a variety of machine learning tasks with any model from the Hugging Face [Hub](https://hf.co/models).
 
-Tailor the [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) to your task with task specific parameters such as adding timestamps to an automatic speech recognition (ASR) pipeline for transcribing meeting notes. [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) supports GPUs, Apple Silicon, and half-precision weights to accelerate inference and save memory.
+Tailor the [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) to your task with task specific parameters such as adding timestamps to an automatic speech recognition (ASR) pipeline for transcribing meeting notes. [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) supports GPUs, Apple Silicon, and half-precision weights to accelerate inference and save memory.
 
-Transformers has two pipeline classes, a generic [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) and many individual task-specific pipelines like [TextGenerationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.TextGenerationPipeline). Load these individual pipelines by setting the task identifier in the `task` parameter in [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline). You can find the task identifier for each pipeline in their API documentation.
+Transformers has two pipeline classes, a generic [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) and many individual task-specific pipelines like [TextGenerationPipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.TextGenerationPipeline). Load these individual pipelines by setting the task identifier in the `task` parameter in [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline). You can find the task identifier for each pipeline in their API documentation.
 
 Each task is configured to use a default pretrained model and preprocessor, but this can be overridden with the `model` parameter if you want to use a different model.
 
-For example, to use the [TextGenerationPipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.TextGenerationPipeline) with [Gemma 2](./model_doc/gemma2), set `task="text-generation"` and `model="google/gemma-2-2b"`.
+For example, to use the [TextGenerationPipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.TextGenerationPipeline) with [Gemma 2](./model_doc/gemma2), set `task="text-generation"` and `model="google/gemma-2-2b"`.
 
 ```py
 from transformers import pipeline
@@ -32,13 +32,13 @@ pipeline(["the secret to baking a really good cake is ", "a baguette is "])
  [{'generated_text': 'a baguette is 100% bread.\n\na baguette is 100%'}]]
 ```
 
-This guide will introduce you to the [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline), demonstrate its features, and show how to configure its various parameters.
+This guide will introduce you to the [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline), demonstrate its features, and show how to configure its various parameters.
 
 ## Tasks
 
-[Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) is compatible with many machine learning tasks across different modalities. Pass an appropriate input to the pipeline and it will handle the rest.
+[Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) is compatible with many machine learning tasks across different modalities. Pass an appropriate input to the pipeline and it will handle the rest.
 
-Here are some examples of how to use [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) for different tasks and modalities.
+Here are some examples of how to use [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) for different tasks and modalities.
 
 ```py
 from transformers import pipeline
@@ -75,15 +75,15 @@ pipeline(
 
 ## Parameters
 
-At a minimum, [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) only requires a task identifier, model, and the appropriate input. But there are many parameters available to configure the pipeline with, from task-specific parameters to optimizing performance.
+At a minimum, [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) only requires a task identifier, model, and the appropriate input. But there are many parameters available to configure the pipeline with, from task-specific parameters to optimizing performance.
 
 This section introduces you to some of the more important parameters.
 
 ### Device
 
-[Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) is compatible with many hardware types, including GPUs, CPUs, Apple Silicon, and more. Configure the hardware type with the `device` parameter. By default, [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) runs on a CPU which is given by `device=-1`.
+[Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) is compatible with many hardware types, including GPUs, CPUs, Apple Silicon, and more. Configure the hardware type with the `device` parameter. By default, [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) runs on a CPU which is given by `device=-1`.
 
-To run [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) on a GPU, set `device` to the associated CUDA device id. For example, `device=0` runs on the first GPU.
+To run [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) on a GPU, set `device` to the associated CUDA device id. For example, `device=0` runs on the first GPU.
 
 ```py
 from transformers import pipeline
@@ -108,7 +108,7 @@ pipeline = pipeline(task="text-generation", model="google/gemma-2-2b", device_ma
 pipeline("the secret to baking a really good cake is ")
 ```
 
-To run [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) on Apple silicon, set `device="mps"`.
+To run [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) on Apple silicon, set `device="mps"`.
 
 ```py
 from transformers import pipeline
@@ -119,9 +119,9 @@ pipeline("the secret to baking a really good cake is ")
 
 ### Batch inference
 
-[Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) can also process batches of inputs with the `batch_size` parameter. Batch inference may improve speed, especially on a GPU, but it isn't guaranteed. Other variables such as hardware, data, and the model itself can affect whether batch inference improves speed. For this reason, batch inference is disabled by default.
+[Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) can also process batches of inputs with the `batch_size` parameter. Batch inference may improve speed, especially on a GPU, but it isn't guaranteed. Other variables such as hardware, data, and the model itself can affect whether batch inference improves speed. For this reason, batch inference is disabled by default.
 
-In the example below, when there are 4 inputs and `batch_size` is set to 2, [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) passes a batch of 2 inputs to the model at a time.
+In the example below, when there are 4 inputs and `batch_size` is set to 2, [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) passes a batch of 2 inputs to the model at a time.
 
 ```py
 from transformers import pipeline
@@ -137,7 +137,7 @@ pipeline(["the secret to baking a really good cake is", "a baguette is", "paris 
  [{'generated_text': 'hotdogs are a staple of the american diet. they are a great source of protein and can'}]]
 ```
 
-Another good use case for batch inference is for streaming data in [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline).
+Another good use case for batch inference is for streaming data in [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline).
 
 ```py
 from transformers import pipeline
@@ -165,11 +165,11 @@ Keep the following general rules of thumb in mind for determining whether batch 
 
 ### Task-specific parameters
 
-[Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) accepts any parameters that are supported by each individual task pipeline. Make sure to check out each individual task pipeline to see what type of parameters are available. If you can't find a parameter that is useful for your use case, please feel free to open a GitHub [issue](https://github.com/huggingface/transformers/issues/new?assignees=&labels=feature&template=feature-request.yml) to request it!
+[Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) accepts any parameters that are supported by each individual task pipeline. Make sure to check out each individual task pipeline to see what type of parameters are available. If you can't find a parameter that is useful for your use case, please feel free to open a GitHub [issue](https://github.com/huggingface/transformers/issues/new?assignees=&labels=feature&template=feature-request.yml) to request it!
 
 The examples below demonstrate some of the task-specific parameters available.
 
-Pass the `return_timestamps="word"` parameter to [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) to return when each word was spoken.
+Pass the `return_timestamps="word"` parameter to [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) to return when each word was spoken.
 
 ```py
 from transformers import pipeline
@@ -200,9 +200,9 @@ pipeline(audio="https://huggingface.co/datasets/Narsil/asr_dummy/resolve/main/ml
   {'text': ' creed.', 'timestamp': (11.8, 12.3)}]}
 ```
 
-Pass `return_full_text=False` to [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) to only return the generated text instead of the full text (prompt and generated text).
+Pass `return_full_text=False` to [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) to only return the generated text instead of the full text (prompt and generated text).
 
-[__call__()](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.TextGenerationPipeline.__call__) also supports additional keyword arguments from the [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) method. To return more than one generated sequence, set `num_return_sequences` to a value greater than 1.
+[__call__()](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.TextGenerationPipeline.__call__) also supports additional keyword arguments from the [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) method. To return more than one generated sequence, set `num_return_sequences` to a value greater than 1.
 
 ```py
 from transformers import pipeline
@@ -224,7 +224,7 @@ There are some instances where you need to process data in chunks.
 
 The [ChunkPipeline](https://github.com/huggingface/transformers/blob/99e0ab6ed888136ea4877c6d8ab03690a1478363/src/transformers/pipelines/base.py#L1387) class is designed to handle these use cases. Both pipeline classes are used in the same way, but since [ChunkPipeline](https://github.com/huggingface/transformers/blob/99e0ab6ed888136ea4877c6d8ab03690a1478363/src/transformers/pipelines/base.py#L1387) can automatically handle batching, you don't need to worry about the number of forward passes your inputs trigger. Instead, you can optimize `batch_size` independently of the inputs.
 
-The example below shows how it differs from [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline).
+The example below shows how it differs from [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline).
 
 ```py
 # ChunkPipeline
@@ -258,7 +258,7 @@ for out in pipeline(KeyDataset(dataset, "text"), batch_size=8, truncation="only_
     print(out)
 ```
 
-Other ways to run inference on large datasets with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) include using an iterator or generator.
+Other ways to run inference on large datasets with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) include using an iterator or generator.
 
 ```py
 def data():
@@ -273,7 +273,7 @@ for out in pipeline(data()):
 
 ## Large models
 
-[Accelerate](https://hf.co/docs/accelerate/index) enables a couple of optimizations for running large models with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline). Make sure Accelerate is installed first.
+[Accelerate](https://hf.co/docs/accelerate/index) enables a couple of optimizations for running large models with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline). Make sure Accelerate is installed first.
 
 ```py
 !pip install -U accelerate
@@ -281,12 +281,12 @@ for out in pipeline(data()):
 
 The `device_map="auto"` setting is useful for automatically distributing the model across the fastest devices (GPUs) first before dispatching to other slower devices if available (CPU, hard drive).
 
-[Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) supports half-precision weights (torch.float16), which can be significantly faster and save memory. Performance loss is negligible for most models, especially for larger ones. If your hardware supports it, you can enable torch.bfloat16 instead for more range.
+[Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) supports half-precision weights (torch.float16), which can be significantly faster and save memory. Performance loss is negligible for most models, especially for larger ones. If your hardware supports it, you can enable torch.bfloat16 instead for more range.
 
 > [!TIP]
 > Inputs are internally converted to torch.float16 and it only works for models with a PyTorch backend.
 
-Lastly, [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) also accepts quantized models to reduce memory usage even further. Make sure you have the [bitsandbytes](https://hf.co/docs/bitsandbytes/installation) library installed first, and then add `quantization_config` to `model_kwargs` in the pipeline.
+Lastly, [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) also accepts quantized models to reduce memory usage even further. Make sure you have the [bitsandbytes](https://hf.co/docs/bitsandbytes/installation) library installed first, and then add `quantization_config` to `model_kwargs` in the pipeline.
 
 ```py
 import torch
@@ -298,4 +298,4 @@ pipeline("the secret to baking a good cake is ")
 ```
 
 ### Exporters
-https://huggingface.co/docs/transformers/v5.15.0/exporters.md
+https://huggingface.co/docs/transformers/v5.15.1/exporters.md

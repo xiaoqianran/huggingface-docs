@@ -11,7 +11,7 @@ PP-Chart2Table adopts a multimodal fusion architecture that combines a vision to
 
 ### Single input inference
 
-The example below demonstrates how to classify image with PP-Chart2Table using [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel).
+The example below demonstrates how to classify image with PP-Chart2Table using [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 from transformers import pipeline
@@ -74,7 +74,7 @@ print(result)
 
 ### Batched inference
 
-Here is how you can do it with PP-Chart2Table using [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel):
+Here is how you can do it with PP-Chart2Table using [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel):
 
 ```python
 from transformers import pipeline
@@ -144,7 +144,7 @@ print(result)
 transformers.PPChart2TableConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, image_token_index: int = 151859, image_seq_length: int = 576, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_chart2table/configuration_pp_chart2table.py#L68)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_chart2table/configuration_pp_chart2table.py#L68)
 
 **Parameters:**
 
@@ -162,8 +162,8 @@ This is the configuration class to store the configuration of a Pp Chart2TableMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PP-Chart2Table_safetensors](https://huggingface.co/PaddlePaddle/PP-Chart2Table_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -188,7 +188,7 @@ Example:
 transformers.PPChart2TableImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_chart2table/image_processing_pp_chart2table.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_chart2table/image_processing_pp_chart2table.py#L26)
 
 **Parameters:**
 
@@ -296,7 +296,7 @@ Added for backward compatibility but this should be set as a processor attribute
 transformers.PPChart2TableImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_chart2table/image_processing_pil_pp_chart2table.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_chart2table/image_processing_pil_pp_chart2table.py#L26)
 
 **Parameters:**
 
@@ -384,7 +384,7 @@ Added for backward compatibility but this should be set as a processor attribute
 transformers.PPChart2TableProcessor(image_processor = None, tokenizer = None, chat_template = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_chart2table/processing_pp_chart2table.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_chart2table/processing_pp_chart2table.py#L30)
 
 **Parameters:**
 
@@ -396,8 +396,8 @@ chat_template (`str`) : A Jinja template to convert lists of messages in a chat 
 
 Constructs a PPChart2TableProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[PPChart2TableProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_chart2table#transformers.PPChart2TableProcessor) offers all the functionalities of [PPChart2TableImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_chart2table#transformers.PPChart2TableImageProcessor) and `tokenizer_class`. See the
-[~PPChart2TableImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_chart2table#transformers.PPChart2TableImageProcessor) and `~tokenizer_class` for more information.
+[PPChart2TableProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_chart2table#transformers.PPChart2TableProcessor) offers all the functionalities of [PPChart2TableImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_chart2table#transformers.PPChart2TableImageProcessor) and `tokenizer_class`. See the
+[~PPChart2TableImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_chart2table#transformers.PPChart2TableImageProcessor) and `~tokenizer_class` for more information.
 
 ### Inkling
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/inkling.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/inkling.md

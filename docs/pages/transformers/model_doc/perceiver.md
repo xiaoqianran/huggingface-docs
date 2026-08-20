@@ -37,7 +37,7 @@ of latent variables, and only use the inputs for cross-attention. In this way, t
 depend on the length of the inputs anymore, as one uses a fixed amount of latent variables, like 256 or 512. These are
 randomly initialized, after which they are trained end-to-end using backpropagation.
 
-Internally, [PerceiverModel](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverModel) will create the latents, which is a tensor of shape `(batch_size, num_latents,
+Internally, [PerceiverModel](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverModel) will create the latents, which is a tensor of shape `(batch_size, num_latents,
 d_latents)`. One must provide `inputs` (which could be text, images, audio, you name it!) to the model, which it will
 use to perform cross-attention with the latents. The output of the Perceiver encoder is a tensor of the same shape. One
 can then, similar to BERT, convert the last hidden states of the latents to classification logits by averaging along
@@ -87,7 +87,7 @@ audio classification, video classification, etc.
 transformers.models.perceiver.modeling_perceiver.PerceiverModelOutput(logits: typing.Optional[torch.FloatTensor] = None, last_hidden_state: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor] | None = None, attentions: tuple[torch.FloatTensor] | None = None, cross_attentions: tuple[torch.FloatTensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L53)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L53)
 
 **Parameters:**
 
@@ -109,7 +109,7 @@ Base class for Perceiver base model's outputs, with potential hidden states, att
 transformers.models.perceiver.modeling_perceiver.PerceiverDecoderOutput(logits: typing.Optional[torch.FloatTensor] = None, cross_attentions: tuple[torch.FloatTensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L72)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L72)
 
 **Parameters:**
 
@@ -125,7 +125,7 @@ Base class for Perceiver decoder outputs, with potential cross-attentions.
 transformers.models.perceiver.modeling_perceiver.PerceiverMaskedLMOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor] | None = None, attentions: tuple[torch.FloatTensor] | None = None, cross_attentions: tuple[torch.FloatTensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L88)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L88)
 
 **Parameters:**
 
@@ -147,7 +147,7 @@ Base class for Perceiver's masked language model outputs.
 transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor] | None = None, attentions: tuple[torch.FloatTensor] | None = None, cross_attentions: tuple[torch.FloatTensor] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L110)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L110)
 
 **Parameters:**
 
@@ -172,7 +172,7 @@ autoencoding.
 transformers.PerceiverConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, num_latents: int = 256, d_latents: int = 1280, d_model: int = 768, num_blocks: int = 1, num_self_attends_per_block: int = 26, num_self_attention_heads: int = 8, num_cross_attention_heads: int = 8, qk_channels: int | None = None, v_channels: int | None = None, cross_attention_shape_for_attention: str = 'kv', self_attention_widening_factor: int = 1, cross_attention_widening_factor: int = 1, hidden_act: str = 'gelu', attention_probs_dropout_prob: float | int = 0.1, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, use_query_residual: bool = True, vocab_size: int = 262, max_position_embeddings: int = 2048, image_size: int | list[int] | tuple[int, int] = 56, train_size: list[int] | tuple[int, ...] = (368, 496), num_frames: int = 16, audio_samples_per_frame: int = 1920, samples_per_patch: int = 16, output_shape: list[int] | tuple[int, ...] = (1, 16, 224, 224), output_num_channels: int = 512, _label_trainable_num_channels: int = 1024)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/configuration_perceiver.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/configuration_perceiver.py#L24)
 
 **Parameters:**
 
@@ -214,7 +214,7 @@ vocab_size (`int`, *optional*, defaults to `262`) : Vocabulary size of the model
 
 max_position_embeddings (`int`, *optional*, defaults to `2048`) : The maximum sequence length that this model might ever be used with.
 
-image_size (`int`, *optional*, defaults to 56) : Size of the images after preprocessing, for [PerceiverForImageClassificationLearned](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForImageClassificationLearned).
+image_size (`int`, *optional*, defaults to 56) : Size of the images after preprocessing, for [PerceiverForImageClassificationLearned](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForImageClassificationLearned).
 
 train_size (`list[int]`, *optional*, defaults to `[368, 496]`) : Training size of the images for the optical flow model.
 
@@ -232,8 +232,8 @@ This is the configuration class to store the configuration of a PerceiverModel. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [deepmind/language-perceiver](https://huggingface.co/deepmind/language-perceiver)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -258,7 +258,7 @@ Example:
 transformers.PerceiverTokenizer(pad_token = '[PAD]', bos_token = '[BOS]', eos_token = '[EOS]', mask_token = '[MASK]', cls_token = '[CLS]', sep_token = '[SEP]', model_max_length = 2048, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/tokenization_perceiver.py#L23)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/tokenization_perceiver.py#L23)
 
 **Parameters:**
 
@@ -276,7 +276,7 @@ sep_token (`str`, *optional*, defaults to `"[SEP]"`) : The separator token, whic
 
 Construct a Perceiver tokenizer. The Perceiver simply uses raw bytes utf-8 encoding.
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 #### __call__[[transformers.PerceiverTokenizer.__call__]]
@@ -285,7 +285,7 @@ this superclass for more information regarding those methods.
 __call__(text: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_pair: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_target: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_pair_target: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, add_special_tokens: bool = True, padding: bool | str | PaddingStrategy = False, truncation: bool | str | TruncationStrategy | None = None, max_length: int | None = None, stride: int = 0, is_split_into_words: bool = False, pad_to_multiple_of: int | None = None, padding_side: str | None = None, return_tensors: str | TensorType | None = None, return_token_type_ids: bool | None = None, return_attention_mask: bool | None = None, return_overflowing_tokens: bool = False, return_special_tokens_mask: bool = False, return_offsets_mapping: bool = False, return_length: bool = False, verbose: bool = True, tokenizer_kwargs: dict[str, Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_base.py#L2417)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_base.py#L2417)
 
 **Parameters:**
 
@@ -301,9 +301,9 @@ tokenizer_kwargs (`dict[str, Any]`, *optional*) : Additional kwargs to pass to t
 
 add_special_tokens (`bool`, *optional*, defaults to `True`) : Whether or not to add special tokens when encoding the sequences. This will use the underlying `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens automatically.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
-truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
 
 max_length (`int`, *optional*) : Controls the maximum length to use by one of the truncation/padding parameters.  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length is required by one of the truncation/padding parameters. If the model has no specific maximum input length (like XLNet) truncation/padding to a maximum length will be deactivated.
 
@@ -315,7 +315,7 @@ pad_to_multiple_of (`int`, *optional*) : If set will pad the sequence to a multi
 
 padding_side (`str`, *optional*) : The side on which the model should have padding applied. Should be selected between ['right', 'left']. Default value is picked from the class attribute of the same name.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects. 
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects. 
 
 return_token_type_ids (`bool`, *optional*) : Whether to return token type IDs. If left to the default, will return the token type IDs according to the specific tokenizer's default, defined by the `return_outputs` attribute.  [What are token type IDs?](../glossary#token-type-ids)
 
@@ -325,7 +325,7 @@ return_overflowing_tokens (`bool`, *optional*, defaults to `False`) : Whether or
 
 return_special_tokens_mask (`bool`, *optional*, defaults to `False`) : Whether or not to return special tokens mask information.
 
-return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
+return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
 
 return_length  (`bool`, *optional*, defaults to `False`) : Whether or not to return the lengths of the encoded inputs.
 
@@ -333,9 +333,9 @@ verbose (`bool`, *optional*, defaults to `True`) : Whether or not to print more 
 
 - ****kwargs** : passed to the `self.tokenize()` method
 
-**Returns:** [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding)
+**Returns:** [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding)
 
-A [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
+A [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model.
 
@@ -370,7 +370,7 @@ sequences.
 transformers.PerceiverImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/image_processing_perceiver.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/image_processing_perceiver.py#L33)
 
 **Parameters:**
 
@@ -422,7 +422,7 @@ Constructs a PerceiverImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -482,7 +482,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.PerceiverImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/image_processing_pil_perceiver.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/image_processing_pil_perceiver.py#L31)
 
 **Parameters:**
 
@@ -534,7 +534,7 @@ Constructs a PerceiverImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -594,11 +594,11 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.models.perceiver.modeling_perceiver.PerceiverTextPreprocessor(config: PerceiverConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L2662)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L2662)
 
 **Parameters:**
 
-config ([PerceiverConfig](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverConfig)) : Model configuration.
+config ([PerceiverConfig](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverConfig)) : Model configuration.
 
 Text preprocessing for Perceiver Encoder. Can be used to embed `inputs` and add positional encodings.
 
@@ -612,7 +612,7 @@ The dimensionality of the embeddings is determined by the `d_model` attribute of
 transformers.models.perceiver.modeling_perceiver.PerceiverImagePreprocessor(config, prep_type = 'conv', spatial_downsample: int = 4, temporal_downsample: int = 1, position_encoding_type: str = 'fourier', in_channels: int = 3, out_channels: int = 64, conv_after_patching: bool = False, conv_after_patching_in_channels: int = 54, conv2d_use_batchnorm: bool = True, concat_or_add_pos: str = 'concat', project_pos_dim: int = -1, **position_encoding_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L2825)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L2825)
 
 **Parameters:**
 
@@ -656,11 +656,11 @@ position encoding kwargs are set equal to the *out_channels*.
 transformers.models.perceiver.modeling_perceiver.PerceiverOneHotPreprocessor(config: PerceiverConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L3063)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L3063)
 
 **Parameters:**
 
-config ([PerceiverConfig](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverConfig)) : Model configuration.
+config ([PerceiverConfig](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverConfig)) : Model configuration.
 
 One-hot preprocessor for Perceiver Encoder. Can be used to add a dummy index dimension to the input.
 
@@ -672,7 +672,7 @@ One-hot preprocessor for Perceiver Encoder. Can be used to add a dummy index dim
 transformers.models.perceiver.modeling_perceiver.PerceiverAudioPreprocessor(config, prep_type: str = 'patches', samples_per_patch: int = 96, position_encoding_type: str = 'fourier', concat_or_add_pos: str = 'concat', out_channels = 64, project_pos_dim = -1, **position_encoding_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L3089)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L3089)
 
 **Parameters:**
 
@@ -702,7 +702,7 @@ Audio preprocessing for Perceiver Encoder.
 transformers.models.perceiver.modeling_perceiver.PerceiverMultimodalPreprocessor(modalities: Mapping, mask_probs: collections.abc.Mapping[str, float] | None = None, min_padding_size: int = 2)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L3192)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L3192)
 
 **Parameters:**
 
@@ -725,11 +725,11 @@ of channels.
 transformers.models.perceiver.modeling_perceiver.PerceiverProjectionDecoder(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L1843)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L1843)
 
 **Parameters:**
 
-config ([PerceiverConfig](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverConfig)) : Model configuration.
+config ([PerceiverConfig](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverConfig)) : Model configuration.
 
 Baseline projection decoder (no cross-attention).
 
@@ -741,7 +741,7 @@ Baseline projection decoder (no cross-attention).
 transformers.models.perceiver.modeling_perceiver.PerceiverBasicDecoder(config: PerceiverConfig, output_num_channels: int, position_encoding_type: str | None = 'trainable', output_index_dims: int | None = None, num_channels: int | None = 128, subsampled_index_dims: int | None = None, qk_channels: int | None = None, v_channels: int | None = None, num_heads: int | None = 1, widening_factor: int | None = 1, use_query_residual: bool | None = False, concat_preprocessed_input: bool | None = False, final_project: bool | None = True, position_encoding_only: bool | None = False, **position_encoding_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L1869)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L1869)
 
 **Parameters:**
 
@@ -784,11 +784,11 @@ The shape of the output of this class depends on how one defines the output quer
 transformers.models.perceiver.modeling_perceiver.PerceiverClassificationDecoder(config, **decoder_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L2054)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L2054)
 
 **Parameters:**
 
-config ([PerceiverConfig](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverConfig)) : Model configuration.
+config ([PerceiverConfig](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverConfig)) : Model configuration.
 
 Cross-attention based classification decoder. Light-weight wrapper of `PerceiverBasicDecoder` for logit output.
 Will turn the output of the Perceiver encoder which is of shape (batch_size, num_latents, d_latents) to a tensor of
@@ -802,7 +802,7 @@ shape (batch_size, num_labels). The queries are of shape (batch_size, 1, num_lab
 transformers.models.perceiver.modeling_perceiver.PerceiverOpticalFlowDecoder(config, output_image_shape, output_num_channels = 2, rescale_factor = 100.0, **decoder_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L2100)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L2100)
 
 Cross-attention based optical flow decoder.
 
@@ -814,7 +814,7 @@ Cross-attention based optical flow decoder.
 transformers.models.perceiver.modeling_perceiver.PerceiverBasicVideoAutoencodingDecoder(config: PerceiverConfig, output_shape: list, position_encoding_type: str, **decoder_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L2135)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L2135)
 
 **Parameters:**
 
@@ -835,7 +835,7 @@ reshaping logic.
 transformers.models.perceiver.modeling_perceiver.PerceiverMultimodalDecoder(config: PerceiverConfig, modalities: dict, num_outputs: int, output_num_channels: int, min_padding_size: int | None = 2, subsampled_index_dims: dict[str, transformers.models.perceiver.modeling_perceiver.PerceiverAbstractDecoder] | None = None, **decoder_kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L2212)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L2212)
 
 **Parameters:**
 
@@ -866,7 +866,7 @@ Next, there is a shared cross attention operation across all modalities.
 transformers.models.perceiver.modeling_perceiver.PerceiverProjectionPostprocessor(in_channels: int, out_channels: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L2804)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L2804)
 
 **Parameters:**
 
@@ -885,7 +885,7 @@ dimension.
 transformers.models.perceiver.modeling_perceiver.PerceiverAudioPostprocessor(config: PerceiverConfig, in_channels: int, postproc_type: str = 'patches')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L2777)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L2777)
 
 **Parameters:**
 
@@ -905,7 +905,7 @@ Audio postprocessing for Perceiver. Can be used to convert the decoder output to
 transformers.models.perceiver.modeling_perceiver.PerceiverClassificationPostprocessor(config: PerceiverConfig, in_channels: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L2757)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L2757)
 
 **Parameters:**
 
@@ -923,7 +923,7 @@ Classification postprocessing for Perceiver. Can be used to convert the decoder 
 transformers.models.perceiver.modeling_perceiver.PerceiverMultimodalPostprocessor(modalities: Mapping, input_is_dict: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L2723)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L2723)
 
 **Parameters:**
 
@@ -942,11 +942,11 @@ postprocessor.
 transformers.PerceiverModel(config, decoder: typing.Optional[ForwardRef('PerceiverAbstractDecoder')] = None, input_preprocessor: Callable = None, output_postprocessor: Callable = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L561)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L561)
 
 **Parameters:**
 
-config ([PerceiverModel](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PerceiverModel](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 decoder (`PerceiverDecoder`, *optional*) : Decoder module that transforms latent representations into task predictions.
 
@@ -960,7 +960,7 @@ Note that it's possible to fine-tune Perceiver on higher resolution images than 
 setting `interpolate_pos_encoding` to `True` in the forward of the model. This will interpolate the pre-trained
 position embeddings to the higher resolution.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -974,7 +974,7 @@ and behavior.
 forward(inputs: FloatTensor, attention_mask: typing.Optional[torch.FloatTensor] = None, subsampled_output_points: dict[str, torch.Tensor] | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, interpolate_pos_encoding: bool = False, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L597)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L597)
 
 **Parameters:**
 
@@ -990,15 +990,15 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [PerceiverModelOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [PerceiverModelOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverModelOutput) or `tuple(torch.FloatTensor)`
 
-A [PerceiverModelOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverModelOutput) or a tuple of
+A [PerceiverModelOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
+elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
 
-The [PerceiverModel](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverModel) forward method, overrides the `__call__` special method.
+The [PerceiverModel](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1123,15 +1123,15 @@ Examples:
 transformers.PerceiverForMaskedLM(config: PerceiverConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L807)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L807)
 
 **Parameters:**
 
-config ([PerceiverConfig](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PerceiverConfig](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Example use of Perceiver for masked language modeling.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1145,7 +1145,7 @@ and behavior.
 forward(inputs: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, labels: typing.Optional[torch.Tensor] = None, return_dict: bool | None = None, input_ids: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L839)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L839)
 
 **Parameters:**
 
@@ -1159,17 +1159,17 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should be in `[-100, 0, ..., config.vocab_size]` (see `input_ids` docstring) Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-**Returns:** [PerceiverMaskedLMOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverMaskedLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [PerceiverMaskedLMOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverMaskedLMOutput) or `tuple(torch.FloatTensor)`
 
-A [PerceiverMaskedLMOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverMaskedLMOutput) or a tuple of
+A [PerceiverMaskedLMOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverMaskedLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
+elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
 
-The [PerceiverForMaskedLM](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForMaskedLM) forward method, overrides the `__call__` special method.
+The [PerceiverForMaskedLM](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForMaskedLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1244,15 +1244,15 @@ Examples:
 transformers.PerceiverForSequenceClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L944)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L944)
 
 **Parameters:**
 
-config ([PerceiverForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PerceiverForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Example use of Perceiver for text classification.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1266,7 +1266,7 @@ and behavior.
 forward(inputs: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, labels: typing.Optional[torch.Tensor] = None, return_dict: bool | None = None, input_ids: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L965)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L965)
 
 **Parameters:**
 
@@ -1280,17 +1280,17 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-**Returns:** [PerceiverClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [PerceiverClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [PerceiverClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or a tuple of
+A [PerceiverClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
+elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
 
-The [PerceiverForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForSequenceClassification) forward method, overrides the `__call__` special method.
+The [PerceiverForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1337,23 +1337,23 @@ Examples:
 transformers.PerceiverForImageClassificationLearned(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L1066)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L1066)
 
 **Parameters:**
 
-config ([PerceiverForImageClassificationLearned](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForImageClassificationLearned)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PerceiverForImageClassificationLearned](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForImageClassificationLearned)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Example use of Perceiver for image classification, for tasks such as ImageNet.
 
 This model uses learned position embeddings. In other words, this model is not given any privileged information about
 the structure of images. As shown in the paper, this model can achieve a top-1 accuracy of 72.7 on ImageNet.
 
-[PerceiverForImageClassificationLearned](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForImageClassificationLearned) uses [PerceiverImagePreprocessor](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverImagePreprocessor)
+[PerceiverForImageClassificationLearned](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForImageClassificationLearned) uses [PerceiverImagePreprocessor](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverImagePreprocessor)
 (with `prep_type="conv1x1"`) to preprocess the input images, and
-[PerceiverClassificationDecoder](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassificationDecoder) to decode the latent representation of
-[PerceiverModel](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverModel) into classification logits.
+[PerceiverClassificationDecoder](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassificationDecoder) to decode the latent representation of
+[PerceiverModel](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverModel) into classification logits.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1367,7 +1367,7 @@ and behavior.
 forward(inputs: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, labels: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool = False, return_dict: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L1097)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L1097)
 
 **Parameters:**
 
@@ -1383,17 +1383,17 @@ labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for co
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PerceiverImageProcessor](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverImageProcessor). See `PerceiverImageProcessor.__call__()` for details (`processor_class` uses [PerceiverImageProcessor](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PerceiverImageProcessor](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverImageProcessor). See `PerceiverImageProcessor.__call__()` for details (`processor_class` uses [PerceiverImageProcessor](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverImageProcessor) for processing images).
 
-**Returns:** [PerceiverClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [PerceiverClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [PerceiverClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or a tuple of
+A [PerceiverClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
+elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
 
-The [PerceiverForImageClassificationLearned](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForImageClassificationLearned) forward method, overrides the `__call__` special method.
+The [PerceiverForImageClassificationLearned](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForImageClassificationLearned) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1451,23 +1451,23 @@ Predicted class: tabby, tabby cat
 transformers.PerceiverForImageClassificationFourier(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L1191)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L1191)
 
 **Parameters:**
 
-config ([PerceiverForImageClassificationFourier](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForImageClassificationFourier)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PerceiverForImageClassificationFourier](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForImageClassificationFourier)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Example use of Perceiver for image classification, for tasks such as ImageNet.
 
 This model uses fixed 2D Fourier position embeddings. As shown in the paper, this model can achieve a top-1 accuracy of
 79.0 on ImageNet, and 84.5 when pre-trained on a large-scale dataset (i.e. JFT).
 
-[PerceiverForImageClassificationLearned](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForImageClassificationLearned) uses [PerceiverImagePreprocessor](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverImagePreprocessor)
+[PerceiverForImageClassificationLearned](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForImageClassificationLearned) uses [PerceiverImagePreprocessor](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverImagePreprocessor)
 (with `prep_type="pixels"`) to preprocess the input images, and
-[PerceiverClassificationDecoder](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassificationDecoder) to decode the latent representation of
-[PerceiverModel](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverModel) into classification logits.
+[PerceiverClassificationDecoder](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassificationDecoder) to decode the latent representation of
+[PerceiverModel](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverModel) into classification logits.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1481,7 +1481,7 @@ and behavior.
 forward(inputs: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, labels: typing.Optional[torch.Tensor] = None, return_dict: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L1223)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L1223)
 
 **Parameters:**
 
@@ -1495,17 +1495,17 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PerceiverImageProcessor](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverImageProcessor). See `PerceiverImageProcessor.__call__()` for details (`processor_class` uses [PerceiverImageProcessor](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PerceiverImageProcessor](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverImageProcessor). See `PerceiverImageProcessor.__call__()` for details (`processor_class` uses [PerceiverImageProcessor](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverImageProcessor) for processing images).
 
-**Returns:** [PerceiverClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [PerceiverClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [PerceiverClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or a tuple of
+A [PerceiverClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
+elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
 
-The [PerceiverForImageClassificationFourier](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForImageClassificationFourier) forward method, overrides the `__call__` special method.
+The [PerceiverForImageClassificationFourier](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForImageClassificationFourier) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1563,23 +1563,23 @@ Predicted class: tabby, tabby cat
 transformers.PerceiverForImageClassificationConvProcessing(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L1314)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L1314)
 
 **Parameters:**
 
-config ([PerceiverForImageClassificationConvProcessing](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForImageClassificationConvProcessing)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PerceiverForImageClassificationConvProcessing](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForImageClassificationConvProcessing)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Example use of Perceiver for image classification, for tasks such as ImageNet.
 
 This model uses a 2D conv+maxpool preprocessing network. As shown in the paper, this model can achieve a top-1 accuracy
 of 82.1 on ImageNet.
 
-[PerceiverForImageClassificationLearned](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForImageClassificationLearned) uses [PerceiverImagePreprocessor](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverImagePreprocessor)
+[PerceiverForImageClassificationLearned](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForImageClassificationLearned) uses [PerceiverImagePreprocessor](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverImagePreprocessor)
 (with `prep_type="conv"`) to preprocess the input images, and
-[PerceiverClassificationDecoder](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassificationDecoder) to decode the latent representation of
-[PerceiverModel](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverModel) into classification logits.
+[PerceiverClassificationDecoder](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassificationDecoder) to decode the latent representation of
+[PerceiverModel](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverModel) into classification logits.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1593,7 +1593,7 @@ and behavior.
 forward(inputs: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, labels: typing.Optional[torch.Tensor] = None, return_dict: bool | None = None, pixel_values: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L1347)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L1347)
 
 **Parameters:**
 
@@ -1607,17 +1607,17 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PerceiverImageProcessor](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverImageProcessor). See `PerceiverImageProcessor.__call__()` for details (`processor_class` uses [PerceiverImageProcessor](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [PerceiverImageProcessor](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverImageProcessor). See `PerceiverImageProcessor.__call__()` for details (`processor_class` uses [PerceiverImageProcessor](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverImageProcessor) for processing images).
 
-**Returns:** [PerceiverClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [PerceiverClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [PerceiverClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or a tuple of
+A [PerceiverClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
+elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
 
-The [PerceiverForImageClassificationConvProcessing](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForImageClassificationConvProcessing) forward method, overrides the `__call__` special method.
+The [PerceiverForImageClassificationConvProcessing](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForImageClassificationConvProcessing) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1675,23 +1675,23 @@ Predicted class: tabby, tabby cat
 transformers.PerceiverForOpticalFlow(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L1438)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L1438)
 
 **Parameters:**
 
-config ([PerceiverForOpticalFlow](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForOpticalFlow)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PerceiverForOpticalFlow](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForOpticalFlow)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
-Example use of Perceiver for optical flow, for tasks such as Sintel and KITTI. [PerceiverForOpticalFlow](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForOpticalFlow) uses
-[PerceiverImagePreprocessor](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverImagePreprocessor) (with *prep_type="patches"*) to preprocess the
-input images, and [PerceiverOpticalFlowDecoder](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverOpticalFlowDecoder) to decode the latent
-representation of [PerceiverModel](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverModel).
+Example use of Perceiver for optical flow, for tasks such as Sintel and KITTI. [PerceiverForOpticalFlow](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForOpticalFlow) uses
+[PerceiverImagePreprocessor](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverImagePreprocessor) (with *prep_type="patches"*) to preprocess the
+input images, and [PerceiverOpticalFlowDecoder](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverOpticalFlowDecoder) to decode the latent
+representation of [PerceiverModel](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverModel).
 
 As input, one concatenates 2 subsequent frames along the channel dimension and extract a 3 x 3 patch around each pixel
 (leading to 3 x 3 x 3 x 2 = 54 values for each pixel). Fixed Fourier position encodings are used to encode the position
 of each pixel in the patch. Next, one applies the Perceiver encoder. To decode, one queries the latent representation
 using the same encoding used for the input.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1705,7 +1705,7 @@ and behavior.
 forward(inputs: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, labels: typing.Optional[torch.Tensor] = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L1488)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L1488)
 
 **Parameters:**
 
@@ -1719,15 +1719,15 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the optical flow loss. Indices should be in `[0, ..., config.num_labels - 1]`.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [PerceiverClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [PerceiverClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [PerceiverClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or a tuple of
+A [PerceiverClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
+elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
 
-The [PerceiverForOpticalFlow](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForOpticalFlow) forward method, overrides the `__call__` special method.
+The [PerceiverForOpticalFlow](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForOpticalFlow) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1777,30 +1777,30 @@ Examples:
 transformers.PerceiverForMultimodalAutoencoding(config: PerceiverConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L1580)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L1580)
 
 **Parameters:**
 
-config ([PerceiverConfig](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PerceiverConfig](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Example use of Perceiver for multimodal (video) autoencoding, for tasks such as Kinetics-700.
 
-[PerceiverForMultimodalAutoencoding](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForMultimodalAutoencoding) uses [PerceiverMultimodalPreprocessor](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverMultimodalPreprocessor) to
+[PerceiverForMultimodalAutoencoding](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForMultimodalAutoencoding) uses [PerceiverMultimodalPreprocessor](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverMultimodalPreprocessor) to
 preprocess the 3 modalities: images, audio and class labels. This preprocessor uses modality-specific preprocessors to
 preprocess every modality separately, after which they are concatenated. Trainable position embeddings are used to pad
 each modality to the same number of channels to make concatenation along the time dimension possible. Next, one applies
 the Perceiver encoder.
 
-[PerceiverMultimodalDecoder](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverMultimodalDecoder) is used to decode the latent representation of
-[PerceiverModel](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverModel). This decoder uses each modality-specific decoder to construct queries. The decoder queries are
+[PerceiverMultimodalDecoder](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverMultimodalDecoder) is used to decode the latent representation of
+[PerceiverModel](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverModel). This decoder uses each modality-specific decoder to construct queries. The decoder queries are
 created based on the inputs after preprocessing. However, autoencoding an entire video in a single forward pass is
 computationally infeasible, hence one only uses parts of the decoder queries to do cross-attention with the latent
 representation. This is determined by the subsampled indices for each modality, which can be provided as additional
-input to the forward pass of [PerceiverForMultimodalAutoencoding](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForMultimodalAutoencoding).
+input to the forward pass of [PerceiverForMultimodalAutoencoding](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForMultimodalAutoencoding).
 
-[PerceiverMultimodalDecoder](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverMultimodalDecoder) also pads the decoder queries of the different
+[PerceiverMultimodalDecoder](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverMultimodalDecoder) also pads the decoder queries of the different
 modalities to the same number of channels, in order to concatenate them along the time dimension. Next, cross-attention
-is performed with the latent representation of [PerceiverModel](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverModel).
+is performed with the latent representation of [PerceiverModel](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverModel).
 
 Finally, `~models.perceiver.modeling_perceiver.PerceiverMultiModalPostprocessor` is used to turn this tensor into an
 actual video. It first splits up the output into the different modalities, and then applies the respective
@@ -1809,7 +1809,7 @@ postprocessor for each modality.
 Note that, by masking the classification label during evaluation (i.e. simply providing a tensor of zeros for the
 "label" modality), this auto-encoding model becomes a Kinetics 700 video classifier.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1823,7 +1823,7 @@ and behavior.
 forward(inputs: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, subsampled_output_points: dict[str, torch.Tensor] | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, labels: typing.Optional[torch.Tensor] = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/perceiver/modeling_perceiver.py#L1696)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/perceiver/modeling_perceiver.py#L1696)
 
 **Parameters:**
 
@@ -1839,15 +1839,15 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [PerceiverClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [PerceiverClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [PerceiverClassifierOutput](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or a tuple of
+A [PerceiverClassifierOutput](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.models.perceiver.modeling_perceiver.PerceiverClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
+elements depending on the configuration ([PerceiverConfig](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverConfig)) and inputs.
 
-The [PerceiverForMultimodalAutoencoding](/docs/transformers/v5.15.0/en/model_doc/perceiver#transformers.PerceiverForMultimodalAutoencoding) forward method, overrides the `__call__` special method.
+The [PerceiverForMultimodalAutoencoding](/docs/transformers/v5.15.1/en/model_doc/perceiver#transformers.PerceiverForMultimodalAutoencoding) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1910,4 +1910,4 @@ Examples:
 ```
 
 ### PatchTSMixer
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/patchtsmixer.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/patchtsmixer.md

@@ -22,7 +22,7 @@ The original code can be found [here](https://github.com/microsoft/FocalNet).
 transformers.FocalNetConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 4, num_channels: int = 3, embed_dim: int = 96, use_conv_embed: bool = False, hidden_sizes: list[int] | tuple[int, ...] = (192, 384, 768, 768), depths: list[int] | tuple[int, ...] = (2, 2, 6, 2), focal_levels: list[int] | tuple[int, ...] = (2, 2, 2, 2), focal_windows: list[int] | tuple[int, ...] = (3, 3, 3, 3), hidden_act: str = 'gelu', mlp_ratio: float = 4.0, hidden_dropout_prob: float | int = 0.0, drop_path_rate: float | int = 0.1, use_layerscale: bool = False, layerscale_value: float = 0.0001, use_post_layernorm: bool = False, use_post_layernorm_in_modulation: bool = False, normalize_modulator: bool = False, initializer_range: float = 0.02, layer_norm_eps: float = 1e-05, encoder_stride: int = 32, _out_features: list[str] | None = None, _out_indices: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/focalnet/configuration_focalnet.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/focalnet/configuration_focalnet.py#L25)
 
 **Parameters:**
 
@@ -72,8 +72,8 @@ This is the configuration class to store the configuration of a FocalNetModel. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/focalnet-tiny](https://huggingface.co/microsoft/focalnet-tiny)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -98,11 +98,11 @@ Example:
 transformers.FocalNetModel(config, add_pooling_layer = True, use_mask_token = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/focalnet/modeling_focalnet.py#L592)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/focalnet/modeling_focalnet.py#L592)
 
 **Parameters:**
 
-config ([FocalNetModel](/docs/transformers/v5.15.0/en/model_doc/focalnet#transformers.FocalNetModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FocalNetModel](/docs/transformers/v5.15.1/en/model_doc/focalnet#transformers.FocalNetModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
@@ -110,7 +110,7 @@ use_mask_token (`bool`, *optional*, defaults to `False`) : Whether to use a mask
 
 The bare Focalnet Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -124,25 +124,25 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/focalnet/modeling_focalnet.py#L617)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/focalnet/modeling_focalnet.py#L617)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bit#transformers.BitImageProcessor). See `BitImageProcessor.__call__()` for details (`processor_class` uses [BitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bit#transformers.BitImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bit#transformers.BitImageProcessor). See `BitImageProcessor.__call__()` for details (`processor_class` uses [BitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bit#transformers.BitImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `FocalNetModelOutput` or `tuple(torch.FloatTensor)`
 
 A `FocalNetModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FocalNetConfig](/docs/transformers/v5.15.0/en/model_doc/focalnet#transformers.FocalNetConfig)) and inputs.
+elements depending on the configuration ([FocalNetConfig](/docs/transformers/v5.15.1/en/model_doc/focalnet#transformers.FocalNetConfig)) and inputs.
 
-The [FocalNetModel](/docs/transformers/v5.15.0/en/model_doc/focalnet#transformers.FocalNetModel) forward method, overrides the `__call__` special method.
+The [FocalNetModel](/docs/transformers/v5.15.1/en/model_doc/focalnet#transformers.FocalNetModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -173,11 +173,11 @@ Example:
 transformers.FocalNetForMaskedImageModeling(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/focalnet/modeling_focalnet.py#L682)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/focalnet/modeling_focalnet.py#L682)
 
 **Parameters:**
 
-config ([FocalNetForMaskedImageModeling](/docs/transformers/v5.15.0/en/model_doc/focalnet#transformers.FocalNetForMaskedImageModeling)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FocalNetForMaskedImageModeling](/docs/transformers/v5.15.1/en/model_doc/focalnet#transformers.FocalNetForMaskedImageModeling)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 FocalNet Model with a decoder on top for masked image modeling.
 
@@ -186,7 +186,7 @@ This follows the same implementation as in [SimMIM](https://huggingface.co/paper
 Note that we provide a script to pre-train this model on custom data in our [examples
 directory](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-pretraining).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -200,25 +200,25 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/focalnet/modeling_focalnet.py#L700)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/focalnet/modeling_focalnet.py#L700)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bit#transformers.BitImageProcessor). See `BitImageProcessor.__call__()` for details (`processor_class` uses [BitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bit#transformers.BitImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bit#transformers.BitImageProcessor). See `BitImageProcessor.__call__()` for details (`processor_class` uses [BitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bit#transformers.BitImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `FocalNetMaskedImageModelingOutput` or `tuple(torch.FloatTensor)`
 
 A `FocalNetMaskedImageModelingOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FocalNetConfig](/docs/transformers/v5.15.0/en/model_doc/focalnet#transformers.FocalNetConfig)) and inputs.
+elements depending on the configuration ([FocalNetConfig](/docs/transformers/v5.15.1/en/model_doc/focalnet#transformers.FocalNetConfig)) and inputs.
 
-The [FocalNetForMaskedImageModeling](/docs/transformers/v5.15.0/en/model_doc/focalnet#transformers.FocalNetForMaskedImageModeling) forward method, overrides the `__call__` special method.
+The [FocalNetForMaskedImageModeling](/docs/transformers/v5.15.1/en/model_doc/focalnet#transformers.FocalNetForMaskedImageModeling) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -271,16 +271,16 @@ Examples:
 transformers.FocalNetForImageClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/focalnet/modeling_focalnet.py#L789)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/focalnet/modeling_focalnet.py#L789)
 
 **Parameters:**
 
-config ([FocalNetForImageClassification](/docs/transformers/v5.15.0/en/model_doc/focalnet#transformers.FocalNetForImageClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FocalNetForImageClassification](/docs/transformers/v5.15.1/en/model_doc/focalnet#transformers.FocalNetForImageClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 FocalNet Model with an image classification head on top (a linear layer on top of the pooled output) e.g. for
 ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -294,25 +294,25 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/focalnet/modeling_focalnet.py#L805)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/focalnet/modeling_focalnet.py#L805)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bit#transformers.BitImageProcessor). See `BitImageProcessor.__call__()` for details (`processor_class` uses [BitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/bit#transformers.BitImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bit#transformers.BitImageProcessor). See `BitImageProcessor.__call__()` for details (`processor_class` uses [BitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/bit#transformers.BitImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `FocalNetImageClassifierOutput` or `tuple(torch.FloatTensor)`
 
 A `FocalNetImageClassifierOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FocalNetConfig](/docs/transformers/v5.15.0/en/model_doc/focalnet#transformers.FocalNetConfig)) and inputs.
+elements depending on the configuration ([FocalNetConfig](/docs/transformers/v5.15.1/en/model_doc/focalnet#transformers.FocalNetConfig)) and inputs.
 
-The [FocalNetForImageClassification](/docs/transformers/v5.15.0/en/model_doc/focalnet#transformers.FocalNetForImageClassification) forward method, overrides the `__call__` special method.
+The [FocalNetForImageClassification](/docs/transformers/v5.15.1/en/model_doc/focalnet#transformers.FocalNetForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -355,4 +355,4 @@ Example:
 ```
 
 ### MiniMax
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/minimax.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/minimax.md

@@ -11,7 +11,7 @@ Transformers supports loading models stored in the GGUF format for further train
 > [!TIP]
 > Models that support GGUF include Llama, Mistral, Qwen2, Qwen2Moe, Phi3, Bloom, Falcon, StableLM, GPT2, Starcoder2, and [more](https://github.com/huggingface/transformers/blob/main/src/transformers/integrations/ggml.py)
 
-Add the `gguf_file` parameter to [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to specify the GGUF file to load.
+Add the `gguf_file` parameter to [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to specify the GGUF file to load.
 
 ```py
 # pip install gguf
@@ -36,4 +36,4 @@ model.save_pretrained("directory")
 ```
 
 ### LightOnOcr
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/lighton_ocr.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/lighton_ocr.md

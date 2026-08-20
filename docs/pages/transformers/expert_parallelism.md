@@ -36,4 +36,4 @@ torchrun --nproc-per-node 8 your_script.py
 ```
 
 ### Sharing
-https://huggingface.co/docs/transformers/v5.15.0/model_sharing.md
+https://huggingface.co/docs/transformers/v5.15.1/model_sharing.md

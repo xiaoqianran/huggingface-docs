@@ -53,7 +53,7 @@ for API reference and examples.
 transformers.HerbertTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, cls_token: str = '<s>', unk_token: str = '<unk>', pad_token: str = '<pad>', mask_token: str = '<mask>', sep_token: str = '</s>', vocab_file: str | None = None, merges_file: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/herbert/tokenization_herbert.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/herbert/tokenization_herbert.py#L28)
 
 **Parameters:**
 
@@ -82,7 +82,7 @@ Peculiarities:
 - uses BERT's pre-tokenizer: BertPreTokenizer splits tokens on spaces, and also on punctuation. Each occurrence of
   a punctuation character will be treated separately.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the methods. Users should refer to the
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the methods. Users should refer to the
 superclass for more information regarding methods.
 
 ## HerbertTokenizerFast[[transformers.HerbertTokenizer]]
@@ -93,7 +93,7 @@ superclass for more information regarding methods.
 transformers.HerbertTokenizer(vocab: str | dict[str, int] | None = None, merges: str | list[str] | None = None, cls_token: str = '<s>', unk_token: str = '<unk>', pad_token: str = '<pad>', mask_token: str = '<mask>', sep_token: str = '</s>', vocab_file: str | None = None, merges_file: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/herbert/tokenization_herbert.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/herbert/tokenization_herbert.py#L28)
 
 **Parameters:**
 
@@ -122,8 +122,8 @@ Peculiarities:
 - uses BERT's pre-tokenizer: BertPreTokenizer splits tokens on spaces, and also on punctuation. Each occurrence of
   a punctuation character will be treated separately.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the methods. Users should refer to the
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the methods. Users should refer to the
 superclass for more information regarding methods.
 
 ### Granite Vision
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/granitevision.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/granitevision.md

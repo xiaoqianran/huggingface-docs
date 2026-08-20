@@ -10,7 +10,7 @@ A feature extractor is in charge of preparing input features for audio models. T
 transformers.FeatureExtractionMixin(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/feature_extraction_utils.py#L266)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/feature_extraction_utils.py#L266)
 
 This is a feature extraction mixin used to provide saving/loading functionality for sequential and audio feature
 extractors.
@@ -21,11 +21,11 @@ extractors.
 from_pretrained(pretrained_model_name_or_path: str | os.PathLike, cache_dir: str | os.PathLike | None = None, force_download: bool = False, local_files_only: bool = False, token: str | bool | None = None, revision: str = 'main', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/feature_extraction_utils.py#L286)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/feature_extraction_utils.py#L286)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained feature_extractor hosted inside a model repo on huggingface.co. - a path to a *directory* containing a feature extractor file saved using the [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.save_pretrained) method, e.g., `./my_model_directory/`. - a path to a saved feature extractor JSON *file*, e.g., `./my_model_directory/preprocessor_config.json`.
+pretrained_model_name_or_path (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained feature_extractor hosted inside a model repo on huggingface.co. - a path to a *directory* containing a feature extractor file saved using the [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.save_pretrained) method, e.g., `./my_model_directory/`. - a path to a saved feature extractor JSON *file*, e.g., `./my_model_directory/preprocessor_config.json`.
 
 cache_dir (`str` or `os.PathLike`, *optional*) : Path to a directory in which a downloaded pretrained model feature extractor should be cached if the standard cache should not be used.
 
@@ -43,10 +43,10 @@ kwargs (`dict[str, Any]`, *optional*) : The values in kwargs of any keys which a
 
 **Returns:**
 
-A feature extractor of type [FeatureExtractionMixin](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin).
+A feature extractor of type [FeatureExtractionMixin](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin).
 
-Instantiate a type of [FeatureExtractionMixin](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin) from a feature extractor, *e.g.* a
-derived class of [SequenceFeatureExtractor](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor).
+Instantiate a type of [FeatureExtractionMixin](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin) from a feature extractor, *e.g.* a
+derived class of [SequenceFeatureExtractor](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor).
 
 Examples:
 
@@ -77,7 +77,7 @@ assert unused_kwargs == {"foo": False}
 save_pretrained(save_directory: str | os.PathLike, push_to_hub: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/feature_extraction_utils.py#L383)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/feature_extraction_utils.py#L383)
 
 **Parameters:**
 
@@ -85,10 +85,10 @@ save_directory (`str` or `os.PathLike`) : Directory where the feature extractor 
 
 push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push your model to the Hugging Face model hub after saving it. You can specify the repository you want to push to with `repo_id` (will default to the name of `save_directory` in your namespace).
 
-kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
 
 Save a feature_extractor object to the directory `save_directory`, so that it can be re-loaded using the
-[from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained) class method.
+[from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin.from_pretrained) class method.
 
 ## SequenceFeatureExtractor[[transformers.SequenceFeatureExtractor]]
 
@@ -98,7 +98,7 @@ Save a feature_extractor object to the directory `save_directory`, so that it ca
 transformers.SequenceFeatureExtractor(feature_size: int, sampling_rate: int, padding_value: float, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/feature_extraction_sequence_utils.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/feature_extraction_sequence_utils.py#L28)
 
 **Parameters:**
 
@@ -116,13 +116,13 @@ This is a general feature extraction class for speech recognition.
 pad(processed_features: transformers.feature_extraction_utils.BatchFeature | list[transformers.feature_extraction_utils.BatchFeature] | dict[str, transformers.feature_extraction_utils.BatchFeature] | dict[str, list[transformers.feature_extraction_utils.BatchFeature]] | list[dict[str, transformers.feature_extraction_utils.BatchFeature]], padding: bool | str | transformers.utils.generic.PaddingStrategy = True, max_length: int | None = None, truncation: bool = False, pad_to_multiple_of: int | None = None, return_attention_mask: bool | None = None, return_tensors: str | transformers.utils.generic.TensorType | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/feature_extraction_sequence_utils.py#L51)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/feature_extraction_sequence_utils.py#L51)
 
 **Parameters:**
 
-processed_features ([BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature), list of [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature), `dict[str, list[float]]`, `dict[str, list[list[float]]` or `list[dict[str, list[float]]]`) : Processed inputs. Can represent one input ([BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature) or `dict[str, list[float]]`) or a batch of input values / vectors (list of [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature), *dict[str, list[list[float]]]* or *list[dict[str, list[float]]]*) so you can use this method during preprocessing as well as in a PyTorch Dataloader collate function.  Instead of `list[float]` you can have tensors (numpy arrays or PyTorch tensors), see the note above for the return type.
+processed_features ([BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature), list of [BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature), `dict[str, list[float]]`, `dict[str, list[list[float]]` or `list[dict[str, list[float]]]`) : Processed inputs. Can represent one input ([BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature) or `dict[str, list[float]]`) or a batch of input values / vectors (list of [BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature), *dict[str, list[list[float]]]* or *list[dict[str, list[float]]]*) so you can use this method during preprocessing as well as in a PyTorch Dataloader collate function.  Instead of `list[float]` you can have tensors (numpy arrays or PyTorch tensors), see the note above for the return type.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `True`) : Select a strategy to pad the returned sequences (according to the model's padding side and padding index) among:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence if provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
 max_length (`int`, *optional*) : Maximum length of the returned list and optionally padding length (see above).
 
@@ -132,7 +132,7 @@ pad_to_multiple_of (`int`, *optional*) : If set will pad the sequence to a multi
 
 return_attention_mask (`bool`, *optional*) : Whether to return the attention mask. If left to the default, will return the attention mask according to the specific feature_extractor's default.  [What are attention masks?](../glossary#attention-mask)
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects.
 
 Pad input values / input vectors or a batch of input values / input vectors up to predefined length or to the
 max sequence length in the batch.
@@ -152,7 +152,7 @@ PyTorch tensors, you will lose the specific device of your tensors however.
 transformers.BatchFeature(data: dict[str, typing.Any] | None = None, tensor_type: None | str | transformers.utils.generic.TensorType = None, skip_tensor_conversion: list[str] | set[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/feature_extraction_utils.py#L58)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/feature_extraction_utils.py#L58)
 
 **Parameters:**
 
@@ -162,7 +162,7 @@ tensor_type (`Union[None, str, TensorType]`, *optional*) : You can give a tensor
 
 skip_tensor_conversion (`list[str]` or `set[str]`, *optional*) : List or set of keys that should NOT be converted to tensors, even when `tensor_type` is specified.
 
-Holds the output of the [pad()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad) and feature extractor specific `__call__` methods.
+Holds the output of the [pad()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad) and feature extractor specific `__call__` methods.
 
 This class is derived from a python dictionary and can be used as a dictionary.
 
@@ -172,11 +172,11 @@ This class is derived from a python dictionary and can be used as a dictionary.
 convert_to_tensors(tensor_type: str | transformers.utils.generic.TensorType | None = None, skip_tensor_conversion: list[str] | set[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/feature_extraction_utils.py#L158)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/feature_extraction_utils.py#L158)
 
 **Parameters:**
 
-tensor_type (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : The type of tensors to use. If `str`, should be one of the values of the enum [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType). If `None`, no modification is done.
+tensor_type (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : The type of tensors to use. If `str`, should be one of the values of the enum [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType). If `None`, no modification is done.
 
 skip_tensor_conversion (`list[str]` or `set[str]`, *optional*) : List or set of keys that should NOT be converted to tensors, even when `tensor_type` is specified.
 
@@ -193,7 +193,7 @@ different lengths) are still attempted, though they may raise errors during conv
 to(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/feature_extraction_utils.py#L215)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/feature_extraction_utils.py#L215)
 
 **Parameters:**
 
@@ -201,7 +201,7 @@ args (`Tuple`) : Will be passed to the `to(...)` function of the tensors.
 
 kwargs (`Dict`, *optional*) : Will be passed to the `to(...)` function of the tensors. To enable asynchronous data transfer, set the `non_blocking` flag in `kwargs` (defaults to `False`).
 
-**Returns:** [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature)
 
 The same instance after modification.
 
@@ -216,7 +216,7 @@ different `dtypes` and sending the `BatchFeature` to a different `device`.
 transformers.ImageFeatureExtractionMixin()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_utils.py#L628)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_utils.py#L628)
 
 Mixin that contain utilities for preparing image features.
 
@@ -226,7 +226,7 @@ Mixin that contain utilities for preparing image features.
 center_crop(image, size)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_utils.py#L862)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_utils.py#L862)
 
 **Parameters:**
 
@@ -248,7 +248,7 @@ size given, it will be padded (so the returned result has the size asked).
 convert_rgb(image)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_utils.py#L670)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_utils.py#L670)
 
 **Parameters:**
 
@@ -262,7 +262,7 @@ Converts `PIL.Image.Image` to RGB format.
 expand_dims(image)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_utils.py#L723)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_utils.py#L723)
 
 **Parameters:**
 
@@ -276,7 +276,7 @@ Expands 2-dimensional `image` to 3 dimensions.
 flip_channel_order(image)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_utils.py#L937)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_utils.py#L937)
 
 **Parameters:**
 
@@ -291,7 +291,7 @@ Flips the channel order of `image` from RGB to BGR, or vice versa. Note that thi
 normalize(image, mean, std, rescale = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_utils.py#L743)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_utils.py#L743)
 
 **Parameters:**
 
@@ -312,7 +312,7 @@ if it's a PIL Image.
 rescale(image: ndarray, scale: float | int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_utils.py#L684)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_utils.py#L684)
 
 Rescale a numpy image by scale amount
 
@@ -322,7 +322,7 @@ Rescale a numpy image by scale amount
 resize(image, size, resample = None, default_to_square = True, max_size = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_utils.py#L795)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_utils.py#L795)
 
 **Parameters:**
 
@@ -348,7 +348,7 @@ Resizes `image`. Enforces conversion of input to PIL.Image.
 rotate(image, angle, resample = None, expand = 0, center = None, translate = None, fillcolor = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_utils.py#L954)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_utils.py#L954)
 
 **Parameters:**
 
@@ -367,7 +367,7 @@ counter clockwise around its centre.
 to_numpy_array(image, rescale = None, channel_first = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_utils.py#L691)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_utils.py#L691)
 
 **Parameters:**
 
@@ -386,7 +386,7 @@ dimension.
 to_pil_image(image, rescale = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_utils.py#L640)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_utils.py#L640)
 
 **Parameters:**
 
@@ -398,4 +398,4 @@ Converts `image` to a PIL Image. Optionally rescales it and puts the channel dim
 needed.
 
 ### Logging
-https://huggingface.co/docs/transformers/v5.15.0/main_classes/logging.md
+https://huggingface.co/docs/transformers/v5.15.1/main_classes/logging.md

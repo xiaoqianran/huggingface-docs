@@ -8,9 +8,9 @@ Checkpoints are often serialized in a format that does not match what a model ex
 4. **Composite models**: A vision-language model contains two `PreTrainedModel` sub-modules, each with its own checkpoint convention.
 5. **Quantization**: Weights may be stored in quantized formats that need deserialization.
 
-Dynamic weight loading addresses this by applying scheduled, reversible operations to checkpoint tensors as they are loaded. Transformers exposes this through [WeightConverter](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.WeightConverter) and `WeightRenaming`, which describe how one or more checkpoint keys map to one or more model parameters and which composable [ConversionOps](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.ConversionOps) should run on the matched tensors. This approach adapts to new weight layouts, supports quantized mixture-of-experts (MoEs), and integrates with tensor parallelism.
+Dynamic weight loading addresses this by applying scheduled, reversible operations to checkpoint tensors as they are loaded. Transformers exposes this through [WeightConverter](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.WeightConverter) and `WeightRenaming`, which describe how one or more checkpoint keys map to one or more model parameters and which composable [ConversionOps](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.ConversionOps) should run on the matched tensors. This approach adapts to new weight layouts, supports quantized mixture-of-experts (MoEs), and integrates with tensor parallelism.
 
-This guide demonstrates how to use [WeightConverter](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.WeightConverter) to convert tensors. Conversion mappings live in [`conversion_mapping.py`](https://github.com/huggingface/transformers/blob/main/src/transformers/conversion_mapping.py); a registered mapping is keyed by either a `model_type` string (e.g. `"mixtral"`) or a class name (e.g. `"LlavaModel"`).
+This guide demonstrates how to use [WeightConverter](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.WeightConverter) to convert tensors. Conversion mappings live in [`conversion_mapping.py`](https://github.com/huggingface/transformers/blob/main/src/transformers/conversion_mapping.py); a registered mapping is keyed by either a `model_type` string (e.g. `"mixtral"`) or a class name (e.g. `"LlavaModel"`).
 
 ## Full loading pipeline
 
@@ -93,14 +93,14 @@ The system is built around several key components defined in [`core_model_loadin
 
 **Phase 1 — Per-key processing** (iterates over checkpoint keys):
 
-1. **Walk the transform list** once. Every `WeightRenaming` that matches fires (e.g. `block_sparse_moe` → `mlp`), and **at most one** [WeightConverter](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.WeightConverter) may claim the key (e.g. `experts.*.w1.weight`).
+1. **Walk the transform list** once. Every `WeightRenaming` that matches fires (e.g. `block_sparse_moe` → `mlp`), and **at most one** [WeightConverter](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.WeightConverter) may claim the key (e.g. `experts.*.w1.weight`).
 2. **Shard (TP) and send to device** asynchronously via `ThreadPoolExecutor`.
 3. **Collect** tensors with the same `source_pattern` together (e.g. all MoE expert weights, gate + up projections).
 
 **Phase 2 — Per-mapping processing** (iterates over collected mappings):
 
 1. **Dequantize/deserialize** (pre-quantized checkpoints only).
-2. **Apply [ConversionOps](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.ConversionOps) chain**: `Chunk`, `Concatenate`, `MergeModulelist`, `Transpose`, etc.
+2. **Apply [ConversionOps](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.ConversionOps) chain**: `Chunk`, `Concatenate`, `MergeModulelist`, `Transpose`, etc.
 3. **Quantize** on-the-fly (if not pre-quantized).
 4. **Set parameter** on model.
 
@@ -118,7 +118,7 @@ The base class that handles pattern matching and tensor collection:
 
 ### WeightRenaming
 
-`WeightRenaming` is a specialized `WeightTransform` for pure key renames without tensor operations. Unlike [WeightConverter](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.WeightConverter), a `WeightRenaming` does not **claim** the key, so multiple renames may chain freely. On the load path all renames run before the converter; on the save path (inverted list) all inverted renames run after the inverted converter — see ordering rule above.
+`WeightRenaming` is a specialized `WeightTransform` for pure key renames without tensor operations. Unlike [WeightConverter](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.WeightConverter), a `WeightRenaming` does not **claim** the key, so multiple renames may chain freely. On the load path all renames run before the converter; on the save path (inverted list) all inverted renames run after the inverted converter — see ordering rule above.
 
 ```py
 # Legacy checkpoint compatibility
@@ -139,13 +139,13 @@ PrefixChange(prefix_to_add="model")
 
 ### WeightConverter
 
-[WeightConverter](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.WeightConverter) extends `WeightTransform` with a chain of [ConversionOps](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.ConversionOps) that act on the collected tensors. The four supported cardinalities are:
+[WeightConverter](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.WeightConverter) extends `WeightTransform` with a chain of [ConversionOps](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.ConversionOps) that act on the collected tensors. The four supported cardinalities are:
 
 | Cardinality | Source patterns | Target patterns | Typical operation |
 |-------------|-----------------|-----------------|-------------------|
-| one-to-one | 1 | 1 | `Transpose`, [PermuteForRope](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.PermuteForRope) |
-| one-to-many | 1 | >1 | [Chunk](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.Chunk) (e.g. unpack `qkv_proj`) |
-| many-to-one | >1 | 1 | [Concatenate](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.Concatenate), [MergeModulelist](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.MergeModulelist) (e.g. fuse experts) |
+| one-to-one | 1 | 1 | `Transpose`, [PermuteForRope](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.PermuteForRope) |
+| one-to-many | 1 | >1 | [Chunk](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.Chunk) (e.g. unpack `qkv_proj`) |
+| many-to-one | >1 | 1 | [Concatenate](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.Concatenate), [MergeModulelist](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.MergeModulelist) (e.g. fuse experts) |
 | many-to-many | >1 | >1 | only with operations that explicitly support it (e.g. `ErnieFuseAndSplitTextVisionExperts`) |
 
 ```python
@@ -187,7 +187,7 @@ weight_mapping = [
 
 ## Conversion operations
 
-The [WeightConverter](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.WeightConverter) class has several operations that are executed when [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is called for transforming checkpoint source tensors into model target tensors.
+The [WeightConverter](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.WeightConverter) class has several operations that are executed when [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) is called for transforming checkpoint source tensors into model target tensors.
 
 Operations are fully reversible. Saving reverses the conversions and returns the original checkpoint so you can easily work across different frameworks.
 
@@ -203,7 +203,7 @@ Operations are fully reversible. Saving reverses the conversions and returns the
 
 ### Chunk
 
-The [Chunk](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.Chunk) operation splits a tensor into equal parts along a dimension. For example, if a model expects Q, K, and V as three separate tensors instead of a single tensor.
+The [Chunk](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.Chunk) operation splits a tensor into equal parts along a dimension. For example, if a model expects Q, K, and V as three separate tensors instead of a single tensor.
 
 ```py
 WeightConverter(
@@ -215,7 +215,7 @@ WeightConverter(
 
 ### Concatenate
 
-The [Concatenate](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.Concatenate) operation fuses separate tensors into a single tensor. For example, if a model expects Q, K, and V as a single tensor instead of separate tensors.
+The [Concatenate](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.Concatenate) operation fuses separate tensors into a single tensor. For example, if a model expects Q, K, and V as a single tensor instead of separate tensors.
 
 ```py
 WeightConverter(
@@ -227,7 +227,7 @@ WeightConverter(
 
 ### MergeModulelist
 
-[MergeModulelist](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.MergeModulelist) merges a list of 2D tensors into a single 3D tensor. For example, you can compose [MergeModulelist](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.MergeModulelist) with [Concatenate](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.Concatenate) to stack the experts in a MoE and pack them into one tensor.
+[MergeModulelist](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.MergeModulelist) merges a list of 2D tensors into a single 3D tensor. For example, you can compose [MergeModulelist](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.MergeModulelist) with [Concatenate](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.Concatenate) to stack the experts in a MoE and pack them into one tensor.
 
 ```py
 WeightConverter(
@@ -239,7 +239,7 @@ WeightConverter(
 
 ### SplitModulelist
 
-[SplitModulelist](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.SplitModulelist) splits a 3D tensor back into a list of 2D tensors. For example, you can split a stack of experts back into individual experts.
+[SplitModulelist](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.SplitModulelist) splits a 3D tensor back into a list of 2D tensors. For example, you can split a stack of experts back into individual experts.
 
 ```py
 WeightConverter(
@@ -251,7 +251,7 @@ WeightConverter(
 
 ### PermuteForRope
 
-[PermuteForRope](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.PermuteForRope) converts weights from the interleaved format to use the sin/cos format. For example, you can compose [Chunk](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.Chunk) with [PermuteForRope](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.PermuteForRope) to split a fused QKV tensor and apply the sin/cos RoPE permutation to Q and K.
+[PermuteForRope](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.PermuteForRope) converts weights from the interleaved format to use the sin/cos format. For example, you can compose [Chunk](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.Chunk) with [PermuteForRope](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.PermuteForRope) to split a fused QKV tensor and apply the sin/cos RoPE permutation to Q and K.
 
 ```py
 WeightConverter(
@@ -342,7 +342,7 @@ register_checkpoint_conversion_mapping(
 
 When `get_model_conversion_mapping` processes a `PreTrainedModel`, every sub-`PreTrainedModel` is visited in DFS order (`nn.Module.named_modules()` filtered to `PreTrainedModel` instances). Each sub-model is resolved in two stages, a custom code filter runs first, then the registered mapping is looked up.
 
-Custom code models are skipped before any lookup happens. A sub-model counts as custom code when [is_custom_code()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.is_custom_code) returns `True`, which covers models loaded from the Hub with `trust_remote_code=True` and any model class not in Transformers. Custom code models don't inherit a conversion mapping because its class name or `model_type` might collide with a native model. For example, a custom architecture that sets `model_type="mixtral"` won't pick up Mixtral's built-in expert-fusion transforms.
+Custom code models are skipped before any lookup happens. A sub-model counts as custom code when [is_custom_code()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.is_custom_code) returns `True`, which covers models loaded from the Hub with `trust_remote_code=True` and any model class not in Transformers. Custom code models don't inherit a conversion mapping because its class name or `model_type` might collide with a native model. For example, a custom architecture that sets `model_type="mixtral"` won't pick up Mixtral's built-in expert-fusion transforms.
 
 > [!IMPORTANT]
 > Register a custom code model explicitly with `register_checkpoint_conversion_mapping` to apply a conversion mapping. Registration adds the class name or `model_type` to the set of user-registered mappings, which exempts the model from the custom code skip and routes it through the normal lookup below.
@@ -434,7 +434,7 @@ if matched_tp_pattern := tp_plan_alt.search(renamed_key):
 
 Quantization hooks into the loading pipeline in two ways, depending on whether the checkpoint is already quantized:
 
-- **Pre-quantized checkpoints**: The quantizer provides [WeightConverter](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.WeightConverter) instances (via `get_weight_conversions()`) that deserialize quantized tensors. Checkpoint dtypes are preserved to avoid unwanted casts.
+- **Pre-quantized checkpoints**: The quantizer provides [WeightConverter](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.WeightConverter) instances (via `get_weight_conversions()`) that deserialize quantized tensors. Checkpoint dtypes are preserved to avoid unwanted casts.
 - **On-the-fly quantization**: The quantizer provides a quantization operation that is applied after conversion ops, quantizing weights as they are loaded.
 
 The quantizer can also rewrite the entire conversion list at the end of `get_model_conversion_mapping` via `update_weight_conversions(...)` — for example, the FP8 dequantizer prepends a `Fp8Dequantize` op to every existing converter so per-block scales are applied *before* any expert-merge / concat ops flatten the per-expert structure.
@@ -490,16 +490,16 @@ Sync loading is used when:
 
 ### Memory efficiency
 
-When converting a weight, the converter waits for all required tensors to materialize if they haven't loaded yet. For example, the [MergeModulelist](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.MergeModulelist) operation requires all weights in `ModuleList` to be loaded before merging.
+When converting a weight, the converter waits for all required tensors to materialize if they haven't loaded yet. For example, the [MergeModulelist](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.MergeModulelist) operation requires all weights in `ModuleList` to be loaded before merging.
 
-Concatenating tensors requires a temporary copy, so operations like [MergeModulelist](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.MergeModulelist) and [Concatenate](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.Concatenate) need 2x the memory of the underlying tensors during conversion. Once merged, only the resulting tensor stays in memory. The theoretical worst-case memory peak is the model size plus the tensors required for the largest [MergeModulelist](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.MergeModulelist) or [Concatenate](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.Concatenate) operation.
+Concatenating tensors requires a temporary copy, so operations like [MergeModulelist](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.MergeModulelist) and [Concatenate](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.Concatenate) need 2x the memory of the underlying tensors during conversion. Once merged, only the resulting tensor stays in memory. The theoretical worst-case memory peak is the model size plus the tensors required for the largest [MergeModulelist](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.MergeModulelist) or [Concatenate](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.Concatenate) operation.
 
 This worst case only occurs when all other parameters have loaded before the demanding conversion runs. Two scenarios trigger this.
 
 1. All parameters loaded asynchronously before entering the demanding conversion (the thread pool was faster than the conversion queue).
 2. The demanding conversion is the last one.
 
-For example, a MoE model using [MergeModulelist](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.MergeModulelist) for experts on each layer, the theoretical worst-case memory peak is model size plus experts on one layer.
+For example, a MoE model using [MergeModulelist](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.MergeModulelist) for experts on each layer, the theoretical worst-case memory peak is model size plus experts on one layer.
 
 These worst-case scenarios are uncommon. The actual memory peak tends to stay close to the model size.
 
@@ -621,7 +621,7 @@ Class-keyed aliases reuse the base mapping without extra registration: `"MaskFor
 
 ### Custom operations (ERNIE 4.5 VL MoE)
 
-When the built-in operations aren't sufficient, you can create a custom [ConversionOps](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.ConversionOps) subclass. For example, ERNIE 4.5 VL MoE needs to split a shared expert list between text and vision modalities — something no single built-in op handles. The custom `ErnieFuseAndSplitTextVisionExperts` operation splits and re-stacks experts across two target keys:
+When the built-in operations aren't sufficient, you can create a custom [ConversionOps](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.ConversionOps) subclass. For example, ERNIE 4.5 VL MoE needs to split a shared expert list between text and vision modalities — something no single built-in op handles. The custom `ErnieFuseAndSplitTextVisionExperts` operation splits and re-stacks experts across two target keys:
 
 ```python
 "ernie4_5_vl_moe": [
@@ -667,7 +667,7 @@ At a high level, the contract looks like this:
    mapping will target them. For adapters, that means calling `inject_adapter_in_model(...)` so adapter modules exist
    before loading. For custom heads or extra modules, instantiate them on the model first.
 2. **Describe how to map weights.** Build a conversion/renaming list (for example, in a helper like
-   `_build_peft_weight_mapping(...)`) using [WeightConverter](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.WeightConverter) or `WeightRenaming`. This is where you express how
+   `_build_peft_weight_mapping(...)`) using [WeightConverter](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.WeightConverter) or `WeightRenaming`. This is where you express how
    checkpoint keys should be converted, split, merged, or renamed to match your model namespace.
    You can do mostly 3 things:
     - add operations to the list of converters: these will be applied on all weights except for the ones collected in any of the `WeightConverter`. These in general should be `WeightRenaming` operations
@@ -691,4 +691,4 @@ These APIs are exposed to allow you to handle custom code, custom weight formats
 | `src/transformers/quantizers/base.py` | Quantization hooks and base class |
 
 ### Add audio processing components
-https://huggingface.co/docs/transformers/v5.15.0/add_audio_processing_components.md
+https://huggingface.co/docs/transformers/v5.15.1/add_audio_processing_components.md

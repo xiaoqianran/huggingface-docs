@@ -157,7 +157,7 @@ print(processor.streaming_latency_ms)
 transformers.Nemotron3_5AsrConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, vocab_size: int = 13088, decoder_hidden_size: int = 640, num_decoder_layers: int = 2, hidden_act: str = 'relu', max_symbols_per_step: int = 10, encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, pad_token_id: int = 0, blank_token_id: int = 13087, num_prompts: int = 128, prompt_intermediate_size: int = 2048, default_prompt_id: int = 101)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nemotron3_5_asr/configuration_nemotron3_5_asr.py#L23)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/nemotron3_5_asr/configuration_nemotron3_5_asr.py#L23)
 
 **Parameters:**
 
@@ -173,7 +173,7 @@ hidden_act (`str`, *optional*, defaults to `"relu"`) : Activation in the joint n
 
 max_symbols_per_step (`int`, *optional*, defaults to 10) : Maximum number of non-blank symbols emitted per encoder time step during greedy decoding.
 
-encoder_config (`Union[dict, NemotronAsrStreamingEncoderConfig]`, *optional*) : The config object or dictionary of the encoder. Reuses [NemotronAsrStreamingEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingEncoderConfig) directly, since the encoder is identical to `NemotronAsrStreaming`'s.
+encoder_config (`Union[dict, NemotronAsrStreamingEncoderConfig]`, *optional*) : The config object or dictionary of the encoder. Reuses [NemotronAsrStreamingEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/nemotron_asr_streaming#transformers.NemotronAsrStreamingEncoderConfig) directly, since the encoder is identical to `NemotronAsrStreaming`'s.
 
 pad_token_id (`int`, *optional*, defaults to `0`) : Token id used for padding in the vocabulary.
 
@@ -189,8 +189,8 @@ This is the configuration class to store the configuration of a Nemotron3_5AsrFo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [nvidia/nemotron-3.5-asr-streaming-0.6b](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -209,7 +209,7 @@ Example:
 transformers.Nemotron3_5AsrProcessor(feature_extractor, tokenizer, blank_token = '<blank>', decoder_type = None, supported_num_lookahead_tokens = None, default_num_lookahead_tokens = None, prompt_dictionary = None, num_prompts = 128)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nemotron3_5_asr/processing_nemotron3_5_asr.py#L187)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/nemotron3_5_asr/processing_nemotron3_5_asr.py#L187)
 
 **Parameters:**
 
@@ -231,8 +231,8 @@ num_prompts (`int`, *optional*, defaults to 128) : Number of language-prompt slo
 
 Constructs a Nemotron3_5AsrProcessor which wraps a feature extractor and a tokenizer into a single processor.
 
-[Nemotron3_5AsrProcessor](/docs/transformers/v5.15.0/en/model_doc/nemotron3_5_asr#transformers.Nemotron3_5AsrProcessor) offers all the functionalities of [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/nemotron_asr_streaming#transformers.models.nemotron_asr_streaming.feature_extraction_nemotron_asr_streaming._LazyModule.__getattr__..Placeholder) and [ParakeetTokenizer](/docs/transformers/v5.15.0/en/model_doc/parakeet#transformers.ParakeetTokenizer). See the
-[~NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.15.0/en/model_doc/nemotron_asr_streaming#transformers.models.nemotron_asr_streaming.feature_extraction_nemotron_asr_streaming._LazyModule.__getattr__..Placeholder) and [~ParakeetTokenizer](/docs/transformers/v5.15.0/en/model_doc/parakeet#transformers.ParakeetTokenizer) for more information.
+[Nemotron3_5AsrProcessor](/docs/transformers/v5.15.1/en/model_doc/nemotron3_5_asr#transformers.Nemotron3_5AsrProcessor) offers all the functionalities of [NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/nemotron_asr_streaming#transformers.models.nemotron_asr_streaming.feature_extraction_nemotron_asr_streaming._LazyModule.__getattr__..Placeholder) and [ParakeetTokenizer](/docs/transformers/v5.15.1/en/model_doc/parakeet#transformers.ParakeetTokenizer). See the
+[~NemotronAsrStreamingFeatureExtractor](/docs/transformers/v5.15.1/en/model_doc/nemotron_asr_streaming#transformers.models.nemotron_asr_streaming.feature_extraction_nemotron_asr_streaming._LazyModule.__getattr__..Placeholder) and [~ParakeetTokenizer](/docs/transformers/v5.15.1/en/model_doc/parakeet#transformers.ParakeetTokenizer) for more information.
 
 #### decode[[transformers.Nemotron3_5AsrProcessor.decode]]
 
@@ -240,9 +240,9 @@ Constructs a Nemotron3_5AsrProcessor which wraps a feature extractor and a token
 decode(*args, durations = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nemotron3_5_asr/processing_nemotron3_5_asr.py#L325)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/nemotron3_5_asr/processing_nemotron3_5_asr.py#L325)
 
-Forward arguments to [decode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.decode) and post-process the token-level timestamps (if
+Forward arguments to [decode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.decode) and post-process the token-level timestamps (if
 `durations` are provided) as in the NeMo library.
 
 #### set_num_lookahead_tokens[[transformers.Nemotron3_5AsrProcessor.set_num_lookahead_tokens]]
@@ -251,7 +251,7 @@ Forward arguments to [decode()](/docs/transformers/v5.15.0/en/internal/tokenizat
 set_num_lookahead_tokens(num_lookahead_tokens: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nemotron3_5_asr/processing_nemotron3_5_asr.py#L384)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/nemotron3_5_asr/processing_nemotron3_5_asr.py#L384)
 
 Select the right attention context (lookahead, in subsampled encoder frames) used for streaming.
 
@@ -271,7 +271,7 @@ forward matches the chunk sizes produced here; otherwise streaming `generate` ra
 transformers.Nemotron3_5AsrRNNTOutput(last_hidden_state: typing.Optional[torch.FloatTensor] = None, pooler_output: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None, loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, decoder_cache: transformers.models.nemotron3_5_asr.generation_nemotron3_5_asr.Nemotron3_5AsrRNNTDecoderCache | None = None, encoder_past_key_values: transformers.cache_utils.Cache | None = None, padding_cache: NemotronAsrStreamingEncoderCausalConvPaddingCache | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nemotron3_5_asr/modeling_nemotron3_5_asr.py#L45)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/nemotron3_5_asr/modeling_nemotron3_5_asr.py#L45)
 
 encoder_past_key_values (`Cache`, *optional*):
 Updated encoder attention K/V sliding-window cache, returned when encoding audio with `use_cache=True`
@@ -288,16 +288,16 @@ encoding audio with `use_cache=True`. Pass it to the next chunk's forward.
 transformers.Nemotron3_5AsrForRNNT(config: Nemotron3_5AsrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nemotron3_5_asr/modeling_nemotron3_5_asr.py#L205)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/nemotron3_5_asr/modeling_nemotron3_5_asr.py#L205)
 
 **Parameters:**
 
-config ([Nemotron3_5AsrConfig](/docs/transformers/v5.15.0/en/model_doc/nemotron3_5_asr#transformers.Nemotron3_5AsrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Nemotron3_5AsrConfig](/docs/transformers/v5.15.1/en/model_doc/nemotron3_5_asr#transformers.Nemotron3_5AsrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Nemotron3_5Asr Encoder with an RNN-T (Recurrent Neural Network Transducer) head and language-ID
 prompt conditioning.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -311,7 +311,7 @@ and behavior.
 forward(input_features: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, decoder_cache: transformers.models.nemotron3_5_asr.generation_nemotron3_5_asr.Nemotron3_5AsrRNNTDecoderCache | None = None, use_decoder_cache: bool | None = None, encoder_outputs: transformers.modeling_outputs.BaseModelOutputWithPooling | None = None, labels: typing.Optional[torch.Tensor] = None, num_lookahead_tokens: int | None = None, prompt_ids: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nemotron3_5_asr/modeling_nemotron3_5_asr.py#L256)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/nemotron3_5_asr/modeling_nemotron3_5_asr.py#L256)
 
 **Parameters:**
 
@@ -333,13 +333,13 @@ num_lookahead_tokens (`int`, *optional*) : Right attention context (lookahead, i
 
 prompt_ids (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Language-prompt indices for language-ID conditioning. Produced by the processor from `language`. Turned into the broadcast one-hot consumed by `prompt_projector`.
 
-**Returns:** [Nemotron3_5AsrRNNTOutput](/docs/transformers/v5.15.0/en/model_doc/nemotron3_5_asr#transformers.Nemotron3_5AsrRNNTOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [Nemotron3_5AsrRNNTOutput](/docs/transformers/v5.15.1/en/model_doc/nemotron3_5_asr#transformers.Nemotron3_5AsrRNNTOutput) or `tuple(torch.FloatTensor)`
 
-A [Nemotron3_5AsrRNNTOutput](/docs/transformers/v5.15.0/en/model_doc/nemotron3_5_asr#transformers.Nemotron3_5AsrRNNTOutput) or a tuple of
+A [Nemotron3_5AsrRNNTOutput](/docs/transformers/v5.15.1/en/model_doc/nemotron3_5_asr#transformers.Nemotron3_5AsrRNNTOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [Nemotron3_5AsrForRNNT](/docs/transformers/v5.15.0/en/model_doc/nemotron3_5_asr#transformers.Nemotron3_5AsrForRNNT) forward method, overrides the `__call__` special method.
+The [Nemotron3_5AsrForRNNT](/docs/transformers/v5.15.1/en/model_doc/nemotron3_5_asr#transformers.Nemotron3_5AsrForRNNT) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -373,7 +373,7 @@ Example:
 generate(inputs = None, generation_config = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/nemotron3_5_asr/generation_nemotron3_5_asr.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/nemotron3_5_asr/generation_nemotron3_5_asr.py#L25)
 
 ### MobileViTV2
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/mobilevitv2.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/mobilevitv2.md

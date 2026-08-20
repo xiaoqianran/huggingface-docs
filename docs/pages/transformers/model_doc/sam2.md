@@ -283,15 +283,15 @@ with torch.no_grad():
 transformers.Sam2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, prompt_encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, mask_decoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/configuration_sam2.py#L224)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/configuration_sam2.py#L224)
 
 **Parameters:**
 
 vision_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the vision backbone.
 
-prompt_encoder_config (Union[`dict`, `Sam2PromptEncoderConfig`], *optional*) : Dictionary of configuration options used to initialize [Sam2PromptEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2PromptEncoderConfig).
+prompt_encoder_config (Union[`dict`, `Sam2PromptEncoderConfig`], *optional*) : Dictionary of configuration options used to initialize [Sam2PromptEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2PromptEncoderConfig).
 
-mask_decoder_config (Union[`dict`, `Sam2MaskDecoderConfig`], *optional*) : Dictionary of configuration options used to initialize [Sam2MaskDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2MaskDecoderConfig).
+mask_decoder_config (Union[`dict`, `Sam2MaskDecoderConfig`], *optional*) : Dictionary of configuration options used to initialize [Sam2MaskDecoderConfig](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2MaskDecoderConfig).
 
 initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
@@ -299,8 +299,8 @@ This is the configuration class to store the configuration of a Sam2Model. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sam2.1-hiera-tiny](https://huggingface.co/facebook/sam2.1-hiera-tiny)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -339,7 +339,7 @@ Example:
 transformers.Sam2HieraDetConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 96, num_attention_heads: int = 1, num_channels: int = 3, image_size: int | list[int] | None = None, patch_kernel_size: int | list[int] | None = None, patch_stride: int | list[int] | None = None, patch_padding: int | list[int] | None = None, query_stride: int | list[int] | None = None, window_positional_embedding_background_size: list[int] | None = None, num_query_pool_stages: int = 3, blocks_per_stage: list[int] | None = None, embed_dim_per_stage: list[int] | None = None, num_attention_heads_per_stage: list[int] | None = None, window_size_per_stage: list[int] | None = None, global_attention_blocks: list[int] | None = None, mlp_ratio: float = 4.0, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/configuration_sam2.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/configuration_sam2.py#L25)
 
 **Parameters:**
 
@@ -385,8 +385,8 @@ This is the configuration class to store the configuration of a Sam2Model. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sam2.1-hiera-tiny](https://huggingface.co/facebook/sam2.1-hiera-tiny)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Sam2VisionConfig[[transformers.Sam2VisionConfig]]
 
@@ -396,7 +396,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.Sam2VisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, backbone_channel_list: list[int] | None = None, backbone_feature_sizes: list | None = None, fpn_hidden_size: int = 256, fpn_kernel_size: int = 1, fpn_stride: int = 1, fpn_padding: int = 0, fpn_top_down_levels: list[int] | None = None, num_feature_levels: int = 3, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/configuration_sam2.py#L103)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/configuration_sam2.py#L103)
 
 **Parameters:**
 
@@ -428,8 +428,8 @@ This is the configuration class to store the configuration of a Sam2Model. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sam2.1-hiera-tiny](https://huggingface.co/facebook/sam2.1-hiera-tiny)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Sam2MaskDecoderConfig[[transformers.Sam2MaskDecoderConfig]]
 
@@ -439,7 +439,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.Sam2MaskDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, hidden_act: str = 'gelu', mlp_dim: int = 2048, num_hidden_layers: int = 2, num_attention_heads: int = 8, attention_downsample_rate: int = 2, num_multimask_outputs: int = 3, iou_head_depth: int = 3, iou_head_hidden_dim: int = 256, dynamic_multimask_via_stability: bool = True, dynamic_multimask_stability_delta: float = 0.05, dynamic_multimask_stability_thresh: float = 0.98)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/configuration_sam2.py#L186)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/configuration_sam2.py#L186)
 
 **Parameters:**
 
@@ -471,8 +471,8 @@ This is the configuration class to store the configuration of a Sam2Model. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sam2.1-hiera-tiny](https://huggingface.co/facebook/sam2.1-hiera-tiny)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Sam2PromptEncoderConfig[[transformers.Sam2PromptEncoderConfig]]
 
@@ -482,7 +482,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.Sam2PromptEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, image_size: int | list[int] | tuple[int, int] = 1024, patch_size: int | list[int] | tuple[int, int] = 16, mask_input_channels: int = 16, num_point_embeddings: int = 4, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, scale: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/configuration_sam2.py#L162)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/configuration_sam2.py#L162)
 
 **Parameters:**
 
@@ -506,8 +506,8 @@ This is the configuration class to store the configuration of a Sam2Model. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sam2.1-hiera-tiny](https://huggingface.co/facebook/sam2.1-hiera-tiny)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## Sam2Processor[[transformers.Sam2Processor]]
 
@@ -517,7 +517,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.Sam2Processor(image_processor, target_size: int | None = None, point_pad_value: int = -10, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/processing_sam2.py#L37)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/processing_sam2.py#L37)
 
 **Parameters:**
 
@@ -529,8 +529,8 @@ point_pad_value (`int`, *optional*, defaults to -10) : The value used for paddin
 
 Constructs a Sam2Processor which wraps a image processor into a single processor.
 
-[Sam2Processor](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2Processor) offers all the functionalities of [Sam2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2ImageProcessor). See the
-[~Sam2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2ImageProcessor) for more information.
+[Sam2Processor](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2Processor) offers all the functionalities of [Sam2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2ImageProcessor). See the
+[~Sam2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2ImageProcessor) for more information.
 
 #### __call__[[transformers.Sam2Processor.__call__]]
 
@@ -538,7 +538,7 @@ Constructs a Sam2Processor which wraps a image processor into a single processor
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, input_points: typing.Union[list[list[list[list[float]]]], torch.Tensor, NoneType] = None, input_labels: typing.Union[list[list[list[int]]], torch.Tensor, NoneType] = None, input_boxes: typing.Union[list[list[list[float]]], torch.Tensor, NoneType] = None, original_sizes: typing.Union[list[list[float]], torch.Tensor, NoneType] = None, return_tensors: str | transformers.utils.generic.TensorType | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/processing_sam2.py#L53)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/processing_sam2.py#L53)
 
 **Parameters:**
 
@@ -556,7 +556,7 @@ original_sizes (`list[list[float]]`, `torch.Tensor`, *optional*) : The original 
 
 return_tensors (`Union[str, ~utils.generic.TensorType]`, *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-**Returns:** A [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields
+**Returns:** A [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields
 
 - `pixel_values` (`torch.Tensor`): The processed image(s).
 - `original_sizes` (`list[list[float]]`): The original sizes of the images.
@@ -571,7 +571,7 @@ return_tensors (`Union[str, ~utils.generic.TensorType]`, *optional*) : If set, w
 post_process_masks(masks, original_sizes, mask_threshold = 0.0, binarize = True, max_hole_area = 0.0, max_sprinkle_area = 0.0, apply_non_overlapping_constraints = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/processing_sam2.py#L459)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/processing_sam2.py#L459)
 
 **Parameters:**
 
@@ -604,7 +604,7 @@ Remove padding and upscale masks to the original image size.
 transformers.Sam2ImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/image_processing_sam2.py#L370)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/image_processing_sam2.py#L370)
 
 **Parameters:**
 
@@ -658,7 +658,7 @@ Constructs a Sam2ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/image_processing_sam2.py#L390)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/image_processing_sam2.py#L390)
 
 **Parameters:**
 
@@ -722,7 +722,7 @@ mask_size (`dict[str, *kwargs*, int]`, *optional*) : The size `{"height": int, "
 transformers.Sam2HieraDetModel(config: Sam2HieraDetConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/modeling_sam2.py#L603)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/modeling_sam2.py#L603)
 
 #### forward[[transformers.Sam2HieraDetModel.forward]]
 
@@ -730,7 +730,7 @@ transformers.Sam2HieraDetModel(config: Sam2HieraDetConfig)
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/modeling_sam2.py#L646)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/modeling_sam2.py#L646)
 
 ## Sam2VisionModel[[transformers.Sam2VisionModel]]
 
@@ -740,15 +740,15 @@ forward(pixel_values: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpac
 transformers.Sam2VisionModel(config: Sam2VisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/modeling_sam2.py#L677)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/modeling_sam2.py#L677)
 
 **Parameters:**
 
-config ([Sam2VisionConfig](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2VisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Sam2VisionConfig](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2VisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The vision model from Sam without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -762,7 +762,7 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/modeling_sam2.py#L699)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/modeling_sam2.py#L699)
 
 ## Sam2Model[[transformers.Sam2Model]]
 
@@ -772,16 +772,16 @@ forward(pixel_values: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpac
 transformers.Sam2Model(config: Sam2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/modeling_sam2.py#L1314)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/modeling_sam2.py#L1314)
 
 **Parameters:**
 
-config ([Sam2Config](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Sam2Config](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Segment Anything Model 2 (SAM 2) for generating segmentation masks, given an input image and
 input points and labels, boxes, or masks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -795,11 +795,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, input_points: typing.Optional[torch.FloatTensor] = None, input_labels: typing.Optional[torch.LongTensor] = None, input_boxes: typing.Optional[torch.FloatTensor] = None, input_masks: typing.Optional[torch.LongTensor] = None, image_embeddings: typing.Optional[torch.FloatTensor] = None, multimask_output: bool = True, attention_similarity: typing.Optional[torch.FloatTensor] = None, target_embedding: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/modeling_sam2.py#L1413)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/modeling_sam2.py#L1413)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Sam2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2ImageProcessor). See `Sam2ImageProcessor.__call__()` for details ([Sam2Processor](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2Processor) uses [Sam2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2ImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Sam2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2ImageProcessor). See `Sam2ImageProcessor.__call__()` for details ([Sam2Processor](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2Processor) uses [Sam2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2ImageProcessor) for processing images).
 
 input_points (`torch.FloatTensor` of shape `(batch_size, num_points, 2)`) : Input 2D spatial points, this is used by the prompt encoder to encode the prompt. Generally yields to much better results. The points can be obtained by passing a list of list of list to the processor that will create corresponding `torch` tensors of dimension 4. The first dimension is the image batch size, the second dimension is the point batch size (i.e. how many segmentation masks do we want the model to predict per input point), the third dimension is the number of points per segmentation mask (it is possible to pass multiple points for a single mask), and the last dimension is the x (vertical) and y (horizontal) coordinates of the point. If a different number of points is passed either for each image, or for each mask, the processor will create "PAD" points that will correspond to the (0, 0) coordinate, and the computation of the embedding will be skipped for these points using the labels.
 
@@ -821,9 +821,9 @@ target_embedding (`torch.FloatTensor`, *optional*) : Embedding of the target con
 
 A `Sam2ImageSegmentationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Sam2Config](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2Config)) and inputs.
+elements depending on the configuration ([Sam2Config](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2Config)) and inputs.
 
-The [Sam2Model](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2Model) forward method, overrides the `__call__` special method.
+The [Sam2Model](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -874,7 +874,7 @@ Example:
 get_image_features(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam2/modeling_sam2.py#L1589)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam2/modeling_sam2.py#L1589)
 
 **Parameters:**
 
@@ -884,7 +884,7 @@ pixel_values (`torch.FloatTensor`) : Input pixel values of shape `(batch_size, n
 
 A `Sam2VisionEncoderOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([Sam2Config](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2Config)) and inputs.
+elements depending on the configuration ([Sam2Config](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2Config)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, height, width, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -911,4 +911,4 @@ Example:
 ```
 
 ### Wav2Vec2-BERT
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/wav2vec2-bert.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/wav2vec2-bert.md

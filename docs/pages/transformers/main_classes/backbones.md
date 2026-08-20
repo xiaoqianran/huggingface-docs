@@ -1,11 +1,11 @@
 # Backbone
 
-A backbone is a model used for feature extraction for higher level computer vision tasks such as object detection and image classification. Transformers provides an [AutoBackbone](/docs/transformers/v5.15.0/en/main_classes/backbones#transformers.AutoBackbone) class for initializing a Transformers backbone from pretrained model weights, and two utility classes:
+A backbone is a model used for feature extraction for higher level computer vision tasks such as object detection and image classification. Transformers provides an [AutoBackbone](/docs/transformers/v5.15.1/en/main_classes/backbones#transformers.AutoBackbone) class for initializing a Transformers backbone from pretrained model weights, and two utility classes:
 
-* [BackboneMixin](/docs/transformers/v5.15.0/en/main_classes/backbones#transformers.BackboneMixin) enables initializing a backbone from Transformers or [timm](https://hf.co/docs/timm/index) and includes functions for returning the output features and indices.
-* [BackboneConfigMixin](/docs/transformers/v5.15.0/en/main_classes/backbones#transformers.BackboneConfigMixin) sets the output features and indices of the backbone configuration.
+* [BackboneMixin](/docs/transformers/v5.15.1/en/main_classes/backbones#transformers.BackboneMixin) enables initializing a backbone from Transformers or [timm](https://hf.co/docs/timm/index) and includes functions for returning the output features and indices.
+* [BackboneConfigMixin](/docs/transformers/v5.15.1/en/main_classes/backbones#transformers.BackboneConfigMixin) sets the output features and indices of the backbone configuration.
 
-[timm](https://hf.co/docs/timm/index) models are loaded with the [TimmBackbone](/docs/transformers/v5.15.0/en/main_classes/backbones#transformers.TimmBackbone) and [TimmBackboneConfig](/docs/transformers/v5.15.0/en/main_classes/backbones#transformers.TimmBackboneConfig) classes.
+[timm](https://hf.co/docs/timm/index) models are loaded with the [TimmBackbone](/docs/transformers/v5.15.1/en/main_classes/backbones#transformers.TimmBackbone) and [TimmBackboneConfig](/docs/transformers/v5.15.1/en/main_classes/backbones#transformers.TimmBackboneConfig) classes.
 
 Backbones are supported for the following models:
 
@@ -31,7 +31,7 @@ Backbones are supported for the following models:
 transformers.AutoBackbone(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/auto/modeling_auto.py#L2479)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/auto/modeling_auto.py#L2479)
 
 ## BackboneMixin[[transformers.BackboneMixin]]
 
@@ -41,7 +41,7 @@ transformers.AutoBackbone(*args, **kwargs)
 transformers.BackboneMixin(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/backbone_utils.py#L181)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/backbone_utils.py#L181)
 
 #### post_init[[transformers.BackboneMixin.post_init]]
 
@@ -49,7 +49,7 @@ transformers.BackboneMixin(*args, **kwargs)
 post_init()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/backbone_utils.py#L207)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/backbone_utils.py#L207)
 
 Override `post_init` to always install capturing hooks, as backbone will ALWAYS capture outputs. We need to do
 it in `post_init`, as modules need to be already instantiated.
@@ -64,7 +64,7 @@ which can clash with external user call such as `model = torch.compile(model...)
 transformers.BackboneConfigMixin()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/backbone_utils.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/backbone_utils.py#L33)
 
 A Mixin to support handling the `out_features` and `out_indices` attributes for the backbone configurations.
 
@@ -74,7 +74,7 @@ A Mixin to support handling the `out_features` and `out_indices` attributes for 
 set_output_features_output_indices(out_features: list | None, out_indices: list | None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/backbone_utils.py#L38)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/backbone_utils.py#L38)
 
 **Parameters:**
 
@@ -92,7 +92,7 @@ for the given `stage_names`.
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/backbone_utils.py#L147)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/backbone_utils.py#L147)
 
 Serializes this instance to a Python dictionary. Override the default `to_dict()` from `PreTrainedConfig` to
 include the `out_features` and `out_indices` attributes.
@@ -103,7 +103,7 @@ include the `out_features` and `out_indices` attributes.
 verify_out_features_out_indices()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/backbone_utils.py#L74)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/backbone_utils.py#L74)
 
 Verify that out_indices and out_features are valid for the given stage_names.
 
@@ -115,7 +115,7 @@ Verify that out_indices and out_features are valid for the given stage_names.
 transformers.TimmBackbone(config, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timm_backbone/modeling_timm_backbone.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/timm_backbone/modeling_timm_backbone.py#L32)
 
 Wrapper class for timm models to be used as backbones. This enables using the timm models interchangeably with the
 other models in the library keeping the same API.
@@ -128,7 +128,7 @@ other models in the library keeping the same API.
 transformers.TimmBackboneConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone: str | None = None, num_channels: int = 3, features_only: bool = True, _out_indices: list[int] | None = None, freeze_batch_norm_2d: bool = False, output_stride: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/timm_backbone/configuration_timm_backbone.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/timm_backbone/configuration_timm_backbone.py#L26)
 
 **Parameters:**
 
@@ -146,8 +146,8 @@ This is the configuration class to store the configuration of a TimmBackbone. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [](https://huggingface.co/)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -164,4 +164,4 @@ Example:
 ```
 
 ### Quantization
-https://huggingface.co/docs/transformers/v5.15.0/main_classes/quantization.md
+https://huggingface.co/docs/transformers/v5.15.1/main_classes/quantization.md

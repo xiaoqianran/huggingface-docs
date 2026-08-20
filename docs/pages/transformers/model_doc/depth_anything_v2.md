@@ -82,7 +82,7 @@ A list of official Hugging Face and community (indicated by 🌎) resources to h
 
 - [Monocular depth estimation task guide](../tasks/monocular_depth_estimation)
 - [Depth Anything V2 demo](https://huggingface.co/spaces/depth-anything/Depth-Anything-V2).
-- A notebook showcasing inference with [DepthAnythingForDepthEstimation](/docs/transformers/v5.15.0/en/model_doc/depth_anything_v2#transformers.DepthAnythingForDepthEstimation) can be found [here](https://github.com/NielsRogge/Transformers-Tutorials/blob/master/Depth%20Anything/Predicting_depth_in_an_image_with_Depth_Anything.ipynb). 🌎
+- A notebook showcasing inference with [DepthAnythingForDepthEstimation](/docs/transformers/v5.15.1/en/model_doc/depth_anything_v2#transformers.DepthAnythingForDepthEstimation) can be found [here](https://github.com/NielsRogge/Transformers-Tutorials/blob/master/Depth%20Anything/Predicting_depth_in_an_image_with_Depth_Anything.ipynb). 🌎
 - [Core ML conversion of the `small` variant for use on Apple Silicon](https://huggingface.co/apple/coreml-depth-anything-v2-small).
 
 If you're interested in submitting a resource to be included here, please feel free to open a Pull Request and we'll review it! The resource should ideally demonstrate something new instead of duplicating an existing resource.
@@ -95,7 +95,7 @@ If you're interested in submitting a resource to be included here, please feel f
 transformers.DepthAnythingConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, patch_size: int | list[int] | tuple[int, int] = 14, initializer_range: float = 0.02, reassemble_hidden_size: int = 384, reassemble_factors: list[int | float] | tuple[int | float, ...] = (4, 2, 1, 0.5), neck_hidden_sizes: list[int] | tuple[int, ...] = (48, 96, 192, 384), fusion_hidden_size: int = 64, head_in_index: int = -1, head_hidden_size: int = 32, depth_estimation_type: str = 'relative', max_depth: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/depth_anything/configuration_depth_anything.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/depth_anything/configuration_depth_anything.py#L26)
 
 **Parameters:**
 
@@ -125,8 +125,8 @@ This is the configuration class to store the configuration of a Depth AnythingMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [LiheYoung/depth-anything-small-hf](https://huggingface.co/LiheYoung/depth-anything-small-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -151,15 +151,15 @@ Example:
 transformers.DepthAnythingForDepthEstimation(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/depth_anything/modeling_depth_anything.py#L316)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/depth_anything/modeling_depth_anything.py#L316)
 
 **Parameters:**
 
-config ([DepthAnythingForDepthEstimation](/docs/transformers/v5.15.0/en/model_doc/depth_anything_v2#transformers.DepthAnythingForDepthEstimation)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DepthAnythingForDepthEstimation](/docs/transformers/v5.15.1/en/model_doc/depth_anything_v2#transformers.DepthAnythingForDepthEstimation)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Depth Anything Model with a depth estimation head on top (consisting of 3 convolutional layers) e.g. for KITTI, NYUv2.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -173,11 +173,11 @@ and behavior.
 forward(pixel_values: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/depth_anything/modeling_depth_anything.py#L327)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/depth_anything/modeling_depth_anything.py#L327)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DPTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTImageProcessor). See `DPTImageProcessor.__call__()` for details (`processor_class` uses [DPTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DPTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTImageProcessor). See `DPTImageProcessor.__call__()` for details (`processor_class` uses [DPTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Ground truth depth estimation maps for computing the loss.
 
@@ -185,15 +185,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [DepthEstimatorOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [DepthEstimatorOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or `tuple(torch.FloatTensor)`
 
-A [DepthEstimatorOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or a tuple of
+A [DepthEstimatorOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DepthAnythingConfig](/docs/transformers/v5.15.0/en/model_doc/depth_anything_v2#transformers.DepthAnythingConfig)) and inputs.
+elements depending on the configuration ([DepthAnythingConfig](/docs/transformers/v5.15.1/en/model_doc/depth_anything_v2#transformers.DepthAnythingConfig)) and inputs.
 
-The [DepthAnythingForDepthEstimation](/docs/transformers/v5.15.0/en/model_doc/depth_anything_v2#transformers.DepthAnythingForDepthEstimation) forward method, overrides the `__call__` special method.
+The [DepthAnythingForDepthEstimation](/docs/transformers/v5.15.1/en/model_doc/depth_anything_v2#transformers.DepthAnythingForDepthEstimation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -247,4 +247,4 @@ Examples:
 ```
 
 ### A.X-K2
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/axk2.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/axk2.md

@@ -66,7 +66,7 @@ Tips:
 transformers.EvollaConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, protein_encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vocab_size: int = 128256, hidden_size: int = 4096, intermediate_size: int = 14336, num_hidden_layers: int = 32, num_attention_heads: int = 32, num_key_value_heads: int | None = 8, hidden_act: str = 'silu', max_position_embeddings: int = 8192, rms_norm_eps: float = 1e-05, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, attention_bias: bool = False, attention_dropout: float | int | None = 0.0, mlp_bias: bool = False, aligner_ffn_mult: int | None = 4, aligner_enable_bias: bool | None = True, aligner_attention_probs_dropout_prob: float | None = 0.1, aligner_num_add_layers: int | None = 8, resampler_depth: int | None = 6, resampler_dim_head: int | None = 64, resampler_heads: int | None = 8, resampler_num_latents: int | None = 64, resampler_ff_mult: int | None = 4, initializer_range: float = 0.02, pad_token_id: int | None = None, bos_token_id: int | None = 128000, eos_token_id: int | list[int] | None = 128009, use_cache: bool = False, tie_word_embeddings: bool = False, is_decoder: bool | None = False, add_cross_attention: bool | None = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/evolla/configuration_evolla.py#L64)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/evolla/configuration_evolla.py#L64)
 
 **Parameters:**
 
@@ -136,8 +136,8 @@ This is the configuration class to store the configuration of a EvollaModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [westlake-repl/Evolla-10B-hf](https://huggingface.co/westlake-repl/Evolla-10B-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -162,7 +162,7 @@ Example:
 transformers.EvollaModel(config: EvollaConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/evolla/modeling_evolla.py#L1287)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/evolla/modeling_evolla.py#L1287)
 
 #### forward[[transformers.EvollaModel.forward]]
 
@@ -170,17 +170,17 @@ transformers.EvollaModel(config: EvollaConfig)
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, use_cache: bool | None = None, protein_input_ids: typing.Optional[torch.LongTensor] = None, protein_attention_mask: typing.Optional[torch.Tensor] = None, structure_feats: typing.Optional[torch.FloatTensor] = None, msa_feats: typing.Optional[torch.FloatTensor] = None, structure_batch_mask: typing.Optional[torch.Tensor] = None, msa_batch_mask: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/evolla/modeling_evolla.py#L1315)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/evolla/modeling_evolla.py#L1315)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -198,13 +198,13 @@ structure_batch_mask (`torch.Tensor`, *optional*) : The batch mask to decide whi
 
 msa_batch_mask (`torch.Tensor`, *optional*) : The batch mask to decide which protein sequences are purely MSA-based. Should be of shape `(batch_size)` and type `torch.Tensor`. Should be paired with `msa_feats`. Dummy input for now.
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+A [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [EvollaModel](/docs/transformers/v5.15.0/en/model_doc/evolla#transformers.EvollaModel) forward method, overrides the `__call__` special method.
+The [EvollaModel](/docs/transformers/v5.15.1/en/model_doc/evolla#transformers.EvollaModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -214,7 +214,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -237,7 +237,7 @@ the latter silently ignores them.
 transformers.EvollaForProteinText2Text(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/evolla/modeling_evolla.py#L1414)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/evolla/modeling_evolla.py#L1414)
 
 #### forward[[transformers.EvollaForProteinText2Text.forward]]
 
@@ -245,11 +245,11 @@ transformers.EvollaForProteinText2Text(config)
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, protein_input_ids: typing.Optional[torch.LongTensor] = None, protein_attention_mask: typing.Optional[torch.Tensor] = None, use_cache: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/evolla/modeling_evolla.py#L1429)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/evolla/modeling_evolla.py#L1429)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -265,7 +265,7 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
-The [EvollaForProteinText2Text](/docs/transformers/v5.15.0/en/model_doc/evolla#transformers.EvollaForProteinText2Text) forward method, overrides the `__call__` special method.
+The [EvollaForProteinText2Text](/docs/transformers/v5.15.1/en/model_doc/evolla#transformers.EvollaForProteinText2Text) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -302,11 +302,11 @@ Example:
 transformers.EvollaProcessor(protein_tokenizer, tokenizer = None, protein_max_length = 1024, text_max_length = 512, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/evolla/processing_evolla.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/evolla/processing_evolla.py#L27)
 
 **Parameters:**
 
-protein_tokenizer (`EsmTokenizer`) : An instance of [EsmTokenizer](/docs/transformers/v5.15.0/en/model_doc/esm#transformers.EsmTokenizer). The protein tokenizer is a required input.
+protein_tokenizer (`EsmTokenizer`) : An instance of [EsmTokenizer](/docs/transformers/v5.15.1/en/model_doc/esm#transformers.EsmTokenizer). The protein tokenizer is a required input.
 
 tokenizer (`tokenizer_class`) : The tokenizer is a required input.
 
@@ -316,7 +316,7 @@ text_max_length (`int`, *optional*, defaults to 512) : The maximum length of the
 
 Constructs a EvollaProcessor which wraps a protein tokenizer and a tokenizer into a single processor.
 
-[EvollaProcessor](/docs/transformers/v5.15.0/en/model_doc/evolla#transformers.EvollaProcessor) offers all the functionalities of `{protein_tokenizer_class}` and `tokenizer_class`. See the
+[EvollaProcessor](/docs/transformers/v5.15.1/en/model_doc/evolla#transformers.EvollaProcessor) offers all the functionalities of `{protein_tokenizer_class}` and `tokenizer_class`. See the
 `~{protein_tokenizer_class}` and `~tokenizer_class` for more information.
 
 #### __call__[[transformers.EvollaProcessor.__call__]]
@@ -325,7 +325,7 @@ Constructs a EvollaProcessor which wraps a protein tokenizer and a tokenizer int
 __call__(proteins: list[dict] | dict | None = None, messages_list: list[list[dict]] | list[dict] | None = None, protein_max_length: int | None = None, text_max_length: int | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/evolla/processing_evolla.py#L85)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/evolla/processing_evolla.py#L85)
 
 **Parameters:**
 
@@ -337,7 +337,7 @@ protein_max_length (`int`, *optional*, defaults to 1024) : The maximum length of
 
 text_max_length (`int`, *optional*, defaults to 512) : The maximum length of the text.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
 **Returns:** `a dict with following keys`
 
@@ -347,4 +347,4 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 - `text_attention_mask` (`torch.Tensor` of shape `(batch_size, sequence_length)`) -- The attention mask for the text sequence.
 
 ### Cosmos3 Omni
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/cosmos3_omni.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/cosmos3_omni.md

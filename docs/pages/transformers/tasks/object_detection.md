@@ -101,7 +101,7 @@ Train: 6669, Validation: 1177
 
 ## Preprocess the data
 
-[AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor) takes care of processing image data to create `pixel_values`, `pixel_mask`, and
+[AutoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor) takes care of processing image data to create `pixel_values`, `pixel_mask`, and
 `labels` that the model can train with. The image processor handles resizing, padding, and normalization. On top of that, you can optionally add random data augmentations (see [below](#data-augmentation)) to improve generalization.
 
 ```py
@@ -204,7 +204,7 @@ Create a custom `collate_fn` to batch images together:
 
 ## Preparing function to compute mAP
 
-Object detection models are commonly evaluated with a set of COCO-style metrics. We are going to use `torchmetrics` to compute `mAP` (mean average precision) and `mAR` (mean average recall) metrics and will wrap it to `compute_metrics` function in order to use in [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) for evaluation.
+Object detection models are commonly evaluated with a set of COCO-style metrics. We are going to use `torchmetrics` to compute `mAP` (mean average precision) and `mAR` (mean average recall) metrics and will wrap it to `compute_metrics` function in order to use in [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) for evaluation.
 
 Intermediate format of boxes used for training is `YOLO` (normalized) but we will compute metrics for boxes in `Pascal VOC` (absolute) format in order to correctly handle box areas. Let's define a function that converts bounding boxes to `Pascal VOC` format:
 
@@ -306,10 +306,10 @@ require at least one GPU.
 
 Training involves the following steps:
 
-1. Load the model with [AutoModelForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForObjectDetection) using the same checkpoint as in the preprocessing.
-2. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments).
-3. Pass the training arguments to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, image processor, and data collator.
-4. Call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
+1. Load the model with [AutoModelForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForObjectDetection) using the same checkpoint as in the preprocessing.
+2. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments).
+3. Pass the training arguments to [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, image processor, and data collator.
+4. Call [train()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
 
 When loading the model from the same checkpoint that you used for the preprocessing, remember to pass the `label2id`
 and `id2label` maps that you created earlier from the dataset's metadata. Additionally, we specify `ignore_mismatched_sizes=True` to replace the existing classification head with a new one.
@@ -325,7 +325,7 @@ and `id2label` maps that you created earlier from the dataset's metadata. Additi
 ... )
 ```
 
-In the [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) use `output_dir` to specify where to save your model, then configure hyperparameters as you see fit. For `num_train_epochs=5` training will take about 35 minutes on an A100 GPU, increase the number of epochs to get better results.
+In the [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) use `output_dir` to specify where to save your model, then configure hyperparameters as you see fit. For `num_train_epochs=5` training will take about 35 minutes on an A100 GPU, increase the number of epochs to get better results.
 
 Important notes:
 
@@ -363,7 +363,7 @@ Face to upload your model).
 ... )
 ```
 
-Finally, bring everything together, and call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train):
+Finally, bring everything together, and call [train()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.train):
 
 ```py
 >>> from transformers import Trainer
@@ -540,7 +540,7 @@ Finally, bring everything together, and call [train()](/docs/transformers/v5.15.
   
 
 If you have set `push_to_hub` to `True` in the `training_args`, the training checkpoints are pushed to the
-Hugging Face Hub. Upon training completion, push the final model to the Hub as well by calling the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method.
+Hugging Face Hub. Upon training completion, push the final model to the Hub as well by calling the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.push_to_hub) method.
 
 ```py
 >>> trainer.push_to_hub()
@@ -576,7 +576,7 @@ Hugging Face Hub. Upon training completion, push the final model to the Hub as w
  'test_mar_small': 0.4138}
 ```
 
-These results can be further improved by increasing the number of epochs or adjusting other hyperparameters in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments). Give it a go!
+These results can be further improved by increasing the number of epochs or adjusting other hyperparameters in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments). Give it a go!
 
 ## Inference
 
@@ -644,4 +644,4 @@ Let's plot the result:
 ```
 
 ### Causal language modeling
-https://huggingface.co/docs/transformers/v5.15.0/tasks/language_modeling.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/language_modeling.md

@@ -139,7 +139,7 @@ To apply the preprocessing function over the entire dataset, use 🤗 Datasets [
 >>> tokenized_squad = squad.map(preprocess_function, batched=True, remove_columns=squad["train"].column_names)
 ```
 
-Now create a batch of examples using [DefaultDataCollator](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DefaultDataCollator). Unlike other data collators in 🤗 Transformers, the [DefaultDataCollator](/docs/transformers/v5.15.0/en/main_classes/data_collator#transformers.DefaultDataCollator) does not apply any additional preprocessing such as padding.
+Now create a batch of examples using [DefaultDataCollator](/docs/transformers/v5.15.1/en/main_classes/data_collator#transformers.DefaultDataCollator). Unlike other data collators in 🤗 Transformers, the [DefaultDataCollator](/docs/transformers/v5.15.1/en/main_classes/data_collator#transformers.DefaultDataCollator) does not apply any additional preprocessing such as padding.
 
 ```py
 >>> from transformers import DefaultDataCollator
@@ -149,9 +149,9 @@ Now create a batch of examples using [DefaultDataCollator](/docs/transformers/v5
 
 ## Train
 
-If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#train-with-pytorch-trainer)!
+If you aren't familiar with finetuning a model with the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), take a look at the basic tutorial [here](../training#train-with-pytorch-trainer)!
 
-You're ready to start training your model now! Load DistilBERT with [AutoModelForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForQuestionAnswering):
+You're ready to start training your model now! Load DistilBERT with [AutoModelForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForQuestionAnswering):
 
 ```py
 >>> from transformers import AutoModelForQuestionAnswering, TrainingArguments, Trainer
@@ -161,9 +161,9 @@ You're ready to start training your model now! Load DistilBERT with [AutoModelFo
 
 At this point, only three steps remain:
 
-1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model).
-2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, tokenizer, and data collator.
-3. Call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
+1. Define your training hyperparameters in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments). The only required parameter is `output_dir` which specifies where to save your model. You'll push this model to the Hub by setting `push_to_hub=True` (you need to be signed in to Hugging Face to upload your model).
+2. Pass the training arguments to [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) along with the model, dataset, tokenizer, and data collator.
+3. Call [train()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.train) to finetune your model.
 
 ```py
 >>> training_args = TrainingArguments(
@@ -189,7 +189,7 @@ At this point, only three steps remain:
 >>> trainer.train()
 ```
 
-Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
+Once training is completed, share your model to the Hub with the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.push_to_hub) method so everyone can use your model:
 
 ```py
 >>> trainer.push_to_hub()
@@ -200,7 +200,7 @@ For a more in-depth example of how to finetune a model for question answering, t
 
 ## Evaluate
 
-Evaluation for question answering requires a significant amount of postprocessing. To avoid taking up too much of your time, this guide skips the evaluation step. The [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) still calculates the evaluation loss during training so you're not completely in the dark about your model's performance.
+Evaluation for question answering requires a significant amount of postprocessing. To avoid taking up too much of your time, this guide skips the evaluation step. The [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) still calculates the evaluation loss during training so you're not completely in the dark about your model's performance.
 
 If you have more time and you're interested in how to evaluate your model for question answering, take a look at the [Question answering](https://huggingface.co/course/chapter7/7?fw=pt#post-processing) chapter from the 🤗 Hugging Face Course!
 
@@ -251,4 +251,4 @@ Decode the predicted tokens to get the answer:
 ```
 
 ### Document Question Answering
-https://huggingface.co/docs/transformers/v5.15.0/tasks/document_question_answering.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/document_question_answering.md

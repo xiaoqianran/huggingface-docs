@@ -109,15 +109,15 @@ alt="drawing" width="900"/>
 transformers.SamConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, prompt_encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, mask_decoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, initializer_range: float = 0.02, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam/configuration_sam.py#L144)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam/configuration_sam.py#L144)
 
 **Parameters:**
 
 vision_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the vision backbone.
 
-prompt_encoder_config (Union[`dict`, `SamPromptEncoderConfig`], *optional*) : Dictionary of configuration options used to initialize [SamPromptEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamPromptEncoderConfig).
+prompt_encoder_config (Union[`dict`, `SamPromptEncoderConfig`], *optional*) : Dictionary of configuration options used to initialize [SamPromptEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamPromptEncoderConfig).
 
-mask_decoder_config (Union[`dict`, `SamMaskDecoderConfig`], *optional*) : Dictionary of configuration options used to initialize [SamMaskDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamMaskDecoderConfig).
+mask_decoder_config (Union[`dict`, `SamMaskDecoderConfig`], *optional*) : Dictionary of configuration options used to initialize [SamMaskDecoderConfig](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamMaskDecoderConfig).
 
 initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
@@ -127,8 +127,8 @@ This is the configuration class to store the configuration of a SamModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sam-vit-huge](https://huggingface.co/facebook/sam-vit-huge)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -167,7 +167,7 @@ Example:
 transformers.SamVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, output_channels: int = 256, num_hidden_layers: int = 12, num_attention_heads: int = 12, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 1024, patch_size: int | list[int] | tuple[int, int] = 16, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, attention_dropout: float | int = 0.0, initializer_range: float = 1e-10, qkv_bias: bool = True, mlp_ratio: float = 4.0, use_abs_pos: bool = True, use_rel_pos: bool = True, window_size: int = 14, global_attn_indexes: list[int] | tuple[int, ...] = (2, 5, 8, 11), num_pos_feats: int = 128, mlp_dim: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam/configuration_sam.py#L79)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam/configuration_sam.py#L79)
 
 **Parameters:**
 
@@ -213,8 +213,8 @@ This is the configuration class to store the configuration of a SamModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sam-vit-huge](https://huggingface.co/facebook/sam-vit-huge)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -242,7 +242,7 @@ Example:
 transformers.SamMaskDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, hidden_act: str = 'relu', mlp_dim: int = 2048, num_hidden_layers: int = 2, num_attention_heads: int = 8, attention_downsample_rate: int = 2, num_multimask_outputs: int = 3, iou_head_depth: int = 3, iou_head_hidden_dim: int = 256, layer_norm_eps: float = 1e-06)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam/configuration_sam.py#L49)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam/configuration_sam.py#L49)
 
 **Parameters:**
 
@@ -270,8 +270,8 @@ This is the configuration class to store the configuration of a SamModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sam-vit-huge](https://huggingface.co/facebook/sam-vit-huge)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## SamPromptEncoderConfig[[transformers.SamPromptEncoderConfig]]
 
@@ -281,7 +281,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.SamPromptEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, image_size: int | list[int] | tuple[int, int] = 1024, patch_size: int | list[int] | tuple[int, int] = 16, mask_input_channels: int = 16, num_point_embeddings: int = 4, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam/configuration_sam.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam/configuration_sam.py#L24)
 
 **Parameters:**
 
@@ -303,8 +303,8 @@ This is the configuration class to store the configuration of a SamModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/sam-vit-huge](https://huggingface.co/facebook/sam-vit-huge)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## SamProcessor[[transformers.SamProcessor]]
 
@@ -314,7 +314,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.SamProcessor(image_processor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam/processing_sam.py#L82)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam/processing_sam.py#L82)
 
 **Parameters:**
 
@@ -322,8 +322,8 @@ image_processor (`SamImageProcessor`) : The image processor is a required input.
 
 Constructs a SamProcessor which wraps a image processor into a single processor.
 
-[SamProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamProcessor) offers all the functionalities of [SamImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamImageProcessor). See the
-[~SamImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamImageProcessor) for more information.
+[SamProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamProcessor) offers all the functionalities of [SamImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamImageProcessor). See the
+[~SamImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamImageProcessor) for more information.
 
 #### __call__[[transformers.SamProcessor.__call__]]
 
@@ -331,7 +331,7 @@ Constructs a SamProcessor which wraps a image processor into a single processor.
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam/processing_sam.py#L87)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam/processing_sam.py#L87)
 
 **Parameters:**
 
@@ -339,7 +339,7 @@ images (`Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Imag
 
 text (`Union[str, list[str], list[list[str]]]`, *optional*) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If you pass a pretokenized input, set `is_split_into_words=True` to avoid ambiguity with batched inputs.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
 **Returns:** `~tokenization_utils_base.BatchEncoding`
 
@@ -362,7 +362,7 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 transformers.SamImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam/image_processing_sam.py#L61)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam/image_processing_sam.py#L61)
 
 **Parameters:**
 
@@ -418,7 +418,7 @@ Constructs a SamImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam/image_processing_sam.py#L79)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam/image_processing_sam.py#L79)
 
 **Parameters:**
 
@@ -484,7 +484,7 @@ mask_pad_size (`dict[str, *kwargs*, int]`, *optional*) : The size `{"height": in
 transformers.SamImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam/image_processing_pil_sam.py#L83)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam/image_processing_pil_sam.py#L83)
 
 **Parameters:**
 
@@ -540,7 +540,7 @@ Constructs a SamImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam/image_processing_pil_sam.py#L101)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam/image_processing_pil_sam.py#L101)
 
 **Parameters:**
 
@@ -606,15 +606,15 @@ mask_pad_size (`dict[str, *kwargs*, int]`, *optional*) : The size `{"height": in
 transformers.SamVisionModel(config: SamVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam/modeling_sam.py#L1080)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam/modeling_sam.py#L1080)
 
 **Parameters:**
 
-config ([SamVisionConfig](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SamVisionConfig](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The vision model from Sam without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -628,19 +628,19 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam/modeling_sam.py#L1092)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam/modeling_sam.py#L1092)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SamImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamImageProcessor). See `SamImageProcessor.__call__()` for details ([SamProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamProcessor) uses [SamImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SamImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamImageProcessor). See `SamImageProcessor.__call__()` for details ([SamProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamProcessor) uses [SamImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamImageProcessor) for processing images).
 
 **Returns:** `SamVisionEncoderOutput` or `tuple(torch.FloatTensor)`
 
 A `SamVisionEncoderOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SamConfig](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamConfig)) and inputs.
+elements depending on the configuration ([SamConfig](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamConfig)) and inputs.
 
-The [SamVisionModel](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamVisionModel) forward method, overrides the `__call__` special method.
+The [SamVisionModel](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -666,16 +666,16 @@ the latter silently ignores them.
 transformers.SamModel(config: SamConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam/modeling_sam.py#L1107)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam/modeling_sam.py#L1107)
 
 **Parameters:**
 
-config ([SamConfig](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SamConfig](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Segment Anything Model (SAM) for generating segmentation masks, given an input image and
 input points and labels, boxes, or masks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -689,11 +689,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, input_points: typing.Optional[torch.FloatTensor] = None, input_labels: typing.Optional[torch.LongTensor] = None, input_boxes: typing.Optional[torch.FloatTensor] = None, input_masks: typing.Optional[torch.LongTensor] = None, image_embeddings: typing.Optional[torch.FloatTensor] = None, multimask_output: bool = True, attention_similarity: typing.Optional[torch.FloatTensor] = None, target_embedding: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/sam/modeling_sam.py#L1190)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/sam/modeling_sam.py#L1190)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SamImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamImageProcessor). See `SamImageProcessor.__call__()` for details ([SamProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamProcessor) uses [SamImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [SamImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamImageProcessor). See `SamImageProcessor.__call__()` for details ([SamProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamProcessor) uses [SamImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamImageProcessor) for processing images).
 
 input_points (`torch.FloatTensor` of shape `(batch_size, num_points, 2)`) : Input 2D spatial points, this is used by the prompt encoder to encode the prompt. Generally yields to much better results. The points can be obtained by passing a list of list of list to the processor that will create corresponding `torch` tensors of dimension 4. The first dimension is the image batch size, the second dimension is the point batch size (i.e. how many segmentation masks do we want the model to predict per input point), the third dimension is the number of points per segmentation mask (it is possible to pass multiple points for a single mask), and the last dimension is the x (vertical) and y (horizontal) coordinates of the point. If a different number of points is passed either for each image, or for each mask, the processor will create "PAD" points that will correspond to the (0, 0) coordinate, and the computation of the embedding will be skipped for these points using the labels.
 
@@ -715,9 +715,9 @@ target_embedding (`torch.FloatTensor`, *optional*) : Embedding of the target con
 
 A `SamImageSegmentationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SamConfig](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamConfig)) and inputs.
+elements depending on the configuration ([SamConfig](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamConfig)) and inputs.
 
-The [SamModel](/docs/transformers/v5.15.0/en/model_doc/sam#transformers.SamModel) forward method, overrides the `__call__` special method.
+The [SamModel](/docs/transformers/v5.15.1/en/model_doc/sam#transformers.SamModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -767,4 +767,4 @@ Example:
 ```
 
 ### KOSMOS-2.5
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/kosmos2_5.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/kosmos2_5.md

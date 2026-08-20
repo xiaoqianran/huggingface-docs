@@ -32,7 +32,7 @@ API reference information.
 transformers.CpmTokenizer(vocab_file, do_lower_case = False, remove_space = True, keep_accents = False, bos_token = '<s>', eos_token = '</s>', unk_token = '<unk>', sep_token = '<sep>', pad_token = '<pad>', cls_token = '<cls>', mask_token = '<mask>', additional_special_tokens = ['<eop>', '<eod>'], sp_model_kwargs: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cpm/tokenization_cpm.py#L34)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/cpm/tokenization_cpm.py#L34)
 
 Runs pre-tokenization with Jieba-RS segmentation tool. It is used in CPM models.
 
@@ -42,7 +42,7 @@ Runs pre-tokenization with Jieba-RS segmentation tool. It is used in CPM models.
 build_inputs_with_special_tokens(token_ids_0: list, token_ids_1: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cpm/tokenization_cpm.py#L230)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/cpm/tokenization_cpm.py#L230)
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ adding special tokens. An XLNet sequence has the following format:
 convert_tokens_to_string(tokens)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cpm/tokenization_cpm.py#L225)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/cpm/tokenization_cpm.py#L225)
 
 Converts a sequence of tokens (strings for sub-words) in a single string.
 
@@ -76,7 +76,7 @@ Converts a sequence of tokens (strings for sub-words) in a single string.
 create_token_type_ids_from_sequences(token_ids_0: list, token_ids_1: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cpm/tokenization_cpm.py#L283)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/cpm/tokenization_cpm.py#L283)
 
 **Parameters:**
 
@@ -105,7 +105,7 @@ If `token_ids_1` is `None`, this method only returns the first portion of the ma
 get_special_tokens_mask(token_ids_0: list, token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cpm/tokenization_cpm.py#L255)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/cpm/tokenization_cpm.py#L255)
 
 **Parameters:**
 
@@ -130,7 +130,7 @@ special tokens using the tokenizer `prepare_for_model` method.
 transformers.CpmTokenizerFast(vocab_file = None, tokenizer_file = None, do_lower_case = False, remove_space = True, keep_accents = False, bos_token = '<s>', eos_token = '</s>', unk_token = '<unk>', sep_token = '<sep>', pad_token = '<pad>', cls_token = '<cls>', mask_token = '<mask>', additional_special_tokens = ['<eop>', '<eod>'], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cpm/tokenization_cpm_fast.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/cpm/tokenization_cpm_fast.py#L28)
 
 Runs pre-tokenization with Jieba-RS segmentation tool. It is used in CPM models.
 
@@ -140,7 +140,7 @@ Runs pre-tokenization with Jieba-RS segmentation tool. It is used in CPM models.
 build_inputs_with_special_tokens(token_ids_0: list, token_ids_1: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cpm/tokenization_cpm_fast.py#L145)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/cpm/tokenization_cpm_fast.py#L145)
 
 **Parameters:**
 
@@ -164,7 +164,7 @@ adding special tokens. An XLNet sequence has the following format:
 create_token_type_ids_from_sequences(token_ids_0: list, token_ids_1: list[int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cpm/tokenization_cpm_fast.py#L170)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/cpm/tokenization_cpm_fast.py#L170)
 
 **Parameters:**
 
@@ -188,4 +188,4 @@ sequence pair mask has the following format:
 If `token_ids_1` is `None`, this method only returns the first portion of the mask (0s).
 
 ### Cohere2 MoE
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/cohere2_moe.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/cohere2_moe.md

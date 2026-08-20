@@ -33,7 +33,7 @@ Create `src/transformers/models/<name>/modular_<name>.py`, where `<name>` matche
 
 ### Config
 
-There are two points where [Olmo2Config](/docs/transformers/v5.15.0/en/model_doc/olmo2#transformers.Olmo2Config) differs from [OlmoConfig](/docs/transformers/v5.15.0/en/model_doc/olmo#transformers.OlmoConfig).
+There are two points where [Olmo2Config](/docs/transformers/v5.15.1/en/model_doc/olmo2#transformers.Olmo2Config) differs from [OlmoConfig](/docs/transformers/v5.15.1/en/model_doc/olmo#transformers.OlmoConfig).
 
 1. There is a new argument, `rms_norm_eps`.
 2. The `clip_qkv` argument is no longer used.
@@ -204,7 +204,7 @@ Only the type of `self.norm` changes here. The `forward` method is identical to 
 
 ### Model head
 
-The logic is identical to [OlmoForCausalLM](/docs/transformers/v5.15.0/en/model_doc/olmo#transformers.OlmoForCausalLM), so no changes are needed.
+The logic is identical to [OlmoForCausalLM](/docs/transformers/v5.15.1/en/model_doc/olmo#transformers.OlmoForCausalLM), so no changes are needed.
 
 ```py
 from ..olmo.modeling_olmo import OlmoForCausalLM
@@ -441,12 +441,12 @@ Once you've generated your modeling files, verify that real weights load correct
 
 ### Write a conversion script
 
-Add a `convert_<model>_to_hf.py` file to `src/transformers/models/<model>/`. The script loads the upstream weights, renames and reshapes keys to match your module's parameter names, and saves the result with [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained).
+Add a `convert_<model>_to_hf.py` file to `src/transformers/models/<model>/`. The script loads the upstream weights, renames and reshapes keys to match your module's parameter names, and saves the result with [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained).
 
 > [!TIP]
 > Look for an existing script to copy and adapt. Models under `src/transformers/models/` include a `convert_*_to_hf.py` you can use as a starting point.
 
-After running the script, load the saved checkpoint with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) and confirm every expected weight loaded correctly. Unused checkpoint keys indicate mismatched names, so print them to catch problems early.
+After running the script, load the saved checkpoint with [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) and confirm every expected weight loaded correctly. Unused checkpoint keys indicate mismatched names, so print them to catch problems early.
 
 ```py
 model = YourModelForTask.from_pretrained("path/to/output/")
@@ -464,7 +464,7 @@ for key, tensor in original_state_dict.items():
 
 Fix any issues by iterating between your modular file, the generated modeling file, and the conversion script until all weights load cleanly.
 
-Once the checkpoint loads cleanly, push it to the Hub using [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub). Refer to the [model sharing](./model_sharing) guide for more details.
+Once the checkpoint loads cleanly, push it to the Hub using [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub). Refer to the [model sharing](./model_sharing) guide for more details.
 
 ```py
 model.push_to_hub("username/your-model-name")
@@ -472,9 +472,9 @@ model.push_to_hub("username/your-model-name")
 
 ### Runtime conversion mapping
 
-Add a runtime mapping to `src/transformers/conversion_mapping.py` when the published weights don't match your module's parameter layout. Common cases include fused weights stored separately and MoE expert tensors that need stacking. The mapping lets [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) load the Hub checkpoint without a separate export step.
+Add a runtime mapping to `src/transformers/conversion_mapping.py` when the published weights don't match your module's parameter layout. Common cases include fused weights stored separately and MoE expert tensors that need stacking. The mapping lets [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) load the Hub checkpoint without a separate export step.
 
-Refer to the [dynamic weight loading](./weightconverter) guide for how to write `WeightRenaming` and [WeightConverter](/docs/transformers/v5.15.0/en/internal/modeling_utils#transformers.WeightConverter) rules and register them for your `model_type`.
+Refer to the [dynamic weight loading](./weightconverter) guide for how to write `WeightRenaming` and [WeightConverter](/docs/transformers/v5.15.1/en/internal/modeling_utils#transformers.WeightConverter) rules and register them for your `model_type`.
 
 ## Next steps
 
@@ -485,4 +485,4 @@ Refer to the [dynamic weight loading](./weightconverter) guide for how to write 
 - [Pull request checks](./pr_checks) explains the CI checks your PR has to pass before it can be merged, and how to reproduce and fix them locally.
 
 ### Tokenization algorithms
-https://huggingface.co/docs/transformers/v5.15.0/tokenizer_summary.md
+https://huggingface.co/docs/transformers/v5.15.1/tokenizer_summary.md

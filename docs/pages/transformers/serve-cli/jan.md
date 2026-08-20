@@ -10,4 +10,4 @@ Go to **Settings > Model Providers**.
 Check the **Models** section (click **Refresh** if empty). Click **+** to add a specific model like Qwen/Qwen3-4B.
 
 ### Open WebUI
-https://huggingface.co/docs/transformers/v5.15.0/serve-cli/openweb_ui.md
+https://huggingface.co/docs/transformers/v5.15.1/serve-cli/openweb_ui.md

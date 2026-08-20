@@ -115,7 +115,7 @@ After installation, you can configure the Transformers cache location or set up 
 
 ### Cache directory
 
-When you load a pretrained model with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), the model is downloaded from the Hub and locally cached.
+When you load a pretrained model with [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained), the model is downloaded from the Hub and locally cached.
 
 Every time you load a model, it checks whether the cached model is up-to-date. If it's the same, then the local model is loaded. If it's not the same, the newer model is downloaded and cached.
 
@@ -147,7 +147,7 @@ HF_HUB_OFFLINE=1 \
 python examples/pytorch/language-modeling/run_clm.py --model_name_or_path meta-llama/Llama-2-7b-hf --dataset_name wikitext ...
 ```
 
-Another option for only loading cached files is to set `local_files_only=True` in [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
+Another option for only loading cached files is to set `local_files_only=True` in [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained).
 
 ```py
 from transformers import LlamaForCausalLM
@@ -156,4 +156,4 @@ model = LlamaForCausalLM.from_pretrained("./path/to/local/directory", local_file
 ```
 
 ### Debugging
-https://huggingface.co/docs/transformers/v5.15.0/debugging.md
+https://huggingface.co/docs/transformers/v5.15.1/debugging.md

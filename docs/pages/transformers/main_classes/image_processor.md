@@ -4,13 +4,13 @@ An image processor is in charge of loading images (optionally), preparing input 
 
 Image processors use a backend-based architecture. The class hierarchy is:
 
-- [BaseImageProcessor](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor) — abstract base class (for backward compatibility only; do not instantiate directly)
-  - [TorchvisionBackend](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.TorchvisionBackend) — the **default** [torchvision-backed](https://pytorch.org/vision/stable/index.html) backend. GPU-accelerated and significantly faster than the PIL backend. All models expose a `<Model>ImageProcessor` class that inherits from it.
-  - [PilBackend](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.PilBackend) — the PIL/NumPy alternative backend. Portable, CPU-only. Only available for older models via a `<Model>ImageProcessorPil` class; useful when exact numerical parity with the original implementation is required.
+- [BaseImageProcessor](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BaseImageProcessor) — abstract base class (for backward compatibility only; do not instantiate directly)
+  - [TorchvisionBackend](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.TorchvisionBackend) — the **default** [torchvision-backed](https://pytorch.org/vision/stable/index.html) backend. GPU-accelerated and significantly faster than the PIL backend. All models expose a `<Model>ImageProcessor` class that inherits from it.
+  - [PilBackend](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.PilBackend) — the PIL/NumPy alternative backend. Portable, CPU-only. Only available for older models via a `<Model>ImageProcessorPil` class; useful when exact numerical parity with the original implementation is required.
 
 Both backends expose the same API. Use the `backend` attribute to inspect which backend a loaded processor uses (e.g. `processor.backend == "torchvision"`).
 
-Pass `backend` to [AutoImageProcessor.from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor.from_pretrained) to select a backend. When `backend` is omitted (the default), torchvision is picked if it's installed, otherwise PIL is used. A few models that use Lanczos interpolation (Chameleon, Flava, Idefics3, SmolVLM) are an exception, and they default to PIL when torchvision < 0.27. Forcing `backend="torchvision"` for these models on torchvision < 0.27 falls back to BICUBIC interpolation, since torchvision supports Lanczos for tensors only from 0.27 onward.
+Pass `backend` to [AutoImageProcessor.from_pretrained()](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor.from_pretrained) to select a backend. When `backend` is omitted (the default), torchvision is picked if it's installed, otherwise PIL is used. A few models that use Lanczos interpolation (Chameleon, Flava, Idefics3, SmolVLM) are an exception, and they default to PIL when torchvision < 0.27. Forcing `backend="torchvision"` for these models on torchvision < 0.27 falls back to BICUBIC interpolation, since torchvision supports Lanczos for tensors only from 0.27 onward.
 
 ```python
 from transformers import AutoImageProcessor
@@ -59,7 +59,7 @@ These benchmarks were run on an [AWS EC2 g5.2xlarge instance](https://aws.amazon
 transformers.ImageProcessingMixin(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_base.py#L61)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_base.py#L61)
 
 This is an image processor mixin used to provide saving/loading functionality for sequential and image feature
 extractors.
@@ -70,11 +70,11 @@ extractors.
 from_pretrained(pretrained_model_name_or_path: str | os.PathLike, cache_dir: str | os.PathLike | None = None, force_download: bool = False, local_files_only: bool = False, token: str | bool | None = None, revision: str = 'main', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_base.py#L84)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_base.py#L84)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained image_processor hosted inside a model repo on huggingface.co. - a path to a *directory* containing a image processor file saved using the [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.ImageProcessingMixin.save_pretrained) method, e.g., `./my_model_directory/`. - a path to a saved image processor JSON *file*, e.g., `./my_model_directory/preprocessor_config.json`.
+pretrained_model_name_or_path (`str` or `os.PathLike`) : This can be either:  - a string, the *model id* of a pretrained image_processor hosted inside a model repo on huggingface.co. - a path to a *directory* containing a image processor file saved using the [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.ImageProcessingMixin.save_pretrained) method, e.g., `./my_model_directory/`. - a path to a saved image processor JSON *file*, e.g., `./my_model_directory/preprocessor_config.json`.
 
 cache_dir (`str` or `os.PathLike`, *optional*) : Path to a directory in which a downloaded pretrained model image processor should be cached if the standard cache should not be used.
 
@@ -94,9 +94,9 @@ kwargs (`dict[str, Any]`, *optional*) : The values in kwargs of any keys which a
 
 **Returns:**
 
-A image processor of type [ImageProcessingMixin](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.ImageProcessingMixin).
+A image processor of type [ImageProcessingMixin](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.ImageProcessingMixin).
 
-Instantiate a type of [ImageProcessingMixin](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.ImageProcessingMixin) from an image processor.
+Instantiate a type of [ImageProcessingMixin](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.ImageProcessingMixin) from an image processor.
 
 Examples:
 
@@ -127,7 +127,7 @@ assert unused_kwargs == {"foo": False}
 save_pretrained(save_directory: str | os.PathLike, push_to_hub: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_base.py#L183)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_base.py#L183)
 
 **Parameters:**
 
@@ -135,10 +135,10 @@ save_directory (`str` or `os.PathLike`) : Directory where the image processor JS
 
 push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push your model to the Hugging Face model hub after saving it. You can specify the repository you want to push to with `repo_id` (will default to the name of `save_directory` in your namespace).
 
-kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (`dict[str, Any]`, *optional*) : Additional key word arguments passed along to the [push_to_hub()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.utils.PushToHubMixin.push_to_hub) method.
 
 Save an image processor object to the directory `save_directory`, so that it can be re-loaded using the
-[from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.ImageProcessingMixin.from_pretrained) class method.
+[from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.ImageProcessingMixin.from_pretrained) class method.
 
 ## BatchFeature[[transformers.BatchFeature]]
 
@@ -148,7 +148,7 @@ Save an image processor object to the directory `save_directory`, so that it can
 transformers.BatchFeature(data: dict[str, typing.Any] | None = None, tensor_type: None | str | transformers.utils.generic.TensorType = None, skip_tensor_conversion: list[str] | set[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/feature_extraction_utils.py#L58)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/feature_extraction_utils.py#L58)
 
 **Parameters:**
 
@@ -158,7 +158,7 @@ tensor_type (`Union[None, str, TensorType]`, *optional*) : You can give a tensor
 
 skip_tensor_conversion (`list[str]` or `set[str]`, *optional*) : List or set of keys that should NOT be converted to tensors, even when `tensor_type` is specified.
 
-Holds the output of the [pad()](/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad) and feature extractor specific `__call__` methods.
+Holds the output of the [pad()](/docs/transformers/v5.15.1/en/main_classes/feature_extractor#transformers.SequenceFeatureExtractor.pad) and feature extractor specific `__call__` methods.
 
 This class is derived from a python dictionary and can be used as a dictionary.
 
@@ -168,11 +168,11 @@ This class is derived from a python dictionary and can be used as a dictionary.
 convert_to_tensors(tensor_type: str | transformers.utils.generic.TensorType | None = None, skip_tensor_conversion: list[str] | set[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/feature_extraction_utils.py#L158)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/feature_extraction_utils.py#L158)
 
 **Parameters:**
 
-tensor_type (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : The type of tensors to use. If `str`, should be one of the values of the enum [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType). If `None`, no modification is done.
+tensor_type (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : The type of tensors to use. If `str`, should be one of the values of the enum [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType). If `None`, no modification is done.
 
 skip_tensor_conversion (`list[str]` or `set[str]`, *optional*) : List or set of keys that should NOT be converted to tensors, even when `tensor_type` is specified.
 
@@ -189,7 +189,7 @@ different lengths) are still attempted, though they may raise errors during conv
 to(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/feature_extraction_utils.py#L215)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/feature_extraction_utils.py#L215)
 
 **Parameters:**
 
@@ -197,7 +197,7 @@ args (`Tuple`) : Will be passed to the `to(...)` function of the tensors.
 
 kwargs (`Dict`, *optional*) : Will be passed to the `to(...)` function of the tensors. To enable asynchronous data transfer, set the `non_blocking` flag in `kwargs` (defaults to `False`).
 
-**Returns:** [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature)
 
 The same instance after modification.
 
@@ -212,7 +212,7 @@ different `dtypes` and sending the `BatchFeature` to a different `device`.
 transformers.BaseImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L60)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L60)
 
 Base class for image processors with an inheritance-based backend architecture.
 
@@ -346,7 +346,7 @@ Key Notes
 center_crop(image: ndarray, size: dict, data_format: str | transformers.image_utils.ChannelDimension | None = None, input_data_format: str | transformers.image_utils.ChannelDimension | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L492)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L492)
 
 **Parameters:**
 
@@ -367,7 +367,7 @@ any edge, the image is padded with 0's and then center cropped.
 normalize(image: ndarray, mean: float | collections.abc.Iterable[float], std: float | collections.abc.Iterable[float], data_format: str | transformers.image_utils.ChannelDimension | None = None, input_data_format: str | transformers.image_utils.ChannelDimension | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L455)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L455)
 
 **Parameters:**
 
@@ -393,7 +393,7 @@ Normalize an image. image = (image - image_mean) / image_std.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -451,7 +451,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 process_image(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L219)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L219)
 
 Process a single raw image into the backend's working format.
 
@@ -465,7 +465,7 @@ Torchvision, `np.ndarray` for PIL), handles RGB conversion and ensures channels-
 rescale(image: ndarray, scale: float, data_format: str | transformers.image_utils.ChannelDimension | None = None, input_data_format: str | transformers.image_utils.ChannelDimension | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L422)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L422)
 
 **Parameters:**
 
@@ -491,7 +491,7 @@ Rescale an image by a scale factor. image = image * scale.
 transformers.TorchvisionBackend(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L86)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L86)
 
 Torchvision backend for GPU-accelerated batched image processing.
 
@@ -501,7 +501,7 @@ Torchvision backend for GPU-accelerated batched image processing.
 center_crop(image: torch.Tensor, size: SizeDict, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L340)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L340)
 
 Center crop an image using Torchvision.
 
@@ -511,7 +511,7 @@ Center crop an image using Torchvision.
 convert_to_rgb(image: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L151)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L151)
 
 Convert an image to RGB format.
 
@@ -521,7 +521,7 @@ Convert an image to RGB format.
 fetch_images(image_url_or_urls: str | list[str] | list[list[str]])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L100)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L100)
 
 Convert a single or a list of URLs / paths into `torch.Tensor` objects.
 
@@ -534,7 +534,7 @@ unchanged so that callers who pre-load images are unaffected.
 normalize(image: torch.Tensor, mean: float | collections.abc.Iterable[float], std: float | collections.abc.Iterable[float], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L288)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L288)
 
 Normalize an image using Torchvision.
 
@@ -544,7 +544,7 @@ Normalize an image using Torchvision.
 pad(images: list, pad_size: SizeDict = None, fill_value: int | None = 0, padding_mode: str | None = 'constant', return_mask: bool = False, disable_grouping: bool | None = False, is_nested: bool | None = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L155)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L155)
 
 Pad images using Torchvision with batched operations.
 
@@ -554,7 +554,7 @@ Pad images using Torchvision with batched operations.
 process_image(image: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], do_convert_rgb: bool | None = None, input_data_format: str | transformers.image_utils.ChannelDimension | None = None, device: typing.Optional[ForwardRef('torch.device')] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L116)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L116)
 
 Process a single image for torchvision backend.
 
@@ -564,7 +564,7 @@ Process a single image for torchvision backend.
 rescale(image: torch.Tensor, scale: float, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L279)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L279)
 
 Rescale an image by a scale factor using Torchvision.
 
@@ -574,7 +574,7 @@ Rescale an image by a scale factor using Torchvision.
 rescale_and_normalize(images: torch.Tensor, do_rescale: bool, rescale_factor: float, do_normalize: bool, image_mean: float | list[float], image_std: float | list[float])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L315)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L315)
 
 Rescale and normalize images using Torchvision (fused for efficiency).
 
@@ -584,7 +584,7 @@ Rescale and normalize images using Torchvision (fused for efficiency).
 resize(image: torch.Tensor, size: SizeDict, resample: PILImageResampling | tvF.InterpolationMode | int | None = None, antialias: bool = True, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L205)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L205)
 
 Resize an image using Torchvision.
 
@@ -596,7 +596,7 @@ Resize an image using Torchvision.
 transformers.PilBackend(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L417)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L417)
 
 PIL/NumPy backend for portable CPU-only image processing.
 
@@ -606,7 +606,7 @@ PIL/NumPy backend for portable CPU-only image processing.
 center_crop(image: ndarray, size: SizeDict, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L603)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L603)
 
 Center crop an image using NumPy.
 
@@ -616,7 +616,7 @@ Center crop an image using NumPy.
 convert_to_rgb(image: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']])
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L467)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L467)
 
 Convert an image to RGB format.
 
@@ -626,7 +626,7 @@ Convert an image to RGB format.
 normalize(image: ndarray, mean: float | collections.abc.Iterable[float], std: float | collections.abc.Iterable[float], **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L587)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L587)
 
 Normalize an image using NumPy.
 
@@ -636,7 +636,7 @@ Normalize an image using NumPy.
 pad(images: list, pad_size: SizeDict = None, fill_value: int | None = 0, padding_mode: str | None = 'constant', return_mask: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L471)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L471)
 
 Pad images to specified size using NumPy.
 
@@ -646,7 +646,7 @@ Pad images to specified size using NumPy.
 process_image(image: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], do_convert_rgb: bool | None = None, input_data_format: str | transformers.image_utils.ChannelDimension | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L431)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L431)
 
 Process a single image for PIL backend.
 
@@ -656,7 +656,7 @@ Process a single image for PIL backend.
 rescale(image: ndarray, scale: float, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L573)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L573)
 
 Rescale an image by a scale factor using NumPy.
 
@@ -666,9 +666,9 @@ Rescale an image by a scale factor using NumPy.
 resize(image: ndarray, size: SizeDict, resample: PILImageResampling | None = None, reducing_gap: int | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_backends.py#L522)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_backends.py#L522)
 
 Resize an image using PIL/NumPy.
 
 ### Pipelines
-https://huggingface.co/docs/transformers/v5.15.0/main_classes/pipelines.md
+https://huggingface.co/docs/transformers/v5.15.1/main_classes/pipelines.md

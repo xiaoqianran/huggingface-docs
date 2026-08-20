@@ -10,7 +10,7 @@ Install Quanto with the following command.
 pip install optimum-quanto accelerate transformers
 ```
 
-Quantize a model by creating a [QuantoConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.QuantoConfig) and specifying the `weights` parameter to quantize to. This works for any model in any modality as long as it contains [torch.nn.Linear](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html) layers.
+Quantize a model by creating a [QuantoConfig](/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.QuantoConfig) and specifying the `weights` parameter to quantize to. This works for any model in any modality as long as it contains [torch.nn.Linear](https://pytorch.org/docs/stable/generated/torch.nn.Linear.html) layers.
 
 > [!TIP]
 > The Transformers integration only supports weight quantization. Use the Quanto library directly if you need activation quantization, calibration, or QAT.
@@ -53,4 +53,4 @@ Read the [Quanto: a PyTorch quantization backend for Optimum](https://huggingfac
 For more hands-on examples, take a look at the Quanto [notebook](https://colab.research.google.com/drive/16CXfVmtdQvciSh9BopZUDYcmXCDpvgrT?usp=sharing).
 
 ### Metal
-https://huggingface.co/docs/transformers/v5.15.0/quantization/metal.md
+https://huggingface.co/docs/transformers/v5.15.1/quantization/metal.md

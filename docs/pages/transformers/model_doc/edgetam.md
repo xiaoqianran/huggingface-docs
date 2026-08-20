@@ -283,15 +283,15 @@ with torch.no_grad():
 transformers.EdgeTamConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, prompt_encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, mask_decoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/configuration_edgetam.py#L152)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam/configuration_edgetam.py#L152)
 
 **Parameters:**
 
 vision_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the vision backbone.
 
-prompt_encoder_config (Union[`dict`, `EdgeTamPromptEncoderConfig`], *optional*) : Dictionary of configuration options used to initialize [EdgeTamPromptEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamPromptEncoderConfig).
+prompt_encoder_config (Union[`dict`, `EdgeTamPromptEncoderConfig`], *optional*) : Dictionary of configuration options used to initialize [EdgeTamPromptEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/edgetam#transformers.EdgeTamPromptEncoderConfig).
 
-mask_decoder_config (Union[`dict`, `EdgeTamMaskDecoderConfig`], *optional*) : Dictionary of configuration options used to initialize [EdgeTamMaskDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamMaskDecoderConfig).
+mask_decoder_config (Union[`dict`, `EdgeTamMaskDecoderConfig`], *optional*) : Dictionary of configuration options used to initialize [EdgeTamMaskDecoderConfig](/docs/transformers/v5.15.1/en/model_doc/edgetam#transformers.EdgeTamMaskDecoderConfig).
 
 initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
@@ -299,8 +299,8 @@ This is the configuration class to store the configuration of a EdgeTamModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/EdgeTAM-hf](https://huggingface.co/yonigozlan/EdgeTAM-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -338,7 +338,7 @@ Example:
 transformers.EdgeTamVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, backbone_channel_list: list[int] | None = None, backbone_feature_sizes: list | None = None, fpn_hidden_size: int = 256, fpn_kernel_size: int = 1, fpn_stride: int = 1, fpn_padding: int = 0, fpn_top_down_levels: list[int] | None = None, num_feature_levels: int = 3, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/configuration_edgetam.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam/configuration_edgetam.py#L29)
 
 **Parameters:**
 
@@ -370,8 +370,8 @@ This is the configuration class to store the configuration of a EdgeTamModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/EdgeTAM-hf](https://huggingface.co/yonigozlan/EdgeTAM-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## EdgeTamMaskDecoderConfig[[transformers.EdgeTamMaskDecoderConfig]]
 
@@ -381,7 +381,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.EdgeTamMaskDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, hidden_act: str = 'gelu', mlp_dim: int = 2048, num_hidden_layers: int = 2, num_attention_heads: int = 8, attention_downsample_rate: int = 2, num_multimask_outputs: int = 3, iou_head_depth: int = 3, iou_head_hidden_dim: int = 256, dynamic_multimask_via_stability: bool = True, dynamic_multimask_stability_delta: float = 0.05, dynamic_multimask_stability_thresh: float = 0.98)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/configuration_edgetam.py#L114)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam/configuration_edgetam.py#L114)
 
 **Parameters:**
 
@@ -413,8 +413,8 @@ This is the configuration class to store the configuration of a EdgeTamModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/EdgeTAM-hf](https://huggingface.co/yonigozlan/EdgeTAM-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## EdgeTamPromptEncoderConfig[[transformers.EdgeTamPromptEncoderConfig]]
 
@@ -424,7 +424,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.EdgeTamPromptEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, image_size: int | list[int] | tuple[int, int] = 1024, patch_size: int | list[int] | tuple[int, int] = 16, mask_input_channels: int = 16, num_point_embeddings: int = 4, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, scale: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/configuration_edgetam.py#L90)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam/configuration_edgetam.py#L90)
 
 **Parameters:**
 
@@ -448,8 +448,8 @@ This is the configuration class to store the configuration of a EdgeTamModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/EdgeTAM-hf](https://huggingface.co/yonigozlan/EdgeTAM-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## EdgeTamVisionModel[[transformers.EdgeTamVisionModel]]
 
@@ -459,15 +459,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.EdgeTamVisionModel(config: EdgeTamVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/modeling_edgetam.py#L452)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam/modeling_edgetam.py#L452)
 
 **Parameters:**
 
-config ([EdgeTamVisionConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([EdgeTamVisionConfig](/docs/transformers/v5.15.1/en/model_doc/edgetam#transformers.EdgeTamVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The vision model from EdgeTAM without any head or projection on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -481,7 +481,7 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/modeling_edgetam.py#L470)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam/modeling_edgetam.py#L470)
 
 ## EdgeTamModel[[transformers.EdgeTamModel]]
 
@@ -491,16 +491,16 @@ forward(pixel_values: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpac
 transformers.EdgeTamModel(config: EdgeTamConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/modeling_edgetam.py#L945)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam/modeling_edgetam.py#L945)
 
 **Parameters:**
 
-config ([EdgeTamConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([EdgeTamConfig](/docs/transformers/v5.15.1/en/model_doc/edgetam#transformers.EdgeTamConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Segment Anything Model 2 (SAM 2) for generating segmentation masks, given an input image and
 input points and labels, boxes, or masks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -514,11 +514,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, input_points: typing.Optional[torch.FloatTensor] = None, input_labels: typing.Optional[torch.LongTensor] = None, input_boxes: typing.Optional[torch.FloatTensor] = None, input_masks: typing.Optional[torch.LongTensor] = None, image_embeddings: typing.Optional[torch.FloatTensor] = None, multimask_output: bool = True, attention_similarity: typing.Optional[torch.FloatTensor] = None, target_embedding: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/modeling_edgetam.py#L1051)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam/modeling_edgetam.py#L1051)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Sam2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2ImageProcessor). See `Sam2ImageProcessor.__call__()` for details ([Sam2Processor](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2Processor) uses [Sam2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/sam2#transformers.Sam2ImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [Sam2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2ImageProcessor). See `Sam2ImageProcessor.__call__()` for details ([Sam2Processor](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2Processor) uses [Sam2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/sam2#transformers.Sam2ImageProcessor) for processing images).
 
 input_points (`torch.FloatTensor` of shape `(batch_size, num_points, 2)`) : Input 2D spatial points, this is used by the prompt encoder to encode the prompt. Generally yields to much better results. The points can be obtained by passing a list of list of list to the processor that will create corresponding `torch` tensors of dimension 4. The first dimension is the image batch size, the second dimension is the point batch size (i.e. how many segmentation masks do we want the model to predict per input point), the third dimension is the number of points per segmentation mask (it is possible to pass multiple points for a single mask), and the last dimension is the x (vertical) and y (horizontal) coordinates of the point. If a different number of points is passed either for each image, or for each mask, the processor will create "PAD" points that will correspond to the (0, 0) coordinate, and the computation of the embedding will be skipped for these points using the labels.
 
@@ -540,9 +540,9 @@ target_embedding (`torch.FloatTensor`, *optional*) : Embedding of the target con
 
 A `EdgeTamImageSegmentationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EdgeTamConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamConfig)) and inputs.
+elements depending on the configuration ([EdgeTamConfig](/docs/transformers/v5.15.1/en/model_doc/edgetam#transformers.EdgeTamConfig)) and inputs.
 
-The [EdgeTamModel](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamModel) forward method, overrides the `__call__` special method.
+The [EdgeTamModel](/docs/transformers/v5.15.1/en/model_doc/edgetam#transformers.EdgeTamModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -593,7 +593,7 @@ Example:
 get_image_features(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam/modeling_edgetam.py#L1229)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam/modeling_edgetam.py#L1229)
 
 **Parameters:**
 
@@ -603,7 +603,7 @@ pixel_values (`torch.FloatTensor`) : Input pixel values of shape `(batch_size, n
 
 A `EdgeTamVisionEncoderOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EdgeTamConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamConfig)) and inputs.
+elements depending on the configuration ([EdgeTamConfig](/docs/transformers/v5.15.1/en/model_doc/edgetam#transformers.EdgeTamConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, height, width, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -630,4 +630,4 @@ Example:
 ```
 
 ### DeepSeek-V4
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/deepseek_v4.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/deepseek_v4.md

@@ -116,4 +116,4 @@ print(similarity_score)
 ```
 
 ### Image tasks with IDEFICS
-https://huggingface.co/docs/transformers/v5.15.0/tasks/idefics.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/idefics.md

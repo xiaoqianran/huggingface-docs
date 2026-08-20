@@ -99,7 +99,7 @@ sf.write("speech.wav", speech["audio"].squeeze(), samplerate=speech["sampling_ra
 transformers.FastSpeech2ConformerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, hidden_size: int = 384, vocab_size: int = 78, num_mel_bins: int = 80, encoder_num_attention_heads: int = 2, encoder_layers: int = 4, encoder_linear_units: int = 1536, decoder_layers: int = 4, decoder_num_attention_heads: int = 2, decoder_linear_units: int = 1536, speech_decoder_postnet_layers: int = 5, speech_decoder_postnet_units: int = 256, speech_decoder_postnet_kernel: int = 5, positionwise_conv_kernel_size: int = 3, encoder_normalize_before: bool = False, decoder_normalize_before: bool = False, encoder_concat_after: bool = False, decoder_concat_after: bool = False, reduction_factor: int = 1, speaking_speed: float = 1.0, use_macaron_style_in_conformer: bool = True, use_cnn_in_conformer: bool = True, encoder_kernel_size: int = 7, decoder_kernel_size: int = 31, duration_predictor_layers: int = 2, duration_predictor_channels: int = 256, duration_predictor_kernel_size: int = 3, energy_predictor_layers: int = 2, energy_predictor_channels: int = 256, energy_predictor_kernel_size: int = 3, energy_predictor_dropout: float | int = 0.5, energy_embed_kernel_size: int = 1, energy_embed_dropout: float | int = 0.0, stop_gradient_from_energy_predictor: bool = False, pitch_predictor_layers: int = 5, pitch_predictor_channels: int = 256, pitch_predictor_kernel_size: int = 5, pitch_predictor_dropout: float | int = 0.5, pitch_embed_kernel_size: int = 1, pitch_embed_dropout: float | int = 0.0, stop_gradient_from_pitch_predictor: bool = True, encoder_dropout_rate: float | int = 0.2, encoder_positional_dropout_rate: float | int = 0.2, encoder_attention_dropout_rate: float | int = 0.2, decoder_dropout_rate: float | int = 0.2, decoder_positional_dropout_rate: float | int = 0.2, decoder_attention_dropout_rate: float | int = 0.2, duration_predictor_dropout_rate: float | int = 0.2, speech_decoder_postnet_dropout: float | int = 0.5, max_source_positions: int = 5000, use_masking: bool = True, use_weighted_masking: bool = False, num_speakers: int | None = None, num_languages: int | None = None, speaker_embed_dim: int | None = None, convolution_bias: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/fastspeech2_conformer/configuration_fastspeech2_conformer.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/fastspeech2_conformer/configuration_fastspeech2_conformer.py#L27)
 
 **Parameters:**
 
@@ -219,8 +219,8 @@ This is the configuration class to store the configuration of a FastSpeech2Confo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [espnet/fastspeech2_conformer](https://huggingface.co/espnet/fastspeech2_conformer)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -245,7 +245,7 @@ Example:
 transformers.FastSpeech2ConformerHifiGanConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, model_in_dim: int = 80, upsample_initial_channel: int = 512, upsample_rates: list[int] | tuple[int, ...] = (8, 8, 2, 2), upsample_kernel_sizes: list[int] | tuple[int, ...] = (16, 16, 4, 4), resblock_kernel_sizes: list[int] | tuple[int, ...] = (3, 7, 11), resblock_dilation_sizes: list | tuple | None = None, initializer_range: float = 0.01, leaky_relu_slope: float = 0.1, normalize_before: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/fastspeech2_conformer/configuration_fastspeech2_conformer.py#L267)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/fastspeech2_conformer/configuration_fastspeech2_conformer.py#L267)
 
 **Parameters:**
 
@@ -271,8 +271,8 @@ This is the configuration class to store the configuration of a FastSpeech2Confo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [espnet/fastspeech2_conformer_with_hifigan](https://huggingface.co/espnet/fastspeech2_conformer_with_hifigan)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -297,7 +297,7 @@ Example:
 transformers.FastSpeech2ConformerWithHifiGanConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, model_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vocoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/fastspeech2_conformer/configuration_fastspeech2_conformer.py#L328)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/fastspeech2_conformer/configuration_fastspeech2_conformer.py#L328)
 
 **Parameters:**
 
@@ -309,8 +309,8 @@ This is the configuration class to store the configuration of a FastSpeech2Confo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [espnet/fastspeech2_conformer_with_hifigan](https://huggingface.co/espnet/fastspeech2_conformer_with_hifigan)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -344,7 +344,7 @@ Example:
 transformers.FastSpeech2ConformerTokenizer(vocab_file, bos_token = '<sos/eos>', eos_token = '<sos/eos>', pad_token = '<blank>', unk_token = '<unk>', should_strip_spaces = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/fastspeech2_conformer/tokenization_fastspeech2_conformer.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/fastspeech2_conformer/tokenization_fastspeech2_conformer.py#L30)
 
 **Parameters:**
 
@@ -368,7 +368,7 @@ Construct a FastSpeech2Conformer tokenizer.
 __call__(text: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_pair: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_target: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, text_pair_target: TextInput | PreTokenizedInput | list[TextInput] | list[PreTokenizedInput] | None = None, add_special_tokens: bool = True, padding: bool | str | PaddingStrategy = False, truncation: bool | str | TruncationStrategy | None = None, max_length: int | None = None, stride: int = 0, is_split_into_words: bool = False, pad_to_multiple_of: int | None = None, padding_side: str | None = None, return_tensors: str | TensorType | None = None, return_token_type_ids: bool | None = None, return_attention_mask: bool | None = None, return_overflowing_tokens: bool = False, return_special_tokens_mask: bool = False, return_offsets_mapping: bool = False, return_length: bool = False, verbose: bool = True, tokenizer_kwargs: dict[str, Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_base.py#L2417)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_base.py#L2417)
 
 **Parameters:**
 
@@ -384,9 +384,9 @@ tokenizer_kwargs (`dict[str, Any]`, *optional*) : Additional kwargs to pass to t
 
 add_special_tokens (`bool`, *optional*, defaults to `True`) : Whether or not to add special tokens when encoding the sequences. This will use the underlying `PretrainedTokenizerBase.build_inputs_with_special_tokens` function, which defines which tokens are automatically added to the input ids. This is useful if you want to add `bos` or `eos` tokens automatically.
 
-padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
+padding (`bool`, `str` or [PaddingStrategy](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.utils.PaddingStrategy), *optional*, defaults to `False`) : Activates and controls padding. Accepts the following values:  - `True` or `'longest'`: Pad to the longest sequence in the batch (or no padding if only a single sequence is provided). - `'max_length'`: Pad to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. - `False` or `'do_not_pad'` (default): No padding (i.e., can output a batch with sequences of different lengths).
 
-truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
+truncation (`bool`, `str` or [TruncationStrategy](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.tokenization_utils_base.TruncationStrategy), *optional*, defaults to `False`) : Activates and controls truncation. Accepts the following values:  - `True` or `'longest_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will truncate token by token, removing a token from the longest sequence in the pair if a pair of sequences (or a batch of pairs) is provided. - `'only_first'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the first sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `'only_second'`: Truncate to a maximum length specified with the argument `max_length` or to the maximum acceptable input length for the model if that argument is not provided. This will only truncate the second sequence of a pair if a pair of sequences (or a batch of pairs) is provided. - `False` or `'do_not_truncate'` (default): No truncation (i.e., can output batch with sequence lengths greater than the model maximum admissible input size).
 
 max_length (`int`, *optional*) : Controls the maximum length to use by one of the truncation/padding parameters.  If left unset or set to `None`, this will use the predefined model maximum length if a maximum length is required by one of the truncation/padding parameters. If the model has no specific maximum input length (like XLNet) truncation/padding to a maximum length will be deactivated.
 
@@ -398,7 +398,7 @@ pad_to_multiple_of (`int`, *optional*) : If set will pad the sequence to a multi
 
 padding_side (`str`, *optional*) : The side on which the model should have padding applied. Should be selected between ['right', 'left']. Default value is picked from the class attribute of the same name.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects. 
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors instead of list of python integers. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return Numpy `np.ndarray` objects. 
 
 return_token_type_ids (`bool`, *optional*) : Whether to return token type IDs. If left to the default, will return the token type IDs according to the specific tokenizer's default, defined by the `return_outputs` attribute.  [What are token type IDs?](../glossary#token-type-ids)
 
@@ -408,7 +408,7 @@ return_overflowing_tokens (`bool`, *optional*, defaults to `False`) : Whether or
 
 return_special_tokens_mask (`bool`, *optional*, defaults to `False`) : Whether or not to return special tokens mask information.
 
-return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
+return_offsets_mapping (`bool`, *optional*, defaults to `False`) : Whether or not to return `(char_start, char_end)` for each token.  This is only available on fast tokenizers inheriting from [PreTrainedTokenizerFast](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend), if using Python's tokenizer, this method will raise `NotImplementedError`.
 
 return_length  (`bool`, *optional*, defaults to `False`) : Whether or not to return the lengths of the encoded inputs.
 
@@ -416,9 +416,9 @@ verbose (`bool`, *optional*, defaults to `True`) : Whether or not to print more 
 
 - ****kwargs** : passed to the `self.tokenize()` method
 
-**Returns:** [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding)
+**Returns:** [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding)
 
-A [BatchEncoding](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
+A [BatchEncoding](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.BatchEncoding) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model.
 
@@ -451,7 +451,7 @@ sequences.
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/fastspeech2_conformer/tokenization_fastspeech2_conformer.py#L145)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/fastspeech2_conformer/tokenization_fastspeech2_conformer.py#L145)
 
 **Parameters:**
 
@@ -469,7 +469,7 @@ Save the vocabulary and special tokens file to a directory.
 decode(token_ids, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/fastspeech2_conformer/tokenization_fastspeech2_conformer.py#L132)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/fastspeech2_conformer/tokenization_fastspeech2_conformer.py#L132)
 
 #### batch_decode[[transformers.FastSpeech2ConformerTokenizer.batch_decode]]
 
@@ -477,7 +477,7 @@ decode(token_ids, **kwargs)
 batch_decode(sequences: list[int] | list[list[int]] | np.ndarray | torch.Tensor, skip_special_tokens: bool = False, clean_up_tokenization_spaces: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_base.py#L2901)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_base.py#L2901)
 
 **Parameters:**
 
@@ -506,15 +506,15 @@ so you can use `decode` directly instead of `batch_decode`.
 transformers.FastSpeech2ConformerModel(config: FastSpeech2ConformerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/fastspeech2_conformer/modeling_fastspeech2_conformer.py#L1021)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/fastspeech2_conformer/modeling_fastspeech2_conformer.py#L1021)
 
 **Parameters:**
 
-config ([FastSpeech2ConformerConfig](/docs/transformers/v5.15.0/en/model_doc/fastspeech2_conformer#transformers.FastSpeech2ConformerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FastSpeech2ConformerConfig](/docs/transformers/v5.15.1/en/model_doc/fastspeech2_conformer#transformers.FastSpeech2ConformerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 FastSpeech2Conformer Model.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -528,7 +528,7 @@ and behavior.
 forward(input_ids: LongTensor, attention_mask: typing.Optional[torch.LongTensor] = None, spectrogram_labels: typing.Optional[torch.FloatTensor] = None, duration_labels: typing.Optional[torch.LongTensor] = None, pitch_labels: typing.Optional[torch.FloatTensor] = None, energy_labels: typing.Optional[torch.FloatTensor] = None, speaker_ids: typing.Optional[torch.LongTensor] = None, lang_ids: typing.Optional[torch.LongTensor] = None, speaker_embedding: typing.Optional[torch.FloatTensor] = None, return_dict: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/fastspeech2_conformer/modeling_fastspeech2_conformer.py#L1098)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/fastspeech2_conformer/modeling_fastspeech2_conformer.py#L1098)
 
 **Parameters:**
 
@@ -550,7 +550,7 @@ lang_ids (`torch.LongTensor` of shape `(batch_size, 1)`, *optional*, defaults to
 
 speaker_embedding (`torch.FloatTensor` of shape `(batch_size, embedding_dim)`, *optional*, defaults to `None`) : Embedding containing conditioning signals for the features of the speech.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
@@ -560,9 +560,9 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 A `FastSpeech2ConformerModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FastSpeech2ConformerConfig](/docs/transformers/v5.15.0/en/model_doc/fastspeech2_conformer#transformers.FastSpeech2ConformerConfig)) and inputs.
+elements depending on the configuration ([FastSpeech2ConformerConfig](/docs/transformers/v5.15.1/en/model_doc/fastspeech2_conformer#transformers.FastSpeech2ConformerConfig)) and inputs.
 
-The [FastSpeech2ConformerModel](/docs/transformers/v5.15.0/en/model_doc/fastspeech2_conformer#transformers.FastSpeech2ConformerModel) forward method, overrides the `__call__` special method.
+The [FastSpeech2ConformerModel](/docs/transformers/v5.15.1/en/model_doc/fastspeech2_conformer#transformers.FastSpeech2ConformerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -624,15 +624,15 @@ torch.Size([1, 49664])
 transformers.FastSpeech2ConformerHifiGan(config: FastSpeech2ConformerHifiGanConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/fastspeech2_conformer/modeling_fastspeech2_conformer.py#L1360)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/fastspeech2_conformer/modeling_fastspeech2_conformer.py#L1360)
 
 **Parameters:**
 
-config ([FastSpeech2ConformerHifiGanConfig](/docs/transformers/v5.15.0/en/model_doc/fastspeech2_conformer#transformers.FastSpeech2ConformerHifiGanConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FastSpeech2ConformerHifiGanConfig](/docs/transformers/v5.15.1/en/model_doc/fastspeech2_conformer#transformers.FastSpeech2ConformerHifiGanConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 HiFi-GAN vocoder.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -646,7 +646,7 @@ and behavior.
 forward(spectrogram: FloatTensor, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/fastspeech2_conformer/modeling_fastspeech2_conformer.py#L1428)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/fastspeech2_conformer/modeling_fastspeech2_conformer.py#L1428)
 
 **Parameters:**
 
@@ -669,15 +669,15 @@ waveform.
 transformers.FastSpeech2ConformerWithHifiGan(config: FastSpeech2ConformerWithHifiGanConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/fastspeech2_conformer/modeling_fastspeech2_conformer.py#L1483)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/fastspeech2_conformer/modeling_fastspeech2_conformer.py#L1483)
 
 **Parameters:**
 
-config ([FastSpeech2ConformerWithHifiGanConfig](/docs/transformers/v5.15.0/en/model_doc/fastspeech2_conformer#transformers.FastSpeech2ConformerWithHifiGanConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([FastSpeech2ConformerWithHifiGanConfig](/docs/transformers/v5.15.1/en/model_doc/fastspeech2_conformer#transformers.FastSpeech2ConformerWithHifiGanConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The FastSpeech2ConformerModel with a FastSpeech2ConformerHifiGan vocoder head that performs text-to-speech (waveform).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -691,7 +691,7 @@ and behavior.
 forward(input_ids: LongTensor, attention_mask: typing.Optional[torch.LongTensor] = None, spectrogram_labels: typing.Optional[torch.FloatTensor] = None, duration_labels: typing.Optional[torch.LongTensor] = None, pitch_labels: typing.Optional[torch.FloatTensor] = None, energy_labels: typing.Optional[torch.FloatTensor] = None, speaker_ids: typing.Optional[torch.LongTensor] = None, lang_ids: typing.Optional[torch.LongTensor] = None, speaker_embedding: typing.Optional[torch.FloatTensor] = None, return_dict: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/fastspeech2_conformer/modeling_fastspeech2_conformer.py#L1496)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/fastspeech2_conformer/modeling_fastspeech2_conformer.py#L1496)
 
 **Parameters:**
 
@@ -713,7 +713,7 @@ lang_ids (`torch.LongTensor` of shape `(batch_size, 1)`, *optional*, defaults to
 
 speaker_embedding (`torch.FloatTensor` of shape `(batch_size, embedding_dim)`, *optional*, defaults to `None`) : Embedding containing conditioning signals for the features of the speech.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
@@ -723,9 +723,9 @@ output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden 
 
 A `FastSpeech2ConformerModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([FastSpeech2ConformerConfig](/docs/transformers/v5.15.0/en/model_doc/fastspeech2_conformer#transformers.FastSpeech2ConformerConfig)) and inputs.
+elements depending on the configuration ([FastSpeech2ConformerConfig](/docs/transformers/v5.15.1/en/model_doc/fastspeech2_conformer#transformers.FastSpeech2ConformerConfig)) and inputs.
 
-The [FastSpeech2ConformerWithHifiGan](/docs/transformers/v5.15.0/en/model_doc/fastspeech2_conformer#transformers.FastSpeech2ConformerWithHifiGan) forward method, overrides the `__call__` special method.
+The [FastSpeech2ConformerWithHifiGan](/docs/transformers/v5.15.1/en/model_doc/fastspeech2_conformer#transformers.FastSpeech2ConformerWithHifiGan) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -776,4 +776,4 @@ torch.Size([1, 49664])
 ```
 
 ### VideoPrism
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/videoprism.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/videoprism.md

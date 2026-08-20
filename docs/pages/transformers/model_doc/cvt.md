@@ -9,7 +9,7 @@ You can find all the CvT checkpoints under the [Microsoft](https://huggingface.c
 >
 > Click on the CvT models in the right sidebar for more examples of how to apply CvT to different computer vision tasks.
 
-The example below demonstrates how to classify an image with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to classify an image with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -50,7 +50,7 @@ print(f"The predicted class label is: {predicted_class_label}")
 
 ## Resources
 
-Refer to this set of ViT [notebooks](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/VisionTransformer) for examples of inference and fine-tuning on custom datasets. Replace `ViTFeatureExtractor` and [ViTForImageClassification](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTForImageClassification) in these notebooks with [AutoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoImageProcessor) and [CvtForImageClassification](/docs/transformers/v5.15.0/en/model_doc/cvt#transformers.CvtForImageClassification).
+Refer to this set of ViT [notebooks](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/VisionTransformer) for examples of inference and fine-tuning on custom datasets. Replace `ViTFeatureExtractor` and [ViTForImageClassification](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTForImageClassification) in these notebooks with [AutoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoImageProcessor) and [CvtForImageClassification](/docs/transformers/v5.15.1/en/model_doc/cvt#transformers.CvtForImageClassification).
 
 ## CvtConfig[[transformers.CvtConfig]]
 
@@ -60,7 +60,7 @@ Refer to this set of ViT [notebooks](https://github.com/NielsRogge/Transformers-
 transformers.CvtConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, num_channels: int = 3, patch_sizes: list[int] | tuple[int, ...] = (7, 3, 3), patch_stride: list[int] | tuple[int, ...] = (4, 2, 2), patch_padding: list[int] | tuple[int, ...] = (2, 1, 1), embed_dim: list[int] | tuple[int, ...] = (64, 192, 384), num_heads: list[int] | tuple[int, ...] = (1, 3, 6), depth: list[int] | tuple[int, ...] = (1, 2, 10), mlp_ratio: list[float] | tuple[float, ...] = (4.0, 4.0, 4.0), attention_drop_rate: list[float] | tuple[float, ...] = (0.0, 0.0, 0.0), drop_rate: list[float] | tuple[float, ...] = (0.0, 0.0, 0.0), drop_path_rate: list[float] | tuple[float, ...] = (0.0, 0.0, 0.1), qkv_bias: list[bool] | tuple[bool, ...] = (True, True, True), cls_token: list[bool] | tuple[bool, ...] = (False, False, True), qkv_projection_method: list[str] | tuple[str, ...] = ('dw_bn', 'dw_bn', 'dw_bn'), kernel_qkv: list[int] | tuple[int, ...] = (3, 3, 3), padding_kv: list[int] | tuple[int, ...] = (1, 1, 1), stride_kv: list[int] | tuple[int, ...] = (2, 2, 2), padding_q: list[int] | tuple[int, ...] = (1, 1, 1), stride_q: list[int] | tuple[int, ...] = (1, 1, 1), initializer_range: float = 0.02, layer_norm_eps: float = 1e-12)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cvt/configuration_cvt.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/cvt/configuration_cvt.py#L24)
 
 **Parameters:**
 
@@ -110,8 +110,8 @@ This is the configuration class to store the configuration of a CvtModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/cvt-13](https://huggingface.co/microsoft/cvt-13)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -136,17 +136,17 @@ Example:
 transformers.CvtModel(config, add_pooling_layer = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cvt/modeling_cvt.py#L499)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/cvt/modeling_cvt.py#L499)
 
 **Parameters:**
 
-config ([CvtModel](/docs/transformers/v5.15.0/en/model_doc/cvt#transformers.CvtModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([CvtModel](/docs/transformers/v5.15.1/en/model_doc/cvt#transformers.CvtModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare Cvt Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -160,23 +160,23 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cvt/modeling_cvt.py#L510)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/cvt/modeling_cvt.py#L510)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ConvNextImageProcessor](/docs/transformers/v5.15.0/en/model_doc/convnext#transformers.ConvNextImageProcessor). See `ConvNextImageProcessor.__call__()` for details (`processor_class` uses [ConvNextImageProcessor](/docs/transformers/v5.15.0/en/model_doc/convnext#transformers.ConvNextImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ConvNextImageProcessor](/docs/transformers/v5.15.1/en/model_doc/convnext#transformers.ConvNextImageProcessor). See `ConvNextImageProcessor.__call__()` for details (`processor_class` uses [ConvNextImageProcessor](/docs/transformers/v5.15.1/en/model_doc/convnext#transformers.ConvNextImageProcessor) for processing images).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `BaseModelOutputWithCLSToken` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithCLSToken` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CvtConfig](/docs/transformers/v5.15.0/en/model_doc/cvt#transformers.CvtConfig)) and inputs.
+elements depending on the configuration ([CvtConfig](/docs/transformers/v5.15.1/en/model_doc/cvt#transformers.CvtConfig)) and inputs.
 
-The [CvtModel](/docs/transformers/v5.15.0/en/model_doc/cvt#transformers.CvtModel) forward method, overrides the `__call__` special method.
+The [CvtModel](/docs/transformers/v5.15.1/en/model_doc/cvt#transformers.CvtModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -197,16 +197,16 @@ the latter silently ignores them.
 transformers.CvtForImageClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cvt/modeling_cvt.py#L549)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/cvt/modeling_cvt.py#L549)
 
 **Parameters:**
 
-config ([CvtForImageClassification](/docs/transformers/v5.15.0/en/model_doc/cvt#transformers.CvtForImageClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([CvtForImageClassification](/docs/transformers/v5.15.1/en/model_doc/cvt#transformers.CvtForImageClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Cvt Model transformer with an image classification head on top (a linear layer on top of the final hidden state of
 the [CLS] token) e.g. for ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -220,25 +220,25 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/cvt/modeling_cvt.py#L564)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/cvt/modeling_cvt.py#L564)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ConvNextImageProcessor](/docs/transformers/v5.15.0/en/model_doc/convnext#transformers.ConvNextImageProcessor). See `ConvNextImageProcessor.__call__()` for details (`processor_class` uses [ConvNextImageProcessor](/docs/transformers/v5.15.0/en/model_doc/convnext#transformers.ConvNextImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ConvNextImageProcessor](/docs/transformers/v5.15.1/en/model_doc/convnext#transformers.ConvNextImageProcessor). See `ConvNextImageProcessor.__call__()` for details (`processor_class` uses [ConvNextImageProcessor](/docs/transformers/v5.15.1/en/model_doc/convnext#transformers.ConvNextImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.FloatTensor)`
 
-A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
+A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([CvtConfig](/docs/transformers/v5.15.0/en/model_doc/cvt#transformers.CvtConfig)) and inputs.
+elements depending on the configuration ([CvtConfig](/docs/transformers/v5.15.1/en/model_doc/cvt#transformers.CvtConfig)) and inputs.
 
-The [CvtForImageClassification](/docs/transformers/v5.15.0/en/model_doc/cvt#transformers.CvtForImageClassification) forward method, overrides the `__call__` special method.
+The [CvtForImageClassification](/docs/transformers/v5.15.1/en/model_doc/cvt#transformers.CvtForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -275,4 +275,4 @@ Example:
 ```
 
 ### M2M100
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/m2m_100.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/m2m_100.md

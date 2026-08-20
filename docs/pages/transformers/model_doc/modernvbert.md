@@ -53,7 +53,7 @@ print("Predicted token:", predicted_token)  # Predicted token: painting
 transformers.ModernVBertConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: transformers.configuration_utils.PreTrainedConfig | dict | None = None, vision_config: transformers.configuration_utils.PreTrainedConfig | dict | None = None, image_token_id: int = 50407, pixel_shuffle_factor: int = 4, initializer_range: float = 0.02, initializer_cutoff_factor: float = 2.0, classifier_pooling: typing.Literal['cls', 'mean'] = 'cls', classifier_dropout: float | int = 0.0, classifier_bias: bool = False, tie_word_embeddings: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernvbert/configuration_modernvbert.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/modernvbert/configuration_modernvbert.py#L32)
 
 **Parameters:**
 
@@ -81,8 +81,8 @@ This is the configuration class to store the configuration of a ModernVBertModel
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [ModernVBERT/modernvbert](https://huggingface.co/ModernVBERT/modernvbert)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 ```python
@@ -109,18 +109,18 @@ Example:
 transformers.ModernVBertModel(config: ModernVBertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernvbert/modeling_modernvbert.py#L202)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/modernvbert/modeling_modernvbert.py#L202)
 
 **Parameters:**
 
-config ([ModernVBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernvbert#transformers.ModernVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ModernVBertConfig](/docs/transformers/v5.15.1/en/model_doc/modernvbert#transformers.ModernVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 ModernVBertModel is a model that combines a vision encoder (SigLIP) and a text encoder (ModernBert).
 
 ModernVBert is the base model of the visual retriever ColModernVBert, and was introduced in the following paper:
 [*ModernVBERT: Towards Smaller Visual Document Retrievers*](https://arxiv.org/abs/2510.01149).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -134,11 +134,11 @@ and behavior.
 forward(input_ids: LongTensor = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_attention_mask: typing.Optional[torch.BoolTensor] = None, image_hidden_states: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernvbert/modeling_modernvbert.py#L330)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/modernvbert/modeling_modernvbert.py#L330)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -146,7 +146,7 @@ position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *opti
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([Idefics3Processor](/docs/transformers/v5.15.0/en/model_doc/idefics3#transformers.Idefics3Processor) uses `image_processor_class` for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([Idefics3Processor](/docs/transformers/v5.15.1/en/model_doc/idefics3#transformers.Idefics3Processor) uses `image_processor_class` for processing images).
 
 pixel_attention_mask (`torch.Tensor` of shape `(batch_size, image_size, image_size)`, *optional*) : Mask to avoid performing attention on padding pixel indices.
 
@@ -156,7 +156,7 @@ image_hidden_states (`torch.FloatTensor` of shape `(batch_size, num_channels, im
 
 A `ModernVBertBaseModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ModernVBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernvbert#transformers.ModernVBertConfig)) and inputs.
+elements depending on the configuration ([ModernVBertConfig](/docs/transformers/v5.15.1/en/model_doc/modernvbert#transformers.ModernVBertConfig)) and inputs.
 
 Inputs fed to the model can have an arbitrary number of images. To account for this, pixel_values fed to
 the model have image padding -> (batch_size, max_num_images, 3, max_heights, max_widths) where
@@ -188,15 +188,15 @@ image_batch_size would be 7 when num_images_per_sample=[1, 3, 1, 2] and max_num_
 transformers.ModernVBertForMaskedLM(config: ModernVBertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernvbert/modeling_modernvbert.py#L406)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/modernvbert/modeling_modernvbert.py#L406)
 
 **Parameters:**
 
-config ([ModernVBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernvbert#transformers.ModernVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ModernVBertConfig](/docs/transformers/v5.15.1/en/model_doc/modernvbert#transformers.ModernVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Modernvbert Model with a `language modeling` head on top."
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -210,11 +210,11 @@ and behavior.
 forward(input_ids: LongTensor = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_attention_mask: typing.Optional[torch.BoolTensor] = None, image_hidden_states: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernvbert/modeling_modernvbert.py#L427)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/modernvbert/modeling_modernvbert.py#L427)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -222,7 +222,7 @@ position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *opti
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([Idefics3Processor](/docs/transformers/v5.15.0/en/model_doc/idefics3#transformers.Idefics3Processor) uses `image_processor_class` for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([Idefics3Processor](/docs/transformers/v5.15.1/en/model_doc/idefics3#transformers.Idefics3Processor) uses `image_processor_class` for processing images).
 
 pixel_attention_mask (`torch.Tensor` of shape `(batch_size, image_size, image_size)`, *optional*) : Mask to avoid performing attention on padding pixel indices.
 
@@ -234,7 +234,7 @@ labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*)
 
 A `ModernVBertMaskedLMOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ModernVBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernvbert#transformers.ModernVBertConfig)) and inputs.
+elements depending on the configuration ([ModernVBertConfig](/docs/transformers/v5.15.1/en/model_doc/modernvbert#transformers.ModernVBertConfig)) and inputs.
 
 Inputs fed to the model can have an arbitrary number of images. To account for this, pixel_values fed to
 the model have image padding -> (batch_size, max_num_images, 3, max_heights, max_widths) where
@@ -295,15 +295,15 @@ Example:
 transformers.ModernVBertForSequenceClassification(config: ModernVBertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernvbert/modeling_modernvbert.py#L496)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/modernvbert/modeling_modernvbert.py#L496)
 
 **Parameters:**
 
-config ([ModernVBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernvbert#transformers.ModernVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ModernVBertConfig](/docs/transformers/v5.15.1/en/model_doc/modernvbert#transformers.ModernVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The ModernVBert Model with a sequence classification head on top that performs pooling.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -317,11 +317,11 @@ and behavior.
 forward(input_ids: LongTensor = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_attention_mask: typing.Optional[torch.BoolTensor] = None, image_hidden_states: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernvbert/modeling_modernvbert.py#L510)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/modernvbert/modeling_modernvbert.py#L510)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -329,7 +329,7 @@ position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *opti
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([Idefics3Processor](/docs/transformers/v5.15.0/en/model_doc/idefics3#transformers.Idefics3Processor) uses `image_processor_class` for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([Idefics3Processor](/docs/transformers/v5.15.1/en/model_doc/idefics3#transformers.Idefics3Processor) uses `image_processor_class` for processing images).
 
 pixel_attention_mask (`torch.Tensor` of shape `(batch_size, image_size, image_size)`, *optional*) : Mask to avoid performing attention on padding pixel indices.
 
@@ -337,11 +337,11 @@ image_hidden_states (`torch.FloatTensor` of shape `(batch_size, num_channels, im
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., text_config.]` or `model.image_token_id`. Tokens with indices set to `model.image_token_id` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., text_config.]`.
 
-**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SequenceClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [SequenceClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
+A [SequenceClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SequenceClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ModernVBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernvbert#transformers.ModernVBertConfig)) and inputs.
+elements depending on the configuration ([ModernVBertConfig](/docs/transformers/v5.15.1/en/model_doc/modernvbert#transformers.ModernVBertConfig)) and inputs.
 
 Inputs fed to the model can have an arbitrary number of images. To account for this, pixel_values fed to
 the model have image padding -> (batch_size, max_num_images, 3, max_heights, max_widths) where
@@ -427,15 +427,15 @@ Example of multi-label classification:
 transformers.ModernVBertForTokenClassification(config: ModernVBertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernvbert/modeling_modernvbert.py#L612)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/modernvbert/modeling_modernvbert.py#L612)
 
 **Parameters:**
 
-config ([ModernVBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernvbert#transformers.ModernVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ModernVBertConfig](/docs/transformers/v5.15.1/en/model_doc/modernvbert#transformers.ModernVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The ModernVBert Model with a token classification head on top, e.g. for Named Entity Recognition (NER) tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -449,11 +449,11 @@ and behavior.
 forward(input_ids: LongTensor = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, pixel_attention_mask: typing.Optional[torch.BoolTensor] = None, image_hidden_states: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/modernvbert/modeling_modernvbert.py#L625)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/modernvbert/modeling_modernvbert.py#L625)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -461,7 +461,7 @@ position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *opti
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([Idefics3Processor](/docs/transformers/v5.15.0/en/model_doc/idefics3#transformers.Idefics3Processor) uses `image_processor_class` for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([Idefics3Processor](/docs/transformers/v5.15.1/en/model_doc/idefics3#transformers.Idefics3Processor) uses `image_processor_class` for processing images).
 
 pixel_attention_mask (`torch.Tensor` of shape `(batch_size, image_size, image_size)`, *optional*) : Mask to avoid performing attention on padding pixel indices.
 
@@ -469,11 +469,11 @@ image_hidden_states (`torch.FloatTensor` of shape `(batch_size, num_channels, im
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., text_config.]` or `model.image_token_id`. Tokens with indices set to `model.image_token_id` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., text_config.]`.
 
-**Returns:** [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [TokenClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [TokenClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
+A [TokenClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.TokenClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ModernVBertConfig](/docs/transformers/v5.15.0/en/model_doc/modernvbert#transformers.ModernVBertConfig)) and inputs.
+elements depending on the configuration ([ModernVBertConfig](/docs/transformers/v5.15.1/en/model_doc/modernvbert#transformers.ModernVBertConfig)) and inputs.
 
 Inputs fed to the model can have an arbitrary number of images. To account for this, pixel_values fed to
 the model have image padding -> (batch_size, max_num_images, 3, max_heights, max_widths) where
@@ -527,4 +527,4 @@ Example:
 ```
 
 ### Gemma 4 Unified Assistant
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/gemma4_unified_assistant.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/gemma4_unified_assistant.md

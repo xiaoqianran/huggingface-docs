@@ -1,8 +1,8 @@
 # Contribute
 
-Transformers supports many quantization methods such as QLoRA, GPTQ, LLM.int8, and AWQ. However, there are still many more quantization approaches that haven't been integrated yet. To make adding and using these quantization methods with Transformers easier, use the [HfQuantizer](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.quantizers.HfQuantizer) class. [HfQuantizer](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.quantizers.HfQuantizer) is designed to be an internal helper class for adding a quantization method instead of something applied to every PyTorch module.
+Transformers supports many quantization methods such as QLoRA, GPTQ, LLM.int8, and AWQ. However, there are still many more quantization approaches that haven't been integrated yet. To make adding and using these quantization methods with Transformers easier, use the [HfQuantizer](/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.quantizers.HfQuantizer) class. [HfQuantizer](/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.quantizers.HfQuantizer) is designed to be an internal helper class for adding a quantization method instead of something applied to every PyTorch module.
 
-This guide will show you how to integrate a new quantization method with [HfQuantizer](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.quantizers.HfQuantizer).
+This guide will show you how to integrate a new quantization method with [HfQuantizer](/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.quantizers.HfQuantizer).
 
 ## Requirements
 
@@ -137,4 +137,4 @@ class YourDeserialize(ConversionOps):
 ```
 
 ### Bitsandbytes
-https://huggingface.co/docs/transformers/v5.15.0/quantization/bitsandbytes.md
+https://huggingface.co/docs/transformers/v5.15.1/quantization/bitsandbytes.md

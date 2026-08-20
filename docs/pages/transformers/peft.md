@@ -2,7 +2,7 @@
 
 [Parameter-efficient fine-tuning (PEFT)](https://huggingface.co/docs/peft/index) methods only fine-tune a small number of extra model parameters (adapters) on top of a pretrained model. Because only adapter parameters are updated, the optimizer tracks far fewer gradients and states, reducing memory usage significantly. Adapters are lightweight, making them convenient to share, store, and load.
 
-Transformers integrates directly with the PEFT library through [PeftAdapterMixin](/docs/transformers/v5.15.0/en/main_classes/peft#transformers.integrations.PeftAdapterMixin), added to all [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) classes. You can load, add, train, switch, and delete adapters without wrapping your model in a separate [PeftModel](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel). All non-prompt-learning PEFT methods are supported (LoRA, IA3, AdaLoRA). Prompt-based methods like prompt tuning and prefix tuning require using the [PEFT library](https://huggingface.co/docs/peft/index) directly.
+Transformers integrates directly with the PEFT library through [PeftAdapterMixin](/docs/transformers/v5.15.1/en/main_classes/peft#transformers.integrations.PeftAdapterMixin), added to all [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel) classes. You can load, add, train, switch, and delete adapters without wrapping your model in a separate [PeftModel](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/peft_model#peft.PeftModel). All non-prompt-learning PEFT methods are supported (LoRA, IA3, AdaLoRA). Prompt-based methods like prompt tuning and prefix tuning require using the [PEFT library](https://huggingface.co/docs/peft/index) directly.
 
 Install PEFT to get started. The integration requires `peft >= 0.19.1`.
 
@@ -12,7 +12,7 @@ pip install -U peft
 
 ## Add an adapter
 
-Create a PEFT config, like [LoraConfig](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig) for example, and attach it to a model with [add_adapter()](/docs/transformers/v5.15.0/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.add_adapter).
+Create a PEFT config, like [LoraConfig](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig) for example, and attach it to a model with [add_adapter()](/docs/transformers/v5.15.1/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.add_adapter).
 
 ```py
 from peft import LoraConfig, TaskType
@@ -57,7 +57,7 @@ model.add_adapter(lora_config)
 
 ## Training
 
-Pass the model with an attached adapter to [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) and call [train()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.train). [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) only updates the adapter parameters (those with `requires_grad=True`) because the base model is frozen.
+Pass the model with an attached adapter to [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) and call [train()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.train). [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) only updates the adapter parameters (those with `requires_grad=True`) because the base model is frozen.
 
 ```py
 from transformers import Trainer, TrainingArguments
@@ -77,9 +77,9 @@ trainer = Trainer(
 trainer.train()
 ```
 
-During training, [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) checkpoints contain only the adapter weights (`adapter_model.safetensors`) and configuration (`adapter_config.json`), keeping checkpoints small. The base model isn't included.
+During training, [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) checkpoints contain only the adapter weights (`adapter_model.safetensors`) and configuration (`adapter_config.json`), keeping checkpoints small. The base model isn't included.
 
-After training, save the final adapter with [save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained).
+After training, save the final adapter with [save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained).
 
 ```py
 model.save_pretrained("./my_adapter")
@@ -87,7 +87,7 @@ model.save_pretrained("./my_adapter")
 
 ### Resuming from a checkpoint
 
-[Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) automatically detects adapter checkpoints when resuming. [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) scans the checkpoint directory for subdirectories containing adapter weights and reloads each adapter with the correct trainable state.
+[Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) automatically detects adapter checkpoints when resuming. [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) scans the checkpoint directory for subdirectories containing adapter weights and reloads each adapter with the correct trainable state.
 
 ```py
 trainer.train(resume_from_checkpoint="./output/checkpoint-1000")
@@ -97,15 +97,15 @@ trainer.train(resume_from_checkpoint="./output/checkpoint-1000")
 
 PEFT adapters work with distributed training out of the box.
 
-For ZeRO-3, [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) passes `exclude_frozen_parameters=True` when saving checkpoints with a PEFT model. Frozen base model weights are skipped. Only the trainable adapter parameters are saved, reducing checkpoint size and save time.
+For ZeRO-3, [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) passes `exclude_frozen_parameters=True` when saving checkpoints with a PEFT model. Frozen base model weights are skipped. Only the trainable adapter parameters are saved, reducing checkpoint size and save time.
 
-For FSDP, [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) updates the FSDP auto-wrap policy to correctly handle LoRA layers. For QLoRA (quantized base model + LoRA), [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) also adjusts the mixed precision policy to match the quantization storage dtype.
+For FSDP, [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) updates the FSDP auto-wrap policy to correctly handle LoRA layers. For QLoRA (quantized base model + LoRA), [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) also adjusts the mixed precision policy to match the quantization storage dtype.
 
 ## Loading an adapter
 
 To load an adapter, the Hub repository or local directory must contain an `adapter_config.json` file and the adapter weights.
 
-[from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) automatically detects adapters. When it finds an `adapter_config.json`, it reads the `base_model_name_or_path` field to load the correct base model, then loads the adapter on top.
+[from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) automatically detects adapters. When it finds an `adapter_config.json`, it reads the `base_model_name_or_path` field to load the correct base model, then loads the adapter on top.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -114,7 +114,7 @@ from transformers import AutoModelForCausalLM
 model = AutoModelForCausalLM.from_pretrained("klcsp/gemma7b-lora-alpaca-11-v1")
 ```
 
-To load an adapter onto an existing model, use [load_adapter()](/docs/transformers/v5.15.0/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.load_adapter).
+To load an adapter onto an existing model, use [load_adapter()](/docs/transformers/v5.15.1/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.load_adapter).
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -146,13 +146,13 @@ model.add_adapter(LoraConfig(r=8, lora_alpha=32), adapter_name="adapter_1")
 model.add_adapter(LoraConfig(r=16, lora_alpha=64), adapter_name="adapter_2")
 ```
 
-Use [set_adapter()](/docs/transformers/v5.15.0/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.set_adapter) to activate a specific adapter. The other adapters are disabled but remain in memory.
+Use [set_adapter()](/docs/transformers/v5.15.1/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.set_adapter) to activate a specific adapter. The other adapters are disabled but remain in memory.
 
 ```py
 model.set_adapter("adapter_2")
 ```
 
-[enable_adapters()](/docs/transformers/v5.15.0/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.enable_adapters) enables all attached adapters, and [disable_adapters()](/docs/transformers/v5.15.0/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.disable_adapters) disables all of them.
+[enable_adapters()](/docs/transformers/v5.15.1/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.enable_adapters) enables all attached adapters, and [disable_adapters()](/docs/transformers/v5.15.1/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.disable_adapters) disables all of them.
 
 ```py
 # Disable all adapters for base model inference
@@ -162,14 +162,14 @@ model.disable_adapters()
 model.enable_adapters()
 ```
 
-Use [active_adapters()](/docs/transformers/v5.15.0/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.active_adapters) to see which adapters are currently active.
+Use [active_adapters()](/docs/transformers/v5.15.1/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.active_adapters) to see which adapters are currently active.
 
 ```py
 model.active_adapters()
 # ["adapter_1"]
 ```
 
-Remove adapters you no longer need with [delete_adapter()](/docs/transformers/v5.15.0/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.delete_adapter) to free memory.
+Remove adapters you no longer need with [delete_adapter()](/docs/transformers/v5.15.1/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.delete_adapter) to free memory.
 
 ```py
 model.delete_adapter("adapter_1")
@@ -194,7 +194,7 @@ model.load_adapter(adapter_path_2, hotswap=True, adapter_name="default")
 
 ### torch.compile
 
-For compiled models, call [enable_peft_hotswap()](/docs/transformers/v5.15.0/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.enable_peft_hotswap) *before* loading the first adapter and before compiling.
+For compiled models, call [enable_peft_hotswap()](/docs/transformers/v5.15.1/en/main_classes/peft#transformers.integrations.PeftAdapterMixin.enable_peft_hotswap) *before* loading the first adapter and before compiling.
 
 ```py
 model = AutoModel.from_pretrained(...)
@@ -225,4 +225,4 @@ Recompilation may still occur if the hotswapped adapter targets more layers than
 - A [blog post](https://huggingface.co/blog/lora-fast) benchmarks how `torch.compile` with hotswapping improves runtime.
 
 ### torch.compile
-https://huggingface.co/docs/transformers/v5.15.0/torch_compile.md
+https://huggingface.co/docs/transformers/v5.15.1/torch_compile.md

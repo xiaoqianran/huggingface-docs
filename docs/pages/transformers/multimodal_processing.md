@@ -2,7 +2,7 @@
 
 A processor combines a tokenizer with one or more modality processors, such as an image processor, video processor, or feature extractor. It exposes a single `__call__` method that routes each input to the right component and merges the outputs into one dictionary.
 
-Some multimodal models interleave text with images, videos, or audio. For these models, [ProcessorMixin](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin) can replace placeholder tokens like `<image>`, `<video>`, and `<audio>` with the token pattern expected by the model.
+Some multimodal models interleave text with images, videos, or audio. For these models, [ProcessorMixin](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessorMixin) can replace placeholder tokens like `<image>`, `<video>`, and `<audio>` with the token pattern expected by the model.
 
 ## Adding a new processor
 
@@ -65,7 +65,7 @@ def validate_inputs(self, images=None, text=None, videos=None, audio=None, **kwa
 ```
 
 > [!TIP]
-> See [Gemma4Processor](/docs/transformers/v5.15.0/en/model_doc/gemma4#transformers.Gemma4Processor) and [Qwen2VLProcessor](/docs/transformers/v5.15.0/en/model_doc/qwen2_vl#transformers.Qwen2VLProcessor) for reference.
+> See [Gemma4Processor](/docs/transformers/v5.15.1/en/model_doc/gemma4#transformers.Gemma4Processor) and [Qwen2VLProcessor](/docs/transformers/v5.15.1/en/model_doc/qwen2_vl#transformers.Qwen2VLProcessor) for reference.
 
 ## Testing
 
@@ -90,4 +90,4 @@ class MyModelProcessorTest(ProcessorTesterMixin, unittest.TestCase):
 ```
 
 ### Parallelism methods
-https://huggingface.co/docs/transformers/v5.15.0/perf_train_gpu_many.md
+https://huggingface.co/docs/transformers/v5.15.1/perf_train_gpu_many.md

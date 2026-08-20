@@ -85,4 +85,4 @@ transformers serve \
 ```
 
 ### Writing kernels
-https://huggingface.co/docs/transformers/v5.15.0/kernel_doc/writing_kernels.md
+https://huggingface.co/docs/transformers/v5.15.1/kernel_doc/writing_kernels.md

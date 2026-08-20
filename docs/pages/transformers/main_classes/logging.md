@@ -40,8 +40,8 @@ logger.warning("WARN")
 ```
 
 All the methods of this logging module are documented below, the main ones are
-[logging.get_verbosity()](/docs/transformers/v5.15.0/en/main_classes/logging#transformers.utils.logging.get_verbosity) to get the current level of verbosity in the logger and
-[logging.set_verbosity()](/docs/transformers/v5.15.0/en/main_classes/logging#transformers.utils.logging.set_verbosity) to set the verbosity to the level of your choice. In order (from the least
+[logging.get_verbosity()](/docs/transformers/v5.15.1/en/main_classes/logging#transformers.utils.logging.get_verbosity) to get the current level of verbosity in the logger and
+[logging.set_verbosity()](/docs/transformers/v5.15.1/en/main_classes/logging#transformers.utils.logging.set_verbosity) to set the verbosity to the level of your choice. In order (from the least
 verbose to the most verbose), those levels (with their corresponding int values in parenthesis) are:
 
 - `transformers.logging.CRITICAL` or `transformers.logging.FATAL` (int value, 50): only report the most
@@ -52,7 +52,7 @@ verbose to the most verbose), those levels (with their corresponding int values 
 - `transformers.logging.INFO` (int value, 20): reports error, warnings and basic information.
 - `transformers.logging.DEBUG` (int value, 10): report all information.
 
-By default, `tqdm` progress bars will be displayed during model download. [logging.disable_progress_bar()](/docs/transformers/v5.15.0/en/main_classes/logging#transformers.utils.logging.disable_progress_bar) and [logging.enable_progress_bar()](/docs/transformers/v5.15.0/en/main_classes/logging#transformers.utils.logging.enable_progress_bar) can be used to suppress or unsuppress this behavior.
+By default, `tqdm` progress bars will be displayed during model download. [logging.disable_progress_bar()](/docs/transformers/v5.15.1/en/main_classes/logging#transformers.utils.logging.disable_progress_bar) and [logging.enable_progress_bar()](/docs/transformers/v5.15.1/en/main_classes/logging#transformers.utils.logging.enable_progress_bar) can be used to suppress or unsuppress this behavior.
 
 ## `logging` vs `warnings`[[transformers.utils.logging.captureWarnings]]
 
@@ -76,7 +76,7 @@ See reference of the `captureWarnings` method below.
 transformers.utils.logging.captureWarnings(capture)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/logging.py#L136)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/logging.py#L136)
 
 Calls the `captureWarnings` method from the logging library to enable management of the warnings emitted by the
 `warnings` library.
@@ -97,7 +97,7 @@ level of that logger to the library's root logger.
 transformers.utils.logging.set_verbosity_error()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/logging.py#L230)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/logging.py#L230)
 
 Set the verbosity to the `ERROR` level.
 
@@ -107,7 +107,7 @@ Set the verbosity to the `ERROR` level.
 transformers.utils.logging.set_verbosity_warning()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/logging.py#L220)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/logging.py#L220)
 
 Set the verbosity to the `WARNING` level.
 
@@ -117,7 +117,7 @@ Set the verbosity to the `WARNING` level.
 transformers.utils.logging.set_verbosity_info()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/logging.py#L215)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/logging.py#L215)
 
 Set the verbosity to the `INFO` level.
 
@@ -127,7 +127,7 @@ Set the verbosity to the `INFO` level.
 transformers.utils.logging.set_verbosity_debug()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/logging.py#L225)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/logging.py#L225)
 
 Set the verbosity to the `DEBUG` level.
 
@@ -139,7 +139,7 @@ Set the verbosity to the `DEBUG` level.
 transformers.utils.logging.get_verbosity()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/logging.py#L173)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/logging.py#L173)
 
 **Returns:** `int`
 
@@ -161,7 +161,7 @@ Return the current level for the 🤗 Transformers's root logger as an int.
 transformers.utils.logging.set_verbosity(verbosity: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/logging.py#L196)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/logging.py#L196)
 
 **Parameters:**
 
@@ -175,7 +175,7 @@ Set the verbosity level for the 🤗 Transformers's root logger.
 transformers.utils.logging.get_logger(name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/logging.py#L159)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/logging.py#L159)
 
 Return a logger with the specified name.
 
@@ -187,7 +187,7 @@ This function is not supposed to be directly accessed unless you are writing a c
 transformers.utils.logging.enable_default_handler()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/logging.py#L244)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/logging.py#L244)
 
 Enable the default handler of the HuggingFace Transformers's root logger.
 
@@ -197,7 +197,7 @@ Enable the default handler of the HuggingFace Transformers's root logger.
 transformers.utils.logging.disable_default_handler()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/logging.py#L235)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/logging.py#L235)
 
 Disable the default handler of the HuggingFace Transformers's root logger.
 
@@ -207,7 +207,7 @@ Disable the default handler of the HuggingFace Transformers's root logger.
 transformers.utils.logging.enable_explicit_format()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/logging.py#L290)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/logging.py#L290)
 
 Enable explicit formatting for every HuggingFace Transformers's logger. The explicit formatter is as follows:
 ```
@@ -222,7 +222,7 @@ All handlers currently bound to the root logger are affected by this method.
 transformers.utils.logging.reset_format()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/logging.py#L305)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/logging.py#L305)
 
 Resets the formatting for HuggingFace Transformers's loggers.
 
@@ -234,7 +234,7 @@ All handlers currently bound to the root logger are affected by this method.
 transformers.utils.logging.enable_progress_bar()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/logging.py#L410)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/logging.py#L410)
 
 Enable tqdm progress bar.
 
@@ -244,9 +244,9 @@ Enable tqdm progress bar.
 transformers.utils.logging.disable_progress_bar()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/logging.py#L417)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/logging.py#L417)
 
 Disable tqdm progress bar.
 
 ### Callbacks
-https://huggingface.co/docs/transformers/v5.15.0/main_classes/callback.md
+https://huggingface.co/docs/transformers/v5.15.1/main_classes/callback.md

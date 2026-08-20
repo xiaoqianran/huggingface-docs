@@ -10,7 +10,7 @@ You can find all the original ViTMAE checkpoints under the [AI at Meta](https://
 > [!TIP]
 > Click on the ViTMAE models in the right sidebar for more examples of how to apply ViTMAE to vision tasks.
 
-The example below demonstrates how to reconstruct the missing pixels with the [ViTMAEForPreTraining](/docs/transformers/v5.15.0/en/model_doc/vit_mae#transformers.ViTMAEForPreTraining) class.
+The example below demonstrates how to reconstruct the missing pixels with the [ViTMAEForPreTraining](/docs/transformers/v5.15.1/en/model_doc/vit_mae#transformers.ViTMAEForPreTraining) class.
 
 ```python
 import requests
@@ -35,12 +35,12 @@ reconstruction = outputs.logits
 
 ## Notes
 
-- ViTMAE is typically used in two stages. Self-supervised pretraining with [ViTMAEForPreTraining](/docs/transformers/v5.15.0/en/model_doc/vit_mae#transformers.ViTMAEForPreTraining), and then discarding the decoder and fine-tuning the encoder. After fine-tuning, the weights can be plugged into a model like [ViTForImageClassification](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTForImageClassification).
-- Use [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for input preparation.
+- ViTMAE is typically used in two stages. Self-supervised pretraining with [ViTMAEForPreTraining](/docs/transformers/v5.15.1/en/model_doc/vit_mae#transformers.ViTMAEForPreTraining), and then discarding the decoder and fine-tuning the encoder. After fine-tuning, the weights can be plugged into a model like [ViTForImageClassification](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTForImageClassification).
+- Use [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) for input preparation.
 
 ## Resources
 
-- Refer to this [notebook](https://github.com/NielsRogge/Transformers-Tutorials/blob/master/ViTMAE/ViT_MAE_visualization_demo.ipynb) to learn how to visualize the reconstructed pixels from [ViTMAEForPreTraining](/docs/transformers/v5.15.0/en/model_doc/vit_mae#transformers.ViTMAEForPreTraining).
+- Refer to this [notebook](https://github.com/NielsRogge/Transformers-Tutorials/blob/master/ViTMAE/ViT_MAE_visualization_demo.ipynb) to learn how to visualize the reconstructed pixels from [ViTMAEForPreTraining](/docs/transformers/v5.15.1/en/model_doc/vit_mae#transformers.ViTMAEForPreTraining).
 
 ## ViTMAEConfig[[transformers.ViTMAEConfig]]
 
@@ -50,7 +50,7 @@ reconstruction = outputs.logits
 transformers.ViTMAEConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, qkv_bias: bool = True, decoder_num_attention_heads: int = 16, decoder_hidden_size: int = 512, decoder_num_hidden_layers: int = 8, decoder_intermediate_size: int = 2048, mask_ratio: float = 0.75, norm_pix_loss: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vit_mae/configuration_vit_mae.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vit_mae/configuration_vit_mae.py#L24)
 
 **Parameters:**
 
@@ -96,8 +96,8 @@ This is the configuration class to store the configuration of a ViTMAEModel. It 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/vit-mae-base](https://huggingface.co/facebook/vit-mae-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -122,15 +122,15 @@ Example:
 transformers.ViTMAEModel(config: ViTMAEConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vit_mae/modeling_vit_mae.py#L612)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vit_mae/modeling_vit_mae.py#L612)
 
 **Parameters:**
 
-config ([ViTMAEConfig](/docs/transformers/v5.15.0/en/model_doc/vit_mae#transformers.ViTMAEConfig)) : Configuration for the model.
+config ([ViTMAEConfig](/docs/transformers/v5.15.1/en/model_doc/vit_mae#transformers.ViTMAEConfig)) : Configuration for the model.
 
 The bare Vit Mae Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -144,11 +144,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, noise: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool | None = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vit_mae/modeling_vit_mae.py#L626)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vit_mae/modeling_vit_mae.py#L626)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
 
 noise (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mainly used for testing purposes to control randomness and maintain the reproducibility
 
@@ -160,9 +160,9 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 A `ViTMAEModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ViTMAEConfig](/docs/transformers/v5.15.0/en/model_doc/vit_mae#transformers.ViTMAEConfig)) and inputs.
+elements depending on the configuration ([ViTMAEConfig](/docs/transformers/v5.15.1/en/model_doc/vit_mae#transformers.ViTMAEConfig)) and inputs.
 
-The [ViTMAEModel](/docs/transformers/v5.15.0/en/model_doc/vit_mae#transformers.ViTMAEModel) forward method, overrides the `__call__` special method.
+The [ViTMAEModel](/docs/transformers/v5.15.1/en/model_doc/vit_mae#transformers.ViTMAEModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -209,18 +209,18 @@ Examples:
 transformers.ViTMAEForPreTraining(config: ViTMAEConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vit_mae/modeling_vit_mae.py#L696)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vit_mae/modeling_vit_mae.py#L696)
 
 **Parameters:**
 
-config ([ViTMAEConfig](/docs/transformers/v5.15.0/en/model_doc/vit_mae#transformers.ViTMAEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ViTMAEConfig](/docs/transformers/v5.15.1/en/model_doc/vit_mae#transformers.ViTMAEConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The ViTMAE Model transformer with the decoder on top for self-supervised pre-training.
 
 Note that we provide a script to pre-train this model on custom data in our [examples
 directory](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-pretraining).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -234,11 +234,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, noise: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool | None = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vit_mae/modeling_vit_mae.py#L795)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vit_mae/modeling_vit_mae.py#L795)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details (`processor_class` uses [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
 
 noise (`torch.FloatTensor` of shape `(batch_size, sequence_length)`, *optional*) : Mainly used for testing purposes to control randomness and maintain the reproducibility
 
@@ -250,9 +250,9 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 A `ViTMAEForPreTrainingOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ViTMAEConfig](/docs/transformers/v5.15.0/en/model_doc/vit_mae#transformers.ViTMAEConfig)) and inputs.
+elements depending on the configuration ([ViTMAEConfig](/docs/transformers/v5.15.1/en/model_doc/vit_mae#transformers.ViTMAEConfig)) and inputs.
 
-The [ViTMAEForPreTraining](/docs/transformers/v5.15.0/en/model_doc/vit_mae#transformers.ViTMAEForPreTraining) forward method, overrides the `__call__` special method.
+The [ViTMAEForPreTraining](/docs/transformers/v5.15.1/en/model_doc/vit_mae#transformers.ViTMAEForPreTraining) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -295,4 +295,4 @@ Examples:
 ```
 
 ### UL2
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/ul2.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/ul2.md

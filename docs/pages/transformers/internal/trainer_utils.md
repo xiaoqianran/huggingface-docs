@@ -1,6 +1,6 @@
 # Utilities for Trainer
 
-This page lists all the utility functions used by [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer).
+This page lists all the utility functions used by [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer).
 
 Most of those are only useful if you are studying the code of the Trainer in the library.
 
@@ -12,7 +12,7 @@ Most of those are only useful if you are studying the code of the Trainer in the
 transformers.EvalPrediction(predictions: numpy.ndarray | tuple[numpy.ndarray], label_ids: numpy.ndarray | tuple[numpy.ndarray], inputs: numpy.ndarray | tuple[numpy.ndarray] | None = None, losses: numpy.ndarray | tuple[numpy.ndarray] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_utils.py#L210)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_utils.py#L210)
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ Evaluation output (always contains labels), to be used to compute metrics.
 transformers.IntervalStrategy(value, names = None, module = None, qualname = None, type = None, start = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_utils.py#L389)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_utils.py#L389)
 
 An enumeration.
 
@@ -42,7 +42,7 @@ An enumeration.
 transformers.enable_full_determinism(seed: int, warn_only: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_utils.py#L154)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_utils.py#L154)
 
 Helper function for reproducible behavior during distributed training. See
 https://pytorch.org/docs/stable/notes/randomness.html for pytorch
@@ -53,7 +53,7 @@ https://pytorch.org/docs/stable/notes/randomness.html for pytorch
 transformers.set_seed(seed: int, deterministic: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_utils.py#L180)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_utils.py#L180)
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ Helper function for reproducible behavior to set the seed in `random`, `numpy`, 
 transformers.torch_distributed_zero_first(local_rank: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_pt_utils.py#L311)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_pt_utils.py#L311)
 
 **Parameters:**
 
@@ -85,7 +85,7 @@ Decorator to make all processes in distributed training wait for each local_mast
 transformers.trainer_callback.CallbackHandler(callbacks, model, processing_class, optimizer, lr_scheduler)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L429)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L429)
 
 Internal class that just calls the list of callbacks in order.
 
@@ -97,7 +97,7 @@ Internal class that just calls the list of callbacks in order.
 transformers.HfArgumentParser(dataclass_types: typing.Union[transformers.hf_argparser.DataClassType, collections.abc.Iterable[transformers.hf_argparser.DataClassType], NoneType] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/hf_argparser.py#L111)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/hf_argparser.py#L111)
 
 **Parameters:**
 
@@ -117,7 +117,7 @@ namespace. Optional: To create sub argument groups use the `_argument_group_name
 parse_args_into_dataclasses(args = None, return_remaining_strings = False, look_for_args_file = True, args_filename = None, args_file_flag = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/hf_argparser.py#L272)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/hf_argparser.py#L272)
 
 **Parameters:**
 
@@ -149,7 +149,7 @@ docs.python.org/3/library/argparse.html#argparse.ArgumentParser.parse_args
 parse_dict(args: dict, allow_extra_keys: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/hf_argparser.py#L358)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/hf_argparser.py#L358)
 
 **Parameters:**
 
@@ -170,7 +170,7 @@ types.
 parse_json_file(json_file: str | os.PathLike, allow_extra_keys: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/hf_argparser.py#L386)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/hf_argparser.py#L386)
 
 **Parameters:**
 
@@ -191,7 +191,7 @@ dataclass types.
 parse_yaml_file(yaml_file: str | os.PathLike, allow_extra_keys: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/hf_argparser.py#L408)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/hf_argparser.py#L408)
 
 **Parameters:**
 
@@ -214,7 +214,7 @@ dataclass types.
 transformers.debug_utils.DebugUnderflowOverflow(model, max_frames_to_save = 21, trace_batch_nums = None, abort_after_batch_num = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/debug_utils.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/debug_utils.py#L27)
 
 **Parameters:**
 
@@ -331,4 +331,4 @@ As this module measures absolute `min`/``max` of each weight of the model on eve
 down. Therefore remember to turn it off once the debugging needs have been met.
 
 ### Utilities for Tokenizers
-https://huggingface.co/docs/transformers/v5.15.0/internal/tokenization_utils.md
+https://huggingface.co/docs/transformers/v5.15.1/internal/tokenization_utils.md

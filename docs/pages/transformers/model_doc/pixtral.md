@@ -95,7 +95,7 @@ print(output)
 
 ## Notes
 
-- Pixtral uses [PixtralVisionModel](/docs/transformers/v5.15.0/en/model_doc/pixtral#transformers.PixtralVisionModel) as the vision encoder and [MistralForCausalLM](/docs/transformers/v5.15.0/en/model_doc/mistral#transformers.MistralForCausalLM)  for its language decoder.
+- Pixtral uses [PixtralVisionModel](/docs/transformers/v5.15.1/en/model_doc/pixtral#transformers.PixtralVisionModel) as the vision encoder and [MistralForCausalLM](/docs/transformers/v5.15.1/en/model_doc/mistral#transformers.MistralForCausalLM)  for its language decoder.
 - The model internally replaces `[IMG]` token placeholders with image embeddings.
 
     ```py
@@ -112,7 +112,7 @@ print(output)
 transformers.PixtralVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 1024, intermediate_size: int = 4096, num_hidden_layers: int = 24, num_attention_heads: int = 16, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 1024, patch_size: int | list[int] | tuple[int, int] = 16, hidden_act: str = 'gelu', attention_dropout: float | int = 0.0, rope_parameters: transformers.modeling_rope_utils.RopeParameters | dict | None = None, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pixtral/configuration_pixtral.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pixtral/configuration_pixtral.py#L24)
 
 **Parameters:**
 
@@ -142,8 +142,8 @@ This is the configuration class to store the configuration of a PixtralVisionMod
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [mistral-labs/pixtral-12b](https://huggingface.co/mistral-labs/pixtral-12b)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -168,7 +168,7 @@ Example:
 transformers.MistralCommonBackend(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/utils/dummy_mistral_common_objects.py#L5)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/utils/dummy_mistral_common_objects.py#L5)
 
 ## PixtralVisionModel[[transformers.PixtralVisionModel]]
 
@@ -178,15 +178,15 @@ transformers.MistralCommonBackend(*args, **kwargs)
 transformers.PixtralVisionModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pixtral/modeling_pixtral.py#L406)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pixtral/modeling_pixtral.py#L406)
 
 **Parameters:**
 
-config ([PixtralVisionModel](/docs/transformers/v5.15.0/en/model_doc/pixtral#transformers.PixtralVisionModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PixtralVisionModel](/docs/transformers/v5.15.1/en/model_doc/pixtral#transformers.PixtralVisionModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Pixtral Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -200,21 +200,21 @@ and behavior.
 forward(pixel_values: Tensor, image_sizes: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pixtral/modeling_pixtral.py#L429)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pixtral/modeling_pixtral.py#L429)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PixtralImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pixtral#transformers.PixtralImageProcessor). See `PixtralImageProcessor.__call__()` for details ([PixtralProcessor](/docs/transformers/v5.15.0/en/model_doc/pixtral#transformers.PixtralProcessor) uses [PixtralImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pixtral#transformers.PixtralImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PixtralImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pixtral#transformers.PixtralImageProcessor). See `PixtralImageProcessor.__call__()` for details ([PixtralProcessor](/docs/transformers/v5.15.1/en/model_doc/pixtral#transformers.PixtralProcessor) uses [PixtralImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pixtral#transformers.PixtralImageProcessor) for processing images).
 
 image_sizes (`torch.Tensor` of shape `(batch_size, 2)`, *optional*) : The sizes of the images in the batch, being (height, width) for each image.
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+A [BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PixtralVisionConfig](/docs/transformers/v5.15.0/en/model_doc/pixtral#transformers.PixtralVisionConfig)) and inputs.
+elements depending on the configuration ([PixtralVisionConfig](/docs/transformers/v5.15.1/en/model_doc/pixtral#transformers.PixtralVisionConfig)) and inputs.
 
-The [PixtralVisionModel](/docs/transformers/v5.15.0/en/model_doc/pixtral#transformers.PixtralVisionModel) forward method, overrides the `__call__` special method.
+The [PixtralVisionModel](/docs/transformers/v5.15.1/en/model_doc/pixtral#transformers.PixtralVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -239,7 +239,7 @@ the latter silently ignores them.
 transformers.PixtralImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pixtral/image_processing_pixtral.py#L99)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pixtral/image_processing_pixtral.py#L99)
 
 **Parameters:**
 
@@ -293,7 +293,7 @@ Constructs a PixtralImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pixtral/image_processing_pixtral.py#L117)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pixtral/image_processing_pixtral.py#L117)
 
 **Parameters:**
 
@@ -355,7 +355,7 @@ patch_size (`Union[dict[str, *kwargs*, int], int]` *optional*, defaults to `{"he
 transformers.PixtralImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pixtral/image_processing_pil_pixtral.py#L107)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pixtral/image_processing_pil_pixtral.py#L107)
 
 **Parameters:**
 
@@ -409,7 +409,7 @@ Constructs a PixtralImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pixtral/image_processing_pil_pixtral.py#L125)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pixtral/image_processing_pil_pixtral.py#L125)
 
 **Parameters:**
 
@@ -471,7 +471,7 @@ patch_size (`Union[dict[str, *kwargs*, int], int]` *optional*, defaults to `{"he
 transformers.PixtralProcessor(image_processor = None, tokenizer = None, patch_size: int = 16, spatial_merge_size: int = 1, chat_template = None, image_token = '[IMG]', image_break_token = '[IMG_BREAK]', image_end_token = '[IMG_END]', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pixtral/processing_pixtral.py#L50)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pixtral/processing_pixtral.py#L50)
 
 **Parameters:**
 
@@ -493,8 +493,8 @@ image_end_token (`str`, *optional*, defaults to `"[IMG_END]"`) : Special token u
 
 Constructs a PixtralProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[PixtralProcessor](/docs/transformers/v5.15.0/en/model_doc/pixtral#transformers.PixtralProcessor) offers all the functionalities of [PixtralImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pixtral#transformers.PixtralImageProcessor) and [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend). See the
-[~PixtralImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pixtral#transformers.PixtralImageProcessor) and [~TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) for more information.
+[PixtralProcessor](/docs/transformers/v5.15.1/en/model_doc/pixtral#transformers.PixtralProcessor) offers all the functionalities of [PixtralImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pixtral#transformers.PixtralImageProcessor) and [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend). See the
+[~PixtralImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pixtral#transformers.PixtralImageProcessor) and [~TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) for more information.
 
 #### __call__[[transformers.PixtralProcessor.__call__]]
 
@@ -502,7 +502,7 @@ Constructs a PixtralProcessor which wraps a image processor and a tokenizer into
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L651)
 
 **Parameters:**
 
@@ -514,9 +514,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ### BLIP
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/blip.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/blip.md

@@ -250,7 +250,7 @@ Tracked 2 objects through 200 frames
 transformers.EdgeTamVideoMaskDecoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, hidden_act: str = 'gelu', mlp_dim: int = 2048, num_hidden_layers: int = 2, num_attention_heads: int = 8, attention_downsample_rate: int = 2, num_multimask_outputs: int = 3, iou_head_depth: int = 3, iou_head_hidden_dim: int = 256, dynamic_multimask_via_stability: bool = True, dynamic_multimask_stability_delta: float = 0.05, dynamic_multimask_stability_thresh: float = 0.98)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/configuration_edgetam_video.py#L54)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/configuration_edgetam_video.py#L54)
 
 **Parameters:**
 
@@ -282,8 +282,8 @@ This is the configuration class to store the configuration of a EdgeTamVideoMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/EdgeTAM-hf](https://huggingface.co/yonigozlan/EdgeTAM-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## EdgeTamVideoPromptEncoderConfig[[transformers.EdgeTamVideoPromptEncoderConfig]]
 
@@ -293,7 +293,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.EdgeTamVideoPromptEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 256, image_size: int | list[int] | tuple[int, int] = 1024, patch_size: int | list[int] | tuple[int, int] = 16, mask_input_channels: int = 16, num_point_embeddings: int = 4, hidden_act: str = 'gelu', layer_norm_eps: float = 1e-06, scale: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/configuration_edgetam_video.py#L30)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/configuration_edgetam_video.py#L30)
 
 **Parameters:**
 
@@ -317,8 +317,8 @@ This is the configuration class to store the configuration of a EdgeTamVideoMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/EdgeTAM-hf](https://huggingface.co/yonigozlan/EdgeTAM-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## EdgeTamVideoConfig[[transformers.EdgeTamVideoConfig]]
 
@@ -328,15 +328,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.EdgeTamVideoConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, prompt_encoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, mask_decoder_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, initializer_range: float = 0.02, num_maskmem: int = 7, image_size: int | list[int] | tuple[int, int] = 1024, sigmoid_scale_for_mem_enc: float = 20.0, sigmoid_bias_for_mem_enc: float = -10.0, enable_occlusion_spatial_embedding: bool = True, multimask_output_in_sam: bool = True, multimask_min_pt_num: int = 0, multimask_max_pt_num: int = 1, multimask_output_for_tracking: bool = True, max_object_pointers_in_encoder: int = 16, max_cond_frame_num: int = -1, enable_temporal_pos_encoding_for_object_pointers: bool = True, memory_attention_hidden_size: int = 256, memory_attention_num_layers: int = 2, memory_attention_num_attention_heads: int = 1, memory_attention_downsample_rate: int = 1, memory_attention_mlp_hidden_size: int = 2048, memory_attention_mlp_hidden_act: str = 'relu', memory_attention_dropout: float | int = 0.1, memory_attention_rope_theta: float | int = 10000, memory_attention_rope_feat_sizes: list | None = None, memory_attention_rope_k_sizes: list | None = None, memory_attention_rope_dropout: float | int = 0.1, perceiver_resampler_num_latents: int = 256, perceiver_resampler_num_latents_2d: int = 256, perceiver_resampler_hidden_size: int = 64, perceiver_resampler_mlp_intermediate_size: int = 256, perceiver_resampler_num_attention_heads: int = 1, perceiver_resampler_attention_head_dim: int = 64, perceiver_resampler_num_layers: int = 2, perceiver_resampler_hidden_dropout: float | int = 0.0, perceiver_resampler_attention_dropout: float | int = 0.0, memory_encoder_hidden_size: int = 256, memory_encoder_output_channels: int = 64, mask_downsampler_embed_dim: int = 256, memory_fuser_intermediate_dim: int = 1024, mask_downsampler_kernel_size: int = 3, mask_downsampler_stride: int = 2, mask_downsampler_padding: int = 1, mask_downsampler_total_stride: int = 16, mask_downsampler_hidden_act: str = 'gelu', memory_fuser_num_layers: int = 2, memory_fuser_embed_dim: int = 256, memory_fuser_kernel_size: int = 7, memory_fuser_padding: int = 3, memory_fuser_layer_scale_init_value: float = 1e-06, memory_fuser_hidden_act: str = 'gelu')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/configuration_edgetam_video.py#L92)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/configuration_edgetam_video.py#L92)
 
 **Parameters:**
 
 vision_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the vision backbone.
 
-prompt_encoder_config (Union[`dict`, `EdgeTamVideoPromptEncoderConfig`], *optional*) : Dictionary of configuration options used to initialize [EdgeTamVideoPromptEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam_video#transformers.EdgeTamVideoPromptEncoderConfig).
+prompt_encoder_config (Union[`dict`, `EdgeTamVideoPromptEncoderConfig`], *optional*) : Dictionary of configuration options used to initialize [EdgeTamVideoPromptEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/edgetam_video#transformers.EdgeTamVideoPromptEncoderConfig).
 
-mask_decoder_config (Union[`dict`, `EdgeTamVideoMaskDecoderConfig`], *optional*) : Dictionary of configuration options used to initialize [EdgeTamMaskDecoderConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam#transformers.EdgeTamMaskDecoderConfig).
+mask_decoder_config (Union[`dict`, `EdgeTamVideoMaskDecoderConfig`], *optional*) : Dictionary of configuration options used to initialize [EdgeTamMaskDecoderConfig](/docs/transformers/v5.15.1/en/model_doc/edgetam#transformers.EdgeTamMaskDecoderConfig).
 
 initializer_range (`float`, *optional*, defaults to `0.02`) : The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
 
@@ -438,8 +438,8 @@ This is the configuration class to store the configuration of a EdgeTamVideoMode
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [yonigozlan/EdgeTAM-hf](https://huggingface.co/yonigozlan/EdgeTAM-hf)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -479,7 +479,7 @@ Example:
 transformers.EdgeTamVideoInferenceSession(video: typing.Optional[torch.FloatTensor] = None, video_height: int | None = None, video_width: int | None = None, inference_device: typing.Union[torch.device, str] = 'cpu', inference_state_device: typing.Union[torch.device, str] = 'cpu', video_storage_device: typing.Union[torch.device, str] = 'cpu', dtype: typing.Union[torch.dtype, str] = 'float32', max_vision_features_cache_size: int = 1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L924)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L924)
 
 **Parameters:**
 
@@ -507,7 +507,7 @@ Manages video inference session parameters, state and cache.
 add_mask_inputs(obj_idx: int, frame_idx: int, inputs: Tensor)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1044)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1044)
 
 Add mask inputs with automatic device placement.
 
@@ -517,7 +517,7 @@ Add mask inputs with automatic device placement.
 add_new_frame(pixel_values: Tensor, frame_idx: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1119)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1119)
 
 Add new frame with automatic device placement.
 
@@ -527,7 +527,7 @@ Add new frame with automatic device placement.
 add_point_inputs(obj_idx: int, frame_idx: int, inputs: dict)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1030)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1030)
 
 Add point inputs with automatic device placement.
 
@@ -537,7 +537,7 @@ Add point inputs with automatic device placement.
 get_frame(frame_idx: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1135)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1135)
 
 Get frame from video.
 
@@ -547,7 +547,7 @@ Get frame from video.
 get_obj_num()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1025)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1025)
 
 Get the total number of unique object ids received so far in this session.
 
@@ -557,7 +557,7 @@ Get the total number of unique object ids received so far in this session.
 get_output(obj_idx: int, frame_idx: int, output_key: str, is_conditioning_frame: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1092)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1092)
 
 **Parameters:**
 
@@ -577,7 +577,7 @@ Get output with smart device management.
 obj_id_to_idx(obj_id: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L999)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L999)
 
 Map object ID to index, creating new entry if needed.
 
@@ -587,7 +587,7 @@ Map object ID to index, creating new entry if needed.
 obj_idx_to_id(obj_idx: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1021)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1021)
 
 Map model-side object index to client-side object id.
 
@@ -597,7 +597,7 @@ Map model-side object index to client-side object id.
 remove_mask_inputs(obj_idx: int, frame_idx: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1050)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1050)
 
 Remove mask inputs.
 
@@ -607,7 +607,7 @@ Remove mask inputs.
 remove_point_inputs(obj_idx: int, frame_idx: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1040)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1040)
 
 Remove point inputs.
 
@@ -617,7 +617,7 @@ Remove point inputs.
 reset_inference_session()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1151)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1151)
 
 Reset tracking data and cache.
 
@@ -627,7 +627,7 @@ Reset tracking data and cache.
 reset_tracking_data()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1139)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1139)
 
 Reset tracking data but keep cache.
 
@@ -637,7 +637,7 @@ Reset tracking data but keep cache.
 store_output(obj_idx: int, frame_idx: int, output_key: str | None = None, output_value: typing.Union[torch.Tensor, dict, NoneType] = None, is_conditioning_frame: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1055)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L1055)
 
 **Parameters:**
 
@@ -662,15 +662,15 @@ If output_key is None, the output is stored as a dictionary.
 transformers.EdgeTamVideoModel(config: EdgeTamVideoConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L2022)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L2022)
 
 **Parameters:**
 
-config ([EdgeTamVideoConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam_video#transformers.EdgeTamVideoConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([EdgeTamVideoConfig](/docs/transformers/v5.15.1/en/model_doc/edgetam_video#transformers.EdgeTamVideoConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Edgetam Video Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -684,7 +684,7 @@ and behavior.
 forward(inference_session: EdgeTamVideoInferenceSession, frame_idx: int | None = None, frame: typing.Optional[torch.Tensor] = None, reverse: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L2156)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L2156)
 
 **Parameters:**
 
@@ -700,7 +700,7 @@ reverse (`bool`, *optional*, defaults to `False`) : Whether to propagate in reve
 
 A `EdgeTamVideoSegmentationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EdgeTamVideoConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam_video#transformers.EdgeTamVideoConfig)) and inputs.
+elements depending on the configuration ([EdgeTamVideoConfig](/docs/transformers/v5.15.1/en/model_doc/edgetam_video#transformers.EdgeTamVideoConfig)) and inputs.
 
 Propagate the objects through a streamed video frame.
 
@@ -715,7 +715,7 @@ Propagate the objects through a streamed video frame.
 get_image_features(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L2255)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/edgetam_video/modeling_edgetam_video.py#L2255)
 
 **Parameters:**
 
@@ -725,7 +725,7 @@ pixel_values (`torch.FloatTensor`) : Input pixel values of shape `(batch_size, n
 
 A `EdgeTamVideoVisionEncoderOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EdgeTamVideoConfig](/docs/transformers/v5.15.0/en/model_doc/edgetam_video#transformers.EdgeTamVideoConfig)) and inputs.
+elements depending on the configuration ([EdgeTamVideoConfig](/docs/transformers/v5.15.1/en/model_doc/edgetam_video#transformers.EdgeTamVideoConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, height, width, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -747,4 +747,4 @@ elements depending on the configuration ([EdgeTamVideoConfig](/docs/transformers
   `(batch_size, hidden_size, height, width)`. Positional encodings corresponding to the `fpn_hidden_states`.
 
 ### Auto Classes
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/auto.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/auto.md

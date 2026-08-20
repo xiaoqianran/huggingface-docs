@@ -24,8 +24,8 @@ This model was contributed by [yuvalkirstain](https://huggingface.co/yuvalkirsta
 
 - Splinter was trained to predict answers spans conditioned on a special [QUESTION] token. These tokens contextualize
   to question representations which are used to predict the answers. This layer is called QASS, and is the default
-  behaviour in the [SplinterForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/splinter#transformers.SplinterForQuestionAnswering) class. Therefore:
-- Use [SplinterTokenizer](/docs/transformers/v5.15.0/en/model_doc/splinter#transformers.SplinterTokenizer) (rather than [BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer)), as it already
+  behaviour in the [SplinterForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/splinter#transformers.SplinterForQuestionAnswering) class. Therefore:
+- Use [SplinterTokenizer](/docs/transformers/v5.15.1/en/model_doc/splinter#transformers.SplinterTokenizer) (rather than [BertTokenizer](/docs/transformers/v5.15.1/en/model_doc/layoutlm#transformers.BertTokenizer)), as it already
   contains this special token. Also, its default behavior is to use this token when two sequences are given (for
   example, in the *run_qa.py* script).
 - If you plan on using Splinter outside *run_qa.py*, please keep in mind the question token - it might be important for
@@ -47,7 +47,7 @@ This model was contributed by [yuvalkirstain](https://huggingface.co/yuvalkirsta
 transformers.SplinterConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 30522, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.1, max_position_embeddings: int = 512, type_vocab_size: int = 2, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, pad_token_id: int | None = 0, bos_token_id: int | None = None, eos_token_id: int | list[int] | None = None, question_token_id: int = 104)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/splinter/configuration_splinter.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/splinter/configuration_splinter.py#L24)
 
 **Parameters:**
 
@@ -87,8 +87,8 @@ This is the configuration class to store the configuration of a SplinterModel. I
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [tau/splinter-base](https://huggingface.co/tau/splinter-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -113,7 +113,7 @@ Example:
 transformers.SplinterTokenizer(vocab: str | dict[str, int] | None = None, do_lower_case: bool = True, unk_token: str = '[UNK]', sep_token: str = '[SEP]', pad_token: str = '[PAD]', cls_token: str = '[CLS]', mask_token: str = '[MASK]', question_token: str = '[QUESTION]', tokenize_chinese_chars: bool = True, strip_accents: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/splinter/tokenization_splinter.py#L41)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/splinter/tokenization_splinter.py#L41)
 
 **Parameters:**
 
@@ -143,7 +143,7 @@ vocab (`str`, `dict` or `list`, *optional*) : Custom vocabulary dictionary. If n
 
 Construct a Splinter tokenizer (backed by HuggingFace's tokenizers library). Based on WordPiece.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 #### get_special_tokens_mask[[transformers.SplinterTokenizer.get_special_tokens_mask]]
@@ -152,7 +152,7 @@ refer to this superclass for more information regarding those methods.
 get_special_tokens_mask(token_ids_0: list[int], token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_base.py#L1311)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_base.py#L1311)
 
 **Parameters:**
 
@@ -177,7 +177,7 @@ already-formatted sequence. In that case, we compute the mask by checking member
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_tokenizers.py#L509)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_tokenizers.py#L509)
 
 ## SplinterTokenizerFast[[transformers.SplinterTokenizer]]
 
@@ -187,7 +187,7 @@ save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 transformers.SplinterTokenizer(vocab: str | dict[str, int] | None = None, do_lower_case: bool = True, unk_token: str = '[UNK]', sep_token: str = '[SEP]', pad_token: str = '[PAD]', cls_token: str = '[CLS]', mask_token: str = '[MASK]', question_token: str = '[QUESTION]', tokenize_chinese_chars: bool = True, strip_accents: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/splinter/tokenization_splinter.py#L41)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/splinter/tokenization_splinter.py#L41)
 
 **Parameters:**
 
@@ -217,7 +217,7 @@ vocab (`str`, `dict` or `list`, *optional*) : Custom vocabulary dictionary. If n
 
 Construct a Splinter tokenizer (backed by HuggingFace's tokenizers library). Based on WordPiece.
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 ## SplinterModel[[transformers.SplinterModel]]
@@ -228,15 +228,15 @@ refer to this superclass for more information regarding those methods.
 transformers.SplinterModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/splinter/modeling_splinter.py#L312)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/splinter/modeling_splinter.py#L312)
 
 **Parameters:**
 
-config ([SplinterModel](/docs/transformers/v5.15.0/en/model_doc/splinter#transformers.SplinterModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SplinterModel](/docs/transformers/v5.15.1/en/model_doc/splinter#transformers.SplinterModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Splinter Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -250,11 +250,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/splinter/modeling_splinter.py#L335)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/splinter/modeling_splinter.py#L335)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -264,13 +264,13 @@ position_ids (`torch.LongTensor` of shape `batch_size, sequence_length`, *option
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+A [BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SplinterConfig](/docs/transformers/v5.15.0/en/model_doc/splinter#transformers.SplinterConfig)) and inputs.
+elements depending on the configuration ([SplinterConfig](/docs/transformers/v5.15.1/en/model_doc/splinter#transformers.SplinterConfig)) and inputs.
 
-The [SplinterModel](/docs/transformers/v5.15.0/en/model_doc/splinter#transformers.SplinterModel) forward method, overrides the `__call__` special method.
+The [SplinterModel](/docs/transformers/v5.15.1/en/model_doc/splinter#transformers.SplinterModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -295,16 +295,16 @@ the latter silently ignores them.
 transformers.SplinterForQuestionAnswering(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/splinter/modeling_splinter.py#L462)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/splinter/modeling_splinter.py#L462)
 
 **Parameters:**
 
-config ([SplinterForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/splinter#transformers.SplinterForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SplinterForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/splinter#transformers.SplinterForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Splinter transformer with a span classification head on top for extractive question-answering tasks like
 SQuAD (a linear layer on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -318,11 +318,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, start_positions: typing.Optional[torch.LongTensor] = None, end_positions: typing.Optional[torch.LongTensor] = None, question_positions: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/splinter/modeling_splinter.py#L473)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/splinter/modeling_splinter.py#L473)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -338,13 +338,13 @@ end_positions (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels
 
 question_positions (`torch.LongTensor` of shape `(batch_size, num_questions)`, *optional*) : The positions of all question tokens. If given, start_logits and end_logits will be of shape `(batch_size, num_questions, sequence_length)`. If None, the first question token in each sequence in the batch will be the only one for which start_logits and end_logits are calculated and they will be of shape `(batch_size, sequence_length)`.
 
-**Returns:** [QuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [QuestionAnsweringModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or `tuple(torch.FloatTensor)`
 
-A [QuestionAnsweringModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
+A [QuestionAnsweringModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.QuestionAnsweringModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SplinterConfig](/docs/transformers/v5.15.0/en/model_doc/splinter#transformers.SplinterConfig)) and inputs.
+elements depending on the configuration ([SplinterConfig](/docs/transformers/v5.15.1/en/model_doc/splinter#transformers.SplinterConfig)) and inputs.
 
-The [SplinterForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/splinter#transformers.SplinterForQuestionAnswering) forward method, overrides the `__call__` special method.
+The [SplinterForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/splinter#transformers.SplinterForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -403,17 +403,17 @@ Example:
 transformers.SplinterForPreTraining(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/splinter/modeling_splinter.py#L595)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/splinter/modeling_splinter.py#L595)
 
 **Parameters:**
 
-config ([SplinterForPreTraining](/docs/transformers/v5.15.0/en/model_doc/splinter#transformers.SplinterForPreTraining)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SplinterForPreTraining](/docs/transformers/v5.15.1/en/model_doc/splinter#transformers.SplinterForPreTraining)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Splinter Model for the recurring span selection task as done during the pretraining. The difference to the QA task
 is that we do not have a question, but multiple question tokens that replace the occurrences of recurring spans
 instead.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -427,11 +427,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, start_positions: typing.Optional[torch.LongTensor] = None, end_positions: typing.Optional[torch.LongTensor] = None, question_positions: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/splinter/modeling_splinter.py#L606)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/splinter/modeling_splinter.py#L606)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, num_questions, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, num_questions, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -451,9 +451,9 @@ question_positions (`torch.LongTensor` of shape `(batch_size, num_questions)`, *
 
 A `SplinterForPreTrainingOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SplinterConfig](/docs/transformers/v5.15.0/en/model_doc/splinter#transformers.SplinterConfig)) and inputs.
+elements depending on the configuration ([SplinterConfig](/docs/transformers/v5.15.1/en/model_doc/splinter#transformers.SplinterConfig)) and inputs.
 
-The [SplinterForPreTraining](/docs/transformers/v5.15.0/en/model_doc/splinter#transformers.SplinterForPreTraining) forward method, overrides the `__call__` special method.
+The [SplinterForPreTraining](/docs/transformers/v5.15.1/en/model_doc/splinter#transformers.SplinterForPreTraining) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -478,4 +478,4 @@ Example:
 ```
 
 ### FastSpeech2Conformer
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/fastspeech2_conformer.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/fastspeech2_conformer.md

@@ -18,12 +18,12 @@ This model was contributed by [yuekun](https://huggingface.co/yuekun). The origi
 
 ## Inference example
 
-[MgpstrModel](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrModel) accepts images as input and generates three types of predictions, which represent textual information at different granularities.
+[MgpstrModel](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrModel) accepts images as input and generates three types of predictions, which represent textual information at different granularities.
 The three types of predictions are fused to give the final prediction result.
 
-The [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) class is responsible for preprocessing the input image and
-[MgpstrTokenizer](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrTokenizer) decodes the generated character tokens to the target string. The
-[MgpstrProcessor](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrProcessor) wraps [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) and [MgpstrTokenizer](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrTokenizer)
+The [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) class is responsible for preprocessing the input image and
+[MgpstrTokenizer](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrTokenizer) decodes the generated character tokens to the target string. The
+[MgpstrProcessor](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrProcessor) wraps [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) and [MgpstrTokenizer](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrTokenizer)
 into a single instance to both extract the input features and decode the predicted token ids.
 
 - Step-by-step Optical Character Recognition (OCR)
@@ -55,7 +55,7 @@ generated_text = processor.batch_decode(outputs.logits)['generated_text']
 transformers.MgpstrConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, image_size: list[int] | tuple[int, ...] = (32, 128), patch_size: int | list[int] | tuple[int, int] = 4, num_channels: int = 3, max_token_length: int = 27, num_character_labels: int = 38, num_bpe_labels: int = 50257, num_wordpiece_labels: int = 30522, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, mlp_ratio: float | int = 4.0, qkv_bias: bool = True, distilled: bool = False, layer_norm_eps: float = 1e-05, drop_rate: float | int = 0.0, attn_drop_rate: float | int = 0.0, drop_path_rate: float | int = 0.0, output_a3_attentions: bool = False, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mgp_str/configuration_mgp_str.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mgp_str/configuration_mgp_str.py#L24)
 
 **Parameters:**
 
@@ -101,8 +101,8 @@ This is the configuration class to store the configuration of a Mgp StrModel. It
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [alibaba-damo/mgp-str-base](https://huggingface.co/alibaba-damo/mgp-str-base)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -127,7 +127,7 @@ Example:
 transformers.MgpstrTokenizer(vocab_file, unk_token = '[GO]', bos_token = '[GO]', eos_token = '[s]', pad_token = '[GO]', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mgp_str/tokenization_mgp_str.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mgp_str/tokenization_mgp_str.py#L28)
 
 **Parameters:**
 
@@ -143,7 +143,7 @@ pad_token (`str` or `tokenizers.AddedToken`, *optional*, defaults to `"[GO]"`) :
 
 Construct a MGP-STR char tokenizer.
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 #### save_vocabulary[[transformers.MgpstrTokenizer.save_vocabulary]]
@@ -152,7 +152,7 @@ this superclass for more information regarding those methods.
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mgp_str/tokenization_mgp_str.py#L89)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mgp_str/tokenization_mgp_str.py#L89)
 
 ## MgpstrProcessor[[transformers.MgpstrProcessor]]
 
@@ -162,7 +162,7 @@ save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 transformers.MgpstrProcessor(image_processor = None, tokenizer = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mgp_str/processing_mgp_str.py#L40)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mgp_str/processing_mgp_str.py#L40)
 
 **Parameters:**
 
@@ -172,8 +172,8 @@ tokenizer (`MgpstrTokenizer`) : The tokenizer is a required input.
 
 Constructs a MgpstrProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[MgpstrProcessor](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrProcessor) offers all the functionalities of [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) and [MgpstrTokenizer](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrTokenizer). See the
-[~ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) and [~MgpstrTokenizer](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrTokenizer) for more information.
+[MgpstrProcessor](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrProcessor) offers all the functionalities of [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) and [MgpstrTokenizer](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrTokenizer). See the
+[~ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) and [~MgpstrTokenizer](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrTokenizer) for more information.
 
 #### __call__[[transformers.MgpstrProcessor.__call__]]
 
@@ -181,7 +181,7 @@ Constructs a MgpstrProcessor which wraps a image processor and a tokenizer into 
 __call__(text = None, images = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mgp_str/processing_mgp_str.py#L48)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mgp_str/processing_mgp_str.py#L48)
 
 **Parameters:**
 
@@ -189,7 +189,7 @@ text (``) : The sequence or batch of sequences to be encoded. Each sequence can 
 
 images (``) : Image to preprocess. Expects a single or batch of images with pixel values ranging from 0 to 255. If passing in images with pixel values between 0 and 1, set `do_rescale=False`.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
 #### batch_decode[[transformers.MgpstrProcessor.batch_decode]]
 
@@ -197,7 +197,7 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 batch_decode(sequences)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mgp_str/processing_mgp_str.py#L56)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mgp_str/processing_mgp_str.py#L56)
 
 **Parameters:**
 
@@ -213,7 +213,7 @@ of character decoded sentences. bpe_preds (`list[str]`): The list of bpe decoded
 
 Convert a list of lists of token ids into a list of strings by calling decode.
 
-This method forwards all its arguments to PreTrainedTokenizer's [batch_decode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode). Please
+This method forwards all its arguments to PreTrainedTokenizer's [batch_decode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.batch_decode). Please
 refer to the docstring of this method for more information.
 
 ## MgpstrModel[[transformers.MgpstrModel]]
@@ -224,15 +224,15 @@ refer to the docstring of this method for more information.
 transformers.MgpstrModel(config: MgpstrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mgp_str/modeling_mgp_str.py#L292)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mgp_str/modeling_mgp_str.py#L292)
 
 **Parameters:**
 
-config ([MgpstrConfig](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MgpstrConfig](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Mgp Str Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -246,25 +246,25 @@ and behavior.
 forward(pixel_values: FloatTensor, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mgp_str/modeling_mgp_str.py#L305)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mgp_str/modeling_mgp_str.py#L305)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details ([MgpstrProcessor](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrProcessor) uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details ([MgpstrProcessor](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrProcessor) uses [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+A [BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MgpstrConfig](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrConfig)) and inputs.
+elements depending on the configuration ([MgpstrConfig](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrConfig)) and inputs.
 
-The [MgpstrModel](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrModel) forward method, overrides the `__call__` special method.
+The [MgpstrModel](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -289,16 +289,16 @@ the latter silently ignores them.
 transformers.MgpstrForSceneTextRecognition(config: MgpstrConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mgp_str/modeling_mgp_str.py#L347)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mgp_str/modeling_mgp_str.py#L347)
 
 **Parameters:**
 
-config ([MgpstrConfig](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MgpstrConfig](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 MGP-STR Model transformer with three classification heads on top (three A^3 modules and three linear layer on top
 of the transformer encoder output) for scene text recognition (STR) .
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -312,11 +312,11 @@ and behavior.
 forward(pixel_values: FloatTensor, output_attentions: bool | None = None, output_a3_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mgp_str/modeling_mgp_str.py#L368)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mgp_str/modeling_mgp_str.py#L368)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details ([MgpstrProcessor](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrProcessor) uses [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor). See `ViTImageProcessor.__call__()` for details ([MgpstrProcessor](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrProcessor) uses [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) for processing images).
 
 output_attentions (`bool`, *optional*) : Whether or not to return the attentions tensors of all attention layers. See `attentions` under returned tensors for more detail.
 
@@ -324,15 +324,15 @@ output_a3_attentions (`bool`, *optional*) : Whether or not to return the attenti
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `MgpstrModelOutput` or `tuple(torch.FloatTensor)`
 
 A `MgpstrModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MgpstrConfig](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrConfig)) and inputs.
+elements depending on the configuration ([MgpstrConfig](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrConfig)) and inputs.
 
-The [MgpstrForSceneTextRecognition](/docs/transformers/v5.15.0/en/model_doc/mgp-str#transformers.MgpstrForSceneTextRecognition) forward method, overrides the `__call__` special method.
+The [MgpstrForSceneTextRecognition](/docs/transformers/v5.15.1/en/model_doc/mgp-str#transformers.MgpstrForSceneTextRecognition) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -388,4 +388,4 @@ Example:
 ```
 
 ### EdgeTAM
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/edgetam.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/edgetam.md

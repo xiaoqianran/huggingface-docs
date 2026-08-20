@@ -18,7 +18,7 @@ This model was contributed by [nielsr](https://huggingface.co/nielsr). The origi
 
 ## Usage tips
 
-DPT is compatible with the [AutoBackbone](/docs/transformers/v5.15.0/en/main_classes/backbones#transformers.AutoBackbone) class. This allows to use the DPT framework with various computer vision backbones available in the library, such as `VitDetBackbone` or `Dinov2Backbone`. One can create it as follows:
+DPT is compatible with the [AutoBackbone](/docs/transformers/v5.15.1/en/main_classes/backbones#transformers.AutoBackbone) class. This allows to use the DPT framework with various computer vision backbones available in the library, such as `VitDetBackbone` or `Dinov2Backbone`. One can create it as follows:
 
 ```python
 from transformers import Dinov2Config, DPTConfig, DPTForDepthEstimation
@@ -35,7 +35,7 @@ model = DPTForDepthEstimation(config=config)
 
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with DPT.
 
-- Demo notebooks for [DPTForDepthEstimation](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTForDepthEstimation) can be found [here](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/DPT).
+- Demo notebooks for [DPTForDepthEstimation](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTForDepthEstimation) can be found [here](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/DPT).
 
 - [Semantic segmentation task guide](../tasks/semantic_segmentation)
 - [Monocular depth estimation task guide](../tasks/monocular_depth_estimation)
@@ -50,7 +50,7 @@ If you're interested in submitting a resource to be included here, please feel f
 transformers.DPTConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 768, num_hidden_layers: None | int = 12, num_attention_heads: int | None = 12, intermediate_size: int | None = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int | None = 0.0, attention_probs_dropout_prob: float | int | None = 0.0, initializer_range: float = 0.02, layer_norm_eps: float | None = 1e-12, image_size: int | list[int] | tuple[int, int] | None = 384, patch_size: int | list[int] | tuple[int, int] | None = 16, num_channels: int | None = 3, is_hybrid: bool = False, qkv_bias: bool | None = True, backbone_out_indices: list[int] | tuple[int, ...] | None = (2, 5, 8, 11), readout_type: str = 'project', reassemble_factors: list[int | float] | tuple[int | float, ...] = (4, 2, 1, 0.5), neck_hidden_sizes: list[int] | tuple[int, ...] = (96, 192, 384, 768), fusion_hidden_size: int = 256, head_in_index: int = -1, use_batch_norm_in_fusion_residual: bool | None = False, use_bias_in_fusion_residual: bool | None = None, add_projection: bool = False, use_auxiliary_head: bool | None = True, auxiliary_loss_weight: float = 0.4, semantic_loss_ignore_index: int = 255, semantic_classifier_dropout: float | int = 0.1, backbone_featmap_shape: list[int] | tuple[int, ...] | None = (1, 1024, 24, 24), neck_ignore_stages: list[int] | tuple[int, ...] = (0, 1), backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, pooler_output_size: int | None = None, pooler_act: str = 'tanh')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dpt/configuration_dpt.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dpt/configuration_dpt.py#L26)
 
 **Parameters:**
 
@@ -122,8 +122,8 @@ This is the configuration class to store the configuration of a DPTModel. It is 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [Intel/dpt-large](https://huggingface.co/Intel/dpt-large)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -148,7 +148,7 @@ Example:
 transformers.DPTImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dpt/image_processing_dpt.py#L110)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dpt/image_processing_dpt.py#L110)
 
 **Parameters:**
 
@@ -208,7 +208,7 @@ Constructs a DPTImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dpt/image_processing_dpt.py#L135)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dpt/image_processing_dpt.py#L135)
 
 **Parameters:**
 
@@ -278,7 +278,7 @@ do_reduce_labels (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labe
 transformers.DPTImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dpt/image_processing_pil_dpt.py#L110)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dpt/image_processing_pil_dpt.py#L110)
 
 **Parameters:**
 
@@ -338,7 +338,7 @@ Constructs a DPTImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dpt/image_processing_pil_dpt.py#L131)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dpt/image_processing_pil_dpt.py#L131)
 
 **Parameters:**
 
@@ -406,11 +406,11 @@ do_reduce_labels (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labe
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dpt/image_processing_pil_dpt.py#L268)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dpt/image_processing_pil_dpt.py#L268)
 
 **Parameters:**
 
-outputs ([DPTForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTForSemanticSegmentation)) : Raw outputs of the model.
+outputs ([DPTForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTForSemanticSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[tuple]`, *optional*) : A list of tuples (`tuple[int, int]`) containing the target size (height, width) of each image in the batch. If unset, predictions will not be resized.
 
@@ -425,7 +425,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [DPTForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTForSemanticSegmentation) into semantic segmentation maps.
+Converts the output of [DPTForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTForSemanticSegmentation) into semantic segmentation maps.
 
 #### post_process_depth_estimation[[transformers.DPTImageProcessorPil.post_process_depth_estimation]]
 
@@ -433,7 +433,7 @@ Converts the output of [DPTForSemanticSegmentation](/docs/transformers/v5.15.0/e
 post_process_depth_estimation(outputs: DepthEstimatorOutput, target_sizes: transformers.utils.generic.TensorType | list[tuple[int, int]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dpt/image_processing_pil_dpt.py#L331)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dpt/image_processing_pil_dpt.py#L331)
 
 Converts the raw output of `DepthEstimatorOutput` into final depth predictions.
 
@@ -445,17 +445,17 @@ Converts the raw output of `DepthEstimatorOutput` into final depth predictions.
 transformers.DPTModel(config: DPTConfig, add_pooling_layer: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dpt/modeling_dpt.py#L752)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dpt/modeling_dpt.py#L752)
 
 **Parameters:**
 
-config ([DPTConfig](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DPTConfig](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare Dpt Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -469,19 +469,19 @@ and behavior.
 forward(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dpt/modeling_dpt.py#L780)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dpt/modeling_dpt.py#L780)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DPTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTImageProcessor). See `DPTImageProcessor.__call__()` for details (`processor_class` uses [DPTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DPTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTImageProcessor). See `DPTImageProcessor.__call__()` for details (`processor_class` uses [DPTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTImageProcessor) for processing images).
 
 **Returns:** `BaseModelOutputWithPoolingAndIntermediateActivations` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithPoolingAndIntermediateActivations` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DPTConfig](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTConfig)) and inputs.
+elements depending on the configuration ([DPTConfig](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTConfig)) and inputs.
 
-The [DPTModel](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTModel) forward method, overrides the `__call__` special method.
+The [DPTModel](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -516,15 +516,15 @@ Example:
 transformers.DPTForDepthEstimation(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dpt/modeling_dpt.py#L923)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dpt/modeling_dpt.py#L923)
 
 **Parameters:**
 
-config ([DPTForDepthEstimation](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTForDepthEstimation)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DPTForDepthEstimation](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTForDepthEstimation)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 DPT Model with a depth estimation head on top (consisting of 3 convolutional layers) e.g. for KITTI, NYUv2.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -538,21 +538,21 @@ and behavior.
 forward(pixel_values: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dpt/modeling_dpt.py#L942)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dpt/modeling_dpt.py#L942)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DPTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTImageProcessor). See `DPTImageProcessor.__call__()` for details (`processor_class` uses [DPTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DPTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTImageProcessor). See `DPTImageProcessor.__call__()` for details (`processor_class` uses [DPTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Ground truth depth estimation maps for computing the loss.
 
-**Returns:** [DepthEstimatorOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [DepthEstimatorOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or `tuple(torch.FloatTensor)`
 
-A [DepthEstimatorOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or a tuple of
+A [DepthEstimatorOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.DepthEstimatorOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DPTConfig](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTConfig)) and inputs.
+elements depending on the configuration ([DPTConfig](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTConfig)) and inputs.
 
-The [DPTForDepthEstimation](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTForDepthEstimation) forward method, overrides the `__call__` special method.
+The [DPTForDepthEstimation](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTForDepthEstimation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -613,15 +613,15 @@ Examples:
 transformers.DPTForSemanticSegmentation(config: DPTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dpt/modeling_dpt.py#L1079)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dpt/modeling_dpt.py#L1079)
 
 **Parameters:**
 
-config ([DPTConfig](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DPTConfig](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Dpt Model with a semantic segmentation head on top e.g. for ADE20K, CityScapes.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -635,21 +635,21 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/dpt/modeling_dpt.py#L1095)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/dpt/modeling_dpt.py#L1095)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DPTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTImageProcessor). See `DPTImageProcessor.__call__()` for details (`processor_class` uses [DPTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [DPTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTImageProcessor). See `DPTImageProcessor.__call__()` for details (`processor_class` uses [DPTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Ground truth semantic segmentation maps for computing the loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels > 1`, a classification loss is computed (Cross-Entropy).
 
-**Returns:** [SemanticSegmenterOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SemanticSegmenterOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`
 
-A [SemanticSegmenterOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
+A [SemanticSegmenterOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DPTConfig](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTConfig)) and inputs.
+elements depending on the configuration ([DPTConfig](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTConfig)) and inputs.
 
-The [DPTForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/dpt#transformers.DPTForSemanticSegmentation) forward method, overrides the `__call__` special method.
+The [DPTForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/dpt#transformers.DPTForSemanticSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -696,4 +696,4 @@ Examples:
 ```
 
 ### SAM3 Video
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/sam3_video.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/sam3_video.md

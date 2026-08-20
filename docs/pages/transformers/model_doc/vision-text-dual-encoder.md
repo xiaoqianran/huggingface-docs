@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [VisionTextDualEncoderModel](/docs/transformers/v5.15.0/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderModel) can be used to initialize a vision-text dual encoder model with
+The [VisionTextDualEncoderModel](/docs/transformers/v5.15.1/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderModel) can be used to initialize a vision-text dual encoder model with
 any pretrained vision autoencoding model as the vision encoder (*e.g.* [ViT](vit), [BEiT](beit), [DeiT](deit)) and any pretrained text autoencoding model as the text encoder (*e.g.* [RoBERTa](roberta), [BERT](bert)). Two projection layers are added on top of both the vision and text encoder to project the output embeddings
 to a shared latent space. The projection layers are randomly initialized so the model should be fine-tuned on a
 downstream task. This model can be used to align the vision-text embeddings using CLIP like contrastive image-text
@@ -20,7 +20,7 @@ new zero-shot vision tasks such as image classification or retrieval.
 transformers.VisionTextDualEncoderConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, projection_dim: int = 512, logit_scale_init_value: int | float = 2.6592)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vision_text_dual_encoder/configuration_vision_text_dual_encoder.py#L35)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vision_text_dual_encoder/configuration_vision_text_dual_encoder.py#L35)
 
 **Parameters:**
 
@@ -32,8 +32,8 @@ This is the configuration class to store the configuration of a Vision Text Dual
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [None](https://huggingface.co/None)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -67,13 +67,13 @@ Examples:
 from_vision_text_configs(vision_config: PreTrainedConfig, text_config: PreTrainedConfig, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vision_text_dual_encoder/configuration_vision_text_dual_encoder.py#L93)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vision_text_dual_encoder/configuration_vision_text_dual_encoder.py#L93)
 
-**Returns:** [VisionTextDualEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderConfig)
+**Returns:** [VisionTextDualEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderConfig)
 
 An instance of a configuration object
 
-Instantiate a [VisionTextDualEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderConfig) (or a derived class) from text model configuration and vision
+Instantiate a [VisionTextDualEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderConfig) (or a derived class) from text model configuration and vision
 model configuration.
 
 ## VisionTextDualEncoderProcessor[[transformers.VisionTextDualEncoderProcessor]]
@@ -84,7 +84,7 @@ model configuration.
 transformers.VisionTextDualEncoderProcessor(image_processor = None, tokenizer = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vision_text_dual_encoder/processing_vision_text_dual_encoder.py#L27)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vision_text_dual_encoder/processing_vision_text_dual_encoder.py#L27)
 
 **Parameters:**
 
@@ -94,7 +94,7 @@ tokenizer (`tokenizer_class`) : The tokenizer is a required input.
 
 Constructs a VisionTextDualEncoderProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[VisionTextDualEncoderProcessor](/docs/transformers/v5.15.0/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderProcessor) offers all the functionalities of `image_processor_class` and `tokenizer_class`. See the
+[VisionTextDualEncoderProcessor](/docs/transformers/v5.15.1/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderProcessor) offers all the functionalities of `image_processor_class` and `tokenizer_class`. See the
 `~image_processor_class` and `~tokenizer_class` for more information.
 
 #### __call__[[transformers.VisionTextDualEncoderProcessor.__call__]]
@@ -103,7 +103,7 @@ Constructs a VisionTextDualEncoderProcessor which wraps a image processor and a 
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L651)
 
 **Parameters:**
 
@@ -115,9 +115,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 ## VisionTextDualEncoderModel[[transformers.VisionTextDualEncoderModel]]
 
@@ -127,11 +127,11 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 transformers.VisionTextDualEncoderModel(config: transformers.models.vision_text_dual_encoder.configuration_vision_text_dual_encoder.VisionTextDualEncoderConfig | None = None, vision_model: transformers.modeling_utils.PreTrainedModel | None = None, text_model: transformers.modeling_utils.PreTrainedModel | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vision_text_dual_encoder/modeling_vision_text_dual_encoder.py#L45)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vision_text_dual_encoder/modeling_vision_text_dual_encoder.py#L45)
 
 **Parameters:**
 
-config ([VisionTextDualEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderConfig), *optional*) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([VisionTextDualEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderConfig), *optional*) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 vision_model (`~modeling_utils.PreTrainedModel`, *optional*) : The vision model to use.
 
@@ -139,7 +139,7 @@ text_model (`~modeling_utils.PreTrainedModel`, *optional*) : The text model to u
 
 The bare Vision Text Dual Encoder Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -153,13 +153,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, return_loss: bool | None = None, token_type_ids: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vision_text_dual_encoder/modeling_vision_text_dual_encoder.py#L171)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vision_text_dual_encoder/modeling_vision_text_dual_encoder.py#L171)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([VisionTextDualEncoderProcessor](/docs/transformers/v5.15.0/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderProcessor) uses `image_processor_class` for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([VisionTextDualEncoderProcessor](/docs/transformers/v5.15.1/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderProcessor) uses `image_processor_class` for processing images).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -173,15 +173,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `CLIPOutput` or `tuple(torch.FloatTensor)`
 
 A `CLIPOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VisionTextDualEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderConfig)) and inputs.
+elements depending on the configuration ([VisionTextDualEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderConfig)) and inputs.
 
-The [VisionTextDualEncoderModel](/docs/transformers/v5.15.0/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderModel) forward method, overrides the `__call__` special method.
+The [VisionTextDualEncoderModel](/docs/transformers/v5.15.1/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -192,10 +192,10 @@ the latter silently ignores them.
   similarity scores.
 - **logits_per_text** (`torch.FloatTensor` of shape `(text_batch_size, image_batch_size)`) -- The scaled dot product scores between `text_embeds` and `image_embeds`. This represents the text-image
   similarity scores.
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [CLIPTextModel](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPTextModel).
-- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of [CLIPVisionModel](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPVisionModel).
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [CLIPTextModel](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPTextModel).
-- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [CLIPVisionModel](/docs/transformers/v5.15.0/en/model_doc/clip#transformers.CLIPVisionModel).
+- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The text embeddings obtained by applying the projection layer to the pooled output of [CLIPTextModel](/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTextModel).
+- **image_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim`) -- The image embeddings obtained by applying the projection layer to the pooled output of [CLIPVisionModel](/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPVisionModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [CLIPTextModel](/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTextModel).
+- **vision_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [CLIPVisionModel](/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPVisionModel).
 
 Examples:
 
@@ -257,11 +257,11 @@ Examples:
 get_text_features(input_ids: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vision_text_dual_encoder/modeling_vision_text_dual_encoder.py#L105)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vision_text_dual_encoder/modeling_vision_text_dual_encoder.py#L105)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -269,11 +269,11 @@ position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional
 
 token_type_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VisionTextDualEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderConfig)) and inputs.
+elements depending on the configuration ([VisionTextDualEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -310,17 +310,17 @@ Examples:
 get_image_features(pixel_values: Tensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/vision_text_dual_encoder/modeling_vision_text_dual_encoder.py#L142)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/vision_text_dual_encoder/modeling_vision_text_dual_encoder.py#L142)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([VisionTextDualEncoderProcessor](/docs/transformers/v5.15.0/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderProcessor) uses `image_processor_class` for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([VisionTextDualEncoderProcessor](/docs/transformers/v5.15.1/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderProcessor) uses `image_processor_class` for processing images).
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VisionTextDualEncoderConfig](/docs/transformers/v5.15.0/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderConfig)) and inputs.
+elements depending on the configuration ([VisionTextDualEncoderConfig](/docs/transformers/v5.15.1/en/model_doc/vision-text-dual-encoder#transformers.VisionTextDualEncoderConfig)) and inputs.
 
 - **last_hidden_state** (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`) -- Sequence of hidden-states at the output of the last layer of the model.
 - **pooler_output** (`torch.FloatTensor` of shape `(batch_size, hidden_size)`) -- Last layer hidden-state of the first token of the sequence (classification token) after further processing
@@ -357,4 +357,4 @@ Examples:
 ```
 
 ### UVDoc
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/uvdoc.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/uvdoc.md

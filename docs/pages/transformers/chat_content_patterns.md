@@ -182,4 +182,4 @@ message = [
 ```
 
 ### Fine-tuning
-https://huggingface.co/docs/transformers/v5.15.0/training.md
+https://huggingface.co/docs/transformers/v5.15.1/training.md

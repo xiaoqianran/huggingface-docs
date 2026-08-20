@@ -55,7 +55,7 @@ print(scores)    # [[0.9350, 0.0650], [0.0015, 0.9985]]
 transformers.ColModernVBertConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vlm_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, embedding_dim: int = 128, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/colmodernvbert/configuration_colmodernvbert.py#L34)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/colmodernvbert/configuration_colmodernvbert.py#L34)
 
 **Parameters:**
 
@@ -69,8 +69,8 @@ This is the configuration class to store the configuration of a ColmodernvbertMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [ModernVBERT/colmodernvbert-merged](https://huggingface.co/ModernVBERT/colmodernvbert-merged)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -89,7 +89,7 @@ model = ColModernVBertForRetrieval(config)
 transformers.ColModernVBertProcessor(image_processor, tokenizer = None, chat_template = None, image_seq_len: int = 64, visual_prompt_prefix: str | None = None, query_prefix: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/colmodernvbert/processing_colmodernvbert.py#L56)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/colmodernvbert/processing_colmodernvbert.py#L56)
 
 **Parameters:**
 
@@ -107,7 +107,7 @@ query_prefix (`str`, *optional*) : A prefix to be used for the query.
 
 Constructs a ColModernVBertProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[ColModernVBertProcessor](/docs/transformers/v5.15.0/en/model_doc/colmodernvbert#transformers.ColModernVBertProcessor) offers all the functionalities of `image_processor_class` and `tokenizer_class`. See the
+[ColModernVBertProcessor](/docs/transformers/v5.15.1/en/model_doc/colmodernvbert#transformers.ColModernVBertProcessor) offers all the functionalities of `image_processor_class` and `tokenizer_class`. See the
 `~image_processor_class` and `~tokenizer_class` for more information.
 
 #### process_images[[transformers.ColModernVBertProcessor.process_images]]
@@ -116,17 +116,17 @@ Constructs a ColModernVBertProcessor which wraps a image processor and a tokeniz
 process_images(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/colmodernvbert/processing_colmodernvbert.py#L329)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/colmodernvbert/processing_colmodernvbert.py#L329)
 
 **Parameters:**
 
 images (`PIL.Image.Image`, `np.ndarray`, `torch.Tensor`, `list[PIL.Image.Image]`, `list[np.ndarray]`, `list[torch.Tensor]`) : The image or batch of images to be prepared. Each image can be a PIL image, NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each image should be of shape (C, H, W), where C is a number of channels, H and W are image height and width.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature)
 
-A [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
+A [BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model.
 - **attention_mask** -- List of indices specifying which tokens should be attended to by the model (when
@@ -144,17 +144,17 @@ and prepends the `visual_prompt_prefix` to each image. Optionally computes label
 process_queries(text: str | list[str], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/colmodernvbert/processing_colmodernvbert.py#L395)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/colmodernvbert/processing_colmodernvbert.py#L395)
 
 **Parameters:**
 
 text (`str`, `list[str]`, `list[list[str]]`) : The sequence or batch of sequences to be encoded. Each sequence can be a string or a list of strings (pretokenized string). If the sequences are provided as list of strings (pretokenized), you must set `is_split_into_words=True` (to lift the ambiguity with a batch of sequences).
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-**Returns:** [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature)
+**Returns:** [BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature)
 
-A [BatchFeature](/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
+A [BatchFeature](/docs/transformers/v5.15.1/en/main_classes/image_processor#transformers.BatchFeature) with the following fields:
 
 - **input_ids** -- List of token ids to be fed to a model.
 - **attention_mask** -- List of indices specifying which tokens should be attended to by the model (when
@@ -171,7 +171,7 @@ better late-interaction retrieval performance).
 score_retrieval(query_embeddings: typing.Union[ForwardRef('torch.Tensor'), list['torch.Tensor']], passage_embeddings: typing.Union[ForwardRef('torch.Tensor'), list['torch.Tensor']], batch_size: int = 128, output_dtype: typing.Optional[ForwardRef('torch.dtype')] = None, output_device: typing.Union[ForwardRef('torch.device'), str] = 'cpu')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/colmodernvbert/processing_colmodernvbert.py#L452)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/colmodernvbert/processing_colmodernvbert.py#L452)
 
 **Parameters:**
 
@@ -208,11 +208,11 @@ obtained by padding the list of tensors.
 transformers.ColModernVBertForRetrieval(config: ColModernVBertConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/colmodernvbert/modeling_colmodernvbert.py#L91)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/colmodernvbert/modeling_colmodernvbert.py#L91)
 
 **Parameters:**
 
-config ([ColModernVBertConfig](/docs/transformers/v5.15.0/en/model_doc/colmodernvbert#transformers.ColModernVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([ColModernVBertConfig](/docs/transformers/v5.15.1/en/model_doc/colmodernvbert#transformers.ColModernVBertConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Following the ColPali approach, ColModernVBert leverages VLMs to construct efficient multi-vector embeddings directly
 from document images (“screenshots”) for document retrieval. The model is trained to maximize the similarity
@@ -228,7 +228,7 @@ ColModernVBert is trained on top of ModernVBert, and was introduced in the follo
 ColModernVBert is part of the ColVision model family, which was introduced with ColPali in the following paper:
 [*ColPali: Efficient Document Retrieval with Vision Language Models*](https://huggingface.co/papers/2407.01449).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -242,13 +242,13 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/colmodernvbert/modeling_colmodernvbert.py#L108)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/colmodernvbert/modeling_colmodernvbert.py#L108)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([ColModernVBertProcessor](/docs/transformers/v5.15.0/en/model_doc/colmodernvbert#transformers.ColModernVBertProcessor) uses `image_processor_class` for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([ColModernVBertProcessor](/docs/transformers/v5.15.1/en/model_doc/colmodernvbert#transformers.ColModernVBertProcessor) uses `image_processor_class` for processing images).
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -256,9 +256,9 @@ attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *option
 
 A `ColModernVBertForRetrievalOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([ColModernVBertConfig](/docs/transformers/v5.15.0/en/model_doc/colmodernvbert#transformers.ColModernVBertConfig)) and inputs.
+elements depending on the configuration ([ColModernVBertConfig](/docs/transformers/v5.15.1/en/model_doc/colmodernvbert#transformers.ColModernVBertConfig)) and inputs.
 
-The [ColModernVBertForRetrieval](/docs/transformers/v5.15.0/en/model_doc/colmodernvbert#transformers.ColModernVBertForRetrieval) forward method, overrides the `__call__` special method.
+The [ColModernVBertForRetrieval](/docs/transformers/v5.15.1/en/model_doc/colmodernvbert#transformers.ColModernVBertForRetrieval) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -285,4 +285,4 @@ Example:
 ```
 
 ### X-MOD
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/xmod.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/xmod.md

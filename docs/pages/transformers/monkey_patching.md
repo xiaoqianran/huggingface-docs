@@ -1,6 +1,6 @@
 # Monkey patching (experimental feature)
 
-Monkey patching allows you to replace model components globally without modifying the original model code. Once registered, patches are automatically applied when loading any model with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) or `~PreTrainedModel.from_config`. This enables you to restructure models for specific requirements like quantization compatibility, apply optimizations, or experiment with architectural variants.
+Monkey patching allows you to replace model components globally without modifying the original model code. Once registered, patches are automatically applied when loading any model with [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) or `~PreTrainedModel.from_config`. This enables you to restructure models for specific requirements like quantization compatibility, apply optimizations, or experiment with architectural variants.
 
 > [!WARNING]
 > **Monkey patching should be used as a last resort** when you need to change the layout and structure of a module and or its weights. For many customization and optimization needs, try using the [Attention interface](./attention_interface), [Experts interface](./experts_interface), or [Kernels registry](./kernel_doc/overview) instead. Only use monkey patching when you need structural changes that can't be achieved through custom forward implementations alone (e.g., for quantization library compatibility, fusing layers, or architectural experiments).
@@ -498,7 +498,7 @@ The same recipe applies to other MoE families — subclass the family's `*TopKRo
 transformers.monkey_patching.register_patch_mapping(mapping: dict, overwrite: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/monkey_patching.py#L85)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/monkey_patching.py#L85)
 
 **Parameters:**
 
@@ -550,7 +550,7 @@ For weight conversions, use `~transformers.register_checkpoint_conversion_mappin
 transformers.monkey_patching.unregister_patch_mapping(keys: list)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/monkey_patching.py#L158)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/monkey_patching.py#L158)
 
 **Parameters:**
 
@@ -584,7 +584,7 @@ model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen1.5-MoE-A2.7B")
 transformers.monkey_patching.clear_patch_mapping()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/monkey_patching.py#L209)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/monkey_patching.py#L209)
 
 Clear all registered patch mappings.
 
@@ -609,7 +609,7 @@ clear_patch_mapping()
 transformers.monkey_patching.get_patch_mapping()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/monkey_patching.py#L198)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/monkey_patching.py#L198)
 
 **Returns:** `Dict[str, type[nn.Module]]`
 
@@ -623,7 +623,7 @@ Get all registered patch mappings.
 transformers.monkey_patching.apply_patches()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/monkey_patching.py#L233)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/monkey_patching.py#L233)
 
 Context manager to apply registered monkey patches within a block of code.
 
@@ -650,4 +650,4 @@ model = Qwen2MoeModel(Qwen2MoeConfig())
 ```
 
 ### Experts backends
-https://huggingface.co/docs/transformers/v5.15.0/experts_interface.md
+https://huggingface.co/docs/transformers/v5.15.1/experts_interface.md

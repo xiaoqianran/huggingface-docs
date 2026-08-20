@@ -9,9 +9,9 @@
 - [Diffusers](https://huggingface.co/docs/diffusers) — 338 pages
 - [Hub](https://huggingface.co/docs/hub) — 269 pages
 - [Hub Client](https://huggingface.co/docs/huggingface_hub) — 52 pages
-- [Inference Endpoints](https://huggingface.co/docs/inference-endpoints) — 24 pages
+- [Inference Endpoints](https://huggingface.co/docs/inference-endpoints) — 25 pages
 - [Inference Providers](https://huggingface.co/docs/inference-providers) — 28 pages
-- [Kernels](https://huggingface.co/docs/kernels) — 36 pages
+- [Kernels](https://huggingface.co/docs/kernels) — 37 pages
 - [LeRobot](https://huggingface.co/docs/lerobot) — 91 pages
 - [Optimum](https://huggingface.co/docs/optimum) — 16 pages
 - [PEFT](https://huggingface.co/docs/peft) — 75 pages

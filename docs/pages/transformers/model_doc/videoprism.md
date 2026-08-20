@@ -57,7 +57,7 @@ encoder_outputs = outputs.last_hidden_state
 transformers.VideoPrismVisionConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, image_size: int | list[int] | tuple[int, int] = 288, num_frames: int = 16, tubelet_size: list[int] | tuple[int, ...] = (1, 18, 18), num_channels: int = 3, hidden_size: int = 768, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu_python', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-06, qkv_bias: bool = True, num_spatial_layers: int = 12, num_temporal_layers: int = 4, attn_logit_softcapping: float = 50.0, num_auxiliary_layers: int = 2, apply_l2norm: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/configuration_videoprism.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/configuration_videoprism.py#L33)
 
 **Parameters:**
 
@@ -101,8 +101,8 @@ This is the configuration class to store the configuration of a VideoPrismClipMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/videoprism-base-f16r288](https://huggingface.co/google/videoprism-base-f16r288)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## VideoPrismTextConfig[[transformers.VideoPrismTextConfig]]
 
@@ -112,7 +112,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.VideoPrismTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 32000, hidden_size: int = 768, intermediate_size: int = 3072, num_hidden_layers: int = 12, num_attention_heads: int = 12, max_position_embeddings: int = 64, hidden_act: str = 'relu', layer_norm_eps: float = 1e-06, pad_token_id: int | None = 0, bos_token_id: int | None = None, eos_token_id: int | list[int] | None = None, attention_probs_dropout_prob: float | int = 0.0, apply_l2norm: bool = True, qkv_bias: bool = True, hidden_dropout_prob: float = 0.0, initializer_range: float = 0.02, attn_logit_softcapping: float = 50.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/configuration_videoprism.py#L75)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/configuration_videoprism.py#L75)
 
 **Parameters:**
 
@@ -154,8 +154,8 @@ This is the configuration class to store the configuration of a VideoPrismClipMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/videoprism-lvt-base-f16r288](https://huggingface.co/google/videoprism-lvt-base-f16r288)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## VideoPrismConfig[[transformers.VideoPrismConfig]]
 
@@ -165,7 +165,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.VideoPrismConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, vision_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/configuration_videoprism.py#L108)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/configuration_videoprism.py#L108)
 
 **Parameters:**
 
@@ -177,8 +177,8 @@ This is the configuration class to store the configuration of a VideoPrismClipMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/videoprism-lvt-base-f16r288](https://huggingface.co/google/videoprism-lvt-base-f16r288)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -203,12 +203,12 @@ Example:
 transformers.VideoPrismTokenizer(vocab: str | list[tuple[str, float]] | None = None, eos_token = '</s>', unk_token = '<unk>', pad_token = '<pad>', _spm_precompiled_charsmap = None, extra_ids = 100, additional_special_tokens = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/tokenization_videoprism.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/tokenization_videoprism.py#L33)
 
 Constructs a VideoPrism tokenizer, which is essentially a T5 tokenizer without its postprocessor
 (appending an EOS token at the end of the sequence).
 
-This tokenizer inherits from [T5Tokenizer](/docs/transformers/v5.15.0/en/model_doc/t5#transformers.T5Tokenizer) which contains most of the main methods. Users should refer to this
+This tokenizer inherits from [T5Tokenizer](/docs/transformers/v5.15.1/en/model_doc/t5#transformers.T5Tokenizer) which contains most of the main methods. Users should refer to this
 superclass for more information regarding those methods.
 
 #### get_sentinel_token_ids[[transformers.VideoPrismTokenizer.get_sentinel_token_ids]]
@@ -217,7 +217,7 @@ superclass for more information regarding those methods.
 get_sentinel_token_ids()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/tokenization_videoprism.py#L121)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/tokenization_videoprism.py#L121)
 
 Get the token IDs for sentinel tokens.
 
@@ -227,7 +227,7 @@ Get the token IDs for sentinel tokens.
 get_sentinel_tokens()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/tokenization_videoprism.py#L115)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/tokenization_videoprism.py#L115)
 
 Get the list of sentinel tokens (extra_id tokens) from additional_special_tokens.
 
@@ -239,7 +239,7 @@ Get the list of sentinel tokens (extra_id tokens) from additional_special_tokens
 transformers.VideoPrismProcessor(video_processor = None, tokenizer = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/processing_videoprism.py#L42)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/processing_videoprism.py#L42)
 
 **Parameters:**
 
@@ -249,8 +249,8 @@ tokenizer (`VideoPrismTokenizer`) : The tokenizer is a required input.
 
 Constructs a VideoPrismProcessor which wraps a video processor and a tokenizer into a single processor.
 
-[VideoPrismProcessor](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismProcessor) offers all the functionalities of [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor) and [VideoPrismTokenizer](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismTokenizer). See the
-[~LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor) and [~VideoPrismTokenizer](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismTokenizer) for more information.
+[VideoPrismProcessor](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismProcessor) offers all the functionalities of [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor) and [VideoPrismTokenizer](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismTokenizer). See the
+[~LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor) and [~VideoPrismTokenizer](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismTokenizer) for more information.
 
 ## VideoPrismVisionModel[[transformers.VideoPrismVisionModel]]
 
@@ -260,15 +260,15 @@ Constructs a VideoPrismProcessor which wraps a video processor and a tokenizer i
 transformers.VideoPrismVisionModel(config: VideoPrismVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/modeling_videoprism.py#L527)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/modeling_videoprism.py#L527)
 
 **Parameters:**
 
-config ([VideoPrismVisionConfig](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([VideoPrismVisionConfig](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare VideoPrism vision encoder outputting raw hidden-states without any specific head on top. This model is the backbone encoder used in VideoPrismVideoModel.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -282,11 +282,11 @@ and behavior.
 forward(pixel_values_videos: typing.Optional[torch.FloatTensor] = None, interpolate_pos_encoding: bool | None = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/modeling_videoprism.py#L548)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/modeling_videoprism.py#L548)
 
 **Parameters:**
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor). See `LlavaOnevisionVideoProcessor.__call__()` for details ([VideoPrismProcessor](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismProcessor) uses [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor) for processing videos).
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`, *optional*) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor). See `LlavaOnevisionVideoProcessor.__call__()` for details ([VideoPrismProcessor](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismProcessor) uses [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor) for processing videos).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
@@ -294,9 +294,9 @@ interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to 
 
 A `BaseModelOutputWithSpatialAndTemporalStates` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoPrismConfig](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismConfig)) and inputs.
+elements depending on the configuration ([VideoPrismConfig](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismConfig)) and inputs.
 
-The [VideoPrismVisionModel](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismVisionModel) forward method, overrides the `__call__` special method.
+The [VideoPrismVisionModel](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismVisionModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -330,15 +330,15 @@ Example:
 transformers.VideoPrismVideoModel(config: VideoPrismVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/modeling_videoprism.py#L716)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/modeling_videoprism.py#L716)
 
 **Parameters:**
 
-config ([VideoPrismVisionConfig](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([VideoPrismVisionConfig](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 VideoPrism video model consisting of the vision encoder backbone with auxiliary encoder layers and an attention pooling head on top. This model is used in VideoPrismClipModel.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -352,21 +352,21 @@ and behavior.
 forward(pixel_values_videos: FloatTensor, interpolate_pos_encoding: bool | None = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/modeling_videoprism.py#L733)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/modeling_videoprism.py#L733)
 
 **Parameters:**
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor). See `LlavaOnevisionVideoProcessor.__call__()` for details ([VideoPrismProcessor](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismProcessor) uses [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor) for processing videos).
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor). See `LlavaOnevisionVideoProcessor.__call__()` for details ([VideoPrismProcessor](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismProcessor) uses [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor) for processing videos).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoPrismConfig](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismConfig)) and inputs.
+elements depending on the configuration ([VideoPrismConfig](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismConfig)) and inputs.
 
-The [VideoPrismVideoModel](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismVideoModel) forward method, overrides the `__call__` special method.
+The [VideoPrismVideoModel](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismVideoModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -395,15 +395,15 @@ the latter silently ignores them.
 transformers.VideoPrismTextModel(config: VideoPrismTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/modeling_videoprism.py#L657)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/modeling_videoprism.py#L657)
 
 **Parameters:**
 
-config ([VideoPrismTextConfig](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([VideoPrismTextConfig](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismTextConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare VideoPrism text encoder outputting last hidden states without any specific head on top. This model is used in VideoPrismClipModel.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -417,11 +417,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/modeling_videoprism.py#L672)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/modeling_videoprism.py#L672)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -429,13 +429,13 @@ inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_siz
 
 position_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPooling](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
+A [BaseModelOutputWithPooling](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoPrismConfig](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismConfig)) and inputs.
+elements depending on the configuration ([VideoPrismConfig](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismConfig)) and inputs.
 
-The [VideoPrismTextModel](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismTextModel) forward method, overrides the `__call__` special method.
+The [VideoPrismTextModel](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -464,15 +464,15 @@ the latter silently ignores them.
 transformers.VideoPrismClipModel(config: VideoPrismConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/modeling_videoprism.py#L766)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/modeling_videoprism.py#L766)
 
 **Parameters:**
 
-config ([VideoPrismConfig](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([VideoPrismConfig](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 VideoPrism model for video-text contrastive learning. This model consists of a VideoPrismVideoModel and a VideoPrismTextModel, and computes similarity scores between video and text inputs.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -486,13 +486,13 @@ and behavior.
 forward(pixel_values_videos: FloatTensor, input_ids: Tensor, attention_mask: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool | None = False, temperature: float | None = None, return_loss: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/modeling_videoprism.py#L829)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/modeling_videoprism.py#L829)
 
 **Parameters:**
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor). See `LlavaOnevisionVideoProcessor.__call__()` for details ([VideoPrismProcessor](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismProcessor) uses [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor) for processing videos).
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor). See `LlavaOnevisionVideoProcessor.__call__()` for details ([VideoPrismProcessor](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismProcessor) uses [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor) for processing videos).
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -506,9 +506,9 @@ return_loss (`bool`, *optional*) : Whether or not to return the contrastive loss
 
 A `VideoPrismClipOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoPrismConfig](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismConfig)) and inputs.
+elements depending on the configuration ([VideoPrismConfig](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismConfig)) and inputs.
 
-The [VideoPrismClipModel](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismClipModel) forward method, overrides the `__call__` special method.
+The [VideoPrismClipModel](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismClipModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -518,10 +518,10 @@ the latter silently ignores them.
   similarity scores.
 - **logits_per_text** (`torch.FloatTensor` of shape `(text_batch_size, video_batch_size)`) -- The scaled dot product scores between `text_embeds` and `video_embeds`. This represents the text-video
   similarity scores.
-- **video_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim)`) -- The video embeddings obtained by applying the projection layer to the pooled output of [VideoPrismVideoModel](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismVideoModel).
-- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim)`) -- The text embeddings obtained by applying the projection layer to the pooled output of [VideoPrismTextModel](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismTextModel).
-- **video_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of [VideoPrismVideoModel](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismVideoModel).
-- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [VideoPrismTextModel](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismTextModel).
+- **video_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim)`) -- The video embeddings obtained by applying the projection layer to the pooled output of [VideoPrismVideoModel](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismVideoModel).
+- **text_embeds** (`torch.FloatTensor` of shape `(batch_size, output_dim)`) -- The text embeddings obtained by applying the projection layer to the pooled output of [VideoPrismTextModel](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismTextModel).
+- **video_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of [VideoPrismVideoModel](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismVideoModel).
+- **text_model_output** (`~modeling_outputs.BaseModelOutputWithPooling`, *optional*) -- The output of the [VideoPrismTextModel](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismTextModel).
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*, returned when `return_loss` is `True`) -- Contrastive loss for video-text similarity.
 
 Example:
@@ -537,15 +537,15 @@ Example:
 transformers.VideoPrismForVideoClassification(config: VideoPrismVisionConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/modeling_videoprism.py#L896)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/modeling_videoprism.py#L896)
 
 **Parameters:**
 
-config ([VideoPrismVisionConfig](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([VideoPrismVisionConfig](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismVisionConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 VideoPrism Model transformer with a video classification head on top (a linear layer on top of the attention pooler).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -559,23 +559,23 @@ and behavior.
 forward(pixel_values_videos: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, interpolate_pos_encoding: bool | None = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/videoprism/modeling_videoprism.py#L915)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/videoprism/modeling_videoprism.py#L915)
 
 **Parameters:**
 
-pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor). See `LlavaOnevisionVideoProcessor.__call__()` for details ([VideoPrismProcessor](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismProcessor) uses [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.0/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor) for processing videos).
+pixel_values_videos (`torch.FloatTensor` of shape `(batch_size, num_frames, num_channels, frame_size, frame_size)`) : The tensors corresponding to the input video. Pixel values for videos can be obtained using [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor). See `LlavaOnevisionVideoProcessor.__call__()` for details ([VideoPrismProcessor](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismProcessor) uses [LlavaOnevisionVideoProcessor](/docs/transformers/v5.15.1/en/model_doc/llava_onevision#transformers.LlavaOnevisionVideoProcessor) for processing videos).
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
+A [ImageClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([VideoPrismConfig](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismConfig)) and inputs.
+elements depending on the configuration ([VideoPrismConfig](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismConfig)) and inputs.
 
-The [VideoPrismForVideoClassification](/docs/transformers/v5.15.0/en/model_doc/videoprism#transformers.VideoPrismForVideoClassification) forward method, overrides the `__call__` special method.
+The [VideoPrismForVideoClassification](/docs/transformers/v5.15.1/en/model_doc/videoprism#transformers.VideoPrismForVideoClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -598,4 +598,4 @@ Example:
 ```
 
 ### MRA
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/mra.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/mra.md

@@ -12,7 +12,7 @@ You can find all the original MobileViT checkpoints under the [Apple](https://hu
 >
 > Click on the MobileViT models in the right sidebar for more examples of how to apply MobileViT to different vision tasks.
 
-The example below demonstrates how to do [Image Classification] with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) and the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to do [Image Classification] with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) and the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -57,7 +57,7 @@ print(f"The predicted class label is:{predicted_class_label}")
 
 - Does **not** operate on sequential data, it's purely designed for image tasks.
 - Feature maps are used directly instead of token embeddings.
-- Use [MobileViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) to preprocess images.
+- Use [MobileViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) to preprocess images.
 - If using custom preprocessing, ensure that images are in **BGR** format (not RGB), as expected by the pretrained weights.
 - The classification models are pretrained on [ImageNet-1k](https://huggingface.co/datasets/ILSVRC/imagenet-1k).
 - The segmentation models use a [DeepLabV3](https://huggingface.co/papers/1706.05587) head and are pretrained on [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/).
@@ -70,7 +70,7 @@ print(f"The predicted class label is:{predicted_class_label}")
 transformers.MobileViTConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 256, patch_size: int | list[int] | tuple[int, int] = 2, hidden_sizes: list[int] | tuple[int, ...] = (144, 192, 240), neck_hidden_sizes: list[int] | tuple[int, ...] = (16, 32, 64, 96, 128, 160, 640), num_attention_heads: int = 4, mlp_ratio: float = 2.0, expand_ratio: float = 4.0, hidden_act: str = 'silu', conv_kernel_size: int = 3, output_stride: int = 32, hidden_dropout_prob: float | int = 0.1, attention_probs_dropout_prob: float | int = 0.0, classifier_dropout_prob: float | int = 0.1, initializer_range: float = 0.02, layer_norm_eps: float = 1e-05, qkv_bias: bool = True, aspp_out_channels: int = 256, atrous_rates: list[int] | tuple[int, ...] = (6, 12, 18), aspp_dropout_prob: float | int = 0.1, semantic_loss_ignore_index: int = 255)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilevit/configuration_mobilevit.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilevit/configuration_mobilevit.py#L24)
 
 **Parameters:**
 
@@ -120,8 +120,8 @@ This is the configuration class to store the configuration of a MobileViTModel. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/mobilenet_v2_1.0_224](https://huggingface.co/google/mobilenet_v2_1.0_224)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -146,7 +146,7 @@ Example:
 transformers.MobileViTImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilevit/image_processing_mobilevit.py#L60)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilevit/image_processing_mobilevit.py#L60)
 
 **Parameters:**
 
@@ -202,7 +202,7 @@ Constructs a MobileViTImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilevit/image_processing_mobilevit.py#L82)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilevit/image_processing_mobilevit.py#L82)
 
 **Parameters:**
 
@@ -266,11 +266,11 @@ do_reduce_labels (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labe
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple[int, int]] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilevit/image_processing_mobilevit.py#L208)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilevit/image_processing_mobilevit.py#L208)
 
 **Parameters:**
 
-outputs ([MobileViTForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTForSemanticSegmentation)) : Raw outputs of the model.
+outputs ([MobileViTForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTForSemanticSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[tuple[int, int]]`, *optional*) : List of tuples corresponding to the requested final size (height, width) of each prediction.
 
@@ -285,7 +285,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [MobileViTForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTForSemanticSegmentation) into semantic segmentation maps.
+Converts the output of [MobileViTForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTForSemanticSegmentation) into semantic segmentation maps.
 
 ## MobileViTImageProcessorPil[[transformers.MobileViTImageProcessorPil]]
 
@@ -295,7 +295,7 @@ Converts the output of [MobileViTForSemanticSegmentation](/docs/transformers/v5.
 transformers.MobileViTImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilevit/image_processing_pil_mobilevit.py#L64)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilevit/image_processing_pil_mobilevit.py#L64)
 
 **Parameters:**
 
@@ -351,7 +351,7 @@ Constructs a MobileViTImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilevit/image_processing_pil_mobilevit.py#L86)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilevit/image_processing_pil_mobilevit.py#L86)
 
 **Parameters:**
 
@@ -415,11 +415,11 @@ do_reduce_labels (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labe
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple[int, int]] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilevit/image_processing_pil_mobilevit.py#L191)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilevit/image_processing_pil_mobilevit.py#L191)
 
 **Parameters:**
 
-outputs ([MobileViTForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTForSemanticSegmentation)) : Raw outputs of the model.
+outputs ([MobileViTForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTForSemanticSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[tuple[int, int]]`, *optional*) : List of tuples corresponding to the requested final size (height, width) of each prediction.
 
@@ -434,7 +434,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [MobileViTForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTForSemanticSegmentation) into semantic segmentation maps.
+Converts the output of [MobileViTForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTForSemanticSegmentation) into semantic segmentation maps.
 
 ## MobileViTModel[[transformers.MobileViTModel]]
 
@@ -444,17 +444,17 @@ Converts the output of [MobileViTForSemanticSegmentation](/docs/transformers/v5.
 transformers.MobileViTModel(config: MobileViTConfig, expand_output: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilevit/modeling_mobilevit.py#L613)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilevit/modeling_mobilevit.py#L613)
 
 **Parameters:**
 
-config ([MobileViTConfig](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MobileViTConfig](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 expand_output (`bool`, *optional*, defaults to `True`) : Whether to expand the output of the model using a 1x1 convolution. If `True`, the model will apply an additional 1x1 convolution to expand the output channels from `config.neck_hidden_sizes[5]` to `config.neck_hidden_sizes[6]`.
 
 The bare Mobilevit Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -468,23 +468,23 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilevit/modeling_mobilevit.py#L645)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilevit/modeling_mobilevit.py#L645)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTImageProcessor). See `MobileViTImageProcessor.__call__()` for details (`processor_class` uses [MobileViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTImageProcessor). See `MobileViTImageProcessor.__call__()` for details (`processor_class` uses [MobileViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) for processing images).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `BaseModelOutputWithPoolingAndNoAttention` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithPoolingAndNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MobileViTConfig](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTConfig)) and inputs.
+elements depending on the configuration ([MobileViTConfig](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTConfig)) and inputs.
 
-The [MobileViTModel](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTModel) forward method, overrides the `__call__` special method.
+The [MobileViTModel](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -510,16 +510,16 @@ Example:
 transformers.MobileViTForImageClassification(config: MobileViTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilevit/modeling_mobilevit.py#L695)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilevit/modeling_mobilevit.py#L695)
 
 **Parameters:**
 
-config ([MobileViTConfig](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MobileViTConfig](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 MobileViT model with an image classification head on top (a linear layer on top of the pooled features), e.g. for
 ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -533,25 +533,25 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, labels: typing.Optional[torch.Tensor] = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilevit/modeling_mobilevit.py#L711)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilevit/modeling_mobilevit.py#L711)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTImageProcessor). See `MobileViTImageProcessor.__call__()` for details (`processor_class` uses [MobileViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTImageProcessor). See `MobileViTImageProcessor.__call__()` for details (`processor_class` uses [MobileViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) for processing images).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss). If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.FloatTensor)`
 
-A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
+A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MobileViTConfig](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTConfig)) and inputs.
+elements depending on the configuration ([MobileViTConfig](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTConfig)) and inputs.
 
-The [MobileViTForImageClassification](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTForImageClassification) forward method, overrides the `__call__` special method.
+The [MobileViTForImageClassification](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -595,15 +595,15 @@ Example:
 transformers.MobileViTForSemanticSegmentation(config: MobileViTConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilevit/modeling_mobilevit.py#L865)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilevit/modeling_mobilevit.py#L865)
 
 **Parameters:**
 
-config ([MobileViTConfig](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MobileViTConfig](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 MobileViT model with a semantic segmentation head on top, e.g. for Pascal VOC.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -617,25 +617,25 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilevit/modeling_mobilevit.py#L876)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilevit/modeling_mobilevit.py#L876)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTImageProcessor). See `MobileViTImageProcessor.__call__()` for details (`processor_class` uses [MobileViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTImageProcessor). See `MobileViTImageProcessor.__call__()` for details (`processor_class` uses [MobileViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Ground truth semantic segmentation maps for computing the loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels > 1`, a classification loss is computed (Cross-Entropy).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [SemanticSegmenterOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SemanticSegmenterOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`
 
-A [SemanticSegmenterOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
+A [SemanticSegmenterOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MobileViTConfig](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTConfig)) and inputs.
+elements depending on the configuration ([MobileViTConfig](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTConfig)) and inputs.
 
-The [MobileViTForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/mobilevit#transformers.MobileViTForSemanticSegmentation) forward method, overrides the `__call__` special method.
+The [MobileViTForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/mobilevit#transformers.MobileViTForSemanticSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -687,4 +687,4 @@ Examples:
 ```
 
 ### Gemma4 Unified
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/gemma4_unified.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/gemma4_unified.md

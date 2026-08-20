@@ -34,7 +34,7 @@ Identify an AWQ-quantized model by checking the `quant_method` key in the models
 }
 ```
 
-Load the AWQ-quantized model with [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). This automatically sets the other weights to fp16 by default for performance reasons. Use the `dtype` parameter to load these other weights in a different format.
+Load the AWQ-quantized model with [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). This automatically sets the other weights to fp16 by default for performance reasons. Use the `dtype` parameter to load these other weights in a different format.
 
 If the model is loaded on the CPU, use the `device_map` parameter to move it to an accelerator.
 
@@ -72,7 +72,7 @@ Fused modules offer improved accuracy and performance. They are supported out-of
 > [!WARNING]
 > Fused modules cannot be combined with other optimization techniques such as FlashAttention2.
 
-Create an [AwqConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.AwqConfig) and set the parameters `fuse_max_seq_len` and `do_fuse=True` to enable fused modules. The `fuse_max_seq_len` parameter is the total sequence length and it should include the context length and the expected generation length. Set it to a larger value to be safe.
+Create an [AwqConfig](/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.AwqConfig) and set the parameters `fuse_max_seq_len` and `do_fuse=True` to enable fused modules. The `fuse_max_seq_len` parameter is the total sequence length and it should include the context length and the expected generation length. Set it to a larger value to be safe.
 
 The example below fuses the AWQ modules of the [TheBloke/Mistral-7B-OpenOrca-AWQ](https://huggingface.co/TheBloke/Mistral-7B-OpenOrca-AWQ) model.
 
@@ -128,7 +128,7 @@ The speed and throughput of fused and unfused modules were also tested with the 
     generate throughput/batch size
   
 
-For architectures that don't support fused modules, create an [AwqConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.AwqConfig) and define a custom fusing mapping in `modules_to_fuse` to determine which modules need to be fused.
+For architectures that don't support fused modules, create an [AwqConfig](/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.AwqConfig) and define a custom fusing mapping in `modules_to_fuse` to determine which modules need to be fused.
 
 The example below fuses the AWQ modules of the [TheBloke/Yi-34B-AWQ](https://huggingface.co/TheBloke/Yi-34B-AWQ) model.
 
@@ -181,7 +181,7 @@ The parameter `modules_to_fuse` should include the following keys.
 pip install git+https://github.com/casper-hansen/AutoAWQ.git
 ```
 
-Set `version="exllama"` in [AwqConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.AwqConfig) to enable ExLlamaV2 kernels.
+Set `version="exllama"` in [AwqConfig](/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.AwqConfig) to enable ExLlamaV2 kernels.
 
 > [!TIP]
 > ExLlamaV2 is supported on AMD GPUs.
@@ -204,4 +204,4 @@ model = AutoModelForCausalLM.from_pretrained(
 Run the AWQ demo [notebook](https://colab.research.google.com/drive/1HzZH89yAXJaZgwJDhQj9LqSBux932BvY#scrollTo=Wwsg6nCwoThm) for more examples of how to quantize a model, push a quantized model to the Hub, and more.
 
 ### Four Over Six
-https://huggingface.co/docs/transformers/v5.15.0/quantization/fouroversix.md
+https://huggingface.co/docs/transformers/v5.15.1/quantization/fouroversix.md

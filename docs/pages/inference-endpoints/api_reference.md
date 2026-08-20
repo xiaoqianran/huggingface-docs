@@ -6,5 +6,5 @@ or through the [Hugging Face Hub python client](https://huggingface.co/docs/hugg
 
 Browser not compatible.
 
-### Create a Private Endpoint with AWS PrivateLink
-https://huggingface.co/docs/inference-endpoints/guides/private_link.md
+### About Inference Endpoints
+https://huggingface.co/docs/inference-endpoints/about.md

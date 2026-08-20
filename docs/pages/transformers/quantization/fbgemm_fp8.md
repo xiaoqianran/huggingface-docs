@@ -13,7 +13,7 @@ pip install --upgrade accelerate fbgemm-gpu torch
 
 If you're having installation issues, try installing the [nightly release](https://pytorch.org/FBGEMM/fbgemm_gpu-development/InstallationInstructions.html#fbgemm-gpu-install-libraries:~:text=found%20here.-,Install%20the%20FBGEMM_GPU%20Package,-Install%20through%20PyTorch).
 
-Create a [FbgemmFp8Config](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.FbgemmFp8Config) and pass it to [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to quantize a model to fp8.
+Create a [FbgemmFp8Config](/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.FbgemmFp8Config) and pass it to [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to quantize a model to fp8.
 
 ```py
 from transformers import FbgemmFp8Config, AutoModelForCausalLM
@@ -27,7 +27,7 @@ quantized_model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-[save_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) and [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) enable saving and loading a quantized model.
+[save_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.save_pretrained) and [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) enable saving and loading a quantized model.
 
 ```py
 quant_path = "/path/to/save/quantized/model"
@@ -40,4 +40,4 @@ model = AutoModelForCausalLM.from_pretrained(quant_path, device_map="auto")
 Read the [Open-sourcing FBGEMM for state-of-the-art server-side inference](https://engineering.fb.com/2018/11/07/ml-applications/fbgemm/) blog post for more details on FBGEMM.
 
 ### HIGGS
-https://huggingface.co/docs/transformers/v5.15.0/quantization/higgs.md
+https://huggingface.co/docs/transformers/v5.15.1/quantization/higgs.md

@@ -18,9 +18,9 @@ The original code can be found [here](https://github.com/IDEA-Research/Grounding
 
 ## Usage tips
 
-- One can use [GroundingDinoProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoProcessor) to prepare image-text pairs for the model.
+- One can use [GroundingDinoProcessor](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoProcessor) to prepare image-text pairs for the model.
 - To separate classes in the text use a period e.g. "a cat. a dog."
-- When using multiple classes (e.g. `"a cat. a dog."`), use `post_process_grounded_object_detection` from [GroundingDinoProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoProcessor) to post process outputs. Since, the labels returned from `post_process_object_detection` represent the indices from the model dimension where prob > threshold.
+- When using multiple classes (e.g. `"a cat. a dog."`), use `post_process_grounded_object_detection` from [GroundingDinoProcessor](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoProcessor) to post process outputs. Since, the labels returned from `post_process_object_detection` represent the indices from the model dimension where prob > threshold.
 
 Here's how to use the model for zero-shot object detection:
 
@@ -85,7 +85,7 @@ A list of official Hugging Face and community (indicated by 🌎) resources to h
 transformers.GroundingDinoImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/grounding_dino/image_processing_grounding_dino.py#L306)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/grounding_dino/image_processing_grounding_dino.py#L306)
 
 **Parameters:**
 
@@ -141,7 +141,7 @@ Constructs a GroundingDinoImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], annotations: dict[str, int | str | list[dict]] | list[dict[str, int | str | list[dict]]] | None = None, return_segmentation_masks: bool | None = None, masks_path: str | pathlib.Path | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/grounding_dino/image_processing_grounding_dino.py#L551)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/grounding_dino/image_processing_grounding_dino.py#L551)
 
 **Parameters:**
 
@@ -211,7 +211,7 @@ do_convert_annotations (`bool`, *kwargs*, *optional*, defaults to `True`) : Cont
 transformers.GroundingDinoImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/grounding_dino/image_processing_pil_grounding_dino.py#L300)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/grounding_dino/image_processing_pil_grounding_dino.py#L300)
 
 **Parameters:**
 
@@ -267,7 +267,7 @@ Constructs a GroundingDinoImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], annotations: dict[str, int | str | list[dict]] | list[dict[str, int | str | list[dict]]] | None = None, return_segmentation_masks: bool | None = None, masks_path: str | pathlib.Path | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/grounding_dino/image_processing_pil_grounding_dino.py#L568)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/grounding_dino/image_processing_pil_grounding_dino.py#L568)
 
 **Parameters:**
 
@@ -335,7 +335,7 @@ do_convert_annotations (`bool`, *kwargs*, *optional*, defaults to `True`) : Cont
 post_process_object_detection(outputs: GroundingDinoObjectDetectionOutput, threshold: float = 0.1, target_sizes: transformers.utils.generic.TensorType | list[tuple] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/grounding_dino/image_processing_pil_grounding_dino.py#L713)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/grounding_dino/image_processing_pil_grounding_dino.py#L713)
 
 **Parameters:**
 
@@ -352,7 +352,7 @@ A list of dictionaries, each dictionary containing the following keys:
 - "labels": Indexes of the classes predicted by the model on the image.
 - "boxes": Image bounding boxes in (top_left_x, top_left_y, bottom_right_x, bottom_right_y) format.
 
-Converts the raw output of [GroundingDinoForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
+Converts the raw output of [GroundingDinoForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
 bottom_right_x, bottom_right_y) format.
 
 ## GroundingDinoProcessor[[transformers.GroundingDinoProcessor]]
@@ -363,7 +363,7 @@ bottom_right_x, bottom_right_y) format.
 transformers.GroundingDinoProcessor(image_processor, tokenizer)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/grounding_dino/processing_grounding_dino.py#L115)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/grounding_dino/processing_grounding_dino.py#L115)
 
 **Parameters:**
 
@@ -373,8 +373,8 @@ tokenizer (`BertTokenizer`) : The tokenizer is a required input.
 
 Constructs a GroundingDinoProcessor which wraps a image processor and a tokenizer into a single processor.
 
-[GroundingDinoProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoProcessor) offers all the functionalities of [GroundingDinoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor) and [BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer). See the
-[~GroundingDinoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor) and [~BertTokenizer](/docs/transformers/v5.15.0/en/model_doc/layoutlm#transformers.BertTokenizer) for more information.
+[GroundingDinoProcessor](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoProcessor) offers all the functionalities of [GroundingDinoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor) and [BertTokenizer](/docs/transformers/v5.15.1/en/model_doc/layoutlm#transformers.BertTokenizer). See the
+[~GroundingDinoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor) and [~BertTokenizer](/docs/transformers/v5.15.1/en/model_doc/layoutlm#transformers.BertTokenizer) for more information.
 
 #### __call__[[transformers.GroundingDinoProcessor.__call__]]
 
@@ -382,7 +382,7 @@ Constructs a GroundingDinoProcessor which wraps a image processor and a tokenize
 __call__(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, text: str | list[str] | list[list[str]] | None = None, videos: typing.Union[list['PIL.Image.Image'], numpy.ndarray, ForwardRef('torch.Tensor'), list[numpy.ndarray], list['torch.Tensor'], list[list['PIL.Image.Image']], list[list[numpy.ndarray]], list[list['torch.Tensor']], transformers.video_utils.URL, list[transformers.video_utils.URL], list[list[transformers.video_utils.URL]], transformers.video_utils.Path, list[transformers.video_utils.Path], list[list[transformers.video_utils.Path]], NoneType] = None, audio: typing.Union[numpy.ndarray, ForwardRef('torch.Tensor'), collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/processing_utils.py#L651)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/processing_utils.py#L651)
 
 **Parameters:**
 
@@ -394,9 +394,9 @@ videos (`Union[list[PIL.Image.Image], numpy.ndarray, torch.Tensor, list[numpy.nd
 
 audio (`Union[numpy.ndarray, torch.Tensor, collections.abc.Sequence[numpy.ndarray], collections.abc.Sequence[torch.Tensor]]`, *optional*) : The audio or batch of audios to be prepared. Each audio can be a NumPy array or PyTorch tensor. In case of a NumPy array/PyTorch tensor, each audio should be of shape (C, T), where C is a number of channels, and T is the sample length of the audio.
 
-return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
+return_tensors (`str` or [TensorType](/docs/transformers/v5.15.1/en/internal/file_utils#transformers.TensorType), *optional*) : If set, will return tensors of a particular framework. Acceptable values are:  - `'pt'`: Return PyTorch `torch.Tensor` objects. - `'np'`: Return NumPy `np.ndarray` objects.
 
-- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
+- ****kwargs** ([ProcessingKwargs](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessingKwargs), *optional*) : Additional processing options for each modality (text, images, videos, audio). Model-specific parameters are listed above; see the TypedDict class for the complete list of supported arguments.
 
 #### post_process_grounded_object_detection[[transformers.GroundingDinoProcessor.post_process_grounded_object_detection]]
 
@@ -404,7 +404,7 @@ return_tensors (`str` or [TensorType](/docs/transformers/v5.15.0/en/internal/fil
 post_process_grounded_object_detection(outputs: GroundingDinoObjectDetectionOutput, input_ids: transformers.utils.generic.TensorType | None = None, threshold: float = 0.25, text_threshold: float = 0.25, target_sizes: transformers.utils.generic.TensorType | list[tuple] | None = None, text_labels: list[list[str]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/grounding_dino/processing_grounding_dino.py#L143)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/grounding_dino/processing_grounding_dino.py#L143)
 
 **Parameters:**
 
@@ -428,7 +428,7 @@ A list of dictionaries, each dictionary containing the
 - **labels**: list of text labels for each detected object (will be replaced with integer ids in v4.51.0)
 - **text_labels**: list of text labels for detected objects
 
-Converts the raw output of [GroundingDinoForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
+Converts the raw output of [GroundingDinoForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoForObjectDetection) into final bounding boxes in (top_left_x, top_left_y,
 bottom_right_x, bottom_right_y) format and get the associated text label.
 
 ## GroundingDinoConfig[[transformers.GroundingDinoConfig]]
@@ -439,7 +439,7 @@ bottom_right_x, bottom_right_y) format and get the associated text label.
 transformers.GroundingDinoConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, text_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, num_queries: int = 900, encoder_layers: int = 6, encoder_ffn_dim: int = 2048, encoder_attention_heads: int = 8, decoder_layers: int = 6, decoder_ffn_dim: int = 2048, decoder_attention_heads: int = 8, activation_function: str = 'relu', d_model: int = 256, dropout: float | int = 0.1, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, auxiliary_loss: bool = False, position_embedding_type: str = 'sine', num_feature_levels: int = 4, encoder_n_points: int = 4, decoder_n_points: int = 4, two_stage: bool = True, class_cost: float = 1.0, bbox_cost: float = 5.0, giou_cost: float = 2.0, bbox_loss_coefficient: float = 5.0, giou_loss_coefficient: float = 2.0, focal_alpha: float = 0.25, disable_custom_kernels: bool = False, max_text_len: int = 256, text_enhancer_dropout: float | int = 0.0, fusion_droppath: float | int = 0.1, fusion_dropout: float | int = 0.0, embedding_init_target: bool = True, query_dim: int = 4, decoder_bbox_embed_share: bool = True, two_stage_bbox_embed_share: bool = False, positional_embedding_temperature: int = 20, init_std: float = 0.02, layer_norm_eps: float = 1e-05, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/grounding_dino/configuration_grounding_dino.py#L29)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/grounding_dino/configuration_grounding_dino.py#L29)
 
 **Parameters:**
 
@@ -449,7 +449,7 @@ backbone_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional
 
 text_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional*) : The config object or dictionary of the text backbone.
 
-num_queries (`int`, *optional*, defaults to 900) : Number of object queries, i.e. detection slots. This is the maximal number of objects [GroundingDinoModel](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoModel) can detect in a single image.
+num_queries (`int`, *optional*, defaults to 900) : Number of object queries, i.e. detection slots. This is the maximal number of objects [GroundingDinoModel](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoModel) can detect in a single image.
 
 encoder_layers (`int`, *optional*, defaults to `6`) : Number of hidden layers in the Transformer encoder. Will use the same value as `num_layers` if not set.
 
@@ -527,8 +527,8 @@ This is the configuration class to store the configuration of a Grounding DinoMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [IDEA-Research/grounding-dino-tiny](https://huggingface.co/IDEA-Research/grounding-dino-tiny)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -553,16 +553,16 @@ Examples:
 transformers.GroundingDinoModel(config: GroundingDinoConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/grounding_dino/modeling_grounding_dino.py#L1865)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/grounding_dino/modeling_grounding_dino.py#L1865)
 
 **Parameters:**
 
-config ([GroundingDinoConfig](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([GroundingDinoConfig](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Grounding DINO Model (consisting of a backbone and encoder-decoder Transformer) outputting raw
 hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -576,13 +576,13 @@ and behavior.
 forward(pixel_values: Tensor, input_ids: Tensor, token_type_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, pixel_mask: typing.Optional[torch.Tensor] = None, encoder_outputs = None, output_attentions = None, output_hidden_states = None, return_dict = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/grounding_dino/modeling_grounding_dino.py#L2007)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/grounding_dino/modeling_grounding_dino.py#L2007)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GroundingDinoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor). See `GroundingDinoImageProcessor.__call__()` for details ([GroundingDinoProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoProcessor) uses [GroundingDinoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GroundingDinoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor). See `GroundingDinoImageProcessor.__call__()` for details ([GroundingDinoProcessor](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoProcessor) uses [GroundingDinoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor) for processing images).
 
-input_ids (`torch.LongTensor` of shape `(batch_size, text_sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default should you provide it.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [BertTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+input_ids (`torch.LongTensor` of shape `(batch_size, text_sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default should you provide it.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [BertTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, text_sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`: 0 corresponds to a `sentence A` token, 1 corresponds to a `sentence B` token  [What are token type IDs?](../glossary#token-type-ids)
 
@@ -596,15 +596,15 @@ output_attentions (``) : Whether or not to return the attentions tensors of all 
 
 output_hidden_states (``) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (``) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (``) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `GroundingDinoModelOutput` or `tuple(torch.FloatTensor)`
 
 A `GroundingDinoModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([GroundingDinoConfig](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoConfig)) and inputs.
+elements depending on the configuration ([GroundingDinoConfig](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoConfig)) and inputs.
 
-The [GroundingDinoModel](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoModel) forward method, overrides the `__call__` special method.
+The [GroundingDinoModel](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -675,16 +675,16 @@ Examples:
 transformers.GroundingDinoForObjectDetection(config: GroundingDinoConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/grounding_dino/modeling_grounding_dino.py#L2376)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/grounding_dino/modeling_grounding_dino.py#L2376)
 
 **Parameters:**
 
-config ([GroundingDinoConfig](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([GroundingDinoConfig](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Grounding DINO Model (consisting of a backbone and encoder-decoder Transformer) with object detection heads on top,
 for tasks such as COCO detection.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -698,13 +698,13 @@ and behavior.
 forward(pixel_values: FloatTensor, input_ids: LongTensor, token_type_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Optional[torch.LongTensor] = None, pixel_mask: typing.Optional[torch.BoolTensor] = None, encoder_outputs: transformers.models.grounding_dino.modeling_grounding_dino.GroundingDinoEncoderOutput | tuple | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, labels: list[dict[str, typing.Union[torch.LongTensor, torch.FloatTensor]]] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/grounding_dino/modeling_grounding_dino.py#L2418)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/grounding_dino/modeling_grounding_dino.py#L2418)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GroundingDinoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor). See `GroundingDinoImageProcessor.__call__()` for details ([GroundingDinoProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoProcessor) uses [GroundingDinoImageProcessor](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [GroundingDinoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor). See `GroundingDinoImageProcessor.__call__()` for details ([GroundingDinoProcessor](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoProcessor) uses [GroundingDinoImageProcessor](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoImageProcessor) for processing images).
 
-input_ids (`torch.LongTensor` of shape `(batch_size, text_sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default should you provide it.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [BertTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
+input_ids (`torch.LongTensor` of shape `(batch_size, text_sequence_length)`) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default should you provide it.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [BertTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, text_sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`: 0 corresponds to a `sentence A` token, 1 corresponds to a `sentence B` token  [What are token type IDs?](../glossary#token-type-ids)
 
@@ -718,11 +718,11 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 labels (`list[Dict]` of len `(batch_size,)`, *optional*) : Labels for computing the bipartite matching loss. List of dicts, each dictionary containing at least the following 2 keys: 'class_labels' and 'boxes' (the class labels and bounding boxes of an image in the batch respectively). The class labels themselves should be a `torch.LongTensor` of len `(number of bounding boxes in the image,)` and the boxes a `torch.FloatTensor` of shape `(number of bounding boxes in the image, 4)`.
 
-The [GroundingDinoForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/grounding-dino#transformers.GroundingDinoForObjectDetection) forward method, overrides the `__call__` special method.
+The [GroundingDinoForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/grounding-dino#transformers.GroundingDinoForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -771,4 +771,4 @@ Detected a remote control with confidence 0.478 at location [38.57, 70.0, 176.78
 ```
 
 ### PP-DocLayoutV3
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/pp_doclayout_v3.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/pp_doclayout_v3.md

@@ -27,7 +27,7 @@ share the same concept and differences to their base model:
 
 ## Usage examples
 
-The example below demonstrates how to generate text based on an image with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to generate text based on an image with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```py
 import torch
@@ -92,7 +92,7 @@ print(processor.decode(output[0][input_len:], skip_special_tokens=True))
 transformers.Gemma4UnifiedAssistantConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: transformers.models.gemma4_unified.configuration_gemma4_unified.Gemma4UnifiedTextConfig | dict[str, typing.Any] | None = None, backbone_hidden_size: int = 3840, use_ordered_embeddings: bool = False, num_centroids: int = 2048, centroid_intermediate_top_k: int = 32, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gemma4_unified_assistant/configuration_gemma4_unified_assistant.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/gemma4_unified_assistant/configuration_gemma4_unified_assistant.py#L25)
 
 **Parameters:**
 
@@ -112,8 +112,8 @@ This is the configuration class to store the configuration of a Gemma4 Unified A
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/gemma-4-12b-it](https://huggingface.co/google/gemma-4-12b-it)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -145,15 +145,15 @@ Example:
 transformers.Gemma4UnifiedAssistantForCausalLM(config: Gemma4UnifiedAssistantConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gemma4_unified_assistant/modeling_gemma4_unified_assistant.py#L116)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/gemma4_unified_assistant/modeling_gemma4_unified_assistant.py#L116)
 
 **Parameters:**
 
-config ([Gemma4UnifiedAssistantConfig](/docs/transformers/v5.15.0/en/model_doc/gemma4_unified_assistant#transformers.Gemma4UnifiedAssistantConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([Gemma4UnifiedAssistantConfig](/docs/transformers/v5.15.1/en/model_doc/gemma4_unified_assistant#transformers.Gemma4UnifiedAssistantConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 A model for multi-token prediction-based assisted decoding with Gemma 4.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -167,7 +167,7 @@ and behavior.
 create_attention_masks(inputs_embeds, attention_mask, shared_kv_states)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gemma4_unified_assistant/modeling_gemma4_unified_assistant.py#L212)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/gemma4_unified_assistant/modeling_gemma4_unified_assistant.py#L212)
 
 Prepare the attention masks for the assisted model; the `shared_kv_states` acts as past cache in this instance.
 
@@ -183,11 +183,11 @@ We use bidirectional masks to account for causality
 forward(input_ids: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, position_ids: typing.Optional[torch.LongTensor] = None, attention_mask: dict[str, torch.Tensor] | None = None, shared_kv_states: dict[str, tuple[torch.Tensor, torch.Tensor]] | None = None, use_cache: bool | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gemma4_unified_assistant/modeling_gemma4_unified_assistant.py#L141)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/gemma4_unified_assistant/modeling_gemma4_unified_assistant.py#L141)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 inputs_embeds (`torch.Tensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
@@ -203,7 +203,7 @@ use_cache (`bool`, *optional*) : If set to `True`, `past_key_values` key value s
 
 `tuple[torch.Tensor, torch.Tensor]`
 
-The [Gemma4UnifiedAssistantForCausalLM](/docs/transformers/v5.15.0/en/model_doc/gemma4_unified_assistant#transformers.Gemma4UnifiedAssistantForCausalLM) forward method, overrides the `__call__` special method.
+The [Gemma4UnifiedAssistantForCausalLM](/docs/transformers/v5.15.1/en/model_doc/gemma4_unified_assistant#transformers.Gemma4UnifiedAssistantForCausalLM) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -228,4 +228,4 @@ Example:
 ```
 
 ### Kyutai Speech-To-Text
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/kyutai_speech_to_text.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/kyutai_speech_to_text.md

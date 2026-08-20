@@ -168,4 +168,4 @@ trainer.evaluate(processed_datasets["test"])
 On test set, our model reaches 72 percent accuracy. To have a sanity check over efficiency of distillation, we also trained MobileNet on the beans dataset from scratch with the same hyperparameters and observed 63 percent accuracy on the test set. We invite the readers to try different pre-trained teacher models, student architectures, distillation parameters and report their findings. The training logs and checkpoints for distilled model can be found in [this repository](https://huggingface.co/merve/vit-mobilenet-beans-224), and MobileNetV2 trained from scratch can be found in this [repository](https://huggingface.co/merve/resnet-mobilenet-beans-5).
 
 ### Prompt engineering
-https://huggingface.co/docs/transformers/v5.15.0/tasks/prompting.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/prompting.md

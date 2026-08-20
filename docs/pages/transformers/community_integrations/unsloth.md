@@ -44,9 +44,9 @@ trainer.train()
 
 Unsloth wraps Transformers APIs and patches internal methods for speed.
 
-- `FastLanguageModel.from_pretrained` loads config with [AutoConfig.from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoConfig.from_pretrained). It then loads a base model with [AutoModelForCausalLM.from_pretrained()](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel.from_pretrained). Before loading, Unsloth patches attention, decoder layer, and rotary embedding classes inside a Transformers model.
+- `FastLanguageModel.from_pretrained` loads config with [AutoConfig.from_pretrained()](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoConfig.from_pretrained). It then loads a base model with [AutoModelForCausalLM.from_pretrained()](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel.from_pretrained). Before loading, Unsloth patches attention, decoder layer, and rotary embedding classes inside a Transformers model.
 
-- `UnslothTrainer` extends TRL's [SFTTrainer](https://huggingface.co/docs/trl/v1.10.0/en/sft_trainer#trl.SFTTrainer). Unsloth patches [compute_loss()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.compute_loss) and [training_step()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.training_step) to fix gradient accumulation in older Transformers versions.
+- `UnslothTrainer` extends TRL's [SFTTrainer](https://huggingface.co/docs/trl/v1.10.0/en/sft_trainer#trl.SFTTrainer). Unsloth patches [compute_loss()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.compute_loss) and [training_step()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.training_step) to fix gradient accumulation in older Transformers versions.
 
 ## Resources
 
@@ -54,4 +54,4 @@ Unsloth wraps Transformers APIs and patches internal methods for speed.
 - [Make LLM Fine-tuning 2x faster with Unsloth and TRL](https://huggingface.co/blog/unsloth-trl) blog post
 
 ### TensorRT-LLM
-https://huggingface.co/docs/transformers/v5.15.0/community_integrations/tensorrt-llm.md
+https://huggingface.co/docs/transformers/v5.15.1/community_integrations/tensorrt-llm.md

@@ -7,7 +7,7 @@
 >
 > Click on the EfficientLoFTR models in the right sidebar for more examples of how to apply EfficientLoFTR to different computer vision tasks.
 
-The example below demonstrates how to match keypoints between two images with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to match keypoints between two images with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -75,7 +75,7 @@ processed_outputs = processor.post_process_keypoint_matching(outputs, image_size
 
 - The model produces semi-dense matches, offering a good balance between the density of matches and computational efficiency. It excels in handling large viewpoint changes and texture-poor scenarios.
 
-- For better visualization and analysis, use the [post_process_keypoint_matching()](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRImageProcessor.post_process_keypoint_matching) method to get matches in a more readable format.
+- For better visualization and analysis, use the [post_process_keypoint_matching()](/docs/transformers/v5.15.1/en/model_doc/efficientloftr#transformers.EfficientLoFTRImageProcessor.post_process_keypoint_matching) method to get matches in a more readable format.
 
     ```py
     # Process outputs for visualization
@@ -114,7 +114,7 @@ processed_outputs = processor.post_process_keypoint_matching(outputs, image_size
 transformers.EfficientLoFTRConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, stage_num_blocks: list[int] | None = None, out_features: list[int] | None = None, stage_stride: list[int] | None = None, hidden_size: int = 256, activation_function: str = 'relu', q_aggregation_kernel_size: int = 4, kv_aggregation_kernel_size: int = 4, q_aggregation_stride: int = 4, kv_aggregation_stride: int = 4, num_attention_layers: int = 4, num_attention_heads: int = 8, attention_dropout: float | int = 0.0, attention_bias: bool = False, mlp_activation_function: str = 'leaky_relu', coarse_matching_skip_softmax: bool = False, coarse_matching_threshold: float = 0.2, coarse_matching_temperature: float = 0.1, coarse_matching_border_removal: int = 2, fine_kernel_size: int = 8, batch_norm_eps: float = 1e-05, rope_parameters: dict | None = None, fine_matching_slice_dim: int = 8, fine_matching_regress_temperature: float = 10.0, initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/configuration_efficientloftr.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/efficientloftr/configuration_efficientloftr.py#L24)
 
 **Parameters:**
 
@@ -170,8 +170,8 @@ This is the configuration class to store the configuration of a EfficientLoFTRMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [zju-community/efficientloftr](https://huggingface.co/zju-community/efficientloftr)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 ```python
@@ -195,7 +195,7 @@ Examples:
 transformers.EfficientLoFTRImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_efficientloftr.py#L110)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/efficientloftr/image_processing_efficientloftr.py#L110)
 
 **Parameters:**
 
@@ -249,7 +249,7 @@ Constructs a EfficientLoFTRImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_efficientloftr.py#L124)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/efficientloftr/image_processing_efficientloftr.py#L124)
 
 **Parameters:**
 
@@ -309,7 +309,7 @@ do_grayscale (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) : W
 post_process_keypoint_matching(outputs: EfficientLoFTRKeypointMatchingOutput, target_sizes: transformers.utils.generic.TensorType | list[tuple], threshold: float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_efficientloftr.py#L180)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/efficientloftr/image_processing_efficientloftr.py#L180)
 
 **Parameters:**
 
@@ -333,7 +333,7 @@ with coordinates absolute to the original image sizes.
 visualize_keypoint_matching(images, keypoint_matching_output: list)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_efficientloftr.py#L239)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/efficientloftr/image_processing_efficientloftr.py#L239)
 
 **Parameters:**
 
@@ -356,7 +356,7 @@ Plots the image pairs side by side with the detected keypoints as well as the ma
 transformers.EfficientLoFTRImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_pil_efficientloftr.py#L108)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/efficientloftr/image_processing_pil_efficientloftr.py#L108)
 
 **Parameters:**
 
@@ -410,7 +410,7 @@ Constructs a EfficientLoFTRImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_pil_efficientloftr.py#L122)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/efficientloftr/image_processing_pil_efficientloftr.py#L122)
 
 **Parameters:**
 
@@ -470,7 +470,7 @@ do_grayscale (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) : W
 post_process_keypoint_matching(outputs: EfficientLoFTRKeypointMatchingOutput, target_sizes: transformers.utils.generic.TensorType | list[tuple], threshold: float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_pil_efficientloftr.py#L163)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/efficientloftr/image_processing_pil_efficientloftr.py#L163)
 
 **Parameters:**
 
@@ -494,7 +494,7 @@ with coordinates absolute to the original image sizes.
 visualize_keypoint_matching(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], keypoint_matching_output: list)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/image_processing_pil_efficientloftr.py#L225)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/efficientloftr/image_processing_pil_efficientloftr.py#L225)
 
 **Parameters:**
 
@@ -517,15 +517,15 @@ Plots the image pairs side by side with the detected keypoints as well as the ma
 transformers.EfficientLoFTRModel(config: EfficientLoFTRConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/modeling_efficientloftr.py#L698)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/efficientloftr/modeling_efficientloftr.py#L698)
 
 **Parameters:**
 
-config ([EfficientLoFTRConfig](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([EfficientLoFTRConfig](/docs/transformers/v5.15.1/en/model_doc/efficientloftr#transformers.EfficientLoFTRConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 EfficientLoFTR model taking images as inputs and outputting the features of the images.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -539,11 +539,11 @@ and behavior.
 forward(pixel_values: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/modeling_efficientloftr.py#L709)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/efficientloftr/modeling_efficientloftr.py#L709)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [EfficientLoFTRImageProcessor](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRImageProcessor). See `EfficientLoFTRImageProcessor.__call__()` for details (`processor_class` uses [EfficientLoFTRImageProcessor](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [EfficientLoFTRImageProcessor](/docs/transformers/v5.15.1/en/model_doc/efficientloftr#transformers.EfficientLoFTRImageProcessor). See `EfficientLoFTRImageProcessor.__call__()` for details (`processor_class` uses [EfficientLoFTRImageProcessor](/docs/transformers/v5.15.1/en/model_doc/efficientloftr#transformers.EfficientLoFTRImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
@@ -551,9 +551,9 @@ labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*)
 
 A `BackboneOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EfficientLoFTRConfig](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRConfig)) and inputs.
+elements depending on the configuration ([EfficientLoFTRConfig](/docs/transformers/v5.15.1/en/model_doc/efficientloftr#transformers.EfficientLoFTRConfig)) and inputs.
 
-The [EfficientLoFTRModel](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRModel) forward method, overrides the `__call__` special method.
+The [EfficientLoFTRModel](/docs/transformers/v5.15.1/en/model_doc/efficientloftr#transformers.EfficientLoFTRModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -606,15 +606,15 @@ Examples:
 transformers.EfficientLoFTRForKeypointMatching(config: EfficientLoFTRConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/modeling_efficientloftr.py#L921)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/efficientloftr/modeling_efficientloftr.py#L921)
 
 **Parameters:**
 
-config ([EfficientLoFTRConfig](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([EfficientLoFTRConfig](/docs/transformers/v5.15.1/en/model_doc/efficientloftr#transformers.EfficientLoFTRConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 EfficientLoFTR model taking images as inputs and outputting the matching of them.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -628,7 +628,7 @@ and behavior.
 forward(pixel_values: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/efficientloftr/modeling_efficientloftr.py#L1286)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/efficientloftr/modeling_efficientloftr.py#L1286)
 
 **Parameters:**
 
@@ -642,7 +642,7 @@ A `EfficientLoFTRKeypointMatchingOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
 elements depending on the configuration (`None`) and inputs.
 
-The [EfficientLoFTRForKeypointMatching](/docs/transformers/v5.15.0/en/model_doc/efficientloftr#transformers.EfficientLoFTRForKeypointMatching) forward method, overrides the `__call__` special method.
+The [EfficientLoFTRForKeypointMatching](/docs/transformers/v5.15.1/en/model_doc/efficientloftr#transformers.EfficientLoFTRForKeypointMatching) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -686,4 +686,4 @@ Examples:
 ```
 
 ### LLaVa-NeXT-Video
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/llava_next_video.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/llava_next_video.md

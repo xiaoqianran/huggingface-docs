@@ -51,7 +51,7 @@ Note that sentencepiece is required to use our tokenizer and can be installed wi
 transformers.GPTSw3Tokenizer(vocab_file, do_lower_case = False, remove_space = False, keep_accents = False, pad_token = None, unk_token = None, eos_token = None, bos_token = None, sp_model_kwargs: dict[str, typing.Any] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/gpt_sw3/tokenization_gpt_sw3.py#L21)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/gpt_sw3/tokenization_gpt_sw3.py#L21)
 
 **Parameters:**
 
@@ -81,7 +81,7 @@ non_printing_characters_re (`Pattern`) : The compiled regular expression to remo
 
 Construct an GPTSw3 tokenizer. Based on [SentencePiece](https://github.com/google/sentencepiece).
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 Example usage:
@@ -99,7 +99,7 @@ Example usage:
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_sentencepiece.py#L237)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_sentencepiece.py#L237)
 
 **Parameters:**
 
@@ -114,4 +114,4 @@ Paths to the files saved.
 Save the sentencepiece vocabulary (copy original file) to a directory.
 
 ### TrOCR
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/trocr.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/trocr.md

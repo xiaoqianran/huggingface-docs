@@ -12,7 +12,7 @@ You can find the model card and checkpoint [here](https://huggingface.co/google/
 
 ## Usage examples
 
-Despite it being a text diffusion model and having a custom generation loop, most of the interface is shared with other models that can generate text with [DiffusionGemmaGenerationMixin.generate()](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaGenerationMixin.generate). If you're using another `transformers` model in your app, you should be able to directly replace it with this model.
+Despite it being a text diffusion model and having a custom generation loop, most of the interface is shared with other models that can generate text with [DiffusionGemmaGenerationMixin.generate()](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaGenerationMixin.generate). If you're using another `transformers` model in your app, you should be able to directly replace it with this model.
 
 > [!NOTE]
 > DiffusionGemma is available in both Transformers and Diffusers, but Diffusers is its primary home. Diffusers has the full set of scheduling options, pipeline utilities, and new features (additional schedulers, stopping criteria, sampling strategies) are only added there. See the [DiffusionGemma](https://huggingface.co/docs/diffusers/api/pipelines/diffusion_gemma) for usage examples, and open an [issue](https://github.com/huggingface/diffusers/issues) on Diffusers to experiment with different schedulers or request a feature. The Transformers implementation only receives bug fixes but no new features.
@@ -86,7 +86,7 @@ model.generate(**inputs, max_new_tokens=256, decoder_input_ids=initial_estimate)
 transformers.DiffusionGemmaTextConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 262144, hidden_size: int = 2304, intermediate_size: int = 9216, num_hidden_layers: int = 30, num_attention_heads: int = 8, num_key_value_heads: int = 4, head_dim: int = 256, hidden_activation: str = 'gelu_pytorch_tanh', max_position_embeddings: int = 131072, initializer_range: float = 0.02, rms_norm_eps: float = 1e-06, pad_token_id: int | None = 0, eos_token_id: int | list[int] | None = 1, bos_token_id: int | None = 2, tie_word_embeddings: bool = True, rope_parameters: dict | None = None, attention_bias: bool = False, attention_dropout: int | float | None = 0.0, sliding_window: int = 512, layer_types: list[str] | None = None, use_bidirectional_attention: typing.Optional[typing.Literal['all', 'vision']] = None, num_experts: int | None = None, top_k_experts: int | None = None, moe_intermediate_size: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/configuration_diffusion_gemma.py#L35)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/configuration_diffusion_gemma.py#L35)
 
 **Parameters:**
 
@@ -142,8 +142,8 @@ This is the configuration class to store the configuration of a DiffusionGemmaMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/diffusiongemma-26B-A4B-it](https://huggingface.co/google/diffusiongemma-26B-A4B-it)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## DiffusionGemmaConfig[[transformers.DiffusionGemmaConfig]]
 
@@ -153,7 +153,7 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.DiffusionGemmaConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, text_config: transformers.models.diffusion_gemma.configuration_diffusion_gemma.DiffusionGemmaTextConfig | dict[str, typing.Any] | None = None, vision_config: transformers.configuration_utils.PreTrainedConfig | dict[str, typing.Any] | None = None, boi_token_id: int | None = 255999, eoi_token_id: int | None = 258882, image_token_id: int | None = 258880, initializer_range: float | None = 0.02, tie_word_embeddings: bool = True, canvas_length: int | None = 256)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/configuration_diffusion_gemma.py#L154)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/configuration_diffusion_gemma.py#L154)
 
 **Parameters:**
 
@@ -177,8 +177,8 @@ This is the configuration class to store the configuration of a DiffusionGemmaMo
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/diffusiongemma-26B-A4B-it](https://huggingface.co/google/diffusiongemma-26B-A4B-it)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -214,7 +214,7 @@ Example:
 transformers.DiffusionGemmaGenerationOutput(sequences: LongTensor, tokens_per_forward: int | None = None, past_key_values: transformers.cache_utils.Cache | None = None, logits: None = None, scores: None = None, hidden_states: None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L247)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L247)
 
 **Parameters:**
 
@@ -240,7 +240,7 @@ Output class for DiffusionGemma generation.
 transformers.DiffusionGemmaGenerationMixin()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L543)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L543)
 
 Mixin class for DiffusionGemma generation. Contains all the model-level methods.
 
@@ -250,30 +250,30 @@ Mixin class for DiffusionGemma generation. Contains all the model-level methods.
 generate(input_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, streamer: transformers.generation.streamers.BaseStreamer | None = None, generation_config: transformers.models.diffusion_gemma.generation_diffusion_gemma.DiffusionGemmaGenerationConfig | None = None, logits_processor: transformers.generation.logits_process.LogitsProcessorList | None = None, stopping_criteria: transformers.generation.stopping_criteria.StoppingCriteriaList | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L548)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L548)
 
 **Parameters:**
 
 input_ids (*torch.LongTensor* of shape *(batch_size, sequence_length)*, *optional*) : The sequence used as a prompt for the generation.
 
-past_key_values ([Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache), *optional*) : Cache object containing the past key values and past attention masks for the decoder. If it is set, `input_ids` and/or `pixel_values` must correspond to uncached data only.
+past_key_values ([Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache), *optional*) : Cache object containing the past key values and past attention masks for the decoder. If it is set, `input_ids` and/or `pixel_values` must correspond to uncached data only.
 
 streamer (`BaseStreamer`, *optional*) : Streamer object that will be used to stream the generated sequences. Generated tokens are passed through `streamer.put(token_ids)` and the streamer is responsible for any further processing. If the streamer object has a `put_draft` method, tokens from the denoising steps will be sent there.
 
 **Additional arguments for power users:**
 
-generation_config ([DiffusionGemmaGenerationConfig](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaGenerationConfig), *optional*) : The generation configuration to be used as base parametrization for the generation call, overriding the model defaults. If the model checkpoint has a `generation_config.json` file, the model default will be loaded from there. Otherwise, it will be an empty `DiffusionGemmaGenerationConfig` instance. As an additional shortcut, `**kwargs` matching attributes in the `generation_config` will override them.
+generation_config ([DiffusionGemmaGenerationConfig](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaGenerationConfig), *optional*) : The generation configuration to be used as base parametrization for the generation call, overriding the model defaults. If the model checkpoint has a `generation_config.json` file, the model default will be loaded from there. Otherwise, it will be an empty `DiffusionGemmaGenerationConfig` instance. As an additional shortcut, `**kwargs` matching attributes in the `generation_config` will override them.
 
-logits_processor ([LogitsProcessorList](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.LogitsProcessorList), *optional*) : Custom logits processors that complement the default logits processors built from arguments and generation config, to be applied on the diffusion logits. If provided, these processors will be first to be applied. This feature is intended for advanced users. You can, for instance, pass here the logits processors commonly used with AR LLMs.
+logits_processor ([LogitsProcessorList](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.LogitsProcessorList), *optional*) : Custom logits processors that complement the default logits processors built from arguments and generation config, to be applied on the diffusion logits. If provided, these processors will be first to be applied. This feature is intended for advanced users. You can, for instance, pass here the logits processors commonly used with AR LLMs.
 
-stopping_criteria ([StoppingCriteriaList](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.StoppingCriteriaList), *optional*) : Custom stopping criteria that complements the default block autoregressive stopping criteria built from arguments and a generation config. If provided, these criteria will be first to be applied. This feature is intended for advanced users. You can, for instance, pass here the stopping criteria commonly used with AR LLMs.
+stopping_criteria ([StoppingCriteriaList](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.StoppingCriteriaList), *optional*) : Custom stopping criteria that complements the default block autoregressive stopping criteria built from arguments and a generation config. If provided, these criteria will be first to be applied. This feature is intended for advanced users. You can, for instance, pass here the stopping criteria commonly used with AR LLMs.
 
 kwargs (`dict[str, Any]`, *optional*) : Ad hoc parametrization of `generation_config` and/or additional model-specific kwargs that will be forwarded to the `forward` function of the model. For instance, you can set the starting canvas with `decoder_input_ids`.
 
-**Returns:** `torch.LongTensor` or [DiffusionGemmaGenerationOutput](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaGenerationOutput)
+**Returns:** `torch.LongTensor` or [DiffusionGemmaGenerationOutput](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaGenerationOutput)
 
 - `torch.LongTensor`: the generated text in ids.
-- [DiffusionGemmaGenerationOutput](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaGenerationOutput): a `ModelOutput` instance containing the generated text (`sequences`),
+- [DiffusionGemmaGenerationOutput](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaGenerationOutput): a `ModelOutput` instance containing the generated text (`sequences`),
   as well as other optional outputs.
 
 Generates text using the diffusion model.
@@ -323,7 +323,7 @@ Examples:
 transformers.DiffusionGemmaGenerationConfig(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L55)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L55)
 
 **Parameters that control the length of the output:**
 
@@ -335,19 +335,19 @@ max_length (`int`, *optional*) : The maximum length of the output sequence. `max
 
 max_denoising_steps (`int`) : The maximum number of denoising steps to perform.
 
-sampler_config (`EntropyBoundSamplerConfig`) : The configuration for the sampler. See [EntropyBoundSampler](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.EntropyBoundSampler) to learn how a sampler operates in a text diffusion model.
+sampler_config (`EntropyBoundSamplerConfig`) : The configuration for the sampler. See [EntropyBoundSampler](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.EntropyBoundSampler) to learn how a sampler operates in a text diffusion model.
 
-t_min (`float`) : The final temperature in the schedule, i.e. at the last denoising step. See [LinearTemperatureScheduleLogitsProcessor](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.LinearTemperatureScheduleLogitsProcessor) for more details.
+t_min (`float`) : The final temperature in the schedule, i.e. at the last denoising step. See [LinearTemperatureScheduleLogitsProcessor](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.LinearTemperatureScheduleLogitsProcessor) for more details.
 
-t_max (`float`) : The initial temperature in the schedule, i.e. at the first denoising step. See [LinearTemperatureScheduleLogitsProcessor](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.LinearTemperatureScheduleLogitsProcessor) for more details.
+t_max (`float`) : The initial temperature in the schedule, i.e. at the first denoising step. See [LinearTemperatureScheduleLogitsProcessor](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.LinearTemperatureScheduleLogitsProcessor) for more details.
 
-stability_threshold (`int`) : The number of steps for which the accepted canvas must be the same to trigger the stopping criteria. See [StableAndConfidentStoppingCriteria](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.StableAndConfidentStoppingCriteria) for more details.
+stability_threshold (`int`) : The number of steps for which the accepted canvas must be the same to trigger the stopping criteria. See [StableAndConfidentStoppingCriteria](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.StableAndConfidentStoppingCriteria) for more details.
 
-confidence_threshold (`float`) : The threshold for the mean of the entropy of temperature-scaled logits to trigger the stopping criteria. See [StableAndConfidentStoppingCriteria](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.StableAndConfidentStoppingCriteria) for more details.
+confidence_threshold (`float`) : The threshold for the mean of the entropy of temperature-scaled logits to trigger the stopping criteria. See [StableAndConfidentStoppingCriteria](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.StableAndConfidentStoppingCriteria) for more details.
 
 **Parameters that control the cache:**
 
-cache_implementation (`str`, *optional*) : Name of the cache class that will be instantiated in `generate`, for faster decoding. Possible values are:  - `"dynamic"`: [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) - `"static"`: [StaticCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.StaticCache) - `"offloaded"`: `DynamicCache(offloaded=True)` - `"offloaded_static"`: `StaticCache(offloaded=True)` - `"quantized"`: [QuantizedCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.QuantizedCache)  If none is specified, we will use the default cache for the model (which is often [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache)). See our [cache documentation](https://huggingface.co/docs/transformers/en/kv_cache) for further information.
+cache_implementation (`str`, *optional*) : Name of the cache class that will be instantiated in `generate`, for faster decoding. Possible values are:  - `"dynamic"`: [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) - `"static"`: [StaticCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.StaticCache) - `"offloaded"`: `DynamicCache(offloaded=True)` - `"offloaded_static"`: `StaticCache(offloaded=True)` - `"quantized"`: [QuantizedCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.QuantizedCache)  If none is specified, we will use the default cache for the model (which is often [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache)). See our [cache documentation](https://huggingface.co/docs/transformers/en/kv_cache) for further information.
 
 cache_config (`dict`, *optional*, default to `None`) : Arguments used in the key-value cache class can be passed in `cache_config`.
 
@@ -359,7 +359,7 @@ pad_token_id (`int`, *optional*) : The id of the *padding* token.
 
 eos_token_id (`Union[int, list[int]]`, *optional*) : The id of the *end-of-sequence* token. Optionally, use a list to set multiple *end-of-sequence* tokens.
 
-A GenerationConfig class with parameterization customized for [DiffusionGemmaGenerationMixin.generate()](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaGenerationMixin.generate).
+A GenerationConfig class with parameterization customized for [DiffusionGemmaGenerationMixin.generate()](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaGenerationMixin.generate).
 
 ## EntropyBoundSamplerConfig[[transformers.EntropyBoundSamplerConfig]]
 
@@ -369,11 +369,11 @@ A GenerationConfig class with parameterization customized for [DiffusionGemmaGen
 transformers.EntropyBoundSamplerConfig(entropy_bound: float)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L320)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L320)
 
 **Parameters:**
 
-entropy_bound (`float`) : The entropy bound. The higher this value is, the more tokens will be accepted. See the docstring of [EntropyBoundSampler.accept_canvas()](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.EntropyBoundSampler.accept_canvas) for more details on how it is applied.
+entropy_bound (`float`) : The entropy bound. The higher this value is, the more tokens will be accepted. See the docstring of [EntropyBoundSampler.accept_canvas()](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.EntropyBoundSampler.accept_canvas) for more details on how it is applied.
 
 Configuration class for the entropy bound sampler.
 
@@ -385,7 +385,7 @@ Configuration class for the entropy bound sampler.
 transformers.EntropyBoundSampler(config: EntropyBoundSamplerConfig, canvas_length: int, vocab_size: int, max_denoising_steps: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L343)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L343)
 
 **Parameters:**
 
@@ -433,7 +433,7 @@ Here is a rough sketch of how the sampler loop works:
 accept_canvas(current_canvas: LongTensor, denoiser_canvas: LongTensor, logits: FloatTensor, cur_step: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L406)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L406)
 
 **Parameters:**
 
@@ -465,7 +465,7 @@ Originally proposed in https://arxiv.org/pdf/2505.24857
 initialize_canvas(batch_size: int, device: device)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L394)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L394)
 
 Initializes and returns a new canvas of `canvas_length` tokens with random values from the vocabulary.
 
@@ -475,7 +475,7 @@ Initializes and returns a new canvas of `canvas_length` tokens with random value
 renoise_canvas(accepted_canvas: LongTensor, cur_step: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L450)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L450)
 
 **Parameters:**
 
@@ -497,7 +497,7 @@ Renoises all non-accepted tokens.
 transformers.StableAndConfidentStoppingCriteria(stability_threshold: int, confidence_threshold: float)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L484)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L484)
 
 **Parameters:**
 
@@ -518,7 +518,7 @@ Adaptive stopping strategy that stops when the diffusion process is confident an
 transformers.LinearTemperatureScheduleLogitsProcessor(t_min: float, t_max: float, max_denoising_steps: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L276)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/generation_diffusion_gemma.py#L276)
 
 **Parameters:**
 
@@ -541,13 +541,13 @@ At step n out of N, the temperature t is given by t = t_min + ((t_max - t_min) *
 transformers.DiffusionGemmaPreTrainedModel(config: PreTrainedConfig, *inputs, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L827)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L827)
 
 **Parameters:**
 
-config ([PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -575,15 +575,15 @@ real subclasses keep a normal metaclass and `inspect.signature` reads their real
 transformers.DiffusionGemmaModel(config: DiffusionGemmaConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1470)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1470)
 
 **Parameters:**
 
-config ([DiffusionGemmaConfig](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DiffusionGemmaConfig](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Diffusion Gemma Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -597,7 +597,7 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Union[torch.Tensor, dict, NoneType] = None, past_key_values: transformers.cache_utils.Cache | None = None, position_ids: typing.Optional[torch.LongTensor] = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, self_conditioning_logits: typing.Optional[torch.FloatTensor] = None, self_conditioning_mask: typing.Optional[torch.BoolTensor] = None, decoder_attention_mask: typing.Union[torch.Tensor, dict, NoneType] = None, decoder_position_ids: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1512)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1512)
 
 **Parameters:**
 
@@ -605,7 +605,7 @@ input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optiona
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)` or `dict`, *optional*) : Mask for the input tokens.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
@@ -623,9 +623,9 @@ decoder_position_ids (`torch.LongTensor` of shape `(batch_size, canvas_length)`,
 
 A `DiffusionGemmaModelOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DiffusionGemmaConfig](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaConfig)) and inputs.
+elements depending on the configuration ([DiffusionGemmaConfig](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaConfig)) and inputs.
 
-The [DiffusionGemmaModel](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaModel) forward method, overrides the `__call__` special method.
+The [DiffusionGemmaModel](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -635,7 +635,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -660,17 +660,17 @@ the latter silently ignores them.
 transformers.DiffusionGemmaEncoderModel(config: DiffusionGemmaConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1005)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1005)
 
 **Parameters:**
 
-config ([DiffusionGemmaConfig](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([DiffusionGemmaConfig](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The DiffusionGemma encoder model comprising a vision backbone and a language model, *without* a language modeling
 head. It is very similar to Gemma4Model, except that it doesn't support audio or video inputs, and always
 assumes the MoE code path in the inner layers.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -684,33 +684,33 @@ and behavior.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, pixel_values: typing.Optional[torch.FloatTensor] = None, attention_mask: typing.Union[torch.Tensor, dict, NoneType] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, mm_token_type_ids: typing.Optional[torch.LongTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, image_position_ids: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1074)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1074)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([Gemma4Processor](/docs/transformers/v5.15.0/en/model_doc/gemma4#transformers.Gemma4Processor) uses `image_processor_class` for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using `image_processor_class`. See `image_processor_class.__call__` for details ([Gemma4Processor](/docs/transformers/v5.15.1/en/model_doc/gemma4#transformers.Gemma4Processor) uses `image_processor_class` for processing images).
 
 attention_mask (`Union[torch.Tensor, dict]` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
-mm_token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details. 
+mm_token_type_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens matching each modality. For example text (0), image (1), video (2). Multimodal token type ids can be obtained using [AutoProcessor](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoProcessor). See [ProcessorMixin.__call__()](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessorMixin.__call__) for details. 
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
 image_position_ids (`torch.LongTensor` of shape `(batch_size, max_patches, 2)`, *optional*) : 2D patch position coordinates from the image processor, with `(-1, -1)` indicating padding. Passed through to the vision encoder for positional embedding computation.
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+A [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DiffusionGemmaConfig](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaConfig)) and inputs.
+elements depending on the configuration ([DiffusionGemmaConfig](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaConfig)) and inputs.
 
-The [DiffusionGemmaEncoderModel](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaEncoderModel) forward method, overrides the `__call__` special method.
+The [DiffusionGemmaEncoderModel](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaEncoderModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -720,7 +720,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -743,7 +743,7 @@ the latter silently ignores them.
 transformers.DiffusionGemmaEncoderTextModel(config: DiffusionGemmaTextConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L891)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L891)
 
 #### forward[[transformers.DiffusionGemmaEncoderTextModel.forward]]
 
@@ -751,27 +751,27 @@ transformers.DiffusionGemmaEncoderTextModel(config: DiffusionGemmaTextConfig)
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Union[torch.Tensor, dict, NoneType] = None, position_ids: typing.Optional[torch.LongTensor] = None, past_key_values: transformers.cache_utils.Cache | None = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L919)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L919)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`Union[torch.Tensor, dict]` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 inputs_embeds (`torch.FloatTensor` of shape `(batch_size, sequence_length, hidden_size)`, *optional*) : Optionally, instead of passing `input_ids` you can choose to directly pass an embedded representation. This is useful if you want more control over how to convert `input_ids` indices into associated vectors than the model's internal embedding lookup matrix.
 
-**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutputWithPast](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
+A [BaseModelOutputWithPast](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutputWithPast) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DiffusionGemmaConfig](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaConfig)) and inputs.
+elements depending on the configuration ([DiffusionGemmaConfig](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaConfig)) and inputs.
 
-The [DiffusionGemmaEncoderTextModel](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaEncoderTextModel) forward method, overrides the `__call__` special method.
+The [DiffusionGemmaEncoderTextModel](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaEncoderTextModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -781,7 +781,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and optionally if
   `config.is_encoder_decoder=True` in the cross-attention blocks) that can be used (see `past_key_values`
@@ -804,7 +804,7 @@ the latter silently ignores them.
 transformers.DiffusionGemmaDecoderModel(config: DiffusionGemmaConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1193)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1193)
 
 Decoder model for DiffusionGemma.
 
@@ -818,13 +818,13 @@ The decoder reads but does not update the KV cache. Excluding these differences,
 forward(decoder_input_ids: LongTensor, past_key_values: transformers.cache_utils.Cache | None = None, self_conditioning_logits: typing.Optional[torch.FloatTensor] = None, self_conditioning_mask: typing.Optional[torch.BoolTensor] = None, decoder_attention_mask: typing.Union[torch.Tensor, dict, NoneType] = None, decoder_position_ids: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1235)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1235)
 
 **Parameters:**
 
 decoder_input_ids (`torch.LongTensor` of shape `(batch_size, canvas_length)`) : Token IDs for the canvas to be refined.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 self_conditioning_logits (`torch.FloatTensor` of shape `(batch_size, canvas_length, vocab_size)`, *optional*) : Self-conditioning logits from the previous denoising step, used to compute the self-conditioning embeddings.
 
@@ -834,13 +834,13 @@ decoder_attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length+ca
 
 decoder_position_ids (`torch.LongTensor` of shape `(batch_size, canvas_length)`, *optional*) : The position IDs for the tokens in the canvas.
 
-**Returns:** [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or `tuple(torch.FloatTensor)`
 
-A [BaseModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
+A [BaseModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.BaseModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DiffusionGemmaConfig](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaConfig)) and inputs.
+elements depending on the configuration ([DiffusionGemmaConfig](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaConfig)) and inputs.
 
-The [DiffusionGemmaDecoderModel](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaDecoderModel) forward method, overrides the `__call__` special method.
+The [DiffusionGemmaDecoderModel](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaDecoderModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -865,7 +865,7 @@ the latter silently ignores them.
 transformers.DiffusionGemmaForBlockDiffusion(config: DiffusionGemmaConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1595)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1595)
 
 DiffusionGemma model for block diffusion. It calls `DiffusionGemmaModel` to obtains the hidden states for
 the input canvas, conditioned by a prompt KV cache. Using its LM Head and self-conditioning blocks, it converts
@@ -878,7 +878,7 @@ next block diffusion step.
 forward(input_ids: typing.Optional[torch.LongTensor] = None, attention_mask: typing.Union[torch.Tensor, dict, NoneType] = None, past_key_values: transformers.cache_utils.Cache | None = None, position_ids: typing.Optional[torch.LongTensor] = None, decoder_input_ids: typing.Optional[torch.LongTensor] = None, self_conditioning_logits: typing.Optional[torch.FloatTensor] = None, self_conditioning_mask: typing.Optional[torch.BoolTensor] = None, decoder_attention_mask: typing.Union[torch.Tensor, dict, NoneType] = None, decoder_position_ids: typing.Optional[torch.LongTensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1616)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/diffusion_gemma/modeling_diffusion_gemma.py#L1616)
 
 **Parameters:**
 
@@ -886,7 +886,7 @@ input_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optiona
 
 attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)` or `dict`, *optional*) : Mask for the input tokens.
 
-past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
+past_key_values (`~cache_utils.Cache`, *optional*) : Pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention blocks) that can be used to speed up sequential decoding. This typically consists in the `past_key_values` returned by the model at a previous stage of decoding, when `use_cache=True` or `config.use_cache=True`.  Only [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance is allowed as input, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache). If no `past_key_values` are passed, [DynamicCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.DynamicCache) will be initialized by default.  The model will output the same cache format that is fed as input.  If `past_key_values` are used, the user is expected to input only unprocessed `input_ids` (those that don't have their past key value states given to this model) of shape `(batch_size, unprocessed_length)` instead of all `input_ids` of shape `(batch_size, sequence_length)`.
 
 position_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of positions of each input sequence tokens in the position embeddings. Selected in the range `[0, config.n_positions - 1]`.  [What are position IDs?](../glossary#position-ids)
 
@@ -904,9 +904,9 @@ decoder_position_ids (`torch.LongTensor` of shape `(batch_size, canvas_length)`,
 
 A `DiffusionGemmaBlockDiffusionOutputWithPast` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([DiffusionGemmaConfig](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaConfig)) and inputs.
+elements depending on the configuration ([DiffusionGemmaConfig](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaConfig)) and inputs.
 
-The [DiffusionGemmaForBlockDiffusion](/docs/transformers/v5.15.0/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaForBlockDiffusion) forward method, overrides the `__call__` special method.
+The [DiffusionGemmaForBlockDiffusion](/docs/transformers/v5.15.1/en/model_doc/diffusion_gemma#transformers.DiffusionGemmaForBlockDiffusion) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -914,7 +914,7 @@ the latter silently ignores them.
 
 - **loss** (`torch.FloatTensor` of shape `(1,)`, *optional*) -- Language modeling loss.
 - **logits** (`torch.FloatTensor` of shape `(batch_size, canvas_length, config.text_config.vocab_size)`) -- Prediction scores of the language modeling head (scores for each vocabulary token before SoftMax).
-- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`Cache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [Cache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.Cache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks) that can be used (see
   `past_key_values` input) to speed up sequential decoding.
@@ -961,4 +961,4 @@ Example:
 ```
 
 ### Pixio
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/pixio.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/pixio.md

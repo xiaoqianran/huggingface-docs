@@ -30,12 +30,12 @@ This model was contributed by [nielsr](https://huggingface.co/nielsr). The origi
 - BEiT models are regular Vision Transformers, but pre-trained in a self-supervised way rather than supervised. They
   outperform both the [original model (ViT)](vit) as well as [Data-efficient Image Transformers (DeiT)](deit) when fine-tuned on ImageNet-1K and CIFAR-100. You can check out demo notebooks regarding inference as well as
   fine-tuning on custom data [here](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/VisionTransformer) (you can just replace
-  [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) by [BeitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitImageProcessor) and
-  [ViTForImageClassification](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTForImageClassification) by [BeitForImageClassification](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitForImageClassification)).
+  [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) by [BeitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitImageProcessor) and
+  [ViTForImageClassification](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTForImageClassification) by [BeitForImageClassification](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitForImageClassification)).
 - There's also a demo notebook available which showcases how to combine DALL-E's image tokenizer with BEiT for
   performing masked image modeling. You can find it [here](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/BEiT).
 - As the BEiT models expect each image to be of the same size (resolution), one can use
-  [BeitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitImageProcessor) to resize (or rescale) and normalize images for the model.
+  [BeitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitImageProcessor) to resize (or rescale) and normalize images for the model.
 - Both the patch resolution and image resolution used during pre-training or fine-tuning are reflected in the name of
   each checkpoint. For example, `microsoft/beit-base-patch16-224` refers to a base-sized architecture with patch
   resolution of 16x16 and fine-tuning resolution of 224x224. All checkpoints can be found on the [hub](https://huggingface.co/models?search=microsoft/beit).
@@ -46,7 +46,7 @@ This model was contributed by [nielsr](https://huggingface.co/nielsr). The origi
   relative position bias among the several self-attention layers. During fine-tuning, each layer's relative position
   bias is initialized with the shared relative position bias obtained after pre-training. Note that, if one wants to
   pre-train a model from scratch, one needs to either set the `use_relative_position_bias` or the
-  `use_relative_position_bias` attribute of [BeitConfig](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitConfig) to `True` in order to add
+  `use_relative_position_bias` attribute of [BeitConfig](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitConfig) to `True` in order to add
   position embeddings.
 
 <img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/model_doc/beit_architecture.jpg"
@@ -96,7 +96,7 @@ On a local benchmark (NVIDIA GeForce RTX 2060-8GB, PyTorch 2.5.1, OS Ubuntu 20.0
 
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with BEiT.
 
-- [BeitForImageClassification](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitForImageClassification) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-classification) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/image_classification.ipynb).
+- [BeitForImageClassification](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitForImageClassification) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-classification) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/image_classification.ipynb).
 - See also: [Image classification task guide](../tasks/image_classification)
 
 **Semantic segmentation**
@@ -113,7 +113,7 @@ If you're interested in submitting a resource to be included here, please feel f
 transformers.models.beit.modeling_beit.BeitModelOutputWithPooling(last_hidden_state: typing.Optional[torch.FloatTensor] = None, pooler_output: typing.Optional[torch.FloatTensor] = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/modeling_beit.py#L54)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/modeling_beit.py#L54)
 
 **Parameters:**
 
@@ -125,7 +125,7 @@ hidden_states (`tuple(torch.FloatTensor)`, *optional*, returned when `output_hid
 
 attentions (`tuple(torch.FloatTensor)`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-Class for outputs of [BeitModel](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitModel).
+Class for outputs of [BeitModel](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitModel).
 
 ## BeitConfig[[transformers.BeitConfig]]
 
@@ -135,7 +135,7 @@ Class for outputs of [BeitModel](/docs/transformers/v5.15.0/en/model_doc/beit#tr
 transformers.BeitConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 8192, hidden_size: int = 768, num_hidden_layers: int = 12, num_attention_heads: int = 12, intermediate_size: int = 3072, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, attention_probs_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, image_size: int | list[int] | tuple[int, int] = 224, patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, use_mask_token: bool = False, use_absolute_position_embeddings: bool = False, use_relative_position_bias: bool = False, use_shared_relative_position_bias: bool = False, layer_scale_init_value: float = 0.1, drop_path_rate: float | int = 0.1, use_mean_pooling: bool = True, pool_scales: list[int] | tuple[int, ...] = (1, 2, 3, 6), use_auxiliary_head: bool = True, auxiliary_loss_weight: float = 0.4, auxiliary_channels: int = 256, auxiliary_num_convs: int = 1, auxiliary_concat_input: bool = False, semantic_loss_ignore_index: int = 255, _out_features: list[str] | None = None, _out_indices: list[int] | None = None, add_fpn: bool = False, reshape_hidden_states: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/configuration_beit.py#L25)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/configuration_beit.py#L25)
 
 **Parameters:**
 
@@ -201,8 +201,8 @@ This is the configuration class to store the configuration of a BeitModel. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/beit-base-patch16-224-pt22k](https://huggingface.co/microsoft/beit-base-patch16-224-pt22k)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -227,7 +227,7 @@ Example:
 transformers.BeitImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/image_processing_beit.py#L50)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/image_processing_beit.py#L50)
 
 **Parameters:**
 
@@ -281,7 +281,7 @@ Constructs a BeitImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/image_processing_beit.py#L70)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/image_processing_beit.py#L70)
 
 **Parameters:**
 
@@ -343,11 +343,11 @@ do_reduce_labels (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labe
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/image_processing_beit.py#L183)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/image_processing_beit.py#L183)
 
 **Parameters:**
 
-outputs ([BeitForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitForSemanticSegmentation)) : Raw outputs of the model.
+outputs ([BeitForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitForSemanticSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[Tuple]` of length `batch_size`, *optional*) : List of tuples corresponding to the requested final size (height, width) of each prediction. If unset, predictions will not be resized.
 
@@ -362,7 +362,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [BeitForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitForSemanticSegmentation) into semantic segmentation maps.
+Converts the output of [BeitForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitForSemanticSegmentation) into semantic segmentation maps.
 
 ## BeitImageProcessorPil[[transformers.BeitImageProcessorPil]]
 
@@ -372,7 +372,7 @@ Converts the output of [BeitForSemanticSegmentation](/docs/transformers/v5.15.0/
 transformers.BeitImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/image_processing_pil_beit.py#L53)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/image_processing_pil_beit.py#L53)
 
 **Parameters:**
 
@@ -426,7 +426,7 @@ Constructs a BeitImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/image_processing_pil_beit.py#L73)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/image_processing_pil_beit.py#L73)
 
 **Parameters:**
 
@@ -488,11 +488,11 @@ do_reduce_labels (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labe
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/image_processing_pil_beit.py#L169)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/image_processing_pil_beit.py#L169)
 
 **Parameters:**
 
-outputs ([BeitForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitForSemanticSegmentation)) : Raw outputs of the model.
+outputs ([BeitForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitForSemanticSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[Tuple]` of length `batch_size`, *optional*) : List of tuples corresponding to the requested final size (height, width) of each prediction. If unset, predictions will not be resized.
 
@@ -507,7 +507,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [BeitForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitForSemanticSegmentation) into semantic segmentation maps.
+Converts the output of [BeitForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitForSemanticSegmentation) into semantic segmentation maps.
 
 ## BeitModel[[transformers.BeitModel]]
 
@@ -517,17 +517,17 @@ Converts the output of [BeitForSemanticSegmentation](/docs/transformers/v5.15.0/
 transformers.BeitModel(config: BeitConfig, add_pooling_layer: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/modeling_beit.py#L486)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/modeling_beit.py#L486)
 
 **Parameters:**
 
-config ([BeitConfig](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([BeitConfig](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare Beit Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -541,11 +541,11 @@ and behavior.
 forward(pixel_values: Tensor, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, interpolate_pos_encoding: bool = False, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/modeling_beit.py#L512)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/modeling_beit.py#L512)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [BeitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitImageProcessor). See `BeitImageProcessor.__call__()` for details (`processor_class` uses [BeitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [BeitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitImageProcessor). See `BeitImageProcessor.__call__()` for details (`processor_class` uses [BeitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`, *optional*) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
@@ -553,13 +553,13 @@ interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to 
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [BeitModelOutputWithPooling](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.models.beit.modeling_beit.BeitModelOutputWithPooling) or `tuple(torch.FloatTensor)`
+**Returns:** [BeitModelOutputWithPooling](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.models.beit.modeling_beit.BeitModelOutputWithPooling) or `tuple(torch.FloatTensor)`
 
-A [BeitModelOutputWithPooling](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.models.beit.modeling_beit.BeitModelOutputWithPooling) or a tuple of
+A [BeitModelOutputWithPooling](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.models.beit.modeling_beit.BeitModelOutputWithPooling) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([BeitConfig](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitConfig)) and inputs.
+elements depending on the configuration ([BeitConfig](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitConfig)) and inputs.
 
-The [BeitModel](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitModel) forward method, overrides the `__call__` special method.
+The [BeitModel](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -592,18 +592,18 @@ Example:
 transformers.BeitForMaskedImageModeling(config: BeitConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/modeling_beit.py#L583)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/modeling_beit.py#L583)
 
 **Parameters:**
 
-config ([BeitConfig](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([BeitConfig](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Beit Model transformer with a 'language' modeling head on top. BEiT does masked image modeling by predicting
 visual tokens of a Vector-Quantize Variational Autoencoder (VQ-VAE), whereas other vision models like ViT and DeiT
-predict RGB pixel values. As a result, this class is incompatible with [AutoModelForMaskedImageModeling](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForMaskedImageModeling), so you
-will need to use [BeitForMaskedImageModeling](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitForMaskedImageModeling) directly if you wish to do masked image modeling with BEiT.
+predict RGB pixel values. As a result, this class is incompatible with [AutoModelForMaskedImageModeling](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModelForMaskedImageModeling), so you
+will need to use [BeitForMaskedImageModeling](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitForMaskedImageModeling) directly if you wish to do masked image modeling with BEiT.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -617,11 +617,11 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, bool_masked_pos: typing.Optional[torch.BoolTensor] = None, labels: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool = False, attention_mask: typing.Optional[torch.Tensor] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/modeling_beit.py#L600)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/modeling_beit.py#L600)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BeitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitImageProcessor). See `BeitImageProcessor.__call__()` for details (`processor_class` uses [BeitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BeitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitImageProcessor). See `BeitImageProcessor.__call__()` for details (`processor_class` uses [BeitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitImageProcessor) for processing images).
 
 bool_masked_pos (`torch.BoolTensor` of shape `(batch_size, num_patches)`) : Boolean masked positions. Indicates which patches are masked (1) and which aren't (0).
 
@@ -631,13 +631,13 @@ interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to 
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
-**Returns:** [MaskedLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [MaskedLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or `tuple(torch.FloatTensor)`
 
-A [MaskedLMOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
+A [MaskedLMOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.MaskedLMOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([BeitConfig](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitConfig)) and inputs.
+elements depending on the configuration ([BeitConfig](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitConfig)) and inputs.
 
-The [BeitForMaskedImageModeling](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitForMaskedImageModeling) forward method, overrides the `__call__` special method.
+The [BeitForMaskedImageModeling](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitForMaskedImageModeling) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -688,16 +688,16 @@ Examples:
 transformers.BeitForImageClassification(config: BeitConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/modeling_beit.py#L675)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/modeling_beit.py#L675)
 
 **Parameters:**
 
-config ([BeitConfig](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([BeitConfig](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Beit Model transformer with an image classification head on top (a linear layer on top of the average of the final
 hidden states of the patch tokens) e.g. for ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -711,23 +711,23 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/modeling_beit.py#L688)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/modeling_beit.py#L688)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BeitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitImageProcessor). See `BeitImageProcessor.__call__()` for details (`processor_class` uses [BeitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BeitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitImageProcessor). See `BeitImageProcessor.__call__()` for details (`processor_class` uses [BeitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or `tuple(torch.FloatTensor)`
 
-A [ImageClassifierOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
+A [ImageClassifierOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([BeitConfig](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitConfig)) and inputs.
+elements depending on the configuration ([BeitConfig](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitConfig)) and inputs.
 
-The [BeitForImageClassification](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitForImageClassification) forward method, overrides the `__call__` special method.
+The [BeitForImageClassification](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -776,15 +776,15 @@ Example:
 transformers.BeitForSemanticSegmentation(config: BeitConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/modeling_beit.py#L984)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/modeling_beit.py#L984)
 
 **Parameters:**
 
-config ([BeitConfig](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([BeitConfig](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Beit Model with a semantic segmentation head on top e.g. for ADE20K, CityScapes.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -798,23 +798,23 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, interpolate_pos_encoding: bool = False, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/beit/modeling_beit.py#L1006)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/beit/modeling_beit.py#L1006)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BeitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitImageProcessor). See `BeitImageProcessor.__call__()` for details (`processor_class` uses [BeitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [BeitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitImageProcessor). See `BeitImageProcessor.__call__()` for details (`processor_class` uses [BeitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Ground truth semantic segmentation maps for computing the loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels > 1`, a classification loss is computed (Cross-Entropy).
 
 interpolate_pos_encoding (`bool`, *optional*, defaults to `False`) : Whether to interpolate the pre-trained position encodings.
 
-**Returns:** [SemanticSegmenterOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SemanticSegmenterOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`
 
-A [SemanticSegmenterOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
+A [SemanticSegmenterOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([BeitConfig](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitConfig)) and inputs.
+elements depending on the configuration ([BeitConfig](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitConfig)) and inputs.
 
-The [BeitForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/beit#transformers.BeitForSemanticSegmentation) forward method, overrides the `__call__` special method.
+The [BeitForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/beit#transformers.BeitForSemanticSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -860,4 +860,4 @@ Examples:
 ```
 
 ### PPLCNetV4
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/pp_lcnet_v4.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/pp_lcnet_v4.md

@@ -42,13 +42,13 @@ Chunked (same prompt split and interleave with decode)
   Req C  [→ dec]     · idle ·   [→ dec]    · idle ·
 ```
 
-When a new request's prompt exceeds the available token budget (set by `max_batch_tokens` in [ContinuousBatchingConfig](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig)), the scheduler processes as many tokens as possible and holds the rest. On subsequent steps, it continues from where it left off, interleaving prefill work with ongoing decode steps. This keeps the batch productive and reduces time-to-first-token for other requests.
+When a new request's prompt exceeds the available token budget (set by `max_batch_tokens` in [ContinuousBatchingConfig](/docs/transformers/v5.15.1/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig)), the scheduler processes as many tokens as possible and holds the rest. On subsequent steps, it continues from where it left off, interleaving prefill work with ongoing decode steps. This keeps the batch productive and reduces time-to-first-token for other requests.
 
 ## Scheduler
 
 The scheduler decides which requests join each forward pass based on two budgets and a request cap.
 
-- Token budget — the maximum number of query tokens processed in a single forward pass, set by `max_batch_tokens` in [ContinuousBatchingConfig](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig).
+- Token budget — the maximum number of query tokens processed in a single forward pass, set by `max_batch_tokens` in [ContinuousBatchingConfig](/docs/transformers/v5.15.1/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig).
 - Cache budget — the total number of KV pages that can be read in a single pass, which is bounded by the total cache size.
 - Request cap — the maximum number of requests in a single forward pass, set by `max_requests_per_batch`. The logits tensor scales with the vocabulary size, so this cap bounds peak memory for large-vocabulary models.
 
@@ -60,7 +60,7 @@ The scheduler decides which requests join each forward pass based on two budgets
 
 `PrefillFirstScheduler` completes chunked prefill operations before resuming decode. This reduces fragmentation for workloads dominated by long prompts.
 
-Set the scheduler in [ContinuousBatchingConfig](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig).
+Set the scheduler in [ContinuousBatchingConfig](/docs/transformers/v5.15.1/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig).
 
 ```py
 cb_config = ContinuousBatchingConfig(scheduler_type="prefill_first")
@@ -88,7 +88,7 @@ The cache reserves two extra blocks on top of `num_blocks` for padding tokens to
 
 The manager infers the number of blocks at startup from free GPU memory. The manager solves an equation that accounts for KV tensors, attention masks, activations, and bookkeeping indices, then sizes the pool to fit inside `max_memory_percent` (default 0.9) of the available memory.
 
-You can pin the values explicitly in [ContinuousBatchingConfig](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig).
+You can pin the values explicitly in [ContinuousBatchingConfig](/docs/transformers/v5.15.1/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig).
 
 ```py
 cb_config = ContinuousBatchingConfig(
@@ -103,13 +103,13 @@ cb_config = ContinuousBatchingConfig(
 
 Before a request joins the batch, the scheduler checks that enough free blocks exist for every layer group. If any group would fall short, the request is rejected and nothing is allocated.
 
-To avoid filling the cache until [offloading](#offloading) is the only option, the scheduler enforces a `safety_margin`. Once free blocks fall below `safety_margin * num_blocks`, new prefills are held back and only active decodes continue. The FIFO scheduler defaults to `0.15` (15% of blocks held in reserve), while `prefill_first` defaults to `0.0`. Set `safety_margin` in [ContinuousBatchingConfig](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig) to tune it, where `0` disables the margin.
+To avoid filling the cache until [offloading](#offloading) is the only option, the scheduler enforces a `safety_margin`. Once free blocks fall below `safety_margin * num_blocks`, new prefills are held back and only active decodes continue. The FIFO scheduler defaults to `0.15` (15% of blocks held in reserve), while `prefill_first` defaults to `0.0`. Set `safety_margin` in [ContinuousBatchingConfig](/docs/transformers/v5.15.1/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig) to tune it, where `0` disables the margin.
 
 ### Prefix caching
 
 When two requests share a prompt prefix, they can share the blocks that hold the KV for that prefix. Each completed block is content-hashed. A later request with a matching prefix reuses the block and skips the prefill for those tokens. Shared blocks are reference-counted and only return to the free pool once every request using them has finished.
 
-Prefix caching is enabled by default and is active only when a model has exclusively full-attention layers. Set `allow_block_sharing=False` in [ContinuousBatchingConfig](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig) for workloads with short prompts and long generations, where the bookkeeping outweighs the savings.
+Prefix caching is enabled by default and is active only when a model has exclusively full-attention layers. Set `allow_block_sharing=False` in [ContinuousBatchingConfig](/docs/transformers/v5.15.1/en/main_classes/continuous_batching#transformers.ContinuousBatchingConfig) for workloads with short prompts and long generations, where the bookkeeping outweighs the savings.
 
 ### Eviction
 
@@ -172,4 +172,4 @@ An offloaded request takes one of two paths. When `cpu_offload_space` is greater
 - For usage examples, see the [Continuous batching](./continuous_batching) doc.
 
 ### DeepSpeed ZeRO
-https://huggingface.co/docs/transformers/v5.15.0/deepspeed.md
+https://huggingface.co/docs/transformers/v5.15.1/deepspeed.md

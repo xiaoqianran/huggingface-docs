@@ -12,7 +12,7 @@ Most of those are only useful if you are studying the code of the audio processo
 transformers.audio_utils.hertz_to_mel(freq: float | numpy.ndarray, mel_scale: str = 'htk')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/audio_utils.py#L448)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/audio_utils.py#L448)
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ Convert frequency from hertz to mels.
 transformers.audio_utils.mel_to_hertz(mels: float | numpy.ndarray, mel_scale: str = 'htk')
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/audio_utils.py#L484)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/audio_utils.py#L484)
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ Convert frequency from mels to hertz.
 transformers.audio_utils.mel_filter_bank(num_frequency_bins: int, num_mel_filters: int, min_frequency: float, max_frequency: float, sampling_rate: int, norm: str | None = None, mel_scale: str = 'htk', triangularize_in_mel_space: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/audio_utils.py#L638)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/audio_utils.py#L638)
 
 **Parameters:**
 
@@ -102,7 +102,7 @@ This code is adapted from *torchaudio* and *librosa*. Note that the default para
 transformers.audio_utils.optimal_fft_length(window_length: int)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/audio_utils.py#L732)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/audio_utils.py#L732)
 
 Finds the best FFT input size for a given `window_length`. This function takes a given window length and, if not
 already a power of two, rounds it up to the next power or two.
@@ -118,7 +118,7 @@ it simply gives a higher frequency resolution (i.e. the frequency bins are small
 transformers.audio_utils.window_function(window_length: int, name: str = 'hann', periodic: bool = True, frame_length: int | None = None, center: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/audio_utils.py#L745)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/audio_utils.py#L745)
 
 **Parameters:**
 
@@ -151,7 +151,7 @@ The following window types are supported:
 transformers.audio_utils.spectrogram(waveform: ndarray, window: ndarray, frame_length: int, hop_length: int, fft_length: int | None = None, power: float | None = 1.0, center: bool = True, pad_mode: str = 'reflect', onesided: bool = True, dither: float = 0.0, preemphasis: float | None = None, mel_filters: numpy.ndarray | None = None, mel_floor: float = 1e-10, log_mel: str | None = None, reference: float = 1.0, min_value: float = 1e-10, db_range: float | None = None, remove_dc_offset: bool = False, dtype: dtype = <class 'numpy.float32'>)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/audio_utils.py#L809)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/audio_utils.py#L809)
 
 **Parameters:**
 
@@ -237,7 +237,7 @@ can be constructed.
 transformers.audio_utils.power_to_db(spectrogram: ndarray, reference: float = 1.0, min_value: float = 1e-10, db_range: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/audio_utils.py#L1231)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/audio_utils.py#L1231)
 
 **Parameters:**
 
@@ -269,7 +269,7 @@ Based on the implementation of `librosa.power_to_db`.
 transformers.audio_utils.amplitude_to_db(spectrogram: ndarray, reference: float = 1.0, min_value: float = 1e-05, db_range: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/audio_utils.py#L1331)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/audio_utils.py#L1331)
 
 **Parameters:**
 
@@ -294,4 +294,4 @@ This means that large variations in energy may not sound all that different if t
 This compression operation makes the (mel) spectrogram features match more closely what humans actually hear.
 
 ### Utilities for pipelines
-https://huggingface.co/docs/transformers/v5.15.0/internal/pipelines_utils.md
+https://huggingface.co/docs/transformers/v5.15.1/internal/pipelines_utils.md

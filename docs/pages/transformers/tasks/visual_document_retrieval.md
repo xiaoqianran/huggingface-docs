@@ -53,7 +53,7 @@ model = ColPaliForRetrieval.from_pretrained(
 ).eval()
 ```
 
-Pass the text query to the processor and return the indexed text embeddings from the model. For image-to-text search, replace the `text` parameter in [ColPaliProcessor](/docs/transformers/v5.15.0/en/model_doc/colpali#transformers.ColPaliProcessor) with the `images` parameter to pass images.
+Pass the text query to the processor and return the indexed text embeddings from the model. For image-to-text search, replace the `text` parameter in [ColPaliProcessor](/docs/transformers/v5.15.1/en/model_doc/colpali#transformers.ColPaliProcessor) with the `images` parameter to pass images.
 
 ```python
 inputs = processor(text="a document about Mars expedition").to(model.device)
@@ -131,4 +131,4 @@ for i in indices:
          style="height: 200px; object-fit: contain;">
 
 ### Zero-shot image classification
-https://huggingface.co/docs/transformers/v5.15.0/tasks/zero_shot_image_classification.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/zero_shot_image_classification.md

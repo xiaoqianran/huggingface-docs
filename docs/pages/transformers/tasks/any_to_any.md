@@ -42,7 +42,7 @@ messages = [
 ]
 ```
 
-We will now call the processors' [apply_chat_template()](/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to preprocess its output along with the image inputs.
+We will now call the processors' [apply_chat_template()](/docs/transformers/v5.15.1/en/main_classes/processors#transformers.ProcessorMixin.apply_chat_template) method to preprocess its output along with the image inputs.
 
 ```python
 inputs = processor.apply_chat_template(
@@ -65,7 +65,7 @@ print(generated_texts)
 
 ## Pipeline
 
-The fastest way to get started is to use the [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) API. Specify the `"any-to-any"` task and the model you want to use.
+The fastest way to get started is to use the [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) API. Specify the `"any-to-any"` task and the model you want to use.
 
 ```python
 from transformers import pipeline
@@ -89,7 +89,7 @@ messages = [
  ]
 ```
 
-Pass the chat template formatted text and image to [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) and set `return_full_text=False` to remove the input from the generated output.
+Pass the chat template formatted text and image to [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) and set `return_full_text=False` to remove the input from the generated output.
 
 ```python
 outputs = pipe(text=messages, max_new_tokens=20, return_full_text=False)
@@ -115,4 +115,4 @@ sf.write("generated_audio.wav", out[0]["generated_audio"])
 ```
 
 ### Image-text-to-text
-https://huggingface.co/docs/transformers/v5.15.0/tasks/image_text_to_text.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/image_text_to_text.md

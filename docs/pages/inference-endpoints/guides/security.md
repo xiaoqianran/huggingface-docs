@@ -33,11 +33,11 @@ You can read more about security at Hugging Face in general in the following lin
 ## Inference Endpoint Security Level
 
 We currently offer many different ways of securing your Inference Endpoints through the configuration. Please read more about it in the Inference Endpoints
-configuration [section under security](https://huggingface.co/docs/inference-endpoints/main/en/guides/configuration#security-level).
+configuration [authentication section](https://huggingface.co/docs/inference-endpoints/main/en/guides/configuration#authentication).
 
 ## Further Information
 
 You can read the Hugging Face Privacy Policy at: https://huggingface.co/privacy
 
-### Pricing
-https://huggingface.co/docs/inference-endpoints/support/pricing.md
+### MCP Server
+https://huggingface.co/docs/inference-endpoints/guides/mcp_server.md

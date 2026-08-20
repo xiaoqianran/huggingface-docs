@@ -13,4 +13,4 @@ Use the filters to narrow models by modality or task. Set custom date ranges to 
 >
 
 ### Optimizers and schedulers
-https://huggingface.co/docs/transformers/v5.15.0/optimizers.md
+https://huggingface.co/docs/transformers/v5.15.1/optimizers.md

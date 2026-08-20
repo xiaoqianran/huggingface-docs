@@ -8,9 +8,9 @@ Scale CPU training across multiple sockets or nodes if a single CPU is too slow.
 - multiple processes on one machine (one per CPU socket)
 - multiple processes across several machines
 
-All distributed examples use [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html) from the [Intel oneAPI HPC Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit.html) for communication and a DDP strategy with [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer).
+All distributed examples use [Intel MPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html) from the [Intel oneAPI HPC Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit.html) for communication and a DDP strategy with [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer).
 
-[Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) supports bf16 mixed precision training on CPU. Prefer bf16 over fp16 for CPU training because it's more numerically stable. Pass `--bf16` to enable PyTorch's CPU autocast and `--use_cpu` to force CPU training. The example below runs the [run_qa.py](https://github.com/huggingface/transformers/tree/main/examples/pytorch/question-answering) script.
+[Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) supports bf16 mixed precision training on CPU. Prefer bf16 over fp16 for CPU training because it's more numerically stable. Pass `--bf16` to enable PyTorch's CPU autocast and `--use_cpu` to force CPU training. The example below runs the [run_qa.py](https://github.com/huggingface/transformers/tree/main/examples/pytorch/question-answering) script.
 
 ```bash
 python run_qa.py \
@@ -28,7 +28,7 @@ python run_qa.py \
  --use_cpu
 ```
 
-You can pass the same parameters to [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) directly.
+You can pass the same parameters to [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) directly.
 
 ```py
 from transformers import TrainingArguments
@@ -257,4 +257,4 @@ kubectl delete -f pytorchjob.yaml -n ${NAMESPACE}
 - Read the [Accelerating PyTorch Transformers with Intel Sapphire Rapids](https://huggingface.co/blog/intel-sapphire-rapids) blog post for a deeper look at BF16 performance on modern Intel hardware.
 
 ### Pipeline
-https://huggingface.co/docs/transformers/v5.15.0/pipeline_tutorial.md
+https://huggingface.co/docs/transformers/v5.15.1/pipeline_tutorial.md

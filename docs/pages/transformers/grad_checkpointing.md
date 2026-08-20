@@ -35,4 +35,4 @@ args = TrainingArguments(
 - See the [Kernels](./kernels) guide to learn how to speed up training with custom fused kernels.
 
 ### Processors
-https://huggingface.co/docs/transformers/v5.15.0/processors.md
+https://huggingface.co/docs/transformers/v5.15.1/processors.md

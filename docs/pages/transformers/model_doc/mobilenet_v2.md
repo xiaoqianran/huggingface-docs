@@ -7,7 +7,7 @@ You can find all the original MobileNet checkpoints under the [Google](https://h
 > [!TIP]
 > Click on the MobileNet V2 models in the right sidebar for more examples of how to apply MobileNet to different vision tasks.
 
-The examples below demonstrate how to classify an image with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The examples below demonstrate how to classify an image with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -51,10 +51,10 @@ print(f"The predicted class label is: {predicted_class_label}")
 ## Notes
 
 - Classification checkpoint names follow the pattern `mobilenet_v2_{depth_multiplier}_{resolution}`, like `mobilenet_v2_1.4_224`. `1.4` is the depth multiplier and `224` is the image resolution. Segmentation checkpoint names follow the pattern `deeplabv3_mobilenet_v2_{depth_multiplier}_{resolution}`.
-- While trained on images of a specific sizes, the model architecture works with images of different sizes (minimum 32x32). The [MobileNetV2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2ImageProcessor) handles the necessary preprocessing.
+- While trained on images of a specific sizes, the model architecture works with images of different sizes (minimum 32x32). The [MobileNetV2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2ImageProcessor) handles the necessary preprocessing.
 - MobileNet is pretrained on [ImageNet-1k](https://huggingface.co/datasets/ILSVRC/imagenet-1k), a dataset with 1000 classes. However, the model actually predicts 1001 classes. The additional class is an extra "background" class (index 0).
 - The segmentation models use a [DeepLabV3+](https://huggingface.co/papers/1802.02611) head which is often pretrained on datasets like [PASCAL VOC](https://huggingface.co/datasets/merve/pascal-voc).
-- The original TensorFlow checkpoints determines the padding amount at inference because it depends on the input image size. To use the native PyTorch padding behavior, set `tf_padding=False` in [MobileNetV2Config](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2Config).
+- The original TensorFlow checkpoints determines the padding amount at inference because it depends on the input image size. To use the native PyTorch padding behavior, set `tf_padding=False` in [MobileNetV2Config](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2Config).
 
     ```python
     from transformers import MobileNetV2Config
@@ -76,7 +76,7 @@ print(f"The predicted class label is: {predicted_class_label}")
 transformers.MobileNetV2Config(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, num_channels: int = 3, image_size: int | list[int] | tuple[int, int] = 224, depth_multiplier: float | int = 1.0, depth_divisible_by: int = 8, min_depth: int = 8, expand_ratio: float | int = 6.0, output_stride: int = 32, first_layer_is_expansion: bool = True, finegrained_output: bool = True, hidden_act: str = 'relu6', tf_padding: bool = True, classifier_dropout_prob: float | int = 0.8, initializer_range: float = 0.02, layer_norm_eps: float = 0.001, semantic_loss_ignore_index: int = 255)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilenet_v2/configuration_mobilenet_v2.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilenet_v2/configuration_mobilenet_v2.py#L24)
 
 **Parameters:**
 
@@ -114,8 +114,8 @@ This is the configuration class to store the configuration of a MobileNetV2Model
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [google/mobilenet_v2_1.0_224](https://huggingface.co/google/mobilenet_v2_1.0_224)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -140,7 +140,7 @@ Example:
 transformers.MobileNetV2ImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilenet_v2/image_processing_mobilenet_v2.py#L49)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilenet_v2/image_processing_mobilenet_v2.py#L49)
 
 **Parameters:**
 
@@ -194,7 +194,7 @@ Constructs a MobileNetV2ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilenet_v2/image_processing_mobilenet_v2.py#L69)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilenet_v2/image_processing_mobilenet_v2.py#L69)
 
 **Parameters:**
 
@@ -256,11 +256,11 @@ do_reduce_labels (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labe
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple[int, int]] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilenet_v2/image_processing_mobilenet_v2.py#L184)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilenet_v2/image_processing_mobilenet_v2.py#L184)
 
 **Parameters:**
 
-outputs ([MobileNetV2ForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2ForSemanticSegmentation)) : Raw outputs of the model.
+outputs ([MobileNetV2ForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2ForSemanticSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[tuple[int, int]]`, *optional*) : List of tuples corresponding to the requested final size (height, width) of each prediction.
 
@@ -275,7 +275,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [MobileNetV2ForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2ForSemanticSegmentation) into semantic segmentation maps.
+Converts the output of [MobileNetV2ForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2ForSemanticSegmentation) into semantic segmentation maps.
 
 ## MobileNetV2ImageProcessorPil[[transformers.MobileNetV2ImageProcessorPil]]
 
@@ -285,7 +285,7 @@ Converts the output of [MobileNetV2ForSemanticSegmentation](/docs/transformers/v
 transformers.MobileNetV2ImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilenet_v2/image_processing_pil_mobilenet_v2.py#L57)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilenet_v2/image_processing_pil_mobilenet_v2.py#L57)
 
 **Parameters:**
 
@@ -339,7 +339,7 @@ Constructs a MobileNetV2ImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor'], NoneType] = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilenet_v2/image_processing_pil_mobilenet_v2.py#L77)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilenet_v2/image_processing_pil_mobilenet_v2.py#L77)
 
 **Parameters:**
 
@@ -401,11 +401,11 @@ do_reduce_labels (`bool`, *kwargs*, *optional*, defaults to `self.do_reduce_labe
 post_process_semantic_segmentation(outputs, target_sizes: list[tuple[int, int]] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilenet_v2/image_processing_pil_mobilenet_v2.py#L180)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilenet_v2/image_processing_pil_mobilenet_v2.py#L180)
 
 **Parameters:**
 
-outputs ([MobileNetV2ForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2ForSemanticSegmentation)) : Raw outputs of the model.
+outputs ([MobileNetV2ForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2ForSemanticSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[tuple[int, int]]`, *optional*) : List of tuples corresponding to the requested final size (height, width) of each prediction.
 
@@ -420,7 +420,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size (if `target_sizes` is specified).
 
-Converts the output of [MobileNetV2ForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2ForSemanticSegmentation) into semantic segmentation maps.
+Converts the output of [MobileNetV2ForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2ForSemanticSegmentation) into semantic segmentation maps.
 
 ## MobileNetV2Model[[transformers.MobileNetV2Model]]
 
@@ -430,17 +430,17 @@ Converts the output of [MobileNetV2ForSemanticSegmentation](/docs/transformers/v
 transformers.MobileNetV2Model(config: MobileNetV2Config, add_pooling_layer: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilenet_v2/modeling_mobilenet_v2.py#L260)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilenet_v2/modeling_mobilenet_v2.py#L260)
 
 **Parameters:**
 
-config ([MobileNetV2Config](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MobileNetV2Config](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 add_pooling_layer (`bool`, *optional*, defaults to `True`) : Whether to add a pooling layer
 
 The bare Mobilenet V2 Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -454,23 +454,23 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilenet_v2/modeling_mobilenet_v2.py#L325)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilenet_v2/modeling_mobilenet_v2.py#L325)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileNetV2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2ImageProcessor). See `MobileNetV2ImageProcessor.__call__()` for details (`processor_class` uses [MobileNetV2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileNetV2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2ImageProcessor). See `MobileNetV2ImageProcessor.__call__()` for details (`processor_class` uses [MobileNetV2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2ImageProcessor) for processing images).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `BaseModelOutputWithPoolingAndNoAttention` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithPoolingAndNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MobileNetV2Config](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2Config)) and inputs.
+elements depending on the configuration ([MobileNetV2Config](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2Config)) and inputs.
 
-The [MobileNetV2Model](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2Model) forward method, overrides the `__call__` special method.
+The [MobileNetV2Model](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2Model) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -496,16 +496,16 @@ Example:
 transformers.MobileNetV2ForImageClassification(config: MobileNetV2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilenet_v2/modeling_mobilenet_v2.py#L374)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilenet_v2/modeling_mobilenet_v2.py#L374)
 
 **Parameters:**
 
-config ([MobileNetV2Config](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MobileNetV2Config](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 MobileNetV2 model with an image classification head on top (a linear layer on top of the pooled features), e.g. for
 ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -519,25 +519,25 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, labels: typing.Optional[torch.Tensor] = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilenet_v2/modeling_mobilenet_v2.py#L390)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilenet_v2/modeling_mobilenet_v2.py#L390)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileNetV2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2ImageProcessor). See `MobileNetV2ImageProcessor.__call__()` for details (`processor_class` uses [MobileNetV2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileNetV2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2ImageProcessor). See `MobileNetV2ImageProcessor.__call__()` for details (`processor_class` uses [MobileNetV2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2ImageProcessor) for processing images).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss). If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.FloatTensor)`
 
-A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
+A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MobileNetV2Config](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2Config)) and inputs.
+elements depending on the configuration ([MobileNetV2Config](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2Config)) and inputs.
 
-The [MobileNetV2ForImageClassification](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2ForImageClassification) forward method, overrides the `__call__` special method.
+The [MobileNetV2ForImageClassification](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2ForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -581,15 +581,15 @@ Example:
 transformers.MobileNetV2ForSemanticSegmentation(config: MobileNetV2Config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilenet_v2/modeling_mobilenet_v2.py#L508)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilenet_v2/modeling_mobilenet_v2.py#L508)
 
 **Parameters:**
 
-config ([MobileNetV2Config](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([MobileNetV2Config](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2Config)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 MobileNetV2 model with a semantic segmentation head on top, e.g. for Pascal VOC.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -603,25 +603,25 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/mobilenet_v2/modeling_mobilenet_v2.py#L519)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/mobilenet_v2/modeling_mobilenet_v2.py#L519)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileNetV2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2ImageProcessor). See `MobileNetV2ImageProcessor.__call__()` for details (`processor_class` uses [MobileNetV2ImageProcessor](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2ImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [MobileNetV2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2ImageProcessor). See `MobileNetV2ImageProcessor.__call__()` for details (`processor_class` uses [MobileNetV2ImageProcessor](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2ImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size, height, width)`, *optional*) : Ground truth semantic segmentation maps for computing the loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels > 1`, a classification loss is computed (Cross-Entropy).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [SemanticSegmenterOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [SemanticSegmenterOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or `tuple(torch.FloatTensor)`
 
-A [SemanticSegmenterOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
+A [SemanticSegmenterOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.SemanticSegmenterOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([MobileNetV2Config](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2Config)) and inputs.
+elements depending on the configuration ([MobileNetV2Config](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2Config)) and inputs.
 
-The [MobileNetV2ForSemanticSegmentation](/docs/transformers/v5.15.0/en/model_doc/mobilenet_v2#transformers.MobileNetV2ForSemanticSegmentation) forward method, overrides the `__call__` special method.
+The [MobileNetV2ForSemanticSegmentation](/docs/transformers/v5.15.1/en/model_doc/mobilenet_v2#transformers.MobileNetV2ForSemanticSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -672,4 +672,4 @@ Examples:
 ```
 
 ### VideoMAE
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/videomae.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/videomae.md

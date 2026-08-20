@@ -12,7 +12,7 @@ PP-OCRv5_server_rec is one of the PP-OCRv5_rec series, the latest generation of 
 
 ### Single input inference
 
-The example below demonstrates how to detect text with PP-OCRv5_server_rec using the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel).
+The example below demonstrates how to detect text with PP-OCRv5_server_rec using the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel).
 
 ```python
 import requests
@@ -36,7 +36,7 @@ for result in results:
 
 ### Batched inference
 
-Here is how you can do it with PP-OCRv5_server_rec using the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel):
+Here is how you can do it with PP-OCRv5_server_rec using the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel):
 
 ```python
 import requests
@@ -65,15 +65,15 @@ for result in results:
 transformers.PPOCRV5ServerRecForTextRecognition(config: PPOCRV5ServerRecConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_server_rec/modeling_pp_ocrv5_server_rec.py#L357)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_server_rec/modeling_pp_ocrv5_server_rec.py#L357)
 
 **Parameters:**
 
-config ([PPOCRV5ServerRecConfig](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPOCRV5ServerRecConfig](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PPOCRV5ServerRec model for text recognition tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -87,19 +87,19 @@ and behavior.
 forward(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_server_rec/modeling_pp_ocrv5_server_rec.py#L367)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_server_rec/modeling_pp_ocrv5_server_rec.py#L367)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor). See `PPOCRV5ServerRecImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor). See `PPOCRV5ServerRecImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor) for processing images).
 
 **Returns:** `BaseModelOutputWithNoAttention` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PPOCRV5ServerRecConfig](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecConfig)) and inputs.
+elements depending on the configuration ([PPOCRV5ServerRecConfig](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecConfig)) and inputs.
 
-The [PPOCRV5ServerRecForTextRecognition](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecForTextRecognition) forward method, overrides the `__call__` special method.
+The [PPOCRV5ServerRecForTextRecognition](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecForTextRecognition) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -119,7 +119,7 @@ the latter silently ignores them.
 transformers.PPOCRV5ServerRecConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_act: str = 'silu', backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, hidden_size: int = 120, mlp_ratio: float = 2.0, depth: int = 2, head_out_channels: int = 18385, conv_kernel_size: list | None = None, qkv_bias: bool = True, num_attention_heads: int = 8, attention_dropout: float | int = 0.0, layer_norm_eps: float = 1e-06)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_server_rec/configuration_pp_ocrv5_server_rec.py#L31)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_server_rec/configuration_pp_ocrv5_server_rec.py#L31)
 
 **Parameters:**
 
@@ -149,8 +149,8 @@ This is the configuration class to store the configuration of a PPOCRV5ServerRec
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [PaddlePaddle/PP-OCRv5_server_rec_safetensors](https://huggingface.co/PaddlePaddle/PP-OCRv5_server_rec_safetensors)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 ## PPOCRV5ServerRecModel[[transformers.PPOCRV5ServerRecModel]]
 
@@ -160,15 +160,15 @@ documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes
 transformers.PPOCRV5ServerRecModel(config: PPOCRV5ServerRecConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_server_rec/modeling_pp_ocrv5_server_rec.py#L320)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_server_rec/modeling_pp_ocrv5_server_rec.py#L320)
 
 **Parameters:**
 
-config ([PPOCRV5ServerRecConfig](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([PPOCRV5ServerRecConfig](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 PPOCRV5ServerRec model, consisting of Backbone and Head networks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -182,19 +182,19 @@ and behavior.
 forward(pixel_values: FloatTensor, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_server_rec/modeling_pp_ocrv5_server_rec.py#L328)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_server_rec/modeling_pp_ocrv5_server_rec.py#L328)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor). See `PPOCRV5ServerRecImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor). See `PPOCRV5ServerRecImageProcessor.__call__()` for details (`processor_class` uses [PPOCRV5ServerRecImageProcessor](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecImageProcessor) for processing images).
 
 **Returns:** `BaseModelOutputWithNoAttention` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([PPOCRV5ServerRecConfig](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecConfig)) and inputs.
+elements depending on the configuration ([PPOCRV5ServerRecConfig](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecConfig)) and inputs.
 
-The [PPOCRV5ServerRecModel](/docs/transformers/v5.15.0/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecModel) forward method, overrides the `__call__` special method.
+The [PPOCRV5ServerRecModel](/docs/transformers/v5.15.1/en/model_doc/pp_ocrv5_server_rec#transformers.PPOCRV5ServerRecModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -214,7 +214,7 @@ the latter silently ignores them.
 transformers.PPOCRV5ServerRecEncoderWithSVTR(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_server_rec/modeling_pp_ocrv5_server_rec.py#L258)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_server_rec/modeling_pp_ocrv5_server_rec.py#L258)
 
 SVTR: Scene Text Recognition with a Single Visual Model
 https://www.paddleocr.ai/v2.10.0/en/algorithm/text_recognition/algorithm_rec_svtr.html
@@ -227,7 +227,7 @@ https://www.paddleocr.ai/v2.10.0/en/algorithm/text_recognition/algorithm_rec_svt
 transformers.PPOCRV5MobileRecEncoderWithSVTR(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_mobile_rec/modeling_pp_ocrv5_mobile_rec.py#L257)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_mobile_rec/modeling_pp_ocrv5_mobile_rec.py#L257)
 
 SVTR: Scene Text Recognition with a Single Visual Model
 https://www.paddleocr.ai/v2.10.0/en/algorithm/text_recognition/algorithm_rec_svtr.html
@@ -240,7 +240,7 @@ https://www.paddleocr.ai/v2.10.0/en/algorithm/text_recognition/algorithm_rec_svt
 transformers.PPOCRV5ServerRecImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_server_rec/image_processing_pp_ocrv5_server_rec.py#L49)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_server_rec/image_processing_pp_ocrv5_server_rec.py#L49)
 
 **Parameters:**
 
@@ -402,7 +402,7 @@ Added for backward compatibility but this should be set as a processor attribute
 get_target_size(shape_list: list)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_server_rec/image_processing_pp_ocrv5_server_rec.py#L116)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_server_rec/image_processing_pp_ocrv5_server_rec.py#L116)
 
 Calculate the width and height from the widest image in the batch.
 
@@ -412,7 +412,7 @@ Calculate the width and height from the widest image in the batch.
 post_process_text_recognition(predictions)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/pp_ocrv5_server_rec/image_processing_pp_ocrv5_server_rec.py#L143)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/pp_ocrv5_server_rec/image_processing_pp_ocrv5_server_rec.py#L143)
 
 **Parameters:**
 
@@ -428,4 +428,4 @@ Each dictionary contains:
 Post-processes raw model logits to decode the recognized text and its confidence score.
 
 ### T5Gemma
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/t5gemma.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/t5gemma.md

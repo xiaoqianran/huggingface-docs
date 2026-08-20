@@ -9,7 +9,7 @@ You can find all the original BERTweet checkpoints under the [VinAI Research](ht
 > [!TIP]
 > Refer to the [BERT](./bert) docs for more examples of how to apply BERTweet to different language tasks.
 
-The example below demonstrates how to predict the `<mask>` token with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel), and from the command line.
+The example below demonstrates how to predict the `<mask>` token with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline), [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel), and from the command line.
 
 ```python
 from transformers import pipeline
@@ -49,7 +49,7 @@ print(f"The predicted token is: {predicted_token}")
 
 ## Notes
 
-- Use the [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer) or [BertweetTokenizer](/docs/transformers/v5.15.0/en/model_doc/bertweet#transformers.BertweetTokenizer) because it's preloaded with a custom vocabulary adapted to tweet-specific tokens like hashtags (#), mentions (@), emojis, and common abbreviations. Make sure to also install the [emoji](https://pypi.org/project/emoji/) library.
+- Use the [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer) or [BertweetTokenizer](/docs/transformers/v5.15.1/en/model_doc/bertweet#transformers.BertweetTokenizer) because it's preloaded with a custom vocabulary adapted to tweet-specific tokens like hashtags (#), mentions (@), emojis, and common abbreviations. Make sure to also install the [emoji](https://pypi.org/project/emoji/) library.
 - Inputs should be padded on the right (`padding="max_length"`) because BERT uses absolute position embeddings.
 
 ## BertweetTokenizer[[transformers.BertweetTokenizer]]
@@ -60,7 +60,7 @@ print(f"The predicted token is: {predicted_token}")
 transformers.BertweetTokenizer(vocab_file, merges_file, normalization = False, bos_token = '<s>', eos_token = '</s>', sep_token = '</s>', cls_token = '<s>', unk_token = '<unk>', pad_token = '<pad>', mask_token = '<mask>', **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bertweet/tokenization_bertweet.py#L51)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bertweet/tokenization_bertweet.py#L51)
 
 **Parameters:**
 
@@ -86,7 +86,7 @@ mask_token (`str`, *optional*, defaults to `"<mask>"`) : The token used for mask
 
 Constructs a BERTweet tokenizer, using Byte-Pair-Encoding.
 
-This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
+This tokenizer inherits from [PreTrainedTokenizer](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.PythonBackend) which contains most of the main methods. Users should refer to
 this superclass for more information regarding those methods.
 
 #### add_from_file[[transformers.BertweetTokenizer.add_from_file]]
@@ -95,7 +95,7 @@ this superclass for more information regarding those methods.
 add_from_file(f)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bertweet/tokenization_bertweet.py#L332)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bertweet/tokenization_bertweet.py#L332)
 
 Loads a pre-existing dictionary from a text file and adds its symbols to this instance.
 
@@ -105,7 +105,7 @@ Loads a pre-existing dictionary from a text file and adds its symbols to this in
 convert_tokens_to_string(tokens)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bertweet/tokenization_bertweet.py#L291)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bertweet/tokenization_bertweet.py#L291)
 
 Converts a sequence of tokens (string) in a single string.
 
@@ -115,7 +115,7 @@ Converts a sequence of tokens (string) in a single string.
 normalizeToken(token)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bertweet/tokenization_bertweet.py#L264)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bertweet/tokenization_bertweet.py#L264)
 
 Normalize tokens in a Tweet
 
@@ -125,7 +125,7 @@ Normalize tokens in a Tweet
 normalizeTweet(tweet)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bertweet/tokenization_bertweet.py#L230)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bertweet/tokenization_bertweet.py#L230)
 
 Normalize a raw Tweet
 
@@ -135,9 +135,9 @@ Normalize a raw Tweet
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/bertweet/tokenization_bertweet.py#L302)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/bertweet/tokenization_bertweet.py#L302)
 
 Save the vocabulary and merges files to a directory.
 
 ### DeBERTa
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/deberta.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/deberta.md

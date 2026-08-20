@@ -34,26 +34,26 @@ This model was contributed by [anugunj](https://huggingface.co/anugunj). The ori
   (cross-entropy between the prediction of the distillation head and the label predicted by the teacher). At inference time,
   one takes the average prediction between both heads as final prediction. (2) is also called "fine-tuning with distillation",
   because one relies on a teacher that has already been fine-tuned on the downstream dataset. In terms of models, (1) corresponds
-  to [LevitForImageClassification](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitForImageClassification) and (2) corresponds to [LevitForImageClassificationWithTeacher](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitForImageClassificationWithTeacher).
+  to [LevitForImageClassification](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitForImageClassification) and (2) corresponds to [LevitForImageClassificationWithTeacher](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitForImageClassificationWithTeacher).
 - All released checkpoints were pre-trained and fine-tuned on  [ImageNet-1k](https://huggingface.co/datasets/ILSVRC/imagenet-1k)
   (also referred to as ILSVRC 2012, a collection of 1.3 million images and 1,000 classes). only. No external data was used. This is in
   contrast with the original ViT model, which used external data like the JFT-300M dataset/Imagenet-21k for
   pre-training.
-- The authors of LeViT released 5 trained LeViT models, which you can directly plug into [LevitModel](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitModel) or [LevitForImageClassification](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitForImageClassification).
+- The authors of LeViT released 5 trained LeViT models, which you can directly plug into [LevitModel](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitModel) or [LevitForImageClassification](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitForImageClassification).
   Techniques like data augmentation, optimization, and regularization were used in order to simulate training on a much larger dataset
   (while only using ImageNet-1k for pre-training). The 5 variants available are (all trained on images of size 224x224):
   *facebook/levit-128S*, *facebook/levit-128*, *facebook/levit-192*, *facebook/levit-256* and
-  *facebook/levit-384*. Note that one should use [LevitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitImageProcessor) in order to
+  *facebook/levit-384*. Note that one should use [LevitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitImageProcessor) in order to
   prepare images for the model.
-- [LevitForImageClassificationWithTeacher](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitForImageClassificationWithTeacher) currently supports only inference and not training or fine-tuning.
+- [LevitForImageClassificationWithTeacher](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitForImageClassificationWithTeacher) currently supports only inference and not training or fine-tuning.
 - You can check out demo notebooks regarding inference as well as fine-tuning on custom data [here](https://github.com/NielsRogge/Transformers-Tutorials/tree/master/VisionTransformer)
-  (you can just replace [ViTImageProcessor](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTImageProcessor) by [LevitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitImageProcessor) and [ViTForImageClassification](/docs/transformers/v5.15.0/en/model_doc/vit#transformers.ViTForImageClassification) by [LevitForImageClassification](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitForImageClassification) or [LevitForImageClassificationWithTeacher](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitForImageClassificationWithTeacher)).
+  (you can just replace [ViTImageProcessor](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTImageProcessor) by [LevitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitImageProcessor) and [ViTForImageClassification](/docs/transformers/v5.15.1/en/model_doc/vit#transformers.ViTForImageClassification) by [LevitForImageClassification](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitForImageClassification) or [LevitForImageClassificationWithTeacher](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitForImageClassificationWithTeacher)).
 
 ## Resources
 
 A list of official Hugging Face and community (indicated by 🌎) resources to help you get started with LeViT.
 
-- [LevitForImageClassification](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitForImageClassification) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-classification) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/image_classification.ipynb).
+- [LevitForImageClassification](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitForImageClassification) is supported by this [example script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/image-classification) and [notebook](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/image_classification.ipynb).
 - See also: [Image classification task guide](../tasks/image_classification)
 
 If you're interested in submitting a resource to be included here, please feel free to open a Pull Request and we'll review it! The resource should ideally demonstrate something new instead of duplicating an existing resource.
@@ -66,7 +66,7 @@ If you're interested in submitting a resource to be included here, please feel f
 transformers.LevitConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, image_size: int | list[int] | tuple[int, int] = 224, num_channels: int = 3, kernel_size: int = 3, stride: int = 2, padding: int = 1, patch_size: int | list[int] | tuple[int, int] = 16, hidden_sizes: list[int] | tuple[int, ...] = (128, 256, 384), num_attention_heads: list[int] | tuple[int, ...] = (4, 8, 12), depths: list[int] | tuple[int, ...] = (4, 4, 4), key_dim: list[int] | tuple[int, ...] = (16, 16, 16), drop_path_rate: int = 0, mlp_ratio: list[int] | tuple[int, ...] = (2, 2, 2), attention_ratio: list[int] | tuple[int, ...] = (2, 2, 2), initializer_range: float = 0.02)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/levit/configuration_levit.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/levit/configuration_levit.py#L24)
 
 **Parameters:**
 
@@ -102,8 +102,8 @@ This is the configuration class to store the configuration of a LevitModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [facebook/levit-128S](https://huggingface.co/facebook/levit-128S)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -128,7 +128,7 @@ Example:
 transformers.LevitImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/levit/image_processing_levit.py#L33)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/levit/image_processing_levit.py#L33)
 
 **Parameters:**
 
@@ -180,7 +180,7 @@ Constructs a LevitImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -240,7 +240,7 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.LevitImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/levit/image_processing_pil_levit.py#L32)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/levit/image_processing_pil_levit.py#L32)
 
 **Parameters:**
 
@@ -292,7 +292,7 @@ Constructs a LevitImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], *args, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/image_processing_utils.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/image_processing_utils.py#L382)
 
 **Parameters:**
 
@@ -352,15 +352,15 @@ image_seq_length (`int`, *kwargs*, *optional*) : The number of image tokens to b
 transformers.LevitModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/levit/modeling_levit.py#L489)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/levit/modeling_levit.py#L489)
 
 **Parameters:**
 
-config ([LevitModel](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LevitModel](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Levit Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -374,23 +374,23 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/levit/modeling_levit.py#L498)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/levit/modeling_levit.py#L498)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [LevitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitImageProcessor). See `LevitImageProcessor.__call__()` for details (`processor_class` uses [LevitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [LevitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitImageProcessor). See `LevitImageProcessor.__call__()` for details (`processor_class` uses [LevitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitImageProcessor) for processing images).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `BaseModelOutputWithPoolingAndNoAttention` or `tuple(torch.FloatTensor)`
 
 A `BaseModelOutputWithPoolingAndNoAttention` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LevitConfig](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitConfig)) and inputs.
+elements depending on the configuration ([LevitConfig](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitConfig)) and inputs.
 
-The [LevitModel](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitModel) forward method, overrides the `__call__` special method.
+The [LevitModel](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -416,16 +416,16 @@ Example:
 transformers.LevitForImageClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/levit/modeling_levit.py#L542)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/levit/modeling_levit.py#L542)
 
 **Parameters:**
 
-config ([LevitForImageClassification](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitForImageClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LevitForImageClassification](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitForImageClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Levit Model with an image classification head on top (a linear layer on top of the pooled features), e.g. for
 ImageNet.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -439,25 +439,25 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, labels: typing.Optional[torch.LongTensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/levit/modeling_levit.py#L559)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/levit/modeling_levit.py#L559)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [LevitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitImageProcessor). See `LevitImageProcessor.__call__()` for details (`processor_class` uses [LevitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [LevitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitImageProcessor). See `LevitImageProcessor.__call__()` for details (`processor_class` uses [LevitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*) : Labels for computing the image classification/regression loss. Indices should be in `[0, ..., config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.FloatTensor)`
+**Returns:** [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or `tuple(torch.FloatTensor)`
 
-A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.0/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
+A [ImageClassifierOutputWithNoAttention](/docs/transformers/v5.15.1/en/main_classes/output#transformers.modeling_outputs.ImageClassifierOutputWithNoAttention) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LevitConfig](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitConfig)) and inputs.
+elements depending on the configuration ([LevitConfig](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitConfig)) and inputs.
 
-The [LevitForImageClassification](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitForImageClassification) forward method, overrides the `__call__` special method.
+The [LevitForImageClassification](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitForImageClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -501,18 +501,18 @@ Example:
 transformers.LevitForImageClassificationWithTeacher(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/levit/modeling_levit.py#L605)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/levit/modeling_levit.py#L605)
 
 **Parameters:**
 
-config ([LevitForImageClassificationWithTeacher](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitForImageClassificationWithTeacher)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([LevitForImageClassificationWithTeacher](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitForImageClassificationWithTeacher)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 LeViT Model transformer with image classification heads on top (a linear layer on top of the final hidden state and
 a linear layer on top of the final hidden state of the distillation token) e.g. for ImageNet. .. warning::
 This model supports inference-only. Fine-tuning with distillation (i.e. with a teacher) is not yet
 supported.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -526,23 +526,23 @@ and behavior.
 forward(pixel_values: typing.Optional[torch.FloatTensor] = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/levit/modeling_levit.py#L627)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/levit/modeling_levit.py#L627)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [LevitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitImageProcessor). See `LevitImageProcessor.__call__()` for details (`processor_class` uses [LevitImageProcessor](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`, *optional*) : The tensors corresponding to the input images. Pixel values can be obtained using [LevitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitImageProcessor). See `LevitImageProcessor.__call__()` for details (`processor_class` uses [LevitImageProcessor](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitImageProcessor) for processing images).
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `LevitForImageClassificationWithTeacherOutput` or `tuple(torch.FloatTensor)`
 
 A `LevitForImageClassificationWithTeacherOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([LevitConfig](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitConfig)) and inputs.
+elements depending on the configuration ([LevitConfig](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitConfig)) and inputs.
 
-The [LevitForImageClassificationWithTeacher](/docs/transformers/v5.15.0/en/model_doc/levit#transformers.LevitForImageClassificationWithTeacher) forward method, overrides the `__call__` special method.
+The [LevitForImageClassificationWithTeacher](/docs/transformers/v5.15.1/en/model_doc/levit#transformers.LevitForImageClassificationWithTeacher) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -583,4 +583,4 @@ Example:
 ```
 
 ### ViTDet
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/vitdet.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/vitdet.md

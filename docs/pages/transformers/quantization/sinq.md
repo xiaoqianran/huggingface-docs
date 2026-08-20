@@ -40,7 +40,7 @@ pip install sinq
 ### Quantize in a few lines
 
 Quantizing any 🤗 Hugging Face model with SINQ is simple and takes only a few lines of code. 
-First, create a [SinqConfig](/docs/transformers/v5.15.0/en/main_classes/quantization#transformers.SinqConfig) and specify the following parameters:
+First, create a [SinqConfig](/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.SinqConfig) and specify the following parameters:
 
 | Flag | Description | Type | Options | Default |
 |------|-------------|---------|---------|----------|
@@ -178,4 +178,4 @@ Currently, the A-SINQ method is not supported in Hugging Face. Please refer to t
 At the moment the SINQ quantization strategy and SINQ quantized models do not support Multi-GPU option, so if your system counts multiple GPUs please specify which one should be used.
 
 ### HQQ
-https://huggingface.co/docs/transformers/v5.15.0/quantization/hqq.md
+https://huggingface.co/docs/transformers/v5.15.1/quantization/hqq.md

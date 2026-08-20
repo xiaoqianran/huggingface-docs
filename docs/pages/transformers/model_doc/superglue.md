@@ -9,7 +9,7 @@ You can find all the original SuperGlue checkpoints under the [Magic Leap Commun
 >
 > Click on the SuperGlue models in the right sidebar for more examples of how to apply SuperGlue to different computer vision tasks.
 
-The example below demonstrates how to match keypoints between two images with [Pipeline](/docs/transformers/v5.15.0/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModel) class.
+The example below demonstrates how to match keypoints between two images with [Pipeline](/docs/transformers/v5.15.1/en/main_classes/pipelines#transformers.Pipeline) or the [AutoModel](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoModel) class.
 
 ```python
 from transformers import pipeline
@@ -77,7 +77,7 @@ processed_outputs = processor.post_process_keypoint_matching(outputs, image_size
     ```
 
 - The model outputs matching indices, keypoints, and confidence scores for each match.
-- For better visualization and analysis, use the [SuperGlueImageProcessor.post_process_keypoint_matching()](/docs/transformers/v5.15.0/en/model_doc/superglue#transformers.SuperGlueImageProcessor.post_process_keypoint_matching) method to get matches in a more readable format.
+- For better visualization and analysis, use the [SuperGlueImageProcessor.post_process_keypoint_matching()](/docs/transformers/v5.15.1/en/model_doc/superglue#transformers.SuperGlueImageProcessor.post_process_keypoint_matching) method to get matches in a more readable format.
 
     ```py
     # Process outputs for visualization
@@ -113,7 +113,7 @@ processed_outputs = processor.post_process_keypoint_matching(outputs, image_size
 transformers.SuperGlueConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, keypoint_detector_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, hidden_size: int = 256, keypoint_encoder_sizes: list[int] | None = None, gnn_layers_types: list[str] | None = None, num_attention_heads: int = 4, sinkhorn_iterations: int = 100, matching_threshold: float = 0.0, initializer_range: float = 0.02, is_decoder: bool = False, attention_probs_dropout_prob: int | float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superglue/configuration_superglue.py#L24)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superglue/configuration_superglue.py#L24)
 
 **Parameters:**
 
@@ -141,8 +141,8 @@ This is the configuration class to store the configuration of a SuperglueModel. 
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [magic-leap-community/superglue_indoor](https://huggingface.co/magic-leap-community/superglue_indoor)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 ```python
@@ -166,7 +166,7 @@ Examples:
 transformers.SuperGlueImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superglue/image_processing_superglue.py#L124)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superglue/image_processing_superglue.py#L124)
 
 **Parameters:**
 
@@ -220,7 +220,7 @@ Constructs a SuperGlueImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superglue/image_processing_superglue.py#L138)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superglue/image_processing_superglue.py#L138)
 
 **Parameters:**
 
@@ -280,7 +280,7 @@ do_grayscale (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) : W
 post_process_keypoint_matching(outputs: SuperGlueKeypointMatchingOutput, target_sizes: transformers.utils.generic.TensorType | list[tuple], threshold: float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superglue/image_processing_superglue.py#L194)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superglue/image_processing_superglue.py#L194)
 
 **Parameters:**
 
@@ -304,7 +304,7 @@ with coordinates absolute to the original image sizes.
 visualize_keypoint_matching(images, keypoint_matching_output: list)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superglue/image_processing_superglue.py#L262)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superglue/image_processing_superglue.py#L262)
 
 **Parameters:**
 
@@ -327,7 +327,7 @@ Plots the image pairs side by side with the detected keypoints as well as the ma
 transformers.SuperGlueImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superglue/image_processing_pil_superglue.py#L117)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superglue/image_processing_pil_superglue.py#L117)
 
 **Parameters:**
 
@@ -381,7 +381,7 @@ Constructs a SuperGlueImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superglue/image_processing_pil_superglue.py#L131)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superglue/image_processing_pil_superglue.py#L131)
 
 **Parameters:**
 
@@ -441,7 +441,7 @@ do_grayscale (`bool`, *kwargs*, *optional*, defaults to `self.do_grayscale`) : W
 post_process_keypoint_matching(outputs: SuperGlueKeypointMatchingOutput, target_sizes: transformers.utils.generic.TensorType | list[tuple], threshold: float = 0.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superglue/image_processing_pil_superglue.py#L172)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superglue/image_processing_pil_superglue.py#L172)
 
 **Parameters:**
 
@@ -465,7 +465,7 @@ with coordinates absolute to the original image sizes.
 visualize_keypoint_matching(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], keypoint_matching_output: list)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superglue/image_processing_pil_superglue.py#L243)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superglue/image_processing_pil_superglue.py#L243)
 
 **Parameters:**
 
@@ -488,15 +488,15 @@ Plots the image pairs side by side with the detected keypoints as well as the ma
 transformers.SuperGlueForKeypointMatching(config: SuperGlueConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superglue/modeling_superglue.py#L486)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superglue/modeling_superglue.py#L486)
 
 **Parameters:**
 
-config ([SuperGlueConfig](/docs/transformers/v5.15.0/en/model_doc/superglue#transformers.SuperGlueConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([SuperGlueConfig](/docs/transformers/v5.15.1/en/model_doc/superglue#transformers.SuperGlueConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 SuperGlue model taking images as inputs and outputting the matching of them.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -510,11 +510,11 @@ and behavior.
 forward(pixel_values: FloatTensor, labels: typing.Optional[torch.LongTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/superglue/modeling_superglue.py#L665)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/superglue/modeling_superglue.py#L665)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SuperGlueImageProcessor](/docs/transformers/v5.15.0/en/model_doc/superglue#transformers.SuperGlueImageProcessor). See `SuperGlueImageProcessor.__call__()` for details (`processor_class` uses [SuperGlueImageProcessor](/docs/transformers/v5.15.0/en/model_doc/superglue#transformers.SuperGlueImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [SuperGlueImageProcessor](/docs/transformers/v5.15.1/en/model_doc/superglue#transformers.SuperGlueImageProcessor). See `SuperGlueImageProcessor.__call__()` for details (`processor_class` uses [SuperGlueImageProcessor](/docs/transformers/v5.15.1/en/model_doc/superglue#transformers.SuperGlueImageProcessor) for processing images).
 
 labels (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*) : Labels for computing the masked language modeling loss. Indices should either be in `[0, ..., config.vocab_size]` or -100 (see `input_ids` docstring). Tokens with indices set to `-100` are ignored (masked), the loss is only computed for the tokens with labels in `[0, ..., config.vocab_size]`.
 
@@ -522,15 +522,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `SuperGlueKeypointMatchingOutput` or `tuple(torch.FloatTensor)`
 
 A `SuperGlueKeypointMatchingOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([SuperGlueConfig](/docs/transformers/v5.15.0/en/model_doc/superglue#transformers.SuperGlueConfig)) and inputs.
+elements depending on the configuration ([SuperGlueConfig](/docs/transformers/v5.15.1/en/model_doc/superglue#transformers.SuperGlueConfig)) and inputs.
 
-The [SuperGlueForKeypointMatching](/docs/transformers/v5.15.0/en/model_doc/superglue#transformers.SuperGlueForKeypointMatching) forward method, overrides the `__call__` special method.
+The [SuperGlueForKeypointMatching](/docs/transformers/v5.15.1/en/model_doc/superglue#transformers.SuperGlueForKeypointMatching) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -575,4 +575,4 @@ Examples:
 ```
 
 ### ViTPose
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/vitpose.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/vitpose.md

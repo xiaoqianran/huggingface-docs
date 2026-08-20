@@ -42,7 +42,7 @@ found [here](https://github.com/microsoft/table-transformer).
 transformers.TableTransformerConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, is_encoder_decoder: bool = True, backbone_config: dict | transformers.configuration_utils.PreTrainedConfig | None = None, num_channels: int = 3, num_queries: int = 100, encoder_layers: int = 6, encoder_ffn_dim: int = 2048, encoder_attention_heads: int = 8, decoder_layers: int = 6, decoder_ffn_dim: int = 2048, decoder_attention_heads: int = 8, encoder_layerdrop: float | int = 0.0, decoder_layerdrop: float | int = 0.0, activation_function: str = 'relu', d_model: int = 256, dropout: float | int = 0.1, attention_dropout: float | int = 0.0, activation_dropout: float | int = 0.0, init_std: float = 0.02, init_xavier_std: float = 1.0, auxiliary_loss: bool = False, position_embedding_type: str = 'sine', dilation: bool = False, class_cost: int = 1, bbox_cost: int = 5, giou_cost: int = 2, mask_loss_coefficient: int = 1, dice_loss_coefficient: int = 1, bbox_loss_coefficient: int = 5, giou_loss_coefficient: int = 2, eos_coefficient: float = 0.1)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/table_transformer/configuration_table_transformer.py#L26)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/table_transformer/configuration_table_transformer.py#L26)
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ backbone_config (`Union[dict, ~configuration_utils.PreTrainedConfig]`, *optional
 
 num_channels (`int`, *optional*, defaults to `3`) : The number of input channels.
 
-num_queries (`int`, *optional*, defaults to 100) : Number of object queries, i.e. detection slots. This is the maximal number of objects [TableTransformerModel](/docs/transformers/v5.15.0/en/model_doc/table-transformer#transformers.TableTransformerModel) can detect in a single image. For COCO, we recommend 100 queries.
+num_queries (`int`, *optional*, defaults to 100) : Number of object queries, i.e. detection slots. This is the maximal number of objects [TableTransformerModel](/docs/transformers/v5.15.1/en/model_doc/table-transformer#transformers.TableTransformerModel) can detect in a single image. For COCO, we recommend 100 queries.
 
 encoder_layers (`int`, *optional*, defaults to `6`) : Number of hidden layers in the Transformer encoder. Will use the same value as `num_layers` if not set.
 
@@ -110,8 +110,8 @@ This is the configuration class to store the configuration of a Table Transforme
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [microsoft/table-transformer-detection](https://huggingface.co/microsoft/table-transformer-detection)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -136,16 +136,16 @@ Examples:
 transformers.TableTransformerModel(config: TableTransformerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/table_transformer/modeling_table_transformer.py#L967)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/table_transformer/modeling_table_transformer.py#L967)
 
 **Parameters:**
 
-config ([TableTransformerConfig](/docs/transformers/v5.15.0/en/model_doc/table-transformer#transformers.TableTransformerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([TableTransformerConfig](/docs/transformers/v5.15.1/en/model_doc/table-transformer#transformers.TableTransformerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Table Transformer Model (consisting of a backbone and encoder-decoder Transformer) outputting raw
 hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -159,11 +159,11 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.FloatTensor] = None, decoder_attention_mask: typing.Optional[torch.FloatTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/table_transformer/modeling_table_transformer.py#L996)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/table_transformer/modeling_table_transformer.py#L996)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor). See `DetrImageProcessor.__call__()` for details (`processor_class` uses [DetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor). See `DetrImageProcessor.__call__()` for details (`processor_class` uses [DetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor) for processing images).
 
 pixel_mask (`torch.FloatTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -179,15 +179,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `TableTransformerModelOutput` or `tuple(torch.FloatTensor)`
 
 A `TableTransformerModelOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TableTransformerConfig](/docs/transformers/v5.15.0/en/model_doc/table-transformer#transformers.TableTransformerConfig)) and inputs.
+elements depending on the configuration ([TableTransformerConfig](/docs/transformers/v5.15.1/en/model_doc/table-transformer#transformers.TableTransformerConfig)) and inputs.
 
-The [TableTransformerModel](/docs/transformers/v5.15.0/en/model_doc/table-transformer#transformers.TableTransformerModel) forward method, overrides the `__call__` special method.
+The [TableTransformerModel](/docs/transformers/v5.15.1/en/model_doc/table-transformer#transformers.TableTransformerModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -197,7 +197,7 @@ the latter silently ignores them.
 
   If `past_key_values` is used only the last hidden-state of the sequences of shape `(batch_size, 1,
   hidden_size)` is output.
-- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.0/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
+- **past_key_values** (`EncoderDecoderCache`, *optional*, returned when `use_cache=True` is passed or when `config.use_cache=True`) -- It is a [EncoderDecoderCache](/docs/transformers/v5.15.1/en/internal/generation_utils#transformers.EncoderDecoderCache) instance. For more details, see our [kv cache guide](https://huggingface.co/docs/transformers/en/kv_cache).
 
   Contains pre-computed hidden-states (key and values in the self-attention blocks and in the cross-attention
   blocks) that can be used (see `past_key_values` input) to speed up sequential decoding.
@@ -262,16 +262,16 @@ Examples:
 transformers.TableTransformerForObjectDetection(config: TableTransformerConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/table_transformer/modeling_table_transformer.py#L1136)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/table_transformer/modeling_table_transformer.py#L1136)
 
 **Parameters:**
 
-config ([TableTransformerConfig](/docs/transformers/v5.15.0/en/model_doc/table-transformer#transformers.TableTransformerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([TableTransformerConfig](/docs/transformers/v5.15.1/en/model_doc/table-transformer#transformers.TableTransformerConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 Table Transformer Model (consisting of a backbone and encoder-decoder Transformer) with object detection heads on
 top, for tasks such as COCO detection.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -285,11 +285,11 @@ and behavior.
 forward(pixel_values: FloatTensor, pixel_mask: typing.Optional[torch.FloatTensor] = None, decoder_attention_mask: typing.Optional[torch.FloatTensor] = None, encoder_outputs: typing.Optional[torch.FloatTensor] = None, inputs_embeds: typing.Optional[torch.FloatTensor] = None, decoder_inputs_embeds: typing.Optional[torch.FloatTensor] = None, labels: list[dict] | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/table_transformer/modeling_table_transformer.py#L1155)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/table_transformer/modeling_table_transformer.py#L1155)
 
 **Parameters:**
 
-pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor). See `DetrImageProcessor.__call__()` for details (`processor_class` uses [DetrImageProcessor](/docs/transformers/v5.15.0/en/model_doc/detr#transformers.DetrImageProcessor) for processing images).
+pixel_values (`torch.FloatTensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [DetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor). See `DetrImageProcessor.__call__()` for details (`processor_class` uses [DetrImageProcessor](/docs/transformers/v5.15.1/en/model_doc/detr#transformers.DetrImageProcessor) for processing images).
 
 pixel_mask (`torch.FloatTensor` of shape `(batch_size, height, width)`, *optional*) : Mask to avoid performing attention on padding pixel values. Mask values selected in `[0, 1]`:  - 1 for pixels that are real (i.e. **not masked**), - 0 for pixels that are padding (i.e. **masked**).  [What are attention masks?](../glossary#attention-mask)
 
@@ -307,15 +307,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 **Returns:** `TableTransformerObjectDetectionOutput` or `tuple(torch.FloatTensor)`
 
 A `TableTransformerObjectDetectionOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([TableTransformerConfig](/docs/transformers/v5.15.0/en/model_doc/table-transformer#transformers.TableTransformerConfig)) and inputs.
+elements depending on the configuration ([TableTransformerConfig](/docs/transformers/v5.15.1/en/model_doc/table-transformer#transformers.TableTransformerConfig)) and inputs.
 
-The [TableTransformerForObjectDetection](/docs/transformers/v5.15.0/en/model_doc/table-transformer#transformers.TableTransformerForObjectDetection) forward method, overrides the `__call__` special method.
+The [TableTransformerForObjectDetection](/docs/transformers/v5.15.1/en/model_doc/table-transformer#transformers.TableTransformerForObjectDetection) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -392,4 +392,4 @@ Detected table with confidence 1.0 at location [202.1, 210.59, 1119.22, 385.09]
 ```
 
 ### Mistral4
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/mistral4.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/mistral4.md

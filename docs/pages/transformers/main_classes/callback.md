@@ -1,23 +1,23 @@
 # Callbacks
 
 Callbacks are objects that can customize the behavior of the training loop in the PyTorch
-[Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) that can inspect the training loop state (for progress reporting, logging on TensorBoard or other ML
+[Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) that can inspect the training loop state (for progress reporting, logging on TensorBoard or other ML
 platforms...) and take decisions (like early stopping).
 
-Callbacks are "read only" pieces of code, apart from the [TrainerControl](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerControl) object they return, they
+Callbacks are "read only" pieces of code, apart from the [TrainerControl](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerControl) object they return, they
 cannot change anything in the training loop. For customizations that require changes in the training loop, you should
-subclass [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) and override the methods you need (see [trainer](trainer) for examples).
+subclass [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) and override the methods you need (see [trainer](trainer) for examples).
 
 By default, `TrainingArguments.report_to` is set to `"none"`.
 
-The main class that implements callbacks is [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback). It gets the
-[TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) used to instantiate the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer), can access that
-Trainer's internal state via [TrainerState](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerState), and can take some actions on the training loop via
-[TrainerControl](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerControl).
+The main class that implements callbacks is [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback). It gets the
+[TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) used to instantiate the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer), can access that
+Trainer's internal state via [TrainerState](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerState), and can take some actions on the training loop via
+[TrainerControl](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerControl).
 
 ## Available Callbacks[[transformers.integrations.CometCallback]]
 
-Here is the list of the available [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) in the library:
+Here is the list of the available [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) in the library:
 
 #### transformers.integrations.CometCallback[[transformers.integrations.CometCallback]]
 
@@ -25,9 +25,9 @@ Here is the list of the available [TrainerCallback](/docs/transformers/v5.15.0/e
 transformers.integrations.CometCallback()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L1133)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L1133)
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that sends the logs to [Comet ML](https://www.comet.com/site/).
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that sends the logs to [Comet ML](https://www.comet.com/site/).
 
 #### setup[[transformers.integrations.CometCallback.setup]]
 
@@ -35,7 +35,7 @@ A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transfor
 setup(args, state, model)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L1147)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L1147)
 
 Setup the optional Comet integration.
 
@@ -66,9 +66,9 @@ For a number of configurable items in the environment, see
 transformers.DefaultFlowCallback()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L563)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L563)
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that handles the default flow of the training loop for logs, evaluation and checkpoints.
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that handles the default flow of the training loop for logs, evaluation and checkpoints.
 
 #### transformers.PrinterCallback[[transformers.PrinterCallback]]
 
@@ -76,9 +76,9 @@ A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transfor
 transformers.PrinterCallback()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L698)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L698)
 
-A bare [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that just prints the logs.
+A bare [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that just prints the logs.
 
 #### transformers.ProgressCallback[[transformers.ProgressCallback]]
 
@@ -86,9 +86,9 @@ A bare [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#tra
 transformers.ProgressCallback(max_str_len: int = 100)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L624)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L624)
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that displays the progress of training or evaluation.
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that displays the progress of training or evaluation.
 You can modify `max_str_len` to control how long strings are truncated when logging.
 
 #### transformers.EarlyStoppingCallback[[transformers.EarlyStoppingCallback]]
@@ -97,7 +97,7 @@ You can modify `max_str_len` to control how long strings are truncated when logg
 transformers.EarlyStoppingCallback(early_stopping_patience: int = 1, early_stopping_threshold: float | None = 0.0)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L711)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L711)
 
 **Parameters:**
 
@@ -105,10 +105,10 @@ early_stopping_patience (`int`) : Use with `metric_for_best_model` to stop train
 
 early_stopping_threshold(`float`, *optional*) : Use with TrainingArguments `metric_for_best_model` and `early_stopping_patience` to denote how much the specified metric must improve to satisfy early stopping conditions. `
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that handles early stopping.
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that handles early stopping.
 
-This callback depends on [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) argument *load_best_model_at_end* functionality to set best_metric
-in [TrainerState](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerState). Note that if the [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) argument *save_steps* differs from *eval_steps*, the
+This callback depends on [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) argument *load_best_model_at_end* functionality to set best_metric
+in [TrainerState](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerState). Note that if the [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) argument *save_steps* differs from *eval_steps*, the
 early stopping will not occur until the next save step.
 
 #### transformers.integrations.TensorBoardCallback[[transformers.integrations.TensorBoardCallback]]
@@ -117,13 +117,13 @@ early stopping will not occur until the next save step.
 transformers.integrations.TensorBoardCallback(tb_writer = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L577)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L577)
 
 **Parameters:**
 
 tb_writer (`SummaryWriter`, *optional*) : The writer to use. Will instantiate one if not set.
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that sends the logs to [TensorBoard](https://www.tensorflow.org/tensorboard).
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that sends the logs to [TensorBoard](https://www.tensorflow.org/tensorboard).
 
 Environment:
 - **TENSORBOARD_LOGGING_DIR** (`str`, *optional*, defaults to `None`):
@@ -135,9 +135,9 @@ Environment:
 transformers.integrations.TrackioCallback()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L935)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L935)
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that logs metrics to Trackio.
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that logs metrics to Trackio.
 
 #### setup[[transformers.integrations.TrackioCallback.setup]]
 
@@ -145,12 +145,12 @@ A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transfor
 setup(args, state, model, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L969)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L969)
 
 Setup the optional Trackio integration.
 
 To customize the setup you can also set `project`, `trackio_space_id`, `trackio_bucket_id`,
-`trackio_static_space_id`, and `hub_private_repo` in [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments).
+`trackio_static_space_id`, and `hub_private_repo` in [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments).
 
 #### transformers.integrations.WandbCallback[[transformers.integrations.WandbCallback]]
 
@@ -158,9 +158,9 @@ To customize the setup you can also set `project`, `trackio_space_id`, `trackio_
 transformers.integrations.WandbCallback()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L695)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L695)
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that logs metrics, media, model checkpoints to [Weight and Biases](https://www.wandb.com/).
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that logs metrics, media, model checkpoints to [Weight and Biases](https://www.wandb.com/).
 
 #### setup[[transformers.integrations.WandbCallback.setup]]
 
@@ -168,7 +168,7 @@ A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transfor
 setup(args, state, model, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L711)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L711)
 
 Setup the optional Weights & Biases (*wandb*) integration.
 
@@ -194,9 +194,9 @@ Environment:
 transformers.integrations.MLflowCallback()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L1286)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L1286)
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that sends the logs to [MLflow](https://www.mlflow.org/). Can be disabled by setting
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that sends the logs to [MLflow](https://www.mlflow.org/). Can be disabled by setting
 environment variable `DISABLE_MLFLOW_INTEGRATION = TRUE`.
 
 #### setup[[transformers.integrations.MLflowCallback.setup]]
@@ -205,7 +205,7 @@ environment variable `DISABLE_MLFLOW_INTEGRATION = TRUE`.
 setup(args, state, model)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L1305)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L1305)
 
 Setup the optional MLflow integration.
 
@@ -213,7 +213,7 @@ Environment:
 - **HF_MLFLOW_LOG_ARTIFACTS** (`str`, *optional*):
   Whether to use MLflow `.log_artifact()` facility to log artifacts. This only makes sense if logging to a
   remote server, e.g. s3 or GCS. If set to `True` or *1*, will copy each saved checkpoint on each save in
-  [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments)'s `output_dir` to the local or remote artifact storage. Using it without a remote
+  [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments)'s `output_dir` to the local or remote artifact storage. Using it without a remote
   storage will just copy the files to your artifact location.
 - **MLFLOW_TRACKING_URI** (`str`, *optional*):
   Whether to store runs at a specific path or remote server. Unset by default, which skips setting the
@@ -243,9 +243,9 @@ Environment:
 transformers.integrations.AzureMLCallback(azureml_run = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L1263)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L1263)
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that sends the logs to [AzureML](https://pypi.org/project/azureml-sdk/).
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that sends the logs to [AzureML](https://pypi.org/project/azureml-sdk/).
 
 #### transformers.integrations.CodeCarbonCallback[[transformers.integrations.CodeCarbonCallback]]
 
@@ -253,9 +253,9 @@ A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transfor
 transformers.integrations.CodeCarbonCallback()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L1809)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L1809)
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that tracks the CO2 emission of training.
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that tracks the CO2 emission of training.
 
 #### transformers.integrations.ClearMLCallback[[transformers.integrations.ClearMLCallback]]
 
@@ -263,9 +263,9 @@ A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transfor
 transformers.integrations.ClearMLCallback()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L1843)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L1843)
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that sends the logs to [ClearML](https://clear.ml/).
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that sends the logs to [ClearML](https://clear.ml/).
 
 Environment:
 - **CLEARML_PROJECT** (`str`, *optional*, defaults to `HuggingFace Transformers`):
@@ -281,9 +281,9 @@ Environment:
 transformers.integrations.DagsHubCallback()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L1467)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L1467)
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that logs to [DagsHub](https://dagshub.com/). Extends `MLflowCallback`
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that logs to [DagsHub](https://dagshub.com/). Extends `MLflowCallback`
 
 #### setup[[transformers.integrations.DagsHubCallback.setup]]
 
@@ -291,7 +291,7 @@ A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transfor
 setup(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L1481)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L1481)
 
 Setup the DagsHub's Logging integration.
 
@@ -305,7 +305,7 @@ Environment:
 transformers.integrations.FlyteCallback(save_log_history: bool = True, sync_checkpoints: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L2094)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L2094)
 
 **Parameters:**
 
@@ -313,7 +313,7 @@ save_log_history (`bool`, *optional*, defaults to `True`) : When set to True, th
 
 sync_checkpoints (`bool`, *optional*, defaults to `True`) : When set to True, checkpoints are synced with Flyte and can be used to resume training in the case of an interruption.
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that sends the logs to [Flyte](https://flyte.org/).
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that sends the logs to [Flyte](https://flyte.org/).
 NOTE: This callback only works within a Flyte task.
 
 Example:
@@ -335,9 +335,9 @@ def train_hf_transformer():
 transformers.integrations.KubeflowCallback()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L2436)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L2436)
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that reports training progress to [Kubeflow Trainer](https://github.com/kubeflow/trainer).
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that reports training progress to [Kubeflow Trainer](https://github.com/kubeflow/trainer).
 
 This callback is automatically registered when training inside a Kubeflow TrainJob with the
 `TrainJobRuntimeStatus` feature gate enabled. The Kubeflow controller injects the required
@@ -370,15 +370,15 @@ Can be disabled by setting environment variable `DISABLE_KUBEFLOW_INTEGRATION=TR
 transformers.integrations.DVCLiveCallback(live: typing.Optional[typing.Any] = None, log_model: typing.Union[typing.Literal['all'], bool, NoneType] = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L2157)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L2157)
 
 **Parameters:**
 
 live (`dvclive.Live`, *optional*, defaults to `None`) : Optional Live instance. If None, a new instance will be created using **kwargs.
 
-log_model (Union[Literal["all"], bool], *optional*, defaults to `None`) : Whether to use `dvclive.Live.log_artifact()` to log checkpoints created by [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer). If set to `True`, the final checkpoint is logged at the end of training. If set to `"all"`, the entire [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments)'s `output_dir` is logged at each checkpoint.
+log_model (Union[Literal["all"], bool], *optional*, defaults to `None`) : Whether to use `dvclive.Live.log_artifact()` to log checkpoints created by [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer). If set to `True`, the final checkpoint is logged at the end of training. If set to `"all"`, the entire [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments)'s `output_dir` is logged at each checkpoint.
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that sends the logs to [DVCLive](https://www.dvc.org/doc/dvclive).
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that sends the logs to [DVCLive](https://www.dvc.org/doc/dvclive).
 
 Use the environment variables below in `setup` to configure the integration. To customize this callback beyond
 those environment variables, see [here](https://dvc.org/doc/dvclive/ml-frameworks/huggingface).
@@ -389,16 +389,16 @@ those environment variables, see [here](https://dvc.org/doc/dvclive/ml-framework
 setup(args, state, model)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L2198)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L2198)
 
 Setup the optional DVCLive integration. To customize this callback beyond the environment variables below, see
 [here](https://dvc.org/doc/dvclive/ml-frameworks/huggingface).
 
 Environment:
 - **HF_DVCLIVE_LOG_MODEL** (`str`, *optional*):
-  Whether to use `dvclive.Live.log_artifact()` to log checkpoints created by [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer). If set to `True` or
+  Whether to use `dvclive.Live.log_artifact()` to log checkpoints created by [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer). If set to `True` or
   *1*, the final checkpoint is logged at the end of training. If set to `all`, the entire
-  [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments)'s `output_dir` is logged at each checkpoint.
+  [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments)'s `output_dir` is logged at each checkpoint.
 
 #### transformers.integrations.SwanLabCallback[[transformers.integrations.SwanLabCallback]]
 
@@ -406,9 +406,9 @@ Environment:
 transformers.integrations.SwanLabCallback()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L2262)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L2262)
 
-A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that logs metrics, media, model checkpoints to [SwanLab](https://swanlab.cn/).
+A [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) that logs metrics, media, model checkpoints to [SwanLab](https://swanlab.cn/).
 
 #### setup[[transformers.integrations.SwanLabCallback.setup]]
 
@@ -416,7 +416,7 @@ A [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transfor
 setup(args, state, model, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/integrations/integration_utils.py#L2276)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/integrations/integration_utils.py#L2276)
 
 Setup the optional SwanLab (*swanlab*) integration.
 
@@ -472,17 +472,17 @@ Environment:
 transformers.TrainerCallback()
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L295)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L295)
 
 **Parameters:**
 
-args ([TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments)) : The training arguments used to instantiate the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer).
+args ([TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments)) : The training arguments used to instantiate the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer).
 
-state ([TrainerState](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerState)) : The current state of the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer).
+state ([TrainerState](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerState)) : The current state of the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer).
 
-control ([TrainerControl](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerControl)) : The object that is returned to the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) and can be used to make some decisions.
+control ([TrainerControl](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerControl)) : The object that is returned to the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) and can be used to make some decisions.
 
-model ([PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel) or `torch.nn.Module`) : The model being trained.
+model ([PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel) or `torch.nn.Module`) : The model being trained.
 
 processing_class ([`PreTrainedTokenizer` or `BaseImageProcessor` or `ProcessorMixin` or `FeatureExtractionMixin`]) : The processing class used for encoding the data. Can be a tokenizer, a processor, an image processor or a feature extractor.
 
@@ -506,7 +506,7 @@ should return the modified version.
 
 The argument `args`, `state` and `control` are positionals for all events, all the others are grouped in `kwargs`.
 You can unpack the ones you need in the signature of the event using them. As an example, see the code of the
-simple [PrinterCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.PrinterCallback).
+simple [PrinterCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.PrinterCallback).
 
 Example:
 
@@ -524,7 +524,7 @@ class PrinterCallback(TrainerCallback):
 on_epoch_begin(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L361)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L361)
 
 Event called at the beginning of an epoch.
 
@@ -534,7 +534,7 @@ Event called at the beginning of an epoch.
 on_epoch_end(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L366)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L366)
 
 Event called at the end of an epoch.
 
@@ -544,7 +544,7 @@ Event called at the end of an epoch.
 on_evaluate(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L398)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L398)
 
 Event called after an evaluation phase.
 
@@ -554,9 +554,9 @@ Event called after an evaluation phase.
 on_init_end(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L346)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L346)
 
-Event called at the end of the initialization of the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer).
+Event called at the end of the initialization of the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer).
 
 #### on_log[[transformers.TrainerCallback.on_log]]
 
@@ -564,7 +564,7 @@ Event called at the end of the initialization of the [Trainer](/docs/transformer
 on_log(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L413)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L413)
 
 Event called after logging the last logs.
 
@@ -574,7 +574,7 @@ Event called after logging the last logs.
 on_optimizer_step(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L382)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L382)
 
 Event called after the optimizer step but before gradients are zeroed out. Useful for monitoring gradients.
 
@@ -584,7 +584,7 @@ Event called after the optimizer step but before gradients are zeroed out. Usefu
 on_pre_optimizer_step(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L377)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L377)
 
 Event called before the optimizer step but after gradient clipping. Useful for monitoring gradients.
 
@@ -594,7 +594,7 @@ Event called before the optimizer step but after gradient clipping. Useful for m
 on_predict(args: TrainingArguments, state: TrainerState, control: TrainerControl, metrics, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L403)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L403)
 
 Event called after a successful prediction.
 
@@ -604,7 +604,7 @@ Event called after a successful prediction.
 on_prediction_step(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L418)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L418)
 
 Event called after a prediction step.
 
@@ -614,7 +614,7 @@ Event called after a prediction step.
 on_push_begin(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L423)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L423)
 
 Event called before pushing the model to the hub, at the beginning of Trainer.push_to_hub and Trainer._push_from_checkpoint.
 
@@ -624,7 +624,7 @@ Event called before pushing the model to the hub, at the beginning of Trainer.pu
 on_save(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L408)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L408)
 
 Event called after a checkpoint save.
 
@@ -634,7 +634,7 @@ Event called after a checkpoint save.
 on_step_begin(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L371)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L371)
 
 Event called at the beginning of a training step. If using gradient accumulation, one training step might take
 several inputs.
@@ -645,7 +645,7 @@ several inputs.
 on_step_end(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L392)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L392)
 
 Event called at the end of a training step. If using gradient accumulation, one training step might take
 several inputs.
@@ -656,7 +656,7 @@ several inputs.
 on_substep_end(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L387)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L387)
 
 Event called at the end of an substep during gradient accumulation.
 
@@ -666,7 +666,7 @@ Event called at the end of an substep during gradient accumulation.
 on_train_begin(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L351)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L351)
 
 Event called at the beginning of training.
 
@@ -676,11 +676,11 @@ Event called at the beginning of training.
 on_train_end(args: TrainingArguments, state: TrainerState, control: TrainerControl, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L356)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L356)
 
 Event called at the end of training.
 
-Here is an example of how to register a custom callback with the PyTorch [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer):
+Here is an example of how to register a custom callback with the PyTorch [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer):
 
 ```python
 class MyCallback(TrainerCallback):
@@ -715,7 +715,7 @@ trainer.add_callback(MyCallback())
 transformers.TrainerState(epoch: float = 0, global_step: int = 0, max_steps: int = 0, logging_steps: int = 500, eval_steps: int = 500, save_steps: int = 500, train_batch_size: int | None = None, num_train_epochs: int = 0, num_input_tokens_seen: int = 0, total_flos: float = 0, log_history: list = None, best_metric: float | None = None, best_global_step: int | None = None, best_model_checkpoint: str | None = None, is_local_process_zero: bool = True, is_world_process_zero: bool = True, is_hyper_param_search: bool = False, trial_name: str | None = None, trial_params: dict[str, str | float | int | bool] | None = None, stateful_callbacks: list['TrainerCallback'] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L35)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L35)
 
 **Parameters:**
 
@@ -753,8 +753,8 @@ is_hyper_param_search (`bool`, *optional*, defaults to `False`) : Whether we are
 
 stateful_callbacks (`list[StatefulTrainerCallback]`, *optional*) : Callbacks attached to the `Trainer` that should have their states be saved or restored. Relevant callbacks should implement a `state` and `from_state` function.
 
-A class containing the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) inner state that will be saved along the model and optimizer when checkpointing
-and passed to the [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback).
+A class containing the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) inner state that will be saved along the model and optimizer when checkpointing
+and passed to the [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback).
 
 In all this class, one step is to be understood as one update step. When using gradient accumulation, one update
 step may require several forward and backward passes: if you use `gradient_accumulation_steps=n`, then one update
@@ -766,7 +766,7 @@ step requires going through *n* batches.
 compute_steps(args, max_steps)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L156)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L156)
 
 Calculates and stores the absolute value for logging,
 eval, and save steps based on if it was a proportion
@@ -778,7 +778,7 @@ or not.
 init_training_references(trainer, max_steps, num_train_epochs, trial)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L169)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L169)
 
 Stores the initial training references needed in `self`
 
@@ -788,7 +788,7 @@ Stores the initial training references needed in `self`
 load_from_json(json_path: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L149)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L149)
 
 Create an instance from the content of `json_path`.
 
@@ -798,7 +798,7 @@ Create an instance from the content of `json_path`.
 save_to_json(json_path: str)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L143)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L143)
 
 Save the content of this instance in JSON format inside `json_path`.
 
@@ -810,7 +810,7 @@ Save the content of this instance in JSON format inside `json_path`.
 transformers.TrainerControl(should_training_stop: bool = False, should_epoch_stop: bool = False, should_save: bool = False, should_evaluate: bool = False, should_log: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/trainer_callback.py#L234)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/trainer_callback.py#L234)
 
 **Parameters:**
 
@@ -824,8 +824,8 @@ should_evaluate (`bool`, *optional*, defaults to `False`) : Whether or not the m
 
 should_log (`bool`, *optional*, defaults to `False`) : Whether or not the logs should be reported at this step.  If `True`, this variable will be set back to `False` at the beginning of the next step.
 
-A class that handles the [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) control flow. This class is used by the [TrainerCallback](/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) to activate some
+A class that handles the [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) control flow. This class is used by the [TrainerCallback](/docs/transformers/v5.15.1/en/main_classes/callback#transformers.TrainerCallback) to activate some
 switches in the training loop.
 
 ### Exporters
-https://huggingface.co/docs/transformers/v5.15.0/main_classes/exporters.md
+https://huggingface.co/docs/transformers/v5.15.1/main_classes/exporters.md

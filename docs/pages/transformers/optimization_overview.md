@@ -23,7 +23,7 @@ This guide gives you a quick start on Transformers optimizations.
 
 [torch.compile](./perf_torch_compile) reduces Python overhead, fuses operations, and creates kernels tuned for your shapes and hardware. The first run warms it up and subsequent runs use the faster compiled path.
 
-Pass a [fixed size cache](./kv_cache#fixed-size-cache) to [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to trigger `torch.compile` automatically.
+Pass a [fixed size cache](./kv_cache#fixed-size-cache) to [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) to trigger `torch.compile` automatically.
 
 ```py
 import torch
@@ -38,13 +38,13 @@ tokenizer.batch_decode(output, skip_special_tokens=True)[0]
 ```
 
 > [!WARNING]
-> Avoid calling `torch.compile(model)` outside of [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to prevent the model from recompiling every step.
+> Avoid calling `torch.compile(model)` outside of [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) to prevent the model from recompiling every step.
 
 ## Attention backends
 
 Alternative [attention backends](./attention_interface) lower memory traffic. For example, FlashAttention tiles attention computations and avoids large intermediate tensors to reduce memory footprint.
 
-Set `attn_implementation` in [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load an optimized attention backend.
+Set `attn_implementation` in [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to load an optimized attention backend.
 
 ```py
 from transformers import AutoModelForCausalLM
@@ -71,7 +71,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 [Quantization](./quantization/overview) shrinks the size of every parameter which lowers memory footprint and increases speed because you can do more operations.
 
-Pass a quantization config to the `quantization_config` argument in [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Each quantization backend has a different config with different arguments. The example below quantizes a model to 4-bits and configures the computation dtype with the [bitsandbytes](./quantization/bitsandbytes) backend.
+Pass a quantization config to the `quantization_config` argument in [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained). Each quantization backend has a different config with different arguments. The example below quantizes a model to 4-bits and configures the computation dtype with the [bitsandbytes](./quantization/bitsandbytes) backend.
 
 ```py
 import torch
@@ -89,7 +89,7 @@ model = AutoModelForCausalLM.from_pretrained(
 [Caching](./kv_cache) speeds up generation by reusing past keys and values instead of recomputing them for every token. To offset and reduce the memory cost of storing past keys and values, Transformers
 supports offloading the cache to the CPU. Only the current layer remains on the GPU.
 
-Use the `cache_implementation` argument in [generate()](/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) to set a cache strategy.
+Use the `cache_implementation` argument in [generate()](/docs/transformers/v5.15.1/en/main_classes/text_generation#transformers.GenerationMixin.generate) to set a cache strategy.
 
 ```py
 import torch
@@ -107,7 +107,7 @@ outputs = model.generate(**inputs, do_sample=False, max_new_tokens=50, cache_imp
 
 [Parallelism](./perf_infer_gpu_multi) distributes a model across devices so models too big for one device run fast. This approach uses more memory due to sharding overhead and communication to sync results.
 
-[Tensor parallelism](./perf_infer_gpu_multi) splits a model layer across devices. Set `tp_plan="auto"` in [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to enable it.
+[Tensor parallelism](./perf_infer_gpu_multi) splits a model layer across devices. Set `tp_plan="auto"` in [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) to enable it.
 
 ```py
 import torch
@@ -121,7 +121,7 @@ print(model._tp_plan)
 
 [Continuous batching](./continuous_batching) maximizes throughput by keeping the GPU busy with dynamic scheduling and chunked prefill. [Serving](./serve-cli/serving) applications use it to process multiple incoming requests concurrently.
 
-Use [generate_batch()](/docs/transformers/v5.15.0/en/main_classes/continuous_batching#transformers.ContinuousMixin.generate_batch) to enable continuous batching.
+Use [generate_batch()](/docs/transformers/v5.15.1/en/main_classes/continuous_batching#transformers.ContinuousMixin.generate_batch) to enable continuous batching.
 
 ```py
 import torch
@@ -162,4 +162,4 @@ for request_id, output in outputs.items():
 ```
 
 ### Customizing model components
-https://huggingface.co/docs/transformers/v5.15.0/how_to_hack_models.md
+https://huggingface.co/docs/transformers/v5.15.1/how_to_hack_models.md

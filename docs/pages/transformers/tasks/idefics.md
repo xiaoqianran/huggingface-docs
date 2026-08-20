@@ -47,7 +47,7 @@ Let's start by loading the model's 9 billion parameters checkpoint:
 ```
 
 Just like for other Transformers models, you need to load a processor and the model itself from the checkpoint.
-The IDEFICS processor wraps a [LlamaTokenizer](/docs/transformers/v5.15.0/en/model_doc/llama2#transformers.LlamaTokenizer) and IDEFICS image processor into a single processor to take care of
+The IDEFICS processor wraps a [LlamaTokenizer](/docs/transformers/v5.15.1/en/model_doc/llama2#transformers.LlamaTokenizer) and IDEFICS image processor into a single processor to take care of
 preparing text and image inputs for the model.
 
 ```py
@@ -387,4 +387,4 @@ The use and prompting for the conversational use is very similar to using the ba
 ```
 
 ### Instance segmentation
-https://huggingface.co/docs/transformers/v5.15.0/tasks/instance_segmentation.md
+https://huggingface.co/docs/transformers/v5.15.1/tasks/instance_segmentation.md

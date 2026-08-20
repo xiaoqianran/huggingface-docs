@@ -171,7 +171,7 @@ plt.show()
 transformers.EomtImageProcessor(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt/image_processing_eomt.py#L214)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/eomt/image_processing_eomt.py#L214)
 
 **Parameters:**
 
@@ -227,7 +227,7 @@ Constructs a EomtImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: list[torch.Tensor] | None = None, instance_id_to_semantic_id: dict[int, int] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt/image_processing_eomt.py#L273)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/eomt/image_processing_eomt.py#L273)
 
 **Parameters:**
 
@@ -293,11 +293,11 @@ ignore_index (`int`, *kwargs*, *optional*, defaults to `self.ignore_index`) : La
 post_process_semantic_segmentation(outputs, target_sizes: list, size: dict[str, int] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt/image_processing_eomt.py#L502)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/eomt/image_processing_eomt.py#L502)
 
 **Parameters:**
 
-outputs ([EomtForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/eomt#transformers.EomtForUniversalSegmentation)) : Raw outputs of the model.
+outputs ([EomtForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/eomt#transformers.EomtForUniversalSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[tuple[int, int]]`) : A list of tuples (`tuple[int, int]`) containing the target size (height, width) of each image in the batch.
 
@@ -314,7 +314,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size.
 
-Converts the output of [EomtForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/eomt#transformers.EomtForUniversalSegmentation) into semantic segmentation maps.
+Converts the output of [EomtForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/eomt#transformers.EomtForUniversalSegmentation) into semantic segmentation maps.
 
 #### post_process_instance_segmentation[[transformers.EomtImageProcessor.post_process_instance_segmentation]]
 
@@ -322,7 +322,7 @@ Converts the output of [EomtForUniversalSegmentation](/docs/transformers/v5.15.0
 post_process_instance_segmentation(outputs, target_sizes: list, threshold: float = 0.8, size: dict[str, int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt/image_processing_eomt.py#L635)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/eomt/image_processing_eomt.py#L635)
 
 Post-processes model outputs into Instance Segmentation Predictions.
 
@@ -332,7 +332,7 @@ Post-processes model outputs into Instance Segmentation Predictions.
 post_process_panoptic_segmentation(outputs, target_sizes: list, threshold: float = 0.8, mask_threshold: float = 0.5, overlap_mask_area_threshold: float = 0.8, stuff_classes: list[int] | None = None, size: dict[str, int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt/image_processing_eomt.py#L578)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/eomt/image_processing_eomt.py#L578)
 
 Post-processes model outputs into final panoptic segmentation prediction.
 
@@ -344,7 +344,7 @@ Post-processes model outputs into final panoptic segmentation prediction.
 transformers.EomtImageProcessorPil(**kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt/image_processing_pil_eomt.py#L215)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/eomt/image_processing_pil_eomt.py#L215)
 
 **Parameters:**
 
@@ -400,7 +400,7 @@ Constructs a EomtImageProcessor image processor.
 preprocess(images: typing.Union[ForwardRef('PIL.Image.Image'), numpy.ndarray, ForwardRef('torch.Tensor'), list['PIL.Image.Image'], list[numpy.ndarray], list['torch.Tensor']], segmentation_maps: list[torch.Tensor] | None = None, instance_id_to_semantic_id: dict[int, int] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt/image_processing_pil_eomt.py#L281)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/eomt/image_processing_pil_eomt.py#L281)
 
 **Parameters:**
 
@@ -466,11 +466,11 @@ ignore_index (`int`, *kwargs*, *optional*, defaults to `self.ignore_index`) : La
 post_process_semantic_segmentation(outputs, target_sizes: list, size: dict[str, int] | None = None, return_segmentation_scores: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt/image_processing_pil_eomt.py#L495)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/eomt/image_processing_pil_eomt.py#L495)
 
 **Parameters:**
 
-outputs ([EomtForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/eomt#transformers.EomtForUniversalSegmentation)) : Raw outputs of the model.
+outputs ([EomtForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/eomt#transformers.EomtForUniversalSegmentation)) : Raw outputs of the model.
 
 target_sizes (`list[tuple[int, int]]`) : A list of tuples (`tuple[int, int]`) containing the target size (height, width) of each image in the batch.
 
@@ -487,7 +487,7 @@ a list of `SemanticSegmentationPostProcessorOutput` with fields `segmentation` (
 `(height, width)`) and `segmentation_scores` (shape `(num_classes, height, width)`). In both cases,
 `(height, width)` corresponds to the target size.
 
-Converts the output of [EomtForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/eomt#transformers.EomtForUniversalSegmentation) into semantic segmentation maps.
+Converts the output of [EomtForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/eomt#transformers.EomtForUniversalSegmentation) into semantic segmentation maps.
 
 #### post_process_instance_segmentation[[transformers.EomtImageProcessorPil.post_process_instance_segmentation]]
 
@@ -495,7 +495,7 @@ Converts the output of [EomtForUniversalSegmentation](/docs/transformers/v5.15.0
 post_process_instance_segmentation(outputs, target_sizes: list, threshold: float = 0.8, size: dict[str, int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt/image_processing_pil_eomt.py#L620)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/eomt/image_processing_pil_eomt.py#L620)
 
 Post-processes model outputs into Instance Segmentation Predictions.
 
@@ -505,7 +505,7 @@ Post-processes model outputs into Instance Segmentation Predictions.
 post_process_panoptic_segmentation(outputs, target_sizes: list, threshold: float = 0.8, mask_threshold: float = 0.5, overlap_mask_area_threshold: float = 0.8, stuff_classes: list[int] | None = None, size: dict[str, int] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt/image_processing_pil_eomt.py#L567)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/eomt/image_processing_pil_eomt.py#L567)
 
 Post-processes model outputs into final panoptic segmentation prediction.
 
@@ -517,7 +517,7 @@ Post-processes model outputs into final panoptic segmentation prediction.
 transformers.EomtConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, hidden_size: int = 1024, num_hidden_layers: int = 24, num_attention_heads: int = 16, hidden_act: str = 'gelu', hidden_dropout_prob: float | int = 0.0, initializer_range: float = 0.02, layer_norm_eps: float = 1e-06, image_size: int | list[int] | tuple[int, int] = 640, patch_size: int | list[int] | tuple[int, int] = 16, num_channels: int = 3, mlp_ratio: int = 4, layerscale_value: float = 1.0, drop_path_rate: float | int = 0.0, num_upscale_blocks: int = 2, attention_dropout: float | int = 0.0, use_swiglu_ffn: bool = False, num_blocks: int = 4, no_object_weight: float = 0.1, class_weight: float = 2.0, mask_weight: float = 5.0, dice_weight: float = 5.0, train_num_points: int = 12544, oversample_ratio: float = 3.0, importance_sample_ratio: float = 0.75, num_queries: int = 200, num_register_tokens: int = 4)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt/configuration_eomt.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/eomt/configuration_eomt.py#L28)
 
 **Parameters:**
 
@@ -577,8 +577,8 @@ This is the configuration class to store the configuration of a EomtModel. It is
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [tue-mps/coco_panoptic_eomt_large_640](https://huggingface.co/tue-mps/coco_panoptic_eomt_large_640)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Example:
 
@@ -603,15 +603,15 @@ Example:
 transformers.EomtForUniversalSegmentation(config: EomtConfig)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt/modeling_eomt.py#L1026)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/eomt/modeling_eomt.py#L1026)
 
 **Parameters:**
 
-config ([EomtConfig](/docs/transformers/v5.15.0/en/model_doc/eomt#transformers.EomtConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([EomtConfig](/docs/transformers/v5.15.1/en/model_doc/eomt#transformers.EomtConfig)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The EoMT Model with head on top for instance/semantic/panoptic segmentation.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -625,11 +625,11 @@ and behavior.
 forward(pixel_values: Tensor, mask_labels: list[torch.Tensor] | None = None, class_labels: list[torch.Tensor] | None = None, patch_offsets: list[torch.Tensor] | None = None, **kwargs: Unpack)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/eomt/modeling_eomt.py#L1084)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/eomt/modeling_eomt.py#L1084)
 
 **Parameters:**
 
-pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [EomtImageProcessor](/docs/transformers/v5.15.0/en/model_doc/eomt#transformers.EomtImageProcessor). See `EomtImageProcessor.__call__()` for details (`processor_class` uses [EomtImageProcessor](/docs/transformers/v5.15.0/en/model_doc/eomt#transformers.EomtImageProcessor) for processing images).
+pixel_values (`torch.Tensor` of shape `(batch_size, num_channels, image_size, image_size)`) : The tensors corresponding to the input images. Pixel values can be obtained using [EomtImageProcessor](/docs/transformers/v5.15.1/en/model_doc/eomt#transformers.EomtImageProcessor). See `EomtImageProcessor.__call__()` for details (`processor_class` uses [EomtImageProcessor](/docs/transformers/v5.15.1/en/model_doc/eomt#transformers.EomtImageProcessor) for processing images).
 
 mask_labels (`list[torch.Tensor]`, *optional*) : list of mask labels of shape `(num_labels, height, width)` to be fed to a model
 
@@ -641,9 +641,9 @@ patch_offsets (`list[torch.Tensor]`, *optional*) : list of tuples indicating the
 
 A `EomtForUniversalSegmentationOutput` or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([EomtConfig](/docs/transformers/v5.15.0/en/model_doc/eomt#transformers.EomtConfig)) and inputs.
+elements depending on the configuration ([EomtConfig](/docs/transformers/v5.15.1/en/model_doc/eomt#transformers.EomtConfig)) and inputs.
 
-The [EomtForUniversalSegmentation](/docs/transformers/v5.15.0/en/model_doc/eomt#transformers.EomtForUniversalSegmentation) forward method, overrides the `__call__` special method.
+The [EomtForUniversalSegmentation](/docs/transformers/v5.15.1/en/model_doc/eomt#transformers.EomtForUniversalSegmentation) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -662,4 +662,4 @@ the latter silently ignores them.
 - **patch_offsets** (`list[torch.Tensor]`, *optional*) -- list of tuples indicating the image index and start and end positions of patches for semantic segmentation.
 
 ### HGNet-V2
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/hgnet_v2.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/hgnet_v2.md

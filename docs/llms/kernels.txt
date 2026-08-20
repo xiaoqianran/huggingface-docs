@@ -28,6 +28,7 @@
 - [Develop kernels with agents](https://huggingface.co/docs/kernels/main/builder/agents-guide.md)
 - [Architecture overview](https://huggingface.co/docs/kernels/main/builder/design-overview.md)
 - [Set up for Metal kernels](https://huggingface.co/docs/kernels/main/builder/metal.md)
+- [Ship Triton autotune configurations](https://huggingface.co/docs/kernels/main/builder/triton-autotune.md)
 - [Why Nix?](https://huggingface.co/docs/kernels/main/builder/why-nix.md)
 - [Set up your IDE](https://huggingface.co/docs/kernels/main/builder/ide-setup.md)
 - [Building and testing kernels with GitHub Actions](https://huggingface.co/docs/kernels/main/builder/github-actions.md)

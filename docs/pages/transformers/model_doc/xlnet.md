@@ -49,7 +49,7 @@ This model was contributed by [thomwolf](https://huggingface.co/thomwolf). The o
 transformers.XLNetConfig(transformers_version: str | None = None, architectures: list[str] | None = None, output_hidden_states: bool | None = False, return_dict: bool | None = True, dtype: typing.Union[str, ForwardRef('torch.dtype'), NoneType] = None, chunk_size_feed_forward: int = 0, is_encoder_decoder: bool = False, id2label: dict[int, str] | dict[str, str] | None = None, label2id: dict[str, int] | dict[str, str] | None = None, problem_type: typing.Optional[typing.Literal['regression', 'single_label_classification', 'multi_label_classification']] = None, vocab_size: int = 32000, d_model: int = 1024, n_layer: int = 24, n_head: int = 16, d_inner: int = 4096, d_head: int | None = None, ff_activation: str = 'gelu', attn_type: str = 'bi', initializer_range: float = 0.02, layer_norm_eps: float = 1e-12, dropout: float | int = 0.1, mem_len: int | None = 512, reuse_len: int | None = None, use_mems_eval: bool = True, use_mems_train: bool = False, bi_data: bool = False, clamp_len: int = -1, same_length: bool = False, summary_type: str = 'last', summary_use_proj: bool = True, summary_activation: str = 'tanh', summary_last_dropout: float | int = 0.1, start_n_top: int = 5, end_n_top: int = 5, pad_token_id: int | None = 5, bos_token_id: int | None = 1, eos_token_id: int | list[int] | None = 2, tie_word_embeddings: bool = True)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/configuration_xlnet.py#L28)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/configuration_xlnet.py#L28)
 
 **Parameters:**
 
@@ -113,8 +113,8 @@ This is the configuration class to store the configuration of a XLNetModel. It i
 model according to the specified arguments, defining the model architecture. Instantiating a configuration with the
 defaults will yield a similar configuration to that of the [xlnet/xlnet-large-cased](https://huggingface.co/xlnet/xlnet-large-cased)
 
-Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
-documentation from [PreTrainedConfig](/docs/transformers/v5.15.0/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
+Configuration objects inherit from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) and can be used to control the model outputs. Read the
+documentation from [PreTrainedConfig](/docs/transformers/v5.15.1/en/main_classes/configuration#transformers.PreTrainedConfig) for more information.
 
 Examples:
 
@@ -139,7 +139,7 @@ Examples:
 transformers.XLNetTokenizer(vocab: str | list[tuple[str, float]] | None = None, unk_id: int = 0, do_lower_case = False, remove_space = True, keep_accents = False, bos_token = '<s>', eos_token = '</s>', unk_token = '<unk>', sep_token = '<sep>', pad_token = '<pad>', cls_token = '<cls>', mask_token = '<mask>', _spm_precompiled_charsmap = None, additional_special_tokens = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/tokenization_xlnet.py#L38)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/tokenization_xlnet.py#L38)
 
 **Parameters:**
 
@@ -172,7 +172,7 @@ additional_special_tokens (`list[str]`, *optional*, defaults to `["<eop>", "<eod
 Construct a XLNet tokenizer (backed by HuggingFace's *tokenizers* library). Based on
 [Unigram](https://huggingface.co/docs/tokenizers/python/latest/components.html?highlight=unigram#models).
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 #### get_special_tokens_mask[[transformers.XLNetTokenizer.get_special_tokens_mask]]
@@ -181,7 +181,7 @@ refer to this superclass for more information regarding those methods.
 get_special_tokens_mask(token_ids_0: list[int], token_ids_1: list[int] | None = None, already_has_special_tokens: bool = False)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_base.py#L1311)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_base.py#L1311)
 
 **Parameters:**
 
@@ -206,7 +206,7 @@ already-formatted sequence. In that case, we compute the mask by checking member
 save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/tokenization_utils_tokenizers.py#L509)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/tokenization_utils_tokenizers.py#L509)
 
 ## XLNetTokenizerFast[[transformers.XLNetTokenizer]]
 
@@ -216,7 +216,7 @@ save_vocabulary(save_directory: str, filename_prefix: str | None = None)
 transformers.XLNetTokenizer(vocab: str | list[tuple[str, float]] | None = None, unk_id: int = 0, do_lower_case = False, remove_space = True, keep_accents = False, bos_token = '<s>', eos_token = '</s>', unk_token = '<unk>', sep_token = '<sep>', pad_token = '<pad>', cls_token = '<cls>', mask_token = '<mask>', _spm_precompiled_charsmap = None, additional_special_tokens = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/tokenization_xlnet.py#L38)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/tokenization_xlnet.py#L38)
 
 **Parameters:**
 
@@ -249,7 +249,7 @@ additional_special_tokens (`list[str]`, *optional*, defaults to `["<eop>", "<eod
 Construct a XLNet tokenizer (backed by HuggingFace's *tokenizers* library). Based on
 [Unigram](https://huggingface.co/docs/tokenizers/python/latest/components.html?highlight=unigram#models).
 
-This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.0/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
+This tokenizer inherits from [TokenizersBackend](/docs/transformers/v5.15.1/en/main_classes/tokenizer#transformers.TokenizersBackend) which contains most of the main methods. Users should
 refer to this superclass for more information regarding those methods.
 
 ## XLNet specific outputs[[transformers.models.xlnet.modeling_xlnet.XLNetModelOutput]]
@@ -260,7 +260,7 @@ refer to this superclass for more information regarding those methods.
 transformers.models.xlnet.modeling_xlnet.XLNetModelOutput(last_hidden_state: FloatTensor, mems: list[torch.FloatTensor] | None = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L661)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L661)
 
 **Parameters:**
 
@@ -272,7 +272,7 @@ hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `outpu
 
 attentions (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-Output type of [XLNetModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetModel).
+Output type of [XLNetModel](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetModel).
 
 #### transformers.models.xlnet.modeling_xlnet.XLNetLMHeadModelOutput[[transformers.models.xlnet.modeling_xlnet.XLNetLMHeadModelOutput]]
 
@@ -280,7 +280,7 @@ Output type of [XLNetModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#transf
 transformers.models.xlnet.modeling_xlnet.XLNetLMHeadModelOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, mems: list[torch.FloatTensor] | None = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L686)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L686)
 
 **Parameters:**
 
@@ -294,7 +294,7 @@ hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `outpu
 
 attentions (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-Output type of [XLNetLMHeadModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetLMHeadModel).
+Output type of [XLNetLMHeadModel](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetLMHeadModel).
 
 #### transformers.models.xlnet.modeling_xlnet.XLNetForSequenceClassificationOutput[[transformers.models.xlnet.modeling_xlnet.XLNetForSequenceClassificationOutput]]
 
@@ -302,7 +302,7 @@ Output type of [XLNetLMHeadModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#
 transformers.models.xlnet.modeling_xlnet.XLNetForSequenceClassificationOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, mems: list[torch.FloatTensor] | None = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L714)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L714)
 
 **Parameters:**
 
@@ -316,7 +316,7 @@ hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `outpu
 
 attentions (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-Output type of [XLNetForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForSequenceClassification).
+Output type of [XLNetForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetForSequenceClassification).
 
 #### transformers.models.xlnet.modeling_xlnet.XLNetForMultipleChoiceOutput[[transformers.models.xlnet.modeling_xlnet.XLNetForMultipleChoiceOutput]]
 
@@ -324,7 +324,7 @@ Output type of [XLNetForSequenceClassification](/docs/transformers/v5.15.0/en/mo
 transformers.models.xlnet.modeling_xlnet.XLNetForMultipleChoiceOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, mems: list[torch.FloatTensor] | None = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L764)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L764)
 
 **Parameters:**
 
@@ -338,7 +338,7 @@ hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `outpu
 
 attentions (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-Output type of [XLNetForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForMultipleChoice).
+Output type of [XLNetForMultipleChoice](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetForMultipleChoice).
 
 #### transformers.models.xlnet.modeling_xlnet.XLNetForTokenClassificationOutput[[transformers.models.xlnet.modeling_xlnet.XLNetForTokenClassificationOutput]]
 
@@ -346,7 +346,7 @@ Output type of [XLNetForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/
 transformers.models.xlnet.modeling_xlnet.XLNetForTokenClassificationOutput(loss: typing.Optional[torch.FloatTensor] = None, logits: typing.Optional[torch.FloatTensor] = None, mems: list[torch.FloatTensor] | None = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L739)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L739)
 
 **Parameters:**
 
@@ -368,7 +368,7 @@ Output type of `XLNetForTokenClassificationOutput`.
 transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringSimpleOutput(loss: typing.Optional[torch.FloatTensor] = None, start_logits: typing.Optional[torch.FloatTensor] = None, end_logits: typing.Optional[torch.FloatTensor] = None, mems: list[torch.FloatTensor] | None = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L791)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L791)
 
 **Parameters:**
 
@@ -384,7 +384,7 @@ hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `outpu
 
 attentions (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-Output type of [XLNetForQuestionAnsweringSimple](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnsweringSimple).
+Output type of [XLNetForQuestionAnsweringSimple](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetForQuestionAnsweringSimple).
 
 #### transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringOutput[[transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringOutput]]
 
@@ -392,7 +392,7 @@ Output type of [XLNetForQuestionAnsweringSimple](/docs/transformers/v5.15.0/en/m
 transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringOutput(loss: typing.Optional[torch.FloatTensor] = None, start_top_log_probs: typing.Optional[torch.FloatTensor] = None, start_top_index: typing.Optional[torch.LongTensor] = None, end_top_log_probs: typing.Optional[torch.FloatTensor] = None, end_top_index: typing.Optional[torch.LongTensor] = None, cls_logits: typing.Optional[torch.FloatTensor] = None, mems: list[torch.FloatTensor] | None = None, hidden_states: tuple[torch.FloatTensor, ...] | None = None, attentions: tuple[torch.FloatTensor, ...] | None = None)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L819)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L819)
 
 **Parameters:**
 
@@ -414,7 +414,7 @@ hidden_states (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `outpu
 
 attentions (`tuple[torch.FloatTensor, ...]`, *optional*, returned when `output_attentions=True` is passed or when `config.output_attentions=True`) : Tuple of `torch.FloatTensor` (one for each layer) of shape `(batch_size, num_heads, sequence_length, sequence_length)`.  Attentions weights after the attention softmax, used to compute the weighted average in the self-attention heads.
 
-Output type of [XLNetForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnswering).
+Output type of [XLNetForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetForQuestionAnswering).
 
 ## XLNetModel[[transformers.XLNetModel]]
 
@@ -424,15 +424,15 @@ Output type of [XLNetForQuestionAnswering](/docs/transformers/v5.15.0/en/model_d
 transformers.XLNetModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L853)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L853)
 
 **Parameters:**
 
-config ([XLNetModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([XLNetModel](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The bare Xlnet Model outputting raw hidden-states without any specific head on top.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -446,11 +446,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, mems: typing.Optional[torch.Tensor] = None, perm_mask: typing.Optional[torch.Tensor] = None, target_mapping: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, input_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, use_mems: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L978)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L978)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -472,15 +472,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [XLNetModelOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [XLNetModelOutput](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetModelOutput) or `tuple(torch.FloatTensor)`
 
-A [XLNetModelOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetModelOutput) or a tuple of
+A [XLNetModelOutput](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
+elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
 
-The [XLNetModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetModel) forward method, overrides the `__call__` special method.
+The [XLNetModel](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -511,15 +511,15 @@ the latter silently ignores them.
 transformers.XLNetLMHeadModel(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1213)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L1213)
 
 **Parameters:**
 
-config ([XLNetLMHeadModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetLMHeadModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([XLNetLMHeadModel](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetLMHeadModel)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 XLNet Model with a language modeling head on top (linear layer with weights tied to the input embeddings).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -533,11 +533,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, mems: typing.Optional[torch.Tensor] = None, perm_mask: typing.Optional[torch.Tensor] = None, target_mapping: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, input_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_mems: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, logits_to_keep: typing.Union[int, torch.Tensor] = 0, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1288)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L1288)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -561,17 +561,17 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
 logits_to_keep (`Union[int, torch.Tensor]`, *optional*, defaults to `0`) : If an `int`, compute logits for the last `logits_to_keep` tokens. If `0`, calculate logits for all `input_ids` (special case). Only last token logits are needed for generation, and calculating them only for that token can save memory, which becomes pretty significant for long sequences or large vocabulary size. If a `torch.Tensor`, must be 1D corresponding to the indices to keep in the sequence length dimension. This is useful when using packed tensor format (single dimension for batch and sequence length).
 
-**Returns:** [XLNetLMHeadModelOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetLMHeadModelOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [XLNetLMHeadModelOutput](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetLMHeadModelOutput) or `tuple(torch.FloatTensor)`
 
-A [XLNetLMHeadModelOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetLMHeadModelOutput) or a tuple of
+A [XLNetLMHeadModelOutput](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetLMHeadModelOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
+elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
 
-The [XLNetLMHeadModel](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetLMHeadModel) forward method, overrides the `__call__` special method.
+The [XLNetLMHeadModel](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetLMHeadModel) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -658,16 +658,16 @@ Examples:
 transformers.XLNetForSequenceClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1462)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L1462)
 
 **Parameters:**
 
-config ([XLNetForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([XLNetForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetForSequenceClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 XLNet Model with a sequence classification/regression head on top (a linear layer on top of the pooled output) e.g.
 for GLUE tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -681,11 +681,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, mems: typing.Optional[torch.Tensor] = None, perm_mask: typing.Optional[torch.Tensor] = None, target_mapping: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, input_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_mems: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1475)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L1475)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -709,15 +709,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [XLNetForSequenceClassificationOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForSequenceClassificationOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [XLNetForSequenceClassificationOutput](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForSequenceClassificationOutput) or `tuple(torch.FloatTensor)`
 
-A [XLNetForSequenceClassificationOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForSequenceClassificationOutput) or a tuple of
+A [XLNetForSequenceClassificationOutput](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForSequenceClassificationOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
+elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
 
-The [XLNetForSequenceClassification](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForSequenceClassification) forward method, overrides the `__call__` special method.
+The [XLNetForSequenceClassification](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetForSequenceClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -802,16 +802,16 @@ Example of multi-label classification:
 transformers.XLNetForMultipleChoice(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1698)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L1698)
 
 **Parameters:**
 
-config ([XLNetForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForMultipleChoice)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([XLNetForMultipleChoice](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetForMultipleChoice)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Xlnet Model with a multiple choice classification head on top (a linear layer on top of the pooled output and a
 softmax) e.g. for RocStories/SWAG tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -825,11 +825,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, input_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, mems: typing.Optional[torch.Tensor] = None, perm_mask: typing.Optional[torch.Tensor] = None, target_mapping: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_mems: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1709)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L1709)
 
 **Parameters:**
 
-input_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`) : Indices of input sequence tokens in the vocabulary.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 token_type_ids (`torch.LongTensor` of shape `(batch_size, num_choices, sequence_length)`, *optional*) : Segment token indices to indicate first and second portions of the inputs. Indices are selected in `[0, 1]`:  - 0 corresponds to a *sentence A* token, - 1 corresponds to a *sentence B* token.  [What are token type IDs?](../glossary#token-type-ids)
 
@@ -853,15 +853,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [XLNetForMultipleChoiceOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForMultipleChoiceOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [XLNetForMultipleChoiceOutput](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForMultipleChoiceOutput) or `tuple(torch.FloatTensor)`
 
-A [XLNetForMultipleChoiceOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForMultipleChoiceOutput) or a tuple of
+A [XLNetForMultipleChoiceOutput](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForMultipleChoiceOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
+elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
 
-The [XLNetForMultipleChoice](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForMultipleChoice) forward method, overrides the `__call__` special method.
+The [XLNetForMultipleChoice](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetForMultipleChoice) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -914,16 +914,16 @@ Example:
 transformers.XLNetForTokenClassification(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1590)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L1590)
 
 **Parameters:**
 
-config ([XLNetForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([XLNetForTokenClassification](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetForTokenClassification)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Xlnet transformer with a token classification head on top (a linear layer on top of the hidden-states
 output) e.g. for Named-Entity-Recognition (NER) tasks.
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -937,11 +937,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, mems: typing.Optional[torch.Tensor] = None, perm_mask: typing.Optional[torch.Tensor] = None, target_mapping: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, input_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, labels: typing.Optional[torch.Tensor] = None, use_mems: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1601)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L1601)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -965,15 +965,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [XLNetForTokenClassificationOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForTokenClassificationOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [XLNetForTokenClassificationOutput](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForTokenClassificationOutput) or `tuple(torch.FloatTensor)`
 
-A [XLNetForTokenClassificationOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForTokenClassificationOutput) or a tuple of
+A [XLNetForTokenClassificationOutput](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForTokenClassificationOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
+elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
 
-The [XLNetForTokenClassification](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForTokenClassification) forward method, overrides the `__call__` special method.
+The [XLNetForTokenClassification](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetForTokenClassification) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1033,16 +1033,16 @@ Example:
 transformers.XLNetForQuestionAnsweringSimple(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1842)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L1842)
 
 **Parameters:**
 
-config ([XLNetForQuestionAnsweringSimple](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnsweringSimple)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([XLNetForQuestionAnsweringSimple](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetForQuestionAnsweringSimple)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 XLNet Model with a span classification head on top for extractive question-answering tasks like SQuAD (a linear
 layers on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1056,11 +1056,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, mems: typing.Optional[torch.Tensor] = None, perm_mask: typing.Optional[torch.Tensor] = None, target_mapping: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, input_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, start_positions: typing.Optional[torch.Tensor] = None, end_positions: typing.Optional[torch.Tensor] = None, use_mems: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1853)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L1853)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1086,15 +1086,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [XLNetForQuestionAnsweringSimpleOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringSimpleOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [XLNetForQuestionAnsweringSimpleOutput](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringSimpleOutput) or `tuple(torch.FloatTensor)`
 
-A [XLNetForQuestionAnsweringSimpleOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringSimpleOutput) or a tuple of
+A [XLNetForQuestionAnsweringSimpleOutput](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringSimpleOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
+elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
 
-The [XLNetForQuestionAnsweringSimple](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnsweringSimple) forward method, overrides the `__call__` special method.
+The [XLNetForQuestionAnsweringSimple](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetForQuestionAnsweringSimple) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1156,16 +1156,16 @@ Example:
 transformers.XLNetForQuestionAnswering(config)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1963)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L1963)
 
 **Parameters:**
 
-config ([XLNetForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
+config ([XLNetForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetForQuestionAnswering)) : Model configuration class with all the parameters of the model. Initializing with a config file does not load the weights associated with the model, only the configuration. Check out the [from_pretrained()](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel.from_pretrained) method to load the model weights.
 
 The Xlnet transformer with a span classification head on top for extractive question-answering tasks like
 SQuAD (a linear layer on top of the hidden-states output to compute `span start logits` and `span end logits`).
 
-This model inherits from [PreTrainedModel](/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
+This model inherits from [PreTrainedModel](/docs/transformers/v5.15.1/en/main_classes/model#transformers.PreTrainedModel). Check the superclass documentation for the generic methods the
 library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
 etc.)
 
@@ -1179,11 +1179,11 @@ and behavior.
 forward(input_ids: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, mems: typing.Optional[torch.Tensor] = None, perm_mask: typing.Optional[torch.Tensor] = None, target_mapping: typing.Optional[torch.Tensor] = None, token_type_ids: typing.Optional[torch.Tensor] = None, input_mask: typing.Optional[torch.Tensor] = None, inputs_embeds: typing.Optional[torch.Tensor] = None, start_positions: typing.Optional[torch.Tensor] = None, end_positions: typing.Optional[torch.Tensor] = None, is_impossible: typing.Optional[torch.Tensor] = None, cls_index: typing.Optional[torch.Tensor] = None, p_mask: typing.Optional[torch.Tensor] = None, use_mems: bool | None = None, output_attentions: bool | None = None, output_hidden_states: bool | None = None, return_dict: bool | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/transformers/blob/v5.15.0/src/transformers/models/xlnet/modeling_xlnet.py#L1977)
+[Source](https://github.com/huggingface/transformers/blob/v5.15.1/src/transformers/models/xlnet/modeling_xlnet.py#L1977)
 
 **Parameters:**
 
-input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
+input_ids (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Indices of input sequence tokens in the vocabulary. Padding will be ignored by default.  Indices can be obtained using [AutoTokenizer](/docs/transformers/v5.15.1/en/model_doc/auto#transformers.AutoTokenizer). See [PreTrainedTokenizer.encode()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode) and [PreTrainedTokenizer.__call__()](/docs/transformers/v5.15.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.__call__) for details.  [What are input IDs?](../glossary#input-ids)
 
 attention_mask (`torch.Tensor` of shape `(batch_size, sequence_length)`, *optional*) : Mask to avoid performing attention on padding token indices. Mask values selected in `[0, 1]`:  - 1 for tokens that are **not masked**, - 0 for tokens that are **masked**.  [What are attention masks?](../glossary#attention-mask)
 
@@ -1215,15 +1215,15 @@ output_attentions (`bool`, *optional*) : Whether or not to return the attentions
 
 output_hidden_states (`bool`, *optional*) : Whether or not to return the hidden states of all layers. See `hidden_states` under returned tensors for more detail.
 
-return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.0/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
+return_dict (`bool`, *optional*) : Whether or not to return a [ModelOutput](/docs/transformers/v5.15.1/en/main_classes/output#transformers.utils.ModelOutput) instead of a plain tuple.
 
-**Returns:** [XLNetForQuestionAnsweringOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringOutput) or `tuple(torch.FloatTensor)`
+**Returns:** [XLNetForQuestionAnsweringOutput](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringOutput) or `tuple(torch.FloatTensor)`
 
-A [XLNetForQuestionAnsweringOutput](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringOutput) or a tuple of
+A [XLNetForQuestionAnsweringOutput](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.models.xlnet.modeling_xlnet.XLNetForQuestionAnsweringOutput) or a tuple of
 `torch.FloatTensor` (if `return_dict=False` is passed or when `config.return_dict=False`) comprising various
-elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
+elements depending on the configuration ([XLNetConfig](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetConfig)) and inputs.
 
-The [XLNetForQuestionAnswering](/docs/transformers/v5.15.0/en/model_doc/xlnet#transformers.XLNetForQuestionAnswering) forward method, overrides the `__call__` special method.
+The [XLNetForQuestionAnswering](/docs/transformers/v5.15.1/en/model_doc/xlnet#transformers.XLNetForQuestionAnswering) forward method, overrides the `__call__` special method.
 
 Although the recipe for forward pass needs to be defined within this function, one should call the `Module`
 instance afterwards instead of this since the former takes care of running the pre and post processing steps while
@@ -1270,4 +1270,4 @@ Example:
 ```
 
 ### Switch Transformers
-https://huggingface.co/docs/transformers/v5.15.0/model_doc/switch_transformers.md
+https://huggingface.co/docs/transformers/v5.15.1/model_doc/switch_transformers.md

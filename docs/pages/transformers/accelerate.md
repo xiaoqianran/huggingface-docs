@@ -2,9 +2,9 @@
 
 [Accelerate](https://hf.co/docs/accelerate/index) provides a unified interface for distributed training backends like [FSDP](https://docs.pytorch.org/tutorials/intermediate/FSDP_tutorial.html) or [DeepSpeed](https://www.deepspeed.ai/). It detects your environment (number of GPUs, distributed backend, mixed precision, etc.) and automatically configures training, whether you're on 1 GPU with DDP or 8 GPUs with FSDP.
 
-Accelerate wraps the model in the appropriate distributed wrapper, moves it to the correct device, and creates a compatible optimizer. During training, Accelerate uses its own [backward](https://huggingface.co/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.backward) method to handle gradient scaling for mixed precision. [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) calls the appropriate Accelerate APIs and delegates all distributed mechanics to Accelerate.
+Accelerate wraps the model in the appropriate distributed wrapper, moves it to the correct device, and creates a compatible optimizer. During training, Accelerate uses its own [backward](https://huggingface.co/docs/accelerate/v1.14.0/en/package_reference/accelerator#accelerate.Accelerator.backward) method to handle gradient scaling for mixed precision. [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) calls the appropriate Accelerate APIs and delegates all distributed mechanics to Accelerate.
 
-Configure Accelerate for [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer) with either an Accelerate config file or [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments).
+Configure Accelerate for [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer) with either an Accelerate config file or [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments).
 
 ## Accelerate config file
 
@@ -27,13 +27,13 @@ num_machines: 1
 num_processes: 4
 ```
 
-Run [accelerate launch](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-launch) with a [Trainer](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer)-based script, and Accelerate reads the config file to set up training. The [fsdp_config](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments.fsdp_config) and [deepspeed](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments.deepspeed) args are unnecessary because the Accelerate config file covers the same settings.
+Run [accelerate launch](https://huggingface.co/docs/accelerate/en/package_reference/cli#accelerate-launch) with a [Trainer](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer)-based script, and Accelerate reads the config file to set up training. The [fsdp_config](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments.fsdp_config) and [deepspeed](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments.deepspeed) args are unnecessary because the Accelerate config file covers the same settings.
 
 ```cli
 accelerate launch train.py
 ```
 
-The [accelerator_config](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments.accelerator_config) accepts settings that don't have dedicated top-level arguments. For example, set `non_blocking=True` together with `dataloader_pin_memory()` to overlap data transfer with compute for higher GPU throughput.
+The [accelerator_config](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments.accelerator_config) accepts settings that don't have dedicated top-level arguments. For example, set `non_blocking=True` together with `dataloader_pin_memory()` to overlap data transfer with compute for higher GPU throughput.
 
 ```py
 from transformers import TrainingArguments
@@ -49,7 +49,7 @@ TrainingArguments(
 
 ## TrainingArguments
 
-Pass a backend-specific config to [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments). The [create_accelerator_and_postprocess()](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.Trainer.create_accelerator_and_postprocess) method reads the settings and configures training.
+Pass a backend-specific config to [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments). The [create_accelerator_and_postprocess()](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.Trainer.create_accelerator_and_postprocess) method reads the settings and configures training.
 
 Pass a JSON config file or dict to `~TrainingArguments.fsdp_config`. See [FSDP](./fsdp) for a full guide and config reference.
 
@@ -74,7 +74,7 @@ TrainingArguments(
 )
 ```
 
-DDP is configured directly through [TrainingArguments](/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) fields. See [DDP](./ddp) for details.
+DDP is configured directly through [TrainingArguments](/docs/transformers/v5.15.1/en/main_classes/trainer#transformers.TrainingArguments) fields. See [DDP](./ddp) for details.
 
 ```py
 from transformers import TrainingArguments
@@ -95,4 +95,4 @@ TrainingArguments(
 - See [DeepSpeed](./deepspeed) for ZeRO optimization and offloading.
 
 ### Community
-https://huggingface.co/docs/transformers/v5.15.0/community.md
+https://huggingface.co/docs/transformers/v5.15.1/community.md
