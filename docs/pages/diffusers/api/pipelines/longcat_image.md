@@ -21,7 +21,7 @@ import diffusers
 from diffusers import LongCatImagePipeline
 
 weight_dtype = torch.bfloat16
-pipe = LongCatImagePipeline.from_pretrained("meituan-longcat/LongCat-Image", torch_dtype=torch.bfloat16 )
+pipe = LongCatImagePipeline.from_pretrained("meituan-longcat/LongCat-Image", dtype=torch.bfloat16 )
 pipe.to('cuda')
 # pipe.enable_model_cpu_offload()
 
@@ -85,7 +85,11 @@ Available models:
 
 #### diffusers.LongCatImagePipeline[[diffusers.LongCatImagePipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/longcat_image/pipeline_longcat_image.py#L205)
+```python
+diffusers.LongCatImagePipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: Qwen2_5_VLForConditionalGeneration, tokenizer: Qwen2Tokenizer, text_processor: Qwen2VLProcessor, transformer: LongCatImageTransformer2DModel)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/longcat_image/pipeline_longcat_image.py#L205)
 
 The pipeline for text-to-image generation.
 
@@ -96,13 +100,17 @@ The pipeline for text-to-image generation.
 
 #### diffusers.pipelines.longcat_image.LongCatImagePipelineOutput[[diffusers.pipelines.longcat_image.LongCatImagePipelineOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/longcat_image/pipeline_output.py#L10)
+```python
+diffusers.pipelines.longcat_image.LongCatImagePipelineOutput(images: list)
+```
 
-Output class for Stable Diffusion pipelines.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/longcat_image/pipeline_output.py#L10)
 
 **Parameters:**
 
 images (`list[PIL.Image.Image]` or `np.ndarray`) : List of denoised PIL images of length `batch_size` or numpy array of shape `(batch_size, height, width, num_channels)`. PIL images or numpy array present the denoised images of the diffusion pipeline.
 
-### Ovis-Image
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/ovis_image.md
+Output class for Stable Diffusion pipelines.
+
+### LLaDA2
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/llada2.md

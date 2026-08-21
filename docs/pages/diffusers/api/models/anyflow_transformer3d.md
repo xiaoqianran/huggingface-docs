@@ -24,38 +24,11 @@ transformer = AnyFlowTransformer3DModel.from_pretrained(
 
 #### diffusers.AnyFlowTransformer3DModel[[diffusers.AnyFlowTransformer3DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_anyflow.py#L507)
+```python
+diffusers.AnyFlowTransformer3DModel(patch_size: typing.Tuple[int] = (1, 2, 2), num_attention_heads: int = 40, attention_head_dim: int = 128, in_channels: int = 16, out_channels: int = 16, text_dim: int = 4096, freq_dim: int = 256, ffn_dim: int = 13824, num_layers: int = 40, cross_attn_norm: bool = True, eps: float = 1e-06, image_dim: typing.Optional[int] = None, rope_max_seq_len: int = 1024, gate_value: float = 0.25, deltatime_type: str = 'r')
+```
 
-Bidirectional 3D Transformer for AnyFlow flow-map sampling.
-
-The architecture is the v0.35.1 Wan2.1 3D DiT backbone with one structural change: the timestep embedder is
-replaced by `AnyFlowDualTimestepTextImageEmbedding` so that every forward call conditions on both the source
-timestep `t` and the target timestep `r`. This is the embedding required to learn the flow map
-\\(\Phi_&amp;lcub;r\leftarrow t}\\) introduced in [AnyFlow](https://huggingface.co/papers/2605.13724).
-
-For chunk-wise autoregressive (FAR causal) generation, use `AnyFlowFARTransformer3DModel` instead; that variant
-adds the FAR causal block-mask and a compressed-frame patch embedding on top of the same backbone.
-
-forwarddiffusers.AnyFlowTransformer3DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_anyflow.py#L626[{"name": "hidden_states", "val": ": Tensor"}, {"name": "timestep", "val": ": Tensor"}, {"name": "r_timestep", "val": ": Tensor"}, {"name": "encoder_hidden_states", "val": ": Tensor"}, {"name": "encoder_hidden_states_image", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "attention_kwargs", "val": ": typing.Optional[typing.Dict[str, typing.Any]] = None"}, {"name": "return_dict", "val": ": bool = True"}]- **hidden_states** (*torch.Tensor* of shape *(batch_size, num_frames, num_channels, height, width)*) --
-  Input video latents.
-- **timestep** (*torch.Tensor*) --
-  Source (noisier) flow-map timestep *t*.
-- **r_timestep** (*torch.Tensor*) --
-  Target (cleaner) flow-map timestep *r*; defines the destination of the flow-map step.
-- **encoder_hidden_states** (*torch.Tensor* of shape *(batch_size, sequence_len, embed_dims)*) --
-  Text-conditioning embeddings.
-- **encoder_hidden_states_image** (*torch.Tensor*, *optional*) --
-  Image-conditioning embeddings; concatenated before the text tokens when provided.
-- **attention_kwargs** (*dict*, *optional*) --
-  Kwargs forwarded to the *AttentionProcessor* as defined under *self.processor* in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **return_dict** (*bool*, *optional*, defaults to *True*) --
-  Whether to return a [*~models.transformer_2d.Transformer2DModelOutput*] instead of a plain tuple.0[*~models.transformer_2d.Transformer2DModelOutput*] if *return_dict* is True, otherwise a *tuple* whose
-first element is the predicted velocity tensor.
-
-Bidirectional flow-map forward pass. `hidden_states` is laid out as `(B, F, C, H, W)` (per-frame latents).
-The input is patchified with the standard `patch_embedding` (kernel = stride = `patch_size`) and denoised
-with global bidirectional self-attention over the resulting flat token sequence.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_anyflow.py#L507)
 
 **Parameters:**
 
@@ -89,10 +62,48 @@ gate_value (*float*, defaults to *0.25*) : Mixing gate between source-timestep a
 
 deltatime_type (*str*, defaults to *'r'*) : Either `"r"` (delta is the target timestep) or `"t-r"` (delta is the absolute interval).
 
+Bidirectional 3D Transformer for AnyFlow flow-map sampling.
+
+The architecture is the v0.35.1 Wan2.1 3D DiT backbone with one structural change: the timestep embedder is
+replaced by `AnyFlowDualTimestepTextImageEmbedding` so that every forward call conditions on both the source
+timestep `t` and the target timestep `r`. This is the embedding required to learn the flow map
+\\(\Phi_&amp;lcub;r\leftarrow t}\\) introduced in [AnyFlow](https://huggingface.co/papers/2605.13724).
+
+For chunk-wise autoregressive (FAR causal) generation, use `AnyFlowFARTransformer3DModel` instead; that variant
+adds the FAR causal block-mask and a compressed-frame patch embedding on top of the same backbone.
+
+#### forward[[diffusers.AnyFlowTransformer3DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, timestep: Tensor, r_timestep: Tensor, encoder_hidden_states: Tensor, encoder_hidden_states_image: typing.Optional[torch.Tensor] = None, attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_anyflow.py#L626)
+
+**Parameters:**
+
+hidden_states (*torch.Tensor* of shape *(batch_size, num_frames, num_channels, height, width)*) : Input video latents.
+
+timestep (*torch.Tensor*) : Source (noisier) flow-map timestep *t*.
+
+r_timestep (*torch.Tensor*) : Target (cleaner) flow-map timestep *r*; defines the destination of the flow-map step.
+
+encoder_hidden_states (*torch.Tensor* of shape *(batch_size, sequence_len, embed_dims)*) : Text-conditioning embeddings.
+
+encoder_hidden_states_image (*torch.Tensor*, *optional*) : Image-conditioning embeddings; concatenated before the text tokens when provided.
+
+attention_kwargs (*dict*, *optional*) : Kwargs forwarded to the *AttentionProcessor* as defined under *self.processor* in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+return_dict (*bool*, *optional*, defaults to *True*) : Whether to return a [*~models.transformer_2d.Transformer2DModelOutput*] instead of a plain tuple.
+
 **Returns:**
 
 [*~models.transformer_2d.Transformer2DModelOutput*] if *return_dict* is True, otherwise a *tuple* whose
 first element is the predicted velocity tensor.
 
-### HiDreamImageTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/hidream_image_transformer.md
+Bidirectional flow-map forward pass. `hidden_states` is laid out as `(B, F, C, H, W)` (per-frame latents).
+The input is patchified with the standard `patch_embedding` (kernel = stride = `patch_size`) and denoised
+with global bidirectional self-attention over the resulting flat token sequence.
+
+### MotifVideoTransformer3DModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/motif_video_transformer_3d.md

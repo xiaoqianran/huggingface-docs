@@ -2,7 +2,7 @@
 
 Unconditional image generation generates images that look like a random sample from the training data the model was trained on because the denoising process is not guided by any additional context like text or image.
 
-To get started, use the [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) to load the [anton-l/ddpm-butterflies-128](https://huggingface.co/anton-l/ddpm-butterflies-128) checkpoint to generate images of butterflies. The [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) downloads and caches all the model components required to generate an image.
+To get started, use the [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) to load the [anton-l/ddpm-butterflies-128](https://huggingface.co/anton-l/ddpm-butterflies-128) checkpoint to generate images of butterflies. The [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) downloads and caches all the model components required to generate an image.
 
 ```py
 from diffusers import DiffusionPipeline
@@ -37,5 +37,5 @@ Try out the Space below to generate an image of a butterfly!
 	height="500"
 >
 
-### Community pipelines and components
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/custom_pipeline_overview.md
+### Controlled generation
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/controlling_generation.md

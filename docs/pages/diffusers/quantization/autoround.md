@@ -16,9 +16,9 @@ pip install "gptqmodel>=5.8.0"
 
 ## Load a quantized model
 
-Load a pre-quantized AutoRound model by passing `AutoRoundConfig` to [from_pretrained()](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained). The method works with any model that loads via [Accelerate](https://hf.co/docs/accelerate/index) and has `torch.nn.Linear` layers.
+Load a pre-quantized AutoRound model by passing `AutoRoundConfig` to [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained). The method works with any model that loads via [Accelerate](https://hf.co/docs/accelerate/index) and has `torch.nn.Linear` layers.
 
-You can use [PipelineQuantizationConfig](/docs/diffusers/v0.39.0/en/api/quantization#diffusers.PipelineQuantizationConfig) to quantize specific components of a pipeline:
+You can use [PipelineQuantizationConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.PipelineQuantizationConfig) to quantize specific components of a pipeline:
 
 ```python
 import torch
@@ -30,7 +30,7 @@ pipeline_quant_config = PipelineQuantizationConfig(
 pipe = DiffusionPipeline.from_pretrained(
     "INCModel/Z-Image-W4A16-AutoRound",
     quantization_config=pipeline_quant_config,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
     device_map="cuda",
 )
 
@@ -51,14 +51,14 @@ transformer = ZImageTransformer2DModel.from_pretrained(
     model_id,
     subfolder="transformer",
     quantization_config=quantization_config,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
     device_map="cuda",
 )
 
 pipe = ZImagePipeline.from_pretrained(
     model_id,
     transformer=transformer,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
     device_map="cuda",
 )
 
@@ -83,7 +83,7 @@ pipeline_quant_config = PipelineQuantizationConfig(
 pipe = DiffusionPipeline.from_pretrained(
     "INCModel/Z-Image-W4A16-AutoRound",
     quantization_config=pipeline_quant_config,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
     device_map="cuda",
 )
 
@@ -150,7 +150,7 @@ model_id = "INCModel/Z-Image-W4A16-AutoRound"
 # The inference backend will be automatically selected.
 pipe = ZImagePipeline.from_pretrained(
     model_id,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
     device_map="cuda",
 )
 
@@ -181,5 +181,5 @@ Besides, you could modify the `group_size`, `bits`, `sym` and many other configs
 
 - [Pre-quantized AutoRound models on the Hub](https://huggingface.co/models?search=autoround)
 
-### Getting started
-https://huggingface.co/docs/diffusers/v0.39.0/quantization/overview.md
+### torchao
+https://huggingface.co/docs/diffusers/v0.40.0/quantization/torchao.md

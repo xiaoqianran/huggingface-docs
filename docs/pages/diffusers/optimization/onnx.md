@@ -68,5 +68,5 @@ optimum-cli export onnx --model stabilityai/stable-diffusion-xl-base-1.0 --task 
 
 SDXL in the ONNX format is supported for text-to-image and image-to-image.
 
-### Pruna
-https://huggingface.co/docs/diffusers/v0.39.0/optimization/pruna.md
+### ParaAttention
+https://huggingface.co/docs/diffusers/v0.40.0/optimization/para_attn.md

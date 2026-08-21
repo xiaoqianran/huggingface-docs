@@ -6,21 +6,29 @@ Parallelism strategies help speed up diffusion transformers by distributing comp
 
 #### diffusers.ParallelConfig[[diffusers.ParallelConfig]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/_modeling_parallel.py#L158)
+```python
+diffusers.ParallelConfig(context_parallel_config: diffusers.models._modeling_parallel.ContextParallelConfig | None = None, tensor_parallel_config: diffusers.models._modeling_parallel.TensorParallelConfig | None = None, _rank: int = None, _world_size: int = None, _device: device = None, _mesh: DeviceMesh = None)
+```
 
-Configuration for applying different parallelisms.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/_modeling_parallel.py#L197)
 
 **Parameters:**
 
 context_parallel_config (`ContextParallelConfig`, *optional*) : Configuration for context parallelism.
 
+tensor_parallel_config (`TensorParallelConfig`, *optional*) : Configuration for tensor parallelism.
+
+Configuration for applying different parallelisms.
+
 ## ContextParallelConfig[[diffusers.ContextParallelConfig]]
 
 #### diffusers.ContextParallelConfig[[diffusers.ContextParallelConfig]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/_modeling_parallel.py#L42)
+```python
+diffusers.ContextParallelConfig(ring_degree: int | None = None, ulysses_degree: int | None = None, convert_to_fp32: bool = True, rotate_method: typing.Literal['allgather', 'alltoall'] = 'allgather', mesh: typing.Optional[torch.distributed.device_mesh.DeviceMesh] = None, ulysses_anything: bool = False, ring_anything: bool = False, _rank: int = None, _world_size: int = None, _device: device = None, _mesh: DeviceMesh = None, _flattened_mesh: DeviceMesh = None, _ring_mesh: DeviceMesh = None, _ulysses_mesh: DeviceMesh = None, _ring_local_rank: int = None, _ulysses_local_rank: int = None)
+```
 
-Configuration for context parallelism.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/_modeling_parallel.py#L41)
 
 **Parameters:**
 
@@ -38,11 +46,50 @@ ring_anything (`bool`, *optional*, defaults to `False`) : Whether to enable "Rin
 
 mesh (`torch.distributed.device_mesh.DeviceMesh`, *optional*) : A custom device mesh to use for context parallelism. If provided, this mesh will be used instead of creating a new one. This is useful when combining context parallelism with other parallelism strategies (e.g., FSDP, tensor parallelism) that share the same device mesh. The mesh must have both "ring" and "ulysses" dimensions. Use size 1 for dimensions not being used (e.g., `mesh_shape=(2, 1, 4)` with `mesh_dim_names=("ring", "ulysses", "fsdp")` for ring attention only with FSDP).
 
+Configuration for context parallelism.
+
 #### diffusers.hooks.apply_context_parallel[[diffusers.hooks.apply_context_parallel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/hooks/context_parallel.py#L80)
+```python
+diffusers.hooks.apply_context_parallel(module: Module, parallel_config: ContextParallelConfig, plan: dict)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/hooks/context_parallel.py#L80)
 
 Apply context parallel on a model.
 
-### Video Processor
-https://huggingface.co/docs/diffusers/v0.39.0/api/video_processor.md
+## TensorParallelConfig[[diffusers.TensorParallelConfig]]
+
+#### diffusers.TensorParallelConfig[[diffusers.TensorParallelConfig]]
+
+```python
+diffusers.TensorParallelConfig(tp_degree: int = 1, mesh: typing.Optional[torch.distributed.device_mesh.DeviceMesh] = None, _rank: int = None, _world_size: int = None, _device: device = None, _mesh: DeviceMesh = None, _tp_degree: int = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/_modeling_parallel.py#L157)
+
+**Parameters:**
+
+tp_degree (`int`, defaults to `1`) : Number of devices to shard across. Must be a divisor of the number of attention heads (and FFN hidden dimensions) of the model being parallelised.
+
+mesh (`torch.distributed.device_mesh.DeviceMesh`, *optional*) : A custom device mesh to use. If provided, `tp_degree` is inferred from `mesh.size()` and the argument is ignored. Useful when combining TP with other parallelism strategies (e.g. CP) that share the same mesh.
+
+Configuration for tensor parallelism.
+
+Tensor parallelism shards weight matrices (column-wise and row-wise) across devices. Each device computes a partial
+result; an AllReduce/AllGather at layer boundaries reconstructs the full output. Uses
+`torch.distributed.tensor.parallelize_module` with `ColwiseParallel` / `RowwiseParallel` sharding styles. Supported
+device types are `"cuda"` and `"neuron"`.
+
+#### diffusers.hooks.apply_tensor_parallel[[diffusers.hooks.apply_tensor_parallel]]
+
+```python
+diffusers.hooks.apply_tensor_parallel(model: Module, config: TensorParallelConfig, tp_plan: dict)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/hooks/tensor_parallel.py#L243)
+
+Apply tensor parallel on a model from its flat `_tp_plan`.
+
+### Configuration
+https://huggingface.co/docs/diffusers/v0.40.0/api/configuration.md

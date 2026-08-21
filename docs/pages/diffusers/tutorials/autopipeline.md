@@ -2,16 +2,16 @@
 
 [AutoPipeline](../api/models/auto_model) is a *task-and-model* pipeline that automatically selects the correct pipeline subclass based on the task. It handles the complexity of loading different pipeline subclasses without needing to know the specific pipeline subclass name.
 
-This is unlike [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline), a *model-only* pipeline that automatically selects the pipeline subclass based on the model.
+This is unlike [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline), a *model-only* pipeline that automatically selects the pipeline subclass based on the model.
 
-[AutoPipelineForImage2Image](/docs/diffusers/v0.39.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image) returns a specific pipeline subclass, (for example, [StableDiffusionXLImg2ImgPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLImg2ImgPipeline)), which can only be used for image-to-image tasks.
+[AutoPipelineForImage2Image](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image) returns a specific pipeline subclass, (for example, [StableDiffusionXLImg2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLImg2ImgPipeline)), which can only be used for image-to-image tasks.
 
 ```py
 import torch
 from diffusers import AutoPipelineForImage2Image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-  "RunDiffusion/Juggernaut-XL-v9", torch_dtype=torch.bfloat16, device_map="cuda",
+  "RunDiffusion/Juggernaut-XL-v9", dtype=torch.bfloat16, device_map="cuda",
 )
 print(pipeline)
 "StableDiffusionXLImg2ImgPipeline {
@@ -20,14 +20,14 @@ print(pipeline)
 "
 ```
 
-Loading the same model with [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) returns the [StableDiffusionXLPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLPipeline) subclass. It can be used for text-to-image, image-to-image, or inpainting tasks depending on the inputs.
+Loading the same model with [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) returns the [StableDiffusionXLPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLPipeline) subclass. It can be used for text-to-image, image-to-image, or inpainting tasks depending on the inputs.
 
 ```py
 import torch
 from diffusers import DiffusionPipeline
 
 pipeline = DiffusionPipeline.from_pretrained(
-  "RunDiffusion/Juggernaut-XL-v9", torch_dtype=torch.bfloat16, device_map="cuda",
+  "RunDiffusion/Juggernaut-XL-v9", dtype=torch.bfloat16, device_map="cuda",
 )
 print(pipeline)
 "StableDiffusionXLPipeline {
@@ -45,21 +45,21 @@ import torch
 from diffusers import AutoPipelineForImage2Image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "openai/shap-e-img2img", torch_dtype=torch.float16,
+    "openai/shap-e-img2img", dtype=torch.float16,
 )
 "ValueError: AutoPipeline can't find a pipeline linked to ShapEImg2ImgPipeline for None"
 ```
 
 There are four types of [AutoPipeline](../api/models/auto_model) classes:
 
-- [AutoPipelineForText2Image](/docs/diffusers/v0.39.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image)
-- [AutoPipelineForImage2Image](/docs/diffusers/v0.39.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image)
-- [AutoPipelineForInpainting](/docs/diffusers/v0.39.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting)
-- [AutoPipelineForText2Audio](/docs/diffusers/v0.39.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Audio)
+- [AutoPipelineForText2Image](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image)
+- [AutoPipelineForImage2Image](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image)
+- [AutoPipelineForInpainting](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting)
+- [AutoPipelineForText2Audio](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Audio)
 
 Each of these classes have a predefined mapping, linking a pipeline to their task-specific subclass.
 
-When [from_pretrained()](/docs/diffusers/v0.39.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image.from_pretrained) is called, it extracts the class name from the `model_index.json` file and selects the appropriate pipeline subclass for the task based on the mapping.
+When [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForText2Image.from_pretrained) is called, it extracts the class name from the `model_index.json` file and selects the appropriate pipeline subclass for the task based on the mapping.
 
-### ComponentsManager
-https://huggingface.co/docs/diffusers/v0.39.0/modular_diffusers/components_manager.md
+### Train a diffusion model
+https://huggingface.co/docs/diffusers/v0.40.0/tutorials/basic_training.md

@@ -11,7 +11,7 @@ Pipelines rely on [torch.randn](https://pytorch.org/docs/stable/generated/torch.
 > [!TIP]
 > If reproducibility is important to your use case, we recommend always using a CPU `Generator`. The performance loss is often negligible and you'll generate more similar values.
 
-The GPU uses a different random number generator than the CPU. Diffusers solves this issue with the [randn_tensor()](/docs/diffusers/v0.39.0/en/api/utilities#diffusers.utils.torch_utils.randn_tensor) function to create the random tensor on a CPU and then moving it to the GPU. This function is used everywhere inside the pipeline and you don't need to explicitly call it.
+The GPU uses a different random number generator than the CPU. Diffusers solves this issue with the [randn_tensor()](/docs/diffusers/v0.40.0/en/api/utilities#diffusers.utils.torch_utils.randn_tensor) function to create the random tensor on a CPU and then moving it to the GPU. This function is used everywhere inside the pipeline and you don't need to explicitly call it.
 
 Use [manual_seed](https://docs.pytorch.org/docs/stable/generated/torch.manual_seed.html) as shown below to set a seed.
 
@@ -72,5 +72,5 @@ Under the hood, `enable_full_determinism` works by:
 
 We strongly recommend reading PyTorch's developer notes about [Reproducibility](https://docs.pytorch.org/docs/stable/notes/randomness.html). You can try to limit randomness, but it is not *guaranteed* even with an identical seed.
 
-### Controlled generation
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/controlling_generation.md
+### Schedulers
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/schedulers.md

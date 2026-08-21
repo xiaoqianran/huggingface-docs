@@ -6,21 +6,11 @@ A Diffusion Transformer model for 2D data from [Hunyuan-DiT](https://github.com/
 
 #### diffusers.HunyuanDiT2DModel[[diffusers.HunyuanDiT2DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/hunyuan_transformer_2d.py#L201)
+```python
+diffusers.HunyuanDiT2DModel(num_attention_heads: int = 16, attention_head_dim: int = 88, in_channels: int | None = None, patch_size: int | None = None, activation_fn: str = 'gelu-approximate', sample_size = 32, hidden_size = 1152, num_layers: int = 28, mlp_ratio: float = 4.0, learn_sigma: bool = True, cross_attention_dim: int = 1024, norm_type: str = 'layer_norm', cross_attention_dim_t5: int = 2048, pooled_projection_dim: int = 1024, text_len: int = 77, text_len_t5: int = 256, use_style_cond_and_image_meta_size: bool = True)
+```
 
-HunYuanDiT: Diffusion model with a Transformer backbone.
-
-Inherit ModelMixin and ConfigMixin to be compatible with the sampler StableDiffusionPipeline of diffusers.
-
-enable_forward_chunkingdiffusers.HunyuanDiT2DModel.enable_forward_chunkinghttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/hunyuan_transformer_2d.py#L472[{"name": "chunk_size", "val": ": int | None = None"}, {"name": "dim", "val": ": int = 0"}]- **chunk_size** (`int`, *optional*) --
-  The chunk size of the feed-forward layers. If not specified, will run feed-forward layer individually
-  over each tensor of dim=`dim`.
-- **dim** (`int`, *optional*, defaults to `0`) --
-  The dimension over which the feed-forward computation should be chunked. Choose between dim=0 (batch)
-  or dim=1 (sequence length).0
-
-Sets the attention processor to use [feed forward
-chunking](https://huggingface.co/blog/reformer#2-chunked-feed-forward-layers).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/hunyuan_transformer_2d.py#L201)
 
 **Parameters:**
 
@@ -57,11 +47,35 @@ text_len (`int`, *optional*) : The length of the clip text embedding.
 text_len_t5 (`int`, *optional*) : The length of the T5 text embedding.
 
 use_style_cond_and_image_meta_size (`bool`,  *optional*) : Whether or not to use style condition and image meta size. True for version <=1.1, False for version >= 1.2
+
+HunYuanDiT: Diffusion model with a Transformer backbone.
+
+Inherit ModelMixin and ConfigMixin to be compatible with the sampler StableDiffusionPipeline of diffusers.
+
+#### enable_forward_chunking[[diffusers.HunyuanDiT2DModel.enable_forward_chunking]]
+
+```python
+enable_forward_chunking(chunk_size: int | None = None, dim: int = 0)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/hunyuan_transformer_2d.py#L472)
+
+**Parameters:**
+
+chunk_size (`int`, *optional*) : The chunk size of the feed-forward layers. If not specified, will run feed-forward layer individually over each tensor of dim=`dim`.
+
+dim (`int`, *optional*, defaults to `0`) : The dimension over which the feed-forward computation should be chunked. Choose between dim=0 (batch) or dim=1 (sequence length).
+
+Sets the attention processor to use [feed forward
+chunking](https://huggingface.co/blog/reformer#2-chunked-feed-forward-layers).
+
 #### forward[[diffusers.HunyuanDiT2DModel.forward]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/hunyuan_transformer_2d.py#L357)
+```python
+forward(hidden_states, timestep, encoder_hidden_states = None, text_embedding_mask = None, encoder_hidden_states_t5 = None, text_embedding_mask_t5 = None, image_meta_size = None, style = None, image_rotary_emb = None, controlnet_block_samples = None, return_dict = True)
+```
 
-The [HunyuanDiT2DModel](/docs/diffusers/v0.39.0/en/api/models/hunyuan_transformer2d#diffusers.HunyuanDiT2DModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/hunyuan_transformer_2d.py#L357)
 
 **Parameters:**
 
@@ -86,26 +100,43 @@ image_rotary_emb (`torch.Tensor`) : The image rotary embeddings to apply on quer
 controlnet_block_samples (`list` of `torch.Tensor`, *optional*) : A list of tensors that if specified are added to the residuals of transformer blocks.
 
 return_dict : bool Whether to return a dictionary.
+
+The [HunyuanDiT2DModel](/docs/diffusers/v0.40.0/en/api/models/hunyuan_transformer2d#diffusers.HunyuanDiT2DModel) forward method.
+
 #### fuse_qkv_projections[[diffusers.HunyuanDiT2DModel.fuse_qkv_projections]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/hunyuan_transformer_2d.py#L320)
+```python
+fuse_qkv_projections()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/hunyuan_transformer_2d.py#L320)
 
 Enables fused QKV projections. For self-attention modules, all projection matrices (i.e., query, key, value)
 are fused. For cross-attention modules, key and value projection matrices are fused.
 
 > [!WARNING] > This API is 🧪 experimental.
+
 #### set_default_attn_processor[[diffusers.HunyuanDiT2DModel.set_default_attn_processor]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/hunyuan_transformer_2d.py#L351)
+```python
+set_default_attn_processor()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/hunyuan_transformer_2d.py#L351)
 
 Disables custom attention processors and sets the default attention implementation.
+
 #### unfuse_qkv_projections[[diffusers.HunyuanDiT2DModel.unfuse_qkv_projections]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/hunyuan_transformer_2d.py#L342)
+```python
+unfuse_qkv_projections()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/hunyuan_transformer_2d.py#L342)
 
 Disables the fused QKV projection if enabled.
 
 > [!WARNING] > This API is 🧪 experimental.
 
-### Flux2Transformer2DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/flux2_transformer.md
+### SanaControlNetModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/controlnet_sana.md

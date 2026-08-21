@@ -7,43 +7,18 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import HunyuanVideo15Transformer3DModel
 
-transformer = HunyuanVideo15Transformer3DModel.from_pretrained("hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-480p_t2v" subfolder="transformer", torch_dtype=torch.bfloat16)
+transformer = HunyuanVideo15Transformer3DModel.from_pretrained("hunyuanvideo-community/HunyuanVideo-1.5-Diffusers-480p_t2v" subfolder="transformer", dtype=torch.bfloat16)
 ```
 
 ## HunyuanVideo15Transformer3DModel[[diffusers.HunyuanVideo15Transformer3DModel]]
 
 #### diffusers.HunyuanVideo15Transformer3DModel[[diffusers.HunyuanVideo15Transformer3DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_hunyuan_video15.py#L510)
+```python
+diffusers.HunyuanVideo15Transformer3DModel(in_channels: int = 65, out_channels: int = 32, num_attention_heads: int = 16, attention_head_dim: int = 128, num_layers: int = 54, num_refiner_layers: int = 2, mlp_ratio: float = 4.0, patch_size: int = 1, patch_size_t: int = 1, qk_norm: str = 'rms_norm', text_embed_dim: int = 3584, text_embed_2_dim: int = 1472, image_embed_dim: int = 1152, rope_theta: float = 256.0, rope_axes_dim: tuple = (16, 56, 56), target_size: int = 640, task_type: str = 'i2v', use_meanflow: bool = False)
+```
 
-A Transformer model for video-like data used in [HunyuanVideo1.5](https://huggingface.co/tencent/HunyuanVideo1.5).
-
-forwarddiffusers.HunyuanVideo15Transformer3DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_hunyuan_video15.py#L623[{"name": "hidden_states", "val": ": Tensor"}, {"name": "timestep", "val": ": LongTensor"}, {"name": "encoder_hidden_states", "val": ": Tensor"}, {"name": "encoder_attention_mask", "val": ": Tensor"}, {"name": "timestep_r", "val": ": torch.LongTensor | None = None"}, {"name": "encoder_hidden_states_2", "val": ": torch.Tensor | None = None"}, {"name": "encoder_attention_mask_2", "val": ": torch.Tensor | None = None"}, {"name": "image_embeds", "val": ": torch.Tensor | None = None"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "return_dict", "val": ": bool = True"}]- **hidden_states** (`torch.Tensor` of shape `(batch_size, num_channels, num_frames, height, width)`) --
-  Input `hidden_states`.
-- **timestep** (`torch.LongTensor`) --
-  Used to indicate denoising step.
-- **encoder_hidden_states** (`torch.Tensor` of shape `(batch_size, sequence_len, embed_dims)`) --
-  Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
-- **encoder_attention_mask** (`torch.Tensor`) --
-  Mask applied to `encoder_hidden_states` during attention.
-- **timestep_r** (`torch.LongTensor`, *optional*) --
-  Refiner timestep conditioning.
-- **encoder_hidden_states_2** (`torch.Tensor`, *optional*) --
-  Additional conditional embeddings computed from a second text encoder (ByT5).
-- **encoder_attention_mask_2** (`torch.Tensor`, *optional*) --
-  Mask applied to `encoder_hidden_states_2` during attention.
-- **image_embeds** (`torch.Tensor`, *optional*) --
-  Image embeddings for image-conditioned generation.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain
-  tuple.0If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
-`tuple` where the first element is the sample tensor.
-
-The [HunyuanVideo15Transformer3DModel](/docs/diffusers/v0.39.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.HunyuanVideo15Transformer3DModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_hunyuan_video15.py#L510)
 
 **Parameters:**
 
@@ -77,22 +52,60 @@ rope_theta (`float`, defaults to `256.0`) : The value of theta to use in the RoP
 
 rope_axes_dim (`tuple[int]`, defaults to `(16, 56, 56)`) : The dimensions of the axes to use in the RoPE layer.
 
+A Transformer model for video-like data used in [HunyuanVideo1.5](https://huggingface.co/tencent/HunyuanVideo1.5).
+
+#### forward[[diffusers.HunyuanVideo15Transformer3DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, timestep: LongTensor, encoder_hidden_states: Tensor, encoder_attention_mask: Tensor, timestep_r: typing.Optional[torch.LongTensor] = None, encoder_hidden_states_2: typing.Optional[torch.Tensor] = None, encoder_attention_mask_2: typing.Optional[torch.Tensor] = None, image_embeds: typing.Optional[torch.Tensor] = None, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_hunyuan_video15.py#L623)
+
+**Parameters:**
+
+hidden_states (`torch.Tensor` of shape `(batch_size, num_channels, num_frames, height, width)`) : Input `hidden_states`.
+
+timestep (`torch.LongTensor`) : Used to indicate denoising step.
+
+encoder_hidden_states (`torch.Tensor` of shape `(batch_size, sequence_len, embed_dims)`) : Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
+
+encoder_attention_mask (`torch.Tensor`) : Mask applied to `encoder_hidden_states` during attention.
+
+timestep_r (`torch.LongTensor`, *optional*) : Refiner timestep conditioning.
+
+encoder_hidden_states_2 (`torch.Tensor`, *optional*) : Additional conditional embeddings computed from a second text encoder (ByT5).
+
+encoder_attention_mask_2 (`torch.Tensor`, *optional*) : Mask applied to `encoder_hidden_states_2` during attention.
+
+image_embeds (`torch.Tensor`, *optional*) : Image embeddings for image-conditioned generation.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain tuple.
+
 **Returns:**
 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
+The [HunyuanVideo15Transformer3DModel](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.HunyuanVideo15Transformer3DModel) forward method.
+
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
 #### diffusers.models.modeling_outputs.Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/modeling_outputs.py#L21)
+```python
+diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
+```
 
-The output of [Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-### CogView3PlusTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/cogview3plus_transformer2d.md
+The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+
+### FluxTransformer2DModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/flux_transformer.md

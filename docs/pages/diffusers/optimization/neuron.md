@@ -11,7 +11,7 @@ python -m pip install --upgrade-strategy eager optimum[neuronx]
 > [!TIP]
 > We provide pre-built [Hugging Face Neuron Deep Learning AMI](https://aws.amazon.com/marketplace/pp/prodview-gr3e6yiscria2) (DLAMI) and Optimum Neuron containers for Amazon SageMaker. It's recommended to correctly set up your environment.
 
-The example below demonstrates how to generate images with the Stable Diffusion XL model on an inf2.8xlarge instance (you can switch to cheaper inf2.xlarge instances once the model is compiled). To generate some images, use the `NeuronStableDiffusionXLPipeline` class, which is similar to the [StableDiffusionXLPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLPipeline) class in Diffusers.
+The example below demonstrates how to generate images with the Stable Diffusion XL model on an inf2.8xlarge instance (you can switch to cheaper inf2.xlarge instances once the model is compiled). To generate some images, use the `NeuronStableDiffusionXLPipeline` class, which is similar to the [StableDiffusionXLPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLPipeline) class in Diffusers.
 
 Unlike Diffusers, you need to compile models in the pipeline to the Neuron format, `.neuron`. Launch the following command to export the model to the `.neuron` format.
 
@@ -45,5 +45,5 @@ Now generate some images with the pre-compiled SDXL model.
 
 Feel free to check out more guides and examples on different use cases from the Optimum Neuron [documentation](https://huggingface.co/docs/optimum-neuron/en/inference_tutorials/stable_diffusion#generate-images-with-stable-diffusion-models-on-aws-inferentia)!
 
-### How to run Stable Diffusion with Core ML
-https://huggingface.co/docs/diffusers/v0.39.0/optimization/coreml.md
+### Metal Performance Shaders (MPS)
+https://huggingface.co/docs/diffusers/v0.40.0/optimization/mps.md

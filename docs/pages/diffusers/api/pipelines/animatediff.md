@@ -39,10 +39,10 @@ from diffusers import AnimateDiffPipeline, DDIMScheduler, MotionAdapter
 from diffusers.utils import export_to_gif
 
 # Load the motion adapter
-adapter = MotionAdapter.from_pretrained("guoyww/animatediff-motion-adapter-v1-5-2", torch_dtype=torch.float16)
+adapter = MotionAdapter.from_pretrained("guoyww/animatediff-motion-adapter-v1-5-2", dtype=torch.float16)
 # load SD 1.5 based finetuned model
 model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
-pipe = AnimateDiffPipeline.from_pretrained(model_id, motion_adapter=adapter, torch_dtype=torch.float16)
+pipe = AnimateDiffPipeline.from_pretrained(model_id, motion_adapter=adapter, dtype=torch.float16)
 scheduler = DDIMScheduler.from_pretrained(
     model_id,
     subfolder="scheduler",
@@ -54,7 +54,7 @@ scheduler = DDIMScheduler.from_pretrained(
 pipe.scheduler = scheduler
 
 # enable memory savings
-pipe.enable_vae_slicing()
+pipe.vae.enable_slicing()
 pipe.enable_model_cpu_offload()
 
 output = pipe(
@@ -104,12 +104,12 @@ from controlnet_aux.processor import ZoeDetector
 
 # Download controlnets from https://huggingface.co/lllyasviel/ControlNet-v1-1 to use .from_single_file
 # Download Diffusers-format controlnets, such as https://huggingface.co/lllyasviel/sd-controlnet-depth, to use .from_pretrained()
-controlnet = ControlNetModel.from_single_file("control_v11f1p_sd15_depth.pth", torch_dtype=torch.float16)
+controlnet = ControlNetModel.from_single_file("control_v11f1p_sd15_depth.pth", dtype=torch.float16)
 
 # We use AnimateLCM for this example but one can use the original motion adapters as well (for example, https://huggingface.co/guoyww/animatediff-motion-adapter-v1-5-3)
 motion_adapter = MotionAdapter.from_pretrained("wangfuyun/AnimateLCM")
 
-vae = AutoencoderKL.from_pretrained("stabilityai/sd-vae-ft-mse", torch_dtype=torch.float16)
+vae = AutoencoderKL.from_pretrained("stabilityai/sd-vae-ft-mse", dtype=torch.float16)
 pipe: AnimateDiffControlNetPipeline = AnimateDiffControlNetPipeline.from_pretrained(
     "SG161222/Realistic_Vision_V5.1_noVAE",
     motion_adapter=motion_adapter,
@@ -194,9 +194,9 @@ lora_adapter_id = "guoyww/animatediff-motion-lora-v1-5-3"
 vae_id = "stabilityai/sd-vae-ft-mse"
 device = "cuda"
 
-motion_adapter = MotionAdapter.from_pretrained(motion_adapter_id, torch_dtype=torch.float16).to(device)
-controlnet = SparseControlNetModel.from_pretrained(controlnet_id, torch_dtype=torch.float16).to(device)
-vae = AutoencoderKL.from_pretrained(vae_id, torch_dtype=torch.float16).to(device)
+motion_adapter = MotionAdapter.from_pretrained(motion_adapter_id, dtype=torch.float16).to(device)
+controlnet = SparseControlNetModel.from_pretrained(controlnet_id, dtype=torch.float16).to(device)
+vae = AutoencoderKL.from_pretrained(vae_id, dtype=torch.float16).to(device)
 scheduler = DPMSolverMultistepScheduler.from_pretrained(
     model_id,
     subfolder="scheduler",
@@ -210,7 +210,7 @@ pipe = AnimateDiffSparseControlNetPipeline.from_pretrained(
     controlnet=controlnet,
     vae=vae,
     scheduler=scheduler,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 ).to(device)
 pipe.load_lora_weights(lora_adapter_id, adapter_name="motion_lora")
 pipe.fuse_lora(lora_scale=1.0)
@@ -287,9 +287,9 @@ lora_adapter_id = "guoyww/animatediff-motion-lora-v1-5-3"
 vae_id = "stabilityai/sd-vae-ft-mse"
 device = "cuda"
 
-motion_adapter = MotionAdapter.from_pretrained(motion_adapter_id, torch_dtype=torch.float16).to(device)
-controlnet = SparseControlNetModel.from_pretrained(controlnet_id, torch_dtype=torch.float16).to(device)
-vae = AutoencoderKL.from_pretrained(vae_id, torch_dtype=torch.float16).to(device)
+motion_adapter = MotionAdapter.from_pretrained(motion_adapter_id, dtype=torch.float16).to(device)
+controlnet = SparseControlNetModel.from_pretrained(controlnet_id, dtype=torch.float16).to(device)
+vae = AutoencoderKL.from_pretrained(vae_id, dtype=torch.float16).to(device)
 scheduler = DPMSolverMultistepScheduler.from_pretrained(
     model_id,
     subfolder="scheduler",
@@ -303,7 +303,7 @@ pipe = AnimateDiffSparseControlNetPipeline.from_pretrained(
     controlnet=controlnet,
     vae=vae,
     scheduler=scheduler,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 ).to(device)
 pipe.load_lora_weights(lora_adapter_id, adapter_name="motion_lora")
 
@@ -351,7 +351,7 @@ from diffusers.models import MotionAdapter
 from diffusers import AnimateDiffSDXLPipeline, DDIMScheduler
 from diffusers.utils import export_to_gif
 
-adapter = MotionAdapter.from_pretrained("guoyww/animatediff-motion-adapter-sdxl-beta", torch_dtype=torch.float16)
+adapter = MotionAdapter.from_pretrained("guoyww/animatediff-motion-adapter-sdxl-beta", dtype=torch.float16)
 
 model_id = "stabilityai/stable-diffusion-xl-base-1.0"
 scheduler = DDIMScheduler.from_pretrained(
@@ -366,13 +366,13 @@ pipe = AnimateDiffSDXLPipeline.from_pretrained(
     model_id,
     motion_adapter=adapter,
     scheduler=scheduler,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     variant="fp16",
 ).to("cuda")
 
 # enable memory savings
-pipe.enable_vae_slicing()
-pipe.enable_vae_tiling()
+pipe.vae.enable_slicing()
+pipe.vae.enable_tiling()
 
 output = pipe(
     prompt="a panda surfing in the ocean, realistic, high quality",
@@ -402,10 +402,10 @@ from io import BytesIO
 from PIL import Image
 
 # Load the motion adapter
-adapter = MotionAdapter.from_pretrained("guoyww/animatediff-motion-adapter-v1-5-2", torch_dtype=torch.float16)
+adapter = MotionAdapter.from_pretrained("guoyww/animatediff-motion-adapter-v1-5-2", dtype=torch.float16)
 # load SD 1.5 based finetuned model
 model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
-pipe = AnimateDiffVideoToVideoPipeline.from_pretrained(model_id, motion_adapter=adapter, torch_dtype=torch.float16)
+pipe = AnimateDiffVideoToVideoPipeline.from_pretrained(model_id, motion_adapter=adapter, dtype=torch.float16)
 scheduler = DDIMScheduler.from_pretrained(
     model_id,
     subfolder="scheduler",
@@ -417,7 +417,7 @@ scheduler = DDIMScheduler.from_pretrained(
 pipe.scheduler = scheduler
 
 # enable memory savings
-pipe.enable_vae_slicing()
+pipe.vae.enable_slicing()
 pipe.enable_model_cpu_offload()
 
 # helper function to load videos
@@ -511,11 +511,11 @@ from diffusers.utils import export_to_gif, load_video
 from diffusers import AutoencoderKL, ControlNetModel, MotionAdapter, LCMScheduler
 
 # Load the ControlNet
-controlnet = ControlNetModel.from_pretrained("lllyasviel/sd-controlnet-openpose", torch_dtype=torch.float16)
+controlnet = ControlNetModel.from_pretrained("lllyasviel/sd-controlnet-openpose", dtype=torch.float16)
 # Load the motion adapter
 motion_adapter = MotionAdapter.from_pretrained("wangfuyun/AnimateLCM")
 # Load SD 1.5 based finetuned model
-vae = AutoencoderKL.from_pretrained("stabilityai/sd-vae-ft-mse", torch_dtype=torch.float16)
+vae = AutoencoderKL.from_pretrained("stabilityai/sd-vae-ft-mse", dtype=torch.float16)
 pipe = AnimateDiffVideoToVideoControlNetPipeline.from_pretrained(
     "SG161222/Realistic_Vision_V5.1_noVAE",
     motion_adapter=motion_adapter,
@@ -591,10 +591,10 @@ from diffusers import AnimateDiffPipeline, DDIMScheduler, MotionAdapter
 from diffusers.utils import export_to_gif
 
 # Load the motion adapter
-adapter = MotionAdapter.from_pretrained("guoyww/animatediff-motion-adapter-v1-5-2", torch_dtype=torch.float16)
+adapter = MotionAdapter.from_pretrained("guoyww/animatediff-motion-adapter-v1-5-2", dtype=torch.float16)
 # load SD 1.5 based finetuned model
 model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
-pipe = AnimateDiffPipeline.from_pretrained(model_id, motion_adapter=adapter, torch_dtype=torch.float16)
+pipe = AnimateDiffPipeline.from_pretrained(model_id, motion_adapter=adapter, dtype=torch.float16)
 pipe.load_lora_weights(
     "guoyww/animatediff-motion-lora-zoom-out", adapter_name="zoom-out"
 )
@@ -610,7 +610,7 @@ scheduler = DDIMScheduler.from_pretrained(
 pipe.scheduler = scheduler
 
 # enable memory savings
-pipe.enable_vae_slicing()
+pipe.vae.enable_slicing()
 pipe.enable_model_cpu_offload()
 
 output = pipe(
@@ -658,10 +658,10 @@ from diffusers import AnimateDiffPipeline, DDIMScheduler, MotionAdapter
 from diffusers.utils import export_to_gif
 
 # Load the motion adapter
-adapter = MotionAdapter.from_pretrained("guoyww/animatediff-motion-adapter-v1-5-2", torch_dtype=torch.float16)
+adapter = MotionAdapter.from_pretrained("guoyww/animatediff-motion-adapter-v1-5-2", dtype=torch.float16)
 # load SD 1.5 based finetuned model
 model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
-pipe = AnimateDiffPipeline.from_pretrained(model_id, motion_adapter=adapter, torch_dtype=torch.float16)
+pipe = AnimateDiffPipeline.from_pretrained(model_id, motion_adapter=adapter, dtype=torch.float16)
 
 pipe.load_lora_weights(
     "diffusers/animatediff-motion-lora-zoom-out", adapter_name="zoom-out",
@@ -682,7 +682,7 @@ scheduler = DDIMScheduler.from_pretrained(
 pipe.scheduler = scheduler
 
 # enable memory savings
-pipe.enable_vae_slicing()
+pipe.vae.enable_slicing()
 pipe.enable_model_cpu_offload()
 
 output = pipe(
@@ -727,7 +727,7 @@ from diffusers.utils import export_to_gif
 
 adapter = MotionAdapter.from_pretrained("guoyww/animatediff-motion-adapter-v1-5-2")
 model_id = "SG161222/Realistic_Vision_V5.1_noVAE"
-pipe = AnimateDiffPipeline.from_pretrained(model_id, motion_adapter=adapter, torch_dtype=torch.float16).to("cuda")
+pipe = AnimateDiffPipeline.from_pretrained(model_id, motion_adapter=adapter, dtype=torch.float16).to("cuda")
 pipe.scheduler = DDIMScheduler.from_pretrained(
     model_id,
     subfolder="scheduler",
@@ -738,8 +738,8 @@ pipe.scheduler = DDIMScheduler.from_pretrained(
 )
 
 # enable memory savings
-pipe.enable_vae_slicing()
-pipe.enable_vae_tiling()
+pipe.vae.enable_slicing()
+pipe.vae.enable_tiling()
 
 # enable FreeInit
 # Refer to the enable_free_init documentation for a full list of configurable parameters
@@ -804,7 +804,7 @@ pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config, beta_schedule="
 
 pipe.load_lora_weights("wangfuyun/AnimateLCM", weight_name="sd15_lora_beta.safetensors", adapter_name="lcm-lora")
 
-pipe.enable_vae_slicing()
+pipe.vae.enable_slicing()
 pipe.enable_model_cpu_offload()
 
 output = pipe(
@@ -844,7 +844,7 @@ pipe.load_lora_weights("wangfuyun/AnimateLCM", weight_name="sd15_lora_beta.safet
 pipe.load_lora_weights("guoyww/animatediff-motion-lora-tilt-up", adapter_name="tilt-up")
 
 pipe.set_adapters(["lcm-lora", "tilt-up"], [1.0, 0.8])
-pipe.enable_vae_slicing()
+pipe.vae.enable_slicing()
 pipe.enable_model_cpu_offload()
 
 output = pipe(
@@ -876,10 +876,10 @@ export_to_gif(frames, "animatelcm-motion-lora.gif")
 FreeNoise is a sampling mechanism that can generate longer videos with short-video generation models by employing noise-rescheduling, temporal attention over sliding windows, and weighted averaging of latent frames. It also can be used with multiple prompts to allow for interpolated video generations. More details are available in the paper.
 
 The currently supported AnimateDiff pipelines that can be used with FreeNoise are:
-- [AnimateDiffPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.AnimateDiffPipeline)
-- [AnimateDiffControlNetPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.AnimateDiffControlNetPipeline)
-- [AnimateDiffVideoToVideoPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.AnimateDiffVideoToVideoPipeline)
-- [AnimateDiffVideoToVideoControlNetPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.AnimateDiffVideoToVideoControlNetPipeline)
+- [AnimateDiffPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.AnimateDiffPipeline)
+- [AnimateDiffControlNetPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.AnimateDiffControlNetPipeline)
+- [AnimateDiffVideoToVideoPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.AnimateDiffVideoToVideoPipeline)
+- [AnimateDiffVideoToVideoControlNetPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.AnimateDiffVideoToVideoControlNetPipeline)
 
 In order to use FreeNoise, a single line needs to be added to the inference code after loading your pipelines.
 
@@ -898,10 +898,10 @@ from diffusers.utils import export_to_video, load_image
 
 # Load pipeline
 dtype = torch.float16
-motion_adapter = MotionAdapter.from_pretrained("wangfuyun/AnimateLCM", torch_dtype=dtype)
-vae = AutoencoderKL.from_pretrained("stabilityai/sd-vae-ft-mse", torch_dtype=dtype)
+motion_adapter = MotionAdapter.from_pretrained("wangfuyun/AnimateLCM", dtype=dtype)
+vae = AutoencoderKL.from_pretrained("stabilityai/sd-vae-ft-mse", dtype=dtype)
 
-pipe = AnimateDiffPipeline.from_pretrained("emilianJR/epiCRealism", motion_adapter=motion_adapter, vae=vae, torch_dtype=dtype)
+pipe = AnimateDiffPipeline.from_pretrained("emilianJR/epiCRealism", motion_adapter=motion_adapter, vae=vae, dtype=dtype)
 pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config, beta_schedule="linear")
 
 pipe.load_lora_weights(
@@ -962,7 +962,7 @@ from diffusers import MotionAdapter
 
 ckpt_path = "https://huggingface.co/Lightricks/LongAnimateDiff/blob/main/lt_long_mm_32_frames.ckpt"
 
-adapter = MotionAdapter.from_single_file(ckpt_path, torch_dtype=torch.float16)
+adapter = MotionAdapter.from_single_file(ckpt_path, dtype=torch.float16)
 pipe = AnimateDiffPipeline.from_pretrained("emilianJR/epiCRealism", motion_adapter=adapter)
 ```
 
@@ -970,37 +970,94 @@ pipe = AnimateDiffPipeline.from_pretrained("emilianJR/epiCRealism", motion_adapt
 
 #### diffusers.AnimateDiffPipeline[[diffusers.AnimateDiffPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff.py#L78)
+```python
+diffusers.AnimateDiffPipeline(vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, unet: diffusers.models.unets.unet_2d_condition.UNet2DConditionModel | diffusers.models.unets.unet_motion_model.UNetMotionModel, motion_adapter: MotionAdapter, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_pndm.PNDMScheduler | diffusers.utils.dummy_torch_and_scipy_objects.LMSDiscreteScheduler | diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteScheduler | diffusers.schedulers.scheduling_euler_ancestral_discrete.EulerAncestralDiscreteScheduler | diffusers.schedulers.scheduling_dpmsolver_multistep.DPMSolverMultistepScheduler, feature_extractor: CLIPImageProcessorPil = None, image_encoder: CLIPVisionModelWithProjection = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff.py#L78)
+
+**Parameters:**
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
+
+tokenizer (`CLIPTokenizer`) : A [CLIPTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer) to tokenize text.
+
+unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) used to create a UNetMotionModel to denoise the encoded video latents.
+
+motion_adapter (`MotionAdapter`) : A `MotionAdapter` to be used in combination with `unet` to denoise the encoded video latents.
+
+scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
 
 Pipeline for text-to-video generation.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 The pipeline also inherits the following loading methods:
-- [load_textual_inversion()](/docs/diffusers/v0.39.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
-- [load_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for loading LoRA weights
-- [save_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for saving LoRA weights
-- [load_ip_adapter()](/docs/diffusers/v0.39.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
+- [load_textual_inversion()](/docs/diffusers/v0.40.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
+- [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for loading LoRA weights
+- [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for saving LoRA weights
+- [load_ip_adapter()](/docs/diffusers/v0.40.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
 
-__call__diffusers.AnimateDiffPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff.py#L571[{"name": "prompt", "val": ": str | list[str] | None = None"}, {"name": "num_frames", "val": ": int | None = 16"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "guidance_scale", "val": ": float = 7.5"}, {"name": "negative_prompt", "val": ": str | list[str] | None = None"}, {"name": "num_videos_per_prompt", "val": ": int | None = 1"}, {"name": "eta", "val": ": float = 0.0"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.Tensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "cross_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "clip_skip", "val": ": int | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "decode_chunk_size", "val": ": int = 16"}, {"name": "**kwargs", "val": ""}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide image generation. If not defined, you need to pass `prompt_embeds`.
-- **height** (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) --
-  The height in pixels of the generated video.
-- **width** (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) --
-  The width in pixels of the generated video.
-- **num_frames** (`int`, *optional*, defaults to 16) --
-  The number of video frames that are generated. Defaults to 16 frames which at 8 frames per seconds
-  amounts to 2 seconds of video.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality videos at the
-  expense of slower inference.
-- **guidance_scale** (`float`, *optional*, defaults to 7.5) --
-  A higher guidance scale value encourages the model to generate images closely linked to the text
-  `prompt` at the expense of lower image quality. Guidance scale is enabled when `guidance_scale > 1`.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide what to not include in image generation. If not defined, you need to
-  pass `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale 0[AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple`If `return_dict` is `True`, [AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
+#### __call__[[diffusers.AnimateDiffPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] | None = None, num_frames: int | None = 16, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, guidance_scale: float = 7.5, negative_prompt: str | list[str] | None = None, num_videos_per_prompt: int | None = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: list[torch.Tensor] | None = None, output_type: str | None = 'pil', return_dict: bool = True, cross_attention_kwargs: dict[str, typing.Any] | None = None, clip_skip: int | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], decode_chunk_size: int = 16, **kwargs)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff.py#L571)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide image generation. If not defined, you need to pass `prompt_embeds`.
+
+height (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) : The height in pixels of the generated video.
+
+width (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) : The width in pixels of the generated video.
+
+num_frames (`int`, *optional*, defaults to 16) : The number of video frames that are generated. Defaults to 16 frames which at 8 frames per seconds amounts to 2 seconds of video.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality videos at the expense of slower inference.
+
+guidance_scale (`float`, *optional*, defaults to 7.5) : A higher guidance scale value encourages the model to generate images closely linked to the text `prompt` at the expense of lower image quality. Guidance scale is enabled when `guidance_scale > 1`.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide what to not include in image generation. If not defined, you need to pass `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale < 1`).
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
+
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for video generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor is generated by sampling using the supplied random `generator`. Latents should be of shape `(batch_size, num_channel, num_frames, height, width)`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, text embeddings are generated from the `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, `negative_prompt_embeds` are generated from the `negative_prompt` input argument.
+
+ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. It should contain the negative image embedding if `do_classifier_free_guidance` is set to `True`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated video. Choose between `torch.Tensor`, `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.text_to_video_synthesis.TextToVideoSDPipelineOutput` instead of a plain tuple.
+
+cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined in [`self.processor`](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+clip_skip (`int`, *optional*) : Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that the output of the pre-final layer will be used for computing the prompt embeddings.
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+decode_chunk_size (`int`, defaults to `16`) : The number of frames to decode at a time when calling `decode_latents` method.
+
+**Returns:** [AnimateDiffPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple`
+
+If `return_dict` is `True`, [AnimateDiffPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
 returned, otherwise a `tuple` is returned where the first element is a list with the generated frames.
 
 The call function to the pipeline for generation.
@@ -1019,31 +1076,13 @@ Examples:
 >>> export_to_gif(frames, "animation.gif")
 ```
 
-**Parameters:**
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
-
-tokenizer (`CLIPTokenizer`) : A [CLIPTokenizer](https://huggingface.co/docs/transformers/v5.12.1/en/model_doc/clip#transformers.CLIPTokenizer) to tokenize text.
-
-unet ([UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A [UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) used to create a UNetMotionModel to denoise the encoded video latents.
-
-motion_adapter (`MotionAdapter`) : A `MotionAdapter` to be used in combination with `unet` to denoise the encoded video latents.
-
-scheduler ([SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
-
-**Returns:**
-
-`[AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple``
-
-If `return_dict` is `True`, [AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
-returned, otherwise a `tuple` is returned where the first element is a list with the generated frames.
 #### encode_prompt[[diffusers.AnimateDiffPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff.py#L154)
+```python
+encode_prompt(prompt, device, num_images_per_prompt, do_classifier_free_guidance, negative_prompt = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, lora_scale: float | None = None, clip_skip: int | None = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff.py#L154)
 
 **Parameters:**
 
@@ -1065,72 +1104,123 @@ lora_scale (`float`, *optional*) : A LoRA scale that will be applied to all LoRA
 
 clip_skip (`int`, *optional*) : Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that the output of the pre-final layer will be used for computing the prompt embeddings.
 
+Encodes the prompt into text encoder hidden states.
+
 ## AnimateDiffControlNetPipeline[[diffusers.AnimateDiffControlNetPipeline]]
 
 #### diffusers.AnimateDiffControlNetPipeline[[diffusers.AnimateDiffControlNetPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_controlnet.py#L120)
+```python
+diffusers.AnimateDiffControlNetPipeline(vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, unet: diffusers.models.unets.unet_2d_condition.UNet2DConditionModel | diffusers.models.unets.unet_motion_model.UNetMotionModel, motion_adapter: MotionAdapter, controlnet: diffusers.models.controlnets.controlnet.ControlNetModel | list[diffusers.models.controlnets.controlnet.ControlNetModel] | tuple[diffusers.models.controlnets.controlnet.ControlNetModel] | diffusers.models.controlnets.multicontrolnet.MultiControlNetModel, scheduler: KarrasDiffusionSchedulers, feature_extractor: transformers.models.clip.image_processing_pil_clip.CLIPImageProcessorPil | None = None, image_encoder: transformers.models.clip.modeling_clip.CLIPVisionModelWithProjection | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_controlnet.py#L120)
+
+**Parameters:**
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
+
+tokenizer (`CLIPTokenizer`) : A [CLIPTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer) to tokenize text.
+
+unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) used to create a UNetMotionModel to denoise the encoded video latents.
+
+motion_adapter (`MotionAdapter`) : A `MotionAdapter` to be used in combination with `unet` to denoise the encoded video latents.
+
+scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
 
 Pipeline for text-to-video generation with ControlNet guidance.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 The pipeline also inherits the following loading methods:
-- [load_textual_inversion()](/docs/diffusers/v0.39.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
-- [load_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for loading LoRA weights
-- [save_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for saving LoRA weights
-- [load_ip_adapter()](/docs/diffusers/v0.39.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
+- [load_textual_inversion()](/docs/diffusers/v0.40.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
+- [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for loading LoRA weights
+- [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for saving LoRA weights
+- [load_ip_adapter()](/docs/diffusers/v0.40.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
 
-__call__diffusers.AnimateDiffControlNetPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_controlnet.py#L721[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "num_frames", "val": ": int | None = 16"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "guidance_scale", "val": ": float = 7.5"}, {"name": "negative_prompt", "val": ": str | list[str] | None = None"}, {"name": "num_videos_per_prompt", "val": ": int | None = 1"}, {"name": "eta", "val": ": float = 0.0"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.Tensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "ip_adapter_image_embeds", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "conditioning_frames", "val": ": list[PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor]] | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "cross_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "controlnet_conditioning_scale", "val": ": float | list[float] = 1.0"}, {"name": "guess_mode", "val": ": bool = False"}, {"name": "control_guidance_start", "val": ": float | list[float] = 0.0"}, {"name": "control_guidance_end", "val": ": float | list[float] = 1.0"}, {"name": "clip_skip", "val": ": int | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "decode_chunk_size", "val": ": int = 16"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide image generation. If not defined, you need to pass `prompt_embeds`.
-- **height** (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) --
-  The height in pixels of the generated video.
-- **width** (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) --
-  The width in pixels of the generated video.
-- **num_frames** (`int`, *optional*, defaults to 16) --
-  The number of video frames that are generated. Defaults to 16 frames which at 8 frames per seconds
-  amounts to 2 seconds of video.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality videos at the
-  expense of slower inference.
-- **guidance_scale** (`float`, *optional*, defaults to 7.5) --
-  A higher guidance scale value encourages the model to generate images closely linked to the text
-  `prompt` at the expense of lower image quality. Guidance scale is enabled when `guidance_scale > 1`.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide what to not include in image generation. If not defined, you need to
-  pass `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale 0[AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple`If `return_dict` is `True`, [AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
+#### __call__[[diffusers.AnimateDiffControlNetPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, num_frames: int | None = 16, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, guidance_scale: float = 7.5, negative_prompt: str | list[str] | None = None, num_videos_per_prompt: int | None = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, conditioning_frames: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] | None = None, output_type: str | None = 'pil', return_dict: bool = True, cross_attention_kwargs: dict[str, typing.Any] | None = None, controlnet_conditioning_scale: float | list[float] = 1.0, guess_mode: bool = False, control_guidance_start: float | list[float] = 0.0, control_guidance_end: float | list[float] = 1.0, clip_skip: int | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], decode_chunk_size: int = 16)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_controlnet.py#L721)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide image generation. If not defined, you need to pass `prompt_embeds`.
+
+height (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) : The height in pixels of the generated video.
+
+width (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) : The width in pixels of the generated video.
+
+num_frames (`int`, *optional*, defaults to 16) : The number of video frames that are generated. Defaults to 16 frames which at 8 frames per seconds amounts to 2 seconds of video.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality videos at the expense of slower inference.
+
+guidance_scale (`float`, *optional*, defaults to 7.5) : A higher guidance scale value encourages the model to generate images closely linked to the text `prompt` at the expense of lower image quality. Guidance scale is enabled when `guidance_scale > 1`.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide what to not include in image generation. If not defined, you need to pass `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale < 1`).
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
+
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for video generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor is generated by sampling using the supplied random `generator`. Latents should be of shape `(batch_size, num_channel, num_frames, height, width)`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, text embeddings are generated from the `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, `negative_prompt_embeds` are generated from the `negative_prompt` input argument.
+
+ip_adapter_image (`PipelineImageInput`, *optional*) : Optional image input to work with IP Adapters.
+
+ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. It should contain the negative image embedding if `do_classifier_free_guidance` is set to `True`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+conditioning_frames (`list[PipelineImageInput]`, *optional*) : The ControlNet input condition to provide guidance to the `unet` for generation. If multiple ControlNets are specified, images must be passed as a list such that each element of the list can be correctly batched for input to a single ControlNet.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated video. Choose between `torch.Tensor`, `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.text_to_video_synthesis.TextToVideoSDPipelineOutput` instead of a plain tuple.
+
+cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined in [`self.processor`](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+controlnet_conditioning_scale (`float` or `list[float]`, *optional*, defaults to 1.0) : The outputs of the ControlNet are multiplied by `controlnet_conditioning_scale` before they are added to the residual in the original `unet`. If multiple ControlNets are specified in `init`, you can set the corresponding scale as a list.
+
+guess_mode (`bool`, *optional*, defaults to `False`) : The ControlNet encoder tries to recognize the content of the input image even if you remove all prompts. A `guidance_scale` value between 3.0 and 5.0 is recommended.
+
+control_guidance_start (`float` or `list[float]`, *optional*, defaults to 0.0) : The percentage of total steps at which the ControlNet starts applying.
+
+control_guidance_end (`float` or `list[float]`, *optional*, defaults to 1.0) : The percentage of total steps at which the ControlNet stops applying.
+
+clip_skip (`int`, *optional*) : Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that the output of the pre-final layer will be used for computing the prompt embeddings.
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+decode_chunk_size (`int`, defaults to `16`) : The number of frames to decode at a time when calling `decode_latents` method.
+
+**Returns:** [AnimateDiffPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple`
+
+If `return_dict` is `True`, [AnimateDiffPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
 returned, otherwise a `tuple` is returned where the first element is a list with the generated frames.
 
 The call function to the pipeline for generation.
 
 Examples:
 
-**Parameters:**
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
-
-tokenizer (`CLIPTokenizer`) : A [CLIPTokenizer](https://huggingface.co/docs/transformers/v5.12.1/en/model_doc/clip#transformers.CLIPTokenizer) to tokenize text.
-
-unet ([UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A [UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) used to create a UNetMotionModel to denoise the encoded video latents.
-
-motion_adapter (`MotionAdapter`) : A `MotionAdapter` to be used in combination with `unet` to denoise the encoded video latents.
-
-scheduler ([SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
-
-**Returns:**
-
-`[AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple``
-
-If `return_dict` is `True`, [AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
-returned, otherwise a `tuple` is returned where the first element is a list with the generated frames.
 #### encode_prompt[[diffusers.AnimateDiffControlNetPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_controlnet.py#L199)
+```python
+encode_prompt(prompt, device, num_images_per_prompt, do_classifier_free_guidance, negative_prompt = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, lora_scale: float | None = None, clip_skip: int | None = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_controlnet.py#L199)
 
 **Parameters:**
 
@@ -1152,42 +1242,107 @@ lora_scale (`float`, *optional*) : A LoRA scale that will be applied to all LoRA
 
 clip_skip (`int`, *optional*) : Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that the output of the pre-final layer will be used for computing the prompt embeddings.
 
+Encodes the prompt into text encoder hidden states.
+
 ## AnimateDiffSparseControlNetPipeline[[diffusers.AnimateDiffSparseControlNetPipeline]]
 
 #### diffusers.AnimateDiffSparseControlNetPipeline[[diffusers.AnimateDiffSparseControlNetPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_sparsectrl.py#L132)
+```python
+diffusers.AnimateDiffSparseControlNetPipeline(vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, unet: diffusers.models.unets.unet_2d_condition.UNet2DConditionModel | diffusers.models.unets.unet_motion_model.UNetMotionModel, motion_adapter: MotionAdapter, controlnet: SparseControlNetModel, scheduler: KarrasDiffusionSchedulers, feature_extractor: CLIPImageProcessorPil = None, image_encoder: CLIPVisionModelWithProjection = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_sparsectrl.py#L132)
+
+**Parameters:**
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
+
+tokenizer (`CLIPTokenizer`) : A [CLIPTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer) to tokenize text.
+
+unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) used to create a UNetMotionModel to denoise the encoded video latents.
+
+motion_adapter (`MotionAdapter`) : A `MotionAdapter` to be used in combination with `unet` to denoise the encoded video latents.
+
+scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
 
 Pipeline for controlled text-to-video generation using the method described in [SparseCtrl: Adding Sparse Controls
 to Text-to-Video Diffusion Models](https://huggingface.co/papers/2311.16933).
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 The pipeline also inherits the following loading methods:
-- [load_textual_inversion()](/docs/diffusers/v0.39.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
-- [load_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for loading LoRA weights
-- [save_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for saving LoRA weights
-- [load_ip_adapter()](/docs/diffusers/v0.39.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
+- [load_textual_inversion()](/docs/diffusers/v0.40.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
+- [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for loading LoRA weights
+- [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for saving LoRA weights
+- [load_ip_adapter()](/docs/diffusers/v0.40.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
 
-__call__diffusers.AnimateDiffSparseControlNetPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_sparsectrl.py#L712[{"name": "prompt", "val": ": str | list[str] | None = None"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "num_frames", "val": ": int = 16"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "guidance_scale", "val": ": float = 7.5"}, {"name": "negative_prompt", "val": ": str | list[str] | None = None"}, {"name": "num_videos_per_prompt", "val": ": int = 1"}, {"name": "eta", "val": ": float = 0.0"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.Tensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "conditioning_frames", "val": ": list[PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor]] | None = None"}, {"name": "output_type", "val": ": str = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "cross_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "controlnet_conditioning_scale", "val": ": float | list[float] = 1.0"}, {"name": "controlnet_frame_indices", "val": ": list = [0]"}, {"name": "guess_mode", "val": ": bool = False"}, {"name": "clip_skip", "val": ": int | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide image generation. If not defined, you need to pass `prompt_embeds`.
-- **height** (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) --
-  The height in pixels of the generated video.
-- **width** (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) --
-  The width in pixels of the generated video.
-- **num_frames** (`int`, *optional*, defaults to 16) --
-  The number of video frames that are generated. Defaults to 16 frames which at 8 frames per seconds
-  amounts to 2 seconds of video.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality videos at the
-  expense of slower inference.
-- **guidance_scale** (`float`, *optional*, defaults to 7.5) --
-  A higher guidance scale value encourages the model to generate images closely linked to the text
-  `prompt` at the expense of lower image quality. Guidance scale is enabled when `guidance_scale > 1`.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide what to not include in image generation. If not defined, you need to
-  pass `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale 0[AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple`If `return_dict` is `True`, [AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
+#### __call__[[diffusers.AnimateDiffSparseControlNetPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_frames: int = 16, num_inference_steps: int = 50, guidance_scale: float = 7.5, negative_prompt: str | list[str] | None = None, num_videos_per_prompt: int = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: list[torch.Tensor] | None = None, conditioning_frames: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] | None = None, output_type: str = 'pil', return_dict: bool = True, cross_attention_kwargs: dict[str, typing.Any] | None = None, controlnet_conditioning_scale: float | list[float] = 1.0, controlnet_frame_indices: list = [0], guess_mode: bool = False, clip_skip: int | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_sparsectrl.py#L712)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide image generation. If not defined, you need to pass `prompt_embeds`.
+
+height (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) : The height in pixels of the generated video.
+
+width (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) : The width in pixels of the generated video.
+
+num_frames (`int`, *optional*, defaults to 16) : The number of video frames that are generated. Defaults to 16 frames which at 8 frames per seconds amounts to 2 seconds of video.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality videos at the expense of slower inference.
+
+guidance_scale (`float`, *optional*, defaults to 7.5) : A higher guidance scale value encourages the model to generate images closely linked to the text `prompt` at the expense of lower image quality. Guidance scale is enabled when `guidance_scale > 1`.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide what to not include in image generation. If not defined, you need to pass `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale < 1`).
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
+
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for video generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor is generated by sampling using the supplied random `generator`. Latents should be of shape `(batch_size, num_channel, num_frames, height, width)`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, text embeddings are generated from the `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, `negative_prompt_embeds` are generated from the `negative_prompt` input argument.
+
+ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. It should contain the negative image embedding if `do_classifier_free_guidance` is set to `True`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+conditioning_frames (`list[PipelineImageInput]`, *optional*) : The SparseControlNet input to provide guidance to the `unet` for generation.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated video. Choose between `torch.Tensor`, `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.text_to_video_synthesis.TextToVideoSDPipelineOutput` instead of a plain tuple.
+
+cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined in [`self.processor`](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+controlnet_conditioning_scale (`float` or `list[float]`, *optional*, defaults to 1.0) : The outputs of the ControlNet are multiplied by `controlnet_conditioning_scale` before they are added to the residual in the original `unet`. If multiple ControlNets are specified in `init`, you can set the corresponding scale as a list.
+
+controlnet_frame_indices (`list[int]`) : The indices where the conditioning frames must be applied for generation. Multiple frames can be provided to guide the model to generate similar structure outputs, where the `unet` can "fill-in-the-gaps" for interpolation videos, or a single frame could be provided for general expected structure. Must have the same length as `conditioning_frames`.
+
+guess_mode (`bool`, *optional*, defaults to `False`) : The ControlNet encoder tries to recognize the content of the input image even if you remove all prompts. A `guidance_scale` value between 3.0 and 5.0 is recommended.
+
+clip_skip (`int`, *optional*) : Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that the output of the pre-final layer will be used for computing the prompt embeddings.
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+**Returns:** [AnimateDiffPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple`
+
+If `return_dict` is `True`, [AnimateDiffPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
 returned, otherwise a `tuple` is returned where the first element is a list with the generated frames.
 
 The call function to the pipeline for generation.
@@ -1251,31 +1406,13 @@ Examples:
 >>> export_to_gif(video, "output.gif")
 ```
 
-**Parameters:**
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
-
-tokenizer (`CLIPTokenizer`) : A [CLIPTokenizer](https://huggingface.co/docs/transformers/v5.12.1/en/model_doc/clip#transformers.CLIPTokenizer) to tokenize text.
-
-unet ([UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A [UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) used to create a UNetMotionModel to denoise the encoded video latents.
-
-motion_adapter (`MotionAdapter`) : A `MotionAdapter` to be used in combination with `unet` to denoise the encoded video latents.
-
-scheduler ([SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
-
-**Returns:**
-
-`[AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple``
-
-If `return_dict` is `True`, [AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
-returned, otherwise a `tuple` is returned where the first element is a list with the generated frames.
 #### encode_prompt[[diffusers.AnimateDiffSparseControlNetPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_sparsectrl.py#L208)
+```python
+encode_prompt(prompt, device, num_images_per_prompt, do_classifier_free_guidance, negative_prompt = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, lora_scale: float | None = None, clip_skip: int | None = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_sparsectrl.py#L208)
 
 **Parameters:**
 
@@ -1297,162 +1434,131 @@ lora_scale (`float`, *optional*) : A LoRA scale that will be applied to all LoRA
 
 clip_skip (`int`, *optional*) : Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that the output of the pre-final layer will be used for computing the prompt embeddings.
 
+Encodes the prompt into text encoder hidden states.
+
 ## AnimateDiffSDXLPipeline[[diffusers.AnimateDiffSDXLPipeline]]
 
 #### diffusers.AnimateDiffSDXLPipeline[[diffusers.AnimateDiffSDXLPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_sdxl.py#L210)
+```python
+diffusers.AnimateDiffSDXLPipeline(vae: AutoencoderKL, text_encoder: CLIPTextModel, text_encoder_2: CLIPTextModelWithProjection, tokenizer: CLIPTokenizer, tokenizer_2: CLIPTokenizer, unet: diffusers.models.unets.unet_2d_condition.UNet2DConditionModel | diffusers.models.unets.unet_motion_model.UNetMotionModel, motion_adapter: MotionAdapter, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_pndm.PNDMScheduler | diffusers.utils.dummy_torch_and_scipy_objects.LMSDiscreteScheduler | diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteScheduler | diffusers.schedulers.scheduling_euler_ancestral_discrete.EulerAncestralDiscreteScheduler | diffusers.schedulers.scheduling_dpmsolver_multistep.DPMSolverMultistepScheduler, image_encoder: CLIPVisionModelWithProjection = None, feature_extractor: CLIPImageProcessorPil = None, force_zeros_for_empty_prompt: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_sdxl.py#L210)
+
+**Parameters:**
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : Frozen text-encoder. Stable Diffusion XL uses the text portion of [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
+
+text_encoder_2 (` CLIPTextModelWithProjection`) : Second frozen text-encoder. Stable Diffusion XL uses the text and pool portion of [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModelWithProjection), specifically the [laion/CLIP-ViT-bigG-14-laion2B-39B-b160k](https://huggingface.co/laion/CLIP-ViT-bigG-14-laion2B-39B-b160k) variant.
+
+tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/v4.21.0/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer_2 (`CLIPTokenizer`) : Second Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/v4.21.0/en/model_doc/clip#transformers.CLIPTokenizer).
+
+unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the encoded image latents.
+
+scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
+
+force_zeros_for_empty_prompt (`bool`, *optional*, defaults to `"True"`) : Whether the negative prompt embeddings shall be forced to always be set to 0. Also see the config of `stabilityai/stable-diffusion-xl-base-1-0`.
 
 Pipeline for text-to-video generation using Stable Diffusion XL.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
 The pipeline also inherits the following loading methods:
-- [load_textual_inversion()](/docs/diffusers/v0.39.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
-- [from_single_file()](/docs/diffusers/v0.39.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) for loading `.ckpt` files
-- [load_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionXLLoraLoaderMixin.load_lora_weights) for loading LoRA weights
-- [save_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionXLLoraLoaderMixin.save_lora_weights) for saving LoRA weights
-- [load_ip_adapter()](/docs/diffusers/v0.39.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
+- [load_textual_inversion()](/docs/diffusers/v0.40.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
+- [from_single_file()](/docs/diffusers/v0.40.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file) for loading `.ckpt` files
+- [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionXLLoraLoaderMixin.load_lora_weights) for loading LoRA weights
+- [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionXLLoraLoaderMixin.save_lora_weights) for saving LoRA weights
+- [load_ip_adapter()](/docs/diffusers/v0.40.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
 
-__call__diffusers.AnimateDiffSDXLPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_sdxl.py#L867[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "prompt_2", "val": ": str | list[str] | None = None"}, {"name": "num_frames", "val": ": int = 16"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "timesteps", "val": ": list = None"}, {"name": "sigmas", "val": ": list = None"}, {"name": "denoising_end", "val": ": float | None = None"}, {"name": "guidance_scale", "val": ": float = 5.0"}, {"name": "negative_prompt", "val": ": str | list[str] | None = None"}, {"name": "negative_prompt_2", "val": ": str | list[str] | None = None"}, {"name": "num_videos_per_prompt", "val": ": int | None = 1"}, {"name": "eta", "val": ": float = 0.0"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.Tensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "pooled_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_pooled_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "cross_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "guidance_rescale", "val": ": float = 0.0"}, {"name": "original_size", "val": ": tuple[int, int] | None = None"}, {"name": "crops_coords_top_left", "val": ": tuple = (0, 0)"}, {"name": "target_size", "val": ": tuple[int, int] | None = None"}, {"name": "negative_original_size", "val": ": tuple[int, int] | None = None"}, {"name": "negative_crops_coords_top_left", "val": ": tuple = (0, 0)"}, {"name": "negative_target_size", "val": ": tuple[int, int] | None = None"}, {"name": "clip_skip", "val": ": int | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the video generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to the `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is
-  used in both text-encoders
-- **num_frames** --
-  The number of video frames that are generated. Defaults to 16 frames which at 8 frames per seconds
-  amounts to 2 seconds of video.
-- **height** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The height in pixels of the generated video. This is set to 1024 by default for the best results.
-  Anything below 512 pixels won't work well for
-  [stabilityai/stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0)
-  and checkpoints that are not specifically fine-tuned on low resolutions.
-- **width** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The width in pixels of the generated video. This is set to 1024 by default for the best results.
-  Anything below 512 pixels won't work well for
-  [stabilityai/stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0)
-  and checkpoints that are not specifically fine-tuned on low resolutions.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality video at the
-  expense of slower inference.
-- **timesteps** (`list[int]`, *optional*) --
-  Custom timesteps to use for the denoising process with schedulers which support a `timesteps` argument
-  in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is
-  passed will be used. Must be in descending order.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **denoising_end** (`float`, *optional*) --
-  When specified, determines the fraction (between 0.0 and 1.0) of the total denoising process to be
-  completed before it is intentionally prematurely terminated. As a result, the returned sample will
-  still retain a substantial amount of noise as determined by the discrete timesteps selected by the
-  scheduler. The denoising_end parameter should ideally be utilized when this pipeline forms a part of a
-  "Mixture of Denoisers" multi-pipeline setup, as elaborated in [**Refining the Image
-  Output**](https://huggingface.co/docs/diffusers/api/pipelines/stable_diffusion/stable_diffusion_xl#refining-the-image-output)
-- **guidance_scale** (`float`, *optional*, defaults to 5.0) --
-  Guidance scale as defined in [Classifier-Free Diffusion
-  Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2.
-  of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting
-  `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to
-  the text `prompt`, usually at the expense of lower video quality.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the video generation. If not defined, one has to pass
-  `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is
-  less than `1`).
-- **negative_prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the video generation to be sent to `tokenizer_2` and
-  `text_encoder_2`. If not defined, `negative_prompt` is used in both text-encoders
-- **num_videos_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of videos to generate per prompt.
-- **eta** (`float`, *optional*, defaults to 0.0) --
-  Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only
-  applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
-  to make generation deterministic.
-- **latents** (`torch.Tensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for video
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor will be generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not
-  provided, text embeddings will be generated from `prompt` input argument.
-- **negative_prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input
-  argument.
-- **pooled_prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-  If not provided, pooled text embeddings will be generated from `prompt` input argument.
-- **negative_pooled_prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt`
-  input argument.
-- **ip_adapter_image** -- (`PipelineImageInput`, *optional*):
-  Optional image input to work with IP Adapters.
-- **ip_adapter_image_embeds** (`list[torch.Tensor]`, *optional*) --
-  Pre-generated image embeddings for IP-Adapter. If not provided, embeddings are computed from the
-  `ip_adapter_image` input argument.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generated video. Choose between
-  [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.stable_diffusion_xl.AnimateDiffPipelineOutput` instead of a
-  plain tuple.
-- **cross_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **guidance_rescale** (`float`, *optional*, defaults to 0.0) --
-  Guidance rescale factor proposed by [Common Diffusion Noise Schedules and Sample Steps are
-  Flawed](https://huggingface.co/papers/2305.08891) `guidance_scale` is defined as `φ` in equation 16. of
-  [Common Diffusion Noise Schedules and Sample Steps are
-  Flawed](https://huggingface.co/papers/2305.08891). Guidance rescale factor should fix overexposure when
-  using zero terminal SNR.
-- **original_size** (`tuple[int]`, *optional*, defaults to (1024, 1024)) --
-  If `original_size` is not the same as `target_size` the image will appear to be down- or upsampled.
-  `original_size` defaults to `(height, width)` if not specified. Part of SDXL's micro-conditioning as
-  explained in section 2.2 of
-  [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952).
-- **crops_coords_top_left** (`tuple[int]`, *optional*, defaults to (0, 0)) --
-  `crops_coords_top_left` can be used to generate an image that appears to be "cropped" from the position
-  `crops_coords_top_left` downwards. Favorable, well-centered images are usually achieved by setting
-  `crops_coords_top_left` to (0, 0). Part of SDXL's micro-conditioning as explained in section 2.2 of
-  [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952).
-- **target_size** (`tuple[int]`, *optional*, defaults to (1024, 1024)) --
-  For most cases, `target_size` should be set to the desired height and width of the generated image. If
-  not specified it will default to `(height, width)`. Part of SDXL's micro-conditioning as explained in
-  section 2.2 of [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952).
-- **negative_original_size** (`tuple[int]`, *optional*, defaults to (1024, 1024)) --
-  To negatively condition the generation process based on a specific image resolution. Part of SDXL's
-  micro-conditioning as explained in section 2.2 of
-  [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952). For more
-  information, refer to this issue thread: https://github.com/huggingface/diffusers/issues/4208.
-- **negative_crops_coords_top_left** (`tuple[int]`, *optional*, defaults to (0, 0)) --
-  To negatively condition the generation process based on a specific crop coordinates. Part of SDXL's
-  micro-conditioning as explained in section 2.2 of
-  [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952). For more
-  information, refer to this issue thread: https://github.com/huggingface/diffusers/issues/4208.
-- **negative_target_size** (`tuple[int]`, *optional*, defaults to (1024, 1024)) --
-  To negatively condition the generation process based on a target image resolution. It should be as same
-  as the `target_size` for most cases. Part of SDXL's micro-conditioning as explained in section 2.2 of
-  [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952). For more
-  information, refer to this issue thread: https://github.com/huggingface/diffusers/issues/4208.
-- **clip_skip** (`int`, *optional*) --
-  Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that
-  the output of the pre-final layer will be used for computing the prompt embeddings.
-- **callback_on_step_end** (`Callable`, *optional*) --
-  A function that calls at the end of each denoising steps during the inference. The function is called
-  with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int,
-  callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by
-  `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.0[AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple`If `return_dict` is `True`, [AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
+#### __call__[[diffusers.AnimateDiffSDXLPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, prompt_2: str | list[str] | None = None, num_frames: int = 16, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, timesteps: list = None, sigmas: list = None, denoising_end: float | None = None, guidance_scale: float = 5.0, negative_prompt: str | list[str] | None = None, negative_prompt_2: str | list[str] | None = None, num_videos_per_prompt: int | None = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: list[torch.Tensor] | None = None, output_type: str | None = 'pil', return_dict: bool = True, cross_attention_kwargs: dict[str, typing.Any] | None = None, guidance_rescale: float = 0.0, original_size: tuple[int, int] | None = None, crops_coords_top_left: tuple = (0, 0), target_size: tuple[int, int] | None = None, negative_original_size: tuple[int, int] | None = None, negative_crops_coords_top_left: tuple = (0, 0), negative_target_size: tuple[int, int] | None = None, clip_skip: int | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'])
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_sdxl.py#L867)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the video generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to the `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is used in both text-encoders
+
+num_frames : The number of video frames that are generated. Defaults to 16 frames which at 8 frames per seconds amounts to 2 seconds of video.
+
+height (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The height in pixels of the generated video. This is set to 1024 by default for the best results. Anything below 512 pixels won't work well for [stabilityai/stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0) and checkpoints that are not specifically fine-tuned on low resolutions.
+
+width (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The width in pixels of the generated video. This is set to 1024 by default for the best results. Anything below 512 pixels won't work well for [stabilityai/stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0) and checkpoints that are not specifically fine-tuned on low resolutions.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality video at the expense of slower inference.
+
+timesteps (`list[int]`, *optional*) : Custom timesteps to use for the denoising process with schedulers which support a `timesteps` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used. Must be in descending order.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
+
+denoising_end (`float`, *optional*) : When specified, determines the fraction (between 0.0 and 1.0) of the total denoising process to be completed before it is intentionally prematurely terminated. As a result, the returned sample will still retain a substantial amount of noise as determined by the discrete timesteps selected by the scheduler. The denoising_end parameter should ideally be utilized when this pipeline forms a part of a "Mixture of Denoisers" multi-pipeline setup, as elaborated in [**Refining the Image Output**](https://huggingface.co/docs/diffusers/api/pipelines/stable_diffusion/stable_diffusion_xl#refining-the-image-output)
+
+guidance_scale (`float`, *optional*, defaults to 5.0) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower video quality.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the video generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+negative_prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the video generation to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `negative_prompt` is used in both text-encoders
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
+
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for video generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+pooled_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled text embeddings will be generated from `prompt` input argument.
+
+negative_pooled_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated video. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.stable_diffusion_xl.AnimateDiffPipelineOutput` instead of a plain tuple.
+
+cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+guidance_rescale (`float`, *optional*, defaults to 0.0) : Guidance rescale factor proposed by [Common Diffusion Noise Schedules and Sample Steps are Flawed](https://huggingface.co/papers/2305.08891) `guidance_scale` is defined as `φ` in equation 16. of [Common Diffusion Noise Schedules and Sample Steps are Flawed](https://huggingface.co/papers/2305.08891). Guidance rescale factor should fix overexposure when using zero terminal SNR.
+
+original_size (`tuple[int]`, *optional*, defaults to (1024, 1024)) : If `original_size` is not the same as `target_size` the image will appear to be down- or upsampled. `original_size` defaults to `(height, width)` if not specified. Part of SDXL's micro-conditioning as explained in section 2.2 of [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952).
+
+crops_coords_top_left (`tuple[int]`, *optional*, defaults to (0, 0)) : `crops_coords_top_left` can be used to generate an image that appears to be "cropped" from the position `crops_coords_top_left` downwards. Favorable, well-centered images are usually achieved by setting `crops_coords_top_left` to (0, 0). Part of SDXL's micro-conditioning as explained in section 2.2 of [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952).
+
+target_size (`tuple[int]`, *optional*, defaults to (1024, 1024)) : For most cases, `target_size` should be set to the desired height and width of the generated image. If not specified it will default to `(height, width)`. Part of SDXL's micro-conditioning as explained in section 2.2 of [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952).
+
+negative_original_size (`tuple[int]`, *optional*, defaults to (1024, 1024)) : To negatively condition the generation process based on a specific image resolution. Part of SDXL's micro-conditioning as explained in section 2.2 of [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952). For more information, refer to this issue thread: https://github.com/huggingface/diffusers/issues/4208.
+
+negative_crops_coords_top_left (`tuple[int]`, *optional*, defaults to (0, 0)) : To negatively condition the generation process based on a specific crop coordinates. Part of SDXL's micro-conditioning as explained in section 2.2 of [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952). For more information, refer to this issue thread: https://github.com/huggingface/diffusers/issues/4208.
+
+negative_target_size (`tuple[int]`, *optional*, defaults to (1024, 1024)) : To negatively condition the generation process based on a target image resolution. It should be as same as the `target_size` for most cases. Part of SDXL's micro-conditioning as explained in section 2.2 of [https://huggingface.co/papers/2307.01952](https://huggingface.co/papers/2307.01952). For more information, refer to this issue thread: https://github.com/huggingface/diffusers/issues/4208.
+
+clip_skip (`int`, *optional*) : Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that the output of the pre-final layer will be used for computing the prompt embeddings.
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+**Returns:** [AnimateDiffPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple`
+
+If `return_dict` is `True`, [AnimateDiffPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
 returned, otherwise a `tuple` is returned where the first element is a list with the generated frames.
 
 Function invoked when calling the pipeline for generation.
@@ -1486,8 +1592,8 @@ Examples:
 ... ).to("cuda")
 
 >>> # enable memory savings
->>> pipe.enable_vae_slicing()
->>> pipe.enable_vae_tiling()
+>>> pipe.vae.enable_slicing()
+>>> pipe.vae.enable_tiling()
 
 >>> output = pipe(
 ...     prompt="a panda surfing in the ocean, realistic, high quality",
@@ -1503,35 +1609,13 @@ Examples:
 >>> export_to_gif(frames, "animation.gif")
 ```
 
-**Parameters:**
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : Frozen text-encoder. Stable Diffusion XL uses the text portion of [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
-
-text_encoder_2 (` CLIPTextModelWithProjection`) : Second frozen text-encoder. Stable Diffusion XL uses the text and pool portion of [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModelWithProjection), specifically the [laion/CLIP-ViT-bigG-14-laion2B-39B-b160k](https://huggingface.co/laion/CLIP-ViT-bigG-14-laion2B-39B-b160k) variant.
-
-tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/v4.21.0/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer_2 (`CLIPTokenizer`) : Second Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/v4.21.0/en/model_doc/clip#transformers.CLIPTokenizer).
-
-unet ([UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : Conditional U-Net architecture to denoise the encoded image latents.
-
-scheduler ([SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
-
-force_zeros_for_empty_prompt (`bool`, *optional*, defaults to `"True"`) : Whether the negative prompt embeddings shall be forced to always be set to 0. Also see the config of `stabilityai/stable-diffusion-xl-base-1-0`.
-
-**Returns:**
-
-`[AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple``
-
-If `return_dict` is `True`, [AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
-returned, otherwise a `tuple` is returned where the first element is a list with the generated frames.
 #### encode_prompt[[diffusers.AnimateDiffSDXLPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_sdxl.py#L327)
+```python
+encode_prompt(prompt: str, prompt_2: str | None = None, device: typing.Optional[torch.device] = None, num_videos_per_prompt: int = 1, do_classifier_free_guidance: bool = True, negative_prompt: str | None = None, negative_prompt_2: str | None = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.Tensor] = None, lora_scale: float | None = None, clip_skip: int | None = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_sdxl.py#L327)
 
 **Parameters:**
 
@@ -1560,11 +1644,16 @@ negative_pooled_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negat
 lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA layers of the text encoder if LoRA layers are loaded.
 
 clip_skip (`int`, *optional*) : Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that the output of the pre-final layer will be used for computing the prompt embeddings.
+
+Encodes the prompt into text encoder hidden states.
+
 #### get_guidance_scale_embedding[[diffusers.AnimateDiffSDXLPipeline.get_guidance_scale_embedding]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_sdxl.py#L802)
+```python
+get_guidance_scale_embedding(w: Tensor, embedding_dim: int = 512, dtype: dtype = torch.float32)
+```
 
-See https://github.com/google-research/vdm/blob/dc27b98a554f65cdc654b800da5aa1846545d41b/model_vdm.py#L298
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_sdxl.py#L802)
 
 **Parameters:**
 
@@ -1574,90 +1663,125 @@ embedding_dim (`int`, *optional*, defaults to 512) : Dimension of the embeddings
 
 dtype (`torch.dtype`, *optional*, defaults to `torch.float32`) : Data type of the generated embeddings.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 Embedding vectors with shape `(len(w), embedding_dim)`.
+
+See https://github.com/google-research/vdm/blob/dc27b98a554f65cdc654b800da5aa1846545d41b/model_vdm.py#L298
 
 ## AnimateDiffVideoToVideoPipeline[[diffusers.AnimateDiffVideoToVideoPipeline]]
 
 #### diffusers.AnimateDiffVideoToVideoPipeline[[diffusers.AnimateDiffVideoToVideoPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_video2video.py#L181)
+```python
+diffusers.AnimateDiffVideoToVideoPipeline(vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, unet: diffusers.models.unets.unet_2d_condition.UNet2DConditionModel | diffusers.models.unets.unet_motion_model.UNetMotionModel, motion_adapter: MotionAdapter, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_pndm.PNDMScheduler | diffusers.utils.dummy_torch_and_scipy_objects.LMSDiscreteScheduler | diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteScheduler | diffusers.schedulers.scheduling_euler_ancestral_discrete.EulerAncestralDiscreteScheduler | diffusers.schedulers.scheduling_dpmsolver_multistep.DPMSolverMultistepScheduler, feature_extractor: CLIPImageProcessorPil = None, image_encoder: CLIPVisionModelWithProjection = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_video2video.py#L181)
+
+**Parameters:**
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
+
+tokenizer (`CLIPTokenizer`) : A [CLIPTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer) to tokenize text.
+
+unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) used to create a UNetMotionModel to denoise the encoded video latents.
+
+motion_adapter (`MotionAdapter`) : A `MotionAdapter` to be used in combination with `unet` to denoise the encoded video latents.
+
+scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
 
 Pipeline for video-to-video generation.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 The pipeline also inherits the following loading methods:
-- [load_textual_inversion()](/docs/diffusers/v0.39.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
-- [load_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for loading LoRA weights
-- [save_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for saving LoRA weights
-- [load_ip_adapter()](/docs/diffusers/v0.39.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
+- [load_textual_inversion()](/docs/diffusers/v0.40.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
+- [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for loading LoRA weights
+- [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for saving LoRA weights
+- [load_ip_adapter()](/docs/diffusers/v0.40.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
 
-__call__diffusers.AnimateDiffVideoToVideoPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_video2video.py#L744[{"name": "video", "val": ": list = None"}, {"name": "prompt", "val": ": str | list[str] | None = None"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "enforce_inference_steps", "val": ": bool = False"}, {"name": "timesteps", "val": ": list[int] | None = None"}, {"name": "sigmas", "val": ": list[float] | None = None"}, {"name": "guidance_scale", "val": ": float = 7.5"}, {"name": "strength", "val": ": float = 0.8"}, {"name": "negative_prompt", "val": ": str | list[str] | None = None"}, {"name": "num_videos_per_prompt", "val": ": int | None = 1"}, {"name": "eta", "val": ": float = 0.0"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.Tensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "cross_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "clip_skip", "val": ": int | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "decode_chunk_size", "val": ": int = 16"}]- **video** (`list[PipelineImageInput]`) --
-  The input video to condition the generation on. Must be a list of images/frames of the video.
-- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide image generation. If not defined, you need to pass `prompt_embeds`.
-- **height** (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) --
-  The height in pixels of the generated video.
-- **width** (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) --
-  The width in pixels of the generated video.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality videos at the
-  expense of slower inference.
-- **enforce_inference_steps** (`bool`, *optional*, defaults to `False`) --
-  Whether to enforce `num_inference_steps` denoising steps regardless of the `strength` parameter. When
-  `False`, the effective number of inference steps is reduced according to `strength`.
-- **timesteps** (`list[int]`, *optional*) --
-  Custom timesteps to use for the denoising process with schedulers which support a `timesteps` argument
-  in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is
-  passed will be used. Must be in descending order.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **strength** (`float`, *optional*, defaults to 0.8) --
-  Higher strength leads to more differences between original video and generated video.
-- **guidance_scale** (`float`, *optional*, defaults to 7.5) --
-  A higher guidance scale value encourages the model to generate images closely linked to the text
-  `prompt` at the expense of lower image quality. Guidance scale is enabled when `guidance_scale > 1`.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide what to not include in image generation. If not defined, you need to
-  pass `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale 0[pipelines.animatediff.pipeline_output.AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple`If `return_dict` is `True`, [pipelines.animatediff.pipeline_output.AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
+#### __call__[[diffusers.AnimateDiffVideoToVideoPipeline.__call__]]
+
+```python
+__call__(video: list = None, prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, enforce_inference_steps: bool = False, timesteps: list[int] | None = None, sigmas: list[float] | None = None, guidance_scale: float = 7.5, strength: float = 0.8, negative_prompt: str | list[str] | None = None, num_videos_per_prompt: int | None = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: list[torch.Tensor] | None = None, output_type: str | None = 'pil', return_dict: bool = True, cross_attention_kwargs: dict[str, typing.Any] | None = None, clip_skip: int | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], decode_chunk_size: int = 16)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_video2video.py#L744)
+
+**Parameters:**
+
+video (`list[PipelineImageInput]`) : The input video to condition the generation on. Must be a list of images/frames of the video.
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide image generation. If not defined, you need to pass `prompt_embeds`.
+
+height (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) : The height in pixels of the generated video.
+
+width (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) : The width in pixels of the generated video.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality videos at the expense of slower inference.
+
+enforce_inference_steps (`bool`, *optional*, defaults to `False`) : Whether to enforce `num_inference_steps` denoising steps regardless of the `strength` parameter. When `False`, the effective number of inference steps is reduced according to `strength`.
+
+timesteps (`list[int]`, *optional*) : Custom timesteps to use for the denoising process with schedulers which support a `timesteps` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used. Must be in descending order.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
+
+strength (`float`, *optional*, defaults to 0.8) : Higher strength leads to more differences between original video and generated video.
+
+guidance_scale (`float`, *optional*, defaults to 7.5) : A higher guidance scale value encourages the model to generate images closely linked to the text `prompt` at the expense of lower image quality. Guidance scale is enabled when `guidance_scale > 1`.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide what to not include in image generation. If not defined, you need to pass `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale < 1`).
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
+
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for video generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor is generated by sampling using the supplied random `generator`. Latents should be of shape `(batch_size, num_channel, num_frames, height, width)`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, text embeddings are generated from the `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, `negative_prompt_embeds` are generated from the `negative_prompt` input argument.
+
+ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. It should contain the negative image embedding if `do_classifier_free_guidance` is set to `True`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated video. Choose between `torch.Tensor`, `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `AnimateDiffPipelineOutput` instead of a plain tuple.
+
+cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined in [`self.processor`](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+clip_skip (`int`, *optional*) : Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that the output of the pre-final layer will be used for computing the prompt embeddings.
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+decode_chunk_size (`int`, defaults to `16`) : The number of frames to decode at a time when calling `decode_latents` method.
+
+**Returns:** [pipelines.animatediff.pipeline_output.AnimateDiffPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple`
+
+If `return_dict` is `True`, [pipelines.animatediff.pipeline_output.AnimateDiffPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
 returned, otherwise a `tuple` is returned where the first element is a list with the generated frames.
 
 The call function to the pipeline for generation.
 
 Examples:
 
-**Parameters:**
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
-
-tokenizer (`CLIPTokenizer`) : A [CLIPTokenizer](https://huggingface.co/docs/transformers/v5.12.1/en/model_doc/clip#transformers.CLIPTokenizer) to tokenize text.
-
-unet ([UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A [UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) used to create a UNetMotionModel to denoise the encoded video latents.
-
-motion_adapter (`MotionAdapter`) : A `MotionAdapter` to be used in combination with `unet` to denoise the encoded video latents.
-
-scheduler ([SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
-
-**Returns:**
-
-`[pipelines.animatediff.pipeline_output.AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple``
-
-If `return_dict` is `True`, [pipelines.animatediff.pipeline_output.AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
-returned, otherwise a `tuple` is returned where the first element is a list with the generated frames.
 #### encode_prompt[[diffusers.AnimateDiffVideoToVideoPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_video2video.py#L256)
+```python
+encode_prompt(prompt, device, num_images_per_prompt, do_classifier_free_guidance, negative_prompt = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, lora_scale: float | None = None, clip_skip: int | None = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_video2video.py#L256)
 
 **Parameters:**
 
@@ -1678,87 +1802,134 @@ negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative tex
 lora_scale (`float`, *optional*) : A LoRA scale that will be applied to all LoRA layers of the text encoder if LoRA layers are loaded.
 
 clip_skip (`int`, *optional*) : Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that the output of the pre-final layer will be used for computing the prompt embeddings.
+
+Encodes the prompt into text encoder hidden states.
 
 ## AnimateDiffVideoToVideoControlNetPipeline[[diffusers.AnimateDiffVideoToVideoControlNetPipeline]]
 
 #### diffusers.AnimateDiffVideoToVideoControlNetPipeline[[diffusers.AnimateDiffVideoToVideoControlNetPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_video2video_controlnet.py#L199)
+```python
+diffusers.AnimateDiffVideoToVideoControlNetPipeline(vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, unet: diffusers.models.unets.unet_2d_condition.UNet2DConditionModel | diffusers.models.unets.unet_motion_model.UNetMotionModel, motion_adapter: MotionAdapter, controlnet: diffusers.models.controlnets.controlnet.ControlNetModel | list[diffusers.models.controlnets.controlnet.ControlNetModel] | tuple[diffusers.models.controlnets.controlnet.ControlNetModel] | diffusers.models.controlnets.multicontrolnet.MultiControlNetModel, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_pndm.PNDMScheduler | diffusers.utils.dummy_torch_and_scipy_objects.LMSDiscreteScheduler | diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteScheduler | diffusers.schedulers.scheduling_euler_ancestral_discrete.EulerAncestralDiscreteScheduler | diffusers.schedulers.scheduling_dpmsolver_multistep.DPMSolverMultistepScheduler, feature_extractor: CLIPImageProcessorPil = None, image_encoder: CLIPVisionModelWithProjection = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_video2video_controlnet.py#L199)
+
+**Parameters:**
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
+
+tokenizer (`CLIPTokenizer`) : A [CLIPTokenizer](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPTokenizer) to tokenize text.
+
+unet ([UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) used to create a UNetMotionModel to denoise the encoded video latents.
+
+motion_adapter (`MotionAdapter`) : A `MotionAdapter` to be used in combination with `unet` to denoise the encoded video latents.
+
+controlnet ([ControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.ControlNetModel) or `list[ControlNetModel]` or `tuple[ControlNetModel]` or `MultiControlNetModel`) : Provides additional conditioning to the `unet` during the denoising process. If you set multiple ControlNets as a list, the outputs from each ControlNet are added together to create one combined additional conditioning.
+
+scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
 
 Pipeline for video-to-video generation with ControlNet guidance.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 The pipeline also inherits the following loading methods:
-- [load_textual_inversion()](/docs/diffusers/v0.39.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
-- [load_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for loading LoRA weights
-- [save_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for saving LoRA weights
-- [load_ip_adapter()](/docs/diffusers/v0.39.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
+- [load_textual_inversion()](/docs/diffusers/v0.40.0/en/api/loaders/textual_inversion#diffusers.loaders.TextualInversionLoaderMixin.load_textual_inversion) for loading textual inversion embeddings
+- [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights) for loading LoRA weights
+- [save_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.save_lora_weights) for saving LoRA weights
+- [load_ip_adapter()](/docs/diffusers/v0.40.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter) for loading IP Adapters
 
-__call__diffusers.AnimateDiffVideoToVideoControlNetPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_video2video_controlnet.py#L909[{"name": "video", "val": ": list = None"}, {"name": "prompt", "val": ": str | list[str] | None = None"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "enforce_inference_steps", "val": ": bool = False"}, {"name": "timesteps", "val": ": list[int] | None = None"}, {"name": "sigmas", "val": ": list[float] | None = None"}, {"name": "guidance_scale", "val": ": float = 7.5"}, {"name": "strength", "val": ": float = 0.8"}, {"name": "negative_prompt", "val": ": str | list[str] | None = None"}, {"name": "num_videos_per_prompt", "val": ": int | None = 1"}, {"name": "eta", "val": ": float = 0.0"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.Tensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "conditioning_frames", "val": ": list[PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor]] | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "cross_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "controlnet_conditioning_scale", "val": ": float | list[float] = 1.0"}, {"name": "guess_mode", "val": ": bool = False"}, {"name": "control_guidance_start", "val": ": float | list[float] = 0.0"}, {"name": "control_guidance_end", "val": ": float | list[float] = 1.0"}, {"name": "clip_skip", "val": ": int | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "decode_chunk_size", "val": ": int = 16"}]- **video** (`list[PipelineImageInput]`) --
-  The input video to condition the generation on. Must be a list of images/frames of the video.
-- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide image generation. If not defined, you need to pass `prompt_embeds`.
-- **height** (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) --
-  The height in pixels of the generated video.
-- **width** (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) --
-  The width in pixels of the generated video.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality videos at the
-  expense of slower inference.
-- **enforce_inference_steps** (`bool`, *optional*, defaults to `False`) --
-  Whether to enforce `num_inference_steps` denoising steps regardless of the `strength` parameter. When
-  `False`, the effective number of inference steps is reduced according to `strength`.
-- **timesteps** (`list[int]`, *optional*) --
-  Custom timesteps to use for the denoising process with schedulers which support a `timesteps` argument
-  in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is
-  passed will be used. Must be in descending order.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **strength** (`float`, *optional*, defaults to 0.8) --
-  Higher strength leads to more differences between original video and generated video.
-- **guidance_scale** (`float`, *optional*, defaults to 7.5) --
-  A higher guidance scale value encourages the model to generate images closely linked to the text
-  `prompt` at the expense of lower image quality. Guidance scale is enabled when `guidance_scale > 1`.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide what to not include in image generation. If not defined, you need to
-  pass `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale 0[pipelines.animatediff.pipeline_output.AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple`If `return_dict` is `True`, [pipelines.animatediff.pipeline_output.AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
+#### __call__[[diffusers.AnimateDiffVideoToVideoControlNetPipeline.__call__]]
+
+```python
+__call__(video: list = None, prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, enforce_inference_steps: bool = False, timesteps: list[int] | None = None, sigmas: list[float] | None = None, guidance_scale: float = 7.5, strength: float = 0.8, negative_prompt: str | list[str] | None = None, num_videos_per_prompt: int | None = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: list[torch.Tensor] | None = None, conditioning_frames: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] | None = None, output_type: str | None = 'pil', return_dict: bool = True, cross_attention_kwargs: dict[str, typing.Any] | None = None, controlnet_conditioning_scale: float | list[float] = 1.0, guess_mode: bool = False, control_guidance_start: float | list[float] = 0.0, control_guidance_end: float | list[float] = 1.0, clip_skip: int | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], decode_chunk_size: int = 16)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_video2video_controlnet.py#L909)
+
+**Parameters:**
+
+video (`list[PipelineImageInput]`) : The input video to condition the generation on. Must be a list of images/frames of the video.
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide image generation. If not defined, you need to pass `prompt_embeds`.
+
+height (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) : The height in pixels of the generated video.
+
+width (`int`, *optional*, defaults to `self.unet.config.sample_size * self.vae_scale_factor`) : The width in pixels of the generated video.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality videos at the expense of slower inference.
+
+enforce_inference_steps (`bool`, *optional*, defaults to `False`) : Whether to enforce `num_inference_steps` denoising steps regardless of the `strength` parameter. When `False`, the effective number of inference steps is reduced according to `strength`.
+
+timesteps (`list[int]`, *optional*) : Custom timesteps to use for the denoising process with schedulers which support a `timesteps` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used. Must be in descending order.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
+
+strength (`float`, *optional*, defaults to 0.8) : Higher strength leads to more differences between original video and generated video.
+
+guidance_scale (`float`, *optional*, defaults to 7.5) : A higher guidance scale value encourages the model to generate images closely linked to the text `prompt` at the expense of lower image quality. Guidance scale is enabled when `guidance_scale > 1`.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide what to not include in image generation. If not defined, you need to pass `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale < 1`).
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
+
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://huggingface.co/papers/2010.02502) paper. Only applies to the [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for video generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor is generated by sampling using the supplied random `generator`. Latents should be of shape `(batch_size, num_channel, num_frames, height, width)`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, text embeddings are generated from the `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, `negative_prompt_embeds` are generated from the `negative_prompt` input argument.
+
+ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. It should contain the negative image embedding if `do_classifier_free_guidance` is set to `True`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+conditioning_frames (`list[PipelineImageInput]`, *optional*) : The ControlNet input condition to provide guidance to the `unet` for generation. If multiple ControlNets are specified, images must be passed as a list such that each element of the list can be correctly batched for input to a single ControlNet.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated video. Choose between `torch.Tensor`, `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `AnimateDiffPipelineOutput` instead of a plain tuple.
+
+cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined in [`self.processor`](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+controlnet_conditioning_scale (`float` or `list[float]`, *optional*, defaults to 1.0) : The outputs of the ControlNet are multiplied by `controlnet_conditioning_scale` before they are added to the residual in the original `unet`. If multiple ControlNets are specified in `init`, you can set the corresponding scale as a list.
+
+guess_mode (`bool`, *optional*, defaults to `False`) : The ControlNet encoder tries to recognize the content of the input image even if you remove all prompts. A `guidance_scale` value between 3.0 and 5.0 is recommended.
+
+control_guidance_start (`float` or `list[float]`, *optional*, defaults to 0.0) : The percentage of total steps at which the ControlNet starts applying.
+
+control_guidance_end (`float` or `list[float]`, *optional*, defaults to 1.0) : The percentage of total steps at which the ControlNet stops applying.
+
+clip_skip (`int`, *optional*) : Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that the output of the pre-final layer will be used for computing the prompt embeddings.
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+decode_chunk_size (`int`, defaults to `16`) : The number of frames to decode at a time when calling `decode_latents` method.
+
+**Returns:** [pipelines.animatediff.pipeline_output.AnimateDiffPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple`
+
+If `return_dict` is `True`, [pipelines.animatediff.pipeline_output.AnimateDiffPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
 returned, otherwise a `tuple` is returned where the first element is a list with the generated frames.
 
 The call function to the pipeline for generation.
 
 Examples:
 
-**Parameters:**
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : Frozen text-encoder ([clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14)).
-
-tokenizer (`CLIPTokenizer`) : A [CLIPTokenizer](https://huggingface.co/docs/transformers/v5.12.1/en/model_doc/clip#transformers.CLIPTokenizer) to tokenize text.
-
-unet ([UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) : A [UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel) used to create a UNetMotionModel to denoise the encoded video latents.
-
-motion_adapter (`MotionAdapter`) : A `MotionAdapter` to be used in combination with `unet` to denoise the encoded video latents.
-
-controlnet ([ControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet#diffusers.ControlNetModel) or `list[ControlNetModel]` or `tuple[ControlNetModel]` or `MultiControlNetModel`) : Provides additional conditioning to the `unet` during the denoising process. If you set multiple ControlNets as a list, the outputs from each ControlNet are added together to create one combined additional conditioning.
-
-scheduler ([SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents. Can be one of [DDIMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), [LMSDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/lms_discrete#diffusers.LMSDiscreteScheduler), or [PNDMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/pndm#diffusers.PNDMScheduler).
-
-**Returns:**
-
-`[pipelines.animatediff.pipeline_output.AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) or `tuple``
-
-If `return_dict` is `True`, [pipelines.animatediff.pipeline_output.AnimateDiffPipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/animatediff#diffusers.pipelines.animatediff.AnimateDiffPipelineOutput) is
-returned, otherwise a `tuple` is returned where the first element is a list with the generated frames.
 #### encode_prompt[[diffusers.AnimateDiffVideoToVideoControlNetPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_video2video_controlnet.py#L287)
+```python
+encode_prompt(prompt, device, num_images_per_prompt, do_classifier_free_guidance, negative_prompt = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, lora_scale: float | None = None, clip_skip: int | None = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_animatediff_video2video_controlnet.py#L287)
 
 **Parameters:**
 
@@ -1780,20 +1951,26 @@ lora_scale (`float`, *optional*) : A LoRA scale that will be applied to all LoRA
 
 clip_skip (`int`, *optional*) : Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that the output of the pre-final layer will be used for computing the prompt embeddings.
 
+Encodes the prompt into text encoder hidden states.
+
 ## AnimateDiffPipelineOutput[[diffusers.pipelines.animatediff.AnimateDiffPipelineOutput]]
 
 #### diffusers.pipelines.animatediff.AnimateDiffPipelineOutput[[diffusers.pipelines.animatediff.AnimateDiffPipelineOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/animatediff/pipeline_output.py#L11)
+```python
+diffusers.pipelines.animatediff.AnimateDiffPipelineOutput(frames: typing.Union[torch.Tensor, numpy.ndarray, list[list[PIL.Image.Image]]])
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/animatediff/pipeline_output.py#L11)
+
+**Parameters:**
+
+frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of video outputs - It can be a nested list of length `batch_size,` with each sub-list containing denoised
 
 Output class for AnimateDiff pipelines.
 
 PIL image sequences of length `num_frames.` It can also be a NumPy array or Torch tensor of shape
 `(batch_size, num_frames, channels, height, width)`
 
-**Parameters:**
-
-frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of video outputs - It can be a nested list of length `batch_size,` with each sub-list containing denoised
-
-### Ernie-Image
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/ernie_image.md
+### DDPM
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/ddpm.md

@@ -3,21 +3,14 @@
 `FlowMatchEulerDiscreteScheduler` is based on the flow-matching sampling introduced in [Stable Diffusion 3](https://huggingface.co/papers/2403.03206).
 
 ## FlowMatchEulerDiscreteScheduler[[diffusers.FlowMatchEulerDiscreteScheduler]]
+
 #### diffusers.FlowMatchEulerDiscreteScheduler[[diffusers.FlowMatchEulerDiscreteScheduler]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L48)
+```python
+diffusers.FlowMatchEulerDiscreteScheduler(num_train_timesteps: int = 1000, shift: float = 1.0, use_dynamic_shifting: bool = False, base_shift: float | None = 0.5, max_shift: float | None = 1.15, base_image_seq_len: int = 256, max_image_seq_len: int = 4096, invert_sigmas: bool = False, shift_terminal: float = None, use_karras_sigmas: bool = False, use_exponential_sigmas: bool = False, use_beta_sigmas: bool = False, time_shift_type: typing.Literal['exponential', 'linear'] = 'exponential', stochastic_sampling: bool = False)
+```
 
-Euler scheduler.
-
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.39.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
-methods the library implements for all schedulers such as loading and saving.
-
-index_for_timestepdiffusers.FlowMatchEulerDiscreteScheduler.index_for_timestephttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L387[{"name": "timestep", "val": ": typing.Union[float, torch.FloatTensor]"}, {"name": "schedule_timesteps", "val": ": typing.Optional[torch.FloatTensor] = None"}]- **timestep** (`float` or `torch.FloatTensor`) --
-  The timestep to find the index for.
-- **schedule_timesteps** (`torch.FloatTensor`, *optional*) --
-  The schedule timesteps to validate against. If `None`, the scheduler's timesteps are used.0`int`The index of the timestep.
-
-Get the index for the given timestep.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L48)
 
 **Parameters:**
 
@@ -49,16 +42,38 @@ time_shift_type (`str`, defaults to "exponential") : The type of dynamic resolut
 
 stochastic_sampling (`bool`, defaults to False) : Whether to use stochastic sampling.
 
-**Returns:**
+Euler scheduler.
 
-``int``
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+methods the library implements for all schedulers such as loading and saving.
+
+#### index_for_timestep[[diffusers.FlowMatchEulerDiscreteScheduler.index_for_timestep]]
+
+```python
+index_for_timestep(timestep: typing.Union[float, torch.FloatTensor], schedule_timesteps: typing.Optional[torch.FloatTensor] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L384)
+
+**Parameters:**
+
+timestep (`float` or `torch.FloatTensor`) : The timestep to find the index for.
+
+schedule_timesteps (`torch.FloatTensor`, *optional*) : The schedule timesteps to validate against. If `None`, the scheduler's timesteps are used.
+
+**Returns:** `int`
 
 The index of the timestep.
+
+Get the index for the given timestep.
+
 #### scale_noise[[diffusers.FlowMatchEulerDiscreteScheduler.scale_noise]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L188)
+```python
+scale_noise(sample: FloatTensor, timestep: typing.Union[float, torch.FloatTensor], noise: typing.Optional[torch.FloatTensor] = None)
+```
 
-Forward process in flow-matching
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L188)
 
 **Parameters:**
 
@@ -68,34 +83,47 @@ timestep (`torch.FloatTensor`) : The current timestep in the diffusion chain.
 
 noise (`torch.FloatTensor`) : The noise tensor.
 
-**Returns:**
-
-``torch.FloatTensor``
+**Returns:** `torch.FloatTensor`
 
 A scaled input sample.
+
+Forward process in flow-matching
+
 #### set_begin_index[[diffusers.FlowMatchEulerDiscreteScheduler.set_begin_index]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L168)
+```python
+set_begin_index(begin_index: int = 0)
+```
 
-Sets the begin index for the scheduler. This function should be run from pipeline before the inference.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L168)
 
 **Parameters:**
 
 begin_index (`int`, defaults to `0`) : The begin index for the scheduler.
+
+Sets the begin index for the scheduler. This function should be run from pipeline before the inference.
+
 #### set_shift[[diffusers.FlowMatchEulerDiscreteScheduler.set_shift]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L178)
+```python
+set_shift(shift: float)
+```
 
-Sets the shift value for the scheduler.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L178)
 
 **Parameters:**
 
 shift (`float`) : The shift value to be set.
+
+Sets the shift value for the scheduler.
+
 #### set_timesteps[[diffusers.FlowMatchEulerDiscreteScheduler.set_timesteps]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L283)
+```python
+set_timesteps(num_inference_steps: int | None = None, device: typing.Union[str, torch.device] = None, sigmas: list[float] | None = None, mu: float | None = None, timesteps: list[float] | None = None)
+```
 
-Sets the discrete timesteps used for the diffusion chain (to be run before inference).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L283)
 
 **Parameters:**
 
@@ -108,12 +136,16 @@ sigmas (`list[float]`, *optional*) : Custom values for sigmas to be used for eac
 mu (`float`, *optional*) : Determines the amount of shifting applied to sigmas when performing resolution-dependent timestep shifting.
 
 timesteps (`list[float]`, *optional*) : Custom values for timesteps to be used for each diffusion step. If `None`, the timesteps are computed automatically.
+
+Sets the discrete timesteps used for the diffusion chain (to be run before inference).
+
 #### step[[diffusers.FlowMatchEulerDiscreteScheduler.step]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L426)
+```python
+step(model_output: FloatTensor, timestep: typing.Union[float, torch.FloatTensor], sample: FloatTensor, s_churn: float = 0.0, s_tmin: float = 0.0, s_tmax: float = inf, s_noise: float = 1.0, generator: typing.Optional[torch.Generator] = None, per_token_timesteps: typing.Optional[torch.Tensor] = None, return_dict: bool = True)
+```
 
-Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
-process from the learned model outputs (most often the predicted noise).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L423)
 
 **Parameters:**
 
@@ -137,16 +169,30 @@ per_token_timesteps (`torch.Tensor`, *optional*) : The timesteps for each token 
 
 return_dict (`bool`, defaults to `True`) : Whether or not to return a `FlowMatchEulerDiscreteSchedulerOutput` or tuple.
 
-**Returns:**
-
-``FlowMatchEulerDiscreteSchedulerOutput` or `tuple``
+**Returns:** `FlowMatchEulerDiscreteSchedulerOutput` or `tuple`
 
 If return_dict is `True`,
 `FlowMatchEulerDiscreteSchedulerOutput` is returned,
 otherwise a tuple is returned where the first element is the sample tensor.
+
+Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
+process from the learned model outputs (most often the predicted noise).
+
 #### stretch_shift_to_terminal[[diffusers.FlowMatchEulerDiscreteScheduler.stretch_shift_to_terminal]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L262)
+```python
+stretch_shift_to_terminal(t: Tensor)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L262)
+
+**Parameters:**
+
+t (`torch.Tensor`) : A tensor of timesteps to be stretched and shifted.
+
+**Returns:** `torch.Tensor`
+
+A tensor of adjusted timesteps such that the final value equals `self.config.shift_terminal`.
 
 Stretches and shifts the timestep schedule to ensure it terminates at the configured `shift_terminal` config
 value.
@@ -154,20 +200,13 @@ value.
 Reference:
 https://github.com/Lightricks/LTX-Video/blob/a01a171f8fe3d99dce2728d60a73fecf4d4238ae/ltx_video/schedulers/rf.py#L51
 
-**Parameters:**
-
-t (`torch.Tensor`) : A tensor of timesteps to be stretched and shifted.
-
-**Returns:**
-
-``torch.Tensor``
-
-A tensor of adjusted timesteps such that the final value equals `self.config.shift_terminal`.
 #### time_shift[[diffusers.FlowMatchEulerDiscreteScheduler.time_shift]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L241)
+```python
+time_shift(mu: float, sigma: float, t: Tensor)
+```
 
-Apply time shifting to the sigmas.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_match_euler_discrete.py#L241)
 
 **Parameters:**
 
@@ -177,11 +216,11 @@ sigma (`float`) : The sigma parameter for the time shift.
 
 t (`torch.Tensor`) : The input timesteps.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The time-shifted timesteps.
 
-### DPMSolverSDEScheduler
-https://huggingface.co/docs/diffusers/v0.39.0/api/schedulers/dpm_sde.md
+Apply time shifting to the sigmas.
+
+### KDPM2DiscreteScheduler
+https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/dpm_discrete.md

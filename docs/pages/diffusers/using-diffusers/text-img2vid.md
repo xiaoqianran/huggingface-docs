@@ -15,9 +15,9 @@ from diffusers.hooks.group_offloading import apply_group_offloading
 from diffusers.utils import export_to_video, load_image
 from transformers import UMT5EncoderModel
 
-text_encoder = UMT5EncoderModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="text_encoder", torch_dtype=torch.bfloat16)
-vae = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="vae", torch_dtype=torch.float32)
-transformer = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="transformer", torch_dtype=torch.bfloat16)
+text_encoder = UMT5EncoderModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="text_encoder", dtype=torch.bfloat16)
+vae = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="vae", dtype=torch.float32)
+transformer = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="transformer", dtype=torch.bfloat16)
 
 # group-offloading
 onload_device = torch.device("cuda")
@@ -40,7 +40,7 @@ pipeline = WanPipeline.from_pretrained(
     vae=vae,
     transformer=transformer,
     text_encoder=text_encoder,
-    torch_dtype=torch.bfloat16
+    dtype=torch.bfloat16
 )
 pipeline.to("cuda")
 
@@ -86,7 +86,7 @@ pipeline_quant_config = PipelineQuantizationConfig(
 pipeline = HunyuanVideoPipeline.from_pretrained(
     "hunyuanvideo-community/HunyuanVideo",
     quantization_config=pipeline_quant_config,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
 )
 
 # model-offloading and tiling
@@ -108,13 +108,13 @@ from diffusers.utils import export_to_video
 transformer = AutoModel.from_pretrained(
     "Lightricks/LTX-Video",
     subfolder="transformer",
-    torch_dtype=torch.bfloat16
+    dtype=torch.bfloat16
 )
 transformer.enable_layerwise_casting(
     storage_dtype=torch.float8_e4m3fn, compute_dtype=torch.bfloat16
 )
 
-pipeline = LTXPipeline.from_pretrained("Lightricks/LTX-Video", transformer=transformer, torch_dtype=torch.bfloat16)
+pipeline = LTXPipeline.from_pretrained("Lightricks/LTX-Video", transformer=transformer, dtype=torch.bfloat16)
 
 # group-offloading
 onload_device = torch.device("cuda")
@@ -154,7 +154,7 @@ There are several parameters to configure in the pipeline that'll affect video g
 
 A frame is a still image that is played in a sequence of other frames to create motion or a video. Control the number of frames generated per second with `num_frames`. Increasing `num_frames` increases perceived motion smoothness and visual coherence, making it especially important for videos with dynamic content. A higher `num_frames` value also increases video duration.
 
-Some video models require more specific `num_frames` values for inference. For example, [HunyuanVideoPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/hunyuan_video#diffusers.HunyuanVideoPipeline) recommends calculating the `num_frames` with `(4 * num_frames) +1`. Always check a pipelines API model card to see if there is a recommended value.
+Some video models require more specific `num_frames` values for inference. For example, [HunyuanVideoPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/hunyuan_video#diffusers.HunyuanVideoPipeline) recommends calculating the `num_frames` with `(4 * num_frames) +1`. Always check a pipelines API model card to see if there is a recommended value.
 
 ```py
 import torch
@@ -162,7 +162,7 @@ from diffusers import LTXPipeline
 from diffusers.utils import export_to_video
 
 pipeline = LTXPipeline.from_pretrained(
-    "Lightricks/LTX-Video", torch_dtype=torch.bfloat16
+    "Lightricks/LTX-Video", dtype=torch.bfloat16
 ).to("cuda")
 
 prompt = """
@@ -197,7 +197,7 @@ from diffusers.utils import export_to_video
 
 pipeline = CogVideoXPipeline.from_pretrained(
   "THUDM/CogVideoX-2b",
-  torch_dtype=torch.float16
+  dtype=torch.float16
 ).to("cuda")
 
 prompt = """
@@ -229,10 +229,10 @@ from diffusers.schedulers.scheduling_unipc_multistep import UniPCMultistepSchedu
 from diffusers.utils import export_to_video
 
 vae = AutoencoderKLWan.from_pretrained(
-  "Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="vae", torch_dtype=torch.float32
+  "Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="vae", dtype=torch.float32
 )
 pipeline = WanPipeline.from_pretrained(
-  "Wan-AI/Wan2.1-T2V-14B-Diffusers", vae=vae, torch_dtype=torch.bfloat16
+  "Wan-AI/Wan2.1-T2V-14B-Diffusers", vae=vae, dtype=torch.bfloat16
 )
 pipeline.scheduler = UniPCMultistepScheduler.from_config(
   pipeline.scheduler.config, flow_shift=5.0
@@ -263,12 +263,12 @@ export_to_video(output, "output.mp4", fps=16)
 
 ## Reduce memory usage
 
-Recent video models like [HunyuanVideoPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/hunyuan_video#diffusers.HunyuanVideoPipeline) and [WanPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/wan#diffusers.WanPipeline), which have 10B+ parameters, require a lot of memory and it often exceeds the memory available on consumer hardware. Diffusers offers several techniques for reducing the memory requirements of these large models.
+Recent video models like [HunyuanVideoPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/hunyuan_video#diffusers.HunyuanVideoPipeline) and [WanPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/wan#diffusers.WanPipeline), which have 10B+ parameters, require a lot of memory and it often exceeds the memory available on consumer hardware. Diffusers offers several techniques for reducing the memory requirements of these large models.
 
 > [!TIP]
 > Refer to the [Reduce memory usage](../optimization/memory) guide for more details about other memory saving techniques.
 
-One of these techniques is [group-offloading](../optimization/memory#group-offloading), which offloads groups of internal model layers (such as `torch.nn.Sequential`) to the CPU when it isn't being used. These layers are only loaded when they're needed for computation to avoid storing **all** the model components on the GPU. For a 14B parameter model like [WanPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/wan#diffusers.WanPipeline), group-offloading can lower the required memory to ~13GB of VRAM.
+One of these techniques is [group-offloading](../optimization/memory#group-offloading), which offloads groups of internal model layers (such as `torch.nn.Sequential`) to the CPU when it isn't being used. These layers are only loaded when they're needed for computation to avoid storing **all** the model components on the GPU. For a 14B parameter model like [WanPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/wan#diffusers.WanPipeline), group-offloading can lower the required memory to ~13GB of VRAM.
 
 ```py
 # pip install ftfy
@@ -279,9 +279,9 @@ from diffusers.hooks.group_offloading import apply_group_offloading
 from diffusers.utils import export_to_video, load_image
 from transformers import UMT5EncoderModel
 
-text_encoder = UMT5EncoderModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="text_encoder", torch_dtype=torch.bfloat16)
-vae = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="vae", torch_dtype=torch.float32)
-transformer = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="transformer", torch_dtype=torch.bfloat16)
+text_encoder = UMT5EncoderModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="text_encoder", dtype=torch.bfloat16)
+vae = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="vae", dtype=torch.float32)
+transformer = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="transformer", dtype=torch.bfloat16)
 
 # group-offloading
 onload_device = torch.device("cuda")
@@ -304,7 +304,7 @@ pipeline = WanPipeline.from_pretrained(
     vae=vae,
     transformer=transformer,
     text_encoder=text_encoder,
-    torch_dtype=torch.bfloat16
+    dtype=torch.bfloat16
 )
 pipeline.to("cuda")
 
@@ -353,10 +353,10 @@ pipeline_quant_config = PipelineQuantizationConfig(
 )
 
 vae = AutoModel.from_pretrained(
-  "Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="vae", torch_dtype=torch.float32
+  "Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="vae", dtype=torch.float32
 )
 pipeline = WanPipeline.from_pretrained(
-  "Wan-AI/Wan2.1-T2V-14B-Diffusers", vae=vae, quantization_config=pipeline_quant_config, torch_dtype=torch.bfloat16
+  "Wan-AI/Wan2.1-T2V-14B-Diffusers", vae=vae, quantization_config=pipeline_quant_config, dtype=torch.bfloat16
 )
 pipeline.scheduler = UniPCMultistepScheduler.from_config(
   pipeline.scheduler.config, flow_shift=5.0
@@ -398,7 +398,7 @@ from diffusers.utils import export_to_video
 
 pipeline = CogVideoXPipeline.from_pretrained(
   "THUDM/CogVideoX-2b",
-  torch_dtype=torch.float16
+  dtype=torch.float16
 ).to("cuda")
 
 # torch.compile
@@ -422,5 +422,5 @@ video = pipeline(
 export_to_video(video, "output.mp4", fps=8)
 ```
 
-### Text-guided depth-to-image generation
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/depth2img.md
+### Inpainting
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/inpaint.md

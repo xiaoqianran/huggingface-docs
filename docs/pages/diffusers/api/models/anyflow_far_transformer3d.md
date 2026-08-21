@@ -31,36 +31,11 @@ transformer = AnyFlowFARTransformer3DModel.from_pretrained(
 
 #### diffusers.AnyFlowFARTransformer3DModel[[diffusers.AnyFlowFARTransformer3DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L961)
+```python
+diffusers.AnyFlowFARTransformer3DModel(patch_size: typing.Tuple[int] = (1, 2, 2), compressed_patch_size: typing.Tuple[int] = (1, 4, 4), full_chunk_limit: int = 3, num_attention_heads: int = 40, attention_head_dim: int = 128, in_channels: int = 16, out_channels: int = 16, text_dim: int = 4096, freq_dim: int = 256, ffn_dim: int = 13824, num_layers: int = 40, cross_attn_norm: bool = True, eps: float = 1e-06, image_dim: typing.Optional[int] = None, rope_max_seq_len: int = 1024, gate_value: float = 0.25, deltatime_type: str = 'r', chunk_partition: typing.Tuple[int, ...] = (1, 3, 3, 3, 3, 3, 3, 2))
+```
 
-Causal (FAR) 3D Transformer for AnyFlow flow-map sampling with chunk-wise autoregressive generation.
-
-Extends the v0.35.1 Wan2.1 backbone with:
-
-- **FAR causal block-mask** via `torch.nn.attention.flex_attention`, supporting chunk-wise autoregressive
-  generation ([FAR](https://huggingface.co/papers/2503.19325)).
-- **Compressed-frame patch embedding** `far_patch_embedding` for context (already-generated) frames, initialized
-  from `patch_embedding` via trilinear interpolation so a freshly constructed model is already at a reasonable
-  starting point even before LoRA fine-tuning.
-- **Dual-timestep flow-map embedding** for any-step sampling (same as `AnyFlowTransformer3DModel`).
-
-Use `AnyFlowTransformer3DModel` instead for plain bidirectional T2V — that variant skips the FAR causal masking
-and `far_patch_embedding` and is ~5–10% smaller.
-
-build_attention_maskdiffusers.AnyFlowFARTransformer3DModel.build_attention_maskhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L1232[{"name": "chunk_partition", "val": ": typing.List[int]"}, {"name": "height", "val": ": int"}, {"name": "width", "val": ": int"}, {"name": "has_clean_context", "val": ": bool = False"}, {"name": "device", "val": ": typing.Optional[torch.device] = None"}, {"name": "mode", "val": ": str = 'train'"}]- **chunk_partition** -- per-chunk frame counts (must sum to the number of latent frames).
-- **height,** width -- latent spatial dimensions.
-- **has_clean_context** -- `True` when `clean_hidden_states` will be threaded through `forward`
-  (training V2V/I2V); only this presence flag affects the mask layout.
-- **device** -- device for the resulting `BlockMask`. The mask is not auto-moved by
-  `device_map="auto"`; build it on the same device the transformer's inputs will live on.
-- **mode** -- `"train"` (matches `_forward_train`) or `"cache"` (matches `_forward_cache`).
-  The autoregressive `_forward_inference` path attends through the KV cache and has no mode here.0`~torch.nn.attention.flex_attention.BlockMask`causal mask spanning the FAR layout, padded to a
-multiple of 128 along the sequence dimension (the BlockMask block-size requirement).- `ValueError` -- if `mode` is neither `"train"` nor `"cache"`.`ValueError`
-Pre-build the causal `~torch.nn.attention.flex_attention.BlockMask` outside `forward`.
-
-Pass the result via `forward`'s `attention_mask` kwarg to make the whole transformer compatible with
-`torch.compile(fullgraph=True)`. Without a pre-built mask, `forward` falls back to constructing it
-internally — that path uses `flex_attention.create_block_mask(_compile=False)` and breaks the compile graph.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L961)
 
 **Parameters:**
 
@@ -98,24 +73,64 @@ gate_value (*float*, defaults to *0.25*) : Mixing gate between source-timestep a
 
 deltatime_type (*str*, defaults to *'r'*) : Either `"r"` (delta is the target timestep) or `"t-r"` (delta is the absolute interval).
 
-chunk_partition (*Tuple[int, ...]*, defaults to *(1, 3, 3, 3, 3, 3, 3, 2)*) : Default per-chunk frame counts used by the pipeline. The released NVIDIA AnyFlow-FAR checkpoints target `num_frames=81` (21 latent frames at VAE temporal stride 4) split as `1 + 3*6 + 2`. A different `num_frames` requires a matching `chunk_partition` override passed to [AnyFlowFARPipeline.__call__()](/docs/diffusers/v0.39.0/en/api/pipelines/anyflow#diffusers.AnyFlowFARPipeline.__call__) (and likewise to `forward`).
+chunk_partition (*Tuple[int, ...]*, defaults to *(1, 3, 3, 3, 3, 3, 3, 2)*) : Default per-chunk frame counts used by the pipeline. The released NVIDIA AnyFlow-FAR checkpoints target `num_frames=81` (21 latent frames at VAE temporal stride 4) split as `1 + 3*6 + 2`. A different `num_frames` requires a matching `chunk_partition` override passed to [AnyFlowFARPipeline.__call__()](/docs/diffusers/v0.40.0/en/api/pipelines/anyflow#diffusers.AnyFlowFARPipeline.__call__) (and likewise to `forward`).
 
-**Returns:**
+Causal (FAR) 3D Transformer for AnyFlow flow-map sampling with chunk-wise autoregressive generation.
 
-``~torch.nn.attention.flex_attention.BlockMask``
+Extends the v0.35.1 Wan2.1 backbone with:
+
+- **FAR causal block-mask** via `torch.nn.attention.flex_attention`, supporting chunk-wise autoregressive
+  generation ([FAR](https://huggingface.co/papers/2503.19325)).
+- **Compressed-frame patch embedding** `far_patch_embedding` for context (already-generated) frames, initialized
+  from `patch_embedding` via trilinear interpolation so a freshly constructed model is already at a reasonable
+  starting point even before LoRA fine-tuning.
+- **Dual-timestep flow-map embedding** for any-step sampling (same as `AnyFlowTransformer3DModel`).
+
+Use `AnyFlowTransformer3DModel` instead for plain bidirectional T2V — that variant skips the FAR causal masking
+and `far_patch_embedding` and is ~5–10% smaller.
+
+#### build_attention_mask[[diffusers.AnyFlowFARTransformer3DModel.build_attention_mask]]
+
+```python
+build_attention_mask(chunk_partition: typing.List[int], height: int, width: int, has_clean_context: bool = False, device: typing.Optional[torch.device] = None, mode: str = 'train')
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L1232)
+
+**Parameters:**
+
+chunk_partition : per-chunk frame counts (must sum to the number of latent frames).
+
+height, width : latent spatial dimensions.
+
+has_clean_context : `True` when `clean_hidden_states` will be threaded through `forward` (training V2V/I2V); only this presence flag affects the mask layout.
+
+device : device for the resulting `BlockMask`. The mask is not auto-moved by `device_map="auto"`; build it on the same device the transformer's inputs will live on.
+
+mode : `"train"` (matches `_forward_train`) or `"cache"` (matches `_forward_cache`). The autoregressive `_forward_inference` path attends through the KV cache and has no mode here.
+
+**Returns:** `~torch.nn.attention.flex_attention.BlockMask`
 
 causal mask spanning the FAR layout, padded to a
 multiple of 128 along the sequence dimension (the BlockMask block-size requirement).
+
+**Raises:** `ValueError`
+
+- `ValueError` -- if `mode` is neither `"train"` nor `"cache"`.
+
+Pre-build the causal `~torch.nn.attention.flex_attention.BlockMask` outside `forward`.
+
+Pass the result via `forward`'s `attention_mask` kwarg to make the whole transformer compatible with
+`torch.compile(fullgraph=True)`. Without a pre-built mask, `forward` falls back to constructing it
+internally — that path uses `flex_attention.create_block_mask(_compile=False)` and breaks the compile graph.
+
 #### forward[[diffusers.AnyFlowFARTransformer3DModel.forward]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L1098)
+```python
+forward(hidden_states: Tensor, timestep: Tensor, r_timestep: Tensor, encoder_hidden_states: Tensor, chunk_partition: typing.List[int], encoder_hidden_states_image: typing.Optional[torch.Tensor] = None, clean_hidden_states: typing.Optional[torch.Tensor] = None, clean_timestep: typing.Optional[torch.Tensor] = None, kv_cache: typing.Optional[typing.List[typing.Dict[str, torch.Tensor]]] = None, kv_cache_flag: typing.Optional[typing.Dict[str, typing.Any]] = None, attention_mask: typing.Optional[torch.nn.attention.flex_attention.BlockMask] = None, attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, return_dict: bool = True)
+```
 
-FAR causal forward pass. Dispatches to one of three internal paths:
-
-- `kv_cache is None` → causal training rollout (returns `Transformer2DModelOutput`).
-- `kv_cache is not None` and `kv_cache_flag["is_cache_step"]` → cache-prefill (returns
-  `AnyFlowFARTransformerOutput` with `sample=None`).
-- Otherwise → autoregressive inference step (returns `AnyFlowFARTransformerOutput`).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L1098)
 
 **Parameters:**
 
@@ -145,21 +160,28 @@ attention_kwargs (*dict*, *optional*) : Forwarded to the attention processors.
 
 return_dict (*bool*, *optional*, defaults to *True*) : If *False*, returns positional tuples instead of an output dataclass.
 
-**Returns:**
-
-`[*~models.transformer_2d.Transformer2DModelOutput*], [*AnyFlowFARTransformerOutput*] or *tuple*`
+**Returns:** [*~models.transformer_2d.Transformer2DModelOutput*], [*AnyFlowFARTransformerOutput*] or *tuple*
 
 When *return_dict* is *False*, a plain *tuple* is returned. Otherwise, the causal training rollout
 (*kv_cache is None*) returns a [*~models.transformer_2d.Transformer2DModelOutput*], while the
 cache-prefill and autoregressive inference paths return an [*AnyFlowFARTransformerOutput*].
 
+FAR causal forward pass. Dispatches to one of three internal paths:
+
+- `kv_cache is None` → causal training rollout (returns `Transformer2DModelOutput`).
+- `kv_cache is not None` and `kv_cache_flag["is_cache_step"]` → cache-prefill (returns
+  `AnyFlowFARTransformerOutput` with `sample=None`).
+- Otherwise → autoregressive inference step (returns `AnyFlowFARTransformerOutput`).
+
 ## AnyFlowFARTransformerOutput[[diffusers.models.transformers.transformer_anyflow_far.AnyFlowFARTransformerOutput]]
 
 #### diffusers.models.transformers.transformer_anyflow_far.AnyFlowFARTransformerOutput[[diffusers.models.transformers.transformer_anyflow_far.AnyFlowFARTransformerOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L55)
+```python
+diffusers.models.transformers.transformer_anyflow_far.AnyFlowFARTransformerOutput(sample: typing.Optional[torch.Tensor] = None, kv_cache: typing.Optional[typing.List[typing.Dict[str, torch.Tensor]]] = None)
+```
 
-Output dataclass for `AnyFlowFARTransformer3DModel`'s causal forward paths.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_anyflow_far.py#L55)
 
 **Parameters:**
 
@@ -167,5 +189,7 @@ sample (*torch.Tensor* or *None*) : Predicted denoising target for the autoregre
 
 kv_cache (*list[dict[str, torch.Tensor]]*, *optional*) : Per-block KV cache state used by subsequent autoregressive steps.
 
-### OmniGenTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/omnigen_transformer.md
+Output dataclass for `AnyFlowFARTransformer3DModel`'s causal forward paths.
+
+### AutoencoderKLMiniMaxH3Audio
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoderkl_minimax_h3_audio.md

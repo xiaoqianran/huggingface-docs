@@ -4,22 +4,14 @@
 The implementation is mostly based on the DDIM inversion definition from [Null-text Inversion for Editing Real Images using Guided Diffusion Models](https://huggingface.co/papers/2211.09794).
 
 ## DDIMInverseScheduler[[diffusers.DDIMInverseScheduler]]
+
 #### diffusers.DDIMInverseScheduler[[diffusers.DDIMInverseScheduler]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L138)
+```python
+diffusers.DDIMInverseScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.0001, beta_end: float = 0.02, beta_schedule: typing.Literal['linear', 'scaled_linear', 'squaredcos_cap_v2'] = 'linear', trained_betas: numpy.ndarray | list[float] | None = None, clip_sample: bool = True, set_alpha_to_one: bool = True, steps_offset: int = 0, prediction_type: typing.Literal['epsilon', 'sample', 'v_prediction'] = 'epsilon', clip_sample_range: float = 1.0, timestep_spacing: typing.Literal['leading', 'trailing'] = 'leading', rescale_betas_zero_snr: bool = False, **kwargs)
+```
 
-`DDIMInverseScheduler` is the reverse scheduler of [DDIMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/ddim#diffusers.DDIMScheduler).
-
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.39.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
-methods the library implements for all schedulers such as loading and saving.
-
-scale_model_inputdiffusers.DDIMInverseScheduler.scale_model_inputhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L250[{"name": "sample", "val": ": Tensor"}, {"name": "timestep", "val": ": int | None = None"}]- **sample** (`torch.Tensor`) --
-  The input sample.
-- **timestep** (`int`, *optional*) --
-  The current timestep in the diffusion chain.0`torch.Tensor`A scaled input sample.
-
-Ensures interchangeability with schedulers that need to scale the denoising model input depending on the
-current timestep.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L138)
 
 **Parameters:**
 
@@ -47,26 +39,55 @@ timestep_spacing (`str`, defaults to `"leading"`) : The way the timesteps should
 
 rescale_betas_zero_snr (`bool`, defaults to `False`) : Whether to rescale the betas to have zero terminal SNR. This enables the model to generate very bright and dark samples instead of limiting it to samples with medium brightness. Loosely related to [`--offset_noise`](https://github.com/huggingface/diffusers/blob/74fd735eb073eb1d774b1ab4154a0876eb82f055/examples/dreambooth/train_dreambooth.py#L506).
 
-**Returns:**
+`DDIMInverseScheduler` is the reverse scheduler of [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler).
 
-``torch.Tensor``
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+methods the library implements for all schedulers such as loading and saving.
+
+#### scale_model_input[[diffusers.DDIMInverseScheduler.scale_model_input]]
+
+```python
+scale_model_input(sample: Tensor, timestep: int | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L250)
+
+**Parameters:**
+
+sample (`torch.Tensor`) : The input sample.
+
+timestep (`int`, *optional*) : The current timestep in the diffusion chain.
+
+**Returns:** `torch.Tensor`
 
 A scaled input sample.
+
+Ensures interchangeability with schedulers that need to scale the denoising model input depending on the
+current timestep.
+
 #### set_timesteps[[diffusers.DDIMInverseScheduler.set_timesteps]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L267)
+```python
+set_timesteps(num_inference_steps: int, device: typing.Union[str, torch.device, NoneType] = None)
+```
 
-Sets the discrete timesteps used for the diffusion chain (to be run before inference).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L267)
 
 **Parameters:**
 
 num_inference_steps (`int`) : The number of diffusion steps used when generating samples with a pre-trained model.
+
+device (`str` or `torch.device`, *optional*) : The device to which the timesteps should be moved to. If `None`, the timesteps are not moved.
+
+Sets the discrete timesteps used for the diffusion chain (to be run before inference).
+
 #### step[[diffusers.DDIMInverseScheduler.step]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L309)
+```python
+step(model_output: Tensor, timestep: int, sample: Tensor, return_dict: bool = True)
+```
 
-Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
-process from the learned model outputs (most often the predicted noise).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddim_inverse.py#L311)
 
 **Parameters:**
 
@@ -78,12 +99,13 @@ sample (`torch.Tensor`) : A current instance of a sample created by the diffusio
 
 return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~schedulers.scheduling_ddim_inverse.DDIMInverseSchedulerOutput` or `tuple`.
 
-**Returns:**
-
-``~schedulers.scheduling_ddim_inverse.DDIMInverseSchedulerOutput` or `tuple``
+**Returns:** `~schedulers.scheduling_ddim_inverse.DDIMInverseSchedulerOutput` or `tuple`
 
 If return_dict is `True`, `~schedulers.scheduling_ddim_inverse.DDIMInverseSchedulerOutput` is
 returned, otherwise a tuple is returned where the first element is the sample tensor.
 
-### DDPMScheduler
-https://huggingface.co/docs/diffusers/v0.39.0/api/schedulers/ddpm.md
+Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
+process from the learned model outputs (most often the predicted noise).
+
+### HeliosScheduler
+https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/helios.md

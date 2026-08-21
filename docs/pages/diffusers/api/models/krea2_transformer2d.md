@@ -6,34 +6,11 @@ The single-stream MMDiT flow-matching transformer used by [Krea 2](https://githu
 
 #### diffusers.Krea2Transformer2DModel[[diffusers.Krea2Transformer2DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_krea2.py#L330)
+```python
+diffusers.Krea2Transformer2DModel(in_channels: int = 64, num_layers: int = 28, attention_head_dim: int = 128, num_attention_heads: int = 48, num_key_value_heads: int = 12, intermediate_size: int = 16384, timestep_embed_dim: int = 256, text_hidden_dim: int = 2560, num_text_layers: int = 12, text_num_attention_heads: int = 20, text_num_key_value_heads: int = 20, text_intermediate_size: int = 6912, num_layerwise_text_blocks: int = 2, num_refiner_text_blocks: int = 2, axes_dims_rope: tuple = (32, 48, 48), rope_theta: float = 1000.0, norm_eps: float = 1e-05)
+```
 
-The single-stream MMDiT flow-matching backbone used by the Krea 2 pipeline.
-
-Text conditioning enters as a stack of hidden states tapped from several layers of a multimodal text encoder. A
-small text-fusion transformer collapses the layer axis and refines the token sequence; the result is concatenated
-with the patchified image latents into a single `[text, image]` sequence processed by the transformer blocks. The
-timestep conditions every block through one shared modulation vector plus per-block learned tables.
-
-forwarddiffusers.Krea2Transformer2DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_krea2.py#L447[{"name": "hidden_states", "val": ": Tensor"}, {"name": "encoder_hidden_states", "val": ": Tensor"}, {"name": "timestep", "val": ": Tensor"}, {"name": "position_ids", "val": ": Tensor"}, {"name": "encoder_attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "return_dict", "val": ": bool = True"}]- **hidden_states** (`torch.Tensor` of shape `(batch_size, image_seq_len, in_channels)`) --
-  Packed (patchified) noisy image latents.
-- **encoder_hidden_states** (`torch.Tensor` of shape `(batch_size, text_seq_len, num_text_layers, text_hidden_dim)`) --
-  Stack of tapped text-encoder hidden states per token.
-- **timestep** (`torch.Tensor` of shape `(batch_size,)`) --
-  Flow-matching time in `[0, 1]` (1 is pure noise, 0 is clean data).
-- **position_ids** (`torch.Tensor` of shape `(text_seq_len + image_seq_len, 3)`) --
-  `(t, h, w)` rotary coordinates for the combined sequence. Text rows are all-zero; image rows hold the
-  latent-grid coordinates.
-- **encoder_attention_mask** (`torch.Tensor` of shape `(batch_size, text_seq_len)`, *optional*) --
-  Boolean mask marking valid text tokens. Pass `None` when every text token is valid.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that, when it contains a `scale` entry, sets the LoRA scale applied to this
-  transformer's adapters for the duration of the forward pass.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether to return a [Transformer2DModelOutput](/docs/diffusers/v0.39.0/en/api/models/sana_video_transformer3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) instead of a plain tuple.0[Transformer2DModelOutput](/docs/diffusers/v0.39.0/en/api/models/sana_video_transformer3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or a `tuple` whose first element is the velocity
-tensor of shape `(batch_size, image_seq_len, in_channels)`.
-
-Predict the flow-matching velocity for the image tokens.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_krea2.py#L338)
 
 **Parameters:**
 
@@ -71,10 +48,43 @@ rope_theta (`float`, defaults to 1000.0) : Base used by the rotary position embe
 
 norm_eps (`float`, defaults to 1e-5) : Epsilon used by all RMSNorm modules.
 
+The single-stream MMDiT flow-matching backbone used by the Krea 2 pipeline.
+
+Text conditioning enters as a stack of hidden states tapped from several layers of a multimodal text encoder. A
+small text-fusion transformer collapses the layer axis and refines the token sequence; the result is concatenated
+with the patchified image latents into a single `[text, image]` sequence processed by the transformer blocks. The
+timestep conditions every block through one shared modulation vector plus per-block learned tables.
+
+#### forward[[diffusers.Krea2Transformer2DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: Tensor, position_ids: Tensor, encoder_attention_mask: typing.Optional[torch.Tensor] = None, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_krea2.py#L455)
+
+**Parameters:**
+
+hidden_states (`torch.Tensor` of shape `(batch_size, image_seq_len, in_channels)`) : Packed (patchified) noisy image latents.
+
+encoder_hidden_states (`torch.Tensor` of shape `(batch_size, text_seq_len, num_text_layers, text_hidden_dim)`) : Stack of tapped text-encoder hidden states per token.
+
+timestep (`torch.Tensor` of shape `(batch_size,)`) : Flow-matching time in `[0, 1]` (1 is pure noise, 0 is clean data).
+
+position_ids (`torch.Tensor` of shape `(text_seq_len + image_seq_len, 3)`) : `(t, h, w)` rotary coordinates for the combined sequence. Text rows are all-zero; image rows hold the latent-grid coordinates.
+
+encoder_attention_mask (`torch.Tensor` of shape `(batch_size, text_seq_len)`, *optional*) : Boolean mask marking valid text tokens. Pass `None` when every text token is valid.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that, when it contains a `scale` entry, sets the LoRA scale applied to this transformer's adapters for the duration of the forward pass.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a [Transformer2DModelOutput](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) instead of a plain tuple.
+
 **Returns:**
 
-[Transformer2DModelOutput](/docs/diffusers/v0.39.0/en/api/models/sana_video_transformer3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or a `tuple` whose first element is the velocity
+[Transformer2DModelOutput](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or a `tuple` whose first element is the velocity
 tensor of shape `(batch_size, image_seq_len, in_channels)`.
 
-### AutoencoderDC
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/autoencoder_dc.md
+Predict the flow-matching velocity for the image tokens.
+
+### SparseControlNetModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/controlnet_sparsectrl.md

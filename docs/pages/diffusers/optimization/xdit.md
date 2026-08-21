@@ -35,7 +35,7 @@ Here's an example of using xDiT to accelerate inference of a Diffusers model.
      local_rank = get_world_group().local_rank
      pipe = StableDiffusion3Pipeline.from_pretrained(
          pretrained_model_name_or_path=engine_config.model_config.model,
-         torch_dtype=torch.float16,
+         dtype=torch.float16,
      ).to(f"cuda:{local_rank}")
     
 # do anything you want with pipeline here
@@ -106,5 +106,5 @@ More detailed performance metric can be found on our [github page](https://githu
 
 [PipeFusion: Displaced Patch Pipeline Parallelism for Inference of Diffusion Transformer Models](https://huggingface.co/papers/2405.14430)
 
-### Reduce memory usage
-https://huggingface.co/docs/diffusers/v0.39.0/optimization/memory.md
+### OpenVINO
+https://huggingface.co/docs/diffusers/v0.40.0/optimization/open_vino.md

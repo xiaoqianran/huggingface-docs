@@ -2,7 +2,7 @@
 
 [NeMo Automodel](https://github.com/NVIDIA-NeMo/Automodel) is a PyTorch DTensor-native training library from NVIDIA for fine-tuning and pretraining diffusion models at scale. It is Hugging Face native — train any Diffusers-format model from the Hub with no checkpoint conversion. The same YAML recipe and hackable training script runs on any scale from 1 GPU to hundreds of nodes, with [FSDP2](https://pytorch.org/docs/stable/fsdp.html) distributed training, multiresolution bucketed dataloading, and pre-encoded latent space training for maximum GPU utilization. It uses [flow matching](https://huggingface.co/papers/2210.02747) for training and is fully open source (Apache 2.0), NVIDIA-supported, and actively maintained.
 
-NeMo Automodel integrates directly with Diffusers. It loads pretrained models from the Hugging Face Hub using Diffusers model classes and generates outputs with the [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline).
+NeMo Automodel integrates directly with Diffusers. It loads pretrained models from the Hugging Face Hub using Diffusers model classes and generates outputs with the [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline).
 
 The typical workflow is to install NeMo Automodel (pip or Docker), prepare your data by encoding it into `.meta` files, configure a YAML recipe, launch training with `torchrun`, and run inference with the resulting checkpoint.
 
@@ -308,7 +308,7 @@ python examples/diffusion/generate/generate.py \
 
 ## Diffusers integration
 
-NeMo Automodel is built on top of Diffusers and uses it as the backbone for model loading and inference. It loads models directly from the Hugging Face Hub using Diffusers model classes such as [WanTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel), [FluxTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel), and [HunyuanVideoTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/hunyuan_video_transformer_3d#diffusers.HunyuanVideoTransformer3DModel), and generates outputs via Diffusers pipelines like [WanPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/wan#diffusers.WanPipeline) and [FluxPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/flux#diffusers.FluxPipeline).
+NeMo Automodel is built on top of Diffusers and uses it as the backbone for model loading and inference. It loads models directly from the Hugging Face Hub using Diffusers model classes such as [WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel), [FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel), and [HunyuanVideoTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video_transformer_3d#diffusers.HunyuanVideoTransformer3DModel), and generates outputs via Diffusers pipelines like [WanPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/wan#diffusers.WanPipeline) and [FluxPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/flux#diffusers.FluxPipeline).
 
 This integration provides several benefits for Diffusers users:
 
@@ -332,5 +332,5 @@ This integration provides several benefits for Diffusers users:
 - [Diffusion Model Coverage](https://docs.nvidia.com/nemo/automodel/latest/model-coverage/diffusion.html)
 - [NeMo Automodel for Transformers (LLM/VLM fine-tuning)](https://huggingface.co/docs/transformers/en/community_integrations/nemo_automodel_finetuning)
 
-### Wuerstchen
-https://huggingface.co/docs/diffusers/v0.39.0/training/wuerstchen.md
+### Reinforcement learning training with DDPO
+https://huggingface.co/docs/diffusers/v0.40.0/training/ddpo.md

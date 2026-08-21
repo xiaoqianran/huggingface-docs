@@ -6,28 +6,11 @@ A Next Version of Diffusion Transformer model for 2D data from [Lumina-T2X](http
 
 #### diffusers.LuminaNextDiT2DModel[[diffusers.LuminaNextDiT2DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/lumina_nextdit2d.py#L178)
+```python
+diffusers.LuminaNextDiT2DModel(sample_size: int = 128, patch_size: int | None = 2, in_channels: int | None = 4, hidden_size: int | None = 2304, num_layers: int | None = 32, num_attention_heads: int | None = 32, num_kv_heads: int | None = None, multiple_of: int | None = 256, ffn_dim_multiplier: float | None = None, norm_eps: float | None = 1e-05, learn_sigma: bool | None = True, qk_norm: bool | None = True, cross_attention_dim: int | None = 2048, scaling_factor: float | None = 1.0)
+```
 
-LuminaNextDiT: Diffusion model with a Transformer backbone.
-
-Inherit ModelMixin and ConfigMixin to be compatible with the sampler StableDiffusionPipeline of diffusers.
-
-forwarddiffusers.LuminaNextDiT2DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/lumina_nextdit2d.py#L291[{"name": "hidden_states", "val": ": Tensor"}, {"name": "timestep", "val": ": Tensor"}, {"name": "encoder_hidden_states", "val": ": Tensor"}, {"name": "encoder_mask", "val": ": Tensor"}, {"name": "image_rotary_emb", "val": ": Tensor"}, {"name": "cross_attention_kwargs", "val": ": dict = None"}, {"name": "return_dict", "val": " = True"}]- **hidden_states** (torch.Tensor) -- Input tensor of shape (N, C, H, W).
-- **timestep** (torch.Tensor) -- Tensor of diffusion timesteps of shape (N,).
-- **encoder_hidden_states** (torch.Tensor) -- Tensor of caption features of shape (N, D).
-- **encoder_mask** (torch.Tensor) -- Tensor of caption masks of shape (N, L).
-- **image_rotary_emb** (`torch.Tensor`) --
-  Pre-computed rotary positional embeddings.
-- **cross_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain
-  tuple.0`~models.transformer_2d.Transformer2DModelOutput` or `tuple`If `return_dict` is True, a `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise
-a plain `tuple` is returned.
-
-Forward pass of LuminaNextDiT.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/lumina_nextdit2d.py#L178)
 
 **Parameters:**
 
@@ -59,12 +42,40 @@ cross_attention_dim (`int`, *optional*, defaults to 2048) : The dimensionality o
 
 scaling_factor (`float`, *optional*, defaults to 1.0) : A scaling factor applied to certain parameters or layers in the model. This can be used for adjusting the overall scale of the model's operations.
 
-**Returns:**
+LuminaNextDiT: Diffusion model with a Transformer backbone.
 
-``~models.transformer_2d.Transformer2DModelOutput` or `tuple``
+Inherit ModelMixin and ConfigMixin to be compatible with the sampler StableDiffusionPipeline of diffusers.
+
+#### forward[[diffusers.LuminaNextDiT2DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, timestep: Tensor, encoder_hidden_states: Tensor, encoder_mask: Tensor, image_rotary_emb: Tensor, cross_attention_kwargs: dict = None, return_dict = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/lumina_nextdit2d.py#L291)
+
+**Parameters:**
+
+hidden_states (torch.Tensor) : Input tensor of shape (N, C, H, W).
+
+timestep (torch.Tensor) : Tensor of diffusion timesteps of shape (N,).
+
+encoder_hidden_states (torch.Tensor) : Tensor of caption features of shape (N, D).
+
+encoder_mask (torch.Tensor) : Tensor of caption masks of shape (N, L).
+
+image_rotary_emb (`torch.Tensor`) : Pre-computed rotary positional embeddings.
+
+cross_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain tuple.
+
+**Returns:** `~models.transformer_2d.Transformer2DModelOutput` or `tuple`
 
 If `return_dict` is True, a `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise
 a plain `tuple` is returned.
 
-### LTX2VideoTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/ltx2_video_transformer3d.md
+Forward pass of LuminaNextDiT.
+
+### AutoencoderKLKVAEVideo
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoder_kl_kvae_video.md

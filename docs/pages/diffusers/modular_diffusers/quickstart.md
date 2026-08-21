@@ -1,12 +1,12 @@
 # Quickstart
 
-Modular Diffusers is a framework for quickly building flexible and customizable pipelines. These pipelines can go beyond what standard `DiffusionPipeline`s can do. At the core of Modular Diffusers are [ModularPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) that can be combined with other blocks to adapt to new workflows. The blocks are converted into a [ModularPipeline](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline), a friendly user-facing interface for running generation tasks.
+Modular Diffusers is a framework for quickly building flexible and customizable pipelines. These pipelines can go beyond what standard `DiffusionPipeline`s can do. At the core of Modular Diffusers are [ModularPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) that can be combined with other blocks to adapt to new workflows. The blocks are converted into a [ModularPipeline](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline), a friendly user-facing interface for running generation tasks.
 
 This guide shows you how to run a modular pipeline, understand its structure, and customize it by modifying the blocks that compose it.
 
 ## Run a pipeline
 
-[ModularPipeline](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) is the main interface for loading, running, and managing modular pipelines.
+[ModularPipeline](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) is the main interface for loading, running, and managing modular pipelines.
 ```py
 import torch
 from diffusers import ModularPipeline, ComponentsManager
@@ -16,7 +16,7 @@ manager = ComponentsManager()
 manager.enable_auto_cpu_offload(device="cuda:0")
 
 pipe = ModularPipeline.from_pretrained("Qwen/Qwen-Image", components_manager=manager)
-pipe.load_components(torch_dtype=torch.bfloat16)
+pipe.load_components(dtype=torch.bfloat16)
 
 image = pipe(
     prompt="cat wizard with red hat, gandalf, lord of the rings, detailed, fantasy, cute, adorable, Pixar, Disney",
@@ -24,7 +24,7 @@ image = pipe(
 image
 ```
 
-[from_pretrained()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) uses lazy loading - it reads the configuration to learn where to load each component from, but doesn't actually load the model weights until you call [load_components()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components). This gives you control over when and how components are loaded.
+[from_pretrained()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) uses lazy loading - it reads the configuration to learn where to load each component from, but doesn't actually load the model weights until you call [load_components()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components). This gives you control over when and how components are loaded.
 
 > [!TIP]
 > `ComponentsManager` with `enable_auto_cpu_offload` automatically moves models between CPU and GPU as needed, reducing memory usage for large models like Qwen-Image. Learn more in the [ComponentsManager](./components_manager) guide.
@@ -35,7 +35,7 @@ Learn more about creating and loading pipelines in the [Creating a pipeline](htt
 
 ## Understand the structure
 
-A [ModularPipeline](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) has two parts: a **definition** (the blocks) and a **state** (the loaded components and configs).
+A [ModularPipeline](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline) has two parts: a **definition** (the blocks) and a **state** (the loaded components and configs).
 
 Print the pipeline to see its state — the components and their loading status and configuration.
 ```py
@@ -64,7 +64,7 @@ QwenImageModularPipeline {
 }
 ```
 
-Access the definition through `pipe.blocks` — this is the [ModularPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) that defines the pipeline's workflows, inputs, outputs, and computation logic.
+Access the definition through `pipe.blocks` — this is the [ModularPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) that defines the pipeline's workflows, inputs, outputs, and computation logic.
 ```py
 print(pipe.blocks)
 ```
@@ -134,7 +134,7 @@ vae_encoder_block = pipe.blocks.sub_blocks["vae_encoder"]
 print(vae_encoder_block.doc)
 ```
 
-This block can be converted to a pipeline so that it can run on its own with [init_pipeline()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline).
+This block can be converted to a pipeline so that it can run on its own with [init_pipeline()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline).
 ```py
 vae_encoder_pipe = vae_encoder_block.init_pipeline()
 
@@ -225,16 +225,16 @@ class SequentialPipelineBlocks
 
 Now the pipeline takes `image` as input instead of `control_image`. Because blocks in a sequence share data automatically, the canny block's output (`control_image`) flows to the denoise block that needs it, and the canny block's input (`image`) becomes a pipeline input since no earlier block provides it.
 
-Create a pipeline from the modified blocks and load a ControlNet model. The ControlNet isn't part of the original model repository, so load it separately and add it with [update_components()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.update_components).
+Create a pipeline from the modified blocks and load a ControlNet model. The ControlNet isn't part of the original model repository, so load it separately and add it with [update_components()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.update_components).
 ```py
 pipeline = blocks.init_pipeline("Qwen/Qwen-Image", components_manager=manager)
 
-pipeline.load_components(torch_dtype=torch.bfloat16)
+pipeline.load_components(dtype=torch.bfloat16)
 
 # Load the ControlNet model
 controlnet_spec = pipeline.get_component_spec("controlnet")
 controlnet_spec.pretrained_model_name_or_path = "InstantX/Qwen-Image-ControlNet-Union"
-controlnet = controlnet_spec.load(torch_dtype=torch.bfloat16)
+controlnet = controlnet_spec.load(dtype=torch.bfloat16)
 pipeline.update_components(controlnet=controlnet)
 ```
 
@@ -267,5 +267,5 @@ Use [`ComponentsManager`](./components_manager) to share models across multiple 
 
 Connect modular pipelines to [Mellon](https://github.com/cubiq/Mellon), a visual node-based interface for building workflows. Custom blocks built with Modular Diffusers work out of the box with Mellon - no UI code required. Read more in the Mellon guide.
 
-### ModularPipelineBlocks
-https://huggingface.co/docs/diffusers/v0.39.0/modular_diffusers/pipeline_block.md
+### ModularPipeline
+https://huggingface.co/docs/diffusers/v0.40.0/modular_diffusers/modular_pipeline.md

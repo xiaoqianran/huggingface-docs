@@ -36,7 +36,7 @@ from diffusers import FluxPipeline
 
 pipe = FluxPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
 ).to("cuda")
 
 from para_attn.first_block_cache.diffusers_adapters import apply_cache_on_pipe
@@ -78,13 +78,13 @@ model_id = "tencent/HunyuanVideo"
 transformer = HunyuanVideoTransformer3DModel.from_pretrained(
     model_id,
     subfolder="transformer",
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
     revision="refs/pr/18",
 )
 pipe = HunyuanVideoPipeline.from_pretrained(
     model_id,
     transformer=transformer,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     revision="refs/pr/18",
 ).to("cuda")
 
@@ -149,7 +149,7 @@ from diffusers import FluxPipeline
 
 pipe = FluxPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
 ).to("cuda")
 
 from para_attn.first_block_cache.diffusers_adapters import apply_cache_on_pipe
@@ -199,13 +199,13 @@ model_id = "tencent/HunyuanVideo"
 transformer = HunyuanVideoTransformer3DModel.from_pretrained(
     model_id,
     subfolder="transformer",
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
     revision="refs/pr/18",
 )
 pipe = HunyuanVideoPipeline.from_pretrained(
     model_id,
     transformer=transformer,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     revision="refs/pr/18",
 ).to("cuda")
 
@@ -272,7 +272,7 @@ torch.cuda.set_device(dist.get_rank())
 
 pipe = FluxPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
 ).to("cuda")
 
 from para_attn.context_parallel import init_context_parallel_mesh
@@ -356,13 +356,13 @@ model_id = "tencent/HunyuanVideo"
 transformer = HunyuanVideoTransformer3DModel.from_pretrained(
     model_id,
     subfolder="transformer",
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
     revision="refs/pr/18",
 )
 pipe = HunyuanVideoPipeline.from_pretrained(
     model_id,
     transformer=transformer,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     revision="refs/pr/18",
 ).to("cuda")
 
@@ -450,5 +450,5 @@ Inference speed is reduced to 649.23 seconds compared to the baseline, or 5.66x 
 | NVIDIA L20 | 4 | FBCache + CP | 718.15 | 5.12x |
 | NVIDIA L20 | 8 | FBCache + CP | 649.23 | 5.66x |
 
-### AWS Neuron
-https://huggingface.co/docs/diffusers/v0.39.0/optimization/neuron.md
+### DeepCache
+https://huggingface.co/docs/diffusers/v0.40.0/optimization/deepcache.md

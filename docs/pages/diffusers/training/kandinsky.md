@@ -82,7 +82,7 @@ The training script is also similar to the [Text-to-image](text2image#training-s
 
 The [`main()`](https://github.com/huggingface/diffusers/blob/6e68c71503682c8693cb5b06a4da4911dfd655ee/examples/kandinsky2_2/text_to_image/train_text_to_image_prior.py#L441) function contains the code for preparing the dataset and training the model.
 
-One of the main differences you'll notice right away is that the training script also loads a [CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.12.1/en/model_doc/clip#transformers.CLIPImageProcessor) - in addition to a scheduler and tokenizer - for preprocessing images and a [CLIPVisionModelWithProjection](https://huggingface.co/docs/transformers/v5.12.1/en/model_doc/clip#transformers.CLIPVisionModelWithProjection) model for encoding the images:
+One of the main differences you'll notice right away is that the training script also loads a [CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPImageProcessor) - in addition to a scheduler and tokenizer - for preprocessing images and a [CLIPVisionModelWithProjection](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPVisionModelWithProjection) model for encoding the images:
 
 ```py
 noise_scheduler = DDPMScheduler(beta_schedule="squaredcos_cap_v2", prediction_type="sample")
@@ -93,14 +93,14 @@ tokenizer = CLIPTokenizer.from_pretrained(args.pretrained_prior_model_name_or_pa
 
 with ContextManagers(deepspeed_zero_init_disabled_context_manager()):
     image_encoder = CLIPVisionModelWithProjection.from_pretrained(
-        args.pretrained_prior_model_name_or_path, subfolder="image_encoder", torch_dtype=weight_dtype
+        args.pretrained_prior_model_name_or_path, subfolder="image_encoder", dtype=weight_dtype
     ).eval()
     text_encoder = CLIPTextModelWithProjection.from_pretrained(
-        args.pretrained_prior_model_name_or_path, subfolder="text_encoder", torch_dtype=weight_dtype
+        args.pretrained_prior_model_name_or_path, subfolder="text_encoder", dtype=weight_dtype
     ).eval()
 ```
 
-Kandinsky uses a [PriorTransformer](/docs/diffusers/v0.39.0/en/api/models/prior_transformer#diffusers.PriorTransformer) to generate the image embeddings, so you'll want to setup the optimizer to learn the prior mode's parameters.
+Kandinsky uses a [PriorTransformer](/docs/diffusers/v0.40.0/en/api/models/prior_transformer#diffusers.PriorTransformer) to generate the image embeddings, so you'll want to setup the optimizer to learn the prior mode's parameters.
 
 ```py
 prior = PriorTransformer.from_pretrained(args.pretrained_prior_model_name_or_path, subfolder="prior")
@@ -114,7 +114,7 @@ optimizer = optimizer_cls(
 )
 ```
 
-Next, the input captions are tokenized, and images are [preprocessed](https://github.com/huggingface/diffusers/blob/6e68c71503682c8693cb5b06a4da4911dfd655ee/examples/kandinsky2_2/text_to_image/train_text_to_image_prior.py#L632) by the [CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.12.1/en/model_doc/clip#transformers.CLIPImageProcessor):
+Next, the input captions are tokenized, and images are [preprocessed](https://github.com/huggingface/diffusers/blob/6e68c71503682c8693cb5b06a4da4911dfd655ee/examples/kandinsky2_2/text_to_image/train_text_to_image_prior.py#L632) by the [CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPImageProcessor):
 
 ```py
 def preprocess_train(examples):
@@ -140,15 +140,15 @@ If you want to learn more about how the training loop works, check out the [Unde
 
 The [`main()`](https://github.com/huggingface/diffusers/blob/6e68c71503682c8693cb5b06a4da4911dfd655ee/examples/kandinsky2_2/text_to_image/train_text_to_image_decoder.py#L440) function contains the code for preparing the dataset and training the model.
 
-Unlike the prior model, the decoder initializes a [VQModel](/docs/diffusers/v0.39.0/en/api/models/vq#diffusers.VQModel) to decode the latents into images and it uses a [UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel):
+Unlike the prior model, the decoder initializes a [VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel) to decode the latents into images and it uses a [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel):
 
 ```py
 with ContextManagers(deepspeed_zero_init_disabled_context_manager()):
     vae = VQModel.from_pretrained(
-        args.pretrained_decoder_model_name_or_path, subfolder="movq", torch_dtype=weight_dtype
+        args.pretrained_decoder_model_name_or_path, subfolder="movq", dtype=weight_dtype
     ).eval()
     image_encoder = CLIPVisionModelWithProjection.from_pretrained(
-        args.pretrained_prior_model_name_or_path, subfolder="image_encoder", torch_dtype=weight_dtype
+        args.pretrained_prior_model_name_or_path, subfolder="image_encoder", dtype=weight_dtype
     ).eval()
 unet = UNet2DConditionModel.from_pretrained(args.pretrained_decoder_model_name_or_path, subfolder="unet")
 ```
@@ -229,9 +229,9 @@ Once training is finished, you can use your newly trained model for inference!
 from diffusers import AutoPipelineForText2Image, DiffusionPipeline
 import torch
 
-prior_pipeline = DiffusionPipeline.from_pretrained(output_dir, torch_dtype=torch.float16)
+prior_pipeline = DiffusionPipeline.from_pretrained(output_dir, dtype=torch.float16)
 prior_components = {"prior_" + k: v for k,v in prior_pipeline.components.items()}
-pipeline = AutoPipelineForText2Image.from_pretrained("kandinsky-community/kandinsky-2-2-decoder", **prior_components, torch_dtype=torch.float16)
+pipeline = AutoPipelineForText2Image.from_pretrained("kandinsky-community/kandinsky-2-2-decoder", **prior_components, dtype=torch.float16)
 
 pipe.enable_model_cpu_offload()
 prompt="A robot naruto, 4k photo"
@@ -245,7 +245,7 @@ image = pipeline(prompt=prompt, negative_prompt=negative_prompt).images[0]
 from diffusers import AutoPipelineForText2Image
 import torch
 
-pipeline = AutoPipelineForText2Image.from_pretrained("path/to/saved/model", torch_dtype=torch.float16)
+pipeline = AutoPipelineForText2Image.from_pretrained("path/to/saved/model", dtype=torch.float16)
 pipeline.enable_model_cpu_offload()
 
 prompt="A robot naruto, 4k photo"
@@ -259,7 +259,7 @@ from diffusers import AutoPipelineForText2Image, UNet2DConditionModel
 
 unet = UNet2DConditionModel.from_pretrained("path/to/saved/model" + "/checkpoint-<N>/unet")
 
-pipeline = AutoPipelineForText2Image.from_pretrained("kandinsky-community/kandinsky-2-2-decoder", unet=unet, torch_dtype=torch.float16)
+pipeline = AutoPipelineForText2Image.from_pretrained("kandinsky-community/kandinsky-2-2-decoder", unet=unet, dtype=torch.float16)
 pipeline.enable_model_cpu_offload()
 
 image = pipeline(prompt="A robot naruto, 4k photo").images[0]
@@ -272,5 +272,5 @@ Congratulations on training a Kandinsky 2.2 model! To learn more about how to us
 - Read the [Kandinsky](../api/pipelines/kandinsky) guide to learn how to use it for a variety of different tasks (text-to-image, image-to-image, inpainting, interpolation), and how it can be combined with a ControlNet.
 - Check out the [DreamBooth](dreambooth) and [LoRA](lora) training guides to learn how to train a personalized Kandinsky model with just a few example images. These two training techniques can even be combined!
 
-### Latent Consistency Distillation
-https://huggingface.co/docs/diffusers/v0.39.0/training/lcm_distill.md
+### Text-to-image
+https://huggingface.co/docs/diffusers/v0.40.0/training/text2image.md

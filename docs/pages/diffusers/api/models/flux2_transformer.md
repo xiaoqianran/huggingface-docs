@@ -6,46 +6,11 @@ A Transformer model for image-like data from [Flux2](https://hf.co/black-forest-
 
 #### diffusers.Flux2Transformer2DModel[[diffusers.Flux2Transformer2DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_flux2.py#L1039)
+```python
+diffusers.Flux2Transformer2DModel(patch_size: int = 1, in_channels: int = 128, out_channels: int | None = None, num_layers: int = 8, num_single_layers: int = 48, attention_head_dim: int = 128, num_attention_heads: int = 48, joint_attention_dim: int = 15360, timestep_guidance_channels: int = 256, mlp_ratio: float = 3.0, axes_dims_rope: tuple = (32, 32, 32, 32), rope_theta: int = 2000, eps: float = 1e-06, guidance_embeds: bool = True)
+```
 
-The Transformer model introduced in Flux 2.
-
-Reference: https://blackforestlabs.ai/announcing-black-forest-labs/
-
-forwarddiffusers.Flux2Transformer2DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_flux2.py#L1177[{"name": "hidden_states", "val": ": Tensor"}, {"name": "encoder_hidden_states", "val": ": Tensor = None"}, {"name": "timestep", "val": ": LongTensor = None"}, {"name": "img_ids", "val": ": Tensor = None"}, {"name": "txt_ids", "val": ": Tensor = None"}, {"name": "guidance", "val": ": Tensor = None"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "kv_cache", "val": ": Flux2KVCache | None = None"}, {"name": "kv_cache_mode", "val": ": str | None = None"}, {"name": "num_ref_tokens", "val": ": int = 0"}, {"name": "ref_fixed_timestep", "val": ": float = 0.0"}]- **hidden_states** (`torch.Tensor` of shape `(batch_size, image_sequence_length, in_channels)`) --
-  Input `hidden_states`.
-- **encoder_hidden_states** (`torch.Tensor` of shape `(batch_size, text_sequence_length, joint_attention_dim)`) --
-  Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
-- **timestep** (`torch.LongTensor`) --
-  Used to indicate denoising step.
-- **img_ids** (`torch.Tensor`) --
-  Image position ids used to compute the rotary positional embeddings.
-- **txt_ids** (`torch.Tensor`) --
-  Text position ids used to compute the rotary positional embeddings.
-- **guidance** (`torch.Tensor`, *optional*) --
-  Guidance scale embedding used for guidance-distilled variants of the model.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain
-  tuple.
-- **kv_cache** (`Flux2KVCache`, *optional*) --
-  KV cache for reference image tokens. When `kv_cache_mode` is "extract", a new cache is created and
-  returned. When "cached", the provided cache is used to inject ref K/V during attention.
-- **kv_cache_mode** (`str`, *optional*) --
-  One of "extract" (first step with ref tokens) or "cached" (subsequent steps using cached ref K/V). When
-  `None`, standard forward pass without KV caching.
-- **num_ref_tokens** (`int`, defaults to `0`) --
-  Number of reference image tokens prepended to `hidden_states` (only used when
-  `kv_cache_mode="extract"`).
-- **ref_fixed_timestep** (`float`, defaults to `0.0`) --
-  Fixed timestep for reference token modulation (only used when `kv_cache_mode="extract"`).0If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
-`tuple` where the first element is the sample tensor. When `kv_cache_mode="extract"`, also returns the
-populated `Flux2KVCache`.
-
-The [Flux2Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_flux2.py#L1059)
 
 **Parameters:**
 
@@ -71,19 +36,61 @@ guidance_embeds (`bool`, defaults to `True`) : Whether to use guidance embedding
 
 axes_dims_rope (`tuple[int]`, defaults to `(32, 32, 32, 32)`) : The dimensions to use for the rotary positional embeddings.
 
+The Transformer model introduced in Flux 2.
+
+Reference: https://blackforestlabs.ai/announcing-black-forest-labs/
+
+#### forward[[diffusers.Flux2Transformer2DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, encoder_hidden_states: Tensor = None, timestep: LongTensor = None, img_ids: Tensor = None, txt_ids: Tensor = None, guidance: Tensor = None, joint_attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True, kv_cache: Flux2KVCache | None = None, kv_cache_mode: str | None = None, num_ref_tokens: int = 0, ref_fixed_timestep: float = 0.0)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_flux2.py#L1225)
+
+**Parameters:**
+
+hidden_states (`torch.Tensor` of shape `(batch_size, image_sequence_length, in_channels)`) : Input `hidden_states`.
+
+encoder_hidden_states (`torch.Tensor` of shape `(batch_size, text_sequence_length, joint_attention_dim)`) : Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
+
+timestep (`torch.LongTensor`) : Used to indicate denoising step.
+
+img_ids (`torch.Tensor`) : Image position ids used to compute the rotary positional embeddings.
+
+txt_ids (`torch.Tensor`) : Text position ids used to compute the rotary positional embeddings.
+
+guidance (`torch.Tensor`, *optional*) : Guidance scale embedding used for guidance-distilled variants of the model.
+
+joint_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain tuple.
+
+kv_cache (`Flux2KVCache`, *optional*) : KV cache for reference image tokens. When `kv_cache_mode` is "extract", a new cache is created and returned. When "cached", the provided cache is used to inject ref K/V during attention.
+
+kv_cache_mode (`str`, *optional*) : One of "extract" (first step with ref tokens) or "cached" (subsequent steps using cached ref K/V). When `None`, standard forward pass without KV caching.
+
+num_ref_tokens (`int`, defaults to `0`) : Number of reference image tokens prepended to `hidden_states` (only used when `kv_cache_mode="extract"`).
+
+ref_fixed_timestep (`float`, defaults to `0.0`) : Fixed timestep for reference token modulation (only used when `kv_cache_mode="extract"`).
+
 **Returns:**
 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor. When `kv_cache_mode="extract"`, also returns the
 populated `Flux2KVCache`.
 
+The [Flux2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel) forward method.
+
 ## Flux2Transformer2DModelOutput[[diffusers.models.transformers.transformer_flux2.Flux2Transformer2DModelOutput]]
 
 #### diffusers.models.transformers.transformer_flux2.Flux2Transformer2DModelOutput[[diffusers.models.transformers.transformer_flux2.Flux2Transformer2DModelOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_flux2.py#L45)
+```python
+diffusers.models.transformers.transformer_flux2.Flux2Transformer2DModelOutput(sample: torch.Tensor, kv_cache: Flux2KVCache | None = None)
+```
 
-The output of [Flux2Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_flux2.py#L46)
 
 **Parameters:**
 
@@ -91,5 +98,7 @@ sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : T
 
 kv_cache (`Flux2KVCache`, *optional*) : The populated KV cache for reference image tokens. Only returned when `kv_cache_mode="extract"`.
 
-### MochiTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/mochi_transformer3d.md
+The output of [Flux2Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux2_transformer#diffusers.Flux2Transformer2DModel).
+
+### Text-to-Video Generation with AnimateDiff
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/animatediff.md

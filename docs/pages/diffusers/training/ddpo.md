@@ -4,5 +4,5 @@ You can fine-tune Stable Diffusion on a reward function via reinforcement learni
 
 For more information, check out the `DDPOTrainer` API reference and the [Finetune Stable Diffusion Models with DDPO via TRL](https://huggingface.co/blog/trl-ddpo) blog post.
 
-### Unconditional image generation
-https://huggingface.co/docs/diffusers/v0.39.0/training/unconditional_training.md
+### Create a dataset for training
+https://huggingface.co/docs/diffusers/v0.40.0/training/create_dataset.md

@@ -27,13 +27,13 @@ from diffusers import AutoModel, HeliosPipeline
 from diffusers.hooks.group_offloading import apply_group_offloading
 from diffusers.utils import export_to_video
 
-vae = AutoModel.from_pretrained("BestWishYsh/Helios-Base", subfolder="vae", torch_dtype=torch.float32)
+vae = AutoModel.from_pretrained("BestWishYsh/Helios-Base", subfolder="vae", dtype=torch.float32)
 
 # group-offloading
 pipeline = HeliosPipeline.from_pretrained(
     "BestWishYsh/Helios-Base",
     vae=vae,
-    torch_dtype=torch.bfloat16
+    dtype=torch.bfloat16
 )
 pipeline.enable_group_offload(
     onload_device=torch.device("cuda"),
@@ -75,12 +75,12 @@ import torch
 from diffusers import AutoModel, HeliosPipeline
 from diffusers.utils import export_to_video
 
-vae = AutoModel.from_pretrained("BestWishYsh/Helios-Base", subfolder="vae", torch_dtype=torch.float32)
+vae = AutoModel.from_pretrained("BestWishYsh/Helios-Base", subfolder="vae", dtype=torch.float32)
 
 pipeline = HeliosPipeline.from_pretrained(
     "BestWishYsh/Helios-Base",
     vae=vae,
-    torch_dtype=torch.bfloat16
+    dtype=torch.bfloat16
 )
 pipeline.to("cuda")
 
@@ -128,12 +128,12 @@ import torch
 from diffusers import AutoModel, HeliosPipeline
 from diffusers.utils import export_to_video, load_video, load_image
 
-vae = AutoModel.from_pretrained("BestWishYsh/Helios-Base", subfolder="vae", torch_dtype=torch.float32)
+vae = AutoModel.from_pretrained("BestWishYsh/Helios-Base", subfolder="vae", dtype=torch.float32)
 
 pipeline = HeliosPipeline.from_pretrained(
     "BestWishYsh/Helios-Base",
     vae=vae,
-    torch_dtype=torch.bfloat16
+    dtype=torch.bfloat16
 )
 pipeline.to("cuda")
 
@@ -216,12 +216,12 @@ import torch
 from diffusers import AutoModel, HeliosPyramidPipeline
 from diffusers.utils import export_to_video, load_video, load_image
 
-vae = AutoModel.from_pretrained("BestWishYsh/Helios-Mid", subfolder="vae", torch_dtype=torch.float32)
+vae = AutoModel.from_pretrained("BestWishYsh/Helios-Mid", subfolder="vae", dtype=torch.float32)
 
 pipeline = HeliosPyramidPipeline.from_pretrained(
     "BestWishYsh/Helios-Mid",
     vae=vae,
-    torch_dtype=torch.bfloat16
+    dtype=torch.bfloat16
 )
 pipeline.to("cuda")
 
@@ -310,12 +310,12 @@ import torch
 from diffusers import AutoModel, HeliosPyramidPipeline
 from diffusers.utils import export_to_video, load_video, load_image
 
-vae = AutoModel.from_pretrained("BestWishYsh/Helios-Distilled", subfolder="vae", torch_dtype=torch.float32)
+vae = AutoModel.from_pretrained("BestWishYsh/Helios-Distilled", subfolder="vae", dtype=torch.float32)
 
 pipeline = HeliosPyramidPipeline.from_pretrained(
     "BestWishYsh/Helios-Distilled",
     vae=vae,
-    torch_dtype=torch.bfloat16
+    dtype=torch.bfloat16
 )
 pipeline.to("cuda")
 
@@ -478,83 +478,110 @@ Learn more about Helios with the following resources.
 
 #### diffusers.HeliosPipeline[[diffusers.HeliosPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/helios/pipeline_helios.py#L108)
+```python
+diffusers.HeliosPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, vae: AutoencoderKLWan, scheduler: HeliosScheduler, transformer: HeliosTransformer3DModel)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/helios/pipeline_helios.py#L108)
+
+**Parameters:**
+
+tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5Tokenizer), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
+
+text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
+
+transformer ([HeliosTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/helios_transformer3d#diffusers.HeliosTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+
+scheduler ([HeliosScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/helios#diffusers.HeliosScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 Pipeline for text-to-video / image-to-video / video-to-video generation using Helios.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
-__call__diffusers.HeliosPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/helios/pipeline_helios.py#L445[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "negative_prompt", "val": ": str | list[str] = None"}, {"name": "height", "val": ": int = 384"}, {"name": "width", "val": ": int = 640"}, {"name": "num_frames", "val": ": int = 132"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "sigmas", "val": ": list = None"}, {"name": "guidance_scale", "val": ": float = 5.0"}, {"name": "num_videos_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.Tensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "output_type", "val": ": str | None = 'np'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}, {"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "image_latents", "val": ": torch.Tensor | None = None"}, {"name": "fake_image_latents", "val": ": torch.Tensor | None = None"}, {"name": "add_noise_to_image_latents", "val": ": bool = True"}, {"name": "image_noise_sigma_min", "val": ": float = 0.111"}, {"name": "image_noise_sigma_max", "val": ": float = 0.135"}, {"name": "video", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "video_latents", "val": ": torch.Tensor | None = None"}, {"name": "add_noise_to_video_latents", "val": ": bool = True"}, {"name": "video_noise_sigma_min", "val": ": float = 0.111"}, {"name": "video_noise_sigma_max", "val": ": float = 0.135"}, {"name": "history_sizes", "val": ": list = [16, 2, 1]"}, {"name": "num_latent_frames_per_chunk", "val": ": int = 9"}, {"name": "keep_first_frame", "val": ": bool = True"}, {"name": "is_skip_first_chunk", "val": ": bool = False"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, pass `prompt_embeds` instead.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to avoid during image generation. If not defined, pass `negative_prompt_embeds`
-  instead. Ignored when not using guidance (`guidance_scale`  1`. Higher guidance scale encourages to generate images that are closely linked to
-  the text `prompt`, usually at the expense of lower image quality.
-- **num_videos_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make
-  generation deterministic.
-- **latents** (`torch.Tensor`, *optional*) --
-  Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor is generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not
-  provided, text embeddings are generated from the `prompt` input argument.
-- **negative_prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated negative text embeddings. If not provided, they are generated from `negative_prompt`.
-- **output_type** (`str`, *optional*, defaults to `"np"`) --
-  The output format of the generated image. Choose between `PIL.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `HeliosPipelineOutput` instead of a plain tuple.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) --
-  A function or a subclass of `PipelineCallback` or `MultiPipelineCallbacks` that is called at the end of
-  each denoising step during the inference. with the following arguments: `callback_on_step_end(self:
-  DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a
-  list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int`, defaults to `512`) --
-  The maximum sequence length of the text encoder. If the prompt is longer than this, it will be
-  truncated. If the prompt is shorter, it will be padded to this length.
-- **image** (`PipelineImageInput`, *optional*) --
-  Input image used for image-to-video conditioning.
-- **image_latents** (`torch.Tensor`, *optional*) --
-  Pre-encoded image latents to use instead of `image`.
-- **fake_image_latents** (`torch.Tensor`, *optional*) --
-  Optional fake image latents used during conditioning.
-- **add_noise_to_image_latents** (`bool`, *optional*, defaults to `True`) --
-  Whether to add noise to the image latents prior to denoising.
-- **image_noise_sigma_min** (`float`, *optional*, defaults to `0.111`) --
-  Minimum sigma value for noise added to image latents.
-- **image_noise_sigma_max** (`float`, *optional*, defaults to `0.135`) --
-  Maximum sigma value for noise added to image latents.
-- **video** (`PipelineImageInput`, *optional*) --
-  Input video used for video-to-video conditioning.
-- **video_latents** (`torch.Tensor`, *optional*) --
-  Pre-encoded video latents to use instead of `video`.
-- **add_noise_to_video_latents** (`bool`, *optional*, defaults to `True`) --
-  Whether to add noise to the video latents prior to denoising.
-- **video_noise_sigma_min** (`float`, *optional*, defaults to `0.111`) --
-  Minimum sigma value for noise added to video latents.
-- **video_noise_sigma_max** (`float`, *optional*, defaults to `0.135`) --
-  Maximum sigma value for noise added to video latents.
-- **history_sizes** (`list`, *optional*, defaults to `[16, 2, 1]`) --
-  History window sizes used for autoregressive chunked generation.
-- **num_latent_frames_per_chunk** (`int`, *optional*, defaults to `9`) --
-  Number of latent frames produced per chunk during autoregressive generation.
-- **keep_first_frame** (`bool`, *optional*, defaults to `True`) --
-  Whether to retain the first frame across chunks.
-- **is_skip_first_chunk** (`bool`, *optional*, defaults to `False`) --
-  Whether to skip generation of the first chunk.0`~HeliosPipelineOutput` or `tuple`If `return_dict` is `True`, `HeliosPipelineOutput` is returned, otherwise a `tuple` is returned where
+#### __call__[[diffusers.HeliosPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int = 384, width: int = 640, num_frames: int = 132, num_inference_steps: int = 50, sigmas: list = None, guidance_scale: float = 5.0, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, image_latents: typing.Optional[torch.Tensor] = None, fake_image_latents: typing.Optional[torch.Tensor] = None, add_noise_to_image_latents: bool = True, image_noise_sigma_min: float = 0.111, image_noise_sigma_max: float = 0.135, video: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, video_latents: typing.Optional[torch.Tensor] = None, add_noise_to_video_latents: bool = True, video_noise_sigma_min: float = 0.111, video_noise_sigma_max: float = 0.135, history_sizes: list = [16, 2, 1], num_latent_frames_per_chunk: int = 9, keep_first_frame: bool = True, is_skip_first_chunk: bool = False)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/helios/pipeline_helios.py#L445)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, pass `prompt_embeds` instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to avoid during image generation. If not defined, pass `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale` < `1`).
+
+height (`int`, defaults to `384`) : The height in pixels of the generated image.
+
+width (`int`, defaults to `640`) : The width in pixels of the generated image.
+
+num_frames (`int`, defaults to `132`) : The number of frames in the generated video.
+
+num_inference_steps (`int`, defaults to `50`) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process. If not defined, the scheduler's default schedule is used.
+
+guidance_scale (`float`, defaults to `5.0`) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor is generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, text embeddings are generated from the `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. If not provided, they are generated from `negative_prompt`.
+
+output_type (`str`, *optional*, defaults to `"np"`) : The output format of the generated image. Choose between `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `HeliosPipelineOutput` instead of a plain tuple.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) : A function or a subclass of `PipelineCallback` or `MultiPipelineCallbacks` that is called at the end of each denoising step during the inference. with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int`, defaults to `512`) : The maximum sequence length of the text encoder. If the prompt is longer than this, it will be truncated. If the prompt is shorter, it will be padded to this length.
+
+image (`PipelineImageInput`, *optional*) : Input image used for image-to-video conditioning.
+
+image_latents (`torch.Tensor`, *optional*) : Pre-encoded image latents to use instead of `image`.
+
+fake_image_latents (`torch.Tensor`, *optional*) : Optional fake image latents used during conditioning.
+
+add_noise_to_image_latents (`bool`, *optional*, defaults to `True`) : Whether to add noise to the image latents prior to denoising.
+
+image_noise_sigma_min (`float`, *optional*, defaults to `0.111`) : Minimum sigma value for noise added to image latents.
+
+image_noise_sigma_max (`float`, *optional*, defaults to `0.135`) : Maximum sigma value for noise added to image latents.
+
+video (`PipelineImageInput`, *optional*) : Input video used for video-to-video conditioning.
+
+video_latents (`torch.Tensor`, *optional*) : Pre-encoded video latents to use instead of `video`.
+
+add_noise_to_video_latents (`bool`, *optional*, defaults to `True`) : Whether to add noise to the video latents prior to denoising.
+
+video_noise_sigma_min (`float`, *optional*, defaults to `0.111`) : Minimum sigma value for noise added to video latents.
+
+video_noise_sigma_max (`float`, *optional*, defaults to `0.135`) : Maximum sigma value for noise added to video latents.
+
+history_sizes (`list`, *optional*, defaults to `[16, 2, 1]`) : History window sizes used for autoregressive chunked generation.
+
+num_latent_frames_per_chunk (`int`, *optional*, defaults to `9`) : Number of latent frames produced per chunk during autoregressive generation.
+
+keep_first_frame (`bool`, *optional*, defaults to `True`) : Whether to retain the first frame across chunks.
+
+is_skip_first_chunk (`bool`, *optional*, defaults to `False`) : Whether to skip generation of the first chunk.
+
+**Returns:** `~HeliosPipelineOutput` or `tuple`
+
+If `return_dict` is `True`, `HeliosPipelineOutput` is returned, otherwise a `tuple` is returned where
 the first element is a list with the generated images and the second element is a list of `bool`s
 indicating whether the corresponding generated image contains "not-safe-for-work" (nsfw) content.
 
@@ -586,30 +613,13 @@ Examples:
 >>> export_to_video(output, "output.mp4", fps=24)
 ```
 
-**Parameters:**
-
-tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5Tokenizer), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
-
-text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
-
-transformer ([HeliosTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/helios_transformer3d#diffusers.HeliosTransformer3DModel)) : Conditional Transformer to denoise the input latents.
-
-scheduler ([HeliosScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/helios#diffusers.HeliosScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKLWan](/docs/diffusers/v0.39.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
-
-**Returns:**
-
-``~HeliosPipelineOutput` or `tuple``
-
-If `return_dict` is `True`, `HeliosPipelineOutput` is returned, otherwise a `tuple` is returned where
-the first element is a list with the generated images and the second element is a list of `bool`s
-indicating whether the corresponding generated image contains "not-safe-for-work" (nsfw) content.
 #### encode_prompt[[diffusers.HeliosPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/helios/pipeline_helios.py#L196)
+```python
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/helios/pipeline_helios.py#L196)
 
 **Parameters:**
 
@@ -629,95 +639,122 @@ device : (`torch.device`, *optional*): torch device
 
 dtype : (`torch.dtype`, *optional*): torch dtype
 
+Encodes the prompt into text encoder hidden states.
+
 ## HeliosPyramidPipeline[[diffusers.HeliosPyramidPipeline]]
 
 #### diffusers.HeliosPyramidPipeline[[diffusers.HeliosPyramidPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/helios/pipeline_helios_pyramid.py#L121)
+```python
+diffusers.HeliosPyramidPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, vae: AutoencoderKLWan, scheduler: diffusers.schedulers.scheduling_helios.HeliosScheduler | diffusers.schedulers.scheduling_helios_dmd.HeliosDMDScheduler, transformer: HeliosTransformer3DModel, is_cfg_zero_star: bool = False, is_distilled: bool = False)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/helios/pipeline_helios_pyramid.py#L121)
+
+**Parameters:**
+
+tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5Tokenizer), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
+
+text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
+
+transformer ([HeliosTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/helios_transformer3d#diffusers.HeliosTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+
+scheduler ([`HeliosScheduler`, `HeliosDMDScheduler`]) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 Pipeline for text-to-video / image-to-video / video-to-video generation using Helios.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
-__call__diffusers.HeliosPyramidPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/helios/pipeline_helios_pyramid.py#L508[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "negative_prompt", "val": ": str | list[str] = None"}, {"name": "height", "val": ": int = 384"}, {"name": "width", "val": ": int = 640"}, {"name": "num_frames", "val": ": int = 132"}, {"name": "sigmas", "val": ": list = None"}, {"name": "guidance_scale", "val": ": float = 5.0"}, {"name": "num_videos_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.Tensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "output_type", "val": ": str | None = 'np'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}, {"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "image_latents", "val": ": torch.Tensor | None = None"}, {"name": "fake_image_latents", "val": ": torch.Tensor | None = None"}, {"name": "add_noise_to_image_latents", "val": ": bool = True"}, {"name": "image_noise_sigma_min", "val": ": float = 0.111"}, {"name": "image_noise_sigma_max", "val": ": float = 0.135"}, {"name": "video", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "video_latents", "val": ": torch.Tensor | None = None"}, {"name": "add_noise_to_video_latents", "val": ": bool = True"}, {"name": "video_noise_sigma_min", "val": ": float = 0.111"}, {"name": "video_noise_sigma_max", "val": ": float = 0.135"}, {"name": "history_sizes", "val": ": list = [16, 2, 1]"}, {"name": "num_latent_frames_per_chunk", "val": ": int = 9"}, {"name": "keep_first_frame", "val": ": bool = True"}, {"name": "is_skip_first_chunk", "val": ": bool = False"}, {"name": "pyramid_num_inference_steps_list", "val": ": list = [10, 10, 10]"}, {"name": "use_zero_init", "val": ": bool | None = True"}, {"name": "zero_steps", "val": ": int | None = 1"}, {"name": "is_amplify_first_chunk", "val": ": bool = False"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, pass `prompt_embeds` instead.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to avoid during image generation. If not defined, pass `negative_prompt_embeds`
-  instead. Ignored when not using guidance (`guidance_scale`  1`. Higher guidance scale encourages to generate images that are closely linked to
-  the text `prompt`, usually at the expense of lower image quality.
-- **num_videos_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make
-  generation deterministic.
-- **latents** (`torch.Tensor`, *optional*) --
-  Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor is generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not
-  provided, text embeddings are generated from the `prompt` input argument.
-- **negative_prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated negative text embeddings. If not provided, they are generated from `negative_prompt`.
-- **output_type** (`str`, *optional*, defaults to `"np"`) --
-  The output format of the generated image. Choose between `PIL.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `HeliosPipelineOutput` instead of a plain tuple.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) --
-  A function or a subclass of `PipelineCallback` or `MultiPipelineCallbacks` that is called at the end of
-  each denoising step during the inference. with the following arguments: `callback_on_step_end(self:
-  DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a
-  list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int`, defaults to `512`) --
-  The maximum sequence length of the text encoder. If the prompt is longer than this, it will be
-  truncated. If the prompt is shorter, it will be padded to this length.
-- **image** (`PipelineImageInput`, *optional*) --
-  Input image used for image-to-video conditioning.
-- **image_latents** (`torch.Tensor`, *optional*) --
-  Pre-encoded image latents to use instead of `image`.
-- **fake_image_latents** (`torch.Tensor`, *optional*) --
-  Optional fake image latents used during conditioning.
-- **add_noise_to_image_latents** (`bool`, *optional*, defaults to `True`) --
-  Whether to add noise to the image latents prior to denoising.
-- **image_noise_sigma_min** (`float`, *optional*, defaults to `0.111`) --
-  Minimum sigma value for noise added to image latents.
-- **image_noise_sigma_max** (`float`, *optional*, defaults to `0.135`) --
-  Maximum sigma value for noise added to image latents.
-- **video** (`PipelineImageInput`, *optional*) --
-  Input video used for video-to-video conditioning.
-- **video_latents** (`torch.Tensor`, *optional*) --
-  Pre-encoded video latents to use instead of `video`.
-- **add_noise_to_video_latents** (`bool`, *optional*, defaults to `True`) --
-  Whether to add noise to the video latents prior to denoising.
-- **video_noise_sigma_min** (`float`, *optional*, defaults to `0.111`) --
-  Minimum sigma value for noise added to video latents.
-- **video_noise_sigma_max** (`float`, *optional*, defaults to `0.135`) --
-  Maximum sigma value for noise added to video latents.
-- **history_sizes** (`list`, *optional*, defaults to `[16, 2, 1]`) --
-  History window sizes used for autoregressive chunked generation.
-- **num_latent_frames_per_chunk** (`int`, *optional*, defaults to `9`) --
-  Number of latent frames produced per chunk during autoregressive generation.
-- **keep_first_frame** (`bool`, *optional*, defaults to `True`) --
-  Whether to retain the first frame across chunks.
-- **is_skip_first_chunk** (`bool`, *optional*, defaults to `False`) --
-  Whether to skip generation of the first chunk.
-- **pyramid_num_inference_steps_list** (`list`, *optional*, defaults to `[10, 10, 10]`) --
-  Number of inference steps for each pyramid stage during Stage 2 generation.
-- **use_zero_init** (`bool`, *optional*, defaults to `True`) --
-  Whether to apply CFG zero-init at the start of denoising.
-- **zero_steps** (`int`, *optional*, defaults to `1`) --
-  Number of initial steps that use CFG zero-init.
-- **is_amplify_first_chunk** (`bool`, *optional*, defaults to `False`) --
-  Whether to amplify guidance on the first chunk (DMD-related).0`~HeliosPipelineOutput` or `tuple`If `return_dict` is `True`, `HeliosPipelineOutput` is returned, otherwise a `tuple` is returned where
+#### __call__[[diffusers.HeliosPyramidPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int = 384, width: int = 640, num_frames: int = 132, sigmas: list = None, guidance_scale: float = 5.0, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, image_latents: typing.Optional[torch.Tensor] = None, fake_image_latents: typing.Optional[torch.Tensor] = None, add_noise_to_image_latents: bool = True, image_noise_sigma_min: float = 0.111, image_noise_sigma_max: float = 0.135, video: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, video_latents: typing.Optional[torch.Tensor] = None, add_noise_to_video_latents: bool = True, video_noise_sigma_min: float = 0.111, video_noise_sigma_max: float = 0.135, history_sizes: list = [16, 2, 1], num_latent_frames_per_chunk: int = 9, keep_first_frame: bool = True, is_skip_first_chunk: bool = False, pyramid_num_inference_steps_list: list = [10, 10, 10], use_zero_init: bool | None = True, zero_steps: int | None = 1, is_amplify_first_chunk: bool = False)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/helios/pipeline_helios_pyramid.py#L508)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, pass `prompt_embeds` instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to avoid during image generation. If not defined, pass `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale` < `1`).
+
+height (`int`, defaults to `384`) : The height in pixels of the generated image.
+
+width (`int`, defaults to `640`) : The width in pixels of the generated image.
+
+num_frames (`int`, defaults to `132`) : The number of frames in the generated video.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process. If not defined, the scheduler's default schedule is used.
+
+guidance_scale (`float`, defaults to `5.0`) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor is generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, text embeddings are generated from the `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. If not provided, they are generated from `negative_prompt`.
+
+output_type (`str`, *optional*, defaults to `"np"`) : The output format of the generated image. Choose between `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `HeliosPipelineOutput` instead of a plain tuple.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) : A function or a subclass of `PipelineCallback` or `MultiPipelineCallbacks` that is called at the end of each denoising step during the inference. with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int`, defaults to `512`) : The maximum sequence length of the text encoder. If the prompt is longer than this, it will be truncated. If the prompt is shorter, it will be padded to this length.
+
+image (`PipelineImageInput`, *optional*) : Input image used for image-to-video conditioning.
+
+image_latents (`torch.Tensor`, *optional*) : Pre-encoded image latents to use instead of `image`.
+
+fake_image_latents (`torch.Tensor`, *optional*) : Optional fake image latents used during conditioning.
+
+add_noise_to_image_latents (`bool`, *optional*, defaults to `True`) : Whether to add noise to the image latents prior to denoising.
+
+image_noise_sigma_min (`float`, *optional*, defaults to `0.111`) : Minimum sigma value for noise added to image latents.
+
+image_noise_sigma_max (`float`, *optional*, defaults to `0.135`) : Maximum sigma value for noise added to image latents.
+
+video (`PipelineImageInput`, *optional*) : Input video used for video-to-video conditioning.
+
+video_latents (`torch.Tensor`, *optional*) : Pre-encoded video latents to use instead of `video`.
+
+add_noise_to_video_latents (`bool`, *optional*, defaults to `True`) : Whether to add noise to the video latents prior to denoising.
+
+video_noise_sigma_min (`float`, *optional*, defaults to `0.111`) : Minimum sigma value for noise added to video latents.
+
+video_noise_sigma_max (`float`, *optional*, defaults to `0.135`) : Maximum sigma value for noise added to video latents.
+
+history_sizes (`list`, *optional*, defaults to `[16, 2, 1]`) : History window sizes used for autoregressive chunked generation.
+
+num_latent_frames_per_chunk (`int`, *optional*, defaults to `9`) : Number of latent frames produced per chunk during autoregressive generation.
+
+keep_first_frame (`bool`, *optional*, defaults to `True`) : Whether to retain the first frame across chunks.
+
+is_skip_first_chunk (`bool`, *optional*, defaults to `False`) : Whether to skip generation of the first chunk.
+
+pyramid_num_inference_steps_list (`list`, *optional*, defaults to `[10, 10, 10]`) : Number of inference steps for each pyramid stage during Stage 2 generation.
+
+use_zero_init (`bool`, *optional*, defaults to `True`) : Whether to apply CFG zero-init at the start of denoising.
+
+zero_steps (`int`, *optional*, defaults to `1`) : Number of initial steps that use CFG zero-init.
+
+is_amplify_first_chunk (`bool`, *optional*, defaults to `False`) : Whether to amplify guidance on the first chunk (DMD-related).
+
+**Returns:** `~HeliosPipelineOutput` or `tuple`
+
+If `return_dict` is `True`, `HeliosPipelineOutput` is returned, otherwise a `tuple` is returned where
 the first element is a list with the generated images and the second element is a list of `bool`s
 indicating whether the corresponding generated image contains "not-safe-for-work" (nsfw) content.
 
@@ -749,30 +786,13 @@ Examples:
 >>> export_to_video(output, "output.mp4", fps=24)
 ```
 
-**Parameters:**
-
-tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5Tokenizer), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
-
-text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
-
-transformer ([HeliosTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/helios_transformer3d#diffusers.HeliosTransformer3DModel)) : Conditional Transformer to denoise the input latents.
-
-scheduler ([`HeliosScheduler`, `HeliosDMDScheduler`]) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKLWan](/docs/diffusers/v0.39.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
-
-**Returns:**
-
-``~HeliosPipelineOutput` or `tuple``
-
-If `return_dict` is `True`, `HeliosPipelineOutput` is returned, otherwise a `tuple` is returned where
-the first element is a list with the generated images and the second element is a list of `bool`s
-indicating whether the corresponding generated image contains "not-safe-for-work" (nsfw) content.
 #### encode_prompt[[diffusers.HeliosPyramidPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/helios/pipeline_helios_pyramid.py#L214)
+```python
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/helios/pipeline_helios_pyramid.py#L214)
 
 **Parameters:**
 
@@ -792,284 +812,23 @@ device : (`torch.device`, *optional*): torch device
 
 dtype : (`torch.dtype`, *optional*): torch dtype
 
+Encodes the prompt into text encoder hidden states.
+
 ## HeliosPipelineOutput[[diffusers.pipelines.helios.pipeline_output.HeliosPipelineOutput]]
 
 #### diffusers.pipelines.helios.pipeline_output.HeliosPipelineOutput[[diffusers.pipelines.helios.pipeline_output.HeliosPipelineOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/helios/pipeline_output.py#L9)
+```python
+diffusers.pipelines.helios.pipeline_output.HeliosPipelineOutput(frames: Tensor)
+```
 
-Output class for Helios pipelines.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/helios/pipeline_output.py#L9)
 
 **Parameters:**
 
 frames (`torch.Tensor`, `np.ndarray`, or List[List[PIL.Image.Image]]) : List of video outputs - It can be a nested list of length `batch_size,` with each sub-list containing denoised PIL image sequences of length `num_frames.` It can also be a NumPy array or Torch tensor of shape `(batch_size, num_frames, channels, height, width)`.
 
-### Hidream
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/hidream.md
+Output class for Helios pipelines.
 
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License. -->
-
-# HiDreamImage
-
-[HiDream-I1](https://huggingface.co/HiDream-ai) by HiDream.ai
-
-> [!TIP]
-> [Caching](../../optimization/cache) may also speed up inference by storing and reusing intermediate outputs.
-
-## Available models
-
-The following models are available for the [HiDreamImagePipeline](/docs/diffusers/v0.39.0/en/api/pipelines/hidream#diffusers.HiDreamImagePipeline) pipeline:
-
-| Model name | Description |
-|:---|:---|
-| [`HiDream-ai/HiDream-I1-Full`](https://huggingface.co/HiDream-ai/HiDream-I1-Full) | - |
-| [`HiDream-ai/HiDream-I1-Dev`](https://huggingface.co/HiDream-ai/HiDream-I1-Dev) | - |
-| [`HiDream-ai/HiDream-I1-Fast`](https://huggingface.co/HiDream-ai/HiDream-I1-Fast) | - |
-
-## HiDreamImagePipeline[[diffusers.HiDreamImagePipeline]]
-
-#### diffusers.HiDreamImagePipeline[[diffusers.HiDreamImagePipeline]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/hidream_image/pipeline_hidream_image.py#L159)
-
-__call__diffusers.HiDreamImagePipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/hidream_image/pipeline_hidream_image.py#L727[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "prompt_2", "val": ": str | list[str] | None = None"}, {"name": "prompt_3", "val": ": str | list[str] | None = None"}, {"name": "prompt_4", "val": ": str | list[str] | None = None"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "sigmas", "val": ": list[float] | None = None"}, {"name": "guidance_scale", "val": ": float = 5.0"}, {"name": "negative_prompt", "val": ": str | list[str] | None = None"}, {"name": "negative_prompt_2", "val": ": str | list[str] | None = None"}, {"name": "negative_prompt_3", "val": ": str | list[str] | None = None"}, {"name": "negative_prompt_4", "val": ": str | list[str] | None = None"}, {"name": "num_images_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds_t5", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds_llama3", "val": ": torch.FloatTensor | None = None"}, {"name": "negative_prompt_embeds_t5", "val": ": torch.FloatTensor | None = None"}, {"name": "negative_prompt_embeds_llama3", "val": ": torch.FloatTensor | None = None"}, {"name": "pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "negative_pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 128"}, {"name": "**kwargs", "val": ""}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is
-  will be used instead.
-- **prompt_3** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to `tokenizer_3` and `text_encoder_3`. If not defined, `prompt` is
-  will be used instead.
-- **prompt_4** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to `tokenizer_4` and `text_encoder_4`. If not defined, `prompt` is
-  will be used instead.
-- **height** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The height in pixels of the generated image. This is set to 1024 by default for the best results.
-- **width** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The width in pixels of the generated image. This is set to 1024 by default for the best results.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **guidance_scale** (`float`, *optional*, defaults to 3.5) --
-  Embedded guiddance scale is enabled by setting `guidance_scale` > 1. Higher `guidance_scale` encourages
-  a model to generate images more aligned with `prompt` at the expense of lower image quality.
-
-  Guidance-distilled models approximates true classifer-free guidance for `guidance_scale` > 1. Refer to
-  the [paper](https://huggingface.co/papers/2210.03142) to learn more.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation. If not defined, one has to pass
-  `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `true_cfg_scale` is
-  not greater than `1`).
-- **negative_prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and
-  `text_encoder_2`. If not defined, `negative_prompt` is used in all the text-encoders.
-- **negative_prompt_3** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation to be sent to `tokenizer_3` and
-  `text_encoder_3`. If not defined, `negative_prompt` is used in all the text-encoders.
-- **negative_prompt_4** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation to be sent to `tokenizer_4` and
-  `text_encoder_4`. If not defined, `negative_prompt` is used in all the text-encoders.
-- **num_images_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
-  to make generation deterministic.
-- **latents** (`torch.FloatTensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor will be generated by sampling using the supplied random `generator`.
-- **prompt_embeds_t5** (`torch.FloatTensor`, *optional*) --
-  Pre-generated T5 text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If
-  not provided, text embeddings will be generated from `prompt` input argument.
-- **prompt_embeds_llama3** (`torch.FloatTensor`, *optional*) --
-  Pre-generated LLaMA3 text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-  If not provided, text embeddings will be generated from `prompt` input argument.
-- **negative_prompt_embeds_t5** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative T5 text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, embeddings will be generated from `negative_prompt` input argument.
-- **negative_prompt_embeds_llama3** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative LLaMA3 text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, embeddings will be generated from `negative_prompt` input argument.
-- **pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-  If not provided, pooled text embeddings will be generated from `prompt` input argument.
-- **negative_pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt`
-  input argument.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generate image. Choose between
-  [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, *optional*) --
-  A function that calls at the end of each denoising steps during the inference. The function is called
-  with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int,
-  callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by
-  `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int` defaults to 128) -- Maximum sequence length to use with the `prompt`.0`~pipelines.hidream_image.HiDreamImagePipelineOutput` or `tuple``~pipelines.hidream_image.HiDreamImagePipelineOutput` if `return_dict` is True, otherwise a `tuple`. When
-returning a tuple, the first element is a list with the generated. images.
-
-Function invoked when calling the pipeline for generation.
-
-Examples:
-```py
->>> import torch
->>> from transformers import AutoTokenizer, LlamaForCausalLM
->>> from diffusers import HiDreamImagePipeline
-
->>> tokenizer_4 = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3.1-8B-Instruct")
->>> text_encoder_4 = LlamaForCausalLM.from_pretrained(
-...     "meta-llama/Meta-Llama-3.1-8B-Instruct",
-...     output_hidden_states=True,
-...     output_attentions=True,
-...     torch_dtype=torch.bfloat16,
-... )
-
->>> pipe = HiDreamImagePipeline.from_pretrained(
-...     "HiDream-ai/HiDream-I1-Full",
-...     tokenizer_4=tokenizer_4,
-...     text_encoder_4=text_encoder_4,
-...     torch_dtype=torch.bfloat16,
-... )
->>> pipe.enable_model_cpu_offload()
-
->>> image = pipe(
-...     'A cat holding a sign that says "Hi-Dreams.ai".',
-...     height=1024,
-...     width=1024,
-...     guidance_scale=5.0,
-...     num_inference_steps=50,
-...     generator=torch.Generator("cuda").manual_seed(0),
-... ).images[0]
->>> image.save("output.png")
-```
-
-**Parameters:**
-
-prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
-
-prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is will be used instead.
-
-prompt_3 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to `tokenizer_3` and `text_encoder_3`. If not defined, `prompt` is will be used instead.
-
-prompt_4 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to `tokenizer_4` and `text_encoder_4`. If not defined, `prompt` is will be used instead.
-
-height (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The height in pixels of the generated image. This is set to 1024 by default for the best results.
-
-width (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The width in pixels of the generated image. This is set to 1024 by default for the best results.
-
-num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
-
-sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
-
-guidance_scale (`float`, *optional*, defaults to 3.5) : Embedded guiddance scale is enabled by setting `guidance_scale` > 1. Higher `guidance_scale` encourages a model to generate images more aligned with `prompt` at the expense of lower image quality.  Guidance-distilled models approximates true classifer-free guidance for `guidance_scale` > 1. Refer to the [paper](https://huggingface.co/papers/2210.03142) to learn more.
-
-negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `true_cfg_scale` is not greater than `1`).
-
-negative_prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `negative_prompt` is used in all the text-encoders.
-
-negative_prompt_3 (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation to be sent to `tokenizer_3` and `text_encoder_3`. If not defined, `negative_prompt` is used in all the text-encoders.
-
-negative_prompt_4 (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation to be sent to `tokenizer_4` and `text_encoder_4`. If not defined, `negative_prompt` is used in all the text-encoders.
-
-num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
-
-generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
-
-latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
-
-prompt_embeds_t5 (`torch.FloatTensor`, *optional*) : Pre-generated T5 text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
-
-prompt_embeds_llama3 (`torch.FloatTensor`, *optional*) : Pre-generated LLaMA3 text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
-
-negative_prompt_embeds_t5 (`torch.FloatTensor`, *optional*) : Pre-generated negative T5 text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, embeddings will be generated from `negative_prompt` input argument.
-
-negative_prompt_embeds_llama3 (`torch.FloatTensor`, *optional*) : Pre-generated negative LLaMA3 text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, embeddings will be generated from `negative_prompt` input argument.
-
-pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled text embeddings will be generated from `prompt` input argument.
-
-negative_pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt` input argument.
-
-output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
-
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
-
-attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-
-callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
-
-callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
-
-max_sequence_length (`int` defaults to 128) : Maximum sequence length to use with the `prompt`.
-
-**Returns:**
-
-``~pipelines.hidream_image.HiDreamImagePipelineOutput` or `tuple``
-
-`~pipelines.hidream_image.HiDreamImagePipelineOutput` if `return_dict` is True, otherwise a `tuple`. When
-returning a tuple, the first element is a list with the generated. images.
-#### disable_vae_slicing[[diffusers.HiDreamImagePipeline.disable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/hidream_image/pipeline_hidream_image.py#L532)
-
-Disable sliced VAE decoding. If `enable_vae_slicing` was previously enabled, this method will go back to
-computing decoding in one step.
-#### disable_vae_tiling[[diffusers.HiDreamImagePipeline.disable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/hidream_image/pipeline_hidream_image.py#L559)
-
-Disable tiled VAE decoding. If `enable_vae_tiling` was previously enabled, this method will go back to
-computing decoding in one step.
-#### enable_vae_slicing[[diffusers.HiDreamImagePipeline.enable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/hidream_image/pipeline_hidream_image.py#L519)
-
-Enable sliced VAE decoding. When this option is enabled, the VAE will split the input tensor in slices to
-compute decoding in several steps. This is useful to save some memory and allow larger batch sizes.
-#### enable_vae_tiling[[diffusers.HiDreamImagePipeline.enable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/hidream_image/pipeline_hidream_image.py#L545)
-
-Enable tiled VAE decoding. When this option is enabled, the VAE will split the input tensor into tiles to
-compute decoding and encoding in several steps. This is useful for saving a large amount of memory and to allow
-processing larger images.
-
-## HiDreamImagePipelineOutput[[diffusers.pipelines.hidream_image.pipeline_output.HiDreamImagePipelineOutput]]
-
-#### diffusers.pipelines.hidream_image.pipeline_output.HiDreamImagePipelineOutput[[diffusers.pipelines.hidream_image.pipeline_output.HiDreamImagePipelineOutput]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/hidream_image/pipeline_output.py#L24)
-
-Output class for HiDreamImage pipelines.
-
-**Parameters:**
-
-images (`list[PIL.Image.Image]` or `np.ndarray`) : list of denoised PIL images of length `batch_size` or numpy array of shape `(batch_size, height, width, num_channels)`. PIL images or numpy array present the denoised images of the diffusion pipeline.
-
-### Stable unCLIP
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/stable_unclip.md
+### ControlNet with Hunyuan-DiT
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/controlnet_hunyuandit.md

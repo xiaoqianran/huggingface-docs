@@ -9,7 +9,7 @@ Call `.to("hpu")` on your pipeline to move it to a HPU device as shown below for
 import torch
 from diffusers import DiffusionPipeline
 
-pipeline = DiffusionPipeline.from_pretrained("black-forest-labs/FLUX.1-schnell", torch_dtype=torch.bfloat16)
+pipeline = DiffusionPipeline.from_pretrained("black-forest-labs/FLUX.1-schnell", dtype=torch.bfloat16)
 pipeline.to("hpu")
 
 image = pipeline("An image of a squirrel in Picasso style").images[0]
@@ -18,5 +18,5 @@ image = pipeline("An image of a squirrel in Picasso style").images[0]
 > [!TIP]
 > For Gaudi-optimized diffusion pipeline implementations, we recommend using [Optimum for Intel Gaudi](https://huggingface.co/docs/optimum/main/en/habana/index).
 
-### ParaAttention
-https://huggingface.co/docs/diffusers/v0.39.0/optimization/para_attn.md
+### xFormers
+https://huggingface.co/docs/diffusers/v0.40.0/optimization/xformers.md

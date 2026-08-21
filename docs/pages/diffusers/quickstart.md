@@ -27,9 +27,9 @@ For a standard text-to-image model:
   
 4. A variational autoencoder (VAE) encodes and decodes pixels to a spatially compressed latent-space. *Latents* are compressed representations of an image and are more efficient to work with. The UNet or DiT operates on latents, and the clean latents at the end are decoded back into images.
 
-The [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) packages all these components into a single class for inference. There are several arguments in `__call__()` you can change, such as `num_inference_steps`, that affect the diffusion process. Try different values and arguments to see how they change generation quality or speed.
+The [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) packages all these components into a single class for inference. There are several arguments in `__call__()` you can change, such as `num_inference_steps`, that affect the diffusion process. Try different values and arguments to see how they change generation quality or speed.
 
-Load a model with [from_pretrained()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) and describe what you'd like to generate. The example below uses the default argument values.
+Load a model with [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) and describe what you'd like to generate. The example below uses the default argument values.
 
 Use `.images[0]` to access the generated image output.
 
@@ -38,7 +38,7 @@ import torch
 from diffusers import DiffusionPipeline
 
 pipeline = DiffusionPipeline.from_pretrained(
-  "Qwen/Qwen-Image", torch_dtype=torch.bfloat16, device_map="cuda"
+  "Qwen/Qwen-Image", dtype=torch.bfloat16, device_map="cuda"
 )
 
 prompt = """
@@ -48,7 +48,7 @@ highly detailed, high budget hollywood movie, cinemascope, moody, epic, gorgeous
 pipeline(prompt).images[0]
 ```
 
-Use `.frames[0]` to access the generated video output and [export_to_video()](/docs/diffusers/v0.39.0/en/api/utilities#diffusers.utils.export_to_video) to save the video.
+Use `.frames[0]` to access the generated video output and [export_to_video()](/docs/diffusers/v0.40.0/en/api/utilities#diffusers.utils.export_to_video) to save the video.
 
 ```py
 import torch
@@ -59,12 +59,12 @@ from diffusers.utils import export_to_video
 vae = AutoencoderKLWan.from_pretrained(
   "Wan-AI/Wan2.2-T2V-A14B-Diffusers",
   subfolder="vae",
-  torch_dtype=torch.float32
+  dtype=torch.float32
 )
 pipeline = DiffusionPipeline.from_pretrained(
   "Wan-AI/Wan2.2-T2V-A14B-Diffusers",
   vae=vae
-  torch_dtype=torch.bfloat16,
+  dtype=torch.bfloat16,
   device_map="cuda"
 )
 
@@ -82,14 +82,14 @@ export_to_video(video, "output.mp4", fps=16)
 
 Adapters insert a small number of trainable parameters to the original base model. Only the inserted parameters are fine-tuned while the rest of the model weights remain frozen. This makes it fast and cheap to fine-tune a model on a new style. Among adapters, [LoRAs](./tutorials/using_peft_for_inference) are the most popular.
 
-Add a LoRA to a pipeline with the [load_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.QwenImageLoraLoaderMixin.load_lora_weights) method. Some LoRAs require a special word to trigger them, such as `Realism`, in the example below. Check a LoRA's model card to see if it requires a trigger word.
+Add a LoRA to a pipeline with the [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.QwenImageLoraLoaderMixin.load_lora_weights) method. Some LoRAs require a special word to trigger them, such as `Realism`, in the example below. Check a LoRA's model card to see if it requires a trigger word.
 
 ```py
 import torch
 from diffusers import DiffusionPipeline
 
 pipeline = DiffusionPipeline.from_pretrained(
-  "Qwen/Qwen-Image", torch_dtype=torch.bfloat16, device_map="cuda"
+  "Qwen/Qwen-Image", dtype=torch.bfloat16, device_map="cuda"
 )
 pipeline.load_lora_weights(
   "flymy-ai/qwen-image-realism-lora",
@@ -110,7 +110,7 @@ Check out the [LoRA](./tutorials/using_peft_for_inference) docs or Adapters sect
 
 Diffusers provides several quantization backends and picking one depends on your use case. For example, [bitsandbytes](./quantization/bitsandbytes) and [torchao](./quantization/torchao) are both simple and easy to use for inference, but torchao supports more [quantization types](./quantization/torchao#supported-quantization-types) like fp8.
 
-Configure [PipelineQuantizationConfig](/docs/diffusers/v0.39.0/en/api/quantization#diffusers.PipelineQuantizationConfig) with the backend to use, the specific arguments (refer to the [API](./api/quantization) reference for available arguments) for that backend, and which components to quantize. The example below quantizes the model to 4-bits and only uses 14.93GB of memory.
+Configure [PipelineQuantizationConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.PipelineQuantizationConfig) with the backend to use, the specific arguments (refer to the [API](./api/quantization) reference for available arguments) for that backend, and which components to quantize. The example below quantizes the model to 4-bits and only uses 14.93GB of memory.
 
 ```py
 import torch
@@ -124,7 +124,7 @@ quant_config = PipelineQuantizationConfig(
 )
 pipeline = DiffusionPipeline.from_pretrained(
   "Qwen/Qwen-Image",
-  torch_dtype=torch.bfloat16,
+  dtype=torch.bfloat16,
   quantization_config=quant_config,
   device_map="cuda"
 )
@@ -152,7 +152,7 @@ The text encoders and UNet or DiT can use up as much as ~30GB of memory, exceedi
 
 Offloading stores weights that aren't currently used on the CPU and only moves them to the GPU when they're needed. There are a few offloading types and the example below uses [model offloading](./optimization/memory#model-offloading). This moves an entire model, like a text encoder or transformer, to the CPU when it isn't actively being used.
 
-Call [enable_model_cpu_offload()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) to activate it. By combining quantization and offloading, the following example only requires ~12.54GB of memory.
+Call [enable_model_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) to activate it. By combining quantization and offloading, the following example only requires ~12.54GB of memory.
 
 ```py
 import torch
@@ -166,7 +166,7 @@ quant_config = PipelineQuantizationConfig(
 )
 pipeline = DiffusionPipeline.from_pretrained(
   "Qwen/Qwen-Image",
-  torch_dtype=torch.bfloat16,
+  dtype=torch.bfloat16,
   quantization_config=quant_config,
   device_map="cuda"
 )
@@ -188,14 +188,14 @@ The denoising loop performs a lot of computations and can be slow. Methods like 
 
 The example below uses [regional compilation](./optimization/fp16#regional-compilation) to only compile small regions of a model. It reduces cold-start latency while also providing a runtime speed up.
 
-Call [compile_repeated_blocks()](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin.compile_repeated_blocks) on the model to activate it.
+Call [compile_repeated_blocks()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.compile_repeated_blocks) on the model to activate it.
 
 ```py
 import torch
 from diffusers import DiffusionPipeline
 
 pipeline = DiffusionPipeline.from_pretrained(
-  "Qwen/Qwen-Image", torch_dtype=torch.bfloat16, device_map="cuda"
+  "Qwen/Qwen-Image", dtype=torch.bfloat16, device_map="cuda"
 )
 
 pipeline.transformer.compile_repeated_blocks(
@@ -211,4 +211,4 @@ pipeline(prompt).images[0]
 Check out the [Accelerate inference](./optimization/fp16) or [Caching](./optimization/cache) docs for more methods that speed up inference.
 
 ### Community Projects
-https://huggingface.co/docs/diffusers/v0.39.0/community_projects.md
+https://huggingface.co/docs/diffusers/v0.40.0/community_projects.md

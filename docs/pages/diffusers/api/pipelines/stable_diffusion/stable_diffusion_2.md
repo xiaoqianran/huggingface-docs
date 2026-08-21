@@ -7,7 +7,7 @@ These models are trained on an aesthetic subset of the [LAION-5B dataset](https:
 
 For more details about how Stable Diffusion 2 works and how it differs from the original Stable Diffusion, please refer to the official [announcement post](https://stability.ai/blog/stable-diffusion-v2-release).
 
-The architecture of Stable Diffusion 2 is more or less identical to the original [Stable Diffusion model](./text2img) so check out it's API documentation for how to use Stable Diffusion 2. We recommend using the [DPMSolverMultistepScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) as it gives a reasonable speed/quality trade-off and can be run with as little as 20 steps.
+The architecture of Stable Diffusion 2 is more or less identical to the original [Stable Diffusion model](./text2img) so check out it's API documentation for how to use Stable Diffusion 2. We recommend using the [DPMSolverMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/multistep_dpm_solver#diffusers.DPMSolverMultistepScheduler) as it gives a reasonable speed/quality trade-off and can be run with as little as 20 steps.
 
 Stable Diffusion 2 is available for tasks like text-to-image, inpainting, super-resolution, and depth-to-image:
 
@@ -33,7 +33,7 @@ from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
 import torch
 
 repo_id = "stabilityai/stable-diffusion-2-base"
-pipe = DiffusionPipeline.from_pretrained(repo_id, torch_dtype=torch.float16, variant="fp16")
+pipe = DiffusionPipeline.from_pretrained(repo_id, dtype=torch.float16, variant="fp16")
 
 pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
 pipe = pipe.to("cuda")
@@ -57,7 +57,7 @@ init_image = load_image(img_url).resize((512, 512))
 mask_image = load_image(mask_url).resize((512, 512))
 
 repo_id = "stabilityai/stable-diffusion-2-inpainting"
-pipe = DiffusionPipeline.from_pretrained(repo_id, torch_dtype=torch.float16, variant="fp16")
+pipe = DiffusionPipeline.from_pretrained(repo_id, dtype=torch.float16, variant="fp16")
 
 pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
 pipe = pipe.to("cuda")
@@ -76,7 +76,7 @@ import torch
 
 # load model and scheduler
 model_id = "stabilityai/stable-diffusion-x4-upscaler"
-pipeline = StableDiffusionUpscalePipeline.from_pretrained(model_id, torch_dtype=torch.float16)
+pipeline = StableDiffusionUpscalePipeline.from_pretrained(model_id, dtype=torch.float16)
 pipeline = pipeline.to("cuda")
 
 # let's download an  image
@@ -97,7 +97,7 @@ from diffusers.utils import load_image, make_image_grid
 
 pipe = StableDiffusionDepth2ImgPipeline.from_pretrained(
     "stabilityai/stable-diffusion-2-depth",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 ).to("cuda")
 
 url = "http://images.cocodataset.org/val2017/000000039769.jpg"
@@ -108,5 +108,5 @@ image = pipe(prompt=prompt, image=init_image, negative_prompt=negative_prompt, s
 make_image_grid([init_image, image], rows=1, cols=2)
 ```
 
-### Stable Diffusion XL
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/stable_diffusion/stable_diffusion_xl.md
+### Stable Video Diffusion
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/stable_diffusion/svd.md

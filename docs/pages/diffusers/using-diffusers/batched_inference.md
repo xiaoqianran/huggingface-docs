@@ -13,7 +13,7 @@ from diffusers import DiffusionPipeline
 
 pipeline = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="cuda"
 )
 
@@ -51,7 +51,7 @@ from diffusers import DiffusionPipeline
 
 pipeline = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="cuda"
 )
 
@@ -123,7 +123,7 @@ from diffusers import DiffusionPipeline
 
 pipeline = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="cuda"
 )
 
@@ -154,5 +154,5 @@ plt.show()
 
 You can use this to select an image associated with a seed and iteratively improve on it by crafting a more detailed prompt.
 
-### DiffusionPipeline
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/loading.md
+### Sharing pipelines and models
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/push_to_hub.md

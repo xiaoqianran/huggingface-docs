@@ -7,29 +7,53 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import AutoencoderKLWan
 
-vae = AutoencoderKLWan.from_pretrained("Wan-AI/Wan2.1-T2V-1.3B-Diffusers", subfolder="vae", torch_dtype=torch.float32)
+vae = AutoencoderKLWan.from_pretrained("Wan-AI/Wan2.1-T2V-1.3B-Diffusers", subfolder="vae", dtype=torch.float32)
 ```
 
 ## AutoencoderKLWan[[diffusers.AutoencoderKLWan]]
 
 #### diffusers.AutoencoderKLWan[[diffusers.AutoencoderKLWan]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_kl_wan.py#L960)
+```python
+diffusers.AutoencoderKLWan(base_dim: int = 96, decoder_base_dim: int | None = None, z_dim: int = 16, dim_mult: list = [1, 2, 4, 4], num_res_blocks: int = 2, attn_scales: list = [], temperal_downsample: list = [False, True, True], dropout: float = 0.0, latents_mean: list = [-0.7571, -0.7089, -0.9113, 0.1075, -0.1745, 0.9653, -0.1517, 1.5508, 0.4134, -0.0715, 0.5517, -0.3632, -0.1922, -0.9497, 0.2503, -0.2921], latents_std: list = [2.8184, 1.4541, 2.3275, 2.6558, 1.2196, 1.7708, 2.6052, 2.0743, 3.2687, 2.1526, 2.8652, 1.5579, 1.6382, 1.1253, 2.8251, 1.916], is_residual: bool = False, in_channels: int = 3, out_channels: int = 3, patch_size: int | None = None, scale_factor_temporal: int | None = 4, scale_factor_spatial: int | None = 8)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_wan.py#L960)
 
 A VAE model with KL loss for encoding videos into latents and decoding latent representations into videos.
 Introduced in [Wan 2.1].
 
-This model inherits from [ModelMixin](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
 for all models (such as downloading or saving).
 
-wrapperdiffusers.AutoencoderKLWan.decodehttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/utils/accelerate_utils.py#L43[{"name": "*args", "val": ""}, {"name": "**kwargs", "val": ""}]
+#### decode[[diffusers.AutoencoderKLWan.decode]]
+
+```python
+decode(z: Tensor, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_wan.py#L1218)
+
+**Parameters:**
+
+z (`torch.Tensor`) : Input batch of latent vectors.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a `~models.vae.DecoderOutput` instead of a plain tuple.
+
+**Returns:** `~models.vae.DecoderOutput` or `tuple`
+
+If return_dict is True, a `~models.vae.DecoderOutput` is returned, otherwise a plain `tuple` is
+returned.
+
+Decode a batch of images.
+
 #### enable_tiling[[diffusers.AutoencoderKLWan.enable_tiling]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_kl_wan.py#L1093)
+```python
+enable_tiling(tile_sample_min_height: int | None = None, tile_sample_min_width: int | None = None, tile_sample_stride_height: float | None = None, tile_sample_stride_width: float | None = None)
+```
 
-Enable tiled VAE decoding. When this option is enabled, the VAE will split the input tensor into tiles to
-compute decoding and encoding in several steps. This is useful for saving a large amount of memory and to allow
-processing larger images.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_wan.py#L1093)
 
 **Parameters:**
 
@@ -40,9 +64,39 @@ tile_sample_min_width (`int`, *optional*) : The minimum width required for a sam
 tile_sample_stride_height (`int`, *optional*) : The minimum amount of overlap between two consecutive vertical tiles. This is to ensure that there are no tiling artifacts produced across the height dimension.
 
 tile_sample_stride_width (`int`, *optional*) : The stride between two consecutive horizontal tiles. This is to ensure that there are no tiling artifacts produced across the width dimension.
+
+Enable tiled VAE decoding. When this option is enabled, the VAE will split the input tensor into tiles to
+compute decoding and encoding in several steps. This is useful for saving a large amount of memory and to allow
+processing larger images.
+
+#### encode[[diffusers.AutoencoderKLWan.encode]]
+
+```python
+encode(x: Tensor, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_wan.py#L1160)
+
+**Parameters:**
+
+x (`torch.Tensor`) : Input batch of images.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a `~models.autoencoder_kl.AutoencoderKLOutput` instead of a plain tuple.
+
+**Returns:**
+
+The latent representations of the encoded videos. If `return_dict` is True, a
+`~models.autoencoder_kl.AutoencoderKLOutput` is returned, otherwise a plain `tuple` is returned.
+
+Encode a batch of images into latents.
+
 #### forward[[diffusers.AutoencoderKLWan.forward]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_kl_wan.py#L1409)
+```python
+forward(sample: Tensor, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_wan.py#L1409)
 
 **Parameters:**
 
@@ -54,17 +108,18 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 
 generator (`torch.Generator`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make sampling deterministic.
 
-**Returns:**
-
-``~models.vae.DecoderOutput` or `tuple``
+**Returns:** `~models.vae.DecoderOutput` or `tuple`
 
 If `return_dict` is True, a `~models.vae.DecoderOutput` is returned, otherwise a plain `tuple` is
 returned.
+
 #### tiled_decode[[diffusers.AutoencoderKLWan.tiled_decode]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_kl_wan.py#L1331)
+```python
+tiled_decode(z: Tensor, return_dict: bool = True)
+```
 
-Decode a batch of images using a tiled decoder.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_wan.py#L1331)
 
 **Parameters:**
 
@@ -72,95 +127,46 @@ z (`torch.Tensor`) : Input batch of latent vectors.
 
 return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.vae.DecoderOutput` instead of a plain tuple.
 
-**Returns:**
-
-``~models.vae.DecoderOutput` or `tuple``
+**Returns:** `~models.vae.DecoderOutput` or `tuple`
 
 If return_dict is True, a `~models.vae.DecoderOutput` is returned, otherwise a plain `tuple` is
 returned.
+
+Decode a batch of images using a tiled decoder.
+
 #### tiled_encode[[diffusers.AutoencoderKLWan.tiled_encode]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_kl_wan.py#L1259)
+```python
+tiled_encode(x: Tensor)
+```
 
-Encode a batch of images using a tiled encoder.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_wan.py#L1259)
 
 **Parameters:**
 
 x (`torch.Tensor`) : Input batch of videos.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The latent representation of the encoded videos.
+
+Encode a batch of images using a tiled encoder.
 
 ## DecoderOutput[[diffusers.models.autoencoders.vae.DecoderOutput]]
 
 #### diffusers.models.autoencoders.vae.DecoderOutput[[diffusers.models.autoencoders.vae.DecoderOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/vae.py#L46)
+```python
+diffusers.models.autoencoders.vae.DecoderOutput(sample: Tensor, commit_loss: typing.Optional[torch.FloatTensor] = None)
+```
 
-Output of decoding method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vae.py#L46)
 
 **Parameters:**
 
 sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : The decoded output sample from the last layer of the model.
 
-### LatteTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/latte_transformer3d.md
+Output of decoding method.
 
-## LatteTransformer3DModel
-
-A Diffusion Transformer model for 3D data from [Latte](https://github.com/Vchitect/Latte).
-
-## LatteTransformer3DModel[[diffusers.LatteTransformer3DModel]]
-
-#### diffusers.LatteTransformer3DModel[[diffusers.LatteTransformer3DModel]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/latte_transformer_3d.py#L27)
-
-forwarddiffusers.LatteTransformer3DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/latte_transformer_3d.py#L166[{"name": "hidden_states", "val": ": Tensor"}, {"name": "timestep", "val": ": torch.LongTensor | None = None"}, {"name": "encoder_hidden_states", "val": ": torch.Tensor | None = None"}, {"name": "encoder_attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "enable_temporal_attentions", "val": ": bool = True"}, {"name": "return_dict", "val": ": bool = True"}]- **hidden_states** (`torch.Tensor` of shape `(batch size, channel, num_frame, height, width)`) --
-  Input `hidden_states`.
-- **timestep** ( `torch.LongTensor`, *optional*) --
-  Used to indicate denoising step. Optional timestep to be applied as an embedding in `AdaLayerNorm`.
-- **encoder_hidden_states** ( `torch.FloatTensor` of shape `(batch size, sequence len, embed dims)`, *optional*) --
-  Conditional embeddings for cross attention layer. If not given, cross-attention defaults to
-  self-attention.
-- **encoder_attention_mask** ( `torch.Tensor`, *optional*) --
-  Cross-attention mask applied to `encoder_hidden_states`. Two formats supported:
-
-  * Mask `(batcheight, sequence_length)` True = keep, False = discard.
-  * Bias `(batcheight, 1, sequence_length)` 0 = keep, -10000 = discard.
-
-  If `ndim == 2`: will be interpreted as a mask, then converted into a bias consistent with the format
-  above. This bias will be added to the cross-attention scores.
-- **enable_temporal_attentions** --
-  (`bool`, *optional*, defaults to `True`): Whether to enable temporal attentions.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~models.unet_2d_condition.UNet2DConditionOutput` instead of a plain
-  tuple.0If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
-`tuple` where the first element is the sample tensor.
-
-The [LatteTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/latte_transformer3d#diffusers.LatteTransformer3DModel) forward method.
-
-**Parameters:**
-
-hidden_states (`torch.Tensor` of shape `(batch size, channel, num_frame, height, width)`) : Input `hidden_states`.
-
-timestep ( `torch.LongTensor`, *optional*) : Used to indicate denoising step. Optional timestep to be applied as an embedding in `AdaLayerNorm`.
-
-encoder_hidden_states ( `torch.FloatTensor` of shape `(batch size, sequence len, embed dims)`, *optional*) : Conditional embeddings for cross attention layer. If not given, cross-attention defaults to self-attention.
-
-encoder_attention_mask ( `torch.Tensor`, *optional*) : Cross-attention mask applied to `encoder_hidden_states`. Two formats supported:  * Mask `(batcheight, sequence_length)` True = keep, False = discard. * Bias `(batcheight, 1, sequence_length)` 0 = keep, -10000 = discard.  If `ndim == 2`: will be interpreted as a mask, then converted into a bias consistent with the format above. This bias will be added to the cross-attention scores.
-
-enable_temporal_attentions : (`bool`, *optional*, defaults to `True`): Whether to enable temporal attentions.
-
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.unet_2d_condition.UNet2DConditionOutput` instead of a plain tuple.
-
-**Returns:**
-
-If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
-`tuple` where the first element is the sample tensor.
-
-### ChromaTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/chroma_transformer.md
+### AutoencoderKLHunyuanImageRefiner
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoder_kl_hunyuanimage_refiner.md

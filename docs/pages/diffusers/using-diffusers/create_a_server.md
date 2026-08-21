@@ -2,7 +2,7 @@
 
 Diffusers' pipelines can be used as an inference engine for a server. It supports concurrent and multithreaded requests to generate images that may be requested by multiple users at the same time.
 
-This guide will show you how to use the [StableDiffusion3Pipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/stable_diffusion_3#diffusers.StableDiffusion3Pipeline) in a server, but feel free to use any pipeline you want.
+This guide will show you how to use the [StableDiffusion3Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_3#diffusers.StableDiffusion3Pipeline) in a server, but feel free to use any pipeline you want.
 
 Start by navigating to the `examples/server` folder and installing all of the dependencies.
 
@@ -57,5 +57,5 @@ At this point, the execution of the pipeline function is placed onto a [new thre
 
 Another important aspect of this implementation is creating a `pipeline` from `shared_pipeline`. The goal behind this is to avoid loading the underlying model more than once onto the GPU while still allowing for each new request that is running on a separate thread to have its own generator and scheduler. The scheduler, in particular, is not thread-safe, and it will cause errors like: `IndexError: index 21 is out of bounds for dimension 0 with size 21` if you try to use the same scheduler across multiple threads.
 
-### IP-Adapter
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/ip_adapter.md
+### DiffusionPipeline
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/loading.md

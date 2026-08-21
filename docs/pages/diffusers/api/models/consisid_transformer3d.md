@@ -7,42 +7,18 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import ConsisIDTransformer3DModel
 
-transformer = ConsisIDTransformer3DModel.from_pretrained("BestWishYsh/ConsisID-preview", subfolder="transformer", torch_dtype=torch.bfloat16).to("cuda")
+transformer = ConsisIDTransformer3DModel.from_pretrained("BestWishYsh/ConsisID-preview", subfolder="transformer", dtype=torch.bfloat16).to("cuda")
 ```
 
 ## ConsisIDTransformer3DModel[[diffusers.ConsisIDTransformer3DModel]]
 
 #### diffusers.ConsisIDTransformer3DModel[[diffusers.ConsisIDTransformer3DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/consisid_transformer_3d.py#L351)
+```python
+diffusers.ConsisIDTransformer3DModel(num_attention_heads: int = 30, attention_head_dim: int = 64, in_channels: int = 16, out_channels: int | None = 16, flip_sin_to_cos: bool = True, freq_shift: int = 0, time_embed_dim: int = 512, text_embed_dim: int = 4096, num_layers: int = 30, dropout: float = 0.0, attention_bias: bool = True, sample_width: int = 90, sample_height: int = 60, sample_frames: int = 49, patch_size: int = 2, temporal_compression_ratio: int = 4, max_text_seq_length: int = 226, activation_fn: str = 'gelu-approximate', timestep_activation_fn: str = 'silu', norm_elementwise_affine: bool = True, norm_eps: float = 1e-05, spatial_interpolation_scale: float = 1.875, temporal_interpolation_scale: float = 1.0, use_rotary_positional_embeddings: bool = False, use_learned_positional_embeddings: bool = False, is_train_face: bool = False, is_kps: bool = False, cross_attn_interval: int = 2, cross_attn_dim_head: int = 128, cross_attn_num_heads: int = 16, LFE_id_dim: int = 1280, LFE_vit_dim: int = 1024, LFE_depth: int = 10, LFE_dim_head: int = 64, LFE_num_heads: int = 16, LFE_num_id_token: int = 5, LFE_num_querie: int = 32, LFE_output_dim: int = 2048, LFE_ff_mult: int = 4, LFE_num_scale: int = 5, local_face_scale: float = 1.0)
+```
 
-A Transformer model for video-like data in [ConsisID](https://github.com/PKU-YuanGroup/ConsisID).
-
-forwarddiffusers.ConsisIDTransformer3DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/consisid_transformer_3d.py#L623[{"name": "hidden_states", "val": ": Tensor"}, {"name": "encoder_hidden_states", "val": ": Tensor"}, {"name": "timestep", "val": ": int | float | torch.LongTensor"}, {"name": "timestep_cond", "val": ": torch.Tensor | None = None"}, {"name": "image_rotary_emb", "val": ": tuple[torch.Tensor, torch.Tensor] | None = None"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "id_cond", "val": ": torch.Tensor | None = None"}, {"name": "id_vit_hidden", "val": ": torch.Tensor | None = None"}, {"name": "return_dict", "val": ": bool = True"}]- **hidden_states** (`torch.Tensor` of shape `(batch_size, num_frames, channels, height, width)`) --
-  Input `hidden_states`.
-- **encoder_hidden_states** (`torch.Tensor` of shape `(batch_size, sequence_len, embed_dims)`) --
-  Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
-- **timestep** (`torch.LongTensor`) --
-  Used to indicate denoising step.
-- **timestep_cond** (`torch.Tensor`, *optional*) --
-  Conditional embeddings for timestep. If provided, the embeddings will be summed with the samples passed
-  through the `self.time_embedding` layer to obtain the final timestep embeddings.
-- **image_rotary_emb** (`tuple` of `torch.Tensor`, *optional*) --
-  Pre-computed rotary positional embeddings.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **id_cond** (`torch.Tensor`, *optional*) --
-  The face embedding extracted by the local facial extractor used for identity conditioning.
-- **id_vit_hidden** (`torch.Tensor`, *optional*) --
-  The ViT hidden states extracted from face images used for identity conditioning.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain
-  tuple.0If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
-`tuple` where the first element is the sample tensor.
-
-The [ConsisIDTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/consisid_transformer3d#diffusers.ConsisIDTransformer3DModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/consisid_transformer_3d.py#L351)
 
 **Parameters:**
 
@@ -122,22 +98,58 @@ LFE_num_scale (`int`, optional, defaults to `5`) : The number of different scale
 
 local_face_scale (`float`, defaults to `1.0`) : A scaling factor used to adjust the importance of local facial features in the model. This can influence how strongly the model focuses on high frequency face-related content.
 
+A Transformer model for video-like data in [ConsisID](https://github.com/PKU-YuanGroup/ConsisID).
+
+#### forward[[diffusers.ConsisIDTransformer3DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: typing.Union[int, float, torch.LongTensor], timestep_cond: typing.Optional[torch.Tensor] = None, image_rotary_emb: tuple[torch.Tensor, torch.Tensor] | None = None, attention_kwargs: dict[str, typing.Any] | None = None, id_cond: typing.Optional[torch.Tensor] = None, id_vit_hidden: typing.Optional[torch.Tensor] = None, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/consisid_transformer_3d.py#L623)
+
+**Parameters:**
+
+hidden_states (`torch.Tensor` of shape `(batch_size, num_frames, channels, height, width)`) : Input `hidden_states`.
+
+encoder_hidden_states (`torch.Tensor` of shape `(batch_size, sequence_len, embed_dims)`) : Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
+
+timestep (`torch.LongTensor`) : Used to indicate denoising step.
+
+timestep_cond (`torch.Tensor`, *optional*) : Conditional embeddings for timestep. If provided, the embeddings will be summed with the samples passed through the `self.time_embedding` layer to obtain the final timestep embeddings.
+
+image_rotary_emb (`tuple` of `torch.Tensor`, *optional*) : Pre-computed rotary positional embeddings.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+id_cond (`torch.Tensor`, *optional*) : The face embedding extracted by the local facial extractor used for identity conditioning.
+
+id_vit_hidden (`torch.Tensor`, *optional*) : The ViT hidden states extracted from face images used for identity conditioning.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain tuple.
+
 **Returns:**
 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
+The [ConsisIDTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/consisid_transformer3d#diffusers.ConsisIDTransformer3DModel) forward method.
+
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
 #### diffusers.models.modeling_outputs.Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/modeling_outputs.py#L21)
+```python
+diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
+```
 
-The output of [Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-### HunyuanVideo15Transformer3DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/hunyuan_video15_transformer_3d.md
+The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+
+### Transformer2DModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/transformer2d.md

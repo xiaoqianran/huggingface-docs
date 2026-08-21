@@ -6,40 +6,11 @@ A modified flux Transformer model from [Chroma](https://huggingface.co/lodestone
 
 #### diffusers.ChromaTransformer2DModel[[diffusers.ChromaTransformer2DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_chroma.py#L370)
+```python
+diffusers.ChromaTransformer2DModel(patch_size: int = 1, in_channels: int = 64, out_channels: int | None = None, num_layers: int = 19, num_single_layers: int = 38, attention_head_dim: int = 128, num_attention_heads: int = 24, joint_attention_dim: int = 4096, axes_dims_rope: tuple = (16, 56, 56), approximator_num_channels: int = 64, approximator_hidden_dim: int = 5120, approximator_layers: int = 5)
+```
 
-The Transformer model introduced in Flux, modified for Chroma.
-
-Reference: https://huggingface.co/lodestones/Chroma1-HD
-
-forwarddiffusers.ChromaTransformer2DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_chroma.py#L476[{"name": "hidden_states", "val": ": Tensor"}, {"name": "encoder_hidden_states", "val": ": Tensor = None"}, {"name": "timestep", "val": ": LongTensor = None"}, {"name": "img_ids", "val": ": Tensor = None"}, {"name": "txt_ids", "val": ": Tensor = None"}, {"name": "attention_mask", "val": ": Tensor = None"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "controlnet_block_samples", "val": " = None"}, {"name": "controlnet_single_block_samples", "val": " = None"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "controlnet_blocks_repeat", "val": ": bool = False"}]- **hidden_states** (`torch.Tensor` of shape `(batch_size, image_sequence_length, in_channels)`) --
-  Input `hidden_states`.
-- **encoder_hidden_states** (`torch.Tensor` of shape `(batch_size, text_sequence_length, joint_attention_dim)`) --
-  Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
-- **timestep** ( `torch.LongTensor`) --
-  Used to indicate denoising step.
-- **img_ids** (`torch.Tensor`) --
-  Image position ids used to compute the rotary positional embeddings.
-- **txt_ids** (`torch.Tensor`) --
-  Text position ids used to compute the rotary positional embeddings.
-- **attention_mask** (`torch.Tensor`, *optional*) --
-  Mask applied to `encoder_hidden_states` during attention.
-- **controlnet_block_samples** (`list` of `torch.Tensor`, *optional*) --
-  A list of tensors that if specified are added to the residuals of transformer blocks.
-- **controlnet_single_block_samples** (`list` of `torch.Tensor`, *optional*) --
-  A list of tensors that if specified are added to the residuals of single transformer blocks.
-- **controlnet_blocks_repeat** (`bool`, *optional*, defaults to `False`) --
-  Whether to repeat the controlnet block samples across all transformer blocks.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain
-  tuple.0If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
-`tuple` where the first element is the sample tensor.
-
-The [FluxTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_chroma.py#L370)
 
 **Parameters:**
 
@@ -61,10 +32,48 @@ joint_attention_dim (`int`, defaults to `4096`) : The number of dimensions to us
 
 axes_dims_rope (`tuple[int]`, defaults to `(16, 56, 56)`) : The dimensions to use for the rotary positional embeddings.
 
+The Transformer model introduced in Flux, modified for Chroma.
+
+Reference: https://huggingface.co/lodestones/Chroma1-HD
+
+#### forward[[diffusers.ChromaTransformer2DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, encoder_hidden_states: Tensor = None, timestep: LongTensor = None, img_ids: Tensor = None, txt_ids: Tensor = None, attention_mask: Tensor = None, joint_attention_kwargs: dict[str, typing.Any] | None = None, controlnet_block_samples = None, controlnet_single_block_samples = None, return_dict: bool = True, controlnet_blocks_repeat: bool = False)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_chroma.py#L476)
+
+**Parameters:**
+
+hidden_states (`torch.Tensor` of shape `(batch_size, image_sequence_length, in_channels)`) : Input `hidden_states`.
+
+encoder_hidden_states (`torch.Tensor` of shape `(batch_size, text_sequence_length, joint_attention_dim)`) : Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
+
+timestep ( `torch.LongTensor`) : Used to indicate denoising step.
+
+img_ids (`torch.Tensor`) : Image position ids used to compute the rotary positional embeddings.
+
+txt_ids (`torch.Tensor`) : Text position ids used to compute the rotary positional embeddings.
+
+attention_mask (`torch.Tensor`, *optional*) : Mask applied to `encoder_hidden_states` during attention.
+
+controlnet_block_samples (`list` of `torch.Tensor`, *optional*) : A list of tensors that if specified are added to the residuals of transformer blocks.
+
+controlnet_single_block_samples (`list` of `torch.Tensor`, *optional*) : A list of tensors that if specified are added to the residuals of single transformer blocks.
+
+controlnet_blocks_repeat (`bool`, *optional*, defaults to `False`) : Whether to repeat the controlnet block samples across all transformer blocks.
+
+joint_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain tuple.
+
 **Returns:**
 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-### AutoencoderKLMochi
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/autoencoderkl_mochi.md
+The [FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel) forward method.
+
+### ControlNetUnionModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/controlnet_union.md

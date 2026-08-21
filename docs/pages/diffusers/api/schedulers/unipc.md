@@ -17,23 +17,14 @@ Dynamic thresholding from [Imagen](https://huggingface.co/papers/2205.11487) is 
 diffusion models, you can set both `predict_x0=True` and `thresholding=True` to use dynamic thresholding. This thresholding method is unsuitable for latent-space diffusion models such as Stable Diffusion.
 
 ## UniPCMultistepScheduler[[diffusers.UniPCMultistepScheduler]]
+
 #### diffusers.UniPCMultistepScheduler[[diffusers.UniPCMultistepScheduler]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L123)
+```python
+diffusers.UniPCMultistepScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.0001, beta_end: float = 0.02, beta_schedule: str = 'linear', trained_betas: numpy.ndarray | list[float] | None = None, solver_order: int = 2, prediction_type: typing.Literal['epsilon', 'sample', 'v_prediction', 'flow_prediction'] = 'epsilon', thresholding: bool = False, dynamic_thresholding_ratio: float = 0.995, sample_max_value: float = 1.0, predict_x0: bool = True, solver_type: typing.Literal['bh1', 'bh2'] = 'bh2', lower_order_final: bool = True, disable_corrector: list = [], solver_p: SchedulerMixin = None, use_karras_sigmas: bool = False, use_exponential_sigmas: bool = False, use_beta_sigmas: bool = False, use_flow_sigmas: bool = False, flow_shift: float = 1.0, timestep_spacing: typing.Literal['linspace', 'leading', 'trailing'] = 'linspace', steps_offset: int = 0, final_sigmas_type: typing.Literal['zero', 'sigma_min'] = 'zero', rescale_betas_zero_snr: bool = False, use_dynamic_shifting: bool = False, time_shift_type: typing.Literal['exponential'] = 'exponential', sigma_min: float | None = None, sigma_max: bool | None = None, shift_terminal: bool | None = None)
+```
 
-`UniPCMultistepScheduler` is a training-free framework designed for the fast sampling of diffusion models.
-
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.39.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
-methods the library implements for all schedulers such as loading and saving.
-
-add_noisediffusers.UniPCMultistepScheduler.add_noisehttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L1250[{"name": "original_samples", "val": ": Tensor"}, {"name": "noise", "val": ": Tensor"}, {"name": "timesteps", "val": ": IntTensor"}]- **original_samples** (`torch.Tensor`) --
-  The original samples without noise.
-- **noise** (`torch.Tensor`) --
-  The noise to add to the samples.
-- **timesteps** (`torch.IntTensor`) --
-  The timesteps at which to add noise to the samples.0`torch.Tensor`The noisy samples.
-
-Add noise to the original samples according to the noise schedule at the specified timesteps.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L123)
 
 **Parameters:**
 
@@ -83,16 +74,40 @@ final_sigmas_type (`"zero"` or `"sigma_min"`, defaults to `"zero"`) : The final 
 
 rescale_betas_zero_snr (`bool`, defaults to `False`) : Whether to rescale the betas to have zero terminal SNR. This enables the model to generate very bright and dark samples instead of limiting it to samples with medium brightness. Loosely related to [`--offset_noise`](https://github.com/huggingface/diffusers/blob/74fd735eb073eb1d774b1ab4154a0876eb82f055/examples/dreambooth/train_dreambooth.py#L506).
 
-**Returns:**
+`UniPCMultistepScheduler` is a training-free framework designed for the fast sampling of diffusion models.
 
-``torch.Tensor``
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+methods the library implements for all schedulers such as loading and saving.
+
+#### add_noise[[diffusers.UniPCMultistepScheduler.add_noise]]
+
+```python
+add_noise(original_samples: Tensor, noise: Tensor, timesteps: IntTensor)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L1250)
+
+**Parameters:**
+
+original_samples (`torch.Tensor`) : The original samples without noise.
+
+noise (`torch.Tensor`) : The noise to add to the samples.
+
+timesteps (`torch.IntTensor`) : The timesteps at which to add noise to the samples.
+
+**Returns:** `torch.Tensor`
 
 The noisy samples.
+
+Add noise to the original samples according to the noise schedule at the specified timesteps.
+
 #### convert_model_output[[diffusers.UniPCMultistepScheduler.convert_model_output]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L760)
+```python
+convert_model_output(model_output: Tensor, *args, sample: Tensor = None, **kwargs)
+```
 
-Convert the model output to the corresponding type the UniPC algorithm needs.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L760)
 
 **Parameters:**
 
@@ -102,16 +117,19 @@ timestep (`int`) : The current discrete timestep in the diffusion chain.
 
 sample (`torch.Tensor`) : A current instance of a sample created by the diffusion process.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The converted model output.
+
+Convert the model output to the corresponding type the UniPC algorithm needs.
+
 #### index_for_timestep[[diffusers.UniPCMultistepScheduler.index_for_timestep]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L1100)
+```python
+index_for_timestep(timestep: typing.Union[int, torch.Tensor], schedule_timesteps: typing.Optional[torch.Tensor] = None)
+```
 
-Find the index for a given timestep in the schedule.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L1100)
 
 **Parameters:**
 
@@ -119,16 +137,19 @@ timestep (`int` or `torch.Tensor`) : The timestep for which to find the index.
 
 schedule_timesteps (`torch.Tensor`, *optional*) : The timestep schedule to search in. If `None`, uses `self.timesteps`.
 
-**Returns:**
-
-``int``
+**Returns:** `int`
 
 The index of the timestep in the schedule.
+
+Find the index for a given timestep in the schedule.
+
 #### multistep_uni_c_bh_update[[diffusers.UniPCMultistepScheduler.multistep_uni_c_bh_update]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L962)
+```python
+multistep_uni_c_bh_update(this_model_output: Tensor, *args, last_sample: Tensor = None, this_sample: Tensor = None, order: int = None, **kwargs)
+```
 
-One step for the UniC (B(h) version).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L962)
 
 **Parameters:**
 
@@ -142,16 +163,19 @@ this_sample (`torch.Tensor`) : The generated sample after the last predictor `x_
 
 order (`int`) : The `p` of UniC-p at this step. The effective order of accuracy should be `order + 1`.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The corrected sample tensor at the current timestep.
+
+One step for the UniC (B(h) version).
+
 #### multistep_uni_p_bh_update[[diffusers.UniPCMultistepScheduler.multistep_uni_p_bh_update]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L833)
+```python
+multistep_uni_p_bh_update(model_output: Tensor, *args, sample: Tensor = None, order: int = None, **kwargs)
+```
 
-One step for the UniP (B(h) version). Alternatively, `self.solver_p` is used if is specified.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L833)
 
 **Parameters:**
 
@@ -163,41 +187,52 @@ sample (`torch.Tensor`) : A current instance of a sample created by the diffusio
 
 order (`int`) : The order of UniP at this timestep (corresponds to the *p* in UniPC-p).
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The sample tensor at the previous timestep.
+
+One step for the UniP (B(h) version). Alternatively, `self.solver_p` is used if is specified.
+
 #### scale_model_input[[diffusers.UniPCMultistepScheduler.scale_model_input]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L1234)
+```python
+scale_model_input(sample: Tensor, *args, **kwargs)
+```
 
-Ensures interchangeability with schedulers that need to scale the denoising model input depending on the
-current timestep.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L1234)
 
 **Parameters:**
 
 sample (`torch.Tensor`) : The input sample.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 A scaled input sample.
+
+Ensures interchangeability with schedulers that need to scale the denoising model input depending on the
+current timestep.
+
 #### set_begin_index[[diffusers.UniPCMultistepScheduler.set_begin_index]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L308)
+```python
+set_begin_index(begin_index: int = 0)
+```
 
-Sets the begin index for the scheduler. This function should be run from pipeline before the inference.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L308)
 
 **Parameters:**
 
 begin_index (`int`, defaults to `0`) : The begin index for the scheduler.
+
+Sets the begin index for the scheduler. This function should be run from pipeline before the inference.
+
 #### set_timesteps[[diffusers.UniPCMultistepScheduler.set_timesteps]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L318)
+```python
+set_timesteps(num_inference_steps: int | None = None, device: typing.Union[str, torch.device] = None, sigmas: list[float] | None = None, mu: bool | None = None)
+```
 
-Sets the discrete timesteps used for the diffusion chain (to be run before inference).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L318)
 
 **Parameters:**
 
@@ -208,12 +243,16 @@ device (`str` or `torch.device`, *optional*) : The device to which the timesteps
 sigmas (`List[float]`, *optional*) : Custom values for sigmas to be used for each diffusion step. If `None`, the sigmas are computed automatically.
 
 mu (`float`, *optional*) : Optional mu parameter for dynamic shifting when using exponential time shift type.
+
+Sets the discrete timesteps used for the diffusion chain (to be run before inference).
+
 #### step[[diffusers.UniPCMultistepScheduler.step]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L1153)
+```python
+step(model_output: Tensor, timestep: typing.Union[int, torch.Tensor], sample: Tensor, return_dict: bool = True)
+```
 
-Predict the sample from the previous timestep by reversing the SDE. This function propagates the sample with
-the multistep UniPC.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L1153)
 
 **Parameters:**
 
@@ -223,17 +262,31 @@ timestep (`int` or `torch.Tensor`) : The current discrete timestep in the diffus
 
 sample (`torch.Tensor`) : A current instance of a sample created by the diffusion process.
 
-return_dict (`bool`, defaults to `True`) : Whether or not to return a [SchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/dpm_discrete#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`.
+return_dict (`bool`, defaults to `True`) : Whether or not to return a [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`.
 
-**Returns:**
+**Returns:** [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`
 
-`[SchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/dpm_discrete#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple``
-
-If return_dict is `True`, [SchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/dpm_discrete#diffusers.schedulers.scheduling_utils.SchedulerOutput) is returned, otherwise a
+If return_dict is `True`, [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) is returned, otherwise a
 tuple is returned where the first element is the sample tensor.
+
+Predict the sample from the previous timestep by reversing the SDE. This function propagates the sample with
+the multistep UniPC.
+
 #### stretch_shift_to_terminal[[diffusers.UniPCMultistepScheduler.stretch_shift_to_terminal]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L506)
+```python
+stretch_shift_to_terminal(t: Tensor)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L506)
+
+**Parameters:**
+
+t (`torch.Tensor`) : A tensor of timesteps to be stretched and shifted.
+
+**Returns:** `torch.Tensor`
+
+A tensor of adjusted timesteps such that the final value equals `self.config.shift_terminal`.
 
 Stretches and shifts the timestep schedule to ensure it terminates at the configured `shift_terminal` config
 value.
@@ -241,20 +294,13 @@ value.
 Reference:
 https://github.com/Lightricks/LTX-Video/blob/a01a171f8fe3d99dce2728d60a73fecf4d4238ae/ltx_video/schedulers/rf.py#L51
 
-**Parameters:**
-
-t (`torch.Tensor`) : A tensor of timesteps to be stretched and shifted.
-
-**Returns:**
-
-``torch.Tensor``
-
-A tensor of adjusted timesteps such that the final value equals `self.config.shift_terminal`.
 #### time_shift[[diffusers.UniPCMultistepScheduler.time_shift]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L484)
+```python
+time_shift(mu: float, sigma: float, t: Tensor)
+```
 
-Apply time shifting to the sigmas.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_unipc_multistep.py#L484)
 
 **Parameters:**
 
@@ -264,22 +310,27 @@ sigma (`float`) : The sigma parameter for the time shift.
 
 t (`torch.Tensor`) : The input timesteps.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The time-shifted timesteps.
 
+Apply time shifting to the sigmas.
+
 ## SchedulerOutput[[diffusers.schedulers.scheduling_utils.SchedulerOutput]]
+
 #### diffusers.schedulers.scheduling_utils.SchedulerOutput[[diffusers.schedulers.scheduling_utils.SchedulerOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_utils.py#L61)
+```python
+diffusers.schedulers.scheduling_utils.SchedulerOutput(prev_sample: Tensor)
+```
 
-Base class for the output of a scheduler's `step` function.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_utils.py#L66)
 
 **Parameters:**
 
 prev_sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` for images) : Computed sample `(x_{t-1})` of previous timestep. `prev_sample` should be used as next model input in the denoising loop.
 
-### IPNDMScheduler
-https://huggingface.co/docs/diffusers/v0.39.0/api/schedulers/ipndm.md
+Base class for the output of a scheduler's `step` function.
+
+### KarrasVeScheduler
+https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/stochastic_karras_ve.md

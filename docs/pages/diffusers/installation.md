@@ -17,6 +17,21 @@ PyTorch only supports Python 3.8 - 3.11 on Windows.
 uv pip install diffusers["torch"] transformers
 ```
 
+To install Diffusers with PyTorch on NVIDIA Spark devices (such as an RTX Spark laptop) running ARM64, install PyTorch from the NVIDIA PyPI index. These devices require NVIDIA's ARM64 builds of PyTorch, which are not available on the default PyPI index or the standard PyTorch wheel index.
+
+Run the command below to check if your system detects an NVIDIA GPU.
+
+```bash
+nvidia-smi
+```
+
+Install PyTorch from the NVIDIA PyPI index, then install Diffusers.
+
+```bash
+uv pip install torch --index-url https://pypi.nvidia.com
+uv pip install diffusers
+```
+
 ```bash
 conda install -c conda-forge diffusers
 ```
@@ -59,7 +74,7 @@ git pull
 
 ## Cache
 
-Model weights and files are downloaded from the Hub to a cache, which is usually your home directory. Change the cache location with the [HF_HOME](https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfhome) or [HF_HUB_CACHE](https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfhubcache) environment variables or configuring the `cache_dir` parameter in methods like [from_pretrained()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
+Model weights and files are downloaded from the Hub to a cache, which is usually your home directory. Change the cache location with the [HF_HOME](https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfhome) or [HF_HUB_CACHE](https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfhubcache) environment variables or configuring the `cache_dir` parameter in methods like [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
 
 ```bash
 export HF_HOME="/path/to/your/cache"
@@ -85,7 +100,7 @@ For more details about managing and cleaning the cache, take a look at the [Unde
 
 ## Telemetry logging
 
-Diffusers gathers telemetry information during [from_pretrained()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) requests.
+Diffusers gathers telemetry information during [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) requests.
 The data gathered includes the Diffusers and PyTorch version, the requested model or pipeline class,
 and the path to a pretrained checkpoint if it is hosted on the Hub.
 
@@ -104,4 +119,4 @@ set HF_HUB_DISABLE_TELEMETRY=1
 ```
 
 ### Basic performance
-https://huggingface.co/docs/diffusers/v0.39.0/stable_diffusion.md
+https://huggingface.co/docs/diffusers/v0.40.0/stable_diffusion.md

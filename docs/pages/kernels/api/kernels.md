@@ -54,7 +54,7 @@ result = activation.relu(out, x)
 kernels.get_local_kernel(repo_path: Path, backend: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L117)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L126)
 
 **Parameters:**
 
@@ -76,7 +76,7 @@ Import a kernel from a local kernel repository path.
 kernels.has_kernel(repo_id: str, revision: str | None = None, version: int | None = None, backend: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L153)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L162)
 
 **Parameters:**
 
@@ -175,7 +175,7 @@ for loaded in get_loaded_kernels():
 kernels.load_kernel(repo_id: str, lockfile: pathlib.Path | None, backend: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L194)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L208)
 
 **Parameters:**
 
@@ -201,7 +201,7 @@ If `lockfile` is not specified, the lockfile will be loaded from the caller's pa
 kernels.get_locked_kernel(repo_id: str)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L239)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L253)
 
 **Parameters:**
 

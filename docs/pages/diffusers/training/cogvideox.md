@@ -1,277 +1,807 @@
 # CogVideoX
 
-CogVideoX is a text-to-video generation model focused on creating more coherent videos aligned with a prompt. It achieves this using several methods.
+[CogVideoX](https://huggingface.co/papers/2408.06072) is a large diffusion transformer model - available in 2B and 5B parameters - designed to generate longer and more consistent videos from text. This model uses a 3D causal variational autoencoder to more efficiently process video data by reducing sequence length (and associated training compute) and preventing flickering in generated videos. An "expert" transformer with adaptive LayerNorm improves alignment between text and video, and 3D full attention helps accurately capture motion and time in generated videos.
 
-- a 3D variational autoencoder that compresses videos spatially and temporally, improving compression rate and video accuracy.
+You can find all the original CogVideoX checkpoints under the [CogVideoX](https://huggingface.co/collections/THUDM/cogvideo-66c08e62f1685a3ade464cce) collection.
 
-- an expert transformer block to help align text and video, and a 3D full attention module for capturing and creating spatially and temporally accurate videos.
+> [!TIP]
+> Click on the CogVideoX models in the right sidebar for more examples of other video generation tasks.
 
-The actual test of the video instruction dimension found that CogVideoX has good effects on consistent theme, dynamic information, consistent background, object information, smooth motion, color, scene, appearance style, and temporal style but cannot achieve good results with human action, spatial relationship, and multiple objects.
+The example below demonstrates how to generate a video optimized for memory or inference speed.
 
-Finetuning with Diffusers can help make up for these poor results. 
+Refer to the [Reduce memory usage](../../optimization/memory) guide for more details about the various memory saving techniques.
 
-## Data Preparation
+The quantized CogVideoX 5B model below requires ~16GB of VRAM.
 
-The training scripts accepts data in two formats.  
+```py
+import torch
+from diffusers import CogVideoXPipeline, AutoModel, TorchAoConfig
+from diffusers.quantizers import PipelineQuantizationConfig
+from diffusers.hooks import apply_group_offloading
+from diffusers.utils import export_to_video
+from torchao.quantization import Int8WeightOnlyConfig
 
-The first format is suited for small-scale training, and the second format uses a CSV format, which is more appropriate for streaming data for large-scale training. In the future, Diffusers will support the `<Video>` tag.
+# quantize weights to int8 with torchao
+pipeline_quant_config = PipelineQuantizationConfig(
+  quant_mapping={"transformer": TorchAoConfig(Int8WeightOnlyConfig())}
+)
 
-### Small format
+# fp8 layerwise weight-casting
+transformer = AutoModel.from_pretrained(
+    "THUDM/CogVideoX-5b",
+    subfolder="transformer",
+    dtype=torch.bfloat16
+)
+transformer.enable_layerwise_casting(
+    storage_dtype=torch.float8_e4m3fn, compute_dtype=torch.bfloat16
+)
 
-Two files where one file contains line-separated prompts and another file contains line-separated paths to video data (the path to video files must be relative to the path you pass when specifying `--instance_data_root`). Let's take a look at an example to understand this better!
+pipeline = CogVideoXPipeline.from_pretrained(
+    "THUDM/CogVideoX-5b",
+    transformer=transformer,
+    quantization_config=pipeline_quant_config,
+    dtype=torch.bfloat16
+)
+pipeline.to("cuda")
 
-Assume you've specified `--instance_data_root` as `/dataset`, and that this directory contains the files: `prompts.txt` and `videos.txt`.
+# model-offloading
+pipeline.enable_model_cpu_offload()
 
-The `prompts.txt` file should contain line-separated prompts:
+prompt = """
+A detailed wooden toy ship with intricately carved masts and sails is seen gliding smoothly over a plush, blue carpet that mimics the waves of the sea. 
+The ship's hull is painted a rich brown, with tiny windows. The carpet, soft and textured, provides a perfect backdrop, resembling an oceanic expanse. 
+Surrounding the ship are various other toys and children's items, hinting at a playful environment. The scene captures the innocence and imagination of childhood, 
+with the toy ship's journey symbolizing endless adventures in a whimsical, indoor setting.
+"""
 
-```
-A black and white animated sequence featuring a rabbit, named Rabbity Ribfried, and an anthropomorphic goat in a musical, playful environment, showcasing their evolving interaction.
-A black and white animated sequence on a ship's deck features a bulldog character, named Bully Bulldoger, showcasing exaggerated facial expressions and body language. The character progresses from confident to focused, then to strained and distressed, displaying a range of emotions as it navigates challenges. The ship's interior remains static in the background, with minimalistic details such as a bell and open door. The character's dynamic movements and changing expressions drive the narrative, with no camera movement to distract from its evolving reactions and physical gestures.
-...
-```
-
-The `videos.txt` file should contain line-separate paths to video files. Note that the path should be _relative_ to the `--instance_data_root` directory.
-
-```
-videos/00000.mp4
-videos/00001.mp4
-...
-```
-
-Overall, this is how your dataset would look like if you ran the `tree` command on the dataset root directory:
-
-```
-/dataset
-├── prompts.txt
-├── videos.txt
-├── videos
-    ├── videos/00000.mp4
-    ├── videos/00001.mp4
-    ├── ...
-```
-
-When using this format, the `--caption_column` must be `prompts.txt` and `--video_column` must be `videos.txt`.
-
-### Stream format
-
-You could use a single CSV file. For the sake of this example, assume you have a `metadata.csv` file. The expected format is:
-
-```
-<CAPTION_COLUMN>,<PATH_TO_VIDEO_COLUMN>
-"""A black and white animated sequence featuring a rabbit, named Rabbity Ribfried, and an anthropomorphic goat in a musical, playful environment, showcasing their evolving interaction.""","""00000.mp4"""
-"""A black and white animated sequence on a ship's deck features a bulldog character, named Bully Bulldoger, showcasing exaggerated facial expressions and body language. The character progresses from confident to focused, then to strained and distressed, displaying a range of emotions as it navigates challenges. The ship's interior remains static in the background, with minimalistic details such as a bell and open door. The character's dynamic movements and changing expressions drive the narrative, with no camera movement to distract from its evolving reactions and physical gestures.""","""00001.mp4"""
-...
-```
-
-In this case, the `--instance_data_root` should be the location where the videos are stored and `--dataset_name` should be either a path to local folder or a `load_dataset` compatible dataset hosted on the Hub. Assuming you have videos of Minecraft gameplay at `https://huggingface.co/datasets/my-awesome-username/minecraft-videos`, you would have to specify `my-awesome-username/minecraft-videos`.
-
-When using this format, the `--caption_column` must be `<CAPTION_COLUMN>` and `--video_column` must be `<PATH_TO_VIDEO_COLUMN>`.
-
-You are not strictly restricted to the CSV format. Any format works as long as the `load_dataset` method supports the file format to load a basic `<PATH_TO_VIDEO_COLUMN>` and `<CAPTION_COLUMN>`. The reason for going through these dataset organization gymnastics for loading video data is because `load_dataset` does not fully support all kinds of video formats.
-
-> [!NOTE]
-> CogVideoX works best with long and descriptive LLM-augmented prompts for video generation. We recommend pre-processing your videos by first generating a summary using a VLM and then augmenting the prompts with an LLM. To generate the above captions, we use [MiniCPM-V-26](https://huggingface.co/openbmb/MiniCPM-V-2_6) and [Llama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct). A very barebones and no-frills example for this is available [here](https://gist.github.com/a-r-r-o-w/4dee20250e82f4e44690a02351324a4a). The official recommendation for augmenting prompts is [ChatGLM](https://huggingface.co/THUDM?search_models=chatglm) and a length of 50-100 words is considered good.
-
->![NOTE]
-> It is expected that your dataset is already pre-processed. If not, some basic pre-processing can be done by playing with the following parameters:
-> `--height`, `--width`, `--fps`, `--max_num_frames`, `--skip_frames_start` and `--skip_frames_end`.
-> Presently, all videos in your dataset should contain the same number of video frames when using a training batch size > 1.
-
-## Training
-
-You need to setup your development environment by installing the necessary requirements. The following packages are required:
-- Torch 2.0 or above based on the training features you are utilizing (might require latest or nightly versions for quantized/deepspeed training)
-- `pip install diffusers transformers accelerate peft huggingface_hub` for all things modeling and training related
-- `pip install datasets decord` for loading video training data
-- `pip install bitsandbytes` for using 8-bit Adam or AdamW optimizers for memory-optimized training
-- `pip install wandb` optionally for monitoring training logs
-- `pip install deepspeed` optionally for [DeepSpeed](https://github.com/microsoft/DeepSpeed) training
-- `pip install prodigyopt` optionally if you would like to use the Prodigy optimizer for training
-
-To make sure you can successfully run the latest versions of the example scripts, we highly recommend **installing from source** and keeping the install up to date as we update the example scripts frequently and install some example-specific requirements. To do this, execute the following steps in a new virtual environment:
-
-Before running the script, make sure you install the library from source:
-```bash
-git clone https://github.com/huggingface/diffusers
-cd diffusers
-pip install -e .
+video = pipeline(
+    prompt=prompt,
+    guidance_scale=6,
+    num_inference_steps=50
+).frames[0]
+export_to_video(video, "output.mp4", fps=8)
 ```
 
- 
+[Compilation](../../optimization/fp16#torchcompile) is slow the first time but subsequent calls to the pipeline are faster.
 
-Then navigate to the example folder containing the training script and install the required dependencies for the script you're using:
+The average inference time with torch.compile on a 80GB A100 is 76.27 seconds compared to 96.89 seconds for an uncompiled model.
 
-- PyTorch
-
-```bash
-cd examples/cogvideo
-pip install -r requirements.txt
-```
-
-And initialize an [🤗 Accelerate](https://github.com/huggingface/accelerate/) environment with:
-
-```bash
-accelerate config
-```
-
-Or for a default accelerate configuration without answering questions about your environment
-
-```bash
-accelerate config default
-```
-
-Or if your environment doesn't support an interactive shell (e.g., a notebook)
-
-```python
-from accelerate.utils import write_basic_config
-write_basic_config()
-```
-
-When running `accelerate config`, if you use torch.compile, there can be dramatic speedups. The PEFT library is used as a backend for LoRA training, so make sure to have `peft>=0.6.0` installed in your environment.
-
-If you would like to push your model to the Hub after training is completed with a neat model card, make sure you're logged in:
-
-```bash
-hf auth login
-
-# Alternatively, you could upload your model manually using:
-# hf upload my-cool-account-name/my-cool-lora-name /path/to/awesome/lora
-```
-
-Make sure your data is prepared as described in [Data Preparation](#data-preparation). When ready, you can begin training!
-
-Assuming you are training on 50 videos of a similar concept, we have found 1500-2000 steps to work well. The official recommendation, however, is 100 videos with a total of 4000 steps. Assuming you are training on a single GPU with a `--train_batch_size` of `1`:
-- 1500 steps on 50 videos would correspond to `30` training epochs
-- 4000 steps on 100 videos would correspond to `40` training epochs
-
-```bash
-#!/bin/bash
-
-GPU_IDS="0"
-
-accelerate launch --gpu_ids $GPU_IDS examples/cogvideo/train_cogvideox_lora.py \
-  --pretrained_model_name_or_path THUDM/CogVideoX-2b \
-  --cache_dir <CACHE_DIR> \
-  --instance_data_root <PATH_TO_WHERE_VIDEO_FILES_ARE_STORED> \
-  --dataset_name my-awesome-name/my-awesome-dataset \
-  --caption_column <CAPTION_COLUMN> \
-  --video_column <PATH_TO_VIDEO_COLUMN> \
-  --id_token <ID_TOKEN> \
-  --validation_prompt "<ID_TOKEN> Spiderman swinging over buildings:::A panda, dressed in a small, red jacket and a tiny hat, sits on a wooden stool in a serene bamboo forest. The panda's fluffy paws strum a miniature acoustic guitar, producing soft, melodic tunes. Nearby, a few other pandas gather, watching curiously and some clapping in rhythm. Sunlight filters through the tall bamboo, casting a gentle glow on the scene. The panda's face is expressive, showing concentration and joy as it plays. The background includes a small, flowing stream and vibrant green foliage, enhancing the peaceful and magical atmosphere of this unique musical performance" \
-  --validation_prompt_separator ::: \
-  --num_validation_videos 1 \
-  --validation_epochs 10 \
-  --seed 42 \
-  --rank 64 \
-  --lora_alpha 64 \
-  --mixed_precision fp16 \
-  --output_dir /raid/aryan/cogvideox-lora \
-  --height 480 --width 720 --fps 8 --max_num_frames 49 --skip_frames_start 0 --skip_frames_end 0 \
-  --train_batch_size 1 \
-  --num_train_epochs 30 \
-  --checkpointing_steps 1000 \
-  --gradient_accumulation_steps 1 \
-  --learning_rate 1e-3 \
-  --lr_scheduler cosine_with_restarts \
-  --lr_warmup_steps 200 \
-  --lr_num_cycles 1 \
-  --enable_slicing \
-  --enable_tiling \
-  --optimizer Adam \
-  --adam_beta1 0.9 \
-  --adam_beta2 0.95 \
-  --max_grad_norm 1.0 \
-  --report_to wandb
-```
-
-To better track our training experiments, we're using the following flags in the command above:
-* `--report_to wandb` will ensure the training runs are tracked on Weights and Biases. To use it, be sure to install `wandb` with `pip install wandb`.
-* `validation_prompt` and `validation_epochs` to allow the script to do a few validation inference runs. This allows us to qualitatively check if the training is progressing as expected.
-
-Setting the `<ID_TOKEN>` is not necessary. From some limited experimentation, we found it works better (as it resembles [Dreambooth](https://huggingface.co/docs/diffusers/en/training/dreambooth) training) than without. When provided, the `<ID_TOKEN>` is appended to the beginning of each prompt. So, if your `<ID_TOKEN>` was `"DISNEY"` and your prompt was `"Spiderman swinging over buildings"`, the effective prompt used in training would be `"DISNEY Spiderman swinging over buildings"`. When not provided, you would either be training without any additional token or could augment your dataset to apply the token where you wish before starting the training.
-
-> [!NOTE]
-> You can pass `--use_8bit_adam` to reduce the memory requirements of training.
-
-> [!IMPORTANT]
-> The following settings have been tested at the time of adding CogVideoX LoRA training support:
-> - Our testing was primarily done on CogVideoX-2b. We will work on CogVideoX-5b and CogVideoX-5b-I2V soon
-> - One dataset comprised of 70 training videos of resolutions `200 x 480 x 720` (F x H x W). From this, by using frame skipping in data preprocessing, we created two smaller 49-frame and 16-frame datasets for faster experimentation and because the maximum limit recommended by the CogVideoX team is 49 frames. Out of the 70 videos, we created three groups of 10, 25 and 50 videos. All videos were similar in nature of the concept being trained.
-> - 25+ videos worked best for training new concepts and styles.
-> - We found that it is better to train with an identifier token that can be specified as `--id_token`. This is similar to Dreambooth-like training but normal finetuning without such a token works too.
-> - Trained concept seemed to work decently well when combined with completely unrelated prompts. We expect even better results if CogVideoX-5B is finetuned.
-> - The original repository uses a `lora_alpha` of `1`. We found this not suitable in many runs, possibly due to difference in modeling backends and training settings. Our recommendation is to set to the `lora_alpha` to either `rank` or `rank // 2`.
-> - If you're training on data whose captions generate bad results with the original model, a `rank` of 64 and above is good and also the recommendation by the team behind CogVideoX. If the generations are already moderately good on your training captions, a `rank` of 16/32 should work. We found that setting the rank too low, say `4`, is not ideal and doesn't produce promising results.
-> - The authors of CogVideoX recommend 4000 training steps and 100 training videos overall to achieve the best result. While that might yield the best results, we found from our limited experimentation that 2000 steps and 25 videos could also be sufficient.
-> - When using the Prodigy optimizer for training, one can follow the recommendations from [this](https://huggingface.co/blog/sdxl_lora_advanced_script) blog. Prodigy tends to overfit quickly. From my very limited testing, I found a learning rate of `0.5` to be suitable in addition to `--prodigy_use_bias_correction`, `prodigy_safeguard_warmup` and `--prodigy_decouple`.
-> - The recommended learning rate by the CogVideoX authors and from our experimentation with Adam/AdamW is between `1e-3` and `1e-4` for a dataset of 25+ videos.
->
-> Note that our testing is not exhaustive due to limited time for exploration. Our recommendation would be to play around with the different knobs and dials to find the best settings for your data.
-
-## Inference
-
-Once you have trained a lora model, the inference can be done simply loading the lora weights into the `CogVideoXPipeline`.
-
-```python
+```py
 import torch
 from diffusers import CogVideoXPipeline
 from diffusers.utils import export_to_video
 
-pipe = CogVideoXPipeline.from_pretrained("THUDM/CogVideoX-2b", torch_dtype=torch.float16)
-# pipe.load_lora_weights("/path/to/lora/weights", adapter_name="cogvideox-lora") # Or,
-pipe.load_lora_weights("my-awesome-hf-username/my-awesome-lora-name", adapter_name="cogvideox-lora") # If loading from the HF Hub
-pipe.to("cuda")
+pipeline = CogVideoXPipeline.from_pretrained(
+    "THUDM/CogVideoX-2b",
+    dtype=torch.float16
+).to("cuda")
 
-# Assuming lora_alpha=32 and rank=64 for training. If different, set accordingly
-pipe.set_adapters(["cogvideox-lora"], [32 / 64])
+# torch.compile
+pipeline.transformer.to(memory_format=torch.channels_last)
+pipeline.transformer = torch.compile(
+    pipeline.transformer, mode="max-autotune", fullgraph=True
+)
 
-prompt = "A vast, shimmering ocean flows gracefully under a twilight sky, its waves undulating in a mesmerizing dance of blues and greens. The surface glints with the last rays of the setting sun, casting golden highlights that ripple across the water. Seagulls soar above, their cries blending with the gentle roar of the waves. The horizon stretches infinitely, where the ocean meets the sky in a seamless blend of hues. Close-ups reveal the intricate patterns of the waves, capturing the fluidity and dynamic beauty of the sea in motion."
-frames = pipe(prompt, guidance_scale=6, use_dynamic_cfg=True).frames[0]
-export_to_video(frames, "output.mp4", fps=8)
+prompt = """
+A detailed wooden toy ship with intricately carved masts and sails is seen gliding smoothly over a plush, blue carpet that mimics the waves of the sea. 
+The ship's hull is painted a rich brown, with tiny windows. The carpet, soft and textured, provides a perfect backdrop, resembling an oceanic expanse. 
+Surrounding the ship are various other toys and children's items, hinting at a playful environment. The scene captures the innocence and imagination of childhood, 
+with the toy ship's journey symbolizing endless adventures in a whimsical, indoor setting.
+"""
+
+video = pipeline(
+    prompt=prompt,
+    guidance_scale=6,
+    num_inference_steps=50
+).frames[0]
+export_to_video(video, "output.mp4", fps=8)
 ```
 
-## Reduce memory usage
+## Notes
 
-While testing using the diffusers library, all optimizations included in the diffusers library were enabled. This
-scheme has not been tested for actual memory usage on devices outside of **NVIDIA A100 / H100** architectures.
-Generally, this scheme can be adapted to all **NVIDIA Ampere architecture** and above devices. If optimizations are
-disabled, memory consumption will multiply, with peak memory usage being about 3 times the value in the table.
-However, speed will increase by about 3-4 times. You can selectively disable some optimizations, including:
+- CogVideoX supports LoRAs with [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.CogVideoXLoraLoaderMixin.load_lora_weights).
 
+  
+  Show example code
+
+  ```py
+  import torch
+  from diffusers import CogVideoXPipeline
+  from diffusers.hooks import apply_group_offloading
+  from diffusers.utils import export_to_video
+
+  pipeline = CogVideoXPipeline.from_pretrained(
+      "THUDM/CogVideoX-5b",
+      dtype=torch.bfloat16
+  )
+  pipeline.to("cuda")
+
+  # load LoRA weights
+  pipeline.load_lora_weights("finetrainers/CogVideoX-1.5-crush-smol-v0", adapter_name="crush-lora")
+  pipeline.set_adapters("crush-lora", 0.9)
+
+  # model-offloading
+  pipeline.enable_model_cpu_offload()
+
+  prompt = """
+  PIKA_CRUSH A large metal cylinder is seen pressing down on a pile of Oreo cookies, flattening them as if they were under a hydraulic press.
+  """
+  negative_prompt = "inconsistent motion, blurry motion, worse quality, degenerate outputs, deformed outputs"
+
+  video = pipeline(
+      prompt=prompt, 
+      negative_prompt=negative_prompt, 
+      num_frames=81, 
+      height=480,
+      width=768,
+      num_inference_steps=50
+  ).frames[0]
+  export_to_video(video, "output.mp4", fps=16)
+  ```
+
+  
+
+- The text-to-video (T2V) checkpoints work best with a resolution of 1360x768 because that was the resolution it was pretrained on.
+
+- The image-to-video (I2V) checkpoints work with multiple resolutions. The width can vary from 768 to 1360, but the height must be 758. Both height and width must be divisible by 16.
+
+- Both T2V and I2V checkpoints work best with 81 and 161 frames. It is recommended to export the generated video at 16fps.
+
+- Refer to the table below to view memory usage when various memory-saving techniques are enabled.
+
+  | method | memory usage (enabled) | memory usage (disabled) |
+  |---|---|---|
+  | enable_model_cpu_offload | 19GB | 33GB |
+  | enable_sequential_cpu_offload | <4GB | ~33GB (very slow inference speed) |
+  | enable_tiling | 11GB (with enable_model_cpu_offload) | --- |
+ 
+## CogVideoXPipeline[[diffusers.CogVideoXPipeline]]
+
+#### diffusers.CogVideoXPipeline[[diffusers.CogVideoXPipeline]]
+
+```python
+diffusers.CogVideoXPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, vae: AutoencoderKLCogVideoX, transformer: CogVideoXTransformer3DModel, scheduler: diffusers.schedulers.scheduling_ddim_cogvideox.CogVideoXDDIMScheduler | diffusers.schedulers.scheduling_dpm_cogvideox.CogVideoXDPMScheduler)
 ```
-pipe.enable_sequential_cpu_offload()
-pipe.vae.enable_slicing()
-pipe.vae.enable_tiling()
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L147)
+
+**Parameters:**
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+
+text_encoder (`T5EncoderModel`) : Frozen text-encoder. CogVideoX uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel); specifically the [t5-v1_1-xxl](https://huggingface.co/PixArt-alpha/PixArt-alpha/tree/main/t5-v1_1-xxl) variant.
+
+tokenizer (`T5Tokenizer`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
+
+transformer ([CogVideoXTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel)) : A text conditioned `CogVideoXTransformer3DModel` to denoise the encoded video latents.
+
+scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+
+Pipeline for text-to-video generation using CogVideoX.
+
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
+
+#### __call__[[diffusers.CogVideoXPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] | None = None, negative_prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_frames: int | None = None, num_inference_steps: int = 50, timesteps: list[int] | None = None, guidance_scale: float = 6, use_dynamic_cfg: bool = False, num_videos_per_prompt: int = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 226)
 ```
 
-+ For multi-GPU inference, the `enable_sequential_cpu_offload()` optimization needs to be disabled.
-+ Using INT8 models will slow down inference, which is done to accommodate lower-memory GPUs while maintaining minimal
-  video quality loss, though inference speed will significantly decrease.
-+ The CogVideoX-2B model was trained in `FP16` precision, and all CogVideoX-5B models were trained in `BF16` precision.
-  We recommend using the precision in which the model was trained for inference.
-+ [PytorchAO](https://github.com/pytorch/ao) and [Optimum-quanto](https://github.com/huggingface/optimum-quanto/) can be
-  used to quantize the text encoder, transformer, and VAE modules to reduce the memory requirements of CogVideoX. This
-  allows the model to run on free T4 Colabs or GPUs with smaller memory! Also, note that TorchAO quantization is fully
-  compatible with `torch.compile`, which can significantly improve inference speed. FP8 precision must be used on
-  devices with NVIDIA H100 and above, requiring source installation of `torch`, `torchao`, `diffusers`, and `accelerate`
-  Python packages. CUDA 12.4 is recommended.
-+ The inference speed tests also used the above memory optimization scheme. Without memory optimization, inference speed
-  increases by about 10%. Only the `diffusers` version of the model supports quantization.
-+ The model only supports English input; other languages can be translated into English for use via large model
-  refinement.
-+ The memory usage of model fine-tuning is tested in an `8 * H100` environment, and the program automatically
-  uses `Zero 2` optimization. If a specific number of GPUs is marked in the table, that number or more GPUs must be used
-  for fine-tuning.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L505)
 
- | **Attribute**                        | **CogVideoX-2B**                                                       | **CogVideoX-5B**                                                       |
-| ------------------------------------ | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| **Model Name**                       | CogVideoX-2B                                                           | CogVideoX-5B                                                           |
-| **Inference Precision**              | FP16* (Recommended), BF16, FP32, FP8*, INT8, Not supported INT4         | BF16 (Recommended), FP16, FP32, FP8*, INT8, Not supported INT4         |
-| **Single GPU Inference VRAM**        | FP16: Using diffusers 12.5GB* INT8: Using diffusers with torchao 7.8GB* | BF16: Using diffusers 20.7GB* INT8: Using diffusers with torchao 11.4GB* |
-| **Multi GPU Inference VRAM**         | FP16: Using diffusers 10GB*                                             | BF16: Using diffusers 15GB*                                             |
-| **Inference Speed**                  | Single A100: ~90 seconds, Single H100: ~45 seconds                      | Single A100: ~180 seconds, Single H100: ~90 seconds                     |
-| **Fine-tuning Precision**            | FP16                                                                   | BF16                                                                   |
-| **Fine-tuning VRAM Consumption**     | 47 GB (bs=1, LORA) 61 GB (bs=2, LORA) 62GB (bs=1, SFT)                 | 63 GB (bs=1, LORA) 80 GB (bs=2, LORA) 75GB (bs=1, SFT)                 |
+**Parameters:**
 
-### Adapt a model to a new task
-https://huggingface.co/docs/diffusers/v0.39.0/training/adapt_a_model.md
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+height (`int`, *optional*, defaults to self.transformer.config.sample_height * self.vae_scale_factor_spatial) : The height in pixels of the generated image. This is set to 480 by default for the best results.
+
+width (`int`, *optional*, defaults to self.transformer.config.sample_height * self.vae_scale_factor_spatial) : The width in pixels of the generated image. This is set to 720 by default for the best results.
+
+num_frames (`int`, defaults to `48`) : Number of frames to generate. Must be divisible by self.vae_scale_factor_temporal. Generated video will contain 1 extra frame because CogVideoX is conditioned with (num_seconds * fps + 1) frames where num_seconds is 6 and fps is 8. However, since videos can be saved at any fps, the only condition that needs to be satisfied is that of divisibility mentioned above.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+timesteps (`list[int]`, *optional*) : Custom timesteps to use for the denoising process with schedulers which support a `timesteps` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used. Must be in descending order.
+
+guidance_scale (`float`, *optional*, defaults to 7.0) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+use_dynamic_cfg (`bool`, *optional*, defaults to `False`) : If True, dynamically adjusts the guidance scale during inference.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
+
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.stable_diffusion_xl.StableDiffusionXLPipelineOutput` instead of a plain tuple.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int`, defaults to `226`) : Maximum sequence length in encoded prompt. Must be consistent with `self.transformer.config.max_text_seq_length` otherwise may lead to poor results.
+
+**Returns:** [CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) or `tuple`
+
+[CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) if `return_dict` is True, otherwise a
+`tuple`. When returning a tuple, the first element is a list with the generated images.
+
+Function invoked when calling the pipeline for generation.
+
+Examples:
+```python
+>>> import torch
+>>> from diffusers import CogVideoXPipeline
+>>> from diffusers.utils import export_to_video
+
+>>> # Models: "THUDM/CogVideoX-2b" or "THUDM/CogVideoX-5b"
+>>> pipe = CogVideoXPipeline.from_pretrained("THUDM/CogVideoX-2b", torch_dtype=torch.float16).to("cuda")
+>>> prompt = (
+...     "A panda, dressed in a small, red jacket and a tiny hat, sits on a wooden stool in a serene bamboo forest. "
+...     "The panda's fluffy paws strum a miniature acoustic guitar, producing soft, melodic tunes. Nearby, a few other "
+...     "pandas gather, watching curiously and some clapping in rhythm. Sunlight filters through the tall bamboo, "
+...     "casting a gentle glow on the scene. The panda's face is expressive, showing concentration and joy as it plays. "
+...     "The background includes a small, flowing stream and vibrant green foliage, enhancing the peaceful and magical "
+...     "atmosphere of this unique musical performance."
+... )
+>>> video = pipe(prompt=prompt, guidance_scale=6, num_inference_steps=50).frames[0]
+>>> export_to_video(video, "output.mp4", fps=8)
+```
+
+#### encode_prompt[[diffusers.CogVideoXPipeline.encode_prompt]]
+
+```python
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L244)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : prompt to be encoded
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+do_classifier_free_guidance (`bool`, *optional*, defaults to `True`) : Whether to use classifier free guidance or not.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : Number of videos that should be generated per prompt. torch device to place the resulting embeddings on
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+device : (`torch.device`, *optional*): torch device
+
+dtype : (`torch.dtype`, *optional*): torch dtype
+
+Encodes the prompt into text encoder hidden states.
+
+#### fuse_qkv_projections[[diffusers.CogVideoXPipeline.fuse_qkv_projections]]
+
+```python
+fuse_qkv_projections()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L428)
+
+Enables fused QKV projections.
+
+#### unfuse_qkv_projections[[diffusers.CogVideoXPipeline.unfuse_qkv_projections]]
+
+```python
+unfuse_qkv_projections()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox.py#L433)
+
+Disable QKV projection fusion if enabled.
+
+## CogVideoXImageToVideoPipeline[[diffusers.CogVideoXImageToVideoPipeline]]
+
+#### diffusers.CogVideoXImageToVideoPipeline[[diffusers.CogVideoXImageToVideoPipeline]]
+
+```python
+diffusers.CogVideoXImageToVideoPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, vae: AutoencoderKLCogVideoX, transformer: CogVideoXTransformer3DModel, scheduler: diffusers.schedulers.scheduling_ddim_cogvideox.CogVideoXDDIMScheduler | diffusers.schedulers.scheduling_dpm_cogvideox.CogVideoXDPMScheduler)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L160)
+
+**Parameters:**
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+
+text_encoder (`T5EncoderModel`) : Frozen text-encoder. CogVideoX uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel); specifically the [t5-v1_1-xxl](https://huggingface.co/PixArt-alpha/PixArt-alpha/tree/main/t5-v1_1-xxl) variant.
+
+tokenizer (`T5Tokenizer`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
+
+transformer ([CogVideoXTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel)) : A text conditioned `CogVideoXTransformer3DModel` to denoise the encoded video latents.
+
+scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+
+Pipeline for image-to-video generation using CogVideoX.
+
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
+
+#### __call__[[diffusers.CogVideoXImageToVideoPipeline.__call__]]
+
+```python
+__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], prompt: str | list[str] | None = None, negative_prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_frames: int = 49, num_inference_steps: int = 50, timesteps: list[int] | None = None, guidance_scale: float = 6, use_dynamic_cfg: bool = False, num_videos_per_prompt: int = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 226)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L598)
+
+**Parameters:**
+
+image (`PipelineImageInput`) : The input image to condition the generation on. Must be an image, a list of images or a `torch.Tensor`.
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+height (`int`, *optional*, defaults to self.transformer.config.sample_height * self.vae_scale_factor_spatial) : The height in pixels of the generated image. This is set to 480 by default for the best results.
+
+width (`int`, *optional*, defaults to self.transformer.config.sample_height * self.vae_scale_factor_spatial) : The width in pixels of the generated image. This is set to 720 by default for the best results.
+
+num_frames (`int`, defaults to `48`) : Number of frames to generate. Must be divisible by self.vae_scale_factor_temporal. Generated video will contain 1 extra frame because CogVideoX is conditioned with (num_seconds * fps + 1) frames where num_seconds is 6 and fps is 8. However, since videos can be saved at any fps, the only condition that needs to be satisfied is that of divisibility mentioned above.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+timesteps (`list[int]`, *optional*) : Custom timesteps to use for the denoising process with schedulers which support a `timesteps` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used. Must be in descending order.
+
+guidance_scale (`float`, *optional*, defaults to 7.0) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+use_dynamic_cfg (`bool`, *optional*, defaults to `False`) : If True, dynamically adjusts the guidance scale during inference.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
+
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.stable_diffusion_xl.StableDiffusionXLPipelineOutput` instead of a plain tuple.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int`, defaults to `226`) : Maximum sequence length in encoded prompt. Must be consistent with `self.transformer.config.max_text_seq_length` otherwise may lead to poor results.
+
+**Returns:** [CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) or `tuple`
+
+[CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) if `return_dict` is True, otherwise a
+`tuple`. When returning a tuple, the first element is a list with the generated images.
+
+Function invoked when calling the pipeline for generation.
+
+Examples:
+```py
+>>> import torch
+>>> from diffusers import CogVideoXImageToVideoPipeline
+>>> from diffusers.utils import export_to_video, load_image
+
+>>> pipe = CogVideoXImageToVideoPipeline.from_pretrained("THUDM/CogVideoX-5b-I2V", torch_dtype=torch.bfloat16)
+>>> pipe.to("cuda")
+
+>>> prompt = "An astronaut hatching from an egg, on the surface of the moon, the darkness and depth of space realised in the background. High quality, ultrarealistic detail and breath-taking movie-like camera shot."
+>>> image = load_image(
+...     "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/astronaut.jpg"
+... )
+>>> video = pipe(image, prompt, use_dynamic_cfg=True)
+>>> export_to_video(video.frames[0], "output.mp4", fps=8)
+```
+
+#### encode_prompt[[diffusers.CogVideoXImageToVideoPipeline.encode_prompt]]
+
+```python
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L263)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : prompt to be encoded
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+do_classifier_free_guidance (`bool`, *optional*, defaults to `True`) : Whether to use classifier free guidance or not.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : Number of videos that should be generated per prompt. torch device to place the resulting embeddings on
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+device : (`torch.device`, *optional*): torch device
+
+dtype : (`torch.dtype`, *optional*): torch dtype
+
+Encodes the prompt into text encoder hidden states.
+
+#### fuse_qkv_projections[[diffusers.CogVideoXImageToVideoPipeline.fuse_qkv_projections]]
+
+```python
+fuse_qkv_projections()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L519)
+
+Enables fused QKV projections.
+
+#### unfuse_qkv_projections[[diffusers.CogVideoXImageToVideoPipeline.unfuse_qkv_projections]]
+
+```python
+unfuse_qkv_projections()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_image2video.py#L525)
+
+Disable QKV projection fusion if enabled.
+
+## CogVideoXVideoToVideoPipeline[[diffusers.CogVideoXVideoToVideoPipeline]]
+
+#### diffusers.CogVideoXVideoToVideoPipeline[[diffusers.CogVideoXVideoToVideoPipeline]]
+
+```python
+diffusers.CogVideoXVideoToVideoPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, vae: AutoencoderKLCogVideoX, transformer: CogVideoXTransformer3DModel, scheduler: diffusers.schedulers.scheduling_ddim_cogvideox.CogVideoXDDIMScheduler | diffusers.schedulers.scheduling_dpm_cogvideox.CogVideoXDPMScheduler)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L169)
+
+**Parameters:**
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+
+text_encoder (`T5EncoderModel`) : Frozen text-encoder. CogVideoX uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel); specifically the [t5-v1_1-xxl](https://huggingface.co/PixArt-alpha/PixArt-alpha/tree/main/t5-v1_1-xxl) variant.
+
+tokenizer (`T5Tokenizer`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
+
+transformer ([CogVideoXTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel)) : A text conditioned `CogVideoXTransformer3DModel` to denoise the encoded video latents.
+
+scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+
+Pipeline for video-to-video generation using CogVideoX.
+
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
+
+#### __call__[[diffusers.CogVideoXVideoToVideoPipeline.__call__]]
+
+```python
+__call__(video: list = None, prompt: str | list[str] | None = None, negative_prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, timesteps: list[int] | None = None, strength: float = 0.8, guidance_scale: float = 6, use_dynamic_cfg: bool = False, num_videos_per_prompt: int = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 226)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L575)
+
+**Parameters:**
+
+video (`list[PIL.Image.Image]`) : The input video to condition the generation on. Must be a list of images/frames of the video.
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+height (`int`, *optional*, defaults to self.transformer.config.sample_height * self.vae_scale_factor_spatial) : The height in pixels of the generated image. This is set to 480 by default for the best results.
+
+width (`int`, *optional*, defaults to self.transformer.config.sample_height * self.vae_scale_factor_spatial) : The width in pixels of the generated image. This is set to 720 by default for the best results.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+timesteps (`list[int]`, *optional*) : Custom timesteps to use for the denoising process with schedulers which support a `timesteps` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used. Must be in descending order.
+
+strength (`float`, *optional*, defaults to 0.8) : Higher strength leads to more differences between original video and generated video.
+
+guidance_scale (`float`, *optional*, defaults to 7.0) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+use_dynamic_cfg (`bool`, *optional*, defaults to `False`) : If True, dynamically adjusts the guidance scale during inference.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
+
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.stable_diffusion_xl.StableDiffusionXLPipelineOutput` instead of a plain tuple.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int`, defaults to `226`) : Maximum sequence length in encoded prompt. Must be consistent with `self.transformer.config.max_text_seq_length` otherwise may lead to poor results.
+
+**Returns:** [CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) or `tuple`
+
+[CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) if `return_dict` is True, otherwise a
+`tuple`. When returning a tuple, the first element is a list with the generated images.
+
+Function invoked when calling the pipeline for generation.
+
+Examples:
+```python
+>>> import torch
+>>> from diffusers import CogVideoXDPMScheduler, CogVideoXVideoToVideoPipeline
+>>> from diffusers.utils import export_to_video, load_video
+
+>>> # Models: "THUDM/CogVideoX-2b" or "THUDM/CogVideoX-5b"
+>>> pipe = CogVideoXVideoToVideoPipeline.from_pretrained("THUDM/CogVideoX-5b", torch_dtype=torch.bfloat16)
+>>> pipe.to("cuda")
+>>> pipe.scheduler = CogVideoXDPMScheduler.from_config(pipe.scheduler.config)
+
+>>> input_video = load_video(
+...     "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/hiker.mp4"
+... )
+>>> prompt = (
+...     "An astronaut stands triumphantly at the peak of a towering mountain. Panorama of rugged peaks and "
+...     "valleys. Very futuristic vibe and animated aesthetic. Highlights of purple and golden colors in "
+...     "the scene. The sky is looks like an animated/cartoonish dream of galaxies, nebulae, stars, planets, "
+...     "moons, but the remainder of the scene is mostly realistic."
+... )
+
+>>> video = pipe(
+...     video=input_video, prompt=prompt, strength=0.8, guidance_scale=6, num_inference_steps=50
+... ).frames[0]
+>>> export_to_video(video, "output.mp4", fps=8)
+```
+
+#### encode_prompt[[diffusers.CogVideoXVideoToVideoPipeline.encode_prompt]]
+
+```python
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L269)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : prompt to be encoded
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+do_classifier_free_guidance (`bool`, *optional*, defaults to `True`) : Whether to use classifier free guidance or not.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : Number of videos that should be generated per prompt. torch device to place the resulting embeddings on
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+device : (`torch.device`, *optional*): torch device
+
+dtype : (`torch.dtype`, *optional*): torch dtype
+
+Encodes the prompt into text encoder hidden states.
+
+#### fuse_qkv_projections[[diffusers.CogVideoXVideoToVideoPipeline.fuse_qkv_projections]]
+
+```python
+fuse_qkv_projections()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L496)
+
+Enables fused QKV projections.
+
+#### unfuse_qkv_projections[[diffusers.CogVideoXVideoToVideoPipeline.unfuse_qkv_projections]]
+
+```python
+unfuse_qkv_projections()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_video2video.py#L502)
+
+Disable QKV projection fusion if enabled.
+
+## CogVideoXFunControlPipeline[[diffusers.CogVideoXFunControlPipeline]]
+
+#### diffusers.CogVideoXFunControlPipeline[[diffusers.CogVideoXFunControlPipeline]]
+
+```python
+diffusers.CogVideoXFunControlPipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, vae: AutoencoderKLCogVideoX, transformer: CogVideoXTransformer3DModel, scheduler: KarrasDiffusionSchedulers)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L154)
+
+**Parameters:**
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+
+text_encoder (`T5EncoderModel`) : Frozen text-encoder. CogVideoX uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel); specifically the [t5-v1_1-xxl](https://huggingface.co/PixArt-alpha/PixArt-alpha/tree/main/t5-v1_1-xxl) variant.
+
+tokenizer (`T5Tokenizer`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
+
+transformer ([CogVideoXTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/cogvideox_transformer3d#diffusers.CogVideoXTransformer3DModel)) : A text conditioned `CogVideoXTransformer3DModel` to denoise the encoded video latents.
+
+scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
+
+Pipeline for controlled text-to-video generation using CogVideoX Fun.
+
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
+
+#### __call__[[diffusers.CogVideoXFunControlPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] | None = None, negative_prompt: str | list[str] | None = None, control_video: list[PIL.Image.Image] | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 50, timesteps: list[int] | None = None, guidance_scale: float = 6, use_dynamic_cfg: bool = False, num_videos_per_prompt: int = 1, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, control_video_latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 226)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L551)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+control_video (`list[PIL.Image.Image]`) : The control video to condition the generation on. Must be a list of images/frames of the video. If not provided, `control_video_latents` must be provided.
+
+height (`int`, *optional*, defaults to self.transformer.config.sample_height * self.vae_scale_factor_spatial) : The height in pixels of the generated image. This is set to 480 by default for the best results.
+
+width (`int`, *optional*, defaults to self.transformer.config.sample_height * self.vae_scale_factor_spatial) : The width in pixels of the generated image. This is set to 720 by default for the best results.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+timesteps (`list[int]`, *optional*) : Custom timesteps to use for the denoising process with schedulers which support a `timesteps` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used. Must be in descending order.
+
+guidance_scale (`float`, *optional*, defaults to 6.0) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+use_dynamic_cfg (`bool`, *optional*, defaults to `False`) : If True, dynamically adjusts the guidance scale during inference.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
+
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) from the [DDIM](https://arxiv.org/abs/2010.02502) paper. Only applies to [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), and is ignored in other schedulers.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for video generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+control_video_latents (`torch.Tensor`, *optional*) : Pre-generated control latents, sampled from a Gaussian distribution, to be used as inputs for controlled video generation. If not provided, `control_video` must be provided.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.stable_diffusion_xl.StableDiffusionXLPipelineOutput` instead of a plain tuple.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int`, defaults to `226`) : Maximum sequence length in encoded prompt. Must be consistent with `self.transformer.config.max_text_seq_length` otherwise may lead to poor results.
+
+**Returns:** [CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) or `tuple`
+
+[CogVideoXPipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/cogvideox#diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput) if `return_dict` is True, otherwise a
+`tuple`. When returning a tuple, the first element is a list with the generated images.
+
+Function invoked when calling the pipeline for generation.
+
+Examples:
+```python
+>>> import torch
+>>> from diffusers import CogVideoXFunControlPipeline, DDIMScheduler
+>>> from diffusers.utils import export_to_video, load_video
+
+>>> pipe = CogVideoXFunControlPipeline.from_pretrained(
+...     "alibaba-pai/CogVideoX-Fun-V1.1-5b-Pose", torch_dtype=torch.bfloat16
+... )
+>>> pipe.scheduler = DDIMScheduler.from_config(pipe.scheduler.config)
+>>> pipe.to("cuda")
+
+>>> control_video = load_video(
+...     "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/hiker.mp4"
+... )
+>>> prompt = (
+...     "An astronaut stands triumphantly at the peak of a towering mountain. Panorama of rugged peaks and "
+...     "valleys. Very futuristic vibe and animated aesthetic. Highlights of purple and golden colors in "
+...     "the scene. The sky is looks like an animated/cartoonish dream of galaxies, nebulae, stars, planets, "
+...     "moons, but the remainder of the scene is mostly realistic."
+... )
+
+>>> video = pipe(prompt=prompt, control_video=control_video).frames[0]
+>>> export_to_video(video, "output.mp4", fps=8)
+```
+
+#### encode_prompt[[diffusers.CogVideoXFunControlPipeline.encode_prompt]]
+
+```python
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L253)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : prompt to be encoded
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+do_classifier_free_guidance (`bool`, *optional*, defaults to `True`) : Whether to use classifier free guidance or not.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : Number of videos that should be generated per prompt. torch device to place the resulting embeddings on
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+device : (`torch.device`, *optional*): torch device
+
+dtype : (`torch.dtype`, *optional*): torch dtype
+
+Encodes the prompt into text encoder hidden states.
+
+#### fuse_qkv_projections[[diffusers.CogVideoXFunControlPipeline.fuse_qkv_projections]]
+
+```python
+fuse_qkv_projections()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L473)
+
+Enables fused QKV projections.
+
+#### unfuse_qkv_projections[[diffusers.CogVideoXFunControlPipeline.unfuse_qkv_projections]]
+
+```python
+unfuse_qkv_projections()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_cogvideox_fun_control.py#L478)
+
+Disable QKV projection fusion if enabled.
+
+## CogVideoXPipelineOutput[[diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput]]
+
+#### diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput[[diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput]]
+
+```python
+diffusers.pipelines.cogvideo.pipeline_output.CogVideoXPipelineOutput(frames: Tensor)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/cogvideo/pipeline_output.py#L9)
+
+**Parameters:**
+
+frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of video outputs - It can be a nested list of length `batch_size,` with each sub-list containing denoised PIL image sequences of length `num_frames.` It can also be a NumPy array or Torch tensor of shape `(batch_size, num_frames, channels, height, width)`.
+
+Output class for CogVideo pipelines.
+
+### DreamLite
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/dreamlite.md

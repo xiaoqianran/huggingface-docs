@@ -1,10 +1,10 @@
 # Auto docstring and parameter templates
 
-Every [ModularPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) has a `doc` property that is automatically generated from its `description`, `inputs`, `intermediate_outputs`, `expected_components`, and `expected_configs`. The auto docstring system keeps docstrings in sync with the block's actual interface. Parameter templates provide standardized descriptions for parameters that appear across many pipelines.
+Every [ModularPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) has a `doc` property that is automatically generated from its `description`, `inputs`, `intermediate_outputs`, `expected_components`, and `expected_configs`. The auto docstring system keeps docstrings in sync with the block's actual interface. Parameter templates provide standardized descriptions for parameters that appear across many pipelines.
 
 ## Auto docstring
 
-Modular pipeline blocks are composable — you can nest them, chain them in sequences, and rearrange them freely. Their docstrings follow the same pattern. When a [SequentialPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.SequentialPipelineBlocks) aggregates inputs and outputs from its sub-blocks, the documentation should update automatically without manual rewrites.
+Modular pipeline blocks are composable — you can nest them, chain them in sequences, and rearrange them freely. Their docstrings follow the same pattern. When a [SequentialPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.SequentialPipelineBlocks) aggregates inputs and outputs from its sub-blocks, the documentation should update automatically without manual rewrites.
 
 The `# auto_docstring` marker generates docstrings from the block's properties. Add it above a class definition to mark the class for automatic docstring generation.
 
@@ -143,5 +143,5 @@ OutputParam.template("prompt_embeds", note="batch-expanded")
 
 `INPUT_PARAM_TEMPLATES` and `OUTPUT_PARAM_TEMPLATES` are defined in [modular_pipeline_utils.py](https://github.com/huggingface/diffusers/blob/main/src/diffusers/modular_pipelines/modular_pipeline_utils.py). They include common parameters like `prompt`, `image`, `num_inference_steps`, `latents`, `prompt_embeds`, and more. Refer to the source for the full list of available template names.
 
-### Building Custom Blocks
-https://huggingface.co/docs/diffusers/v0.39.0/modular_diffusers/custom_blocks.md
+### States
+https://huggingface.co/docs/diffusers/v0.40.0/modular_diffusers/modular_diffusers_states.md

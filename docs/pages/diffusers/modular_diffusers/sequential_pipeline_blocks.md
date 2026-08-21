@@ -1,10 +1,10 @@
 # SequentialPipelineBlocks
 
-[SequentialPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.SequentialPipelineBlocks) are a multi-block type that composes other [ModularPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) together in a sequence. Data flows linearly from one block to the next using `inputs` and `intermediate_outputs`. Each block in [SequentialPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.SequentialPipelineBlocks) usually represents a step in the pipeline, and by combining them, you gradually build a pipeline.
+[SequentialPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.SequentialPipelineBlocks) are a multi-block type that composes other [ModularPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) together in a sequence. Data flows linearly from one block to the next using `inputs` and `intermediate_outputs`. Each block in [SequentialPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.SequentialPipelineBlocks) usually represents a step in the pipeline, and by combining them, you gradually build a pipeline.
 
-This guide shows you how to connect two blocks into a [SequentialPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.SequentialPipelineBlocks).
+This guide shows you how to connect two blocks into a [SequentialPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.SequentialPipelineBlocks).
 
-Create two [ModularPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks). The first block, `InputBlock`, outputs a `batch_size` value and the second block, `ImageEncoderBlock` uses `batch_size` as `inputs`.
+Create two [ModularPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks). The first block, `InputBlock`, outputs a `batch_size` value and the second block, `ImageEncoderBlock` uses `batch_size` as `inputs`.
 
 ```py
 from diffusers.modular_pipelines import ModularPipelineBlocks, InputParam, OutputParam
@@ -70,7 +70,7 @@ class ImageEncoderBlock(ModularPipelineBlocks):
         return components, state
 ```
 
-Connect the two blocks by defining a [SequentialPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.SequentialPipelineBlocks). List the block instances in `block_classes` and their corresponding names in `block_names`. The blocks are executed in the order they appear in `block_classes`, and data flows from one block to the next through [PipelineState](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_states#diffusers.modular_pipelines.PipelineState).
+Connect the two blocks by defining a [SequentialPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.SequentialPipelineBlocks). List the block instances in `block_classes` and their corresponding names in `block_names`. The blocks are executed in the order they appear in `block_classes`, and data flows from one block to the next through [PipelineState](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_states#diffusers.modular_pipelines.PipelineState).
 
 ```py
 class ImageProcessingStep(SequentialPipelineBlocks):
@@ -90,7 +90,7 @@ class ImageProcessingStep(SequentialPipelineBlocks):
         )
 ```
 
-When you create a [SequentialPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.SequentialPipelineBlocks), properties like `inputs`, `intermediate_outputs`, and `expected_components` are automatically aggregated from the sub-blocks, so there is no need to define them again.
+When you create a [SequentialPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.SequentialPipelineBlocks), properties like `inputs`, `intermediate_outputs`, and `expected_components` are automatically aggregated from the sub-blocks, so there is no need to define them again.
 
 There are a few properties you should set:
 
@@ -108,5 +108,5 @@ print(blocks)
 print(blocks.doc)
 ```
 
-### Utilities
-https://huggingface.co/docs/diffusers/v0.39.0/api/utilities.md
+### Overview
+https://huggingface.co/docs/diffusers/v0.40.0/modular_diffusers/overview.md

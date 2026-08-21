@@ -93,7 +93,7 @@ This makes it easier to compare visualizations of the predictions across various
 
 ## Depth Prediction
 
-To get a depth prediction, load the `prs-eth/marigold-depth-v1-1` checkpoint into [MarigoldDepthPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.MarigoldDepthPipeline), 
+To get a depth prediction, load the `prs-eth/marigold-depth-v1-1` checkpoint into [MarigoldDepthPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.MarigoldDepthPipeline), 
 put the image through the pipeline, and save the predictions:
 
 ```python
@@ -101,7 +101,7 @@ import diffusers
 import torch
 
 pipe = diffusers.MarigoldDepthPipeline.from_pretrained(
-    "prs-eth/marigold-depth-v1-1", variant="fp16", torch_dtype=torch.float16
+    "prs-eth/marigold-depth-v1-1", variant="fp16", dtype=torch.float16
 ).to("cuda")
 
 image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
@@ -115,7 +115,7 @@ depth_16bit = pipe.image_processor.export_depth_to_16bit_png(depth.prediction)
 depth_16bit[0].save("einstein_depth_16bit.png")
 ```
 
-The [visualize_depth()](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_depth) function applies one of 
+The [visualize_depth()](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_depth) function applies one of 
 [matplotlib's colormaps](https://matplotlib.org/stable/users/explain/colors/colormaps.html) (`Spectral` by default) to map the predicted pixel values from a single-channel `[0, 1]` 
 depth range into an RGB image.
 With the `Spectral` colormap, pixels with near depth are painted red, and far pixels are blue.
@@ -138,7 +138,7 @@ the visualization.
 
 ## Surface Normals Estimation
 
-Load the `prs-eth/marigold-normals-v1-1` checkpoint into [MarigoldNormalsPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.MarigoldNormalsPipeline), put the image through the 
+Load the `prs-eth/marigold-normals-v1-1` checkpoint into [MarigoldNormalsPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.MarigoldNormalsPipeline), put the image through the 
 pipeline, and save the predictions:
 
 ```python
@@ -146,7 +146,7 @@ import diffusers
 import torch
 
 pipe = diffusers.MarigoldNormalsPipeline.from_pretrained(
-    "prs-eth/marigold-normals-v1-1", variant="fp16", torch_dtype=torch.float16
+    "prs-eth/marigold-normals-v1-1", variant="fp16", dtype=torch.float16
 ).to("cuda")
 
 image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
@@ -157,7 +157,7 @@ vis = pipe.image_processor.visualize_normals(normals.prediction)
 vis[0].save("einstein_normals.png")
 ```
 
-The [visualize_normals()](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_normals) maps the three-dimensional 
+The [visualize_normals()](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_normals) maps the three-dimensional 
 prediction with pixel values in the range `[-1, 1]` into an RGB image.
 The visualization function supports flipping surface normals axes to make the visualization compatible with other 
 choices of the frame of reference.
@@ -194,7 +194,7 @@ import diffusers
 import torch
 
 pipe = diffusers.MarigoldIntrinsicsPipeline.from_pretrained(
-    "prs-eth/marigold-iid-appearance-v1-1", variant="fp16", torch_dtype=torch.float16
+    "prs-eth/marigold-iid-appearance-v1-1", variant="fp16", dtype=torch.float16
 ).to("cuda")
 
 image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
@@ -214,7 +214,7 @@ import diffusers
 import torch
 
 pipe = diffusers.MarigoldIntrinsicsPipeline.from_pretrained(
-    "prs-eth/marigold-iid-lighting-v1-1", variant="fp16", torch_dtype=torch.float16
+    "prs-eth/marigold-iid-lighting-v1-1", variant="fp16", dtype=torch.float16
 ).to("cuda")
 
 image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
@@ -230,7 +230,7 @@ vis[0]["residual"].save("einstein_residual.png")
 Both models share the same pipeline while supporting different decomposition types.
 The exact decomposition parameterization (e.g., sRGB vs. linear space) is stored in the 
 `pipe.target_properties` dictionary, which is passed into the 
-[visualize_intrinsics()](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_intrinsics) function.
+[visualize_intrinsics()](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_intrinsics) function.
 
 Below are some examples showcasing the predicted decomposition outputs. 
 All modalities can be inspected in the 
@@ -261,7 +261,7 @@ steps to the minimum:
   import torch
 
   pipe = diffusers.MarigoldDepthPipeline.from_pretrained(
-      "prs-eth/marigold-depth-v1-1", variant="fp16", torch_dtype=torch.float16
+      "prs-eth/marigold-depth-v1-1", variant="fp16", dtype=torch.float16
   ).to("cuda")
 
   image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
@@ -284,11 +284,11 @@ Note that using a lightweight VAE may slightly reduce the visual quality of the 
   import torch
 
   pipe = diffusers.MarigoldDepthPipeline.from_pretrained(
-      "prs-eth/marigold-depth-v1-1", variant="fp16", torch_dtype=torch.float16
+      "prs-eth/marigold-depth-v1-1", variant="fp16", dtype=torch.float16
   ).to("cuda")
 
 + pipe.vae = diffusers.AutoencoderTiny.from_pretrained(
-+     "madebyollin/taesd", torch_dtype=torch.float16
++     "madebyollin/taesd", dtype=torch.float16
 + ).cuda()
 
   image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
@@ -306,7 +306,7 @@ Speeding them up can be achieved by using a more efficient attention processor:
 + from diffusers.models.attention_processor import AttnProcessor2_0
 
   pipe = diffusers.MarigoldDepthPipeline.from_pretrained(
-      "prs-eth/marigold-depth-v1-1", variant="fp16", torch_dtype=torch.float16
+      "prs-eth/marigold-depth-v1-1", variant="fp16", dtype=torch.float16
   ).to("cuda")
 
 + pipe.vae.set_attn_processor(AttnProcessor2_0()) 
@@ -328,7 +328,7 @@ the same pipeline instance is called repeatedly, such as within a loop.
   from diffusers.models.attention_processor import AttnProcessor2_0
 
   pipe = diffusers.MarigoldDepthPipeline.from_pretrained(
-      "prs-eth/marigold-depth-v1-1", variant="fp16", torch_dtype=torch.float16
+      "prs-eth/marigold-depth-v1-1", variant="fp16", dtype=torch.float16
   ).to("cuda")
 
   pipe.vae.set_attn_processor(AttnProcessor2_0()) 
@@ -416,10 +416,10 @@ path_in = "https://huggingface.co/spaces/prs-eth/marigold-lcm/resolve/c7adb54279
 path_out = "obama_depth.gif"
 
 pipe = diffusers.MarigoldDepthPipeline.from_pretrained(
-    "prs-eth/marigold-depth-v1-1", variant="fp16", torch_dtype=torch.float16
+    "prs-eth/marigold-depth-v1-1", variant="fp16", dtype=torch.float16
 ).to(device)
 pipe.vae = diffusers.AutoencoderTiny.from_pretrained(
-    "madebyollin/taesd", torch_dtype=torch.float16
+    "madebyollin/taesd", dtype=torch.float16
 ).to(device)
 pipe.unet.set_attn_processor(AttnProcessor2_0())
 pipe.vae = torch.compile(pipe.vae, mode="reduce-overhead", fullgraph=True)
@@ -485,7 +485,7 @@ image = diffusers.utils.load_image(
 )
 
 pipe = diffusers.MarigoldDepthPipeline.from_pretrained(
-    "prs-eth/marigold-depth-v1-1", torch_dtype=torch.float16, variant="fp16"
+    "prs-eth/marigold-depth-v1-1", dtype=torch.float16, variant="fp16"
 ).to(device)
 
 depth_image = pipe(image, generator=generator).prediction
@@ -493,10 +493,10 @@ depth_image = pipe.image_processor.visualize_depth(depth_image, color_map="binar
 depth_image[0].save("motorcycle_controlnet_depth.png")
 
 controlnet = diffusers.ControlNetModel.from_pretrained(
-    "diffusers/controlnet-depth-sdxl-1.0", torch_dtype=torch.float16, variant="fp16"
+    "diffusers/controlnet-depth-sdxl-1.0", dtype=torch.float16, variant="fp16"
 ).to(device)
 pipe = diffusers.StableDiffusionXLControlNetPipeline.from_pretrained(
-    "SG161222/RealVisXL_V4.0", torch_dtype=torch.float16, variant="fp16", controlnet=controlnet
+    "SG161222/RealVisXL_V4.0", dtype=torch.float16, variant="fp16", controlnet=controlnet
 ).to(device)
 pipe.scheduler = diffusers.DPMSolverMultistepScheduler.from_config(pipe.scheduler.config, use_karras_sigmas=True)
 
@@ -576,7 +576,7 @@ import diffusers
 import torch
 
 pipe = diffusers.MarigoldDepthPipeline.from_pretrained(
-    "prs-eth/marigold-depth-v1-1", variant="fp16", torch_dtype=torch.float16
+    "prs-eth/marigold-depth-v1-1", variant="fp16", dtype=torch.float16
 ).to("cuda")
 
 image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
@@ -622,68 +622,82 @@ unlike depth and surface normals. It is also higher in shaded regions and at dis
 
 #### diffusers.MarigoldDepthPipeline[[diffusers.MarigoldDepthPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/marigold/pipeline_marigold_depth.py#L104)
+```python
+diffusers.MarigoldDepthPipeline(unet: UNet2DConditionModel, vae: AutoencoderKL, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_lcm.LCMScheduler, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, prediction_type: str | None = None, scale_invariant: bool | None = True, shift_invariant: bool | None = True, default_denoising_steps: int | None = None, default_processing_resolution: int | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_depth.py#L104)
+
+**Parameters:**
+
+unet (`UNet2DConditionModel`) : Conditional U-Net to denoise the depth latent, conditioned on image latent.
+
+vae (`AutoencoderKL`) : Variational Auto-Encoder (VAE) Model to encode and decode images and predictions to and from latent representations.
+
+scheduler (`DDIMScheduler` or `LCMScheduler`) : A scheduler to be used in combination with `unet` to denoise the encoded image latents.
+
+text_encoder (`CLIPTextModel`) : Text-encoder, for empty text embedding.
+
+tokenizer (`CLIPTokenizer`) : CLIP tokenizer.
+
+prediction_type (`str`, *optional*) : Type of predictions made by the model.
+
+scale_invariant (`bool`, *optional*) : A model property specifying whether the predicted depth maps are scale-invariant. This value must be set in the model config. When used together with the `shift_invariant=True` flag, the model is also called "affine-invariant". NB: overriding this value is not supported.
+
+shift_invariant (`bool`, *optional*) : A model property specifying whether the predicted depth maps are shift-invariant. This value must be set in the model config. When used together with the `scale_invariant=True` flag, the model is also called "affine-invariant". NB: overriding this value is not supported.
+
+default_denoising_steps (`int`, *optional*) : The minimum number of denoising diffusion steps that are required to produce a prediction of reasonable quality with the given model. This value must be set in the model config. When the pipeline is called without explicitly setting `num_inference_steps`, the default value is used. This is required to ensure reasonable results with various model flavors compatible with the pipeline, such as those relying on very short denoising schedules (`LCMScheduler`) and those with full diffusion schedules (`DDIMScheduler`).
+
+default_processing_resolution (`int`, *optional*) : The recommended value of the `processing_resolution` parameter of the pipeline. This value must be set in the model config. When the pipeline is called without explicitly setting `processing_resolution`, the default value is used. This is required to ensure reasonable results with various model flavors trained with varying optimal processing resolution values.
 
 Pipeline for monocular depth estimation using the Marigold method: https://marigoldmonodepth.github.io.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
-__call__diffusers.MarigoldDepthPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/marigold/pipeline_marigold_depth.py#L347[{"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor]"}, {"name": "num_inference_steps", "val": ": int | None = None"}, {"name": "ensemble_size", "val": ": int = 1"}, {"name": "processing_resolution", "val": ": int | None = None"}, {"name": "match_input_resolution", "val": ": bool = True"}, {"name": "resample_method_input", "val": ": str = 'bilinear'"}, {"name": "resample_method_output", "val": ": str = 'bilinear'"}, {"name": "batch_size", "val": ": int = 1"}, {"name": "ensembling_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "latents", "val": ": torch.Tensor | list[torch.Tensor] | None = None"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "output_type", "val": ": str = 'np'"}, {"name": "output_uncertainty", "val": ": bool = False"}, {"name": "output_latent", "val": ": bool = False"}, {"name": "return_dict", "val": ": bool = True"}]- **image** (`PIL.Image.Image`, `np.ndarray`, `torch.Tensor`, `list[PIL.Image.Image]`, `list[np.ndarray]`), --
-  `list[torch.Tensor]`: An input image or images used as an input for the depth estimation task. For
-  arrays and tensors, the expected value range is between `[0, 1]`. Passing a batch of images is possible
-  by providing a four-dimensional array or a tensor. Additionally, a list of images of two- or
-  three-dimensional arrays or tensors can be passed. In the latter case, all list elements must have the
-  same width and height.
-- **num_inference_steps** (`int`, *optional*, defaults to `None`) --
-  Number of denoising diffusion steps during inference. The default value `None` results in automatic
-  selection.
-- **ensemble_size** (`int`, defaults to `1`) --
-  Number of ensemble predictions. Higher values result in measurable improvements and visual degradation.
-- **processing_resolution** (`int`, *optional*, defaults to `None`) --
-  Effective processing resolution. When set to `0`, matches the larger input image dimension. This
-  produces crisper predictions, but may also lead to the overall loss of global context. The default
-  value `None` resolves to the optimal value from the model config.
-- **match_input_resolution** (`bool`, *optional*, defaults to `True`) --
-  When enabled, the output prediction is resized to match the input dimensions. When disabled, the longer
-  side of the output will equal to `processing_resolution`.
-- **resample_method_input** (`str`, *optional*, defaults to `"bilinear"`) --
-  Resampling method used to resize input images to `processing_resolution`. The accepted values are:
-  `"nearest"`, `"nearest-exact"`, `"bilinear"`, `"bicubic"`, or `"area"`.
-- **resample_method_output** (`str`, *optional*, defaults to `"bilinear"`) --
-  Resampling method used to resize output predictions to match the input resolution. The accepted values
-  are `"nearest"`, `"nearest-exact"`, `"bilinear"`, `"bicubic"`, or `"area"`.
-- **batch_size** (`int`, *optional*, defaults to `1`) --
-  Batch size; only matters when setting `ensemble_size` or passing a tensor of images.
-- **ensembling_kwargs** (`dict`, *optional*, defaults to `None`) --
-  Extra dictionary with arguments for precise ensembling control. The following options are available:
-  - reduction (`str`, *optional*, defaults to `"median"`): Defines the ensembling function applied in
-    every pixel location, can be either `"median"` or `"mean"`.
-  - regularizer_strength (`float`, *optional*, defaults to `0.02`): Strength of the regularizer that
-    pulls the aligned predictions to the unit range from 0 to 1.
-  - max_iter (`int`, *optional*, defaults to `2`): Maximum number of the alignment solver steps. Refer to
-    `scipy.optimize.minimize` function, `options` argument.
-  - tol (`float`, *optional*, defaults to `1e-3`): Alignment solver tolerance. The solver stops when the
-    tolerance is reached.
-  - max_res (`int`, *optional*, defaults to `None`): Resolution at which the alignment is performed;
-    `None` matches the `processing_resolution`.
-- **latents** (`torch.Tensor`, or `list[torch.Tensor]`, *optional*, defaults to `None`) --
-  Latent noise tensors to replace the random initialization. These can be taken from the previous
-  function call's output.
-- **generator** (`torch.Generator`, or `list[torch.Generator]`, *optional*, defaults to `None`) --
-  Random number generator object to ensure reproducibility.
-- **output_type** (`str`, *optional*, defaults to `"np"`) --
-  Preferred format of the output's `prediction` and the optional `uncertainty` fields. The accepted
-  values are: `"np"` (numpy array) or `"pt"` (torch tensor).
-- **output_uncertainty** (`bool`, *optional*, defaults to `False`) --
-  When enabled, the output's `uncertainty` field contains the predictive uncertainty map, provided that
-  the `ensemble_size` argument is set to a value above 2.
-- **output_latent** (`bool`, *optional*, defaults to `False`) --
-  When enabled, the output's `latent` field contains the latent codes corresponding to the predictions
-  within the ensemble. These codes can be saved, modified, and used for subsequent calls with the
-  `latents` argument.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a [MarigoldDepthOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldDepthOutput) instead of a plain tuple.0[MarigoldDepthOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldDepthOutput) or `tuple`If `return_dict` is `True`, [MarigoldDepthOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldDepthOutput) is returned, otherwise a
+#### __call__[[diffusers.MarigoldDepthPipeline.__call__]]
+
+```python
+__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], num_inference_steps: int | None = None, ensemble_size: int = 1, processing_resolution: int | None = None, match_input_resolution: bool = True, resample_method_input: str = 'bilinear', resample_method_output: str = 'bilinear', batch_size: int = 1, ensembling_kwargs: dict[str, typing.Any] | None = None, latents: typing.Union[torch.Tensor, list[torch.Tensor], NoneType] = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str = 'np', output_uncertainty: bool = False, output_latent: bool = False, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_depth.py#L347)
+
+**Parameters:**
+
+image (`PIL.Image.Image`, `np.ndarray`, `torch.Tensor`, `list[PIL.Image.Image]`, `list[np.ndarray]`), : `list[torch.Tensor]`: An input image or images used as an input for the depth estimation task. For arrays and tensors, the expected value range is between `[0, 1]`. Passing a batch of images is possible by providing a four-dimensional array or a tensor. Additionally, a list of images of two- or three-dimensional arrays or tensors can be passed. In the latter case, all list elements must have the same width and height.
+
+num_inference_steps (`int`, *optional*, defaults to `None`) : Number of denoising diffusion steps during inference. The default value `None` results in automatic selection.
+
+ensemble_size (`int`, defaults to `1`) : Number of ensemble predictions. Higher values result in measurable improvements and visual degradation.
+
+processing_resolution (`int`, *optional*, defaults to `None`) : Effective processing resolution. When set to `0`, matches the larger input image dimension. This produces crisper predictions, but may also lead to the overall loss of global context. The default value `None` resolves to the optimal value from the model config.
+
+match_input_resolution (`bool`, *optional*, defaults to `True`) : When enabled, the output prediction is resized to match the input dimensions. When disabled, the longer side of the output will equal to `processing_resolution`.
+
+resample_method_input (`str`, *optional*, defaults to `"bilinear"`) : Resampling method used to resize input images to `processing_resolution`. The accepted values are: `"nearest"`, `"nearest-exact"`, `"bilinear"`, `"bicubic"`, or `"area"`.
+
+resample_method_output (`str`, *optional*, defaults to `"bilinear"`) : Resampling method used to resize output predictions to match the input resolution. The accepted values are `"nearest"`, `"nearest-exact"`, `"bilinear"`, `"bicubic"`, or `"area"`.
+
+batch_size (`int`, *optional*, defaults to `1`) : Batch size; only matters when setting `ensemble_size` or passing a tensor of images.
+
+ensembling_kwargs (`dict`, *optional*, defaults to `None`) : Extra dictionary with arguments for precise ensembling control. The following options are available: - reduction (`str`, *optional*, defaults to `"median"`): Defines the ensembling function applied in every pixel location, can be either `"median"` or `"mean"`. - regularizer_strength (`float`, *optional*, defaults to `0.02`): Strength of the regularizer that pulls the aligned predictions to the unit range from 0 to 1. - max_iter (`int`, *optional*, defaults to `2`): Maximum number of the alignment solver steps. Refer to `scipy.optimize.minimize` function, `options` argument. - tol (`float`, *optional*, defaults to `1e-3`): Alignment solver tolerance. The solver stops when the tolerance is reached. - max_res (`int`, *optional*, defaults to `None`): Resolution at which the alignment is performed; `None` matches the `processing_resolution`.
+
+latents (`torch.Tensor`, or `list[torch.Tensor]`, *optional*, defaults to `None`) : Latent noise tensors to replace the random initialization. These can be taken from the previous function call's output.
+
+generator (`torch.Generator`, or `list[torch.Generator]`, *optional*, defaults to `None`) : Random number generator object to ensure reproducibility.
+
+output_type (`str`, *optional*, defaults to `"np"`) : Preferred format of the output's `prediction` and the optional `uncertainty` fields. The accepted values are: `"np"` (numpy array) or `"pt"` (torch tensor).
+
+output_uncertainty (`bool`, *optional*, defaults to `False`) : When enabled, the output's `uncertainty` field contains the predictive uncertainty map, provided that the `ensemble_size` argument is set to a value above 2.
+
+output_latent (`bool`, *optional*, defaults to `False`) : When enabled, the output's `latent` field contains the latent codes corresponding to the predictions within the ensemble. These codes can be saved, modified, and used for subsequent calls with the `latents` argument.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [MarigoldDepthOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldDepthOutput) instead of a plain tuple.
+
+**Returns:** [MarigoldDepthOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldDepthOutput) or `tuple`
+
+If `return_dict` is `True`, [MarigoldDepthOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldDepthOutput) is returned, otherwise a
 `tuple` is returned where the first element is the prediction, the second element is the uncertainty
 (or `None`), and the third is the latent (or `None`).
 
@@ -708,41 +722,13 @@ Examples:
 >>> depth_16bit[0].save("einstein_depth_16bit.png")
 ```
 
-**Parameters:**
-
-unet (`UNet2DConditionModel`) : Conditional U-Net to denoise the depth latent, conditioned on image latent.
-
-vae (`AutoencoderKL`) : Variational Auto-Encoder (VAE) Model to encode and decode images and predictions to and from latent representations.
-
-scheduler (`DDIMScheduler` or `LCMScheduler`) : A scheduler to be used in combination with `unet` to denoise the encoded image latents.
-
-text_encoder (`CLIPTextModel`) : Text-encoder, for empty text embedding.
-
-tokenizer (`CLIPTokenizer`) : CLIP tokenizer.
-
-prediction_type (`str`, *optional*) : Type of predictions made by the model.
-
-scale_invariant (`bool`, *optional*) : A model property specifying whether the predicted depth maps are scale-invariant. This value must be set in the model config. When used together with the `shift_invariant=True` flag, the model is also called "affine-invariant". NB: overriding this value is not supported.
-
-shift_invariant (`bool`, *optional*) : A model property specifying whether the predicted depth maps are shift-invariant. This value must be set in the model config. When used together with the `scale_invariant=True` flag, the model is also called "affine-invariant". NB: overriding this value is not supported.
-
-default_denoising_steps (`int`, *optional*) : The minimum number of denoising diffusion steps that are required to produce a prediction of reasonable quality with the given model. This value must be set in the model config. When the pipeline is called without explicitly setting `num_inference_steps`, the default value is used. This is required to ensure reasonable results with various model flavors compatible with the pipeline, such as those relying on very short denoising schedules (`LCMScheduler`) and those with full diffusion schedules (`DDIMScheduler`).
-
-default_processing_resolution (`int`, *optional*) : The recommended value of the `processing_resolution` parameter of the pipeline. This value must be set in the model config. When the pipeline is called without explicitly setting `processing_resolution`, the default value is used. This is required to ensure reasonable results with various model flavors trained with varying optimal processing resolution values.
-
-**Returns:**
-
-`[MarigoldDepthOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldDepthOutput) or `tuple``
-
-If `return_dict` is `True`, [MarigoldDepthOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldDepthOutput) is returned, otherwise a
-`tuple` is returned where the first element is the prediction, the second element is the uncertainty
-(or `None`), and the third is the latent (or `None`).
-
 #### diffusers.pipelines.marigold.MarigoldDepthOutput[[diffusers.pipelines.marigold.MarigoldDepthOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/marigold/pipeline_marigold_depth.py#L83)
+```python
+diffusers.pipelines.marigold.MarigoldDepthOutput(prediction: typing.Union[numpy.ndarray, torch.Tensor], uncertainty: typing.Union[NoneType, numpy.ndarray, torch.Tensor], latent: typing.Optional[torch.Tensor])
+```
 
-Output class for Marigold monocular depth prediction pipeline.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_depth.py#L83)
 
 **Parameters:**
 
@@ -752,13 +738,15 @@ uncertainty (`None`, `np.ndarray`, `torch.Tensor`) : Uncertainty maps computed f
 
 latent (`None`, `torch.Tensor`) : Latent features corresponding to the predictions, compatible with the `latents` argument of the pipeline. The shape is `numimages * numensemble × 4 × latentheight × latentwidth`.
 
+Output class for Marigold monocular depth prediction pipeline.
+
 #### diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_depth[[diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_depth]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/marigold/marigold_image_processing.py#L387)
+```python
+diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_depth(depth: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], val_min: float = 0.0, val_max: float = 1.0, color_map: str = 'Spectral')
+```
 
-Visualizes depth maps, such as predictions of the `MarigoldDepthPipeline`.
-
-Returns: `list[PIL.Image.Image]` with depth maps visualization.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/marigold_image_processing.py#L387)
 
 **Parameters:**
 
@@ -770,83 +758,19 @@ val_max (`float`, *optional*, defaults to `1.0`) : Maximum value of the visualiz
 
 color_map (`str`, *optional*, defaults to `"Spectral"`) : Color map used to convert a single-channel depth prediction into colored representation.
 
+Visualizes depth maps, such as predictions of the `MarigoldDepthPipeline`.
+
+Returns: `list[PIL.Image.Image]` with depth maps visualization.
+
 ## Marigold Normals Estimation API[[diffusers.MarigoldNormalsPipeline]]
+
 #### diffusers.MarigoldNormalsPipeline[[diffusers.MarigoldNormalsPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/marigold/pipeline_marigold_normals.py#L99)
-
-Pipeline for monocular normals estimation using the Marigold method: https://marigoldmonodepth.github.io.
-
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
-library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
-
-__call__diffusers.MarigoldNormalsPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/marigold/pipeline_marigold_normals.py#L332[{"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor]"}, {"name": "num_inference_steps", "val": ": int | None = None"}, {"name": "ensemble_size", "val": ": int = 1"}, {"name": "processing_resolution", "val": ": int | None = None"}, {"name": "match_input_resolution", "val": ": bool = True"}, {"name": "resample_method_input", "val": ": str = 'bilinear'"}, {"name": "resample_method_output", "val": ": str = 'bilinear'"}, {"name": "batch_size", "val": ": int = 1"}, {"name": "ensembling_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "latents", "val": ": torch.Tensor | list[torch.Tensor] | None = None"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "output_type", "val": ": str = 'np'"}, {"name": "output_uncertainty", "val": ": bool = False"}, {"name": "output_latent", "val": ": bool = False"}, {"name": "return_dict", "val": ": bool = True"}]- **image** (`PIL.Image.Image`, `np.ndarray`, `torch.Tensor`, `list[PIL.Image.Image]`, `list[np.ndarray]`), --
-  `list[torch.Tensor]`: An input image or images used as an input for the normals estimation task. For
-  arrays and tensors, the expected value range is between `[0, 1]`. Passing a batch of images is possible
-  by providing a four-dimensional array or a tensor. Additionally, a list of images of two- or
-  three-dimensional arrays or tensors can be passed. In the latter case, all list elements must have the
-  same width and height.
-- **num_inference_steps** (`int`, *optional*, defaults to `None`) --
-  Number of denoising diffusion steps during inference. The default value `None` results in automatic
-  selection.
-- **ensemble_size** (`int`, defaults to `1`) --
-  Number of ensemble predictions. Higher values result in measurable improvements and visual degradation.
-- **processing_resolution** (`int`, *optional*, defaults to `None`) --
-  Effective processing resolution. When set to `0`, matches the larger input image dimension. This
-  produces crisper predictions, but may also lead to the overall loss of global context. The default
-  value `None` resolves to the optimal value from the model config.
-- **match_input_resolution** (`bool`, *optional*, defaults to `True`) --
-  When enabled, the output prediction is resized to match the input dimensions. When disabled, the longer
-  side of the output will equal to `processing_resolution`.
-- **resample_method_input** (`str`, *optional*, defaults to `"bilinear"`) --
-  Resampling method used to resize input images to `processing_resolution`. The accepted values are:
-  `"nearest"`, `"nearest-exact"`, `"bilinear"`, `"bicubic"`, or `"area"`.
-- **resample_method_output** (`str`, *optional*, defaults to `"bilinear"`) --
-  Resampling method used to resize output predictions to match the input resolution. The accepted values
-  are `"nearest"`, `"nearest-exact"`, `"bilinear"`, `"bicubic"`, or `"area"`.
-- **batch_size** (`int`, *optional*, defaults to `1`) --
-  Batch size; only matters when setting `ensemble_size` or passing a tensor of images.
-- **ensembling_kwargs** (`dict`, *optional*, defaults to `None`) --
-  Extra dictionary with arguments for precise ensembling control. The following options are available:
-  - reduction (`str`, *optional*, defaults to `"closest"`): Defines the ensembling function applied in
-    every pixel location, can be either `"closest"` or `"mean"`.
-- **latents** (`torch.Tensor`, *optional*, defaults to `None`) --
-  Latent noise tensors to replace the random initialization. These can be taken from the previous
-  function call's output.
-- **generator** (`torch.Generator`, or `list[torch.Generator]`, *optional*, defaults to `None`) --
-  Random number generator object to ensure reproducibility.
-- **output_type** (`str`, *optional*, defaults to `"np"`) --
-  Preferred format of the output's `prediction` and the optional `uncertainty` fields. The accepted
-  values are: `"np"` (numpy array) or `"pt"` (torch tensor).
-- **output_uncertainty** (`bool`, *optional*, defaults to `False`) --
-  When enabled, the output's `uncertainty` field contains the predictive uncertainty map, provided that
-  the `ensemble_size` argument is set to a value above 2.
-- **output_latent** (`bool`, *optional*, defaults to `False`) --
-  When enabled, the output's `latent` field contains the latent codes corresponding to the predictions
-  within the ensemble. These codes can be saved, modified, and used for subsequent calls with the
-  `latents` argument.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a [MarigoldNormalsOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldNormalsOutput) instead of a plain tuple.0[MarigoldNormalsOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldNormalsOutput) or `tuple`If `return_dict` is `True`, [MarigoldNormalsOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldNormalsOutput) is returned, otherwise a
-`tuple` is returned where the first element is the prediction, the second element is the uncertainty
-(or `None`), and the third is the latent (or `None`).
-
-Function invoked when calling the pipeline.
-
-Examples:
-```py
->>> import diffusers
->>> import torch
-
->>> pipe = diffusers.MarigoldNormalsPipeline.from_pretrained(
-...     "prs-eth/marigold-normals-v1-1", variant="fp16", torch_dtype=torch.float16
-... ).to("cuda")
-
->>> image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
->>> normals = pipe(image)
-
->>> vis = pipe.image_processor.visualize_normals(normals.prediction)
->>> vis[0].save("einstein_normals.png")
+```python
+diffusers.MarigoldNormalsPipeline(unet: UNet2DConditionModel, vae: AutoencoderKL, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_lcm.LCMScheduler, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, prediction_type: str | None = None, use_full_z_range: bool | None = True, default_denoising_steps: int | None = None, default_processing_resolution: int | None = None)
 ```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_normals.py#L99)
 
 **Parameters:**
 
@@ -868,19 +792,82 @@ default_denoising_steps (`int`, *optional*) : The minimum number of denoising di
 
 default_processing_resolution (`int`, *optional*) : The recommended value of the `processing_resolution` parameter of the pipeline. This value must be set in the model config. When the pipeline is called without explicitly setting `processing_resolution`, the default value is used. This is required to ensure reasonable results with various model flavors trained with varying optimal processing resolution values.
 
-**Returns:**
+Pipeline for monocular normals estimation using the Marigold method: https://marigoldmonodepth.github.io.
 
-`[MarigoldNormalsOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldNormalsOutput) or `tuple``
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
-If `return_dict` is `True`, [MarigoldNormalsOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldNormalsOutput) is returned, otherwise a
+#### __call__[[diffusers.MarigoldNormalsPipeline.__call__]]
+
+```python
+__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], num_inference_steps: int | None = None, ensemble_size: int = 1, processing_resolution: int | None = None, match_input_resolution: bool = True, resample_method_input: str = 'bilinear', resample_method_output: str = 'bilinear', batch_size: int = 1, ensembling_kwargs: dict[str, typing.Any] | None = None, latents: typing.Union[torch.Tensor, list[torch.Tensor], NoneType] = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str = 'np', output_uncertainty: bool = False, output_latent: bool = False, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_normals.py#L332)
+
+**Parameters:**
+
+image (`PIL.Image.Image`, `np.ndarray`, `torch.Tensor`, `list[PIL.Image.Image]`, `list[np.ndarray]`), : `list[torch.Tensor]`: An input image or images used as an input for the normals estimation task. For arrays and tensors, the expected value range is between `[0, 1]`. Passing a batch of images is possible by providing a four-dimensional array or a tensor. Additionally, a list of images of two- or three-dimensional arrays or tensors can be passed. In the latter case, all list elements must have the same width and height.
+
+num_inference_steps (`int`, *optional*, defaults to `None`) : Number of denoising diffusion steps during inference. The default value `None` results in automatic selection.
+
+ensemble_size (`int`, defaults to `1`) : Number of ensemble predictions. Higher values result in measurable improvements and visual degradation.
+
+processing_resolution (`int`, *optional*, defaults to `None`) : Effective processing resolution. When set to `0`, matches the larger input image dimension. This produces crisper predictions, but may also lead to the overall loss of global context. The default value `None` resolves to the optimal value from the model config.
+
+match_input_resolution (`bool`, *optional*, defaults to `True`) : When enabled, the output prediction is resized to match the input dimensions. When disabled, the longer side of the output will equal to `processing_resolution`.
+
+resample_method_input (`str`, *optional*, defaults to `"bilinear"`) : Resampling method used to resize input images to `processing_resolution`. The accepted values are: `"nearest"`, `"nearest-exact"`, `"bilinear"`, `"bicubic"`, or `"area"`.
+
+resample_method_output (`str`, *optional*, defaults to `"bilinear"`) : Resampling method used to resize output predictions to match the input resolution. The accepted values are `"nearest"`, `"nearest-exact"`, `"bilinear"`, `"bicubic"`, or `"area"`.
+
+batch_size (`int`, *optional*, defaults to `1`) : Batch size; only matters when setting `ensemble_size` or passing a tensor of images.
+
+ensembling_kwargs (`dict`, *optional*, defaults to `None`) : Extra dictionary with arguments for precise ensembling control. The following options are available: - reduction (`str`, *optional*, defaults to `"closest"`): Defines the ensembling function applied in every pixel location, can be either `"closest"` or `"mean"`.
+
+latents (`torch.Tensor`, *optional*, defaults to `None`) : Latent noise tensors to replace the random initialization. These can be taken from the previous function call's output.
+
+generator (`torch.Generator`, or `list[torch.Generator]`, *optional*, defaults to `None`) : Random number generator object to ensure reproducibility.
+
+output_type (`str`, *optional*, defaults to `"np"`) : Preferred format of the output's `prediction` and the optional `uncertainty` fields. The accepted values are: `"np"` (numpy array) or `"pt"` (torch tensor).
+
+output_uncertainty (`bool`, *optional*, defaults to `False`) : When enabled, the output's `uncertainty` field contains the predictive uncertainty map, provided that the `ensemble_size` argument is set to a value above 2.
+
+output_latent (`bool`, *optional*, defaults to `False`) : When enabled, the output's `latent` field contains the latent codes corresponding to the predictions within the ensemble. These codes can be saved, modified, and used for subsequent calls with the `latents` argument.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [MarigoldNormalsOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldNormalsOutput) instead of a plain tuple.
+
+**Returns:** [MarigoldNormalsOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldNormalsOutput) or `tuple`
+
+If `return_dict` is `True`, [MarigoldNormalsOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldNormalsOutput) is returned, otherwise a
 `tuple` is returned where the first element is the prediction, the second element is the uncertainty
 (or `None`), and the third is the latent (or `None`).
 
+Function invoked when calling the pipeline.
+
+Examples:
+```py
+>>> import diffusers
+>>> import torch
+
+>>> pipe = diffusers.MarigoldNormalsPipeline.from_pretrained(
+...     "prs-eth/marigold-normals-v1-1", variant="fp16", torch_dtype=torch.float16
+... ).to("cuda")
+
+>>> image = diffusers.utils.load_image("https://marigoldmonodepth.github.io/images/einstein.jpg")
+>>> normals = pipe(image)
+
+>>> vis = pipe.image_processor.visualize_normals(normals.prediction)
+>>> vis[0].save("einstein_normals.png")
+```
+
 #### diffusers.pipelines.marigold.MarigoldNormalsOutput[[diffusers.pipelines.marigold.MarigoldNormalsOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/marigold/pipeline_marigold_normals.py#L78)
+```python
+diffusers.pipelines.marigold.MarigoldNormalsOutput(prediction: typing.Union[numpy.ndarray, torch.Tensor], uncertainty: typing.Union[NoneType, numpy.ndarray, torch.Tensor], latent: typing.Optional[torch.Tensor])
+```
 
-Output class for Marigold monocular normals prediction pipeline.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_normals.py#L78)
 
 **Parameters:**
 
@@ -890,13 +877,15 @@ uncertainty (`None`, `np.ndarray`, `torch.Tensor`) : Uncertainty maps computed f
 
 latent (`None`, `torch.Tensor`) : Latent features corresponding to the predictions, compatible with the `latents` argument of the pipeline. The shape is `numimages * numensemble × 4 × latentheight × latentwidth`.
 
+Output class for Marigold monocular normals prediction pipeline.
+
 #### diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_normals[[diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_normals]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/marigold/marigold_image_processing.py#L486)
+```python
+diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_normals(normals: typing.Union[numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor]], flip_x: bool = False, flip_y: bool = False, flip_z: bool = False)
+```
 
-Visualizes surface normals, such as predictions of the `MarigoldNormalsPipeline`.
-
-Returns: `list[PIL.Image.Image]` with surface normals visualization.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/marigold_image_processing.py#L486)
 
 **Parameters:**
 
@@ -908,65 +897,89 @@ flip_y (`bool`, *optional*, defaults to `False`) : Flips the Y axis of the norma
 
 flip_z (`bool`, *optional*, defaults to `False`) : Flips the Z axis of the normals frame of reference. Default direction is facing the observer.
 
+Visualizes surface normals, such as predictions of the `MarigoldNormalsPipeline`.
+
+Returns: `list[PIL.Image.Image]` with surface normals visualization.
+
 ## Marigold Intrinsic Image Decomposition API[[diffusers.MarigoldIntrinsicsPipeline]]
 
 #### diffusers.MarigoldIntrinsicsPipeline[[diffusers.MarigoldIntrinsicsPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/marigold/pipeline_marigold_intrinsics.py#L120)
+```python
+diffusers.MarigoldIntrinsicsPipeline(unet: UNet2DConditionModel, vae: AutoencoderKL, scheduler: diffusers.schedulers.scheduling_ddim.DDIMScheduler | diffusers.schedulers.scheduling_lcm.LCMScheduler, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, prediction_type: str | None = None, target_properties: dict[str, typing.Any] | None = None, default_denoising_steps: int | None = None, default_processing_resolution: int | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_intrinsics.py#L120)
+
+**Parameters:**
+
+unet (`UNet2DConditionModel`) : Conditional U-Net to denoise the targets latent, conditioned on image latent.
+
+vae (`AutoencoderKL`) : Variational Auto-Encoder (VAE) Model to encode and decode images and predictions to and from latent representations.
+
+scheduler (`DDIMScheduler` or `LCMScheduler`) : A scheduler to be used in combination with `unet` to denoise the encoded image latents.
+
+text_encoder (`CLIPTextModel`) : Text-encoder, for empty text embedding.
+
+tokenizer (`CLIPTokenizer`) : CLIP tokenizer.
+
+prediction_type (`str`, *optional*) : Type of predictions made by the model.
+
+target_properties (`dict[str, Any]`, *optional*) : Properties of the predicted modalities, such as `target_names`, a `list[str]` used to define the number, order and names of the predicted modalities, and any other metadata that may be required to interpret the predictions.
+
+default_denoising_steps (`int`, *optional*) : The minimum number of denoising diffusion steps that are required to produce a prediction of reasonable quality with the given model. This value must be set in the model config. When the pipeline is called without explicitly setting `num_inference_steps`, the default value is used. This is required to ensure reasonable results with various model flavors compatible with the pipeline, such as those relying on very short denoising schedules (`LCMScheduler`) and those with full diffusion schedules (`DDIMScheduler`).
+
+default_processing_resolution (`int`, *optional*) : The recommended value of the `processing_resolution` parameter of the pipeline. This value must be set in the model config. When the pipeline is called without explicitly setting `processing_resolution`, the default value is used. This is required to ensure reasonable results with various model flavors trained with varying optimal processing resolution values.
 
 Pipeline for Intrinsic Image Decomposition (IID) using the Marigold method:
 https://marigoldcomputervision.github.io.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
-__call__diffusers.MarigoldIntrinsicsPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/marigold/pipeline_marigold_intrinsics.py#L359[{"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor]"}, {"name": "num_inference_steps", "val": ": int | None = None"}, {"name": "ensemble_size", "val": ": int = 1"}, {"name": "processing_resolution", "val": ": int | None = None"}, {"name": "match_input_resolution", "val": ": bool = True"}, {"name": "resample_method_input", "val": ": str = 'bilinear'"}, {"name": "resample_method_output", "val": ": str = 'bilinear'"}, {"name": "batch_size", "val": ": int = 1"}, {"name": "ensembling_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "latents", "val": ": torch.Tensor | list[torch.Tensor] | None = None"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "output_type", "val": ": str = 'np'"}, {"name": "output_uncertainty", "val": ": bool = False"}, {"name": "output_latent", "val": ": bool = False"}, {"name": "return_dict", "val": ": bool = True"}]- **image** (`PIL.Image.Image`, `np.ndarray`, `torch.Tensor`, `list[PIL.Image.Image]`, `list[np.ndarray]`), --
-  `list[torch.Tensor]`: An input image or images used as an input for the intrinsic decomposition task.
-  For arrays and tensors, the expected value range is between `[0, 1]`. Passing a batch of images is
-  possible by providing a four-dimensional array or a tensor. Additionally, a list of images of two- or
-  three-dimensional arrays or tensors can be passed. In the latter case, all list elements must have the
-  same width and height.
-- **num_inference_steps** (`int`, *optional*, defaults to `None`) --
-  Number of denoising diffusion steps during inference. The default value `None` results in automatic
-  selection.
-- **ensemble_size** (`int`, defaults to `1`) --
-  Number of ensemble predictions. Higher values result in measurable improvements and visual degradation.
-- **processing_resolution** (`int`, *optional*, defaults to `None`) --
-  Effective processing resolution. When set to `0`, matches the larger input image dimension. This
-  produces crisper predictions, but may also lead to the overall loss of global context. The default
-  value `None` resolves to the optimal value from the model config.
-- **match_input_resolution** (`bool`, *optional*, defaults to `True`) --
-  When enabled, the output prediction is resized to match the input dimensions. When disabled, the longer
-  side of the output will equal to `processing_resolution`.
-- **resample_method_input** (`str`, *optional*, defaults to `"bilinear"`) --
-  Resampling method used to resize input images to `processing_resolution`. The accepted values are:
-  `"nearest"`, `"nearest-exact"`, `"bilinear"`, `"bicubic"`, or `"area"`.
-- **resample_method_output** (`str`, *optional*, defaults to `"bilinear"`) --
-  Resampling method used to resize output predictions to match the input resolution. The accepted values
-  are `"nearest"`, `"nearest-exact"`, `"bilinear"`, `"bicubic"`, or `"area"`.
-- **batch_size** (`int`, *optional*, defaults to `1`) --
-  Batch size; only matters when setting `ensemble_size` or passing a tensor of images.
-- **ensembling_kwargs** (`dict`, *optional*, defaults to `None`) --
-  Extra dictionary with arguments for precise ensembling control. The following options are available:
-  - reduction (`str`, *optional*, defaults to `"median"`): Defines the ensembling function applied in
-    every pixel location, can be either `"median"` or `"mean"`.
-- **latents** (`torch.Tensor`, *optional*, defaults to `None`) --
-  Latent noise tensors to replace the random initialization. These can be taken from the previous
-  function call's output.
-- **generator** (`torch.Generator`, or `list[torch.Generator]`, *optional*, defaults to `None`) --
-  Random number generator object to ensure reproducibility.
-- **output_type** (`str`, *optional*, defaults to `"np"`) --
-  Preferred format of the output's `prediction` and the optional `uncertainty` fields. The accepted
-  values are: `"np"` (numpy array) or `"pt"` (torch tensor).
-- **output_uncertainty** (`bool`, *optional*, defaults to `False`) --
-  When enabled, the output's `uncertainty` field contains the predictive uncertainty map, provided that
-  the `ensemble_size` argument is set to a value above 2.
-- **output_latent** (`bool`, *optional*, defaults to `False`) --
-  When enabled, the output's `latent` field contains the latent codes corresponding to the predictions
-  within the ensemble. These codes can be saved, modified, and used for subsequent calls with the
-  `latents` argument.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a [MarigoldIntrinsicsOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldIntrinsicsOutput) instead of a plain tuple.0[MarigoldIntrinsicsOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldIntrinsicsOutput) or `tuple`If `return_dict` is `True`, [MarigoldIntrinsicsOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldIntrinsicsOutput) is returned, otherwise a
+#### __call__[[diffusers.MarigoldIntrinsicsPipeline.__call__]]
+
+```python
+__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], num_inference_steps: int | None = None, ensemble_size: int = 1, processing_resolution: int | None = None, match_input_resolution: bool = True, resample_method_input: str = 'bilinear', resample_method_output: str = 'bilinear', batch_size: int = 1, ensembling_kwargs: dict[str, typing.Any] | None = None, latents: typing.Union[torch.Tensor, list[torch.Tensor], NoneType] = None, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, output_type: str = 'np', output_uncertainty: bool = False, output_latent: bool = False, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_intrinsics.py#L359)
+
+**Parameters:**
+
+image (`PIL.Image.Image`, `np.ndarray`, `torch.Tensor`, `list[PIL.Image.Image]`, `list[np.ndarray]`), : `list[torch.Tensor]`: An input image or images used as an input for the intrinsic decomposition task. For arrays and tensors, the expected value range is between `[0, 1]`. Passing a batch of images is possible by providing a four-dimensional array or a tensor. Additionally, a list of images of two- or three-dimensional arrays or tensors can be passed. In the latter case, all list elements must have the same width and height.
+
+num_inference_steps (`int`, *optional*, defaults to `None`) : Number of denoising diffusion steps during inference. The default value `None` results in automatic selection.
+
+ensemble_size (`int`, defaults to `1`) : Number of ensemble predictions. Higher values result in measurable improvements and visual degradation.
+
+processing_resolution (`int`, *optional*, defaults to `None`) : Effective processing resolution. When set to `0`, matches the larger input image dimension. This produces crisper predictions, but may also lead to the overall loss of global context. The default value `None` resolves to the optimal value from the model config.
+
+match_input_resolution (`bool`, *optional*, defaults to `True`) : When enabled, the output prediction is resized to match the input dimensions. When disabled, the longer side of the output will equal to `processing_resolution`.
+
+resample_method_input (`str`, *optional*, defaults to `"bilinear"`) : Resampling method used to resize input images to `processing_resolution`. The accepted values are: `"nearest"`, `"nearest-exact"`, `"bilinear"`, `"bicubic"`, or `"area"`.
+
+resample_method_output (`str`, *optional*, defaults to `"bilinear"`) : Resampling method used to resize output predictions to match the input resolution. The accepted values are `"nearest"`, `"nearest-exact"`, `"bilinear"`, `"bicubic"`, or `"area"`.
+
+batch_size (`int`, *optional*, defaults to `1`) : Batch size; only matters when setting `ensemble_size` or passing a tensor of images.
+
+ensembling_kwargs (`dict`, *optional*, defaults to `None`) : Extra dictionary with arguments for precise ensembling control. The following options are available: - reduction (`str`, *optional*, defaults to `"median"`): Defines the ensembling function applied in every pixel location, can be either `"median"` or `"mean"`.
+
+latents (`torch.Tensor`, *optional*, defaults to `None`) : Latent noise tensors to replace the random initialization. These can be taken from the previous function call's output.
+
+generator (`torch.Generator`, or `list[torch.Generator]`, *optional*, defaults to `None`) : Random number generator object to ensure reproducibility.
+
+output_type (`str`, *optional*, defaults to `"np"`) : Preferred format of the output's `prediction` and the optional `uncertainty` fields. The accepted values are: `"np"` (numpy array) or `"pt"` (torch tensor).
+
+output_uncertainty (`bool`, *optional*, defaults to `False`) : When enabled, the output's `uncertainty` field contains the predictive uncertainty map, provided that the `ensemble_size` argument is set to a value above 2.
+
+output_latent (`bool`, *optional*, defaults to `False`) : When enabled, the output's `latent` field contains the latent codes corresponding to the predictions within the ensemble. These codes can be saved, modified, and used for subsequent calls with the `latents` argument.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [MarigoldIntrinsicsOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldIntrinsicsOutput) instead of a plain tuple.
+
+**Returns:** [MarigoldIntrinsicsOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldIntrinsicsOutput) or `tuple`
+
+If `return_dict` is `True`, [MarigoldIntrinsicsOutput](/docs/diffusers/v0.40.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldIntrinsicsOutput) is returned, otherwise a
 `tuple` is returned where the first element is the prediction, the second element is the uncertainty
 (or `None`), and the third is the latent (or `None`).
 
@@ -1007,39 +1020,13 @@ Examples:
 >>> vis[0]["residual"].save("einstein_residual.png")
 ```
 
-**Parameters:**
-
-unet (`UNet2DConditionModel`) : Conditional U-Net to denoise the targets latent, conditioned on image latent.
-
-vae (`AutoencoderKL`) : Variational Auto-Encoder (VAE) Model to encode and decode images and predictions to and from latent representations.
-
-scheduler (`DDIMScheduler` or `LCMScheduler`) : A scheduler to be used in combination with `unet` to denoise the encoded image latents.
-
-text_encoder (`CLIPTextModel`) : Text-encoder, for empty text embedding.
-
-tokenizer (`CLIPTokenizer`) : CLIP tokenizer.
-
-prediction_type (`str`, *optional*) : Type of predictions made by the model.
-
-target_properties (`dict[str, Any]`, *optional*) : Properties of the predicted modalities, such as `target_names`, a `list[str]` used to define the number, order and names of the predicted modalities, and any other metadata that may be required to interpret the predictions.
-
-default_denoising_steps (`int`, *optional*) : The minimum number of denoising diffusion steps that are required to produce a prediction of reasonable quality with the given model. This value must be set in the model config. When the pipeline is called without explicitly setting `num_inference_steps`, the default value is used. This is required to ensure reasonable results with various model flavors compatible with the pipeline, such as those relying on very short denoising schedules (`LCMScheduler`) and those with full diffusion schedules (`DDIMScheduler`).
-
-default_processing_resolution (`int`, *optional*) : The recommended value of the `processing_resolution` parameter of the pipeline. This value must be set in the model config. When the pipeline is called without explicitly setting `processing_resolution`, the default value is used. This is required to ensure reasonable results with various model flavors trained with varying optimal processing resolution values.
-
-**Returns:**
-
-`[MarigoldIntrinsicsOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldIntrinsicsOutput) or `tuple``
-
-If `return_dict` is `True`, [MarigoldIntrinsicsOutput](/docs/diffusers/v0.39.0/en/api/pipelines/marigold#diffusers.pipelines.marigold.MarigoldIntrinsicsOutput) is returned, otherwise a
-`tuple` is returned where the first element is the prediction, the second element is the uncertainty
-(or `None`), and the third is the latent (or `None`).
-
 #### diffusers.pipelines.marigold.MarigoldIntrinsicsOutput[[diffusers.pipelines.marigold.MarigoldIntrinsicsOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/marigold/pipeline_marigold_intrinsics.py#L96)
+```python
+diffusers.pipelines.marigold.MarigoldIntrinsicsOutput(prediction: typing.Union[numpy.ndarray, torch.Tensor], uncertainty: typing.Union[NoneType, numpy.ndarray, torch.Tensor], latent: typing.Optional[torch.Tensor])
+```
 
-Output class for Marigold Intrinsic Image Decomposition pipeline.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/pipeline_marigold_intrinsics.py#L96)
 
 **Parameters:**
 
@@ -1049,13 +1036,15 @@ uncertainty (`None`, `np.ndarray`, `torch.Tensor`) : Uncertainty maps computed f
 
 latent (`None`, `torch.Tensor`) : Latent features corresponding to the predictions, compatible with the `latents` argument of the pipeline. The shape is `(numimages * numensemble) × (numtargets * 4) × latentheight × latentwidth`.
 
+Output class for Marigold Intrinsic Image Decomposition pipeline.
+
 #### diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_intrinsics[[diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_intrinsics]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/marigold/marigold_image_processing.py#L542)
+```python
+diffusers.pipelines.marigold.MarigoldImageProcessor.visualize_intrinsics(prediction: typing.Union[numpy.ndarray, torch.Tensor, list[numpy.ndarray], list[torch.Tensor]], target_properties: dict, color_map: str | dict[str, str] = 'binary')
+```
 
-Visualizes intrinsic image decomposition, such as predictions of the `MarigoldIntrinsicsPipeline`.
-
-Returns: `list[dict[str, PIL.Image.Image]]` with intrinsic image decomposition visualization.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/marigold/marigold_image_processing.py#L542)
 
 **Parameters:**
 
@@ -1065,5 +1054,9 @@ target_properties (`dict[str, Any]`) : Decomposition properties. Expected entrie
 
 color_map (`str | dict[str, str]`, *optional*, defaults to `"Spectral"`) : Color map used to convert a single-channel predictions into colored representations. When a dictionary is passed, each modality can be colored with its own color map.
 
-### ControlNet
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/controlnet.md
+Visualizes intrinsic image decomposition, such as predictions of the `MarigoldIntrinsicsPipeline`.
+
+Returns: `list[dict[str, PIL.Image.Image]]` with intrinsic image decomposition visualization.
+
+### InstructPix2Pix
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/pix2pix.md

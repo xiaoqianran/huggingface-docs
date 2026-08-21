@@ -8,7 +8,7 @@ The abstract from the paper is:
 
 ## Loading from the original format
 
-By default the [ControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet#diffusers.ControlNetModel) should be loaded with [from_pretrained()](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained), but it can also be loaded
+By default the [ControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.ControlNetModel) should be loaded with [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained), but it can also be loaded
 from the original format using `FromOriginalModelMixin.from_single_file` as follows:
 
 ```py
@@ -31,7 +31,7 @@ from diffusers import ControlNetModel, UNet2DConditionModel
 lora_id = "stabilityai/control-lora"
 lora_filename = "control-LoRAs-rank128/control-lora-canny-rank128.safetensors"
 
-unet = UNet2DConditionModel.from_pretrained("stabilityai/stable-diffusion-xl-base-1.0", subfolder="unet", torch_dtype=torch.bfloat16).to("cuda")
+unet = UNet2DConditionModel.from_pretrained("stabilityai/stable-diffusion-xl-base-1.0", subfolder="unet", dtype=torch.bfloat16).to("cuda")
 controlnet = ControlNetModel.from_unet(unet).to(device="cuda", dtype=torch.bfloat16)
 controlnet.load_lora_adapter(lora_id, weight_name=lora_filename, prefix=None, controlnet_config=controlnet.config)
 ```
@@ -40,43 +40,11 @@ controlnet.load_lora_adapter(lora_id, weight_name=lora_filename, prefix=None, co
 
 #### diffusers.ControlNetModel[[diffusers.ControlNetModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet.py#L111)
+```python
+diffusers.ControlNetModel(in_channels: int = 4, conditioning_channels: int = 3, flip_sin_to_cos: bool = True, freq_shift: int = 0, down_block_types: tuple = ('CrossAttnDownBlock2D', 'CrossAttnDownBlock2D', 'CrossAttnDownBlock2D', 'DownBlock2D'), mid_block_type: str | None = 'UNetMidBlock2DCrossAttn', only_cross_attention: bool | tuple[bool] = False, block_out_channels: tuple = (320, 640, 1280, 1280), layers_per_block: int = 2, downsample_padding: int = 1, mid_block_scale_factor: float = 1, act_fn: str = 'silu', norm_num_groups: int | None = 32, norm_eps: float = 1e-05, cross_attention_dim: int = 1280, transformer_layers_per_block: int | tuple[int, ...] = 1, encoder_hid_dim: int | None = None, encoder_hid_dim_type: str | None = None, attention_head_dim: int | tuple[int, ...] = 8, num_attention_heads: int | tuple[int, ...] | None = None, use_linear_projection: bool = False, class_embed_type: str | None = None, addition_embed_type: str | None = None, addition_time_embed_dim: int | None = None, num_class_embeds: int | None = None, upcast_attention: bool = False, resnet_time_scale_shift: str = 'default', projection_class_embeddings_input_dim: int | None = None, controlnet_conditioning_channel_order: str = 'rgb', conditioning_embedding_out_channels: tuple[int, ...] | None = (16, 32, 96, 256), global_pool_conditions: bool = False, addition_embed_type_num_heads: int = 64)
+```
 
-A ControlNet model.
-
-forwarddiffusers.ControlNetModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet.py#L602[{"name": "sample", "val": ": Tensor"}, {"name": "timestep", "val": ": torch.Tensor | float | int"}, {"name": "encoder_hidden_states", "val": ": Tensor"}, {"name": "controlnet_cond", "val": ": Tensor"}, {"name": "conditioning_scale", "val": ": float = 1.0"}, {"name": "class_labels", "val": ": torch.Tensor | None = None"}, {"name": "timestep_cond", "val": ": torch.Tensor | None = None"}, {"name": "attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "added_cond_kwargs", "val": ": dict[str, torch.Tensor] | None = None"}, {"name": "cross_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "guess_mode", "val": ": bool = False"}, {"name": "return_dict", "val": ": bool = True"}]- **sample** (`torch.Tensor`) --
-  The noisy input tensor.
-- **timestep** (`torch.Tensor | float | int`) --
-  The number of timesteps to denoise an input.
-- **encoder_hidden_states** (`torch.Tensor`) --
-  The encoder hidden states.
-- **controlnet_cond** (`torch.Tensor`) --
-  The conditional input tensor of shape `(batch_size, sequence_length, hidden_size)`.
-- **conditioning_scale** (`float`, defaults to `1.0`) --
-  The scale factor for ControlNet outputs.
-- **class_labels** (`torch.Tensor`, *optional*, defaults to `None`) --
-  Optional class labels for conditioning. Their embeddings will be summed with the timestep embeddings.
-- **timestep_cond** (`torch.Tensor`, *optional*, defaults to `None`) --
-  Additional conditional embeddings for timestep. If provided, the embeddings will be summed with the
-  timestep_embedding passed through the `self.time_embedding` layer to obtain the final timestep
-  embeddings.
-- **attention_mask** (`torch.Tensor`, *optional*, defaults to `None`) --
-  An attention mask of shape `(batch, key_tokens)` is applied to `encoder_hidden_states`. If `1` the mask
-  is kept, otherwise if `0` it is discarded. Mask will be converted into a bias, which adds large
-  negative values to the attention scores corresponding to "discard" tokens.
-- **added_cond_kwargs** (`dict`) --
-  Additional conditions for the Stable Diffusion XL UNet.
-- **cross_attention_kwargs** (`dict[str]`, *optional*, defaults to `None`) --
-  A kwargs dictionary that if specified is passed along to the `AttnProcessor`.
-- **guess_mode** (`bool`, defaults to `False`) --
-  In this mode, the ControlNet encoder tries its best to recognize the input content of the input even if
-  you remove all prompts. A `guidance_scale` between 3.0 and 5.0 is recommended.
-- **return_dict** (`bool`, defaults to `True`) --
-  Whether or not to return a [ControlNetOutput](/docs/diffusers/v0.39.0/en/api/models/controlnet#diffusers.models.controlnets.ControlNetOutput) instead of a plain
-  tuple.0[ControlNetOutput](/docs/diffusers/v0.39.0/en/api/models/controlnet#diffusers.models.controlnets.ControlNetOutput) **or** `tuple`If `return_dict` is `True`, a [ControlNetOutput](/docs/diffusers/v0.39.0/en/api/models/controlnet#diffusers.models.controlnets.ControlNetOutput) is returned,
-otherwise a tuple is returned where the first element is the sample tensor.
-
-The [ControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet#diffusers.ControlNetModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet.py#L111)
 
 **Parameters:**
 
@@ -136,36 +104,87 @@ global_pool_conditions (`bool`, defaults to `False`) : TODO(Patrick) - unused pa
 
 addition_embed_type_num_heads (`int`, defaults to 64) : The number of heads to use for the `TextTimeEmbedding` layer.
 
-**Returns:**
+A ControlNet model.
 
-`[ControlNetOutput](/docs/diffusers/v0.39.0/en/api/models/controlnet#diffusers.models.controlnets.ControlNetOutput) **or** `tuple``
+#### forward[[diffusers.ControlNetModel.forward]]
 
-If `return_dict` is `True`, a [ControlNetOutput](/docs/diffusers/v0.39.0/en/api/models/controlnet#diffusers.models.controlnets.ControlNetOutput) is returned,
-otherwise a tuple is returned where the first element is the sample tensor.
-#### from_unet[[diffusers.ControlNetModel.from_unet]]
+```python
+forward(sample: Tensor, timestep: typing.Union[torch.Tensor, float, int], encoder_hidden_states: Tensor, controlnet_cond: Tensor, conditioning_scale: float = 1.0, class_labels: typing.Optional[torch.Tensor] = None, timestep_cond: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, added_cond_kwargs: dict[str, torch.Tensor] | None = None, cross_attention_kwargs: dict[str, typing.Any] | None = None, guess_mode: bool = False, return_dict: bool = True)
+```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet.py#L444)
-
-Instantiate a [ControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet#diffusers.ControlNetModel) from [UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet.py#L602)
 
 **Parameters:**
 
-unet (`UNet2DConditionModel`) : The UNet model weights to copy to the [ControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet#diffusers.ControlNetModel). All configuration options are also copied where applicable.
+sample (`torch.Tensor`) : The noisy input tensor.
+
+timestep (`torch.Tensor | float | int`) : The number of timesteps to denoise an input.
+
+encoder_hidden_states (`torch.Tensor`) : The encoder hidden states.
+
+controlnet_cond (`torch.Tensor`) : The conditional input tensor of shape `(batch_size, sequence_length, hidden_size)`.
+
+conditioning_scale (`float`, defaults to `1.0`) : The scale factor for ControlNet outputs.
+
+class_labels (`torch.Tensor`, *optional*, defaults to `None`) : Optional class labels for conditioning. Their embeddings will be summed with the timestep embeddings.
+
+timestep_cond (`torch.Tensor`, *optional*, defaults to `None`) : Additional conditional embeddings for timestep. If provided, the embeddings will be summed with the timestep_embedding passed through the `self.time_embedding` layer to obtain the final timestep embeddings.
+
+attention_mask (`torch.Tensor`, *optional*, defaults to `None`) : An attention mask of shape `(batch, key_tokens)` is applied to `encoder_hidden_states`. If `1` the mask is kept, otherwise if `0` it is discarded. Mask will be converted into a bias, which adds large negative values to the attention scores corresponding to "discard" tokens.
+
+added_cond_kwargs (`dict`) : Additional conditions for the Stable Diffusion XL UNet.
+
+cross_attention_kwargs (`dict[str]`, *optional*, defaults to `None`) : A kwargs dictionary that if specified is passed along to the `AttnProcessor`.
+
+guess_mode (`bool`, defaults to `False`) : In this mode, the ControlNet encoder tries its best to recognize the input content of the input even if you remove all prompts. A `guidance_scale` between 3.0 and 5.0 is recommended.
+
+return_dict (`bool`, defaults to `True`) : Whether or not to return a [ControlNetOutput](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.models.controlnets.ControlNetOutput) instead of a plain tuple.
+
+**Returns:** [ControlNetOutput](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.models.controlnets.ControlNetOutput) **or** `tuple`
+
+If `return_dict` is `True`, a [ControlNetOutput](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.models.controlnets.ControlNetOutput) is returned,
+otherwise a tuple is returned where the first element is the sample tensor.
+
+The [ControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.ControlNetModel) forward method.
+
+#### from_unet[[diffusers.ControlNetModel.from_unet]]
+
+```python
+from_unet(unet: UNet2DConditionModel, controlnet_conditioning_channel_order: str = 'rgb', conditioning_embedding_out_channels: tuple[int, ...] | None = (16, 32, 96, 256), load_weights_from_unet: bool = True, conditioning_channels: int = 3)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet.py#L444)
+
+**Parameters:**
+
+unet (`UNet2DConditionModel`) : The UNet model weights to copy to the [ControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.ControlNetModel). All configuration options are also copied where applicable.
+
+Instantiate a [ControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.ControlNetModel) from [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel).
+
 #### set_attention_slice[[diffusers.ControlNetModel.set_attention_slice]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet.py#L537)
+```python
+set_attention_slice(slice_size: str | int | list[int])
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet.py#L537)
+
+**Parameters:**
+
+slice_size (`str` or `int` or `list(int)`, *optional*, defaults to `"auto"`) : When `"auto"`, input to the attention heads is halved, so attention is computed in two steps. If `"max"`, maximum amount of memory is saved by running only one slice at a time. If a number is provided, uses as many slices as `attention_head_dim // slice_size`. In this case, `attention_head_dim` must be a multiple of `slice_size`.
 
 Enable sliced attention computation.
 
 When this option is enabled, the attention module splits the input tensor in slices to compute attention in
 several steps. This is useful for saving some memory in exchange for a small decrease in speed.
 
-**Parameters:**
-
-slice_size (`str` or `int` or `list(int)`, *optional*, defaults to `"auto"`) : When `"auto"`, input to the attention heads is halved, so attention is computed in two steps. If `"max"`, maximum amount of memory is saved by running only one slice at a time. If a number is provided, uses as many slices as `attention_head_dim // slice_size`. In this case, `attention_head_dim` must be a multiple of `slice_size`.
 #### set_default_attn_processor[[diffusers.ControlNetModel.set_default_attn_processor]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet.py#L521)
+```python
+set_default_attn_processor()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet.py#L521)
 
 Disables custom attention processors and sets the default attention implementation.
 
@@ -173,9 +192,11 @@ Disables custom attention processors and sets the default attention implementati
 
 #### diffusers.models.controlnets.ControlNetOutput[[diffusers.models.controlnets.ControlNetOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet.py#L47)
+```python
+diffusers.models.controlnets.ControlNetOutput(down_block_res_samples: tuple, mid_block_res_sample: Tensor)
+```
 
-The output of [ControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet#diffusers.ControlNetModel).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet.py#L47)
 
 **Parameters:**
 
@@ -183,5 +204,7 @@ down_block_res_samples (`tuple[torch.Tensor]`) : A tuple of downsample activatio
 
 mid_down_block_re_sample (`torch.Tensor`) : The activation of the middle block (the lowest sample resolution). Each tensor should be of shape `(batch_size, channel * lowest_resolution, height // lowest_resolution, width // lowest_resolution)`. Output can be used to condition the original UNet's middle block activation.
 
-### AutoModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/auto_model.md
+The output of [ControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.ControlNetModel).
+
+### AutoencoderKLCosmos
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoderkl_cosmos.md

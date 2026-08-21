@@ -10,7 +10,7 @@ The abstract from the paper is:
 
 ## Loading from the original format
 
-By default the [SD3ControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet_sd3#diffusers.SD3ControlNetModel) should be loaded with [from_pretrained()](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
+By default the [SD3ControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet_sd3#diffusers.SD3ControlNetModel) should be loaded with [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
 
 ```py
 from diffusers import StableDiffusion3ControlNetPipeline
@@ -24,19 +24,11 @@ pipe = StableDiffusion3ControlNetPipeline.from_pretrained("stabilityai/stable-di
 
 #### diffusers.SD3ControlNetModel[[diffusers.SD3ControlNetModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sd3.py#L42)
+```python
+diffusers.SD3ControlNetModel(sample_size: int = 128, patch_size: int = 2, in_channels: int = 16, num_layers: int = 18, attention_head_dim: int = 64, num_attention_heads: int = 18, joint_attention_dim: int = 4096, caption_projection_dim: int = 1152, pooled_projection_dim: int = 2048, out_channels: int = 16, pos_embed_max_size: int = 96, extra_conditioning_channels: int = 0, dual_attention_layers: tuple = (), qk_norm: str | None = None, pos_embed_type: str | None = 'sincos', use_pos_embed: bool = True, force_zeros_for_pooled_projection: bool = True)
+```
 
-ControlNet model for [Stable Diffusion 3](https://huggingface.co/papers/2403.03206).
-
-enable_forward_chunkingdiffusers.SD3ControlNetModel.enable_forward_chunkinghttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sd3.py#L178[{"name": "chunk_size", "val": ": int | None = None"}, {"name": "dim", "val": ": int = 0"}]- **chunk_size** (`int`, *optional*) --
-  The chunk size of the feed-forward layers. If not specified, will run feed-forward layer individually
-  over each tensor of dim=`dim`.
-- **dim** (`int`, *optional*, defaults to `0`) --
-  The dimension over which the feed-forward computation should be chunked. Choose between dim=0 (batch)
-  or dim=1 (sequence length).0
-
-Sets the attention processor to use [feed forward
-chunking](https://huggingface.co/blog/reformer#2-chunked-feed-forward-layers).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sd3.py#L42)
 
 **Parameters:**
 
@@ -73,11 +65,33 @@ pos_embed_type (`str`, defaults to `"sincos"`) : The type of positional embeddin
 use_pos_embed (`bool`, defaults to `True`) : Whether to use positional embeddings.
 
 force_zeros_for_pooled_projection (`bool`, defaults to `True`) : Whether to force zeros for pooled projection embeddings. This is handled in the pipelines by reading the config value of the ControlNet model.
+
+ControlNet model for [Stable Diffusion 3](https://huggingface.co/papers/2403.03206).
+
+#### enable_forward_chunking[[diffusers.SD3ControlNetModel.enable_forward_chunking]]
+
+```python
+enable_forward_chunking(chunk_size: int | None = None, dim: int = 0)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sd3.py#L178)
+
+**Parameters:**
+
+chunk_size (`int`, *optional*) : The chunk size of the feed-forward layers. If not specified, will run feed-forward layer individually over each tensor of dim=`dim`.
+
+dim (`int`, *optional*, defaults to `0`) : The dimension over which the feed-forward computation should be chunked. Choose between dim=0 (batch) or dim=1 (sequence length).
+
+Sets the attention processor to use [feed forward
+chunking](https://huggingface.co/blog/reformer#2-chunked-feed-forward-layers).
+
 #### forward[[diffusers.SD3ControlNetModel.forward]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sd3.py#L272)
+```python
+forward(hidden_states: Tensor, controlnet_cond: Tensor, conditioning_scale: float = 1.0, encoder_hidden_states: Tensor = None, pooled_projections: Tensor = None, timestep: LongTensor = None, joint_attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
+```
 
-The [SD3Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sd3.py#L272)
 
 **Parameters:**
 
@@ -101,17 +115,29 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
+
+The [SD3Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel) forward method.
+
 #### fuse_qkv_projections[[diffusers.SD3ControlNetModel.fuse_qkv_projections]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sd3.py#L208)
+```python
+fuse_qkv_projections()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sd3.py#L208)
 
 Enables fused QKV projections. For self-attention modules, all projection matrices (i.e., query, key, value)
 are fused. For cross-attention modules, key and value projection matrices are fused.
 
 > [!WARNING] > This API is 🧪 experimental.
+
 #### unfuse_qkv_projections[[diffusers.SD3ControlNetModel.unfuse_qkv_projections]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sd3.py#L230)
+```python
+unfuse_qkv_projections()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sd3.py#L230)
 
 Disables the fused QKV projection if enabled.
 
@@ -121,7 +147,11 @@ Disables the fused QKV projection if enabled.
 
 #### diffusers.models.controlnets.SD3ControlNetOutput[[diffusers.models.controlnets.SD3ControlNetOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sd3.py#L38)
+```python
+diffusers.models.controlnets.SD3ControlNetOutput(controlnet_block_samples: tuple)
+```
 
-### AutoencoderKLHunyuanVideo15
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/autoencoder_kl_hunyuan_video15.md
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sd3.py#L38)
+
+### AutoencoderDC
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoder_dc.md

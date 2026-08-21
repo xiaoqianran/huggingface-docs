@@ -18,10 +18,10 @@ from diffusers import SparseControlNetModel
 
 # fp32 variant in float16
 # 1. Scribble checkpoint
-controlnet = SparseControlNetModel.from_pretrained("guoyww/animatediff-sparsectrl-scribble", torch_dtype=torch.float16)
+controlnet = SparseControlNetModel.from_pretrained("guoyww/animatediff-sparsectrl-scribble", dtype=torch.float16)
 
 # 2. RGB checkpoint
-controlnet = SparseControlNetModel.from_pretrained("guoyww/animatediff-sparsectrl-rgb", torch_dtype=torch.float16)
+controlnet = SparseControlNetModel.from_pretrained("guoyww/animatediff-sparsectrl-rgb", dtype=torch.float16)
 
 # For loading fp16 variant, pass `variant="fp16"` as an additional parameter
 ```
@@ -30,41 +30,11 @@ controlnet = SparseControlNetModel.from_pretrained("guoyww/animatediff-sparsectr
 
 #### diffusers.SparseControlNetModel[[diffusers.SparseControlNetModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sparsectrl.py#L97)
+```python
+diffusers.SparseControlNetModel(in_channels: int = 4, conditioning_channels: int = 4, flip_sin_to_cos: bool = True, freq_shift: int = 0, down_block_types: tuple = ('CrossAttnDownBlockMotion', 'CrossAttnDownBlockMotion', 'CrossAttnDownBlockMotion', 'DownBlockMotion'), only_cross_attention: bool | tuple[bool] = False, block_out_channels: tuple = (320, 640, 1280, 1280), layers_per_block: int = 2, downsample_padding: int = 1, mid_block_scale_factor: float = 1, act_fn: str = 'silu', norm_num_groups: int | None = 32, norm_eps: float = 1e-05, cross_attention_dim: int = 768, transformer_layers_per_block: int | tuple[int, ...] = 1, transformer_layers_per_mid_block: int | tuple[int] | None = None, temporal_transformer_layers_per_block: int | tuple[int, ...] = 1, attention_head_dim: int | tuple[int, ...] = 8, num_attention_heads: int | tuple[int, ...] | None = None, use_linear_projection: bool = False, upcast_attention: bool = False, resnet_time_scale_shift: str = 'default', conditioning_embedding_out_channels: tuple[int, ...] | None = (16, 32, 96, 256), global_pool_conditions: bool = False, controlnet_conditioning_channel_order: str = 'rgb', motion_max_seq_length: int = 32, motion_num_attention_heads: int = 8, concat_conditioning_mask: bool = True, use_simplified_condition_embedding: bool = True)
+```
 
-A SparseControlNet model as described in [SparseCtrl: Adding Sparse Controls to Text-to-Video Diffusion
-Models](https://huggingface.co/papers/2311.16933).
-
-forwarddiffusers.SparseControlNetModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sparsectrl.py#L534[{"name": "sample", "val": ": Tensor"}, {"name": "timestep", "val": ": torch.Tensor | float | int"}, {"name": "encoder_hidden_states", "val": ": Tensor"}, {"name": "controlnet_cond", "val": ": Tensor"}, {"name": "conditioning_scale", "val": ": float = 1.0"}, {"name": "timestep_cond", "val": ": torch.Tensor | None = None"}, {"name": "attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "cross_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "conditioning_mask", "val": ": torch.Tensor | None = None"}, {"name": "guess_mode", "val": ": bool = False"}, {"name": "return_dict", "val": ": bool = True"}]- **sample** (`torch.Tensor`) --
-  The noisy input tensor.
-- **timestep** (`torch.Tensor | float | int`) --
-  The number of timesteps to denoise an input.
-- **encoder_hidden_states** (`torch.Tensor`) --
-  The encoder hidden states.
-- **controlnet_cond** (`torch.Tensor`) --
-  The conditional input tensor of shape `(batch_size, sequence_length, hidden_size)`.
-- **conditioning_scale** (`float`, defaults to `1.0`) --
-  The scale factor for ControlNet outputs.
-- **timestep_cond** (`torch.Tensor`, *optional*, defaults to `None`) --
-  Additional conditional embeddings for timestep. If provided, the embeddings will be summed with the
-  timestep_embedding passed through the `self.time_embedding` layer to obtain the final timestep
-  embeddings.
-- **attention_mask** (`torch.Tensor`, *optional*, defaults to `None`) --
-  An attention mask of shape `(batch, key_tokens)` is applied to `encoder_hidden_states`. If `1` the mask
-  is kept, otherwise if `0` it is discarded. Mask will be converted into a bias, which adds large
-  negative values to the attention scores corresponding to "discard" tokens.
-- **conditioning_mask** (`torch.Tensor`, *optional*, defaults to `None`) --
-  Optional mask indicating which frames in `controlnet_cond` are valid conditioning frames.
-- **cross_attention_kwargs** (`dict[str]`, *optional*, defaults to `None`) --
-  A kwargs dictionary that if specified is passed along to the `AttnProcessor`.
-- **guess_mode** (`bool`, defaults to `False`) --
-  In this mode, the ControlNet encoder tries its best to recognize the input content of the input even if
-  you remove all prompts. A `guidance_scale` between 3.0 and 5.0 is recommended.
-- **return_dict** (`bool`, defaults to `True`) --
-  Whether or not to return a `~models.controlnet.ControlNetOutput` instead of a plain tuple.0`~models.controlnet.ControlNetOutput` **or** `tuple`If `return_dict` is `True`, a `~models.controlnet.ControlNetOutput` is returned, otherwise a tuple is
-returned where the first element is the sample tensor.
-
-The [SparseControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet_sparsectrl#diffusers.SparseControlNetModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sparsectrl.py#L97)
 
 **Parameters:**
 
@@ -124,36 +94,86 @@ concat_conditioning_mask (`bool`, defaults to `True`) --
 
 use_simplified_condition_embedding (`bool`, defaults to `True`) --
 
-**Returns:**
+A SparseControlNet model as described in [SparseCtrl: Adding Sparse Controls to Text-to-Video Diffusion
+Models](https://huggingface.co/papers/2311.16933).
 
-``~models.controlnet.ControlNetOutput` **or** `tuple``
+#### forward[[diffusers.SparseControlNetModel.forward]]
 
-If `return_dict` is `True`, a `~models.controlnet.ControlNetOutput` is returned, otherwise a tuple is
-returned where the first element is the sample tensor.
-#### from_unet[[diffusers.SparseControlNetModel.from_unet]]
+```python
+forward(sample: Tensor, timestep: typing.Union[torch.Tensor, float, int], encoder_hidden_states: Tensor, controlnet_cond: Tensor, conditioning_scale: float = 1.0, timestep_cond: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, cross_attention_kwargs: dict[str, typing.Any] | None = None, conditioning_mask: typing.Optional[torch.Tensor] = None, guess_mode: bool = False, return_dict: bool = True)
+```
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sparsectrl.py#L388)
-
-Instantiate a [SparseControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet_sparsectrl#diffusers.SparseControlNetModel) from [UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sparsectrl.py#L534)
 
 **Parameters:**
 
-unet (`UNet2DConditionModel`) : The UNet model weights to copy to the [SparseControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet_sparsectrl#diffusers.SparseControlNetModel). All configuration options are also copied where applicable.
+sample (`torch.Tensor`) : The noisy input tensor.
+
+timestep (`torch.Tensor | float | int`) : The number of timesteps to denoise an input.
+
+encoder_hidden_states (`torch.Tensor`) : The encoder hidden states.
+
+controlnet_cond (`torch.Tensor`) : The conditional input tensor of shape `(batch_size, sequence_length, hidden_size)`.
+
+conditioning_scale (`float`, defaults to `1.0`) : The scale factor for ControlNet outputs.
+
+timestep_cond (`torch.Tensor`, *optional*, defaults to `None`) : Additional conditional embeddings for timestep. If provided, the embeddings will be summed with the timestep_embedding passed through the `self.time_embedding` layer to obtain the final timestep embeddings.
+
+attention_mask (`torch.Tensor`, *optional*, defaults to `None`) : An attention mask of shape `(batch, key_tokens)` is applied to `encoder_hidden_states`. If `1` the mask is kept, otherwise if `0` it is discarded. Mask will be converted into a bias, which adds large negative values to the attention scores corresponding to "discard" tokens.
+
+conditioning_mask (`torch.Tensor`, *optional*, defaults to `None`) : Optional mask indicating which frames in `controlnet_cond` are valid conditioning frames.
+
+cross_attention_kwargs (`dict[str]`, *optional*, defaults to `None`) : A kwargs dictionary that if specified is passed along to the `AttnProcessor`.
+
+guess_mode (`bool`, defaults to `False`) : In this mode, the ControlNet encoder tries its best to recognize the input content of the input even if you remove all prompts. A `guidance_scale` between 3.0 and 5.0 is recommended.
+
+return_dict (`bool`, defaults to `True`) : Whether or not to return a `~models.controlnet.ControlNetOutput` instead of a plain tuple.
+
+**Returns:** `~models.controlnet.ControlNetOutput` **or** `tuple`
+
+If `return_dict` is `True`, a `~models.controlnet.ControlNetOutput` is returned, otherwise a tuple is
+returned where the first element is the sample tensor.
+
+The [SparseControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet_sparsectrl#diffusers.SparseControlNetModel) forward method.
+
+#### from_unet[[diffusers.SparseControlNetModel.from_unet]]
+
+```python
+from_unet(unet: UNet2DConditionModel, controlnet_conditioning_channel_order: str = 'rgb', conditioning_embedding_out_channels: tuple[int, ...] | None = (16, 32, 96, 256), load_weights_from_unet: bool = True, conditioning_channels: int = 3)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sparsectrl.py#L388)
+
+**Parameters:**
+
+unet (`UNet2DConditionModel`) : The UNet model weights to copy to the [SparseControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet_sparsectrl#diffusers.SparseControlNetModel). All configuration options are also copied where applicable.
+
+Instantiate a [SparseControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet_sparsectrl#diffusers.SparseControlNetModel) from [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel).
+
 #### set_attention_slice[[diffusers.SparseControlNetModel.set_attention_slice]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sparsectrl.py#L469)
+```python
+set_attention_slice(slice_size: str | int | list[int])
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sparsectrl.py#L469)
+
+**Parameters:**
+
+slice_size (`str` or `int` or `list(int)`, *optional*, defaults to `"auto"`) : When `"auto"`, input to the attention heads is halved, so attention is computed in two steps. If `"max"`, maximum amount of memory is saved by running only one slice at a time. If a number is provided, uses as many slices as `attention_head_dim // slice_size`. In this case, `attention_head_dim` must be a multiple of `slice_size`.
 
 Enable sliced attention computation.
 
 When this option is enabled, the attention module splits the input tensor in slices to compute attention in
 several steps. This is useful for saving some memory in exchange for a small decrease in speed.
 
-**Parameters:**
-
-slice_size (`str` or `int` or `list(int)`, *optional*, defaults to `"auto"`) : When `"auto"`, input to the attention heads is halved, so attention is computed in two steps. If `"max"`, maximum amount of memory is saved by running only one slice at a time. If a number is provided, uses as many slices as `attention_head_dim // slice_size`. In this case, `attention_head_dim` must be a multiple of `slice_size`.
 #### set_default_attn_processor[[diffusers.SparseControlNetModel.set_default_attn_processor]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sparsectrl.py#L453)
+```python
+set_default_attn_processor()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sparsectrl.py#L453)
 
 Disables custom attention processors and sets the default attention implementation.
 
@@ -161,9 +181,11 @@ Disables custom attention processors and sets the default attention implementati
 
 #### diffusers.models.controlnets.SparseControlNetOutput[[diffusers.models.controlnets.SparseControlNetOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sparsectrl.py#L44)
+```python
+diffusers.models.controlnets.SparseControlNetOutput(down_block_res_samples: tuple, mid_block_res_sample: Tensor)
+```
 
-The output of [SparseControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet_sparsectrl#diffusers.SparseControlNetModel).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sparsectrl.py#L44)
 
 **Parameters:**
 
@@ -171,5 +193,7 @@ down_block_res_samples (`tuple[torch.Tensor]`) : A tuple of downsample activatio
 
 mid_down_block_re_sample (`torch.Tensor`) : The activation of the middle block (the lowest sample resolution). Each tensor should be of shape `(batch_size, channel * lowest_resolution, height // lowest_resolution, width // lowest_resolution)`. Output can be used to condition the original UNet's middle block activation.
 
-### AutoencoderKL
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/autoencoderkl.md
+The output of [SparseControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet_sparsectrl#diffusers.SparseControlNetModel).
+
+### AutoencoderKLMagvit
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoderkl_magvit.md

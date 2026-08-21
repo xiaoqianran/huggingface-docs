@@ -10,7 +10,7 @@ uv pip install -U torch torchao
 
 Each quantization dtype is available as a separate instance of a [AOBaseConfig](https://docs.pytorch.org/ao/main/api_ref_quantization.html#inference-apis-for-quantize) class. This provides more flexible configuration options by exposing more available arguments.
 
-Pass the `AOBaseConfig` of a quantization dtype, like [Int4WeightOnlyConfig](https://docs.pytorch.org/ao/main/generated/torchao.quantization.Int4WeightOnlyConfig) to [TorchAoConfig](/docs/diffusers/v0.39.0/en/api/quantization#diffusers.TorchAoConfig) in [from_pretrained()](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
+Pass the `AOBaseConfig` of a quantization dtype, like [Int4WeightOnlyConfig](https://docs.pytorch.org/ao/main/generated/torchao.quantization.Int4WeightOnlyConfig) to [TorchAoConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.TorchAoConfig) in [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
 
 ```py
 import torch
@@ -23,10 +23,23 @@ pipeline_quant_config = PipelineQuantizationConfig(
 pipeline = DiffusionPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
     quantization_config=pipeline_quant_config,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
     device_map="cuda"
 )
 ```
+
+`device_map="cuda"` quantizes each layer on the GPU while it loads. This is fast, but it temporarily requires additional GPU memory for the original and quantized weights. If the model already uses most of your GPU memory, loading can fail with an out-of-memory error. In that case, drop `device_map` and move the pipeline to the GPU after loading:
+
+```py
+pipeline = DiffusionPipeline.from_pretrained(
+    "black-forest-labs/FLUX.1-dev",
+    quantization_config=pipeline_quant_config,
+    torch_dtype=torch.bfloat16,
+)
+pipeline.to("cuda")
+```
+
+Without `device_map`, Diffusers quantizes the layers on the CPU. This is slower, but avoids the temporary GPU-memory spike during quantization. To reduce GPU memory usage further, use [enable_model_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) instead. You can also quantize additional components, such as the text encoder.
 
 ## torch.compile
 
@@ -43,7 +56,7 @@ pipeline_quant_config = PipelineQuantizationConfig(
 pipeline = DiffusionPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
     quantization_config=pipeline_quant_config,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
     device_map="cuda"
 )
 
@@ -75,7 +88,7 @@ Some example popular quantization configurations are as follows:
 
 ## Serializing and Deserializing quantized models
 
-To serialize a quantized model in a given dtype, first load the model with the desired quantization dtype and then save it using the [save_pretrained()](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained) method.
+To serialize a quantized model in a given dtype, first load the model with the desired quantization dtype and then save it using the [save_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.save_pretrained) method.
 
 ```python
 import torch
@@ -87,19 +100,19 @@ transformer = AutoModel.from_pretrained(
     "black-forest-labs/Flux.1-Dev",
     subfolder="transformer",
     quantization_config=quantization_config,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
 )
 transformer.save_pretrained("/path/to/flux_int8wo", safe_serialization=False)
 ```
 
-To load a serialized quantized model, use the [from_pretrained()](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained) method.
+To load a serialized quantized model, use the [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained) method.
 
 ```python
 import torch
 from diffusers import FluxPipeline, AutoModel
 
-transformer = AutoModel.from_pretrained("/path/to/flux_int8wo", torch_dtype=torch.bfloat16, use_safetensors=False)
-pipe = FluxPipeline.from_pretrained("black-forest-labs/Flux.1-Dev", transformer=transformer, torch_dtype=torch.bfloat16)
+transformer = AutoModel.from_pretrained("/path/to/flux_int8wo", dtype=torch.bfloat16, use_safetensors=False)
+pipe = FluxPipeline.from_pretrained("black-forest-labs/Flux.1-Dev", transformer=transformer, dtype=torch.bfloat16)
 pipe.to("cuda")
 
 prompt = "A cat holding a sign that says hello world"
@@ -120,7 +133,7 @@ transformer = AutoModel.from_pretrained(
     "black-forest-labs/Flux.1-Dev",
     subfolder="transformer",
     quantization_config=TorchAoConfig(IntxWeightOnlyConfig(dtype=torch.uint4)),
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
 )
 transformer.save_pretrained("/path/to/flux_uint4wo", safe_serialization=False, max_shard_size="50GB")
 # ...
@@ -133,12 +146,12 @@ transformer.load_state_dict(state_dict, strict=True, assign=True)
 ```
 
 > [!TIP]
-> The [AutoModel](/docs/diffusers/v0.39.0/en/api/models/auto_model#diffusers.AutoModel) API is supported for PyTorch >= 2.6 as shown in the examples below.
+> The [AutoModel](/docs/diffusers/v0.40.0/en/api/models/auto_model#diffusers.AutoModel) API is supported for PyTorch >= 2.6 as shown in the examples below.
 
 ## Resources
 
 - [TorchAO Quantization API](https://docs.pytorch.org/ao/stable/index.html)
 - [Diffusers-TorchAO examples](https://github.com/sayakpaul/diffusers-torchao)
 
-### NVIDIA ModelOpt
-https://huggingface.co/docs/diffusers/v0.39.0/quantization/modelopt.md
+### Nunchaku Lite
+https://huggingface.co/docs/diffusers/v0.40.0/quantization/nunchaku.md

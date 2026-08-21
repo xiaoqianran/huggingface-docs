@@ -2,18 +2,18 @@
 
 Quantization focuses on representing data with fewer bits while also trying to preserve the precision of the original data. This often means converting a data type to represent the same information with fewer bits. For example, if your model weights are stored as 32-bit floating points and they're quantized to 16-bit floating points, this halves the model size which makes it easier to store and reduces memory usage. Lower precision can also speedup inference because it takes less time to perform calculations with fewer bits.
 
-Diffusers supports multiple quantization backends to make large diffusion models like [Flux](../api/pipelines/flux) more accessible. This guide shows how to use the [PipelineQuantizationConfig](/docs/diffusers/v0.39.0/en/api/quantization#diffusers.PipelineQuantizationConfig) class to quantize a pipeline during its initialization from a pretrained or non-quantized checkpoint.
+Diffusers supports multiple quantization backends to make large diffusion models like [Flux](../api/pipelines/flux) more accessible. This guide shows how to use the [PipelineQuantizationConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.PipelineQuantizationConfig) class to quantize a pipeline during its initialization from a pretrained or non-quantized checkpoint.
 
 ## Pipeline-level quantization
 
-There are two ways to use [PipelineQuantizationConfig](/docs/diffusers/v0.39.0/en/api/quantization#diffusers.PipelineQuantizationConfig) depending on how much customization you want to apply to the quantization configuration. 
+There are two ways to use [PipelineQuantizationConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.PipelineQuantizationConfig) depending on how much customization you want to apply to the quantization configuration. 
 
 - for basic use cases, define the `quant_backend`, `quant_kwargs`, and `components_to_quantize` arguments
 - for granular quantization control, define a `quant_mapping` that provides the quantization configuration for individual model components
 
 ### Basic quantization
 
-Initialize [PipelineQuantizationConfig](/docs/diffusers/v0.39.0/en/api/quantization#diffusers.PipelineQuantizationConfig) with the following parameters.
+Initialize [PipelineQuantizationConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.PipelineQuantizationConfig) with the following parameters.
 
 - `quant_backend` specifies which quantization backend to use. Currently supported backends include: `bitsandbytes_4bit`, `bitsandbytes_8bit`, `gguf`, `quanto`, and `torchao`.
 - `quant_kwargs` specifies the quantization arguments to use.
@@ -21,11 +21,11 @@ Initialize [PipelineQuantizationConfig](/docs/diffusers/v0.39.0/en/api/quantizat
 > [!TIP]
 > These `quant_kwargs` arguments are different for each backend. Refer to the [Quantization API](../api/quantization) docs to view the arguments for each backend.
 
-- `components_to_quantize` specifies which component(s) of the pipeline to quantize. Typically, you should quantize the most compute intensive components like the transformer. The text encoder is another component to consider quantizing if a pipeline has more than one such as [FluxPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/flux#diffusers.FluxPipeline). The example below quantizes the T5 text encoder in [FluxPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/flux#diffusers.FluxPipeline) while keeping the CLIP model intact.
+- `components_to_quantize` specifies which component(s) of the pipeline to quantize. Typically, you should quantize the most compute intensive components like the transformer. The text encoder is another component to consider quantizing if a pipeline has more than one such as [FluxPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/flux#diffusers.FluxPipeline). The example below quantizes the T5 text encoder in [FluxPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/flux#diffusers.FluxPipeline) while keeping the CLIP model intact.
 
    `components_to_quantize` accepts either a list for multiple models or a string for a single model.
 
-The example below loads the bitsandbytes backend with the following arguments from [BitsAndBytesConfig](/docs/diffusers/v0.39.0/en/api/quantization#diffusers.BitsAndBytesConfig), `load_in_4bit`, `bnb_4bit_quant_type`, and `bnb_4bit_compute_dtype`.
+The example below loads the bitsandbytes backend with the following arguments from [BitsAndBytesConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.BitsAndBytesConfig), `load_in_4bit`, `bnb_4bit_quant_type`, and `bnb_4bit_compute_dtype`.
 
 ```py
 import torch
@@ -39,13 +39,13 @@ pipeline_quant_config = PipelineQuantizationConfig(
 )
 ```
 
-Pass the `pipeline_quant_config` to [from_pretrained()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to quantize the pipeline.
+Pass the `pipeline_quant_config` to [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to quantize the pipeline.
 
 ```py
 pipe = DiffusionPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
     quantization_config=pipeline_quant_config,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
 ).to("cuda")
 
 image = pipe("photo of a cute dog").images[0]
@@ -55,9 +55,9 @@ image = pipe("photo of a cute dog").images[0]
 
 The `quant_mapping` argument provides more options for how to quantize each individual component in a pipeline, like combining different quantization backends.
 
-Initialize [PipelineQuantizationConfig](/docs/diffusers/v0.39.0/en/api/quantization#diffusers.PipelineQuantizationConfig) and pass a `quant_mapping` to it. The `quant_mapping` allows you to specify the quantization options for each component in the pipeline such as the transformer and text encoder.
+Initialize [PipelineQuantizationConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.PipelineQuantizationConfig) and pass a `quant_mapping` to it. The `quant_mapping` allows you to specify the quantization options for each component in the pipeline such as the transformer and text encoder.
 
-The example below uses two quantization backends, [QuantoConfig](/docs/diffusers/v0.39.0/en/api/quantization#diffusers.QuantoConfig) and [transformers.BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.12.1/en/main_classes/quantization#transformers.BitsAndBytesConfig), for the transformer and text encoder.
+The example below uses two quantization backends, [QuantoConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.QuantoConfig) and [transformers.BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.BitsAndBytesConfig), for the transformer and text encoder.
 
 ```py
 import torch
@@ -77,7 +77,7 @@ pipeline_quant_config = PipelineQuantizationConfig(
 )
 ```
 
-There is a separate bitsandbytes backend in [Transformers](https://huggingface.co/docs/transformers/main_classes/quantization#transformers.BitsAndBytesConfig). You need to import and use [transformers.BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.12.1/en/main_classes/quantization#transformers.BitsAndBytesConfig) for components that come from Transformers. For example, `text_encoder_2` in [FluxPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/flux#diffusers.FluxPipeline) is a [T5EncoderModel](https://huggingface.co/docs/transformers/v5.12.1/en/model_doc/t5#transformers.T5EncoderModel) from Transformers so you need to use [transformers.BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.12.1/en/main_classes/quantization#transformers.BitsAndBytesConfig) instead of [diffusers.BitsAndBytesConfig](/docs/diffusers/v0.39.0/en/api/quantization#diffusers.BitsAndBytesConfig).
+There is a separate bitsandbytes backend in [Transformers](https://huggingface.co/docs/transformers/main_classes/quantization#transformers.BitsAndBytesConfig). You need to import and use [transformers.BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.BitsAndBytesConfig) for components that come from Transformers. For example, `text_encoder_2` in [FluxPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/flux#diffusers.FluxPipeline) is a [T5EncoderModel](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/t5#transformers.T5EncoderModel) from Transformers so you need to use [transformers.BitsAndBytesConfig](https://huggingface.co/docs/transformers/v5.15.1/en/main_classes/quantization#transformers.BitsAndBytesConfig) instead of [diffusers.BitsAndBytesConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.BitsAndBytesConfig).
 
 > [!TIP]
 > Use the [basic quantization](#basic-quantization) method above if you don't want to manage these distinct imports or aren't sure where each pipeline component comes from.
@@ -99,17 +99,43 @@ pipeline_quant_config = PipelineQuantizationConfig(
 )
 ```
 
-Pass the `pipeline_quant_config` to [from_pretrained()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to quantize the pipeline.
+Pass the `pipeline_quant_config` to [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) to quantize the pipeline.
 
 ```py
 pipe = DiffusionPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
     quantization_config=pipeline_quant_config,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
 ).to("cuda")
 
 image = pipe("photo of a cute dog").images[0]
 ```
+
+## Loading prequantized checkpoints
+
+Some quantization backends support loading checkpoints that were already quantized and uploaded to the Hub. In this case, the quantization configuration is stored in the model's `config.json` and is read automatically — you do not need to create a [PipelineQuantizationConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.PipelineQuantizationConfig) or pass a `quantization_config` argument.
+
+```py
+import torch
+from diffusers import DiffusionPipeline
+
+pipe = DiffusionPipeline.from_pretrained(
+    "rootonchair/ERNIE-Image-Turbo-nunchaku-lite-nvfp4",
+    dtype=torch.bfloat16,
+).to("cuda")
+```
+
+The following backends support loading prequantized checkpoints out of the box.
+
+| Backend | Notes |
+|---|---|
+| [bitsandbytes](./bitsandbytes) | Config is saved in `config.json`; no extra arguments needed. Supports quantizing on the fly as well as loading prequantized checkpoints. |
+| [torchao](./torchao) | Same as above. |
+| [GGUF](./gguf) | Uses `from_single_file` with Model classes; pipeline-level loading is not supported. |
+| [AutoRound](./autoround) | Only loading is supported; quantize first with the AutoRound CLI or Python API. |
+| [Nunchaku Lite](./nunchaku) | Config is saved in `config.json`; requires the `kernels` package. Only loading is supported. |
+| [ModelOpt](./modelopt) | Only loading prequantized models is supported. |
+| [SDNQ](./sdnq) | Supports both quantizing on the fly and loading prequantized models; requires the `sdnq` package. |
 
 ## Resources
 
@@ -126,5 +152,5 @@ Check out the resources below to learn more about quantization.
 
 - Read the [Exploring Quantization Backends in Diffusers](https://huggingface.co/blog/diffusers-quantization) blog post for a brief introduction to each quantization backend, how to choose a backend, and combining quantization with other memory optimizations.
 
-### LoRA
-https://huggingface.co/docs/diffusers/v0.39.0/tutorials/using_peft_for_inference.md
+### GGUF
+https://huggingface.co/docs/diffusers/v0.40.0/quantization/gguf.md

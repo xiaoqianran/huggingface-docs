@@ -1,6 +1,6 @@
 # Transformer2DModel
 
-A Transformer model for image-like data from [CompVis](https://huggingface.co/CompVis) that is based on the [Vision Transformer](https://huggingface.co/papers/2010.11929) introduced by Dosovitskiy et al. The [Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/transformer2d#diffusers.Transformer2DModel) accepts discrete (classes of vector embeddings) or continuous (actual embeddings) inputs.
+A Transformer model for image-like data from [CompVis](https://huggingface.co/CompVis) that is based on the [Vision Transformer](https://huggingface.co/papers/2010.11929) introduced by Dosovitskiy et al. The [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) accepts discrete (classes of vector embeddings) or continuous (actual embeddings) inputs.
 
 When the input is **continuous**:
 
@@ -21,42 +21,11 @@ When the input is **discrete**:
 
 #### diffusers.Transformer2DModel[[diffusers.Transformer2DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_2d.py#L39)
+```python
+diffusers.Transformer2DModel(num_attention_heads: int = 16, attention_head_dim: int = 88, in_channels: int | None = None, out_channels: int | None = None, num_layers: int = 1, dropout: float = 0.0, norm_num_groups: int = 32, cross_attention_dim: int | None = None, attention_bias: bool = False, sample_size: int | None = None, num_vector_embeds: int | None = None, patch_size: int | None = None, activation_fn: str = 'geglu', num_embeds_ada_norm: int | None = None, use_linear_projection: bool = False, only_cross_attention: bool = False, double_self_attention: bool = False, upcast_attention: bool = False, norm_type: str = 'layer_norm', norm_elementwise_affine: bool = True, norm_eps: float = 1e-05, attention_type: str = 'default', caption_channels: int = None, interpolation_scale: float = None, use_additional_conditions: bool | None = None)
+```
 
-A 2D Transformer model for image-like data.
-
-forwarddiffusers.Transformer2DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_2d.py#L324[{"name": "hidden_states", "val": ": Tensor"}, {"name": "encoder_hidden_states", "val": ": torch.Tensor | None = None"}, {"name": "timestep", "val": ": torch.LongTensor | None = None"}, {"name": "added_cond_kwargs", "val": ": dict = None"}, {"name": "class_labels", "val": ": torch.LongTensor | None = None"}, {"name": "cross_attention_kwargs", "val": ": dict = None"}, {"name": "attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "encoder_attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "return_dict", "val": ": bool = True"}]- **hidden_states** (`torch.LongTensor` of shape `(batch size, num latent pixels)` if discrete, `torch.Tensor` of shape `(batch size, channel, height, width)` if continuous) --
-  Input `hidden_states`.
-- **encoder_hidden_states** ( `torch.Tensor` of shape `(batch size, sequence len, embed dims)`, *optional*) --
-  Conditional embeddings for cross attention layer. If not given, cross-attention defaults to
-  self-attention.
-- **timestep** ( `torch.LongTensor`, *optional*) --
-  Used to indicate denoising step. Optional timestep to be applied as an embedding in `AdaLayerNorm`.
-- **class_labels** ( `torch.LongTensor` of shape `(batch size, num classes)`, *optional*) --
-  Used to indicate class labels conditioning. Optional class labels to be applied as an embedding in
-  `AdaLayerZeroNorm`.
-- **cross_attention_kwargs** ( `dict[str, Any]`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **attention_mask** ( `torch.Tensor`, *optional*) --
-  An attention mask of shape `(batch, key_tokens)` is applied to `encoder_hidden_states`. If `1` the mask
-  is kept, otherwise if `0` it is discarded. Mask will be converted into a bias, which adds large
-  negative values to the attention scores corresponding to "discard" tokens.
-- **encoder_attention_mask** ( `torch.Tensor`, *optional*) --
-  Cross-attention mask applied to `encoder_hidden_states`. Two formats supported:
-
-  * Mask `(batch, sequence_length)` True = keep, False = discard.
-  * Bias `(batch, 1, sequence_length)` 0 = keep, -10000 = discard.
-
-  If `ndim == 2`: will be interpreted as a mask, then converted into a bias consistent with the format
-  above. This bias will be added to the cross-attention scores.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a [UNet2DConditionOutput](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) instead of a plain
-  tuple.0If `return_dict` is True, an `Transformer2DModelOutput` is returned,
-otherwise a `tuple` where the first element is the sample tensor.
-
-The [Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/transformer2d#diffusers.Transformer2DModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_2d.py#L39)
 
 **Parameters:**
 
@@ -82,22 +51,56 @@ num_embeds_ada_norm ( `int`, *optional*) : The number of diffusion steps used du
 
 attention_bias (`bool`, *optional*) : Configure if the `TransformerBlocks` attention should contain a bias parameter.
 
+A 2D Transformer model for image-like data.
+
+#### forward[[diffusers.Transformer2DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, encoder_hidden_states: typing.Optional[torch.Tensor] = None, timestep: typing.Optional[torch.LongTensor] = None, added_cond_kwargs: dict = None, class_labels: typing.Optional[torch.LongTensor] = None, cross_attention_kwargs: dict = None, attention_mask: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_2d.py#L324)
+
+**Parameters:**
+
+hidden_states (`torch.LongTensor` of shape `(batch size, num latent pixels)` if discrete, `torch.Tensor` of shape `(batch size, channel, height, width)` if continuous) : Input `hidden_states`.
+
+encoder_hidden_states ( `torch.Tensor` of shape `(batch size, sequence len, embed dims)`, *optional*) : Conditional embeddings for cross attention layer. If not given, cross-attention defaults to self-attention.
+
+timestep ( `torch.LongTensor`, *optional*) : Used to indicate denoising step. Optional timestep to be applied as an embedding in `AdaLayerNorm`.
+
+class_labels ( `torch.LongTensor` of shape `(batch size, num classes)`, *optional*) : Used to indicate class labels conditioning. Optional class labels to be applied as an embedding in `AdaLayerZeroNorm`.
+
+cross_attention_kwargs ( `dict[str, Any]`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+attention_mask ( `torch.Tensor`, *optional*) : An attention mask of shape `(batch, key_tokens)` is applied to `encoder_hidden_states`. If `1` the mask is kept, otherwise if `0` it is discarded. Mask will be converted into a bias, which adds large negative values to the attention scores corresponding to "discard" tokens.
+
+encoder_attention_mask ( `torch.Tensor`, *optional*) : Cross-attention mask applied to `encoder_hidden_states`. Two formats supported:  * Mask `(batch, sequence_length)` True = keep, False = discard. * Bias `(batch, 1, sequence_length)` 0 = keep, -10000 = discard.  If `ndim == 2`: will be interpreted as a mask, then converted into a bias consistent with the format above. This bias will be added to the cross-attention scores.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [UNet2DConditionOutput](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.models.unets.unet_2d_condition.UNet2DConditionOutput) instead of a plain tuple.
+
 **Returns:**
 
 If `return_dict` is True, an `Transformer2DModelOutput` is returned,
 otherwise a `tuple` where the first element is the sample tensor.
 
+The [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) forward method.
+
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
 #### diffusers.models.modeling_outputs.Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/modeling_outputs.py#L21)
+```python
+diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
+```
 
-The output of [Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-### LuminaNextDiT2DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/lumina_nextdit2d.md
+The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+
+### AuraFlowTransformer2DModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/aura_flow_transformer2d.md

@@ -38,7 +38,7 @@ All checkpoints have different usage which we detail below.
 import torch
 from diffusers import FluxPipeline
 
-pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-schnell", torch_dtype=torch.bfloat16)
+pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-schnell", dtype=torch.bfloat16)
 pipe.enable_model_cpu_offload()
 
 prompt = "A cat holding a sign that says hello world"
@@ -62,7 +62,7 @@ out.save("image.png")
 import torch
 from diffusers import FluxPipeline
 
-pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16)
+pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", dtype=torch.bfloat16)
 pipe.enable_model_cpu_offload()
 
 prompt = "a tiny astronaut hatching from an egg on the moon"
@@ -90,7 +90,7 @@ image = load_image("https://huggingface.co/datasets/YiYiXu/testing-images/resolv
 mask = load_image("https://huggingface.co/datasets/YiYiXu/testing-images/resolve/main/cup_mask.png")
 
 repo_id = "black-forest-labs/FLUX.1-Fill-dev"
-pipe = FluxFillPipeline.from_pretrained(repo_id, torch_dtype=torch.bfloat16).to("cuda")
+pipe = FluxFillPipeline.from_pretrained(repo_id, dtype=torch.bfloat16).to("cuda")
 
 image = pipe(
     prompt="a white paper cup",
@@ -106,7 +106,7 @@ image.save(f"output.png")
 
 ### Canny Control
 
-**Note:** `black-forest-labs/Flux.1-Canny-dev` is _not_ a [ControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet#diffusers.ControlNetModel) model. ControlNet models are a separate component from the UNet/Transformer whose residuals are added to the actual underlying model. Canny Control is an alternate architecture that achieves effectively the same results as a ControlNet model would, by using channel-wise concatenation with input control condition and ensuring the transformer learns structure control by following the condition as closely as possible. 
+**Note:** `black-forest-labs/Flux.1-Canny-dev` is _not_ a [ControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.ControlNetModel) model. ControlNet models are a separate component from the UNet/Transformer whose residuals are added to the actual underlying model. Canny Control is an alternate architecture that achieves effectively the same results as a ControlNet model would, by using channel-wise concatenation with input control condition and ensuring the transformer learns structure control by following the condition as closely as possible. 
 
 ```python
 # !pip install -U controlnet-aux
@@ -115,7 +115,7 @@ from controlnet_aux import CannyDetector
 from diffusers import FluxControlPipeline
 from diffusers.utils import load_image
 
-pipe = FluxControlPipeline.from_pretrained("black-forest-labs/FLUX.1-Canny-dev", torch_dtype=torch.bfloat16).to("cuda")
+pipe = FluxControlPipeline.from_pretrained("black-forest-labs/FLUX.1-Canny-dev", dtype=torch.bfloat16).to("cuda")
 
 prompt = "A robot made of exotic candies and chocolates of different kinds. The background is filled with confetti and celebratory gifts."
 control_image = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/robot.png")
@@ -143,7 +143,7 @@ from controlnet_aux import CannyDetector
 from diffusers import FluxControlPipeline
 from diffusers.utils import load_image
 
-pipe = FluxControlPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16).to("cuda")
+pipe = FluxControlPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", dtype=torch.bfloat16).to("cuda")
 pipe.load_lora_weights("black-forest-labs/FLUX.1-Canny-dev-lora")
 
 prompt = "A robot made of exotic candies and chocolates of different kinds. The background is filled with confetti and celebratory gifts."
@@ -165,7 +165,7 @@ image.save("output.png")
 
 ### Depth Control
 
-**Note:** `black-forest-labs/Flux.1-Depth-dev` is _not_ a ControlNet model. [ControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet#diffusers.ControlNetModel) models are a separate component from the UNet/Transformer whose residuals are added to the actual underlying model. Depth Control is an alternate architecture that achieves effectively the same results as a ControlNet model would, by using channel-wise concatenation with input control condition and ensuring the transformer learns structure control by following the condition as closely as possible.
+**Note:** `black-forest-labs/Flux.1-Depth-dev` is _not_ a ControlNet model. [ControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.ControlNetModel) models are a separate component from the UNet/Transformer whose residuals are added to the actual underlying model. Depth Control is an alternate architecture that achieves effectively the same results as a ControlNet model would, by using channel-wise concatenation with input control condition and ensuring the transformer learns structure control by following the condition as closely as possible.
 
 ```python
 # !pip install git+https://github.com/huggingface/image_gen_aux
@@ -174,7 +174,7 @@ from diffusers import FluxControlPipeline, FluxTransformer2DModel
 from diffusers.utils import load_image
 from image_gen_aux import DepthPreprocessor
 
-pipe = FluxControlPipeline.from_pretrained("black-forest-labs/FLUX.1-Depth-dev", torch_dtype=torch.bfloat16).to("cuda")
+pipe = FluxControlPipeline.from_pretrained("black-forest-labs/FLUX.1-Depth-dev", dtype=torch.bfloat16).to("cuda")
 
 prompt = "A robot made of exotic candies and chocolates of different kinds. The background is filled with confetti and celebratory gifts."
 control_image = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/robot.png")
@@ -203,7 +203,7 @@ from diffusers import FluxControlPipeline, FluxTransformer2DModel
 from diffusers.utils import load_image
 from image_gen_aux import DepthPreprocessor
 
-pipe = FluxControlPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16).to("cuda")
+pipe = FluxControlPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", dtype=torch.bfloat16).to("cuda")
 pipe.load_lora_weights("black-forest-labs/FLUX.1-Depth-dev-lora")
 
 prompt = "A robot made of exotic candies and chocolates of different kinds. The background is filled with confetti and celebratory gifts."
@@ -239,12 +239,12 @@ dtype = torch.bfloat16
 
 repo_redux = "black-forest-labs/FLUX.1-Redux-dev"
 repo_base = "black-forest-labs/FLUX.1-dev" 
-pipe_prior_redux = FluxPriorReduxPipeline.from_pretrained(repo_redux, torch_dtype=dtype).to(device)
+pipe_prior_redux = FluxPriorReduxPipeline.from_pretrained(repo_redux, dtype=dtype).to(device)
 pipe = FluxPipeline.from_pretrained(
     repo_base, 
     text_encoder=None,
     text_encoder_2=None,
-    torch_dtype=torch.bfloat16
+    dtype=torch.bfloat16
 ).to(device)
 
 image = load_image("https://huggingface.co/datasets/YiYiXu/testing-images/resolve/main/style_ziggy/img5.png")
@@ -268,7 +268,7 @@ from diffusers import FluxKontextPipeline
 from diffusers.utils import load_image
 
 pipe = FluxKontextPipeline.from_pretrained(
-    "black-forest-labs/FLUX.1-Kontext-dev", torch_dtype=torch.bfloat16
+    "black-forest-labs/FLUX.1-Kontext-dev", dtype=torch.bfloat16
 )
 pipe.to("cuda")
 
@@ -318,7 +318,7 @@ source = load_image(img_url)
 mask = load_image(mask_url)
 
 pipe = FluxKontextInpaintPipeline.from_pretrained(
-    "black-forest-labs/FLUX.1-Kontext-dev", torch_dtype=torch.bfloat16
+    "black-forest-labs/FLUX.1-Kontext-dev", dtype=torch.bfloat16
 )
 pipe.to("cuda")
 
@@ -332,7 +332,7 @@ from diffusers import FluxKontextInpaintPipeline
 from diffusers.utils import load_image
 
 pipe = FluxKontextInpaintPipeline.from_pretrained(
-    "black-forest-labs/FLUX.1-Kontext-dev", torch_dtype=torch.bfloat16
+    "black-forest-labs/FLUX.1-Kontext-dev", dtype=torch.bfloat16
 )
 pipe.to("cuda")
 
@@ -363,7 +363,7 @@ from diffusers.utils import load_image
 from huggingface_hub import hf_hub_download
 import torch
 
-control_pipe = FluxControlPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16)
+control_pipe = FluxControlPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", dtype=torch.bfloat16)
 control_pipe.load_lora_weights("black-forest-labs/FLUX.1-Depth-dev-lora", adapter_name="depth")
 control_pipe.load_lora_weights(
     hf_hub_download("ByteDance/Hyper-SD", "Hyper-FLUX.1-dev-8steps-lora.safetensors"), adapter_name="hyper-sd"
@@ -391,7 +391,7 @@ image.save("output.png")
 
 ## Note about `unload_lora_weights()` when using Flux LoRAs
 
-When unloading the Control LoRA weights, call `pipe.unload_lora_weights(reset_to_overwritten_params=True)` to reset the `pipe.transformer` completely back to its original form. The resultant pipeline can then be used with methods like [DiffusionPipeline.from_pipe()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pipe). More details about this argument are available in [this PR](https://github.com/huggingface/diffusers/pull/10397).
+When unloading the Control LoRA weights, call `pipe.unload_lora_weights(reset_to_overwritten_params=True)` to reset the `pipe.transformer` completely back to its original form. The resultant pipeline can then be used with methods like [DiffusionPipeline.from_pipe()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pipe). More details about this argument are available in [this PR](https://github.com/huggingface/diffusers/pull/10397).
 
 ## IP-Adapter
 
@@ -406,7 +406,7 @@ from diffusers import FluxPipeline
 from diffusers.utils import load_image
 
 pipe = FluxPipeline.from_pretrained(
-    "black-forest-labs/FLUX.1-dev", torch_dtype=torch.bfloat16
+    "black-forest-labs/FLUX.1-dev", dtype=torch.bfloat16
 ).to("cuda")
 
 image = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/flux_ip_adapter_input.jpg").resize((1024, 1024))
@@ -440,7 +440,7 @@ Flux is a very large model and requires ~50GB of RAM/VRAM to load all the modeli
 
 ### Group offloading
 
-[Group offloading](../../optimization/memory#group-offloading) lowers VRAM usage by offloading groups of internal layers rather than the whole model or weights. You need to use [apply_group_offloading()](/docs/diffusers/v0.39.0/en/api/utilities#diffusers.hooks.apply_group_offloading) on all the model components of a pipeline. The `offload_type` parameter allows you to toggle between block and leaf-level offloading. Setting it to `leaf_level` offloads the lowest leaf-level parameters to the CPU instead of offloading at the module-level.
+[Group offloading](../../optimization/memory#group-offloading) lowers VRAM usage by offloading groups of internal layers rather than the whole model or weights. You need to use [apply_group_offloading()](/docs/diffusers/v0.40.0/en/api/utilities#diffusers.hooks.apply_group_offloading) on all the model components of a pipeline. The `offload_type` parameter allows you to toggle between block and leaf-level offloading. Setting it to `leaf_level` offloads the lowest leaf-level parameters to the CPU instead of offloading at the module-level.
 
 On CUDA devices that support asynchronous data streaming, set `use_stream=True` to overlap data transfer and computation to accelerate inference.
 
@@ -456,7 +456,7 @@ model_id = "black-forest-labs/FLUX.1-dev"
 dtype = torch.bfloat16
 pipe = FluxPipeline.from_pretrained(
 	model_id,
-	torch_dtype=dtype,
+	dtype=dtype,
 )
 
 apply_group_offloading(
@@ -510,7 +510,7 @@ FP16 inference code:
 import torch
 from diffusers import FluxPipeline
 
-pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-schnell", torch_dtype=torch.bfloat16) # can replace schnell with dev
+pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-schnell", dtype=torch.bfloat16) # can replace schnell with dev
 # to run on low vram GPUs (i.e. between 4 and 32 GB VRAM)
 pipe.enable_sequential_cpu_offload()
 pipe.vae.enable_slicing()
@@ -534,7 +534,7 @@ out.save("image.png")
 
 Quantization helps reduce the memory requirements of very large models by storing model weights in a lower precision data type. However, quantization may have varying impact on video quality depending on the video model.
 
-Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [FluxPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/flux#diffusers.FluxPipeline) for inference with bitsandbytes.
+Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [FluxPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/flux#diffusers.FluxPipeline) for inference with bitsandbytes.
 
 ```py
 import torch
@@ -546,7 +546,7 @@ text_encoder_8bit = T5EncoderModel.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
     subfolder="text_encoder_2",
     quantization_config=quant_config,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 )
 
 quant_config = DiffusersBitsAndBytesConfig(load_in_8bit=True)
@@ -554,14 +554,14 @@ transformer_8bit = FluxTransformer2DModel.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
     subfolder="transformer",
     quantization_config=quant_config,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 )
 
 pipeline = FluxPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
     text_encoder_2=text_encoder_8bit,
     transformer=transformer_8bit,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="balanced",
 )
 
@@ -596,15 +596,15 @@ from optimum.quanto import freeze, qfloat8, quantize
 bfl_repo = "black-forest-labs/FLUX.1-dev"
 dtype = torch.bfloat16
 
-transformer = FluxTransformer2DModel.from_single_file("https://huggingface.co/Kijai/flux-fp8/blob/main/flux1-dev-fp8.safetensors", torch_dtype=dtype)
+transformer = FluxTransformer2DModel.from_single_file("https://huggingface.co/Kijai/flux-fp8/blob/main/flux1-dev-fp8.safetensors", dtype=dtype)
 quantize(transformer, weights=qfloat8)
 freeze(transformer)
 
-text_encoder_2 = T5EncoderModel.from_pretrained(bfl_repo, subfolder="text_encoder_2", torch_dtype=dtype)
+text_encoder_2 = T5EncoderModel.from_pretrained(bfl_repo, subfolder="text_encoder_2", dtype=dtype)
 quantize(text_encoder_2, weights=qfloat8)
 freeze(text_encoder_2)
 
-pipe = FluxPipeline.from_pretrained(bfl_repo, transformer=None, text_encoder_2=None, torch_dtype=dtype)
+pipe = FluxPipeline.from_pretrained(bfl_repo, transformer=None, text_encoder_2=None, dtype=dtype)
 pipe.transformer = transformer
 pipe.text_encoder_2 = text_encoder_2
 
@@ -626,98 +626,99 @@ image.save("flux-fp8-dev.png")
 
 #### diffusers.FluxPipeline[[diffusers.FluxPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux.py#L147)
+```python
+diffusers.FluxPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, text_encoder_2: T5EncoderModel, tokenizer_2: T5Tokenizer, transformer: FluxTransformer2DModel, image_encoder: CLIPVisionModelWithProjection = None, feature_extractor: CLIPImageProcessorPil = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux.py#L146)
+
+**Parameters:**
+
+transformer ([FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
+
+text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
+
+tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
 
 The Flux pipeline for text-to-image generation.
 
 Reference: https://blackforestlabs.ai/announcing-black-forest-labs/
 
-__call__diffusers.FluxPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux.py#L652[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "prompt_2", "val": ": str | list[str] | None = None"}, {"name": "negative_prompt", "val": ": str | list[str] = None"}, {"name": "negative_prompt_2", "val": ": str | list[str] | None = None"}, {"name": "true_cfg_scale", "val": ": float = 1.0"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "num_inference_steps", "val": ": int = 28"}, {"name": "sigmas", "val": ": list[float] | None = None"}, {"name": "guidance_scale", "val": ": float = 3.5"}, {"name": "num_images_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "negative_ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "negative_ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "negative_pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is
-  will be used instead.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation. If not defined, one has to pass
-  `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `true_cfg_scale` is
-  not greater than `1`).
-- **negative_prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and
-  `text_encoder_2`. If not defined, `negative_prompt` is used in all the text-encoders.
-- **true_cfg_scale** (`float`, *optional*, defaults to 1.0) --
-  True classifier-free guidance (guidance scale) is enabled when `true_cfg_scale` > 1 and
-  `negative_prompt` is provided.
-- **height** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The height in pixels of the generated image. This is set to 1024 by default for the best results.
-- **width** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The width in pixels of the generated image. This is set to 1024 by default for the best results.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **guidance_scale** (`float`, *optional*, defaults to 3.5) --
-  Embedded guiddance scale is enabled by setting `guidance_scale` > 1. Higher `guidance_scale` encourages
-  a model to generate images more aligned with `prompt` at the expense of lower image quality.
+#### __call__[[diffusers.FluxPipeline.__call__]]
 
-  Guidance-distilled models approximates true classifer-free guidance for `guidance_scale` > 1. Refer to
-  the [paper](https://huggingface.co/papers/2210.03142) to learn more.
-- **num_images_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
-  to make generation deterministic.
-- **latents** (`torch.FloatTensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor will be generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not
-  provided, text embeddings will be generated from `prompt` input argument.
-- **pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-  If not provided, pooled text embeddings will be generated from `prompt` input argument.
-- **ip_adapter_image** -- (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
-- **ip_adapter_image_embeds** (`list[torch.Tensor]`, *optional*) --
-  Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of
-  IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not
-  provided, embeddings are computed from the `ip_adapter_image` input argument.
-- **negative_ip_adapter_image** --
-  (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
-- **negative_ip_adapter_image_embeds** (`list[torch.Tensor]`, *optional*) --
-  Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of
-  IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not
-  provided, embeddings are computed from the `ip_adapter_image` input argument.
-- **negative_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input
-  argument.
-- **negative_pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt`
-  input argument.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generate image. Choose between
-  [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, *optional*) --
-  A function that calls at the end of each denoising steps during the inference. The function is called
-  with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int,
-  callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by
-  `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int` defaults to 512) -- Maximum sequence length to use with the `prompt`.0`~pipelines.flux.FluxPipelineOutput` or `tuple``~pipelines.flux.FluxPipelineOutput` if `return_dict`
+```python
+__call__(prompt: str | list[str] = None, prompt_2: str | list[str] | None = None, negative_prompt: str | list[str] = None, negative_prompt_2: str | list[str] | None = None, true_cfg_scale: float = 1.0, height: int | None = None, width: int | None = None, num_inference_steps: int = 28, sigmas: list[float] | None = None, guidance_scale: float = 3.5, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: list[torch.Tensor] | None = None, negative_ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, negative_ip_adapter_image_embeds: list[torch.Tensor] | None = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux.py#L598)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is will be used instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `true_cfg_scale` is not greater than `1`).
+
+negative_prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `negative_prompt` is used in all the text-encoders.
+
+true_cfg_scale (`float`, *optional*, defaults to 1.0) : True classifier-free guidance (guidance scale) is enabled when `true_cfg_scale` > 1 and `negative_prompt` is provided.
+
+height (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The height in pixels of the generated image. This is set to 1024 by default for the best results.
+
+width (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The width in pixels of the generated image. This is set to 1024 by default for the best results.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
+
+guidance_scale (`float`, *optional*, defaults to 3.5) : Embedded guiddance scale is enabled by setting `guidance_scale` > 1. Higher `guidance_scale` encourages a model to generate images more aligned with `prompt` at the expense of lower image quality.  Guidance-distilled models approximates true classifer-free guidance for `guidance_scale` > 1. Refer to the [paper](https://huggingface.co/papers/2210.03142) to learn more.
+
+num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled text embeddings will be generated from `prompt` input argument.
+
+ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+negative_ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+negative_ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+negative_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+negative_pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
+
+joint_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int` defaults to 512) : Maximum sequence length to use with the `prompt`.
+
+**Returns:** `~pipelines.flux.FluxPipelineOutput` or `tuple`
+
+`~pipelines.flux.FluxPipelineOutput` if `return_dict`
 is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
 images.
 
@@ -737,57 +738,13 @@ Examples:
 >>> image.save("flux.png")
 ```
 
-**Parameters:**
-
-transformer ([FluxTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
-
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
-
-text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
-
-tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
-
-**Returns:**
-
-``~pipelines.flux.FluxPipelineOutput` or `tuple``
-
-`~pipelines.flux.FluxPipelineOutput` if `return_dict`
-is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
-images.
-#### disable_vae_slicing[[diffusers.FluxPipeline.disable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux.py#L557)
-
-Disable sliced VAE decoding. If `enable_vae_slicing` was previously enabled, this method will go back to
-computing decoding in one step.
-#### disable_vae_tiling[[diffusers.FluxPipeline.disable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux.py#L584)
-
-Disable tiled VAE decoding. If `enable_vae_tiling` was previously enabled, this method will go back to
-computing decoding in one step.
-#### enable_vae_slicing[[diffusers.FluxPipeline.enable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux.py#L544)
-
-Enable sliced VAE decoding. When this option is enabled, the VAE will split the input tensor in slices to
-compute decoding in several steps. This is useful to save some memory and allow larger batch sizes.
-#### enable_vae_tiling[[diffusers.FluxPipeline.enable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux.py#L570)
-
-Enable tiled VAE decoding. When this option is enabled, the VAE will split the input tensor into tiles to
-compute decoding and encoding in several steps. This is useful for saving a large amount of memory and to allow
-processing larger images.
 #### encode_prompt[[diffusers.FluxPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux.py#L311)
+```python
+encode_prompt(prompt: str | list[str], prompt_2: str | list[str] | None = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, max_sequence_length: int = 512, lora_scale: float | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux.py#L310)
 
 **Parameters:**
 
@@ -809,110 +766,103 @@ lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA
 
 #### diffusers.FluxImg2ImgPipeline[[diffusers.FluxImg2ImgPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_img2img.py#L170)
+```python
+diffusers.FluxImg2ImgPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, text_encoder_2: T5EncoderModel, tokenizer_2: T5Tokenizer, transformer: FluxTransformer2DModel, image_encoder: CLIPVisionModelWithProjection = None, feature_extractor: CLIPImageProcessorPil = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_img2img.py#L169)
+
+**Parameters:**
+
+transformer ([FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
+
+text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
+
+tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
 
 The Flux pipeline for image inpainting.
 
 Reference: https://blackforestlabs.ai/announcing-black-forest-labs/
 
-__call__diffusers.FluxImg2ImgPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_img2img.py#L734[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "prompt_2", "val": ": str | list[str] | None = None"}, {"name": "negative_prompt", "val": ": str | list[str] = None"}, {"name": "negative_prompt_2", "val": ": str | list[str] | None = None"}, {"name": "true_cfg_scale", "val": ": float = 1.0"}, {"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] = None"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "strength", "val": ": float = 0.6"}, {"name": "num_inference_steps", "val": ": int = 28"}, {"name": "sigmas", "val": ": list[float] | None = None"}, {"name": "guidance_scale", "val": ": float = 7.0"}, {"name": "num_images_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "negative_ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "negative_ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "negative_pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is
-  will be used instead
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation. If not defined, one has to pass
-  `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `true_cfg_scale` is
-  not greater than `1`).
-- **negative_prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and
-  `text_encoder_2`. If not defined, `negative_prompt` is used in all the text-encoders.
-- **true_cfg_scale** (`float`, *optional*, defaults to 1.0) --
-  True classifier-free guidance (guidance scale) is enabled when `true_cfg_scale` > 1 and
-  `negative_prompt` is provided.
-- **image** (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) --
-  `Image`, numpy array or tensor representing an image batch to be used as the starting point. For both
-  numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list
-  or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)`. If it is a numpy array or a
-  list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)` It can also accept image
-  latents as `image`, but if passing latents directly it is not encoded again.
-- **height** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The height in pixels of the generated image. This is set to 1024 by default for the best results.
-- **width** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The width in pixels of the generated image. This is set to 1024 by default for the best results.
-- **strength** (`float`, *optional*, defaults to 1.0) --
-  Indicates extent to transform the reference `image`. Must be between 0 and 1. `image` is used as a
-  starting point and more noise is added the higher the `strength`. The number of denoising steps depends
-  on the amount of noise initially added. When `strength` is 1, added noise is maximum and the denoising
-  process runs for the full number of iterations specified in `num_inference_steps`. A value of 1
-  essentially ignores `image`.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **guidance_scale** (`float`, *optional*, defaults to 7.0) --
-  Guidance scale as defined in [Classifier-Free Diffusion
-  Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2.
-  of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting
-  `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to
-  the text `prompt`, usually at the expense of lower image quality.
-- **num_images_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
-  to make generation deterministic.
-- **latents** (`torch.FloatTensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor will be generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not
-  provided, text embeddings will be generated from `prompt` input argument.
-- **pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-  If not provided, pooled text embeddings will be generated from `prompt` input argument.
-- **negative_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input
-  argument.
-- **negative_pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt`
-  input argument.
-- **ip_adapter_image** -- (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
-- **ip_adapter_image_embeds** (`list[torch.Tensor]`, *optional*) --
-  Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of
-  IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not
-  provided, embeddings are computed from the `ip_adapter_image` input argument.
-- **negative_ip_adapter_image** --
-  (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
-- **negative_ip_adapter_image_embeds** (`list[torch.Tensor]`, *optional*) --
-  Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of
-  IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not
-  provided, embeddings are computed from the `ip_adapter_image` input argument.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generate image. Choose between
-  [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, *optional*) --
-  A function that calls at the end of each denoising steps during the inference. The function is called
-  with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int,
-  callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by
-  `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int` defaults to 512) -- Maximum sequence length to use with the `prompt`.0`~pipelines.flux.FluxPipelineOutput` or `tuple``~pipelines.flux.FluxPipelineOutput` if `return_dict`
+#### __call__[[diffusers.FluxImg2ImgPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, prompt_2: str | list[str] | None = None, negative_prompt: str | list[str] = None, negative_prompt_2: str | list[str] | None = None, true_cfg_scale: float = 1.0, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, height: int | None = None, width: int | None = None, strength: float = 0.6, num_inference_steps: int = 28, sigmas: list[float] | None = None, guidance_scale: float = 7.0, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: list[torch.Tensor] | None = None, negative_ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, negative_ip_adapter_image_embeds: list[torch.Tensor] | None = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_img2img.py#L676)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is will be used instead
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `true_cfg_scale` is not greater than `1`).
+
+negative_prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `negative_prompt` is used in all the text-encoders.
+
+true_cfg_scale (`float`, *optional*, defaults to 1.0) : True classifier-free guidance (guidance scale) is enabled when `true_cfg_scale` > 1 and `negative_prompt` is provided.
+
+image (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) : `Image`, numpy array or tensor representing an image batch to be used as the starting point. For both numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)`. If it is a numpy array or a list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)` It can also accept image latents as `image`, but if passing latents directly it is not encoded again.
+
+height (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The height in pixels of the generated image. This is set to 1024 by default for the best results.
+
+width (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The width in pixels of the generated image. This is set to 1024 by default for the best results.
+
+strength (`float`, *optional*, defaults to 1.0) : Indicates extent to transform the reference `image`. Must be between 0 and 1. `image` is used as a starting point and more noise is added the higher the `strength`. The number of denoising steps depends on the amount of noise initially added. When `strength` is 1, added noise is maximum and the denoising process runs for the full number of iterations specified in `num_inference_steps`. A value of 1 essentially ignores `image`.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
+
+guidance_scale (`float`, *optional*, defaults to 7.0) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+negative_pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+negative_ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+negative_ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
+
+joint_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int` defaults to 512) : Maximum sequence length to use with the `prompt`.
+
+**Returns:** `~pipelines.flux.FluxPipelineOutput` or `tuple`
+
+`~pipelines.flux.FluxPipelineOutput` if `return_dict`
 is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
 images.
 
@@ -939,57 +889,13 @@ Examples:
 ... ).images[0]
 ```
 
-**Parameters:**
-
-transformer ([FluxTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
-
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
-
-text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
-
-tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
-
-**Returns:**
-
-``~pipelines.flux.FluxPipelineOutput` or `tuple``
-
-`~pipelines.flux.FluxPipelineOutput` if `return_dict`
-is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
-images.
-#### disable_vae_slicing[[diffusers.FluxImg2ImgPipeline.disable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_img2img.py#L626)
-
-Disable sliced VAE decoding. If `enable_vae_slicing` was previously enabled, this method will go back to
-computing decoding in one step.
-#### disable_vae_tiling[[diffusers.FluxImg2ImgPipeline.disable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_img2img.py#L655)
-
-Disable tiled VAE decoding. If `enable_vae_tiling` was previously enabled, this method will go back to
-computing decoding in one step.
-#### enable_vae_slicing[[diffusers.FluxImg2ImgPipeline.enable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_img2img.py#L612)
-
-Enable sliced VAE decoding. When this option is enabled, the VAE will split the input tensor in slices to
-compute decoding in several steps. This is useful to save some memory and allow larger batch sizes.
-#### enable_vae_tiling[[diffusers.FluxImg2ImgPipeline.enable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_img2img.py#L640)
-
-Enable tiled VAE decoding. When this option is enabled, the VAE will split the input tensor into tiles to
-compute decoding and encoding in several steps. This is useful for saving a large amount of memory and to allow
-processing larger images.
 #### encode_prompt[[diffusers.FluxImg2ImgPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_img2img.py#L334)
+```python
+encode_prompt(prompt: str | list[str], prompt_2: str | list[str] | None = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, max_sequence_length: int = 512, lora_scale: float | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_img2img.py#L333)
 
 **Parameters:**
 
@@ -1011,127 +917,109 @@ lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA
 
 #### diffusers.FluxInpaintPipeline[[diffusers.FluxInpaintPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_inpaint.py#L166)
+```python
+diffusers.FluxInpaintPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, text_encoder_2: T5EncoderModel, tokenizer_2: T5Tokenizer, transformer: FluxTransformer2DModel, image_encoder: CLIPVisionModelWithProjection = None, feature_extractor: CLIPImageProcessorPil = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_inpaint.py#L166)
+
+**Parameters:**
+
+transformer ([FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
+
+text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
+
+tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
 
 The Flux pipeline for image inpainting.
 
 Reference: https://blackforestlabs.ai/announcing-black-forest-labs/
 
-__call__diffusers.FluxInpaintPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_inpaint.py#L775[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "prompt_2", "val": ": str | list[str] | None = None"}, {"name": "negative_prompt", "val": ": str | list[str] = None"}, {"name": "negative_prompt_2", "val": ": str | list[str] | None = None"}, {"name": "true_cfg_scale", "val": ": float = 1.0"}, {"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] = None"}, {"name": "mask_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] = None"}, {"name": "masked_image_latents", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] = None"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "padding_mask_crop", "val": ": int | None = None"}, {"name": "strength", "val": ": float = 0.6"}, {"name": "num_inference_steps", "val": ": int = 28"}, {"name": "sigmas", "val": ": list[float] | None = None"}, {"name": "guidance_scale", "val": ": float = 7.0"}, {"name": "num_images_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "negative_ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "negative_ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "negative_pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is
-  will be used instead
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation. If not defined, one has to pass
-  `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `true_cfg_scale` is
-  not greater than `1`).
-- **negative_prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and
-  `text_encoder_2`. If not defined, `negative_prompt` is used in all the text-encoders.
-- **true_cfg_scale** (`float`, *optional*, defaults to 1.0) --
-  True classifier-free guidance (guidance scale) is enabled when `true_cfg_scale` > 1 and
-  `negative_prompt` is provided.
-- **image** (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) --
-  `Image`, numpy array or tensor representing an image batch to be used as the starting point. For both
-  numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list
-  or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)`. If it is a numpy array or a
-  list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)` It can also accept image
-  latents as `image`, but if passing latents directly it is not encoded again.
-- **mask_image** (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) --
-  `Image`, numpy array or tensor representing an image batch to mask `image`. White pixels in the mask
-  are repainted while black pixels are preserved. If `mask_image` is a PIL image, it is converted to a
-  single channel (luminance) before use. If it's a numpy array or pytorch tensor, it should contain one
-  color channel (L) instead of 3, so the expected shape for pytorch tensor would be `(B, 1, H, W)`, `(B,
-  H, W)`, `(1, H, W)`, `(H, W)`. And for numpy array would be for `(B, H, W, 1)`, `(B, H, W)`, `(H, W,
-  1)`, or `(H, W)`.
-- **masked_image_latents** (`torch.Tensor`, `list[torch.Tensor]`) --
-  `Tensor` representing an image batch to mask `image` generated by VAE. If not provided, the mask
-  latents tensor will be generated by `mask_image`.
-- **height** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The height in pixels of the generated image. This is set to 1024 by default for the best results.
-- **width** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The width in pixels of the generated image. This is set to 1024 by default for the best results.
-- **padding_mask_crop** (`int`, *optional*, defaults to `None`) --
-  The size of margin in the crop to be applied to the image and masking. If `None`, no crop is applied to
-  image and mask_image. If `padding_mask_crop` is not `None`, it will first find a rectangular region
-  with the same aspect ration of the image and contains all masked area, and then expand that area based
-  on `padding_mask_crop`. The image and mask_image will then be cropped based on the expanded area before
-  resizing to the original image size for inpainting. This is useful when the masked area is small while
-  the image is large and contain information irrelevant for inpainting, such as background.
-- **strength** (`float`, *optional*, defaults to 1.0) --
-  Indicates extent to transform the reference `image`. Must be between 0 and 1. `image` is used as a
-  starting point and more noise is added the higher the `strength`. The number of denoising steps depends
-  on the amount of noise initially added. When `strength` is 1, added noise is maximum and the denoising
-  process runs for the full number of iterations specified in `num_inference_steps`. A value of 1
-  essentially ignores `image`.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **guidance_scale** (`float`, *optional*, defaults to 7.0) --
-  Guidance scale as defined in [Classifier-Free Diffusion
-  Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2.
-  of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting
-  `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to
-  the text `prompt`, usually at the expense of lower image quality.
-- **num_images_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
-  to make generation deterministic.
-- **latents** (`torch.FloatTensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor will be generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not
-  provided, text embeddings will be generated from `prompt` input argument.
-- **pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-  If not provided, pooled text embeddings will be generated from `prompt` input argument.
-- **negative_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input
-  argument.
-- **negative_pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt`
-  input argument.
-- **ip_adapter_image** -- (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
-- **ip_adapter_image_embeds** (`list[torch.Tensor]`, *optional*) --
-  Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of
-  IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not
-  provided, embeddings are computed from the `ip_adapter_image` input argument.
-- **negative_ip_adapter_image** --
-  (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
-- **negative_ip_adapter_image_embeds** (`list[torch.Tensor]`, *optional*) --
-  Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of
-  IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not
-  provided, embeddings are computed from the `ip_adapter_image` input argument.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generate image. Choose between
-  [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, *optional*) --
-  A function that calls at the end of each denoising steps during the inference. The function is called
-  with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int,
-  callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by
-  `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int` defaults to 512) -- Maximum sequence length to use with the `prompt`.0`~pipelines.flux.FluxPipelineOutput` or `tuple``~pipelines.flux.FluxPipelineOutput` if `return_dict`
+#### __call__[[diffusers.FluxInpaintPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, prompt_2: str | list[str] | None = None, negative_prompt: str | list[str] = None, negative_prompt_2: str | list[str] | None = None, true_cfg_scale: float = 1.0, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, mask_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, masked_image_latents: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, height: int | None = None, width: int | None = None, padding_mask_crop: int | None = None, strength: float = 0.6, num_inference_steps: int = 28, sigmas: list[float] | None = None, guidance_scale: float = 7.0, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: list[torch.Tensor] | None = None, negative_ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, negative_ip_adapter_image_embeds: list[torch.Tensor] | None = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_inpaint.py#L775)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is will be used instead
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `true_cfg_scale` is not greater than `1`).
+
+negative_prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `negative_prompt` is used in all the text-encoders.
+
+true_cfg_scale (`float`, *optional*, defaults to 1.0) : True classifier-free guidance (guidance scale) is enabled when `true_cfg_scale` > 1 and `negative_prompt` is provided.
+
+image (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) : `Image`, numpy array or tensor representing an image batch to be used as the starting point. For both numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)`. If it is a numpy array or a list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)` It can also accept image latents as `image`, but if passing latents directly it is not encoded again.
+
+mask_image (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) : `Image`, numpy array or tensor representing an image batch to mask `image`. White pixels in the mask are repainted while black pixels are preserved. If `mask_image` is a PIL image, it is converted to a single channel (luminance) before use. If it's a numpy array or pytorch tensor, it should contain one color channel (L) instead of 3, so the expected shape for pytorch tensor would be `(B, 1, H, W)`, `(B, H, W)`, `(1, H, W)`, `(H, W)`. And for numpy array would be for `(B, H, W, 1)`, `(B, H, W)`, `(H, W, 1)`, or `(H, W)`.
+
+masked_image_latents (`torch.Tensor`, `list[torch.Tensor]`) : `Tensor` representing an image batch to mask `image` generated by VAE. If not provided, the mask latents tensor will be generated by `mask_image`.
+
+height (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The height in pixels of the generated image. This is set to 1024 by default for the best results.
+
+width (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The width in pixels of the generated image. This is set to 1024 by default for the best results.
+
+padding_mask_crop (`int`, *optional*, defaults to `None`) : The size of margin in the crop to be applied to the image and masking. If `None`, no crop is applied to image and mask_image. If `padding_mask_crop` is not `None`, it will first find a rectangular region with the same aspect ration of the image and contains all masked area, and then expand that area based on `padding_mask_crop`. The image and mask_image will then be cropped based on the expanded area before resizing to the original image size for inpainting. This is useful when the masked area is small while the image is large and contain information irrelevant for inpainting, such as background.
+
+strength (`float`, *optional*, defaults to 1.0) : Indicates extent to transform the reference `image`. Must be between 0 and 1. `image` is used as a starting point and more noise is added the higher the `strength`. The number of denoising steps depends on the amount of noise initially added. When `strength` is 1, added noise is maximum and the denoising process runs for the full number of iterations specified in `num_inference_steps`. A value of 1 essentially ignores `image`.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
+
+guidance_scale (`float`, *optional*, defaults to 7.0) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+negative_pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+negative_ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+negative_ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
+
+joint_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int` defaults to 512) : Maximum sequence length to use with the `prompt`.
+
+**Returns:** `~pipelines.flux.FluxPipelineOutput` or `tuple`
+
+`~pipelines.flux.FluxPipelineOutput` if `return_dict`
 is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
 images.
 
@@ -1154,32 +1042,13 @@ Examples:
 >>> image.save("flux_inpainting.png")
 ```
 
-**Parameters:**
-
-transformer ([FluxTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
-
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
-
-text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
-
-tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
-
-**Returns:**
-
-``~pipelines.flux.FluxPipelineOutput` or `tuple``
-
-`~pipelines.flux.FluxPipelineOutput` if `return_dict`
-is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
-images.
 #### encode_prompt[[diffusers.FluxInpaintPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_inpaint.py#L337)
+```python
+encode_prompt(prompt: str | list[str], prompt_2: str | list[str] | None = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, max_sequence_length: int = 512, lora_scale: float | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_inpaint.py#L337)
 
 **Parameters:**
 
@@ -1201,76 +1070,101 @@ lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA
 
 #### diffusers.FluxControlNetInpaintPipeline[[diffusers.FluxControlNetInpaintPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_controlnet_inpainting.py#L174)
+```python
+diffusers.FluxControlNetInpaintPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, text_encoder_2: T5EncoderModel, tokenizer_2: T5Tokenizer, transformer: FluxTransformer2DModel, controlnet: diffusers.models.controlnets.controlnet_flux.FluxControlNetModel | list[diffusers.models.controlnets.controlnet_flux.FluxControlNetModel] | tuple[diffusers.models.controlnets.controlnet_flux.FluxControlNetModel] | diffusers.models.controlnets.controlnet_flux.FluxMultiControlNetModel)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_controlnet_inpainting.py#L174)
+
+**Parameters:**
+
+transformer ([FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
+
+text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
+
+tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
 
 The Flux controlnet pipeline for inpainting.
 
 Reference: https://blackforestlabs.ai/announcing-black-forest-labs/
 
-__call__diffusers.FluxControlNetInpaintPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_controlnet_inpainting.py#L739[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "prompt_2", "val": ": str | list[str] | None = None"}, {"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] = None"}, {"name": "mask_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] = None"}, {"name": "masked_image_latents", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] = None"}, {"name": "control_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] = None"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "strength", "val": ": float = 0.6"}, {"name": "padding_mask_crop", "val": ": int | None = None"}, {"name": "sigmas", "val": ": list[float] | None = None"}, {"name": "num_inference_steps", "val": ": int = 28"}, {"name": "guidance_scale", "val": ": float = 7.0"}, {"name": "control_guidance_start", "val": ": float | list[float] = 0.0"}, {"name": "control_guidance_end", "val": ": float | list[float] = 1.0"}, {"name": "control_mode", "val": ": int | list[int] | None = None"}, {"name": "controlnet_conditioning_scale", "val": ": float | list[float] = 1.0"}, {"name": "num_images_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation.
-- **prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to the `tokenizer_2` and `text_encoder_2`.
-- **image** (`PIL.Image.Image` or `list[PIL.Image.Image]` or `torch.FloatTensor`) --
-  The image(s) to inpaint.
-- **mask_image** (`PIL.Image.Image` or `list[PIL.Image.Image]` or `torch.FloatTensor`) --
-  The mask image(s) to use for inpainting. White pixels in the mask will be repainted, while black pixels
-  will be preserved.
-- **masked_image_latents** (`torch.FloatTensor`, *optional*) --
-  Pre-generated masked image latents.
-- **control_image** (`PIL.Image.Image` or `list[PIL.Image.Image]` or `torch.FloatTensor`) --
-  The ControlNet input condition. Image to control the generation.
-- **height** (`int`, *optional*, defaults to self.default_sample_size * self.vae_scale_factor) --
-  The height in pixels of the generated image.
-- **width** (`int`, *optional*, defaults to self.default_sample_size * self.vae_scale_factor) --
-  The width in pixels of the generated image.
-- **strength** (`float`, *optional*, defaults to 0.6) --
-  Conceptually, indicates how much to inpaint the masked area. Must be between 0 and 1.
-- **padding_mask_crop** (`int`, *optional*) --
-  The size of the padding to use when cropping the mask.
-- **num_inference_steps** (`int`, *optional*, defaults to 28) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **guidance_scale** (`float`, *optional*, defaults to 7.0) --
-  Guidance scale as defined in [Classifier-Free Diffusion
-  Guidance](https://huggingface.co/papers/2207.12598).
-- **control_guidance_start** (`float` or `list[float]`, *optional*, defaults to 0.0) --
-  The percentage of total steps at which the ControlNet starts applying.
-- **control_guidance_end** (`float` or `list[float]`, *optional*, defaults to 1.0) --
-  The percentage of total steps at which the ControlNet stops applying.
-- **control_mode** (`int` or `list[int]`, *optional*) --
-  The mode for the ControlNet. If multiple ControlNets are used, this should be a list.
-- **controlnet_conditioning_scale** (`float` or `list[float]`, *optional*, defaults to 1.0) --
-  The outputs of the ControlNet are multiplied by `controlnet_conditioning_scale` before they are added
-  to the residual in the original transformer.
-- **num_images_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or more [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to
-  make generation deterministic.
-- **latents** (`torch.FloatTensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts.
-- **prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-- **pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated pooled text embeddings.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generate image. Choose between `PIL.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  Additional keyword arguments to be passed to the joint attention mechanism.
-- **callback_on_step_end** (`Callable`, *optional*) --
-  A function that calls at the end of each denoising step during the inference.
-- **callback_on_step_end_tensor_inputs** (`list[str]`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function.
-- **max_sequence_length** (`int`, *optional*, defaults to 512) --
-  The maximum length of the sequence to be generated.0`~pipelines.flux.FluxPipelineOutput` or `tuple``~pipelines.flux.FluxPipelineOutput` if `return_dict`
+#### __call__[[diffusers.FluxControlNetInpaintPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, prompt_2: str | list[str] | None = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, mask_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, masked_image_latents: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, control_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, height: int | None = None, width: int | None = None, strength: float = 0.6, padding_mask_crop: int | None = None, sigmas: list[float] | None = None, num_inference_steps: int = 28, guidance_scale: float = 7.0, control_guidance_start: float | list[float] = 0.0, control_guidance_end: float | list[float] = 1.0, control_mode: int | list[int] | None = None, controlnet_conditioning_scale: float | list[float] = 1.0, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_controlnet_inpainting.py#L739)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation.
+
+prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to the `tokenizer_2` and `text_encoder_2`.
+
+image (`PIL.Image.Image` or `list[PIL.Image.Image]` or `torch.FloatTensor`) : The image(s) to inpaint.
+
+mask_image (`PIL.Image.Image` or `list[PIL.Image.Image]` or `torch.FloatTensor`) : The mask image(s) to use for inpainting. White pixels in the mask will be repainted, while black pixels will be preserved.
+
+masked_image_latents (`torch.FloatTensor`, *optional*) : Pre-generated masked image latents.
+
+control_image (`PIL.Image.Image` or `list[PIL.Image.Image]` or `torch.FloatTensor`) : The ControlNet input condition. Image to control the generation.
+
+height (`int`, *optional*, defaults to self.default_sample_size * self.vae_scale_factor) : The height in pixels of the generated image.
+
+width (`int`, *optional*, defaults to self.default_sample_size * self.vae_scale_factor) : The width in pixels of the generated image.
+
+strength (`float`, *optional*, defaults to 0.6) : Conceptually, indicates how much to inpaint the masked area. Must be between 0 and 1.
+
+padding_mask_crop (`int`, *optional*) : The size of the padding to use when cropping the mask.
+
+num_inference_steps (`int`, *optional*, defaults to 28) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
+
+guidance_scale (`float`, *optional*, defaults to 7.0) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598).
+
+control_guidance_start (`float` or `list[float]`, *optional*, defaults to 0.0) : The percentage of total steps at which the ControlNet starts applying.
+
+control_guidance_end (`float` or `list[float]`, *optional*, defaults to 1.0) : The percentage of total steps at which the ControlNet stops applying.
+
+control_mode (`int` or `list[int]`, *optional*) : The mode for the ControlNet. If multiple ControlNets are used, this should be a list.
+
+controlnet_conditioning_scale (`float` or `list[float]`, *optional*, defaults to 1.0) : The outputs of the ControlNet are multiplied by `controlnet_conditioning_scale` before they are added to the residual in the original transformer.
+
+num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or more [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
+
+pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled text embeddings.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
+
+joint_attention_kwargs (`dict`, *optional*) : Additional keyword arguments to be passed to the joint attention mechanism.
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising step during the inference.
+
+callback_on_step_end_tensor_inputs (`list[str]`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function.
+
+max_sequence_length (`int`, *optional*, defaults to 512) : The maximum length of the sequence to be generated.
+
+**Returns:** `~pipelines.flux.FluxPipelineOutput` or `tuple`
+
+`~pipelines.flux.FluxPipelineOutput` if `return_dict`
 is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
 images.
 
@@ -1317,32 +1211,13 @@ Examples:
 >>> image.save("flux_controlnet_inpaint.png")
 ```
 
-**Parameters:**
-
-transformer ([FluxTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
-
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
-
-text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
-
-tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
-
-**Returns:**
-
-``~pipelines.flux.FluxPipelineOutput` or `tuple``
-
-`~pipelines.flux.FluxPipelineOutput` if `return_dict`
-is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
-images.
 #### encode_prompt[[diffusers.FluxControlNetInpaintPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_controlnet_inpainting.py#L347)
+```python
+encode_prompt(prompt: str | list[str], prompt_2: str | list[str] | None = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, max_sequence_length: int = 512, lora_scale: float | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_controlnet_inpainting.py#L347)
 
 **Parameters:**
 
@@ -1364,69 +1239,95 @@ lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA
 
 #### diffusers.FluxControlNetImg2ImgPipeline[[diffusers.FluxControlNetImg2ImgPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_controlnet_image_to_image.py#L172)
+```python
+diffusers.FluxControlNetImg2ImgPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, text_encoder_2: T5EncoderModel, tokenizer_2: T5Tokenizer, transformer: FluxTransformer2DModel, controlnet: diffusers.models.controlnets.controlnet_flux.FluxControlNetModel | list[diffusers.models.controlnets.controlnet_flux.FluxControlNetModel] | tuple[diffusers.models.controlnets.controlnet_flux.FluxControlNetModel] | diffusers.models.controlnets.controlnet_flux.FluxMultiControlNetModel)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_controlnet_image_to_image.py#L172)
+
+**Parameters:**
+
+transformer ([FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
+
+text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
+
+tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
 
 The Flux controlnet pipeline for image-to-image generation.
 
 Reference: https://blackforestlabs.ai/announcing-black-forest-labs/
 
-__call__diffusers.FluxControlNetImg2ImgPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_controlnet_image_to_image.py#L635[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "prompt_2", "val": ": str | list[str] | None = None"}, {"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] = None"}, {"name": "control_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] = None"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "strength", "val": ": float = 0.6"}, {"name": "num_inference_steps", "val": ": int = 28"}, {"name": "sigmas", "val": ": list[float] | None = None"}, {"name": "guidance_scale", "val": ": float = 7.0"}, {"name": "control_guidance_start", "val": ": float | list[float] = 0.0"}, {"name": "control_guidance_end", "val": ": float | list[float] = 1.0"}, {"name": "control_mode", "val": ": int | list[int] | None = None"}, {"name": "controlnet_conditioning_scale", "val": ": float | list[float] = 1.0"}, {"name": "num_images_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation.
-- **prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to the `tokenizer_2` and `text_encoder_2`.
-- **image** (`PIL.Image.Image` or `list[PIL.Image.Image]` or `torch.FloatTensor`) --
-  The image(s) to modify with the pipeline.
-- **control_image** (`PIL.Image.Image` or `list[PIL.Image.Image]` or `torch.FloatTensor`) --
-  The ControlNet input condition. Image to control the generation.
-- **height** (`int`, *optional*, defaults to self.default_sample_size * self.vae_scale_factor) --
-  The height in pixels of the generated image.
-- **width** (`int`, *optional*, defaults to self.default_sample_size * self.vae_scale_factor) --
-  The width in pixels of the generated image.
-- **strength** (`float`, *optional*, defaults to 0.6) --
-  Conceptually, indicates how much to transform the reference `image`. Must be between 0 and 1.
-- **num_inference_steps** (`int`, *optional*, defaults to 28) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **guidance_scale** (`float`, *optional*, defaults to 7.0) --
-  Guidance scale as defined in [Classifier-Free Diffusion
-  Guidance](https://huggingface.co/papers/2207.12598).
-- **control_mode** (`int` or `list[int]`, *optional*) --
-  The mode for the ControlNet. If multiple ControlNets are used, this should be a list.
-- **controlnet_conditioning_scale** (`float` or `list[float]`, *optional*, defaults to 1.0) --
-  The outputs of the ControlNet are multiplied by `controlnet_conditioning_scale` before they are added
-  to the residual in the original transformer.
-- **control_guidance_start** (`float` or `list[float]`, *optional*, defaults to 0.0) --
-  The percentage of total steps at which the ControlNet starts applying.
-- **control_guidance_end** (`float` or `list[float]`, *optional*, defaults to 1.0) --
-  The percentage of total steps at which the ControlNet stops applying.
-- **num_images_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or more [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to
-  make generation deterministic.
-- **latents** (`torch.FloatTensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts.
-- **prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-- **pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated pooled text embeddings.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generate image. Choose between `PIL.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  Additional keyword arguments to be passed to the joint attention mechanism.
-- **callback_on_step_end** (`Callable`, *optional*) --
-  A function that calls at the end of each denoising step during the inference.
-- **callback_on_step_end_tensor_inputs** (`list[str]`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function.
-- **max_sequence_length** (`int`, *optional*, defaults to 512) --
-  The maximum length of the sequence to be generated.0`~pipelines.flux.FluxPipelineOutput` or `tuple``~pipelines.flux.FluxPipelineOutput` if `return_dict`
+#### __call__[[diffusers.FluxControlNetImg2ImgPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, prompt_2: str | list[str] | None = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, control_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, height: int | None = None, width: int | None = None, strength: float = 0.6, num_inference_steps: int = 28, sigmas: list[float] | None = None, guidance_scale: float = 7.0, control_guidance_start: float | list[float] = 0.0, control_guidance_end: float | list[float] = 1.0, control_mode: int | list[int] | None = None, controlnet_conditioning_scale: float | list[float] = 1.0, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_controlnet_image_to_image.py#L635)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation.
+
+prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to the `tokenizer_2` and `text_encoder_2`.
+
+image (`PIL.Image.Image` or `list[PIL.Image.Image]` or `torch.FloatTensor`) : The image(s) to modify with the pipeline.
+
+control_image (`PIL.Image.Image` or `list[PIL.Image.Image]` or `torch.FloatTensor`) : The ControlNet input condition. Image to control the generation.
+
+height (`int`, *optional*, defaults to self.default_sample_size * self.vae_scale_factor) : The height in pixels of the generated image.
+
+width (`int`, *optional*, defaults to self.default_sample_size * self.vae_scale_factor) : The width in pixels of the generated image.
+
+strength (`float`, *optional*, defaults to 0.6) : Conceptually, indicates how much to transform the reference `image`. Must be between 0 and 1.
+
+num_inference_steps (`int`, *optional*, defaults to 28) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
+
+guidance_scale (`float`, *optional*, defaults to 7.0) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598).
+
+control_mode (`int` or `list[int]`, *optional*) : The mode for the ControlNet. If multiple ControlNets are used, this should be a list.
+
+controlnet_conditioning_scale (`float` or `list[float]`, *optional*, defaults to 1.0) : The outputs of the ControlNet are multiplied by `controlnet_conditioning_scale` before they are added to the residual in the original transformer.
+
+control_guidance_start (`float` or `list[float]`, *optional*, defaults to 0.0) : The percentage of total steps at which the ControlNet starts applying.
+
+control_guidance_end (`float` or `list[float]`, *optional*, defaults to 1.0) : The percentage of total steps at which the ControlNet stops applying.
+
+num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or more [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
+
+pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled text embeddings.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
+
+joint_attention_kwargs (`dict`, *optional*) : Additional keyword arguments to be passed to the joint attention mechanism.
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising step during the inference.
+
+callback_on_step_end_tensor_inputs (`list[str]`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function.
+
+max_sequence_length (`int`, *optional*, defaults to 512) : The maximum length of the sequence to be generated.
+
+**Returns:** `~pipelines.flux.FluxPipelineOutput` or `tuple`
+
+`~pipelines.flux.FluxPipelineOutput` if `return_dict`
 is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
 images.
 
@@ -1472,32 +1373,13 @@ Examples:
 >>> image.save("flux_controlnet_img2img.png")
 ```
 
-**Parameters:**
-
-transformer ([FluxTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
-
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
-
-text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
-
-tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
-
-**Returns:**
-
-``~pipelines.flux.FluxPipelineOutput` or `tuple``
-
-`~pipelines.flux.FluxPipelineOutput` if `return_dict`
-is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
-images.
 #### encode_prompt[[diffusers.FluxControlNetImg2ImgPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_controlnet_image_to_image.py#L336)
+```python
+encode_prompt(prompt: str | list[str], prompt_2: str | list[str] | None = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, max_sequence_length: int = 512, lora_scale: float | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_controlnet_image_to_image.py#L336)
 
 **Parameters:**
 
@@ -1519,77 +1401,83 @@ lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA
 
 #### diffusers.FluxControlPipeline[[diffusers.FluxControlPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_control.py#L160)
+```python
+diffusers.FluxControlPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, text_encoder_2: T5EncoderModel, tokenizer_2: T5Tokenizer, transformer: FluxTransformer2DModel)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_control.py#L159)
+
+**Parameters:**
+
+transformer ([FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
+
+text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
+
+tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
 
 The Flux pipeline for controllable text-to-image generation with image conditions.
 
 Reference: https://bfl.ai/flux-1-tools
 
-__call__diffusers.FluxControlPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_control.py#L635[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "prompt_2", "val": ": str | list[str] | None = None"}, {"name": "control_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] = None"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "num_inference_steps", "val": ": int = 28"}, {"name": "sigmas", "val": ": list[float] | None = None"}, {"name": "guidance_scale", "val": ": float = 3.5"}, {"name": "num_images_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is
-  will be used instead
-- **control_image** (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, `list[np.ndarray]`, --
-  `list[list[torch.Tensor]]`, `list[list[np.ndarray]]` or `list[list[PIL.Image.Image]]`):
-  The ControlNet input condition to provide guidance to the `unet` for generation. If the type is
-  specified as `torch.Tensor`, it is passed to ControlNet as is. `PIL.Image.Image` can also be accepted
-  as an image. The dimensions of the output image defaults to `image`'s dimensions. If height and/or
-  width are passed, `image` is resized accordingly. If multiple ControlNets are specified in `init`,
-  images must be passed as a list such that each element of the list can be correctly batched for input
-  to a single ControlNet.
-- **height** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The height in pixels of the generated image. This is set to 1024 by default for the best results.
-- **width** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The width in pixels of the generated image. This is set to 1024 by default for the best results.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **guidance_scale** (`float`, *optional*, defaults to 3.5) --
-  Embedded guidance scale is enabled by setting `guidance_scale` > 1. Higher `guidance_scale` encourages
-  a model to generate images more aligned with prompt at the expense of lower image quality.
+#### __call__[[diffusers.FluxControlPipeline.__call__]]
 
-  Guidance-distilled models approximates true classifier-free guidance for `guidance_scale` > 1. Refer to
-  the [paper](https://huggingface.co/papers/2210.03142) to learn more.
-- **num_images_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
-  to make generation deterministic.
-- **latents** (`torch.FloatTensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor will be generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not
-  provided, text embeddings will be generated from `prompt` input argument.
-- **pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-  If not provided, pooled text embeddings will be generated from `prompt` input argument.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generate image. Choose between
-  [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, *optional*) --
-  A function that calls at the end of each denoising steps during the inference. The function is called
-  with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int,
-  callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by
-  `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int` defaults to 512) -- Maximum sequence length to use with the `prompt`.0`~pipelines.flux.FluxPipelineOutput` or `tuple``~pipelines.flux.FluxPipelineOutput` if `return_dict`
+```python
+__call__(prompt: str | list[str] = None, prompt_2: str | list[str] | None = None, control_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 28, sigmas: list[float] | None = None, guidance_scale: float = 3.5, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_control.py#L581)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is will be used instead
+
+control_image (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, `list[np.ndarray]`, : `list[list[torch.Tensor]]`, `list[list[np.ndarray]]` or `list[list[PIL.Image.Image]]`): The ControlNet input condition to provide guidance to the `unet` for generation. If the type is specified as `torch.Tensor`, it is passed to ControlNet as is. `PIL.Image.Image` can also be accepted as an image. The dimensions of the output image defaults to `image`'s dimensions. If height and/or width are passed, `image` is resized accordingly. If multiple ControlNets are specified in `init`, images must be passed as a list such that each element of the list can be correctly batched for input to a single ControlNet.
+
+height (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The height in pixels of the generated image. This is set to 1024 by default for the best results.
+
+width (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The width in pixels of the generated image. This is set to 1024 by default for the best results.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
+
+guidance_scale (`float`, *optional*, defaults to 3.5) : Embedded guidance scale is enabled by setting `guidance_scale` > 1. Higher `guidance_scale` encourages a model to generate images more aligned with prompt at the expense of lower image quality.  Guidance-distilled models approximates true classifier-free guidance for `guidance_scale` > 1. Refer to the [paper](https://huggingface.co/papers/2210.03142) to learn more.
+
+num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled text embeddings will be generated from `prompt` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
+
+joint_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int` defaults to 512) : Maximum sequence length to use with the `prompt`.
+
+**Returns:** `~pipelines.flux.FluxPipelineOutput` or `tuple`
+
+`~pipelines.flux.FluxPipelineOutput` if `return_dict`
 is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
 images.
 
@@ -1627,57 +1515,13 @@ Examples:
 >>> image.save("output.png")
 ```
 
-**Parameters:**
-
-transformer ([FluxTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
-
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
-
-text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
-
-tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
-
-**Returns:**
-
-``~pipelines.flux.FluxPipelineOutput` or `tuple``
-
-`~pipelines.flux.FluxPipelineOutput` if `return_dict`
-is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
-images.
-#### disable_vae_slicing[[diffusers.FluxControlPipeline.disable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_control.py#L508)
-
-Disable sliced VAE decoding. If `enable_vae_slicing` was previously enabled, this method will go back to
-computing decoding in one step.
-#### disable_vae_tiling[[diffusers.FluxControlPipeline.disable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_control.py#L535)
-
-Disable tiled VAE decoding. If `enable_vae_tiling` was previously enabled, this method will go back to
-computing decoding in one step.
-#### enable_vae_slicing[[diffusers.FluxControlPipeline.enable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_control.py#L495)
-
-Enable sliced VAE decoding. When this option is enabled, the VAE will split the input tensor in slices to
-compute decoding in several steps. This is useful to save some memory and allow larger batch sizes.
-#### enable_vae_tiling[[diffusers.FluxControlPipeline.enable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_control.py#L521)
-
-Enable tiled VAE decoding. When this option is enabled, the VAE will split the input tensor into tiles to
-compute decoding and encoding in several steps. This is useful for saving a large amount of memory and to allow
-processing larger images.
 #### encode_prompt[[diffusers.FluxControlPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_control.py#L325)
+```python
+encode_prompt(prompt: str | list[str], prompt_2: str | list[str] | None = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, max_sequence_length: int = 512, lora_scale: float | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_control.py#L324)
 
 **Parameters:**
 
@@ -1699,89 +1543,87 @@ lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA
 
 #### diffusers.FluxControlImg2ImgPipeline[[diffusers.FluxControlImg2ImgPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_control_img2img.py#L178)
+```python
+diffusers.FluxControlImg2ImgPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, text_encoder_2: T5EncoderModel, tokenizer_2: T5Tokenizer, transformer: FluxTransformer2DModel)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_control_img2img.py#L178)
+
+**Parameters:**
+
+transformer ([FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
+
+text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
+
+tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
 
 The Flux pipeline for image inpainting.
 
 Reference: https://blackforestlabs.ai/announcing-black-forest-labs/
 
-__call__diffusers.FluxControlImg2ImgPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_control_img2img.py#L634[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "prompt_2", "val": ": str | list[str] | None = None"}, {"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] = None"}, {"name": "control_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] = None"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "strength", "val": ": float = 0.6"}, {"name": "num_inference_steps", "val": ": int = 28"}, {"name": "sigmas", "val": ": list[float] | None = None"}, {"name": "guidance_scale", "val": ": float = 7.0"}, {"name": "num_images_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is
-  will be used instead
-- **image** (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) --
-  `Image`, numpy array or tensor representing an image batch to be used as the starting point. For both
-  numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list
-  or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)`. If it is a numpy array or a
-  list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)` It can also accept image
-  latents as `image`, but if passing latents directly it is not encoded again.
-- **control_image** (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, `list[np.ndarray]`, --
-  `list[list[torch.Tensor]]`, `list[list[np.ndarray]]` or `list[list[PIL.Image.Image]]`):
-  The ControlNet input condition to provide guidance to the `unet` for generation. If the type is
-  specified as `torch.Tensor`, it is passed to ControlNet as is. `PIL.Image.Image` can also be accepted
-  as an image. The dimensions of the output image defaults to `image`'s dimensions. If height and/or
-  width are passed, `image` is resized accordingly. If multiple ControlNets are specified in `init`,
-  images must be passed as a list such that each element of the list can be correctly batched for input
-  to a single ControlNet.
-- **height** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The height in pixels of the generated image. This is set to 1024 by default for the best results.
-- **width** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The width in pixels of the generated image. This is set to 1024 by default for the best results.
-- **strength** (`float`, *optional*, defaults to 1.0) --
-  Indicates extent to transform the reference `image`. Must be between 0 and 1. `image` is used as a
-  starting point and more noise is added the higher the `strength`. The number of denoising steps depends
-  on the amount of noise initially added. When `strength` is 1, added noise is maximum and the denoising
-  process runs for the full number of iterations specified in `num_inference_steps`. A value of 1
-  essentially ignores `image`.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **guidance_scale** (`float`, *optional*, defaults to 7.0) --
-  Guidance scale as defined in [Classifier-Free Diffusion
-  Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2.
-  of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting
-  `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to
-  the text `prompt`, usually at the expense of lower image quality.
-- **num_images_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
-  to make generation deterministic.
-- **latents** (`torch.FloatTensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor will be generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not
-  provided, text embeddings will be generated from `prompt` input argument.
-- **pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-  If not provided, pooled text embeddings will be generated from `prompt` input argument.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generate image. Choose between
-  [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, *optional*) --
-  A function that calls at the end of each denoising steps during the inference. The function is called
-  with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int,
-  callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by
-  `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int` defaults to 512) -- Maximum sequence length to use with the `prompt`.0`~pipelines.flux.FluxPipelineOutput` or `tuple``~pipelines.flux.FluxPipelineOutput` if `return_dict`
+#### __call__[[diffusers.FluxControlImg2ImgPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, prompt_2: str | list[str] | None = None, image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, control_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, height: int | None = None, width: int | None = None, strength: float = 0.6, num_inference_steps: int = 28, sigmas: list[float] | None = None, guidance_scale: float = 7.0, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_control_img2img.py#L634)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is will be used instead
+
+image (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) : `Image`, numpy array or tensor representing an image batch to be used as the starting point. For both numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)`. If it is a numpy array or a list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)` It can also accept image latents as `image`, but if passing latents directly it is not encoded again.
+
+control_image (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, `list[np.ndarray]`, : `list[list[torch.Tensor]]`, `list[list[np.ndarray]]` or `list[list[PIL.Image.Image]]`): The ControlNet input condition to provide guidance to the `unet` for generation. If the type is specified as `torch.Tensor`, it is passed to ControlNet as is. `PIL.Image.Image` can also be accepted as an image. The dimensions of the output image defaults to `image`'s dimensions. If height and/or width are passed, `image` is resized accordingly. If multiple ControlNets are specified in `init`, images must be passed as a list such that each element of the list can be correctly batched for input to a single ControlNet.
+
+height (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The height in pixels of the generated image. This is set to 1024 by default for the best results.
+
+width (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The width in pixels of the generated image. This is set to 1024 by default for the best results.
+
+strength (`float`, *optional*, defaults to 1.0) : Indicates extent to transform the reference `image`. Must be between 0 and 1. `image` is used as a starting point and more noise is added the higher the `strength`. The number of denoising steps depends on the amount of noise initially added. When `strength` is 1, added noise is maximum and the denoising process runs for the full number of iterations specified in `num_inference_steps`. A value of 1 essentially ignores `image`.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
+
+guidance_scale (`float`, *optional*, defaults to 7.0) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled text embeddings will be generated from `prompt` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
+
+joint_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int` defaults to 512) : Maximum sequence length to use with the `prompt`.
+
+**Returns:** `~pipelines.flux.FluxPipelineOutput` or `tuple`
+
+`~pipelines.flux.FluxPipelineOutput` if `return_dict`
 is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
 images.
 
@@ -1824,32 +1666,13 @@ Examples:
 >>> image.save("output.png")
 ```
 
-**Parameters:**
-
-transformer ([FluxTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
-
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
-
-text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
-
-tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
-
-**Returns:**
-
-``~pipelines.flux.FluxPipelineOutput` or `tuple``
-
-`~pipelines.flux.FluxPipelineOutput` if `return_dict`
-is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
-images.
 #### encode_prompt[[diffusers.FluxControlImg2ImgPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_control_img2img.py#L335)
+```python
+encode_prompt(prompt: str | list[str], prompt_2: str | list[str] | None = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, max_sequence_length: int = 512, lora_scale: float | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_control_img2img.py#L335)
 
 **Parameters:**
 
@@ -1871,35 +1694,61 @@ lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA
 
 #### diffusers.FluxPriorReduxPipeline[[diffusers.FluxPriorReduxPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_prior_redux.py#L82)
+```python
+diffusers.FluxPriorReduxPipeline(image_encoder: SiglipVisionModel, feature_extractor: SiglipImageProcessorPil, image_embedder: ReduxImageEncoder, text_encoder: CLIPTextModel = None, tokenizer: CLIPTokenizer = None, text_encoder_2: T5EncoderModel = None, tokenizer_2: T5Tokenizer = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_prior_redux.py#L82)
+
+**Parameters:**
+
+image_encoder (`SiglipVisionModel`) : SIGLIP vision model to encode the input image.
+
+feature_extractor (`SiglipImageProcessor`) : Image processor for preprocessing images for the SIGLIP model.
+
+image_embedder (`ReduxImageEncoder`) : Redux image encoder to process the SIGLIP embeddings.
+
+text_encoder (`CLIPTextModel`, *optional*) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
+
+text_encoder_2 (`T5EncoderModel`, *optional*) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
+
+tokenizer (`CLIPTokenizer`, *optional*) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer_2 (`T5TokenizerFast`, *optional*) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
 
 The Flux Redux pipeline for image-to-image generation.
 
 Reference: https://blackforestlabs.ai/flux-1-tools/
 
-__call__diffusers.FluxPriorReduxPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_prior_redux.py#L375[{"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor]"}, {"name": "prompt", "val": ": str | list[str] = None"}, {"name": "prompt_2", "val": ": str | list[str] | None = None"}, {"name": "prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds_scale", "val": ": float | list[float] | None = 1.0"}, {"name": "pooled_prompt_embeds_scale", "val": ": float | list[float] | None = 1.0"}, {"name": "return_dict", "val": ": bool = True"}]- **image** (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) --
-  `Image`, numpy array or tensor representing an image batch to be used as the starting point. For both
-  numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list
-  or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)`. If it is a numpy array or a
-  list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)`
-- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. **experimental feature**: to use this feature,
-  make sure to explicitly load text encoders to the pipeline. Prompts will be ignored if text encoders
-  are not loaded.
-- **prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to the `tokenizer_2` and `text_encoder_2`.
-- **prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-- **pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated pooled text embeddings.
-- **prompt_embeds_scale** (`float` or `list[float]`, *optional*, defaults to 1.0) --
-  Scale factor (or per-image list of scale factors) applied to the redux prompt embeddings before they
-  are returned.
-- **pooled_prompt_embeds_scale** (`float` or `list[float]`, *optional*, defaults to 1.0) --
-  Scale factor (or per-image list of scale factors) applied to the redux pooled prompt embeddings before
-  they are returned.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.flux.FluxPriorReduxPipelineOutput` instead of a plain tuple.0`~pipelines.flux.FluxPriorReduxPipelineOutput` or `tuple``~pipelines.flux.FluxPriorReduxPipelineOutput` if `return_dict` is True, otherwise a `tuple`. When
+#### __call__[[diffusers.FluxPriorReduxPipeline.__call__]]
+
+```python
+__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], prompt: str | list[str] = None, prompt_2: str | list[str] | None = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, prompt_embeds_scale: float | list[float] | None = 1.0, pooled_prompt_embeds_scale: float | list[float] | None = 1.0, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_prior_redux.py#L375)
+
+**Parameters:**
+
+image (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) : `Image`, numpy array or tensor representing an image batch to be used as the starting point. For both numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)`. If it is a numpy array or a list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)`
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. **experimental feature**: to use this feature, make sure to explicitly load text encoders to the pipeline. Prompts will be ignored if text encoders are not loaded.
+
+prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to the `tokenizer_2` and `text_encoder_2`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
+
+pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled text embeddings.
+
+prompt_embeds_scale (`float` or `list[float]`, *optional*, defaults to 1.0) : Scale factor (or per-image list of scale factors) applied to the redux prompt embeddings before they are returned.
+
+pooled_prompt_embeds_scale (`float` or `list[float]`, *optional*, defaults to 1.0) : Scale factor (or per-image list of scale factors) applied to the redux pooled prompt embeddings before they are returned.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.flux.FluxPriorReduxPipelineOutput` instead of a plain tuple.
+
+**Returns:** `~pipelines.flux.FluxPriorReduxPipelineOutput` or `tuple`
+
+`~pipelines.flux.FluxPriorReduxPipelineOutput` if `return_dict` is True, otherwise a `tuple`. When
 returning a tuple, the first element is a list with the generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -1933,31 +1782,13 @@ Examples:
 >>> images[0].save("flux-redux.png")
 ```
 
-**Parameters:**
-
-image_encoder (`SiglipVisionModel`) : SIGLIP vision model to encode the input image.
-
-feature_extractor (`SiglipImageProcessor`) : Image processor for preprocessing images for the SIGLIP model.
-
-image_embedder (`ReduxImageEncoder`) : Redux image encoder to process the SIGLIP embeddings.
-
-text_encoder (`CLIPTextModel`, *optional*) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
-
-text_encoder_2 (`T5EncoderModel`, *optional*) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
-
-tokenizer (`CLIPTokenizer`, *optional*) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer_2 (`T5TokenizerFast`, *optional*) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
-
-**Returns:**
-
-``~pipelines.flux.FluxPriorReduxPipelineOutput` or `tuple``
-
-`~pipelines.flux.FluxPriorReduxPipelineOutput` if `return_dict` is True, otherwise a `tuple`. When
-returning a tuple, the first element is a list with the generated images.
 #### encode_prompt[[diffusers.FluxPriorReduxPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_prior_redux.py#L296)
+```python
+encode_prompt(prompt: str | list[str], prompt_2: str | list[str] | None = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, max_sequence_length: int = 512, lora_scale: float | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_prior_redux.py#L296)
 
 **Parameters:**
 
@@ -1979,90 +1810,89 @@ lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA
 
 #### diffusers.FluxFillPipeline[[diffusers.FluxFillPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_fill.py#L168)
+```python
+diffusers.FluxFillPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, text_encoder_2: T5EncoderModel, tokenizer_2: T5Tokenizer, transformer: FluxTransformer2DModel)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_fill.py#L167)
+
+**Parameters:**
+
+transformer ([FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
+
+text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
+
+tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
 
 The Flux Fill pipeline for image inpainting/outpainting.
 
 Reference: https://blackforestlabs.ai/flux-1-tools/
 
-__call__diffusers.FluxFillPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_fill.py#L752[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "prompt_2", "val": ": str | list[str] | None = None"}, {"name": "image", "val": ": torch.FloatTensor | None = None"}, {"name": "mask_image", "val": ": torch.FloatTensor | None = None"}, {"name": "masked_image_latents", "val": ": torch.FloatTensor | None = None"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "strength", "val": ": float = 1.0"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "sigmas", "val": ": list[float] | None = None"}, {"name": "guidance_scale", "val": ": float = 30.0"}, {"name": "num_images_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is
-  will be used instead
-- **image** (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) --
-  `Image`, numpy array or tensor representing an image batch to be used as the starting point. For both
-  numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list
-  or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)`. If it is a numpy array or a
-  list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)`.
-- **mask_image** (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) --
-  `Image`, numpy array or tensor representing an image batch to mask `image`. White pixels in the mask
-  are repainted while black pixels are preserved. If `mask_image` is a PIL image, it is converted to a
-  single channel (luminance) before use. If it's a numpy array or pytorch tensor, it should contain one
-  color channel (L) instead of 3, so the expected shape for pytorch tensor would be `(B, 1, H, W)`, `(B,
-  H, W)`, `(1, H, W)`, `(H, W)`. And for numpy array would be for `(B, H, W, 1)`, `(B, H, W)`, `(H, W,
-  1)`, or `(H, W)`.
-- **masked_image_latents** (`torch.Tensor`, `list[torch.Tensor]`) --
-  `Tensor` representing an image batch to mask `image` generated by VAE. If not provided, the mask
-  latents tensor will be generated by `mask_image`.
-- **height** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The height in pixels of the generated image. This is set to 1024 by default for the best results.
-- **width** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The width in pixels of the generated image. This is set to 1024 by default for the best results.
-- **strength** (`float`, *optional*, defaults to 1.0) --
-  Indicates extent to transform the reference `image`. Must be between 0 and 1. `image` is used as a
-  starting point and more noise is added the higher the `strength`. The number of denoising steps depends
-  on the amount of noise initially added. When `strength` is 1, added noise is maximum and the denoising
-  process runs for the full number of iterations specified in `num_inference_steps`. A value of 1
-  essentially ignores `image`.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **guidance_scale** (`float`, *optional*, defaults to 30.0) --
-  Guidance scale as defined in [Classifier-Free Diffusion
-  Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2.
-  of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting
-  `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to
-  the text `prompt`, usually at the expense of lower image quality.
-- **num_images_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
-  to make generation deterministic.
-- **latents** (`torch.FloatTensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor will be generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not
-  provided, text embeddings will be generated from `prompt` input argument.
-- **pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-  If not provided, pooled text embeddings will be generated from `prompt` input argument.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generate image. Choose between
-  [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, *optional*) --
-  A function that calls at the end of each denoising steps during the inference. The function is called
-  with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int,
-  callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by
-  `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int` defaults to 512) -- Maximum sequence length to use with the `prompt`.0`~pipelines.flux.FluxPipelineOutput` or `tuple``~pipelines.flux.FluxPipelineOutput` if `return_dict`
+#### __call__[[diffusers.FluxFillPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, prompt_2: str | list[str] | None = None, image: typing.Optional[torch.FloatTensor] = None, mask_image: typing.Optional[torch.FloatTensor] = None, masked_image_latents: typing.Optional[torch.FloatTensor] = None, height: int | None = None, width: int | None = None, strength: float = 1.0, num_inference_steps: int = 50, sigmas: list[float] | None = None, guidance_scale: float = 30.0, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_fill.py#L698)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is will be used instead
+
+image (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) : `Image`, numpy array or tensor representing an image batch to be used as the starting point. For both numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)`. If it is a numpy array or a list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)`.
+
+mask_image (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) : `Image`, numpy array or tensor representing an image batch to mask `image`. White pixels in the mask are repainted while black pixels are preserved. If `mask_image` is a PIL image, it is converted to a single channel (luminance) before use. If it's a numpy array or pytorch tensor, it should contain one color channel (L) instead of 3, so the expected shape for pytorch tensor would be `(B, 1, H, W)`, `(B, H, W)`, `(1, H, W)`, `(H, W)`. And for numpy array would be for `(B, H, W, 1)`, `(B, H, W)`, `(H, W, 1)`, or `(H, W)`.
+
+masked_image_latents (`torch.Tensor`, `list[torch.Tensor]`) : `Tensor` representing an image batch to mask `image` generated by VAE. If not provided, the mask latents tensor will be generated by `mask_image`.
+
+height (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The height in pixels of the generated image. This is set to 1024 by default for the best results.
+
+width (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The width in pixels of the generated image. This is set to 1024 by default for the best results.
+
+strength (`float`, *optional*, defaults to 1.0) : Indicates extent to transform the reference `image`. Must be between 0 and 1. `image` is used as a starting point and more noise is added the higher the `strength`. The number of denoising steps depends on the amount of noise initially added. When `strength` is 1, added noise is maximum and the denoising process runs for the full number of iterations specified in `num_inference_steps`. A value of 1 essentially ignores `image`.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
+
+guidance_scale (`float`, *optional*, defaults to 30.0) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled text embeddings will be generated from `prompt` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
+
+joint_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int` defaults to 512) : Maximum sequence length to use with the `prompt`.
+
+**Returns:** `~pipelines.flux.FluxPipelineOutput` or `tuple`
+
+`~pipelines.flux.FluxPipelineOutput` if `return_dict`
 is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
 images.
 
@@ -2094,57 +1924,13 @@ Examples:
 >>> image.save("flux_fill.png")
 ```
 
-**Parameters:**
-
-transformer ([FluxTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
-
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
-
-text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
-
-tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
-
-**Returns:**
-
-``~pipelines.flux.FluxPipelineOutput` or `tuple``
-
-`~pipelines.flux.FluxPipelineOutput` if `return_dict`
-is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
-images.
-#### disable_vae_slicing[[diffusers.FluxFillPipeline.disable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_fill.py#L645)
-
-Disable sliced VAE decoding. If `enable_vae_slicing` was previously enabled, this method will go back to
-computing decoding in one step.
-#### disable_vae_tiling[[diffusers.FluxFillPipeline.disable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_fill.py#L672)
-
-Disable tiled VAE decoding. If `enable_vae_tiling` was previously enabled, this method will go back to
-computing decoding in one step.
-#### enable_vae_slicing[[diffusers.FluxFillPipeline.enable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_fill.py#L632)
-
-Enable sliced VAE decoding. When this option is enabled, the VAE will split the input tensor in slices to
-compute decoding in several steps. This is useful to save some memory and allow larger batch sizes.
-#### enable_vae_tiling[[diffusers.FluxFillPipeline.enable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_fill.py#L658)
-
-Enable tiled VAE decoding. When this option is enabled, the VAE will split the input tensor into tiles to
-compute decoding and encoding in several steps. This is useful for saving a large amount of memory and to allow
-processing larger images.
 #### encode_prompt[[diffusers.FluxFillPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_fill.py#L420)
+```python
+encode_prompt(prompt: str | list[str], prompt_2: str | list[str] | None = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, max_sequence_length: int = 512, lora_scale: float | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_fill.py#L419)
 
 **Parameters:**
 
@@ -2166,110 +1952,105 @@ lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA
 
 #### diffusers.FluxKontextPipeline[[diffusers.FluxKontextPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_kontext.py#L191)
+```python
+diffusers.FluxKontextPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, text_encoder_2: T5EncoderModel, tokenizer_2: T5Tokenizer, transformer: FluxTransformer2DModel, image_encoder: CLIPVisionModelWithProjection = None, feature_extractor: CLIPImageProcessorPil = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_kontext.py#L190)
+
+**Parameters:**
+
+transformer ([FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
+
+text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
+
+tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
 
 The Flux Kontext pipeline for image-to-image and text-to-image generation.
 
 Reference: https://bfl.ai/announcements/flux-1-kontext-dev
 
-__call__diffusers.FluxKontextPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_kontext.py#L751[{"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "prompt", "val": ": str | list[str] = None"}, {"name": "prompt_2", "val": ": str | list[str] | None = None"}, {"name": "negative_prompt", "val": ": str | list[str] = None"}, {"name": "negative_prompt_2", "val": ": str | list[str] | None = None"}, {"name": "true_cfg_scale", "val": ": float = 1.0"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "num_inference_steps", "val": ": int = 28"}, {"name": "sigmas", "val": ": list[float] | None = None"}, {"name": "guidance_scale", "val": ": float = 3.5"}, {"name": "num_images_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "negative_ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "negative_ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "negative_pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}, {"name": "max_area", "val": ": int = 1048576"}, {"name": "_auto_resize", "val": ": bool = True"}]- **image** (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) --
-  `Image`, numpy array or tensor representing an image batch to be used as the starting point. For both
-  numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list
-  or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)`. If it is a numpy array or a
-  list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)` It can also accept image
-  latents as `image`, but if passing latents directly it is not encoded again.
-- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is
-  will be used instead.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation. If not defined, one has to pass
-  `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `true_cfg_scale` is
-  not greater than `1`).
-- **negative_prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and
-  `text_encoder_2`. If not defined, `negative_prompt` is used in all the text-encoders.
-- **true_cfg_scale** (`float`, *optional*, defaults to 1.0) --
-  When > 1.0 and a provided `negative_prompt`, enables true classifier-free guidance.
-- **height** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The height in pixels of the generated image. This is set to 1024 by default for the best results.
-- **width** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The width in pixels of the generated image. This is set to 1024 by default for the best results.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **guidance_scale** (`float`, *optional*, defaults to 3.5) --
-  Embedded guidance scale is enabled by setting `guidance_scale` > 1. Higher `guidance_scale` encourages
-  a model to generate images more aligned with prompt at the expense of lower image quality.
+#### __call__[[diffusers.FluxKontextPipeline.__call__]]
 
-  Guidance-distilled models approximates true classifier-free guidance for `guidance_scale` > 1. Refer to
-  the [paper](https://huggingface.co/papers/2210.03142) to learn more.
-- **num_images_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
-  to make generation deterministic.
-- **latents** (`torch.FloatTensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor will be generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not
-  provided, text embeddings will be generated from `prompt` input argument.
-- **pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-  If not provided, pooled text embeddings will be generated from `prompt` input argument.
-- **ip_adapter_image** -- (`PipelineImageInput`, *optional*):
-  Optional image input to work with IP Adapters.
-- **ip_adapter_image_embeds** (`list[torch.Tensor]`, *optional*) --
-  Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of
-  IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not
-  provided, embeddings are computed from the `ip_adapter_image` input argument.
-- **negative_ip_adapter_image** --
-  (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
-- **negative_ip_adapter_image_embeds** (`list[torch.Tensor]`, *optional*) --
-  Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of
-  IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not
-  provided, embeddings are computed from the `ip_adapter_image` input argument.
-- **negative_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input
-  argument.
-- **negative_pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt`
-  input argument.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generate image. Choose between
-  [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, *optional*) --
-  A function that calls at the end of each denoising steps during the inference. The function is called
-  with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int,
-  callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by
-  `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int` defaults to 512) --
-  Maximum sequence length to use with the `prompt`.
-- **max_area** (`int`, defaults to `1024 ** 2`) --
-  The maximum area of the generated image in pixels. The height and width will be adjusted to fit this
-  area while maintaining the aspect ratio.
-- **_auto_resize** (`bool`, *optional*, defaults to `True`) --
-  Whether to automatically resize the input image to the preferred resolutions.0`~pipelines.flux.FluxPipelineOutput` or `tuple``~pipelines.flux.FluxPipelineOutput` if `return_dict`
+```python
+__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, prompt: str | list[str] = None, prompt_2: str | list[str] | None = None, negative_prompt: str | list[str] = None, negative_prompt_2: str | list[str] | None = None, true_cfg_scale: float = 1.0, height: int | None = None, width: int | None = None, num_inference_steps: int = 28, sigmas: list[float] | None = None, guidance_scale: float = 3.5, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: list[torch.Tensor] | None = None, negative_ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, negative_ip_adapter_image_embeds: list[torch.Tensor] | None = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512, max_area: int = 1048576, _auto_resize: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_kontext.py#L693)
+
+**Parameters:**
+
+image (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) : `Image`, numpy array or tensor representing an image batch to be used as the starting point. For both numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)`. If it is a numpy array or a list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)` It can also accept image latents as `image`, but if passing latents directly it is not encoded again.
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is will be used instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `true_cfg_scale` is not greater than `1`).
+
+negative_prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `negative_prompt` is used in all the text-encoders.
+
+true_cfg_scale (`float`, *optional*, defaults to 1.0) : When > 1.0 and a provided `negative_prompt`, enables true classifier-free guidance.
+
+height (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The height in pixels of the generated image. This is set to 1024 by default for the best results.
+
+width (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The width in pixels of the generated image. This is set to 1024 by default for the best results.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
+
+guidance_scale (`float`, *optional*, defaults to 3.5) : Embedded guidance scale is enabled by setting `guidance_scale` > 1. Higher `guidance_scale` encourages a model to generate images more aligned with prompt at the expense of lower image quality.  Guidance-distilled models approximates true classifier-free guidance for `guidance_scale` > 1. Refer to the [paper](https://huggingface.co/papers/2210.03142) to learn more.
+
+num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled text embeddings will be generated from `prompt` input argument.
+
+ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+negative_ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+negative_ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+negative_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+negative_pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
+
+joint_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int` defaults to 512) : Maximum sequence length to use with the `prompt`.
+
+max_area (`int`, defaults to `1024 ** 2`) : The maximum area of the generated image in pixels. The height and width will be adjusted to fit this area while maintaining the aspect ratio.
+
+_auto_resize (`bool`, *optional*, defaults to `True`) : Whether to automatically resize the input image to the preferred resolutions.
+
+**Returns:** `~pipelines.flux.FluxPipelineOutput` or `tuple`
+
+`~pipelines.flux.FluxPipelineOutput` if `return_dict`
 is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
 images.
 
@@ -2299,57 +2080,13 @@ Examples:
 >>> image.save("output.png")
 ```
 
-**Parameters:**
-
-transformer ([FluxTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
-
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
-
-text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
-
-tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
-
-**Returns:**
-
-``~pipelines.flux.FluxPipelineOutput` or `tuple``
-
-`~pipelines.flux.FluxPipelineOutput` if `return_dict`
-is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
-images.
-#### disable_vae_slicing[[diffusers.FluxKontextPipeline.disable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_kontext.py#L627)
-
-Disable sliced VAE decoding. If `enable_vae_slicing` was previously enabled, this method will go back to
-computing decoding in one step.
-#### disable_vae_tiling[[diffusers.FluxKontextPipeline.disable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_kontext.py#L656)
-
-Disable tiled VAE decoding. If `enable_vae_tiling` was previously enabled, this method will go back to
-computing decoding in one step.
-#### enable_vae_slicing[[diffusers.FluxKontextPipeline.enable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_kontext.py#L613)
-
-Enable sliced VAE decoding. When this option is enabled, the VAE will split the input tensor in slices to
-compute decoding in several steps. This is useful to save some memory and allow larger batch sizes.
-#### enable_vae_tiling[[diffusers.FluxKontextPipeline.enable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_kontext.py#L641)
-
-Enable tiled VAE decoding. When this option is enabled, the VAE will split the input tensor into tiles to
-compute decoding and encoding in several steps. This is useful for saving a large amount of memory and to allow
-processing larger images.
 #### encode_prompt[[diffusers.FluxKontextPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_kontext.py#L359)
+```python
+encode_prompt(prompt: str | list[str], prompt_2: str | list[str] | None = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, max_sequence_length: int = 512, lora_scale: float | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_kontext.py#L358)
 
 **Parameters:**
 
@@ -2371,138 +2108,113 @@ lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA
 
 #### diffusers.FluxKontextInpaintPipeline[[diffusers.FluxKontextInpaintPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_kontext_inpaint.py#L215)
+```python
+diffusers.FluxKontextInpaintPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: CLIPTextModel, tokenizer: CLIPTokenizer, text_encoder_2: T5EncoderModel, tokenizer_2: T5Tokenizer, transformer: FluxTransformer2DModel, image_encoder: CLIPVisionModelWithProjection = None, feature_extractor: CLIPImageProcessorPil = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_kontext_inpaint.py#L214)
+
+**Parameters:**
+
+transformer ([FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
+
+text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
+
+tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
 
 The Flux Kontext pipeline for text-to-image generation.
 
 Reference: https://blackforestlabs.ai/announcing-black-forest-labs/
 
-__call__diffusers.FluxKontextInpaintPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_kontext_inpaint.py#L940[{"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "image_reference", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "mask_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] = None"}, {"name": "prompt", "val": ": str | list[str] = None"}, {"name": "prompt_2", "val": ": str | list[str] | None = None"}, {"name": "negative_prompt", "val": ": str | list[str] = None"}, {"name": "negative_prompt_2", "val": ": str | list[str] | None = None"}, {"name": "true_cfg_scale", "val": ": float = 1.0"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "strength", "val": ": float = 1.0"}, {"name": "padding_mask_crop", "val": ": int | None = None"}, {"name": "num_inference_steps", "val": ": int = 28"}, {"name": "sigmas", "val": ": list[float] | None = None"}, {"name": "guidance_scale", "val": ": float = 3.5"}, {"name": "num_images_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "negative_ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "negative_ip_adapter_image_embeds", "val": ": list[torch.Tensor] | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "negative_pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}, {"name": "max_area", "val": ": int = 1048576"}, {"name": "_auto_resize", "val": ": bool = True"}]- **image** (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) --
-  `Image`, numpy array or tensor representing an image batch to be be inpainted (which parts of the image
-  to be masked out with `mask_image` and repainted according to `prompt` and `image_reference`). For both
-  numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list
-  or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)`. If it is a numpy array or a
-  list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)` It can also accept image
-  latents as `image`, but if passing latents directly it is not encoded again.
-- **image_reference** (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) --
-  `Image`, numpy array or tensor representing an image batch to be used as the starting point for the
-  masked area. For both numpy array and pytorch tensor, the expected value range is between `[0, 1]` If
-  it's a tensor or a list or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)` If it is
-  a numpy array or a list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)` It can
-  also accept image latents as `image`, but if passing latents directly it is not encoded again.
-- **mask_image** (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) --
-  `Image`, numpy array or tensor representing an image batch to mask `image`. White pixels in the mask
-  are repainted while black pixels are preserved. If `mask_image` is a PIL image, it is converted to a
-  single channel (luminance) before use. If it's a numpy array or pytorch tensor, it should contain one
-  color channel (L) instead of 3, so the expected shape for pytorch tensor would be `(B, 1, H, W)`, `(B,
-  H, W)`, `(1, H, W)`, `(H, W)`. And for numpy array would be for `(B, H, W, 1)`, `(B, H, W)`, `(H, W,
-  1)`, or `(H, W)`.
-- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is
-  will be used instead.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation. If not defined, one has to pass
-  `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `true_cfg_scale` is
-  not greater than `1`).
-- **negative_prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and
-  `text_encoder_2`. If not defined, `negative_prompt` is used in all the text-encoders.
-- **true_cfg_scale** (`float`, *optional*, defaults to 1.0) --
-  True classifier-free guidance (guidance scale) is enabled when `true_cfg_scale` > 1 and
-  `negative_prompt` is provided.
-- **height** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The height in pixels of the generated image. This is set to 1024 by default for the best results.
-- **width** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The width in pixels of the generated image. This is set to 1024 by default for the best results.
-- **strength** (`float`, *optional*, defaults to 1.0) --
-  Indicates extent to transform the reference `image`. Must be between 0 and 1. `image` is used as a
-  starting point and more noise is added the higher the `strength`. The number of denoising steps depends
-  on the amount of noise initially added. When `strength` is 1, added noise is maximum and the denoising
-  process runs for the full number of iterations specified in `num_inference_steps`. A value of 1
-  essentially ignores `image`.
-- **padding_mask_crop** (`int`, *optional*, defaults to `None`) --
-  The size of margin in the crop to be applied to the image and masking. If `None`, no crop is applied to
-  image and mask_image. If `padding_mask_crop` is not `None`, it will first find a rectangular region
-  with the same aspect ration of the image and contains all masked area, and then expand that area based
-  on `padding_mask_crop`. The image and mask_image will then be cropped based on the expanded area before
-  resizing to the original image size for inpainting. This is useful when the masked area is small while
-  the image is large and contain information irrelevant for inpainting, such as background.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **guidance_scale** (`float`, *optional*, defaults to 3.5) --
-  Embedded guidance scale is enabled by setting `guidance_scale` > 1. Higher `guidance_scale` encourages
-  a model to generate images more aligned with `prompt` at the expense of lower image quality.
+#### __call__[[diffusers.FluxKontextInpaintPipeline.__call__]]
 
-  Guidance-distilled models approximates true classifier-free guidance for `guidance_scale` > 1. Refer to
-  the [paper](https://huggingface.co/papers/2210.03142) to learn more.
-- **num_images_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
-  to make generation deterministic.
-- **latents** (`torch.FloatTensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor will be generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not
-  provided, text embeddings will be generated from `prompt` input argument.
-- **pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-  If not provided, pooled text embeddings will be generated from `prompt` input argument.
-- **ip_adapter_image** -- (`PipelineImageInput`, *optional*):
-  Optional image input to work with IP Adapters.
-- **ip_adapter_image_embeds** (`list[torch.Tensor]`, *optional*) --
-  Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of
-  IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not
-  provided, embeddings are computed from the `ip_adapter_image` input argument.
-- **negative_ip_adapter_image** --
-  (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
-- **negative_ip_adapter_image_embeds** (`list[torch.Tensor]`, *optional*) --
-  Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of
-  IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not
-  provided, embeddings are computed from the `ip_adapter_image` input argument.
-- **negative_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input
-  argument.
-- **negative_pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt`
-  input argument.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generate image. Choose between
-  [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, *optional*) --
-  A function that calls at the end of each denoising steps during the inference. The function is called
-  with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int,
-  callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by
-  `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int` defaults to 512) --
-  Maximum sequence length to use with the `prompt`.
-- **max_area** (`int`, defaults to `1024 ** 2`) --
-  The maximum area of the generated image in pixels. The height and width will be adjusted to fit this
-  area while maintaining the aspect ratio.
-- **_auto_resize** (`bool`, *optional*, defaults to `True`) --
-  Whether to automatically resize the input image to the preferred resolutions.0`~pipelines.flux.FluxPipelineOutput` or `tuple``~pipelines.flux.FluxPipelineOutput` if `return_dict`
+```python
+__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, image_reference: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, mask_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]] = None, prompt: str | list[str] = None, prompt_2: str | list[str] | None = None, negative_prompt: str | list[str] = None, negative_prompt_2: str | list[str] | None = None, true_cfg_scale: float = 1.0, height: int | None = None, width: int | None = None, strength: float = 1.0, padding_mask_crop: int | None = None, num_inference_steps: int = 28, sigmas: list[float] | None = None, guidance_scale: float = 3.5, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: list[torch.Tensor] | None = None, negative_ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, negative_ip_adapter_image_embeds: list[torch.Tensor] | None = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512, max_area: int = 1048576, _auto_resize: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_kontext_inpaint.py#L882)
+
+**Parameters:**
+
+image (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) : `Image`, numpy array or tensor representing an image batch to be be inpainted (which parts of the image to be masked out with `mask_image` and repainted according to `prompt` and `image_reference`). For both numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)`. If it is a numpy array or a list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)` It can also accept image latents as `image`, but if passing latents directly it is not encoded again.
+
+image_reference (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) : `Image`, numpy array or tensor representing an image batch to be used as the starting point for the masked area. For both numpy array and pytorch tensor, the expected value range is between `[0, 1]` If it's a tensor or a list or tensors, the expected shape should be `(B, C, H, W)` or `(C, H, W)` If it is a numpy array or a list of arrays, the expected shape should be `(B, H, W, C)` or `(H, W, C)` It can also accept image latents as `image`, but if passing latents directly it is not encoded again.
+
+mask_image (`torch.Tensor`, `PIL.Image.Image`, `np.ndarray`, `list[torch.Tensor]`, `list[PIL.Image.Image]`, or `list[np.ndarray]`) : `Image`, numpy array or tensor representing an image batch to mask `image`. White pixels in the mask are repainted while black pixels are preserved. If `mask_image` is a PIL image, it is converted to a single channel (luminance) before use. If it's a numpy array or pytorch tensor, it should contain one color channel (L) instead of 3, so the expected shape for pytorch tensor would be `(B, 1, H, W)`, `(B, H, W)`, `(1, H, W)`, `(H, W)`. And for numpy array would be for `(B, H, W, 1)`, `(B, H, W)`, `(H, W, 1)`, or `(H, W)`.
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is will be used instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `true_cfg_scale` is not greater than `1`).
+
+negative_prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `negative_prompt` is used in all the text-encoders.
+
+true_cfg_scale (`float`, *optional*, defaults to 1.0) : True classifier-free guidance (guidance scale) is enabled when `true_cfg_scale` > 1 and `negative_prompt` is provided.
+
+height (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The height in pixels of the generated image. This is set to 1024 by default for the best results.
+
+width (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The width in pixels of the generated image. This is set to 1024 by default for the best results.
+
+strength (`float`, *optional*, defaults to 1.0) : Indicates extent to transform the reference `image`. Must be between 0 and 1. `image` is used as a starting point and more noise is added the higher the `strength`. The number of denoising steps depends on the amount of noise initially added. When `strength` is 1, added noise is maximum and the denoising process runs for the full number of iterations specified in `num_inference_steps`. A value of 1 essentially ignores `image`.
+
+padding_mask_crop (`int`, *optional*, defaults to `None`) : The size of margin in the crop to be applied to the image and masking. If `None`, no crop is applied to image and mask_image. If `padding_mask_crop` is not `None`, it will first find a rectangular region with the same aspect ration of the image and contains all masked area, and then expand that area based on `padding_mask_crop`. The image and mask_image will then be cropped based on the expanded area before resizing to the original image size for inpainting. This is useful when the masked area is small while the image is large and contain information irrelevant for inpainting, such as background.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
+
+guidance_scale (`float`, *optional*, defaults to 3.5) : Embedded guidance scale is enabled by setting `guidance_scale` > 1. Higher `guidance_scale` encourages a model to generate images more aligned with `prompt` at the expense of lower image quality.  Guidance-distilled models approximates true classifier-free guidance for `guidance_scale` > 1. Refer to the [paper](https://huggingface.co/papers/2210.03142) to learn more.
+
+num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled text embeddings will be generated from `prompt` input argument.
+
+ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+negative_ip_adapter_image : (`PipelineImageInput`, *optional*): Optional image input to work with IP Adapters.
+
+negative_ip_adapter_image_embeds (`list[torch.Tensor]`, *optional*) : Pre-generated image embeddings for IP-Adapter. It should be a list of length same as number of IP-adapters. Each element should be a tensor of shape `(batch_size, num_images, emb_dim)`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+negative_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+negative_pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.flux.FluxPipelineOutput` instead of a plain tuple.
+
+joint_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int` defaults to 512) : Maximum sequence length to use with the `prompt`.
+
+max_area (`int`, defaults to `1024 ** 2`) : The maximum area of the generated image in pixels. The height and width will be adjusted to fit this area while maintaining the aspect ratio.
+
+_auto_resize (`bool`, *optional*, defaults to `True`) : Whether to automatically resize the input image to the preferred resolutions.
+
+**Returns:** `~pipelines.flux.FluxPipelineOutput` or `tuple`
+
+`~pipelines.flux.FluxPipelineOutput` if `return_dict`
 is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
 images.
 
@@ -2568,57 +2280,13 @@ Examples:
 >>> image.save("kontext_inpainting_ref.png")
 ```
 
-**Parameters:**
-
-transformer ([FluxTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
-
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModel), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant.
-
-text_encoder_2 (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
-
-tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer_2 (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
-
-**Returns:**
-
-``~pipelines.flux.FluxPipelineOutput` or `tuple``
-
-`~pipelines.flux.FluxPipelineOutput` if `return_dict`
-is True, otherwise a `tuple`. When returning a tuple, the first element is a list with the generated
-images.
-#### disable_vae_slicing[[diffusers.FluxKontextInpaintPipeline.disable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_kontext_inpaint.py#L701)
-
-Disable sliced VAE decoding. If `enable_vae_slicing` was previously enabled, this method will go back to
-computing decoding in one step.
-#### disable_vae_tiling[[diffusers.FluxKontextInpaintPipeline.disable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_kontext_inpaint.py#L730)
-
-Disable tiled VAE decoding. If `enable_vae_tiling` was previously enabled, this method will go back to
-computing decoding in one step.
-#### enable_vae_slicing[[diffusers.FluxKontextInpaintPipeline.enable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_kontext_inpaint.py#L687)
-
-Enable sliced VAE decoding. When this option is enabled, the VAE will split the input tensor in slices to
-compute decoding in several steps. This is useful to save some memory and allow larger batch sizes.
-#### enable_vae_tiling[[diffusers.FluxKontextInpaintPipeline.enable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_kontext_inpaint.py#L715)
-
-Enable tiled VAE decoding. When this option is enabled, the VAE will split the input tensor into tiles to
-compute decoding and encoding in several steps. This is useful for saving a large amount of memory and to allow
-processing larger images.
 #### encode_prompt[[diffusers.FluxKontextInpaintPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/flux/pipeline_flux_kontext_inpaint.py#L392)
+```python
+encode_prompt(prompt: str | list[str], prompt_2: str | list[str] | None = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, max_sequence_length: int = 512, lora_scale: float | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/flux/pipeline_flux_kontext_inpaint.py#L391)
 
 **Parameters:**
 
@@ -2636,5 +2304,5 @@ pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled te
 
 lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA layers of the text encoder if LoRA layers are loaded.
 
-### Pipelines
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/overview.md
+### Allegro
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/allegro.md

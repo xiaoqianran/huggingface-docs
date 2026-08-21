@@ -156,7 +156,7 @@ Once training is complete, you can use your newly trained model for inference:
 from diffusers import StableDiffusionPipeline
 import torch
 
-pipeline = StableDiffusionPipeline.from_pretrained("path/to/saved_model", torch_dtype=torch.float16, use_safetensors=True).to("cuda")
+pipeline = StableDiffusionPipeline.from_pretrained("path/to/saved_model", dtype=torch.float16, use_safetensors=True).to("cuda")
 
 image = pipeline(prompt="yoda").images[0]
 image.save("yoda-naruto.png")
@@ -169,5 +169,5 @@ Congratulations on training your own text-to-image model! To learn more about ho
 - Learn how to [load LoRA weights](../tutorials/using_peft_for_inference) for inference if you trained your model with LoRA.
 - Learn more about how certain parameters like guidance scale or techniques such as prompt weighting can help you control inference in the [Text-to-image](../using-diffusers/conditional_image_generation) task guide.
 
-### Create a dataset for training
-https://huggingface.co/docs/diffusers/v0.39.0/training/create_dataset.md
+### NeMo Automodel
+https://huggingface.co/docs/diffusers/v0.40.0/training/nemo_automodel.md

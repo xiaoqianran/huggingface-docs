@@ -5,39 +5,18 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import OvisImageTransformer2DModel
 
-transformer = OvisImageTransformer2DModel.from_pretrained("AIDC-AI/Ovis-Image-7B", subfolder="transformer", torch_dtype=torch.bfloat16)
+transformer = OvisImageTransformer2DModel.from_pretrained("AIDC-AI/Ovis-Image-7B", subfolder="transformer", dtype=torch.bfloat16)
 ```
 
 ## OvisImageTransformer2DModel[[diffusers.OvisImageTransformer2DModel]]
 
 #### diffusers.OvisImageTransformer2DModel[[diffusers.OvisImageTransformer2DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_ovis_image.py#L384)
+```python
+diffusers.OvisImageTransformer2DModel(patch_size: int = 1, in_channels: int = 64, out_channels: int | None = 64, num_layers: int = 6, num_single_layers: int = 27, attention_head_dim: int = 128, num_attention_heads: int = 24, joint_attention_dim: int = 2048, axes_dims_rope: tuple = (16, 56, 56))
+```
 
-The Transformer model introduced in Ovis-Image.
-
-Reference: https://github.com/AIDC-AI/Ovis-Image
-
-forwarddiffusers.OvisImageTransformer2DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_ovis_image.py#L476[{"name": "hidden_states", "val": ": Tensor"}, {"name": "encoder_hidden_states", "val": ": Tensor = None"}, {"name": "timestep", "val": ": LongTensor = None"}, {"name": "img_ids", "val": ": Tensor = None"}, {"name": "txt_ids", "val": ": Tensor = None"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "return_dict", "val": ": bool = True"}]- **hidden_states** (`torch.Tensor` of shape `(batch_size, image_sequence_length, in_channels)`) --
-  Input `hidden_states`.
-- **encoder_hidden_states** (`torch.Tensor` of shape `(batch_size, text_sequence_length, joint_attention_dim)`) --
-  Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
-- **timestep** (`torch.LongTensor`) --
-  Used to indicate denoising step.
-- **img_ids** -- (`torch.Tensor`):
-  The position ids for image tokens.
-- **txt_ids** (`torch.Tensor`) --
-  The position ids for text tokens.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain
-  tuple.0If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
-`tuple` where the first element is the sample tensor.
-
-The [OvisImageTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/ovisimage_transformer2d#diffusers.OvisImageTransformer2DModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_ovis_image.py#L384)
 
 **Parameters:**
 
@@ -59,10 +38,40 @@ joint_attention_dim (`int`, defaults to `2048`) : The number of dimensions to us
 
 axes_dims_rope (`tuple[int]`, defaults to `(16, 56, 56)`) : The dimensions to use for the rotary positional embeddings.
 
+The Transformer model introduced in Ovis-Image.
+
+Reference: https://github.com/AIDC-AI/Ovis-Image
+
+#### forward[[diffusers.OvisImageTransformer2DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, encoder_hidden_states: Tensor = None, timestep: LongTensor = None, img_ids: Tensor = None, txt_ids: Tensor = None, joint_attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_ovis_image.py#L476)
+
+**Parameters:**
+
+hidden_states (`torch.Tensor` of shape `(batch_size, image_sequence_length, in_channels)`) : Input `hidden_states`.
+
+encoder_hidden_states (`torch.Tensor` of shape `(batch_size, text_sequence_length, joint_attention_dim)`) : Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
+
+timestep (`torch.LongTensor`) : Used to indicate denoising step.
+
+img_ids : (`torch.Tensor`): The position ids for image tokens.
+
+txt_ids (`torch.Tensor`) : The position ids for text tokens.
+
+joint_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain tuple.
+
 **Returns:**
 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-### UVit2DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/uvit2d.md
+The [OvisImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/ovisimage_transformer2d#diffusers.OvisImageTransformer2DModel) forward method.
+
+### Cosmos3OmniTransformer
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/cosmos3_omni_transformer.md

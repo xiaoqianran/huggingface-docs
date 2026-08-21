@@ -26,7 +26,7 @@ import torch
 from diffusers import LattePipeline
 
 pipeline = LattePipeline.from_pretrained(
-	"maxin-cn/Latte-1", torch_dtype=torch.float16
+	"maxin-cn/Latte-1", dtype=torch.float16
 ).to("cuda")
 ```
 
@@ -57,7 +57,7 @@ With torch.compile(): Average inference time: 14.573 seconds.
 
 Quantization helps reduce the memory requirements of very large models by storing model weights in a lower precision data type. However, quantization may have varying impact on video quality depending on the video model.
 
-Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [LattePipeline](/docs/diffusers/v0.39.0/en/api/pipelines/latte#diffusers.LattePipeline) for inference with bitsandbytes.
+Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [LattePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/latte#diffusers.LattePipeline) for inference with bitsandbytes.
 
 ```py
 import torch
@@ -70,7 +70,7 @@ text_encoder_8bit = T5EncoderModel.from_pretrained(
     "maxin-cn/Latte-1",
     subfolder="text_encoder",
     quantization_config=quant_config,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 )
 
 quant_config = DiffusersBitsAndBytesConfig(load_in_8bit=True)
@@ -78,14 +78,14 @@ transformer_8bit = LatteTransformer3DModel.from_pretrained(
     "maxin-cn/Latte-1",
     subfolder="transformer",
     quantization_config=quant_config,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 )
 
 pipeline = LattePipeline.from_pretrained(
     "maxin-cn/Latte-1",
     text_encoder=text_encoder_8bit,
     transformer=transformer_8bit,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="balanced",
 )
 
@@ -98,76 +98,86 @@ export_to_gif(video, "latte.gif")
 
 #### diffusers.LattePipeline[[diffusers.LattePipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/latte/pipeline_latte.py#L145)
+```python
+diffusers.LattePipeline(tokenizer: T5Tokenizer, text_encoder: T5EncoderModel, vae: AutoencoderKL, transformer: LatteTransformer3DModel, scheduler: KarrasDiffusionSchedulers)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/latte/pipeline_latte.py#L145)
+
+**Parameters:**
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+
+text_encoder (`T5EncoderModel`) : Frozen text-encoder. Latte uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel), specifically the [t5-v1_1-xxl](https://huggingface.co/PixArt-alpha/PixArt-alpha/tree/main/t5-v1_1-xxl) variant.
+
+tokenizer (`T5Tokenizer`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
+
+transformer ([LatteTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/latte_transformer3d#diffusers.LatteTransformer3DModel)) : A text conditioned `LatteTransformer3DModel` to denoise the encoded video latents.
+
+scheduler ([SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
 
 Pipeline for text-to-video generation using Latte.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods the
 library implements for all the pipelines (such as downloading or saving, running on a particular device, etc.)
 
-__call__diffusers.LattePipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/latte/pipeline_latte.py#L613[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "negative_prompt", "val": ": str = ''"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "timesteps", "val": ": list[int] | None = None"}, {"name": "guidance_scale", "val": ": float = 7.5"}, {"name": "num_images_per_prompt", "val": ": int = 1"}, {"name": "video_length", "val": ": int = 16"}, {"name": "height", "val": ": int = 512"}, {"name": "width", "val": ": int = 512"}, {"name": "eta", "val": ": float = 0.0"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "output_type", "val": ": str = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "callback_on_step_end", "val": ": typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "clean_caption", "val": ": bool = True"}, {"name": "mask_feature", "val": ": bool = True"}, {"name": "enable_temporal_attentions", "val": ": bool = True"}, {"name": "decode_chunk_size", "val": ": int = 14"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the video generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the video generation. If not defined, one has to pass
-  `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is
-  less than `1`).
-- **num_inference_steps** (`int`, *optional*, defaults to 100) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality video at the
-  expense of slower inference.
-- **timesteps** (`list[int]`, *optional*) --
-  Custom timesteps to use for the denoising process. If not defined, equal spaced `num_inference_steps`
-  timesteps are used. Must be in descending order.
-- **guidance_scale** (`float`, *optional*, defaults to 7.0) --
-  Guidance scale as defined in [Classifier-Free Diffusion
-  Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2.
-  of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting
-  `guidance_scale > 1`. Higher guidance scale encourages to generate videos that are closely linked to
-  the text `prompt`, usually at the expense of lower video quality.
-- **video_length** (`int`, *optional*, defaults to 16) --
-  The number of video frames that are generated. Defaults to 16 frames which at 8 frames per seconds
-- **num_images_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of videos to generate per prompt.
-- **height** (`int`, *optional*, defaults to self.unet.config.sample_size) --
-  The height in pixels of the generated video.
-- **width** (`int`, *optional*, defaults to self.unet.config.sample_size) --
-  The width in pixels of the generated video.
-- **eta** (`float`, *optional*, defaults to 0.0) --
-  Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only
-  applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
-  to make generation deterministic.
-- **latents** (`torch.FloatTensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for video
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor will be generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not
-  provided, text embeddings will be generated from `prompt` input argument.
-- **negative_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative text embeddings. For Latte this negative prompt should be "". If not provided,
-  negative_prompt_embeds will be generated from `negative_prompt` input argument.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generate video. Choose between
-  [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.stable_diffusion.IFPipelineOutput` instead of a plain tuple.
-- **callback_on_step_end** (`Callable[[int, int], None]`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) --
-  A callback function or a list of callback functions to be called at the end of each denoising step.
-- **callback_on_step_end_tensor_inputs** (`list[str]`, *optional*) --
-  A list of tensor inputs that should be passed to the callback function. If not defined, all tensor
-  inputs will be passed.
-- **clean_caption** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to clean the caption before creating embeddings. Requires `beautifulsoup4` and `ftfy` to
-  be installed. If the dependencies are not installed, the embeddings will be created from the raw
-  prompt.
-- **mask_feature** (`bool` defaults to `True`) -- If set to `True`, the text embeddings will be masked.
-- **enable_temporal_attentions** (`bool`, *optional*, defaults to `True`) -- Whether to enable temporal attentions
-- **decode_chunk_size** (`int`, *optional*) --
-  The number of frames to decode at a time. Higher chunk size leads to better temporal consistency at the
-  expense of more memory usage. By default, the decoder decodes all frames at once for maximal quality.
-  For lower memory usage, reduce `decode_chunk_size`.0`LattePipelineOutput` or `tuple`If `return_dict` is `True`, `LattePipelineOutput` is returned,
+#### __call__[[diffusers.LattePipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, negative_prompt: str = '', num_inference_steps: int = 50, timesteps: list[int] | None = None, guidance_scale: float = 7.5, num_images_per_prompt: int = 1, video_length: int = 16, height: int = 512, width: int = 512, eta: float = 0.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, output_type: str = 'pil', return_dict: bool = True, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], clean_caption: bool = True, mask_feature: bool = True, enable_temporal_attentions: bool = True, decode_chunk_size: int = 14)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/latte/pipeline_latte.py#L613)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the video generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the video generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+num_inference_steps (`int`, *optional*, defaults to 100) : The number of denoising steps. More denoising steps usually lead to a higher quality video at the expense of slower inference.
+
+timesteps (`list[int]`, *optional*) : Custom timesteps to use for the denoising process. If not defined, equal spaced `num_inference_steps` timesteps are used. Must be in descending order.
+
+guidance_scale (`float`, *optional*, defaults to 7.0) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate videos that are closely linked to the text `prompt`, usually at the expense of lower video quality.
+
+video_length (`int`, *optional*, defaults to 16) : The number of video frames that are generated. Defaults to 16 frames which at 8 frames per seconds
+
+num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
+
+height (`int`, *optional*, defaults to self.unet.config.sample_size) : The height in pixels of the generated video.
+
+width (`int`, *optional*, defaults to self.unet.config.sample_size) : The width in pixels of the generated video.
+
+eta (`float`, *optional*, defaults to 0.0) : Corresponds to parameter eta (η) in the DDIM paper: https://huggingface.co/papers/2010.02502. Only applies to [schedulers.DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler), will be ignored for others.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for video generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative text embeddings. For Latte this negative prompt should be "". If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate video. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.stable_diffusion.IFPipelineOutput` instead of a plain tuple.
+
+callback_on_step_end (`Callable[[int, int], None]`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) : A callback function or a list of callback functions to be called at the end of each denoising step.
+
+callback_on_step_end_tensor_inputs (`list[str]`, *optional*) : A list of tensor inputs that should be passed to the callback function. If not defined, all tensor inputs will be passed.
+
+clean_caption (`bool`, *optional*, defaults to `True`) : Whether or not to clean the caption before creating embeddings. Requires `beautifulsoup4` and `ftfy` to be installed. If the dependencies are not installed, the embeddings will be created from the raw prompt.
+
+mask_feature (`bool` defaults to `True`) : If set to `True`, the text embeddings will be masked.
+
+enable_temporal_attentions (`bool`, *optional*, defaults to `True`) : Whether to enable temporal attentions
+
+decode_chunk_size (`int`, *optional*) : The number of frames to decode at a time. Higher chunk size leads to better temporal consistency at the expense of more memory usage. By default, the decoder decodes all frames at once for maximal quality. For lower memory usage, reduce `decode_chunk_size`.
+
+**Returns:** `LattePipelineOutput` or `tuple`
+
+If `return_dict` is `True`, `LattePipelineOutput` is returned,
 otherwise a `tuple` is returned where the first element is a list with the generated images
 
 Function invoked when calling the pipeline for generation.
@@ -188,29 +198,13 @@ Examples:
 >>> export_to_gif(videos, "latte.gif")
 ```
 
-**Parameters:**
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
-
-text_encoder (`T5EncoderModel`) : Frozen text-encoder. Latte uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel), specifically the [t5-v1_1-xxl](https://huggingface.co/PixArt-alpha/PixArt-alpha/tree/main/t5-v1_1-xxl) variant.
-
-tokenizer (`T5Tokenizer`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
-
-transformer ([LatteTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/latte_transformer3d#diffusers.LatteTransformer3DModel)) : A text conditioned `LatteTransformer3DModel` to denoise the encoded video latents.
-
-scheduler ([SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin)) : A scheduler to be used in combination with `transformer` to denoise the encoded video latents.
-
-**Returns:**
-
-``LattePipelineOutput` or `tuple``
-
-If `return_dict` is `True`, `LattePipelineOutput` is returned,
-otherwise a `tuple` is returned where the first element is a list with the generated images
 #### encode_prompt[[diffusers.LattePipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/latte/pipeline_latte.py#L206)
+```python
+encode_prompt(prompt: str | list[str], do_classifier_free_guidance: bool = True, negative_prompt: str = '', num_images_per_prompt: int = 1, device: typing.Optional[torch.device] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, clean_caption: bool = False, mask_feature: bool = True, dtype = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/latte/pipeline_latte.py#L206)
 
 **Parameters:**
 
@@ -232,5 +226,7 @@ clean_caption (bool, defaults to `False`) : If `True`, the function will preproc
 
 mask_feature : (bool, defaults to `True`): If `True`, the function will mask the text embeddings.
 
-### Allegro
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/allegro.md
+Encodes the prompt into text encoder hidden states.
+
+### Bria Fibo Edit
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/bria_fibo_edit.md

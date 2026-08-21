@@ -1,6 +1,6 @@
 # Building Custom Blocks
 
-[ModularPipelineBlocks](./pipeline_block) are the fundamental building blocks of a [ModularPipeline](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline). You can create custom blocks by defining their inputs, outputs, and computation logic. This guide demonstrates how to create and use a custom block.
+[ModularPipelineBlocks](./pipeline_block) are the fundamental building blocks of a [ModularPipeline](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline). You can create custom blocks by defining their inputs, outputs, and computation logic. This guide demonstrates how to create and use a custom block.
 
 > [!TIP]
 > Explore the [Modular Diffusers Custom Blocks](https://huggingface.co/collections/diffusers/modular-diffusers-custom-blocks) collection for official custom blocks.
@@ -202,7 +202,7 @@ class Florence2ImageAnnotatorBlock(ModularPipelineBlocks):
 
 ## Using Custom Blocks
 
-Load a custom block with [from_pretrained()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) and set `trust_remote_code=True`.
+Load a custom block with [from_pretrained()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.from_pretrained) and set `trust_remote_code=True`.
 
 ```py
 import torch
@@ -222,7 +222,7 @@ print(image_annotator.blocks.doc)
 Use the block to generate a mask:
 
 ```python
-image_annotator.load_components(torch_dtype=torch.bfloat16)
+image_annotator.load_components(dtype=torch.bfloat16)
 image_annotator.to("cuda")
 
 image = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/car.jpg")
@@ -253,7 +253,7 @@ inpaint_blocks.sub_blocks.insert("image_annotator", annotator_block, 0)
 
 # Initialize the combined pipeline
 pipe = inpaint_blocks.init_pipeline()
-pipe.load_components(torch_dtype=torch.float16, device="cuda")
+pipe.load_components(dtype=torch.float16, device="cuda")
 
 # Now the pipeline automatically generates masks from prompts
 output = pipe(
@@ -341,7 +341,7 @@ pipe = SequentialPipelineBlocks.from_blocks_dict({
 })
 ```
 
-When this block is saved with [save_pretrained()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.save_pretrained), the requirements are saved to the `modular_config.json` file. When this block is loaded, Diffusers checks each requirement against the current environment. If there is a mismatch or a package isn't found, Diffusers returns the following warning.
+When this block is saved with [save_pretrained()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.save_pretrained), the requirements are saved to the `modular_config.json` file. When this block is loaded, Diffusers checks each requirement against the current environment. If there is a mismatch or a package isn't found, Diffusers returns the following warning.
 
 ```md
 # missing package
@@ -351,5 +351,5 @@ xyz-package was specified in the requirements but wasn't found in the current en
 xyz requirement 'specific-version' is not satisfied by the installed version 'actual-version'. Things might work unexpected.
 ```
 
-### Quickstart
-https://huggingface.co/docs/diffusers/v0.39.0/modular_diffusers/quickstart.md
+### SequentialPipelineBlocks
+https://huggingface.co/docs/diffusers/v0.40.0/modular_diffusers/sequential_pipeline_blocks.md

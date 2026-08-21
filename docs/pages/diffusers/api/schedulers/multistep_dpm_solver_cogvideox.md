@@ -6,23 +6,11 @@
 
 #### diffusers.CogVideoXDPMScheduler[[diffusers.CogVideoXDPMScheduler]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L134)
+```python
+diffusers.CogVideoXDPMScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.00085, beta_end: float = 0.012, beta_schedule: typing.Literal['linear', 'scaled_linear', 'squaredcos_cap_v2'] = 'scaled_linear', trained_betas: numpy.ndarray | list[float] | None = None, clip_sample: bool = True, set_alpha_to_one: bool = True, steps_offset: int = 0, prediction_type: typing.Literal['epsilon', 'sample', 'v_prediction'] = 'epsilon', clip_sample_range: float = 1.0, sample_max_value: float = 1.0, timestep_spacing: typing.Literal['leading', 'linspace', 'trailing'] = 'leading', rescale_betas_zero_snr: bool = False, snr_shift_scale: float = 3.0)
+```
 
-`DDIMScheduler` extends the denoising procedure introduced in denoising diffusion probabilistic models (DDPMs) with
-non-Markovian guidance.
-
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.39.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
-methods the library implements for all schedulers such as loading and saving.
-
-add_noisediffusers.CogVideoXDPMScheduler.add_noisehttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L522[{"name": "original_samples", "val": ": Tensor"}, {"name": "noise", "val": ": Tensor"}, {"name": "timesteps", "val": ": IntTensor"}]- **original_samples** (`torch.Tensor`) --
-  The original samples to which noise will be added.
-- **noise** (`torch.Tensor`) --
-  The noise to add to the samples.
-- **timesteps** (`torch.IntTensor`) --
-  The timesteps indicating the noise level for each sample.0`torch.Tensor`The noisy samples.
-
-Add noise to the original samples according to the noise magnitude at each timestep (this is the forward
-diffusion process).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L134)
 
 **Parameters:**
 
@@ -58,16 +46,42 @@ rescale_betas_zero_snr (`bool`, defaults to `False`) : Whether to rescale the be
 
 snr_shift_scale (`float`, defaults to 3.0) : Shift scale for SNR.
 
-**Returns:**
+`DDIMScheduler` extends the denoising procedure introduced in denoising diffusion probabilistic models (DDPMs) with
+non-Markovian guidance.
 
-``torch.Tensor``
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+methods the library implements for all schedulers such as loading and saving.
+
+#### add_noise[[diffusers.CogVideoXDPMScheduler.add_noise]]
+
+```python
+add_noise(original_samples: Tensor, noise: Tensor, timesteps: IntTensor)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L522)
+
+**Parameters:**
+
+original_samples (`torch.Tensor`) : The original samples to which noise will be added.
+
+noise (`torch.Tensor`) : The noise to add to the samples.
+
+timesteps (`torch.IntTensor`) : The timesteps indicating the noise level for each sample.
+
+**Returns:** `torch.Tensor`
 
 The noisy samples.
+
+Add noise to the original samples according to the noise magnitude at each timestep (this is the forward
+diffusion process).
+
 #### get_mult[[diffusers.CogVideoXDPMScheduler.get_mult]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L364)
+```python
+get_mult(h: Tensor, r: Tensor, alpha_prod_t: Tensor, alpha_prod_t_prev: Tensor, alpha_prod_t_back: typing.Optional[torch.Tensor] = None)
+```
 
-Compute the multipliers for the previous sample and the predicted original sample.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L364)
 
 **Parameters:**
 
@@ -81,16 +95,19 @@ alpha_prod_t_prev (`torch.Tensor`) : The cumulative product of alphas at the pre
 
 alpha_prod_t_back (`torch.Tensor`, *optional*) : The cumulative product of alphas at the timestep before the previous timestep.
 
-**Returns:**
-
-``tuple``
+**Returns:** `tuple`
 
 A tuple containing the multipliers.
+
+Compute the multipliers for the previous sample and the predicted original sample.
+
 #### get_variables[[diffusers.CogVideoXDPMScheduler.get_variables]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L331)
+```python
+get_variables(alpha_prod_t: Tensor, alpha_prod_t_prev: Tensor, alpha_prod_t_back: typing.Optional[torch.Tensor] = None)
+```
 
-Compute the variables used for DPM-Solver++ (2M) referencing the original implementation.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L331)
 
 **Parameters:**
 
@@ -100,16 +117,19 @@ alpha_prod_t_prev (`torch.Tensor`) : The cumulative product of alphas at the pre
 
 alpha_prod_t_back (`torch.Tensor`, *optional*) : The cumulative product of alphas at the timestep before the previous timestep.
 
-**Returns:**
-
-``tuple``
+**Returns:** `tuple`
 
 A tuple containing the variables `h`, `r`, `lamb`, `lamb_next`.
+
+Compute the variables used for DPM-Solver++ (2M) referencing the original implementation.
+
 #### get_velocity[[diffusers.CogVideoXDPMScheduler.get_velocity]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L565)
+```python
+get_velocity(sample: Tensor, noise: Tensor, timesteps: IntTensor)
+```
 
-Compute the velocity prediction from the sample and noise according to the velocity formula.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L565)
 
 **Parameters:**
 
@@ -119,17 +139,19 @@ noise (`torch.Tensor`) : The noise tensor.
 
 timesteps (`torch.IntTensor`) : The timesteps for velocity computation.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The computed velocity.
+
+Compute the velocity prediction from the sample and noise according to the velocity formula.
+
 #### scale_model_input[[diffusers.CogVideoXDPMScheduler.scale_model_input]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L262)
+```python
+scale_model_input(sample: Tensor, timestep: int | None = None)
+```
 
-Ensures interchangeability with schedulers that need to scale the denoising model input depending on the
-current timestep.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L262)
 
 **Parameters:**
 
@@ -137,28 +159,36 @@ sample (`torch.Tensor`) : The input sample.
 
 timestep (`int`, *optional*) : The current timestep in the diffusion chain.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 A scaled input sample.
+
+Ensures interchangeability with schedulers that need to scale the denoising model input depending on the
+current timestep.
+
 #### set_timesteps[[diffusers.CogVideoXDPMScheduler.set_timesteps]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L279)
+```python
+set_timesteps(num_inference_steps: int, device: typing.Union[str, torch.device, NoneType] = None)
+```
 
-Sets the discrete timesteps used for the diffusion chain (to be run before inference).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L279)
 
 **Parameters:**
 
 num_inference_steps (`int`) : The number of diffusion steps used when generating samples with a pre-trained model.
 
 device (`str` or `torch.device`, *optional*) : The device to which the timesteps should be moved to. If `None` (the default), the timesteps are not moved.
+
+Sets the discrete timesteps used for the diffusion chain (to be run before inference).
+
 #### step[[diffusers.CogVideoXDPMScheduler.step]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L401)
+```python
+step(model_output: Tensor, old_pred_original_sample: Tensor, timestep: int, timestep_back: int, sample: Tensor, eta: float = 0.0, use_clipped_model_output: bool = False, generator: typing.Optional[torch.Generator] = None, variance_noise: typing.Optional[torch.Tensor] = None, return_dict: bool = False)
+```
 
-Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
-process from the learned model outputs (most often the predicted noise).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpm_cogvideox.py#L401)
 
 **Parameters:**
 
@@ -180,14 +210,15 @@ generator (`torch.Generator`, *optional*) : A random number generator.
 
 variance_noise (`torch.Tensor`) : Alternative to generating noise with `generator` by directly providing the noise for the variance itself. Useful for methods such as `CycleDiffusion`.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [DDIMSchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/ddim#diffusers.schedulers.scheduling_ddim.DDIMSchedulerOutput) or `tuple`.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [DDIMSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.schedulers.scheduling_ddim.DDIMSchedulerOutput) or `tuple`.
 
-**Returns:**
+**Returns:** [DDIMSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.schedulers.scheduling_ddim.DDIMSchedulerOutput) or `tuple`
 
-`[DDIMSchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/ddim#diffusers.schedulers.scheduling_ddim.DDIMSchedulerOutput) or `tuple``
-
-If return_dict is `True`, [DDIMSchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/ddim#diffusers.schedulers.scheduling_ddim.DDIMSchedulerOutput) is returned, otherwise a
+If return_dict is `True`, [DDIMSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.schedulers.scheduling_ddim.DDIMSchedulerOutput) is returned, otherwise a
 tuple is returned where the first element is the sample tensor.
 
-### UniPCMultistepScheduler
-https://huggingface.co/docs/diffusers/v0.39.0/api/schedulers/unipc.md
+Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
+process from the learned model outputs (most often the predicted noise).
+
+### EDMDPMSolverMultistepScheduler
+https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/edm_multistep_dpm_solver.md

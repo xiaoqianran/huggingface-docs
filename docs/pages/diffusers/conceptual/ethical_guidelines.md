@@ -47,5 +47,5 @@ The team works daily to make the technical and non-technical tools available to 
 
 - **Licensing**: [OpenRAILs](https://huggingface.co/blog/open_rail), a new type of licensing, allow us to ensure free access while having a set of restrictions that ensure more responsible use.
 
-### How to contribute to Diffusers 🧨
-https://huggingface.co/docs/diffusers/v0.39.0/conceptual/contribution.md
+### Outpainting
+https://huggingface.co/docs/diffusers/v0.40.0/advanced_inference/outpaint.md

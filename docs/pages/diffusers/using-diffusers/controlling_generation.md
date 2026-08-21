@@ -164,5 +164,5 @@ approach applicable to a wide range of popular diffusion models, which exploits
 the self-attention layer present in the most widely used architectures to condition
 the diffusion process on a set of feedback images.
 
-### Schedulers
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/schedulers.md
+### DreamBooth
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/dreambooth.md

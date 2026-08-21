@@ -26,7 +26,7 @@ hf auth login
 import torch
 from diffusers import StableDiffusion3Pipeline
 
-pipe = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16)
+pipe = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", dtype=torch.float16)
 pipe.to("cuda")
 
 image = pipe(
@@ -68,16 +68,16 @@ ip_adapter_id = "InstantX/SD3.5-Large-IP-Adapter"
 
 feature_extractor = SiglipImageProcessor.from_pretrained(
     image_encoder_id,
-    torch_dtype=torch.float16
+    dtype=torch.float16
 )
 image_encoder = SiglipVisionModel.from_pretrained(
     image_encoder_id,
-    torch_dtype=torch.float16
+    dtype=torch.float16
 ).to( "cuda")
 
 pipe = StableDiffusion3Pipeline.from_pretrained(
     "stabilityai/stable-diffusion-3.5-large",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     feature_extractor=feature_extractor,
     image_encoder=image_encoder,
 ).to("cuda")
@@ -118,7 +118,7 @@ The most basic memory optimization available in Diffusers allows you to offload 
 import torch
 from diffusers import StableDiffusion3Pipeline
 
-pipe = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16)
+pipe = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", dtype=torch.float16)
 pipe.enable_model_cpu_offload()
 
 image = pipe(
@@ -145,7 +145,7 @@ pipe = StableDiffusion3Pipeline.from_pretrained(
     "stabilityai/stable-diffusion-3-medium-diffusers",
     text_encoder_3=None,
     tokenizer_3=None,
-    torch_dtype=torch.float16
+    dtype=torch.float16
 )
 pipe.to("cuda")
 
@@ -190,7 +190,7 @@ pipe = StableDiffusion3Pipeline.from_pretrained(
     model_id,
     text_encoder_3=text_encoder,
     device_map="balanced",
-    torch_dtype=torch.float16
+    dtype=torch.float16
 )
 
 image = pipe(
@@ -226,7 +226,7 @@ torch._inductor.config.coordinate_descent_check_all_directions = True
 
 pipe = StableDiffusion3Pipeline.from_pretrained(
     "stabilityai/stable-diffusion-3-medium-diffusers",
-    torch_dtype=torch.float16
+    dtype=torch.float16
 ).to("cuda")
 pipe.set_progress_bar_config(disable=True)
 
@@ -252,7 +252,7 @@ Check out the full script [here](https://gist.github.com/sayakpaul/508d89d7aad4f
 
 Quantization helps reduce the memory requirements of very large models by storing model weights in a lower precision data type. However, quantization may have varying impact on video quality depending on the video model.
 
-Refer to the [Quantization](../../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [StableDiffusion3Pipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/stable_diffusion_3#diffusers.StableDiffusion3Pipeline) for inference with bitsandbytes.
+Refer to the [Quantization](../../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [StableDiffusion3Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_3#diffusers.StableDiffusion3Pipeline) for inference with bitsandbytes.
 
 ```py
 import torch
@@ -264,7 +264,7 @@ text_encoder_8bit = T5EncoderModel.from_pretrained(
     "stabilityai/stable-diffusion-3.5-large",
     subfolder="text_encoder_3",
     quantization_config=quant_config,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 )
 
 quant_config = DiffusersBitsAndBytesConfig(load_in_8bit=True)
@@ -272,14 +272,14 @@ transformer_8bit = SD3Transformer2DModel.from_pretrained(
     "stabilityai/stable-diffusion-3.5-large",
     subfolder="transformer",
     quantization_config=quant_config,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 )
 
 pipeline = StableDiffusion3Pipeline.from_pretrained(
     "stabilityai/stable-diffusion-3.5-large",
     text_encoder=text_encoder_8bit,
     transformer=transformer_8bit,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="balanced",
 )
 
@@ -328,7 +328,7 @@ image = pipe(
 
 ## Tiny AutoEncoder for Stable Diffusion 3
 
-Tiny AutoEncoder for Stable Diffusion (TAESD3) is a tiny distilled version of Stable Diffusion 3's VAE by [Ollin Boer Bohan](https://github.com/madebyollin/taesd) that can decode [StableDiffusion3Pipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/stable_diffusion_3#diffusers.StableDiffusion3Pipeline) latents almost instantly.
+Tiny AutoEncoder for Stable Diffusion (TAESD3) is a tiny distilled version of Stable Diffusion 3's VAE by [Ollin Boer Bohan](https://github.com/madebyollin/taesd) that can decode [StableDiffusion3Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_3#diffusers.StableDiffusion3Pipeline) latents almost instantly.
 
 To use with Stable Diffusion 3:
 
@@ -337,9 +337,9 @@ import torch
 from diffusers import StableDiffusion3Pipeline, AutoencoderTiny
 
 pipe = StableDiffusion3Pipeline.from_pretrained(
-    "stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16
+    "stabilityai/stable-diffusion-3-medium-diffusers", dtype=torch.float16
 )
-pipe.vae = AutoencoderTiny.from_pretrained("madebyollin/taesd3", torch_dtype=torch.float16)
+pipe.vae = AutoencoderTiny.from_pretrained("madebyollin/taesd3", dtype=torch.float16)
 pipe = pipe.to("cuda")
 
 prompt = "slice of delicious New York-style berry cheesecake"
@@ -369,7 +369,7 @@ from diffusers import StableDiffusion3Pipeline
 
 pipe = StableDiffusion3Pipeline.from_single_file(
     "https://huggingface.co/stabilityai/stable-diffusion-3-medium/blob/main/sd3_medium_incl_clips.safetensors",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     text_encoder_3=None
 )
 pipe.enable_model_cpu_offload()
@@ -389,7 +389,7 @@ from diffusers import StableDiffusion3Pipeline
 
 pipe = StableDiffusion3Pipeline.from_single_file(
     "https://huggingface.co/stabilityai/stable-diffusion-3-medium/blob/main/sd3_medium_incl_clips_t5xxlfp8.safetensors",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 )
 pipe.enable_model_cpu_offload()
 
@@ -405,12 +405,12 @@ from diffusers import SD3Transformer2DModel, StableDiffusion3Pipeline
 
 transformer = SD3Transformer2DModel.from_single_file(
     "https://huggingface.co/stabilityai/stable-diffusion-3.5-large-turbo/blob/main/sd3.5_large.safetensors",
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
 )
 pipe = StableDiffusion3Pipeline.from_pretrained(
     "stabilityai/stable-diffusion-3.5-large",
     transformer=transformer,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
 )
 pipe.enable_model_cpu_offload()
 image = pipe("a cat holding a sign that says hello world").images[0]
@@ -421,113 +421,113 @@ image.save("sd35.png")
 
 #### diffusers.StableDiffusion3Pipeline[[diffusers.StableDiffusion3Pipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/stable_diffusion_3/pipeline_stable_diffusion_3.py#L148)
+```python
+diffusers.StableDiffusion3Pipeline(transformer: SD3Transformer2DModel, scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKL, text_encoder: CLIPTextModelWithProjection, tokenizer: CLIPTokenizer, text_encoder_2: CLIPTextModelWithProjection, tokenizer_2: CLIPTokenizer, text_encoder_3: T5EncoderModel, tokenizer_3: T5Tokenizer, image_encoder: SiglipVisionModel = None, feature_extractor: SiglipImageProcessorPil = None)
+```
 
-__call__diffusers.StableDiffusion3Pipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/stable_diffusion_3/pipeline_stable_diffusion_3.py#L772[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "prompt_2", "val": ": str | list[str] | None = None"}, {"name": "prompt_3", "val": ": str | list[str] | None = None"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "num_inference_steps", "val": ": int = 28"}, {"name": "sigmas", "val": ": list[float] | None = None"}, {"name": "guidance_scale", "val": ": float = 7.0"}, {"name": "negative_prompt", "val": ": str | list[str] | None = None"}, {"name": "negative_prompt_2", "val": ": str | list[str] | None = None"}, {"name": "negative_prompt_3", "val": ": str | list[str] | None = None"}, {"name": "num_images_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.FloatTensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "negative_pooled_prompt_embeds", "val": ": torch.FloatTensor | None = None"}, {"name": "ip_adapter_image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor] | None = None"}, {"name": "ip_adapter_image_embeds", "val": ": torch.Tensor | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "clip_skip", "val": ": int | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 256"}, {"name": "skip_guidance_layers", "val": ": list = None"}, {"name": "skip_layer_guidance_scale", "val": ": float = 2.8"}, {"name": "skip_layer_guidance_stop", "val": ": float = 0.2"}, {"name": "skip_layer_guidance_start", "val": ": float = 0.01"}, {"name": "mu", "val": ": float | None = None"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is
-  will be used instead
-- **prompt_3** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to be sent to `tokenizer_3` and `text_encoder_3`. If not defined, `prompt` is
-  will be used instead
-- **height** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The height in pixels of the generated image. This is set to 1024 by default for the best results.
-- **width** (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) --
-  The width in pixels of the generated image. This is set to 1024 by default for the best results.
-- **num_inference_steps** (`int`, *optional*, defaults to 50) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **sigmas** (`list[float]`, *optional*) --
-  Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in
-  their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed
-  will be used.
-- **guidance_scale** (`float`, *optional*, defaults to 7.0) --
-  Guidance scale as defined in [Classifier-Free Diffusion
-  Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2.
-  of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting
-  `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to
-  the text `prompt`, usually at the expense of lower image quality.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation. If not defined, one has to pass
-  `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is
-  less than `1`).
-- **negative_prompt_2** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and
-  `text_encoder_2`. If not defined, `negative_prompt` is used instead
-- **negative_prompt_3** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation to be sent to `tokenizer_3` and
-  `text_encoder_3`. If not defined, `negative_prompt` is used instead
-- **num_images_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
-  to make generation deterministic.
-- **latents** (`torch.FloatTensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor will be generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not
-  provided, text embeddings will be generated from `prompt` input argument.
-- **negative_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input
-  argument.
-- **pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting.
-  If not provided, pooled text embeddings will be generated from `prompt` input argument.
-- **negative_pooled_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt
-  weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt`
-  input argument.
-- **ip_adapter_image** (`PipelineImageInput`, *optional*) --
-  Optional image input to work with IP Adapters.
-- **ip_adapter_image_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated image embeddings for IP-Adapter. Should be a tensor of shape `(batch_size, num_images,
-  emb_dim)`. It should contain the negative image embedding if `do_classifier_free_guidance` is set to
-  `True`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generate image. Choose between
-  [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.stable_diffusion_3.StableDiffusion3PipelineOutput` instead of
-  a plain tuple.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **clip_skip** (`int`, *optional*) --
-  Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that
-  the output of the pre-final layer will be used for computing the prompt embeddings.
-- **callback_on_step_end** (`Callable`, *optional*) --
-  A function that calls at the end of each denoising steps during the inference. The function is called
-  with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int,
-  callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by
-  `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int` defaults to 256) -- Maximum sequence length to use with the `prompt`.
-- **skip_guidance_layers** (`list[int]`, *optional*) --
-  A list of integers that specify layers to skip during guidance. If not provided, all layers will be
-  used for guidance. If provided, the guidance will only be applied to the layers specified in the list.
-  Recommended value by StabiltyAI for Stable Diffusion 3.5 Medium is [7, 8, 9].
-- **skip_layer_guidance_scale** (`int`, *optional*) -- The scale of the guidance for the layers specified in
-  `skip_guidance_layers`. The guidance will be applied to the layers specified in `skip_guidance_layers`
-  with a scale of `skip_layer_guidance_scale`. The guidance will be applied to the rest of the layers
-  with a scale of `1`.
-- **skip_layer_guidance_stop** (`int`, *optional*) -- The step at which the guidance for the layers specified in
-  `skip_guidance_layers` will stop. The guidance will be applied to the layers specified in
-  `skip_guidance_layers` until the fraction specified in `skip_layer_guidance_stop`. Recommended value by
-  StabiltyAI for Stable Diffusion 3.5 Medium is 0.2.
-- **skip_layer_guidance_start** (`int`, *optional*) -- The step at which the guidance for the layers specified in
-  `skip_guidance_layers` will start. The guidance will be applied to the layers specified in
-  `skip_guidance_layers` from the fraction specified in `skip_layer_guidance_start`. Recommended value by
-  StabiltyAI for Stable Diffusion 3.5 Medium is 0.01.
-- **mu** (`float`, *optional*) -- `mu` value used for `dynamic_shifting`.0`~pipelines.stable_diffusion_3.StableDiffusion3PipelineOutput` or `tuple``~pipelines.stable_diffusion_3.StableDiffusion3PipelineOutput` if `return_dict` is True, otherwise a
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_diffusion_3/pipeline_stable_diffusion_3.py#L148)
+
+**Parameters:**
+
+transformer ([SD3Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
+
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
+
+text_encoder (`CLIPTextModelWithProjection`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModelWithProjection), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant, with an additional added projection layer that is initialized with a diagonal matrix with the `hidden_size` as its dimension.
+
+text_encoder_2 (`CLIPTextModelWithProjection`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModelWithProjection), specifically the [laion/CLIP-ViT-bigG-14-laion2B-39B-b160k](https://huggingface.co/laion/CLIP-ViT-bigG-14-laion2B-39B-b160k) variant.
+
+text_encoder_3 (`T5EncoderModel`) : Frozen text-encoder. Stable Diffusion 3 uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel), specifically the [t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
+
+tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/v4.21.0/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer_2 (`CLIPTokenizer`) : Second Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/v4.21.0/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer_3 (`T5TokenizerFast`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
+
+image_encoder (`SiglipVisionModel`, *optional*) : Pre-trained Vision Model for IP Adapter.
+
+feature_extractor (`SiglipImageProcessor`, *optional*) : Image processor for IP Adapter.
+
+#### __call__[[diffusers.StableDiffusion3Pipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, prompt_2: str | list[str] | None = None, prompt_3: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int = 28, sigmas: list[float] | None = None, guidance_scale: float = 7.0, negative_prompt: str | list[str] | None = None, negative_prompt_2: str | list[str] | None = None, negative_prompt_3: str | list[str] | None = None, num_images_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.FloatTensor] = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, joint_attention_kwargs: dict[str, typing.Any] | None = None, clip_skip: int | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 256, skip_guidance_layers: list = None, skip_layer_guidance_scale: float = 2.8, skip_layer_guidance_stop: float = 0.2, skip_layer_guidance_start: float = 0.01, mu: float | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_diffusion_3/pipeline_stable_diffusion_3.py#L772)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `prompt` is will be used instead
+
+prompt_3 (`str` or `list[str]`, *optional*) : The prompt or prompts to be sent to `tokenizer_3` and `text_encoder_3`. If not defined, `prompt` is will be used instead
+
+height (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The height in pixels of the generated image. This is set to 1024 by default for the best results.
+
+width (`int`, *optional*, defaults to self.unet.config.sample_size * self.vae_scale_factor) : The width in pixels of the generated image. This is set to 1024 by default for the best results.
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+sigmas (`list[float]`, *optional*) : Custom sigmas to use for the denoising process with schedulers which support a `sigmas` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used.
+
+guidance_scale (`float`, *optional*, defaults to 7.0) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+negative_prompt_2 (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation to be sent to `tokenizer_2` and `text_encoder_2`. If not defined, `negative_prompt` is used instead
+
+negative_prompt_3 (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation to be sent to `tokenizer_3` and `text_encoder_3`. If not defined, `negative_prompt` is used instead
+
+num_images_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.FloatTensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+negative_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled text embeddings will be generated from `prompt` input argument.
+
+negative_pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative pooled text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, pooled negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+ip_adapter_image (`PipelineImageInput`, *optional*) : Optional image input to work with IP Adapters.
+
+ip_adapter_image_embeds (`torch.Tensor`, *optional*) : Pre-generated image embeddings for IP-Adapter. Should be a tensor of shape `(batch_size, num_images, emb_dim)`. It should contain the negative image embedding if `do_classifier_free_guidance` is set to `True`. If not provided, embeddings are computed from the `ip_adapter_image` input argument.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.stable_diffusion_3.StableDiffusion3PipelineOutput` instead of a plain tuple.
+
+joint_attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+clip_skip (`int`, *optional*) : Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that the output of the pre-final layer will be used for computing the prompt embeddings.
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int` defaults to 256) : Maximum sequence length to use with the `prompt`.
+
+skip_guidance_layers (`list[int]`, *optional*) : A list of integers that specify layers to skip during guidance. If not provided, all layers will be used for guidance. If provided, the guidance will only be applied to the layers specified in the list. Recommended value by StabiltyAI for Stable Diffusion 3.5 Medium is [7, 8, 9].
+
+skip_layer_guidance_scale (`int`, *optional*) : The scale of the guidance for the layers specified in `skip_guidance_layers`. The guidance will be applied to the layers specified in `skip_guidance_layers` with a scale of `skip_layer_guidance_scale`. The guidance will be applied to the rest of the layers with a scale of `1`.
+
+skip_layer_guidance_stop (`int`, *optional*) : The step at which the guidance for the layers specified in `skip_guidance_layers` will stop. The guidance will be applied to the layers specified in `skip_guidance_layers` until the fraction specified in `skip_layer_guidance_stop`. Recommended value by StabiltyAI for Stable Diffusion 3.5 Medium is 0.2.
+
+skip_layer_guidance_start (`int`, *optional*) : The step at which the guidance for the layers specified in `skip_guidance_layers` will start. The guidance will be applied to the layers specified in `skip_guidance_layers` from the fraction specified in `skip_layer_guidance_start`. Recommended value by StabiltyAI for Stable Diffusion 3.5 Medium is 0.01.
+
+mu (`float`, *optional*) : `mu` value used for `dynamic_shifting`.
+
+**Returns:** `~pipelines.stable_diffusion_3.StableDiffusion3PipelineOutput` or `tuple`
+
+`~pipelines.stable_diffusion_3.StableDiffusion3PipelineOutput` if `return_dict` is True, otherwise a
 `tuple`. When returning a tuple, the first element is a list with the generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -546,41 +546,13 @@ Examples:
 >>> image.save("sd3.png")
 ```
 
-**Parameters:**
-
-transformer ([SD3Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/sd3_transformer2d#diffusers.SD3Transformer2DModel)) : Conditional Transformer (MMDiT) architecture to denoise the encoded image latents.
-
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) Model to encode and decode images to and from latent representations.
-
-text_encoder (`CLIPTextModelWithProjection`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModelWithProjection), specifically the [clip-vit-large-patch14](https://huggingface.co/openai/clip-vit-large-patch14) variant, with an additional added projection layer that is initialized with a diagonal matrix with the `hidden_size` as its dimension.
-
-text_encoder_2 (`CLIPTextModelWithProjection`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPTextModelWithProjection), specifically the [laion/CLIP-ViT-bigG-14-laion2B-39B-b160k](https://huggingface.co/laion/CLIP-ViT-bigG-14-laion2B-39B-b160k) variant.
-
-text_encoder_3 (`T5EncoderModel`) : Frozen text-encoder. Stable Diffusion 3 uses [T5](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5EncoderModel), specifically the [t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
-
-tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/v4.21.0/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer_2 (`CLIPTokenizer`) : Second Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/v4.21.0/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer_3 (`T5TokenizerFast`) : Tokenizer of class [T5Tokenizer](https://huggingface.co/docs/transformers/model_doc/t5#transformers.T5Tokenizer).
-
-image_encoder (`SiglipVisionModel`, *optional*) : Pre-trained Vision Model for IP Adapter.
-
-feature_extractor (`SiglipImageProcessor`, *optional*) : Image processor for IP Adapter.
-
-**Returns:**
-
-``~pipelines.stable_diffusion_3.StableDiffusion3PipelineOutput` or `tuple``
-
-`~pipelines.stable_diffusion_3.StableDiffusion3PipelineOutput` if `return_dict` is True, otherwise a
-`tuple`. When returning a tuple, the first element is a list with the generated images.
 #### encode_image[[diffusers.StableDiffusion3Pipeline.encode_image]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/stable_diffusion_3/pipeline_stable_diffusion_3.py#L696)
+```python
+encode_image(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], device: device)
+```
 
-Encodes the given image into a feature representation using a pre-trained image encoder.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_diffusion_3/pipeline_stable_diffusion_3.py#L696)
 
 **Parameters:**
 
@@ -588,14 +560,19 @@ image (`PipelineImageInput`) : Input image to be encoded.
 
 device : (`torch.device`): Torch device.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The encoded image feature representation.
+
+Encodes the given image into a feature representation using a pre-trained image encoder.
+
 #### encode_prompt[[diffusers.StableDiffusion3Pipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/stable_diffusion_3/pipeline_stable_diffusion_3.py#L344)
+```python
+encode_prompt(prompt: str | list[str], prompt_2: str | list[str], prompt_3: str | list[str], device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, do_classifier_free_guidance: bool = True, negative_prompt: str | list[str] | None = None, negative_prompt_2: str | list[str] | None = None, negative_prompt_3: str | list[str] | None = None, prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_prompt_embeds: typing.Optional[torch.FloatTensor] = None, pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, negative_pooled_prompt_embeds: typing.Optional[torch.FloatTensor] = None, clip_skip: int | None = None, max_sequence_length: int = 256, lora_scale: float | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_diffusion_3/pipeline_stable_diffusion_3.py#L344)
 
 **Parameters:**
 
@@ -628,13 +605,14 @@ negative_pooled_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated 
 clip_skip (`int`, *optional*) : Number of layers to be skipped from CLIP while computing the prompt embeddings. A value of 1 means that the output of the pre-final layer will be used for computing the prompt embeddings.
 
 lora_scale (`float`, *optional*) : A lora scale that will be applied to all LoRA layers of the text encoder if LoRA layers are loaded.
+
 #### prepare_ip_adapter_image_embeds[[diffusers.StableDiffusion3Pipeline.prepare_ip_adapter_image_embeds]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/stable_diffusion_3/pipeline_stable_diffusion_3.py#L716)
+```python
+prepare_ip_adapter_image_embeds(ip_adapter_image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor], NoneType] = None, ip_adapter_image_embeds: typing.Optional[torch.Tensor] = None, device: typing.Optional[torch.device] = None, num_images_per_prompt: int = 1, do_classifier_free_guidance: bool = True)
+```
 
-Prepares image embeddings for use in the IP-Adapter.
-
-Either `ip_adapter_image` or `ip_adapter_image_embeds` must be passed.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_diffusion_3/pipeline_stable_diffusion_3.py#L716)
 
 **Parameters:**
 
@@ -648,5 +626,9 @@ num_images_per_prompt (`int`, defaults to 1) : Number of images that should be g
 
 do_classifier_free_guidance (`bool`, defaults to True) : Whether to use classifier free guidance or not.
 
-### Inpainting
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/stable_diffusion/inpaint.md
+Prepares image embeddings for use in the IP-Adapter.
+
+Either `ip_adapter_image` or `ip_adapter_image_embeds` must be passed.
+
+### T2I-Adapter
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/stable_diffusion/adapter.md

@@ -75,4 +75,4 @@ Happy exploring, and thank you for being part of the Diffusers community!
     Fully modular scheduler functions with 1st class diffusers integration.
 
 ### Installation
-https://huggingface.co/docs/diffusers/v0.39.0/installation.md
+https://huggingface.co/docs/diffusers/v0.40.0/installation.md

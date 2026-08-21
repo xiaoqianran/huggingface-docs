@@ -17,23 +17,14 @@ thresholding. This thresholding method is unsuitable for latent-space diffusion 
 Stable Diffusion.
 
 ## DPMSolverSinglestepScheduler[[diffusers.DPMSolverSinglestepScheduler]]
+
 #### diffusers.DPMSolverSinglestepScheduler[[diffusers.DPMSolverSinglestepScheduler]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L88)
+```python
+diffusers.DPMSolverSinglestepScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.0001, beta_end: float = 0.02, beta_schedule: typing.Literal['linear', 'scaled_linear', 'squaredcos_cap_v2'] = 'linear', trained_betas: numpy.ndarray | list[float] | None = None, solver_order: int = 2, prediction_type: typing.Literal['epsilon', 'sample', 'v_prediction', 'flow_prediction'] = 'epsilon', thresholding: bool = False, dynamic_thresholding_ratio: float = 0.995, sample_max_value: float = 1.0, algorithm_type: typing.Literal['dpmsolver', 'dpmsolver++', 'sde-dpmsolver++'] = 'dpmsolver++', solver_type: typing.Literal['midpoint', 'heun'] = 'midpoint', lower_order_final: bool = False, use_karras_sigmas: bool = False, use_exponential_sigmas: bool = False, use_beta_sigmas: bool = False, use_flow_sigmas: bool = False, flow_shift: float = 1.0, final_sigmas_type: typing.Literal['zero', 'sigma_min'] = 'zero', lambda_min_clipped: float = -inf, variance_type: typing.Optional[typing.Literal['learned', 'learned_range']] = None, use_dynamic_shifting: bool = False, time_shift_type: typing.Literal['exponential'] = 'exponential')
+```
 
-`DPMSolverSinglestepScheduler` is a fast dedicated high-order solver for diffusion ODEs.
-
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.39.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
-methods the library implements for all schedulers such as loading and saving.
-
-add_noisediffusers.DPMSolverSinglestepScheduler.add_noisehttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L1262[{"name": "original_samples", "val": ": Tensor"}, {"name": "noise", "val": ": Tensor"}, {"name": "timesteps", "val": ": IntTensor"}]- **original_samples** (`torch.Tensor`) --
-  The original samples without noise.
-- **noise** (`torch.Tensor`) --
-  The noise to add to the samples.
-- **timesteps** (`torch.IntTensor`) --
-  The timesteps at which to add noise to the samples.0`torch.Tensor`The noisy samples.
-
-Add noise to the original samples according to the noise schedule at the specified timesteps.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L88)
 
 **Parameters:**
 
@@ -83,14 +74,50 @@ use_dynamic_shifting (`bool`, defaults to `False`) : Whether to use dynamic shif
 
 time_shift_type (`"exponential"`, defaults to `"exponential"`) : The type of time shifting to apply.
 
-**Returns:**
+`DPMSolverSinglestepScheduler` is a fast dedicated high-order solver for diffusion ODEs.
 
-``torch.Tensor``
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+methods the library implements for all schedulers such as loading and saving.
+
+#### add_noise[[diffusers.DPMSolverSinglestepScheduler.add_noise]]
+
+```python
+add_noise(original_samples: Tensor, noise: Tensor, timesteps: IntTensor)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L1277)
+
+**Parameters:**
+
+original_samples (`torch.Tensor`) : The original samples without noise.
+
+noise (`torch.Tensor`) : The noise to add to the samples.
+
+timesteps (`torch.IntTensor`) : The timesteps at which to add noise to the samples.
+
+**Returns:** `torch.Tensor`
 
 The noisy samples.
+
+Add noise to the original samples according to the noise schedule at the specified timesteps.
+
 #### convert_model_output[[diffusers.DPMSolverSinglestepScheduler.convert_model_output]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L663)
+```python
+convert_model_output(model_output: Tensor, *args, sample: typing.Optional[torch.Tensor] = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L666)
+
+**Parameters:**
+
+model_output (`torch.Tensor`) : The direct output from the learned diffusion model.
+
+sample (`torch.Tensor`) : A current instance of a sample created by the diffusion process.
+
+**Returns:** `torch.Tensor`
+
+The converted model output.
 
 Convert the model output to the corresponding type the DPMSolver/DPMSolver++ algorithm needs. DPM-Solver is
 designed to discretize an integral of the noise prediction model, and DPM-Solver++ is designed to discretize an
@@ -99,22 +126,13 @@ integral of the data prediction model.
 > [!TIP] > The algorithm and model type are decoupled. You can use either DPMSolver or DPMSolver++ for both
 noise > prediction and data prediction models.
 
-**Parameters:**
-
-model_output (`torch.Tensor`) : The direct output from the learned diffusion model.
-
-sample (`torch.Tensor`) : A current instance of a sample created by the diffusion process.
-
-**Returns:**
-
-``torch.Tensor``
-
-The converted model output.
 #### dpm_solver_first_order_update[[diffusers.DPMSolverSinglestepScheduler.dpm_solver_first_order_update]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L759)
+```python
+dpm_solver_first_order_update(model_output: Tensor, *args, sample: typing.Optional[torch.Tensor] = None, noise: typing.Optional[torch.Tensor] = None, **kwargs)
+```
 
-One step for the first-order DPMSolver (equivalent to DDIM).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L762)
 
 **Parameters:**
 
@@ -126,31 +144,39 @@ prev_timestep (`int`) : The previous discrete timestep in the diffusion chain.
 
 sample (`torch.Tensor`) : A current instance of a sample created by the diffusion process.
 
-**Returns:**
+noise (`torch.Tensor`, *optional*) : Random noise used by the stochastic (`sde-*`) solver variants. Required when `algorithm_type` is set to one of them, and unused otherwise.
 
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The sample tensor at the previous timestep.
+
+One step for the first-order DPMSolver (equivalent to DDIM).
+
 #### get_order_list[[diffusers.DPMSolverSinglestepScheduler.get_order_list]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L253)
+```python
+get_order_list(num_inference_steps: int)
+```
 
-Computes the solver order at each time step.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L253)
 
 **Parameters:**
 
 num_inference_steps (`int`) : The number of diffusion steps used when generating samples with a pre-trained model.
 
-**Returns:**
-
-``list[int]``
+**Returns:** `list[int]`
 
 The list of solver orders for each timestep.
+
+Computes the solver order at each time step.
+
 #### index_for_timestep[[diffusers.DPMSolverSinglestepScheduler.index_for_timestep]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L1120)
+```python
+index_for_timestep(timestep: typing.Union[int, torch.Tensor], schedule_timesteps: typing.Optional[torch.Tensor] = None)
+```
 
-Find the index for a given timestep in the schedule.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L1135)
 
 **Parameters:**
 
@@ -158,41 +184,52 @@ timestep (`int` or `torch.Tensor`) : The timestep for which to find the index.
 
 schedule_timesteps (`torch.Tensor`, *optional*) : The timestep schedule to search in. If `None`, uses `self.timesteps`.
 
-**Returns:**
-
-``int``
+**Returns:** `int`
 
 The index of the timestep in the schedule.
+
+Find the index for a given timestep in the schedule.
+
 #### scale_model_input[[diffusers.DPMSolverSinglestepScheduler.scale_model_input]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L1246)
+```python
+scale_model_input(sample: Tensor, *args, **kwargs)
+```
 
-Ensures interchangeability with schedulers that need to scale the denoising model input depending on the
-current timestep.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L1261)
 
 **Parameters:**
 
 sample (`torch.Tensor`) : The input sample.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 A scaled input sample.
+
+Ensures interchangeability with schedulers that need to scale the denoising model input depending on the
+current timestep.
+
 #### set_begin_index[[diffusers.DPMSolverSinglestepScheduler.set_begin_index]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L320)
+```python
+set_begin_index(begin_index: int = 0)
+```
 
-Sets the begin index for the scheduler. This function should be run from pipeline before the inference.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L320)
 
 **Parameters:**
 
 begin_index (`int`, defaults to `0`) : The begin index for the scheduler.
+
+Sets the begin index for the scheduler. This function should be run from pipeline before the inference.
+
 #### set_timesteps[[diffusers.DPMSolverSinglestepScheduler.set_timesteps]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L330)
+```python
+set_timesteps(num_inference_steps: int = None, device: typing.Union[str, torch.device] = None, mu: float | None = None, timesteps: list[int] | None = None)
+```
 
-Sets the discrete timesteps used for the diffusion chain (to be run before inference).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L330)
 
 **Parameters:**
 
@@ -200,13 +237,19 @@ num_inference_steps (`int`, *optional*) : The number of diffusion steps used whe
 
 device (`str` or `torch.device`, *optional*) : The device to which the timesteps should be moved to. If `None`, the timesteps are not moved.
 
+mu (`float`, *optional*) : Exponent for the dynamic time shift. Requires `use_dynamic_shifting` and a `time_shift_type` of `"exponential"`; when passed, `flow_shift` is set to `exp(mu)`.
+
 timesteps (`list[int]`, *optional*) : Custom timesteps used to support arbitrary spacing between timesteps. If `None`, then the default timestep spacing strategy of equal spacing between timesteps schedule is used. If `timesteps` is passed, `num_inference_steps` must be `None`.
+
+Sets the discrete timesteps used for the diffusion chain (to be run before inference).
+
 #### singlestep_dpm_solver_second_order_update[[diffusers.DPMSolverSinglestepScheduler.singlestep_dpm_solver_second_order_update]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L823)
+```python
+singlestep_dpm_solver_second_order_update(model_output_list: list, *args, sample: typing.Optional[torch.Tensor] = None, noise: typing.Optional[torch.Tensor] = None, **kwargs)
+```
 
-One step for the second-order singlestep DPMSolver that computes the solution at time `prev_timestep` from the
-time `timestep_list[-2]`.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L829)
 
 **Parameters:**
 
@@ -218,17 +261,22 @@ prev_timestep (`int`) : The previous discrete timestep in the diffusion chain.
 
 sample (`torch.Tensor`) : A current instance of a sample created by the diffusion process.
 
-**Returns:**
+noise (`torch.Tensor`, *optional*) : Random noise used by the stochastic (`sde-*`) solver variants. Required when `algorithm_type` is set to one of them, and unused otherwise.
 
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The sample tensor at the previous timestep.
+
+One step for the second-order singlestep DPMSolver that computes the solution at time `prev_timestep` from the
+time `timestep_list[-2]`.
+
 #### singlestep_dpm_solver_third_order_update[[diffusers.DPMSolverSinglestepScheduler.singlestep_dpm_solver_third_order_update]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L934)
+```python
+singlestep_dpm_solver_third_order_update(model_output_list: list, *args, sample: typing.Optional[torch.Tensor] = None, noise: typing.Optional[torch.Tensor] = None, **kwargs)
+```
 
-One step for the third-order singlestep DPMSolver that computes the solution at time `prev_timestep` from the
-time `timestep_list[-3]`.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L943)
 
 **Parameters:**
 
@@ -240,16 +288,22 @@ prev_timestep (`int`) : The previous discrete timestep in the diffusion chain.
 
 sample (`torch.Tensor`) : A current instance of a sample created by diffusion process.
 
-**Returns:**
+noise (`torch.Tensor`, *optional*) : Random noise used by the stochastic (`sde-*`) solver variants. Required when `algorithm_type` is set to one of them, and unused otherwise.
 
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The sample tensor at the previous timestep.
+
+One step for the third-order singlestep DPMSolver that computes the solution at time `prev_timestep` from the
+time `timestep_list[-3]`.
+
 #### singlestep_dpm_solver_update[[diffusers.DPMSolverSinglestepScheduler.singlestep_dpm_solver_update]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L1056)
+```python
+singlestep_dpm_solver_update(model_output_list: list, *args, sample: typing.Optional[torch.Tensor] = None, order: int = None, noise: typing.Optional[torch.Tensor] = None, **kwargs)
+```
 
-One step for the singlestep DPMSolver.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L1068)
 
 **Parameters:**
 
@@ -263,17 +317,21 @@ sample (`torch.Tensor`) : A current instance of a sample created by diffusion pr
 
 order (`int`) : The solver order at this step.
 
-**Returns:**
+noise (`torch.Tensor`, *optional*) : Random noise used by the stochastic (`sde-*`) solver variants. Required when `algorithm_type` is set to one of them, and unused otherwise.
 
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The sample tensor at the previous timestep.
+
+One step for the singlestep DPMSolver.
+
 #### step[[diffusers.DPMSolverSinglestepScheduler.step]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L1173)
+```python
+step(model_output: Tensor, timestep: typing.Union[int, torch.Tensor], sample: Tensor, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
+```
 
-Predict the sample from the previous timestep by reversing the SDE. This function propagates the sample with
-the singlestep DPMSolver.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_dpmsolver_singlestep.py#L1188)
 
 **Parameters:**
 
@@ -285,25 +343,31 @@ sample (`torch.Tensor`) : A current instance of a sample created by the diffusio
 
 generator (`torch.Generator`, *optional*) : A random number generator for stochastic sampling.
 
-return_dict (`bool`, defaults to `True`) : Whether or not to return a [SchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/dpm_discrete#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`.
+return_dict (`bool`, defaults to `True`) : Whether or not to return a [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`.
 
-**Returns:**
+**Returns:** [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple`
 
-`[SchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/dpm_discrete#diffusers.schedulers.scheduling_utils.SchedulerOutput) or `tuple``
-
-If return_dict is `True`, [SchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/dpm_discrete#diffusers.schedulers.scheduling_utils.SchedulerOutput) is returned, otherwise a
+If return_dict is `True`, [SchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/dpm_discrete_ancestral#diffusers.schedulers.scheduling_utils.SchedulerOutput) is returned, otherwise a
 tuple is returned where the first element is the sample tensor.
 
+Predict the sample from the previous timestep by reversing the SDE. This function propagates the sample with
+the singlestep DPMSolver.
+
 ## SchedulerOutput[[diffusers.schedulers.scheduling_utils.SchedulerOutput]]
+
 #### diffusers.schedulers.scheduling_utils.SchedulerOutput[[diffusers.schedulers.scheduling_utils.SchedulerOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_utils.py#L61)
+```python
+diffusers.schedulers.scheduling_utils.SchedulerOutput(prev_sample: Tensor)
+```
 
-Base class for the output of a scheduler's `step` function.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_utils.py#L66)
 
 **Parameters:**
 
 prev_sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` for images) : Computed sample `(x_{t-1})` of previous timestep. `prev_sample` should be used as next model input in the denoising loop.
 
-### DDIMInverseScheduler
-https://huggingface.co/docs/diffusers/v0.39.0/api/schedulers/ddim_inverse.md
+Base class for the output of a scheduler's `step` function.
+
+### CosineDPMSolverMultistepScheduler
+https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/cosine_dpm.md

@@ -6,38 +6,11 @@ A Diffusion Transformer model for 2D data from [GlmImageTransformer2DModel] (TOD
 
 #### diffusers.GlmImageTransformer2DModel[[diffusers.GlmImageTransformer2DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_glm_image.py#L503)
+```python
+diffusers.GlmImageTransformer2DModel(patch_size: int = 2, in_channels: int = 16, out_channels: int = 16, num_layers: int = 30, attention_head_dim: int = 40, num_attention_heads: int = 64, text_embed_dim: int = 1472, time_embed_dim: int = 512, condition_dim: int = 256, prior_vq_quantizer_codebook_size: int = 16384)
+```
 
-forwarddiffusers.GlmImageTransformer2DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_glm_image.py#L597[{"name": "hidden_states", "val": ": Tensor"}, {"name": "encoder_hidden_states", "val": ": Tensor"}, {"name": "prior_token_id", "val": ": Tensor"}, {"name": "prior_token_drop", "val": ": Tensor"}, {"name": "timestep", "val": ": LongTensor"}, {"name": "target_size", "val": ": Tensor"}, {"name": "crop_coords", "val": ": Tensor"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "kv_caches", "val": ": diffusers.models.transformers.transformer_glm_image.GlmImageKVCache | None = None"}, {"name": "image_rotary_emb", "val": ": tuple[torch.Tensor, torch.Tensor] | list[tuple[torch.Tensor, torch.Tensor]] | None = None"}]- **hidden_states** (`torch.Tensor` of shape `(batch_size, in_channels, height, width)`) --
-  Input `hidden_states`.
-- **encoder_hidden_states** (`torch.Tensor` of shape `(batch_size, sequence_len, embed_dims)`) --
-  Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
-- **prior_token_id** (`torch.Tensor`) --
-  Token ids for the prior embedding lookup.
-- **prior_token_drop** (`torch.Tensor`) --
-  Boolean mask indicating which prior embeddings should be dropped (zeroed out).
-- **timestep** (`torch.LongTensor`) --
-  Used to indicate denoising step.
-- **target_size** (`torch.Tensor`) --
-  Target image size conditioning.
-- **crop_coords** (`torch.Tensor`) --
-  Crop coordinates conditioning.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain
-  tuple.
-- **attention_mask** (`torch.Tensor`, *optional*) --
-  Mask applied to attention scores.
-- **kv_caches** (`GlmImageKVCache`, *optional*) --
-  Pre-computed key/value caches used to speed up inference.
-- **image_rotary_emb** (`tuple` of `torch.Tensor`, *optional*) --
-  Pre-computed rotary positional embeddings.0If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
-`tuple` where the first element is the sample tensor.
-
-The [GlmImageTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/glm_image_transformer2d#diffusers.GlmImageTransformer2DModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_glm_image.py#L503)
 
 **Parameters:**
 
@@ -63,10 +36,46 @@ pos_embed_max_size (`int`, defaults to `128`) : The maximum resolution of the po
 
 sample_size (`int`, defaults to `128`) : The base resolution of input latents. If height/width is not provided during generation, this value is used to determine the resolution as `sample_size * vae_scale_factor => 128 * 8 => 1024`
 
+#### forward[[diffusers.GlmImageTransformer2DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, encoder_hidden_states: Tensor, prior_token_id: Tensor, prior_token_drop: Tensor, timestep: LongTensor, target_size: Tensor, crop_coords: Tensor, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True, attention_mask: typing.Optional[torch.Tensor] = None, kv_caches: diffusers.models.transformers.transformer_glm_image.GlmImageKVCache | None = None, image_rotary_emb: tuple[torch.Tensor, torch.Tensor] | list[tuple[torch.Tensor, torch.Tensor]] | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_glm_image.py#L597)
+
+**Parameters:**
+
+hidden_states (`torch.Tensor` of shape `(batch_size, in_channels, height, width)`) : Input `hidden_states`.
+
+encoder_hidden_states (`torch.Tensor` of shape `(batch_size, sequence_len, embed_dims)`) : Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
+
+prior_token_id (`torch.Tensor`) : Token ids for the prior embedding lookup.
+
+prior_token_drop (`torch.Tensor`) : Boolean mask indicating which prior embeddings should be dropped (zeroed out).
+
+timestep (`torch.LongTensor`) : Used to indicate denoising step.
+
+target_size (`torch.Tensor`) : Target image size conditioning.
+
+crop_coords (`torch.Tensor`) : Crop coordinates conditioning.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain tuple.
+
+attention_mask (`torch.Tensor`, *optional*) : Mask applied to attention scores.
+
+kv_caches (`GlmImageKVCache`, *optional*) : Pre-computed key/value caches used to speed up inference.
+
+image_rotary_emb (`tuple` of `torch.Tensor`, *optional*) : Pre-computed rotary positional embeddings.
+
 **Returns:**
 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
-### HeliosTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/helios_transformer3d.md
+The [GlmImageTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/glm_image_transformer2d#diffusers.GlmImageTransformer2DModel) forward method.
+
+### UNetMotionModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/unet-motion.md

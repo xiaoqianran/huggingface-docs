@@ -281,7 +281,7 @@ import torch
 from diffusers import DiffusionPipeline
 
 pipeline = DiffusionPipeline.from_pretrained(
-    "CompVis/stable-diffusion-v1-4", torch_dtype=torch.float16,
+    "CompVis/stable-diffusion-v1-4", dtype=torch.float16,
 ).to("cuda")
 pipeline.unet.load_attn_procs("path-to-save-model", weight_name="pytorch_custom_diffusion_weights.bin")
 pipeline.load_textual_inversion("path-to-save-model", weight_name="<new1>.bin")
@@ -301,7 +301,7 @@ from huggingface_hub.repocard import RepoCard
 from diffusers import DiffusionPipeline
 
 pipeline = DiffusionPipeline.from_pretrained(
-    "CompVis/stable-diffusion-v1-4", torch_dtype=torch.float16,
+    "CompVis/stable-diffusion-v1-4", dtype=torch.float16,
 ).to("cuda")
 model_id = "sayakpaul/custom-diffusion-cat-wooden-pot"
 pipeline.unet.load_attn_procs(model_id, weight_name="pytorch_custom_diffusion_weights.bin")
@@ -323,5 +323,5 @@ Congratulations on training a model with Custom Diffusion! 🎉 To learn more:
 
 - Read the [Multi-Concept Customization of Text-to-Image Diffusion](https://www.cs.cmu.edu/~custom-diffusion/) blog post to learn more details about the experimental results from the Custom Diffusion team.
 
-### Textual Inversion
-https://huggingface.co/docs/diffusers/v0.39.0/training/text_inversion.md
+### ControlNet
+https://huggingface.co/docs/diffusers/v0.40.0/training/controlnet.md

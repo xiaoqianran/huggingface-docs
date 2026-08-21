@@ -2,12 +2,12 @@
 
 [IP-Adapter](https://huggingface.co/papers/2308.06721) is a lightweight adapter designed to integrate image-based guidance with text-to-image diffusion models. The adapter uses an image encoder to extract image features that are passed to the newly added cross-attention layers in the UNet and fine-tuned. The original UNet model and the existing cross-attention layers corresponding to text features is frozen. Decoupling the cross-attention for image and text features enables more fine-grained and controllable generation.
 
-IP-Adapter files are typically ~100MBs because they only contain the image embeddings. This means you need to load a model first, and then load the IP-Adapter with [load_ip_adapter()](/docs/diffusers/v0.39.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter).
+IP-Adapter files are typically ~100MBs because they only contain the image embeddings. This means you need to load a model first, and then load the IP-Adapter with [load_ip_adapter()](/docs/diffusers/v0.40.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.load_ip_adapter).
 
 > [!TIP]
 > IP-Adapters are available to many models such as [Flux](../api/pipelines/flux#ip-adapter) and [Stable Diffusion 3](../api/pipelines/stable_diffusion/stable_diffusion_3), and more. The examples in this guide use Stable Diffusion and Stable Diffusion XL.
 
-Use the [set_ip_adapter_scale()](/docs/diffusers/v0.39.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.set_ip_adapter_scale) parameter to scale the influence of the IP-Adapter during generation. A value of `1.0` means the model is only conditioned on the image prompt, and `0.5` typically produces balanced results between the text and image prompt.
+Use the [set_ip_adapter_scale()](/docs/diffusers/v0.40.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.set_ip_adapter_scale) parameter to scale the influence of the IP-Adapter during generation. A value of `1.0` means the model is only conditioned on the image prompt, and `0.5` typically produces balanced results between the text and image prompt.
 
 ```py
 import torch
@@ -16,7 +16,7 @@ from diffusers.utils import load_image
 
 pipeline = AutoPipelineForText2Image.from_pretrained(
   "stabilityai/stable-diffusion-xl-base-1.0",
-  torch_dtype=torch.float16
+  dtype=torch.float16
 ).to("cuda")
 pipeline.load_ip_adapter(
   "h94/IP-Adapter",
@@ -55,7 +55,7 @@ from diffusers.utils import load_image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
   "stabilityai/stable-diffusion-xl-base-1.0",
-  torch_dtype=torch.float16
+  dtype=torch.float16
 ).to("cuda")
 pipeline.load_ip_adapter(
   "h94/IP-Adapter",
@@ -94,7 +94,7 @@ from diffusers.utils import load_image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
   "stabilityai/stable-diffusion-xl-base-1.0",
-  torch_dtype=torch.float16
+  dtype=torch.float16
 ).to("cuda")
 pipeline.load_ip_adapter(
   "h94/IP-Adapter",
@@ -127,7 +127,7 @@ pipeline(
     generated image
   
 
-The [enable_model_cpu_offload()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) method is useful for reducing memory and it should be enabled **after** the IP-Adapter is loaded. Otherwise, the IP-Adapter's image encoder is also offloaded to the CPU and returns an error.
+The [enable_model_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) method is useful for reducing memory and it should be enabled **after** the IP-Adapter is loaded. Otherwise, the IP-Adapter's image encoder is also offloaded to the CPU and returns an error.
 
 ```py
 import torch
@@ -137,12 +137,12 @@ from diffusers.utils import load_image
 
 adapter = MotionAdapter.from_pretrained(
   "guoyww/animatediff-motion-adapter-v1-5-2",
-  torch_dtype=torch.float16
+  dtype=torch.float16
 )
 pipeline = AnimateDiffPipeline.from_pretrained(
   "emilianJR/epiCRealism",
   motion_adapter=adapter,
-  torch_dtype=torch.float16
+  dtype=torch.float16
 )
 scheduler = DDIMScheduler.from_pretrained(
     "emilianJR/epiCRealism",
@@ -153,7 +153,7 @@ scheduler = DDIMScheduler.from_pretrained(
     steps_offset=1,
 )
 pipeline.scheduler = scheduler
-pipeline.enable_vae_slicing()
+pipeline.vae.enable_slicing()
 pipeline.load_ip_adapter("h94/IP-Adapter", subfolder="models", weight_name="ip-adapter_sd15.bin")
 pipeline.enable_model_cpu_offload()
 
@@ -188,13 +188,13 @@ from transformers import CLIPVisionModelWithProjection, AutoPipelineForText2Imag
 image_encoder = CLIPVisionModelWithProjection.from_pretrained(
     "h94/IP-Adapter",
     subfolder="models/image_encoder",
-    torch_dtype=torch.float16
+    dtype=torch.float16
 )
 
 pipeline = AutoPipelineForText2Image.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     image_encoder=image_encoder,
-    torch_dtype=torch.float16
+    dtype=torch.float16
 ).to("cuda")
 
 pipeline.load_ip_adapter(
@@ -210,7 +210,7 @@ from transformers import AutoPipelineForText2Image
 
 pipeline = AutoPipelineForText2Image.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
-    torch_dtype=torch.float16
+    dtype=torch.float16
 ).to("cuda")
 
 pipeline.load_ip_adapter(
@@ -221,20 +221,20 @@ pipeline.load_ip_adapter(
 )
 ```
 
-To use a IP-Adapter FaceID Plus model, load the CLIP image encoder as well as [CLIPVisionModelWithProjection](https://huggingface.co/docs/transformers/v5.12.1/en/model_doc/clip#transformers.CLIPVisionModelWithProjection).
+To use a IP-Adapter FaceID Plus model, load the CLIP image encoder as well as [CLIPVisionModelWithProjection](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPVisionModelWithProjection).
 
 ```py
 from transformers import AutoPipelineForText2Image, CLIPVisionModelWithProjection
 
 image_encoder = CLIPVisionModelWithProjection.from_pretrained(
     "laion/CLIP-ViT-H-14-laion2B-s32B-b79K",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 )
 
 pipeline = AutoPipelineForText2Image.from_pretrained(
     "stable-diffusion-v1-5/stable-diffusion-v1-5",
     image_encoder=image_encoder,
-    torch_dtype=torch.float16
+    dtype=torch.float16
 ).to("cuda")
 
 pipeline.load_ip_adapter(
@@ -254,7 +254,7 @@ from diffusers import AutoPipelineForText2Image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
   "stabilityai/stable-diffusion-xl-base-1.0",
-  torch_dtype=torch.float16
+  dtype=torch.float16
 ).to("cuda")
 
 image_embeds = pipeline.prepare_ip_adapter_image_embeds(
@@ -295,7 +295,7 @@ pipeline(
 
 Binary masking enables assigning an IP-Adapter image to a specific area of the output image, making it useful for composing multiple IP-Adapter images. Each IP-Adapter image requires a binary mask.
 
-Load the [IPAdapterMaskProcessor](/docs/diffusers/v0.39.0/en/api/loaders/ip_adapter#diffusers.IPAdapterMaskProcessor) to preprocess the image masks. For the best results, provide the output `height` and `width` to ensure masks with different aspect ratios are appropriately sized. If the input masks already match the aspect ratio of the generated image, you don't need to set the `height` and `width`.
+Load the [IPAdapterMaskProcessor](/docs/diffusers/v0.40.0/en/api/loaders/ip_adapter#diffusers.IPAdapterMaskProcessor) to preprocess the image masks. For the best results, provide the output `height` and `width` to ensure masks with different aspect ratios are appropriately sized. If the input masks already match the aspect ratio of the generated image, you don't need to set the `height` and `width`.
 
 ```py
 import torch
@@ -305,7 +305,7 @@ from diffusers.utils import load_image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
   "stabilityai/stable-diffusion-xl-base-1.0",
-  torch_dtype=torch.float16
+  dtype=torch.float16
 ).to("cuda")
 
 mask1 = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/ip_mask_mask1.png")
@@ -377,7 +377,7 @@ The section below covers some popular applications of IP-Adapter.
 
 Face generation and preserving its details can be challenging. To help generate more accurate faces, there are checkpoints specifically conditioned on images of cropped faces. You can find the face models in the [h94/IP-Adapter](https://huggingface.co/h94/IP-Adapter) repository or the [h94/IP-Adapter-FaceID](https://huggingface.co/h94/IP-Adapter-FaceID) repository. The FaceID checkpoints use the FaceID embeddings from [InsightFace](https://github.com/deepinsight/insightface) instead of CLIP image embeddings.
 
-We recommend using the [DDIMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/ddim#diffusers.DDIMScheduler) or [EulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler) for face models.
+We recommend using the [DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler) or [EulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler) for face models.
 
 ```py
 import torch
@@ -386,7 +386,7 @@ from diffusers.utils import load_image
 
 pipeline = StableDiffusionPipeline.from_pretrained(
   "stable-diffusion-v1-5/stable-diffusion-v1-5",
-  torch_dtype=torch.float16,
+  dtype=torch.float16,
 ).to("cuda")
 pipeline.scheduler = DDIMScheduler.from_config(pipeline.scheduler.config)
 pipeline.load_ip_adapter(
@@ -426,7 +426,7 @@ from insightface.app import FaceAnalysis
 
 pipeline = StableDiffusionPipeline.from_pretrained(
     "stable-diffusion-v1-5/stable-diffusion-v1-5",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 ).to("cuda")
 pipeline.scheduler = DDIMScheduler.from_config(pipeline.scheduler.config)
 pipeline.load_ip_adapter(
@@ -472,7 +472,7 @@ pipeline.unet.encoder_hid_proj.image_projection_layers[0].shortcut = False
 
 Combine multiple IP-Adapters to generate images in more diverse styles. For example, you can use IP-Adapter Face to generate consistent faces and characters and IP-Adapter Plus to generate those faces in specific styles.
 
-Load an image encoder with [CLIPVisionModelWithProjection](https://huggingface.co/docs/transformers/v5.12.1/en/model_doc/clip#transformers.CLIPVisionModelWithProjection).
+Load an image encoder with [CLIPVisionModelWithProjection](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPVisionModelWithProjection).
 
 ```py
 import torch
@@ -483,7 +483,7 @@ from diffusers.utils import load_image
 image_encoder = CLIPVisionModelWithProjection.from_pretrained(
     "h94/IP-Adapter",
     subfolder="models/image_encoder",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 )
 ```
 
@@ -495,7 +495,7 @@ Load a base model, scheduler and the following IP-Adapters.
 ```py
 pipeline = AutoPipelineForText2Image.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     image_encoder=image_encoder,
 )
 pipeline.scheduler = DDIMScheduler.from_config(pipeline.scheduler.config)
@@ -547,7 +547,7 @@ pipeline(
 
 [Latent Consistency Models (LCM)](../api/pipelines/latent_consistency_models) can generate images 4 steps or less, unlike other diffusion models which require a lot more steps, making it feel "instantaneous". IP-Adapters are compatible with LCM models to instantly generate images.
 
-Load the IP-Adapter weights and load the LoRA weights with [load_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights).
+Load the IP-Adapter weights and load the LoRA weights with [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.StableDiffusionLoraLoaderMixin.load_lora_weights).
 
 ```py
 import torch
@@ -556,7 +556,7 @@ from diffusers.utils import load_image
 
 pipeline = DiffusionPipeline.from_pretrained(
   "sd-dreambooth-library/herge-style",
-  torch_dtype=torch.float16
+  dtype=torch.float16
 )
 
 pipeline.load_ip_adapter(
@@ -595,7 +595,7 @@ pipeline(
 
 For structural control, combine IP-Adapter with [ControlNet](../api/pipelines/controlnet) conditioned on depth maps, edge maps, pose estimations, and more.
 
-The example below loads a [ControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet#diffusers.ControlNetModel) checkpoint conditioned on depth maps and combines it with a IP-Adapter.
+The example below loads a [ControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet#diffusers.ControlNetModel) checkpoint conditioned on depth maps and combines it with a IP-Adapter.
 
 ```py
 import torch
@@ -604,13 +604,13 @@ from diffusers import StableDiffusionControlNetPipeline, ControlNetModel
 
 controlnet = ControlNetModel.from_pretrained(
   "lllyasviel/control_v11f1p_sd15_depth",
-  torch_dtype=torch.float16
+  dtype=torch.float16
 )
 
 pipeline = StableDiffusionControlNetPipeline.from_pretrained(
     "stable-diffusion-v1-5/stable-diffusion-v1-5",
     controlnet=controlnet,
-    torch_dtype=torch.float16
+    dtype=torch.float16
 ).to("cuda")
 pipeline.load_ip_adapter(
   "h94/IP-Adapter",
@@ -647,7 +647,7 @@ pipeline(
 
 For style and layout control, combine IP-Adapter with [InstantStyle](https://huggingface.co/papers/2404.02733). InstantStyle separates *style* (color, texture, overall feel) and *content* from each other. It only applies the style in style-specific blocks of the model to prevent it from distorting other areas of an image. This generates images with stronger and more consistent styles and better control over the layout.
 
-The IP-Adapter is only activated for specific parts of the model. Use the [set_ip_adapter_scale()](/docs/diffusers/v0.39.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.set_ip_adapter_scale) method to scale the influence of the IP-Adapter in different layers. The example below activates the IP-Adapter in the second layer of the models down `block_2` and up `block_0`. Down `block_2` is where the IP-Adapter injects layout information and up `block_0` is where style is injected.
+The IP-Adapter is only activated for specific parts of the model. Use the [set_ip_adapter_scale()](/docs/diffusers/v0.40.0/en/api/loaders/ip_adapter#diffusers.loaders.IPAdapterMixin.set_ip_adapter_scale) method to scale the influence of the IP-Adapter in different layers. The example below activates the IP-Adapter in the second layer of the models down `block_2` and up `block_0`. Down `block_2` is where the IP-Adapter injects layout information and up `block_0` is where style is injected.
 
 ```py
 import torch
@@ -656,7 +656,7 @@ from diffusers.utils import load_image
 
 pipeline = AutoPipelineForText2Image.from_pretrained(
   "stabilityai/stable-diffusion-xl-base-1.0",
-  torch_dtype=torch.float16
+  dtype=torch.float16
 ).to("cuda")
 pipeline.load_ip_adapter(
   "h94/IP-Adapter",
@@ -720,5 +720,5 @@ pipeline(
     
     all layers generated image
 
-### ControlNet
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/controlnet.md
+### Community pipelines and components
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/custom_pipeline_overview.md

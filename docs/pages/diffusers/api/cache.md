@@ -6,7 +6,11 @@ Cache methods speedup diffusion transformers by storing and reusing intermediate
 
 #### diffusers.CacheMixin[[diffusers.CacheMixin]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/cache_utils.py#L23)
+```python
+diffusers.CacheMixin()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/cache_utils.py#L23)
 
 A class for enable/disabling caching techniques on diffusion models.
 
@@ -15,11 +19,27 @@ Supported caching techniques:
 - [FasterCache](https://huggingface.co/papers/2410.19355)
 - [FirstBlockCache](https://github.com/chengzeyi/ParaAttention/blob/7a266123671b55e7e5a2fe9af3121f07a36afc78/README.md#first-block-cache-our-dynamic-caching)
 
-cache_contextdiffusers.CacheMixin.cache_contexthttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/cache_utils.py#L154[{"name": "name", "val": ": str"}]
+#### cache_context[[diffusers.CacheMixin.cache_context]]
+
+```python
+cache_context(name: str)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/cache_utils.py#L154)
+
 Context manager that provides additional methods for cache management.
+
 #### enable_cache[[diffusers.CacheMixin.enable_cache]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/cache_utils.py#L39)
+```python
+enable_cache(config)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/cache_utils.py#L39)
+
+**Parameters:**
+
+config (`PyramidAttentionBroadcastConfig | FasterCacheConfig | FirstBlockCacheConfig | TextKVCacheConfig`) : The configuration for applying the caching technique. Currently supported caching techniques are: - [PyramidAttentionBroadcastConfig](/docs/diffusers/v0.40.0/en/api/cache#diffusers.PyramidAttentionBroadcastConfig) - [FasterCacheConfig](/docs/diffusers/v0.40.0/en/api/cache#diffusers.FasterCacheConfig) - [FirstBlockCacheConfig](/docs/diffusers/v0.40.0/en/api/cache#diffusers.FirstBlockCacheConfig) - `TextKVCacheConfig`
 
 Enable caching techniques on the model.
 
@@ -40,17 +60,15 @@ Example:
 >>> pipe.transformer.enable_cache(config)
 ```
 
-**Parameters:**
-
-config (`PyramidAttentionBroadcastConfig | FasterCacheConfig | FirstBlockCacheConfig | TextKVCacheConfig`) : The configuration for applying the caching technique. Currently supported caching techniques are: - [PyramidAttentionBroadcastConfig](/docs/diffusers/v0.39.0/en/api/cache#diffusers.PyramidAttentionBroadcastConfig) - [FasterCacheConfig](/docs/diffusers/v0.39.0/en/api/cache#diffusers.FasterCacheConfig) - [FirstBlockCacheConfig](/docs/diffusers/v0.39.0/en/api/cache#diffusers.FirstBlockCacheConfig) - `TextKVCacheConfig`
-
 ## PyramidAttentionBroadcastConfig[[diffusers.PyramidAttentionBroadcastConfig]]
 
 #### diffusers.PyramidAttentionBroadcastConfig[[diffusers.PyramidAttentionBroadcastConfig]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/hooks/pyramid_attention_broadcast.py#L40)
+```python
+diffusers.PyramidAttentionBroadcastConfig(spatial_attention_block_skip_range: int | None = None, temporal_attention_block_skip_range: int | None = None, cross_attention_block_skip_range: int | None = None, spatial_attention_timestep_skip_range: tuple = (100, 800), temporal_attention_timestep_skip_range: tuple = (100, 800), cross_attention_timestep_skip_range: tuple = (100, 800), spatial_attention_block_identifiers: tuple = ('blocks', 'transformer_blocks', 'single_transformer_blocks', 'layers', 'visual_transformer_blocks'), temporal_attention_block_identifiers: tuple = ('temporal_transformer_blocks',), cross_attention_block_identifiers: tuple = ('blocks', 'transformer_blocks', 'layers'), current_timestep_callback: typing.Callable[[], int] = None)
+```
 
-Configuration for Pyramid Attention Broadcast.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/hooks/pyramid_attention_broadcast.py#L40)
 
 **Parameters:**
 
@@ -72,9 +90,21 @@ temporal_attention_block_identifiers (`tuple[str, ...]`) : The identifiers to ma
 
 cross_attention_block_identifiers (`tuple[str, ...]`) : The identifiers to match against the layer names to determine if the layer is a cross-attention layer.
 
+Configuration for Pyramid Attention Broadcast.
+
 #### diffusers.apply_pyramid_attention_broadcast[[diffusers.apply_pyramid_attention_broadcast]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/hooks/pyramid_attention_broadcast.py#L181)
+```python
+diffusers.apply_pyramid_attention_broadcast(module: Module, config: PyramidAttentionBroadcastConfig)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/hooks/pyramid_attention_broadcast.py#L181)
+
+**Parameters:**
+
+module (`torch.nn.Module`) : The module to apply Pyramid Attention Broadcast to.
+
+config (`PyramidAttentionBroadcastConfig | None`, `optional`, defaults to `None`) : The configuration to use for Pyramid Attention Broadcast.
 
 Apply [Pyramid Attention Broadcast](https://huggingface.co/papers/2408.12588) to a given pipeline.
 
@@ -102,19 +132,15 @@ Example:
 >>> apply_pyramid_attention_broadcast(pipe.transformer, config)
 ```
 
-**Parameters:**
-
-module (`torch.nn.Module`) : The module to apply Pyramid Attention Broadcast to.
-
-config (`PyramidAttentionBroadcastConfig | None`, `optional`, defaults to `None`) : The configuration to use for Pyramid Attention Broadcast.
-
 ## FasterCacheConfig[[diffusers.FasterCacheConfig]]
 
 #### diffusers.FasterCacheConfig[[diffusers.FasterCacheConfig]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/hooks/faster_cache.py#L50)
+```python
+diffusers.FasterCacheConfig(spatial_attention_block_skip_range: int = 2, temporal_attention_block_skip_range: int | None = None, spatial_attention_timestep_skip_range: tuple = (-1, 681), temporal_attention_timestep_skip_range: tuple = (-1, 681), low_frequency_weight_update_timestep_range: tuple = (99, 901), high_frequency_weight_update_timestep_range: tuple = (-1, 301), alpha_low_frequency: float = 1.1, alpha_high_frequency: float = 1.1, unconditional_batch_skip_range: int = 5, unconditional_batch_timestep_skip_range: tuple = (-1, 641), spatial_attention_block_identifiers: tuple = ('^blocks.*attn', '^transformer_blocks.*attn', '^single_transformer_blocks.*attn'), temporal_attention_block_identifiers: tuple = ('^temporal_transformer_blocks.*attn',), attention_weight_callback: typing.Callable[[torch.nn.Module], float] = None, low_frequency_weight_callback: typing.Callable[[torch.nn.Module], float] = None, high_frequency_weight_callback: typing.Callable[[torch.nn.Module], float] = None, tensor_format: str = 'BCFHW', is_guidance_distilled: bool = False, current_timestep_callback: typing.Callable[[], int] = None, _unconditional_conditional_input_kwargs_identifiers: list = ('hidden_states', 'encoder_hidden_states', 'timestep', 'attention_mask', 'encoder_attention_mask'))
+```
 
-Configuration for [FasterCache](https://huggingface.co/papers/2410.19355).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/hooks/faster_cache.py#L50)
 
 **Parameters:**
 
@@ -154,9 +180,21 @@ is_guidance_distilled (`bool`, defaults to `False`) : Whether the model is guida
 
 _unconditional_conditional_input_kwargs_identifiers (`list[str]`, defaults to `("hidden_states", "encoder_hidden_states", "timestep", "attention_mask", "encoder_attention_mask")`) : The identifiers to match the input kwargs that contain the batchwise-concatenated unconditional and conditional inputs. If the name of the input kwargs contains any of these identifiers, FasterCache will split the inputs into unconditional and conditional branches. This must be a list of exact input kwargs names that contain the batchwise-concatenated unconditional and conditional inputs.
 
+Configuration for [FasterCache](https://huggingface.co/papers/2410.19355).
+
 #### diffusers.apply_faster_cache[[diffusers.apply_faster_cache]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/hooks/faster_cache.py#L486)
+```python
+diffusers.apply_faster_cache(module: Module, config: FasterCacheConfig)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/hooks/faster_cache.py#L486)
+
+**Parameters:**
+
+module (`torch.nn.Module`) : The pytorch module to apply FasterCache to. Typically, this should be a transformer architecture supported in Diffusers, such as `CogVideoXTransformer3DModel`, but external implementations may also work.
+
+config (`FasterCacheConfig`) : The configuration to use for FasterCache.
 
 Applies [FasterCache](https://huggingface.co/papers/2410.19355) to a given pipeline.
 
@@ -180,28 +218,36 @@ Example:
 >>> apply_faster_cache(pipe.transformer, config)
 ```
 
-**Parameters:**
-
-module (`torch.nn.Module`) : The pytorch module to apply FasterCache to. Typically, this should be a transformer architecture supported in Diffusers, such as `CogVideoXTransformer3DModel`, but external implementations may also work.
-
-config (`FasterCacheConfig`) : The configuration to use for FasterCache.
-
 ## FirstBlockCacheConfig[[diffusers.FirstBlockCacheConfig]]
 
 #### diffusers.FirstBlockCacheConfig[[diffusers.FirstBlockCacheConfig]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/hooks/first_block_cache.py#L33)
+```python
+diffusers.FirstBlockCacheConfig(threshold: float = 0.05)
+```
 
-Configuration for [First Block
-Cache](https://github.com/chengzeyi/ParaAttention/blob/7a266123671b55e7e5a2fe9af3121f07a36afc78/README.md#first-block-cache-our-dynamic-caching).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/hooks/first_block_cache.py#L33)
 
 **Parameters:**
 
 threshold (`float`, defaults to `0.05`) : The threshold to determine whether or not a forward pass through all layers of the model is required. A higher threshold usually results in a forward pass through a lower number of layers and faster inference, but might lead to poorer generation quality. A lower threshold may not result in significant generation speedup. The threshold is compared against the absmean difference of the residuals between the current and cached outputs from the first transformer block. If the difference is below the threshold, the forward pass is skipped.
 
+Configuration for [First Block
+Cache](https://github.com/chengzeyi/ParaAttention/blob/7a266123671b55e7e5a2fe9af3121f07a36afc78/README.md#first-block-cache-our-dynamic-caching).
+
 #### diffusers.apply_first_block_cache[[diffusers.apply_first_block_cache]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/hooks/first_block_cache.py#L193)
+```python
+diffusers.apply_first_block_cache(module: Module, config: FirstBlockCacheConfig)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/hooks/first_block_cache.py#L193)
+
+**Parameters:**
+
+module (`torch.nn.Module`) : The pytorch module to apply FBCache to. Typically, this should be a transformer architecture supported in Diffusers, such as `CogVideoXTransformer3DModel`, but external implementations may also work.
+
+config (`FirstBlockCacheConfig`) : The configuration to use for applying the FBCache method.
 
 Applies [First Block
 Cache](https://github.com/chengzeyi/ParaAttention/blob/4de137c5b96416489f06e43e19f2c14a772e28fd/README.md#first-block-cache-our-dynamic-caching)
@@ -226,33 +272,15 @@ Example:
 >>> image.save("output.png")
 ```
 
-**Parameters:**
-
-module (`torch.nn.Module`) : The pytorch module to apply FBCache to. Typically, this should be a transformer architecture supported in Diffusers, such as `CogVideoXTransformer3DModel`, but external implementations may also work.
-
-config (`FirstBlockCacheConfig`) : The configuration to use for applying the FBCache method.
-
 ## TaylorSeerCacheConfig[[diffusers.TaylorSeerCacheConfig]]
 
 #### diffusers.TaylorSeerCacheConfig[[diffusers.TaylorSeerCacheConfig]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/hooks/taylorseer_cache.py#L26)
-
-Configuration for TaylorSeer cache. See: https://huggingface.co/papers/2503.06923
-
-Notes:
-- Patterns are matched using `re.fullmatch` on the module name.
-- If `skip_predict_identifiers` or `cache_identifiers` are provided, only matching modules are hooked.
-- If neither is provided, all attention-like modules are hooked by default.
-
-Example of inactive and active usage:
-
-```py
-def forward(x):
-    x = self.module1(x)  # inactive module: returns zeros tensor based on shape recorded during full compute
-    x = self.module2(x)  # active module: caches output here, avoiding recomputation of prior steps
-    return x
+```python
+diffusers.TaylorSeerCacheConfig(cache_interval: int = 5, disable_cache_before_step: int = 3, disable_cache_after_step: int | None = None, max_order: int = 1, taylor_factors_dtype: typing.Optional[torch.dtype] = torch.bfloat16, skip_predict_identifiers: list[str] | None = None, cache_identifiers: list[str] | None = None, use_lite_mode: bool = False)
 ```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/hooks/taylorseer_cache.py#L26)
 
 **Parameters:**
 
@@ -272,9 +300,47 @@ cache_identifiers (`list[str]`, *optional*, defaults to `None`) : Regex patterns
 
 use_lite_mode (`bool`, *optional*, defaults to `False`) : Enables a lightweight TaylorSeer variant that minimizes memory usage by applying predefined patterns for skipping and caching (e.g., skipping blocks and caching projections). This overrides any custom `inactive_identifiers` or `active_identifiers`.
 
+Configuration for TaylorSeer cache. See: https://huggingface.co/papers/2503.06923
+
+Notes:
+- Patterns are matched using `re.fullmatch` on the module name.
+- If `skip_predict_identifiers` or `cache_identifiers` are provided, only matching modules are hooked.
+- If neither is provided, all attention-like modules are hooked by default.
+
+Example of inactive and active usage:
+
+```py
+def forward(x):
+    x = self.module1(x)  # inactive module: returns zeros tensor based on shape recorded during full compute
+    x = self.module2(x)  # active module: caches output here, avoiding recomputation of prior steps
+    return x
+```
+
+#### bfloat16[[diffusers.TaylorSeerCacheConfig.taylor_factors_dtype]]
+
+```python
+bfloat16(*args, **kwargs)
+```
+
+A mock value for a dotted path (e.g. `torch.float32`): attribute access chains,
+calls behave as pass-through decorators, `repr` is the dotted path, and using it
+as a base class substitutes a plain-`type` base (PEP 560 `__mro_entries__`), so
+real subclasses keep a normal metaclass and `inspect.signature` reads their real
+`__init__` instead of a mock's.
+
 #### diffusers.apply_taylorseer_cache[[diffusers.apply_taylorseer_cache]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/hooks/taylorseer_cache.py#L258)
+```python
+diffusers.apply_taylorseer_cache(module: Module, config: TaylorSeerCacheConfig)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/hooks/taylorseer_cache.py#L258)
+
+**Parameters:**
+
+module (torch.nn.Module) : The model subtree to apply the hooks to.
+
+config (TaylorSeerCacheConfig) : Configuration for the cache.
 
 Applies the TaylorSeer cache to a given pipeline (typically the transformer / UNet).
 
@@ -301,19 +367,15 @@ Example:
 >>> pipe.transformer.enable_cache(config)
 ```
 
-**Parameters:**
-
-module (torch.nn.Module) : The model subtree to apply the hooks to.
-
-config (TaylorSeerCacheConfig) : Configuration for the cache.
-
 ## MagCacheConfig[[diffusers.MagCacheConfig]]
 
 #### diffusers.MagCacheConfig[[diffusers.MagCacheConfig]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/hooks/mag_cache.py#L84)
+```python
+diffusers.MagCacheConfig(threshold: float = 0.06, max_skip_steps: int = 3, retention_ratio: float = 0.2, num_inference_steps: int = 28, mag_ratios: typing.Union[torch.Tensor, typing.List[float], NoneType] = None, calibrate: bool = False)
+```
 
-Configuration for [MagCache](https://github.com/Zehong-Ma/MagCache).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/hooks/mag_cache.py#L84)
 
 **Parameters:**
 
@@ -329,11 +391,15 @@ mag_ratios (`torch.Tensor`, *optional*) : The pre-computed magnitude ratios for 
 
 calibrate (`bool`, defaults to `False`) : If True, enables calibration mode. In this mode, no blocks are skipped. Instead, the hook calculates the magnitude ratios for the current run and logs them at the end. Use this to obtain `mag_ratios` for new models or schedulers.
 
+Configuration for [MagCache](https://github.com/Zehong-Ma/MagCache).
+
 #### diffusers.apply_mag_cache[[diffusers.apply_mag_cache]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/hooks/mag_cache.py#L397)
+```python
+diffusers.apply_mag_cache(module: Module, config: MagCacheConfig)
+```
 
-Applies MagCache to a given module (typically a Transformer).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/hooks/mag_cache.py#L397)
 
 **Parameters:**
 
@@ -341,5 +407,7 @@ module (`torch.nn.Module`) : The module to apply MagCache to.
 
 config (`MagCacheConfig`) : The configuration for MagCache.
 
-### Logging
-https://huggingface.co/docs/diffusers/v0.39.0/api/logging.md
+Applies MagCache to a given module (typically a Transformer).
+
+### Activation functions
+https://huggingface.co/docs/diffusers/v0.40.0/api/activations.md

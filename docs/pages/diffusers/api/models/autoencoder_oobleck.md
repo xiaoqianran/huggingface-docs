@@ -10,15 +10,11 @@ The abstract from the paper is:
 
 #### diffusers.AutoencoderOobleck[[diffusers.AutoencoderOobleck]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L294)
+```python
+diffusers.AutoencoderOobleck(encoder_hidden_size = 128, downsampling_ratios = [2, 4, 4, 8, 8], channel_multiples = [1, 2, 4, 8, 16], decoder_channels = 128, decoder_input_channels = 64, audio_channels = 2, sampling_rate = 44100)
+```
 
-An autoencoder for encoding waveforms into latents and decoding latent representations into waveforms. First
-introduced in Stable Audio.
-
-This model inherits from [ModelMixin](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
-for all models (such as downloading or saving).
-
-wrapperdiffusers.AutoencoderOobleck.decodehttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/utils/accelerate_utils.py#L43[{"name": "*args", "val": ""}, {"name": "**kwargs", "val": ""}]
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L294)
 
 **Parameters:**
 
@@ -35,12 +31,62 @@ decoder_input_channels (`int`, *optional*, defaults to 64) : Input dimension for
 audio_channels (`int`, *optional*, defaults to 2) : Number of channels in the audio data. Either 1 for mono or 2 for stereo.
 
 sampling_rate (`int`, *optional*, defaults to 44100) : The sampling rate at which the audio waveform should be digitalized expressed in hertz (Hz).
-#### wrapper[[diffusers.AutoencoderOobleck.encode]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/utils/accelerate_utils.py#L43)
+An autoencoder for encoding waveforms into latents and decoding latent representations into waveforms. First
+introduced in Stable Audio.
+
+This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+for all models (such as downloading or saving).
+
+#### decode[[diffusers.AutoencoderOobleck.decode]]
+
+```python
+decode(z: FloatTensor, return_dict: bool = True, generator = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L488)
+
+**Parameters:**
+
+z (`torch.Tensor`) : Input batch of latent vectors.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a `~models.vae.OobleckDecoderOutput` instead of a plain tuple.
+
+**Returns:** `~models.vae.OobleckDecoderOutput` or `tuple`
+
+If return_dict is True, a `~models.vae.OobleckDecoderOutput` is returned, otherwise a plain `tuple`
+is returned.
+
+Decode a batch of images.
+
+#### encode[[diffusers.AutoencoderOobleck.encode]]
+
+```python
+encode(x: Tensor, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L377)
+
+**Parameters:**
+
+x (`torch.Tensor`) : Input batch of images.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a `~models.autoencoder_kl.AutoencoderKLOutput` instead of a plain tuple.
+
+**Returns:**
+
+The latent representations of the encoded images. If `return_dict` is True, a
+`~models.autoencoder_kl.AutoencoderKLOutput` is returned, otherwise a plain `tuple` is returned.
+
+Encode a batch of images into latents.
+
 #### forward[[diffusers.AutoencoderOobleck.forward]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L517)
+```python
+forward(sample: Tensor, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L517)
 
 **Parameters:**
 
@@ -52,9 +98,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 
 generator (`torch.Generator`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make sampling deterministic.
 
-**Returns:**
-
-``~models.vae.OobleckDecoderOutput` or `tuple``
+**Returns:** `~models.vae.OobleckDecoderOutput` or `tuple`
 
 If `return_dict` is True, a `~models.vae.OobleckDecoderOutput` is returned, otherwise a plain `tuple`
 is returned.
@@ -63,25 +107,33 @@ is returned.
 
 #### diffusers.models.autoencoders.autoencoder_oobleck.OobleckDecoderOutput[[diffusers.models.autoencoders.autoencoder_oobleck.OobleckDecoderOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L202)
+```python
+diffusers.models.autoencoders.autoencoder_oobleck.OobleckDecoderOutput(sample: Tensor)
+```
 
-Output of decoding method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L202)
 
 **Parameters:**
 
 sample (`torch.Tensor` of shape `(batch_size, audio_channels, sequence_length)`) : The decoded output sample from the last layer of the model.
 
+Output of decoding method.
+
 ## AutoencoderOobleckOutput[[diffusers.models.autoencoders.autoencoder_oobleck.AutoencoderOobleckOutput]]
 
 #### diffusers.models.autoencoders.autoencoder_oobleck.AutoencoderOobleckOutput[[diffusers.models.autoencoders.autoencoder_oobleck.AutoencoderOobleckOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L187)
+```python
+diffusers.models.autoencoders.autoencoder_oobleck.AutoencoderOobleckOutput(latent_dist: OobleckDiagonalGaussianDistribution)
+```
 
-Output of AutoencoderOobleck encoding method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_oobleck.py#L187)
 
 **Parameters:**
 
 latent_dist (`OobleckDiagonalGaussianDistribution`) : Encoded outputs of `Encoder` represented as the mean and standard deviation of `OobleckDiagonalGaussianDistribution`. `OobleckDiagonalGaussianDistribution` allows for sampling latents from the distribution.
 
-### HunyuanVideoTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/hunyuan_video_transformer_3d.md
+Output of AutoencoderOobleck encoding method.
+
+### PriorTransformer
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/prior_transformer.md

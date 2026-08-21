@@ -15,7 +15,17 @@ AnyFlow-specific — any flow-map-distilled checkpoint can use it.
 
 #### diffusers.FlowMapEulerDiscreteScheduler[[diffusers.FlowMapEulerDiscreteScheduler]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L42)
+```python
+diffusers.FlowMapEulerDiscreteScheduler(num_train_timesteps: int = 1000, shift: float = 1.0)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L42)
+
+**Parameters:**
+
+num_train_timesteps (*int*, defaults to 1000) : The number of diffusion steps used to train the underlying flow-map model.
+
+shift (*float*, defaults to 1.0) : Multiplicative timestep shift applied to the inference schedule. `shift=1.0` is the identity; values greater than 1.0 push the schedule toward more denoising at later steps (e.g., `shift=5` matches the Wan2.1 default).
 
 Euler-style sampler for flow-map-distilled diffusion models.
 
@@ -30,50 +40,68 @@ Distillation](https://huggingface.co/papers/2605.13724) by Yuchao Gu, Guian Fang
 This scheduler inherits from [*SchedulerMixin*] and [*ConfigMixin*]. Check the superclass documentation for the
 generic methods implemented for all schedulers (loading, saving, etc.).
 
-apply_shiftdiffusers.FlowMapEulerDiscreteScheduler.apply_shifthttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L117[{"name": "sigmas", "val": ": Tensor"}]
+#### apply_shift[[diffusers.FlowMapEulerDiscreteScheduler.apply_shift]]
+
+```python
+apply_shift(sigmas: Tensor)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L117)
+
 Apply the configured shift transformation to a sigma tensor.
 
-**Parameters:**
-
-num_train_timesteps (*int*, defaults to 1000) : The number of diffusion steps used to train the underlying flow-map model.
-
-shift (*float*, defaults to 1.0) : Multiplicative timestep shift applied to the inference schedule. `shift=1.0` is the identity; values greater than 1.0 push the schedule toward more denoising at later steps (e.g., `shift=5` matches the Wan2.1 default).
 #### index_for_timestep[[diffusers.FlowMapEulerDiscreteScheduler.index_for_timestep]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L207)
+```python
+index_for_timestep(timestep: typing.Union[float, torch.FloatTensor])
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L207)
 
 Return the index of `timestep` on the current schedule, or `None` if off-schedule.
 
 Lookup is done against `self.timesteps` with a small fp tolerance. Used to recover the corresponding sigma
 without assuming the linear `timesteps = sigmas * num_train_timesteps` relationship — that way a custom
 schedule (e.g. non-linear shift, manually-set timesteps) still resolves correctly.
+
 #### scale_model_input[[diffusers.FlowMapEulerDiscreteScheduler.scale_model_input]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L99)
+```python
+scale_model_input(sample: Tensor, *args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L99)
 
 No-op identity scaling. Provided for API compatibility with other Diffusers schedulers.
+
 #### scale_noise[[diffusers.FlowMapEulerDiscreteScheduler.scale_noise]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L103)
+```python
+scale_noise(sample: FloatTensor, timestep: typing.Union[float, torch.FloatTensor], noise: typing.Optional[torch.FloatTensor] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L103)
 
 Linearly interpolate `sample` toward `noise` according to the normalized `timestep`.
+
 #### set_begin_index[[diffusers.FlowMapEulerDiscreteScheduler.set_begin_index]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L94)
+```python
+set_begin_index(begin_index: int = 0)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L94)
 
 Set the begin index for the scheduler. Pipelines that start mid-schedule (e.g. image-to-image)
 call this between `set_timesteps` and the first `step` to anchor the rollout.
+
 #### set_timesteps[[diffusers.FlowMapEulerDiscreteScheduler.set_timesteps]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L123)
+```python
+set_timesteps(num_inference_steps: typing.Optional[int] = None, device: typing.Union[str, torch.device] = None, sigmas: typing.Optional[typing.List[float]] = None, timesteps: typing.Optional[typing.List[float]] = None)
+```
 
-Build the inference timestep schedule.
-
-Internally tracks `self.sigmas` of length `num_inference_steps + 1` (the configured shift applied to a
-linspace from `1.0` to `0.0` by default); `self.timesteps` exposes the first `num_inference_steps`
-sigmas scaled by `num_train_timesteps` — i.e. one timestep per inference step, matching
-[FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler). The final sigma (`0`) is the implicit
-r-endpoint of the last step and is appended automatically when `sigmas` / `timesteps` are user-provided.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L123)
 
 **Parameters:**
 
@@ -84,9 +112,39 @@ device (*str* or *torch.device*, *optional*) : Target device for `self.sigmas` /
 sigmas (*List[float]*, *optional*) : Custom sigma schedule of length `num_inference_steps`. The terminal `0` sigma is appended automatically. The configured `shift` is applied on top.
 
 timesteps (*List[float]*, *optional*) : Custom timestep schedule of length `num_inference_steps`, in the same units as `self.timesteps` (i.e. scaled by `num_train_timesteps`). Converted to sigmas internally. If both `sigmas` and `timesteps` are passed, their lengths must match.
+
+Build the inference timestep schedule.
+
+Internally tracks `self.sigmas` of length `num_inference_steps + 1` (the configured shift applied to a
+linspace from `1.0` to `0.0` by default); `self.timesteps` exposes the first `num_inference_steps`
+sigmas scaled by `num_train_timesteps` — i.e. one timestep per inference step, matching
+[FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler). The final sigma (`0`) is the implicit
+r-endpoint of the last step and is appended automatically when `sigmas` / `timesteps` are user-provided.
+
 #### step[[diffusers.FlowMapEulerDiscreteScheduler.step]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L223)
+```python
+step(model_output: FloatTensor, timestep: typing.Union[float, torch.FloatTensor], sample: FloatTensor, r_timestep: typing.Union[float, torch.FloatTensor, NoneType] = None, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_flow_map_euler_discrete.py#L223)
+
+**Parameters:**
+
+model_output (*torch.Tensor*) : Direct output from the flow-map model (predicted mean velocity).
+
+timestep (*float* or *torch.Tensor*) : Source timestep `t` in the same units as `self.timesteps`.
+
+sample (*torch.Tensor*) : Current sample \\(z_t\\).
+
+r_timestep (*float* or *torch.Tensor*, *optional*) : Target timestep `r`. Defaults to the next timestep on the schedule when `None`; pass an explicit value for any-step sampling. `r_timestep == timestep` is a no-op.
+
+return_dict (*bool*, defaults to *True*) : Whether to return a [*FlowMapEulerDiscreteSchedulerOutput*] (the default) or a plain tuple.
+
+**Returns:** [*FlowMapEulerDiscreteSchedulerOutput*] or *tuple*
+
+When `return_dict=True`, returns a [*FlowMapEulerDiscreteSchedulerOutput*] whose `prev_sample` is
+\\(z_r\\). Otherwise returns a 1-tuple `(prev_sample,)`.
 
 Advance `sample` from `timestep` to `r_timestep` using the model-predicted velocity.
 
@@ -101,24 +159,5 @@ schedule whose timestep / sigma relationship is non-linear (for example a custom
 off-schedule `r_timestep`, the scheduler falls back to `r_timestep / num_train_timesteps` so any-step
 sampling outside the schedule remains supported.
 
-**Parameters:**
-
-model_output (*torch.Tensor*) : Direct output from the flow-map model (predicted mean velocity).
-
-timestep (*float* or *torch.Tensor*) : Source timestep `t` in the same units as `self.timesteps`.
-
-sample (*torch.Tensor*) : Current sample \\(z_t\\).
-
-r_timestep (*float* or *torch.Tensor*, *optional*) : Target timestep `r`. Defaults to the next timestep on the schedule when `None`; pass an explicit value for any-step sampling. `r_timestep == timestep` is a no-op.
-
-return_dict (*bool*, defaults to *True*) : Whether to return a [*FlowMapEulerDiscreteSchedulerOutput*] (the default) or a plain tuple.
-
-**Returns:**
-
-`[*FlowMapEulerDiscreteSchedulerOutput*] or *tuple*`
-
-When `return_dict=True`, returns a [*FlowMapEulerDiscreteSchedulerOutput*] whose `prev_sample` is
-\\(z_r\\). Otherwise returns a 1-tuple `(prev_sample,)`.
-
-### RePaintScheduler
-https://huggingface.co/docs/diffusers/v0.39.0/api/schedulers/repaint.md
+### DEISMultistepScheduler
+https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/deis.md

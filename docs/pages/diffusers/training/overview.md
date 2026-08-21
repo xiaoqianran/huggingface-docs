@@ -50,5 +50,5 @@ To speedup training and reduce memory-usage, we recommend:
 - using PyTorch 2.0 or higher to automatically use [scaled dot product attention](../optimization/fp16#scaled-dot-product-attention) during training (you don't need to make any changes to the training code)
 - installing [xFormers](../optimization/xformers) to enable memory-efficient attention
 
-### Stable Diffusion XL
-https://huggingface.co/docs/diffusers/v0.39.0/training/sdxl.md
+### Textual Inversion
+https://huggingface.co/docs/diffusers/v0.40.0/training/text_inversion.md

@@ -148,5 +148,5 @@ If you feel strongly about any missing features, please feel free to open a feat
 
 One easy way to run Stable Diffusion on your own Apple hardware is to use [our open-source Swift repo](https://github.com/huggingface/swift-coreml-diffusers), based on `diffusers` and Apple's conversion and inference repo. You can study the code, compile it with [Xcode](https://developer.apple.com/xcode/) and adapt it for your own needs. For your convenience, there's also a [standalone Mac app in the App Store](https://apps.apple.com/app/diffusers/id1666309574), so you can play with it without having to deal with the code or IDE. If you are a developer and have determined that Core ML is the best solution to build your Stable Diffusion app, then you can use the rest of this guide to get started with your project. We can't wait to see what you'll build 🙂.
 
-### Metal Performance Shaders (MPS)
-https://huggingface.co/docs/diffusers/v0.39.0/optimization/mps.md
+### Caching
+https://huggingface.co/docs/diffusers/v0.40.0/optimization/cache.md

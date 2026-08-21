@@ -12,41 +12,18 @@ The model can be loaded with the following code snippet.
 from diffusers import SanaVideoTransformer3DModel
 import torch
 
-transformer = SanaVideoTransformer3DModel.from_pretrained("Efficient-Large-Model/SANA-Video_2B_480p_diffusers", subfolder="transformer", torch_dtype=torch.bfloat16)
+transformer = SanaVideoTransformer3DModel.from_pretrained("Efficient-Large-Model/SANA-Video_2B_480p_diffusers", subfolder="transformer", dtype=torch.bfloat16)
 ```
 
 ## SanaVideoTransformer3DModel[[diffusers.SanaVideoTransformer3DModel]]
 
 #### diffusers.SanaVideoTransformer3DModel[[diffusers.SanaVideoTransformer3DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_sana_video.py#L457)
+```python
+diffusers.SanaVideoTransformer3DModel(in_channels: int = 16, out_channels: int | None = 16, num_attention_heads: int = 20, attention_head_dim: int = 112, num_layers: int = 20, num_cross_attention_heads: int | None = 20, cross_attention_head_dim: int | None = 112, cross_attention_dim: int | None = 2240, caption_channels: int = 2304, mlp_ratio: float = 2.5, dropout: float = 0.0, attention_bias: bool = False, sample_size: int = 30, patch_size: tuple = (1, 2, 2), norm_elementwise_affine: bool = False, norm_eps: float = 1e-06, interpolation_scale: int | None = None, guidance_embeds: bool = False, guidance_embeds_scale: float = 0.1, qk_norm: str | None = 'rms_norm_across_heads', rope_max_seq_len: int = 1024)
+```
 
-A 3D Transformer model introduced in [Sana-Video](https://huggingface.co/papers/2509.24695) family of models.
-
-forwarddiffusers.SanaVideoTransformer3DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_sana_video.py#L573[{"name": "hidden_states", "val": ": Tensor"}, {"name": "encoder_hidden_states", "val": ": Tensor"}, {"name": "timestep", "val": ": Tensor"}, {"name": "guidance", "val": ": torch.Tensor | None = None"}, {"name": "encoder_attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "controlnet_block_samples", "val": ": tuple[torch.Tensor] | None = None"}, {"name": "return_dict", "val": ": bool = True"}]- **hidden_states** (`torch.Tensor` of shape `(batch_size, in_channels, num_frames, height, width)`) --
-  Input `hidden_states`.
-- **encoder_hidden_states** (`torch.Tensor` of shape `(batch_size, sequence_len, embed_dims)`) --
-  Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
-- **timestep** (`torch.LongTensor`) --
-  Used to indicate denoising step.
-- **guidance** (`torch.Tensor`, *optional*) --
-  Guidance scale embedding.
-- **encoder_attention_mask** (`torch.Tensor`, *optional*) --
-  Cross-attention mask applied to `encoder_hidden_states`.
-- **attention_mask** (`torch.Tensor`, *optional*) --
-  Self-attention mask applied to `hidden_states`.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **controlnet_block_samples** (`tuple` of `torch.Tensor`, *optional*) --
-  A list of tensors that if specified are added to the residuals of transformer blocks.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain
-  tuple.0If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
-`tuple` where the first element is the sample tensor.
-
-The [SanaVideoTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/sana_video_transformer3d#diffusers.SanaVideoTransformer3DModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_sana_video.py#L457)
 
 **Parameters:**
 
@@ -84,22 +61,58 @@ norm_eps (`float`, defaults to `1e-6`) : The epsilon value for the normalization
 
 qk_norm (`str`, *optional*, defaults to `None`) : The normalization to use for the query and key.
 
+A 3D Transformer model introduced in [Sana-Video](https://huggingface.co/papers/2509.24695) family of models.
+
+#### forward[[diffusers.SanaVideoTransformer3DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: Tensor, guidance: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, attention_kwargs: dict[str, typing.Any] | None = None, controlnet_block_samples: tuple[torch.Tensor] | None = None, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_sana_video.py#L573)
+
+**Parameters:**
+
+hidden_states (`torch.Tensor` of shape `(batch_size, in_channels, num_frames, height, width)`) : Input `hidden_states`.
+
+encoder_hidden_states (`torch.Tensor` of shape `(batch_size, sequence_len, embed_dims)`) : Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
+
+timestep (`torch.LongTensor`) : Used to indicate denoising step.
+
+guidance (`torch.Tensor`, *optional*) : Guidance scale embedding.
+
+encoder_attention_mask (`torch.Tensor`, *optional*) : Cross-attention mask applied to `encoder_hidden_states`.
+
+attention_mask (`torch.Tensor`, *optional*) : Self-attention mask applied to `hidden_states`.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+controlnet_block_samples (`tuple` of `torch.Tensor`, *optional*) : A list of tensors that if specified are added to the residuals of transformer blocks.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain tuple.
+
 **Returns:**
 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
+The [SanaVideoTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/sana_video_transformer3d#diffusers.SanaVideoTransformer3DModel) forward method.
+
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
 #### diffusers.models.modeling_outputs.Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/modeling_outputs.py#L21)
+```python
+diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
+```
 
-The output of [Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-### AutoencoderKLCogVideoX
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/autoencoderkl_cogvideox.md
+The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+
+### DiTTransformer2DModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/dit_transformer2d.md

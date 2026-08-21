@@ -1,10 +1,10 @@
 # AutoPipelineBlocks
 
-[AutoPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks) are a multi-block type containing blocks that support different workflows. It automatically selects which sub-blocks to run based on the input provided at runtime. This is typically used to package multiple workflows - text-to-image, image-to-image, inpaint - into a single pipeline for convenience.
+[AutoPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks) are a multi-block type containing blocks that support different workflows. It automatically selects which sub-blocks to run based on the input provided at runtime. This is typically used to package multiple workflows - text-to-image, image-to-image, inpaint - into a single pipeline for convenience.
 
-This guide shows how to create [AutoPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks).
+This guide shows how to create [AutoPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks).
 
-Create three [ModularPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) for text-to-image, image-to-image, and inpainting. These represent the different workflows available in the pipeline.
+Create three [ModularPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) for text-to-image, image-to-image, and inpainting. These represent the different workflows available in the pipeline.
 
 ```py
 import torch
@@ -84,7 +84,7 @@ class InpaintBlock(ModularPipelineBlocks):
         return components, state
 ```
 
-Create an [AutoPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks) class that includes a list of the sub-block classes and their corresponding block names.
+Create an [AutoPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks) class that includes a list of the sub-block classes and their corresponding block names.
 
 You also need to include `block_trigger_inputs`, a list of input names that trigger the corresponding block. If a trigger input is provided at runtime, then that block is selected to run. Use `None` to specify the default block to run if no trigger inputs are detected.
 
@@ -115,7 +115,7 @@ class AutoImageBlocks(AutoPipelineBlocks):
         )
 ```
 
-It is **very** important to include a `description` to avoid any confusion over how to run a block and what inputs are required. While [AutoPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks) are convenient, its conditional logic may be difficult to figure out if it isn't properly explained.
+It is **very** important to include a `description` to avoid any confusion over how to run a block and what inputs are required. While [AutoPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks) are convenient, its conditional logic may be difficult to figure out if it isn't properly explained.
 
 Create an instance of `AutoImageBlocks`.
 
@@ -123,7 +123,7 @@ Create an instance of `AutoImageBlocks`.
 auto_blocks = AutoImageBlocks()
 ```
 
-For more complex compositions, such as nested [AutoPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks) blocks when they're used as sub-blocks in larger pipelines, use the [get_execution_blocks()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.SequentialPipelineBlocks.get_execution_blocks) method to extract the a block that is actually run based on your input.
+For more complex compositions, such as nested [AutoPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks) blocks when they're used as sub-blocks in larger pipelines, use the [get_execution_blocks()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.SequentialPipelineBlocks.get_execution_blocks) method to extract the a block that is actually run based on your input.
 
 ```py
 auto_blocks.get_execution_blocks(mask=True)
@@ -131,9 +131,9 @@ auto_blocks.get_execution_blocks(mask=True)
 
 ## ConditionalPipelineBlocks
 
-[AutoPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks) is a special case of [ConditionalPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ConditionalPipelineBlocks). While [AutoPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks) selects blocks based on whether a trigger input is provided or not, [ConditionalPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ConditionalPipelineBlocks) is able to select a block based on custom selection logic provided in the `select_block` method.
+[AutoPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks) is a special case of [ConditionalPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ConditionalPipelineBlocks). While [AutoPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks) selects blocks based on whether a trigger input is provided or not, [ConditionalPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ConditionalPipelineBlocks) is able to select a block based on custom selection logic provided in the `select_block` method.
 
-Here is the same example written using [ConditionalPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ConditionalPipelineBlocks) directly:
+Here is the same example written using [ConditionalPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ConditionalPipelineBlocks) directly:
 
 ```py
 from diffusers.modular_pipelines import ConditionalPipelineBlocks
@@ -166,7 +166,7 @@ The inputs listed in `block_trigger_inputs` are passed as keyword arguments to `
 
 ## Workflows
 
-Pipelines that contain conditional blocks ([AutoPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks) or [`~modular_pipelines.ConditionalPipelineBlocks]`) can support multiple workflows — for example, our SDXL modular pipeline supports a dozen workflows all in one pipeline. But this also means it can be confusing for users to know what workflows are supported and how to run them. For pipeline builders, it's useful to be able to extract only the blocks relevant to a specific workflow.
+Pipelines that contain conditional blocks ([AutoPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.AutoPipelineBlocks) or [`~modular_pipelines.ConditionalPipelineBlocks]`) can support multiple workflows — for example, our SDXL modular pipeline supports a dozen workflows all in one pipeline. But this also means it can be confusing for users to know what workflows are supported and how to run them. For pipeline builders, it's useful to be able to extract only the blocks relevant to a specific workflow.
 
 We recommend defining a `_workflow_map` to give each workflow a name and explicitly list the inputs it requires.
 
@@ -198,5 +198,5 @@ Retrieve a specific workflow with `get_workflow` to inspect and debug a specific
 pipeline_blocks.get_workflow("inpaint")
 ```
 
-### ModularPipeline
-https://huggingface.co/docs/diffusers/v0.39.0/modular_diffusers/modular_pipeline.md
+### Building Custom Blocks
+https://huggingface.co/docs/diffusers/v0.40.0/modular_diffusers/custom_blocks.md

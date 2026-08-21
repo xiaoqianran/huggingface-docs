@@ -90,20 +90,20 @@ image_zoe
 
 Once your image is ready, you can generate content in the white area around the shoes with [controlnet-inpaint-dreamer-sdxl](https://hf.co/destitech/controlnet-inpaint-dreamer-sdxl), a SDXL ControlNet trained for inpainting.
 
-Load the inpainting ControlNet, ZoeDepth model, VAE and pass them to the [StableDiffusionXLControlNetPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/controlnet_sdxl#diffusers.StableDiffusionXLControlNetPipeline). Then you can create an optional `generate_image` function (for convenience) to outpaint an initial image.
+Load the inpainting ControlNet, ZoeDepth model, VAE and pass them to the [StableDiffusionXLControlNetPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/controlnet_sdxl#diffusers.StableDiffusionXLControlNetPipeline). Then you can create an optional `generate_image` function (for convenience) to outpaint an initial image.
 
 ```py
 controlnets = [
     ControlNetModel.from_pretrained(
-        "destitech/controlnet-inpaint-dreamer-sdxl", torch_dtype=torch.float16, variant="fp16"
+        "destitech/controlnet-inpaint-dreamer-sdxl", dtype=torch.float16, variant="fp16"
     ),
     ControlNetModel.from_pretrained(
-        "diffusers/controlnet-zoe-depth-sdxl-1.0", torch_dtype=torch.float16
+        "diffusers/controlnet-zoe-depth-sdxl-1.0", dtype=torch.float16
     ),
 ]
-vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16).to("cuda")
+vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", dtype=torch.float16).to("cuda")
 pipeline = StableDiffusionXLControlNetPipeline.from_pretrained(
-    "SG161222/RealVisXL_V4.0", torch_dtype=torch.float16, variant="fp16", controlnet=controlnets, vae=vae
+    "SG161222/RealVisXL_V4.0", dtype=torch.float16, variant="fp16", controlnet=controlnets, vae=vae
 ).to("cuda")
 
 def generate_image(prompt, negative_prompt, inpaint_image, zoe_image, seed: int = None):
@@ -150,12 +150,12 @@ temp_image
 > torch.cuda.empty_cache()
 > ```
 
-Now that you have an initial outpainted image, load the [StableDiffusionXLInpaintPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLInpaintPipeline) with the [RealVisXL](https://hf.co/SG161222/RealVisXL_V4.0) model to generate the final outpainted image with better quality.
+Now that you have an initial outpainted image, load the [StableDiffusionXLInpaintPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLInpaintPipeline) with the [RealVisXL](https://hf.co/SG161222/RealVisXL_V4.0) model to generate the final outpainted image with better quality.
 
 ```py
 pipeline = StableDiffusionXLInpaintPipeline.from_pretrained(
     "OzzyGT/RealVisXL_V4.0_inpainting",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     variant="fp16",
     vae=vae,
 ).to("cuda")
@@ -205,6 +205,3 @@ y = (1024 - resized_img.height) // 2
 final_image.paste(resized_img, (x, y), resized_img)
 final_image
 ```
-
-### GGUF
-https://huggingface.co/docs/diffusers/v0.39.0/quantization/gguf.md

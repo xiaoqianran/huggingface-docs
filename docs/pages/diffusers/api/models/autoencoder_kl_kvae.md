@@ -8,21 +8,18 @@ The model can be loaded with the following code snippet.
 import torch
 from diffusers import AutoencoderKLKVAE
 
-vae = AutoencoderKLKVAE.from_pretrained("kandinskylab/KVAE-2D-1.0", subfolder="diffusers", torch_dtype=torch.bfloat16)
+vae = AutoencoderKLKVAE.from_pretrained("kandinskylab/KVAE-2D-1.0", subfolder="diffusers", dtype=torch.bfloat16)
 ```
 
 ## AutoencoderKLKVAE[[diffusers.AutoencoderKLKVAE]]
 
 #### diffusers.AutoencoderKLKVAE[[diffusers.AutoencoderKLKVAE]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L521)
+```python
+diffusers.AutoencoderKLKVAE(in_channels: int = 3, channels: int = 128, num_enc_blocks: int = 2, num_dec_blocks: int = 2, z_channels: int = 16, double_z: bool = True, ch_mult: typing.Tuple[int, ...] = (1, 2, 4, 8), sample_size: int = 1024)
+```
 
-A VAE model with KL loss for encoding images into latents and decoding latent representations into images.
-
-This model inherits from [ModelMixin](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for its generic methods implemented for
-all models (such as downloading or saving).
-
-wrapperdiffusers.AutoencoderKLKVAE.decodehttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/utils/accelerate_utils.py#L43[{"name": "*args", "val": ""}, {"name": "**kwargs", "val": ""}]
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L521)
 
 **Parameters:**
 
@@ -41,9 +38,61 @@ double_z (`bool`, *optional*, defaults to `True`) : Whether to double the number
 ch_mult (`Tuple[int, ...]`, *optional*, default to `(1, 2, 4, 8)`) : The channel multipliers in multiresolution blocks.
 
 sample_size (`int`, *optional*, defaults to `1024`) : Sample input size.
+
+A VAE model with KL loss for encoding images into latents and decoding latent representations into images.
+
+This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for its generic methods implemented for
+all models (such as downloading or saving).
+
+#### decode[[diffusers.AutoencoderKLKVAE.decode]]
+
+```python
+decode(z: FloatTensor, return_dict: bool = True, generator = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L642)
+
+**Parameters:**
+
+z (`torch.Tensor`) : Input batch of latent vectors.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a `~models.vae.DecoderOutput` instead of a plain tuple.
+
+**Returns:** `~models.vae.DecoderOutput` or `tuple`
+
+If return_dict is True, a `~models.vae.DecoderOutput` is returned, otherwise a plain `tuple` is
+returned.
+
+Decode a batch of images.
+
+#### encode[[diffusers.AutoencoderKLKVAE.encode]]
+
+```python
+encode(x: Tensor, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L602)
+
+**Parameters:**
+
+x (`torch.Tensor`) : Input batch of images.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return a `~models.autoencoder_kl.AutoencoderKLOutput` instead of a plain tuple.
+
+**Returns:**
+
+The latent representations of the encoded images. If `return_dict` is True, a
+`~models.autoencoder_kl.AutoencoderKLOutput` is returned, otherwise a plain `tuple` is returned.
+
+Encode a batch of images into latents.
+
 #### forward[[diffusers.AutoencoderKLKVAE.forward]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L776)
+```python
+forward(sample: Tensor, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L776)
 
 **Parameters:**
 
@@ -55,17 +104,18 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 
 generator (`torch.Generator`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make sampling deterministic.
 
-**Returns:**
-
-``~models.vae.DecoderOutput` or `tuple``
+**Returns:** `~models.vae.DecoderOutput` or `tuple`
 
 If `return_dict` is True, a `~models.vae.DecoderOutput` is returned, otherwise a plain `tuple` is
 returned.
+
 #### tiled_decode[[diffusers.AutoencoderKLKVAE.tiled_decode]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L729)
+```python
+tiled_decode(z: Tensor, return_dict: bool = True)
+```
 
-Decode a batch of images using a tiled decoder.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_kl_kvae.py#L729)
 
 **Parameters:**
 
@@ -73,12 +123,12 @@ z (`torch.Tensor`) : Input batch of latent vectors.
 
 return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.vae.DecoderOutput` instead of a plain tuple.
 
-**Returns:**
-
-``~models.vae.DecoderOutput` or `tuple``
+**Returns:** `~models.vae.DecoderOutput` or `tuple`
 
 If return_dict is True, a `~models.vae.DecoderOutput` is returned, otherwise a plain `tuple` is
 returned.
 
-### KDPM2AncestralDiscreteScheduler
-https://huggingface.co/docs/diffusers/v0.39.0/api/schedulers/dpm_discrete_ancestral.md
+Decode a batch of images using a tiled decoder.
+
+### MochiTransformer3DModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/mochi_transformer3d.md

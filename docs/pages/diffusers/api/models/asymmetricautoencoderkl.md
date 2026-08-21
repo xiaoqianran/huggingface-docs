@@ -38,23 +38,11 @@ make_image_grid([original_image, mask_image, image], rows=1, cols=3)
 
 #### diffusers.AsymmetricAutoencoderKL[[diffusers.AsymmetricAutoencoderKL]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_asym_kl.py#L24)
+```python
+diffusers.AsymmetricAutoencoderKL(in_channels: int = 3, out_channels: int = 3, down_block_types: tuple = ('DownEncoderBlock2D',), down_block_out_channels: tuple = (64,), layers_per_down_block: int = 1, up_block_types: tuple = ('UpDecoderBlock2D',), up_block_out_channels: tuple = (64,), layers_per_up_block: int = 1, act_fn: str = 'silu', latent_channels: int = 4, norm_num_groups: int = 32, sample_size: int = 32, scaling_factor: float = 0.18215)
+```
 
-Designing a Better Asymmetric VQGAN for StableDiffusion https://huggingface.co/papers/2306.04632 . A VAE model with
-KL loss for encoding images into latents and decoding latent representations into images.
-
-This model inherits from [ModelMixin](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
-for all models (such as downloading or saving).
-
-forwarddiffusers.AsymmetricAutoencoderKL.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_asym_kl.py#L153[{"name": "sample", "val": ": Tensor"}, {"name": "mask", "val": ": torch.Tensor | None = None"}, {"name": "sample_posterior", "val": ": bool = False"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "generator", "val": ": torch._C.Generator | None = None"}]- **sample** (`torch.Tensor`) -- Input sample.
-- **mask** (`torch.Tensor`, *optional*, defaults to `None`) -- Optional inpainting mask.
-- **sample_posterior** (`bool`, *optional*, defaults to `False`) --
-  Whether to sample from the posterior.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `DecoderOutput` instead of a plain tuple.
-- **generator** (`torch.Generator`, *optional*) --
-  A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make sampling
-  deterministic.0`DecoderOutput` or `tuple`If `return_dict` is True, a `DecoderOutput` is returned, otherwise a plain `tuple` is returned.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_asym_kl.py#L24)
 
 **Parameters:**
 
@@ -84,9 +72,33 @@ norm_num_groups (`int`, *optional*, defaults to `32`) : Number of groups to use 
 
 scaling_factor (`float`, *optional*, defaults to 0.18215) : The component-wise standard deviation of the trained latent space computed using the first batch of the training set. This is used to scale the latent space to have unit variance when training the diffusion model. The latents are scaled with the formula `z = z * scaling_factor` before being passed to the diffusion model. When decoding, the latents are scaled back to the original scale with the formula: `z = 1 / scaling_factor * z`. For more details, refer to sections 4.3.2 and D.1 of the [High-Resolution Image Synthesis with Latent Diffusion Models](https://huggingface.co/papers/2112.10752) paper.
 
-**Returns:**
+Designing a Better Asymmetric VQGAN for StableDiffusion https://huggingface.co/papers/2306.04632 . A VAE model with
+KL loss for encoding images into latents and decoding latent representations into images.
 
-``DecoderOutput` or `tuple``
+This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+for all models (such as downloading or saving).
+
+#### forward[[diffusers.AsymmetricAutoencoderKL.forward]]
+
+```python
+forward(sample: Tensor, mask: typing.Optional[torch.Tensor] = None, sample_posterior: bool = False, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_asym_kl.py#L153)
+
+**Parameters:**
+
+sample (`torch.Tensor`) : Input sample.
+
+mask (`torch.Tensor`, *optional*, defaults to `None`) : Optional inpainting mask.
+
+sample_posterior (`bool`, *optional*, defaults to `False`) : Whether to sample from the posterior.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `DecoderOutput` instead of a plain tuple.
+
+generator (`torch.Generator`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make sampling deterministic.
+
+**Returns:** `DecoderOutput` or `tuple`
 
 If `return_dict` is True, a `DecoderOutput` is returned, otherwise a plain `tuple` is returned.
 
@@ -94,25 +106,33 @@ If `return_dict` is True, a `DecoderOutput` is returned, otherwise a plain `tupl
 
 #### diffusers.models.modeling_outputs.AutoencoderKLOutput[[diffusers.models.modeling_outputs.AutoencoderKLOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/modeling_outputs.py#L7)
+```python
+diffusers.models.modeling_outputs.AutoencoderKLOutput(latent_dist: DiagonalGaussianDistribution)
+```
 
-Output of AutoencoderKL encoding method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L7)
 
 **Parameters:**
 
 latent_dist (`DiagonalGaussianDistribution`) : Encoded outputs of `Encoder` represented as the mean and logvar of `DiagonalGaussianDistribution`. `DiagonalGaussianDistribution` allows for sampling latents from the distribution.
 
+Output of AutoencoderKL encoding method.
+
 ## DecoderOutput[[diffusers.models.autoencoders.vae.DecoderOutput]]
 
 #### diffusers.models.autoencoders.vae.DecoderOutput[[diffusers.models.autoencoders.vae.DecoderOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/vae.py#L46)
+```python
+diffusers.models.autoencoders.vae.DecoderOutput(sample: Tensor, commit_loss: typing.Optional[torch.FloatTensor] = None)
+```
 
-Output of decoding method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vae.py#L46)
 
 **Parameters:**
 
 sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : The decoded output sample from the last layer of the model.
 
-### AuraFlowTransformer2DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/aura_flow_transformer2d.md
+Output of decoding method.
+
+### ControlNetModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/controlnet.md

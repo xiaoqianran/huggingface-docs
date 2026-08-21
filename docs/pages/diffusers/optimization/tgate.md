@@ -30,7 +30,7 @@ import torch
 from diffusers import PixArtAlphaPipeline
 from tgate import TgatePixArtLoader
 
-pipe = PixArtAlphaPipeline.from_pretrained("PixArt-alpha/PixArt-XL-2-1024-MS", torch_dtype=torch.float16)
+pipe = PixArtAlphaPipeline.from_pretrained("PixArt-alpha/PixArt-XL-2-1024-MS", dtype=torch.float16)
 
 gate_step = 8
 inference_step = 25
@@ -57,7 +57,7 @@ from tgate import TgateSDXLLoader
 
 pipe = StableDiffusionXLPipeline.from_pretrained(
             "stabilityai/stable-diffusion-xl-base-1.0",
-            torch_dtype=torch.float16,
+            dtype=torch.float16,
             variant="fp16",
             use_safetensors=True,
 )
@@ -88,7 +88,7 @@ from tgate import TgateSDXLDeepCacheLoader
 
 pipe = StableDiffusionXLPipeline.from_pretrained(
             "stabilityai/stable-diffusion-xl-base-1.0",
-            torch_dtype=torch.float16,
+            dtype=torch.float16,
             variant="fp16",
             use_safetensors=True,
 )
@@ -120,13 +120,13 @@ from tgate import TgateSDXLLoader
 
 unet = UNet2DConditionModel.from_pretrained(
     "latent-consistency/lcm-sdxl",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     variant="fp16",
 )
 pipe = StableDiffusionXLPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     unet=unet,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     variant="fp16",
 )
 pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
@@ -147,7 +147,7 @@ image = pipe.tgate(
 ).images[0]
 ```
 
-T-GATE also supports [StableDiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) and [PixArt-alpha/PixArt-LCM-XL-2-1024-MS](https://hf.co/PixArt-alpha/PixArt-LCM-XL-2-1024-MS).
+T-GATE also supports [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) and [PixArt-alpha/PixArt-LCM-XL-2-1024-MS](https://hf.co/PixArt-alpha/PixArt-LCM-XL-2-1024-MS).
 
 ## Benchmarks
 | Model                 | MACs     | Param     | Latency | Zero-shot 10K-FID on MS-COCO |
@@ -169,5 +169,5 @@ T-GATE also supports [StableDiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pi
 
 The latency is tested on an NVIDIA 1080TI, MACs and Params are calculated with [calflops](https://github.com/MrYxJ/calculate-flops.pytorch), and the FID is calculated with [PytorchFID](https://github.com/mseitzer/pytorch-fid).
 
-### ONNX Runtime
-https://huggingface.co/docs/diffusers/v0.39.0/optimization/onnx.md
+### Attention backends
+https://huggingface.co/docs/diffusers/v0.40.0/optimization/attention_backends.md

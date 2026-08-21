@@ -1,6 +1,6 @@
 # Understanding pipelines, models and schedulers
 
-🧨 Diffusers is designed to be a user-friendly and flexible toolbox for building diffusion systems tailored to your use-case. At the core of the toolbox are models and schedulers. While the [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) bundles these components together for convenience, you can also unbundle the pipeline and use the models and schedulers separately to create new diffusion systems.
+🧨 Diffusers is designed to be a user-friendly and flexible toolbox for building diffusion systems tailored to your use-case. At the core of the toolbox are models and schedulers. While the [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) bundles these components together for convenience, you can also unbundle the pipeline and use the models and schedulers separately to create new diffusion systems.
 
 In this tutorial, you'll learn how to use models and schedulers to assemble a diffusion system for inference, starting with a basic pipeline and then progressing to the Stable Diffusion pipeline.
 
@@ -20,7 +20,7 @@ A pipeline is a quick and easy way to run a model for inference, requiring no mo
 
 That was super easy, but how did the pipeline do that? Let's breakdown the pipeline and take a look at what's happening under the hood.
 
-In the example above, the pipeline contains a [UNet2DModel](/docs/diffusers/v0.39.0/en/api/models/unet2d#diffusers.UNet2DModel) model and a [DDPMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler). The pipeline denoises an image by taking random noise the size of the desired output and passing it through the model several times. At each timestep, the model predicts the *noise residual* and the scheduler uses it to predict a less noisy image. The pipeline repeats this process until it reaches the end of the specified number of inference steps.
+In the example above, the pipeline contains a [UNet2DModel](/docs/diffusers/v0.40.0/en/api/models/unet2d#diffusers.UNet2DModel) model and a [DDPMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler). The pipeline denoises an image by taking random noise the size of the desired output and passing it through the model several times. At each timestep, the model predicts the *noise residual* and the scheduler uses it to predict a less noisy image. The pipeline repeats this process until it reaches the end of the specified number of inference steps.
 
 To recreate the pipeline with the model and scheduler separately, let's write our own denoising process.
 
@@ -58,7 +58,7 @@ tensor([980, 960, 940, 920, 900, 880, 860, 840, 820, 800, 780, 760, 740, 720,
 >>> noise = torch.randn((1, 3, sample_size, sample_size), device="cuda")
 ```
 
-5. Now write a loop to iterate over the timesteps. At each timestep, the model does a [UNet2DModel.forward()](/docs/diffusers/v0.39.0/en/api/models/unet2d#diffusers.UNet2DModel.forward) pass and returns the noisy residual. The scheduler's [step()](/docs/diffusers/v0.39.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler.step) method takes the noisy residual, timestep, and input and it predicts the image at the previous timestep. This output becomes the next input to the model in the denoising loop, and it'll repeat until it reaches the end of the `timesteps` array.
+5. Now write a loop to iterate over the timesteps. At each timestep, the model does a [UNet2DModel.forward()](/docs/diffusers/v0.40.0/en/api/models/unet2d#diffusers.UNet2DModel.forward) pass and returns the noisy residual. The scheduler's [step()](/docs/diffusers/v0.40.0/en/api/schedulers/ddpm#diffusers.DDPMScheduler.step) method takes the noisy residual, timestep, and input and it predicts the image at the previous timestep. This output becomes the next input to the model in the denoising loop, and it'll repeat until it reaches the end of the `timesteps` array.
 
 ```py
 >>> input = noise
@@ -97,7 +97,7 @@ As you can see, this is already more complex than the DDPM pipeline which only c
 > [!TIP]
 > 💡 Read the [How does Stable Diffusion work?](https://huggingface.co/blog/stable_diffusion#how-does-stable-diffusion-work) blog for more details about how the VAE, UNet, and text encoder models work.
 
-Now that you know what you need for the Stable Diffusion pipeline, load all these components with the [from_pretrained()](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained) method. You can find them in the pretrained [`stable-diffusion-v1-5/stable-diffusion-v1-5`](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5) checkpoint, and each component is stored in a separate subfolder:
+Now that you know what you need for the Stable Diffusion pipeline, load all these components with the [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained) method. You can find them in the pretrained [`stable-diffusion-v1-5/stable-diffusion-v1-5`](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5) checkpoint, and each component is stored in a separate subfolder:
 
 ```py
 >>> from PIL import Image
@@ -115,7 +115,7 @@ Now that you know what you need for the Stable Diffusion pipeline, load all thes
 ... )
 ```
 
-Instead of the default [PNDMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/pndm#diffusers.PNDMScheduler), exchange it for the [UniPCMultistepScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler) to see how easy it is to plug a different scheduler in:
+Instead of the default [PNDMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/pndm#diffusers.PNDMScheduler), exchange it for the [UniPCMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler) to see how easy it is to plug a different scheduler in:
 
 ```py
 >>> from diffusers import UniPCMultistepScheduler
@@ -197,7 +197,7 @@ Next, generate some initial random noise as a starting point for the diffusion p
 
 ### Denoise the image
 
-Start by scaling the input with the initial noise distribution, *sigma*, the noise scale value, which is required for improved schedulers like [UniPCMultistepScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler):
+Start by scaling the input with the initial noise distribution, *sigma*, the noise scale value, which is required for improved schedulers like [UniPCMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler):
 
 ```py
 >>> latents = latents * scheduler.init_noise_sigma
@@ -265,5 +265,5 @@ For your next steps, feel free to:
 * Learn how to [build and contribute a pipeline](../conceptual/contribution) to 🧨 Diffusers. We can't wait and see what you'll come up with!
 * Explore [existing pipelines](../api/pipelines/overview) in the library, and see if you can deconstruct and build a pipeline from scratch using the models and schedulers separately.
 
-### Textual Inversion
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/textual_inversion_inference.md
+### Create a server
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/create_a_server.md

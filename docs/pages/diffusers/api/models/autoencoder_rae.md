@@ -69,17 +69,11 @@ with torch.no_grad():
 
 #### diffusers.AutoencoderRAE[[diffusers.AutoencoderRAE]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_rae.py#L393)
+```python
+diffusers.AutoencoderRAE(encoder_type: str = 'dinov2', encoder_hidden_size: int = 768, encoder_patch_size: int = 14, encoder_num_hidden_layers: int = 12, decoder_hidden_size: int = 512, decoder_num_hidden_layers: int = 8, decoder_num_attention_heads: int = 16, decoder_intermediate_size: int = 2048, patch_size: int = 16, encoder_input_size: int = 224, image_size: int | None = None, num_channels: int = 3, encoder_norm_mean: list | None = None, encoder_norm_std: list | None = None, latents_mean: typing.Union[list, tuple, torch.Tensor, NoneType] = None, latents_std: typing.Union[list, tuple, torch.Tensor, NoneType] = None, noise_tau: float = 0.0, reshape_to_2d: bool = True, use_encoder_loss: bool = False, scaling_factor: float = 1.0)
+```
 
-Representation Autoencoder (RAE) model for encoding images to latents and decoding latents to images.
-
-This model uses a frozen pretrained encoder (DINOv2, SigLIP2, or MAE) with a trainable ViT decoder to reconstruct
-images from learned representations.
-
-This model inherits from [ModelMixin](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for its generic methods implemented for
-all models (such as downloading or saving).
-
-wrapperdiffusers.AutoencoderRAE.encodehttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/utils/accelerate_utils.py#L43[{"name": "*args", "val": ""}, {"name": "**kwargs", "val": ""}]
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_rae.py#L393)
 
 **Parameters:**
 
@@ -112,12 +106,38 @@ noise_tau (`float`, *optional*, defaults to `0.0`) : Noise level for training (a
 reshape_to_2d (`bool`, *optional*, defaults to `True`) : Whether to reshape latents to 2D (B, C, H, W) format.
 
 use_encoder_loss (`bool`, *optional*, defaults to `False`) : Whether to use encoder hidden states in the loss (for advanced training).
-#### wrapper[[diffusers.AutoencoderRAE.decode]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/utils/accelerate_utils.py#L43)
+Representation Autoencoder (RAE) model for encoding images to latents and decoding latents to images.
+
+This model uses a frozen pretrained encoder (DINOv2, SigLIP2, or MAE) with a trainable ViT decoder to reconstruct
+images from learned representations.
+
+This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for its generic methods implemented for
+all models (such as downloading or saving).
+
+#### encode[[diffusers.AutoencoderRAE.encode]]
+
+```python
+encode(x: Tensor, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_rae.py#L640)
+
+#### decode[[diffusers.AutoencoderRAE.decode]]
+
+```python
+decode(z: Tensor, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_rae.py#L671)
+
 #### forward[[diffusers.AutoencoderRAE.forward]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/autoencoder_rae.py#L682)
+```python
+forward(sample: Tensor, return_dict: bool = True, generator: typing.Optional[torch.Generator] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/autoencoder_rae.py#L682)
 
 **Parameters:**
 
@@ -127,9 +147,7 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 
 generator (`torch.Generator`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make sampling deterministic.
 
-**Returns:**
-
-``DecoderOutput` or `tuple``
+**Returns:** `DecoderOutput` or `tuple`
 
 If `return_dict` is True, a `DecoderOutput` is returned, otherwise a plain `tuple` is returned.
 
@@ -137,13 +155,17 @@ If `return_dict` is True, a `DecoderOutput` is returned, otherwise a plain `tupl
 
 #### diffusers.models.autoencoders.vae.DecoderOutput[[diffusers.models.autoencoders.vae.DecoderOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/vae.py#L46)
+```python
+diffusers.models.autoencoders.vae.DecoderOutput(sample: Tensor, commit_loss: typing.Optional[torch.FloatTensor] = None)
+```
 
-Output of decoding method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vae.py#L46)
 
 **Parameters:**
 
 sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : The decoded output sample from the last layer of the model.
 
-### AsymmetricAutoencoderKL
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/asymmetricautoencoderkl.md
+Output of decoding method.
+
+### HeliosTransformer3DModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/helios_transformer3d.md

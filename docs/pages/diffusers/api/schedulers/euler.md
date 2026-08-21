@@ -3,23 +3,14 @@
 The Euler scheduler (Algorithm 2) is from the [Elucidating the Design Space of Diffusion-Based Generative Models](https://huggingface.co/papers/2206.00364) paper by Karras et al. This is a fast scheduler which can often generate good outputs in 20-30 steps. The scheduler is based on the original [k-diffusion](https://github.com/crowsonkb/k-diffusion/blob/481677d114f6ea445aa009cf5bd7a9cdee909e47/k_diffusion/sampling.py#L51) implementation by [Katherine Crowson](https://github.com/crowsonkb/).
 
 ## EulerDiscreteScheduler[[diffusers.EulerDiscreteScheduler]]
+
 #### diffusers.EulerDiscreteScheduler[[diffusers.EulerDiscreteScheduler]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L143)
+```python
+diffusers.EulerDiscreteScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.0001, beta_end: float = 0.02, beta_schedule: str = 'linear', trained_betas: numpy.ndarray | list[float] | None = None, prediction_type: str = 'epsilon', interpolation_type: str = 'linear', use_karras_sigmas: bool | None = False, use_exponential_sigmas: bool | None = False, use_beta_sigmas: bool | None = False, sigma_min: float | None = None, sigma_max: float | None = None, timestep_spacing: typing.Literal['linspace', 'leading', 'trailing'] = 'linspace', timestep_type: typing.Literal['discrete', 'continuous'] = 'discrete', steps_offset: int = 0, rescale_betas_zero_snr: bool = False, final_sigmas_type: typing.Literal['zero', 'sigma_min'] = 'zero')
+```
 
-Euler scheduler.
-
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.39.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
-methods the library implements for all schedulers such as loading and saving.
-
-add_noisediffusers.EulerDiscreteScheduler.add_noisehttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L802[{"name": "original_samples", "val": ": Tensor"}, {"name": "noise", "val": ": Tensor"}, {"name": "timesteps", "val": ": Tensor"}]- **original_samples** (`torch.Tensor`) --
-  The original samples to which noise will be added.
-- **noise** (`torch.Tensor`) --
-  The noise tensor to add to the original samples.
-- **timesteps** (`torch.Tensor`) --
-  The timesteps at which to add noise, determining the noise level from the schedule.0`torch.Tensor`The noisy samples with added noise scaled according to the timestep schedule.
-
-Add noise to the original samples according to the noise schedule at the specified timesteps.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L143)
 
 **Parameters:**
 
@@ -57,19 +48,40 @@ rescale_betas_zero_snr (`bool`, defaults to `False`) : Whether to rescale the be
 
 final_sigmas_type (`Literal["zero", "sigma_min"]`, defaults to `"zero"`) : The final `sigma` value for the noise schedule during the sampling process. If `"sigma_min"`, the final sigma is the same as the last sigma in the training schedule. If `"zero"`, the final sigma is set to 0.
 
-**Returns:**
+Euler scheduler.
 
-``torch.Tensor``
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+methods the library implements for all schedulers such as loading and saving.
+
+#### add_noise[[diffusers.EulerDiscreteScheduler.add_noise]]
+
+```python
+add_noise(original_samples: Tensor, noise: Tensor, timesteps: Tensor)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L802)
+
+**Parameters:**
+
+original_samples (`torch.Tensor`) : The original samples to which noise will be added.
+
+noise (`torch.Tensor`) : The noise tensor to add to the original samples.
+
+timesteps (`torch.Tensor`) : The timesteps at which to add noise, determining the noise level from the schedule.
+
+**Returns:** `torch.Tensor`
 
 The noisy samples with added noise scaled according to the timestep schedule.
+
+Add noise to the original samples according to the noise schedule at the specified timesteps.
+
 #### get_velocity[[diffusers.EulerDiscreteScheduler.get_velocity]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L850)
+```python
+get_velocity(sample: Tensor, noise: Tensor, timesteps: Tensor)
+```
 
-Compute the velocity prediction for the given sample and noise at the specified timesteps.
-
-This method implements the velocity prediction used in v-prediction models, which predicts a linear combination
-of the sample and noise.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L850)
 
 **Parameters:**
 
@@ -79,16 +91,22 @@ noise (`torch.Tensor`) : The noise tensor corresponding to the sample.
 
 timesteps (`torch.Tensor`) : The timesteps at which to compute the velocity.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The velocity prediction computed as `sqrt(alpha_prod) * noise - sqrt(1 - alpha_prod) * sample`.
+
+Compute the velocity prediction for the given sample and noise at the specified timesteps.
+
+This method implements the velocity prediction used in v-prediction models, which predicts a linear combination
+of the sample and noise.
+
 #### index_for_timestep[[diffusers.EulerDiscreteScheduler.index_for_timestep]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L640)
+```python
+index_for_timestep(timestep: typing.Union[float, torch.Tensor], schedule_timesteps: typing.Optional[torch.Tensor] = None)
+```
 
-Find the index of a given timestep in the timestep schedule.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L640)
 
 **Parameters:**
 
@@ -96,18 +114,20 @@ timestep (`float` or `torch.Tensor`) : The timestep value to find in the schedul
 
 schedule_timesteps (`torch.Tensor`, *optional*) : The timestep schedule to search in. If `None`, uses `self.timesteps`.
 
-**Returns:**
-
-``int``
+**Returns:** `int`
 
 The index of the timestep in the schedule. For the very first step, returns the second index if
 multiple matches exist to avoid skipping a sigma when starting mid-schedule (e.g., for image-to-image).
+
+Find the index of a given timestep in the timestep schedule.
+
 #### scale_model_input[[diffusers.EulerDiscreteScheduler.scale_model_input]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L326)
+```python
+scale_model_input(sample: Tensor, timestep: typing.Union[float, torch.Tensor])
+```
 
-Ensures interchangeability with schedulers that need to scale the denoising model input depending on the
-current timestep. Scales the denoising model input by `(sigma**2 + 1) ** 0.5` to match the Euler algorithm.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L326)
 
 **Parameters:**
 
@@ -115,25 +135,34 @@ sample (`torch.Tensor`) : The input sample to be scaled.
 
 timestep (`float` or `torch.Tensor`) : The current timestep in the diffusion chain.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 A scaled input sample, divided by `(sigma**2 + 1) ** 0.5`.
+
+Ensures interchangeability with schedulers that need to scale the denoising model input depending on the
+current timestep. Scales the denoising model input by `(sigma**2 + 1) ** 0.5` to match the Euler algorithm.
+
 #### set_begin_index[[diffusers.EulerDiscreteScheduler.set_begin_index]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L316)
+```python
+set_begin_index(begin_index: int = 0)
+```
 
-Sets the begin index for the scheduler. This function should be run from pipeline before the inference.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L316)
 
 **Parameters:**
 
 begin_index (`int`, defaults to `0`) : The begin index for the scheduler.
+
+Sets the begin index for the scheduler. This function should be run from pipeline before the inference.
+
 #### set_timesteps[[diffusers.EulerDiscreteScheduler.set_timesteps]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L350)
+```python
+set_timesteps(num_inference_steps: int = None, device: typing.Union[str, torch.device] = None, timesteps: list[int] | None = None, sigmas: list[float] | None = None)
+```
 
-Sets the discrete timesteps used for the diffusion chain (to be run before inference).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L350)
 
 **Parameters:**
 
@@ -144,12 +173,16 @@ device (`str` or `torch.device`, *optional*) : The device to which the timesteps
 timesteps (`list[int]`, *optional*) : Custom timesteps used to support arbitrary timesteps schedule. If `None`, timesteps will be generated based on the `timestep_spacing` attribute. If `timesteps` is passed, `num_inference_steps` and `sigmas` must be `None`, and `timestep_spacing` attribute will be ignored.
 
 sigmas (`list[float]`, *optional*) : Custom sigmas used to support arbitrary timesteps schedule. If `None`, timesteps and sigmas will be generated based on the relevant scheduler attributes. If `sigmas` is passed, `num_inference_steps` and `timesteps` must be `None`, and the timesteps will be generated based on the custom sigmas schedule.
+
+Sets the discrete timesteps used for the diffusion chain (to be run before inference).
+
 #### step[[diffusers.EulerDiscreteScheduler.step]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L685)
+```python
+step(model_output: Tensor, timestep: typing.Union[float, torch.Tensor], sample: Tensor, s_churn: float = 0.0, s_tmin: float = 0.0, s_tmax: float = inf, s_noise: float = 1.0, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
+```
 
-Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
-process from the learned model outputs (most often the predicted noise).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L685)
 
 **Parameters:**
 
@@ -169,22 +202,26 @@ s_noise (`float`, *optional*, defaults to `1.0`) : Scaling factor for noise adde
 
 generator (`torch.Generator`, *optional*) : A random number generator for reproducible sampling.
 
-return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [EulerDiscreteSchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/euler#diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteSchedulerOutput) or tuple.
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [EulerDiscreteSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/euler#diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteSchedulerOutput) or tuple.
 
-**Returns:**
+**Returns:** [EulerDiscreteSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/euler#diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteSchedulerOutput) or `tuple`
 
-`[EulerDiscreteSchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/euler#diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteSchedulerOutput) or `tuple``
-
-If `return_dict` is `True`, [EulerDiscreteSchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/euler#diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteSchedulerOutput) is
+If `return_dict` is `True`, [EulerDiscreteSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/euler#diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteSchedulerOutput) is
 returned, otherwise a tuple is returned where the first element is the sample tensor and the second
 element is the predicted original sample.
 
+Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
+process from the learned model outputs (most often the predicted noise).
+
 ## EulerDiscreteSchedulerOutput[[diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteSchedulerOutput]]
+
 #### diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteSchedulerOutput[[diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteSchedulerOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L36)
+```python
+diffusers.schedulers.scheduling_euler_discrete.EulerDiscreteSchedulerOutput(prev_sample: Tensor, pred_original_sample: typing.Optional[torch.Tensor] = None)
+```
 
-Output class for the scheduler's `step` function output.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_euler_discrete.py#L36)
 
 **Parameters:**
 
@@ -192,5 +229,7 @@ prev_sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`
 
 pred_original_sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` for images) : The predicted denoised sample `(x_{0})` based on the model output from the current timestep. `pred_original_sample` can be used to preview progress or for guidance.
 
-### EDMDPMSolverMultistepScheduler
-https://huggingface.co/docs/diffusers/v0.39.0/api/schedulers/edm_multistep_dpm_solver.md
+Output class for the scheduler's `step` function output.
+
+### EulerAncestralDiscreteScheduler
+https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/euler_ancestral.md

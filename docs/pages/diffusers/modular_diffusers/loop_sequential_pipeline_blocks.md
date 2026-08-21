@@ -1,15 +1,15 @@
 # LoopSequentialPipelineBlocks
 
-[LoopSequentialPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.LoopSequentialPipelineBlocks) are a multi-block type that composes other [ModularPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) together in a loop. Data flows circularly, using `inputs` and `intermediate_outputs`, and each block is run iteratively. This is typically used to create a denoising loop which is iterative by default.
+[LoopSequentialPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.LoopSequentialPipelineBlocks) are a multi-block type that composes other [ModularPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks) together in a loop. Data flows circularly, using `inputs` and `intermediate_outputs`, and each block is run iteratively. This is typically used to create a denoising loop which is iterative by default.
 
-This guide shows you how to create [LoopSequentialPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.LoopSequentialPipelineBlocks).
+This guide shows you how to create [LoopSequentialPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.LoopSequentialPipelineBlocks).
 
 ## Loop wrapper
 
-[LoopSequentialPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.LoopSequentialPipelineBlocks), is also known as the *loop wrapper* because it defines the loop structure, iteration variables, and configuration. Within the loop wrapper, you need the following variables.
+[LoopSequentialPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.LoopSequentialPipelineBlocks), is also known as the *loop wrapper* because it defines the loop structure, iteration variables, and configuration. Within the loop wrapper, you need the following variables.
 
 - `loop_inputs` are user provided values and equivalent to `inputs`.
-- `loop_intermediate_outputs` are new intermediate variables created by the block and added to the [PipelineState](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_states#diffusers.modular_pipelines.PipelineState). It is equivalent to `intermediate_outputs`.
+- `loop_intermediate_outputs` are new intermediate variables created by the block and added to the [PipelineState](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_states#diffusers.modular_pipelines.PipelineState). It is equivalent to `intermediate_outputs`.
 - `__call__` method defines the loop structure and iteration logic.
 
 ```py
@@ -39,13 +39,13 @@ The loop wrapper can pass additional arguments, like current iteration index, to
 
 ## Loop blocks
 
-A loop block is a [ModularPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks), but the `__call__` method behaves differently.
+A loop block is a [ModularPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks), but the `__call__` method behaves differently.
 
 - It receives the iteration variable from the loop wrapper.
-- It works directly with the [BlockState](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_states#diffusers.modular_pipelines.BlockState) instead of the [PipelineState](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_states#diffusers.modular_pipelines.PipelineState).
-- It doesn't require retrieving or updating the [BlockState](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_states#diffusers.modular_pipelines.BlockState).
+- It works directly with the [BlockState](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_states#diffusers.modular_pipelines.BlockState) instead of the [PipelineState](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_states#diffusers.modular_pipelines.PipelineState).
+- It doesn't require retrieving or updating the [BlockState](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_states#diffusers.modular_pipelines.BlockState).
 
-Loop blocks share the same [BlockState](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_states#diffusers.modular_pipelines.BlockState) to allow values to accumulate and change for each iteration in the loop.
+Loop blocks share the same [BlockState](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_states#diffusers.modular_pipelines.BlockState) to allow values to accumulate and change for each iteration in the loop.
 
 ```py
 class LoopBlock(ModularPipelineBlocks):
@@ -67,17 +67,17 @@ class LoopBlock(ModularPipelineBlocks):
 
 ## LoopSequentialPipelineBlocks
 
-Use the [from_blocks_dict()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.LoopSequentialPipelineBlocks.from_blocks_dict) method to add the loop block to the loop wrapper to create [LoopSequentialPipelineBlocks](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.LoopSequentialPipelineBlocks).
+Use the [from_blocks_dict()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.LoopSequentialPipelineBlocks.from_blocks_dict) method to add the loop block to the loop wrapper to create [LoopSequentialPipelineBlocks](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.LoopSequentialPipelineBlocks).
 
 ```py
 loop = LoopWrapper.from_blocks_dict({"block1": LoopBlock})
 ```
 
-Add more loop blocks to run within each iteration with [from_blocks_dict()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.LoopSequentialPipelineBlocks.from_blocks_dict). This allows you to modify the blocks without changing the loop logic itself.
+Add more loop blocks to run within each iteration with [from_blocks_dict()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.LoopSequentialPipelineBlocks.from_blocks_dict). This allows you to modify the blocks without changing the loop logic itself.
 
 ```py
 loop = LoopWrapper.from_blocks_dict({"block1": LoopBlock(), "block2": LoopBlock})
 ```
 
-### Overview
-https://huggingface.co/docs/diffusers/v0.39.0/modular_diffusers/overview.md
+### AutoPipelineBlocks
+https://huggingface.co/docs/diffusers/v0.40.0/modular_diffusers/auto_pipeline_blocks.md

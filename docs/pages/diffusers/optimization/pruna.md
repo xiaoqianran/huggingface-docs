@@ -52,7 +52,7 @@ from pruna import PrunaModel, SmashConfig, smash
 # Try segmind/Segmind-Vega or black-forest-labs/FLUX.1-schnell with a small GPU memory
 pipe = FluxPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
-    torch_dtype=torch.bfloat16
+    dtype=torch.bfloat16
 ).to("cuda")
 
 # define the configuration
@@ -151,7 +151,7 @@ from pruna import PrunaModel
 # Try PrunaAI/Segmind-Vega-smashed or PrunaAI/FLUX.1-dev-smashed with a small GPU memory
 pipe = FluxPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
-    torch_dtype=torch.bfloat16
+    dtype=torch.bfloat16
 ).to("cpu")
 wrapped_pipe = PrunaModel(model=pipe)
 ```
@@ -168,5 +168,5 @@ Now that you have seen how to optimize and evaluate your models, you can start u
 - [Pruna evaluation](https://docs.pruna.ai/en/stable/docs_pruna/user_manual/evaluate.html)
 - [Pruna tutorials](https://docs.pruna.ai/en/stable/docs_pruna/tutorials/index.html)
 
-### Caching
-https://huggingface.co/docs/diffusers/v0.39.0/optimization/cache.md
+### xDiT
+https://huggingface.co/docs/diffusers/v0.40.0/optimization/xdit.md

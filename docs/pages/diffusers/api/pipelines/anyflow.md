@@ -28,7 +28,7 @@ from diffusers import AnyFlowPipeline
 from diffusers.utils import export_to_video
 
 pipe = AnyFlowPipeline.from_pretrained(
-    "nvidia/AnyFlow-Wan2.1-T2V-1.3B-Diffusers", torch_dtype=torch.bfloat16
+    "nvidia/AnyFlow-Wan2.1-T2V-1.3B-Diffusers", dtype=torch.bfloat16
 ).to("cuda")
 
 prompt = (
@@ -61,7 +61,7 @@ from diffusers import AnyFlowFARPipeline
 from diffusers.utils import export_to_video
 
 pipe = AnyFlowFARPipeline.from_pretrained(
-    "nvidia/AnyFlow-FAR-Wan2.1-1.3B-Diffusers", torch_dtype=torch.bfloat16
+    "nvidia/AnyFlow-FAR-Wan2.1-1.3B-Diffusers", dtype=torch.bfloat16
 ).to("cuda")
 
 prompt = (
@@ -79,7 +79,7 @@ from diffusers import AnyFlowFARPipeline
 from diffusers.utils import export_to_video, load_image
 
 pipe = AnyFlowFARPipeline.from_pretrained(
-    "nvidia/AnyFlow-FAR-Wan2.1-1.3B-Diffusers", torch_dtype=torch.bfloat16
+    "nvidia/AnyFlow-FAR-Wan2.1-1.3B-Diffusers", dtype=torch.bfloat16
 ).to("cuda")
 
 # Example conditioning image from the AnyFlow repo.
@@ -110,7 +110,7 @@ from diffusers import AnyFlowFARPipeline
 from diffusers.utils import export_to_video, load_video
 
 pipe = AnyFlowFARPipeline.from_pretrained(
-    "nvidia/AnyFlow-FAR-Wan2.1-1.3B-Diffusers", torch_dtype=torch.bfloat16
+    "nvidia/AnyFlow-FAR-Wan2.1-1.3B-Diffusers", dtype=torch.bfloat16
 ).to("cuda")
 
 # Example conditioning clip from the AnyFlow repo — take the first 9 frames (3 latent frames at VAE temporal stride 4).
@@ -147,7 +147,23 @@ export_to_video(video, "anyflow_far_v2v.mp4", fps=16)
 
 #### diffusers.AnyFlowPipeline[[diffusers.AnyFlowPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L80)
+```python
+diffusers.AnyFlowPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, transformer: AnyFlowTransformer3DModel, vae: AutoencoderKLWan, scheduler: FlowMapEulerDiscreteScheduler)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L80)
+
+**Parameters:**
+
+tokenizer ([*AutoTokenizer*]) : Tokenizer from [google/umt5-xxl](https://huggingface.co/google/umt5-xxl).
+
+text_encoder ([*UMT5EncoderModel*]) : [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) text encoder.
+
+transformer ([*AnyFlowTransformer3DModel*]) : Bidirectional flow-map 3D Transformer.
+
+vae ([*AutoencoderKLWan*]) : VAE that encodes/decodes videos to and from latent representations.
+
+scheduler ([*FlowMapEulerDiscreteScheduler*]) : Flow-map sampler. The pipeline drives `scheduler.step(..., timestep, sample, r_timestep)` per inference step.
 
 Bidirectional text-to-video generation pipeline for AnyFlow flow-map-distilled checkpoints, introduced in
 [AnyFlow](https://huggingface.co/papers/2605.13724).
@@ -164,18 +180,65 @@ recommended setting.
 This model inherits from [*DiffusionPipeline*]. Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
-__call__diffusers.AnyFlowPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L379[{"name": "prompt", "val": ": typing.Union[str, typing.List[str]] = None"}, {"name": "video", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "video_latents", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "negative_prompt", "val": ": typing.Union[str, typing.List[str]] = None"}, {"name": "height", "val": ": int = 480"}, {"name": "width", "val": ": int = 832"}, {"name": "num_frames", "val": ": int = 81"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "sigmas", "val": ": typing.Optional[typing.List[float]] = None"}, {"name": "timesteps", "val": ": typing.Optional[typing.List[float]] = None"}, {"name": "guidance_scale", "val": ": float = 1.0"}, {"name": "num_videos_per_prompt", "val": ": typing.Optional[int] = 1"}, {"name": "generator", "val": ": typing.Union[torch._C.Generator, typing.List[torch._C.Generator], NoneType] = None"}, {"name": "latents", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "prompt_embeds", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "negative_prompt_embeds", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "output_type", "val": ": typing.Optional[str] = 'np'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "attention_kwargs", "val": ": typing.Optional[typing.Dict[str, typing.Any]] = None"}, {"name": "callback_on_step_end", "val": ": typing.Union[typing.Callable[[int, int, typing.Dict], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": typing.List[str] = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}, {"name": "use_mean_velocity", "val": ": bool = True"}]- **prompt** (`str` or `List[str]`, *optional*) --
-  The prompt or prompts to guide the video generation. If not defined, pass `prompt_embeds` instead.
-- **video** (`torch.Tensor`, *optional*) --
-  Pre-VAE conditioning frames of shape `(B, T, C, H, W)` in `[0, 1]`. When provided, the pipeline
-  VAE-encodes them and keeps the corresponding latent prefix fixed during sampling. Mutually exclusive
-  with `video_latents`.
-- **video_latents** (`torch.Tensor`, *optional*) --
-  Pre-encoded VAE latents in the AnyFlow layout `(B, T_latent, C, H_latent, W_latent)`. Skips VAE
-  encoding on the pipeline side. Mutually exclusive with `video`.
-- **negative_prompt** (`str` or `List[str]`, *optional*) --
-  The prompt or prompts to avoid during video generation. Ignored when not using guidance
-  (`guidance_scale 0`~AnyFlowPipelineOutput` or `tuple`If `return_dict` is `True`, `AnyFlowPipelineOutput` is returned, otherwise a `tuple` whose first
+#### __call__[[diffusers.AnyFlowPipeline.__call__]]
+
+```python
+__call__(prompt: typing.Union[str, typing.List[str]] = None, video: typing.Optional[torch.Tensor] = None, video_latents: typing.Optional[torch.Tensor] = None, negative_prompt: typing.Union[str, typing.List[str]] = None, height: int = 480, width: int = 832, num_frames: int = 81, num_inference_steps: int = 50, sigmas: typing.Optional[typing.List[float]] = None, timesteps: typing.Optional[typing.List[float]] = None, guidance_scale: float = 1.0, num_videos_per_prompt: typing.Optional[int] = 1, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: typing.Optional[str] = 'np', return_dict: bool = True, attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, callback_on_step_end: typing.Union[typing.Callable[[int, int, typing.Dict], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], max_sequence_length: int = 512, use_mean_velocity: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L379)
+
+**Parameters:**
+
+prompt (`str` or `List[str]`, *optional*) : The prompt or prompts to guide the video generation. If not defined, pass `prompt_embeds` instead.
+
+video (`torch.Tensor`, *optional*) : Pre-VAE conditioning frames of shape `(B, T, C, H, W)` in `[0, 1]`. When provided, the pipeline VAE-encodes them and keeps the corresponding latent prefix fixed during sampling. Mutually exclusive with `video_latents`.
+
+video_latents (`torch.Tensor`, *optional*) : Pre-encoded VAE latents in the AnyFlow layout `(B, T_latent, C, H_latent, W_latent)`. Skips VAE encoding on the pipeline side. Mutually exclusive with `video`.
+
+negative_prompt (`str` or `List[str]`, *optional*) : The prompt or prompts to avoid during video generation. Ignored when not using guidance (`guidance_scale < 1`).
+
+height (`int`, defaults to `480`) : The height in pixels of the generated video.
+
+width (`int`, defaults to `832`) : The width in pixels of the generated video.
+
+num_frames (`int`, defaults to `81`) : The number of frames in the generated video. Must satisfy `(num_frames - 1) % vae_scale_factor_temporal == 0`.
+
+num_inference_steps (`int`, defaults to `50`) : The number of denoising steps. Distilled AnyFlow checkpoints support any-step sampling, so values as low as `1`, `2`, `4`, or `8` are typical. Ignored when `sigmas` or `timesteps` is provided.
+
+sigmas (`List[float]`, *optional*) : Custom sigma schedule for any-step sampling, in `[0, 1]` and ordered from noisy to clean. Length determines the effective `num_inference_steps`; the scheduler appends the terminal `0` sigma.
+
+timesteps (`List[float]`, *optional*) : Custom timestep schedule for any-step sampling, in the same units as `self.scheduler.timesteps` (i.e. scaled by `num_train_timesteps`). Mutually exclusive with `sigmas`.
+
+guidance_scale (`float`, defaults to `1.0`) : Classifier-free guidance scale. The released AnyFlow checkpoints fuse CFG into the weights during training; keep at `1.0` unless you know your checkpoint expects otherwise.
+
+num_videos_per_prompt (`int`, *optional*, defaults to `1`) : The number of videos to generate per prompt.
+
+generator (`torch.Generator` or `List[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents to use as inputs. If not provided, latents are sampled from the supplied `generator`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to tweak text inputs (e.g., prompt weighting). If not provided, embeddings are generated from `prompt`.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings.
+
+output_type (`str`, *optional*, defaults to `"np"`) : The output format. One of `"pil"`, `"np"`, `"pt"`, or `"latent"`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return an `AnyFlowPipelineOutput` instead of a plain tuple.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function or `PipelineCallback` called at the end of each inference step. See [`callbacks`](../callbacks) for details.
+
+callback_on_step_end_tensor_inputs (`List[str]`, *optional*, defaults to `["latents"]`) : The tensor inputs forwarded to the callback. Must be a subset of `self._callback_tensor_inputs`.
+
+max_sequence_length (`int`, defaults to `512`) : The maximum text-encoder sequence length. Longer prompts are truncated.
+
+use_mean_velocity (`bool`, defaults to `True`) : When `True`, the flow-map model is conditioned on both the source timestep `t` and the target timestep `r` to predict a mean velocity, matching the training-time behavior. Disable to mirror raw Euler stepping (`r = t`).
+
+**Returns:** `~AnyFlowPipelineOutput` or `tuple`
+
+If `return_dict` is `True`, `AnyFlowPipelineOutput` is returned, otherwise a `tuple` whose first
 element is the generated video.
 
 The call function to the pipeline for generation.
@@ -195,29 +258,13 @@ Examples:
 >>> export_to_video(video, "anyflow_t2v.mp4", fps=16)
 ```
 
-**Parameters:**
-
-tokenizer ([*AutoTokenizer*]) : Tokenizer from [google/umt5-xxl](https://huggingface.co/google/umt5-xxl).
-
-text_encoder ([*UMT5EncoderModel*]) : [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) text encoder.
-
-transformer ([*AnyFlowTransformer3DModel*]) : Bidirectional flow-map 3D Transformer.
-
-vae ([*AutoencoderKLWan*]) : VAE that encodes/decodes videos to and from latent representations.
-
-scheduler ([*FlowMapEulerDiscreteScheduler*]) : Flow-map sampler. The pipeline drives `scheduler.step(..., timestep, sample, r_timestep)` per inference step.
-
-**Returns:**
-
-``~AnyFlowPipelineOutput` or `tuple``
-
-If `return_dict` is `True`, `AnyFlowPipelineOutput` is returned, otherwise a `tuple` whose first
-element is the generated video.
 #### encode_prompt[[diffusers.AnyFlowPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L179)
+```python
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L179)
 
 **Parameters:**
 
@@ -236,9 +283,16 @@ negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative tex
 device : (`torch.device`, *optional*): torch device
 
 dtype : (`torch.dtype`, *optional*): torch dtype
+
+Encodes the prompt into text encoder hidden states.
+
 #### encode_video[[diffusers.AnyFlowPipeline.encode_video]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L359)
+```python
+encode_video(video: Tensor, height: int, width: int)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow.py#L359)
 
 Encode a pixel-space video into AnyFlow's latent layout.
 
@@ -251,7 +305,23 @@ conditioning frames.
 
 #### diffusers.AnyFlowFARPipeline[[diffusers.AnyFlowFARPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L92)
+```python
+diffusers.AnyFlowFARPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, transformer: AnyFlowFARTransformer3DModel, vae: AutoencoderKLWan, scheduler: FlowMapEulerDiscreteScheduler)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L92)
+
+**Parameters:**
+
+tokenizer ([*AutoTokenizer*]) : Tokenizer from [google/umt5-xxl](https://huggingface.co/google/umt5-xxl).
+
+text_encoder ([*UMT5EncoderModel*]) : [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) text encoder.
+
+transformer ([*AnyFlowFARTransformer3DModel*]) : FAR causal flow-map 3D Transformer.
+
+vae ([*AutoencoderKLWan*]) : VAE that encodes/decodes videos to and from latent representations.
+
+scheduler ([*FlowMapEulerDiscreteScheduler*]) : Flow-map sampler.
 
 Causal (FAR-based) text-to-video / image-to-video / video-to-video pipeline for AnyFlow checkpoints, introduced in
 [AnyFlow](https://huggingface.co/papers/2605.13724).
@@ -274,18 +344,69 @@ a single distilled model.
 This model inherits from [*DiffusionPipeline*]. Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
-__call__diffusers.AnyFlowFARPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L447[{"name": "prompt", "val": ": typing.Union[str, typing.List[str]] = None"}, {"name": "video", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "video_latents", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "negative_prompt", "val": ": typing.Union[str, typing.List[str]] = None"}, {"name": "height", "val": ": int = 480"}, {"name": "width", "val": ": int = 832"}, {"name": "num_frames", "val": ": int = 81"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "sigmas", "val": ": typing.Optional[typing.List[float]] = None"}, {"name": "timesteps", "val": ": typing.Optional[typing.List[float]] = None"}, {"name": "guidance_scale", "val": ": float = 1.0"}, {"name": "num_videos_per_prompt", "val": ": typing.Optional[int] = 1"}, {"name": "generator", "val": ": typing.Union[torch._C.Generator, typing.List[torch._C.Generator], NoneType] = None"}, {"name": "latents", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "prompt_embeds", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "negative_prompt_embeds", "val": ": typing.Optional[torch.Tensor] = None"}, {"name": "output_type", "val": ": typing.Optional[str] = 'np'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "attention_kwargs", "val": ": typing.Optional[typing.Dict[str, typing.Any]] = None"}, {"name": "callback_on_step_end", "val": ": typing.Union[typing.Callable[[int, int, typing.Dict], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": typing.List[str] = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}, {"name": "use_mean_velocity", "val": ": bool = True"}, {"name": "use_kv_cache", "val": ": bool = True"}, {"name": "chunk_partition", "val": ": typing.Optional[typing.List[int]] = None"}]- **prompt** (`str` or `List[str]`, *optional*) --
-  The prompt or prompts to guide the video generation. If not defined, pass `prompt_embeds` instead.
-- **video** (`torch.Tensor`, *optional*) --
-  Pre-VAE conditioning frames of shape `(B, T, C, H, W)` in `[0, 1]` (`T = 4n + 1`). When provided, the
-  pipeline VAE-encodes them and keeps the corresponding latent prefix fixed during sampling. Mutually
-  exclusive with `video_latents`.
-- **video_latents** (`torch.Tensor`, *optional*) --
-  Pre-encoded VAE latents in the FAR layout `(B, T_latent, C, H_latent, W_latent)`. Skips VAE encoding on
-  the pipeline side. Mutually exclusive with `video`.
-- **negative_prompt** (`str` or `List[str]`, *optional*) --
-  The prompt or prompts to avoid during video generation. Ignored when not using guidance
-  (`guidance_scale 0`~AnyFlowPipelineOutput` or `tuple`If `return_dict` is `True`, an `AnyFlowPipelineOutput` is returned, otherwise a `tuple` whose first
+#### __call__[[diffusers.AnyFlowFARPipeline.__call__]]
+
+```python
+__call__(prompt: typing.Union[str, typing.List[str]] = None, video: typing.Optional[torch.Tensor] = None, video_latents: typing.Optional[torch.Tensor] = None, negative_prompt: typing.Union[str, typing.List[str]] = None, height: int = 480, width: int = 832, num_frames: int = 81, num_inference_steps: int = 50, sigmas: typing.Optional[typing.List[float]] = None, timesteps: typing.Optional[typing.List[float]] = None, guidance_scale: float = 1.0, num_videos_per_prompt: typing.Optional[int] = 1, generator: typing.Union[torch.Generator, typing.List[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: typing.Optional[str] = 'np', return_dict: bool = True, attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, callback_on_step_end: typing.Union[typing.Callable[[int, int, typing.Dict], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: typing.List[str] = ['latents'], max_sequence_length: int = 512, use_mean_velocity: bool = True, use_kv_cache: bool = True, chunk_partition: typing.Optional[typing.List[int]] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L447)
+
+**Parameters:**
+
+prompt (`str` or `List[str]`, *optional*) : The prompt or prompts to guide the video generation. If not defined, pass `prompt_embeds` instead.
+
+video (`torch.Tensor`, *optional*) : Pre-VAE conditioning frames of shape `(B, T, C, H, W)` in `[0, 1]` (`T = 4n + 1`). When provided, the pipeline VAE-encodes them and keeps the corresponding latent prefix fixed during sampling. Mutually exclusive with `video_latents`.
+
+video_latents (`torch.Tensor`, *optional*) : Pre-encoded VAE latents in the FAR layout `(B, T_latent, C, H_latent, W_latent)`. Skips VAE encoding on the pipeline side. Mutually exclusive with `video`.
+
+negative_prompt (`str` or `List[str]`, *optional*) : The prompt or prompts to avoid during video generation. Ignored when not using guidance (`guidance_scale < 1`).
+
+height (`int`, defaults to `480`) : The height in pixels of the generated video.
+
+width (`int`, defaults to `832`) : The width in pixels of the generated video.
+
+num_frames (`int`, defaults to `81`) : The number of frames in the generated video. Must satisfy `(num_frames - 1) % vae_scale_factor_temporal == 0`.
+
+num_inference_steps (`int`, defaults to `50`) : The number of denoising steps per chunk. Distilled AnyFlow-FAR checkpoints support any-step sampling (1, 2, 4, 8, ...). Ignored when `sigmas` or `timesteps` is provided.
+
+sigmas (`List[float]`, *optional*) : Custom sigma schedule for any-step sampling, in `[0, 1]` and ordered from noisy to clean. Length determines the effective `num_inference_steps`; the scheduler appends the terminal `0` sigma.
+
+timesteps (`List[float]`, *optional*) : Custom timestep schedule for any-step sampling, in the same units as `self.scheduler.timesteps` (i.e. scaled by `num_train_timesteps`). Mutually exclusive with `sigmas`.
+
+guidance_scale (`float`, defaults to `1.0`) : Classifier-free guidance scale. The released AnyFlow checkpoints fuse CFG into the weights during training; keep at `1.0` unless the checkpoint requires otherwise.
+
+num_videos_per_prompt (`int`, *optional*, defaults to `1`) : The number of videos to generate per prompt.
+
+generator (`torch.Generator` or `List[torch.Generator]`, *optional*) : Generator used to seed sampling.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents. If not provided, latents are sampled from the supplied `generator`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. If not provided, embeddings are generated from `prompt`.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings.
+
+output_type (`str`, *optional*, defaults to `"np"`) : Output format. One of `"pil"`, `"np"`, `"pt"`, or `"latent"`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether to return an `AnyFlowPipelineOutput` instead of a plain tuple.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function or `PipelineCallback` called at the end of each inference step.
+
+callback_on_step_end_tensor_inputs (`List[str]`, *optional*, defaults to `["latents"]`) : Tensor inputs forwarded to the callback. Must be a subset of `self._callback_tensor_inputs`.
+
+max_sequence_length (`int`, defaults to `512`) : The maximum text-encoder sequence length.
+
+use_mean_velocity (`bool`, defaults to `True`) : When `True`, condition the flow-map model on both the source timestep `t` and the target timestep `r` to predict a mean velocity. Disable to mirror raw Euler stepping.
+
+use_kv_cache (`bool`, defaults to `True`) : Reuse the FAR attention KV cache across causal chunks. Disable only for debugging.
+
+chunk_partition (`List[int]`, *optional*) : Per-chunk frame counts. Defaults to `self.transformer.config.chunk_partition` (matched to the released 81-frame checkpoints). When you change `num_frames`, supply a `chunk_partition` that sums to `(num_frames - 1) // vae_scale_factor_temporal + 1`.
+
+**Returns:** `~AnyFlowPipelineOutput` or `tuple`
+
+If `return_dict` is `True`, an `AnyFlowPipelineOutput` is returned, otherwise a `tuple` whose first
 element is the generated video.
 
 The call function to the pipeline for generation.
@@ -315,29 +436,13 @@ Examples:
 >>> export_to_video(video, "anyflow_far.mp4", fps=16)
 ```
 
-**Parameters:**
-
-tokenizer ([*AutoTokenizer*]) : Tokenizer from [google/umt5-xxl](https://huggingface.co/google/umt5-xxl).
-
-text_encoder ([*UMT5EncoderModel*]) : [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) text encoder.
-
-transformer ([*AnyFlowFARTransformer3DModel*]) : FAR causal flow-map 3D Transformer.
-
-vae ([*AutoencoderKLWan*]) : VAE that encodes/decodes videos to and from latent representations.
-
-scheduler ([*FlowMapEulerDiscreteScheduler*]) : Flow-map sampler.
-
-**Returns:**
-
-``~AnyFlowPipelineOutput` or `tuple``
-
-If `return_dict` is `True`, an `AnyFlowPipelineOutput` is returned, otherwise a `tuple` whose first
-element is the generated video.
 #### encode_prompt[[diffusers.AnyFlowFARPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L196)
+```python
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L196)
 
 **Parameters:**
 
@@ -356,9 +461,16 @@ negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative tex
 device : (`torch.device`, *optional*): torch device
 
 dtype : (`torch.dtype`, *optional*): torch dtype
+
+Encodes the prompt into text encoder hidden states.
+
 #### encode_video[[diffusers.AnyFlowFARPipeline.encode_video]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L379)
+```python
+encode_video(video: Tensor, height: int, width: int)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_anyflow_far.py#L379)
 
 Encode a pixel-space video into AnyFlow's latent layout.
 
@@ -371,13 +483,17 @@ conditioning frames.
 
 #### diffusers.pipelines.anyflow.pipeline_output.AnyFlowPipelineOutput[[diffusers.pipelines.anyflow.pipeline_output.AnyFlowPipelineOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/anyflow/pipeline_output.py#L23)
+```python
+diffusers.pipelines.anyflow.pipeline_output.AnyFlowPipelineOutput(frames: Tensor)
+```
 
-Output class for AnyFlow pipelines.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/anyflow/pipeline_output.py#L23)
 
 **Parameters:**
 
 frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of video outputs - It can be a nested list of length `batch_size,` with each sub-list containing denoised PIL image sequences of length `num_frames.` It can also be a NumPy array or Torch tensor of shape `(batch_size, num_frames, channels, height, width)`.
 
-### AuraFlow
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/aura_flow.md
+Output class for AnyFlow pipelines.
+
+### AutoPipeline
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/auto_pipeline.md

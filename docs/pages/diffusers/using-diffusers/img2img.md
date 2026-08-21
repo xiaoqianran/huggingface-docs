@@ -4,7 +4,7 @@ Image-to-image is similar to [text-to-image](conditional_image_generation), but 
 
 With 🤗 Diffusers, this is as easy as 1-2-3:
 
-1. Load a checkpoint into the [AutoPipelineForImage2Image](/docs/diffusers/v0.39.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image) class; this pipeline automatically handles loading the correct pipeline class  based on the checkpoint:
+1. Load a checkpoint into the [AutoPipelineForImage2Image](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image) class; this pipeline automatically handles loading the correct pipeline class  based on the checkpoint:
 
 ```py
 import torch
@@ -12,7 +12,7 @@ from diffusers import AutoPipelineForImage2Image
 from diffusers.utils import load_image, make_image_grid
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "kandinsky-community/kandinsky-2-2-decoder", torch_dtype=torch.float16, use_safetensors=True
+    "kandinsky-community/kandinsky-2-2-decoder", dtype=torch.float16, use_safetensors=True
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -20,7 +20,7 @@ pipeline.enable_xformers_memory_efficient_attention()
 ```
 
 > [!TIP]
-> You'll notice throughout the guide, we use [enable_model_cpu_offload()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) and [enable_xformers_memory_efficient_attention()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_xformers_memory_efficient_attention), to save memory and increase inference speed. If you're using PyTorch 2.0, then you don't need to call [enable_xformers_memory_efficient_attention()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_xformers_memory_efficient_attention) on your pipeline because it'll already be using PyTorch 2.0's native [scaled-dot product attention](../optimization/fp16#scaled-dot-product-attention).
+> You'll notice throughout the guide, we use [enable_model_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) and [enable_xformers_memory_efficient_attention()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_xformers_memory_efficient_attention), to save memory and increase inference speed. If you're using PyTorch 2.0, then you don't need to call [enable_xformers_memory_efficient_attention()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_xformers_memory_efficient_attention) on your pipeline because it'll already be using PyTorch 2.0's native [scaled-dot product attention](../optimization/fp16#scaled-dot-product-attention).
 
 2. Load an image to pass to the pipeline:
 
@@ -59,7 +59,7 @@ from diffusers import AutoPipelineForImage2Image
 from diffusers.utils import make_image_grid, load_image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
+    "stable-diffusion-v1-5/stable-diffusion-v1-5", dtype=torch.float16, variant="fp16", use_safetensors=True
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -95,7 +95,7 @@ from diffusers import AutoPipelineForImage2Image
 from diffusers.utils import make_image_grid, load_image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "stabilityai/stable-diffusion-xl-refiner-1.0", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
+    "stabilityai/stable-diffusion-xl-refiner-1.0", dtype=torch.float16, variant="fp16", use_safetensors=True
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -133,7 +133,7 @@ from diffusers import AutoPipelineForImage2Image
 from diffusers.utils import make_image_grid, load_image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "kandinsky-community/kandinsky-2-2-decoder", torch_dtype=torch.float16, use_safetensors=True
+    "kandinsky-community/kandinsky-2-2-decoder", dtype=torch.float16, use_safetensors=True
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -178,7 +178,7 @@ from diffusers import AutoPipelineForImage2Image
 from diffusers.utils import make_image_grid, load_image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
+    "stable-diffusion-v1-5/stable-diffusion-v1-5", dtype=torch.float16, variant="fp16", use_safetensors=True
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -220,7 +220,7 @@ from diffusers import AutoPipelineForImage2Image
 from diffusers.utils import make_image_grid, load_image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
+    "stable-diffusion-v1-5/stable-diffusion-v1-5", dtype=torch.float16, variant="fp16", use_safetensors=True
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -260,7 +260,7 @@ from diffusers import AutoPipelineForImage2Image
 from diffusers.utils import make_image_grid, load_image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "stabilityai/stable-diffusion-xl-refiner-1.0", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
+    "stabilityai/stable-diffusion-xl-refiner-1.0", dtype=torch.float16, variant="fp16", use_safetensors=True
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -303,7 +303,7 @@ import torch
 from diffusers.utils import make_image_grid
 
 pipeline = AutoPipelineForText2Image.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
+    "stable-diffusion-v1-5/stable-diffusion-v1-5", dtype=torch.float16, variant="fp16", use_safetensors=True
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -317,7 +317,7 @@ Now you can pass this generated image to the image-to-image pipeline:
 
 ```py
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "kandinsky-community/kandinsky-2-2-decoder", torch_dtype=torch.float16, use_safetensors=True
+    "kandinsky-community/kandinsky-2-2-decoder", dtype=torch.float16, use_safetensors=True
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -339,7 +339,7 @@ from diffusers import AutoPipelineForImage2Image
 from diffusers.utils import make_image_grid, load_image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
+    "stable-diffusion-v1-5/stable-diffusion-v1-5", dtype=torch.float16, variant="fp16", use_safetensors=True
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -362,7 +362,7 @@ Pass the latent output from this pipeline to the next pipeline to generate an im
 
 ```py
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "ogkalu/Comic-Diffusion", torch_dtype=torch.float16
+    "ogkalu/Comic-Diffusion", dtype=torch.float16
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -376,7 +376,7 @@ Repeat one more time to generate the final image in a [pixel art style](https://
 
 ```py
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "kohbanye/pixel-art-style", torch_dtype=torch.float16
+    "kohbanye/pixel-art-style", dtype=torch.float16
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -399,7 +399,7 @@ from diffusers import AutoPipelineForImage2Image
 from diffusers.utils import make_image_grid, load_image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
+    "stable-diffusion-v1-5/stable-diffusion-v1-5", dtype=torch.float16, variant="fp16", use_safetensors=True
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -424,7 +424,7 @@ Chain it to an upscaler pipeline to increase the image resolution:
 from diffusers import StableDiffusionLatentUpscalePipeline
 
 upscaler = StableDiffusionLatentUpscalePipeline.from_pretrained(
-    "stabilityai/sd-x2-latent-upscaler", torch_dtype=torch.float16, use_safetensors=True
+    "stabilityai/sd-x2-latent-upscaler", dtype=torch.float16, use_safetensors=True
 )
 upscaler.enable_model_cpu_offload()
 upscaler.enable_xformers_memory_efficient_attention()
@@ -438,7 +438,7 @@ Finally, chain it to a super-resolution pipeline to further enhance the resoluti
 from diffusers import StableDiffusionUpscalePipeline
 
 super_res = StableDiffusionUpscalePipeline.from_pretrained(
-    "stabilityai/stable-diffusion-x4-upscaler", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
+    "stabilityai/stable-diffusion-x4-upscaler", dtype=torch.float16, variant="fp16", use_safetensors=True
 )
 super_res.enable_model_cpu_offload()
 super_res.enable_xformers_memory_efficient_attention()
@@ -455,14 +455,14 @@ Trying to generate an image that looks exactly the way you want can be difficult
 
 Prompt weighting allows you to scale the representation of each concept in a prompt. For example, in a prompt like "Astronaut in a jungle, cold color palette, muted colors, detailed, 8k", you can choose to increase or decrease the embeddings of "astronaut" and "jungle". The [Compel](https://github.com/damian0815/compel) library provides a simple syntax for adjusting prompt weights and generating the embeddings. You can learn how to create the embeddings in the [Prompt weighting](weighted_prompts) guide.
 
-[AutoPipelineForImage2Image](/docs/diffusers/v0.39.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image) has a `prompt_embeds` (and `negative_prompt_embeds` if you're using a negative prompt) parameter where you can pass the embeddings which replaces the `prompt` parameter.
+[AutoPipelineForImage2Image](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image) has a `prompt_embeds` (and `negative_prompt_embeds` if you're using a negative prompt) parameter where you can pass the embeddings which replaces the `prompt` parameter.
 
 ```py
 from diffusers import AutoPipelineForImage2Image
 import torch
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
+    "stable-diffusion-v1-5/stable-diffusion-v1-5", dtype=torch.float16, variant="fp16", use_safetensors=True
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -491,15 +491,15 @@ depth_image = load_image("https://huggingface.co/lllyasviel/control_v11f1p_sd15_
 make_image_grid([init_image, depth_image], rows=1, cols=2)
 ```
 
-Load a ControlNet model conditioned on depth maps and the [AutoPipelineForImage2Image](/docs/diffusers/v0.39.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image):
+Load a ControlNet model conditioned on depth maps and the [AutoPipelineForImage2Image](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image):
 
 ```py
 from diffusers import ControlNetModel, AutoPipelineForImage2Image
 import torch
 
-controlnet = ControlNetModel.from_pretrained("lllyasviel/control_v11f1p_sd15_depth", torch_dtype=torch.float16, variant="fp16", use_safetensors=True)
+controlnet = ControlNetModel.from_pretrained("lllyasviel/control_v11f1p_sd15_depth", dtype=torch.float16, variant="fp16", use_safetensors=True)
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-v1-5", controlnet=controlnet, torch_dtype=torch.float16, variant="fp16", use_safetensors=True
+    "stable-diffusion-v1-5/stable-diffusion-v1-5", controlnet=controlnet, dtype=torch.float16, variant="fp16", use_safetensors=True
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -531,7 +531,7 @@ Let's apply a new [style](https://huggingface.co/nitrosocke/elden-ring-diffusion
 
 ```py
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "nitrosocke/elden-ring-diffusion", torch_dtype=torch.float16,
+    "nitrosocke/elden-ring-diffusion", dtype=torch.float16,
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -563,5 +563,5 @@ pipeline.unet = torch.compile(pipeline.unet, mode="reduce-overhead", fullgraph=T
 
 To learn more, take a look at the [Reduce memory usage](../optimization/memory) and [Accelerate inference](../optimization/fp16) guides.
 
-### Pipeline callbacks
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/callback.md
+### Unconditional image generation
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/unconditional_image_generation.md

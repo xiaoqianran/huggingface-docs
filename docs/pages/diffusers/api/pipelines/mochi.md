@@ -16,7 +16,7 @@
 
 Quantization helps reduce the memory requirements of very large models by storing model weights in a lower precision data type. However, quantization may have varying impact on video quality depending on the video model.
 
-Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [MochiPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/mochi#diffusers.MochiPipeline) for inference with bitsandbytes.
+Refer to the [Quantization](../../quantization/overview) overview to learn more about supported quantization backends and selecting a quantization backend that supports your use case. The example below demonstrates how to load a quantized [MochiPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/mochi#diffusers.MochiPipeline) for inference with bitsandbytes.
 
 ```py
 import torch
@@ -29,7 +29,7 @@ text_encoder_8bit = T5EncoderModel.from_pretrained(
     "genmo/mochi-1-preview",
     subfolder="text_encoder",
     quantization_config=quant_config,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 )
 
 quant_config = DiffusersBitsAndBytesConfig(load_in_8bit=True)
@@ -37,14 +37,14 @@ transformer_8bit = MochiTransformer3DModel.from_pretrained(
     "genmo/mochi-1-preview",
     subfolder="transformer",
     quantization_config=quant_config,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 )
 
 pipeline = MochiPipeline.from_pretrained(
     "genmo/mochi-1-preview",
     text_encoder=text_encoder_8bit,
     transformer=transformer_8bit,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="balanced",
 )
 
@@ -69,7 +69,7 @@ pipe = MochiPipeline.from_pretrained("genmo/mochi-1-preview")
 
 # Enable memory savings
 pipe.enable_model_cpu_offload()
-pipe.enable_vae_tiling()
+pipe.vae.enable_tiling()
 
 prompt = "Close-up of a chameleon's eye, with its scaly skin changing color. Ultra high resolution 4k."
 
@@ -88,11 +88,11 @@ import torch
 from diffusers import MochiPipeline
 from diffusers.utils import export_to_video
 
-pipe = MochiPipeline.from_pretrained("genmo/mochi-1-preview", variant="bf16", torch_dtype=torch.bfloat16)
+pipe = MochiPipeline.from_pretrained("genmo/mochi-1-preview", variant="bf16", dtype=torch.bfloat16)
 
 # Enable memory savings
 pipe.enable_model_cpu_offload()
-pipe.enable_vae_tiling()
+pipe.vae.enable_tiling()
 
 prompt = "Close-up of a chameleon's eye, with its scaly skin changing color. Ultra high resolution 4k."
 frames = pipe(prompt, num_frames=85).frames[0]
@@ -121,7 +121,7 @@ from diffusers.utils import export_to_video
 from diffusers.video_processor import VideoProcessor
 
 pipe = MochiPipeline.from_pretrained("genmo/mochi-1-preview", force_zeros_for_empty_prompt=True)
-pipe.enable_vae_tiling()
+pipe.vae.enable_tiling()
 pipe.enable_model_cpu_offload()
 
 prompt =  "An aerial shot of a parade of elephants walking across the African savannah. The camera showcases the herd and the surrounding landscape."
@@ -188,7 +188,7 @@ transformer = MochiTransformer3DModel.from_pretrained(
 
 pipe = MochiPipeline.from_pretrained(model_id,  transformer=transformer)
 pipe.enable_model_cpu_offload()
-pipe.enable_vae_tiling()
+pipe.vae.enable_tiling()
 
 with torch.autocast(device_type="cuda", dtype=torch.bfloat16, cache_enabled=False):
     frames = pipe(
@@ -224,11 +224,11 @@ model_id = "genmo/mochi-1-preview"
 
 ckpt_path = "https://huggingface.co/Comfy-Org/mochi_preview_repackaged/blob/main/split_files/diffusion_models/mochi_preview_bf16.safetensors"
 
-transformer = MochiTransformer3DModel.from_pretrained(ckpt_path, torch_dtype=torch.bfloat16)
+transformer = MochiTransformer3DModel.from_pretrained(ckpt_path, dtype=torch.bfloat16)
 
 pipe = MochiPipeline.from_pretrained(model_id,  transformer=transformer)
 pipe.enable_model_cpu_offload()
-pipe.enable_vae_tiling()
+pipe.vae.enable_tiling()
 
 with torch.autocast(device_type="cuda", dtype=torch.bfloat16, cache_enabled=False):
     frames = pipe(
@@ -252,58 +252,85 @@ export_to_video(frames, "output.mp4", fps=30)
 
 #### diffusers.MochiPipeline[[diffusers.MochiPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L138)
+```python
+diffusers.MochiPipeline(scheduler: FlowMatchEulerDiscreteScheduler, vae: AutoencoderKLMochi, text_encoder: T5EncoderModel, tokenizer: T5Tokenizer, transformer: MochiTransformer3DModel, force_zeros_for_empty_prompt: bool = False)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L138)
+
+**Parameters:**
+
+transformer ([MochiTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/mochi_transformer3d#diffusers.MochiTransformer3DModel)) : Conditional Transformer architecture to denoise the encoded video latents.
+
+scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKLMochi](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl_mochi#diffusers.AutoencoderKLMochi)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+
+text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
+
+tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
+
+tokenizer (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
 
 The mochi pipeline for text-to-video generation.
 
 Reference: https://github.com/genmoai/models
 
-__call__diffusers.MochiPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L497[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "negative_prompt", "val": ": str | list[str] | None = None"}, {"name": "height", "val": ": int | None = None"}, {"name": "width", "val": ": int | None = None"}, {"name": "num_frames", "val": ": int = 19"}, {"name": "num_inference_steps", "val": ": int = 64"}, {"name": "timesteps", "val": ": list = None"}, {"name": "guidance_scale", "val": ": float = 4.5"}, {"name": "num_videos_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.Tensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "prompt_attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int], NoneType]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 256"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation. If not defined, one has to pass
-  `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale  1`. Higher guidance scale encourages to generate images that are closely linked to
-  the text `prompt`, usually at the expense of lower image quality.
-- **num_videos_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of videos to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html)
-  to make generation deterministic.
-- **latents** (`torch.Tensor`, *optional*) --
-  Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor will be generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not
-  provided, text embeddings will be generated from `prompt` input argument.
-- **prompt_attention_mask** (`torch.Tensor`, *optional*) --
-  Pre-generated attention mask for text embeddings.
-- **negative_prompt_embeds** (`torch.FloatTensor`, *optional*) --
-  Pre-generated negative text embeddings. For PixArt-Sigma this negative prompt should be "". If not
-  provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
-- **negative_prompt_attention_mask** (`torch.FloatTensor`, *optional*) --
-  Pre-generated attention mask for negative text embeddings.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generate image. Choose between
-  [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~pipelines.mochi.MochiPipelineOutput` instead of a plain tuple.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, *optional*) --
-  A function that calls at the end of each denoising steps during the inference. The function is called
-  with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int,
-  callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by
-  `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int` defaults to `256`) --
-  Maximum sequence length to use with the `prompt`.0`~pipelines.mochi.MochiPipelineOutput` or `tuple`If `return_dict` is `True`, `~pipelines.mochi.MochiPipelineOutput` is returned, otherwise a `tuple`
+#### __call__[[diffusers.MochiPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, negative_prompt: str | list[str] | None = None, height: int | None = None, width: int | None = None, num_frames: int = 19, num_inference_steps: int = 64, timesteps: list = None, guidance_scale: float = 4.5, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, output_type: str | None = 'pil', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int], NoneType]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 256)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L444)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale < 1`).
+
+height (`int`, *optional*, defaults to `self.default_height`) : The height in pixels of the generated image. This is set to 480 by default for the best results.
+
+width (`int`, *optional*, defaults to `self.default_width`) : The width in pixels of the generated image. This is set to 848 by default for the best results.
+
+num_frames (`int`, defaults to `19`) : The number of video frames to generate
+
+num_inference_steps (`int`, *optional*, defaults to 50) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+timesteps (`list[int]`, *optional*) : Custom timesteps to use for the denoising process with schedulers which support a `timesteps` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used. Must be in descending order.
+
+guidance_scale (`float`, defaults to `4.5`) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of videos to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : One or a list of [torch generator(s)](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents, sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor will be generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs, *e.g.* prompt weighting. If not provided, text embeddings will be generated from `prompt` input argument.
+
+prompt_attention_mask (`torch.Tensor`, *optional*) : Pre-generated attention mask for text embeddings.
+
+negative_prompt_embeds (`torch.FloatTensor`, *optional*) : Pre-generated negative text embeddings. For PixArt-Sigma this negative prompt should be "". If not provided, negative_prompt_embeds will be generated from `negative_prompt` input argument.
+
+negative_prompt_attention_mask (`torch.FloatTensor`, *optional*) : Pre-generated attention mask for negative text embeddings.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generate image. Choose between [PIL](https://pillow.readthedocs.io/en/stable/): `PIL.Image.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~pipelines.mochi.MochiPipelineOutput` instead of a plain tuple.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, *optional*) : A function that calls at the end of each denoising steps during the inference. The function is called with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int` defaults to `256`) : Maximum sequence length to use with the `prompt`.
+
+**Returns:** `~pipelines.mochi.MochiPipelineOutput` or `tuple`
+
+If `return_dict` is `True`, `~pipelines.mochi.MochiPipelineOutput` is returned, otherwise a `tuple`
 is returned where the first element is a list with the generated images.
 
 Function invoked when calling the pipeline for generation.
@@ -316,62 +343,19 @@ Examples:
 
 >>> pipe = MochiPipeline.from_pretrained("genmo/mochi-1-preview", torch_dtype=torch.bfloat16)
 >>> pipe.enable_model_cpu_offload()
->>> pipe.enable_vae_tiling()
+>>> pipe.vae.enable_tiling()
 >>> prompt = "Close-up of a chameleon's eye, with its scaly skin changing color. Ultra high resolution 4k."
 >>> frames = pipe(prompt, num_inference_steps=28, guidance_scale=3.5).frames[0]
 >>> export_to_video(frames, "mochi.mp4")
 ```
 
-**Parameters:**
-
-transformer ([MochiTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/mochi_transformer3d#diffusers.MochiTransformer3DModel)) : Conditional Transformer architecture to denoise the encoded video latents.
-
-scheduler ([FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKLMochi](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl_mochi#diffusers.AutoencoderKLMochi)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
-
-text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/t5-v1_1-xxl](https://huggingface.co/google/t5-v1_1-xxl) variant.
-
-tokenizer (`CLIPTokenizer`) : Tokenizer of class [CLIPTokenizer](https://huggingface.co/docs/transformers/en/model_doc/clip#transformers.CLIPTokenizer).
-
-tokenizer (`T5TokenizerFast`) : Second Tokenizer of class [T5TokenizerFast](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5TokenizerFast).
-
-**Returns:**
-
-``~pipelines.mochi.MochiPipelineOutput` or `tuple``
-
-If `return_dict` is `True`, `~pipelines.mochi.MochiPipelineOutput` is returned, otherwise a `tuple`
-is returned where the first element is a list with the generated images.
-#### disable_vae_slicing[[diffusers.MochiPipeline.disable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L403)
-
-Disable sliced VAE decoding. If `enable_vae_slicing` was previously enabled, this method will go back to
-computing decoding in one step.
-#### disable_vae_tiling[[diffusers.MochiPipeline.disable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L430)
-
-Disable tiled VAE decoding. If `enable_vae_tiling` was previously enabled, this method will go back to
-computing decoding in one step.
-#### enable_vae_slicing[[diffusers.MochiPipeline.enable_vae_slicing]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L390)
-
-Enable sliced VAE decoding. When this option is enabled, the VAE will split the input tensor in slices to
-compute decoding in several steps. This is useful to save some memory and allow larger batch sizes.
-#### enable_vae_tiling[[diffusers.MochiPipeline.enable_vae_tiling]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L416)
-
-Enable tiled VAE decoding. When this option is enabled, the VAE will split the input tensor into tiles to
-compute decoding and encoding in several steps. This is useful for saving a large amount of memory and to allow
-processing larger images.
 #### encode_prompt[[diffusers.MochiPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L254)
+```python
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, prompt_attention_mask: typing.Optional[torch.Tensor] = None, negative_prompt_attention_mask: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 256, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/mochi/pipeline_mochi.py#L254)
 
 **Parameters:**
 
@@ -391,30 +375,23 @@ device : (`torch.device`, *optional*): torch device
 
 dtype : (`torch.dtype`, *optional*): torch dtype
 
+Encodes the prompt into text encoder hidden states.
+
 ## MochiPipelineOutput[[diffusers.pipelines.mochi.pipeline_output.MochiPipelineOutput]]
 
 #### diffusers.pipelines.mochi.pipeline_output.MochiPipelineOutput[[diffusers.pipelines.mochi.pipeline_output.MochiPipelineOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/mochi/pipeline_output.py#L9)
+```python
+diffusers.pipelines.mochi.pipeline_output.MochiPipelineOutput(frames: Tensor)
+```
 
-Output class for Mochi pipelines.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/mochi/pipeline_output.py#L9)
 
 **Parameters:**
 
 frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of video outputs - It can be a nested list of length `batch_size,` with each sub-list containing denoised PIL image sequences of length `num_frames.` It can also be a NumPy array or Torch tensor of shape `(batch_size, num_frames, channels, height, width)`.
 
-### Latte
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/latte.md
+Output class for Mochi pipelines.
 
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License. -->
+### Latent Diffusion
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/latent_diffusion.md

@@ -6,16 +6,16 @@ This guide will show you how to switch guiders, adjust guider parameters, and lo
 
 ## Switching guiders
 
-[ClassifierFreeGuidance](/docs/diffusers/v0.39.0/en/api/modular_diffusers/guiders#diffusers.ClassifierFreeGuidance) is the default guider and created when a pipeline is initialized with [init_pipeline()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline). It is created by `from_config` which means it doesn't require loading specifications from a modular repository. A guider won't be listed in `modular_model_index.json`.
+[ClassifierFreeGuidance](/docs/diffusers/v0.40.0/en/api/modular_diffusers/guiders#diffusers.ClassifierFreeGuidance) is the default guider and created when a pipeline is initialized with [init_pipeline()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_blocks#diffusers.ModularPipelineBlocks.init_pipeline). It is created by `from_config` which means it doesn't require loading specifications from a modular repository. A guider won't be listed in `modular_model_index.json`.
 
-Use [get_component_spec()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.get_component_spec) to inspect a guider.
+Use [get_component_spec()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.get_component_spec) to inspect a guider.
 
 ```py
 t2i_pipeline.get_component_spec("guider")
 ComponentSpec(name='guider', type_hint=<class 'diffusers.guiders.classifier_free_guidance.ClassifierFreeGuidance'>, description=None, config=FrozenDict([('guidance_scale', 7.5), ('guidance_rescale', 0.0), ('use_original_formulation', False), ('start', 0.0), ('stop', 1.0), ('_use_default_values', ['start', 'guidance_rescale', 'stop', 'use_original_formulation'])]), repo=None, subfolder=None, variant=None, revision=None, default_creation_method='from_config')
 ```
 
-Switch to a different guider by passing the new guider to [update_components()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.update_components).
+Switch to a different guider by passing the new guider to [update_components()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.update_components).
 
 > [!TIP]
 > Changing guiders will return text letting you know you're changing the guider type.
@@ -33,7 +33,7 @@ guider = PerturbedAttentionGuidance(
 t2i_pipeline.update_components(guider=guider)
 ```
 
-Use [get_component_spec()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.get_component_spec) again to verify the guider type is different.
+Use [get_component_spec()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.get_component_spec) again to verify the guider type is different.
 
 ```py
 t2i_pipeline.get_component_spec("guider")
@@ -63,7 +63,7 @@ Guiders that are already saved on the Hub with a `modular_model_index.json` file
 }
 ```
 
-The guider is only created after calling [load_components()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components) based on the loading specification in `modular_model_index.json`.
+The guider is only created after calling [load_components()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.load_components) based on the loading specification in `modular_model_index.json`.
 
 ```py
 t2i_pipeline = t2i_blocks.init_pipeline("YiYiXu/modular-doc-guider")
@@ -76,7 +76,7 @@ t2i_pipeline.guider
 
 ## Changing guider parameters
 
-The guider parameters can be adjusted with the [create()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentSpec.create) method and [update_components()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.update_components). The example below changes the `guidance_scale` value.
+The guider parameters can be adjusted with the [create()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline_components#diffusers.ComponentSpec.create) method and [update_components()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.update_components). The example below changes the `guidance_scale` value.
 
 ```py
 guider_spec = t2i_pipeline.get_component_spec("guider")
@@ -86,13 +86,13 @@ t2i_pipeline.update_components(guider=guider)
 
 ## Uploading custom guiders
 
-Call the [push_to_hub()](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.utils.PushToHubMixin.push_to_hub) method on a custom guider to share it to the Hub.
+Call the [push_to_hub()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method on a custom guider to share it to the Hub.
 
 ```py
 guider.push_to_hub("YiYiXu/modular-loader-t2i-guider", subfolder="pag_guider")
 ```
 
-To make this guider available to the pipeline, either modify the `modular_model_index.json` file or use the [update_components()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.update_components) method.
+To make this guider available to the pipeline, either modify the `modular_model_index.json` file or use the [update_components()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.update_components) method.
 
 Edit the `modular_model_index.json` file and add a loading specification for the guider by pointing to a folder containing the guider config.
 
@@ -114,7 +114,7 @@ Edit the `modular_model_index.json` file and add a loading specification for the
   ],
 ```
 
-Change the `default_creation_method()` to `from_pretrained` and use [update_components()](/docs/diffusers/v0.39.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.update_components) to update the guider and component specifications as well as the pipeline config.
+Change the `default_creation_method()` to `from_pretrained` and use [update_components()](/docs/diffusers/v0.40.0/en/api/modular_diffusers/pipeline#diffusers.ModularPipeline.update_components) to update the guider and component specifications as well as the pipeline config.
 
 > [!TIP]
 > Changing the creation method will return text letting you know you're changing the creation type to `from_pretrained`.
@@ -131,11 +131,11 @@ pag_guider = guider_spec.load()
 t2i_pipeline.update_components(guider=pag_guider)
 ```
 
-To make it the default guider for a pipeline, call [push_to_hub()](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.utils.PushToHubMixin.push_to_hub). This is an optional step and not necessary if you are only experimenting locally.
+To make it the default guider for a pipeline, call [push_to_hub()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub). This is an optional step and not necessary if you are only experimenting locally.
 
 ```py
 t2i_pipeline.push_to_hub("YiYiXu/modular-doc-guider")
 ```
 
-### DreamBooth
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/dreambooth.md
+### T2I-Adapter
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/t2i_adapter.md

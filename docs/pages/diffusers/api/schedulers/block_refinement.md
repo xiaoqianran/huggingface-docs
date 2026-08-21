@@ -4,12 +4,17 @@ The `BlockRefinementScheduler` manages block-wise iterative refinement for discr
 commits the most confident tokens and optionally edits already-committed tokens when the model predicts a different
 token with high confidence.
 
-This scheduler is used by [LLaDA2Pipeline](/docs/diffusers/v0.39.0/en/api/pipelines/llada2#diffusers.LLaDA2Pipeline).
+This scheduler is used by [LLaDA2Pipeline](/docs/diffusers/v0.40.0/en/api/pipelines/llada2#diffusers.LLaDA2Pipeline).
 
 ## BlockRefinementScheduler[[diffusers.BlockRefinementScheduler]]
+
 #### diffusers.BlockRefinementScheduler[[diffusers.BlockRefinementScheduler]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_block_refinement.py#L54)
+```python
+diffusers.BlockRefinementScheduler(block_length: int = 32, num_inference_steps: int = 32, threshold: float = 0.95, editing_threshold: float | None = None, minimal_topk: int = 1)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_block_refinement.py#L54)
 
 Scheduler for block-wise iterative refinement (commit-by-confidence).
 
@@ -20,25 +25,13 @@ the number of refinement steps.
 Optionally supports editing: after all mask tokens are resolved, tokens can be replaced if the model predicts a
 different token with confidence above a positive `editing_threshold` (`None`, `0.0`, or negative disables editing).
 
-add_noisediffusers.BlockRefinementScheduler.add_noisehttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_block_refinement.py#L456[{"name": "original_samples", "val": ": torch.LongTensor"}, {"name": "attention_mask", "val": ": torch.LongTensor"}, {"name": "prompt_length", "val": ": int"}, {"name": "block_length", "val": ": int"}, {"name": "mask_token_id", "val": ": int"}, {"name": "generator", "val": ": torch.Generator | None = None"}]- **original_samples** (`torch.LongTensor` of shape `(batch_size, seq_len)`) --
-  Clean token IDs.
-- **attention_mask** (`torch.LongTensor` of shape `(batch_size, seq_len)`) --
-  Padding mask (1 for valid, 0 for padding).
-- **prompt_length** (`int`) --
-  Number of leading prompt tokens to keep unmasked.
-- **block_length** (`int`) --
-  Block size for masking.
-- **mask_token_id** (`int`) --
-  Token ID to use for masked positions.
-- **generator** (`torch.Generator`, *optional*) --
-  RNG for reproducibility.0`tuple[torch.LongTensor, torch.LongTensor, torch.BoolTensor, torch.BoolTensor]``(noisy, noisy_rev, masked, masked_rev)` — the two complementary noisy sequences and their
-corresponding boolean masks.
+#### add_noise[[diffusers.BlockRefinementScheduler.add_noise]]
 
-Apply the forward (noising) process for semi-autoregressive block masking.
+```python
+add_noise(original_samples: torch.LongTensor, attention_mask: torch.LongTensor, prompt_length: int, block_length: int, mask_token_id: int, generator: torch.Generator | None = None)
+```
 
-For each block after the prompt, a random fraction of valid (non-padding) tokens are replaced with
-`mask_token_id`. Two complementary views are returned: `noisy` and `noisy_rev`, where the masked positions in
-one are the unmasked positions in the other.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_block_refinement.py#L456)
 
 **Parameters:**
 
@@ -54,17 +47,24 @@ mask_token_id (`int`) : Token ID to use for masked positions.
 
 generator (`torch.Generator`, *optional*) : RNG for reproducibility.
 
-**Returns:**
-
-``tuple[torch.LongTensor, torch.LongTensor, torch.BoolTensor, torch.BoolTensor]``
+**Returns:** `tuple[torch.LongTensor, torch.LongTensor, torch.BoolTensor, torch.BoolTensor]`
 
 `(noisy, noisy_rev, masked, masked_rev)` — the two complementary noisy sequences and their
 corresponding boolean masks.
+
+Apply the forward (noising) process for semi-autoregressive block masking.
+
+For each block after the prompt, a random fraction of valid (non-padding) tokens are replaced with
+`mask_token_id`. Two complementary views are returned: `noisy` and `noisy_rev`, where the masked positions in
+one are the unmasked positions in the other.
+
 #### check_block_should_continue[[diffusers.BlockRefinementScheduler.check_block_should_continue]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_block_refinement.py#L412)
+```python
+check_block_should_continue(step_idx: int, masks_remaining: bool, editing_enabled: bool, editing_transfer_index: torch.BoolTensor, post_steps: int, max_post_steps: int, finished: torch.BoolTensor)
+```
 
-Determine whether the inner refinement loop should continue for the current block.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_block_refinement.py#L412)
 
 **Parameters:**
 
@@ -82,16 +82,19 @@ max_post_steps (`int`) : Maximum allowed post-mask editing steps.
 
 finished (`torch.BoolTensor`) : Per-batch finished flags (from EOS detection).
 
-**Returns:**
-
-``bool``
+**Returns:** `bool`
 
 `True` if refinement should continue, `False` to break.
+
+Determine whether the inner refinement loop should continue for the current block.
+
 #### check_eos_finished[[diffusers.BlockRefinementScheduler.check_eos_finished]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_block_refinement.py#L362)
+```python
+check_eos_finished(cur_x: torch.LongTensor, sampled_tokens: torch.LongTensor, final_transfer: torch.BoolTensor, finished: torch.BoolTensor, eos_token_id: int, mask_token_id: int, prompt_length: int)
+```
 
-Update per-batch finished flags when EOS tokens are committed.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_block_refinement.py#L362)
 
 **Parameters:**
 
@@ -109,22 +112,29 @@ mask_token_id (`int`) : Mask token ID.
 
 prompt_length (`int`) : Number of prompt tokens at the start of the sequence.
 
-**Returns:**
-
-``torch.BoolTensor``
+**Returns:** `torch.BoolTensor`
 
 Updated finished flags.
+
+Update per-batch finished flags when EOS tokens are committed.
+
 #### get_num_transfer_tokens[[diffusers.BlockRefinementScheduler.get_num_transfer_tokens]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_block_refinement.py#L102)
+```python
+get_num_transfer_tokens(block_length: int, num_inference_steps: int)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_block_refinement.py#L102)
 
 Evenly distribute `block_length` token commits across `num_inference_steps` steps.
+
 #### step[[diffusers.BlockRefinementScheduler.step]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_block_refinement.py#L181)
+```python
+step(model_output: torch.Tensor, timestep: int | torch.Tensor, sample: torch.LongTensor, mask_token_id: int | None = None, temperature: float = 0.0, top_p: float | None = None, top_k: int | None = None, sampling_method: str = 'auto', threshold: float | None = None, editing_threshold: float | None = None, minimal_topk: int | None = None, prompt_mask: torch.BoolTensor | None = None, generator: torch.Generator | None = None, return_dict: bool = True)
+```
 
-Perform a single refinement step: sample from logits, commit confident tokens, and optionally edit existing
-ones.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_block_refinement.py#L181)
 
 **Parameters:**
 
@@ -156,12 +166,18 @@ generator (`torch.Generator`, *optional*) : RNG for sampling.
 
 return_dict (`bool`) : Whether to return a `BlockRefinementSchedulerOutput` or a tuple.
 
+Perform a single refinement step: sample from logits, commit confident tokens, and optionally edit existing
+ones.
+
 ## BlockRefinementSchedulerOutput[[diffusers.BlockRefinementSchedulerOutput]]
+
 #### diffusers.BlockRefinementSchedulerOutput[[diffusers.BlockRefinementSchedulerOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_block_refinement.py#L27)
+```python
+diffusers.BlockRefinementSchedulerOutput(prev_sample: torch.LongTensor, transfer_index: torch.BoolTensor, editing_transfer_index: torch.BoolTensor, sampled_tokens: torch.LongTensor, sampled_probs: torch.Tensor, pred_logits: torch.Tensor)
+```
 
-Output class for block refinement scheduling.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_block_refinement.py#L27)
 
 **Parameters:**
 
@@ -177,5 +193,7 @@ sampled_probs (`torch.Tensor` of shape `(batch_size, block_length)`) : Probabili
 
 pred_logits (`torch.Tensor` of shape `(batch_size, block_length, vocab_size)`) : The denoiser logits, passed through for self-conditioning the next step.
 
-### ScoreSdeVeScheduler
-https://huggingface.co/docs/diffusers/v0.39.0/api/schedulers/score_sde_ve.md
+Output class for block refinement scheduling.
+
+### UniPCMultistepScheduler
+https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/unipc.md

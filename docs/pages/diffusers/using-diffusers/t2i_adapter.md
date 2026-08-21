@@ -2,7 +2,7 @@
 
 [T2I-Adapter](https://huggingface.co/papers/2302.08453) is an adapter that enables controllable generation like [ControlNet](./controlnet). A T2I-Adapter works by learning a *mapping* between a control signal (for example, a depth map) and a pretrained model's internal knowledge. The adapter is plugged in to the base model to provide extra guidance based on the control signal during generation.
 
-Load a T2I-Adapter conditioned on a specific control, such as canny edge, and pass it to the pipeline in [from_pretrained()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
+Load a T2I-Adapter conditioned on a specific control, such as canny edge, and pass it to the pipeline in [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
 
 ```py
 import torch
@@ -10,7 +10,7 @@ from diffusers import T2IAdapter, StableDiffusionXLAdapterPipeline, AutoencoderK
 
 t2i_adapter = T2IAdapter.from_pretrained(
     "TencentARC/t2i-adapter-canny-sdxl-1.0",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 )
 ```
 
@@ -40,12 +40,12 @@ canny_image = Image.fromarray(image)
 Pass the canny image to the pipeline to generate an image.
 
 ```py
-vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16)
+vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", dtype=torch.float16)
 pipeline = StableDiffusionXLAdapterPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     adapter=t2i_adapter,
     vae=vae,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 ).to("cuda")
 
 prompt = """
@@ -101,19 +101,19 @@ bright sunny day, vacation scene, 35mm photograph, film, professional, 4k, highl
 
 adapters = MultiAdapter(
     [
-        T2IAdapter.from_pretrained("TencentARC/t2i-adapter-canny-sdxl-1.0", torch_dtype=torch.float16),
-        T2IAdapter.from_pretrained("TencentARC/t2i-adapter-depth-midas-sdxl-1.0", torch_dtype=torch.float16),
+        T2IAdapter.from_pretrained("TencentARC/t2i-adapter-canny-sdxl-1.0", dtype=torch.float16),
+        T2IAdapter.from_pretrained("TencentARC/t2i-adapter-depth-midas-sdxl-1.0", dtype=torch.float16),
     ]
 )
 ```
 
-Pass the adapters, prompt, and control images to [StableDiffusionXLAdapterPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/adapter#diffusers.StableDiffusionXLAdapterPipeline). Use the `adapter_conditioning_scale` parameter to determine how much weight to assign to each control.
+Pass the adapters, prompt, and control images to [StableDiffusionXLAdapterPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/adapter#diffusers.StableDiffusionXLAdapterPipeline). Use the `adapter_conditioning_scale` parameter to determine how much weight to assign to each control.
 
 ```py
-vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16)
+vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", dtype=torch.float16)
 pipeline = StableDiffusionXLAdapterPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     vae=vae,
     adapter=adapters,
 ).to("cuda")
@@ -139,5 +139,5 @@ pipeline(
     
     generated image
 
-### Sharing pipelines and models
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/push_to_hub.md
+### Text-to-image
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/conditional_image_generation.md

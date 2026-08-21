@@ -180,9 +180,9 @@ from diffusers import StableDiffusionXLAdapterPipeline, T2IAdapter, EulerAncestr
 from diffusers.utils import load_image
 import torch
 
-adapter = T2IAdapter.from_pretrained("path/to/adapter", torch_dtype=torch.float16)
+adapter = T2IAdapter.from_pretrained("path/to/adapter", dtype=torch.float16)
 pipeline = StableDiffusionXLAdapterPipeline.from_pretrained(
-    "stabilityai/stable-diffusion-xl-base-1.0", adapter=adapter, torch_dtype=torch.float16
+    "stabilityai/stable-diffusion-xl-base-1.0", adapter=adapter, dtype=torch.float16
 )
 
 pipeline.scheduler = EulerAncestralDiscreteSchedulerTest.from_config(pipe.scheduler.config)
@@ -205,5 +205,5 @@ Congratulations on training a T2I-Adapter model! 🎉 To learn more:
 
 - Read the [Efficient Controllable Generation for SDXL with T2I-Adapters](https://huggingface.co/blog/t2i-sdxl-adapters) blog post to learn more details about the experimental results from the T2I-Adapter team.
 
-### Reinforcement learning training with DDPO
-https://huggingface.co/docs/diffusers/v0.39.0/training/ddpo.md
+### Latent Consistency Distillation
+https://huggingface.co/docs/diffusers/v0.40.0/training/lcm_distill.md

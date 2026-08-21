@@ -17,43 +17,26 @@ This code is implemented by Tencent Hunyuan Team. You can find pre-trained check
 ```py
 from diffusers import HunyuanDiT2DControlNetModel
 import torch
-controlnet = HunyuanDiT2DControlNetModel.from_pretrained("Tencent-Hunyuan/HunyuanDiT-v1.1-ControlNet-Diffusers-Pose", torch_dtype=torch.float16)
+controlnet = HunyuanDiT2DControlNetModel.from_pretrained("Tencent-Hunyuan/HunyuanDiT-v1.1-ControlNet-Diffusers-Pose", dtype=torch.float16)
 ```
 
 ## HunyuanDiT2DControlNetModel[[diffusers.HunyuanDiT2DControlNetModel]]
 
 #### diffusers.HunyuanDiT2DControlNetModel[[diffusers.HunyuanDiT2DControlNetModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_hunyuan.py#L40)
+```python
+diffusers.HunyuanDiT2DControlNetModel(conditioning_channels: int = 3, num_attention_heads: int = 16, attention_head_dim: int = 88, in_channels: int | None = None, patch_size: int | None = None, activation_fn: str = 'gelu-approximate', sample_size = 32, hidden_size = 1152, transformer_num_layers: int = 40, mlp_ratio: float = 4.0, cross_attention_dim: int = 1024, cross_attention_dim_t5: int = 2048, pooled_projection_dim: int = 1024, text_len: int = 77, text_len_t5: int = 256, use_style_cond_and_image_meta_size: bool = True)
+```
 
-forwarddiffusers.HunyuanDiT2DControlNetModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_hunyuan.py#L215[{"name": "hidden_states", "val": ""}, {"name": "timestep", "val": ""}, {"name": "controlnet_cond", "val": ": Tensor"}, {"name": "conditioning_scale", "val": ": float = 1.0"}, {"name": "encoder_hidden_states", "val": " = None"}, {"name": "text_embedding_mask", "val": " = None"}, {"name": "encoder_hidden_states_t5", "val": " = None"}, {"name": "text_embedding_mask_t5", "val": " = None"}, {"name": "image_meta_size", "val": " = None"}, {"name": "style", "val": " = None"}, {"name": "image_rotary_emb", "val": " = None"}, {"name": "return_dict", "val": " = True"}]- **hidden_states** (`torch.Tensor` of shape `(batch size, dim, height, width)`) --
-  The input tensor.
-- **timestep** ( `torch.LongTensor`, *optional*) --
-  Used to indicate denoising step.
-- **controlnet_cond** ( `torch.Tensor` ) --
-  The conditioning input to ControlNet.
-- **conditioning_scale** ( `float` ) --
-  Indicate the conditioning scale.
-- **encoder_hidden_states** ( `torch.Tensor` of shape `(batch size, sequence len, embed dims)`, *optional*) --
-  Conditional embeddings for cross attention layer. This is the output of `BertModel`.
-- **text_embedding_mask** -- torch.Tensor
-  An attention mask of shape `(batch, key_tokens)` is applied to `encoder_hidden_states`. This is the output
-  of `BertModel`.
-- **encoder_hidden_states_t5** ( `torch.Tensor` of shape `(batch size, sequence len, embed dims)`, *optional*) --
-  Conditional embeddings for cross attention layer. This is the output of T5 Text Encoder.
-- **text_embedding_mask_t5** -- torch.Tensor
-  An attention mask of shape `(batch, key_tokens)` is applied to `encoder_hidden_states`. This is the output
-  of T5 Text Encoder.
-- **image_meta_size** (torch.Tensor) --
-  Conditional embedding indicate the image sizes
-- **style** -- torch.Tensor:
-  Conditional embedding indicate the style
-- **image_rotary_emb** (`torch.Tensor`) --
-  The image rotary embeddings to apply on query and key tensors during attention calculation.
-- **return_dict** -- bool
-  Whether to return a dictionary.0
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_hunyuan.py#L40)
 
-The [HunyuanDiT2DControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet_hunyuandit#diffusers.HunyuanDiT2DControlNetModel) forward method.
+#### forward[[diffusers.HunyuanDiT2DControlNetModel.forward]]
+
+```python
+forward(hidden_states, timestep, controlnet_cond: Tensor, conditioning_scale: float = 1.0, encoder_hidden_states = None, text_embedding_mask = None, encoder_hidden_states_t5 = None, text_embedding_mask_t5 = None, image_meta_size = None, style = None, image_rotary_emb = None, return_dict = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_hunyuan.py#L215)
 
 **Parameters:**
 
@@ -80,15 +63,22 @@ style : torch.Tensor: Conditional embedding indicate the style
 image_rotary_emb (`torch.Tensor`) : The image rotary embeddings to apply on query and key tensors during attention calculation.
 
 return_dict : bool Whether to return a dictionary.
+
+The [HunyuanDiT2DControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet_hunyuandit#diffusers.HunyuanDiT2DControlNetModel) forward method.
+
 #### set_attn_processor[[diffusers.HunyuanDiT2DControlNetModel.set_attn_processor]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_hunyuan.py#L141)
+```python
+set_attn_processor(processor: diffusers.models.attention_processor.AttnProcessor | diffusers.models.attention_processor.CustomDiffusionAttnProcessor | diffusers.models.attention_processor.AttnAddedKVProcessor | diffusers.models.attention_processor.AttnAddedKVProcessor2_0 | diffusers.models.attention_processor.JointAttnProcessor2_0 | diffusers.models.attention_processor.PAGJointAttnProcessor2_0 | diffusers.models.attention_processor.PAGCFGJointAttnProcessor2_0 | diffusers.models.attention_processor.FusedJointAttnProcessor2_0 | diffusers.models.attention_processor.AllegroAttnProcessor2_0 | diffusers.models.attention_processor.AuraFlowAttnProcessor2_0 | diffusers.models.attention_processor.FusedAuraFlowAttnProcessor2_0 | diffusers.models.attention_processor.FluxAttnProcessor2_0 | diffusers.models.attention_processor.FluxAttnProcessor2_0_NPU | diffusers.models.attention_processor.FusedFluxAttnProcessor2_0 | diffusers.models.attention_processor.FusedFluxAttnProcessor2_0_NPU | diffusers.models.attention_processor.CogVideoXAttnProcessor2_0 | diffusers.models.attention_processor.FusedCogVideoXAttnProcessor2_0 | diffusers.models.attention_processor.XFormersAttnAddedKVProcessor | diffusers.models.attention_processor.XFormersAttnProcessor | diffusers.models.attention_processor.XLAFlashAttnProcessor2_0 | diffusers.models.attention_processor.AttnProcessorNPU | diffusers.models.attention_processor.AttnProcessor2_0 | diffusers.models.attention_processor.MochiVaeAttnProcessor2_0 | diffusers.models.attention_processor.MochiAttnProcessor2_0 | diffusers.models.attention_processor.StableAudioAttnProcessor2_0 | diffusers.models.attention_processor.HunyuanAttnProcessor2_0 | diffusers.models.attention_processor.FusedHunyuanAttnProcessor2_0 | diffusers.models.attention_processor.PAGHunyuanAttnProcessor2_0 | diffusers.models.attention_processor.PAGCFGHunyuanAttnProcessor2_0 | diffusers.models.attention_processor.LuminaAttnProcessor2_0 | diffusers.models.attention_processor.FusedAttnProcessor2_0 | diffusers.models.attention_processor.CustomDiffusionXFormersAttnProcessor | diffusers.models.attention_processor.CustomDiffusionAttnProcessor2_0 | diffusers.models.attention_processor.SlicedAttnProcessor | diffusers.models.attention_processor.SlicedAttnAddedKVProcessor | diffusers.models.attention_processor.SanaLinearAttnProcessor2_0 | diffusers.models.attention_processor.PAGCFGSanaLinearAttnProcessor2_0 | diffusers.models.attention_processor.PAGIdentitySanaLinearAttnProcessor2_0 | diffusers.models.attention_processor.SanaMultiscaleLinearAttention | diffusers.models.attention_processor.SanaMultiscaleAttnProcessor2_0 | diffusers.models.attention_processor.SanaMultiscaleAttentionProjection | diffusers.models.attention_processor.IPAdapterAttnProcessor | diffusers.models.attention_processor.IPAdapterAttnProcessor2_0 | diffusers.models.attention_processor.IPAdapterXFormersAttnProcessor | diffusers.models.attention_processor.SD3IPAdapterJointAttnProcessor2_0 | diffusers.models.attention_processor.PAGIdentitySelfAttnProcessor2_0 | diffusers.models.attention_processor.PAGCFGIdentitySelfAttnProcessor2_0 | diffusers.models.attention_processor.LoRAAttnProcessor | diffusers.models.attention_processor.LoRAAttnProcessor2_0 | diffusers.models.attention_processor.LoRAXFormersAttnProcessor | diffusers.models.attention_processor.LoRAAttnAddedKVProcessor | dict[str, diffusers.models.attention_processor.AttnProcessor | diffusers.models.attention_processor.CustomDiffusionAttnProcessor | diffusers.models.attention_processor.AttnAddedKVProcessor | diffusers.models.attention_processor.AttnAddedKVProcessor2_0 | diffusers.models.attention_processor.JointAttnProcessor2_0 | diffusers.models.attention_processor.PAGJointAttnProcessor2_0 | diffusers.models.attention_processor.PAGCFGJointAttnProcessor2_0 | diffusers.models.attention_processor.FusedJointAttnProcessor2_0 | diffusers.models.attention_processor.AllegroAttnProcessor2_0 | diffusers.models.attention_processor.AuraFlowAttnProcessor2_0 | diffusers.models.attention_processor.FusedAuraFlowAttnProcessor2_0 | diffusers.models.attention_processor.FluxAttnProcessor2_0 | diffusers.models.attention_processor.FluxAttnProcessor2_0_NPU | diffusers.models.attention_processor.FusedFluxAttnProcessor2_0 | diffusers.models.attention_processor.FusedFluxAttnProcessor2_0_NPU | diffusers.models.attention_processor.CogVideoXAttnProcessor2_0 | diffusers.models.attention_processor.FusedCogVideoXAttnProcessor2_0 | diffusers.models.attention_processor.XFormersAttnAddedKVProcessor | diffusers.models.attention_processor.XFormersAttnProcessor | diffusers.models.attention_processor.XLAFlashAttnProcessor2_0 | diffusers.models.attention_processor.AttnProcessorNPU | diffusers.models.attention_processor.AttnProcessor2_0 | diffusers.models.attention_processor.MochiVaeAttnProcessor2_0 | diffusers.models.attention_processor.MochiAttnProcessor2_0 | diffusers.models.attention_processor.StableAudioAttnProcessor2_0 | diffusers.models.attention_processor.HunyuanAttnProcessor2_0 | diffusers.models.attention_processor.FusedHunyuanAttnProcessor2_0 | diffusers.models.attention_processor.PAGHunyuanAttnProcessor2_0 | diffusers.models.attention_processor.PAGCFGHunyuanAttnProcessor2_0 | diffusers.models.attention_processor.LuminaAttnProcessor2_0 | diffusers.models.attention_processor.FusedAttnProcessor2_0 | diffusers.models.attention_processor.CustomDiffusionXFormersAttnProcessor | diffusers.models.attention_processor.CustomDiffusionAttnProcessor2_0 | diffusers.models.attention_processor.SlicedAttnProcessor | diffusers.models.attention_processor.SlicedAttnAddedKVProcessor | diffusers.models.attention_processor.SanaLinearAttnProcessor2_0 | diffusers.models.attention_processor.PAGCFGSanaLinearAttnProcessor2_0 | diffusers.models.attention_processor.PAGIdentitySanaLinearAttnProcessor2_0 | diffusers.models.attention_processor.SanaMultiscaleLinearAttention | diffusers.models.attention_processor.SanaMultiscaleAttnProcessor2_0 | diffusers.models.attention_processor.SanaMultiscaleAttentionProjection | diffusers.models.attention_processor.IPAdapterAttnProcessor | diffusers.models.attention_processor.IPAdapterAttnProcessor2_0 | diffusers.models.attention_processor.IPAdapterXFormersAttnProcessor | diffusers.models.attention_processor.SD3IPAdapterJointAttnProcessor2_0 | diffusers.models.attention_processor.PAGIdentitySelfAttnProcessor2_0 | diffusers.models.attention_processor.PAGCFGIdentitySelfAttnProcessor2_0 | diffusers.models.attention_processor.LoRAAttnProcessor | diffusers.models.attention_processor.LoRAAttnProcessor2_0 | diffusers.models.attention_processor.LoRAXFormersAttnProcessor | diffusers.models.attention_processor.LoRAAttnAddedKVProcessor])
+```
 
-Sets the attention processor to use to compute attention.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_hunyuan.py#L141)
 
 **Parameters:**
 
 processor (`dict` of `AttentionProcessor` or only `AttentionProcessor`) : The instantiated processor class or a dictionary of processor classes that will be set as the processor for **all** `Attention` layers. If `processor` is a dict, the key needs to define the path to the corresponding cross attention processor. This is strongly recommended when setting trainable attention processors.
 
-### Cosmos3OmniTransformer
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/cosmos3_omni_transformer.md
+Sets the attention processor to use to compute attention.
+
+### HiDreamImageTransformer2DModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/hidream_image_transformer.md

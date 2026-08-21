@@ -1099,7 +1099,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"groq":{"modelId":"openai/gpt-oss-120b","providerModelId":"openai/gpt-oss-120b"} } }
+    providersMapping={ {"groq":{"modelId":"openai/gpt-oss-20b","providerModelId":"openai/gpt-oss-20b"} } }
 conversational />
 
 ### Template
@@ -1282,7 +1282,7 @@ Find out more about Summarization [here](../tasks/summarization).
 
 <InferenceSnippet
     pipeline=summarization
-    providersMapping={ {"hf-inference":{"modelId":"Falconsai/text_summarization","providerModelId":"Falconsai/text_summarization"} } }
+    providersMapping={ {"hf-inference":{"modelId":"human-centered-summarization/financial-summarization-pegasus","providerModelId":"human-centered-summarization/financial-summarization-pegasus"} } }
 />
 
 ### Table Question Answering
@@ -1578,6 +1578,15 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
     providersMapping={ {"deepinfra":{"modelId":"moonshotai/Kimi-K3","providerModelId":"moonshotai/Kimi-K3"} } }
 conversational />
 
+### Feature Extraction
+
+Find out more about Feature Extraction [here](../tasks/feature-extraction).
+
+<InferenceSnippet
+    pipeline=feature-extraction
+    providersMapping={ {"deepinfra":{"modelId":"Qwen/Qwen3-Embedding-0.6B","providerModelId":"Qwen/Qwen3-Embedding-0.6B"} } }
+/>
+
 ### Template
 https://huggingface.co/docs/inference-providers/providers/ovhcloud.md
 
@@ -1620,7 +1629,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"ovhcloud":{"modelId":"openai/gpt-oss-120b","providerModelId":"gpt-oss-120b"} } }
+    providersMapping={ {"ovhcloud":{"modelId":"openai/gpt-oss-20b","providerModelId":"gpt-oss-20b"} } }
 conversational />
 
 ### Chat Completion (VLM)
@@ -1674,7 +1683,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"baseten":{"modelId":"zai-org/GLM-5.2","providerModelId":"zai-org/GLM-5.2"} } }
+    providersMapping={ {"baseten":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek-ai/DeepSeek-V4-Flash-0731"} } }
 conversational />
 
 ### Chat Completion (VLM)
@@ -1739,7 +1748,7 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"featherless-ai":{"modelId":"moonshotai/Kimi-K3","providerModelId":"moonshotai/Kimi-K3"} } }
+    providersMapping={ {"featherless-ai":{"modelId":"Qwen/Qwen3.8-27B","providerModelId":"Qwen/Qwen3.8-27B"} } }
 conversational />
 
 ### Text Generation

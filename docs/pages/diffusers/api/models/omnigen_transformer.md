@@ -10,38 +10,18 @@ The abstract from the paper is:
 import torch
 from diffusers import OmniGenTransformer2DModel
 
-transformer = OmniGenTransformer2DModel.from_pretrained("Shitao/OmniGen-v1-diffusers", subfolder="transformer", torch_dtype=torch.bfloat16)
+transformer = OmniGenTransformer2DModel.from_pretrained("Shitao/OmniGen-v1-diffusers", subfolder="transformer", dtype=torch.bfloat16)
 ```
 
 ## OmniGenTransformer2DModel[[diffusers.OmniGenTransformer2DModel]]
 
 #### diffusers.OmniGenTransformer2DModel[[diffusers.OmniGenTransformer2DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_omnigen.py#L283)
+```python
+diffusers.OmniGenTransformer2DModel(in_channels: int = 4, patch_size: int = 2, hidden_size: int = 3072, rms_norm_eps: float = 1e-05, num_attention_heads: int = 32, num_key_value_heads: int = 32, intermediate_size: int = 8192, num_layers: int = 32, pad_token_id: int = 32000, vocab_size: int = 32064, max_position_embeddings: int = 131072, original_max_position_embeddings: int = 4096, rope_base: int = 10000, rope_scaling: dict = None, pos_embed_max_size: int = 192, time_step_dim: int = 256, flip_sin_to_cos: bool = True, downscale_freq_shift: int = 0, timestep_activation_fn: str = 'silu')
+```
 
-The Transformer model introduced in OmniGen (https://huggingface.co/papers/2409.11340).
-
-forwarddiffusers.OmniGenTransformer2DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_omnigen.py#L407[{"name": "hidden_states", "val": ": Tensor"}, {"name": "timestep", "val": ": int | float | torch.FloatTensor"}, {"name": "input_ids", "val": ": Tensor"}, {"name": "input_img_latents", "val": ": list"}, {"name": "input_image_sizes", "val": ": dict"}, {"name": "attention_mask", "val": ": Tensor"}, {"name": "position_ids", "val": ": Tensor"}, {"name": "return_dict", "val": ": bool = True"}]- **hidden_states** (`torch.Tensor` of shape `(batch_size, in_channels, height, width)`) --
-  Input `hidden_states`.
-- **timestep** (`torch.LongTensor`) --
-  Used to indicate denoising step.
-- **input_ids** (`torch.Tensor`) --
-  Multimodal text token ids used as conditioning.
-- **input_img_latents** (`list` of `torch.Tensor`) --
-  List of latents for input images used as conditioning.
-- **input_image_sizes** (`dict` of `int` to `list` of `int`) --
-  Mapping from sample index to the positions where input image embeddings should be placed in the
-  conditioning sequence.
-- **attention_mask** (`torch.Tensor`) --
-  Attention mask for the joint multimodal sequence.
-- **position_ids** (`torch.Tensor`) --
-  Position ids used to compute the positional embeddings.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain
-  tuple.0`~models.transformer_2d.Transformer2DModelOutput` or `tuple`If `return_dict` is True, a `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise
-a plain `tuple` is returned.
-
-The [OmniGenTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/omnigen_transformer#diffusers.OmniGenTransformer2DModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_omnigen.py#L283)
 
 **Parameters:**
 
@@ -79,12 +59,40 @@ downscale_freq_shift (`int`, default to `0`) : The frequency shift to use when d
 
 timestep_activation_fn (`str`, default to `silu`) : The activation function to use for the timestep embeddings.
 
-**Returns:**
+The Transformer model introduced in OmniGen (https://huggingface.co/papers/2409.11340).
 
-``~models.transformer_2d.Transformer2DModelOutput` or `tuple``
+#### forward[[diffusers.OmniGenTransformer2DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, timestep: typing.Union[int, float, torch.FloatTensor], input_ids: Tensor, input_img_latents: list, input_image_sizes: dict, attention_mask: Tensor, position_ids: Tensor, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_omnigen.py#L407)
+
+**Parameters:**
+
+hidden_states (`torch.Tensor` of shape `(batch_size, in_channels, height, width)`) : Input `hidden_states`.
+
+timestep (`torch.LongTensor`) : Used to indicate denoising step.
+
+input_ids (`torch.Tensor`) : Multimodal text token ids used as conditioning.
+
+input_img_latents (`list` of `torch.Tensor`) : List of latents for input images used as conditioning.
+
+input_image_sizes (`dict` of `int` to `list` of `int`) : Mapping from sample index to the positions where input image embeddings should be placed in the conditioning sequence.
+
+attention_mask (`torch.Tensor`) : Attention mask for the joint multimodal sequence.
+
+position_ids (`torch.Tensor`) : Position ids used to compute the positional embeddings.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain tuple.
+
+**Returns:** `~models.transformer_2d.Transformer2DModelOutput` or `tuple`
 
 If `return_dict` is True, a `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise
 a plain `tuple` is returned.
 
-### AutoencoderKLAllegro
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/autoencoderkl_allegro.md
+The [OmniGenTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/omnigen_transformer#diffusers.OmniGenTransformer2DModel) forward method.
+
+### JoyImageEditPlusTransformer3DModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/transformer_joyimage_edit_plus.md

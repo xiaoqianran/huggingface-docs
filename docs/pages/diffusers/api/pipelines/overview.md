@@ -2,10 +2,10 @@
 
 Pipelines provide a simple way to run state-of-the-art diffusion models in inference by bundling all of the necessary components (multiple independently-trained models, schedulers, and processors) into a single end-to-end class. Pipelines are flexible and they can be adapted to use different schedulers or even model components.
 
-All pipelines are built from the base [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) class which provides basic functionality for loading, downloading, and saving all the components. Specific pipeline types (for example [StableDiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline)) loaded with [from_pretrained()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) are automatically detected and the pipeline components are loaded and passed to the `__init__` function of the pipeline.
+All pipelines are built from the base [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) class which provides basic functionality for loading, downloading, and saving all the components. Specific pipeline types (for example [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline)) loaded with [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) are automatically detected and the pipeline components are loaded and passed to the `__init__` function of the pipeline.
 
 > [!WARNING]
-> You shouldn't use the [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) class for training. Individual components (for example, [UNet2DModel](/docs/diffusers/v0.39.0/en/api/models/unet2d#diffusers.UNet2DModel) and [UNet2DConditionModel](/docs/diffusers/v0.39.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) of diffusion pipelines are usually trained individually, so we suggest directly working with them instead.
+> You shouldn't use the [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) class for training. Individual components (for example, [UNet2DModel](/docs/diffusers/v0.40.0/en/api/models/unet2d#diffusers.UNet2DModel) and [UNet2DConditionModel](/docs/diffusers/v0.40.0/en/api/models/unet2d-cond#diffusers.UNet2DConditionModel)) of diffusion pipelines are usually trained individually, so we suggest directly working with them instead.
 >
 > 
 >
@@ -64,11 +64,15 @@ The table below lists all the pipelines currently available in 🤗 Diffusers an
 
 #### diffusers.DiffusionPipeline[[diffusers.DiffusionPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L185)
+```python
+diffusers.DiffusionPipeline()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L198)
 
 Base class for all pipelines.
 
-[DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) stores all components (models, schedulers, and processors) for diffusion pipelines and
+[DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) stores all components (models, schedulers, and processors) for diffusion pipelines and
 provides methods for loading, downloading and saving models. It also includes methods to:
 
 - move all PyTorch modules to the device of your choice
@@ -81,20 +85,47 @@ Class attributes:
 - **_optional_components** (`List[str]`) -- List of all optional components that don't have to be passed to the
   pipeline to function (should be overridden by subclasses).
 
-__call__diffusers.DiffusionPipeline.__call__[{"name": "*args", "val": ""}, {"name": "**kwargs", "val": ""}]
+#### __call__[[diffusers.DiffusionPipeline.__call__]]
+
+```python
+__call__(*args, **kwargs)
+```
+
 Call self as a function.
+
 #### device[[diffusers.DiffusionPipeline.device]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L587)
+```python
+device()
+```
 
-**Returns:**
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L600)
 
-``torch.device``
+**Returns:** `torch.device`
 
-The torch device on which the pipeline is located.
+The torch device on which the pipeline is located. When components are split across devices
+(for example, text encoders on CPU while the denoising backbone runs on an accelerator), the accelerator
+device is returned.
+
 #### to[[diffusers.DiffusionPipeline.to]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L384)
+```python
+to(*args, **kwargs)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L397)
+
+**Parameters:**
+
+dtype (`torch.dtype`, *optional*) : Returns a pipeline with the specified [`dtype`](https://pytorch.org/docs/stable/tensor_attributes.html#torch.dtype)
+
+device (`torch.Device`, *optional*) : Returns a pipeline with the specified [`device`](https://pytorch.org/docs/stable/tensor_attributes.html#torch.device)
+
+silence_dtype_warnings (`str`, *optional*, defaults to `False`) : Whether to omit warnings if the target `dtype` is not compatible with the target `device`.
+
+**Returns:** [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline)
+
+The pipeline converted to specified `dtype` and/or `dtype`.
 
 Performs Pipeline dtype and/or device conversion. A torch.dtype and torch.device are inferred from the
 arguments of `self.to(*args, **kwargs).`
@@ -112,22 +143,13 @@ Here are the ways to call `to`:
   specified [`device`](https://pytorch.org/docs/stable/tensor_attributes.html#torch.device) and
   [`dtype`](https://pytorch.org/docs/stable/tensor_attributes.html#torch.dtype)
 
-**Parameters:**
-
-dtype (`torch.dtype`, *optional*) : Returns a pipeline with the specified [`dtype`](https://pytorch.org/docs/stable/tensor_attributes.html#torch.dtype)
-
-device (`torch.Device`, *optional*) : Returns a pipeline with the specified [`device`](https://pytorch.org/docs/stable/tensor_attributes.html#torch.device)
-
-silence_dtype_warnings (`str`, *optional*, defaults to `False`) : Whether to omit warnings if the target `dtype` is not compatible with the target `device`.
-
-**Returns:**
-
-`[DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline)`
-
-The pipeline converted to specified `dtype` and/or `dtype`.
 #### components[[diffusers.DiffusionPipeline.components]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L1924)
+```python
+components()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L1953)
 
 The `self.components` property can be useful to run different pipelines with the same weights and
 configurations without reallocating additional memory.
@@ -148,25 +170,35 @@ Examples:
 >>> img2img = StableDiffusionImg2ImgPipeline(**text2img.components)
 >>> inpaint = StableDiffusionInpaintPipeline(**text2img.components)
 ```
+
 #### disable_attention_slicing[[diffusers.DiffusionPipeline.disable_attention_slicing]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L2084)
+```python
+disable_attention_slicing()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2113)
 
 Disable sliced attention computation. If `enable_attention_slicing` was previously called, attention is
 computed in one step.
+
 #### disable_xformers_memory_efficient_attention[[diffusers.DiffusionPipeline.disable_xformers_memory_efficient_attention]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L2023)
+```python
+disable_xformers_memory_efficient_attention()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2052)
 
 Disable memory efficient attention from [xFormers](https://facebookresearch.github.io/xformers/).
+
 #### download[[diffusers.DiffusionPipeline.download]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L1515)
+```python
+download(pretrained_model_name, **kwargs)
+```
 
-Download and cache a PyTorch diffusion pipeline from pretrained pipeline weights.
-
-> [!TIP] > To use private or [gated models](https://huggingface.co/docs/hub/models-gated#gated-models), log-in
-with `hf > auth login
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L1520)
 
 **Parameters:**
 
@@ -190,9 +222,9 @@ custom_revision (`str`, *optional*, defaults to `"main"`) : The specific model v
 
 mirror (`str`, *optional*) : Mirror source to resolve accessibility issues if you're downloading a model in China. We do not guarantee the timeliness or safety of the source, and you should refer to the mirror site for more information.
 
-variant (`str`, *optional*) : Load weights from a specified variant filename such as `"fp16"` or `"ema"`. This is ignored when loading `from_flax`.
+variant (`str`, *optional*) : Load weights from a specified variant filename such as `"fp16"` or `"ema"`.
 
-dduf_file(`str`, *optional*) : Load weights from the specified DDUF file.
+dduf_file(`str`, *optional*) : Load weights from the specified DDUF file.  This argument is deprecated and will be removed in version 0.41.0. 
 
 use_safetensors (`bool`, *optional*, defaults to `None`) : If set to `None`, the safetensors weights are downloaded if they're available **and** if the safetensors library is installed. If set to `True`, the model is forcibly loaded from safetensors weights. If set to `False`, safetensors weights are not loaded.
 
@@ -202,14 +234,26 @@ trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether or not to 
 
 use_flashpack (`bool`, *optional*, defaults to `False`) : If set to `True`, FlashPack weights will always be downloaded if present. If set to `False`, FlashPack weights will never be downloaded.
 
-**Returns:**
-
-``os.PathLike``
+**Returns:** `os.PathLike`
 
 A path to the downloaded pipeline.
+
+Download and cache a PyTorch diffusion pipeline from pretrained pipeline weights.
+
+> [!TIP] > To use private or [gated models](https://huggingface.co/docs/hub/models-gated#gated-models), log-in
+with `hf > auth login
+
 #### enable_attention_slicing[[diffusers.DiffusionPipeline.enable_attention_slicing]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L2047)
+```python
+enable_attention_slicing(slice_size: str | int = 'auto')
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2076)
+
+**Parameters:**
+
+slice_size (`str` or `int`, *optional*, defaults to `"auto"`) : When `"auto"`, halves the input to the attention heads, so attention will be computed in two steps. If `"max"`, maximum amount of memory will be saved by running only one slice at a time. If a number is provided, uses as many slices as `attention_head_dim // slice_size`. In this case, `attention_head_dim` must be a multiple of `slice_size`.
 
 Enable sliced attention computation. When this option is enabled, the attention module splits the input tensor
 in slices to compute attention in several steps. For more than one attention head, the computation is performed
@@ -228,7 +272,7 @@ Examples:
 
 >>> pipe = StableDiffusionPipeline.from_pretrained(
 ...     "stable-diffusion-v1-5/stable-diffusion-v1-5",
-...     torch_dtype=torch.float16,
+...     dtype=torch.float16,
 ...     use_safetensors=True,
 ... )
 
@@ -237,12 +281,35 @@ Examples:
 >>> image = pipe(prompt).images[0]
 ```
 
-**Parameters:**
-
-slice_size (`str` or `int`, *optional*, defaults to `"auto"`) : When `"auto"`, halves the input to the attention heads, so attention will be computed in two steps. If `"max"`, maximum amount of memory will be saved by running only one slice at a time. If a number is provided, uses as many slices as `attention_head_dim // slice_size`. In this case, `attention_head_dim` must be a multiple of `slice_size`.
 #### enable_group_offload[[diffusers.DiffusionPipeline.enable_group_offload]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L1375)
+```python
+enable_group_offload(onload_device: device, offload_device: device = torch.device(), offload_type: str = 'block_level', num_blocks_per_group: int | None = None, non_blocking: bool = False, use_stream: bool = False, record_stream: bool = False, low_cpu_mem_usage = False, offload_to_disk_path: str | None = None, exclude_modules: str | list[str] | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L1380)
+
+**Parameters:**
+
+onload_device (`torch.device`) : The device to which the group of modules are onloaded.
+
+offload_device (`torch.device`, defaults to `torch.device("cpu")`) : The device to which the group of modules are offloaded. This should typically be the CPU. Default is CPU.
+
+offload_type (`str` or `GroupOffloadingType`, defaults to "block_level") : The type of offloading to be applied. Can be one of "block_level" or "leaf_level". Default is "block_level".
+
+offload_to_disk_path (`str`, *optional*, defaults to `None`) : The path to the directory where parameters will be offloaded. Setting this option can be useful in limited RAM environment settings where a reasonable speed-memory trade-off is desired.
+
+num_blocks_per_group (`int`, *optional*) : The number of blocks per group when using offload_type="block_level". This is required when using offload_type="block_level".
+
+non_blocking (`bool`, defaults to `False`) : If True, offloading and onloading is done with non-blocking data transfer.
+
+use_stream (`bool`, defaults to `False`) : If True, offloading and onloading is done asynchronously using a CUDA stream. This can be useful for overlapping computation and data transfer.
+
+record_stream (`bool`, defaults to `False`) : When enabled with `use_stream`, it marks the current tensor as having been used by this stream. It is faster at the expense of slightly more memory usage. Refer to the [PyTorch official docs](https://pytorch.org/docs/stable/generated/torch.Tensor.record_stream.html) more details.
+
+low_cpu_mem_usage (`bool`, defaults to `False`) : If True, the CPU memory usage is minimized by pinning tensors on-the-fly instead of pre-pinning them. This option only matters when using streamed CPU offloading (i.e. `use_stream=True`). This can be useful when the CPU memory is a bottleneck but may counteract the benefits of using streams.
+
+exclude_modules (`Union[str, List[str]]`, defaults to `None`) : List of modules to exclude from offloading.
 
 Applies group offloading to the internal layers of a torch.nn.Module. To understand what group offloading is,
 and where it is beneficial, we need to first provide some context on how other supported offloading methods
@@ -278,7 +345,7 @@ Example:
 >>> from diffusers import DiffusionPipeline
 >>> import torch
 
->>> pipe = DiffusionPipeline.from_pretrained("Qwen/Qwen-Image", torch_dtype=torch.bfloat16)
+>>> pipe = DiffusionPipeline.from_pretrained("Qwen/Qwen-Image", dtype=torch.bfloat16)
 
 >>> pipe.enable_group_offload(
 ...     onload_device=torch.device("cuda"),
@@ -289,30 +356,19 @@ Example:
 >>> image = pipe("a beautiful sunset").images[0]
 ```
 
-**Parameters:**
-
-onload_device (`torch.device`) : The device to which the group of modules are onloaded.
-
-offload_device (`torch.device`, defaults to `torch.device("cpu")`) : The device to which the group of modules are offloaded. This should typically be the CPU. Default is CPU.
-
-offload_type (`str` or `GroupOffloadingType`, defaults to "block_level") : The type of offloading to be applied. Can be one of "block_level" or "leaf_level". Default is "block_level".
-
-offload_to_disk_path (`str`, *optional*, defaults to `None`) : The path to the directory where parameters will be offloaded. Setting this option can be useful in limited RAM environment settings where a reasonable speed-memory trade-off is desired.
-
-num_blocks_per_group (`int`, *optional*) : The number of blocks per group when using offload_type="block_level". This is required when using offload_type="block_level".
-
-non_blocking (`bool`, defaults to `False`) : If True, offloading and onloading is done with non-blocking data transfer.
-
-use_stream (`bool`, defaults to `False`) : If True, offloading and onloading is done asynchronously using a CUDA stream. This can be useful for overlapping computation and data transfer.
-
-record_stream (`bool`, defaults to `False`) : When enabled with `use_stream`, it marks the current tensor as having been used by this stream. It is faster at the expense of slightly more memory usage. Refer to the [PyTorch official docs](https://pytorch.org/docs/stable/generated/torch.Tensor.record_stream.html) more details.
-
-low_cpu_mem_usage (`bool`, defaults to `False`) : If True, the CPU memory usage is minimized by pinning tensors on-the-fly instead of pre-pinning them. This option only matters when using streamed CPU offloading (i.e. `use_stream=True`). This can be useful when the CPU memory is a bottleneck but may counteract the benefits of using streams.
-
-exclude_modules (`Union[str, List[str]]`, defaults to `None`) : List of modules to exclude from offloading.
 #### enable_model_cpu_offload[[diffusers.DiffusionPipeline.enable_model_cpu_offload]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L1190)
+```python
+enable_model_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L1195)
+
+**Parameters:**
+
+gpu_id (`int`, *optional*) : The ID of the accelerator that shall be used in inference. If not specified, it will default to 0.
+
+device (`torch.Device` or `str`, *optional*, defaults to None) : The PyTorch device type of the accelerator that shall be used in inference. If not specified, it will automatically detect the available accelerator and use.
 
 Offloads all models to CPU using accelerate, reducing memory usage with a low impact on performance. Compared
 to `enable_sequential_cpu_offload`, this method moves one whole model at a time to the accelerator when its
@@ -320,14 +376,19 @@ to `enable_sequential_cpu_offload`, this method moves one whole model at a time 
 lower than with `enable_sequential_cpu_offload`, but performance is much better due to the iterative execution
 of the `unet`.
 
+#### enable_sequential_cpu_offload[[diffusers.DiffusionPipeline.enable_sequential_cpu_offload]]
+
+```python
+enable_sequential_cpu_offload(gpu_id: int | None = None, device: typing.Union[torch.device, str] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L1313)
+
 **Parameters:**
 
 gpu_id (`int`, *optional*) : The ID of the accelerator that shall be used in inference. If not specified, it will default to 0.
 
 device (`torch.Device` or `str`, *optional*, defaults to None) : The PyTorch device type of the accelerator that shall be used in inference. If not specified, it will automatically detect the available accelerator and use.
-#### enable_sequential_cpu_offload[[diffusers.DiffusionPipeline.enable_sequential_cpu_offload]]
-
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L1308)
 
 Offloads all models to CPU using 🤗 Accelerate, significantly reducing memory usage. When called, the state
 dicts of all `torch.nn.Module` components (except those in `self._exclude_from_cpu_offload`) are saved to CPU
@@ -335,14 +396,17 @@ and then moved to `torch.device('meta')` and loaded to accelerator only when the
 `forward` method called. Offloading happens on a submodule basis. Memory savings are higher than with
 `enable_model_cpu_offload`, but performance is lower.
 
-**Parameters:**
-
-gpu_id (`int`, *optional*) : The ID of the accelerator that shall be used in inference. If not specified, it will default to 0.
-
-device (`torch.Device` or `str`, *optional*, defaults to None) : The PyTorch device type of the accelerator that shall be used in inference. If not specified, it will automatically detect the available accelerator and use.
 #### enable_xformers_memory_efficient_attention[[diffusers.DiffusionPipeline.enable_xformers_memory_efficient_attention]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L1992)
+```python
+enable_xformers_memory_efficient_attention(attention_op: typing.Optional[typing.Callable] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2021)
+
+**Parameters:**
+
+attention_op (`Callable`, *optional*) : Override the default `None` operator for use as `op` argument to the [`memory_efficient_attention()`](https://facebookresearch.github.io/xformers/components/ops.html#xformers.ops.memory_efficient_attention) function of xFormers.
 
 Enable memory efficient attention from [xFormers](https://facebookresearch.github.io/xformers/). When this
 option is enabled, you should observe lower GPU memory usage and a potential speed up during inference. Speed
@@ -358,19 +422,28 @@ Examples:
 >>> from diffusers import DiffusionPipeline
 >>> from xformers.ops import MemoryEfficientAttentionFlashAttentionOp
 
->>> pipe = DiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-2-1", torch_dtype=torch.float16)
+>>> pipe = DiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-2-1", dtype=torch.float16)
 >>> pipe = pipe.to("cuda")
 >>> pipe.enable_xformers_memory_efficient_attention(attention_op=MemoryEfficientAttentionFlashAttentionOp)
 >>> # Workaround for not accepting attention shape using VAE for Flash Attention
 >>> pipe.vae.enable_xformers_memory_efficient_attention(attention_op=None)
 ```
 
-**Parameters:**
-
-attention_op (`Callable`, *optional*) : Override the default `None` operator for use as `op` argument to the [`memory_efficient_attention()`](https://facebookresearch.github.io/xformers/components/ops.html#xformers.ops.memory_efficient_attention) function of xFormers.
 #### from_pipe[[diffusers.DiffusionPipeline.from_pipe]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L2100)
+```python
+from_pipe(pipeline, **kwargs)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2129)
+
+**Parameters:**
+
+pipeline (`DiffusionPipeline`) : The pipeline from which to create a new pipeline.
+
+**Returns:** `DiffusionPipeline`
+
+A new pipeline with the same weights and configurations as `pipeline`.
 
 Create a new pipeline from a given pipeline. This method is useful to create a new pipeline from the existing
 pipeline components without reallocating additional memory.
@@ -384,59 +457,19 @@ Examples:
 >>> new_pipe = StableDiffusionSAGPipeline.from_pipe(pipe)
 ```
 
-**Parameters:**
-
-pipeline (`DiffusionPipeline`) : The pipeline from which to create a new pipeline.
-
-**Returns:**
-
-``DiffusionPipeline``
-
-A new pipeline with the same weights and configurations as `pipeline`.
 #### from_pretrained[[diffusers.DiffusionPipeline.from_pretrained]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L617)
-
-Instantiate a PyTorch diffusion pipeline from pretrained pipeline weights.
-
-The pipeline is set in evaluation mode (`model.eval()`) by default.
-
-If you get the error message below, you need to finetune the weights for your downstream task:
-
-```
-Some weights of UNet2DConditionModel were not initialized from the model checkpoint at stable-diffusion-v1-5/stable-diffusion-v1-5 and are newly initialized because the shapes did not match:
-- conv_in.weight: found shape torch.Size([320, 4, 3, 3]) in the checkpoint and torch.Size([320, 9, 3, 3]) in the model instantiated
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+```python
+from_pretrained(pretrained_model_name_or_path: str | os.PathLike, **kwargs)
 ```
 
-> [!TIP] > To use private or [gated](https://huggingface.co/docs/hub/models-gated#gated-models) models, log-in
-with `hf > auth login`.
-
-Examples:
-
-```py
->>> from diffusers import DiffusionPipeline
-
->>> # Download pipeline from huggingface.co and cache.
->>> pipeline = DiffusionPipeline.from_pretrained("CompVis/ldm-text2im-large-256")
-
->>> # Download pipeline that requires an authorization token
->>> # For more information on access tokens, please refer to this section
->>> # of the documentation](https://huggingface.co/docs/hub/security-tokens)
->>> pipeline = DiffusionPipeline.from_pretrained("stable-diffusion-v1-5/stable-diffusion-v1-5")
-
->>> # Use a different scheduler
->>> from diffusers import LMSDiscreteScheduler
-
->>> scheduler = LMSDiscreteScheduler.from_config(pipeline.scheduler.config)
->>> pipeline.scheduler = scheduler
-```
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L638)
 
 **Parameters:**
 
-pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *repo id* (for example `CompVis/ldm-text2im-large-256`) of a pretrained pipeline hosted on the Hub. - A path to a *directory* (for example `./my_pipeline_directory/`) containing pipeline weights saved using [save_pretrained()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained). - A path to a *directory* (for example `./my_pipeline_directory/`) containing a dduf file
+pretrained_model_name_or_path (`str` or `os.PathLike`, *optional*) : Can be either:  - A string, the *repo id* (for example `CompVis/ldm-text2im-large-256`) of a pretrained pipeline hosted on the Hub. - A path to a *directory* (for example `./my_pipeline_directory/`) containing pipeline weights saved using [save_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.save_pretrained). - A path to a *directory* (for example `./my_pipeline_directory/`) containing a dduf file
 
-torch_dtype (`torch.dtype` or `dict[str, Union[str, torch.dtype]]`, *optional*) : Override the default `torch.dtype` and load the model with another dtype. To load submodels with different dtype pass a `dict` (for example `{'transformer': torch.bfloat16, 'vae': torch.float16}`). Set the default dtype for unspecified components with `default` (for example `{'transformer': torch.bfloat16, 'default': torch.float16}`). If a component is not specified and no default is set, `torch.float32` is used.
+dtype (`torch.dtype` or `dict[str, Union[str, torch.dtype]]`, *optional*) : Override the default `torch.dtype` and load the model with another dtype. To load submodels with different dtype pass a `dict` (for example `{'transformer': torch.bfloat16, 'vae': torch.float16}`). Set the default dtype for unspecified components with `default` (for example `{'transformer': torch.bfloat16, 'default': torch.float16}`). If a component is not specified and no default is set, `torch.float32` is used.
 
 custom_pipeline (`str`, *optional*) : > [!WARNING] > 🧪 This is an experimental feature and may change in the future.  Can be either:  - A string, the *repo id* (for example `hf-internal-testing/diffusers-dummy-pipeline`) of a custom pipeline hosted on the Hub. The repository must contain a file called pipeline.py that defines the custom pipeline. - A string, the *file name* of a community pipeline hosted on GitHub under [Community](https://github.com/huggingface/diffusers/tree/main/examples/community). Valid file names must match the file name and not the pipeline script (`clip_guided_stable_diffusion` instead of `clip_guided_stable_diffusion.py`). Community pipelines are always loaded from the current main branch of GitHub. - A path to a directory (`./my_pipeline_directory/`) containing a custom pipeline. The directory must contain a file called `pipeline.py` that defines the custom pipeline.  For more information on how to load and create custom pipelines, please have a look at [Loading and Adding Custom Pipelines](https://huggingface.co/docs/diffusers/using-diffusers/custom_pipeline_overview)
 
@@ -474,14 +507,54 @@ use_onnx (`bool`, *optional*, defaults to `None`) : If set to `True`, ONNX weigh
 
 kwargs (remaining dictionary of keyword arguments, *optional*) : Can be used to overwrite load and saveable variables (the pipeline components of the specific pipeline class). The overwritten components are passed directly to the pipelines `__init__` method. See example below for more information.
 
-variant (`str`, *optional*) : Load weights from a specified variant filename such as `"fp16"` or `"ema"`. This is ignored when loading `from_flax`.
+variant (`str`, *optional*) : Load weights from a specified variant filename such as `"fp16"` or `"ema"`.
 
-dduf_file(`str`, *optional*) : Load weights from the specified dduf file.
+dduf_file(`str`, *optional*) : Load weights from the specified dduf file.  This argument is deprecated and will be removed in version 0.41.0. 
 
 disable_mmap ('bool', *optional*, defaults to 'False') : Whether to disable mmap when loading a Safetensors model. This option can perform better when the model is on a network mount or hard drive, which may not handle the seeky-ness of mmap very well.
+
+Instantiate a PyTorch diffusion pipeline from pretrained pipeline weights.
+
+The pipeline is set in evaluation mode (`model.eval()`) by default.
+
+If you get the error message below, you need to finetune the weights for your downstream task:
+
+```
+Some weights of UNet2DConditionModel were not initialized from the model checkpoint at stable-diffusion-v1-5/stable-diffusion-v1-5 and are newly initialized because the shapes did not match:
+- conv_in.weight: found shape torch.Size([320, 4, 3, 3]) in the checkpoint and torch.Size([320, 9, 3, 3]) in the model instantiated
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+```
+
+> [!TIP] > To use private or [gated](https://huggingface.co/docs/hub/models-gated#gated-models) models, log-in
+with `hf > auth login`.
+
+Examples:
+
+```py
+>>> from diffusers import DiffusionPipeline
+
+>>> # Download pipeline from huggingface.co and cache.
+>>> pipeline = DiffusionPipeline.from_pretrained("CompVis/ldm-text2im-large-256")
+
+>>> # Download pipeline that requires an authorization token
+>>> # For more information on access tokens, please refer to this section
+>>> # of the documentation](https://huggingface.co/docs/hub/security-tokens)
+>>> pipeline = DiffusionPipeline.from_pretrained("stable-diffusion-v1-5/stable-diffusion-v1-5")
+
+>>> # Use a different scheduler
+>>> from diffusers import LMSDiscreteScheduler
+
+>>> scheduler = LMSDiscreteScheduler.from_config(pipeline.scheduler.config)
+>>> pipeline.scheduler = scheduler
+```
+
 #### maybe_free_model_hooks[[diffusers.DiffusionPipeline.maybe_free_model_hooks]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L1285)
+```python
+maybe_free_model_hooks()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L1290)
 
 Method that performs the following:
 - Offloads all components.
@@ -492,28 +565,44 @@ Method that performs the following:
 
 Make sure to add this function to the end of the `__call__` function of your pipeline so that it functions
 correctly when applying `enable_model_cpu_offload`.
+
 #### numpy_to_pil[[diffusers.DiffusionPipeline.numpy_to_pil]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L1962)
+```python
+numpy_to_pil(images)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L1991)
 
 Convert a NumPy image or a batch of images to a PIL image.
+
 #### remove_all_hooks[[diffusers.DiffusionPipeline.remove_all_hooks]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L1181)
+```python
+remove_all_hooks()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L1186)
 
 Removes all hooks that were added when using `enable_sequential_cpu_offload` or `enable_model_cpu_offload`.
+
 #### reset_device_map[[diffusers.DiffusionPipeline.reset_device_map]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L1502)
+```python
+reset_device_map()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L1507)
 
 Resets the device maps (if any) to None.
+
 #### save_pretrained[[diffusers.DiffusionPipeline.save_pretrained]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L241)
+```python
+save_pretrained(save_directory: str | os.PathLike, safe_serialization: bool = True, variant: str | None = None, max_shard_size: int | str | None = None, push_to_hub: bool = False, use_flashpack: bool = False, **kwargs)
+```
 
-Save all saveable variables of the pipeline to a directory. A pipeline variable can be saved and loaded if its
-class implements both a save and loading method. The pipeline is easily reloaded using the
-[from_pretrained()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) class method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L254)
 
 **Parameters:**
 
@@ -527,18 +616,19 @@ max_shard_size (`int` or `str`, defaults to `None`) : The maximum size for a che
 
 push_to_hub (`bool`, *optional*, defaults to `False`) : Whether or not to push your model to the Hugging Face model hub after saving it. You can specify the repository you want to push to with `repo_id` (will default to the name of `save_directory` in your namespace). 
 
-kwargs (`Dict[str, Any]`, *optional*) : Additional keyword arguments passed along to the [push_to_hub()](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.utils.PushToHubMixin.push_to_hub) method.
+kwargs (`Dict[str, Any]`, *optional*) : Additional keyword arguments passed along to the [push_to_hub()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.utils.PushToHubMixin.push_to_hub) method.
+
+Save all saveable variables of the pipeline to a directory. A pipeline variable can be saved and loaded if its
+class implements both a save and loading method. The pipeline is easily reloaded using the
+[from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained) class method.
 
 #### diffusers.StableDiffusionMixin.enable_freeu[[diffusers.StableDiffusionMixin.enable_freeu]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L2320)
+```python
+diffusers.StableDiffusionMixin.enable_freeu(s1: float, s2: float, b1: float, b2: float)
+```
 
-Enables the FreeU mechanism as in https://huggingface.co/papers/2309.11497.
-
-The suffixes after the scaling factors represent the stages where they are being applied.
-
-Please refer to the [official repository](https://github.com/ChenyangSi/FreeU) for combinations of the values
-that are known to work well for different pipelines such as Stable Diffusion v1, v2, and Stable Diffusion XL.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2296)
 
 **Parameters:**
 
@@ -550,9 +640,20 @@ b1 (`float`) : Scaling factor for stage 1 to amplify the contributions of backbo
 
 b2 (`float`) : Scaling factor for stage 2 to amplify the contributions of backbone features.
 
+Enables the FreeU mechanism as in https://huggingface.co/papers/2309.11497.
+
+The suffixes after the scaling factors represent the stages where they are being applied.
+
+Please refer to the [official repository](https://github.com/ChenyangSi/FreeU) for combinations of the values
+that are known to work well for different pipelines such as Stable Diffusion v1, v2, and Stable Diffusion XL.
+
 #### diffusers.StableDiffusionMixin.disable_freeu[[diffusers.StableDiffusionMixin.disable_freeu]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L2342)
+```python
+diffusers.StableDiffusionMixin.disable_freeu()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L2318)
 
 Disables the FreeU mechanism if enabled.
 
@@ -560,44 +661,21 @@ Disables the FreeU mechanism if enabled.
 
 #### diffusers.utils.PushToHubMixin[[diffusers.utils.PushToHubMixin]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/utils/hub_utils.py#L483)
+```python
+diffusers.utils.PushToHubMixin()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/hub_utils.py#L484)
 
 A Mixin to push a model, scheduler, or pipeline to the Hugging Face Hub.
 
-push_to_hubdiffusers.utils.PushToHubMixin.push_to_hubhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/utils/hub_utils.py#L518[{"name": "repo_id", "val": ": str"}, {"name": "commit_message", "val": ": str | None = None"}, {"name": "private", "val": ": bool | None = None"}, {"name": "token", "val": ": str | None = None"}, {"name": "create_pr", "val": ": bool = False"}, {"name": "safe_serialization", "val": ": bool = True"}, {"name": "variant", "val": ": str | None = None"}, {"name": "subfolder", "val": ": str | None = None"}]- **repo_id** (`str`) --
-  The name of the repository you want to push your model, scheduler, or pipeline files to. It should
-  contain your organization name when pushing to an organization. `repo_id` can also be a path to a local
-  directory.
-- **commit_message** (`str`, *optional*) --
-  Message to commit while pushing. Default to `"Upload {object}"`.
-- **private** (`bool`, *optional*) --
-  Whether to make the repo private. If `None` (default), the repo will be public unless the
-  organization's default is private. This value is ignored if the repo already exists.
-- **token** (`str`, *optional*) --
-  The token to use as HTTP bearer authorization for remote files. The token generated when running `hf
-  auth login` (stored in `~/.huggingface`).
-- **create_pr** (`bool`, *optional*, defaults to `False`) --
-  Whether or not to create a PR with the uploaded files or directly commit.
-- **safe_serialization** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to convert the model weights to the `safetensors` format.
-- **variant** (`str`, *optional*) --
-  If specified, weights are saved in the format `pytorch_model..bin`.0
-
-Upload model, scheduler, or pipeline files to the 🤗 Hugging Face Hub.
-
-Examples:
+#### push_to_hub[[diffusers.utils.PushToHubMixin.push_to_hub]]
 
 ```python
-from diffusers import UNet2DConditionModel
-
-unet = UNet2DConditionModel.from_pretrained("stabilityai/stable-diffusion-2", subfolder="unet")
-
-# Push the `unet` to your namespace with the name "my-finetuned-unet".
-unet.push_to_hub("my-finetuned-unet")
-
-# Push the `unet` to an organization with the name "my-finetuned-unet".
-unet.push_to_hub("your-org/my-finetuned-unet")
+push_to_hub(repo_id: str, commit_message: str | None = None, private: bool | None = None, token: str | None = None, create_pr: bool = False, safe_serialization: bool = True, variant: str | None = None, subfolder: str | None = None)
 ```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/utils/hub_utils.py#L519)
 
 **Parameters:**
 
@@ -615,11 +693,31 @@ safe_serialization (`bool`, *optional*, defaults to `True`) : Whether or not to 
 
 variant (`str`, *optional*) : If specified, weights are saved in the format `pytorch_model.<variant>.bin`.
 
+Upload model, scheduler, or pipeline files to the 🤗 Hugging Face Hub.
+
+Examples:
+
+```python
+from diffusers import UNet2DConditionModel
+
+unet = UNet2DConditionModel.from_pretrained("stabilityai/stable-diffusion-2", subfolder="unet")
+
+# Push the `unet` to your namespace with the name "my-finetuned-unet".
+unet.push_to_hub("my-finetuned-unet")
+
+# Push the `unet` to an organization with the name "my-finetuned-unet".
+unet.push_to_hub("your-org/my-finetuned-unet")
+```
+
 ## Callbacks[[diffusers.callbacks.PipelineCallback]]
 
 #### diffusers.callbacks.PipelineCallback[[diffusers.callbacks.PipelineCallback]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/callbacks.py#L7)
+```python
+diffusers.callbacks.PipelineCallback(cutoff_step_ratio = 1.0, cutoff_step_index = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/callbacks.py#L7)
 
 Base class for all the official callbacks used in a pipeline. This class provides a structure for implementing
 custom callbacks and ensures that all callbacks have a consistent interface.
@@ -632,7 +730,11 @@ variables listed in the `._callback_tensor_inputs` attribute of your pipeline cl
 
 #### diffusers.callbacks.SDCFGCutoffCallback[[diffusers.callbacks.SDCFGCutoffCallback]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/callbacks.py#L69)
+```python
+diffusers.callbacks.SDCFGCutoffCallback(cutoff_step_ratio = 1.0, cutoff_step_index = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/callbacks.py#L69)
 
 Callback function for Stable Diffusion Pipelines. After certain number of steps (set by `cutoff_step_ratio` or
 `cutoff_step_index`), this callback will disable the CFG.
@@ -641,7 +743,11 @@ Note: This callback mutates the pipeline by changing the `_guidance_scale` attri
 
 #### diffusers.callbacks.SDXLCFGCutoffCallback[[diffusers.callbacks.SDXLCFGCutoffCallback]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/callbacks.py#L98)
+```python
+diffusers.callbacks.SDXLCFGCutoffCallback(cutoff_step_ratio = 1.0, cutoff_step_index = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/callbacks.py#L98)
 
 Callback function for the base Stable Diffusion XL Pipelines. After certain number of steps (set by
 `cutoff_step_ratio` or `cutoff_step_index`), this callback will disable the CFG.
@@ -650,7 +756,11 @@ Note: This callback mutates the pipeline by changing the `_guidance_scale` attri
 
 #### diffusers.callbacks.SDXLControlnetCFGCutoffCallback[[diffusers.callbacks.SDXLControlnetCFGCutoffCallback]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/callbacks.py#L140)
+```python
+diffusers.callbacks.SDXLControlnetCFGCutoffCallback(cutoff_step_ratio = 1.0, cutoff_step_index = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/callbacks.py#L140)
 
 Callback function for the Controlnet Stable Diffusion XL Pipelines. After certain number of steps (set by
 `cutoff_step_ratio` or `cutoff_step_index`), this callback will disable the CFG.
@@ -659,7 +769,11 @@ Note: This callback mutates the pipeline by changing the `_guidance_scale` attri
 
 #### diffusers.callbacks.IPAdapterScaleCutoffCallback[[diffusers.callbacks.IPAdapterScaleCutoffCallback]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/callbacks.py#L188)
+```python
+diffusers.callbacks.IPAdapterScaleCutoffCallback(cutoff_step_ratio = 1.0, cutoff_step_index = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/callbacks.py#L188)
 
 Callback function for any pipeline that inherits `IPAdapterMixin`. After certain number of steps (set by
 `cutoff_step_ratio` or `cutoff_step_index`), this callback will set the IP Adapter scale to `0.0`.
@@ -668,12 +782,16 @@ Note: This callback mutates the IP Adapter attention processors by setting the s
 
 #### diffusers.callbacks.SD3CFGCutoffCallback[[diffusers.callbacks.SD3CFGCutoffCallback]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/callbacks.py#L212)
+```python
+diffusers.callbacks.SD3CFGCutoffCallback(cutoff_step_ratio = 1.0, cutoff_step_index = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/callbacks.py#L212)
 
 Callback function for Stable Diffusion 3 Pipelines. After certain number of steps (set by `cutoff_step_ratio` or
 `cutoff_step_index`), this callback will disable the CFG.
 
 Note: This callback mutates the pipeline by changing the `_guidance_scale` attribute to 0.0 after the cutoff step.
 
-### Stable Diffusion 2
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/stable_diffusion/stable_diffusion_2.md
+### FluxControlInpaint
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/control_flux_inpaint.md

@@ -7,7 +7,7 @@ A ControlNet is conditioned on extra visual information or "structural controls"
 > [!TIP]
 > ControlNets are available to many models such as [Flux](../api/pipelines/controlnet_flux), [Hunyuan-DiT](../api/pipelines/controlnet_hunyuandit), [Stable Diffusion 3](../api/pipelines/controlnet_sd3), and more. The examples in this guide use Flux and Stable Diffusion XL.
 
-Load a ControlNet conditioned on a specific control, such as canny edge, and pass it to the pipeline in [from_pretrained()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
+Load a ControlNet conditioned on a specific control, such as canny edge, and pass it to the pipeline in [from_pretrained()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.from_pretrained).
 
 Generate a canny image with [opencv-python](https://github.com/opencv/opencv-python).
 
@@ -40,10 +40,10 @@ from diffusers.utils import load_image
 from diffusers import FluxControlNetPipeline, FluxControlNetModel
 
 controlnet = FluxControlNetModel.from_pretrained(
-    "InstantX/FLUX.1-dev-Controlnet-Canny", torch_dtype=torch.bfloat16
+    "InstantX/FLUX.1-dev-Controlnet-Canny", dtype=torch.bfloat16
 )
 pipeline = FluxControlNetPipeline.from_pretrained(
-    "black-forest-labs/FLUX.1-dev", controlnet=controlnet, torch_dtype=torch.bfloat16
+    "black-forest-labs/FLUX.1-dev", controlnet=controlnet, dtype=torch.bfloat16
 ).to("cuda")
 
 prompt = """
@@ -113,14 +113,14 @@ Pass the depth map to the pipeline. Use the `controlnet_conditioning_scale` para
 ```py
 controlnet = ControlNetModel.from_pretrained(
     "diffusers/controlnet-depth-sdxl-1.0-small",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 )
-vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16)
+vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", dtype=torch.float16)
 pipeline = StableDiffusionXLControlNetImg2ImgPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     controlnet=controlnet,
     vae=vae,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
 ).to("cuda")
 
 prompt = """
@@ -188,10 +188,10 @@ Pass the mask and control image to the pipeline. Use the `controlnet_conditionin
 
 ```py
 controlnet = ControlNetModel.from_pretrained(
-    "diffusers/controlnet-canny-sdxl-1.0", torch_dtype=torch.float16
+    "diffusers/controlnet-canny-sdxl-1.0", dtype=torch.float16
 )
 pipeline = StableDiffusionXLControlNetInpaintPipeline.from_pretrained(
-    "stabilityai/stable-diffusion-xl-base-1.0", controlnet=controlnet, torch_dtype=torch.float16
+    "stabilityai/stable-diffusion-xl-base-1.0", controlnet=controlnet, dtype=torch.float16
 )
 pipeline(
     "a cute and fluffy bunny rabbit",
@@ -231,16 +231,16 @@ from diffusers import StableDiffusionXLControlNetPipeline, ControlNetModel, Auto
 
 controlnets = [
     ControlNetModel.from_pretrained(
-        "diffusers/controlnet-depth-sdxl-1.0-small", torch_dtype=torch.float16
+        "diffusers/controlnet-depth-sdxl-1.0-small", dtype=torch.float16
     ),
     ControlNetModel.from_pretrained(
-        "diffusers/controlnet-canny-sdxl-1.0", torch_dtype=torch.float16,
+        "diffusers/controlnet-canny-sdxl-1.0", dtype=torch.float16,
     ),
 ]
 
-vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16)
+vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", dtype=torch.float16)
 pipeline = StableDiffusionXLControlNetPipeline.from_pretrained(
-    "stabilityai/stable-diffusion-xl-base-1.0", controlnet=controlnets, vae=vae, torch_dtype=torch.float16
+    "stabilityai/stable-diffusion-xl-base-1.0", controlnet=controlnets, vae=vae, dtype=torch.float16
 ).to("cuda")
 
 prompt = """
@@ -284,12 +284,12 @@ from diffusers.utils import load_iamge
 from diffusers import StableDiffusionXLControlNetPipeline, ControlNetModel
 
 controlnet = ControlNetModel.from_pretrained(
-  "diffusers/controlnet-canny-sdxl-1.0", torch_dtype=torch.float16
+  "diffusers/controlnet-canny-sdxl-1.0", dtype=torch.float16
 )
 pipeline = StableDiffusionXLControlNetPipeline.from_pretrained(
   "stabilityai/stable-diffusion-xl-base-1.0",
   controlnet=controlnet,
-  torch_dtype=torch.float16
+  dtype=torch.float16
 ).to("cuda")
 
 canny_image = load_image("https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/canny-cat.png")
@@ -308,5 +308,5 @@ pipeline(
     
     generated image
 
-### FreeU
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/image_quality.md
+### Pipeline callbacks
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/callback.md

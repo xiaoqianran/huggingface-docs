@@ -11,41 +11,18 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import SanaTransformer2DModel
 
-transformer = SanaTransformer2DModel.from_pretrained("Efficient-Large-Model/Sana_1600M_1024px_BF16_diffusers", subfolder="transformer", torch_dtype=torch.bfloat16)
+transformer = SanaTransformer2DModel.from_pretrained("Efficient-Large-Model/Sana_1600M_1024px_BF16_diffusers", subfolder="transformer", dtype=torch.bfloat16)
 ```
 
 ## SanaTransformer2DModel[[diffusers.SanaTransformer2DModel]]
 
 #### diffusers.SanaTransformer2DModel[[diffusers.SanaTransformer2DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/sana_transformer.py#L292)
+```python
+diffusers.SanaTransformer2DModel(in_channels: int = 32, out_channels: int | None = 32, num_attention_heads: int = 70, attention_head_dim: int = 32, num_layers: int = 20, num_cross_attention_heads: int | None = 20, cross_attention_head_dim: int | None = 112, cross_attention_dim: int | None = 2240, caption_channels: int = 2304, mlp_ratio: float = 2.5, dropout: float = 0.0, attention_bias: bool = False, sample_size: int = 32, patch_size: int = 1, norm_elementwise_affine: bool = False, norm_eps: float = 1e-06, interpolation_scale: int | None = None, guidance_embeds: bool = False, guidance_embeds_scale: float = 0.1, qk_norm: str | None = None, timestep_scale: float = 1.0)
+```
 
-A 2D Transformer model introduced in [Sana](https://huggingface.co/papers/2410.10629) family of models.
-
-forwarddiffusers.SanaTransformer2DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/sana_transformer.py#L417[{"name": "hidden_states", "val": ": Tensor"}, {"name": "encoder_hidden_states", "val": ": Tensor"}, {"name": "timestep", "val": ": Tensor"}, {"name": "guidance", "val": ": torch.Tensor | None = None"}, {"name": "encoder_attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "controlnet_block_samples", "val": ": tuple[torch.Tensor] | None = None"}, {"name": "return_dict", "val": ": bool = True"}]- **hidden_states** (`torch.Tensor` of shape `(batch_size, in_channels, height, width)`) --
-  Input `hidden_states`.
-- **encoder_hidden_states** (`torch.Tensor` of shape `(batch_size, sequence_len, embed_dims)`) --
-  Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
-- **timestep** (`torch.LongTensor`) --
-  Used to indicate denoising step.
-- **guidance** (`torch.Tensor`, *optional*) --
-  Guidance scale embedding.
-- **encoder_attention_mask** (`torch.Tensor`, *optional*) --
-  Cross-attention mask applied to `encoder_hidden_states`.
-- **attention_mask** (`torch.Tensor`, *optional*) --
-  Self-attention mask applied to `hidden_states`.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **controlnet_block_samples** (`tuple` of `torch.Tensor`, *optional*) --
-  A list of tensors that if specified are added to the residuals of transformer blocks.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain
-  tuple.0If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
-`tuple` where the first element is the sample tensor.
-
-The [SanaTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/sana_transformer2d#diffusers.SanaTransformer2DModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/sana_transformer.py#L292)
 
 **Parameters:**
 
@@ -85,22 +62,58 @@ qk_norm (`str`, *optional*, defaults to `None`) : The normalization to use for t
 
 timestep_scale (`float`, defaults to `1.0`) : The scale to use for the timesteps.
 
+A 2D Transformer model introduced in [Sana](https://huggingface.co/papers/2410.10629) family of models.
+
+#### forward[[diffusers.SanaTransformer2DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: Tensor, guidance: typing.Optional[torch.Tensor] = None, encoder_attention_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, attention_kwargs: dict[str, typing.Any] | None = None, controlnet_block_samples: tuple[torch.Tensor] | None = None, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/sana_transformer.py#L417)
+
+**Parameters:**
+
+hidden_states (`torch.Tensor` of shape `(batch_size, in_channels, height, width)`) : Input `hidden_states`.
+
+encoder_hidden_states (`torch.Tensor` of shape `(batch_size, sequence_len, embed_dims)`) : Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
+
+timestep (`torch.LongTensor`) : Used to indicate denoising step.
+
+guidance (`torch.Tensor`, *optional*) : Guidance scale embedding.
+
+encoder_attention_mask (`torch.Tensor`, *optional*) : Cross-attention mask applied to `encoder_hidden_states`.
+
+attention_mask (`torch.Tensor`, *optional*) : Self-attention mask applied to `hidden_states`.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+controlnet_block_samples (`tuple` of `torch.Tensor`, *optional*) : A list of tensors that if specified are added to the residuals of transformer blocks.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain tuple.
+
 **Returns:**
 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
+The [SanaTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/sana_transformer2d#diffusers.SanaTransformer2DModel) forward method.
+
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
 #### diffusers.models.modeling_outputs.Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/modeling_outputs.py#L21)
+```python
+diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
+```
 
-The output of [Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-### AnyFlowFARTransformer3DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/anyflow_far_transformer3d.md
+The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+
+### JoyImageEditTransformer3DModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/transformer_joyimage.md

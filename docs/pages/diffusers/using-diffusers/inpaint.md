@@ -4,7 +4,7 @@ Inpainting replaces or edits specific areas of an image. This makes it a useful 
 
 With 🤗 Diffusers, here is how you can do inpainting:
 
-1. Load an inpainting checkpoint with the [AutoPipelineForInpainting](/docs/diffusers/v0.39.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting) class. This'll automatically detect the appropriate pipeline class to load based on the checkpoint:
+1. Load an inpainting checkpoint with the [AutoPipelineForInpainting](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting) class. This'll automatically detect the appropriate pipeline class to load based on the checkpoint:
 
 ```py
 import torch
@@ -12,7 +12,7 @@ from diffusers import AutoPipelineForInpainting
 from diffusers.utils import load_image, make_image_grid
 
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "kandinsky-community/kandinsky-2-2-decoder-inpaint", torch_dtype=torch.float16
+    "kandinsky-community/kandinsky-2-2-decoder-inpaint", dtype=torch.float16
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -20,7 +20,7 @@ pipeline.enable_xformers_memory_efficient_attention()
 ```
 
 > [!TIP]
-> You'll notice throughout the guide, we use [enable_model_cpu_offload()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) and [enable_xformers_memory_efficient_attention()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_xformers_memory_efficient_attention), to save memory and increase inference speed. If you're using PyTorch 2.0, it's not necessary to call [enable_xformers_memory_efficient_attention()](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_xformers_memory_efficient_attention) on your pipeline because it'll already be using PyTorch 2.0's native [scaled-dot product attention](../optimization/fp16#scaled-dot-product-attention).
+> You'll notice throughout the guide, we use [enable_model_cpu_offload()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_model_cpu_offload) and [enable_xformers_memory_efficient_attention()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_xformers_memory_efficient_attention), to save memory and increase inference speed. If you're using PyTorch 2.0, it's not necessary to call [enable_xformers_memory_efficient_attention()](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline.enable_xformers_memory_efficient_attention) on your pipeline because it'll already be using PyTorch 2.0's native [scaled-dot product attention](../optimization/fp16#scaled-dot-product-attention).
 
 2. Load the base and mask images:
 
@@ -66,7 +66,7 @@ Upload a base image to inpaint on and use the sketch tool to draw a mask. Once y
 
 ### Mask blur
 
-The [blur()](/docs/diffusers/v0.39.0/en/api/image_processor#diffusers.VaeImageProcessor.blur) method provides an option for how to blend the original image and inpaint area. The amount of blur is determined by the `blur_factor` parameter. Increasing the `blur_factor` increases the amount of blur applied to the mask edges, softening the transition between the original image and inpaint area. A low or zero `blur_factor` preserves the sharper edges of the mask.
+The [blur()](/docs/diffusers/v0.40.0/en/api/image_processor#diffusers.VaeImageProcessor.blur) method provides an option for how to blend the original image and inpaint area. The amount of blur is determined by the `blur_factor` parameter. Increasing the `blur_factor` increases the amount of blur applied to the mask edges, softening the transition between the original image and inpaint area. A low or zero `blur_factor` preserves the sharper edges of the mask.
 
 To use this, create a blurred mask with the image processor.
 
@@ -76,7 +76,7 @@ from diffusers import AutoPipelineForInpainting
 from diffusers.utils import load_image
 from PIL import Image
 
-pipeline = AutoPipelineForInpainting.from_pretrained("stable-diffusion-v1-5/stable-diffusion-v1-5", torch_dtype=torch.float16).to('cuda')
+pipeline = AutoPipelineForInpainting.from_pretrained("stable-diffusion-v1-5/stable-diffusion-v1-5", dtype=torch.float16).to('cuda')
 
 mask = load_image("https://huggingface.co/datasets/YiYiXu/testing-images/resolve/main/seashore_mask.png")
 blurred_mask = pipeline.mask_processor.blur(mask, blur_factor=33)
@@ -106,7 +106,7 @@ from diffusers import AutoPipelineForInpainting
 from diffusers.utils import load_image, make_image_grid
 
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-inpainting", torch_dtype=torch.float16, variant="fp16"
+    "stable-diffusion-v1-5/stable-diffusion-inpainting", dtype=torch.float16, variant="fp16"
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -132,7 +132,7 @@ from diffusers import AutoPipelineForInpainting
 from diffusers.utils import load_image, make_image_grid
 
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "diffusers/stable-diffusion-xl-1.0-inpainting-0.1", torch_dtype=torch.float16, variant="fp16"
+    "diffusers/stable-diffusion-xl-1.0-inpainting-0.1", dtype=torch.float16, variant="fp16"
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -150,7 +150,7 @@ make_image_grid([init_image, mask_image, image], rows=1, cols=3)
 
 ### Kandinsky 2.2 Inpainting
 
-The Kandinsky model family is similar to SDXL because it uses two models as well; the image prior model creates image embeddings, and the diffusion model generates images from them. You can load the image prior and diffusion model separately, but the easiest way to use Kandinsky 2.2 is to load it into the [AutoPipelineForInpainting](/docs/diffusers/v0.39.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting) class which uses the [KandinskyV22InpaintCombinedPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22InpaintCombinedPipeline) under the hood.
+The Kandinsky model family is similar to SDXL because it uses two models as well; the image prior model creates image embeddings, and the diffusion model generates images from them. You can load the image prior and diffusion model separately, but the easiest way to use Kandinsky 2.2 is to load it into the [AutoPipelineForInpainting](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting) class which uses the [KandinskyV22InpaintCombinedPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/kandinsky_v22#diffusers.KandinskyV22InpaintCombinedPipeline) under the hood.
 
 ```py
 import torch
@@ -158,7 +158,7 @@ from diffusers import AutoPipelineForInpainting
 from diffusers.utils import load_image, make_image_grid
 
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "kandinsky-community/kandinsky-2-2-decoder-inpaint", torch_dtype=torch.float16
+    "kandinsky-community/kandinsky-2-2-decoder-inpaint", dtype=torch.float16
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -203,7 +203,7 @@ from diffusers import AutoPipelineForInpainting
 from diffusers.utils import load_image, make_image_grid
 
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16"
+    "stable-diffusion-v1-5/stable-diffusion-v1-5", dtype=torch.float16, variant="fp16"
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -225,7 +225,7 @@ from diffusers import AutoPipelineForInpainting
 from diffusers.utils import load_image, make_image_grid
 
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-inpainting", torch_dtype=torch.float16, variant="fp16"
+    "stable-diffusion-v1-5/stable-diffusion-inpainting", dtype=torch.float16, variant="fp16"
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -258,7 +258,7 @@ from diffusers import AutoPipelineForInpainting
 from diffusers.utils import load_image, make_image_grid
 
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16"
+    "stable-diffusion-v1-5/stable-diffusion-v1-5", dtype=torch.float16, variant="fp16"
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -278,7 +278,7 @@ from diffusers import AutoPipelineForInpainting
 from diffusers.utils import load_image, make_image_grid
 
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-inpainting", torch_dtype=torch.float16, variant="fp16"
+    "stable-diffusion-v1-5/stable-diffusion-inpainting", dtype=torch.float16, variant="fp16"
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -303,7 +303,7 @@ make_image_grid([init_image, image], rows=1, cols=2)
 
 The trade-off of using a non-inpaint specific checkpoint is the overall image quality may be lower, but it generally tends to preserve the mask area (that is why you can see the mask outline). The inpaint specific checkpoints are intentionally trained to generate higher quality inpainted images, and that includes creating a more natural transition between the masked and unmasked areas. As a result, these checkpoints are more likely to change your unmasked area.
 
-If preserving the unmasked area is important for your task, you can use the [VaeImageProcessor.apply_overlay()](/docs/diffusers/v0.39.0/en/api/image_processor#diffusers.VaeImageProcessor.apply_overlay) method to force the unmasked area of an image to remain the same at the expense of some more unnatural transitions between the masked and unmasked areas.
+If preserving the unmasked area is important for your task, you can use the [VaeImageProcessor.apply_overlay()](/docs/diffusers/v0.40.0/en/api/image_processor#diffusers.VaeImageProcessor.apply_overlay) method to force the unmasked area of an image to remain the same at the expense of some more unnatural transitions between the masked and unmasked areas.
 
 ```py
 import PIL
@@ -316,7 +316,7 @@ from diffusers.utils import load_image, make_image_grid
 device = "cuda"
 pipeline = AutoPipelineForInpainting.from_pretrained(
     "stable-diffusion-v1-5/stable-diffusion-inpainting",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     variant="fp16"
 )
 pipeline = pipeline.to(device)
@@ -353,7 +353,7 @@ from diffusers import AutoPipelineForInpainting
 from diffusers.utils import load_image, make_image_grid
 
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-inpainting", torch_dtype=torch.float16, variant="fp16"
+    "stable-diffusion-v1-5/stable-diffusion-inpainting", dtype=torch.float16, variant="fp16"
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -396,7 +396,7 @@ from diffusers import AutoPipelineForInpainting
 from diffusers.utils import load_image, make_image_grid
 
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-inpainting", torch_dtype=torch.float16, variant="fp16"
+    "stable-diffusion-v1-5/stable-diffusion-inpainting", dtype=torch.float16, variant="fp16"
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -434,7 +434,7 @@ from diffusers import AutoPipelineForInpainting
 from diffusers.utils import load_image, make_image_grid
 
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-inpainting", torch_dtype=torch.float16, variant="fp16"
+    "stable-diffusion-v1-5/stable-diffusion-inpainting", dtype=torch.float16, variant="fp16"
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -457,7 +457,7 @@ make_image_grid([init_image, mask_image, image], rows=1, cols=3)
 
 ### Padding mask crop
 
-A method for increasing the inpainting image quality is to use the [`padding_mask_crop`](https://huggingface.co/docs/diffusers/v0.25.0/en/api/pipelines/stable_diffusion/inpaint#diffusers.StableDiffusionInpaintPipeline.__call__.padding_mask_crop) parameter. When enabled, this option crops the masked area with some user-specified padding and it'll also crop the same area from the original image. Both the image and mask are upscaled to a higher resolution for inpainting, and then overlaid on the original image. This is a quick and easy way to improve image quality without using a separate pipeline like [StableDiffusionUpscalePipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/upscale#diffusers.StableDiffusionUpscalePipeline).
+A method for increasing the inpainting image quality is to use the [`padding_mask_crop`](https://huggingface.co/docs/diffusers/v0.25.0/en/api/pipelines/stable_diffusion/inpaint#diffusers.StableDiffusionInpaintPipeline.__call__.padding_mask_crop) parameter. When enabled, this option crops the masked area with some user-specified padding and it'll also crop the same area from the original image. Both the image and mask are upscaled to a higher resolution for inpainting, and then overlaid on the original image. This is a quick and easy way to improve image quality without using a separate pipeline like [StableDiffusionUpscalePipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/upscale#diffusers.StableDiffusionUpscalePipeline).
 
 Add the `padding_mask_crop` parameter to the pipeline call and set it to the desired padding value.
 
@@ -468,7 +468,7 @@ from diffusers.utils import load_image
 from PIL import Image
 
 generator = torch.Generator(device='cuda').manual_seed(0)
-pipeline = AutoPipelineForInpainting.from_pretrained("stable-diffusion-v1-5/stable-diffusion-v1-5", torch_dtype=torch.float16).to('cuda')
+pipeline = AutoPipelineForInpainting.from_pretrained("stable-diffusion-v1-5/stable-diffusion-v1-5", dtype=torch.float16).to('cuda')
 
 base = load_image("https://huggingface.co/datasets/YiYiXu/testing-images/resolve/main/seashore.png")
 mask = load_image("https://huggingface.co/datasets/YiYiXu/testing-images/resolve/main/seashore_mask.png")
@@ -488,7 +488,7 @@ image
 
 ## Chained inpainting pipelines
 
-[AutoPipelineForInpainting](/docs/diffusers/v0.39.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting) can be chained with other 🤗 Diffusers pipelines to edit their outputs. This is often useful for improving the output quality from your other diffusion pipelines, and if you're using multiple pipelines, it can be more memory-efficient to chain them together to keep the outputs in latent space and reuse the same pipeline components.
+[AutoPipelineForInpainting](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting) can be chained with other 🤗 Diffusers pipelines to edit their outputs. This is often useful for improving the output quality from your other diffusion pipelines, and if you're using multiple pipelines, it can be more memory-efficient to chain them together to keep the outputs in latent space and reuse the same pipeline components.
 
 ### Text-to-image-to-inpaint
 
@@ -502,7 +502,7 @@ from diffusers import AutoPipelineForText2Image, AutoPipelineForInpainting
 from diffusers.utils import load_image, make_image_grid
 
 pipeline = AutoPipelineForText2Image.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16", use_safetensors=True
+    "stable-diffusion-v1-5/stable-diffusion-v1-5", dtype=torch.float16, variant="fp16", use_safetensors=True
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -521,7 +521,7 @@ And let's inpaint the masked area with a waterfall:
 
 ```py
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "kandinsky-community/kandinsky-2-2-decoder-inpaint", torch_dtype=torch.float16
+    "kandinsky-community/kandinsky-2-2-decoder-inpaint", dtype=torch.float16
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -553,7 +553,7 @@ from diffusers import AutoPipelineForInpainting, AutoPipelineForImage2Image
 from diffusers.utils import load_image, make_image_grid
 
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-inpainting", torch_dtype=torch.float16, variant="fp16"
+    "stable-diffusion-v1-5/stable-diffusion-inpainting", dtype=torch.float16, variant="fp16"
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -574,7 +574,7 @@ Now let's pass the image to another inpainting pipeline with SDXL's refiner mode
 
 ```py
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "stabilityai/stable-diffusion-xl-refiner-1.0", torch_dtype=torch.float16, variant="fp16"
+    "stabilityai/stable-diffusion-xl-refiner-1.0", dtype=torch.float16, variant="fp16"
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -584,9 +584,9 @@ image = pipeline(prompt=prompt, image=image_inpainting, mask_image=mask_image, o
 ```
 
 > [!TIP]
-> It is important to specify `output_type="latent"` in the pipeline to keep all the outputs in latent space to avoid an unnecessary decode-encode step. This only works if the chained pipelines are using the same VAE. For example, in the [Text-to-image-to-inpaint](#text-to-image-to-inpaint) section, Kandinsky 2.2 uses a different VAE class than the Stable Diffusion model so it won't work. But if you use Stable Diffusion v1.5 for both pipelines, then you can keep everything in latent space because they both use [AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL).
+> It is important to specify `output_type="latent"` in the pipeline to keep all the outputs in latent space to avoid an unnecessary decode-encode step. This only works if the chained pipelines are using the same VAE. For example, in the [Text-to-image-to-inpaint](#text-to-image-to-inpaint) section, Kandinsky 2.2 uses a different VAE class than the Stable Diffusion model so it won't work. But if you use Stable Diffusion v1.5 for both pipelines, then you can keep everything in latent space because they both use [AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL).
 
-Finally, you can pass this image to an image-to-image pipeline to put the finishing touches on it. It is more efficient to use the [from_pipe()](/docs/diffusers/v0.39.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image.from_pipe) method to reuse the existing pipeline components, and avoid unnecessarily loading all the pipeline components into memory again.
+Finally, you can pass this image to an image-to-image pipeline to put the finishing touches on it. It is more efficient to use the [from_pipe()](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForImage2Image.from_pipe) method to reuse the existing pipeline components, and avoid unnecessarily loading all the pipeline components into memory again.
 
 ```py
 pipeline = AutoPipelineForImage2Image.from_pipe(pipeline)
@@ -620,7 +620,7 @@ Getting an image to look exactly the way you want is challenging because the den
 
 Prompt weighting provides a quantifiable way to scale the representation of concepts in a prompt. You can use it to increase or decrease the magnitude of the text embedding vector for each concept in the prompt, which subsequently determines how much of each concept is generated. The [Compel](https://github.com/damian0815/compel) library offers an intuitive syntax for scaling the prompt weights and generating the embeddings. Learn how to create the embeddings in the [Prompt weighting](../using-diffusers/weighted_prompts) guide.
 
-Once you've generated the embeddings, pass them to the `prompt_embeds` (and `negative_prompt_embeds` if you're using a negative prompt) parameter in the [AutoPipelineForInpainting](/docs/diffusers/v0.39.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting). The embeddings replace the `prompt` parameter:
+Once you've generated the embeddings, pass them to the `prompt_embeds` (and `negative_prompt_embeds` if you're using a negative prompt) parameter in the [AutoPipelineForInpainting](/docs/diffusers/v0.40.0/en/api/pipelines/auto_pipeline#diffusers.AutoPipelineForInpainting). The embeddings replace the `prompt` parameter:
 
 ```py
 import torch
@@ -628,7 +628,7 @@ from diffusers import AutoPipelineForInpainting
 from diffusers.utils import make_image_grid
 
 pipeline = AutoPipelineForInpainting.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-inpainting", torch_dtype=torch.float16,
+    "stable-diffusion-v1-5/stable-diffusion-inpainting", dtype=torch.float16,
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -655,11 +655,11 @@ from diffusers import ControlNetModel, StableDiffusionControlNetInpaintPipeline
 from diffusers.utils import load_image, make_image_grid
 
 # load ControlNet
-controlnet = ControlNetModel.from_pretrained("lllyasviel/control_v11p_sd15_inpaint", torch_dtype=torch.float16, variant="fp16")
+controlnet = ControlNetModel.from_pretrained("lllyasviel/control_v11p_sd15_inpaint", dtype=torch.float16, variant="fp16")
 
 # pass ControlNet to the pipeline
 pipeline = StableDiffusionControlNetInpaintPipeline.from_pretrained(
-    "stable-diffusion-v1-5/stable-diffusion-inpainting", controlnet=controlnet, torch_dtype=torch.float16, variant="fp16"
+    "stable-diffusion-v1-5/stable-diffusion-inpainting", controlnet=controlnet, dtype=torch.float16, variant="fp16"
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -697,7 +697,7 @@ You can take this a step further and chain it with an image-to-image pipeline to
 from diffusers import AutoPipelineForImage2Image
 
 pipeline = AutoPipelineForImage2Image.from_pretrained(
-    "nitrosocke/elden-ring-diffusion", torch_dtype=torch.float16,
+    "nitrosocke/elden-ring-diffusion", dtype=torch.float16,
 )
 pipeline.enable_model_cpu_offload()
 # remove following line if xFormers is not installed or you have PyTorch 2.0 or higher installed
@@ -742,5 +742,5 @@ pipeline.unet = torch.compile(pipeline.unet, mode="reduce-overhead", fullgraph=T
 
 Learn more in the [Reduce memory usage](../optimization/memory) and [Accelerate inference](../optimization/fp16) guides.
 
-### Model formats
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/other-formats.md
+### Guiders
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/guiders.md

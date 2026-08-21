@@ -27,7 +27,7 @@ from diffusers import StableVideoDiffusionPipeline
 from diffusers.utils import load_image, export_to_video
 
 pipe = StableVideoDiffusionPipeline.from_pretrained(
-    "stabilityai/stable-video-diffusion-img2vid-xt", torch_dtype=torch.float16, variant="fp16"
+    "stabilityai/stable-video-diffusion-img2vid-xt", dtype=torch.float16, variant="fp16"
 )
 pipe.enable_model_cpu_offload()
 
@@ -95,7 +95,7 @@ from diffusers import StableVideoDiffusionPipeline
 from diffusers.utils import load_image, export_to_video
 
 pipe = StableVideoDiffusionPipeline.from_pretrained(
-  "stabilityai/stable-video-diffusion-img2vid-xt", torch_dtype=torch.float16, variant="fp16"
+  "stabilityai/stable-video-diffusion-img2vid-xt", dtype=torch.float16, variant="fp16"
 )
 pipe.enable_model_cpu_offload()
 
@@ -114,36 +114,44 @@ export_to_video(frames, "generated.mp4", fps=7)
 
 #### diffusers.StableVideoDiffusionPipeline[[diffusers.StableVideoDiffusionPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/stable_video_diffusion/pipeline_stable_video_diffusion.py#L147)
+```python
+diffusers.StableVideoDiffusionPipeline(vae: AutoencoderKLTemporalDecoder, image_encoder: CLIPVisionModelWithProjection, unet: UNetSpatioTemporalConditionModel, scheduler: EulerDiscreteScheduler, feature_extractor: CLIPImageProcessorPil)
+```
 
-Pipeline to generate video from an input image using Stable Video Diffusion.
-
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
-implemented for all pipelines (downloading, saving, running on a particular device, etc.).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_video_diffusion/pipeline_stable_video_diffusion.py#L147)
 
 **Parameters:**
 
 vae (`AutoencoderKLTemporalDecoder`) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
 
-image_encoder ([CLIPVisionModelWithProjection](https://huggingface.co/docs/transformers/v5.12.1/en/model_doc/clip#transformers.CLIPVisionModelWithProjection)) : Frozen CLIP image-encoder ([laion/CLIP-ViT-H-14-laion2B-s32B-b79K](https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K)).
+image_encoder ([CLIPVisionModelWithProjection](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPVisionModelWithProjection)) : Frozen CLIP image-encoder ([laion/CLIP-ViT-H-14-laion2B-s32B-b79K](https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K)).
 
 unet (`UNetSpatioTemporalConditionModel`) : A `UNetSpatioTemporalConditionModel` to denoise the encoded image latents.
 
-scheduler ([EulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents.
+scheduler ([EulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler)) : A scheduler to be used in combination with `unet` to denoise the encoded image latents.
 
-feature_extractor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.12.1/en/model_doc/clip#transformers.CLIPImageProcessor)) : A `CLIPImageProcessor` to extract features from generated images.
+feature_extractor ([CLIPImageProcessor](https://huggingface.co/docs/transformers/v5.15.1/en/model_doc/clip#transformers.CLIPImageProcessor)) : A `CLIPImageProcessor` to extract features from generated images.
+
+Pipeline to generate video from an input image using Stable Video Diffusion.
+
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 ## StableVideoDiffusionPipelineOutput[[diffusers.pipelines.stable_video_diffusion.StableVideoDiffusionPipelineOutput]]
 
 #### diffusers.pipelines.stable_video_diffusion.StableVideoDiffusionPipelineOutput[[diffusers.pipelines.stable_video_diffusion.StableVideoDiffusionPipelineOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/stable_video_diffusion/pipeline_stable_video_diffusion.py#L134)
+```python
+diffusers.pipelines.stable_video_diffusion.StableVideoDiffusionPipelineOutput(frames: typing.Union[list[list[PIL.Image.Image]], numpy.ndarray, torch.Tensor])
+```
 
-Output class for Stable Video Diffusion pipeline.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/stable_video_diffusion/pipeline_stable_video_diffusion.py#L134)
 
 **Parameters:**
 
 frames (`[list[list[PIL.Image.Image]]`, `np.ndarray`, `torch.Tensor`]) : list of denoised PIL images of length `batch_size` or numpy array or torch tensor of shape `(batch_size, num_frames, height, width, num_channels)`.
 
+Output class for Stable Video Diffusion pipeline.
+
 ### Latent upscaler
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/stable_diffusion/latent_upscale.md
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/stable_diffusion/latent_upscale.md

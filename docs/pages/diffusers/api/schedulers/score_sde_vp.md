@@ -10,21 +10,14 @@ The abstract from the paper is:
 > 🚧 This scheduler is under construction!
 
 ## ScoreSdeVpScheduler[[diffusers.schedulers.ScoreSdeVpScheduler]]
+
 #### diffusers.schedulers.ScoreSdeVpScheduler[[diffusers.schedulers.ScoreSdeVpScheduler]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/deprecated/scheduling_sde_vp.py#L26)
+```python
+diffusers.schedulers.ScoreSdeVpScheduler(num_train_timesteps = 2000, beta_min = 0.1, beta_max = 20, sampling_eps = 0.001)
+```
 
-`ScoreSdeVpScheduler` is a variance preserving stochastic differential equation (SDE) scheduler.
-
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.39.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
-methods the library implements for all schedulers such as loading and saving.
-
-set_timestepsdiffusers.schedulers.ScoreSdeVpScheduler.set_timestepshttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/deprecated/scheduling_sde_vp.py#L50[{"name": "num_inference_steps", "val": ""}, {"name": "device", "val": ": str | torch.device = None"}]- **num_inference_steps** (`int`) --
-  The number of diffusion steps used when generating samples with a pre-trained model.
-- **device** (`str` or `torch.device`, *optional*) --
-  The device to which the timesteps should be moved to. If `None`, the timesteps are not moved.0
-
-Sets the continuous timesteps used for the diffusion chain (to be run before inference).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/deprecated/scheduling_sde_vp.py#L26)
 
 **Parameters:**
 
@@ -35,12 +28,35 @@ beta_min (`int`, defaults to 0.1) --
 beta_max (`int`, defaults to 20) --
 
 sampling_eps (`int`, defaults to 1e-3) : The end value of sampling where timesteps decrease progressively from 1 to epsilon.
+
+`ScoreSdeVpScheduler` is a variance preserving stochastic differential equation (SDE) scheduler.
+
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+methods the library implements for all schedulers such as loading and saving.
+
+#### set_timesteps[[diffusers.schedulers.ScoreSdeVpScheduler.set_timesteps]]
+
+```python
+set_timesteps(num_inference_steps, device: typing.Union[str, torch.device] = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/deprecated/scheduling_sde_vp.py#L50)
+
+**Parameters:**
+
+num_inference_steps (`int`) : The number of diffusion steps used when generating samples with a pre-trained model.
+
+device (`str` or `torch.device`, *optional*) : The device to which the timesteps should be moved to. If `None`, the timesteps are not moved.
+
+Sets the continuous timesteps used for the diffusion chain (to be run before inference).
+
 #### step_pred[[diffusers.schedulers.ScoreSdeVpScheduler.step_pred]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/deprecated/scheduling_sde_vp.py#L62)
+```python
+step_pred(score, x, t, generator = None)
+```
 
-Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
-process from the learned model outputs (most often the predicted noise).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/deprecated/scheduling_sde_vp.py#L62)
 
 **Parameters:**
 
@@ -52,5 +68,8 @@ t () --
 
 generator (`torch.Generator`, *optional*) : A random number generator.
 
-### PNDMScheduler
-https://huggingface.co/docs/diffusers/v0.39.0/api/schedulers/pndm.md
+Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
+process from the learned model outputs (most often the predicted noise).
+
+### DPMSolverSinglestepScheduler
+https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/singlestep_dpm_solver.md

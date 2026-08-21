@@ -19,7 +19,7 @@ This guide will show you how to set and use the different attention backends.
 
 ## set_attention_backend
 
-The [set_attention_backend()](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin.set_attention_backend) method iterates through all the modules in the model and sets the appropriate attention backend to use. The attention backend setting persists until [reset_attention_backend()](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend) is called.
+The [set_attention_backend()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.set_attention_backend) method iterates through all the modules in the model and sets the appropriate attention backend to use. The attention backend setting persists until [reset_attention_backend()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend) is called.
 
 The example below demonstrates how to enable the `_flash_3_hub` implementation for FlashAttention-3 from the [`kernels`](https://github.com/huggingface/kernels) library, which allows you to instantly use optimized compute kernels from the Hub without requiring any setup.
 
@@ -31,7 +31,7 @@ import torch
 from diffusers import QwenImagePipeline
 
 pipeline = QwenImagePipeline.from_pretrained(
-    "Qwen/Qwen-Image", torch_dtype=torch.bfloat16, device_map="cuda"
+    "Qwen/Qwen-Image", dtype=torch.bfloat16, device_map="cuda"
 )
 pipeline.transformer.set_attention_backend("_flash_3_hub")
 
@@ -42,7 +42,7 @@ highly detailed, high budget hollywood movie, cinemascope, moody, epic, gorgeous
 pipeline(prompt).images[0]
 ```
 
-To restore the default attention backend, call [reset_attention_backend()](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend).
+To restore the default attention backend, call [reset_attention_backend()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.reset_attention_backend).
 
 ```py
 pipeline.transformer.reset_attention_backend()
@@ -57,7 +57,7 @@ import torch
 from diffusers import QwenImagePipeline
 
 pipeline = QwenImagePipeline.from_pretrained(
-    "Qwen/Qwen-Image", torch_dtype=torch.bfloat16, device_map="cuda"
+    "Qwen/Qwen-Image", dtype=torch.bfloat16, device_map="cuda"
 )
 prompt = """
 cinematic film still of a cat sipping a margarita in a pool in Palm Springs, California
@@ -70,6 +70,20 @@ with attention_backend("_flash_3_hub"):
 
 > [!TIP]
 > Most attention backends support `torch.compile` without graph breaks and can be used to further speed up inference.
+
+## Trusting remote kernels
+
+Hub backends and other kernel-backed features (such as [GGUF](../quantization/gguf) and [Nunchaku Lite](../quantization/nunchaku)) download compute kernels from the Hub with [`kernels`](https://github.com/huggingface/kernels) and execute their code locally.
+
+By default, `kernels` only loads a kernel when its publisher is a trusted kernel publisher on the Hub. Kernels published under the [`kernels-community`](https://huggingface.co/kernels-community) organization are trusted, so Diffusers loads them without any additional configuration. The `_flash_3_hub`, `flash_hub`, `sage_hub`, and the other Hub attention backends all resolve to `kernels-community` repositories.
+
+Kernels from any other publisher are not vetted. Loading one downloads and runs code that Diffusers cannot vouch for, so Diffusers keeps it disabled unless you explicitly opt in with the `DIFFUSERS_TRUST_REMOTE_KERNELS` environment variable. When set, Diffusers forwards `trust_remote_code=True` to `kernels` so it loads kernels from untrusted publishers too.
+
+```bash
+export DIFFUSERS_TRUST_REMOTE_KERNELS=true
+```
+
+Only enable this after inspecting the kernel repository, since it grants the downloaded code the ability to run on your machine. Without it, loading a kernel from an untrusted publisher raises an error. Diffusers performs this check itself, so it also applies to `kernels<0.14.0`, which predates the `trust_remote_code` argument. Setting `DIFFUSERS_DISABLE_REMOTE_CODE=true` disables remote code globally and takes precedence over `DIFFUSERS_TRUST_REMOTE_KERNELS`.
 
 ## Checks
 
@@ -130,7 +144,7 @@ Expand
 | `flash_hub` | [FlashAttention](https://github.com/Dao-AILab/flash-attention) | FlashAttention-2 from kernels |
 | `flash_varlen` | [FlashAttention](https://github.com/Dao-AILab/flash-attention) | Variable length FlashAttention |
 | `flash_varlen_hub` | [FlashAttention](https://github.com/Dao-AILab/flash-attention) | Variable length FlashAttention from kernels |
-| `aiter` | [AI Tensor Engine for ROCm](https://github.com/ROCm/aiter) | FlashAttention for AMD ROCm |
+| `aiter_fa2_hub` | [AI Tensor Engine for ROCm](https://github.com/ROCm/aiter) | FlashAttention-2 for AMD ROCm from kernels |
 | `flash_4_hub` | [FlashAttention](https://github.com/Dao-AILab/flash-attention) | FlashAttention-4 |
 | `_flash_3` | [FlashAttention](https://github.com/Dao-AILab/flash-attention) | FlashAttention-3 |
 | `_flash_varlen_3` | [FlashAttention](https://github.com/Dao-AILab/flash-attention) | Variable length FlashAttention-3 |
@@ -145,5 +159,5 @@ Expand
 | `_sage_qk_int8_pv_fp16_triton` | [SageAttention](https://github.com/thu-ml/SageAttention) | INT8 QK + FP16 PV (Triton) |
 | `xformers` | [xFormers](https://github.com/facebookresearch/xformers) | Memory-efficient attention |
 
-### Intel Gaudi
-https://huggingface.co/docs/diffusers/v0.39.0/optimization/habana.md
+### Pruna
+https://huggingface.co/docs/diffusers/v0.40.0/optimization/pruna.md

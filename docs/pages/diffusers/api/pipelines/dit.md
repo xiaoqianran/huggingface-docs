@@ -12,30 +12,53 @@ The original codebase can be found at [facebookresearch/dit](https://github.com/
 > Make sure to check out the Schedulers [guide](../../using-diffusers/schedulers) to learn how to explore the tradeoff between scheduler speed and quality, and see the [reuse components across pipelines](../../using-diffusers/loading#reuse-a-pipeline) section to learn how to efficiently load the same components into multiple pipelines.
 
 ## DiTPipeline[[diffusers.DiTPipeline]]
+
 #### diffusers.DiTPipeline[[diffusers.DiTPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/dit/pipeline_dit.py#L38)
+```python
+diffusers.DiTPipeline(transformer: DiTTransformer2DModel, vae: AutoencoderKL, scheduler: KarrasDiffusionSchedulers, id2label: dict[int, str] | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/dit/pipeline_dit.py#L38)
+
+**Parameters:**
+
+transformer ([DiTTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/dit_transformer2d#diffusers.DiTTransformer2DModel)) : A class conditioned `DiTTransformer2DModel` to denoise the encoded image latents. Initially published as [`Transformer2DModel`](https://huggingface.co/facebook/DiT-XL-2-256/blob/main/transformer/config.json#L2) in the config, but the mismatch can be ignored.
+
+vae ([AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
+
+scheduler ([DDIMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
 
 Pipeline for image generation based on a Transformer backbone instead of a UNet.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
-__call__diffusers.DiTPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/dit/pipeline_dit.py#L101[{"name": "class_labels", "val": ": list"}, {"name": "guidance_scale", "val": ": float = 4.0"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "output_type", "val": ": str | None = 'pil'"}, {"name": "return_dict", "val": ": bool = True"}]- **class_labels** (list[int]) --
-  list of ImageNet class labels for the images to be generated.
-- **guidance_scale** (`float`, *optional*, defaults to 4.0) --
-  A higher guidance scale value encourages the model to generate images closely linked to the text
-  `prompt` at the expense of lower image quality. Guidance scale is enabled when `guidance_scale > 1`.
-- **generator** (`torch.Generator`, *optional*) --
-  A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make
-  generation deterministic.
-- **num_inference_steps** (`int`, *optional*, defaults to 250) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **output_type** (`str`, *optional*, defaults to `"pil"`) --
-  The output format of the generated image. Choose between `PIL.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.0[ImagePipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
+#### __call__[[diffusers.DiTPipeline.__call__]]
+
+```python
+__call__(class_labels: list, guidance_scale: float = 4.0, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, num_inference_steps: int = 50, output_type: str | None = 'pil', return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/dit/pipeline_dit.py#L101)
+
+**Parameters:**
+
+class_labels (list[int]) : list of ImageNet class labels for the images to be generated.
+
+guidance_scale (`float`, *optional*, defaults to 4.0) : A higher guidance scale value encourages the model to generate images closely linked to the text `prompt` at the expense of lower image quality. Guidance scale is enabled when `guidance_scale > 1`.
+
+generator (`torch.Generator`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+num_inference_steps (`int`, *optional*, defaults to 250) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+output_type (`str`, *optional*, defaults to `"pil"`) : The output format of the generated image. Choose between `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) instead of a plain tuple.
+
+**Returns:** [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple`
+
+If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.40.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
 returned where the first element is a list with the generated images
 
 The call function to the pipeline for generation.
@@ -64,59 +87,39 @@ Examples:
 >>> image = output.images[0]  # label 'white shark'
 ```
 
-**Parameters:**
-
-transformer ([DiTTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/dit_transformer2d#diffusers.DiTTransformer2DModel)) : A class conditioned `DiTTransformer2DModel` to denoise the encoded image latents. Initially published as [`Transformer2DModel`](https://huggingface.co/facebook/DiT-XL-2-256/blob/main/transformer/config.json#L2) in the config, but the mismatch can be ignored.
-
-vae ([AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL)) : Variational Auto-Encoder (VAE) model to encode and decode images to and from latent representations.
-
-scheduler ([DDIMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/ddim#diffusers.DDIMScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-**Returns:**
-
-`[ImagePipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) or `tuple``
-
-If `return_dict` is `True`, [ImagePipelineOutput](/docs/diffusers/v0.39.0/en/api/pipelines/ddim#diffusers.ImagePipelineOutput) is returned, otherwise a `tuple` is
-returned where the first element is a list with the generated images
 #### get_label_ids[[diffusers.DiTPipeline.get_label_ids]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/dit/pipeline_dit.py#L76)
+```python
+get_label_ids(label: str | list[str])
+```
 
-Map label strings from ImageNet to corresponding class ids.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/dit/pipeline_dit.py#L76)
 
 **Parameters:**
 
 label (`str` or `dict` of `str`) : Label strings to be mapped to class ids.
 
-**Returns:**
-
-``list` of `int``
+**Returns:** `list` of `int`
 
 Class ids to be processed by pipeline.
 
+Map label strings from ImageNet to corresponding class ids.
+
 ## ImagePipelineOutput[[diffusers.ImagePipelineOutput]]
+
 #### diffusers.ImagePipelineOutput[[diffusers.ImagePipelineOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/pipeline_utils.py#L122)
+```python
+diffusers.ImagePipelineOutput(images: list[PIL.Image.Image] | numpy.ndarray)
+```
 
-Output class for image pipelines.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/pipeline_utils.py#L135)
 
 **Parameters:**
 
 images (`List[PIL.Image.Image]` or `np.ndarray`) : List of denoised PIL images of length `batch_size` or NumPy array of shape `(batch_size, height, width, num_channels)`.
 
-### Cosmos
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/cosmos.md
+Output class for image pipelines.
 
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License. -->
+### Krea 2
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/krea2.md

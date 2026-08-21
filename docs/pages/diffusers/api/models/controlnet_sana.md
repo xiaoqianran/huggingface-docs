@@ -10,32 +10,22 @@ This model was contributed by [ishan24](https://huggingface.co/ishan24). ❤️
 The original codebase can be found at [NVlabs/Sana](https://github.com/NVlabs/Sana), and you can find official ControlNet checkpoints on [Efficient-Large-Model's](https://huggingface.co/Efficient-Large-Model) Hub profile.
 
 ## SanaControlNetModel[[diffusers.SanaControlNetModel]]
+
 #### diffusers.SanaControlNetModel[[diffusers.SanaControlNetModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sana.py#L41)
+```python
+diffusers.SanaControlNetModel(in_channels: int = 32, out_channels: int | None = 32, num_attention_heads: int = 70, attention_head_dim: int = 32, num_layers: int = 7, num_cross_attention_heads: int | None = 20, cross_attention_head_dim: int | None = 112, cross_attention_dim: int | None = 2240, caption_channels: int = 2304, mlp_ratio: float = 2.5, dropout: float = 0.0, attention_bias: bool = False, sample_size: int = 32, patch_size: int = 1, norm_elementwise_affine: bool = False, norm_eps: float = 1e-06, interpolation_scale: int | None = None)
+```
 
-forwarddiffusers.SanaControlNetModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sana.py#L120[{"name": "hidden_states", "val": ": Tensor"}, {"name": "encoder_hidden_states", "val": ": Tensor"}, {"name": "timestep", "val": ": LongTensor"}, {"name": "controlnet_cond", "val": ": Tensor"}, {"name": "conditioning_scale", "val": ": float = 1.0"}, {"name": "encoder_attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "return_dict", "val": ": bool = True"}]- **hidden_states** (`torch.Tensor` of shape `(batch_size, channel, height, width)`) --
-  Input `hidden_states`.
-- **encoder_hidden_states** (`torch.Tensor`) --
-  Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
-- **timestep** (`torch.LongTensor`) --
-  Used to indicate denoising step.
-- **controlnet_cond** (`torch.Tensor`) --
-  The conditional input tensor for the ControlNet.
-- **conditioning_scale** (`float`, *optional*, defaults to `1.0`) --
-  The scale factor for ControlNet outputs.
-- **encoder_attention_mask** (`torch.Tensor`, *optional*) --
-  Attention mask applied to `encoder_hidden_states`.
-- **attention_mask** (`torch.Tensor`, *optional*) --
-  Attention mask applied to `hidden_states`.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain
-  tuple.0`~models.transformer_2d.Transformer2DModelOutput` or `tuple`If `return_dict` is True, a `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise
-a plain `tuple` is returned.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sana.py#L41)
+
+#### forward[[diffusers.SanaControlNetModel.forward]]
+
+```python
+forward(hidden_states: Tensor, encoder_hidden_states: Tensor, timestep: LongTensor, controlnet_cond: Tensor, conditioning_scale: float = 1.0, encoder_attention_mask: typing.Optional[torch.Tensor] = None, attention_mask: typing.Optional[torch.Tensor] = None, attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sana.py#L120)
 
 **Parameters:**
 
@@ -57,17 +47,20 @@ attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is
 
 return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain tuple.
 
-**Returns:**
-
-``~models.transformer_2d.Transformer2DModelOutput` or `tuple``
+**Returns:** `~models.transformer_2d.Transformer2DModelOutput` or `tuple`
 
 If `return_dict` is True, a `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise
 a plain `tuple` is returned.
 
 ## SanaControlNetOutput[[diffusers.models.controlnets.controlnet_sana.SanaControlNetOutput]]
+
 #### diffusers.models.controlnets.controlnet_sana.SanaControlNetOutput[[diffusers.models.controlnets.controlnet_sana.SanaControlNetOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_sana.py#L37)
+```python
+diffusers.models.controlnets.controlnet_sana.SanaControlNetOutput(controlnet_block_samples: tuple)
+```
 
-### AutoencoderKLCosmos
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/autoencoderkl_cosmos.md
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_sana.py#L37)
+
+### AutoencoderKLCogVideoX
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/autoencoderkl_cogvideox.md

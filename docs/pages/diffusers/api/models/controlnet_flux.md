@@ -10,7 +10,7 @@ The abstract from the paper is:
 
 ## Loading from the original format
 
-By default the [FluxControlNetModel](/docs/diffusers/v0.39.0/en/api/models/controlnet_flux#diffusers.FluxControlNetModel) should be loaded with [from_pretrained()](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
+By default the [FluxControlNetModel](/docs/diffusers/v0.40.0/en/api/models/controlnet_flux#diffusers.FluxControlNetModel) should be loaded with [from_pretrained()](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin.from_pretrained).
 
 ```py
 from diffusers import FluxControlNetPipeline
@@ -28,38 +28,19 @@ pipe = FluxControlNetPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", co
 
 #### diffusers.FluxControlNetModel[[diffusers.FluxControlNetModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_flux.py#L45)
+```python
+diffusers.FluxControlNetModel(patch_size: int = 1, in_channels: int = 64, num_layers: int = 19, num_single_layers: int = 38, attention_head_dim: int = 128, num_attention_heads: int = 24, joint_attention_dim: int = 4096, pooled_projection_dim: int = 768, guidance_embeds: bool = False, axes_dims_rope: list = [16, 56, 56], num_mode: int = None, conditioning_embedding_channels: int = None)
+```
 
-forwarddiffusers.FluxControlNetModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_flux.py#L157[{"name": "hidden_states", "val": ": Tensor"}, {"name": "controlnet_cond", "val": ": Tensor"}, {"name": "controlnet_mode", "val": ": Tensor = None"}, {"name": "conditioning_scale", "val": ": float = 1.0"}, {"name": "encoder_hidden_states", "val": ": Tensor = None"}, {"name": "pooled_projections", "val": ": Tensor = None"}, {"name": "timestep", "val": ": LongTensor = None"}, {"name": "img_ids", "val": ": Tensor = None"}, {"name": "txt_ids", "val": ": Tensor = None"}, {"name": "guidance", "val": ": Tensor = None"}, {"name": "joint_attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "return_dict", "val": ": bool = True"}]- **hidden_states** (`torch.FloatTensor` of shape `(batch size, channel, height, width)`) --
-  Input `hidden_states`.
-- **controlnet_cond** (`torch.Tensor`) --
-  The conditional input tensor of shape `(batch_size, sequence_length, hidden_size)`.
-- **controlnet_mode** (`torch.Tensor`) --
-  The mode tensor of shape `(batch_size, 1)`.
-- **conditioning_scale** (`float`, defaults to `1.0`) --
-  The scale factor for ControlNet outputs.
-- **encoder_hidden_states** (`torch.FloatTensor` of shape `(batch size, sequence_len, embed_dims)`) --
-  Conditional embeddings (embeddings computed from the input conditions such as prompts) to use.
-- **pooled_projections** (`torch.FloatTensor` of shape `(batch_size, projection_dim)`) -- Embeddings projected
-  from the embeddings of input conditions.
-- **timestep** ( `torch.LongTensor`) --
-  Used to indicate denoising step.
-- **img_ids** (`torch.Tensor`) --
-  Positional ids for the image tokens.
-- **txt_ids** (`torch.Tensor`) --
-  Positional ids for the text tokens.
-- **guidance** (`torch.Tensor`, *optional*) --
-  Guidance scale tensor used by guidance-distilled variants of the model.
-- **joint_attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `~models.transformer_2d.Transformer2DModelOutput` instead of a plain
-  tuple.0If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
-`tuple` where the first element is the sample tensor.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_flux.py#L45)
 
-The [FluxTransformer2DModel](/docs/diffusers/v0.39.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel) forward method.
+#### forward[[diffusers.FluxControlNetModel.forward]]
+
+```python
+forward(hidden_states: Tensor, controlnet_cond: Tensor, controlnet_mode: Tensor = None, conditioning_scale: float = 1.0, encoder_hidden_states: Tensor = None, pooled_projections: Tensor = None, timestep: LongTensor = None, img_ids: Tensor = None, txt_ids: Tensor = None, guidance: Tensor = None, joint_attention_kwargs: dict[str, typing.Any] | None = None, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_flux.py#L157)
 
 **Parameters:**
 
@@ -92,11 +73,17 @@ return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return 
 If `return_dict` is True, an `~models.transformer_2d.Transformer2DModelOutput` is returned, otherwise a
 `tuple` where the first element is the sample tensor.
 
+The [FluxTransformer2DModel](/docs/diffusers/v0.40.0/en/api/models/flux_transformer#diffusers.FluxTransformer2DModel) forward method.
+
 ## FluxControlNetOutput[[diffusers.models.controlnets.FluxControlNetOutput]]
 
 #### diffusers.models.controlnets.FluxControlNetOutput[[diffusers.models.controlnets.FluxControlNetOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/controlnets/controlnet_flux.py#L40)
+```python
+diffusers.models.controlnets.FluxControlNetOutput(controlnet_block_samples: tuple, controlnet_single_block_samples: tuple)
+```
 
-### AutoencoderKLLTXVideo
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/autoencoderkl_ltx_video.md
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/controlnets/controlnet_flux.py#L40)
+
+### OmniGenTransformer2DModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/omnigen_transformer.md

@@ -206,8 +206,8 @@ Once training is complete, you can use your new LCM for inference.
 from diffusers import UNet2DConditionModel, DiffusionPipeline, LCMScheduler
 import torch
 
-unet = UNet2DConditionModel.from_pretrained("your-username/your-model", torch_dtype=torch.float16, variant="fp16")
-pipeline = DiffusionPipeline.from_pretrained("stable-diffusion-v1-5/stable-diffusion-v1-5", unet=unet, torch_dtype=torch.float16, variant="fp16")
+unet = UNet2DConditionModel.from_pretrained("your-username/your-model", dtype=torch.float16, variant="fp16")
+pipeline = DiffusionPipeline.from_pretrained("stable-diffusion-v1-5/stable-diffusion-v1-5", unet=unet, dtype=torch.float16, variant="fp16")
 
 pipeline.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
 pipeline.to("cuda")
@@ -236,5 +236,5 @@ Congratulations on distilling a LCM model! To learn more about LCM, the followin
 - Learn how to use [LCMs for inference](../api/pipelines/latent_consistency_models) for text-to-image, image-to-image, and with LoRA checkpoints.
 - Read the [SDXL in 4 steps with Latent Consistency LoRAs](https://huggingface.co/blog/lcm_lora) blog post to learn more about SDXL LCM-LoRA's for super fast inference, quality comparisons, benchmarks, and more.
 
-### LoRA
-https://huggingface.co/docs/diffusers/v0.39.0/training/lora.md
+### Custom Diffusion
+https://huggingface.co/docs/diffusers/v0.40.0/training/custom_diffusion.md

@@ -7,24 +7,14 @@ The abstract from the paper is:
 *We present high quality image synthesis results using diffusion probabilistic models, a class of latent variable models inspired by considerations from nonequilibrium thermodynamics. Our best results are obtained by training on a weighted variational bound designed according to a novel connection between diffusion probabilistic models and denoising score matching with Langevin dynamics, and our models naturally admit a progressive lossy decompression scheme that can be interpreted as a generalization of autoregressive decoding. On the unconditional CIFAR10 dataset, we obtain an Inception score of 9.46 and a state-of-the-art FID score of 3.17. On 256x256 LSUN, we obtain sample quality similar to ProgressiveGAN. Our implementation is available at [this https URL](https://github.com/hojonathanho/diffusion).*
 
 ## DDPMScheduler[[diffusers.DDPMScheduler]]
+
 #### diffusers.DDPMScheduler[[diffusers.DDPMScheduler]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_ddpm.py#L137)
+```python
+diffusers.DDPMScheduler(num_train_timesteps: int = 1000, beta_start: float = 0.0001, beta_end: float = 0.02, beta_schedule: typing.Literal['linear', 'scaled_linear', 'squaredcos_cap_v2', 'sigmoid'] = 'linear', trained_betas: numpy.ndarray | list[float] | None = None, variance_type: typing.Literal['fixed_small', 'fixed_small_log', 'fixed_large', 'fixed_large_log', 'learned', 'learned_range'] = 'fixed_small', clip_sample: bool = True, prediction_type: typing.Literal['epsilon', 'sample', 'v_prediction'] = 'epsilon', thresholding: bool = False, dynamic_thresholding_ratio: float = 0.995, clip_sample_range: float = 1.0, sample_max_value: float = 1.0, timestep_spacing: typing.Literal['linspace', 'leading', 'trailing'] = 'leading', steps_offset: int = 0, rescale_betas_zero_snr: bool = False)
+```
 
-`DDPMScheduler` explores the connections between denoising score matching and Langevin dynamics sampling.
-
-This model inherits from [SchedulerMixin](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.39.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
-methods the library implements for all schedulers such as loading and saving.
-
-add_noisediffusers.DDPMScheduler.add_noisehttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_ddpm.py#L569[{"name": "original_samples", "val": ": Tensor"}, {"name": "noise", "val": ": Tensor"}, {"name": "timesteps", "val": ": IntTensor"}]- **original_samples** (`torch.Tensor`) --
-  The original samples to which noise will be added.
-- **noise** (`torch.Tensor`) --
-  The noise to add to the samples.
-- **timesteps** (`torch.IntTensor`) --
-  The timesteps indicating the noise level for each sample.0`torch.Tensor`The noisy samples.
-
-Add noise to the original samples according to the noise magnitude at each timestep (this is the forward
-diffusion process).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddpm.py#L137)
 
 **Parameters:**
 
@@ -58,16 +48,41 @@ steps_offset (`int`, defaults to `0`) : An offset added to the inference steps, 
 
 rescale_betas_zero_snr (`bool`, defaults to `False`) : Whether to rescale the betas to have zero terminal SNR. This enables the model to generate very bright and dark samples instead of limiting it to samples with medium brightness. Loosely related to [`--offset_noise`](https://github.com/huggingface/diffusers/blob/74fd735eb073eb1d774b1ab4154a0876eb82f055/examples/dreambooth/train_dreambooth.py#L506).
 
-**Returns:**
+`DDPMScheduler` explores the connections between denoising score matching and Langevin dynamics sampling.
 
-``torch.Tensor``
+This model inherits from [SchedulerMixin](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin) and [ConfigMixin](/docs/diffusers/v0.40.0/en/api/configuration#diffusers.ConfigMixin). Check the superclass documentation for the generic
+methods the library implements for all schedulers such as loading and saving.
+
+#### add_noise[[diffusers.DDPMScheduler.add_noise]]
+
+```python
+add_noise(original_samples: Tensor, noise: Tensor, timesteps: IntTensor)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddpm.py#L569)
+
+**Parameters:**
+
+original_samples (`torch.Tensor`) : The original samples to which noise will be added.
+
+noise (`torch.Tensor`) : The noise to add to the samples.
+
+timesteps (`torch.IntTensor`) : The timesteps indicating the noise level for each sample.
+
+**Returns:** `torch.Tensor`
 
 The noisy samples.
+
+Add noise to the original samples according to the noise magnitude at each timestep (this is the forward
+diffusion process).
+
 #### get_velocity[[diffusers.DDPMScheduler.get_velocity]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_ddpm.py#L611)
+```python
+get_velocity(sample: Tensor, noise: Tensor, timesteps: IntTensor)
+```
 
-Compute the velocity prediction from the sample and noise according to the velocity formula.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddpm.py#L611)
 
 **Parameters:**
 
@@ -77,32 +92,37 @@ noise (`torch.Tensor`) : The noise tensor.
 
 timesteps (`torch.IntTensor`) : The timesteps for velocity computation.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The computed velocity.
+
+Compute the velocity prediction from the sample and noise according to the velocity formula.
+
 #### previous_timestep[[diffusers.DDPMScheduler.previous_timestep]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_ddpm.py#L648)
+```python
+previous_timestep(timestep: int)
+```
 
-Compute the previous timestep in the diffusion chain.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddpm.py#L648)
 
 **Parameters:**
 
 timestep (`int`) : The current timestep.
 
-**Returns:**
-
-``int` or `torch.Tensor``
+**Returns:** `int` or `torch.Tensor`
 
 The previous timestep.
+
+Compute the previous timestep in the diffusion chain.
+
 #### scale_model_input[[diffusers.DDPMScheduler.scale_model_input]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_ddpm.py#L257)
+```python
+scale_model_input(sample: Tensor, timestep: int | None = None)
+```
 
-Ensures interchangeability with schedulers that need to scale the denoising model input depending on the
-current timestep.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddpm.py#L257)
 
 **Parameters:**
 
@@ -110,16 +130,20 @@ sample (`torch.Tensor`) : The input sample.
 
 timestep (`int`, *optional*) : The current timestep in the diffusion chain.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 A scaled input sample.
+
+Ensures interchangeability with schedulers that need to scale the denoising model input depending on the
+current timestep.
+
 #### set_timesteps[[diffusers.DDPMScheduler.set_timesteps]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_ddpm.py#L274)
+```python
+set_timesteps(num_inference_steps: int = None, device: typing.Union[str, torch.device] = None, timesteps: list[int] | None = None)
+```
 
-Sets the discrete timesteps used for the diffusion chain (to be run before inference).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddpm.py#L274)
 
 **Parameters:**
 
@@ -128,12 +152,16 @@ num_inference_steps (`int`, *optional*) : The number of diffusion steps used whe
 device (`str` or `torch.device`, *optional*) : The device to which the timesteps should be moved to. If `None`, the timesteps are not moved.
 
 timesteps (`list[int]`, *optional*) : Custom timesteps used to support arbitrary spacing between timesteps. If `None`, then the default timestep spacing strategy of equal spacing between timesteps is used. If `timesteps` is passed, `num_inference_steps` must be `None`.
+
+Sets the discrete timesteps used for the diffusion chain (to be run before inference).
+
 #### step[[diffusers.DDPMScheduler.step]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_ddpm.py#L461)
+```python
+step(model_output: Tensor, timestep: int, sample: Tensor, generator: typing.Optional[torch.Generator] = None, return_dict: bool = True)
+```
 
-Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
-process from the learned model outputs (most often the predicted noise).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddpm.py#L461)
 
 **Parameters:**
 
@@ -145,21 +173,25 @@ sample (`torch.Tensor`) : A current instance of a sample created by the diffusio
 
 generator (`torch.Generator`, *optional*) : A random number generator.
 
-return_dict (`bool`, defaults to `True`) : Whether or not to return a [DDPMSchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/ddpm#diffusers.schedulers.scheduling_ddpm.DDPMSchedulerOutput) or `tuple`.
+return_dict (`bool`, defaults to `True`) : Whether or not to return a [DDPMSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/ddpm#diffusers.schedulers.scheduling_ddpm.DDPMSchedulerOutput) or `tuple`.
 
-**Returns:**
+**Returns:** [DDPMSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/ddpm#diffusers.schedulers.scheduling_ddpm.DDPMSchedulerOutput) or `tuple`
 
-`[DDPMSchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/ddpm#diffusers.schedulers.scheduling_ddpm.DDPMSchedulerOutput) or `tuple``
-
-If return_dict is `True`, [DDPMSchedulerOutput](/docs/diffusers/v0.39.0/en/api/schedulers/ddpm#diffusers.schedulers.scheduling_ddpm.DDPMSchedulerOutput) is returned, otherwise a
+If return_dict is `True`, [DDPMSchedulerOutput](/docs/diffusers/v0.40.0/en/api/schedulers/ddpm#diffusers.schedulers.scheduling_ddpm.DDPMSchedulerOutput) is returned, otherwise a
 tuple is returned where the first element is the sample tensor.
 
+Predict the sample from the previous timestep by reversing the SDE. This function propagates the diffusion
+process from the learned model outputs (most often the predicted noise).
+
 ## DDPMSchedulerOutput[[diffusers.schedulers.scheduling_ddpm.DDPMSchedulerOutput]]
+
 #### diffusers.schedulers.scheduling_ddpm.DDPMSchedulerOutput[[diffusers.schedulers.scheduling_ddpm.DDPMSchedulerOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_ddpm.py#L31)
+```python
+diffusers.schedulers.scheduling_ddpm.DDPMSchedulerOutput(prev_sample: Tensor, pred_original_sample: typing.Optional[torch.Tensor] = None)
+```
 
-Output class for the scheduler's `step` function output.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_ddpm.py#L31)
 
 **Parameters:**
 
@@ -167,5 +199,7 @@ prev_sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`
 
 pred_original_sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` for images) : The predicted denoised sample `(x_{0})` based on the model output from the current timestep. `pred_original_sample` can be used to preview progress or for guidance.
 
-### FlowMapEulerDiscreteScheduler
-https://huggingface.co/docs/diffusers/v0.39.0/api/schedulers/flow_map_euler_discrete.md
+Output class for the scheduler's `step` function output.
+
+### EntropyBoundScheduler
+https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/entropy_bound.md

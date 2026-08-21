@@ -3,18 +3,22 @@
 `HeliosScheduler` is based on the pyramidal flow-matching sampling introduced in [Helios](https://huggingface.co/papers).
 
 ## HeliosScheduler[[diffusers.HeliosScheduler]]
+
 #### diffusers.HeliosScheduler[[diffusers.HeliosScheduler]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_helios.py#L35)
+```python
+diffusers.HeliosScheduler(num_train_timesteps: int = 1000, shift: float = 1.0, stages: int = 3, stage_range: list = [0, 0.3333333333333333, 0.6666666666666666, 1], gamma: float = 0.3333333333333333, thresholding: bool = False, prediction_type: str = 'flow_prediction', solver_order: int = 2, predict_x0: bool = True, solver_type: str = 'bh2', lower_order_final: bool = True, disable_corrector: list = [], solver_p: SchedulerMixin = None, use_flow_sigmas: bool = True, scheduler_type: str = 'unipc', use_dynamic_shifting: bool = False, time_shift_type: typing.Literal['exponential', 'linear'] = 'exponential')
+```
 
-convert_model_outputdiffusers.HeliosScheduler.convert_model_outputhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_helios.py#L371[{"name": "model_output", "val": ": Tensor"}, {"name": "*args", "val": ""}, {"name": "sample", "val": ": Tensor = None"}, {"name": "sigma", "val": ": Tensor = None"}, {"name": "**kwargs", "val": ""}]- **model_output** (`torch.Tensor`) --
-  The direct output from the learned diffusion model.
-- **timestep** (`int`) --
-  The current discrete timestep in the diffusion chain.
-- **sample** (`torch.Tensor`) --
-  A current instance of a sample created by the diffusion process.0`torch.Tensor`The converted model output.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L35)
 
-Convert the model output to the corresponding type the UniPC algorithm needs.
+#### convert_model_output[[diffusers.HeliosScheduler.convert_model_output]]
+
+```python
+convert_model_output(model_output: Tensor, *args, sample: Tensor = None, sigma: Tensor = None, **kwargs)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L371)
 
 **Parameters:**
 
@@ -24,26 +28,41 @@ timestep (`int`) : The current discrete timestep in the diffusion chain.
 
 sample (`torch.Tensor`) : A current instance of a sample created by the diffusion process.
 
-**Returns:**
+sigma (`torch.Tensor`, *optional*) : The sigma of the current step in the noise schedule.
 
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The converted model output.
+
+Convert the model output to the corresponding type the UniPC algorithm needs.
+
 #### init_sigmas[[diffusers.HeliosScheduler.init_sigmas]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_helios.py#L90)
+```python
+init_sigmas()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L90)
 
 initialize the global timesteps and sigmas
+
 #### init_sigmas_for_each_stage[[diffusers.HeliosScheduler.init_sigmas_for_each_stage]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_helios.py#L108)
+```python
+init_sigmas_for_each_stage()
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L108)
 
 Init the timesteps for each stage
+
 #### multistep_uni_c_bh_update[[diffusers.HeliosScheduler.multistep_uni_c_bh_update]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_helios.py#L585)
+```python
+multistep_uni_c_bh_update(this_model_output: Tensor, *args, last_sample: Tensor = None, this_sample: Tensor = None, order: int = None, sigma_before: Tensor = None, sigma: Tensor = None, **kwargs)
+```
 
-One step for the UniC (B(h) version).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L591)
 
 **Parameters:**
 
@@ -57,16 +76,23 @@ this_sample (`torch.Tensor`) : The generated sample after the last predictor `x_
 
 order (`int`) : The `p` of UniC-p at this step. The effective order of accuracy should be `order + 1`.
 
-**Returns:**
+sigma_before (`torch.Tensor`, *optional*) : The sigma of the previous step in the noise schedule.
 
-``torch.Tensor``
+sigma (`torch.Tensor`, *optional*) : The sigma of the current step in the noise schedule.
+
+**Returns:** `torch.Tensor`
 
 The corrected sample tensor at the current timestep.
+
+One step for the UniC (B(h) version).
+
 #### multistep_uni_p_bh_update[[diffusers.HeliosScheduler.multistep_uni_p_bh_update]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_helios.py#L451)
+```python
+multistep_uni_p_bh_update(model_output: Tensor, *args, sample: Tensor = None, order: int = None, sigma: Tensor = None, sigma_next: Tensor = None, **kwargs)
+```
 
-One step for the UniP (B(h) version). Alternatively, `self.solver_p` is used if is specified.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L453)
 
 **Parameters:**
 
@@ -78,30 +104,47 @@ sample (`torch.Tensor`) : A current instance of a sample created by the diffusio
 
 order (`int`) : The order of UniP at this timestep (corresponds to the *p* in UniPC-p).
 
-**Returns:**
+sigma (`torch.Tensor`, *optional*) : The sigma of the current step in the noise schedule.
 
-``torch.Tensor``
+sigma_next (`torch.Tensor`, *optional*) : The sigma of the next step in the noise schedule.
+
+**Returns:** `torch.Tensor`
 
 The sample tensor at the previous timestep.
+
+One step for the UniP (B(h) version). Alternatively, `self.solver_p` is used if is specified.
+
 #### set_begin_index[[diffusers.HeliosScheduler.set_begin_index]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_helios.py#L182)
+```python
+set_begin_index(begin_index: int = 0)
+```
 
-Sets the begin index for the scheduler. This function should be run from pipeline before the inference.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L182)
 
 **Parameters:**
 
 begin_index (`int`) : The begin index for the scheduler.
+
+Sets the begin index for the scheduler. This function should be run from pipeline before the inference.
+
 #### set_timesteps[[diffusers.HeliosScheduler.set_timesteps]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_helios.py#L195)
+```python
+set_timesteps(num_inference_steps: int, stage_index: int | None = None, device: typing.Union[str, torch.device] = None, sigmas: bool | None = None, mu: bool | None = None, is_amplify_first_chunk: bool = False)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L195)
 
 Setting the timesteps and sigmas for each stage
+
 #### time_shift[[diffusers.HeliosScheduler.time_shift]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/schedulers/scheduling_helios.py#L259)
+```python
+time_shift(mu: float, sigma: float, t: Tensor)
+```
 
-Apply time shifting to the sigmas.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/schedulers/scheduling_helios.py#L259)
 
 **Parameters:**
 
@@ -111,13 +154,13 @@ sigma (`float`) : The sigma parameter for the time shift.
 
 t (`torch.Tensor`) : The input timesteps.
 
-**Returns:**
-
-``torch.Tensor``
+**Returns:** `torch.Tensor`
 
 The time-shifted timesteps.
 
+Apply time shifting to the sigmas.
+
 scheduling_helios
 
-### KDPM2DiscreteScheduler
-https://huggingface.co/docs/diffusers/v0.39.0/api/schedulers/dpm_discrete.md
+### LMSDiscreteScheduler
+https://huggingface.co/docs/diffusers/v0.40.0/api/schedulers/lms_discrete.md

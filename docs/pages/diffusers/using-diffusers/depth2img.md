@@ -1,8 +1,8 @@
 # Text-guided depth-to-image generation
 
-The [StableDiffusionDepth2ImgPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/depth2img#diffusers.StableDiffusionDepth2ImgPipeline) lets you pass a text prompt and an initial image to condition the generation of new images. In addition, you can also pass a `depth_map` to preserve the image structure. If no `depth_map` is provided, the pipeline automatically predicts the depth via an integrated [depth-estimation model](https://github.com/isl-org/MiDaS).
+The [StableDiffusionDepth2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/depth2img#diffusers.StableDiffusionDepth2ImgPipeline) lets you pass a text prompt and an initial image to condition the generation of new images. In addition, you can also pass a `depth_map` to preserve the image structure. If no `depth_map` is provided, the pipeline automatically predicts the depth via an integrated [depth-estimation model](https://github.com/isl-org/MiDaS).
 
-Start by creating an instance of the [StableDiffusionDepth2ImgPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/depth2img#diffusers.StableDiffusionDepth2ImgPipeline):
+Start by creating an instance of the [StableDiffusionDepth2ImgPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/depth2img#diffusers.StableDiffusionDepth2ImgPipeline):
 
 ```python
 import torch
@@ -11,7 +11,7 @@ from diffusers.utils import load_image, make_image_grid
 
 pipeline = StableDiffusionDepth2ImgPipeline.from_pretrained(
     "stabilityai/stable-diffusion-2-depth",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     use_safetensors=True,
 ).to("cuda")
 ```
@@ -31,5 +31,5 @@ make_image_grid([init_image, image], rows=1, cols=2)
 |---------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
 |  |  |
 
-### Create a server
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/create_a_server.md
+### Video generation
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/text-img2vid.md

@@ -15,12 +15,12 @@ import torch
 from diffusers import DiffusionPipeline
 
 pipeline = DiffusionPipeline.from_pretrained(
-    "stabilityai/stable-diffusion-xl-base-1.0", torch_dtype=torch.float16, device_map="cuda"
+    "stabilityai/stable-diffusion-xl-base-1.0", dtype=torch.float16, device_map="cuda"
 )
 pipeline.scheduler
 ```
 
-Load a different scheduler with [from_pretrained()](/docs/diffusers/v0.39.0/en/api/schedulers/overview#diffusers.SchedulerMixin.from_pretrained) and specify the `subfolder` argument to load the configuration file into the correct subfolder of the pipeline repository. Pass the new scheduler to the existing pipeline.
+Load a different scheduler with [from_pretrained()](/docs/diffusers/v0.40.0/en/api/schedulers/overview#diffusers.SchedulerMixin.from_pretrained) and specify the `subfolder` argument to load the configuration file into the correct subfolder of the pipeline repository. Pass the new scheduler to the existing pipeline.
 
 ```py
 from diffusers import DPMSolverMultistepScheduler
@@ -31,7 +31,7 @@ dpm = DPMSolverMultistepScheduler.from_pretrained(
 pipeline = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
     scheduler=dpm,
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="cuda"
 )
 pipeline.scheduler
@@ -59,7 +59,7 @@ print(sampling_schedule)
 
 pipeline = DiffusionPipeline.from_pretrained(
     "SG161222/RealVisXL_V4.0",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="cuda"
 )
 pipeline.scheduler = DPMSolverMultistepScheduler.from_config(
@@ -149,7 +149,7 @@ from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
 
 pipeline = DiffusionPipeline.from_pretrained(
     "SG161222/RealVisXL_V4.0",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="cuda"
 )
 pipeline.scheduler = DPMSolverMultistepScheduler.from_config(
@@ -189,7 +189,7 @@ from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
 
 pipeline = DiffusionPipeline.from_pretrained(
     "SG161222/RealVisXL_V4.0",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="cuda"
 )
 pipeline.scheduler = DPMSolverMultistepScheduler.from_config(
@@ -217,7 +217,7 @@ from diffusers import DiffusionPipeline, DPMSolverMultistepScheduler
 
 pipeline = DiffusionPipeline.from_pretrained(
     "SG161222/RealVisXL_V4.0",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="cuda"
 )
 pipeline.scheduler = DPMSolverMultistepScheduler.from_config(
@@ -250,14 +250,14 @@ Refer to the scheduler API [overview](../api/schedulers/overview) for a list of 
 It's important to try different schedulers to find the best one for your use case. Here are a few recommendations to help you get started.
 
 - DPM++ 2M SDE Karras is generally a good all-purpose option.
-- [TCDScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/tcd#diffusers.TCDScheduler) works well for distilled models.
-- [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) and [FlowMatchHeunDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/flow_match_heun_discrete#diffusers.FlowMatchHeunDiscreteScheduler) for FlowMatch models.
-- [EulerDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler) or [EulerAncestralDiscreteScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/euler_ancestral#diffusers.EulerAncestralDiscreteScheduler) for generating anime style images.
-- DPM++ 2M paired with [LCMScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/lcm#diffusers.LCMScheduler) on SDXL for generating realistic images.
+- [TCDScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/tcd#diffusers.TCDScheduler) works well for distilled models.
+- [FlowMatchEulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_euler_discrete#diffusers.FlowMatchEulerDiscreteScheduler) and [FlowMatchHeunDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/flow_match_heun_discrete#diffusers.FlowMatchHeunDiscreteScheduler) for FlowMatch models.
+- [EulerDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/euler#diffusers.EulerDiscreteScheduler) or [EulerAncestralDiscreteScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/euler_ancestral#diffusers.EulerAncestralDiscreteScheduler) for generating anime style images.
+- DPM++ 2M paired with [LCMScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/lcm#diffusers.LCMScheduler) on SDXL for generating realistic images.
 
 ## Resources
 
 - Read the [Common Diffusion Noise Schedules and Sample Steps are Flawed](https://huggingface.co/papers/2305.08891) paper for more details about rescaling the noise schedule to enforce zero SNR.
 
-### Text-to-image
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/conditional_image_generation.md
+### Prompting
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/weighted_prompts.md

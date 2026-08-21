@@ -63,7 +63,7 @@ from diffusers import DiffusionPipeline
 from sd_embed.embedding_funcs import get_weighted_text_embeddings_sdxl
 
 pipeline = DiffusionPipeline.from_pretrained(
-    "Lykon/dreamshaper-xl-1-0", torch_dtype=torch.bfloat16, device_map="cuda"
+    "Lykon/dreamshaper-xl-1-0", dtype=torch.bfloat16, device_map="cuda"
 )
 
 prompt = """
@@ -86,5 +86,5 @@ image = pipeline(prompt_embeds=prompt_embeds, pooled_prompt_embeds=pooled_prompt
 
 Prompt weighting works with [Textual inversion](./textual_inversion_inference) and [DreamBooth](./dreambooth) adapters too.
 
-### Video generation
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/text-img2vid.md
+### Image-to-image
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/img2img.md

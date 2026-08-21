@@ -41,9 +41,9 @@ from diffusers.hooks.group_offloading import apply_group_offloading
 from diffusers.utils import export_to_video, load_image
 from transformers import UMT5EncoderModel
 
-text_encoder = UMT5EncoderModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="text_encoder", torch_dtype=torch.bfloat16)
-vae = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="vae", torch_dtype=torch.float32)
-transformer = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="transformer", torch_dtype=torch.bfloat16)
+text_encoder = UMT5EncoderModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="text_encoder", dtype=torch.bfloat16)
+vae = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="vae", dtype=torch.float32)
+transformer = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="transformer", dtype=torch.bfloat16)
 
 # group-offloading
 onload_device = torch.device("cuda")
@@ -66,7 +66,7 @@ pipeline = WanPipeline.from_pretrained(
     vae=vae,
     transformer=transformer,
     text_encoder=text_encoder,
-    torch_dtype=torch.bfloat16
+    dtype=torch.bfloat16
 )
 pipeline.to("cuda")
 
@@ -103,16 +103,16 @@ from diffusers.hooks.group_offloading import apply_group_offloading
 from diffusers.utils import export_to_video, load_image
 from transformers import UMT5EncoderModel
 
-text_encoder = UMT5EncoderModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="text_encoder", torch_dtype=torch.bfloat16)
-vae = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="vae", torch_dtype=torch.float32)
-transformer = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="transformer", torch_dtype=torch.bfloat16)
+text_encoder = UMT5EncoderModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="text_encoder", dtype=torch.bfloat16)
+vae = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="vae", dtype=torch.float32)
+transformer = AutoModel.from_pretrained("Wan-AI/Wan2.1-T2V-14B-Diffusers", subfolder="transformer", dtype=torch.bfloat16)
 
 pipeline = WanPipeline.from_pretrained(
     "Wan-AI/Wan2.1-T2V-14B-Diffusers",
     vae=vae,
     transformer=transformer,
     text_encoder=text_encoder,
-    torch_dtype=torch.bfloat16
+    dtype=torch.bfloat16
 )
 pipeline.to("cuda")
 
@@ -157,10 +157,10 @@ from diffusers.utils import export_to_video, load_image
 from transformers import CLIPVisionModel
 
 model_id = "Wan-AI/Wan2.1-FLF2V-14B-720P-diffusers"
-image_encoder = CLIPVisionModel.from_pretrained(model_id, subfolder="image_encoder", torch_dtype=torch.float32)
-vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", torch_dtype=torch.float32)
+image_encoder = CLIPVisionModel.from_pretrained(model_id, subfolder="image_encoder", dtype=torch.float32)
+vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", dtype=torch.float32)
 pipe = WanImageToVideoPipeline.from_pretrained(
-    model_id, vae=vae, image_encoder=image_encoder, torch_dtype=torch.bfloat16
+    model_id, vae=vae, image_encoder=image_encoder, dtype=torch.bfloat16
 )
 pipe.to("cuda")
 
@@ -251,8 +251,8 @@ from diffusers import AutoencoderKLWan, WanAnimatePipeline
 from diffusers.utils import export_to_video, load_image, load_video
 
 model_id = "Wan-AI/Wan2.2-Animate-14B-Diffusers"
-vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", torch_dtype=torch.float32)
-pipe = WanAnimatePipeline.from_pretrained(model_id, vae=vae, torch_dtype=torch.bfloat16)
+vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", dtype=torch.float32)
+pipe = WanAnimatePipeline.from_pretrained(model_id, vae=vae, dtype=torch.bfloat16)
 pipe.to("cuda")
 
 # Load character image and preprocessed videos
@@ -297,8 +297,8 @@ from diffusers import AutoencoderKLWan, WanAnimatePipeline
 from diffusers.utils import export_to_video, load_image, load_video
 
 model_id = "Wan-AI/Wan2.2-Animate-14B-Diffusers"
-vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", torch_dtype=torch.float32)
-pipe = WanAnimatePipeline.from_pretrained(model_id, vae=vae, torch_dtype=torch.bfloat16)
+vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", dtype=torch.float32)
+pipe = WanAnimatePipeline.from_pretrained(model_id, vae=vae, dtype=torch.bfloat16)
 pipe.to("cuda")
 
 # Load all required inputs for replacement mode
@@ -347,8 +347,8 @@ from diffusers import AutoencoderKLWan, WanAnimatePipeline
 from diffusers.utils import export_to_video, load_image, load_video
 
 model_id = "Wan-AI/Wan2.2-Animate-14B-Diffusers"
-vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", torch_dtype=torch.float32)
-pipe = WanAnimatePipeline.from_pretrained(model_id, vae=vae, torch_dtype=torch.bfloat16)
+vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", dtype=torch.float32)
+pipe = WanAnimatePipeline.from_pretrained(model_id, vae=vae, dtype=torch.bfloat16)
 pipe.to("cuda")
 
 image = load_image("path/to/character.jpg")
@@ -400,7 +400,7 @@ export_to_video(output, "animated_advanced.mp4", fps=30)
 
 ## Notes
 
-- Wan2.1 supports LoRAs with [load_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.WanLoraLoaderMixin.load_lora_weights).
+- Wan2.1 supports LoRAs with [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.WanLoraLoaderMixin.load_lora_weights).
 
   
   Show example code
@@ -413,10 +413,10 @@ export_to_video(output, "animated_advanced.mp4", fps=30)
   from diffusers.utils import export_to_video
 
   vae = AutoModel.from_pretrained(
-      "Wan-AI/Wan2.1-T2V-1.3B-Diffusers", subfolder="vae", torch_dtype=torch.float32
+      "Wan-AI/Wan2.1-T2V-1.3B-Diffusers", subfolder="vae", dtype=torch.float32
   )
   pipeline = WanPipeline.from_pretrained(
-      "Wan-AI/Wan2.1-T2V-1.3B-Diffusers", vae=vae, torch_dtype=torch.bfloat16
+      "Wan-AI/Wan2.1-T2V-1.3B-Diffusers", vae=vae, dtype=torch.bfloat16
   )
   pipeline.scheduler = UniPCMultistepScheduler.from_config(
       pipeline.scheduler.config, flow_shift=5.0
@@ -447,7 +447,7 @@ export_to_video(output, "animated_advanced.mp4", fps=30)
 
   
 
-- [WanTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel) and [AutoencoderKLWan](/docs/diffusers/v0.39.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan) supports loading from single files with [from_single_file()](/docs/diffusers/v0.39.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file).
+- [WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel) and [AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan) supports loading from single files with [from_single_file()](/docs/diffusers/v0.40.0/en/api/loaders/single_file#diffusers.loaders.FromSingleFileMixin.from_single_file).
 
   
   Show example code
@@ -462,19 +462,19 @@ export_to_video(output, "animated_advanced.mp4", fps=30)
   )
   transformer = WanTransformer3DModel.from_single_file(
       "https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/blob/main/split_files/diffusion_models/wan2.1_t2v_1.3B_bf16.safetensors",
-      torch_dtype=torch.bfloat16
+      dtype=torch.bfloat16
   )
   pipeline = WanPipeline.from_pretrained(
       "Wan-AI/Wan2.1-T2V-1.3B-Diffusers",
       vae=vae,
       transformer=transformer,
-      torch_dtype=torch.bfloat16
+      dtype=torch.bfloat16
   )
   ```
 
   
 
-- Set the [AutoencoderKLWan](/docs/diffusers/v0.39.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan) dtype to `torch.float32` for better decoding quality.
+- Set the [AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan) dtype to `torch.float32` for better decoding quality.
 
 - The number of frames per second (fps) or `k` should be calculated by `4 * k + 1`.
 
@@ -488,58 +488,84 @@ export_to_video(output, "animated_advanced.mp4", fps=30)
 
 #### diffusers.WanPipeline[[diffusers.WanPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan.py#L96)
+```python
+diffusers.WanPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, vae: AutoencoderKLWan, scheduler: FlowMatchEulerDiscreteScheduler, transformer: diffusers.models.transformers.transformer_wan.WanTransformer3DModel | None = None, transformer_2: diffusers.models.transformers.transformer_wan.WanTransformer3DModel | None = None, boundary_ratio: float | None = None, expand_timesteps: bool = False)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan.py#L96)
+
+**Parameters:**
+
+tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5Tokenizer), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
+
+text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
+
+transformer ([WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+
+scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+
+transformer_2 ([WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel), *optional*) : Conditional Transformer to denoise the input latents during the low-noise stage. If provided, enables two-stage denoising where `transformer` handles high-noise stages and `transformer_2` handles low-noise stages. If not provided, only `transformer` is used.
+
+boundary_ratio (`float`, *optional*, defaults to `None`) : Ratio of total timesteps to use as the boundary for switching between transformers in two-stage denoising. The actual boundary timestep is calculated as `boundary_ratio * num_train_timesteps`. When provided, `transformer` handles timesteps >= boundary_timestep and `transformer_2` handles timesteps < boundary_timestep. If `None`, only `transformer` is used for the entire denoising process.
 
 Pipeline for text-to-video generation using Wan.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
-__call__diffusers.WanPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan.py#L381[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "negative_prompt", "val": ": str | list[str] = None"}, {"name": "height", "val": ": int = 480"}, {"name": "width", "val": ": int = 832"}, {"name": "num_frames", "val": ": int = 81"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "guidance_scale", "val": ": float = 5.0"}, {"name": "guidance_scale_2", "val": ": float | None = None"}, {"name": "num_videos_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.Tensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "output_type", "val": ": str | None = 'np'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, pass `prompt_embeds` instead.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to avoid during image generation. If not defined, pass `negative_prompt_embeds`
-  instead. Ignored when not using guidance (`guidance_scale`  1`. Higher guidance scale encourages to generate images that are closely linked to
-  the text `prompt`, usually at the expense of lower image quality.
-- **guidance_scale_2** (`float`, *optional*, defaults to `None`) --
-  Guidance scale for the low-noise stage transformer (`transformer_2`). If `None` and the pipeline's
-  `boundary_ratio` is not None, uses the same value as `guidance_scale`. Only used when `transformer_2`
-  and the pipeline's `boundary_ratio` are not None.
-- **num_videos_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make
-  generation deterministic.
-- **latents** (`torch.Tensor`, *optional*) --
-  Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor is generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not
-  provided, text embeddings are generated from the `prompt` input argument.
-- **negative_prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated negative text embeddings. Can be used to easily tweak text inputs (prompt weighting). If
-  not provided, `negative_prompt_embeds` are generated from the `negative_prompt` input argument.
-- **output_type** (`str`, *optional*, defaults to `"np"`) --
-  The output format of the generated image. Choose between `PIL.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `WanPipelineOutput` instead of a plain tuple.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) --
-  A function or a subclass of `PipelineCallback` or `MultiPipelineCallbacks` that is called at the end of
-  each denoising step during the inference. with the following arguments: `callback_on_step_end(self:
-  DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a
-  list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int`, defaults to `512`) --
-  The maximum sequence length of the text encoder. If the prompt is longer than this, it will be
-  truncated. If the prompt is shorter, it will be padded to this length.0`~WanPipelineOutput` or `tuple`If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
+#### __call__[[diffusers.WanPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int = 480, width: int = 832, num_frames: int = 81, num_inference_steps: int = 50, guidance_scale: float = 5.0, guidance_scale_2: float | None = None, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan.py#L381)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, pass `prompt_embeds` instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to avoid during image generation. If not defined, pass `negative_prompt_embeds` instead. Ignored when not using guidance (`guidance_scale` < `1`).
+
+height (`int`, defaults to `480`) : The height in pixels of the generated image.
+
+width (`int`, defaults to `832`) : The width in pixels of the generated image.
+
+num_frames (`int`, defaults to `81`) : The number of frames in the generated video.
+
+num_inference_steps (`int`, defaults to `50`) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+guidance_scale (`float`, defaults to `5.0`) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+guidance_scale_2 (`float`, *optional*, defaults to `None`) : Guidance scale for the low-noise stage transformer (`transformer_2`). If `None` and the pipeline's `boundary_ratio` is not None, uses the same value as `guidance_scale`. Only used when `transformer_2` and the pipeline's `boundary_ratio` are not None.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor is generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, text embeddings are generated from the `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, `negative_prompt_embeds` are generated from the `negative_prompt` input argument.
+
+output_type (`str`, *optional*, defaults to `"np"`) : The output format of the generated image. Choose between `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `WanPipelineOutput` instead of a plain tuple.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) : A function or a subclass of `PipelineCallback` or `MultiPipelineCallbacks` that is called at the end of each denoising step during the inference. with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int`, defaults to `512`) : The maximum sequence length of the text encoder. If the prompt is longer than this, it will be truncated. If the prompt is shorter, it will be padded to this length.
+
+**Returns:** `~WanPipelineOutput` or `tuple`
+
+If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
 the first element is a list with the generated images and the second element is a list of `bool`s
 indicating whether the corresponding generated image contains "not-safe-for-work" (nsfw) content.
 
@@ -574,34 +600,13 @@ Examples:
 >>> export_to_video(output, "output.mp4", fps=16)
 ```
 
-**Parameters:**
-
-tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5Tokenizer), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
-
-text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
-
-transformer ([WanTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel)) : Conditional Transformer to denoise the input latents.
-
-scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKLWan](/docs/diffusers/v0.39.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
-
-transformer_2 ([WanTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel), *optional*) : Conditional Transformer to denoise the input latents during the low-noise stage. If provided, enables two-stage denoising where `transformer` handles high-noise stages and `transformer_2` handles low-noise stages. If not provided, only `transformer` is used.
-
-boundary_ratio (`float`, *optional*, defaults to `None`) : Ratio of total timesteps to use as the boundary for switching between transformers in two-stage denoising. The actual boundary timestep is calculated as `boundary_ratio * num_train_timesteps`. When provided, `transformer` handles timesteps >= boundary_timestep and `transformer_2` handles timesteps < boundary_timestep. If `None`, only `transformer` is used for the entire denoising process.
-
-**Returns:**
-
-``~WanPipelineOutput` or `tuple``
-
-If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
-the first element is a list with the generated images and the second element is a list of `bool`s
-indicating whether the corresponding generated image contains "not-safe-for-work" (nsfw) content.
 #### encode_prompt[[diffusers.WanPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan.py#L199)
+```python
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan.py#L199)
 
 **Parameters:**
 
@@ -621,86 +626,98 @@ device : (`torch.device`, *optional*): torch device
 
 dtype : (`torch.dtype`, *optional*): torch dtype
 
+Encodes the prompt into text encoder hidden states.
+
 ## WanImageToVideoPipeline[[diffusers.WanImageToVideoPipeline]]
 
 #### diffusers.WanImageToVideoPipeline[[diffusers.WanImageToVideoPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan_i2v.py#L127)
+```python
+diffusers.WanImageToVideoPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, vae: AutoencoderKLWan, scheduler: FlowMatchEulerDiscreteScheduler, image_processor: CLIPImageProcessorPil = None, image_encoder: CLIPVisionModel = None, transformer: WanTransformer3DModel = None, transformer_2: WanTransformer3DModel = None, boundary_ratio: float | None = None, expand_timesteps: bool = False)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_i2v.py#L127)
+
+**Parameters:**
+
+tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5Tokenizer), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
+
+text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
+
+image_encoder (`CLIPVisionModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPVisionModel), specifically the [clip-vit-huge-patch14](https://github.com/mlfoundations/open_clip/blob/main/docs/PRETRAINED.md#vit-h14-xlm-roberta-large) variant.
+
+transformer ([WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+
+scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+
+transformer_2 ([WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel), *optional*) : Conditional Transformer to denoise the input latents during the low-noise stage. In two-stage denoising, `transformer` handles high-noise stages and `transformer_2` handles low-noise stages. If not provided, only `transformer` is used.
+
+boundary_ratio (`float`, *optional*, defaults to `None`) : Ratio of total timesteps to use as the boundary for switching between transformers in two-stage denoising. The actual boundary timestep is calculated as `boundary_ratio * num_train_timesteps`. When provided, `transformer` handles timesteps >= boundary_timestep and `transformer_2` handles timesteps < boundary_timestep. If `None`, only `transformer` is used for the entire denoising process.
 
 Pipeline for image-to-video generation using Wan.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
-__call__diffusers.WanImageToVideoPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan_i2v.py#L507[{"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor]"}, {"name": "prompt", "val": ": str | list[str] = None"}, {"name": "negative_prompt", "val": ": str | list[str] = None"}, {"name": "height", "val": ": int = 480"}, {"name": "width", "val": ": int = 832"}, {"name": "num_frames", "val": ": int = 81"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "guidance_scale", "val": ": float = 5.0"}, {"name": "guidance_scale_2", "val": ": float | None = None"}, {"name": "num_videos_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.Tensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "image_embeds", "val": ": torch.Tensor | None = None"}, {"name": "last_image", "val": ": torch.Tensor | None = None"}, {"name": "output_type", "val": ": str | None = 'np'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}]- **image** (`PipelineImageInput`) --
-  The input image to condition the generation on. Must be an image, a list of images or a `torch.Tensor`.
-- **last_image** (`torch.Tensor`, *optional*) --
-  Optional last frame to condition the generated video on. When provided, the model interpolates between
-  `image` (first frame) and `last_image` (last frame).
-- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation. If not defined, one has to pass
-  `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is
-  less than `1`).
-- **height** (`int`, defaults to `480`) --
-  The height of the generated video.
-- **width** (`int`, defaults to `832`) --
-  The width of the generated video.
-- **num_frames** (`int`, defaults to `81`) --
-  The number of frames in the generated video.
-- **num_inference_steps** (`int`, defaults to `50`) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **guidance_scale** (`float`, defaults to `5.0`) --
-  Guidance scale as defined in [Classifier-Free Diffusion
-  Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2.
-  of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting
-  `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to
-  the text `prompt`, usually at the expense of lower image quality.
-- **guidance_scale_2** (`float`, *optional*, defaults to `None`) --
-  Guidance scale for the low-noise stage transformer (`transformer_2`). If `None` and the pipeline's
-  `boundary_ratio` is not None, uses the same value as `guidance_scale`. Only used when `transformer_2`
-  and the pipeline's `boundary_ratio` are not None.
-- **num_videos_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make
-  generation deterministic.
-- **latents** (`torch.Tensor`, *optional*) --
-  Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor is generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not
-  provided, text embeddings are generated from the `prompt` input argument.
-- **negative_prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not
-  provided, text embeddings are generated from the `negative_prompt` input argument.
-- **image_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated image embeddings. Can be used to easily tweak image inputs (weighting). If not provided,
-  image embeddings are generated from the `image` input argument.
-- **output_type** (`str`, *optional*, defaults to `"np"`) --
-  The output format of the generated image. Choose between `PIL.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `WanPipelineOutput` instead of a plain tuple.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) --
-  A function or a subclass of `PipelineCallback` or `MultiPipelineCallbacks` that is called at the end of
-  each denoising step during the inference. with the following arguments: `callback_on_step_end(self:
-  DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a
-  list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int`, defaults to `512`) --
-  The maximum sequence length of the text encoder. If the prompt is longer than this, it will be
-  truncated. If the prompt is shorter, it will be padded to this length.0`~WanPipelineOutput` or `tuple`If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
+#### __call__[[diffusers.WanImageToVideoPipeline.__call__]]
+
+```python
+__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int = 480, width: int = 832, num_frames: int = 81, num_inference_steps: int = 50, guidance_scale: float = 5.0, guidance_scale_2: float | None = None, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, image_embeds: typing.Optional[torch.Tensor] = None, last_image: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_i2v.py#L507)
+
+**Parameters:**
+
+image (`PipelineImageInput`) : The input image to condition the generation on. Must be an image, a list of images or a `torch.Tensor`.
+
+last_image (`torch.Tensor`, *optional*) : Optional last frame to condition the generated video on. When provided, the model interpolates between `image` (first frame) and `last_image` (last frame).
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+height (`int`, defaults to `480`) : The height of the generated video.
+
+width (`int`, defaults to `832`) : The width of the generated video.
+
+num_frames (`int`, defaults to `81`) : The number of frames in the generated video.
+
+num_inference_steps (`int`, defaults to `50`) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+guidance_scale (`float`, defaults to `5.0`) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+guidance_scale_2 (`float`, *optional*, defaults to `None`) : Guidance scale for the low-noise stage transformer (`transformer_2`). If `None` and the pipeline's `boundary_ratio` is not None, uses the same value as `guidance_scale`. Only used when `transformer_2` and the pipeline's `boundary_ratio` are not None.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor is generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, text embeddings are generated from the `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, text embeddings are generated from the `negative_prompt` input argument.
+
+image_embeds (`torch.Tensor`, *optional*) : Pre-generated image embeddings. Can be used to easily tweak image inputs (weighting). If not provided, image embeddings are generated from the `image` input argument.
+
+output_type (`str`, *optional*, defaults to `"np"`) : The output format of the generated image. Choose between `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `WanPipelineOutput` instead of a plain tuple.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) : A function or a subclass of `PipelineCallback` or `MultiPipelineCallbacks` that is called at the end of each denoising step during the inference. with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int`, defaults to `512`) : The maximum sequence length of the text encoder. If the prompt is longer than this, it will be truncated. If the prompt is shorter, it will be padded to this length.
+
+**Returns:** `~WanPipelineOutput` or `tuple`
+
+If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
 the first element is a list with the generated images and the second element is a list of `bool`s
 indicating whether the corresponding generated image contains "not-safe-for-work" (nsfw) content.
 
@@ -752,36 +769,13 @@ Examples:
 >>> export_to_video(output, "output.mp4", fps=16)
 ```
 
-**Parameters:**
-
-tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5Tokenizer), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
-
-text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
-
-image_encoder (`CLIPVisionModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPVisionModel), specifically the [clip-vit-huge-patch14](https://github.com/mlfoundations/open_clip/blob/main/docs/PRETRAINED.md#vit-h14-xlm-roberta-large) variant.
-
-transformer ([WanTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel)) : Conditional Transformer to denoise the input latents.
-
-scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKLWan](/docs/diffusers/v0.39.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
-
-transformer_2 ([WanTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel), *optional*) : Conditional Transformer to denoise the input latents during the low-noise stage. In two-stage denoising, `transformer` handles high-noise stages and `transformer_2` handles low-noise stages. If not provided, only `transformer` is used.
-
-boundary_ratio (`float`, *optional*, defaults to `None`) : Ratio of total timesteps to use as the boundary for switching between transformers in two-stage denoising. The actual boundary timestep is calculated as `boundary_ratio * num_train_timesteps`. When provided, `transformer` handles timesteps >= boundary_timestep and `transformer_2` handles timesteps < boundary_timestep. If `None`, only `transformer` is used for the entire denoising process.
-
-**Returns:**
-
-``~WanPipelineOutput` or `tuple``
-
-If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
-the first element is a list with the generated images and the second element is a list of `bool`s
-indicating whether the corresponding generated image contains "not-safe-for-work" (nsfw) content.
 #### encode_prompt[[diffusers.WanImageToVideoPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan_i2v.py#L251)
+```python
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_i2v.py#L251)
 
 **Parameters:**
 
@@ -801,99 +795,98 @@ device : (`torch.device`, *optional*): torch device
 
 dtype : (`torch.dtype`, *optional*): torch dtype
 
+Encodes the prompt into text encoder hidden states.
+
 ## WanVACEPipeline[[diffusers.WanVACEPipeline]]
 
 #### diffusers.WanVACEPipeline[[diffusers.WanVACEPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan_vace.py#L141)
+```python
+diffusers.WanVACEPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, vae: AutoencoderKLWan, scheduler: FlowMatchEulerDiscreteScheduler, transformer: WanVACETransformer3DModel = None, transformer_2: WanVACETransformer3DModel = None, boundary_ratio: float | None = None)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_vace.py#L141)
+
+**Parameters:**
+
+tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5Tokenizer), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
+
+text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
+
+vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+
+scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+transformer (`WanVACETransformer3DModel`, *optional*) : Conditional Transformer to denoise the input latents during the high-noise stage. In two-stage denoising, `transformer` handles high-noise stages and `transformer_2` handles low-noise stages. At least one of `transformer` or `transformer_2` must be provided.
+
+transformer_2 (`WanVACETransformer3DModel`, *optional*) : Conditional Transformer to denoise the input latents during the low-noise stage. In two-stage denoising, `transformer` handles high-noise stages and `transformer_2` handles low-noise stages. At least one of `transformer` or `transformer_2` must be provided.
+
+boundary_ratio (`float`, *optional*, defaults to `None`) : Ratio of total timesteps to use as the boundary for switching between transformers in two-stage denoising. The actual boundary timestep is calculated as `boundary_ratio * num_train_timesteps`. When provided, `transformer` handles timesteps >= boundary_timestep and `transformer_2` handles timesteps < boundary_timestep. If `None`, only the available transformer is used for the entire denoising process.
 
 Pipeline for controllable generation using Wan.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
-__call__diffusers.WanVACEPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan_vace.py#L689[{"name": "prompt", "val": ": str | list[str] = None"}, {"name": "negative_prompt", "val": ": str | list[str] = None"}, {"name": "video", "val": ": list[PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor]] | None = None"}, {"name": "mask", "val": ": list[PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor]] | None = None"}, {"name": "reference_images", "val": ": list[PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor]] | None = None"}, {"name": "conditioning_scale", "val": ": float | list[float] | torch.Tensor = 1.0"}, {"name": "height", "val": ": int = 480"}, {"name": "width", "val": ": int = 832"}, {"name": "num_frames", "val": ": int = 81"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "guidance_scale", "val": ": float = 5.0"}, {"name": "guidance_scale_2", "val": ": float | None = None"}, {"name": "num_videos_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.Tensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "output_type", "val": ": str | None = 'np'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}]- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`
-  instead.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation. If not defined, one has to pass
-  `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is
-  less than `1`).
-- **video** (`list[PIL.Image.Image]`, *optional*) --
-  The input video or videos to be used as a starting point for the generation. The video should be a list
-  of PIL images, a numpy array, or a torch tensor. Currently, the pipeline only supports generating one
-  video at a time.
-- **mask** (`list[PIL.Image.Image]`, *optional*) --
-  The input mask defines which video regions to condition on and which to generate. Black areas in the
-  mask indicate conditioning regions, while white areas indicate regions for generation. The mask should
-  be a list of PIL images, a numpy array, or a torch tensor. Currently supports generating a single video
-  at a time.
-- **reference_images** (`list[PIL.Image.Image]`, *optional*) --
-  A list of one or more reference images as extra conditioning for the generation. For example, if you
-  are trying to inpaint a video to change the character, you can pass reference images of the new
-  character here. Refer to the Diffusers [examples](https://github.com/huggingface/diffusers/pull/11582)
-  and original [user
-  guide](https://github.com/ali-vilab/VACE/blob/0897c6d055d7d9ea9e191dce763006664d9780f8/UserGuide.md)
-  for a full list of supported tasks and use cases.
-- **conditioning_scale** (`float`, `list[float]`, `torch.Tensor`, defaults to `1.0`) --
-  The conditioning scale to be applied when adding the control conditioning latent stream to the
-  denoising latent stream in each control layer of the model. If a float is provided, it will be applied
-  uniformly to all layers. If a list or tensor is provided, it should have the same length as the number
-  of control layers in the model (`len(transformer.config.vace_layers)`).
-- **height** (`int`, defaults to `480`) --
-  The height in pixels of the generated image.
-- **width** (`int`, defaults to `832`) --
-  The width in pixels of the generated image.
-- **num_frames** (`int`, defaults to `81`) --
-  The number of frames in the generated video.
-- **num_inference_steps** (`int`, defaults to `50`) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **guidance_scale** (`float`, defaults to `5.0`) --
-  Guidance scale as defined in [Classifier-Free Diffusion
-  Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2.
-  of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting
-  `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to
-  the text `prompt`, usually at the expense of lower image quality.
-- **guidance_scale_2** (`float`, *optional*, defaults to `None`) --
-  Guidance scale for the low-noise stage transformer (`transformer_2`). If `None` and the pipeline's
-  `boundary_ratio` is not None, uses the same value as `guidance_scale`. Only used when `transformer_2`
-  and the pipeline's `boundary_ratio` are not None.
-- **num_videos_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make
-  generation deterministic.
-- **latents** (`torch.Tensor`, *optional*) --
-  Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor is generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not
-  provided, text embeddings are generated from the `prompt` input argument.
-- **negative_prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated negative text embeddings. Can be used to easily tweak text inputs (prompt weighting). If
-  not provided, `negative_prompt_embeds` are generated from the `negative_prompt` input argument.
-- **output_type** (`str`, *optional*, defaults to `"np"`) --
-  The output format of the generated image. Choose between `PIL.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `WanPipelineOutput` instead of a plain tuple.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) --
-  A function or a subclass of `PipelineCallback` or `MultiPipelineCallbacks` that is called at the end of
-  each denoising step during the inference. with the following arguments: `callback_on_step_end(self:
-  DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a
-  list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int`, defaults to `512`) --
-  The maximum sequence length of the text encoder. If the prompt is longer than this, it will be
-  truncated. If the prompt is shorter, it will be padded to this length.0`~WanPipelineOutput` or `tuple`If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
+#### __call__[[diffusers.WanVACEPipeline.__call__]]
+
+```python
+__call__(prompt: str | list[str] = None, negative_prompt: str | list[str] = None, video: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] | None = None, mask: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] | None = None, reference_images: list[typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]]] | None = None, conditioning_scale: typing.Union[float, list[float], torch.Tensor] = 1.0, height: int = 480, width: int = 832, num_frames: int = 81, num_inference_steps: int = 50, guidance_scale: float = 5.0, guidance_scale_2: float | None = None, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_vace.py#L689)
+
+**Parameters:**
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds` instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+video (`list[PIL.Image.Image]`, *optional*) : The input video or videos to be used as a starting point for the generation. The video should be a list of PIL images, a numpy array, or a torch tensor. Currently, the pipeline only supports generating one video at a time.
+
+mask (`list[PIL.Image.Image]`, *optional*) : The input mask defines which video regions to condition on and which to generate. Black areas in the mask indicate conditioning regions, while white areas indicate regions for generation. The mask should be a list of PIL images, a numpy array, or a torch tensor. Currently supports generating a single video at a time.
+
+reference_images (`list[PIL.Image.Image]`, *optional*) : A list of one or more reference images as extra conditioning for the generation. For example, if you are trying to inpaint a video to change the character, you can pass reference images of the new character here. Refer to the Diffusers [examples](https://github.com/huggingface/diffusers/pull/11582) and original [user guide](https://github.com/ali-vilab/VACE/blob/0897c6d055d7d9ea9e191dce763006664d9780f8/UserGuide.md) for a full list of supported tasks and use cases.
+
+conditioning_scale (`float`, `list[float]`, `torch.Tensor`, defaults to `1.0`) : The conditioning scale to be applied when adding the control conditioning latent stream to the denoising latent stream in each control layer of the model. If a float is provided, it will be applied uniformly to all layers. If a list or tensor is provided, it should have the same length as the number of control layers in the model (`len(transformer.config.vace_layers)`).
+
+height (`int`, defaults to `480`) : The height in pixels of the generated image.
+
+width (`int`, defaults to `832`) : The width in pixels of the generated image.
+
+num_frames (`int`, defaults to `81`) : The number of frames in the generated video.
+
+num_inference_steps (`int`, defaults to `50`) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+guidance_scale (`float`, defaults to `5.0`) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+guidance_scale_2 (`float`, *optional*, defaults to `None`) : Guidance scale for the low-noise stage transformer (`transformer_2`). If `None` and the pipeline's `boundary_ratio` is not None, uses the same value as `guidance_scale`. Only used when `transformer_2` and the pipeline's `boundary_ratio` are not None.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor is generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, text embeddings are generated from the `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, `negative_prompt_embeds` are generated from the `negative_prompt` input argument.
+
+output_type (`str`, *optional*, defaults to `"np"`) : The output format of the generated image. Choose between `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `WanPipelineOutput` instead of a plain tuple.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) : A function or a subclass of `PipelineCallback` or `MultiPipelineCallbacks` that is called at the end of each denoising step during the inference. with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int`, defaults to `512`) : The maximum sequence length of the text encoder. If the prompt is longer than this, it will be truncated. If the prompt is shorter, it will be padded to this length.
+
+**Returns:** `~WanPipelineOutput` or `tuple`
+
+If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
 the first element is a list with the generated images and the second element is a list of `bool`s
 indicating whether the corresponding generated image contains "not-safe-for-work" (nsfw) content.
 
@@ -958,34 +951,13 @@ def prepare_video_and_mask(first_img: PIL.Image.Image, last_img: PIL.Image.Image
 >>> export_to_video(output, "output.mp4", fps=16)
 ```
 
-**Parameters:**
-
-tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5Tokenizer), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
-
-text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
-
-vae ([AutoencoderKLWan](/docs/diffusers/v0.39.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
-
-scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-transformer (`WanVACETransformer3DModel`, *optional*) : Conditional Transformer to denoise the input latents during the high-noise stage. In two-stage denoising, `transformer` handles high-noise stages and `transformer_2` handles low-noise stages. At least one of `transformer` or `transformer_2` must be provided.
-
-transformer_2 (`WanVACETransformer3DModel`, *optional*) : Conditional Transformer to denoise the input latents during the low-noise stage. In two-stage denoising, `transformer` handles high-noise stages and `transformer_2` handles low-noise stages. At least one of `transformer` or `transformer_2` must be provided.
-
-boundary_ratio (`float`, *optional*, defaults to `None`) : Ratio of total timesteps to use as the boundary for switching between transformers in two-stage denoising. The actual boundary timestep is calculated as `boundary_ratio * num_train_timesteps`. When provided, `transformer` handles timesteps >= boundary_timestep and `transformer_2` handles timesteps < boundary_timestep. If `None`, only the available transformer is used for the entire denoising process.
-
-**Returns:**
-
-``~WanPipelineOutput` or `tuple``
-
-If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
-the first element is a list with the generated images and the second element is a list of `bool`s
-indicating whether the corresponding generated image contains "not-safe-for-work" (nsfw) content.
 #### encode_prompt[[diffusers.WanVACEPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan_vace.py#L246)
+```python
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_vace.py#L246)
 
 **Parameters:**
 
@@ -1005,81 +977,88 @@ device : (`torch.device`, *optional*): torch device
 
 dtype : (`torch.dtype`, *optional*): torch dtype
 
+Encodes the prompt into text encoder hidden states.
+
 ## WanVideoToVideoPipeline[[diffusers.WanVideoToVideoPipeline]]
 
 #### diffusers.WanVideoToVideoPipeline[[diffusers.WanVideoToVideoPipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan_video2video.py#L174)
+```python
+diffusers.WanVideoToVideoPipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, transformer: WanTransformer3DModel, vae: AutoencoderKLWan, scheduler: FlowMatchEulerDiscreteScheduler)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_video2video.py#L174)
+
+**Parameters:**
+
+tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5Tokenizer), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
+
+text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
+
+transformer ([WanTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+
+scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
 
 Pipeline for video-to-video generation using Wan.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
-__call__diffusers.WanVideoToVideoPipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan_video2video.py#L479[{"name": "video", "val": ": list = None"}, {"name": "prompt", "val": ": str | list[str] = None"}, {"name": "negative_prompt", "val": ": str | list[str] = None"}, {"name": "height", "val": ": int = 480"}, {"name": "width", "val": ": int = 832"}, {"name": "num_inference_steps", "val": ": int = 50"}, {"name": "timesteps", "val": ": list[int] | None = None"}, {"name": "guidance_scale", "val": ": float = 5.0"}, {"name": "strength", "val": ": float = 0.8"}, {"name": "num_videos_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.Tensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "output_type", "val": ": str | None = 'np'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}]- **video** (`list[PIL.Image.Image]`) --
-  The input video used as the starting point for video-to-video generation. The video should be provided
-  as a list of PIL images, a numpy array, or a torch tensor.
-- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`
-  instead.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation. If not defined, one has to pass
-  `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is
-  less than `1`).
-- **height** (`int`, defaults to `480`) --
-  The height in pixels of the generated image.
-- **width** (`int`, defaults to `832`) --
-  The width in pixels of the generated image.
-- **num_inference_steps** (`int`, defaults to `50`) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **timesteps** (`list[int]`, *optional*) --
-  Custom timesteps to use for the denoising process with schedulers which support a `timesteps` argument
-  in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is
-  passed will be used. Must be in descending order.
-- **guidance_scale** (`float`, defaults to `5.0`) --
-  Guidance scale as defined in [Classifier-Free Diffusion
-  Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2.
-  of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting
-  `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to
-  the text `prompt`, usually at the expense of lower image quality.
-- **strength** (`float`, defaults to `0.8`) --
-  Higher strength leads to more differences between original image and generated video.
-- **num_videos_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make
-  generation deterministic.
-- **latents** (`torch.Tensor`, *optional*) --
-  Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor is generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not
-  provided, text embeddings are generated from the `prompt` input argument.
-- **negative_prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated negative text embeddings. Can be used to easily tweak text inputs (prompt weighting). If
-  not provided, `negative_prompt_embeds` are generated from the `negative_prompt` input argument.
-- **output_type** (`str`, *optional*, defaults to `"np"`) --
-  The output format of the generated image. Choose between `PIL.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `WanPipelineOutput` instead of a plain tuple.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) --
-  A function or a subclass of `PipelineCallback` or `MultiPipelineCallbacks` that is called at the end of
-  each denoising step during the inference. with the following arguments: `callback_on_step_end(self:
-  DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a
-  list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`list`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int`, defaults to `512`) --
-  The maximum sequence length of the text encoder. If the prompt is longer than this, it will be
-  truncated. If the prompt is shorter, it will be padded to this length.0`~WanPipelineOutput` or `tuple`If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
+#### __call__[[diffusers.WanVideoToVideoPipeline.__call__]]
+
+```python
+__call__(video: list = None, prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int = 480, width: int = 832, num_inference_steps: int = 50, timesteps: list[int] | None = None, guidance_scale: float = 5.0, strength: float = 0.8, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Union[typing.Callable[[int, int], NoneType], diffusers.callbacks.PipelineCallback, diffusers.callbacks.MultiPipelineCallbacks, NoneType] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_video2video.py#L480)
+
+**Parameters:**
+
+video (`list[PIL.Image.Image]`) : The input video used as the starting point for video-to-video generation. The video should be provided as a list of PIL images, a numpy array, or a torch tensor.
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds` instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+height (`int`, defaults to `480`) : The height in pixels of the generated image.
+
+width (`int`, defaults to `832`) : The width in pixels of the generated image.
+
+num_inference_steps (`int`, defaults to `50`) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+timesteps (`list[int]`, *optional*) : Custom timesteps to use for the denoising process with schedulers which support a `timesteps` argument in their `set_timesteps` method. If not defined, the default behavior when `num_inference_steps` is passed will be used. Must be in descending order.
+
+guidance_scale (`float`, defaults to `5.0`) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality.
+
+strength (`float`, defaults to `0.8`) : Higher strength leads to more differences between original image and generated video.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor is generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, text embeddings are generated from the `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, `negative_prompt_embeds` are generated from the `negative_prompt` input argument.
+
+output_type (`str`, *optional*, defaults to `"np"`) : The output format of the generated image. Choose between `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `WanPipelineOutput` instead of a plain tuple.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) : A function or a subclass of `PipelineCallback` or `MultiPipelineCallbacks` that is called at the end of each denoising step during the inference. with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`list`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int`, defaults to `512`) : The maximum sequence length of the text encoder. If the prompt is longer than this, it will be truncated. If the prompt is shorter, it will be padded to this length.
+
+**Returns:** `~WanPipelineOutput` or `tuple`
+
+If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
 the first element is a list with the generated images and the second element is a list of `bool`s
 indicating whether the corresponding generated image contains "not-safe-for-work" (nsfw) content.
 
@@ -1117,30 +1096,13 @@ Examples:
 >>> export_to_video(output, "output.mp4", fps=16)
 ```
 
-**Parameters:**
-
-tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5Tokenizer), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
-
-text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
-
-transformer ([WanTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/wan_transformer_3d#diffusers.WanTransformer3DModel)) : Conditional Transformer to denoise the input latents.
-
-scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKLWan](/docs/diffusers/v0.39.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
-
-**Returns:**
-
-``~WanPipelineOutput` or `tuple``
-
-If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
-the first element is a list with the generated images and the second element is a list of `bool`s
-indicating whether the corresponding generated image contains "not-safe-for-work" (nsfw) content.
 #### encode_prompt[[diffusers.WanVideoToVideoPipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan_video2video.py#L264)
+```python
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_video2video.py#L264)
 
 **Parameters:**
 
@@ -1160,11 +1122,33 @@ device : (`torch.device`, *optional*): torch device
 
 dtype : (`torch.dtype`, *optional*): torch dtype
 
+Encodes the prompt into text encoder hidden states.
+
 ## WanAnimatePipeline[[diffusers.WanAnimatePipeline]]
 
 #### diffusers.WanAnimatePipeline[[diffusers.WanAnimatePipeline]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L150)
+```python
+diffusers.WanAnimatePipeline(tokenizer: AutoTokenizer, text_encoder: UMT5EncoderModel, vae: AutoencoderKLWan, scheduler: UniPCMultistepScheduler, image_processor: CLIPImageProcessorPil, image_encoder: CLIPVisionModel, transformer: WanAnimateTransformer3DModel)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L150)
+
+**Parameters:**
+
+tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5Tokenizer), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
+
+text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
+
+image_encoder (`CLIPVisionModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPVisionModel), specifically the [clip-vit-huge-patch14](https://github.com/mlfoundations/open_clip/blob/main/docs/PRETRAINED.md#vit-h14-xlm-roberta-large) variant.
+
+transformer ([WanAnimateTransformer3DModel](/docs/diffusers/v0.40.0/en/api/models/wan_animate_transformer_3d#diffusers.WanAnimateTransformer3DModel)) : Conditional Transformer to denoise the input latents.
+
+scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.40.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
+
+vae ([AutoencoderKLWan](/docs/diffusers/v0.40.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
+
+image_processor (`CLIPImageProcessor`) : Image processor for preprocessing images before encoding.
 
 Pipeline for unified character animation and replacement using Wan-Animate.
 
@@ -1180,97 +1164,79 @@ modes:
    `mask_video` inputs. The mask video should have black regions where the original content should be preserved and
    white regions where the new character should be generated.
 
-This model inherits from [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
+This model inherits from [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline). Check the superclass documentation for the generic methods
 implemented for all pipelines (downloading, saving, running on a particular device, etc.).
 
 The pipeline also inherits the following loading methods:
-- [load_lora_weights()](/docs/diffusers/v0.39.0/en/api/loaders/lora#diffusers.loaders.WanLoraLoaderMixin.load_lora_weights) for loading LoRA weights
+- [load_lora_weights()](/docs/diffusers/v0.40.0/en/api/loaders/lora#diffusers.loaders.WanLoraLoaderMixin.load_lora_weights) for loading LoRA weights
 
-__call__diffusers.WanAnimatePipeline.__call__https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L760[{"name": "image", "val": ": PIL.Image.Image | numpy.ndarray | torch.Tensor | list[PIL.Image.Image] | list[numpy.ndarray] | list[torch.Tensor]"}, {"name": "pose_video", "val": ": list"}, {"name": "face_video", "val": ": list"}, {"name": "background_video", "val": ": list[PIL.Image.Image] | None = None"}, {"name": "mask_video", "val": ": list[PIL.Image.Image] | None = None"}, {"name": "prompt", "val": ": str | list[str] = None"}, {"name": "negative_prompt", "val": ": str | list[str] = None"}, {"name": "height", "val": ": int = 720"}, {"name": "width", "val": ": int = 1280"}, {"name": "segment_frame_length", "val": ": int = 77"}, {"name": "num_inference_steps", "val": ": int = 20"}, {"name": "mode", "val": ": str = 'animate'"}, {"name": "prev_segment_conditioning_frames", "val": ": int = 1"}, {"name": "motion_encode_batch_size", "val": ": int | None = None"}, {"name": "guidance_scale", "val": ": float = 1.0"}, {"name": "num_videos_per_prompt", "val": ": int | None = 1"}, {"name": "generator", "val": ": torch._C.Generator | list[torch._C.Generator] | None = None"}, {"name": "latents", "val": ": torch.Tensor | None = None"}, {"name": "prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "negative_prompt_embeds", "val": ": torch.Tensor | None = None"}, {"name": "image_embeds", "val": ": torch.Tensor | None = None"}, {"name": "output_type", "val": ": str | None = 'np'"}, {"name": "return_dict", "val": ": bool = True"}, {"name": "attention_kwargs", "val": ": dict[str, typing.Any] | None = None"}, {"name": "callback_on_step_end", "val": ": typing.Optional[typing.Callable[[int, int, NoneType], diffusers.callbacks.PipelineCallback | diffusers.callbacks.MultiPipelineCallbacks]] = None"}, {"name": "callback_on_step_end_tensor_inputs", "val": ": list = ['latents']"}, {"name": "max_sequence_length", "val": ": int = 512"}]- **image** (`PipelineImageInput`) --
-  The input character image to condition the generation on. Must be an image, a list of images or a
-  `torch.Tensor`.
-- **pose_video** (`list[PIL.Image.Image]`) --
-  The input pose video to condition the generation on. Must be a list of PIL images.
-- **face_video** (`list[PIL.Image.Image]`) --
-  The input face video to condition the generation on. Must be a list of PIL images.
-- **background_video** (`list[PIL.Image.Image]`, *optional*) --
-  When mode is `"replace"`, the input background video to condition the generation on. Must be a list of
-  PIL images.
-- **mask_video** (`list[PIL.Image.Image]`, *optional*) --
-  When mode is `"replace"`, the input mask video to condition the generation on. Must be a list of PIL
-  images.
-- **prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`.
-  instead.
-- **negative_prompt** (`str` or `list[str]`, *optional*) --
-  The prompt or prompts not to guide the image generation. If not defined, one has to pass
-  `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is
-  less than `1`).
-- **mode** (`str`, defaults to `"animation"`) --
-  The mode of the generation. Choose between `"animate"` and `"replace"`.
-- **prev_segment_conditioning_frames** (`int`, defaults to `1`) --
-  The number of frames from the previous video segment to be used for temporal guidance. Recommended to
-  be 1 or 5. In general, should be 4N + 1, where N is a non-negative integer.
-- **motion_encode_batch_size** (`int`, *optional*) --
-  The batch size for batched encoding of the face video via the motion encoder. This allows trading off
-  inference speed for lower memory usage by setting a smaller batch size. Will default to
-  `self.transformer.config.motion_encoder_batch_size` if not set.
-- **height** (`int`, defaults to `720`) --
-  The height of the generated video.
-- **width** (`int`, defaults to `1280`) --
-  The width of the generated video.
-- **segment_frame_length** (`int`, defaults to `77`) --
-  The number of frames in each generated video segment. The total frames of video generated will be equal
-  to the number of frames in `pose_video`; we will generate the video in segments until we have hit this
-  length. In general, should be 4N + 1, where N is a non-negative integer.
-- **num_inference_steps** (`int`, defaults to `20`) --
-  The number of denoising steps. More denoising steps usually lead to a higher quality image at the
-  expense of slower inference.
-- **guidance_scale** (`float`, defaults to `1.0`) --
-  Guidance scale as defined in [Classifier-Free Diffusion
-  Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2.
-  of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting
-  `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to
-  the text `prompt`, usually at the expense of lower image quality. By default, CFG is not used in Wan
-  Animate inference.
-- **num_videos_per_prompt** (`int`, *optional*, defaults to 1) --
-  The number of images to generate per prompt.
-- **generator** (`torch.Generator` or `list[torch.Generator]`, *optional*) --
-  A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make
-  generation deterministic.
-- **latents** (`torch.Tensor`, *optional*) --
-  Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for image
-  generation. Can be used to tweak the same generation with different prompts. If not provided, a latents
-  tensor is generated by sampling using the supplied random `generator`.
-- **prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not
-  provided, text embeddings are generated from the `prompt` input argument.
-- **negative_prompt_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not
-  provided, text embeddings are generated from the `negative_prompt` input argument.
-- **image_embeds** (`torch.Tensor`, *optional*) --
-  Pre-generated image embeddings. Can be used to easily tweak image inputs (weighting). If not provided,
-  image embeddings are generated from the `image` input argument.
-- **output_type** (`str`, *optional*, defaults to `"np"`) --
-  The output format of the generated image. Choose between `PIL.Image` or `np.array`.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a `WanPipelineOutput` instead of a plain tuple.
-- **attention_kwargs** (`dict`, *optional*) --
-  A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under
-  `self.processor` in
-  [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
-- **callback_on_step_end** (`Callable`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) --
-  A function or a subclass of `PipelineCallback` or `MultiPipelineCallbacks` that is called at the end of
-  each denoising step during the inference. with the following arguments: `callback_on_step_end(self:
-  DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a
-  list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
-- **callback_on_step_end_tensor_inputs** (`List`, *optional*) --
-  The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list
-  will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the
-  `._callback_tensor_inputs` attribute of your pipeline class.
-- **max_sequence_length** (`int`, defaults to `512`) --
-  The maximum sequence length of the text encoder. If the prompt is longer than this, it will be
-  truncated. If the prompt is shorter, it will be padded to this length.0`~WanPipelineOutput` or `tuple`If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
+#### __call__[[diffusers.WanAnimatePipeline.__call__]]
+
+```python
+__call__(image: typing.Union[PIL.Image.Image, numpy.ndarray, torch.Tensor, list[PIL.Image.Image], list[numpy.ndarray], list[torch.Tensor]], pose_video: list, face_video: list, background_video: list[PIL.Image.Image] | None = None, mask_video: list[PIL.Image.Image] | None = None, prompt: str | list[str] = None, negative_prompt: str | list[str] = None, height: int = 720, width: int = 1280, segment_frame_length: int = 77, num_inference_steps: int = 20, mode: str = 'animate', prev_segment_conditioning_frames: int = 1, motion_encode_batch_size: int | None = None, guidance_scale: float = 1.0, num_videos_per_prompt: int | None = 1, generator: typing.Union[torch.Generator, list[torch.Generator], NoneType] = None, latents: typing.Optional[torch.Tensor] = None, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, image_embeds: typing.Optional[torch.Tensor] = None, output_type: str | None = 'np', return_dict: bool = True, attention_kwargs: dict[str, typing.Any] | None = None, callback_on_step_end: typing.Optional[typing.Callable[[int, int, NoneType], diffusers.callbacks.PipelineCallback | diffusers.callbacks.MultiPipelineCallbacks]] = None, callback_on_step_end_tensor_inputs: list = ['latents'], max_sequence_length: int = 512)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L760)
+
+**Parameters:**
+
+image (`PipelineImageInput`) : The input character image to condition the generation on. Must be an image, a list of images or a `torch.Tensor`.
+
+pose_video (`list[PIL.Image.Image]`) : The input pose video to condition the generation on. Must be a list of PIL images.
+
+face_video (`list[PIL.Image.Image]`) : The input face video to condition the generation on. Must be a list of PIL images.
+
+background_video (`list[PIL.Image.Image]`, *optional*) : When mode is `"replace"`, the input background video to condition the generation on. Must be a list of PIL images.
+
+mask_video (`list[PIL.Image.Image]`, *optional*) : When mode is `"replace"`, the input mask video to condition the generation on. Must be a list of PIL images.
+
+prompt (`str` or `list[str]`, *optional*) : The prompt or prompts to guide the image generation. If not defined, one has to pass `prompt_embeds`. instead.
+
+negative_prompt (`str` or `list[str]`, *optional*) : The prompt or prompts not to guide the image generation. If not defined, one has to pass `negative_prompt_embeds` instead. Ignored when not using guidance (i.e., ignored if `guidance_scale` is less than `1`).
+
+mode (`str`, defaults to `"animation"`) : The mode of the generation. Choose between `"animate"` and `"replace"`.
+
+prev_segment_conditioning_frames (`int`, defaults to `1`) : The number of frames from the previous video segment to be used for temporal guidance. Recommended to be 1 or 5. In general, should be 4N + 1, where N is a non-negative integer.
+
+motion_encode_batch_size (`int`, *optional*) : The batch size for batched encoding of the face video via the motion encoder. This allows trading off inference speed for lower memory usage by setting a smaller batch size. Will default to `self.transformer.config.motion_encoder_batch_size` if not set.
+
+height (`int`, defaults to `720`) : The height of the generated video.
+
+width (`int`, defaults to `1280`) : The width of the generated video.
+
+segment_frame_length (`int`, defaults to `77`) : The number of frames in each generated video segment. The total frames of video generated will be equal to the number of frames in `pose_video`; we will generate the video in segments until we have hit this length. In general, should be 4N + 1, where N is a non-negative integer.
+
+num_inference_steps (`int`, defaults to `20`) : The number of denoising steps. More denoising steps usually lead to a higher quality image at the expense of slower inference.
+
+guidance_scale (`float`, defaults to `1.0`) : Guidance scale as defined in [Classifier-Free Diffusion Guidance](https://huggingface.co/papers/2207.12598). `guidance_scale` is defined as `w` of equation 2. of [Imagen Paper](https://huggingface.co/papers/2205.11487). Guidance scale is enabled by setting `guidance_scale > 1`. Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality. By default, CFG is not used in Wan Animate inference.
+
+num_videos_per_prompt (`int`, *optional*, defaults to 1) : The number of images to generate per prompt.
+
+generator (`torch.Generator` or `list[torch.Generator]`, *optional*) : A [`torch.Generator`](https://pytorch.org/docs/stable/generated/torch.Generator.html) to make generation deterministic.
+
+latents (`torch.Tensor`, *optional*) : Pre-generated noisy latents sampled from a Gaussian distribution, to be used as inputs for image generation. Can be used to tweak the same generation with different prompts. If not provided, a latents tensor is generated by sampling using the supplied random `generator`.
+
+prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, text embeddings are generated from the `prompt` input argument.
+
+negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated text embeddings. Can be used to easily tweak text inputs (prompt weighting). If not provided, text embeddings are generated from the `negative_prompt` input argument.
+
+image_embeds (`torch.Tensor`, *optional*) : Pre-generated image embeddings. Can be used to easily tweak image inputs (weighting). If not provided, image embeddings are generated from the `image` input argument.
+
+output_type (`str`, *optional*, defaults to `"np"`) : The output format of the generated image. Choose between `PIL.Image` or `np.array`.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a `WanPipelineOutput` instead of a plain tuple.
+
+attention_kwargs (`dict`, *optional*) : A kwargs dictionary that if specified is passed along to the `AttentionProcessor` as defined under `self.processor` in [diffusers.models.attention_processor](https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/attention_processor.py).
+
+callback_on_step_end (`Callable`, `PipelineCallback`, `MultiPipelineCallbacks`, *optional*) : A function or a subclass of `PipelineCallback` or `MultiPipelineCallbacks` that is called at the end of each denoising step during the inference. with the following arguments: `callback_on_step_end(self: DiffusionPipeline, step: int, timestep: int, callback_kwargs: Dict)`. `callback_kwargs` will include a list of all tensors as specified by `callback_on_step_end_tensor_inputs`.
+
+callback_on_step_end_tensor_inputs (`List`, *optional*) : The list of tensor inputs for the `callback_on_step_end` function. The tensors specified in the list will be passed as `callback_kwargs` argument. You will only be able to include variables listed in the `._callback_tensor_inputs` attribute of your pipeline class.
+
+max_sequence_length (`int`, defaults to `512`) : The maximum sequence length of the text encoder. If the prompt is longer than this, it will be truncated. If the prompt is shorter, it will be padded to this length.
+
+**Returns:** `~WanPipelineOutput` or `tuple`
+
+If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
 the first element is a list with the generated images and the second element is a list of `bool`s
 indicating whether the corresponding generated image contains "not-safe-for-work" (nsfw) content.
 
@@ -1342,34 +1308,13 @@ Examples:
 >>> export_to_video(output, "output_replacement.mp4", fps=30)
 ```
 
-**Parameters:**
-
-tokenizer (`T5Tokenizer`) : Tokenizer from [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5Tokenizer), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
-
-text_encoder (`T5EncoderModel`) : [T5](https://huggingface.co/docs/transformers/en/model_doc/t5#transformers.T5EncoderModel), specifically the [google/umt5-xxl](https://huggingface.co/google/umt5-xxl) variant.
-
-image_encoder (`CLIPVisionModel`) : [CLIP](https://huggingface.co/docs/transformers/model_doc/clip#transformers.CLIPVisionModel), specifically the [clip-vit-huge-patch14](https://github.com/mlfoundations/open_clip/blob/main/docs/PRETRAINED.md#vit-h14-xlm-roberta-large) variant.
-
-transformer ([WanAnimateTransformer3DModel](/docs/diffusers/v0.39.0/en/api/models/wan_animate_transformer_3d#diffusers.WanAnimateTransformer3DModel)) : Conditional Transformer to denoise the input latents.
-
-scheduler ([UniPCMultistepScheduler](/docs/diffusers/v0.39.0/en/api/schedulers/unipc#diffusers.UniPCMultistepScheduler)) : A scheduler to be used in combination with `transformer` to denoise the encoded image latents.
-
-vae ([AutoencoderKLWan](/docs/diffusers/v0.39.0/en/api/models/autoencoder_kl_wan#diffusers.AutoencoderKLWan)) : Variational Auto-Encoder (VAE) Model to encode and decode videos to and from latent representations.
-
-image_processor (`CLIPImageProcessor`) : Image processor for preprocessing images before encoding.
-
-**Returns:**
-
-``~WanPipelineOutput` or `tuple``
-
-If `return_dict` is `True`, `WanPipelineOutput` is returned, otherwise a `tuple` is returned where
-the first element is a list with the generated images and the second element is a list of `bool`s
-indicating whether the corresponding generated image contains "not-safe-for-work" (nsfw) content.
 #### encode_prompt[[diffusers.WanAnimatePipeline.encode_prompt]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L288)
+```python
+encode_prompt(prompt: str | list[str], negative_prompt: str | list[str] | None = None, do_classifier_free_guidance: bool = True, num_videos_per_prompt: int = 1, prompt_embeds: typing.Optional[torch.Tensor] = None, negative_prompt_embeds: typing.Optional[torch.Tensor] = None, max_sequence_length: int = 226, device: typing.Optional[torch.device] = None, dtype: typing.Optional[torch.dtype] = None)
+```
 
-Encodes the prompt into text encoder hidden states.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L288)
 
 **Parameters:**
 
@@ -1388,9 +1333,16 @@ negative_prompt_embeds (`torch.Tensor`, *optional*) : Pre-generated negative tex
 device : (`torch.device`, *optional*): torch device
 
 dtype : (`torch.dtype`, *optional*): torch dtype
+
+Encodes the prompt into text encoder hidden states.
+
 #### pad_video_frames[[diffusers.WanAnimatePipeline.pad_video_frames]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L715)
+```python
+pad_video_frames(frames: list, num_target_frames: int)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_wan_animate.py#L715)
 
 Pads an array-like video `frames` to `num_target_frames` using a "reflect"-like strategy. The frame dimension
 is assumed to be the first dimension. In the 1D case, we can visualize this strategy as follows:
@@ -1401,13 +1353,17 @@ pad_video_frames([1, 2, 3, 4, 5], 10) -> [1, 2, 3, 4, 5, 4, 3, 2, 1, 2]
 
 #### diffusers.pipelines.wan.pipeline_output.WanPipelineOutput[[diffusers.pipelines.wan.pipeline_output.WanPipelineOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/pipelines/wan/pipeline_output.py#L9)
+```python
+diffusers.pipelines.wan.pipeline_output.WanPipelineOutput(frames: Tensor)
+```
 
-Output class for Wan pipelines.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/pipelines/wan/pipeline_output.py#L9)
 
 **Parameters:**
 
 frames (`torch.Tensor`, `np.ndarray`, or list[list[PIL.Image.Image]]) : list of video outputs - It can be a nested list of length `batch_size,` with each sub-list containing denoised PIL image sequences of length `num_frames.` It can also be a NumPy array or Torch tensor of shape `(batch_size, num_frames, channels, height, width)`.
 
-### Shap-E
-https://huggingface.co/docs/diffusers/v0.39.0/api/pipelines/shap_e.md
+Output class for Wan pipelines.
+
+### LongCat-AudioDiT
+https://huggingface.co/docs/diffusers/v0.40.0/api/pipelines/longcat_audio_dit.md

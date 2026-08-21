@@ -10,7 +10,7 @@ Before starting please install gguf in your environment
 pip install -U gguf
 ```
 
-Since GGUF is a single file format, use `~FromSingleFileMixin.from_single_file` to load the model and pass in the [GGUFQuantizationConfig](/docs/diffusers/v0.39.0/en/api/quantization#diffusers.GGUFQuantizationConfig).
+Since GGUF is a single file format, use `~FromSingleFileMixin.from_single_file` to load the model and pass in the [GGUFQuantizationConfig](/docs/diffusers/v0.40.0/en/api/quantization#diffusers.GGUFQuantizationConfig).
 
 When using GGUF checkpoints, the quantized weights remain in a low memory `dtype`(typically `torch.uint8`) and are dynamically dequantized and cast to the configured `compute_dtype` during each module's forward pass through the model. The `GGUFQuantizationConfig` allows you to set the `compute_dtype`.
 
@@ -27,12 +27,12 @@ ckpt_path = (
 transformer = FluxTransformer2DModel.from_single_file(
     ckpt_path,
     quantization_config=GGUFQuantizationConfig(compute_dtype=torch.bfloat16),
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
 )
 pipe = FluxPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
     transformer=transformer,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
 )
 pipe.enable_model_cpu_offload()
 prompt = "A cat holding a sign that says hello world"
@@ -49,6 +49,8 @@ pip install -U kernels
 ```
 
 Once installed, set `DIFFUSERS_GGUF_CUDA_KERNELS=true`  to use optimized kernels when available. Note that CUDA kernels may introduce minor numerical differences compared to the original GGUF implementation, potentially causing subtle visual variations in generated images. To disable CUDA kernel usage, set the environment variable `DIFFUSERS_GGUF_CUDA_KERNELS=false`.
+
+The GGUF kernels are downloaded from the [`Isotr0py/ggml`](https://huggingface.co/Isotr0py/ggml) repository, whose publisher is not a trusted kernel publisher on the Hub. Loading it downloads and executes code from the Hub, so Diffusers requires you to explicitly opt in by setting `DIFFUSERS_TRUST_REMOTE_KERNELS=true`. See [Trusting remote kernels](../optimization/attention_backends#trusting-remote-kernels) for details.
 
 ## Supported Quantization Types
 
@@ -89,12 +91,12 @@ transformer = FluxTransformer2DModel.from_single_file(
     quantization_config=GGUFQuantizationConfig(compute_dtype=torch.bfloat16),
     config="black-forest-labs/FLUX.1-dev",
     subfolder="transformer",
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
 )
 pipe = FluxPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
     transformer=transformer,
-    torch_dtype=torch.bfloat16,
+    dtype=torch.bfloat16,
 )
 pipe.enable_model_cpu_offload()
 prompt = "A cat holding a sign that says hello world"
@@ -105,5 +107,5 @@ image.save("flux-gguf.png")
 When using Diffusers format GGUF checkpoints, it's a must to provide the model `config` path. If the
 model config resides in a `subfolder`, that needs to be specified, too.
 
-### Quanto
-https://huggingface.co/docs/diffusers/v0.39.0/quantization/quanto.md
+### Remote inference
+https://huggingface.co/docs/diffusers/v0.40.0/hybrid_inference/api_reference.md

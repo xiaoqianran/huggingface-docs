@@ -1,5 +1,5 @@
 # DeepCache
-[DeepCache](https://huggingface.co/papers/2312.00858) accelerates [StableDiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) and [StableDiffusionXLPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLPipeline) by strategically caching and reusing high-level features while efficiently updating low-level features by taking advantage of the U-Net architecture.
+[DeepCache](https://huggingface.co/papers/2312.00858) accelerates [StableDiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/text2img#diffusers.StableDiffusionPipeline) and [StableDiffusionXLPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/stable_diffusion/stable_diffusion_xl#diffusers.StableDiffusionXLPipeline) by strategically caching and reusing high-level features while efficiently updating low-level features by taking advantage of the U-Net architecture.
 
 Start by installing [DeepCache](https://github.com/horseee/DeepCache):
 ```bash
@@ -11,7 +11,7 @@ Then load and enable the [`DeepCacheSDHelper`](https://github.com/horseee/DeepCa
 ```diff
   import torch
   from diffusers import StableDiffusionPipeline
-  pipe = StableDiffusionPipeline.from_pretrained('stable-diffusion-v1-5/stable-diffusion-v1-5', torch_dtype=torch.float16).to("cuda")
+  pipe = StableDiffusionPipeline.from_pretrained('stable-diffusion-v1-5/stable-diffusion-v1-5', dtype=torch.float16).to("cuda")
 
 + from DeepCache import DeepCacheSDHelper
 + helper = DeepCacheSDHelper(pipe=pipe)
@@ -47,5 +47,5 @@ We tested how much faster DeepCache accelerates [Stable Diffusion v2.1](https://
 |                |               4|         49.25|             21.86(2.25x)|             16.19(3.04x)|             25.78(1.91x)|
 |                |               1|         13.83|              6.07(2.28x)|              4.43(3.12x)|              7.15(1.93x)|
 
-### xDiT
-https://huggingface.co/docs/diffusers/v0.39.0/optimization/xdit.md
+### Intel Gaudi
+https://huggingface.co/docs/diffusers/v0.40.0/optimization/habana.md

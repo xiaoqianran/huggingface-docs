@@ -1,6 +1,6 @@
 # Pipeline callbacks
 
-A callback is a function that modifies [DiffusionPipeline](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) behavior and it is executed at the end of a denoising step. The changes are propagated to subsequent steps in the denoising process. It is useful for adjusting pipeline attributes or tensor variables to support new features without rewriting the underlying pipeline code.
+A callback is a function that modifies [DiffusionPipeline](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.DiffusionPipeline) behavior and it is executed at the end of a denoising step. The changes are propagated to subsequent steps in the denoising process. It is useful for adjusting pipeline attributes or tensor variables to support new features without rewriting the underlying pipeline code.
 
 Diffusers provides several callbacks in the pipeline [overview](../api/pipelines/overview#callbacks).
 
@@ -9,7 +9,7 @@ To enable a callback, configure when the callback is executed after a certain nu
 - `cutoff_step_ratio` specifies when a callback is activated as a percentage of the total denoising steps.
 - `cutoff_step_index` specifies the exact step number a callback is activated.
 
-The example below uses `cutoff_step_ratio=0.4`, which means the callback is activated once denoising reaches 40% of the total inference steps. [SDXLCFGCutoffCallback](/docs/diffusers/v0.39.0/en/api/pipelines/overview#diffusers.callbacks.SDXLCFGCutoffCallback) disables classifier-free guidance (CFG) after a certain number of steps, which can help save compute without significantly affecting performance.
+The example below uses `cutoff_step_ratio=0.4`, which means the callback is activated once denoising reaches 40% of the total inference steps. [SDXLCFGCutoffCallback](/docs/diffusers/v0.40.0/en/api/pipelines/overview#diffusers.callbacks.SDXLCFGCutoffCallback) disables classifier-free guidance (CFG) after a certain number of steps, which can help save compute without significantly affecting performance.
 
 Define a callback with either of the `cutoff` arguments and pass it to the `callback_on_step_end` parameter in the pipeline.
 
@@ -24,7 +24,7 @@ callback = SDXLCFGCutoffCallback(cutoff_step_ratio=0.4)
 
 pipeline = StableDiffusionXLPipeline.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="cuda"
 )
 pipeline.scheduler = DPMSolverMultistepScheduler.from_config(pipeline.scheduler.config, use_karras_sigmas=True)
@@ -111,7 +111,7 @@ from diffusers import AutoPipelineForText2Image
 
 pipeline = AutoPipelineForText2Image.from_pretrained(
     "stabilityai/stable-diffusion-xl-base-1.0",
-    torch_dtype=torch.float16,
+    dtype=torch.float16,
     device_map="cuda"
 )
 
@@ -123,5 +123,5 @@ image = pipeline(
 ).images[0]
 ```
 
-### Unconditional image generation
-https://huggingface.co/docs/diffusers/v0.39.0/using-diffusers/unconditional_image_generation.md
+### Understanding pipelines, models and schedulers
+https://huggingface.co/docs/diffusers/v0.40.0/using-diffusers/write_own_pipeline.md

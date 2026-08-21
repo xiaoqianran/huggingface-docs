@@ -75,7 +75,7 @@ The dataset preprocessing code and training loop are found in the [`main()`](htt
 
 As with the script parameters, a walkthrough of the training script is provided in the [Text-to-image](text2image#training-script) training guide. Instead, this guide takes a look at the LoRA relevant parts of the script.
 
-Diffusers uses `LoraConfig` from the [PEFT](https://hf.co/docs/peft) library to set up the parameters of the LoRA adapter such as the rank, alpha, and which modules to insert the LoRA weights into. The adapter is added to the UNet, and only the LoRA layers are filtered for optimization in `lora_layers`.
+Diffusers uses [LoraConfig](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig) from the [PEFT](https://hf.co/docs/peft) library to set up the parameters of the LoRA adapter such as the rank, alpha, and which modules to insert the LoRA weights into. The adapter is added to the UNet, and only the LoRA layers are filtered for optimization in `lora_layers`.
 
 ```py
 unet_lora_config = LoraConfig(
@@ -89,7 +89,7 @@ unet.add_adapter(unet_lora_config)
 lora_layers = filter(lambda p: p.requires_grad, unet.parameters())
 ```
 
-Diffusers also supports finetuning the text encoder with LoRA from the [PEFT](https://hf.co/docs/peft) library when necessary such as finetuning Stable Diffusion XL (SDXL). The `LoraConfig` is used to configure the parameters of the LoRA adapter which are then added to the text encoder, and only the LoRA layers are filtered for training.
+Diffusers also supports finetuning the text encoder with LoRA from the [PEFT](https://hf.co/docs/peft) library when necessary such as finetuning Stable Diffusion XL (SDXL). The [LoraConfig](https://huggingface.co/docs/peft/v0.20.0/en/package_reference/lora#peft.LoraConfig) is used to configure the parameters of the LoRA adapter which are then added to the text encoder, and only the LoRA layers are filtered for training.
 
 ```py
 text_lora_config = LoraConfig(
@@ -168,7 +168,7 @@ Once training has been completed, you can use your model for inference:
 from diffusers import AutoPipelineForText2Image
 import torch
 
-pipeline = AutoPipelineForText2Image.from_pretrained("stable-diffusion-v1-5/stable-diffusion-v1-5", torch_dtype=torch.float16).to("cuda")
+pipeline = AutoPipelineForText2Image.from_pretrained("stable-diffusion-v1-5/stable-diffusion-v1-5", dtype=torch.float16).to("cuda")
 pipeline.load_lora_weights("path/to/lora/model", weight_name="pytorch_lora_weights.safetensors")
 image = pipeline("A naruto with blue eyes").images[0]
 ```
@@ -180,5 +180,5 @@ Congratulations on training a new model with LoRA! To learn more about how to us
 - Learn how to [load different LoRA formats](../tutorials/using_peft_for_inference) trained using community trainers like Kohya and TheLastBen.
 - Learn how to use and [combine multiple LoRA's](../tutorials/using_peft_for_inference) with PEFT for inference.
 
-### NeMo Automodel
-https://huggingface.co/docs/diffusers/v0.39.0/training/nemo_automodel.md
+### Overview
+https://huggingface.co/docs/diffusers/v0.40.0/training/overview.md

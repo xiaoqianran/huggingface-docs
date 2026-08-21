@@ -6,7 +6,7 @@
 - [CLI](https://huggingface.co/docs/cli) — 1 pages
 - [Dataset Viewer](https://huggingface.co/docs/dataset-viewer) — 26 pages
 - [Datasets](https://huggingface.co/docs/datasets) — 58 pages
-- [Diffusers](https://huggingface.co/docs/diffusers) — 338 pages
+- [Diffusers](https://huggingface.co/docs/diffusers) — 354 pages
 - [Hub](https://huggingface.co/docs/hub) — 269 pages
 - [Hub Client](https://huggingface.co/docs/huggingface_hub) — 52 pages
 - [Inference Endpoints](https://huggingface.co/docs/inference-endpoints) — 25 pages

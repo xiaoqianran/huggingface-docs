@@ -1,6 +1,6 @@
 # VQModel
 
-The VQ-VAE model was introduced in [Neural Discrete Representation Learning](https://huggingface.co/papers/1711.00937) by Aaron van den Oord, Oriol Vinyals and Koray Kavukcuoglu. The model is used in 🤗 Diffusers to decode latent representations into images. Unlike [AutoencoderKL](/docs/diffusers/v0.39.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL), the [VQModel](/docs/diffusers/v0.39.0/en/api/models/vq#diffusers.VQModel) works in a quantized latent space.
+The VQ-VAE model was introduced in [Neural Discrete Representation Learning](https://huggingface.co/papers/1711.00937) by Aaron van den Oord, Oriol Vinyals and Koray Kavukcuoglu. The model is used in 🤗 Diffusers to decode latent representations into images. Unlike [AutoencoderKL](/docs/diffusers/v0.40.0/en/api/models/autoencoderkl#diffusers.AutoencoderKL), the [VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel) works in a quantized latent space.
 
 The abstract from the paper is:
 
@@ -10,19 +10,11 @@ The abstract from the paper is:
 
 #### diffusers.VQModel[[diffusers.VQModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/vq_model.py#L40)
+```python
+diffusers.VQModel(in_channels: int = 3, out_channels: int = 3, down_block_types: tuple = ('DownEncoderBlock2D',), up_block_types: tuple = ('UpDecoderBlock2D',), block_out_channels: tuple = (64,), layers_per_block: int = 1, act_fn: str = 'silu', latent_channels: int = 3, sample_size: int = 32, num_vq_embeddings: int = 256, norm_num_groups: int = 32, vq_embed_dim: int | None = None, scaling_factor: float = 0.18215, norm_type: str = 'group', mid_block_add_attention = True, lookup_from_codebook = False, force_upcast = False)
+```
 
-A VQ-VAE model for decoding latent representations.
-
-This model inherits from [ModelMixin](/docs/diffusers/v0.39.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
-for all models (such as downloading or saving).
-
-forwarddiffusers.VQModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/vq_model.py#L163[{"name": "sample", "val": ": Tensor"}, {"name": "return_dict", "val": ": bool = True"}]- **sample** (`torch.Tensor`) -- Input sample.
-- **return_dict** (`bool`, *optional*, defaults to `True`) --
-  Whether or not to return a [models.autoencoders.vq_model.VQEncoderOutput](/docs/diffusers/v0.39.0/en/api/models/vq#diffusers.models.autoencoders.vq_model.VQEncoderOutput) instead of a plain tuple.0[VQEncoderOutput](/docs/diffusers/v0.39.0/en/api/models/vq#diffusers.models.autoencoders.vq_model.VQEncoderOutput) or `tuple`If return_dict is True, a [VQEncoderOutput](/docs/diffusers/v0.39.0/en/api/models/vq#diffusers.models.autoencoders.vq_model.VQEncoderOutput) is returned, otherwise a
-plain `tuple` is returned.
-
-The [VQModel](/docs/diffusers/v0.39.0/en/api/models/vq#diffusers.VQModel) forward method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vq_model.py#L40)
 
 **Parameters:**
 
@@ -54,24 +46,47 @@ scaling_factor (`float`, *optional*, defaults to `0.18215`) : The component-wise
 
 norm_type (`str`, *optional*, defaults to `"group"`) : Type of normalization layer to use. Can be one of `"group"` or `"spatial"`.
 
-**Returns:**
+A VQ-VAE model for decoding latent representations.
 
-`[VQEncoderOutput](/docs/diffusers/v0.39.0/en/api/models/vq#diffusers.models.autoencoders.vq_model.VQEncoderOutput) or `tuple``
+This model inherits from [ModelMixin](/docs/diffusers/v0.40.0/en/api/models/overview#diffusers.ModelMixin). Check the superclass documentation for it's generic methods implemented
+for all models (such as downloading or saving).
 
-If return_dict is True, a [VQEncoderOutput](/docs/diffusers/v0.39.0/en/api/models/vq#diffusers.models.autoencoders.vq_model.VQEncoderOutput) is returned, otherwise a
+#### forward[[diffusers.VQModel.forward]]
+
+```python
+forward(sample: Tensor, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vq_model.py#L163)
+
+**Parameters:**
+
+sample (`torch.Tensor`) : Input sample.
+
+return_dict (`bool`, *optional*, defaults to `True`) : Whether or not to return a [models.autoencoders.vq_model.VQEncoderOutput](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.models.autoencoders.vq_model.VQEncoderOutput) instead of a plain tuple.
+
+**Returns:** [VQEncoderOutput](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.models.autoencoders.vq_model.VQEncoderOutput) or `tuple`
+
+If return_dict is True, a [VQEncoderOutput](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.models.autoencoders.vq_model.VQEncoderOutput) is returned, otherwise a
 plain `tuple` is returned.
+
+The [VQModel](/docs/diffusers/v0.40.0/en/api/models/vq#diffusers.VQModel) forward method.
 
 ## VQEncoderOutput[[diffusers.models.autoencoders.vq_model.VQEncoderOutput]]
 
 #### diffusers.models.autoencoders.vq_model.VQEncoderOutput[[diffusers.models.autoencoders.vq_model.VQEncoderOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/autoencoders/vq_model.py#L28)
+```python
+diffusers.models.autoencoders.vq_model.VQEncoderOutput(latents: Tensor)
+```
 
-Output of VQModel encoding method.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/autoencoders/vq_model.py#L28)
 
 **Parameters:**
 
 latents (`torch.Tensor` of shape `(batch_size, num_channels, height, width)`) : The encoded output sample from the last layer of the model.
 
-### UNet2DModel
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/unet2d.md
+Output of VQModel encoding method.
+
+### CogVideoXTransformer3DModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/cogvideox_transformer3d.md

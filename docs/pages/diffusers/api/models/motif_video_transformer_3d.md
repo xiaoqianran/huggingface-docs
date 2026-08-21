@@ -9,33 +9,18 @@ The model can be loaded with the following code snippet.
 ```python
 from diffusers import MotifVideoTransformer3DModel
 
-transformer = MotifVideoTransformer3DModel.from_pretrained("Motif-Technologies/Motif-Video-2B", subfolder="transformer", torch_dtype=torch.bfloat16)
+transformer = MotifVideoTransformer3DModel.from_pretrained("Motif-Technologies/Motif-Video-2B", subfolder="transformer", dtype=torch.bfloat16)
 ```
 
 ## MotifVideoTransformer3DModel[[diffusers.MotifVideoTransformer3DModel]]
 
 #### diffusers.MotifVideoTransformer3DModel[[diffusers.MotifVideoTransformer3DModel]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_motif_video.py#L730)
+```python
+diffusers.MotifVideoTransformer3DModel(in_channels: int = 33, out_channels: int = 16, num_attention_heads: int = 24, attention_head_dim: int = 128, num_layers: int = 20, num_single_layers: int = 40, num_decoder_layers: int = 0, mlp_ratio: float = 4.0, patch_size: int = 2, patch_size_t: int = 1, qk_norm: str = 'rms_norm', norm_type: str = 'layer_norm', text_embed_dim: int = 4096, image_embed_dim: int | None = None, rope_theta: float = 256.0, rope_axes_dim: typing.Tuple[int, ...] = (16, 56, 56), enable_text_cross_attention_dual: bool = False, enable_text_cross_attention_single: bool = False)
+```
 
-A Transformer model for video-like data used in the Motif-Video model.
-
-forwarddiffusers.MotifVideoTransformer3DModel.forwardhttps://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/transformers/transformer_motif_video.py#L888[{"name": "hidden_states", "val": ": Tensor"}, {"name": "timestep", "val": ": LongTensor"}, {"name": "encoder_hidden_states", "val": ": Tensor"}, {"name": "encoder_attention_mask", "val": ": torch.Tensor | None = None"}, {"name": "image_embeds", "val": ": torch.Tensor | None = None"}, {"name": "attention_kwargs", "val": ": typing.Optional[typing.Dict[str, typing.Any]] = None"}, {"name": "return_dict", "val": ": bool = True"}]- **hidden_states** (`torch.Tensor`) --
-  Input latent tensor of shape `(batch_size, channels, num_frames, height, width)`.
-- **timestep** (`torch.LongTensor`) --
-  Diffusion timesteps of shape `(batch_size,)`.
-- **encoder_hidden_states** (`torch.Tensor`) --
-  Text conditioning of shape `(batch_size, sequence_length, embed_dim)`.
-- **encoder_attention_mask** (`torch.Tensor`) --
-  Mask for text conditioning of shape `(batch_size, sequence_length)`.
-- **image_embeds** (`torch.Tensor`, *optional*) --
-  Image embeddings from vision encoder of shape `(batch_size, num_tokens, embed_dim)`.
-- **attention_kwargs** (`dict`, *optional*) --
-  Additional arguments for attention processors.
-- **return_dict** (`bool`, defaults to `True`) --
-  Whether to return a [Transformer2DModelOutput](/docs/diffusers/v0.39.0/en/api/models/sana_video_transformer3d#diffusers.models.modeling_outputs.Transformer2DModelOutput).0[Transformer2DModelOutput](/docs/diffusers/v0.39.0/en/api/models/sana_video_transformer3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or `tuple`The predicted samples.
-
-Forward pass of the MotifVideoTransformer3DModel.
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_motif_video.py#L730)
 
 **Parameters:**
 
@@ -69,23 +54,53 @@ rope_theta (`float`, defaults to `256.0`) : The value of theta to use in the RoP
 
 rope_axes_dim (`Tuple[int]`, defaults to `(16, 56, 56)`) : The dimensions of the axes to use in the RoPE layer.
 
-**Returns:**
+A Transformer model for video-like data used in the Motif-Video model.
 
-`[Transformer2DModelOutput](/docs/diffusers/v0.39.0/en/api/models/sana_video_transformer3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or `tuple``
+#### forward[[diffusers.MotifVideoTransformer3DModel.forward]]
+
+```python
+forward(hidden_states: Tensor, timestep: LongTensor, encoder_hidden_states: Tensor, encoder_attention_mask: typing.Optional[torch.Tensor] = None, image_embeds: typing.Optional[torch.Tensor] = None, attention_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None, return_dict: bool = True)
+```
+
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/transformers/transformer_motif_video.py#L888)
+
+**Parameters:**
+
+hidden_states (`torch.Tensor`) : Input latent tensor of shape `(batch_size, channels, num_frames, height, width)`.
+
+timestep (`torch.LongTensor`) : Diffusion timesteps of shape `(batch_size,)`.
+
+encoder_hidden_states (`torch.Tensor`) : Text conditioning of shape `(batch_size, sequence_length, embed_dim)`.
+
+encoder_attention_mask (`torch.Tensor`) : Mask for text conditioning of shape `(batch_size, sequence_length)`.
+
+image_embeds (`torch.Tensor`, *optional*) : Image embeddings from vision encoder of shape `(batch_size, num_tokens, embed_dim)`.
+
+attention_kwargs (`dict`, *optional*) : Additional arguments for attention processors.
+
+return_dict (`bool`, defaults to `True`) : Whether to return a [Transformer2DModelOutput](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput).
+
+**Returns:** [Transformer2DModelOutput](/docs/diffusers/v0.40.0/en/api/models/hunyuan_video15_transformer_3d#diffusers.models.modeling_outputs.Transformer2DModelOutput) or `tuple`
 
 The predicted samples.
+
+Forward pass of the MotifVideoTransformer3DModel.
 
 ## Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
 #### diffusers.models.modeling_outputs.Transformer2DModelOutput[[diffusers.models.modeling_outputs.Transformer2DModelOutput]]
 
-[Source](https://github.com/huggingface/diffusers/blob/v0.39.0/src/diffusers/models/modeling_outputs.py#L21)
+```python
+diffusers.models.modeling_outputs.Transformer2DModelOutput(sample: torch.Tensor)
+```
 
-The output of [Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+[Source](https://github.com/huggingface/diffusers/blob/v0.40.0/src/diffusers/models/modeling_outputs.py#L21)
 
 **Parameters:**
 
-sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.39.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
+sample (`torch.Tensor` of shape `(batch_size, num_channels, height, width)` or `(batch size, num_vector_embeds - 1, num_latent_pixels)` if [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel) is discrete) : The hidden states output conditioned on the `encoder_hidden_states` input. If discrete, returns probability distributions for the unnoised latent pixels.
 
-### PriorTransformer
-https://huggingface.co/docs/diffusers/v0.39.0/api/models/prior_transformer.md
+The output of [Transformer2DModel](/docs/diffusers/v0.40.0/en/api/models/transformer2d#diffusers.Transformer2DModel).
+
+### Lumina2Transformer2DModel
+https://huggingface.co/docs/diffusers/v0.40.0/api/models/lumina2_transformer2d.md
