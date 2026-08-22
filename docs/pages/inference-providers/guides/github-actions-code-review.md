@@ -205,7 +205,7 @@ hf models ls --warm --pipeline-tag image-to-image --sort trending_score
 
 <InferenceSnippet
     pipeline=image-to-image
-    providersMapping={ {"fal-ai":{"modelId":"black-forest-labs/FLUX.2-klein-9B","providerModelId":"fal-ai/flux-2/klein/9b/edit"},"replicate":{"modelId":"black-forest-labs/FLUX.2-klein-9B","providerModelId":"black-forest-labs/flux-2-klein-9b"},"wavespeed":{"modelId":"black-forest-labs/FLUX.2-klein-9B","providerModelId":"wavespeed-ai/flux-2-klein-9b/edit"}} }
+    providersMapping={ {"fal-ai":{"modelId":"black-forest-labs/FLUX.2-klein-9B","providerModelId":"fal-ai/flux-2/klein/9b/edit"},"replicate":{"modelId":"black-forest-labs/FLUX.2-klein-9B","providerModelId":"black-forest-labs/flux-2-klein-9b"},"wavespeed":{"modelId":"black-forest-labs/FLUX.2-dev","providerModelId":"wavespeed-ai/flux-2-dev/edit"}} }
 />
 
 ### API specification
@@ -512,7 +512,7 @@ The API supports:
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"baseten":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek-ai/DeepSeek-V4-Flash-0731"},"cerebras":{"modelId":"openai/gpt-oss-120b","providerModelId":"gpt-oss-120b"},"cohere":{"modelId":"CohereLabs/aya-expanse-32b","providerModelId":"c4ai-aya-expanse-32b"},"deepinfra":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek-ai/DeepSeek-V4-Flash-0731"},"featherless-ai":{"modelId":"poolside/Laguna-S-2.1","providerModelId":"poolside/Laguna-S-2.1"},"fireworks-ai":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"accounts/fireworks/models/deepseek-v4-flash-0731"},"groq":{"modelId":"openai/gpt-oss-20b","providerModelId":"openai/gpt-oss-20b"},"novita":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek/deepseek-v4-flash-0731"},"nscale":{"modelId":"meta-llama/Llama-3.1-8B-Instruct","providerModelId":"meta-llama/Llama-3.1-8B-Instruct"},"ovhcloud":{"modelId":"openai/gpt-oss-20b","providerModelId":"gpt-oss-20b"},"publicai":{"modelId":"swiss-ai/Apertus-8B-Instruct-2509","providerModelId":"swiss-ai/apertus-8b-instruct"},"scaleway":{"modelId":"zai-org/GLM-5.2","providerModelId":"glm-5.2"},"together":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek-ai/DeepSeek-V4-Flash-0731"},"zai-org":{"modelId":"zai-org/GLM-5.2","providerModelId":"glm-5.2"}} }
+    providersMapping={ {"baseten":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek-ai/DeepSeek-V4-Flash-0731"},"cerebras":{"modelId":"openai/gpt-oss-120b","providerModelId":"gpt-oss-120b"},"cohere":{"modelId":"CohereLabs/aya-expanse-32b","providerModelId":"c4ai-aya-expanse-32b"},"deepinfra":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek-ai/DeepSeek-V4-Flash-0731"},"featherless-ai":{"modelId":"zai-org/GLM-5.2","providerModelId":"zai-org/GLM-5.2"},"fireworks-ai":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"accounts/fireworks/models/deepseek-v4-flash-0731"},"groq":{"modelId":"openai/gpt-oss-20b","providerModelId":"openai/gpt-oss-20b"},"novita":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek/deepseek-v4-flash-0731"},"nscale":{"modelId":"meta-llama/Llama-3.1-8B-Instruct","providerModelId":"meta-llama/Llama-3.1-8B-Instruct"},"ovhcloud":{"modelId":"openai/gpt-oss-20b","providerModelId":"gpt-oss-20b"},"publicai":{"modelId":"swiss-ai/Apertus-8B-Instruct-2509","providerModelId":"swiss-ai/apertus-8b-instruct"},"scaleway":{"modelId":"zai-org/GLM-5.2","providerModelId":"glm-5.2"},"together":{"modelId":"deepseek-ai/DeepSeek-V4-Flash-0731","providerModelId":"deepseek-ai/DeepSeek-V4-Flash-0731"},"zai-org":{"modelId":"zai-org/GLM-5.2","providerModelId":"glm-5.2"}} }
 conversational />
 
 #### Code snippet example for conversational VLMs
@@ -763,7 +763,7 @@ hf models ls --warm --pipeline-tag text-generation --sort trending_score
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"featherless-ai":{"modelId":"poolside/Laguna-S-2.1","providerModelId":"poolside/Laguna-S-2.1"}} }
+    providersMapping={ {"featherless-ai":{"modelId":"zai-org/GLM-5.2","providerModelId":"zai-org/GLM-5.2"}} }
 />
 
 ### API specification
@@ -1178,7 +1178,7 @@ hf models ls --warm --pipeline-tag summarization --sort trending_score
 
 <InferenceSnippet
     pipeline=summarization
-    providersMapping={ {"hf-inference":{"modelId":"human-centered-summarization/financial-summarization-pegasus","providerModelId":"human-centered-summarization/financial-summarization-pegasus"}} }
+    providersMapping={ {"hf-inference":{"modelId":"facebook/bart-large-cnn","providerModelId":"facebook/bart-large-cnn"}} }
 />
 
 ### API specification

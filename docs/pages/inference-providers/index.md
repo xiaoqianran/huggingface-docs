@@ -907,7 +907,7 @@ Find out more about Image To Image [here](../tasks/image-to-image).
 
 <InferenceSnippet
     pipeline=image-to-image
-    providersMapping={ {"wavespeed":{"modelId":"black-forest-labs/FLUX.2-klein-9B","providerModelId":"wavespeed-ai/flux-2-klein-9b/edit"} } }
+    providersMapping={ {"wavespeed":{"modelId":"black-forest-labs/FLUX.2-dev","providerModelId":"wavespeed-ai/flux-2-dev/edit"} } }
 />
 
 ### Text To Image
@@ -1282,7 +1282,7 @@ Find out more about Summarization [here](../tasks/summarization).
 
 <InferenceSnippet
     pipeline=summarization
-    providersMapping={ {"hf-inference":{"modelId":"human-centered-summarization/financial-summarization-pegasus","providerModelId":"human-centered-summarization/financial-summarization-pegasus"} } }
+    providersMapping={ {"hf-inference":{"modelId":"facebook/bart-large-cnn","providerModelId":"facebook/bart-large-cnn"} } }
 />
 
 ### Table Question Answering
@@ -1739,7 +1739,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"featherless-ai":{"modelId":"poolside/Laguna-S-2.1","providerModelId":"poolside/Laguna-S-2.1"} } }
+    providersMapping={ {"featherless-ai":{"modelId":"zai-org/GLM-5.2","providerModelId":"zai-org/GLM-5.2"} } }
 conversational />
 
 ### Chat Completion (VLM)
@@ -1757,7 +1757,7 @@ Find out more about Text Generation [here](../tasks/text-generation).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"featherless-ai":{"modelId":"poolside/Laguna-S-2.1","providerModelId":"poolside/Laguna-S-2.1"} } }
+    providersMapping={ {"featherless-ai":{"modelId":"zai-org/GLM-5.2","providerModelId":"zai-org/GLM-5.2"} } }
 />
 
 ### Function Calling with Inference Providers

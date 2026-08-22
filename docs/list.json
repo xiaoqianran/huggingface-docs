@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-21T07:50:10.733368+00:00",
+  "fetchedAt": "2026-08-22T07:38:23.210561+00:00",
   "method": "llms-full-split",
   "ok": 2157,
   "failed": 0,
@@ -5088,7 +5088,7 @@
     },
     {
       "rel": "hub/jobs-pricing.md",
-      "bytes": 7440,
+      "bytes": 7600,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-pricing.md",
       "track": "Hub",
@@ -5304,7 +5304,7 @@
     },
     {
       "rel": "hub/academia-hub.md",
-      "bytes": 3055,
+      "bytes": 3163,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/academia-hub.md",
       "track": "Hub",
@@ -5718,7 +5718,7 @@
     },
     {
       "rel": "hub/billing.md",
-      "bytes": 8056,
+      "bytes": 8499,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/billing.md",
       "track": "Hub",
@@ -6195,7 +6195,7 @@
     },
     {
       "rel": "hub/pro.md",
-      "bytes": 902,
+      "bytes": 1112,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/pro.md",
       "track": "Hub",
@@ -6447,7 +6447,7 @@
     },
     {
       "rel": "hub/enterprise.md",
-      "bytes": 12533,
+      "bytes": 12901,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/enterprise.md",
       "track": "Hub",
@@ -8031,7 +8031,7 @@
     },
     {
       "rel": "inference-providers/pricing.md",
-      "bytes": 10967,
+      "bytes": 11656,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/pricing.md",
       "track": "Inference Providers",
@@ -8040,7 +8040,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 72216,
+      "bytes": 72108,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -8130,7 +8130,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 101127,
+      "bytes": 101019,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -19470,7 +19470,7 @@
       "toc": 270,
       "found": 269,
       "written": 269,
-      "full_bytes": 1440725
+      "full_bytes": 1442012
     },
     {
       "pkg": "huggingface_hub",
@@ -19491,7 +19491,7 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 416175
+      "full_bytes": 416648
     },
     {
       "pkg": "kernels",
