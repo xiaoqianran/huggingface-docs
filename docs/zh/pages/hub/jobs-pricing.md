@@ -5,7 +5,7 @@
 Hugging Face Jobs 让您可以在 Hugging Face 基础设施上运行计算任务，而无需自行管理。只需在各种 CPU 和 GPU 选项中定义命令、Docker 映像和硬件风格即可。
 
 > [!提示]
-> 任何具有积极 [credit balance](https://huggingface.co/settings/billing) 的用户或组织都可以获得工作。
+> 任何具有积极 [credit balance](https://huggingface.co/settings/billing) 的用户或组织都可以获得工作。 [PRO](./pro)、团队或 [Enterprise](./enterprise) 订阅中包含的每月计算积分计入该余额，并可用于工作。
 
 作业计费基于硬件使用情况并按分钟计算：作业在请求的硬件上运行的每分钟都会向您收费。
 
@@ -20,7 +20,7 @@ Hugging Face Jobs 让您可以在 Hugging Face 基础设施上运行计算任务
 ＃＃＃ 中央处理器| **硬件** | **CPU** | **内存** | **临时存储** | **每小时价格** |
 |------------------------ |-------------- |------------- |------------------------ | ----------------- |
 | CPU基础| 2 个虚拟CPU | 16GB| 50GB| 0.01 美元 |
-| CPU升级 | 8 个 vCPU | 32GB| 50GB| 0.03 美元 |
+| CPU升级| 8 个 vCPU | 32GB| 50GB| 0.03 美元 |
 |中央处理器XL | 16 个 vCPU | 124GB| 1000 GB | 1.00 美元 |
 | CPU性能| 32 个 vCPU | 256 GB | 256 GB 1024 GB | 1024 GB 1.90 美元 |
 

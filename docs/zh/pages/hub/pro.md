@@ -6,7 +6,7 @@ PRO 订阅为认真的用户解锁了基本功能，包括：
 
 - 公共和私人存储库的[storage capacity](./storage-limits)更高
 - 更高的带宽和 API [rate limits](./rate-limits)
-- 包含[Inference Providers](/docs/inference-providers/)的学分
+- 包括每月计算积分，可在所有 Hugging Face 计算服务中使用：[Inference Providers](/docs/inference-providers/)、[Inference Endpoints](https://huggingface.co/docs/inference-endpoints)、[Spaces](./spaces-overview) 升级硬件和 [Jobs](./jobs-overview)
 - 更高级别的[ZeroGPU Spaces](./spaces-zerogpu)使用，以及按需付费配额扩展
 - 能够创建在计算上运行的 Gradio 和 Docker 空间，托管最多 10 个[ZeroGPU Spaces](./spaces-zerogpu)，并使用 [Dev Mode](./spaces-dev-mode)
 - 能够发布社交帖子和社区博客

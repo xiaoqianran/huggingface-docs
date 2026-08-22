@@ -1,8 +1,8 @@
 <!-- huggingface-docs: machine-translated zh-CN from English source -->
 
-# Academia Hub
+# 学术中心
 
-> [!TIP]
+> [!提示]
 > 请您所在大学的 IT 或采购团队通过大学附属电子邮件地址与您联系，以启动订阅流程。
 
     
@@ -14,10 +14,11 @@
 
 通过 Academia Hub，您可以**为学生、研究人员和工作人员获得 Hugging Face Hub 的一体化订阅。**## 订阅中包含什么
 1. **存储：** 每个席位 1 TB 私人存储和 1 TB 公共存储，包括我们新的存储桶！
-2. **计算：** 推理提供商每月 2 美元/席位信用额度、每日更高的空间 ZeroGPU 优先级访问权限以及更高的集线器速率限制。
-3. **协作工具：** [Resource Groups](./security-resource-groups)、[Data Studio](./data-studio)（用于私有数据集）、[Audit Logs](./audit-logs) 和访问控制。
-4. **治理和安全：** 席位管理、集中管理、[SSO](https://huggingface.co/docs/hub/en/enterprise-sso)、[2FA](https://huggingface.co/docs/hub/en/enterprise-advanced-security)、[SCIM](https://huggingface.co/docs/hub/en/enterprise-sso#user-provisioning-scim)、SOC 2 认证。
-5. **全球开源社区：** 与致力于该领域最常用模型和数据集的研究人员和构建者一起发布和协作。
+2. **计算：** 2 美元/月/席位的计算积分，可在推理提供商、推理端点、空间升级硬件和作业中使用。
+3. **更高的访问权限和限制：** 每日更高的空间 ZeroGPU 优先级访问权限，以及更高的集线器速率限制。
+4. **协作工具：** [Resource Groups](./security-resource-groups)、[Data Studio](./data-studio)（用于私有数据集）、[Audit Logs](./audit-logs) 和访问控制。
+5. **治理和安全：** 席位管理、集中管理、[SSO](https://huggingface.co/docs/hub/en/enterprise-sso)、[2FA](https://huggingface.co/docs/hub/en/enterprise-advanced-security)、[SCIM](https://huggingface.co/docs/hub/en/enterprise-sso#user-provisioning-scim)、SOC 2 认证。
+6. **全球开源社区：** 与致力于该领域最常用模型和数据集的研究人员和构建者一起发布和协作。
 
 ## 定价
 起价为 10 美元/席位/月，并提供基于数量的折扣。 

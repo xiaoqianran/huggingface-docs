@@ -9,8 +9,8 @@
       "translatedAt": "2026-08-14T08:22:56.624Z"
     },
     "hub/academia-hub.md": {
-      "hash": "f704511fcd9d3930e2675a6c7b886850cc34f7d3",
-      "translatedAt": "2026-08-20T07:49:22.616Z"
+      "hash": "14e4d521149e19d16a7cc06a86b224647b178886",
+      "translatedAt": "2026-08-22T07:38:26.037Z"
     },
     "hub/advanced-compute-options.md": {
       "hash": "d5aa97674e5a4745983dcf3d01b37f7e97d7a205",
@@ -85,8 +85,8 @@
       "translatedAt": "2026-08-14T08:23:20.548Z"
     },
     "hub/billing.md": {
-      "hash": "7d28235719cd4459c2166a2dc12018416355263a",
-      "translatedAt": "2026-08-14T08:23:22.211Z"
+      "hash": "660cb5e0fb5fe307f1150a62ad682e3312669d67",
+      "translatedAt": "2026-08-22T07:38:27.731Z"
     },
     "hub/collections.md": {
       "hash": "2aa10c63692e2723bce90a64a249ac8011270c44",
@@ -377,8 +377,8 @@
       "translatedAt": "2026-08-19T07:46:56.753Z"
     },
     "hub/enterprise.md": {
-      "hash": "d3da8136598ddb4360f9055c15d5d3cfaa62d681",
-      "translatedAt": "2026-08-14T08:24:15.389Z"
+      "hash": "a5aebc2494ac381070636f719ac48edbfe9dea43",
+      "translatedAt": "2026-08-22T07:38:29.424Z"
     },
     "hub/gguf.md": {
       "hash": "01ba0a8f87ee1546d45bdc32445aba6c58ce059d",
@@ -433,8 +433,8 @@
       "translatedAt": "2026-08-14T08:24:26.353Z"
     },
     "hub/jobs-pricing.md": {
-      "hash": "3b82724868830126109160f376e40cc12c708715",
-      "translatedAt": "2026-08-14T08:24:23.945Z"
+      "hash": "2204a5fcde79d58a5452e4e53685f5470a8886e0",
+      "translatedAt": "2026-08-22T07:38:30.216Z"
     },
     "hub/lmstudio.md": {
       "hash": "a435818c90ea450bffc7477c11a226ba239814c5",
@@ -601,8 +601,8 @@
       "translatedAt": "2026-08-14T08:25:04.940Z"
     },
     "hub/pro.md": {
-      "hash": "db131d6ad9b2b2f676a3887fed520cd7d1c78ff3",
-      "translatedAt": "2026-08-14T08:25:04.874Z"
+      "hash": "39ecc38317a202a808ee73f745ac0505282f4c4d",
+      "translatedAt": "2026-08-22T07:38:28.167Z"
     },
     "hub/paper-pages.md": {
       "hash": "084b83fc13aafa46727644d3df89acf87aee148e",
@@ -2001,10 +2001,10 @@
       "translatedAt": "2026-08-11T13:59:27.535Z"
     }
   },
-  "updatedAt": "2026-08-21T07:50:10.894Z",
+  "updatedAt": "2026-08-22T07:38:30.216Z",
   "stats": {
-    "translated": 0,
-    "skipped": 400,
+    "translated": 5,
+    "skipped": 395,
     "failed": 0,
     "total": 400
   }

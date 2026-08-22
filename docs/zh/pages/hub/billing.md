@@ -24,7 +24,7 @@
 
 PRO 订阅为认真的用户解锁了基本功能，包括：- 公共和私人存储库的[storage capacity](./storage-limits)更高
 - 更高的带宽和 API [rate limits](./rate-limits)
-- 包含[Inference Providers](/docs/inference-providers/)的学分
+- 包括每月计算积分，可在所有 Hugging Face 计算服务中使用：[Inference Providers](/docs/inference-providers/)、[Inference Endpoints](https://huggingface.co/docs/inference-endpoints)、[Spaces](./spaces-overview) 升级硬件和 [Jobs](./jobs-overview)
 - 更高级别的 ZeroGPU 空间使用和即用即付配额扩展
 - 能够创建在计算上运行的 Gradio 和 Docker 空间，托管最多 10 个 ZeroGPU 空间，并使用开发模式
 - 能够发布社交帖子和社区博客
@@ -37,9 +37,9 @@ PRO 订阅为认真的用户解锁了基本功能，包括：- 公共和私人�
 您只能使用信用卡支付 PRO 订阅费用。订阅与任何即用即付的计算使用量分开计费。
 [included storage](./storage-limits) 以上的私有存储库存储将与您的订阅续订一起计费。
 
-注意：PRO 福利也包含在 [Enterprise subscription](https://huggingface.co/enterprise) 中。
+注意：PRO 福利也包含在 [Enterprise subscription](https://huggingface.co/enterprise) 中。## 按量付费私人存储 
 
-## 按量付费私人存储除了 PRO、Team 和 Enterprise 中包含的 1TB（或每个席位 1TB）私有存储之外，额外的私有存储按 1TB 增量计费，基本价格为 **18 美元/TB/月**。 
+除了 PRO、Team 和 Enterprise 中包含的 1TB（或每个席位 1TB）私有存储之外，额外的私有存储按 1TB 增量计费，基本价格为 **18 美元/TB/月**。 
 
 在即用即付模式下，超额费用将通过您的付款方式收取。
 
@@ -89,9 +89,11 @@ A. 积分可让您使用 HF 按量付费服务：
 - 推理端点：专用部署
 - GPU 空间：托管在定制硬件上
 - ZeroGPU：每日津贴之外的额外配额
-- 私人存储：私人存储库的额外存储
+- 私人存储：私人存储库的额外存储如果您有 PRO、Team 或 Enterprise 订阅，则订阅中包含的积分每月都会记入，并计入相同的服务。在对任何即用即付使用量进行计费之前，它们会自动应用。
 
-**问。如果我用完积分会怎样？**答：我们建议启用自动充值，以避免积分用完后服务中断。
+**问。如果我用完积分会怎样？**
+
+答：我们建议启用自动充值，以避免积分用完后服务中断。
 
 **问。我在添加卡时遇到问题。怎么了？**
 
@@ -99,11 +101,11 @@ A. 积分可让您使用 HF 按量付费服务：
 * 将组织帐户链接到 AWS 帐户，以便访问即用即付功能（端点、空间、AutoTrain）：[Hugging Face Platform on the AWS Marketplace: Pay with your AWS Account](https://huggingface.co/blog/aws-marketplace)
 * 使用其他国家发行的信用卡
 
-**问。如何添加我的税号或更新账单详细信息？**
+**问。如何添加我的税号或更新账单详细信息？**答：在 https://huggingface.co/settings/billing/ payment 上添加或更新卡时，请选中 **其他发票信息（可选）** 框。然后，您可以提供**公司名称**和**发票详细信息**（例如税号、采购订单号或公司注册号），这些信息将显示在您的发票上。如果您需要进一步帮助，请发送电子邮件至 billing@huggingface.co。
 
-答：在 https://huggingface.co/settings/billing/ payment 上添加或更新卡时，请选中 **其他发票信息（可选）** 框。然后，您可以提供**公司名称**和**发票详细信息**（例如税号、采购订单号或公司注册号），这些信息将显示在您的发票上。如果您需要进一步帮助，请发送电子邮件至 billing@huggingface.co。
+**问。几天前我刚刚收到 PRO/Team 订阅费用。为什么又向我收费？**
 
-**问。几天前我刚刚收到 PRO/Team 订阅费用。为什么又向我收费？**答：所有订阅均在每月 1 号续订。如果您在月中注册 Team 或 PRO 的第一个月，我们将按比例收取订阅费用。
+答：所有订阅均在每月 1 号续订。如果您在月中注册 Team 或 PRO 的第一个月，我们将按比例收取订阅费用。
 
 **问。我需要过去发票的副本，在哪里可以找到这些？**
 
@@ -115,12 +117,12 @@ A. 积分可让您使用 HF 按量付费服务：
 
 **订阅**
 
-**问。我需要暂停我的 PRO 订阅，在哪里可以执行此操作？**
-
-答：您可以随时在此处取消订阅：https://huggingface.co/settings/billing/subscription。 
+**问。我需要暂停我的 PRO 订阅，在哪里可以执行此操作？**答：您可以随时在此处取消订阅：https://huggingface.co/settings/billing/subscription。 
 请通过 billing@huggingface.co 向我们发送您的反馈。
 
 **问。我的组织有团队或企业订阅，我需要更新席位数。我该怎么做？**
 
-A. 席位数量将在续订时自动调整，以反映上一时期组织成员数量的任何增加。由于是固定费用订阅，因此无需在当月或当年更新订阅的席位数。### How to get a user's plan and status in Spaces
+A. 席位数量将在续订时自动调整，以反映上一时期组织成员数量的任何增加。由于是固定费用订阅，因此无需在当月或当年更新订阅的席位数。
+
+### 如何获取用户在 Spaces 中的计划和状态
 https://huggingface.co/docs/hub/spaces-get-user-plan.md
