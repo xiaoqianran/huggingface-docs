@@ -1162,7 +1162,7 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"together":{"modelId":"meta-models/Muse-Glimmer-30B","providerModelId":"meta-models/Muse-Glimmer-30B"} } }
+    providersMapping={ {"together":{"modelId":"moonshotai/Kimi-K3","providerModelId":"moonshotai/Kimi-K3"} } }
 conversational />
 
 ### Feature Extraction
@@ -1499,7 +1499,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"publicai":{"modelId":"speakleash/Bielik-11B-v3.0-Instruct","providerModelId":"speakleash/Bielik-11B-v3.0-Instruct"} } }
+    providersMapping={ {"publicai":{"modelId":"swiss-ai/Apertus-8B-Instruct-2509","providerModelId":"swiss-ai/apertus-8b-instruct"} } }
 conversational />
 
 ### Chat Completion (VLM)
@@ -1692,7 +1692,7 @@ Find out more about Chat Completion (VLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=image-text-to-text
-    providersMapping={ {"baseten":{"modelId":"moonshotai/Kimi-K3","providerModelId":"moonshotai/Kimi-K3"} } }
+    providersMapping={ {"baseten":{"modelId":"thinkingmachines/Inkling-Small","providerModelId":"thinkingmachines/inkling-small"} } }
 conversational />
 
 ### Template
@@ -1739,7 +1739,7 @@ Find out more about Chat Completion (LLM) [here](../tasks/chat-completion).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"featherless-ai":{"modelId":"zai-org/GLM-5.2","providerModelId":"zai-org/GLM-5.2"} } }
+    providersMapping={ {"featherless-ai":{"modelId":"OBLITERATUS/Qwen3.8-27B-OBLITERATED","providerModelId":"OBLITERATUS/Qwen3.8-27B-OBLITERATED"} } }
 conversational />
 
 ### Chat Completion (VLM)
@@ -1757,7 +1757,7 @@ Find out more about Text Generation [here](../tasks/text-generation).
 
 <InferenceSnippet
     pipeline=text-generation
-    providersMapping={ {"featherless-ai":{"modelId":"zai-org/GLM-5.2","providerModelId":"zai-org/GLM-5.2"} } }
+    providersMapping={ {"featherless-ai":{"modelId":"OBLITERATUS/Qwen3.8-27B-OBLITERATED","providerModelId":"OBLITERATUS/Qwen3.8-27B-OBLITERATED"} } }
 />
 
 ### Function Calling with Inference Providers
