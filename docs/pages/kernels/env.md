@@ -9,5 +9,9 @@ of the `huggingface_hub` package is used.
 
 Disables kernel mappings for [`layers`](layers).
 
+## `HF_HUB_DISABLE_TELEMETRY`
+
+Disable telemetry.
+
 ### Install agent skills
 https://huggingface.co/docs/kernels/main/cli-skills.md
