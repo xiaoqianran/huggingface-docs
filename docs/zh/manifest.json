@@ -161,8 +161,8 @@
       "translatedAt": "2026-08-14T08:23:33.394Z"
     },
     "hub/datasets-downloading.md": {
-      "hash": "1fd78db835e1c0755374b7c5c584dd152d6021a3",
-      "translatedAt": "2026-08-14T08:23:33.231Z"
+      "hash": "6a03196913e3033cb2b51c66d73090870e4bab1e",
+      "translatedAt": "2026-08-27T18:13:44.509Z"
     },
     "hub/datasets-duckdb.md": {
       "hash": "89870273b5fc312e103ed44c984a2b0b13ea4bcc",
@@ -325,8 +325,8 @@
       "translatedAt": "2026-08-14T08:24:09.281Z"
     },
     "hub/enterprise-network-security.md": {
-      "hash": "e1799b671692cc1f69bbe08d1abcd9effb1b7d11",
-      "translatedAt": "2026-08-14T08:24:07.773Z"
+      "hash": "2f4e96e01515bb35f55aa441856781563832172e",
+      "translatedAt": "2026-08-27T18:13:43.552Z"
     },
     "hub/enterprise-gating-group-collections.md": {
       "hash": "79a659709095e7eb95130c57ae9ad4ba16c145be",
@@ -385,8 +385,8 @@
       "translatedAt": "2026-08-14T08:24:18.114Z"
     },
     "hub/jobs-manage.md": {
-      "hash": "f1bd0166c578a26320065dca9e2a0cccee9649d9",
-      "translatedAt": "2026-08-14T08:24:20.462Z"
+      "hash": "0dcf93adff13f3db106038e534a8bd42c5bdd68e",
+      "translatedAt": "2026-08-27T18:13:44.769Z"
     },
     "hub/jobs-large-datasets.md": {
       "hash": "c24f3e749df1ef8508f4896f8fb652f1c96f1de0",
@@ -513,8 +513,8 @@
       "translatedAt": "2026-08-14T08:24:50.916Z"
     },
     "hub/models-downloading.md": {
-      "hash": "6d14a596b60172210a1f0f54a3f61524399f47f8",
-      "translatedAt": "2026-08-14T08:24:51.044Z"
+      "hash": "2c7de8f6116e9150dab402e57602ff2314a88dd8",
+      "translatedAt": "2026-08-27T18:13:47.130Z"
     },
     "hub/model-card-landscape-analysis.md": {
       "hash": "2a68e93319aafa7be9030735d9c2f7fce5e1c0cd",
@@ -625,8 +625,8 @@
       "translatedAt": "2026-08-14T08:25:09.535Z"
     },
     "hub/rate-limits.md": {
-      "hash": "532e758f4aba3f599b05dee140cc9ce11abb7df4",
-      "translatedAt": "2026-08-14T08:25:08.386Z"
+      "hash": "7940987da990aa75f09eba2311b8859306b5c14c",
+      "translatedAt": "2026-08-27T18:13:52.922Z"
     },
     "hub/repositories-getting-started.md": {
       "hash": "f916dc7bb0da4180d64e0c70fc5ccdf312a20ed2",
@@ -1029,8 +1029,8 @@
       "translatedAt": "2026-08-14T08:26:15.209Z"
     },
     "hub/storage-buckets.md": {
-      "hash": "9b49c70164582ea1f5de6d109b9fe6fe3c332586",
-      "translatedAt": "2026-08-14T08:26:17.727Z"
+      "hash": "86cac63b6b49a752cc214fa75becf9e3525eec24",
+      "translatedAt": "2026-08-27T18:13:55.204Z"
     },
     "hub/transformers.md": {
       "hash": "69302a70368fbc3f0c5db7d521afce5a2fa46908",
@@ -1049,8 +1049,8 @@
       "translatedAt": "2026-08-14T08:26:24.712Z"
     },
     "hub/trusted-publishers.md": {
-      "hash": "36673576959eb68bdfffdb84ac3ccf7548074735",
-      "translatedAt": "2026-08-14T08:26:25.189Z"
+      "hash": "61910f085bc4fc27542e54bb4b88220e63d515ff",
+      "translatedAt": "2026-08-27T18:13:55.994Z"
     },
     "hub/xet/legacy-git-lfs.md": {
       "hash": "699b9c142d1e370ff560e7d9d5f66ff0cec7b6c4",
@@ -1073,208 +1073,208 @@
       "translatedAt": "2026-08-14T08:26:29.160Z"
     },
     "huggingface_hub/guides/overview.md": {
-      "hash": "df9b682934197cbe780d71f660091c6074bf9d5a",
-      "translatedAt": "2026-08-11T13:55:59.739Z"
+      "hash": "4e34705eb99f6d79fca53bebb6fac4bfa8d5d762",
+      "translatedAt": "2026-08-27T18:13:55.203Z"
     },
     "huggingface_hub/index.md": {
-      "hash": "a4048b80a0a1f801a6709bc0cd5e68ba6231eff6",
-      "translatedAt": "2026-08-11T13:55:59.889Z"
+      "hash": "515f81593d4bbcd7ea1a5eadbd032a369e9a05b5",
+      "translatedAt": "2026-08-27T18:13:57.336Z"
     },
     "huggingface_hub/package_reference/overview.md": {
-      "hash": "05257b548abe87eb88e209fd8c7a83528ca39e0e",
-      "translatedAt": "2026-08-11T13:56:00.061Z"
+      "hash": "1eea9e8c0ef69a1acd27f4362a4c79464205bacc",
+      "translatedAt": "2026-08-27T18:13:56.548Z"
     },
     "huggingface_hub/concepts/git_vs_http.md": {
-      "hash": "8dbd35130392017db27fe12e23b0e67b54696fcd",
-      "translatedAt": "2026-08-11T13:56:01.426Z"
+      "hash": "6b73bd7f0a019d4c23eb45073b83e216d5846048",
+      "translatedAt": "2026-08-27T18:14:01.158Z"
     },
     "huggingface_hub/installation.md": {
-      "hash": "0c17f7b73a0521c7ce1f66e3edbfdc33a1de9779",
-      "translatedAt": "2026-08-11T13:56:01.533Z"
+      "hash": "23e0f5492b79582139abdec6a1149ddddf9d9258",
+      "translatedAt": "2026-08-27T18:13:59.185Z"
     },
     "hub/xet/using-xet-storage.md": {
       "hash": "aff872859fafdd0b2112b6fc1f686d456c962a27",
       "translatedAt": "2026-08-14T08:26:32.436Z"
     },
     "huggingface_hub/concepts/migration.md": {
-      "hash": "d68a7d43758adce1723e65c7b04855abc3b58a25",
-      "translatedAt": "2026-08-11T13:56:03.611Z"
+      "hash": "5693194e70d12eb00f587d3715f446b1dc506c67",
+      "translatedAt": "2026-08-27T18:14:08.916Z"
     },
     "huggingface_hub/guides/buckets.md": {
-      "hash": "e22a9fba0d6e61c49abfe6973862fed5f61ee930",
-      "translatedAt": "2026-08-11T13:56:04.488Z"
+      "hash": "c3f9a40ca5cfd7350868e8478fb805cd7679fd06",
+      "translatedAt": "2026-08-27T18:14:09.764Z"
     },
     "huggingface_hub/guides/cli-extensions.md": {
-      "hash": "d945ab290d2044e20dbcfdb218d37c51e8dea54c",
-      "translatedAt": "2026-08-11T13:56:05.764Z"
+      "hash": "41b3a7b7a4ac609eb735d9498c4648a07f69d69d",
+      "translatedAt": "2026-08-27T18:14:15.586Z"
     },
     "huggingface_hub/guides/collections.md": {
-      "hash": "d5df5893e43f042c7adc635b8d057549523c397a",
-      "translatedAt": "2026-08-11T13:56:06.449Z"
+      "hash": "d943f77aa1e3b2915d83eef5e998618bc22cd741",
+      "translatedAt": "2026-08-27T18:14:20.830Z"
     },
     "huggingface_hub/guides/community.md": {
-      "hash": "c36ce9182d603cc08d26521bf9706d9b0414ac17",
-      "translatedAt": "2026-08-11T13:56:06.740Z"
+      "hash": "e099c6470903d4e33459f83327c66362f870a353",
+      "translatedAt": "2026-08-27T18:14:18.891Z"
     },
     "huggingface_hub/guides/hf_file_system.md": {
-      "hash": "40d649f9ee23ace558aa9e55e1b525650dd93865",
-      "translatedAt": "2026-08-11T13:56:07.941Z"
+      "hash": "d53b44488820afa3aad1972bb1c9a3fe1bd7eeb1",
+      "translatedAt": "2026-08-27T18:14:22.677Z"
     },
     "huggingface_hub/concepts/sandbox.md": {
-      "hash": "1626a4b3d5afe5f69c2d85180652e48c3c166041",
-      "translatedAt": "2026-08-11T13:56:08.017Z"
+      "hash": "730b8a193a1e29ea1b2159aeda65dfd2f8401621",
+      "translatedAt": "2026-08-27T18:14:15.589Z"
     },
     "huggingface_hub/guides/download.md": {
-      "hash": "2de9cfff1c42b8fdb3d2b2389e149116c3f249d4",
-      "translatedAt": "2026-08-11T13:56:09.468Z"
+      "hash": "0419f42fed5fdd4ed7fc4858bafb4f5733ca1f6f",
+      "translatedAt": "2026-08-27T18:14:27.426Z"
     },
     "huggingface_hub/guides/inference_endpoints.md": {
-      "hash": "f1d3af52ed69802a7c70fc950488f0b2f0c2e78e",
-      "translatedAt": "2026-08-11T13:56:11.546Z"
+      "hash": "ae26d5f5c19494a0186544a53f5ccb23d1cef1a6",
+      "translatedAt": "2026-08-27T18:14:33.876Z"
     },
     "huggingface_hub/guides/integrations.md": {
-      "hash": "0ad6aeb7b6995b0053bd1912a55031a2aaeb3171",
-      "translatedAt": "2026-08-11T13:56:15.841Z"
+      "hash": "0fac59b0450f4f8e2c97ac17ba7019c66c6faef7",
+      "translatedAt": "2026-08-27T18:14:48.614Z"
     },
     "huggingface_hub/guides/inference.md": {
-      "hash": "317f8f14d1e65b7d95dbb9f3cad97da2e8ead6e1",
-      "translatedAt": "2026-08-11T14:10:47.022Z"
+      "hash": "5094e34f5277e18a1f906b5752d3e9aa9e08632d",
+      "translatedAt": "2026-08-27T18:14:46.116Z"
     },
     "huggingface_hub/guides/jobs.md": {
-      "hash": "dc3955ce259fd702eeea1ac12aae524d1c47cf8e",
-      "translatedAt": "2026-08-11T13:56:17.355Z"
+      "hash": "b6ce3c6b25eea5faa39007465bb951da70c38058",
+      "translatedAt": "2026-08-27T18:15:01.871Z"
     },
     "huggingface_hub/guides/model-cards.md": {
-      "hash": "ff658907c63cebe28ab194f060f4fb32bb81ebec",
-      "translatedAt": "2026-08-11T13:56:19.008Z"
+      "hash": "dbcfd69fc139334e8681fb59f6a9c79aab677af2",
+      "translatedAt": "2026-08-27T18:15:06.991Z"
     },
     "huggingface_hub/guides/manage-spaces.md": {
-      "hash": "b617b3a88e51b6bce3d47764371fd96af9db1da2",
-      "translatedAt": "2026-08-12T08:29:45.070Z"
+      "hash": "a343102ff20ea942091eefc211b5d7f44d39f0a4",
+      "translatedAt": "2026-08-27T18:15:04.284Z"
     },
     "huggingface_hub/guides/cli.md": {
-      "hash": "4efa91c5be57bf4e9dd5f6a5486d80d19d73d9ab",
-      "translatedAt": "2026-08-11T13:56:21.665Z"
+      "hash": "d4ced6411859cbcc95df5be1c572fba8784e5c94",
+      "translatedAt": "2026-08-27T18:14:55.170Z"
     },
     "huggingface_hub/guides/search.md": {
-      "hash": "c13bec947782b71b31e93fe23905d329f68a2b9f",
-      "translatedAt": "2026-08-11T13:56:22.469Z"
+      "hash": "cc5ad010adfa0920ff89f4237d09ddb80710cf0e",
+      "translatedAt": "2026-08-27T18:15:11.604Z"
     },
     "huggingface_hub/guides/repository.md": {
-      "hash": "9c53a3e9c32e418442b7689b06a2617bf079967f",
-      "translatedAt": "2026-08-11T13:56:22.845Z"
+      "hash": "7d690886de1346c047a4981b5fbc4b08fcd4c761",
+      "translatedAt": "2026-08-27T18:15:14.215Z"
     },
     "huggingface_hub/guides/sandbox.md": {
-      "hash": "09a958814860021b8e503e1dbe7021662351fc48",
-      "translatedAt": "2026-08-11T13:56:24.166Z"
+      "hash": "e2eb4d9180d823c13a53f28f4cd32d93c6445117",
+      "translatedAt": "2026-08-27T18:15:18.652Z"
     },
     "huggingface_hub/guides/manage-cache.md": {
-      "hash": "ba84c94f76a5bbeab93a83d808c39a37df3be90a",
-      "translatedAt": "2026-08-11T13:56:25.620Z"
+      "hash": "e1dec864479b6708546975f1d47343b7db52d763",
+      "translatedAt": "2026-08-27T18:15:09.132Z"
     },
     "huggingface_hub/package_reference/authentication.md": {
-      "hash": "77cec624baeccd03d913a5cbd79c2f375f098244",
-      "translatedAt": "2026-08-11T13:56:25.786Z"
+      "hash": "1520f179866a458092585e8d83a749728c31870d",
+      "translatedAt": "2026-08-27T18:15:23.455Z"
     },
     "huggingface_hub/guides/webhooks.md": {
-      "hash": "d94347ca59486089e1d88ae004bc6ac2a2d0adf6",
-      "translatedAt": "2026-08-11T13:56:25.969Z"
+      "hash": "97872bb625e0a4c2e97ae566bd17a41d0a5fde37",
+      "translatedAt": "2026-08-27T18:15:22.058Z"
     },
     "huggingface_hub/guides/upload.md": {
-      "hash": "0db2d167bd644928d1d16cc7d1b677995cecf1f1",
-      "translatedAt": "2026-08-11T13:56:29.161Z"
+      "hash": "33599f36d9d225c5d049e3aacea3c63615fe2695",
+      "translatedAt": "2026-08-27T18:15:34.751Z"
     },
     "huggingface_hub/package_reference/cache.md": {
-      "hash": "c5a2dbad7be652863c3783fc1e28782f7518e015",
-      "translatedAt": "2026-08-11T13:56:29.479Z"
+      "hash": "017a478d666f12ba06fddf4dc7b2a631c8a49c80",
+      "translatedAt": "2026-08-27T18:15:32.002Z"
     },
     "huggingface_hub/package_reference/collections.md": {
-      "hash": "f0ab1fe22fcc951db071671c2cef8d318cfb606c",
-      "translatedAt": "2026-08-11T13:56:29.675Z"
+      "hash": "abb20e66ef22b3e1416fefd9c4f67923abd24597",
+      "translatedAt": "2026-08-27T18:15:38.075Z"
     },
     "huggingface_hub/package_reference/community.md": {
-      "hash": "dc50e74b38342d4bf91ccf2b4b375e85fddd1480",
-      "translatedAt": "2026-08-11T13:56:31.707Z"
+      "hash": "82d29265811d10c014a25ee67d260e13f8b1f891",
+      "translatedAt": "2026-08-27T18:15:42.609Z"
     },
     "huggingface_hub/package_reference/dataclasses.md": {
-      "hash": "c255cc8557cf647d97f1b70e118ad43dd59be598",
-      "translatedAt": "2026-08-11T13:56:31.961Z"
+      "hash": "da79b49f289281973115019b01de9862a4e3a2bd",
+      "translatedAt": "2026-08-27T18:15:50.313Z"
     },
     "huggingface_hub/package_reference/cards.md": {
-      "hash": "5c7c2521d99595601e3aed25f91effb13a3906de",
-      "translatedAt": "2026-08-11T13:56:34.995Z"
+      "hash": "8aba80adaa90244694f0316a021246c7bd1faa24",
+      "translatedAt": "2026-08-27T18:15:45.096Z"
     },
     "huggingface_hub/package_reference/environment_variables.md": {
-      "hash": "725db37493756decd5ab141ffbb2b6113844161c",
-      "translatedAt": "2026-08-11T13:56:36.638Z"
+      "hash": "edc88f5e1691c65e0a040ee417b3231bfce59eca",
+      "translatedAt": "2026-08-27T18:15:57.312Z"
     },
     "huggingface_hub/package_reference/file_download.md": {
-      "hash": "0d5e6d1a7d4ea5818154b8039ab5864ba6e6bbb0",
-      "translatedAt": "2026-08-11T13:56:38.709Z"
+      "hash": "9ab6b8264c84eb0ee77842a9d008e1fb71510a67",
+      "translatedAt": "2026-08-27T18:16:08.017Z"
     },
     "huggingface_hub/package_reference/hf_file_system.md": {
-      "hash": "f80e8a22518613250d4e75fbbd86faf79ac9ad89",
-      "translatedAt": "2026-08-11T13:56:39.743Z"
+      "hash": "e0d6eab336be1b6ae2a3eb1c1082622545a87a99",
+      "translatedAt": "2026-08-27T18:16:15.114Z"
     },
     "huggingface_hub/package_reference/hf_uris.md": {
-      "hash": "fb304e90332b5dd19b78eb5742502d9fd3ac4080",
-      "translatedAt": "2026-08-11T13:56:44.034Z"
+      "hash": "7882b97c8e1dfc477132611f42d728fdbadb7917",
+      "translatedAt": "2026-08-27T18:16:29.237Z"
     },
     "huggingface_hub/package_reference/inference_endpoints.md": {
-      "hash": "e7ee93c1cba4226823b0694f6c84c9be635862cb",
-      "translatedAt": "2026-08-11T13:56:48.050Z"
+      "hash": "ec5129edda4170e1b0def54b26c9db7c2614c312",
+      "translatedAt": "2026-08-27T18:18:12.005Z"
     },
     "huggingface_hub/package_reference/inference_types.md": {
-      "hash": "8d68650926433760768a8390b8191686d6ce5cc9",
-      "translatedAt": "2026-08-12T08:30:00.114Z"
+      "hash": "48f1be85b5b370e8dcf0fa6adf32fec69a991333",
+      "translatedAt": "2026-08-27T18:18:23.273Z"
     },
     "huggingface_hub/package_reference/jobs.md": {
-      "hash": "5a327ae34e830858222a134392519fad8704d18c",
-      "translatedAt": "2026-08-11T13:56:58.041Z"
+      "hash": "ac7c3747430e422f91e66fee416984f9ee4d070a",
+      "translatedAt": "2026-08-27T18:18:16.778Z"
     },
     "huggingface_hub/package_reference/mcp.md": {
-      "hash": "59d0dd15e61c4982571b5b78639db14bd7b6d0de",
-      "translatedAt": "2026-08-11T13:57:00.624Z"
+      "hash": "f3464e53c8296f164490a1dc775d00d745ffa8a4",
+      "translatedAt": "2026-08-27T18:18:22.973Z"
     },
     "huggingface_hub/package_reference/mixins.md": {
-      "hash": "542a9fa8fa2d812204a1e81d9356aa61348acfbc",
-      "translatedAt": "2026-08-11T13:57:05.156Z"
+      "hash": "0130b1fbbac8ad5b959ac7a43a9faa79e1e0caec",
+      "translatedAt": "2026-08-27T18:18:34.241Z"
     },
     "huggingface_hub/package_reference/oauth.md": {
-      "hash": "cc67a2f1edea7175897a92217182700b4d167fa1",
-      "translatedAt": "2026-08-11T13:57:07.213Z"
+      "hash": "93583234f58ba0c1a877d5b70f48a36ec00f71de",
+      "translatedAt": "2026-08-27T18:18:30.040Z"
     },
     "huggingface_hub/package_reference/sandbox.md": {
-      "hash": "274c487f8b61486bf3f8eb2b40f7f6874a4a6284",
-      "translatedAt": "2026-08-11T13:57:11.465Z"
+      "hash": "a18da7886e13d9fb0231dcb3cd66555c9184866c",
+      "translatedAt": "2026-08-27T18:18:39.904Z"
     },
     "huggingface_hub/package_reference/inference_client.md": {
-      "hash": "5c8b9d9a0ad379e2d1943796c23e855c155258bb",
-      "translatedAt": "2026-08-11T14:11:19.744Z"
+      "hash": "0eca3417ab4550ed5e07d2105d3e6aecd63a46c3",
+      "translatedAt": "2026-08-27T18:18:02.945Z"
     },
     "huggingface_hub/package_reference/cli.md": {
-      "hash": "bda76a1ac0fd5f71f3e98082282b6f2e6a4bf111",
-      "translatedAt": "2026-08-11T13:57:17.970Z"
+      "hash": "98432f291840e37ae0397199758f48130adf7c6b",
+      "translatedAt": "2026-08-27T18:18:01.407Z"
     },
     "huggingface_hub/package_reference/space_runtime.md": {
-      "hash": "33040c5e874b55b27fca95499d5af2a2fb5fc3d0",
-      "translatedAt": "2026-08-11T13:57:18.914Z"
+      "hash": "dbc3a88ae2a7d75a51f78ca37cffee5e216d15e7",
+      "translatedAt": "2026-08-27T18:18:44.047Z"
     },
     "huggingface_hub/package_reference/serialization.md": {
-      "hash": "e93c53244c4aba6f4718312ee271a66d309c50b2",
-      "translatedAt": "2026-08-11T13:57:18.972Z"
+      "hash": "0d3a6ce431eb442fd33037dfd7074e8d1e74ba8b",
+      "translatedAt": "2026-08-27T18:18:55.052Z"
     },
     "huggingface_hub/package_reference/tensorboard.md": {
-      "hash": "f99e722d1e88e248b7a754e168d28747cd9a0859",
-      "translatedAt": "2026-08-11T13:57:19.155Z"
+      "hash": "a494e22eac846b1dfe0ca347a9bf54168c02d785",
+      "translatedAt": "2026-08-27T18:18:46.167Z"
     },
     "huggingface_hub/package_reference/webhooks_server.md": {
-      "hash": "84b460e90143d8ddeea4b2fd7b8ee371db873198",
-      "translatedAt": "2026-08-11T13:57:20.845Z"
+      "hash": "7841e141023e84bb4cee2587accdac999481aef3",
+      "translatedAt": "2026-08-27T18:18:59.620Z"
     },
     "huggingface_hub/quick-start.md": {
-      "hash": "7863e602fc2bdb6610dd971fab96f38165e76889",
-      "translatedAt": "2026-08-11T13:57:21.184Z"
+      "hash": "205f54527046ecd9eee6321c2b915e51b6e056ee",
+      "translatedAt": "2026-08-27T18:19:06.178Z"
     },
     "accelerate/basic_tutorials/install.md": {
       "hash": "21ae93a4d577732b2663b163abfdb38edb957768",
@@ -1297,8 +1297,8 @@
       "translatedAt": "2026-08-11T13:57:22.152Z"
     },
     "cli/index.md": {
-      "hash": "b5509b072d78812e195306db674b851ae68c0c06",
-      "translatedAt": "2026-08-11T13:57:22.268Z"
+      "hash": "81f373016e389cc01beb6bafa7df1e132f460003",
+      "translatedAt": "2026-08-27T18:19:11.185Z"
     },
     "accelerate/basic_tutorials/migration.md": {
       "hash": "5c37df7b57c65acea1df33ddce6ab9d4e3458b31",
@@ -1373,8 +1373,8 @@
       "translatedAt": "2026-08-11T13:57:26.527Z"
     },
     "huggingface_hub/package_reference/utilities.md": {
-      "hash": "b44f396d2942097d68ad8c7ae0b43ff73b049046",
-      "translatedAt": "2026-08-11T13:57:26.709Z"
+      "hash": "0ff708b39c0e6c33f9bf371ec34773a9d6a6540e",
+      "translatedAt": "2026-08-27T18:19:09.439Z"
     },
     "accelerate/package_reference/deepspeed.md": {
       "hash": "06cfbee8627a2cce76b66ef650128c8be14b764c",
@@ -1713,8 +1713,8 @@
       "translatedAt": "2026-08-11T13:58:10.581Z"
     },
     "huggingface_hub/package_reference/hf_api.md": {
-      "hash": "8e5b5d4d217fc40129bf8eba3420566d33dd488a",
-      "translatedAt": "2026-08-11T14:12:17.752Z"
+      "hash": "5f2506401bc23bb55889c587cf93f7d08769c2a5",
+      "translatedAt": "2026-08-27T18:20:03.982Z"
     },
     "peft/package_reference/merge_utils.md": {
       "hash": "cc7b2c3cad3295a209bab1d9c67c9ac5182eb876",
@@ -2001,11 +2001,11 @@
       "translatedAt": "2026-08-11T13:59:27.535Z"
     }
   },
-  "updatedAt": "2026-08-26T07:53:15.790Z",
+  "updatedAt": "2026-08-27T18:20:03.982Z",
   "stats": {
-    "translated": 0,
-    "skipped": 395,
-    "failed": 5,
+    "translated": 60,
+    "skipped": 340,
+    "failed": 0,
     "total": 400
   }
 }

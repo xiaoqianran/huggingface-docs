@@ -62,7 +62,7 @@
       
         社区选项卡
       
-        如何与“社区”选项卡（讨论和拉取请求）交互？
+        如何与“社区”选项卡（讨论和拉取请求）进行交互？
       
     
 
@@ -128,4 +128,4 @@
         如何在 Hugging Face 基础设施上运行和管理计算作业并选择硬件？
 
 ### 在服务器上运行推理
-https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/inference.md
+https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/inference.md

@@ -20,7 +20,7 @@ Hub 上的集成，请查看 [this guide](https://huggingface.co/docs/hub/tensor
 huggingface_hub.HFSummaryWriter(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_tensorboard_logger.py#L45)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_tensorboard_logger.py#L45)
 
 **参数：**
 
@@ -81,5 +81,5 @@ for n_iter in range(100):
 ...     logger.add_scalar("b", 2)
 ```
 
-### 文件系统 API
-https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/hf_file_system.md
+### 管理集合
+https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/collections.md

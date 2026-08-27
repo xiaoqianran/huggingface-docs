@@ -4,17 +4,17 @@
 
 存储桶是 Hugging Face Hub 上的一种存储库类型，提供类似 S3 的对象存储，由 [Xet](./xet/index) 存储后端提供支持。与基于 Git 的[repositories](./repositories)（模型、数据集、空间）不同，存储桶是**非版本化**和**可变**，专为需要简单、快速存储的用例而设计，例如训练检查点、日志、中间工件或任何不需要版本控制的大型文件集合。
 
-您可以使用 Hub Web 界面、[⟦T16⟧ CLI](https://huggingface.co/docs/huggingface_hub/guides/cli#hf-buckets) 或 [Python API](https://huggingface.co/docs/huggingface_hub/guides/buckets) 与存储桶交互。
+您可以使用 Hub Web 界面、[⟦T18⟧ CLI](https://huggingface.co/docs/huggingface_hub/guides/cli#hf-buckets) 或 [Python API](https://huggingface.co/docs/huggingface_hub/guides/buckets) 与存储桶交互。
 
 > [!提示]
 > 存储桶可供所有用户和组织使用。有关定价详情，请参阅[hf.co/storage](https://huggingface.co/storage)。
 
 > [!提示]
-> 请参阅 [Access Patterns](./storage-buckets-access) 了解如何从工具获取存储桶数据（作为文件系统挂载、`hf://` 路径、作业/空间中的卷挂载），[S3-Compatible API](./storage-buckets-s3) 了解如何使用现有 S3 工具（AWS CLI、boto3、s5cmd），以及 [Bucket Integrations](./storage-buckets-integrations) 了解流行数据库（如 pandas、Dask 和 Spark）中的即用型代码片段。
+> 请参阅 [Access Patterns](./storage-buckets-access) 了解如何从工具获取存储桶数据（作为文件系统挂载、`hf://` 路径、作业/空间中的卷挂载），[S3-Compatible API](./storage-buckets-s3) 了解如何使用现有 S3 工具（AWS CLI、boto3、s5cmd），以及 [Bucket Integrations](./storage-buckets-integrations) 了解流行数据库（如 pandas、Dask 和 Spark）中的现成片段。
 
 ## 存储桶与存储库
 
-Hub 提供两种类型的存储：基于 Git 的**存储库**，用于版本化、协作工作；**存储桶**，用于快速、可变的对象存储。|特色|存储库（基于 Git）|存储桶|
+Hub 提供两种类型的存储：基于 Git 的**存储库**，用于版本化、协作工作；**存储桶**，用于快速、可变的对象存储。|特色 |存储库（基于 Git）|存储桶|
 | ------------------ | ------------------------------------------- | ----------------------------------- |
 |版本控制 |完整的 Git 历史记录 |无（可变，就地覆盖）|
 |类型 |模型、数据集、空间 |独立桶|
@@ -68,7 +68,26 @@ create_bucket("my-bucket", private=True)
 create_bucket("my-org/shared-bucket")
 ```
 
-有关完整的 Python API 参考（包括删除、移动和列出存储桶），请参阅 [⟦T21⟧ Buckets guide](https://huggingface.co/docs/huggingface_hub/guides/buckets)。
+### 改变可见性
+
+您可以在创建后更改存储桶的可见性：
+
+```bash
+# Make a bucket private
+hf buckets settings username/my-bucket --private
+
+# Make it public again
+hf buckets settings username/my-bucket --public
+```
+
+```python
+from huggingface_hub import update_bucket_settings
+
+update_bucket_settings("username/my-bucket", private=True)
+update_bucket_settings("username/my-bucket", private=False)
+```
+
+有关完整的 Python API 参考（包括删除、移动和列出存储桶），请参阅 [⟦T23⟧ Buckets guide](https://huggingface.co/docs/huggingface_hub/guides/buckets)。
 
 ## 浏览集线器上的存储桶
 
@@ -162,7 +181,7 @@ batch_bucket_files(
 )
 ```
 
-更多上传选项（原始字节、组合上传+删除等），请参阅[⟦T33⟧ upload guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#upload-files)。
+更多上传选项（原始字节、组合上传+删除等），请参阅[⟦T35⟧ upload guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#upload-files)。
 
 ### 下载文件您可以通过单击直接从 Hub 上的存储桶页面下载各个文件。对于编程访问，下载镜像了上传语法——交换 `hf buckets cp` 中的源和目标。您还可以使用 `-` 作为目标将文件流式传输到标准输出，这样您就可以将存储桶内容直接通过管道传输到其他工具中。
 
@@ -190,11 +209,11 @@ download_bucket_files(
 )
 ```
 
-要使用预取元数据加快下载速度，请参阅 [⟦T38⟧ download guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#download-files)。
+要使用预取元数据加快下载速度，请参阅 [⟦T40⟧ download guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#download-files)。
 
 ### 同步目录
 
-`sync` 命令的工作方式类似于 `rsync` 或 `aws s3 sync` — 它比较源和目标，并且仅传输已更改的文件。这是保持本地目录和存储桶同步的最有效方法。默认情况下，`sync`仅添加和更新文件。传递 `--delete` 也可以删除目标中不再存在于源中的文件。使用 `--dry-run` 预览会发生什么，而无需实际传输任何内容。
+`sync` 命令的工作方式类似于 `rsync` 或 `aws s3 sync` — 它比较源和目标，仅传输已更改的文件。这是保持本地目录和存储桶同步的最有效方法。默认情况下，`sync`仅添加和更新文件。传递 `--delete` 也可以删除目标中不再存在于源中的文件。使用 `--dry-run` 预览会发生什么，而无需实际传输任何内容。
 
 **命令行界面：**
 ```bash
@@ -228,7 +247,7 @@ sync_bucket("./data", "hf://buckets/username/my-bucket/data")
 
 # Download from a bucket to a local directory
 sync_bucket("hf://buckets/username/my-bucket/data", "./data")
-````sync` 命令支持过滤（`--include`、`--exclude`）、比较模式（`--ignore-times`、`--existing`）以及用于在执行操作之前检查操作的**计划和应用**工作流程。有关完整的选项集，请参阅[⟦T52⟧ sync guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#sync-directories)。
+````sync` 命令支持过滤（`--include`、`--exclude`）、比较模式（`--ignore-times`、`--existing`）以及用于在执行操作之前检查操作的“计划和应用”工作流程。有关完整的选项集，请参阅[⟦T54⟧ sync guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#sync-directories)。
 
 ### 删除文件
 
@@ -253,11 +272,11 @@ from huggingface_hub import batch_bucket_files
 batch_bucket_files("username/my-bucket", delete=["old-model.bin", "logs/debug.log"])
 ```
 
-有关更多删除选项（基于模式的过滤、递归删除等），请参阅[⟦T55⟧ delete guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#delete-files)。
+有关更多删除选项（基于模式的过滤、递归删除等），请参阅[⟦T57⟧ delete guide](https://huggingface.co/docs/huggingface_hub/guides/buckets#delete-files)。
 
 ### 在存储库和存储桶之间复制文件
 
-您可以将 [Xet](./xet/index) 跟踪的文件从任何存储库（模型、数据集、空间）或存储桶复制到目标存储桶，而无需重新上传数据。复制是在服务器端进行的：仅迁移 Xet 内容哈希，因此即使非常大的文件也会立即复制，这要归功于 [chunk-level deduplication](./xet/deduplication)。
+您可以将 [Xet](./xet/index) 跟踪的文件从任何存储库（模型、数据集、空间）或存储桶复制到目标存储桶，而无需重新上传数据。副本是服务器端的：仅迁移 Xet 内容哈希值，因此即使非常大的文件也会立即复制，这要归功于 [chunk-level deduplication](./xet/deduplication)。
 
 > [!注意]
 > 仅 Xet 跟踪的文件会在服务器之间复制。小的非 Xet 文件（例如配置文件和自述文件）会自动下载并重新上传。服务器端复制还要求源和目标位于同一存储区域。
@@ -293,11 +312,11 @@ api.copy_files(
 - 多区域设置，管道的不同部分在不同的云中运行
 - 向全球许多消费者分发大型文物
 
-请参阅[hf.co/storage](https://huggingface.co/storage)了解可用区域以及启用预热的详细信息。
+有关可用区域以及启用预热的详细信息，请参阅[hf.co/storage](https://huggingface.co/storage)。
 
 ## 用例
 
-### 训练检查点和日志运行训练作业时（例如，通过[Jobs](./jobs)），将检查点和日志保存到存储桶中。与 Git 存储库不同，您可以覆盖最新的检查点而无需累积版本历史记录，并且 `sync` 确保仅传输更改的数据。
+### 训练检查点和日志运行训练作业时（例如，通过[Jobs](./jobs)），将检查点和日志保存到存储桶中。与 Git 存储库不同，您可以覆盖最新的检查点，而无需累积版本历史记录，并且 `sync` 确保仅传输更改的数据。
 
 ```bash
 # After each evaluation step, sync checkpoints to a bucket
@@ -314,7 +333,7 @@ hf sync ./checkpoints hf://buckets/my-org/training-run-42/checkpoints
 
 ### 代理存储
 
-人工智能代理需要临时存储来存储中间结果、工具输出、痕迹和工作内存。存储桶为这些数据提供了 Hub 原生位置：无需 Git 开销的快速可变访问、标准 Hugging Face 权限，并且可通过 Hub 生态系统中的 `hf://buckets/` 路径进行寻址。### 滚动备份
+人工智能代理需要临时存储来存储中间结果、工具输出、痕迹和工作内存。存储桶为这些数据提供了 Hub 原生位置：快速可变访问，无需 Git 开销，标准 Hugging Face 权限，并且可通过 Hub 生态系统中的 `hf://buckets/` 路径进行寻址。### 滚动备份
 
 存储桶非常适合维护滚动备份。使用基于 Git 的 [Dataset](./datasets) 存储库，删除过时的文件并不会释放存储空间 - Git 历史记录会保留每个过去的版本，因此您需要压缩提交或重写历史记录才能实际回收空间。使用存储桶，旧文件一旦删除就会真正消失，您只需为当前存储的内容付费。
 

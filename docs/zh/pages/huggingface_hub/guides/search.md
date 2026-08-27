@@ -6,7 +6,7 @@
 
 ## 如何列出存储库？
 
-`huggingface_hub` 库包含一个 HTTP 客户端 [HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi) 来与集线器交互。
+`huggingface_hub` 库包含一个 HTTP 客户端 [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi) 来与集线器交互。
 除此之外，它还可以列出存储在 Hub 上的模型、数据集和空间：
 
 ```py
@@ -15,9 +15,9 @@
 >>> models = api.list_models()
 ```
 
-[list_models()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_models) 的输出是存储在 Hub 上的模型的迭代器。
+[list_models()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_models) 的输出是存储在 Hub 上的模型的迭代器。
 
-同样，您可以使用 [list_datasets()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_datasets) 列出数据集，使用 [list_spaces()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_spaces) 列出空间。
+同样，您可以使用 [list_datasets()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_datasets) 列出数据集，使用 [list_spaces()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_spaces) 列出空间。
 
 ## 如何过滤存储库？
 
@@ -77,5 +77,5 @@ models = hf_api.list_models(num_parameters="min:6B,max:128B")
 
 欲了解更多详情，请参阅[CLI guide](./cli#hf-models)。
 
-### 了解缓存
-https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/manage-cache.md
+### 通过文件系统 API 与 Hub 交互
+https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/hf_file_system.md

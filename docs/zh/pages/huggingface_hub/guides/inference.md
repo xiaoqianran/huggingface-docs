@@ -8,7 +8,7 @@
 1. [Inference Providers](https://huggingface.co/docs/inference-providers/index)：对数百种机器学习模型的简化、统一访问，由我们的无服务器推理合作伙伴提供支持。这种新方法建立在我们之前的无服务器推理 API 的基础上，在世界一流的提供商的帮助下，提供了更多的模型、改进的性能和更高的可靠性。请参阅 [documentation](https://huggingface.co/docs/inference-providers/index#partners) 了解受支持的提供商列表。
 2. [Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index)：一款轻松将模型部署到生产环境的产品。推理由 Hugging Face 在您选择的云提供商的专用、完全托管的基础设施中运行。
 3. 本地端点：您还可以通过将客户端连接到本地端点来使用[llama.cpp](https://github.com/ggerganov/llama.cpp)、[Ollama](https://ollama.com/)、[vLLM](https://github.com/vllm-project/vllm)、[LiteLLM](https://docs.litellm.ai/docs/simple_proxy)或[Text Generation Inference (TGI)](https://github.com/huggingface/text-generation-inference)等本地推理服务器运行推理。> [!提示]
-> [InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 是一个 Python 客户端，对我们的 API 进行 HTTP 调用。如果你想直接使用 HTTP 调用
+> [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 是一个 Python 客户端，对我们的 API 进行 HTTP 调用。如果你想直接使用 HTTP 调用
 > 您首选的工具（curl、postman...），请参阅[Inference Providers](https://huggingface.co/docs/inference-providers/index)文档
 > 或访问 [Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index) 文档页面。
 >
@@ -35,10 +35,10 @@
 
 ```
 
-在上面的示例中，我们使用第三方提供商[Replicate](https://replicate.com/)初始化了[InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)。使用提供程序时，您必须指定要使用的模型。模型id必须是Hugging Face Hub上的模型id，而不是第三方提供商的模型id。
-在我们的示例中，我们根据文本提示生成了图像。返回值是一个 `PIL.Image` 对象，可以保存到文件中。有关更多详细信息，请查看 [text_to_image()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.text_to_image) 文档。
+在上面的示例中，我们使用第三方提供商[Replicate](https://replicate.com/)初始化了[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)。使用提供程序时，您必须指定要使用的模型。模型id必须是Hugging Face Hub上的模型id，而不是第三方提供商的模型id。
+在我们的示例中，我们根据文本提示生成了图像。返回值是一个 `PIL.Image` 对象，可以保存到文件中。有关更多详细信息，请查看 [text_to_image()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.text_to_image) 文档。
 
-现在让我们看一个使用 [chat_completion()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) API 的示例。此任务使用 LLM 从消息列表生成响应：
+现在让我们看一个使用 [chat_completion()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) API 的示例。此任务使用 LLM 从消息列表生成响应：
 
 ```python
 >>> from huggingface_hub import InferenceClient
@@ -72,7 +72,7 @@ ChatCompletionOutput(
     system_fingerprint="2.0.4-sha-f426a33",
     usage=ChatCompletionOutputUsage(completion_tokens=8, prompt_tokens=17, total_tokens=25),
 )
-```在上面的示例中，我们使用了第三方提供商 ([Together AI](https://www.together.ai/)) 并指定了我们要使用的模型 (`"meta-llama/Meta-Llama-3-8B-Instruct"`)。然后，我们给出了要完成的消息列表（此处是一个问题），并向 API 传递了一个附加参数 (`max_token=100`)。输出是遵循 OpenAI 规范的 `ChatCompletionOutput` 对象。生成的内容可以通过`output.choices[0].message.content`访问。有关更多详细信息，请查看 [chat_completion()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) 文档。
+```在上面的示例中，我们使用了第三方提供商 ([Together AI](https://www.together.ai/)) 并指定了我们要使用的模型 (`"meta-llama/Meta-Llama-3-8B-Instruct"`)。然后，我们给出了要完成的消息列表（此处是一个问题），并向 API 传递了一个附加参数 (`max_token=100`)。输出是遵循 OpenAI 规范的 `ChatCompletionOutput` 对象。生成的内容可以通过`output.choices[0].message.content`访问。有关更多详细信息，请查看 [chat_completion()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) 文档。
 
 > [!警告]
 > API 设计得很简单。并非所有参数和选项都可供最终用户使用或描述。退房
@@ -125,7 +125,7 @@ ChatCompletionOutput(
 
 请注意，您不能同时指定 URL 和提供程序 - 它们是互斥的。 URL 用于直接连接到已部署的端点。
 
-### 使用本地端点您可以使用 [InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 与在您自己的计算机上运行的本地推理服务器（llama.cpp、vllm、litellm 服务器、TGI、mlx 等）运行聊天完成。 API 应与 OpenAI API 兼容。
+### 使用本地端点您可以使用 [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 与在您自己的计算机上运行的本地推理服务器（llama.cpp、vllm、litellm 服务器、TGI、mlx 等）运行聊天完成。 API 应与 OpenAI API 兼容。
 
 ```python
 >>> from huggingface_hub import InferenceClient
@@ -141,7 +141,7 @@ ChatCompletionOutput(
 ```
 
 > [!提示]
-> 与 OpenAI Python 客户端类似，[InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 可用于通过任何 OpenAI REST API 兼容端点运行聊天完成推理。
+> 与 OpenAI Python 客户端类似，[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 可用于通过任何 OpenAI REST API 兼容端点运行聊天完成推理。
 
 ### 身份验证
 
@@ -177,33 +177,33 @@ ChatCompletionOutput(
 
 欲了解更多详情，请参阅[Inference Providers pricing documentation](https://huggingface.co/docs/inference-providers/pricing#routed-requests-vs-direct-calls)。
 
-## 支持的提供者和任务[InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 的目标是提供最简单的接口来在任何提供商的 Hugging Face 模型上运行推理。它有一个简单的 API，支持最常见的任务。下表显示了哪些提供程序支持哪些任务：
+## 支持的提供者和任务[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 的目标是提供最简单的接口来在任何提供商的 Hugging Face 模型上运行推理。它有一个简单的 API，支持最常见的任务。下表显示了哪些提供程序支持哪些任务：
 
-|任务|巴斯坦|大脑 |连贯|深基础设施 |法艾 |无羽人工智能 |烟花人工智能|格罗克 |高频推理 |诺维塔人工智能 |恩斯卡尔| OVHcloud AI 端点 |公共人工智能|复制|斯卡威|一起|波速|在|
-| --------------------------------------------------- | -------- | -------- | ------ | ---------| ------ | -------------- | ------------ | ---- | ------------ | ---------| ------ | -------------------- | ---------| ---------| -------- | -------- | ---------| --- |
-| [audio_classification()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.audio_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ || [audio_to_audio()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.audio_to_audio) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [automatic_speech_recognition()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.automatic_speech_recognition) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
-| [chat_completion()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |
-| [document_question_answering()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.document_question_answering) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [feature_extraction()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.feature_extraction) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ || [fill_mask()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.fill_mask) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [image_classification()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.image_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [image_segmentation()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.image_segmentation) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [image_to_image()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.image_to_image) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ |
-| [image_to_video()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.image_to_video) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ || [image_to_text()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.image_to_text) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [object_detection()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.object_detection) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [question_answering()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.question_answering) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [sentence_similarity()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.sentence_similarity) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [summarization()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.summarization) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ || [table_question_answering()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.table_question_answering) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [text_classification()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.text_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [text_generation()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.text_generation) | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ |
-| [text_to_image()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.text_to_image) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
-| [text_to_speech()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.text_to_speech) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ || [text_to_video()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.text_to_video) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ |
-| [tabular_classification()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.tabular_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [tabular_regression()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.tabular_regression) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [token_classification()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.token_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [translation()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.translation) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ || [visual_question_answering()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.visual_question_answering) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [zero_shot_image_classification()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.zero_shot_image_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| [zero_shot_classification()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.zero_shot_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+|任务|巴斯坦|大脑 |连贯|深基础设施 |法艾 |无羽人工智能 |烟花人工智能|格罗克 |高频推理 |诺维塔人工智能 |恩斯卡尔 | OVHcloud AI 端点 |公共人工智能|复制|斯卡威|一起|波速|在|
+| --------------------------------------------------- | -------- | -------- | ------ | --------- | ------ | -------------- | ------------ | ---- | ------------ | --------- | ------ | -------------------- | --------- | --------- | -------- | -------- | --------- | --- |
+| [audio_classification()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.audio_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ || [audio_to_audio()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.audio_to_audio) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [automatic_speech_recognition()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.automatic_speech_recognition) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
+| [chat_completion()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |
+| [document_question_answering()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.document_question_answering) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [feature_extraction()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.feature_extraction) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ || [fill_mask()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.fill_mask) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [image_classification()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.image_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [image_segmentation()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.image_segmentation) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [image_to_image()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.image_to_image) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ |
+| [image_to_video()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.image_to_video) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ || [image_to_text()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.image_to_text) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [object_detection()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.object_detection) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [question_answering()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.question_answering) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [sentence_similarity()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.sentence_similarity) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [summarization()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.summarization) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ || [table_question_answering()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.table_question_answering) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [text_classification()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.text_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [text_generation()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.text_generation) | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ |
+| [text_to_image()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.text_to_image) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
+| [text_to_speech()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.text_to_speech) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ || [text_to_video()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.text_to_video) | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ |
+| [tabular_classification()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.tabular_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [tabular_regression()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.tabular_regression) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [token_classification()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.token_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [translation()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.translation) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ || [visual_question_answering()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.visual_question_answering) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [zero_shot_image_classification()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.zero_shot_image_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| [zero_shot_classification()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.zero_shot_classification) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 > [!提示]
 > 查看 [Tasks](https://huggingface.co/tasks) 页面以了解有关每个任务的更多信息。
@@ -236,7 +236,7 @@ for chunk in output:
     print(chunk.choices[0].delta.content)
 ```就是这样！唯一需要的更改是将 `from openai import OpenAI` 替换为 `from huggingface_hub import InferenceClient`，将 `client = OpenAI(...)` 替换为 `client = InferenceClient(...)`。您可以通过将模型 ID 作为 `model` 参数传递，从 Hugging Face Hub 中选择任何 LLM 模型。 [Here is a list](https://huggingface.co/models?pipeline_tag=text-generation&other=conversational,text-generation-inference&sort=trending) 支持的型号。对于身份验证，您应该传递有效的 [User Access Token](https://huggingface.co/settings/tokens) 作为 `api_key` 或使用 `huggingface_hub` 进行身份验证（请参阅 [authentication guide](https://huggingface.co/docs/huggingface_hub/quick-start#authentication)）。
 
-所有输入参数和输出格式都严格相同。特别是，您可以传递 `stream=True` 来接收生成的令牌。您还可以使用 [AsyncInferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient) 使用 `asyncio` 运行推理：
+所有输入参数和输出格式都严格相同。特别是，您可以传递 `stream=True` 来接收生成的令牌。您还可以使用 [AsyncInferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient) 使用 `asyncio` 运行推理：
 
 ```diff
 import asyncio
@@ -256,13 +256,13 @@ async def main():
         print(chunk.choices[0].delta.content or "", end="")
 
 asyncio.run(main())
-```你可能想知道为什么使用[InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)而不是OpenAI的客户端？原因有以下几个：
-1. [InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)配置为Hugging Face服务。您无需提供 `base_url` 即可使用推理提供程序运行模型。如果您的计算机已正确登录，您也不需要提供 `token` 或 `api_key`。
-2. [InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 专为文本生成推理 (TGI) 和 `transformers` 框架量身定制，这意味着您可以放心，它将始终与最新更新保持一致。
-3. [InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 与我们的推理端点服务集成，可以更轻松地启动推理端点、检查其状态并在其上运行推理。查看 [Inference Endpoints](./inference_endpoints) 指南了解更多详细信息。
+```你可能想知道为什么使用[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)而不是OpenAI的客户端？原因有以下几个：
+1. [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)配置为Hugging Face服务。您不需要提供 `base_url` 即可使用推理提供程序运行模型。如果您的计算机已正确登录，您也不需要提供 `token` 或 `api_key`。
+2. [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 专为文本生成推理 (TGI) 和 `transformers` 框架量身定制，这意味着您可以放心，它将始终与最新更新保持一致。
+3. [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) 与我们的推理端点服务集成，可以更轻松地启动推理端点、检查其状态并在其上运行推理。查看 [Inference Endpoints](./inference_endpoints) 指南了解更多详细信息。
 
 > [!提示]
-> `InferenceClient.chat.completions.create` 只是 `InferenceClient.chat_completion` 的别名。查看[chat_completion()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion)的封装参考了解更多详情。实例化客户端时的`base_url`和`api_key`参数也是`model`和`token`的别名。定义这些别名是为了减少从 `OpenAI` 切换到 `InferenceClient` 时的摩擦。
+> `InferenceClient.chat.completions.create` 只是 `InferenceClient.chat_completion` 的别名。查看[chat_completion()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion)的封装参考了解更多详情。实例化客户端时的`base_url`和`api_key`参数也是`model`和`token`的别名。定义这些别名是为了减少从 `OpenAI` 切换到 `InferenceClient` 时的摩擦。
 
 ## 函数调用函数调用允许 LLM 与外部工具交互，例如定义的函数或 API。这使用户能够轻松构建针对特定用例和实际任务定制的应用程序。
 `InferenceClient` 实现与 OpenAI Chat Completions API 相同的工具调用接口。这是使用 [Novita](https://novita.ai/) 作为推理提供者的工具调用的简单示例：
@@ -360,7 +360,7 @@ print(completion.choices[0].message)
 
 ## 异步客户端
 
-还提供了基于`asyncio`和`httpx`的异步版本客户端。所有异步 API 端点均可通过 [AsyncInferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient) 获得。其初始化和 API 与仅同步版本完全相同。
+还提供了基于`asyncio`和`httpx`的异步版本客户端。所有异步 API 端点均可通过 [AsyncInferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient) 获得。其初始化和 API 与仅同步版本完全相同。
 
 ```py
 # Code must be run in an asyncio concurrent context.
@@ -380,9 +380,9 @@ print(completion.choices[0].message)
 
 ## MCP 客户端
 
-`huggingface_hub` 库现在包含一个实验性的 [MCPClient](/docs/huggingface_hub/v1.27.0/en/package_reference/mcp#huggingface_hub.MCPClient)，旨在使大型语言模型 (LLM) 能够通过 [Model Context Protocol](https://modelcontextprotocol.io) (MCP) 与外部工具交互。该客户端扩展了[AsyncInferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient)以无缝集成工具使用。
+`huggingface_hub` 库现在包含一个实验性的 [MCPClient](/docs/huggingface_hub/v1.29.0/en/package_reference/mcp#huggingface_hub.MCPClient)，旨在使大型语言模型 (LLM) 能够通过 [Model Context Protocol](https://modelcontextprotocol.io) (MCP) 与外部工具交互。该客户端扩展了[AsyncInferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient)以无缝集成工具使用。
 
-[MCPClient](/docs/huggingface_hub/v1.27.0/en/package_reference/mcp#huggingface_hub.MCPClient) 连接到公开工具的 MCP 服务器（本地 `stdio` 脚本或远程 `http`/`sse` 服务）。它将这些工具提供给法学硕士（通过[AsyncInferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient)）。如果 LLM 决定使用工具，[MCPClient](/docs/huggingface_hub/v1.27.0/en/package_reference/mcp#huggingface_hub.MCPClient) 管理对 MCP 服务器的执行请求，并将工具的输出转发回 LLM，通常实时传输结果。在以下示例中，我们通过 [Novita](https://novita.ai/) 推理提供程序使用 [Qwen/Qwen2.5-72B-Instruct](https://huggingface.co/Qwen/Qwen2.5-72B-Instruct) 模型。然后，我们添加一个远程 MCP 服务器，在本例中是一个 SSE 服务器，它使 Flux 图像生成工具可供 LLM 使用。
+[MCPClient](/docs/huggingface_hub/v1.29.0/en/package_reference/mcp#huggingface_hub.MCPClient) 连接到公开工具的 MCP 服务器（本地 `stdio` 脚本或远程 `http`/`sse` 服务）。它将这些工具提供给法学硕士（通过[AsyncInferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient)）。如果 LLM 决定使用工具，[MCPClient](/docs/huggingface_hub/v1.29.0/en/package_reference/mcp#huggingface_hub.MCPClient) 管理对 MCP 服务器的执行请求，并将工具的输出转发回 LLM，通常实时传输结果。在以下示例中，我们通过 [Novita](https://novita.ai/) 推理提供程序使用 [Qwen/Qwen2.5-72B-Instruct](https://huggingface.co/Qwen/Qwen2.5-72B-Instruct) 模型。然后，我们添加一个远程 MCP 服务器，在本例中是一个 SSE 服务器，它使 Flux 图像生成工具可供 LLM 使用。
 
 ```python
 import os
@@ -423,7 +423,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-为了更简单的开发，我们提供了更高级别的[Agent](/docs/huggingface_hub/v1.27.0/en/package_reference/mcp#huggingface_hub.Agent)类。这个“小代理”通过管理聊天循环和状态来简化会话代理的创建，本质上充当[MCPClient](/docs/huggingface_hub/v1.27.0/en/package_reference/mcp#huggingface_hub.MCPClient)的包装器。它被设计为一个简单的 while 循环，构建在 [MCPClient](/docs/huggingface_hub/v1.27.0/en/package_reference/mcp#huggingface_hub.MCPClient) 之上。您可以直接从命令行运行这些代理：
+为了更简单的开发，我们提供了更高级别的[Agent](/docs/huggingface_hub/v1.29.0/en/package_reference/mcp#huggingface_hub.Agent)类。这个“小代理”通过管理聊天循环和状态来简化会话代理的创建，本质上充当[MCPClient](/docs/huggingface_hub/v1.29.0/en/package_reference/mcp#huggingface_hub.MCPClient)的包装器。它被设计为一个简单的 while 循环，构建在 [MCPClient](/docs/huggingface_hub/v1.29.0/en/package_reference/mcp#huggingface_hub.MCPClient) 之上。您可以直接从命令行运行这些代理：
 
 ```bash
 # install latest version of huggingface_hub with the mcp extra
@@ -437,7 +437,7 @@ tiny-agents run julien-c/flux-schnell-generator
 
 ## 高级提示
 
-在上一节中，我们看到了[InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)的主要方面。让我们深入了解一些更高级的技巧。
+在上一节中，我们看到了[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)的主要方面。让我们深入了解一些更高级的技巧。
 
 ### 计费作为 HF 用户，您每月可以获得积分，可以通过 Hub 上的各种提供商进行推理。您获得的积分金额取决于您的帐户类型（免费、PRO 或 Enterprise Hub）。您需要为每个推理请求付费，具体取决于提供商的定价表。默认情况下，请求将记入您的个人帐户。但是，可以设置计费，以便通过简单地将 `bill_to="<your_org_name>"` 传递到 `InferenceClient` 来向您所属的组织收取请求费用。为此，您的组织必须订阅 Enterprise Hub。有关计费的更多详细信息，请查看[this guide](https://huggingface.co/docs/api-inference/pricing#features-using-inference-providers)。
 
@@ -455,7 +455,7 @@ tiny-agents run julien-c/flux-schnell-generator
 
 ### 超时
 
-推理调用可能会花费大量时间。默认情况下，[InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)将“无限期”等待，直到推理完成。如果您想在工作流程中获得更多控制，可以将 `timeout` 参数设置为特定值（以秒为单位）。如果超时延迟到期，则会引发 [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError)，您可以在代码中捕获它：
+推理调用可能会花费大量时间。默认情况下，[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)将“无限期”等待，直到推理完成。如果您想在工作流程中获得更多控制，可以将 `timeout` 参数设置为特定值（以秒为单位）。如果超时延迟到期，则会引发 [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError)，您可以在代码中捕获它：
 
 ```python
 >>> from huggingface_hub import InferenceClient, InferenceTimeoutError
@@ -466,7 +466,7 @@ tiny-agents run julien-c/flux-schnell-generator
 ...     print("Inference timed out after 30s.")
 ```
 
-### 二进制输入某些任务需要二进制输入，例如在处理图像或音频文件时。在这种情况下，[InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)
+### 二进制输入某些任务需要二进制输入，例如在处理图像或音频文件时。在这种情况下，[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient)
 尝试尽可能宽容并接受不同的类型：
 - 原始`bytes`
 - 类似文件的对象，以二进制形式打开（`with open("audio.flac", "rb") as f: ...`）
@@ -481,5 +481,5 @@ tiny-agents run julien-c/flux-schnell-generator
 [{'score': 0.9779096841812134, 'label': 'Blenheim spaniel'}, ...]
 ```
 
-### 将任何 ML 框架与 Hub 集成
-https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/integrations.md
+### 运行和管理作业
+https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/jobs.md

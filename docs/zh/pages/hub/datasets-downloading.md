@@ -4,7 +4,7 @@
 
 ## 集成库
 
-如果集线器上的数据集绑定到[supported library](./datasets-libraries)，则只需几行即可加载数据集。有关访问数据集的信息，您可以单击数据集页面上的“使用此数据集”按钮以了解如何执行此操作。例如，[⟦T5⟧](https://huggingface.co/datasets/knkarthick/samsum?library=datasets) 展示了如何使用下面的 `datasets` 执行此操作。
+如果集线器上的数据集与[supported library](./datasets-libraries)绑定，则只需几行即可加载数据集。有关访问数据集的信息，您可以单击数据集页面上的“使用此数据集”按钮以了解如何执行此操作。例如，[⟦T5⟧](https://huggingface.co/datasets/knkarthick/samsum?library=datasets) 显示了如何使用下面的 `datasets` 执行此操作。
 
 ## 使用 Hugging Face 客户端库
 
@@ -14,7 +14,7 @@
 hf download HuggingFaceH4/ultrachat_200k --repo-type dataset
 ```
 
-请参阅 [HF CLI download documentation](https://huggingface.co/docs/huggingface_hub/en/guides/cli#download-a-dataset-or-a-space) 了解更多信息。
+请参阅[HF CLI download documentation](https://huggingface.co/docs/huggingface_hub/en/guides/cli#download-a-dataset-or-a-space)了解更多信息。
 
 您还可以将其集成到您自己的库中！例如，您可以使用 Pandas 快速加载包含几行的 CSV 数据集。
 ```py
@@ -61,7 +61,7 @@ brew install hf-mount
 hf-mount start repo datasets/stanfordnlp/imdb /tmp/imdb
 ```
 
-存储库以只读方式安装。有关完整设置详细信息、后端选项和缓存，请参阅[Mount as a Local Filesystem](./storage-buckets-access#mount-as-a-local-filesystem)。
+存储库以只读方式安装。有关完整设置详细信息、后端选项和缓存，请参阅 [Mount as a Local Filesystem](./storage-buckets-access#mount-as-a-local-filesystem)。
 
 ## 在代理或防火墙后面下载如果您的网络通过防火墙或代理限制出站流量，则下载数据集需要的不仅仅是`huggingface.co`。文件内容由单独的存储和 CDN 主机名提供，如果无法访问这些内容，即使 `huggingface.co` 本身已列入白名单，`load_dataset` / `hf download` 也会失败。
 
@@ -70,8 +70,8 @@ hf-mount start repo datasets/stanfordnlp/imdb /tmp/imdb
 |主机名 |目的|
 |------------------------------------------|--------------------------------------------------------|
 | `huggingface.co` | Hub API、元数据和下载重定向 |
-| `cas-server.xethub.hf.co` | Xet 存储协议 API + 上传（美国）|
-| `cas-server.xethub-eu.hf.co` | Xet 存储协议 API + 上传（欧盟）|
+| `cas-server.xethub.hf.co` | Xet 协议 API、下载和上传（美国）|
+| `cas-server.xethub-eu.hf.co` | Xet 协议 API、下载和上传（欧盟）|
 | `transfer.xethub.hf.co` | Xet 存储下载 API（美国）|
 | `transfer.xethub-eu.hf.co` | Xet 存储下载 API（欧盟）|
 | `us.aws.cdn.hf.co` | CDN 边缘（美国）|
@@ -91,12 +91,22 @@ hf-mount start repo datasets/stanfordnlp/imdb /tmp/imdb
 >
 > 如果您的代理仅支持单标签通配符（其中 `*.hf.co` 匹配
 > `cdn-lfs-us-1.hf.co` 但不是更深的 `us.aws.cdn.hf.co` 或 `cas-server.xethub.hf.co`），
-> 将上表中的显式主机名列入白名单。请注意，`*.xethub.hf.co`确实
+> 将上表中的显式主机名列入白名单。请注意 `*.xethub.hf.co` 确实
 > 不涵盖`xethub-eu.hf.co`下的欧盟主机，`*.cdn.hf.co`不涵盖
 > 双标签`us.aws.cdn.hf.co` / `us.gcp.cdn.hf.co`。
 
 > [!警告]
 > 随着我们的存储和 CDN 基础设施的发展，这些主机名可能会发生变化。你在哪里
 > 安全策略允许，将 `hf.co` 和 `huggingface.co` 后缀列入白名单（所有
-> 子域），这样当特定端点发生变化时，您的规则就不会被破坏。### 空间小组
+> 子域），这样当特定端点发生变化时，您的规则就不会被破坏。
+
+### 机器可读列表上面的主机名也以 JSON 形式发布在
+[⟦T43⟧](https://huggingface.co/.well-known/meta.json),
+因此您可以从中生成代理或防火墙规则，而不是手动复制表。
+
+> [!警告]
+> 文件随着端点的添加和删除而变化。当您构建规则时获取它
+> 而不是固定副本。
+
+### 空间小组
 https://huggingface.co/docs/hub/spaces-sdks-docker-panel.md

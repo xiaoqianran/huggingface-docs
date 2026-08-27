@@ -12,7 +12,7 @@
 ```bash
 hf download HuggingFaceH4/zephyr-7b-beta
 ```
-请参阅[CLI download documentation](https://huggingface.co/docs/huggingface_hub/en/guides/cli#download-an-entire-repository)了解更多信息。
+请参阅 [CLI download documentation](https://huggingface.co/docs/huggingface_hub/en/guides/cli#download-an-entire-repository) 了解更多信息。
 
 您还可以将其集成到您自己的库中。例如，您可以用几行代码快速加载 Scikit-learn 模型。
 ```py
@@ -78,8 +78,8 @@ hf-mount start repo openai-community/gpt2 /tmp/gpt2
 将以下主机名列入白名单（全部通过 HTTPS/端口 443）：|主机名 |目的|
 |------------------------------------------|--------------------------------------------------------|
 | `huggingface.co` | Hub API、元数据和下载重定向 |
-| `cas-server.xethub.hf.co` | Xet 存储协议 API + 上传（美国）|
-| `cas-server.xethub-eu.hf.co` | Xet 存储协议 API + 上传（欧盟）|
+| `cas-server.xethub.hf.co` | Xet 协议 API、下载和上传（美国）|
+| `cas-server.xethub-eu.hf.co` | Xet 协议 API、下载和上传（欧盟）|
 | `transfer.xethub.hf.co` | Xet 存储下载 API（美国）|
 | `transfer.xethub-eu.hf.co` | Xet 存储下载 API（欧盟）|
 | `us.aws.cdn.hf.co` | CDN 边缘（美国）|
@@ -108,5 +108,13 @@ hf-mount start repo openai-community/gpt2 /tmp/gpt2
 > 安全策略允许，将 `hf.co` 和 `huggingface.co` 后缀列入白名单（所有
 > 子域），这样当特定端点发生变化时，您的规则就不会被破坏。
 
-### 机器学习文档工具的概况
+### 机器可读列表
+
+上面的主机名也以 JSON 形式发布在
+[⟦T42⟧](https://huggingface.co/.well-known/meta.json),
+因此您可以从中生成代理或防火墙规则，而不是手动复制表。
+
+> [!警告]
+> 文件随着端点的添加和删除而变化。当您构建规则时获取它
+> 而不是固定副本。### 机器学习文档工具的概况
 https://huggingface.co/docs/hub/model-card-landscape-analysis.md

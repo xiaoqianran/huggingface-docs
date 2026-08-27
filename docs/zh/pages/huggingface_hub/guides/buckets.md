@@ -4,16 +4,16 @@
 
 Buckets 在 Hugging Face 上提供类似 S3 的对象存储，由 Xet 存储后端提供支持。与存储库（基于 git 并跟踪文件历史记录）不同，存储桶是远程对象存储容器，专为具有内容可寻址重复数据删除功能的大型文件而设计。它们专为需要简单、快速、可变存储的用例而设计，例如存储训练检查点、日志、中间工件或任何不需要版本控制的大型文件集合。
 
-您可以使用 Python API ([HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi)) 或 CLI (`hf buckets`) 与存储桶交互。在本指南中，我们将逐步介绍所有可用的操作。
+您可以使用 Python API ([HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi)) 或 CLI (`hf buckets`) 与存储桶交互。在本指南中，我们将逐步介绍所有可用的操作。
 
 > [!提示]
-> 所有 CLI 命令均可在 `hf buckets <command>` 下使用。运行`hf buckets --help`以了解更多信息。
+> 所有 CLI 命令均可在 `hf buckets <command>` 下使用。运行 `hf buckets --help` 了解更多信息。
 
 ## 创建和管理存储桶
 
 ### 创建一个桶
 
-使用 [create_bucket()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_bucket) 创建一个存储桶。您需要提供存储桶名称。如果您未指定命名空间，则会在您的用户名下创建存储桶。
+使用 [create_bucket()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_bucket) 创建一个存储桶。您需要提供存储桶名称。如果您未指定命名空间，则会在您的用户名下创建存储桶。
 
 ```py
 >>> from huggingface_hub import create_bucket
@@ -71,7 +71,7 @@ BucketUrl(...)
 
 ### 获取桶信息
 
-使用 [bucket_info()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.bucket_info) 获取有关存储桶的元数据，包括其可见性、总大小、文件计数和创建日期。
+使用 [bucket_info()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.bucket_info) 获取有关存储桶的元数据，包括其可见性、总大小、文件计数和创建日期。
 
 ```py
 >>> from huggingface_hub import bucket_info
@@ -98,7 +98,7 @@ BucketInfo(
 
 ### 列出存储桶
 
-使用 [list_buckets()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_buckets) 列出命名空间中的所有存储桶。默认情况下，它列出当前用户的命名空间中的存储桶。
+使用 [list_buckets()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_buckets) 列出命名空间中的所有存储桶。默认情况下，它列出当前用户的命名空间中的存储桶。
 
 ```py
 >>> from huggingface_hub import list_buckets
@@ -168,9 +168,36 @@ username/logs
 ]
 ```
 
+### 更改存储桶可见性
+
+使用 [update_bucket_settings()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_bucket_settings) 在私有和公共之间切换现有存储桶。
+
+```py
+>>> from huggingface_hub import update_bucket_settings
+
+# Make a bucket private
+>>> update_bucket_settings("username/my-bucket", private=True)
+
+# Make it public again
+>>> update_bucket_settings("username/my-bucket", private=False)
+```
+
+或者通过 CLI：
+
+```bash
+# Make a bucket private
+>>> hf buckets settings username/my-bucket --private
+✓ Bucket settings updated
+  bucket_id: username/my-bucket
+  private: True
+
+# Make it public again
+>>> hf buckets settings username/my-bucket --public
+```
+
 ### 删除一个桶
 
-使用[delete_bucket()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_bucket)删除桶。此操作是不可逆的。
+使用[delete_bucket()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_bucket)删除桶。此操作是不可逆的。
 
 ```py
 >>> from huggingface_hub import delete_bucket
@@ -195,7 +222,7 @@ username/logs
 
 ### 删除文件
 
-使用 [batch_bucket_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.batch_bucket_files) 和 `delete` 参数从存储桶中删除文件：
+使用 [batch_bucket_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.batch_bucket_files) 和 `delete` 参数从存储桶中删除文件：
 
 ```py
 >>> from huggingface_hub import batch_bucket_files
@@ -204,7 +231,7 @@ username/logs
 >>> batch_bucket_files("username/my-bucket", delete=["old-model.bin", "logs/debug.log"])
 ```
 
-或者通过 CLI 使用 `hf buckets rm` （或 `hf buckets remove`）：
+或者通过 CLI 使用 `hf buckets rm`（或 `hf buckets remove`）：
 
 ```bash
 # Remove a single file
@@ -225,7 +252,7 @@ username/logs
 
 ### 移动一个桶
 
-使用[move_bucket()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.move_bucket)移动或重命名存储桶。您可以在同一命名空间内重命名或转移到不同的命名空间（用户或组织）。
+使用 [move_bucket()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.move_bucket) 移动或重命名存储桶。您可以在同一命名空间内重命名或转移到不同的命名空间（用户或组织）。
 
 ```py
 >>> from huggingface_hub import move_bucket
@@ -257,7 +284,7 @@ username/logs
 
 ### 列出文件
 
-使用 [list_bucket_tree()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_bucket_tree) 列出存储桶中的文件和目录。
+使用 [list_bucket_tree()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_bucket_tree) 列出存储桶中的文件和目录。
 
 ```py
 >>> from huggingface_hub import list_bucket_tree
@@ -280,9 +307,7 @@ directory sub
 # Filter by prefix
 >>> for item in list_bucket_tree("username/my-bucket", prefix="sub"):
 ...     print(item.path)
-```
-
-或者通过 CLI，支持表格、人类可读和 ASCII 树格式。默认情况下，CLI 是非递归的。
+```或者通过 CLI，支持表格、人类可读和 ASCII 树格式。默认情况下，CLI 是非递归的。
 
 ```bash
 # Default table format (non-recursive, directories shown as entries)
@@ -331,14 +356,16 @@ sub/
 
 # Filter by prefix
 >>> hf buckets list username/my-bucket/sub -R
-```> [!提示]
+```
+
+> [!提示]
 > `hf buckets list` 命令接受短格式 (`username/my-bucket/sub`) 和完整句柄 (`hf://buckets/username/my-bucket/sub`) 作为参数。
 
 ## 上传文件
 
 ### 使用Python上传
 
-使用[batch_bucket_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.batch_bucket_files)将文件上传到存储桶。您可以从本地文件路径或原始字节上传：
+使用[batch_bucket_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.batch_bucket_files)将文件上传到存储桶。您可以从本地文件路径或原始字节上传：
 
 ```py
 >>> from huggingface_hub import batch_bucket_files
@@ -388,7 +415,7 @@ sub/
 ```
 
 > [!警告]
-> 对 [batch_bucket_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.batch_bucket_files) 的呼叫是非事务性的。如果在此过程中发生错误，则某些文件可能已上传、复制或删除，而其他文件则尚未上传、复制或删除。
+> 对 [batch_bucket_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.batch_bucket_files) 的呼叫是非事务性的。如果在此过程中发生错误，则某些文件可能已上传、复制或删除，而其他文件则尚未上传、复制或删除。
 
 ### 使用 CLI 上传单个文件
 
@@ -416,9 +443,7 @@ sub/
 >>> cat model.safetensors | hf buckets cp - hf://buckets/username/my-bucket/model.safetensors
 ```
 
-### 使用 CLI 上传目录
-
-使用 `hf buckets sync` 将整个本地目录上传到存储桶：
+### 使用 CLI 上传目录使用 `hf buckets sync` 将整个本地目录上传到存储桶：
 
 ```bash
 # Upload a local directory to a bucket
@@ -428,11 +453,13 @@ sub/
 >>> hf buckets sync ./data hf://buckets/username/my-bucket/train
 ```
 
-有关完整的同步选项集，请参阅下面的[Sync directories](#sync-directories)部分。## 下载文件
+有关完整的同步选项集，请参阅下面的[Sync directories](#sync-directories)部分。
+
+## 下载文件
 
 ### 使用Python下载
 
-使用 [download_bucket_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.download_bucket_files) 从存储桶下载文件：
+使用 [download_bucket_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.download_bucket_files) 从存储桶下载文件：
 
 ```py
 >>> from huggingface_hub import download_bucket_files
@@ -447,7 +474,7 @@ sub/
 ... )
 ```
 
-为了获得更好的性能，您可以传递从 [list_bucket_tree()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_bucket_tree) 获取的 [BucketFile](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.BucketFile) 对象而不是字符串路径。这会跳过元数据获取步骤：
+为了获得更好的性能，您可以传递从 [list_bucket_tree()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_bucket_tree) 获取的 [BucketFile](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.BucketFile) 对象而不是字符串路径。这会跳过元数据获取步骤：
 
 ```py
 >>> from huggingface_hub import list_bucket_tree, download_bucket_files
@@ -465,7 +492,7 @@ sub/
 
 ### 使用 CLI 下载单个文件
 
-使用 `hf buckets cp` 下载单个文件：
+使用`hf buckets cp`下载单个文件：
 
 ```bash
 # Download to a specific file
@@ -501,7 +528,7 @@ sub/
 
 ## 将文件复制到存储桶
 
-使用 [copy_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.copy_files) 将 Hub 上已托管的文件复制到存储桶：
+使用 [copy_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.copy_files) 将 Hub 上已托管的文件复制到存储桶：
 
 ```py
 >>> from huggingface_hub import copy_files
@@ -543,11 +570,11 @@ sub/
 - 服务器端副本仅在同一[storage region](https://huggingface.co/docs/hub/storage-regions)内工作。
 - 使用 Xet 跟踪的文件（在存储桶或存储库中）通过哈希值复制到服务器端 — 不会下载或重新上传数据。
 - 下载存储库源上未使用 Xet 跟踪的小文本文件，并将其重新上传到目标存储桶。
-- [copy_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.copy_files) 也可用于存储库到存储库的副本。更多详情请参阅[repository guide](./repository#copy-files)。
+- [copy_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.copy_files) 也可用于存储库到存储库的副本。更多详情请参阅[repository guide](./repository#copy-files)。
 
 ## 同步目录
 
-`hf buckets sync` 命令（及其 API 等效项 [sync_bucket()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_bucket)）是在本地目录和存储桶之间传输文件的最强大方法。它比较源和目标，并仅传输已更改的文件。
+`hf buckets sync` 命令（及其等效的 API [sync_bucket()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_bucket)）是在本地目录和存储桶之间传输文件的最强大方法。它比较源和目标，并仅传输已更改的文件。
 
 ### 基本同步
 
@@ -738,7 +765,7 @@ Plan saved to: sync-plan.jsonl
 
 ## 高级
 
-对于较低级别的用例，还可以使用以下方法：- [get_bucket_paths_info()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_bucket_paths_info)：在单个批量请求中获取有关存储桶中特定路径的信息。当您确切知道哪些文件需要元数据时很有用。
+对于较低级别的用例，还可以使用以下方法：- [get_bucket_paths_info()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_bucket_paths_info)：在单个批量请求中获取有关存储桶中特定路径的信息。当您确切知道哪些文件需要元数据时很有用。
 
 ```py
 >>> from huggingface_hub import get_bucket_paths_info
@@ -746,7 +773,7 @@ Plan saved to: sync-plan.jsonl
 ...     print(info.path, info.size, info.xet_hash)
 ```
 
-- [get_bucket_file_metadata()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_bucket_file_metadata)：获取单个文件的元数据（大小和 xet 数据）。由[download_bucket_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.download_bucket_files)内部使用。
+- [get_bucket_file_metadata()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_bucket_file_metadata)：获取单个文件的元数据（大小和 xet 数据）。由[download_bucket_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.download_bucket_files)内部使用。
 
 ```py
 >>> from huggingface_hub import get_bucket_file_metadata
@@ -755,5 +782,5 @@ Plan saved to: sync-plan.jsonl
 42000
 ```
 
-### 将文件上传到集线器
-https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/upload.md
+### 创建 CLI 扩展
+https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/cli-extensions.md

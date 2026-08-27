@@ -2,17 +2,17 @@
 
 # 职位
 
-查看 [HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi) 文档页面，获取在 Hub 上管理作业的方法参考。
+查看 [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi) 文档页面，获取在 Hub 上管理作业的方法参考。
 
-- 运行作业：[run_job()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job)
-- 获取日志：[fetch_job_logs()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_logs)
-- 获取指标：[fetch_job_metrics()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_metrics)
-- 检查作业：[inspect_job()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.inspect_job)
-- 等待作业完成：[wait_for_job()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.wait_for_job)
-- 列出工作：[list_jobs()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_jobs)
-- 取消作业：[cancel_job()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_job)
-- 运行 UV 作业：[run_uv_job()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job)
-- 同步本地目录以将其挂载到作业中：[sync_job_volume()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_job_volume)
+- 运行作业：[run_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_job)
+- 获取日志：[fetch_job_logs()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_logs)
+- 获取指标：[fetch_job_metrics()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.fetch_job_metrics)
+- 检查作业：[inspect_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.inspect_job)
+- 等待作业完成：[wait_for_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.wait_for_job)
+- 列出工作：[list_jobs()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_jobs)
+- 取消作业：[cancel_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.cancel_job)
+- 运行 UV 作业：[run_uv_job()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_uv_job)
+- 同步本地目录以将其挂载到作业中：[sync_job_volume()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_job_volume)
 
 ## 数据结构
 
@@ -24,7 +24,7 @@
 huggingface_hub.JobInfo(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_jobs_api.py#L163)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_jobs_api.py#L163)
 
 **参数：**
 
@@ -52,7 +52,7 @@ labels（`dict[str, str]`或`None`）：附加到作业的标签（键值对）�
 
 卷（`list[Volume]`或`None`）：安装在作业容器中的卷（存储桶、模型、数据集、空间）。
 
-status : (`JobStatus` 或 `None`): 作业的状态，例如`JobStatus(stage="RUNNING", message=None)` 请参阅[JobStage](/docs/huggingface_hub/v1.27.0/en/package_reference/jobs#huggingface_hub.JobStage) 了解可能的阶段值。
+status : (`JobStatus` 或 `None`): 作业的状态，例如`JobStatus(stage="RUNNING", message=None)` 请参阅[JobStage](/docs/huggingface_hub/v1.29.0/en/package_reference/jobs#huggingface_hub.JobStage) 了解可能的阶段值。
 
 持续时间（`JobDurations`或`None`）：作业的时间细分。适用于所有作业状态，包括调度。
 
@@ -90,7 +90,7 @@ JobInfo(id='687fb701029421ae5549d998', created_at=datetime.datetime(2025, 7, 22,
 huggingface_hub.JobOwner(id: str, name: str, type: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_jobs_api.py#L113)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_jobs_api.py#L113)
 
 ### JobStage[[huggingface_hub.JobStage]]
 
@@ -100,7 +100,7 @@ huggingface_hub.JobOwner(id: str, name: str, type: str)
 huggingface_hub.JobStage(value, names = None, module = None, qualname = None, type = None, start = 1)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_jobs_api.py#L71)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_jobs_api.py#L71)
 
 枚举 Hub 上作业的可能阶段。
 
@@ -120,7 +120,7 @@ assert JobStage.COMPLETED == "COMPLETED"
 huggingface_hub.JobStatus(stage: JobStage, message: str | None, expose_urls: list[str] | None, ssh_url: str | None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_jobs_api.py#L105)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_jobs_api.py#L105)
 
 ### 音量[[huggingface_hub.Volume]]
 
@@ -130,7 +130,7 @@ huggingface_hub.JobStatus(stage: JobStage, message: str | None, expose_urls: lis
 huggingface_hub.Volume(**kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_space_api.py#L122)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_space_api.py#L122)
 
 **参数：**
 
@@ -152,7 +152,7 @@ read_only (`bool` 或 `None`) ：只读挂载。对于存储库强制为`True`�
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_space_api.py#L158)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_space_api.py#L158)
 
 序列化为 Hub API 期望的 JSON 负载。
 
@@ -162,9 +162,9 @@ to_dict()
 to_uri()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_space_api.py#L173)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_space_api.py#L173)
 
 以 CLI 期望的格式将卷作为 HF 挂载 URI 返回。
 
-### OAuth 和 FastAPI
-https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/oauth.md
+### 序列化
+https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/serialization.md

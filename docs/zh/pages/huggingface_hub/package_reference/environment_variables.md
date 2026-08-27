@@ -113,16 +113,16 @@
 
 如果设置，则不会对 Hugging Face Hub 进行 HTTP 调用。如果您尝试下载文件，则只会访问缓存的文件。如果未检测到缓存文件，则会引发错误。如果您的网络速度较慢并且您不关心文件的最新版本，这非常有用。
 
-如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。**注意：** 即使缓存了文件的最新版本，调用 `hf_hub_download` 仍然会触发 HTTP 请求来检查新版本是否可用。设置 `HF_HUB_OFFLINE=1` 将跳过此调用，从而加快加载时间。
+如果`HF_HUB_OFFLINE=1`设置为环境变量，并且调用[HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi)的任何方法，都会引发[OfflineModeIsEnabled](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.OfflineModeIsEnabled)异常。**注意：** 即使缓存了文件的最新版本，调用 `hf_hub_download` 仍然会触发 HTTP 请求来检查新版本是否可用。设置 `HF_HUB_OFFLINE=1` 将跳过此调用，从而加快加载时间。
 
-如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
+如果你想检查离线模式是否启用，你可以使用[is_offline_mode()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.is_offline_mode)助手。
 
 ### HF_HUB_DISABLE_IMPLICIT_TOKEN
 
-并非每个发送到集线器的请求都必须进行身份验证。例如，请求
+并非对发送到集线器的每个请求都强制进行身份验证。例如，请求
 `"gpt2"`型号详情无需认证。但是，如果用户是
 [logged in](../package_reference/login)，默认行为是始终发送令牌
-为了在访问私有或门控存储库时减轻用户体验（永远不会出现 HTTP 401 Unauthorized）。为了保护隐私，您可以
+为了在访问私有或门禁存储库时减轻用户体验（永远不会出现 HTTP 401 Unauthorized）。为了保护隐私，您可以
 通过设置 `HF_HUB_DISABLE_IMPLICIT_TOKEN=1` 禁用此行为。在这种情况下，
 令牌将仅针对“写访问”调用发送（例如：创建提交）。
 
@@ -158,13 +158,13 @@
 如果您正在使用实验性功能，请告诉我们！您的反馈可以帮助我们设计和改进它。
 
 ### HF_HUB_DISABLE_TELEMETRY默认情况下，HF 库（`transformers`、`datasets`、`gradio`、..）收集一些数据，以监控使用情况、调试问题并帮助确定功能的优先级。
-每个库定义了自己的策略（即要监视哪些使用情况），但核心实现发生在`huggingface_hub`（请参阅`send_telemetry`）。
+每个库定义了自己的策略（即要监视的使用情况），但核心实现发生在`huggingface_hub`（请参阅`send_telemetry`）。
 
 您可以将 `HF_HUB_DISABLE_TELEMETRY=1` 设置为环境变量以全局禁用遥测。
 
 ### HF_HUB_DISABLE_UPDATE_CHECK
 
-默认情况下，`hf` CLI 在启动时检查 PyPI 是否有较新版本（最多每 24 小时一次），并在可用时向 stderr 打印一行黄色警告，建议使用 `hf update`。该检查在开发版本和预发布版本上已经是禁止操作。
+默认情况下，`hf` CLI 在启动时检查 PyPI 是否有较新版本（最多每 24 小时一次），并在可用时向 stderr 打印一行黄色警告，建议使用 `hf update`。该检查在开发版本和预发布版本上已经是无效的。
 
 它还检查（最多每 24 小时一次，纯本地）`hf-cli` 技能是否已安装并由运行版本生成，如果没有，则建议 `hf skills add` / `hf skills update`。该检查仅打印提示，它永远不会触及您的技能目录。
 
@@ -220,5 +220,5 @@
 如果未设置`HF_HOME`，则默认主页为`"$XDG_CACHE_HOME/huggingface"`
 `"~/.cache/huggingface"`。
 
-### Webhook 服务器
-https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/webhooks_server.md
+### HfApi 客户端
+https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/hf_api.md

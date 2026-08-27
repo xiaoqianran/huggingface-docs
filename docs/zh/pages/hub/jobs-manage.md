@@ -32,51 +32,36 @@ JOB ID       IMAGE/SPACE COMMAND         CREATED             STATUS
 
 ## 过滤职位
 
-单击作业标签可按标签过滤作业：
+您最常用的标签显示在作业列表上方，并显示使用每个标签的作业数量；单击一个进行过滤，或输入任何 `key=value` 标签：
 
-在 CLI 中，您可以根据提供的条件过滤作业，使用格式 key=value：
-
-按标签过滤：
+在 CLI 中，使用 `--status` 按状态过滤，并使用 `--label key=value` 按标签过滤。重复`--label`一次需要多个标签：
 
 ```bash
->>> hf jobs ps --filter label=fine-tuning --filter label=model=Qwen3-06B -a
-JOB ID       IMAGE/SPACE  COMMAND          CREATED             STATUS 
------------- ------------ ---------------- ------------------- ---------
-6978b1254... ghcr.io/a... uv run --with... 2026-01-27 12:35:49 COMPLETED  
-6978b11d4... ghcr.io/a... uv run --with... 2026-01-27 12:33:53 COMPLETED
+# Jobs that ended in error
+>>> hf jobs ps --status error
+
+# Running or scheduling Jobs with a given label
+>>> hf jobs ps --status running,scheduling --label env=prod
+
+# All Jobs (any status) that have both labels
+>>> hf jobs ps -a --label model=Qwen3-06B --label dataset=Capybara
+
+# A label added without a value (`--label fine-tuning`) is matched with a trailing "="
+>>> hf jobs ps -a --label fine-tuning=
 ```
 
-按任何条件过滤：
+使用 `--name`（`--label name=<name>` 的快捷方式）按名称过滤，例如列出指定作业的每次运行：
 
 ```bash
->>> hf jobs ps --filter status=error -a
-JOB ID       IMAGE/SPACE COMMAND            CREATED            STATUS 
------------- ---------- ------------------ ------------------- ------ 
-693b069fc... ghcr.io... uv run python -... 2025-12-11 17:59:59 ERROR  
-693996dec... ghcr.io... bash -c python ... 2025-12-10 15:50:54 ERROR  
-69399695c... ghcr.io... uv run --with t... 2025-12-10 15:49:41 ERROR  
-693994bdc... ghcr.io... uv run --with t... 2025-12-10 15:41:49 ERROR  
-68d3c1af3... ghcr.io... uv run bash -c ... 2025-09-24 10:02:23 ERROR
+>>> hf jobs ps -a --name daily-report
+JOB_ID      NAME         IMAGE/SPACE COMMAND      CREATED      STATUS    RUNTIME
+----------- ------------ ----------- ------------ ------------ --------- -------
+6a9042c2... daily-report python:3.12 python -c... 2026-08-2... COMPLETED 0s     
+6a904162... daily-report python:3.12 python -c... 2026-08-2... CANCELED  --     
 ```
 
-过滤支持否定`!=`和glob模式（包括`*`和`?`）：
-
-```bash
-# Show Jobs that are not completed
->>> hf jobs ps -a --filter status!=completed
-
-# Show Jobs with a command that ends with "train.py"
->>> hf jobs ps -a --filter "command=*train.py"
-
-# Show Jobs with a "fine-tuning" label
->>> hf jobs ps -a --filter label=fine-tuning
-
-# Show Jobs that don't have the "prod" label and have a label that starts with "data-"
->>> hf jobs ps -a --filter label!=prod --filter "label=data-*"
-
-# Show Jobs based on key=value labels
->>> hf jobs ps -a --filter label=model=Qwen3-06B --filter label=dataset!=Capybara
-```
+> [!提示]
+> 默认情况下`hf jobs ps` 显示正在运行和调度的作业。使用`-a`显示所有状态； `-a` 不能与`--status` 组合使用。
 
 ## 监控资源使用情况
 
@@ -120,9 +105,7 @@ JOB ID                   CPU % NUM CPU MEM % MEM USAGE        NET I/O         GP
         "url": "https://huggingface.co/jobs/lhoestq/693994e21a39f67af5a41ad0"
     }
 ]
-```
-
-和日志
+```和日志
 
 ```bash
 >>> hf jobs logs 693994e21a39f67af5a41ad0
@@ -144,7 +127,9 @@ hf jobs inspect --namespace <my-org-name> <job_id>
 hf jobs logs --namespace <my-org-name> <job_id>
 ```
 
-## 等待作业完成使用 `hf jobs wait` 进行阻塞，直到一个或多个作业达到终止状态（`COMPLETED`、`CANCELED`、`ERROR` 或 `DELETED`）。仅当每个作业成功完成时，它才会以代码 `0` 退出，否则为非零代码 - 方便在 shell 脚本或 CI 中链接步骤：
+## 等待作业完成
+
+使用 `hf jobs wait` 进行阻塞，直到一个或多个作业达到终止状态（`COMPLETED`、`CANCELED`、`ERROR` 或 `DELETED`）。仅当每个作业成功完成时，它才会以代码 `0` 退出，否则为非零代码 - 方便在 shell 脚本或 CI 中链接步骤：
 
 ```bash
 # Wait for a single Job
@@ -229,7 +214,7 @@ hf jobs cancel --namespace <my-org-name> <job_id>
 
 ## MacOS 菜单栏
 
-在 MacOS [⟦T53⟧](https://github.com/drbh/hfjobs-menubar) 客户端中查找您的职位列表：
+在 MacOS [⟦T59⟧](https://github.com/drbh/hfjobs-menubar) 客户端中找到您的职位列表：
 
 获取作业信息，并监控日志和资源使用统计信息：
 

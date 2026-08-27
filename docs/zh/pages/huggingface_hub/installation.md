@@ -48,11 +48,11 @@ pip install --upgrade huggingface_hub
 pip install 'huggingface_hub[mcp,torch]'
 ```以下是 `huggingface_hub` 中的可选依赖项列表：
 - `fastai`、`torch`：运行特定于框架的功能的依赖项。
-- `dev`：为库做出贡献的依赖项。包括 `testing`（运行测试）、`typing`（运行类型检查器）和 `quality`（运行 linter）。
+- `dev`：为库做出贡献的依赖项。包括 `testing` （用于运行测试）、`typing` （用于运行类型检查器）和 `quality` （用于运行 linter）。
 
 ### 从源安装
 
-在某些情况下，直接从源代码安装`huggingface_hub`很有趣。
+在某些情况下，直接从源代码安装`huggingface_hub`会很有趣。
 这允许您使用前沿 `main` 版本而不是最新的稳定版本。
 例如，`main` 版本对于了解最新进展非常有用
 如果自上次正式版本以来已修复错误但尚未推出新版本。
@@ -158,5 +158,5 @@ Task: text-generation
 ## 后续步骤一旦`huggingface_hub`正确安装在你的机器上，你可能想要
 [configure environment variables](package_reference/environment_variables) 或 [check one of our guides](guides/overview) 开始。
 
-### 快速入门
-https://huggingface.co/docs/huggingface_hub/v1.27.0/quick-start.md
+### 🤗 Hub 客户端库
+https://huggingface.co/docs/huggingface_hub/v1.29.0/index.md
