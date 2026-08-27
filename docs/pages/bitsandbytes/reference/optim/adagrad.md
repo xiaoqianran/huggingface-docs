@@ -10,7 +10,7 @@
 bitsandbytes.optim.Adagrad(params, lr = 0.01, lr_decay = 0, weight_decay = 0, initial_accumulator_value = 0, eps = 1e-10, optim_bits = 32, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adagrad.py#L8)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adagrad.py#L8)
 
 #### __init__[[bitsandbytes.optim.Adagrad.__init__]]
 
@@ -18,7 +18,7 @@ bitsandbytes.optim.Adagrad(params, lr = 0.01, lr_decay = 0, weight_decay = 0, in
 __init__(params, lr = 0.01, lr_decay = 0, weight_decay = 0, initial_accumulator_value = 0, eps = 1e-10, optim_bits = 32, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adagrad.py#L9)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adagrad.py#L9)
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ Base Adagrad optimizer.
 bitsandbytes.optim.Adagrad8bit(params, lr = 0.01, lr_decay = 0, weight_decay = 0, initial_accumulator_value = 0, eps = 1e-10, optim_bits = 8, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adagrad.py#L67)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adagrad.py#L67)
 
 #### __init__[[bitsandbytes.optim.Adagrad8bit.__init__]]
 
@@ -58,7 +58,7 @@ bitsandbytes.optim.Adagrad8bit(params, lr = 0.01, lr_decay = 0, weight_decay = 0
 __init__(params, lr = 0.01, lr_decay = 0, weight_decay = 0, initial_accumulator_value = 0, eps = 1e-10, optim_bits = 8, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adagrad.py#L68)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adagrad.py#L68)
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ min_8bit_size (`int`, defaults to 4096) : The minimum number of elements of the 
 bitsandbytes.optim.Adagrad32bit(params, lr = 0.01, lr_decay = 0, weight_decay = 0, initial_accumulator_value = 0, eps = 1e-10, optim_bits = 32, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adagrad.py#L131)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adagrad.py#L131)
 
 #### __init__[[bitsandbytes.optim.Adagrad32bit.__init__]]
 
@@ -98,7 +98,7 @@ bitsandbytes.optim.Adagrad32bit(params, lr = 0.01, lr_decay = 0, weight_decay = 
 __init__(params, lr = 0.01, lr_decay = 0, weight_decay = 0, initial_accumulator_value = 0, eps = 1e-10, optim_bits = 32, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adagrad.py#L132)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adagrad.py#L132)
 
 **Parameters:**
 
@@ -123,4 +123,4 @@ min_8bit_size (`int`, defaults to 4096) : The minimum number of elements of the 
 32-bit Adagrad optimizer.
 
 ### Overview
-https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/optim_overview.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/optim_overview.md

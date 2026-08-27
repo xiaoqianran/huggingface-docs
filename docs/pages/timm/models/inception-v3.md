@@ -97,5 +97,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### Xception
-https://huggingface.co/docs/timm/v1.0.28/models/xception.md
+### SE-ResNeXt
+https://huggingface.co/docs/timm/v1.0.29/models/seresnext.md

@@ -2079,6 +2079,7 @@ https://huggingface.co/docs/transformers/troubleshooting.md
 https://huggingface.co/docs/transformers/video_processors.md
 https://huggingface.co/docs/transformers/weightconverter.md
 https://huggingface.co/docs/trl/a2po_trainer.md
+https://huggingface.co/docs/trl/async_distillation_trainer.md
 https://huggingface.co/docs/trl/async_grpo_trainer.md
 https://huggingface.co/docs/trl/bco_trainer.md
 https://huggingface.co/docs/trl/bema_for_reference_model.md

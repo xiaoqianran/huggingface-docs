@@ -15,5 +15,5 @@ Read the [quick start guide](quickstart) to get up and running with the `timm` l
       >Reference
       Technical descriptions of how timm classes and methods work.
 
-### Sharing and Loading Models From the Hugging Face Hub
-https://huggingface.co/docs/timm/v1.0.28/hf_hub.md
+### Scripts
+https://huggingface.co/docs/timm/v1.0.29/training_script.md

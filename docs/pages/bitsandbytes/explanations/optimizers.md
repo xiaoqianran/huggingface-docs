@@ -47,4 +47,4 @@ This means performance depends highly on the particular use-case. For example, i
 Compared to CPU offloading, a paged optimizer has zero overhead if all the memory fits onto the device and only some overhead if some of memory needs to be evicted. For offloading, you usually offload fixed parts of the model and need to off and onload all this memory with each iteration through the model (sometimes twice for both forward and backward pass).
 
 ### Papers, related resources & how to cite
-https://huggingface.co/docs/bitsandbytes/v0.50.1/explanations/resources.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/explanations/resources.md

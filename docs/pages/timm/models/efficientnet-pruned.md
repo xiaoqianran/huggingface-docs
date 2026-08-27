@@ -105,5 +105,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### SelecSLS
-https://huggingface.co/docs/timm/v1.0.28/models/selecsls.md
+### Wide ResNet
+https://huggingface.co/docs/timm/v1.0.29/models/wide-resnet.md

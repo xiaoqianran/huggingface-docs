@@ -8,7 +8,7 @@
 trl.RichProgressCallback()
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/trainer/callbacks.py#L145)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/trainer/callbacks.py#L145)
 
 A `TrainerCallback` that displays the progress of training or evaluation using Rich.
 
@@ -20,19 +20,19 @@ A `TrainerCallback` that displays the progress of training or evaluation using R
 trl.LogCompletionsCallback(trainer: Trainer, generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, num_prompts: int | None = None, freq: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/trainer/callbacks.py#L256)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/trainer/callbacks.py#L256)
 
 **Parameters:**
 
 trainer (`Trainer`) : Trainer to which the callback will be attached. The trainer's evaluation dataset must include a `"prompt"` column containing the prompts for generating completions.
 
-generation_config ([GenerationConfig](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig), *optional*) : The generation config to use for generating completions.
+generation_config ([GenerationConfig](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/text_generation#transformers.GenerationConfig), *optional*) : The generation config to use for generating completions.
 
 num_prompts (`int`, *optional*) : The number of prompts to generate completions for. If not provided, defaults to the number of examples in the evaluation dataset.
 
 freq (`int`, *optional*) : The frequency at which to log completions. If not provided, defaults to the trainer's `eval_steps`.
 
-A [TrainerCallback](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that logs completions to Weights & Biases and/or Comet.
+A [TrainerCallback](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/callback#transformers.TrainerCallback) that logs completions to Weights & Biases and/or Comet.
 
 Usage:
 ```python
@@ -49,7 +49,7 @@ Usage:
 trl.BEMACallback(update_freq: int = 400, ema_power: float = 0.5, bias_power: float = 0.2, lag: int = 10, update_after: int = 0, multiplier: float = 1.0, min_ema_multiplier: float = 0.0, device: str = 'cpu')
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/trainer/callbacks.py#L577)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/trainer/callbacks.py#L577)
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ min_ema_multiplier (`float`, *optional*, defaults to `0.0`) : Minimum value for 
 
 device (`str`, *optional*, defaults to `"cpu"`) : Device to use for the BEMA buffers, e.g. `"cpu"` or `"cuda"`. Note that in most cases, this device SHOULD BE DIFFERENT from the device used for training in order to avoid OOM.
 
-A [TrainerCallback](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that implements [BEMA](https://huggingface.co/papers/2508.00180)
+A [TrainerCallback](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/callback#transformers.TrainerCallback) that implements [BEMA](https://huggingface.co/papers/2508.00180)
 (Bias-Corrected Exponential Moving Average) by [Adam Block](https://huggingface.co/abblock) and [Cyril
 Zhang](https://huggingface.co/cyrilzhang). Code from https://github.com/abblock/bema under MIT license.
 
@@ -115,7 +115,7 @@ Example:
 trl.WeaveCallback(trainer: Trainer, project_name: str | None = None, scorers: dict[str, callable] | None = None, generation_config: transformers.generation.configuration_utils.GenerationConfig | None = None, num_prompts: int | None = None, dataset_name: str = 'eval_dataset', model_name: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/trainer/callbacks.py#L348)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/trainer/callbacks.py#L348)
 
 **Parameters:**
 
@@ -125,7 +125,7 @@ project_name (`str`, *optional*) : Name of the Weave project where data will be 
 
 scorers (`dict[str, Callable]`, *optional*) : Dictionary mapping scorer names to scorer functions. If `None`, operates in tracing mode (predictions only). If provided, operates in evaluation mode (predictions + scores + summary). Scorer functions should have signature: `scorer(prompt: str, completion: str) -> float | int`
 
-generation_config ([GenerationConfig](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/text_generation#transformers.GenerationConfig), *optional*) : Generation config to use for generating completions.
+generation_config ([GenerationConfig](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/text_generation#transformers.GenerationConfig), *optional*) : Generation config to use for generating completions.
 
 num_prompts (`int` or `None`, *optional*) : Number of prompts to generate completions for. If not provided, defaults to the number of examples in the evaluation dataset.
 
@@ -133,7 +133,7 @@ dataset_name (`str`, *optional*, defaults to `"eval_dataset"`) : Name for the da
 
 model_name (`str`, *optional*) : Name for the model metadata in Weave. If not provided, attempts to extract from model config.
 
-A [TrainerCallback](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that logs traces and evaluations to W&B Weave. The callback uses
+A [TrainerCallback](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/callback#transformers.TrainerCallback) that logs traces and evaluations to W&B Weave. The callback uses
 https://weave-docs.wandb.ai/guides/evaluation/evaluation_logger/ to log traces and evaluations at each evaluation
 step.
 
@@ -177,9 +177,6 @@ trainer.add_callback(weave_callback)
 on_train_begin(args, state, control, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/trainer/callbacks.py#L479)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/trainer/callbacks.py#L479)
 
 Initialize Weave when training begins.
-
-### MiniLLM Trainer
-https://huggingface.co/docs/trl/v1.10.0/minillm_trainer.md

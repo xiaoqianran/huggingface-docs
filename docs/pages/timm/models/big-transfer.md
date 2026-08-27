@@ -88,5 +88,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### Models[[timm.create_model]]
-https://huggingface.co/docs/timm/v1.0.28/reference/models.md
+### PNASNet
+https://huggingface.co/docs/timm/v1.0.29/models/pnasnet.md

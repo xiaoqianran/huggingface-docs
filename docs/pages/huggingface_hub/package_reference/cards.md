@@ -7,7 +7,7 @@ get a feel for how you would use these utilities in your own projects.
 
 ## Repo Card[[huggingface_hub.RepoCard]]
 
-The `RepoCard` object is the parent class of [ModelCard](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.ModelCard), [DatasetCard](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.DatasetCard) and `SpaceCard`.
+The `RepoCard` object is the parent class of [ModelCard](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.ModelCard), [DatasetCard](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.DatasetCard) and `SpaceCard`.
 
 #### huggingface_hub.RepoCard[[huggingface_hub.RepoCard]]
 
@@ -15,7 +15,7 @@ The `RepoCard` object is the parent class of [ModelCard](/docs/huggingface_hub/v
 huggingface_hub.RepoCard(content: str, ignore_metadata_errors: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard.py#L37)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L37)
 
 #### __init__[[huggingface_hub.RepoCard.__init__]]
 
@@ -23,7 +23,7 @@ huggingface_hub.RepoCard(content: str, ignore_metadata_errors: bool = False)
 __init__(content: str, ignore_metadata_errors: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard.py#L42)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L42)
 
 **Parameters:**
 
@@ -63,7 +63,7 @@ Example:
 from_template(card_data: CardData, template_path: str | None = None, template_str: str | None = None, **template_kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard.py#L289)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L289)
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ template_path (`str`, *optional*) : A path to a markdown file with optional Jinj
 
 template_str (`str`, *optional*) : A raw Jinja template string with optional variables. Used when neither `template_path` nor the default template is appropriate. Ignored if `template_path` is also provided.
 
-**Returns:** [huggingface_hub.repocard.RepoCard](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.RepoCard)
+**Returns:** [huggingface_hub.repocard.RepoCard](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.RepoCard)
 
 A RepoCard instance with the specified card data and content from the
 template.
@@ -88,7 +88,7 @@ Templates are Jinja2 templates that can be customized by passing keyword argumen
 load(repo_id_or_path: str | pathlib.Path, repo_type: str | None = None, token: str | None = None, ignore_metadata_errors: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard.py#L135)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L135)
 
 **Parameters:**
 
@@ -100,7 +100,7 @@ token (`str`, *optional*) : Authentication token, obtained with `huggingface_hub
 
 ignore_metadata_errors (`str`) : If True, errors while parsing the metadata section will be ignored. Some information might be lost during the process. Use it at your own risk.
 
-**Returns:** [huggingface_hub.repocard.RepoCard](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.RepoCard)
+**Returns:** [huggingface_hub.repocard.RepoCard](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.RepoCard)
 
 The RepoCard (or subclass) initialized from the repo's
 README.md file or filepath.
@@ -121,7 +121,7 @@ Example:
 push_to_hub(repo_id: str, token: str | None = None, repo_type: str | None = None, commit_message: str | None = None, commit_description: str | None = None, revision: str | None = None, create_pr: bool | None = None, parent_commit: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard.py#L226)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L226)
 
 **Parameters:**
 
@@ -153,7 +153,7 @@ Push a RepoCard to a Hugging Face Hub repo.
 save(filepath: pathlib.Path | str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard.py#L115)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L115)
 
 **Parameters:**
 
@@ -175,7 +175,7 @@ Example:
 validate(repo_type: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard.py#L189)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L189)
 
 **Parameters:**
 
@@ -183,7 +183,7 @@ repo_type (`str`, *optional*, defaults to "model") : The type of Hugging Face re
 
 Validates card against Hugging Face Hub's card validation logic.
 Using this function requires access to the internet, so it is only called
-internally by [huggingface_hub.repocard.RepoCard.push_to_hub()](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.RepoCard.push_to_hub).
+internally by [huggingface_hub.repocard.RepoCard.push_to_hub()](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.RepoCard.push_to_hub).
 
 > [!TIP]
 > Raises the following errors:
@@ -195,7 +195,7 @@ internally by [huggingface_hub.repocard.RepoCard.push_to_hub()](/docs/huggingfac
 
 ## Card Data[[huggingface_hub.CardData]]
 
-The [CardData](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.CardData) object is the parent class of [ModelCardData](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.ModelCardData) and [DatasetCardData](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.DatasetCardData).
+The [CardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.CardData) object is the parent class of [ModelCardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.ModelCardData) and [DatasetCardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.DatasetCardData).
 
 #### huggingface_hub.CardData[[huggingface_hub.CardData]]
 
@@ -203,11 +203,11 @@ The [CardData](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingf
 huggingface_hub.CardData(ignore_metadata_errors: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard_data.py#L165)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L165)
 
 Structure containing metadata from a RepoCard.
 
-[CardData](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.CardData) is the parent class of [ModelCardData](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.ModelCardData) and [DatasetCardData](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.DatasetCardData).
+[CardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.CardData) is the parent class of [ModelCardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.ModelCardData) and [DatasetCardData](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.DatasetCardData).
 
 Metadata can be exported as a dictionary or YAML. Export can be customized to alter the representation of the data
 (example: flatten evaluation results). `CardData` behaves as a dictionary (can get, pop, set values) but do not
@@ -219,7 +219,7 @@ inherit from `dict` to allow this export step.
 get(key: str, default: typing.Any = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard_data.py#L228)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L228)
 
 Get value for a given metadata key.
 
@@ -229,7 +229,7 @@ Get value for a given metadata key.
 pop(key: str, default: typing.Any = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard_data.py#L233)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L233)
 
 Pop value for a given metadata key.
 
@@ -239,7 +239,7 @@ Pop value for a given metadata key.
 to_dict()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard_data.py#L178)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L178)
 
 **Returns:** `dict`
 
@@ -254,7 +254,7 @@ Converts CardData to a dict.
 to_yaml(line_break = None, original_order: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard_data.py#L198)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L198)
 
 **Parameters:**
 
@@ -278,7 +278,7 @@ Dumps CardData to a YAML block for inclusion in a README.md file.
 huggingface_hub.ModelCard(content: str, ignore_metadata_errors: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard.py#L336)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L336)
 
 #### from_template[[huggingface_hub.ModelCard.from_template]]
 
@@ -286,7 +286,7 @@ huggingface_hub.ModelCard(content: str, ignore_metadata_errors: bool = False)
 from_template(card_data: ModelCardData, template_path: str | None = None, template_str: str | None = None, **template_kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard.py#L341)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L341)
 
 **Parameters:**
 
@@ -296,7 +296,7 @@ template_path (`str`, *optional*) : A path to a markdown file with optional Jinj
 
 template_str (`str`, *optional*) : A raw Jinja template string with optional variables. Used when neither `template_path` nor the default template is appropriate. Ignored if `template_path` is also provided.
 
-**Returns:** [huggingface_hub.ModelCard](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.ModelCard)
+**Returns:** [huggingface_hub.ModelCard](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.ModelCard)
 
 A ModelCard instance with the specified card data and content from the
 template.
@@ -362,7 +362,7 @@ Example:
 huggingface_hub.ModelCardData(base_model: str | list[str] | None = None, datasets: str | list[str] | None = None, eval_results: list[huggingface_hub.repocard_data.EvalResult] | None = None, language: str | list[str] | None = None, library_name: str | None = None, license: str | None = None, license_name: str | None = None, license_link: str | None = None, metrics: list[str] | None = None, model_name: str | None = None, pipeline_tag: str | None = None, tags: list[str] | None = None, ignore_metadata_errors: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard_data.py#L271)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L271)
 
 **Parameters:**
 
@@ -422,7 +422,7 @@ Dataset cards are also known as Data Cards in the ML Community.
 huggingface_hub.DatasetCard(content: str, ignore_metadata_errors: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard.py#L420)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L420)
 
 #### from_template[[huggingface_hub.DatasetCard.from_template]]
 
@@ -430,7 +430,7 @@ huggingface_hub.DatasetCard(content: str, ignore_metadata_errors: bool = False)
 from_template(card_data: DatasetCardData, template_path: str | None = None, template_str: str | None = None, **template_kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard.py#L425)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L425)
 
 **Parameters:**
 
@@ -440,7 +440,7 @@ template_path (`str`, *optional*) : A path to a markdown file with optional Jinj
 
 template_str (`str`, *optional*) : A raw Jinja template string with optional variables. Used when neither `template_path` nor the default template is appropriate. Ignored if `template_path` is also provided.
 
-**Returns:** [huggingface_hub.DatasetCard](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.DatasetCard)
+**Returns:** [huggingface_hub.DatasetCard](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.DatasetCard)
 
 A DatasetCard instance with the specified card data and content from the
 template.
@@ -490,7 +490,7 @@ Example:
 huggingface_hub.DatasetCardData(language: str | list[str] | None = None, license: str | list[str] | None = None, annotations_creators: str | list[str] | None = None, language_creators: str | list[str] | None = None, multilinguality: str | list[str] | None = None, size_categories: str | list[str] | None = None, source_datasets: list[str] | None = None, task_categories: str | list[str] | None = None, task_ids: str | list[str] | None = None, paperswithcode_id: str | None = None, pretty_name: str | None = None, train_eval_index: dict | None = None, config_names: str | list[str] | None = None, ignore_metadata_errors: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard_data.py#L400)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L400)
 
 **Parameters:**
 
@@ -532,7 +532,7 @@ Dataset Card Metadata that is used by Hugging Face Hub when included at the top 
 huggingface_hub.SpaceCard(content: str, ignore_metadata_errors: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard.py#L488)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L488)
 
 ### SpaceCardData[[huggingface_hub.SpaceCardData]]
 
@@ -542,7 +542,7 @@ huggingface_hub.SpaceCard(content: str, ignore_metadata_errors: bool = False)
 huggingface_hub.SpaceCardData(title: str | None = None, sdk: str | None = None, sdk_version: str | None = None, python_version: str | None = None, app_file: str | None = None, app_port: int | None = None, license: str | None = None, duplicated_from: str | None = None, models: list[str] | None = None, datasets: list[str] | None = None, tags: list[str] | None = None, ignore_metadata_errors: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard_data.py#L480)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L480)
 
 **Parameters:**
 
@@ -562,7 +562,7 @@ license (`str`, *optional*) : License of this model. Example: apache-2.0 or any 
 
 duplicated_from (`str`, *optional*) : ID of the original Space if this is a duplicated Space.
 
-models (list`str`, *optional*) : List of models related to this Space. Should be a dataset ID found on https://hf.co/models.
+models (`list[str]`, *optional*) : List of models related to this Space. Should be a dataset ID found on https://hf.co/models.
 
 datasets (`list[str]`, *optional*) : List of datasets related to this Space. Should be a dataset ID found on https://hf.co/datasets.
 
@@ -599,7 +599,7 @@ Example:
 huggingface_hub.EvalResult(task_type: str, dataset_type: str, dataset_name: str, metric_type: str, metric_value: typing.Any, task_name: str | None = None, dataset_config: str | None = None, dataset_split: str | None = None, dataset_revision: str | None = None, dataset_args: dict[str, typing.Any] | None = None, metric_name: str | None = None, metric_config: str | None = None, metric_args: dict[str, typing.Any] | None = None, verified: bool | None = None, verify_token: str | None = None, source_name: str | None = None, source_url: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard_data.py#L13)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L13)
 
 **Parameters:**
 
@@ -647,7 +647,7 @@ For more information on the model-index spec, see https://github.com/huggingface
 is_equal_except_value(other: EvalResult)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard_data.py#L145)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L145)
 
 Return True if `self` and `other` describe exactly the same metric but with a
 different value.
@@ -660,7 +660,7 @@ different value.
 huggingface_hub.repocard_data.model_index_to_eval_results(model_index: list)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard_data.py#L561)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L561)
 
 **Parameters:**
 
@@ -723,7 +723,7 @@ Example:
 huggingface_hub.repocard_data.eval_results_to_model_index(model_name: str, eval_results: list)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard_data.py#L677)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard_data.py#L677)
 
 **Parameters:**
 
@@ -765,7 +765,7 @@ Example:
 huggingface_hub.metadata_eval_result(model_pretty_name: str, task_pretty_name: str, task_id: str, metrics_pretty_name: str, metrics_id: str, metrics_value: typing.Any, dataset_pretty_name: str, dataset_id: str, metrics_config: str | None = None, metrics_verified: bool = False, dataset_config: str | None = None, dataset_split: str | None = None, dataset_revision: str | None = None, metrics_verification_token: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard.py#L560)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L560)
 
 **Parameters:**
 
@@ -859,7 +859,7 @@ True
 huggingface_hub.metadata_update(repo_id: str, metadata: dict, repo_type: str | None = None, overwrite: bool = False, token: str | None = None, commit_message: str | None = None, commit_description: str | None = None, revision: str | None = None, create_pr: bool = False, parent_commit: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/repocard.py#L688)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/repocard.py#L688)
 
 **Parameters:**
 
@@ -875,7 +875,7 @@ token (`str`, *optional*) : The Hugging Face authentication token.
 
 commit_message (`str`, *optional*) : The summary / title / first line of the generated commit. Defaults to `f"Update metadata with huggingface_hub"`
 
-commit_description (`str` *optional*) : The description of the generated commit
+commit_description (`str`, *optional*) : The description of the generated commit
 
 revision (`str`, *optional*) : The git revision to commit from. Defaults to the head of the `"main"` branch.
 
@@ -907,5 +907,5 @@ Example:
 
 ```
 
-### Jobs
-https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/jobs.md
+### Inference types
+https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/inference_types.md

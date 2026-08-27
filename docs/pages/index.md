@@ -29,7 +29,7 @@ Unofficial mirror from official `llms.txt` + `llms-full.txt`.
 | [`tokenizers`](https://huggingface.co/docs/tokenizers) | Tokenizers | 18 | [full](tokenizers/_full.md) |
 | [`transformers.js`](https://huggingface.co/docs/transformers.js) | Transformers.js | 39 | [full](transformers.js/_full.md) |
 | [`transformers`](https://huggingface.co/docs/transformers) | Transformers | 727 | [full](transformers/_full.md) |
-| [`trl`](https://huggingface.co/docs/trl) | TRL | 63 | [full](trl/_full.md) |
+| [`trl`](https://huggingface.co/docs/trl) | TRL | 64 | [full](trl/_full.md) |
 | [`xet`](https://huggingface.co/docs/xet) | Xet | 12 | [full](xet/_full.md) |
 
 ## Start here

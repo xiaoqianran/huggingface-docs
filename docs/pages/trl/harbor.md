@@ -9,7 +9,7 @@ This guide covers **how to integrate Harbor with TRL**. For Harbor itself, see t
 
 ## When to use Harbor environments
 
-[GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) supports environment-based training via the `environment_factory` slot — see [OpenEnv](openenv) for the general contract. Use Harbor when you want to train against a **Harbor task suite**: a directory tree of tasks, each a self-contained sandbox + verifier (for example, a data-analysis agent suite where the model explores files in a sandbox and writes an answer that a grader checks).
+[GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer) supports environment-based training via the `environment_factory` slot — see [OpenEnv](openenv) for the general contract. Use Harbor when you want to train against a **Harbor task suite**: a directory tree of tasks, each a self-contained sandbox + verifier (for example, a data-analysis agent suite where the model explores files in a sandbox and writes an answer that a grader checks).
 
 ## Installation
 
@@ -61,7 +61,7 @@ trainer.train()
 Under the hood `HarborSpec` does three things, lazily on first access:
 
 1. **`spec.train_dataset`**: resolves the task suite to local task directories (downloading the HF dataset if needed) and builds a `datasets.Dataset` with `prompt` (empty — the env's instruction is appended at `reset`), `task_dir`, `task_index`, plus per-task `task.toml` metadata columns.
-2. **`spec.environment_factory`**: returns a zero-arg callable producing a fresh per-rollout [HarborEnv](/docs/trl/v1.10.0/en/harbor#trl.experimental.harbor.HarborEnv). On `reset(task_dir)` it starts the task's Harbor sandbox and returns its instruction; tool methods exec into the sandbox; `env.reward` runs the verifier once after the rollout.
+2. **`spec.environment_factory`**: returns a zero-arg callable producing a fresh per-rollout [HarborEnv](/docs/trl/v1.12.0/en/harbor#trl.experimental.harbor.HarborEnv). On `reset(task_dir)` it starts the task's Harbor sandbox and returns its instruction; tool methods exec into the sandbox; `env.reward` runs the verifier once after the rollout.
 3. **`spec.reward_funcs`**: an outcome reward that reads the Harbor verifier's scalar per rollout.
 
 ## The dataset
@@ -90,7 +90,7 @@ Harbor supports two ways an agent drives a task, and the distinction determines 
 - [**External agents**](https://www.harborframework.com/docs/agents#external-agents) run *outside* the sandbox and drive the loop themselves, issuing commands into the container through Harbor's environment interface ("typically by executing bash commands via the `exec` method"). The agent decides each action and interprets each result; the sandbox only executes.
 - [**Installed agents**](https://www.harborframework.com/docs/agents#installed-agents) are installed *into the container image* and run there as a headless subprocess (extending `BaseInstalledAgent`). Harbor launches the agent inside the sandbox and parses its trajectory file afterward (`populate_context_post_run`); the agent runs autonomously with its own inference.
 
-**TRL's integration is the external-agent pattern, and only that pattern is supported for now.** RL training requires the trainer to drive the rollout turn by turn: the *policy model being trained* generates each turn, and TRL captures its tokens and log-probs and applies the environment mask — exactly what `environment_factory` provides over a black-box `rollout_func`. An installed agent is opaque to this: it runs inside the container with its *own* model and only emits a trajectory after the fact, so there are no policy tokens or log-probs for the trainer to optimize, and the model under training is never invoked. A [HarborEnv](/docs/trl/v1.10.0/en/harbor#trl.experimental.harbor.HarborEnv) is therefore an external agent — its tool methods `exec` into the sandbox, but the loop, and the model under training, stay in TRL.
+**TRL's integration is the external-agent pattern, and only that pattern is supported for now.** RL training requires the trainer to drive the rollout turn by turn: the *policy model being trained* generates each turn, and TRL captures its tokens and log-probs and applies the environment mask — exactly what `environment_factory` provides over a black-box `rollout_func`. An installed agent is opaque to this: it runs inside the container with its *own* model and only emits a trajectory after the fact, so there are no policy tokens or log-probs for the trainer to optimize, and the model under training is never invoked. A [HarborEnv](/docs/trl/v1.12.0/en/harbor#trl.experimental.harbor.HarborEnv) is therefore an external agent — its tool methods `exec` into the sandbox, but the loop, and the model under training, stay in TRL.
 
 ## Selecting the base agent (harness)
 
@@ -103,17 +103,17 @@ HarborSpec(dataset, agent="path/to/harness.py:JupyterEnv") # file path to your H
 HarborSpec(dataset, agent=MyHarborEnv)                     # a HarborEnv subclass directly
 ```
 
-The built-in `"bash"` harness ([HarborBashEnv](/docs/trl/v1.10.0/en/harbor#trl.experimental.harbor.HarborBashEnv)) exposes one `bash` tool and submits by writing `/workdir/answer.txt`. Two richer harnesses ship as examples — each in its own folder with a README listing its tools — under [`examples/scripts/harbor/harnesses/`](https://github.com/huggingface/trl/tree/main/examples/scripts/harbor/harnesses):
+The built-in `"bash"` harness ([HarborBashEnv](/docs/trl/v1.12.0/en/harbor#trl.experimental.harbor.HarborBashEnv)) exposes one `bash` tool and submits by writing `/workdir/answer.txt`. Two richer harnesses ship as examples — each in its own folder with a README listing its tools — under [`examples/grpo_harbor/harnesses/`](https://github.com/huggingface/trl/tree/main/examples/grpo_harbor/harnesses):
 
-- [`jupyter/`](https://github.com/huggingface/trl/tree/main/examples/scripts/harbor/harnesses/jupyter) (`JupyterEnv`) — a stateful Python kernel (variables persist across cells) + a shell tool.
-- [`terminal_notes/`](https://github.com/huggingface/trl/tree/main/examples/scripts/harbor/harnesses/terminal_notes) (`TerminalNotesEnv`) — 6 shell tools (incl. background processes) + a 4-tool persistent note toolkit.
+- [`jupyter/`](https://github.com/huggingface/trl/tree/main/examples/grpo_harbor/harnesses/jupyter) (`JupyterEnv`) — a stateful Python kernel (variables persist across cells) + a shell tool.
+- [`terminal_notes/`](https://github.com/huggingface/trl/tree/main/examples/grpo_harbor/harnesses/terminal_notes) (`TerminalNotesEnv`) — 6 shell tools (incl. background processes) + a 4-tool persistent note toolkit.
 
 ```python
-HarborSpec(dataset, agent="examples/scripts/harbor/harnesses/jupyter/env.py:JupyterEnv")
-HarborSpec(dataset, agent="examples/scripts/harbor/harnesses/terminal_notes/env.py:TerminalNotesEnv")
+HarborSpec(dataset, agent="examples/grpo_harbor/harnesses/jupyter/env.py:JupyterEnv")
+HarborSpec(dataset, agent="examples/grpo_harbor/harnesses/terminal_notes/env.py:TerminalNotesEnv")
 ```
 
-To write your own harness, subclass [HarborEnv](/docs/trl/v1.10.0/en/harbor#trl.experimental.harbor.HarborEnv) and add tool methods — every public method becomes a tool (TRL discovers them with `inspect.getmembers`), so give each a typed signature and a docstring (used to build the tool schema). Keep helpers underscore-prefixed. Use `self._exec(cmd)` to run shell commands in the sandbox, and set `PROMPT_SUFFIX` to append harness guidance to the task instruction:
+To write your own harness, subclass [HarborEnv](/docs/trl/v1.12.0/en/harbor#trl.experimental.harbor.HarborEnv) and add tool methods — every public method becomes a tool (TRL discovers them with `inspect.getmembers`), so give each a typed signature and a docstring (used to build the tool schema). Keep helpers underscore-prefixed. Use `self._exec(cmd)` to run shell commands in the sandbox, and set `PROMPT_SUFFIX` to append harness guidance to the task instruction:
 
 ```python
 from trl.experimental.harbor import HarborEnv
@@ -159,13 +159,13 @@ def my_reward(environments, **kwargs) -> list[float]:
 trl.experimental.harbor.HarborSpec(dataset: str, agent: str | type[HarborEnv] = 'bash', environment_type: str = 'docker', num_tasks: int | None = None, indices: list[int] | None = None, include_metadata: bool = True)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/harbor/_spec.py#L114)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/harbor/_spec.py#L114)
 
 **Parameters:**
 
 dataset (`str`) : A Hugging Face dataset repo id holding a Harbor task tree (e.g. `"AdithyaSK/data_agent_rl_environment_train"`), or a local path to a directory containing a `tasks/` subtree. Each task is a dir with `instruction.md` / `task.toml` / `environment/` / `tests/`.
 
-agent (`str` or `type`, *optional*, defaults to `"bash"`) : The base agent / harness — i.e. the tool surface the env exposes. One of: a built-in name (`"bash"`), an import path `"package.module:ClassName"`, a file path `"path/to/file.py:ClassName"`, or a [HarborEnv](/docs/trl/v1.10.0/en/harbor#trl.experimental.harbor.HarborEnv) subclass directly.
+agent (`str` or `type`, *optional*, defaults to `"bash"`) : The base agent / harness — i.e. the tool surface the env exposes. One of: a built-in name (`"bash"`), an import path `"package.module:ClassName"`, a file path `"path/to/file.py:ClassName"`, or a [HarborEnv](/docs/trl/v1.12.0/en/harbor#trl.experimental.harbor.HarborEnv) subclass directly.
 
 environment_type (`str`, *optional*, defaults to `"docker"`) : Harbor sandbox backend, passed through to Harbor (whatever it supports — `"docker"`, `"e2b"`, `"daytona"`, `"gke"`, `"modal"`, `"runloop"`, ...). Not validated here; Harbor validates. `"docker"` is Harbor's own default; pick `"e2b"` to offload sandboxing to the cloud.
 
@@ -183,7 +183,7 @@ Single spec object that wires a Harbor task suite into a TRL trainer.
 trl.experimental.harbor.HarborEnv(environment_type: str = 'docker')
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/harbor/_env.py#L37)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/harbor/_env.py#L37)
 
 **Parameters:**
 
@@ -201,7 +201,7 @@ once, lazily, after the rollout).
 trl.experimental.harbor.HarborBashEnv(environment_type: str = 'docker')
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/harbor/_env.py#L209)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/harbor/_env.py#L209)
 
 Single-`bash`-tool harness; submit by writing `/workdir/answer.txt`.
 
@@ -211,7 +211,7 @@ Single-`bash`-tool harness; submit by writing `/workdir/answer.txt`.
 bash(command: str)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/harbor/_env.py#L214)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/harbor/_env.py#L214)
 
 **Parameters:**
 
@@ -236,5 +236,5 @@ calls. Use it to explore files (ls, head, cat), run Python (`python3 -c "..."`),
 - [Harbor framework](https://www.harborframework.com)
 - [Harbor RL training docs](https://www.harborframework.com/docs/training-workflows/rl)
 
-### A2PO
-https://huggingface.co/docs/trl/v1.10.0/a2po_trainer.md
+### SSD
+https://huggingface.co/docs/trl/v1.12.0/ssd_trainer.md

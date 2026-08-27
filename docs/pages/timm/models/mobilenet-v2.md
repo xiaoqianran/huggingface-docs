@@ -98,5 +98,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### Inception ResNet v2
-https://huggingface.co/docs/timm/v1.0.28/models/inception-resnet-v2.md
+### ESE-VoVNet
+https://huggingface.co/docs/timm/v1.0.29/models/ese-vovnet.md

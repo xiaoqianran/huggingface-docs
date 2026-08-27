@@ -104,5 +104,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### (Gluon) SE-ResNeXt
-https://huggingface.co/docs/timm/v1.0.28/models/gloun-seresnext.md
+### MobileNet v2
+https://huggingface.co/docs/timm/v1.0.29/models/mobilenet-v2.md

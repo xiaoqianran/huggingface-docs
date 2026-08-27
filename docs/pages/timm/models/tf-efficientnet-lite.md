@@ -96,5 +96,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### CSP-ResNet
-https://huggingface.co/docs/timm/v1.0.28/models/csp-resnet.md
+### Res2NeXt
+https://huggingface.co/docs/timm/v1.0.29/models/res2next.md

@@ -88,5 +88,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### (Legacy) SE-ResNeXt
-https://huggingface.co/docs/timm/v1.0.28/models/legacy-se-resnext.md
+### Instagram ResNeXt WSL
+https://huggingface.co/docs/timm/v1.0.29/models/ig-resnext.md

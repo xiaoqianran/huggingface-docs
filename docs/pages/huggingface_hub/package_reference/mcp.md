@@ -1,10 +1,10 @@
 # MCP Client
 
-The `huggingface_hub` library now includes an [MCPClient](/docs/huggingface_hub/v1.27.0/en/package_reference/mcp#huggingface_hub.MCPClient), designed to empower Large Language Models (LLMs) with the ability to interact with external Tools via the [Model Context Protocol](https://modelcontextprotocol.io) (MCP). This client extends an [AsyncInferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient) to seamlessly integrate Tool usage.
+The `huggingface_hub` library now includes an [MCPClient](/docs/huggingface_hub/v1.29.0/en/package_reference/mcp#huggingface_hub.MCPClient), designed to empower Large Language Models (LLMs) with the ability to interact with external Tools via the [Model Context Protocol](https://modelcontextprotocol.io) (MCP). This client extends an [AsyncInferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient) to seamlessly integrate Tool usage.
 
-The [MCPClient](/docs/huggingface_hub/v1.27.0/en/package_reference/mcp#huggingface_hub.MCPClient) connects to MCP servers (local `stdio` scripts or remote `http`/`sse` services) that expose tools. It feeds these tools to an LLM (via [AsyncInferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient)). If the LLM decides to use a tool, [MCPClient](/docs/huggingface_hub/v1.27.0/en/package_reference/mcp#huggingface_hub.MCPClient) manages the execution request to the MCP server and relays the Tool's output back to the LLM, often streaming results in real-time.
+The [MCPClient](/docs/huggingface_hub/v1.29.0/en/package_reference/mcp#huggingface_hub.MCPClient) connects to MCP servers (local `stdio` scripts or remote `http`/`sse` services) that expose tools. It feeds these tools to an LLM (via [AsyncInferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.AsyncInferenceClient)). If the LLM decides to use a tool, [MCPClient](/docs/huggingface_hub/v1.29.0/en/package_reference/mcp#huggingface_hub.MCPClient) manages the execution request to the MCP server and relays the Tool's output back to the LLM, often streaming results in real-time.
 
-We also provide a higher-level [Agent](/docs/huggingface_hub/v1.27.0/en/package_reference/mcp#huggingface_hub.Agent) class. This 'Tiny Agent' simplifies creating conversational Agents by managing the chat loop and state, acting as a wrapper around [MCPClient](/docs/huggingface_hub/v1.27.0/en/package_reference/mcp#huggingface_hub.MCPClient).
+We also provide a higher-level [Agent](/docs/huggingface_hub/v1.29.0/en/package_reference/mcp#huggingface_hub.Agent) class. This 'Tiny Agent' simplifies creating conversational Agents by managing the chat loop and state, acting as a wrapper around [MCPClient](/docs/huggingface_hub/v1.29.0/en/package_reference/mcp#huggingface_hub.MCPClient).
 
 ## MCP Client[[huggingface_hub.MCPClient]]
 
@@ -14,7 +14,7 @@ We also provide a higher-level [Agent](/docs/huggingface_hub/v1.27.0/en/package_
 huggingface_hub.MCPClient(model: typing.Optional[str] = None, provider: typing.Union[typing.Literal['baseten', 'cerebras', 'cohere', 'deepinfra', 'fal-ai', 'featherless-ai', 'fireworks-ai', 'groq', 'hf-inference', 'novita', 'nscale', 'openai', 'ovhcloud', 'publicai', 'replicate', 'scaleway', 'together', 'wavespeed', 'zai-org'], typing.Literal['auto'], NoneType] = None, base_url: typing.Optional[str] = None, api_key: typing.Optional[str] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_mcp/mcp_client.py#L55)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_mcp/mcp_client.py#L55)
 
 **Parameters:**
 
@@ -37,7 +37,7 @@ Client for connecting to one or more MCP servers and processing chat completions
 add_mcp_server(type: typing.Literal['stdio', 'sse', 'http'], **params: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_mcp/mcp_client.py#L123)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_mcp/mcp_client.py#L123)
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ Connect to an MCP server
 cleanup()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_mcp/mcp_client.py#L109)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_mcp/mcp_client.py#L109)
 
 Clean up resources
 
@@ -63,7 +63,7 @@ Clean up resources
 process_single_turn_with_tools(messages: list, exit_loop_tools: typing.Optional[list[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputTool]] = None, exit_if_first_chunk_no_tool: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_mcp/mcp_client.py#L248)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_mcp/mcp_client.py#L248)
 
 **Parameters:**
 
@@ -75,7 +75,7 @@ exit_if_first_chunk_no_tool (`bool`, *optional*) : Exit if no tool is present in
 
 **Yields:**
 
-[ChatCompletionStreamOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput) chunks or [ChatCompletionInputMessage](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputMessage) objects
+[ChatCompletionStreamOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput) chunks or [ChatCompletionInputMessage](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputMessage) objects
 
 Process a query using `self.model` and available tools, yielding chunks and tool outputs.
 
@@ -87,7 +87,7 @@ Process a query using `self.model` and available tools, yielding chunks and tool
 huggingface_hub.Agent(model: Optional[str] = None, servers: Iterable[ServerConfig], provider: Optional[PROVIDER_OR_POLICY_T] = None, base_url: Optional[str] = None, api_key: Optional[str] = None, prompt: Optional[str] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_mcp/agent.py#L13)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_mcp/agent.py#L13)
 
 **Parameters:**
 
@@ -103,7 +103,7 @@ api_key (`str`, *optional*) : Token to use for authentication. Will default to t
 
 prompt (`str`, *optional*) : The system prompt to use for the agent. Defaults to the default system prompt in `constants.py`.
 
-Implementation of a Simple Agent, which is a simple while loop built right on top of an [MCPClient](/docs/huggingface_hub/v1.27.0/en/package_reference/mcp#huggingface_hub.MCPClient).
+Implementation of a Simple Agent, which is a simple while loop built right on top of an [MCPClient](/docs/huggingface_hub/v1.29.0/en/package_reference/mcp#huggingface_hub.MCPClient).
 
 > [!WARNING]
 > This class is experimental and might be subject to breaking changes in the future without prior notice.
@@ -114,7 +114,7 @@ Implementation of a Simple Agent, which is a simple while loop built right on to
 run(user_input: str, abort_event: Optional[asyncio.Event] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_mcp/agent.py#L57)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_mcp/agent.py#L57)
 
 **Parameters:**
 
@@ -124,5 +124,5 @@ abort_event (`asyncio.Event`, *optional*) : An event that can be used to abort t
 
 Run the agent with the given user input.
 
-### Inference
-https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/inference_client.md
+### Downloading files
+https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/file_download.md

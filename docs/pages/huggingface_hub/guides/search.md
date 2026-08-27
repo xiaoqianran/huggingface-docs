@@ -4,7 +4,7 @@ In this tutorial, you will learn how to search models, datasets and spaces on th
 
 ## How to list repositories ?
 
-`huggingface_hub` library includes an HTTP client [HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi) to interact with the Hub.
+`huggingface_hub` library includes an HTTP client [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi) to interact with the Hub.
 Among other things, it can list models, datasets and spaces stored on the Hub:
 
 ```py
@@ -13,9 +13,9 @@ Among other things, it can list models, datasets and spaces stored on the Hub:
 >>> models = api.list_models()
 ```
 
-The output of [list_models()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_models) is an iterator over the models stored on the Hub.
+The output of [list_models()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_models) is an iterator over the models stored on the Hub.
 
-Similarly, you can use [list_datasets()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_datasets) to list datasets and [list_spaces()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_spaces) to list Spaces.
+Similarly, you can use [list_datasets()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_datasets) to list datasets and [list_spaces()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_spaces) to list Spaces.
 
 ## How to filter repositories ?
 
@@ -77,5 +77,5 @@ You can also list and search for models, datasets, and Spaces using the `hf` com
 
 For more details, see the [CLI guide](./cli#hf-models).
 
-### Understand caching
-https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/manage-cache.md
+### Interact with the Hub through the Filesystem API
+https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/hf_file_system.md

@@ -101,5 +101,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### Res2Net
-https://huggingface.co/docs/timm/v1.0.28/models/res2net.md
+### (Gluon) ResNeXt
+https://huggingface.co/docs/timm/v1.0.29/models/gloun-resnext.md

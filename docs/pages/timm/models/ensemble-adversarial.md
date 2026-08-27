@@ -119,5 +119,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### AdvProp (EfficientNet)
-https://huggingface.co/docs/timm/v1.0.28/models/advprop.md
+### (Legacy) SE-ResNeXt
+https://huggingface.co/docs/timm/v1.0.29/models/legacy-se-resnext.md

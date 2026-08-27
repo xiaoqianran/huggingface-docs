@@ -15,7 +15,7 @@ bitsandbytes also supports paged optimizers which take advantage of CUDAs unifie
 bitsandbytes.optim.Adam(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adam.py#L9)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adam.py#L9)
 
 #### __init__[[bitsandbytes.optim.Adam.__init__]]
 
@@ -23,7 +23,7 @@ bitsandbytes.optim.Adam(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, w
 __init__(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adam.py#L10)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adam.py#L10)
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ Base Adam optimizer.
 bitsandbytes.optim.Adam8bit(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adam.py#L62)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adam.py#L62)
 
 #### __init__[[bitsandbytes.optim.Adam8bit.__init__]]
 
@@ -65,7 +65,7 @@ bitsandbytes.optim.Adam8bit(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-0
 __init__(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adam.py#L63)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adam.py#L63)
 
 **Parameters:**
 
@@ -99,7 +99,7 @@ is_paged (`bool`, defaults to `False`) : Whether the optimizer is a paged optimi
 bitsandbytes.optim.Adam32bit(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adam.py#L126)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adam.py#L126)
 
 #### __init__[[bitsandbytes.optim.Adam32bit.__init__]]
 
@@ -107,7 +107,7 @@ bitsandbytes.optim.Adam32bit(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-
 __init__(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adam.py#L127)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adam.py#L127)
 
 **Parameters:**
 
@@ -141,7 +141,7 @@ is_paged (`bool`, defaults to `False`) : Whether the optimizer is a paged optimi
 bitsandbytes.optim.PagedAdam(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adam.py#L179)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adam.py#L179)
 
 #### __init__[[bitsandbytes.optim.PagedAdam.__init__]]
 
@@ -149,7 +149,7 @@ bitsandbytes.optim.PagedAdam(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-
 __init__(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adam.py#L180)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adam.py#L180)
 
 **Parameters:**
 
@@ -183,7 +183,7 @@ Paged Adam optimizer.
 bitsandbytes.optim.PagedAdam8bit(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adam.py#L232)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adam.py#L232)
 
 #### __init__[[bitsandbytes.optim.PagedAdam8bit.__init__]]
 
@@ -191,7 +191,7 @@ bitsandbytes.optim.PagedAdam8bit(params, lr = 0.001, betas = (0.9, 0.999), eps =
 __init__(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adam.py#L233)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adam.py#L233)
 
 **Parameters:**
 
@@ -225,7 +225,7 @@ is_paged (`bool`, defaults to `False`) : Whether the optimizer is a paged optimi
 bitsandbytes.optim.PagedAdam32bit(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adam.py#L296)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adam.py#L296)
 
 #### __init__[[bitsandbytes.optim.PagedAdam32bit.__init__]]
 
@@ -233,7 +233,7 @@ bitsandbytes.optim.PagedAdam32bit(params, lr = 0.001, betas = (0.9, 0.999), eps 
 __init__(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adam.py#L297)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adam.py#L297)
 
 **Parameters:**
 
@@ -260,4 +260,4 @@ is_paged (`bool`, defaults to `False`) : Whether the optimizer is a paged optimi
 Paged 32-bit Adam optimizer.
 
 ### AdEMAMix
-https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/ademamix.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/ademamix.md

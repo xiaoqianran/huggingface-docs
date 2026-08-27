@@ -88,5 +88,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### MobileNet v3
-https://huggingface.co/docs/timm/v1.0.28/models/mobilenet-v3.md
+### EfficientNet (Knapsack Pruned)
+https://huggingface.co/docs/timm/v1.0.29/models/efficientnet-pruned.md

@@ -59,5 +59,5 @@ training_args = GKDConfig(..., use_liger_kernel=True)
 
 To learn more about Liger-Kernel, visit their [official repository](https://github.com/linkedin/Liger-Kernel/).
 
-### Chat template utilities
-https://huggingface.co/docs/trl/v1.10.0/chat_template_utils.md
+### SFT Trainer
+https://huggingface.co/docs/trl/v1.12.0/sft_trainer.md

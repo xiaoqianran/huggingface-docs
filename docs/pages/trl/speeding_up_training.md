@@ -16,7 +16,10 @@ pip install trl[vllm]
 First, start a vLLM server by running:
 
 ```bash
-trl vllm-serve --model <model_name>
+VLLM_SERVER_DEV_MODE=1 vllm serve <model_name> \
+    --weight-transfer-config '{"backend": "nccl"}' \
+    --logprobs-mode processed_logprobs \
+    --max-logprobs -1
 ```
 
 Then, run the training script and pass `use_vllm=True` in the training arguments.
@@ -30,7 +33,10 @@ training_args = OnlineDPOConfig(..., use_vllm=True, vllm_mode="server")
 First, start a vLLM server by running:
 
 ```bash
-trl vllm-serve --model <model_name>
+VLLM_SERVER_DEV_MODE=1 vllm serve <model_name> \
+    --weight-transfer-config '{"backend": "nccl"}' \
+    --logprobs-mode processed_logprobs \
+    --max-logprobs -1
 ```
 
 Then, run the training script and pass `use_vllm=True` in the training arguments.
@@ -49,7 +55,10 @@ You can customize the server configuration by passing additional arguments. For 
 > Set GPUs **0-3** for vLLM generation:  
 >
 > ```sh
-> CUDA_VISIBLE_DEVICES=0,1,2,3 trl vllm-serve --model <model_name>
+> CUDA_VISIBLE_DEVICES=0,1,2,3 VLLM_SERVER_DEV_MODE=1 vllm serve <model_name> \
+>     --weight-transfer-config '{"backend": "nccl"}' \
+>     --logprobs-mode processed_logprobs \
+>     --max-logprobs -1
 > ```  
 >
 > And GPUs **4-7** for training:
@@ -61,7 +70,10 @@ You can customize the server configuration by passing additional arguments. For 
 First, start a vLLM server by running:
 
 ```bash
-trl vllm-serve --model <model_name>
+VLLM_SERVER_DEV_MODE=1 vllm serve <model_name> \
+    --weight-transfer-config '{"backend": "nccl"}' \
+    --logprobs-mode processed_logprobs \
+    --max-logprobs -1
 ```
 
 Then, run the training script and pass `use_vllm=True` in the training arguments.
@@ -80,7 +92,10 @@ You can customize the server configuration by passing additional arguments. For 
 > Set GPUs **0-3** for vLLM generation:
 >
 > ```sh
-> CUDA_VISIBLE_DEVICES=0,1,2,3 trl vllm-serve --model <model_name>
+> CUDA_VISIBLE_DEVICES=0,1,2,3 VLLM_SERVER_DEV_MODE=1 vllm serve <model_name> \
+>     --weight-transfer-config '{"backend": "nccl"}' \
+>     --logprobs-mode processed_logprobs \
+>     --max-logprobs -1
 > ```  
 >
 > And GPUs **4-7** for training:
@@ -164,5 +179,5 @@ training_args = SFTConfig(..., bf16=True)  # or fp16=True for older GPUs
 
 Use `bf16=True` for Ampere GPUs (A100, RTX 30xx) or newer, and `fp16=True` for older GPUs. Mixed precision training is supported across all TRL trainers.
 
-### OpenReward Integration for Training LLMs with Environments
-https://huggingface.co/docs/trl/v1.10.0/openreward.md
+### Usage Stats Collection
+https://huggingface.co/docs/trl/v1.12.0/usage_stats.md

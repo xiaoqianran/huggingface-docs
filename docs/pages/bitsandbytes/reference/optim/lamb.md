@@ -13,7 +13,7 @@
 bitsandbytes.optim.LAMB(params, lr = 0.001, bias_correction = True, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, adam_w_mode = True, optim_bits = 32, args = None, min_8bit_size = 4096, max_unorm = 1.0)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lamb.py#L8)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lamb.py#L8)
 
 #### __init__[[bitsandbytes.optim.LAMB.__init__]]
 
@@ -21,7 +21,7 @@ bitsandbytes.optim.LAMB(params, lr = 0.001, bias_correction = True, betas = (0.9
 __init__(params, lr = 0.001, bias_correction = True, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, adam_w_mode = True, optim_bits = 32, args = None, min_8bit_size = 4096, max_unorm = 1.0)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lamb.py#L9)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lamb.py#L9)
 
 **Parameters:**
 
@@ -59,7 +59,7 @@ Base LAMB optimizer.
 bitsandbytes.optim.LAMB8bit(params, lr = 0.001, bias_correction = True, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, adam_w_mode = True, args = None, min_8bit_size = 4096, max_unorm = 1.0)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lamb.py#L67)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lamb.py#L67)
 
 #### __init__[[bitsandbytes.optim.LAMB8bit.__init__]]
 
@@ -67,7 +67,7 @@ bitsandbytes.optim.LAMB8bit(params, lr = 0.001, bias_correction = True, betas = 
 __init__(params, lr = 0.001, bias_correction = True, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, adam_w_mode = True, args = None, min_8bit_size = 4096, max_unorm = 1.0)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lamb.py#L68)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lamb.py#L68)
 
 **Parameters:**
 
@@ -103,7 +103,7 @@ max_unorm (`float`, defaults to 1.0) : The maximum update norm for trust-ratio c
 bitsandbytes.optim.LAMB32bit(params, lr = 0.001, bias_correction = True, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, adam_w_mode = True, args = None, min_8bit_size = 4096, max_unorm = 1.0)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lamb.py#L137)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lamb.py#L137)
 
 #### __init__[[bitsandbytes.optim.LAMB32bit.__init__]]
 
@@ -111,7 +111,7 @@ bitsandbytes.optim.LAMB32bit(params, lr = 0.001, bias_correction = True, betas =
 __init__(params, lr = 0.001, bias_correction = True, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0, amsgrad = False, adam_w_mode = True, args = None, min_8bit_size = 4096, max_unorm = 1.0)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lamb.py#L138)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lamb.py#L138)
 
 **Parameters:**
 
@@ -140,4 +140,4 @@ max_unorm (`float`, defaults to 1.0) : The maximum gradient norm.
 32-bit LAMB optimizer.
 
 ### SGD
-https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/sgd.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/sgd.md

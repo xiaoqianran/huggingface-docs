@@ -91,5 +91,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### MixNet
-https://huggingface.co/docs/timm/v1.0.28/models/mixnet.md
+### SE-ResNet
+https://huggingface.co/docs/timm/v1.0.29/models/se-resnet.md

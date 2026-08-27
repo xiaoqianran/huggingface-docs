@@ -8,7 +8,7 @@
 trl.is_conversational(example: dict)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/data_utils.py#L160)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/data_utils.py#L160)
 
 **Parameters:**
 
@@ -40,7 +40,7 @@ False
 trl.maybe_convert_to_chatml(example: dict)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/data_utils.py#L975)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/data_utils.py#L975)
 
 **Parameters:**
 
@@ -80,7 +80,7 @@ Example:
 trl.extract_prompt(example: dict)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/data_utils.py#L557)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/data_utils.py#L557)
 
 **Parameters:**
 
@@ -163,7 +163,7 @@ Or, with the `map` method of [Dataset](https://huggingface.co/docs/datasets/v5.0
 trl.unpair_preference_dataset(dataset: typing.Union[~DatasetType, ~IterableDatasetType], **map_kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/data_utils.py#L454)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/data_utils.py#L454)
 
 **Parameters:**
 
@@ -171,14 +171,16 @@ dataset ([Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_refere
 
 - ****map_kwargs** (`dict`, *optional*) : Additional keyword arguments to pass to the dataset's map method when unpairing preferences.
 
-**Returns:** [Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset) or [DatasetDict](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.DatasetDict) or [IterableDataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDataset) or [IterableDatasetDict](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDatasetDict)
+**Returns:**
 
+[Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset) or [DatasetDict](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.DatasetDict) or [IterableDataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDataset) or
+[IterableDatasetDict](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.IterableDatasetDict):
 The unpaired preference dataset.
 
 Unpair a preference dataset.
 
-The output contains `"prompt"`, `"completion"`, and `"label"` plus any extra columns, which are duplicated for
-each chosen and rejected row.
+The output contains `"prompt"`, `"completion"`, and `"label"` plus any extra columns, which are duplicated for each
+chosen and rejected row.
 
 Example:
 
@@ -202,5 +204,5 @@ Dataset({
 {'prompt': 'The sky is', 'completion': ' blue.', 'label': True}
 ```
 
-### Quickstart
-https://huggingface.co/docs/trl/v1.10.0/quickstart.md
+### Examples
+https://huggingface.co/docs/trl/v1.12.0/example_overview.md

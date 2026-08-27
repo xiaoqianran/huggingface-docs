@@ -58,7 +58,7 @@ Every sandbox job also carries two stable labels for discovery — `hf-sandbox=1
 The token is delivered to the server via a Job secret. The client re-derives it on demand from the public nonce in the label. This has some nice consequences:
 
 - **Stateless reconnection.** `Sandbox.connect(id)` works from any machine that holds the same HF token — read the nonce from the label, recompute the token. No local files, no state to copy.
-- **The HF token never enters the sandbox** (unless you opt in with `forward_hf_token=True`), so code running inside cannot exfiltrate your credentials.
+- **The HF token is not passed to the sandbox as an environment variable or job secret** (unless you opt in with `forward_hf_token=True`). This is not a hard guarantee that your credentials stay out of reach: the process listening on the sandbox port is whatever the image starts first, so an untrusted image may be able to observe the requests the client sends — including their `Authorization` header. Treat credentials reachable from a sandbox as potentially exposed to it.
 - **Per-sandbox scope.** Each sandbox has a unique nonce, so a leaked sandbox token compromises that one sandbox only. Other namespace members hold a different HF token and cannot derive it.
 
 ## Dedicated sandboxes (`Sandbox.create`)
@@ -81,7 +81,7 @@ The cost is right there in the diagram: every sandbox pays a full ~6s VM cold st
 
 ## Pools: many sandboxes in one Job (`SandboxPool`)
 
-A typical RL rollout or tool-execution sandbox needs a few MB of RAM and one core for a few seconds. Paying a 2-vCPU VM and a 6s cold start each — and triggering a 1000-VM scheduling burst — is the wrong trade. So [SandboxPool](/docs/huggingface_hub/v1.27.0/en/package_reference/sandbox#huggingface_hub.SandboxPool) runs one Job as a host and multiplexes many sandboxes inside it.
+A typical RL rollout or tool-execution sandbox needs a few MB of RAM and one core for a few seconds. Paying a 2-vCPU VM and a 6s cold start each — and triggering a 1000-VM scheduling burst — is the wrong trade. So [SandboxPool](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.SandboxPool) runs one Job as a host and multiplexes many sandboxes inside it.
 
 A pooled sandbox is not a nested VM or container. It is the classic Unix multi-user primitive:
 
@@ -135,7 +135,7 @@ Combining distinct uids (discretionary access control) with Landlock, and verifi
 > - **Resource DoS.** Without cgroup delegation, CPU / total RAM / disk are not partitioned. `RLIMIT_NPROC` and `RLIMIT_AS` bound per-process usage, but an aggressive sandbox can still starve its neighbours or trip the global OOM killer.
 > - **Process-list metadata.** A sandbox can see other processes via `/proc` (names, cmdlines) — it just cannot read or signal them. Hiding them would need a PID namespace, which `unshare` can't create here.
 >
-> In short: confidentiality and integrity between pooled sandboxes are enforced; only availability (DoS) and process-list metadata are shared. That is the right boundary for one user's own parallel workloads. For mutually-hostile untrusted code — or for GPU — use [Sandbox.create()](/docs/huggingface_hub/v1.27.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create), which gives each sandbox its own VM.
+> In short: confidentiality and integrity between pooled sandboxes are enforced; only availability (DoS) and process-list metadata are shared. That is the right boundary for one user's own parallel workloads. For mutually-hostile untrusted code — or for GPU — use [Sandbox.create()](/docs/huggingface_hub/v1.29.0/en/package_reference/sandbox#huggingface_hub.Sandbox.create), which gives each sandbox its own VM.
 
 ### The file model in a pool
 
@@ -204,7 +204,10 @@ All numbers are measured against real HF Jobs on `cpu-basic`, with the client on
 | Build on Jobs, no new service                                         | inherits billing, hardware, permissions; works in any image                     |
 | Static Rust binary, downloaded at startup                             | no Python/pip; ~6s cold start vs 30–90s for a pip-based bootstrap               |
 | Hand-rolled HTTP/1.1                                                  | minimal frameworks buffer chunked responses and break live streaming (verified) |
-| Stateless HMAC auth                                                   | reconnect from anywhere; HF token never enters the sandbox                      |
+| Stateless HMAC auth                                                   | reconnect from anywhere; per-sandbox scoped token instead of the HF token       |
 | `run()` raises on non-zero exit (`check=False` opts out)              | best DX for "run code, see the error" loops (E2B-style)                         |
 | `idle_timeout` watchdog instead of client-side cleanup                | persistent sandboxes are a feature; leaked ones still die                       |
 | Pools = uid + Landlock, server-authoritative capacity, no local state | fast same-user fan-out; correct under concurrency; reattachable anywhere        |
+
+### Git vs HTTP paradigm
+https://huggingface.co/docs/huggingface_hub/v1.29.0/concepts/git_vs_http.md

@@ -27,7 +27,7 @@ by redirecting the Webhooks to your machine (using a Gradio tunnel) before deplo
 huggingface_hub.WebhooksServer(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_webhooks_server.py#L43)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_webhooks_server.py#L43)
 
 **Parameters:**
 
@@ -35,12 +35,12 @@ ui (`gradio.Blocks`, optional) : A Gradio UI instance to be used as the Space la
 
 webhook_secret (`str`, optional) : A secret key to verify incoming webhook requests. You can set this value to any secret you want as long as you also configure it in your [webhooks settings panel](https://huggingface.co/settings/webhooks). You can also set this value as the `WEBHOOK_SECRET` environment variable. If no secret is provided, the webhook endpoints are opened without any security.
 
-The [WebhooksServer()](/docs/huggingface_hub/v1.27.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) class lets you create an instance of a Gradio app that can receive Huggingface webhooks.
+The [WebhooksServer()](/docs/huggingface_hub/v1.29.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) class lets you create an instance of a Gradio app that can receive Huggingface webhooks.
 These webhooks can be registered using the `add_webhook()` decorator. Webhook endpoints are added to
 the app as a POST endpoint to the FastAPI router. Once all the webhooks are registered, the `launch` method has to be
 called to start the app.
 
-It is recommended to accept [WebhookPayload](/docs/huggingface_hub/v1.27.0/en/package_reference/webhooks_server#huggingface_hub.WebhookPayload) as the first argument of the webhook function. It is a Pydantic
+It is recommended to accept [WebhookPayload](/docs/huggingface_hub/v1.29.0/en/package_reference/webhooks_server#huggingface_hub.WebhookPayload) as the first argument of the webhook function. It is a Pydantic
 model that contains all the information about the webhook event. The data will be parsed automatically for you.
 
 Check out the [webhooks guide](../guides/webhooks_server) for a step-by-step tutorial on how to set up your
@@ -78,16 +78,16 @@ app.launch()
 huggingface_hub.webhook_endpoint(path: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_webhooks_server.py#L226)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_webhooks_server.py#L226)
 
 **Parameters:**
 
 path (`str`, optional) : The URL path to register the webhook function. If not provided, the function name will be used as the path. In any case, all webhooks are registered under `/webhooks`.
 
-Decorator to start a [WebhooksServer()](/docs/huggingface_hub/v1.27.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) and register the decorated function as a webhook endpoint.
+Decorator to start a [WebhooksServer()](/docs/huggingface_hub/v1.29.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) and register the decorated function as a webhook endpoint.
 
 This is a helper to get started quickly. If you need more flexibility (custom landing page or webhook secret),
-you can use [WebhooksServer()](/docs/huggingface_hub/v1.27.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) directly. You can register multiple webhook endpoints (to the same server) by using
+you can use [WebhooksServer()](/docs/huggingface_hub/v1.29.0/en/package_reference/webhooks_server#huggingface_hub.WebhooksServer) directly. You can register multiple webhook endpoints (to the same server) by using
 this decorator multiple times.
 
 Check out the [webhooks guide](../guides/webhooks_server) for a step-by-step tutorial on how to set up your
@@ -133,7 +133,7 @@ trigger_training.launch()
 
 ## Payload[[huggingface_hub.WebhookPayload]]
 
-[WebhookPayload](/docs/huggingface_hub/v1.27.0/en/package_reference/webhooks_server#huggingface_hub.WebhookPayload) is the main data structure that contains the payload from Webhooks. This is
+[WebhookPayload](/docs/huggingface_hub/v1.29.0/en/package_reference/webhooks_server#huggingface_hub.WebhookPayload) is the main data structure that contains the payload from Webhooks. This is
 a `pydantic` class which makes it very easy to use with FastAPI. If you pass it as a parameter to a webhook endpoint, it
 will be automatically validated and parsed as a Python object.
 
@@ -145,7 +145,7 @@ For more information about webhooks payload, you can refer to the Webhooks Paylo
 huggingface_hub.WebhookPayload(event: WebhookPayloadEvent, repo: WebhookPayloadRepo, discussion: huggingface_hub._webhooks_payload.WebhookPayloadDiscussion | None = None, comment: huggingface_hub._webhooks_payload.WebhookPayloadComment | None = None, webhook: WebhookPayloadWebhook, movedTo: huggingface_hub._webhooks_payload.WebhookPayloadMovedTo | None = None, updatedRefs: list[huggingface_hub._webhooks_payload.WebhookPayloadUpdatedRef] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_webhooks_payload.py#L129)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_webhooks_payload.py#L129)
 
 ### WebhookPayload[[huggingface_hub.WebhookPayload]]
 
@@ -155,7 +155,7 @@ huggingface_hub.WebhookPayload(event: WebhookPayloadEvent, repo: WebhookPayloadR
 huggingface_hub.WebhookPayload(event: WebhookPayloadEvent, repo: WebhookPayloadRepo, discussion: huggingface_hub._webhooks_payload.WebhookPayloadDiscussion | None = None, comment: huggingface_hub._webhooks_payload.WebhookPayloadComment | None = None, webhook: WebhookPayloadWebhook, movedTo: huggingface_hub._webhooks_payload.WebhookPayloadMovedTo | None = None, updatedRefs: list[huggingface_hub._webhooks_payload.WebhookPayloadUpdatedRef] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_webhooks_payload.py#L129)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_webhooks_payload.py#L129)
 
 ### WebhookPayloadComment[[huggingface_hub.WebhookPayloadComment]]
 
@@ -165,7 +165,7 @@ huggingface_hub.WebhookPayload(event: WebhookPayloadEvent, repo: WebhookPayloadR
 huggingface_hub.WebhookPayloadComment(id: str, author: ObjectId, hidden: bool, content: str | None = None, url: WebhookPayloadUrl)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_webhooks_payload.py#L94)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_webhooks_payload.py#L94)
 
 ### WebhookPayloadDiscussion[[huggingface_hub.WebhookPayloadDiscussion]]
 
@@ -175,7 +175,7 @@ huggingface_hub.WebhookPayloadComment(id: str, author: ObjectId, hidden: bool, c
 huggingface_hub.WebhookPayloadDiscussion(id: str, num: int, author: ObjectId, url: WebhookPayloadUrl, title: str, isPullRequest: bool, status: typing.Literal['closed', 'draft', 'open', 'merged'], changes: huggingface_hub._webhooks_payload.WebhookPayloadDiscussionChanges | None = None, pinned: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_webhooks_payload.py#L101)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_webhooks_payload.py#L101)
 
 ### WebhookPayloadDiscussionChanges[[huggingface_hub.WebhookPayloadDiscussionChanges]]
 
@@ -185,7 +185,7 @@ huggingface_hub.WebhookPayloadDiscussion(id: str, num: int, author: ObjectId, ur
 huggingface_hub.WebhookPayloadDiscussionChanges(base: str, mergeCommitId: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_webhooks_payload.py#L89)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_webhooks_payload.py#L89)
 
 ### WebhookPayloadEvent[[huggingface_hub.WebhookPayloadEvent]]
 
@@ -195,7 +195,7 @@ huggingface_hub.WebhookPayloadDiscussionChanges(base: str, mergeCommitId: str | 
 huggingface_hub.WebhookPayloadEvent(action: typing.Literal['create', 'delete', 'move', 'update'], scope: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_webhooks_payload.py#L84)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_webhooks_payload.py#L84)
 
 ### WebhookPayloadMovedTo[[huggingface_hub.WebhookPayloadMovedTo]]
 
@@ -205,7 +205,7 @@ huggingface_hub.WebhookPayloadEvent(action: typing.Literal['create', 'delete', '
 huggingface_hub.WebhookPayloadMovedTo(name: str, owner: ObjectId)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_webhooks_payload.py#L75)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_webhooks_payload.py#L75)
 
 ### WebhookPayloadRepo[[huggingface_hub.WebhookPayloadRepo]]
 
@@ -215,7 +215,7 @@ huggingface_hub.WebhookPayloadMovedTo(name: str, owner: ObjectId)
 huggingface_hub.WebhookPayloadRepo(id: str, owner: ObjectId, head_sha: str | None = None, name: str, private: bool, subdomain: str | None = None, tags: list[str] | None = None, type: typing.Literal['dataset', 'model', 'space'], url: WebhookPayloadUrl)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_webhooks_payload.py#L112)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_webhooks_payload.py#L112)
 
 ### WebhookPayloadUrl[[huggingface_hub.WebhookPayloadUrl]]
 
@@ -225,7 +225,7 @@ huggingface_hub.WebhookPayloadRepo(id: str, owner: ObjectId, head_sha: str | Non
 huggingface_hub.WebhookPayloadUrl(web: str, api: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_webhooks_payload.py#L70)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_webhooks_payload.py#L70)
 
 ### WebhookPayloadWebhook[[huggingface_hub.WebhookPayloadWebhook]]
 
@@ -235,7 +235,7 @@ huggingface_hub.WebhookPayloadUrl(web: str, api: str | None = None)
 huggingface_hub.WebhookPayloadWebhook(id: str, version: typing.Literal[3])
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_webhooks_payload.py#L80)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_webhooks_payload.py#L80)
 
-### Authentication
-https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/authentication.md
+### HF URIs
+https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/hf_uris.md

@@ -96,5 +96,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### (Tensorflow) Inception v3
-https://huggingface.co/docs/timm/v1.0.28/models/tf-inception-v3.md
+### CSP-ResNeXt
+https://huggingface.co/docs/timm/v1.0.29/models/csp-resnext.md

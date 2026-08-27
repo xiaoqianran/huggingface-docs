@@ -229,5 +229,5 @@ NOTE: I am deprecating this version of the networks, the new ones are part of `r
 * Paper: `Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation` - https://arxiv.org/abs/1802.02611
 * Reference code: https://github.com/tensorflow/models/tree/master/research/deeplab
 
-### Results
-https://huggingface.co/docs/timm/v1.0.28/results.md
+### Feature Extraction
+https://huggingface.co/docs/timm/v1.0.29/feature_extraction.md

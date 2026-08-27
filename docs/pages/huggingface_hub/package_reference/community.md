@@ -1,17 +1,17 @@
 # Interacting with Discussions and Pull Requests
 
-Check the [HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi) documentation page for the reference of methods enabling
+Check the [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi) documentation page for the reference of methods enabling
 interaction with Pull Requests and Discussions on the Hub.
 
-- [get_repo_discussions()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_repo_discussions)
-- [get_discussion_details()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_discussion_details)
-- [create_discussion()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_discussion)
-- [create_pull_request()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_pull_request)
-- [rename_discussion()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.rename_discussion)
-- [comment_discussion()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.comment_discussion)
-- [edit_discussion_comment()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.edit_discussion_comment)
-- [change_discussion_status()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.change_discussion_status)
-- [merge_pull_request()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.merge_pull_request)
+- [get_repo_discussions()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_repo_discussions)
+- [get_discussion_details()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_discussion_details)
+- [create_discussion()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_discussion)
+- [create_pull_request()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_pull_request)
+- [rename_discussion()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.rename_discussion)
+- [comment_discussion()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.comment_discussion)
+- [edit_discussion_comment()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.edit_discussion_comment)
+- [change_discussion_status()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.change_discussion_status)
+- [merge_pull_request()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.merge_pull_request)
 
 ## Data structures[[huggingface_hub.Discussion]]
 
@@ -21,7 +21,7 @@ interaction with Pull Requests and Discussions on the Hub.
 huggingface_hub.Discussion(title: str, status: typing.Literal['open', 'closed', 'merged', 'draft'], num: int, repo_id: str, repo_type: str, author: str, is_pull_request: bool, created_at: datetime, endpoint: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/community.py#L20)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/community.py#L20)
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ This dataclass is not intended to be instantiated directly.
 huggingface_hub.DiscussionWithDetails(title: str, status: typing.Literal['open', 'closed', 'merged', 'draft'], num: int, repo_id: str, repo_type: str, author: str, is_pull_request: bool, created_at: datetime, endpoint: str, events: list, conflicting_files: list[str] | bool | None, target_branch: str | None, merge_commit_oid: str | None, diff: str | None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/community.py#L88)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/community.py#L88)
 
 **Parameters:**
 
@@ -77,7 +77,7 @@ is_pull_request (`bool`) : Whether or not this is a Pull Request.
 
 created_at (`datetime`) : The `datetime` of creation of the Discussion / Pull Request.
 
-events (`list` of [DiscussionEvent](/docs/huggingface_hub/v1.27.0/en/package_reference/community#huggingface_hub.DiscussionEvent)) : The list of `DiscussionEvents` in this Discussion or Pull Request.
+events (`list` of [DiscussionEvent](/docs/huggingface_hub/v1.29.0/en/package_reference/community#huggingface_hub.DiscussionEvent)) : The list of `DiscussionEvents` in this Discussion or Pull Request.
 
 conflicting_files (`Union[list[str], bool, None]`, *optional*) : A list of conflicting files if this is a Pull Request. `None` if `self.is_pull_request` is `False`. `True` if there are conflicting files but the list can't be retrieved.
 
@@ -93,7 +93,7 @@ git_reference (`str`, *optional*) : (property) Git reference to which changes ca
 
 url (`str`) : (property) URL of the discussion on the Hub.
 
-Subclass of [Discussion](/docs/huggingface_hub/v1.27.0/en/package_reference/community#huggingface_hub.Discussion).
+Subclass of [Discussion](/docs/huggingface_hub/v1.29.0/en/package_reference/community#huggingface_hub.Discussion).
 
 #### huggingface_hub.DiscussionEvent[[huggingface_hub.DiscussionEvent]]
 
@@ -101,7 +101,7 @@ Subclass of [Discussion](/docs/huggingface_hub/v1.27.0/en/package_reference/comm
 huggingface_hub.DiscussionEvent(id: str, type: str, created_at: datetime, author: str, _event: dict)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/community.py#L155)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/community.py#L155)
 
 **Parameters:**
 
@@ -116,10 +116,10 @@ author (`str`) : The username of the Discussion / Pull Request author. Can be `"
 An event in a Discussion or Pull Request.
 
 Use concrete classes:
-* [DiscussionComment](/docs/huggingface_hub/v1.27.0/en/package_reference/community#huggingface_hub.DiscussionComment)
-* [DiscussionStatusChange](/docs/huggingface_hub/v1.27.0/en/package_reference/community#huggingface_hub.DiscussionStatusChange)
-* [DiscussionCommit](/docs/huggingface_hub/v1.27.0/en/package_reference/community#huggingface_hub.DiscussionCommit)
-* [DiscussionTitleChange](/docs/huggingface_hub/v1.27.0/en/package_reference/community#huggingface_hub.DiscussionTitleChange)
+* [DiscussionComment](/docs/huggingface_hub/v1.29.0/en/package_reference/community#huggingface_hub.DiscussionComment)
+* [DiscussionStatusChange](/docs/huggingface_hub/v1.29.0/en/package_reference/community#huggingface_hub.DiscussionStatusChange)
+* [DiscussionCommit](/docs/huggingface_hub/v1.29.0/en/package_reference/community#huggingface_hub.DiscussionCommit)
+* [DiscussionTitleChange](/docs/huggingface_hub/v1.29.0/en/package_reference/community#huggingface_hub.DiscussionTitleChange)
 
 #### huggingface_hub.DiscussionComment[[huggingface_hub.DiscussionComment]]
 
@@ -127,7 +127,7 @@ Use concrete classes:
 huggingface_hub.DiscussionComment(id: str, type: str, created_at: datetime, author: str, _event: dict, content: str, edited: bool, hidden: bool)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/community.py#L188)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/community.py#L188)
 
 **Parameters:**
 
@@ -147,7 +147,7 @@ hidden (`bool`) : Whether or not this comment has been hidden.
 
 A comment in a Discussion / Pull Request.
 
-Subclass of [DiscussionEvent](/docs/huggingface_hub/v1.27.0/en/package_reference/community#huggingface_hub.DiscussionEvent).
+Subclass of [DiscussionEvent](/docs/huggingface_hub/v1.29.0/en/package_reference/community#huggingface_hub.DiscussionEvent).
 
 #### huggingface_hub.DiscussionStatusChange[[huggingface_hub.DiscussionStatusChange]]
 
@@ -155,7 +155,7 @@ Subclass of [DiscussionEvent](/docs/huggingface_hub/v1.27.0/en/package_reference
 huggingface_hub.DiscussionStatusChange(id: str, type: str, created_at: datetime, author: str, _event: dict, new_status: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/community.py#L243)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/community.py#L243)
 
 **Parameters:**
 
@@ -171,7 +171,7 @@ new_status (`str`) : The status of the Discussion / Pull Request after the chang
 
 A change of status in a Discussion / Pull Request.
 
-Subclass of [DiscussionEvent](/docs/huggingface_hub/v1.27.0/en/package_reference/community#huggingface_hub.DiscussionEvent).
+Subclass of [DiscussionEvent](/docs/huggingface_hub/v1.29.0/en/package_reference/community#huggingface_hub.DiscussionEvent).
 
 #### huggingface_hub.DiscussionCommit[[huggingface_hub.DiscussionCommit]]
 
@@ -179,7 +179,7 @@ Subclass of [DiscussionEvent](/docs/huggingface_hub/v1.27.0/en/package_reference
 huggingface_hub.DiscussionCommit(id: str, type: str, created_at: datetime, author: str, _event: dict, summary: str, oid: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/community.py#L271)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/community.py#L271)
 
 **Parameters:**
 
@@ -197,7 +197,7 @@ oid (`str`) : The OID / SHA of the commit, as a hexadecimal string.
 
 A commit in a Pull Request.
 
-Subclass of [DiscussionEvent](/docs/huggingface_hub/v1.27.0/en/package_reference/community#huggingface_hub.DiscussionEvent).
+Subclass of [DiscussionEvent](/docs/huggingface_hub/v1.29.0/en/package_reference/community#huggingface_hub.DiscussionEvent).
 
 #### huggingface_hub.DiscussionTitleChange[[huggingface_hub.DiscussionTitleChange]]
 
@@ -205,7 +205,7 @@ Subclass of [DiscussionEvent](/docs/huggingface_hub/v1.27.0/en/package_reference
 huggingface_hub.DiscussionTitleChange(id: str, type: str, created_at: datetime, author: str, _event: dict, old_title: str, new_title: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/community.py#L298)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/community.py#L298)
 
 **Parameters:**
 
@@ -223,7 +223,7 @@ new_title (`str`) : The new title.
 
 A rename event in a Discussion / Pull Request.
 
-Subclass of [DiscussionEvent](/docs/huggingface_hub/v1.27.0/en/package_reference/community#huggingface_hub.DiscussionEvent).
+Subclass of [DiscussionEvent](/docs/huggingface_hub/v1.29.0/en/package_reference/community#huggingface_hub.DiscussionEvent).
 
-### Strict Dataclasses
-https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/dataclasses.md
+### Webhooks Server
+https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/webhooks_server.md

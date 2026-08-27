@@ -47,14 +47,14 @@ def greet_json(request: Request):
 huggingface_hub.attach_huggingface_oauth(app: fastapi.FastAPI, route_prefix: str = '/')
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_oauth.py#L124)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_oauth.py#L124)
 
 Add OAuth endpoints to a FastAPI app to enable OAuth login with Hugging Face.
 
 How to use:
 - Call this method on your FastAPI app to add the OAuth endpoints.
 - Inside your route handlers, call `parse_huggingface_oauth(request)` to retrieve the OAuth info.
-- If user is logged in, an [OAuthInfo](/docs/huggingface_hub/v1.27.0/en/package_reference/oauth#huggingface_hub.OAuthInfo) object is returned with the user's info. If not, `None` is returned.
+- If user is logged in, an [OAuthInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/oauth#huggingface_hub.OAuthInfo) object is returned with the user's info. If not, `None` is returned.
 - In your app, make sure to add links to `/oauth/huggingface/login` and `/oauth/huggingface/logout` for the user to log in and out.
 
 Example:
@@ -85,16 +85,16 @@ def greet_json(request: Request):
 huggingface_hub.parse_huggingface_oauth(request: fastapi.Request)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_oauth.py#L191)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_oauth.py#L191)
 
-Returns the information from a logged-in user as a [OAuthInfo](/docs/huggingface_hub/v1.27.0/en/package_reference/oauth#huggingface_hub.OAuthInfo) object.
+Returns the information from a logged-in user as a [OAuthInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/oauth#huggingface_hub.OAuthInfo) object.
 
 For flexibility and future-proofing, this method is very lax in its parsing and does not raise errors.
 Missing fields are set to `None` without a warning.
 
 Return `None`, if the user is not logged in (no info in session cookie).
 
-See [attach_huggingface_oauth()](/docs/huggingface_hub/v1.27.0/en/package_reference/oauth#huggingface_hub.attach_huggingface_oauth) for an example on how to use this method.
+See [attach_huggingface_oauth()](/docs/huggingface_hub/v1.29.0/en/package_reference/oauth#huggingface_hub.attach_huggingface_oauth) for an example on how to use this method.
 
 ### OAuthOrgInfo[[huggingface_hub.OAuthOrgInfo]]
 
@@ -104,7 +104,7 @@ See [attach_huggingface_oauth()](/docs/huggingface_hub/v1.27.0/en/package_refere
 huggingface_hub.OAuthOrgInfo(sub: str, name: str, preferred_username: str, picture: str, plan: str | None = None, can_pay: bool | None = None, role_in_org: str | None = None, security_restrictions: list[typing.Literal['ip', 'token-policy', 'mfa', 'sso']] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_oauth.py#L23)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_oauth.py#L23)
 
 **Parameters:**
 
@@ -134,7 +134,7 @@ Information about an organization linked to a user logged in with OAuth.
 huggingface_hub.OAuthUserInfo(sub: str, name: str, preferred_username: str, email_verified: bool | None, email: str | None, picture: str, profile: str, website: str | None, is_pro: bool, can_pay: bool | None, orgs: list[huggingface_hub._oauth.OAuthOrgInfo] | None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_oauth.py#L57)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_oauth.py#L57)
 
 **Parameters:**
 
@@ -170,7 +170,7 @@ Information about a user logged in with OAuth.
 huggingface_hub.OAuthInfo(access_token: str, access_token_expires_at: datetime, user_info: OAuthUserInfo, state: str | None, scope: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_oauth.py#L100)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_oauth.py#L100)
 
 **Parameters:**
 
@@ -178,7 +178,7 @@ access_token (`str`) : The access token.
 
 access_token_expires_at (`datetime.datetime`) : The expiration date of the access token.
 
-user_info ([OAuthUserInfo](/docs/huggingface_hub/v1.27.0/en/package_reference/oauth#huggingface_hub.OAuthUserInfo)) : The user information.
+user_info ([OAuthUserInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/oauth#huggingface_hub.OAuthUserInfo)) : The user information.
 
 state (`str`, *optional*) : State passed to the OAuth provider in the original request to the OAuth provider.
 
@@ -186,5 +186,5 @@ scope (`str`) : Granted scope.
 
 Information about the OAuth login.
 
-### Overview
-https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/overview.md
+### Sandboxes
+https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/sandbox.md

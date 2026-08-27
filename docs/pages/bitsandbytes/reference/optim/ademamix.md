@@ -12,7 +12,7 @@ bitsandbytes also supports paged optimizers which take advantage of CUDAs unifie
 bitsandbytes.optim.AdEMAMix(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999), alpha: float = 5.0, t_alpha: typing.Optional[int] = None, t_beta3: typing.Optional[int] = None, eps: float = 1e-08, weight_decay: float = 0.01, optim_bits: typing.Literal[8, 32] = 32, min_8bit_size: int = 4096, is_paged: bool = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/ademamix.py#L107)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/ademamix.py#L107)
 
 #### __init__[[bitsandbytes.optim.AdEMAMix.__init__]]
 
@@ -20,7 +20,7 @@ bitsandbytes.optim.AdEMAMix(params: Iterable, lr: float = 0.001, betas: tuple = 
 __init__(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999), alpha: float = 5.0, t_alpha: typing.Optional[int] = None, t_beta3: typing.Optional[int] = None, eps: float = 1e-08, weight_decay: float = 0.01, optim_bits: typing.Literal[8, 32] = 32, min_8bit_size: int = 4096, is_paged: bool = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/ademamix.py#L108)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/ademamix.py#L108)
 
 ## AdEMAMix8bit[[bitsandbytes.optim.AdEMAMix8bit]]
 
@@ -30,7 +30,7 @@ __init__(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999
 bitsandbytes.optim.AdEMAMix8bit(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999), alpha: float = 5.0, t_alpha: typing.Optional[int] = None, t_beta3: typing.Optional[int] = None, eps: float = 1e-08, weight_decay: float = 0.01, min_8bit_size: int = 4096, is_paged: bool = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/ademamix.py#L270)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/ademamix.py#L270)
 
 #### __init__[[bitsandbytes.optim.AdEMAMix8bit.__init__]]
 
@@ -38,7 +38,7 @@ bitsandbytes.optim.AdEMAMix8bit(params: Iterable, lr: float = 0.001, betas: tupl
 __init__(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999), alpha: float = 5.0, t_alpha: typing.Optional[int] = None, t_beta3: typing.Optional[int] = None, eps: float = 1e-08, weight_decay: float = 0.01, min_8bit_size: int = 4096, is_paged: bool = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/ademamix.py#L271)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/ademamix.py#L271)
 
 ## AdEMAMix32bit[[bitsandbytes.optim.AdEMAMix32bit]]
 
@@ -48,7 +48,7 @@ __init__(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999
 bitsandbytes.optim.AdEMAMix32bit(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999), alpha: float = 5.0, t_alpha: typing.Optional[int] = None, t_beta3: typing.Optional[int] = None, eps: float = 1e-08, weight_decay: float = 0.01, min_8bit_size: int = 4096, is_paged: bool = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/ademamix.py#L355)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/ademamix.py#L355)
 
 #### __init__[[bitsandbytes.optim.AdEMAMix32bit.__init__]]
 
@@ -56,7 +56,7 @@ bitsandbytes.optim.AdEMAMix32bit(params: Iterable, lr: float = 0.001, betas: tup
 __init__(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999), alpha: float = 5.0, t_alpha: typing.Optional[int] = None, t_beta3: typing.Optional[int] = None, eps: float = 1e-08, weight_decay: float = 0.01, min_8bit_size: int = 4096, is_paged: bool = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/ademamix.py#L356)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/ademamix.py#L356)
 
 ## PagedAdEMAMix[[bitsandbytes.optim.PagedAdEMAMix]]
 
@@ -66,7 +66,7 @@ __init__(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999
 bitsandbytes.optim.PagedAdEMAMix(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999), alpha: float = 5.0, t_alpha: typing.Optional[int] = None, t_beta3: typing.Optional[int] = None, eps: float = 1e-08, weight_decay: float = 0.01, optim_bits: typing.Literal[8, 32] = 32, min_8bit_size: int = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/ademamix.py#L326)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/ademamix.py#L326)
 
 #### __init__[[bitsandbytes.optim.PagedAdEMAMix.__init__]]
 
@@ -74,7 +74,7 @@ bitsandbytes.optim.PagedAdEMAMix(params: Iterable, lr: float = 0.001, betas: tup
 __init__(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999), alpha: float = 5.0, t_alpha: typing.Optional[int] = None, t_beta3: typing.Optional[int] = None, eps: float = 1e-08, weight_decay: float = 0.01, optim_bits: typing.Literal[8, 32] = 32, min_8bit_size: int = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/ademamix.py#L327)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/ademamix.py#L327)
 
 ## PagedAdEMAMix8bit[[bitsandbytes.optim.PagedAdEMAMix8bit]]
 
@@ -84,7 +84,7 @@ __init__(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999
 bitsandbytes.optim.PagedAdEMAMix8bit(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999), alpha: float = 5.0, t_alpha: typing.Optional[int] = None, t_beta3: typing.Optional[int] = None, eps: float = 1e-08, weight_decay: float = 0.01, min_8bit_size: int = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/ademamix.py#L299)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/ademamix.py#L299)
 
 #### __init__[[bitsandbytes.optim.PagedAdEMAMix8bit.__init__]]
 
@@ -92,7 +92,7 @@ bitsandbytes.optim.PagedAdEMAMix8bit(params: Iterable, lr: float = 0.001, betas:
 __init__(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999), alpha: float = 5.0, t_alpha: typing.Optional[int] = None, t_beta3: typing.Optional[int] = None, eps: float = 1e-08, weight_decay: float = 0.01, min_8bit_size: int = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/ademamix.py#L300)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/ademamix.py#L300)
 
 ## PagedAdEMAMix32bit[[bitsandbytes.optim.PagedAdEMAMix32bit]]
 
@@ -102,7 +102,7 @@ __init__(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999
 bitsandbytes.optim.PagedAdEMAMix32bit(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999), alpha: float = 5.0, t_alpha: typing.Optional[int] = None, t_beta3: typing.Optional[int] = None, eps: float = 1e-08, weight_decay: float = 0.01, min_8bit_size: int = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/ademamix.py#L386)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/ademamix.py#L386)
 
 #### __init__[[bitsandbytes.optim.PagedAdEMAMix32bit.__init__]]
 
@@ -110,7 +110,7 @@ bitsandbytes.optim.PagedAdEMAMix32bit(params: Iterable, lr: float = 0.001, betas
 __init__(params: Iterable, lr: float = 0.001, betas: tuple = (0.9, 0.999, 0.9999), alpha: float = 5.0, t_alpha: typing.Optional[int] = None, t_beta3: typing.Optional[int] = None, eps: float = 1e-08, weight_decay: float = 0.01, min_8bit_size: int = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/ademamix.py#L387)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/ademamix.py#L387)
 
 ### LAMB
-https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/lamb.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/lamb.md

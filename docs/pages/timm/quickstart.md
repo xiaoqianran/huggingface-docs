@@ -10,7 +10,7 @@ pip install timm
 
 ## Load a Pretrained Model
 
-Pretrained models can be loaded using [create_model()](/docs/timm/v1.0.28/en/reference/models#timm.create_model).
+Pretrained models can be loaded using [create_model()](/docs/timm/v1.0.29/en/reference/models#timm.create_model).
 
 Here, we load the pretrained `mobilenetv3_large_100` model.
 
@@ -25,7 +25,7 @@ Here, we load the pretrained `mobilenetv3_large_100` model.
 
 ## List Models with Pretrained Weights
 
-To list models packaged with `timm`, you can use [list_models()](/docs/timm/v1.0.28/en/reference/models#timm.list_models). If you specify `pretrained=True`, this function will only return model names that have associated pretrained weights available. 
+To list models packaged with `timm`, you can use [list_models()](/docs/timm/v1.0.29/en/reference/models#timm.list_models). If you specify `pretrained=True`, this function will only return model names that have associated pretrained weights available. 
 
 ```py
 >>> import timm
@@ -90,7 +90,7 @@ torch.Size([1, 960, 7, 7])
 
 ## Image Augmentation
 
-To transform images into valid inputs for a model, you can use [timm.data.create_transform()](/docs/timm/v1.0.28/en/reference/data#timm.data.create_transform), providing the desired `input_size` that the model expects.
+To transform images into valid inputs for a model, you can use [timm.data.create_transform()](/docs/timm/v1.0.29/en/reference/data#timm.data.create_transform), providing the desired `input_size` that the model expects.
 
 This will return a generic transform that uses reasonable defaults.
 
@@ -123,7 +123,7 @@ To figure out which transformations were used for a given pretrained model, we c
  'architecture': 'mobilenetv3_large_100'}
 ```
 
-We can then resolve only the data related configuration by using [timm.data.resolve_data_config()](/docs/timm/v1.0.28/en/reference/data#timm.data.resolve_data_config).
+We can then resolve only the data related configuration by using [timm.data.resolve_data_config()](/docs/timm/v1.0.29/en/reference/data#timm.data.resolve_data_config).
 
 ```py
 >>> timm.data.resolve_data_config(model.pretrained_cfg)
@@ -134,7 +134,7 @@ We can then resolve only the data related configuration by using [timm.data.reso
  'crop_pct': 0.875}
 ```
 
-We can pass this data config to [timm.data.create_transform()](/docs/timm/v1.0.28/en/reference/data#timm.data.create_transform) to initialize the model's associated transform.
+We can pass this data config to [timm.data.create_transform()](/docs/timm/v1.0.29/en/reference/data#timm.data.create_transform) to initialize the model's associated transform.
 
 ```py
 >>> data_cfg = timm.data.resolve_data_config(model.pretrained_cfg)
@@ -221,5 +221,5 @@ If we check the imagenet labels for the top index, we can see what the model pre
  {'label': 'motor_scooter, scooter', 'value': 0.004942195490002632}]
 ```
 
-### Installation
-https://huggingface.co/docs/timm/v1.0.28/installation.md
+### timm
+https://huggingface.co/docs/timm/v1.0.29/index.md

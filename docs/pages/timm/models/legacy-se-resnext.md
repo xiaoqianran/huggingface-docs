@@ -88,5 +88,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### Res2NeXt
-https://huggingface.co/docs/timm/v1.0.28/models/res2next.md
+### ResNet-D
+https://huggingface.co/docs/timm/v1.0.29/models/resnet-d.md

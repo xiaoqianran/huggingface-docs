@@ -10,7 +10,7 @@
 bitsandbytes.optim.Lion(params, lr = 0.0001, betas = (0.9, 0.99), weight_decay = 0, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lion.py#L8)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lion.py#L8)
 
 #### __init__[[bitsandbytes.optim.Lion.__init__]]
 
@@ -18,7 +18,7 @@ bitsandbytes.optim.Lion(params, lr = 0.0001, betas = (0.9, 0.99), weight_decay =
 __init__(params, lr = 0.0001, betas = (0.9, 0.99), weight_decay = 0, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lion.py#L9)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lion.py#L9)
 
 **Parameters:**
 
@@ -48,7 +48,7 @@ Base Lion optimizer.
 bitsandbytes.optim.Lion8bit(params, lr = 0.0001, betas = (0.9, 0.99), weight_decay = 0, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lion.py#L55)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lion.py#L55)
 
 #### __init__[[bitsandbytes.optim.Lion8bit.__init__]]
 
@@ -56,7 +56,7 @@ bitsandbytes.optim.Lion8bit(params, lr = 0.0001, betas = (0.9, 0.99), weight_dec
 __init__(params, lr = 0.0001, betas = (0.9, 0.99), weight_decay = 0, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lion.py#L56)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lion.py#L56)
 
 **Parameters:**
 
@@ -84,7 +84,7 @@ is_paged (`bool`, defaults to `False`) : Whether the optimizer is a paged optimi
 bitsandbytes.optim.Lion32bit(params, lr = 0.0001, betas = (0.9, 0.99), weight_decay = 0, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lion.py#L99)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lion.py#L99)
 
 #### __init__[[bitsandbytes.optim.Lion32bit.__init__]]
 
@@ -92,7 +92,7 @@ bitsandbytes.optim.Lion32bit(params, lr = 0.0001, betas = (0.9, 0.99), weight_de
 __init__(params, lr = 0.0001, betas = (0.9, 0.99), weight_decay = 0, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lion.py#L100)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lion.py#L100)
 
 **Parameters:**
 
@@ -120,7 +120,7 @@ is_paged (`bool`, defaults to `False`) : Whether the optimizer is a paged optimi
 bitsandbytes.optim.PagedLion(params, lr = 0.0001, betas = (0.9, 0.99), weight_decay = 0, optim_bits = 32, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lion.py#L143)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lion.py#L143)
 
 #### __init__[[bitsandbytes.optim.PagedLion.__init__]]
 
@@ -128,7 +128,7 @@ bitsandbytes.optim.PagedLion(params, lr = 0.0001, betas = (0.9, 0.99), weight_de
 __init__(params, lr = 0.0001, betas = (0.9, 0.99), weight_decay = 0, optim_bits = 32, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lion.py#L144)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lion.py#L144)
 
 **Parameters:**
 
@@ -156,7 +156,7 @@ Paged Lion optimizer.
 bitsandbytes.optim.PagedLion8bit(params, lr = 0.0001, betas = (0.9, 0.99), weight_decay = 0, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lion.py#L187)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lion.py#L187)
 
 #### __init__[[bitsandbytes.optim.PagedLion8bit.__init__]]
 
@@ -164,7 +164,7 @@ bitsandbytes.optim.PagedLion8bit(params, lr = 0.0001, betas = (0.9, 0.99), weigh
 __init__(params, lr = 0.0001, betas = (0.9, 0.99), weight_decay = 0, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lion.py#L188)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lion.py#L188)
 
 **Parameters:**
 
@@ -190,7 +190,7 @@ Paged 8-bit Lion optimizer.
 bitsandbytes.optim.PagedLion32bit(params, lr = 0.0001, betas = (0.9, 0.99), weight_decay = 0, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lion.py#L228)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lion.py#L228)
 
 #### __init__[[bitsandbytes.optim.PagedLion32bit.__init__]]
 
@@ -198,7 +198,7 @@ bitsandbytes.optim.PagedLion32bit(params, lr = 0.0001, betas = (0.9, 0.99), weig
 __init__(params, lr = 0.0001, betas = (0.9, 0.99), weight_decay = 0, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lion.py#L229)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lion.py#L229)
 
 **Parameters:**
 
@@ -217,4 +217,4 @@ min_8bit_size (`int`, defaults to 4096) : The minimum number of elements of the 
 Paged 32-bit Lion optimizer.
 
 ### Embedding
-https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/nn/embeddings.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/nn/embeddings.md

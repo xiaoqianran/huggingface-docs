@@ -10,7 +10,7 @@
 bitsandbytes.optim.LARS(params, lr, momentum = 0, dampening = 0, weight_decay = 0, nesterov = False, optim_bits = 32, args = None, min_8bit_size = 4096, max_unorm = 0.02)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lars.py#L11)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lars.py#L11)
 
 #### __init__[[bitsandbytes.optim.LARS.__init__]]
 
@@ -18,7 +18,7 @@ bitsandbytes.optim.LARS(params, lr, momentum = 0, dampening = 0, weight_decay = 
 __init__(params, lr, momentum = 0, dampening = 0, weight_decay = 0, nesterov = False, optim_bits = 32, args = None, min_8bit_size = 4096, max_unorm = 0.02)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lars.py#L12)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lars.py#L12)
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ Base LARS optimizer.
 bitsandbytes.optim.LARS8bit(params, lr, momentum = 0, dampening = 0, weight_decay = 0, nesterov = False, args = None, min_8bit_size = 4096, max_unorm = 0.02)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lars.py#L66)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lars.py#L66)
 
 #### __init__[[bitsandbytes.optim.LARS8bit.__init__]]
 
@@ -60,7 +60,7 @@ bitsandbytes.optim.LARS8bit(params, lr, momentum = 0, dampening = 0, weight_deca
 __init__(params, lr, momentum = 0, dampening = 0, weight_decay = 0, nesterov = False, args = None, min_8bit_size = 4096, max_unorm = 0.02)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lars.py#L67)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lars.py#L67)
 
 **Parameters:**
 
@@ -92,7 +92,7 @@ max_unorm (`float`, defaults to 0.02) : The maximum gradient norm.
 bitsandbytes.optim.LARS32bit(params, lr, momentum = 0, dampening = 0, weight_decay = 0, nesterov = False, args = None, min_8bit_size = 4096, max_unorm = 0.02)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lars.py#L118)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lars.py#L118)
 
 #### __init__[[bitsandbytes.optim.LARS32bit.__init__]]
 
@@ -100,7 +100,7 @@ bitsandbytes.optim.LARS32bit(params, lr, momentum = 0, dampening = 0, weight_dec
 __init__(params, lr, momentum = 0, dampening = 0, weight_decay = 0, nesterov = False, args = None, min_8bit_size = 4096, max_unorm = 0.02)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/lars.py#L119)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/lars.py#L119)
 
 **Parameters:**
 
@@ -125,4 +125,4 @@ max_unorm (`float`, defaults to 0.02) : The maximum gradient norm.
 32-bit LARS optimizer.
 
 ### RMSprop
-https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/rmsprop.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/rmsprop.md

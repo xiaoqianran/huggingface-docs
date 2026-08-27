@@ -234,6 +234,7 @@ $ hf buckets [OPTIONS] COMMAND [ARGS]...
 * `list`: List buckets or files in a bucket. [alias: ls]
 * `move`: Move (rename) a bucket to a new name or...
 * `remove`: Remove files from a bucket. [alias: rm]
+* `settings`: Update bucket settings (visibility).
 * `sync`: Sync files between local directory and a...
 
 ### `hf buckets cp`
@@ -473,6 +474,36 @@ Examples
   $ hf buckets rm user/my-bucket/logs/ --recursive
   $ hf buckets rm user/my-bucket --recursive --include "*.tmp"
   $ hf buckets rm user/my-bucket/data/ --recursive --dry-run
+
+Learn more
+  Use `hf <command> --help` for more information about a command.
+  Read the documentation at https://huggingface.co/docs/huggingface_hub/en/guides/cli
+
+### `hf buckets settings`
+
+Update bucket settings (visibility).
+
+**Usage**:
+
+```console
+$ hf buckets settings [OPTIONS] BUCKET_ID
+```
+
+**Arguments**:
+
+* `BUCKET_ID`: Bucket ID: namespace/bucket_name or hf://buckets/namespace/bucket_name  [required]
+
+**Options**:
+
+* `--private`: Make the bucket private.
+* `--public`: Make the bucket public.
+* `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
+* `--help`: Show this message and exit.
+
+Examples
+  $ hf buckets settings user/my-bucket --private
+  $ hf buckets settings user/my-bucket --public
+  $ hf buckets settings hf://buckets/user/my-bucket --private
 
 Learn more
   Use `hf <command> --help` for more information about a command.
@@ -1582,6 +1613,7 @@ $ hf endpoints [OPTIONS] COMMAND [ARGS]...
 * `delete`: Delete an Inference Endpoint permanently.
 * `deploy`: Deploy an Inference Endpoint from a Hub...
 * `describe`: Get information about an existing endpoint.
+* `hardware`: List the hardware available to deploy an...
 * `list`: Lists all Inference Endpoints for the... [alias: ls]
 * `list-catalog`: List available Catalog models.
 * `pause`: Pause an Inference Endpoint.
@@ -1688,6 +1720,9 @@ Learn more
 
 Deploy an Inference Endpoint from a Hub repository.
 
+Run `hf endpoints hardware` to list the valid `--vendor`, `--region`, `--accelerator`, `--instance-type` and
+`--instance-size` combinations.
+
 **Usage**:
 
 ```console
@@ -1716,9 +1751,12 @@ $ hf endpoints deploy [OPTIONS] NAME
 * `--scaling-metric [pendingRequests|hardwareUsage]`: The metric reference for scaling.
 * `--scaling-threshold FLOAT`: The scaling metric threshold used to trigger a scale up. Ignored when scaling metric is not provided.
 * `--revision TEXT`: Git revision id which can be a branch name, a tag, or a commit hash.
-* `--custom-image TEXT`: Docker image URL for a custom container (e.g. 'nexagi/sglang:v0.5.12'). Requires '--framework custom'.
-* `--health-route TEXT`: Health check route exposed by the custom container (e.g. '/health'). Requires --custom-image.
-* `--port INTEGER`: Port the custom container listens on (e.g. 30000). Requires --custom-image.
+* `--custom-image TEXT`: Docker image URL for the container to run (e.g. 'nexagi/sglang:v0.5.12'). Requires '--framework custom'.
+* `--engine [custom|hf-serve|llamacpp|sglang|tei|tgi|tgi-neuron|vllm|vllm-neuron]`: Managed engine image to run --custom-image with (e.g. 'vllm'). Defaults to an arbitrary container.
+* `--health-route TEXT`: Health check route exposed by the container (e.g. '/health'). Requires --custom-image.
+* `--port INTEGER`: Port the container listens on (e.g. 30000). Requires --custom-image.
+* `--tensor-parallel-size INTEGER`: Number of accelerators to shard a single model copy across (vLLM and SGLang engines only).
+* `--data-parallel-size INTEGER`: Number of model copies to run, one per accelerator (vLLM engine only).
 * `--container-command TEXT`: Override the container entrypoint, as a quoted string split into tokens (e.g. "python -m sglang.launch_server").
 * `--container-args TEXT`: Arguments appended to the container entrypoint, as a quoted string split into tokens (e.g. "--tp 8 --reasoning-parser qwen3").
 * `-e, --env TEXT`: Set environment variables. E.g. --env ENV=value
@@ -1730,6 +1768,7 @@ $ hf endpoints deploy [OPTIONS] NAME
 
 Examples
   $ hf endpoints deploy my-endpoint --repo gpt2 --framework pytorch ...
+  $ hf endpoints deploy my-endpoint --repo openai/gpt-oss-120b --framework custom --engine vllm --custom-image vllm/vllm-openai:v0.23.0 --tensor-parallel-size 8 ...
 
 Learn more
   Use `hf <command> --help` for more information about a command.
@@ -1757,6 +1796,41 @@ $ hf endpoints describe [OPTIONS] NAME
 
 Examples
   $ hf endpoints describe my-endpoint
+
+Learn more
+  Use `hf <command> --help` for more information about a command.
+  Read the documentation at https://huggingface.co/docs/huggingface_hub/en/guides/cli
+
+### `hf endpoints hardware`
+
+List the hardware available to deploy an Inference Endpoint on.
+
+Only the hardware the namespace can deploy on right now is listed: a usable status, and enough accelerator
+quota left for one replica. Use `--all` to list every combination the API returns.
+
+Quota is per namespace, so pass the same `--namespace` you will pass to `hf endpoints deploy`. Prices are in
+USD, per replica per hour.
+
+**Usage**:
+
+```console
+$ hf endpoints hardware [OPTIONS]
+```
+
+**Options**:
+
+* `--namespace TEXT`: The namespace associated with the Inference Endpoint. Defaults to the current user's namespace.
+* `--vendor TEXT`: Only show hardware hosted by this cloud provider (e.g. 'aws').
+* `--region TEXT`: Only show hardware available in this cloud region (e.g. 'us-east-1').
+* `--accelerator TEXT`: Only show hardware with this accelerator (e.g. 'cpu', 'gpu', 'neuron').
+* `--instance-type TEXT`: Only show hardware of this instance type (e.g. 'nvidia-l4').
+* `-a, --all`: Also show hardware that cannot be deployed on right now (unavailable, deprecated or out of quota).
+* `--token TEXT`: A User Access Token generated from https://huggingface.co/settings/tokens.
+* `--help`: Show this message and exit.
+
+Examples
+  $ hf endpoints hardware
+  $ hf endpoints hardware --vendor aws --accelerator gpu
 
 Learn more
   Use `hf <command> --help` for more information about a command.
@@ -1907,6 +1981,12 @@ $ hf endpoints update [OPTIONS] NAME
 * `--framework TEXT`: The machine learning framework used for the model (e.g. 'custom').
 * `--revision TEXT`: The specific model revision to deploy on the Inference Endpoint (e.g. '6c0e6080953db56375760c0471a8c5f2929baf11').
 * `--task TEXT`: The task on which to deploy the model (e.g. 'text-classification').
+* `--custom-image TEXT`: Docker image URL for the container to run (e.g. 'nexagi/sglang:v0.5.12'). Replaces the image currently configured on the endpoint rather than patching it, so pass the engine and container settings you want to keep along with it, run 'hf endpoints describe NAME' first to see them.
+* `--engine [custom|hf-serve|llamacpp|sglang|tei|tgi|tgi-neuron|vllm|vllm-neuron]`: Managed engine image to run --custom-image with (e.g. 'vllm'). Defaults to an arbitrary container.
+* `--health-route TEXT`: Health check route exposed by the container (e.g. '/health'). Requires --custom-image.
+* `--port INTEGER`: Port the container listens on (e.g. 30000). Requires --custom-image.
+* `--tensor-parallel-size INTEGER`: Number of accelerators to shard a single model copy across (vLLM and SGLang engines only).
+* `--data-parallel-size INTEGER`: Number of model copies to run, one per accelerator (vLLM engine only).
 * `--container-command TEXT`: Override the container entrypoint, as a quoted string split into tokens (e.g. "python -m sglang.launch_server"). Replaces the current value; pass an empty string to clear it.
 * `--container-args TEXT`: Arguments appended to the container entrypoint, as a quoted string split into tokens (e.g. "--enable-auto-tool-choice --tool-call-parser lfm2"). Replaces the arguments currently set on the endpoint rather than adding to them, so include the ones you want to keep, run 'hf endpoints describe NAME' first to see them. Pass an empty string to clear them.
 * `--min-replica INTEGER`: The minimum number of replicas (instances) to keep running for the Inference Endpoint.
@@ -1919,6 +1999,7 @@ $ hf endpoints update [OPTIONS] NAME
 
 Examples
   $ hf endpoints update my-endpoint --min-replica 2
+  $ hf endpoints update my-endpoint --tensor-parallel-size 8
   $ hf endpoints update my-endpoint --container-args "--enable-auto-tool-choice --tool-call-parser lfm2"
 
 Learn more
@@ -2255,7 +2336,7 @@ Learn more
 
 List Jobs.
 
-Use `--status` to filter by status (see [JobStage](/docs/huggingface_hub/v1.27.0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values) and `--label` to filter by `key=value`
+Use `--status` to filter by status (see [JobStage](/docs/huggingface_hub/v1.29.0/en/package_reference/jobs#huggingface_hub.JobStage) for possible values) and `--label` to filter by `key=value`
 labels. A Job must match every filter to be listed.
 
 **Usage**:
@@ -5317,5 +5398,5 @@ Learn more
   Use `hf <command> --help` for more information about a command.
   Read the documentation at https://huggingface.co/docs/huggingface_hub/en/guides/cli
 
-### Inference Endpoints
-https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/inference_endpoints.md
+### Interacting with Discussions and Pull Requests
+https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/community.md

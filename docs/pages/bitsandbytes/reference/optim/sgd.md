@@ -12,7 +12,7 @@ bitsandbytes also supports momentum and Nesterov momentum to accelerate SGD by a
 bitsandbytes.optim.SGD(params, lr, momentum = 0, dampening = 0, weight_decay = 0, nesterov = False, optim_bits = 32, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/sgd.py#L8)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/sgd.py#L8)
 
 #### __init__[[bitsandbytes.optim.SGD.__init__]]
 
@@ -20,7 +20,7 @@ bitsandbytes.optim.SGD(params, lr, momentum = 0, dampening = 0, weight_decay = 0
 __init__(params, lr, momentum = 0, dampening = 0, weight_decay = 0, nesterov = False, optim_bits = 32, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/sgd.py#L9)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/sgd.py#L9)
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ Base SGD optimizer.
 bitsandbytes.optim.SGD8bit(params, lr, momentum = 0, dampening = 0, weight_decay = 0, nesterov = False, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/sgd.py#L59)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/sgd.py#L59)
 
 #### __init__[[bitsandbytes.optim.SGD8bit.__init__]]
 
@@ -60,7 +60,7 @@ bitsandbytes.optim.SGD8bit(params, lr, momentum = 0, dampening = 0, weight_decay
 __init__(params, lr, momentum = 0, dampening = 0, weight_decay = 0, nesterov = False, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/sgd.py#L60)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/sgd.py#L60)
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ min_8bit_size (`int`, defaults to 4096) : The minimum number of elements of the 
 bitsandbytes.optim.SGD32bit(params, lr, momentum = 0, dampening = 0, weight_decay = 0, nesterov = False, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/sgd.py#L107)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/sgd.py#L107)
 
 #### __init__[[bitsandbytes.optim.SGD32bit.__init__]]
 
@@ -98,7 +98,7 @@ bitsandbytes.optim.SGD32bit(params, lr, momentum = 0, dampening = 0, weight_deca
 __init__(params, lr, momentum = 0, dampening = 0, weight_decay = 0, nesterov = False, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/sgd.py#L108)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/sgd.py#L108)
 
 **Parameters:**
 
@@ -121,4 +121,4 @@ min_8bit_size (`int`, defaults to 4096) : The minimum number of elements of the 
 32-bit SGD optimizer.
 
 ### Lion
-https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/lion.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/lion.md

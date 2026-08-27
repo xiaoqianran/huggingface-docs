@@ -6,7 +6,7 @@ You can directly manage collections in the browser, but in this guide, we will f
 
 ## Fetch a collection
 
-Use [get_collection()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection) to fetch your collections or any public ones. You must have the collection's *slug* to retrieve a collection. A slug is an identifier for a collection based on the title and a unique ID. You can find the slug in the URL of the collection page.
+Use [get_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection) to fetch your collections or any public ones. You must have the collection's *slug* to retrieve a collection. A slug is an identifier for a collection based on the title and a unique ID. You can find the slug in the URL of the collection page.
 
     
 
@@ -38,15 +38,15 @@ CollectionItem(
 )
 ```
 
-The [Collection](/docs/huggingface_hub/v1.27.0/en/package_reference/collections#huggingface_hub.Collection) object returned by [get_collection()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection) contains:
+The [Collection](/docs/huggingface_hub/v1.29.0/en/package_reference/collections#huggingface_hub.Collection) object returned by [get_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection) contains:
 - high-level metadata: `slug`, `owner`, `title`, `description`, etc.
-- a list of [CollectionItem](/docs/huggingface_hub/v1.27.0/en/package_reference/collections#huggingface_hub.CollectionItem) objects; each item represents a model, a dataset, a Space, a paper, a collection, or a bucket.
+- a list of [CollectionItem](/docs/huggingface_hub/v1.29.0/en/package_reference/collections#huggingface_hub.CollectionItem) objects; each item represents a model, a dataset, a Space, a paper, a collection, or a bucket.
 
 All collection items are guaranteed to have:
 - a unique `item_object_id`: this is the id of the collection item in the database
 - an `item_id`: this is the id on the Hub of the underlying item (model, dataset, Space, paper, collection, bucket); it is not necessarily unique, and only the `item_id`/`item_type` pair is unique
 - an `item_type`: model, dataset, Space, paper, collection, bucket
-- the `position` of the item in the collection, which can be updated to reorganize your collection (see [update_collection_item()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item) below)
+- the `position` of the item in the collection, which can be updated to reorganize your collection (see [update_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item) below)
 
 A `note` can also be attached to the item. This is useful to add additional information about the item (a comment, a link to a blog post, etc.). The attribute still has a `None` value if an item doesn't have a note.
 
@@ -54,7 +54,7 @@ In addition to these base attributes, returned items can have additional attribu
 
 ## List collections
 
-We can also retrieve collections using [list_collections()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_collections). Collections can be filtered using some parameters. Let's list all the collections from the user [`teknium`](https://huggingface.co/teknium).
+We can also retrieve collections using [list_collections()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_collections). Collections can be filtered using some parameters. Let's list all the collections from the user [`teknium`](https://huggingface.co/teknium).
 ```py
 >>> from huggingface_hub import list_collections
 
@@ -71,7 +71,7 @@ Number of upvotes: 5
 ```
 
 > [!WARNING]
-> When listing collections, the item list per collection is truncated to 4 items maximum. To retrieve all items from a collection, you must use [get_collection()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection).
+> When listing collections, the item list per collection is truncated to 4 items maximum. To retrieve all items from a collection, you must use [get_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_collection).
 
 It is possible to do more advanced filtering. Let's get all collections containing the model [TheBloke/OpenHermes-2.5-Mistral-7B-GGUF](https://huggingface.co/TheBloke/OpenHermes-2.5-Mistral-7B-GGUF), sorted by trending, and limit the count to 5.
 ```py
@@ -92,11 +92,11 @@ Parameter `sort` must be one of  `"last_modified"`,  `"trending"` or `"upvotes"`
 * `"papers/2311.12983"`
 * `"buckets/namespace/bucket-name"`
 
-For more details, please check out [list_collections()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_collections) reference.
+For more details, please check out [list_collections()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_collections) reference.
 
 ## Create a new collection
 
-Now that we know how to get a [Collection](/docs/huggingface_hub/v1.27.0/en/package_reference/collections#huggingface_hub.Collection), let's create our own! Use [create_collection()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_collection) with a title and description. To create a collection on an organization page, pass `namespace="my-cool-org"` when creating the collection. Finally, you can also create private collections by passing `private=True`.
+Now that we know how to get a [Collection](/docs/huggingface_hub/v1.29.0/en/package_reference/collections#huggingface_hub.Collection), let's create our own! Use [create_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_collection) with a title and description. To create a collection on an organization page, pass `namespace="my-cool-org"` when creating the collection. Finally, you can also create private collections by passing `private=True`.
 
 ```py
 >>> from huggingface_hub import create_collection
@@ -107,7 +107,7 @@ Now that we know how to get a [Collection](/docs/huggingface_hub/v1.27.0/en/pack
 ... )
 ```
 
-It will return a [Collection](/docs/huggingface_hub/v1.27.0/en/package_reference/collections#huggingface_hub.Collection) object with the high-level metadata (title, description, owner, etc.) and an empty list of items. You will now be able to refer to this collection using its `slug`.
+It will return a [Collection](/docs/huggingface_hub/v1.29.0/en/package_reference/collections#huggingface_hub.Collection) object with the high-level metadata (title, description, owner, etc.) and an empty list of items. You will now be able to refer to this collection using its `slug`.
 
 ```py
 >>> collection.slug
@@ -122,11 +122,11 @@ It will return a [Collection](/docs/huggingface_hub/v1.27.0/en/package_reference
 
 ## Manage items in a collection
 
-Now that we have a [Collection](/docs/huggingface_hub/v1.27.0/en/package_reference/collections#huggingface_hub.Collection), we want to add items to it and organize them.
+Now that we have a [Collection](/docs/huggingface_hub/v1.29.0/en/package_reference/collections#huggingface_hub.Collection), we want to add items to it and organize them.
 
 ### Add items
 
-Items have to be added one by one using [add_collection_item()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.add_collection_item). You only need to know the `collection_slug`, `item_id` and `item_type`. Optionally, you can also add a `note` to the item (500 characters maximum).
+Items have to be added one by one using [add_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.add_collection_item). You only need to know the `collection_slug`, `item_id` and `item_type`. Optionally, you can also add a `note` to the item (500 characters maximum).
 
 ```py
 >>> from huggingface_hub import create_collection, add_collection_item
@@ -151,7 +151,7 @@ If an item already exists in a collection (same `item_id`/`item_type` pair), an 
 
 ### Add a note to an existing item
 
-You can modify an existing item to add or modify the note attached to it using [update_collection_item()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item). Let's reuse the example above:
+You can modify an existing item to add or modify the note attached to it using [update_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item). Let's reuse the example above:
 
 ```py
 >>> from huggingface_hub import get_collection, update_collection_item
@@ -170,7 +170,7 @@ You can modify an existing item to add or modify the note attached to it using [
 
 ### Reorder items
 
-Items in a collection are ordered. The order is determined by the `position` attribute of each item. By default, items are ordered by appending new items at the end of the collection. You can update the order using [update_collection_item()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item) the same way you would add a note.
+Items in a collection are ordered. The order is determined by the `position` attribute of each item. By default, items are ordered by appending new items at the end of the collection. You can update the order using [update_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_collection_item) the same way you would add a note.
 
 Let's reuse our example above:
 
@@ -191,7 +191,7 @@ Let's reuse our example above:
 
 ### Remove items
 
-Finally, you can also remove an item using [delete_collection_item()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection_item).
+Finally, you can also remove an item using [delete_collection_item()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection_item).
 
 ```py
 >>> from huggingface_hub import get_collection, update_collection_item
@@ -206,7 +206,7 @@ Finally, you can also remove an item using [delete_collection_item()](/docs/hugg
 
 ## Delete collection
 
-A collection can be deleted using [delete_collection()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection).
+A collection can be deleted using [delete_collection()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_collection).
 
 > [!WARNING]
 > This is a non-revertible action. A deleted collection cannot be restored.
@@ -216,5 +216,5 @@ A collection can be deleted using [delete_collection()](/docs/huggingface_hub/v1
 >>> collection = delete_collection("username/useless-collection-64f9a55bb3115b4f513ec026", missing_ok=True)
 ```
 
-### Manage your Space
-https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/manage-spaces.md
+### Create and manage a repository
+https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/repository.md

@@ -13,21 +13,21 @@ Key capabilities:
 
 1. **Cross-tokenizer alignment** – GOLD incrementally decodes the student and teacher tokens, groups passages with the same visible text, and merges probabilities inside each group. This guarantees loss terms are computed over the full completion even when token boundaries differ.
 2. **Hybrid ULD loss** – when `uld_use_hybrid_loss` is enabled, GOLD compares exact vocabulary matches directly and falls back to the original sorted-probability ULD loss for unmatched tokens. This improves stability for students whose vocabularies only partially overlap with the teacher.
-3. **Seamless integration with GKD** – GOLD inherits the on-policy vs. off-policy scheduling from the [experimental.gkd.GKDTrainer](/docs/trl/v1.10.0/en/gkd_trainer#trl.experimental.gkd.GKDTrainer), so you can combine sequence-level KD, generalized JSD, and cross-tokenizer distillation in a single training run.
+3. **Seamless integration with GKD** – GOLD inherits the on-policy vs. off-policy scheduling from the [experimental.gkd.GKDTrainer](/docs/trl/v1.12.0/en/gkd_trainer#trl.experimental.gkd.GKDTrainer), so you can combine sequence-level KD, generalized JSD, and cross-tokenizer distillation in a single training run.
 
 > [!NOTE]
 > GOLD is currently part of the `trl.experimental` namespace. APIs may change without notice while the feature is iterated on.
 
 ## Usage tips
 
-The `GOLDTrainer` subclasses [SFTTrainer](/docs/trl/v1.10.0/en/sft_trainer#trl.SFTTrainer) and accepts the same datasets as other TRL trainers (lists of ChatML style
+The `GOLDTrainer` subclasses [SFTTrainer](/docs/trl/v1.12.0/en/sft_trainer#trl.SFTTrainer) and accepts the same datasets as other TRL trainers (lists of ChatML style
 messages). Important configuration flags on `GOLDConfig` include:
 
 * `use_uld_loss` – toggles Universal Logit Distillation. Set this to `True` for cross-tokenizer setups.
 * `teacher_tokenizer_name_or_path` – required when `use_uld_loss=True`; GOLD uses the teacher tokenizer to align tokens.
 * `uld_use_hybrid_loss`, `uld_hybrid_matched_weight`, `uld_hybrid_unmatched_weight` – enables and weights the hybrid
   matched/unmatched loss.
-* `beta`, `lmbda`, `seq_kd` – inherited from [experimental.gkd.GKDConfig](/docs/trl/v1.10.0/en/gkd_trainer#trl.experimental.gkd.GKDConfig), controlling the generalized JSD interpolation and on-policy
+* `beta`, `lmbda`, `seq_kd` – inherited from [experimental.gkd.GKDConfig](/docs/trl/v1.12.0/en/gkd_trainer#trl.experimental.gkd.GKDConfig), controlling the generalized JSD interpolation and on-policy
   sampling ratio.
 * `num_generations`, `generation_batch_size` – control buffered rollout generation across gradient accumulation windows.
   `generation_batch_size` is the number of unique prompts per worker per optimizer step.
@@ -161,10 +161,10 @@ The merged distribution is unnormalized (sums to 0.81), but this is intentional 
 
 ## Example script
 
-Use [`examples/scripts/gold.py`](https://github.com/huggingface/trl/blob/main/examples/scripts/gold.py) to launch GOLD training from the command line. The script supports full training and LoRA via the standard `ModelConfig` flags.
+Use [`examples/gold_chatbot_arena/gold_chatbot_arena.py`](https://github.com/huggingface/trl/blob/main/examples/gold_chatbot_arena/gold_chatbot_arena.py) to launch GOLD training from the command line. The script supports full training and LoRA via the standard `ModelConfig` flags.
 
 ```bash
-python examples/scripts/gold.py \
+python examples/gold_chatbot_arena/gold_chatbot_arena.py \
     --model_name_or_path meta-llama/Llama-3.2-1B-Instruct \
     --teacher_model_name_or_path Qwen/Qwen2-1.5B-Instruct \
     --dataset_name trl-lib/chatbot_arena_completions \
@@ -214,16 +214,16 @@ trainer.train()
 
 For cross-family distillation, set `use_uld_loss=True` and `teacher_tokenizer_name_or_path` to the teacher model name.
 
-Use [`trl/experimental/gold/gold_vlm.py`](https://github.com/huggingface/trl/blob/main/trl/experimental/gold/gold_vlm.py) to launch GOLD VLM training from the command line:
+Use [`examples/gold_qwen3_vl/gold_qwen3_vl.py`](https://github.com/huggingface/trl/blob/main/examples/gold_qwen3_vl/gold_qwen3_vl.py) to launch GOLD VLM training from the command line:
 
 ```bash
 # Same-family distillation (JSD loss, vLLM enabled)
-accelerate launch trl/experimental/gold/gold_vlm.py \
+accelerate launch examples/gold_qwen3_vl/gold_qwen3_vl.py \
     --student_model_name Qwen/Qwen3-VL-2B-Instruct \
     --teacher_model_name Qwen/Qwen3-VL-8B-Instruct
 
 # Cross-family distillation (ULD loss, local generation)
-accelerate launch trl/experimental/gold/gold_vlm.py \
+accelerate launch examples/gold_qwen3_vl/gold_qwen3_vl.py \
     --student_model_name LiquidAI/LFM2.5-VL-1.6B \
     --teacher_model_name Qwen/Qwen3-VL-8B-Instruct \
     --use_uld_loss \
@@ -250,7 +250,7 @@ accelerate launch trl/experimental/gold/gold_vlm.py \
 trl.experimental.gold.GOLDTrainer(model: typing.Union[transformers.modeling_utils.PreTrainedModel, torch.nn.Module, str, NoneType] = None, teacher_model: typing.Union[transformers.modeling_utils.PreTrainedModel, torch.nn.Module, str] = None, args: trl.experimental.gold.gold_config.GOLDConfig | None = None, data_collator: collections.abc.Callable[[list[typing.Any]], dict[str, typing.Any]] | None = None, train_dataset: datasets.arrow_dataset.Dataset | None = None, eval_dataset: datasets.arrow_dataset.Dataset | dict[str, datasets.arrow_dataset.Dataset] | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.image_processing_utils.BaseImageProcessor | transformers.feature_extraction_utils.FeatureExtractionMixin | transformers.processing_utils.ProcessorMixin | None = None, compute_metrics: collections.abc.Callable[[transformers.trainer_utils.EvalPrediction], dict] | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple = (None, None), preprocess_logits_for_metrics: collections.abc.Callable[[torch.Tensor, torch.Tensor], torch.Tensor] | None = None, peft_config: typing.Optional[ForwardRef('PeftConfig')] = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/gold/gold_trainer.py#L768)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/gold/gold_trainer.py#L768)
 
 #### train[[trl.experimental.gold.GOLDTrainer.train]]
 
@@ -258,7 +258,7 @@ trl.experimental.gold.GOLDTrainer(model: typing.Union[transformers.modeling_util
 train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L1347)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L1350)
 
 **Parameters:**
 
@@ -280,7 +280,7 @@ Main training entry point.
 generate_on_policy_outputs(model, inputs, generation_config)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/gold/gold_trainer.py#L2633)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/gold/gold_trainer.py#L2633)
 
 #### save_model[[trl.experimental.gold.GOLDTrainer.save_model]]
 
@@ -288,7 +288,7 @@ generate_on_policy_outputs(model, inputs, generation_config)
 save_model(output_dir: str | None = None, _internal_call: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L3794)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L3805)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
@@ -300,7 +300,7 @@ Will only save from the main process.
 push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L4041)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L4052)
 
 **Parameters:**
 
@@ -326,10 +326,10 @@ Upload `self.model` and `self.processing_class` to the 🤗 model hub on the rep
 #### trl.experimental.gold.GOLDConfig[[trl.experimental.gold.GOLDConfig]]
 
 ```python
-trl.experimental.gold.GOLDConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 1e-07, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 10, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = True, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | str | None = None, router_aux_loss_coef: float = 0.001, trust_remote_code: bool = False, chat_template_path: str | None = None, dataset_text_field: str = 'text', dataset_kwargs: dict[str, typing.Any] | None = None, dataset_num_proc: int | None = None, eos_token: str | None = None, max_length: int | None = 1024, truncation_mode: str = 'keep_start', shuffle_dataset: bool = False, packing: bool = False, packing_strategy: str = 'bfd', padding_free: bool = False, pad_to_multiple_of: int | None = None, eval_packing: bool | None = None, completion_only_loss: bool | None = None, assistant_only_loss: bool = False, loss_type: str | None = None, activation_offloading: bool = False, pad_token: str | None = None, temperature: float = 0.9, top_p: float = 0.95, top_k: int = 0, lmbda: float = 0.5, beta: float = 0.5, max_completion_length: int = 128, teacher_model_name_or_path: str | None = None, teacher_model_revision: str | None = None, teacher_model_init_kwargs: dict[str, typing.Any] | str | None = None, teacher_tokenizer_name_or_path: str | None = None, disable_dropout: bool = True, seq_kd: bool = False, num_generations: int = 1, generation_batch_size: int | None = None, use_uld_loss: bool = False, uld_token_merge_strategy: str = 'observed', use_extended_uld: bool = True, uld_use_hybrid_loss: bool = False, uld_hybrid_matched_weight: float | None = None, uld_hybrid_unmatched_weight: float | None = None, uld_crossentropy_weight: float = 0.0, uld_distillation_weight: float = 1.0, uld_student_temperature: float = 1.0, uld_teacher_temperature: float = 1.0, uld_skip_student_eos: bool = True, uld_skip_teacher_eos: bool = True, use_vllm: bool = False, vllm_mode: str = 'colocate', vllm_server_base_url: str | None = None, vllm_server_host: str = '0.0.0.0', vllm_server_port: int = 8001, vllm_server_timeout: float = 240.0, vllm_group_port: int = 51216, vllm_gpu_memory_utilization: float = 0.9, vllm_tensor_parallel_size: int = 1, vllm_max_model_length: int | None = None, vllm_model_impl: str = 'vllm', vllm_structured_outputs_regex: str | None = None, vllm_sync_frequency: int = 1, vllm_enable_sleep_mode: bool = False, log_completions: bool = False, log_completions_steps: int = 100, num_completions_to_print: int | None = None, wandb_log_unique_prompts: bool = True, callbacks: list = <factory>)
+trl.experimental.gold.GOLDConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 1e-07, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 10, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = True, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, model_init_kwargs: dict[str, typing.Any] | str | None = None, router_aux_loss_coef: float = 0.001, trust_remote_code: bool = False, chat_template_path: str | None = None, dataset_text_field: str = 'text', dataset_kwargs: dict[str, typing.Any] | str | None = None, dataset_num_proc: int | None = None, eos_token: str | None = None, max_length: int | None = 1024, truncation_mode: str = 'keep_start', shuffle_dataset: bool = False, packing: bool = False, packing_strategy: str = 'bfd', padding_free: bool = False, pad_to_multiple_of: int | None = None, eval_packing: bool | None = None, completion_only_loss: bool | None = None, assistant_only_loss: bool = False, loss_type: str | None = None, activation_offloading: bool = False, pad_token: str | None = None, temperature: float = 0.9, top_p: float = 0.95, top_k: int = 0, lmbda: float = 0.5, beta: float = 0.5, max_completion_length: int = 128, teacher_model_name_or_path: str | None = None, teacher_model_revision: str | None = None, teacher_model_init_kwargs: dict[str, typing.Any] | str | None = None, teacher_tokenizer_name_or_path: str | None = None, disable_dropout: bool = True, seq_kd: bool = False, num_generations: int = 1, generation_batch_size: int | None = None, use_uld_loss: bool = False, uld_token_merge_strategy: str = 'observed', use_extended_uld: bool = True, uld_use_hybrid_loss: bool = False, uld_hybrid_matched_weight: float | None = None, uld_hybrid_unmatched_weight: float | None = None, uld_crossentropy_weight: float = 0.0, uld_distillation_weight: float = 1.0, uld_student_temperature: float = 1.0, uld_teacher_temperature: float = 1.0, uld_skip_student_eos: bool = True, uld_skip_teacher_eos: bool = True, use_vllm: bool = False, vllm_mode: str = 'colocate', vllm_server_base_url: str | None = None, vllm_server_host: str = '0.0.0.0', vllm_server_port: int = 8001, vllm_server_timeout: float = 240.0, vllm_group_port: int = 51216, vllm_gpu_memory_utilization: float = 0.9, vllm_tensor_parallel_size: int = 1, vllm_max_model_length: int | None = None, vllm_model_impl: str = 'vllm', vllm_structured_outputs_regex: str | None = None, vllm_sync_frequency: int = 1, vllm_enable_sleep_mode: bool = False, log_completions: bool = False, log_completions_steps: int = 100, num_completions_to_print: int | None = None, wandb_log_unique_prompts: bool = True, callbacks: list = <factory>)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/gold/gold_config.py#L23)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/gold/gold_config.py#L23)
 
 **Parameters that control generation and the training loop:**
 
@@ -391,7 +391,7 @@ uld_skip_teacher_eos (`bool`, *optional*, defaults to `True`) : Whether to skip 
 
 use_vllm (`bool`, *optional*, defaults to `False`) : Whether to use vLLM for generating completions from the student model. Requires `vllm` to be installed.
 
-vllm_mode (`str`, *optional*, defaults to `"colocate"`) : Mode for student vLLM integration. Either `"server"` (connect to a running TRL vLLM server) or `"colocate"` (run vLLM in the same process).
+vllm_mode (`str`, *optional*, defaults to `"colocate"`) : Mode for student vLLM integration. Either `"server"` (connect to a running vLLM server) or `"colocate"` (run vLLM in the same process).
 
 vllm_server_host (`str`, *optional*, defaults to `"0.0.0.0"`) : Host of the vLLM server for the student model (if `vllm_mode="server"`).
 
@@ -432,11 +432,11 @@ callbacks (`list[str]`, *optional*, defaults to `[]`) : The callbacks to run dur
 Configuration class for `GOLDTrainer`.
 
 This class includes only the parameters that are specific to GOLD training. For a full list of training arguments,
-please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) and [SFTConfig](/docs/trl/v1.10.0/en/sft_trainer#trl.SFTConfig) documentation.
+please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/trainer#transformers.TrainingArguments) and [SFTConfig](/docs/trl/v1.12.0/en/sft_trainer#trl.SFTConfig) documentation.
 
 > [!NOTE]
-> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments):
+> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/trainer#transformers.TrainingArguments):
 > - `learning_rate`: Defaults to `1e-7` instead of `5e-5`.
 
-### Examples
-https://huggingface.co/docs/trl/v1.10.0/example_overview.md
+### DPO Trainer
+https://huggingface.co/docs/trl/v1.12.0/dpo_trainer.md

@@ -119,5 +119,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### Deep Layer Aggregation
-https://huggingface.co/docs/timm/v1.0.28/models/dla.md
+### (Legacy) SE-ResNet
+https://huggingface.co/docs/timm/v1.0.29/models/legacy-se-resnet.md

@@ -88,5 +88,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### Wide ResNet
-https://huggingface.co/docs/timm/v1.0.28/models/wide-resnet.md
+### Dual Path Network (DPN)
+https://huggingface.co/docs/timm/v1.0.29/models/dpn.md

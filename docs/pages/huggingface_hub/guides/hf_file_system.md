@@ -1,11 +1,11 @@
 # Interact with the Hub through the Filesystem API
 
-In addition to the [HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi), the `huggingface_hub` library provides [HfFileSystem](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem), a pythonic [fsspec-compatible](https://filesystem-spec.readthedocs.io/en/latest/) file interface to the Hugging Face Hub. The [HfFileSystem](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) builds on top of the [HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi) and offers typical filesystem style operations like `cp`, `mv`, `ls`, `du`, `glob`, `get_file`, and `put_file`.
+In addition to the [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi), the `huggingface_hub` library provides [HfFileSystem](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem), a pythonic [fsspec-compatible](https://filesystem-spec.readthedocs.io/en/latest/) file interface to the Hugging Face Hub. The [HfFileSystem](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) builds on top of the [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi) and offers typical filesystem style operations like `cp`, `mv`, `ls`, `du`, `glob`, `get_file`, and `put_file`.
 
 > [!WARNING]
-> [HfFileSystem](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) provides fsspec compatibility, which is useful for libraries that require it (e.g., reading
+> [HfFileSystem](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) provides fsspec compatibility, which is useful for libraries that require it (e.g., reading
 >   Hugging Face datasets and buckets directly with `pandas`). However, it introduces additional overhead due to this compatibility
->   layer. For better performance and reliability, it's recommended to use [HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi) methods when possible.
+>   layer. For better performance and reliability, it's recommended to use [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi) methods when possible.
 
 ## Usage
 
@@ -43,7 +43,7 @@ Unlike Python's built-in `open`, `fsspec`'s `open` defaults to binary mode, `"rb
 
 ## Integrations
 
-The [HfFileSystem](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) can be used with any library that integrates `fsspec`, provided the URL follows the scheme:
+The [HfFileSystem](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) can be used with any library that integrates `fsspec`, provided the URL follows the scheme:
 
 ```
 hf://[<repo_type_prefix>]<repo_id>[@<revision>]/<path/in/repo>
@@ -51,13 +51,13 @@ hf://[<repo_type_prefix>]<repo_id>[@<revision>]/<path/in/repo>
 
 The `repo_type_prefix` is `datasets/` for datasets, `spaces/` for Spaces, and models don't need a prefix in the URL.
 
-In addition to repositories, the [HfFileSystem](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) also supports Hugging Face Buckets which are a S3-like object storage (see [this guide](./buckets) for more details):
+In addition to repositories, the [HfFileSystem](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) also supports Hugging Face Buckets which are a S3-like object storage (see [this guide](./buckets) for more details):
 
 ```
 hf://buckets/<bucket_id>/<path/in/bucket>
 ```
 
-Some interesting integrations where [HfFileSystem](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) simplifies interacting with the Hub are listed below:
+Some interesting integrations where [HfFileSystem](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem) simplifies interacting with the Hub are listed below:
 
 * Reading/writing a [Pandas](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#reading-writing-remote-files) DataFrame from/to a Hub repository:
 
@@ -111,7 +111,7 @@ The same workflow can also be used for [Dask](https://docs.dask.org/en/stable/ho
 
 In many cases, you must be logged in with a Hugging Face account to interact with the Hub. Refer to the [Authentication](../quick-start#authentication) section of the documentation to learn more about authentication methods on the Hub.
 
-It is also possible to log in programmatically by passing your `token` as an argument to [HfFileSystem](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem):
+It is also possible to log in programmatically by passing your `token` as an argument to [HfFileSystem](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_file_system#huggingface_hub.HfFileSystem):
 
 ```python
 >>> from huggingface_hub import HfFileSystem
@@ -120,5 +120,5 @@ It is also possible to log in programmatically by passing your `token` as an arg
 
 If you log in this way, be careful not to accidentally leak the token when sharing your source code!
 
-### Serialization
-https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/serialization.md
+### Webhooks
+https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/webhooks.md

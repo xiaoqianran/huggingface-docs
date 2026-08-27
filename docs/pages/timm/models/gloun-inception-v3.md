@@ -99,5 +99,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### SK-ResNet
-https://huggingface.co/docs/timm/v1.0.28/models/skresnet.md
+### (Tensorflow) EfficientNet CondConv
+https://huggingface.co/docs/timm/v1.0.29/models/tf-efficientnet-condconv.md

@@ -145,35 +145,35 @@ run_uv_job(
 )
 ```
 
-TRL example scripts are fully uv-compatible, so you can run a complete training workflow directly on Jobs. You can customize training with standard script arguments plus hardware and secrets:
+TRL training scripts are fully uv-compatible, so you can run a complete training workflow directly on Jobs. You can customize training with standard script arguments plus hardware and secrets:
 
 ```bash
 hf jobs uv run \
     --flavor a100-large \
     --secrets HF_TOKEN \
-    https://raw.githubusercontent.com/huggingface/trl/refs/heads/main/examples/scripts/prm.py \
+    https://raw.githubusercontent.com/huggingface/trl/refs/heads/main/trl/scripts/sft.py \
     --model_name_or_path Qwen/Qwen2-0.5B-Instruct \
-    --dataset_name trl-lib/prm800k \
-    --output_dir Qwen2-0.5B-Reward \
+    --dataset_name trl-lib/Capybara \
+    --output_dir Qwen2-0.5B-SFT \
     --push_to_hub
 ```
 
 ```python
 from huggingface_hub import run_uv_job
 run_uv_job(
-    "https://raw.githubusercontent.com/huggingface/trl/refs/heads/main/examples/scripts/prm.py",
+    "https://raw.githubusercontent.com/huggingface/trl/refs/heads/main/trl/scripts/sft.py",
     flavor="a100-large",
     secrets={"HF_TOKEN": "hf_..."},
     script_args=[
         "--model_name_or_path", "Qwen/Qwen2-0.5B-Instruct",
-        "--dataset_name", "trl-lib/prm800k",
-        "--output_dir", "Qwen2-0.5B-Reward",
+        "--dataset_name", "trl-lib/Capybara",
+        "--output_dir", "Qwen2-0.5B-SFT",
         "--push_to_hub"
     ]
 )
 ```
 
-See the full list of examples in [Example Scripts](example_overview#scripts).
+Every `.py` example in the [Examples Index](example_overview#index) declares its dependencies in a `# /// script` header, so it can be submitted to Jobs the same way (notebook-only examples cannot).
 
 ### Docker Images
 
@@ -220,5 +220,5 @@ run_uv_job(
 )
 ```
 
-### Unsloth Integration
-https://huggingface.co/docs/trl/v1.10.0/unsloth_integration.md
+### Callbacks
+https://huggingface.co/docs/trl/v1.12.0/callbacks.md

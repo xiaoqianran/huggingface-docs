@@ -32,5 +32,5 @@ I've collected several of the hparam families in a series of gists. These can be
 | `sbb` | ViT | [Link](https://gist.github.com/rwightman/fb37c339efd2334177ff99a8083ebbc4) |
 | — | Tiny Test Models | [Link](https://gist.github.com/rwightman/9ba8efc39a546426e99055720d2f705f) |
 
-### Model Summaries
-https://huggingface.co/docs/timm/v1.0.28/models.md
+### Sharing and Loading Models From the Hugging Face Hub
+https://huggingface.co/docs/timm/v1.0.29/hf_hub.md

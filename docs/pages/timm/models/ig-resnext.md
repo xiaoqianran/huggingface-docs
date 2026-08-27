@@ -92,5 +92,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### SPNASNet
-https://huggingface.co/docs/timm/v1.0.28/models/spnasnet.md
+### SSL ResNet
+https://huggingface.co/docs/timm/v1.0.29/models/ssl-resnet.md

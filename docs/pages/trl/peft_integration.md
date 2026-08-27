@@ -4,7 +4,7 @@ TRL supports [PEFT](https://github.com/huggingface/peft) (Parameter-Efficient Fi
 
 This guide covers how to use PEFT with different TRL trainers, including LoRA, QLoRA, and prompt tuning techniques.
 
-For a complete working example, see the [SFT with LoRA/QLoRA notebook](https://github.com/huggingface/trl/blob/main/examples/notebooks/sft_trl_lora_qlora.ipynb).
+For a complete working example, see the [SFT with LoRA/QLoRA notebook](https://github.com/huggingface/trl/blob/main/examples/sft_qlora/sft_qlora.ipynb).
 
 ## Installation
 
@@ -225,7 +225,7 @@ trainer.train()
 
 ### Direct Preference Optimization (DPO)
 
-The [DPOTrainer](/docs/trl/v1.10.0/en/bema_for_reference_model#trl.DPOTrainer) implements preference learning from human feedback.
+The [DPOTrainer](/docs/trl/v1.12.0/en/bema_for_reference_model#trl.DPOTrainer) implements preference learning from human feedback.
 
 #### With LoRA
 
@@ -346,7 +346,7 @@ pip install peft bitsandbytes
 The multi-adapter approach requires three stages:
 
 1. **Supervised Fine-Tuning (SFT)**: Train a base model on your target domain (e.g., IMDB dataset) using `SFTTrainer`
-2. **Reward Model Training**: Train a reward model adapter using PEFT and `RewardTrainer` (see [reward modeling example](https://github.com/huggingface/trl/tree/main/examples/scripts/reward_modeling.py))
+2. **Reward Model Training**: Train a reward model adapter using PEFT and `RewardTrainer` (see [`trl/scripts/reward.py`](https://github.com/huggingface/trl/blob/main/trl/scripts/reward.py))
 3. **PPO Training**: Fine-tune new adapters using PPO with the reward adapter
 
 > [!IMPORTANT]
@@ -437,7 +437,7 @@ python trl/scripts/sft.py \
 
 #### Python Example
 
-Pass the `quantization_config` directly to the trainer alongside `peft_config` — the trainer loads and quantizes the model for you. The same `quantization_config` argument is available on [SFTTrainer](/docs/trl/v1.10.0/en/sft_trainer#trl.SFTTrainer), [DPOTrainer](/docs/trl/v1.10.0/en/bema_for_reference_model#trl.DPOTrainer), [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer), and [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer).
+Pass the `quantization_config` directly to the trainer alongside `peft_config` — the trainer loads and quantizes the model for you. The same `quantization_config` argument is available on [SFTTrainer](/docs/trl/v1.12.0/en/sft_trainer#trl.SFTTrainer), [DPOTrainer](/docs/trl/v1.12.0/en/bema_for_reference_model#trl.DPOTrainer), [GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer), and [RLOOTrainer](/docs/trl/v1.12.0/en/rloo_trainer#trl.RLOOTrainer).
 
 ```python
 import torch
@@ -789,7 +789,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ### TRL Examples and Notebooks
 
-- **[SFT with LoRA/QLoRA Notebook](https://github.com/huggingface/trl/blob/main/examples/notebooks/sft_trl_lora_qlora.ipynb)** - Complete working example showing both LoRA and QLoRA implementations
+- **[SFT with LoRA/QLoRA Notebook](https://github.com/huggingface/trl/blob/main/examples/sft_qlora/sft_qlora.ipynb)** - Complete working example showing both LoRA and QLoRA implementations
 - **[TRL Examples Directory](https://github.com/huggingface/trl/tree/main/examples)** - Collection of training scripts demonstrating PEFT with different trainers
 - **[TRL Cookbook Recipes](https://github.com/huggingface/cookbook/tree/main/notebooks/transformers)** - Step-by-step guides for common PEFT training scenarios
 
@@ -805,5 +805,5 @@ model = AutoModelForCausalLM.from_pretrained(
 - [QLoRA Paper](https://huggingface.co/papers/2305.14314) - Efficient finetuning with 4-bit quantization
 - [Prompt Tuning Paper](https://huggingface.co/papers/2104.08691) - The Power of Scale for Parameter-Efficient Prompt Tuning
 
-### Distillation Trainer
-https://huggingface.co/docs/trl/v1.10.0/distillation_trainer.md
+### Speeding Up Training
+https://huggingface.co/docs/trl/v1.12.0/speeding_up_training.md

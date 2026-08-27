@@ -90,5 +90,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### # Ensemble Adversarial Inception ResNet v2
-https://huggingface.co/docs/timm/v1.0.28/models/ensemble-adversarial.md
+### NASNet
+https://huggingface.co/docs/timm/v1.0.29/models/nasnet.md

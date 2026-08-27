@@ -1,7 +1,7 @@
 {
-  "fetchedAt": "2026-08-26T07:53:04.030912+00:00",
+  "fetchedAt": "2026-08-27T18:13:37.168236+00:00",
   "method": "llms-full-split",
-  "ok": 2157,
+  "ok": 2158,
   "failed": 0,
   "pages": [
     {
@@ -705,9 +705,9 @@
     },
     {
       "rel": "bitsandbytes/installation.md",
-      "bytes": 18462,
+      "bytes": 19285,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/installation.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/installation.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "Installation Guide"
@@ -716,7 +716,7 @@
       "rel": "bitsandbytes/fsdp_qlora.md",
       "bytes": 7878,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/fsdp_qlora.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/fsdp_qlora.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "FSDP-QLoRA"
@@ -725,7 +725,7 @@
       "rel": "bitsandbytes/optimizers.md",
       "bytes": 4839,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/optimizers.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/optimizers.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "8-bit optimizers"
@@ -734,7 +734,7 @@
       "rel": "bitsandbytes/errors.md",
       "bytes": 2958,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/errors.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/errors.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "Troubleshoot"
@@ -743,7 +743,7 @@
       "rel": "bitsandbytes/contributing.md",
       "bytes": 1616,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/contributing.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/contributing.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "Contribution Guide"
@@ -752,7 +752,7 @@
       "rel": "bitsandbytes/quickstart.md",
       "bytes": 4102,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/quickstart.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/quickstart.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "Quickstart"
@@ -761,7 +761,7 @@
       "rel": "bitsandbytes/index.md",
       "bytes": 1041,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/index.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/index.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "bitsandbytes"
@@ -770,7 +770,7 @@
       "rel": "bitsandbytes/integrations.md",
       "bytes": 6988,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/integrations.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/integrations.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "Integrations"
@@ -779,7 +779,7 @@
       "rel": "bitsandbytes/faqs.md",
       "bytes": 527,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/faqs.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/faqs.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "FAQs"
@@ -788,7 +788,7 @@
       "rel": "bitsandbytes/reference/functional.md",
       "bytes": 15714,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/functional.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/functional.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "Overview"
@@ -797,7 +797,7 @@
       "rel": "bitsandbytes/reference/optim/adamw.md",
       "bytes": 11454,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/adamw.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/adamw.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "AdamW"
@@ -806,7 +806,7 @@
       "rel": "bitsandbytes/reference/optim/lars.md",
       "bytes": 5029,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/lars.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/lars.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "LARS"
@@ -815,7 +815,7 @@
       "rel": "bitsandbytes/reference/optim/rmsprop.md",
       "bytes": 1722,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/rmsprop.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/rmsprop.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "RMSprop"
@@ -824,7 +824,7 @@
       "rel": "bitsandbytes/reference/optim/adagrad.md",
       "bytes": 5174,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/adagrad.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/adagrad.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "AdaGrad"
@@ -833,7 +833,7 @@
       "rel": "bitsandbytes/reference/optim/optim_overview.md",
       "bytes": 7854,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/optim_overview.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/optim_overview.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "Overview"
@@ -842,7 +842,7 @@
       "rel": "bitsandbytes/reference/optim/adam.md",
       "bytes": 11910,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/adam.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/adam.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "Adam"
@@ -851,7 +851,7 @@
       "rel": "bitsandbytes/reference/optim/ademamix.md",
       "bytes": 6573,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/ademamix.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/ademamix.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "AdEMAMix"
@@ -860,7 +860,7 @@
       "rel": "bitsandbytes/reference/optim/lamb.md",
       "bytes": 6826,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/lamb.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/lamb.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "LAMB"
@@ -869,7 +869,7 @@
       "rel": "bitsandbytes/reference/optim/sgd.md",
       "bytes": 4718,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/sgd.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/sgd.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "SGD"
@@ -878,7 +878,7 @@
       "rel": "bitsandbytes/reference/optim/lion.md",
       "bytes": 8468,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/lion.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/lion.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "Lion"
@@ -887,7 +887,7 @@
       "rel": "bitsandbytes/reference/nn/embeddings.md",
       "bytes": 5067,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/nn/embeddings.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/nn/embeddings.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "Embedding"
@@ -896,7 +896,7 @@
       "rel": "bitsandbytes/reference/nn/linear8bit.md",
       "bytes": 3957,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/nn/linear8bit.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/nn/linear8bit.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "LLM.int8()"
@@ -905,7 +905,7 @@
       "rel": "bitsandbytes/reference/nn/linear4bit.md",
       "bytes": 5857,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/nn/linear4bit.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/nn/linear4bit.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "4-bit quantization"
@@ -914,7 +914,7 @@
       "rel": "bitsandbytes/explanations/optimizers.md",
       "bytes": 4967,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/explanations/optimizers.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/explanations/optimizers.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "8-bit optimizers"
@@ -923,14 +923,14 @@
       "rel": "bitsandbytes/explanations/resources.md",
       "bytes": 3876,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.1/explanations/resources.md",
+      "url": "https://huggingface.co/docs/bitsandbytes/v0.50.2/explanations/resources.md",
       "track": "BitsAndBytes",
       "package": "bitsandbytes",
       "title": "Papers, related resources & how to cite"
     },
     {
       "rel": "cli/index.md",
-      "bytes": 88012,
+      "bytes": 92589,
       "source": "llms-full",
       "url": "https://huggingface.co/docs/cli",
       "track": "CLI",
@@ -5043,7 +5043,7 @@
     },
     {
       "rel": "hub/jobs-manage.md",
-      "bytes": 9872,
+      "bytes": 9467,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-manage.md",
       "track": "Hub",
@@ -6231,7 +6231,7 @@
     },
     {
       "rel": "hub/storage-buckets.md",
-      "bytes": 17578,
+      "bytes": 18001,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/storage-buckets.md",
       "track": "Hub",
@@ -7301,472 +7301,472 @@
       "title": "Deduplication"
     },
     {
-      "rel": "huggingface_hub/installation.md",
-      "bytes": 6920,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/installation.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Installation"
-    },
-    {
       "rel": "huggingface_hub/quick-start.md",
-      "bytes": 8961,
+      "bytes": 8957,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/quick-start.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/quick-start.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Quickstart"
     },
     {
-      "rel": "huggingface_hub/index.md",
-      "bytes": 2188,
+      "rel": "huggingface_hub/installation.md",
+      "bytes": 6927,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/index.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/installation.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Installation"
+    },
+    {
+      "rel": "huggingface_hub/index.md",
+      "bytes": 2203,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/index.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "\ud83e\udd17 Hub client library"
     },
     {
-      "rel": "huggingface_hub/guides/jobs.md",
-      "bytes": 31428,
+      "rel": "huggingface_hub/package_reference/cache.md",
+      "bytes": 25737,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/jobs.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/cache.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
-      "title": "Run and manage Jobs"
+      "title": "Cache-system reference"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/environment_variables.md",
+      "bytes": 14401,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/environment_variables.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Environment variables"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/hf_api.md",
+      "bytes": 427026,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/hf_api.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "HfApi Client"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/mcp.md",
+      "bytes": 8943,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/mcp.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "MCP Client"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/file_download.md",
+      "bytes": 25340,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/file_download.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Downloading files"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/inference_endpoints.md",
+      "bytes": 22423,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/inference_endpoints.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Inference Endpoints"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/space_runtime.md",
+      "bytes": 6973,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/space_runtime.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Managing your Space runtime"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/tensorboard.md",
+      "bytes": 4695,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/tensorboard.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "TensorBoard logger"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/collections.md",
+      "bytes": 3780,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/collections.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Managing collections"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/oauth.md",
+      "bytes": 8613,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/oauth.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "OAuth and FastAPI"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/sandbox.md",
+      "bytes": 19965,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/sandbox.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Sandboxes"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/cards.md",
+      "bytes": 42449,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/cards.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Repository Cards"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/inference_types.md",
+      "bytes": 73538,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/inference_types.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Inference types"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/dataclasses.md",
+      "bytes": 14325,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/dataclasses.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Strict Dataclasses"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/cli.md",
+      "bytes": 180746,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/cli.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "WARNING"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/community.md",
+      "bytes": 11488,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/community.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Interacting with Discussions and Pull Requests"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/webhooks_server.md",
+      "bytes": 11537,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/webhooks_server.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Webhooks Server"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/hf_uris.md",
+      "bytes": 19538,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/hf_uris.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "HF URIs"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/inference_client.md",
+      "bytes": 219356,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/inference_client.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Inference"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/authentication.md",
+      "bytes": 6998,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/authentication.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Authentication"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/overview.md",
+      "bytes": 204,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/overview.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Overview"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/jobs.md",
+      "bytes": 8052,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/jobs.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Jobs"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/serialization.md",
+      "bytes": 37483,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/serialization.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Serialization"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/mixins.md",
+      "bytes": 19995,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/mixins.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Mixins & serialization methods"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/utilities.md",
+      "bytes": 42545,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/utilities.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Utilities"
+    },
+    {
+      "rel": "huggingface_hub/package_reference/hf_file_system.md",
+      "bytes": 13762,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/hf_file_system.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Filesystem API"
+    },
+    {
+      "rel": "huggingface_hub/guides/buckets.md",
+      "bytes": 25957,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/buckets.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Buckets"
     },
     {
       "rel": "huggingface_hub/guides/cli-extensions.md",
-      "bytes": 9097,
+      "bytes": 9106,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/cli-extensions.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/cli-extensions.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Create a CLI extension"
     },
     {
+      "rel": "huggingface_hub/guides/manage-cache.md",
+      "bytes": 38794,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/manage-cache.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Understand caching"
+    },
+    {
+      "rel": "huggingface_hub/guides/model-cards.md",
+      "bytes": 10986,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/model-cards.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Create and share Model Cards"
+    },
+    {
+      "rel": "huggingface_hub/guides/inference_endpoints.md",
+      "bytes": 24619,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/inference_endpoints.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Inference Endpoints"
+    },
+    {
+      "rel": "huggingface_hub/guides/collections.md",
+      "bytes": 11359,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/collections.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Collections"
+    },
+    {
+      "rel": "huggingface_hub/guides/repository.md",
+      "bytes": 15890,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/repository.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Create and manage a repository"
+    },
+    {
+      "rel": "huggingface_hub/guides/sandbox.md",
+      "bytes": 17888,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/sandbox.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Sandboxes"
+    },
+    {
+      "rel": "huggingface_hub/guides/cli.md",
+      "bytes": 92709,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/cli.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Command Line Interface (CLI)"
+    },
+    {
+      "rel": "huggingface_hub/guides/community.md",
+      "bytes": 9241,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/community.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Interact with Discussions and Pull Requests"
+    },
+    {
+      "rel": "huggingface_hub/guides/upload.md",
+      "bytes": 33647,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/upload.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Upload files to the Hub"
+    },
+    {
+      "rel": "huggingface_hub/guides/download.md",
+      "bytes": 15357,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/download.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Download files from the Hub"
+    },
+    {
       "rel": "huggingface_hub/guides/overview.md",
       "bytes": 3769,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/overview.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/overview.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "How-to guides"
     },
     {
       "rel": "huggingface_hub/guides/inference.md",
-      "bytes": 38766,
+      "bytes": 38738,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/inference.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/inference.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Run Inference on servers"
     },
     {
-      "rel": "huggingface_hub/guides/integrations.md",
-      "bytes": 23460,
+      "rel": "huggingface_hub/guides/jobs.md",
+      "bytes": 31443,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/integrations.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/jobs.md",
+      "track": "Hub Client",
+      "package": "huggingface_hub",
+      "title": "Run and manage Jobs"
+    },
+    {
+      "rel": "huggingface_hub/guides/integrations.md",
+      "bytes": 23451,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/integrations.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Integrate any ML framework with the Hub"
     },
     {
-      "rel": "huggingface_hub/guides/model-cards.md",
-      "bytes": 10970,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/model-cards.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Create and share Model Cards"
-    },
-    {
-      "rel": "huggingface_hub/guides/collections.md",
-      "bytes": 11349,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/collections.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Collections"
-    },
-    {
       "rel": "huggingface_hub/guides/manage-spaces.md",
-      "bytes": 19989,
+      "bytes": 19974,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/manage-spaces.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/manage-spaces.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Manage your Space"
     },
     {
-      "rel": "huggingface_hub/guides/download.md",
-      "bytes": 15376,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/download.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Download files from the Hub"
-    },
-    {
-      "rel": "huggingface_hub/guides/repository.md",
-      "bytes": 15894,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/repository.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Create and manage a repository"
-    },
-    {
       "rel": "huggingface_hub/guides/search.md",
-      "bytes": 2829,
+      "bytes": 2861,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/search.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/search.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Search the Hub"
     },
     {
-      "rel": "huggingface_hub/guides/manage-cache.md",
-      "bytes": 38783,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/manage-cache.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Understand caching"
-    },
-    {
-      "rel": "huggingface_hub/guides/cli.md",
-      "bytes": 88118,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/cli.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Command Line Interface (CLI)"
-    },
-    {
-      "rel": "huggingface_hub/guides/inference_endpoints.md",
-      "bytes": 19787,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/inference_endpoints.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Inference Endpoints"
-    },
-    {
-      "rel": "huggingface_hub/guides/buckets.md",
-      "bytes": 25230,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/buckets.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Buckets"
-    },
-    {
-      "rel": "huggingface_hub/guides/upload.md",
-      "bytes": 33628,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/upload.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Upload files to the Hub"
-    },
-    {
-      "rel": "huggingface_hub/guides/webhooks.md",
-      "bytes": 15146,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/webhooks.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Webhooks"
-    },
-    {
-      "rel": "huggingface_hub/guides/sandbox.md",
-      "bytes": 17164,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/sandbox.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Sandboxes"
-    },
-    {
-      "rel": "huggingface_hub/guides/community.md",
-      "bytes": 9274,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/community.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Interact with Discussions and Pull Requests"
-    },
-    {
       "rel": "huggingface_hub/guides/hf_file_system.md",
-      "bytes": 6683,
+      "bytes": 6662,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/hf_file_system.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/hf_file_system.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Interact with the Hub through the Filesystem API"
     },
     {
-      "rel": "huggingface_hub/package_reference/serialization.md",
-      "bytes": 37461,
+      "rel": "huggingface_hub/guides/webhooks.md",
+      "bytes": 15163,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/serialization.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/webhooks.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
-      "title": "Serialization"
+      "title": "Webhooks"
     },
     {
-      "rel": "huggingface_hub/package_reference/hf_uris.md",
-      "bytes": 19528,
+      "rel": "huggingface_hub/concepts/sandbox.md",
+      "bytes": 18068,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/hf_uris.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/concepts/sandbox.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
-      "title": "HF URIs"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/cards.md",
-      "bytes": 42424,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/cards.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Repository Cards"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/jobs.md",
-      "bytes": 8048,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/jobs.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Jobs"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/oauth.md",
-      "bytes": 8613,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/oauth.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "OAuth and FastAPI"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/overview.md",
-      "bytes": 232,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/overview.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Overview"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/mixins.md",
-      "bytes": 20019,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/mixins.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Mixins & serialization methods"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/environment_variables.md",
-      "bytes": 14413,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/environment_variables.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Environment variables"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/webhooks_server.md",
-      "bytes": 11551,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/webhooks_server.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Webhooks Server"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/authentication.md",
-      "bytes": 7012,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/authentication.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Authentication"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/file_download.md",
-      "bytes": 25315,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/file_download.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Downloading files"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/mcp.md",
-      "bytes": 8938,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/mcp.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "MCP Client"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/inference_client.md",
-      "bytes": 219863,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/inference_client.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Inference"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/cache.md",
-      "bytes": 25713,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/cache.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Cache-system reference"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/utilities.md",
-      "bytes": 42548,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/utilities.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Utilities"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/collections.md",
-      "bytes": 3788,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/collections.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Managing collections"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/inference_types.md",
-      "bytes": 73549,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/inference_types.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Inference types"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/space_runtime.md",
-      "bytes": 6954,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/space_runtime.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Managing your Space runtime"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/cli.md",
-      "bytes": 176643,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/cli.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "WARNING"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/inference_endpoints.md",
-      "bytes": 18639,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/inference_endpoints.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Inference Endpoints"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/hf_api.md",
-      "bytes": 423227,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/hf_api.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "HfApi Client"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/sandbox.md",
-      "bytes": 19999,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/sandbox.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Sandboxes"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/community.md",
-      "bytes": 11487,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/community.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Interacting with Discussions and Pull Requests"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/dataclasses.md",
-      "bytes": 14344,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/dataclasses.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Strict Dataclasses"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/tensorboard.md",
-      "bytes": 4692,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/tensorboard.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "TensorBoard logger"
-    },
-    {
-      "rel": "huggingface_hub/package_reference/hf_file_system.md",
-      "bytes": 13781,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/hf_file_system.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Filesystem API"
+      "title": "Sandboxes under the hood"
     },
     {
       "rel": "huggingface_hub/concepts/git_vs_http.md",
       "bytes": 3897,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/concepts/git_vs_http.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/concepts/git_vs_http.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Git vs HTTP paradigm"
     },
     {
       "rel": "huggingface_hub/concepts/migration.md",
-      "bytes": 11917,
+      "bytes": 11815,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/concepts/migration.md",
+      "url": "https://huggingface.co/docs/huggingface_hub/v1.29.0/concepts/migration.md",
       "track": "Hub Client",
       "package": "huggingface_hub",
       "title": "Migrating to huggingface_hub v1.0"
-    },
-    {
-      "rel": "huggingface_hub/concepts/sandbox.md",
-      "bytes": 17640,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/huggingface_hub/v1.27.0/concepts/sandbox.md",
-      "track": "Hub Client",
-      "package": "huggingface_hub",
-      "title": "Sandboxes under the hood"
     },
     {
       "rel": "inference-endpoints/quick_start.md",
@@ -8040,7 +8040,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 72206,
+      "bytes": 72209,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -8130,7 +8130,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 101113,
+      "bytes": 101116,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -8517,7 +8517,7 @@
     },
     {
       "rel": "kernels/builder/writing-kernels.md",
-      "bytes": 20546,
+      "bytes": 20553,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/kernels/main/builder/writing-kernels.md",
       "track": "Kernels",
@@ -10991,697 +10991,697 @@
       "title": "HTTP API Reference"
     },
     {
-      "rel": "timm/index.md",
-      "bytes": 1017,
+      "rel": "timm/installation.md",
+      "bytes": 2129,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/index.md",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/installation.md",
       "track": "timm",
       "package": "timm",
-      "title": "timm"
-    },
-    {
-      "rel": "timm/hf_hub.md",
-      "bytes": 1926,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/hf_hub.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Sharing and Loading Models From the Hugging Face Hub"
-    },
-    {
-      "rel": "timm/hparams.md",
-      "bytes": 3652,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/hparams.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "HParams"
+      "title": "Installation"
     },
     {
       "rel": "timm/models.md",
-      "bytes": 12616,
+      "bytes": 12638,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models.md",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models.md",
       "track": "timm",
       "package": "timm",
       "title": "Model Summaries"
     },
     {
+      "rel": "timm/feature_extraction.md",
+      "bytes": 11012,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/feature_extraction.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Feature Extraction"
+    },
+    {
+      "rel": "timm/hparams.md",
+      "bytes": 3689,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/hparams.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "HParams"
+    },
+    {
+      "rel": "timm/hf_hub.md",
+      "bytes": 1926,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/hf_hub.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Sharing and Loading Models From the Hugging Face Hub"
+    },
+    {
       "rel": "timm/results.md",
       "bytes": 4920,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/results.md",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/results.md",
       "track": "timm",
       "package": "timm",
       "title": "Results"
     },
     {
       "rel": "timm/changes.md",
-      "bytes": 123938,
+      "bytes": 123936,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/changes.md",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/changes.md",
       "track": "timm",
       "package": "timm",
       "title": "Changelog"
     },
     {
-      "rel": "timm/training_script.md",
-      "bytes": 7095,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/training_script.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Scripts"
-    },
-    {
       "rel": "timm/quickstart.md",
-      "bytes": 7650,
+      "bytes": 7635,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/quickstart.md",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/quickstart.md",
       "track": "timm",
       "package": "timm",
       "title": "Quickstart"
     },
     {
-      "rel": "timm/installation.md",
-      "bytes": 2144,
+      "rel": "timm/index.md",
+      "bytes": 981,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/installation.md",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/index.md",
       "track": "timm",
       "package": "timm",
-      "title": "Installation"
+      "title": "timm"
     },
     {
-      "rel": "timm/feature_extraction.md",
-      "bytes": 11025,
+      "rel": "timm/training_script.md",
+      "bytes": 7119,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/feature_extraction.md",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/training_script.md",
       "track": "timm",
       "package": "timm",
-      "title": "Feature Extraction"
-    },
-    {
-      "rel": "timm/models/ssl-resnet.md",
-      "bytes": 4181,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/ssl-resnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "SSL ResNet"
-    },
-    {
-      "rel": "timm/models/res2net.md",
-      "bytes": 3815,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/res2net.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Res2Net"
-    },
-    {
-      "rel": "timm/models/regnety.md",
-      "bytes": 3858,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/regnety.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "RegNetY"
-    },
-    {
-      "rel": "timm/models/se-resnet.md",
-      "bytes": 3314,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/se-resnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "SE-ResNet"
-    },
-    {
-      "rel": "timm/models/gloun-xception.md",
-      "bytes": 3323,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/gloun-xception.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Gluon) Xception"
-    },
-    {
-      "rel": "timm/models/skresnext.md",
-      "bytes": 3487,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/skresnext.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "SK-ResNeXt"
-    },
-    {
-      "rel": "timm/models/mnasnet.md",
-      "bytes": 3608,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/mnasnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "MnasNet"
-    },
-    {
-      "rel": "timm/models/gloun-inception-v3.md",
-      "bytes": 4124,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/gloun-inception-v3.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Gluon) Inception v3"
-    },
-    {
-      "rel": "timm/models/skresnet.md",
-      "bytes": 3505,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/skresnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "SK-ResNet"
-    },
-    {
-      "rel": "timm/models/tf-efficientnet-condconv.md",
-      "bytes": 4983,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/tf-efficientnet-condconv.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Tensorflow) EfficientNet CondConv"
-    },
-    {
-      "rel": "timm/models/inception-v4.md",
-      "bytes": 3355,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/inception-v4.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Inception v4"
-    },
-    {
-      "rel": "timm/models/ig-resnext.md",
-      "bytes": 3785,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/ig-resnext.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Instagram ResNeXt WSL"
-    },
-    {
-      "rel": "timm/models/spnasnet.md",
-      "bytes": 3260,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/spnasnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "SPNASNet"
-    },
-    {
-      "rel": "timm/models/wide-resnet.md",
-      "bytes": 3583,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/wide-resnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Wide ResNet"
-    },
-    {
-      "rel": "timm/models/efficientnet.md",
-      "bytes": 4375,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/efficientnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "EfficientNet"
-    },
-    {
-      "rel": "timm/models/resnext.md",
-      "bytes": 3798,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/resnext.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "ResNeXt"
-    },
-    {
-      "rel": "timm/models/fbnet.md",
-      "bytes": 3610,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/fbnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "FBNet"
-    },
-    {
-      "rel": "timm/models/hrnet.md",
-      "bytes": 3839,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/hrnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "HRNet"
-    },
-    {
-      "rel": "timm/models/pnasnet.md",
-      "bytes": 3492,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/pnasnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "PNASNet"
-    },
-    {
-      "rel": "timm/models/mobilenet-v3.md",
-      "bytes": 4029,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/mobilenet-v3.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "MobileNet v3"
-    },
-    {
-      "rel": "timm/models/gloun-seresnext.md",
-      "bytes": 3479,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/gloun-seresnext.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Gluon) SE-ResNeXt"
-    },
-    {
-      "rel": "timm/models/noisy-student.md",
-      "bytes": 4157,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/noisy-student.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Noisy Student (EfficientNet)"
-    },
-    {
-      "rel": "timm/models/csp-resnext.md",
-      "bytes": 3479,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/csp-resnext.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "CSP-ResNeXt"
-    },
-    {
-      "rel": "timm/models/resnet-d.md",
-      "bytes": 3522,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/resnet-d.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "ResNet-D"
-    },
-    {
-      "rel": "timm/models/inception-v3.md",
-      "bytes": 3991,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/inception-v3.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Inception v3"
-    },
-    {
-      "rel": "timm/models/xception.md",
-      "bytes": 3325,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/xception.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Xception"
-    },
-    {
-      "rel": "timm/models/mixnet.md",
-      "bytes": 3248,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/mixnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "MixNet"
-    },
-    {
-      "rel": "timm/models/tf-efficientnet.md",
-      "bytes": 4530,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/tf-efficientnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Tensorflow) EfficientNet"
-    },
-    {
-      "rel": "timm/models/adversarial-inception-v3.md",
-      "bytes": 4769,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/adversarial-inception-v3.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Adversarial Inception v3"
-    },
-    {
-      "rel": "timm/models/dla.md",
-      "bytes": 3756,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/dla.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Deep Layer Aggregation"
-    },
-    {
-      "rel": "timm/models/tresnet.md",
-      "bytes": 3557,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/tresnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "TResNet"
-    },
-    {
-      "rel": "timm/models/tf-mobilenet-v3.md",
-      "bytes": 4149,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/tf-mobilenet-v3.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Tensorflow) MobileNet v3"
-    },
-    {
-      "rel": "timm/models/gloun-resnet.md",
-      "bytes": 3942,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/gloun-resnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Gluon) ResNet"
-    },
-    {
-      "rel": "timm/models/legacy-senet.md",
-      "bytes": 3342,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/legacy-senet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Legacy) SENet"
-    },
-    {
-      "rel": "timm/models/ecaresnet.md",
-      "bytes": 3548,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/ecaresnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "ECA-ResNet"
-    },
-    {
-      "rel": "timm/models/efficientnet-pruned.md",
-      "bytes": 4762,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/efficientnet-pruned.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "EfficientNet (Knapsack Pruned)"
-    },
-    {
-      "rel": "timm/models/selecsls.md",
-      "bytes": 3461,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/selecsls.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "SelecSLS"
-    },
-    {
-      "rel": "timm/models/rexnet.md",
-      "bytes": 3349,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/rexnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "RexNet"
-    },
-    {
-      "rel": "timm/models/resnet.md",
-      "bytes": 3809,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/resnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "ResNet"
-    },
-    {
-      "rel": "timm/models/tf-inception-v3.md",
-      "bytes": 4122,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/tf-inception-v3.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Tensorflow) Inception v3"
-    },
-    {
-      "rel": "timm/models/ese-vovnet.md",
-      "bytes": 3478,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/ese-vovnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "ESE-VoVNet"
-    },
-    {
-      "rel": "timm/models/swsl-resnet.md",
-      "bytes": 4200,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/swsl-resnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "SWSL ResNet"
-    },
-    {
-      "rel": "timm/models/csp-darknet.md",
-      "bytes": 3525,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/csp-darknet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "CSP-DarkNet"
-    },
-    {
-      "rel": "timm/models/densenet.md",
-      "bytes": 4158,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/densenet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "DenseNet"
-    },
-    {
-      "rel": "timm/models/nasnet.md",
-      "bytes": 3218,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/nasnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "NASNet"
-    },
-    {
-      "rel": "timm/models/dpn.md",
-      "bytes": 3630,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/dpn.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Dual Path Network (DPN)"
-    },
-    {
-      "rel": "timm/models/regnetx.md",
-      "bytes": 3726,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/regnetx.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "RegNetX"
-    },
-    {
-      "rel": "timm/models/tf-efficientnet-lite.md",
-      "bytes": 4664,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/tf-efficientnet-lite.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Tensorflow) EfficientNet Lite"
-    },
-    {
-      "rel": "timm/models/csp-resnet.md",
-      "bytes": 3484,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/csp-resnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "CSP-ResNet"
-    },
-    {
-      "rel": "timm/models/gloun-resnext.md",
-      "bytes": 3944,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/gloun-resnext.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Gluon) ResNeXt"
-    },
-    {
-      "rel": "timm/models/mobilenet-v2.md",
-      "bytes": 4074,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/mobilenet-v2.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "MobileNet v2"
-    },
-    {
-      "rel": "timm/models/inception-resnet-v2.md",
-      "bytes": 3415,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/inception-resnet-v2.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Inception ResNet v2"
-    },
-    {
-      "rel": "timm/models/legacy-se-resnet.md",
-      "bytes": 3335,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/legacy-se-resnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Legacy) SE-ResNet"
-    },
-    {
-      "rel": "timm/models/swsl-resnext.md",
-      "bytes": 4156,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/swsl-resnext.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "SWSL ResNeXt"
-    },
-    {
-      "rel": "timm/models/seresnext.md",
-      "bytes": 3334,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/seresnext.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "SE-ResNeXt"
-    },
-    {
-      "rel": "timm/models/tf-mixnet.md",
-      "bytes": 3343,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/tf-mixnet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Tensorflow) MixNet"
-    },
-    {
-      "rel": "timm/models/resnest.md",
-      "bytes": 3944,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/resnest.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "ResNeSt"
-    },
-    {
-      "rel": "timm/models/legacy-se-resnext.md",
-      "bytes": 3352,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/legacy-se-resnext.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Legacy) SE-ResNeXt"
-    },
-    {
-      "rel": "timm/models/res2next.md",
-      "bytes": 3792,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/res2next.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Res2NeXt"
-    },
-    {
-      "rel": "timm/models/gloun-senet.md",
-      "bytes": 3434,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/gloun-senet.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "(Gluon) SENet"
-    },
-    {
-      "rel": "timm/models/ensemble-adversarial.md",
-      "bytes": 4543,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/ensemble-adversarial.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "# Ensemble Adversarial Inception ResNet v2"
-    },
-    {
-      "rel": "timm/models/advprop.md",
-      "bytes": 3501,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/advprop.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "AdvProp (EfficientNet)"
-    },
-    {
-      "rel": "timm/models/big-transfer.md",
-      "bytes": 3435,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/models/big-transfer.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Big Transfer (BiT)"
-    },
-    {
-      "rel": "timm/reference/models.md",
-      "bytes": 3081,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/reference/models.md",
-      "track": "timm",
-      "package": "timm",
-      "title": "Models[[timm.create_model]]"
+      "title": "Scripts"
     },
     {
       "rel": "timm/reference/schedulers.md",
-      "bytes": 1005,
+      "bytes": 6086,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/reference/schedulers.md",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/reference/schedulers.md",
       "track": "timm",
       "package": "timm",
       "title": "Learning Rate Schedulers"
     },
     {
-      "rel": "timm/reference/optimizers.md",
-      "bytes": 19904,
+      "rel": "timm/reference/models.md",
+      "bytes": 4170,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/reference/optimizers.md",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/reference/models.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Models[[timm.create_model]]"
+    },
+    {
+      "rel": "timm/reference/optimizers.md",
+      "bytes": 32339,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/reference/optimizers.md",
       "track": "timm",
       "package": "timm",
       "title": "Optimization"
     },
     {
       "rel": "timm/reference/data.md",
-      "bytes": 6438,
+      "bytes": 11879,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/timm/v1.0.28/reference/data.md",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/reference/data.md",
       "track": "timm",
       "package": "timm",
       "title": "Data[[timm.data.create_dataset]]"
+    },
+    {
+      "rel": "timm/models/big-transfer.md",
+      "bytes": 3413,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/big-transfer.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Big Transfer (BiT)"
+    },
+    {
+      "rel": "timm/models/pnasnet.md",
+      "bytes": 3517,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/pnasnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "PNASNet"
+    },
+    {
+      "rel": "timm/models/efficientnet-pruned.md",
+      "bytes": 4768,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/efficientnet-pruned.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "EfficientNet (Knapsack Pruned)"
+    },
+    {
+      "rel": "timm/models/wide-resnet.md",
+      "bytes": 3583,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/wide-resnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Wide ResNet"
+    },
+    {
+      "rel": "timm/models/inception-v3.md",
+      "bytes": 3994,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/inception-v3.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Inception v3"
+    },
+    {
+      "rel": "timm/models/seresnext.md",
+      "bytes": 3322,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/seresnext.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "SE-ResNeXt"
+    },
+    {
+      "rel": "timm/models/densenet.md",
+      "bytes": 4194,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/densenet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "DenseNet"
+    },
+    {
+      "rel": "timm/models/adversarial-inception-v3.md",
+      "bytes": 4778,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/adversarial-inception-v3.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Adversarial Inception v3"
+    },
+    {
+      "rel": "timm/models/legacy-se-resnet.md",
+      "bytes": 3344,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/legacy-se-resnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Legacy) SE-ResNet"
+    },
+    {
+      "rel": "timm/models/gloun-seresnext.md",
+      "bytes": 3462,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/gloun-seresnext.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Gluon) SE-ResNeXt"
+    },
+    {
+      "rel": "timm/models/inception-v4.md",
+      "bytes": 3336,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/inception-v4.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Inception v4"
+    },
+    {
+      "rel": "timm/models/rexnet.md",
+      "bytes": 3351,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/rexnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "RexNet"
+    },
+    {
+      "rel": "timm/models/res2net.md",
+      "bytes": 3817,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/res2net.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Res2Net"
+    },
+    {
+      "rel": "timm/models/spnasnet.md",
+      "bytes": 3264,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/spnasnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "SPNASNet"
+    },
+    {
+      "rel": "timm/models/dpn.md",
+      "bytes": 3678,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/dpn.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Dual Path Network (DPN)"
+    },
+    {
+      "rel": "timm/models/ensemble-adversarial.md",
+      "bytes": 4550,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/ensemble-adversarial.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "# Ensemble Adversarial Inception ResNet v2"
+    },
+    {
+      "rel": "timm/models/legacy-se-resnext.md",
+      "bytes": 3352,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/legacy-se-resnext.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Legacy) SE-ResNeXt"
+    },
+    {
+      "rel": "timm/models/resnet-d.md",
+      "bytes": 3527,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/resnet-d.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "ResNet-D"
+    },
+    {
+      "rel": "timm/models/advprop.md",
+      "bytes": 3490,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/advprop.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "AdvProp (EfficientNet)"
+    },
+    {
+      "rel": "timm/models/ecaresnet.md",
+      "bytes": 3513,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/ecaresnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "ECA-ResNet"
+    },
+    {
+      "rel": "timm/models/regnety.md",
+      "bytes": 3854,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/regnety.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "RegNetY"
+    },
+    {
+      "rel": "timm/models/resnest.md",
+      "bytes": 3939,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/resnest.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "ResNeSt"
+    },
+    {
+      "rel": "timm/models/ig-resnext.md",
+      "bytes": 3789,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/ig-resnext.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Instagram ResNeXt WSL"
+    },
+    {
+      "rel": "timm/models/ssl-resnet.md",
+      "bytes": 4195,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/ssl-resnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "SSL ResNet"
+    },
+    {
+      "rel": "timm/models/gloun-resnext.md",
+      "bytes": 3946,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/gloun-resnext.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Gluon) ResNeXt"
+    },
+    {
+      "rel": "timm/models/legacy-senet.md",
+      "bytes": 3347,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/legacy-senet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Legacy) SENet"
+    },
+    {
+      "rel": "timm/models/mobilenet-v3.md",
+      "bytes": 4020,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/mobilenet-v3.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "MobileNet v3"
+    },
+    {
+      "rel": "timm/models/mobilenet-v2.md",
+      "bytes": 4056,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/mobilenet-v2.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "MobileNet v2"
+    },
+    {
+      "rel": "timm/models/ese-vovnet.md",
+      "bytes": 3480,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/ese-vovnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "ESE-VoVNet"
+    },
+    {
+      "rel": "timm/models/efficientnet.md",
+      "bytes": 4375,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/efficientnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "EfficientNet"
+    },
+    {
+      "rel": "timm/models/tresnet.md",
+      "bytes": 3539,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/tresnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "TResNet"
+    },
+    {
+      "rel": "timm/models/csp-darknet.md",
+      "bytes": 3535,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/csp-darknet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "CSP-DarkNet"
+    },
+    {
+      "rel": "timm/models/gloun-resnet.md",
+      "bytes": 3956,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/gloun-resnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Gluon) ResNet"
+    },
+    {
+      "rel": "timm/models/tf-mobilenet-v3.md",
+      "bytes": 4143,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/tf-mobilenet-v3.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Tensorflow) MobileNet v3"
+    },
+    {
+      "rel": "timm/models/csp-resnet.md",
+      "bytes": 3494,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/csp-resnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "CSP-ResNet"
+    },
+    {
+      "rel": "timm/models/inception-resnet-v2.md",
+      "bytes": 3393,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/inception-resnet-v2.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Inception ResNet v2"
+    },
+    {
+      "rel": "timm/models/mixnet.md",
+      "bytes": 3220,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/mixnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "MixNet"
+    },
+    {
+      "rel": "timm/models/resnet.md",
+      "bytes": 3791,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/resnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "ResNet"
+    },
+    {
+      "rel": "timm/models/csp-resnext.md",
+      "bytes": 3504,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/csp-resnext.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "CSP-ResNeXt"
+    },
+    {
+      "rel": "timm/models/noisy-student.md",
+      "bytes": 4152,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/noisy-student.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Noisy Student (EfficientNet)"
+    },
+    {
+      "rel": "timm/models/skresnet.md",
+      "bytes": 3471,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/skresnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "SK-ResNet"
+    },
+    {
+      "rel": "timm/models/swsl-resnext.md",
+      "bytes": 4153,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/swsl-resnext.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "SWSL ResNeXt"
+    },
+    {
+      "rel": "timm/models/selecsls.md",
+      "bytes": 3465,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/selecsls.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "SelecSLS"
+    },
+    {
+      "rel": "timm/models/xception.md",
+      "bytes": 3331,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/xception.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Xception"
+    },
+    {
+      "rel": "timm/models/se-resnet.md",
+      "bytes": 3314,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/se-resnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "SE-ResNet"
+    },
+    {
+      "rel": "timm/models/gloun-xception.md",
+      "bytes": 3332,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/gloun-xception.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Gluon) Xception"
+    },
+    {
+      "rel": "timm/models/tf-mixnet.md",
+      "bytes": 3343,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/tf-mixnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Tensorflow) MixNet"
+    },
+    {
+      "rel": "timm/models/resnext.md",
+      "bytes": 3802,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/resnext.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "ResNeXt"
+    },
+    {
+      "rel": "timm/models/mnasnet.md",
+      "bytes": 3580,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/mnasnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "MnasNet"
+    },
+    {
+      "rel": "timm/models/fbnet.md",
+      "bytes": 3640,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/fbnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "FBNet"
+    },
+    {
+      "rel": "timm/models/tf-inception-v3.md",
+      "bytes": 4124,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/tf-inception-v3.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Tensorflow) Inception v3"
+    },
+    {
+      "rel": "timm/models/swsl-resnet.md",
+      "bytes": 4203,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/swsl-resnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "SWSL ResNet"
+    },
+    {
+      "rel": "timm/models/dla.md",
+      "bytes": 3766,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/dla.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Deep Layer Aggregation"
+    },
+    {
+      "rel": "timm/models/gloun-senet.md",
+      "bytes": 3384,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/gloun-senet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Gluon) SENet"
+    },
+    {
+      "rel": "timm/models/nasnet.md",
+      "bytes": 3230,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/nasnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "NASNet"
+    },
+    {
+      "rel": "timm/models/gloun-inception-v3.md",
+      "bytes": 4165,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/gloun-inception-v3.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Gluon) Inception v3"
+    },
+    {
+      "rel": "timm/models/tf-efficientnet-condconv.md",
+      "bytes": 4973,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/tf-efficientnet-condconv.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Tensorflow) EfficientNet CondConv"
+    },
+    {
+      "rel": "timm/models/regnetx.md",
+      "bytes": 3695,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/regnetx.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "RegNetX"
+    },
+    {
+      "rel": "timm/models/skresnext.md",
+      "bytes": 3483,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/skresnext.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "SK-ResNeXt"
+    },
+    {
+      "rel": "timm/models/hrnet.md",
+      "bytes": 3865,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/hrnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "HRNet"
+    },
+    {
+      "rel": "timm/models/tf-efficientnet.md",
+      "bytes": 4532,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/tf-efficientnet.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Tensorflow) EfficientNet"
+    },
+    {
+      "rel": "timm/models/tf-efficientnet-lite.md",
+      "bytes": 4660,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/tf-efficientnet-lite.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "(Tensorflow) EfficientNet Lite"
+    },
+    {
+      "rel": "timm/models/res2next.md",
+      "bytes": 3710,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/timm/v1.0.29/models/res2next.md",
+      "track": "timm",
+      "package": "timm",
+      "title": "Res2NeXt"
     },
     {
       "rel": "tokenizers/index.md",
@@ -18740,571 +18740,580 @@
       "title": "Pipelines"
     },
     {
-      "rel": "trl/chat_templates.md",
-      "bytes": 13153,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/chat_templates.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Chat Templates"
-    },
-    {
-      "rel": "trl/prm_trainer.md",
-      "bytes": 20166,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/prm_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "PRM Trainer"
-    },
-    {
-      "rel": "trl/bema_for_reference_model.md",
-      "bytes": 7201,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/bema_for_reference_model.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "BEMA for Reference Model"
-    },
-    {
-      "rel": "trl/vllm_integration.md",
-      "bytes": 18254,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/vllm_integration.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "vLLM Integration"
-    },
-    {
-      "rel": "trl/speeding_up_training.md",
-      "bytes": 5575,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/speeding_up_training.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Speeding Up Training"
-    },
-    {
-      "rel": "trl/openreward.md",
-      "bytes": 11932,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/openreward.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "OpenReward Integration for Training LLMs with Environments"
-    },
-    {
-      "rel": "trl/jobs_training.md",
-      "bytes": 6585,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/jobs_training.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Training with Jobs"
-    },
-    {
-      "rel": "trl/unsloth_integration.md",
-      "bytes": 5325,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/unsloth_integration.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Unsloth Integration"
-    },
-    {
-      "rel": "trl/community_tutorials.md",
-      "bytes": 11064,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/community_tutorials.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Community Tutorials"
-    },
-    {
-      "rel": "trl/gkd_trainer.md",
-      "bytes": 20940,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/gkd_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Generalized Knowledge Distillation Trainer"
-    },
-    {
-      "rel": "trl/gmpo.md",
-      "bytes": 13499,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/gmpo.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "GMPO"
-    },
-    {
-      "rel": "trl/data_utils.md",
-      "bytes": 7361,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/data_utils.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Data Utilities"
-    },
-    {
-      "rel": "trl/quickstart.md",
-      "bytes": 3699,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/quickstart.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Quickstart"
-    },
-    {
-      "rel": "trl/clis.md",
-      "bytes": 12938,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/clis.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Command Line Interfaces (CLIs)"
-    },
-    {
-      "rel": "trl/nash_md_trainer.md",
-      "bytes": 23526,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/nash_md_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Nash-MD Trainer"
-    },
-    {
-      "rel": "trl/orpo_trainer.md",
-      "bytes": 24360,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/orpo_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "ORPO Trainer"
-    },
-    {
-      "rel": "trl/xpo_trainer.md",
-      "bytes": 24527,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/xpo_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "XPO Trainer"
-    },
-    {
-      "rel": "trl/installation.md",
-      "bytes": 815,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/installation.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Installation"
-    },
-    {
-      "rel": "trl/rapidfire_integration.md",
-      "bytes": 17875,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/rapidfire_integration.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "RapidFire AI Integration"
-    },
-    {
-      "rel": "trl/harbor.md",
-      "bytes": 13872,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/harbor.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Harbor Integration for Training LLMs with Environments"
-    },
-    {
-      "rel": "trl/a2po_trainer.md",
-      "bytes": 16519,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/a2po_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "A2PO"
-    },
-    {
       "rel": "trl/grpo_with_replay_buffer.md",
-      "bytes": 13192,
+      "bytes": 13211,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/grpo_with_replay_buffer.md",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/grpo_with_replay_buffer.md",
       "track": "TRL",
       "package": "trl",
       "title": "GRPO With Replay Buffer"
     },
     {
-      "rel": "trl/peft_integration.md",
-      "bytes": 24297,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/peft_integration.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "PEFT Integration"
-    },
-    {
-      "rel": "trl/distillation_trainer.md",
-      "bytes": 36612,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/distillation_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Distillation Trainer"
-    },
-    {
-      "rel": "trl/deepspeed_integration.md",
-      "bytes": 1598,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/deepspeed_integration.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "DeepSpeed Integration"
-    },
-    {
-      "rel": "trl/reward_trainer.md",
-      "bytes": 31690,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/reward_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Reward Modeling"
-    },
-    {
-      "rel": "trl/paper_index.md",
-      "bytes": 92553,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/paper_index.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Paper Index"
-    },
-    {
-      "rel": "trl/openenv.md",
-      "bytes": 35248,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/openenv.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "OpenEnv Integration for Training LLMs with Environments"
-    },
-    {
-      "rel": "trl/usage_stats.md",
-      "bytes": 2264,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/usage_stats.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Usage Stats Collection"
-    },
-    {
-      "rel": "trl/callbacks.md",
-      "bytes": 8913,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/callbacks.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Callbacks"
-    },
-    {
-      "rel": "trl/minillm_trainer.md",
-      "bytes": 25560,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/minillm_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "MiniLLM Trainer"
-    },
-    {
-      "rel": "trl/liger_kernel_integration.md",
-      "bytes": 2294,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/liger_kernel_integration.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Liger Kernel Integration"
-    },
-    {
-      "rel": "trl/chat_template_utils.md",
-      "bytes": 7122,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/chat_template_utils.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Chat template utilities"
-    },
-    {
       "rel": "trl/experimental_overview.md",
-      "bytes": 1681,
+      "bytes": 1685,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/experimental_overview.md",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/experimental_overview.md",
       "track": "TRL",
       "package": "trl",
       "title": "Experimental"
     },
     {
-      "rel": "trl/sdft_trainer.md",
-      "bytes": 27911,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/sdft_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "SDFT"
-    },
-    {
-      "rel": "trl/bco_trainer.md",
-      "bytes": 21661,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/bco_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "BCO Trainer"
-    },
-    {
-      "rel": "trl/customization.md",
-      "bytes": 4138,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/customization.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Training customization"
-    },
-    {
-      "rel": "trl/ssd_trainer.md",
-      "bytes": 18532,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/ssd_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "SSD"
-    },
-    {
-      "rel": "trl/lora_without_regret.md",
-      "bytes": 14351,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/lora_without_regret.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "LoRA Without Regret"
-    },
-    {
-      "rel": "trl/dataset_formats.md",
-      "bytes": 43040,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/dataset_formats.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Dataset formats and types"
-    },
-    {
       "rel": "trl/gspo_token.md",
-      "bytes": 5358,
+      "bytes": 5360,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/gspo_token.md",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/gspo_token.md",
       "track": "TRL",
       "package": "trl",
       "title": "GSPO-token"
     },
     {
-      "rel": "trl/kto_trainer.md",
-      "bytes": 42136,
+      "rel": "trl/data_utils.md",
+      "bytes": 7366,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/kto_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/data_utils.md",
       "track": "TRL",
       "package": "trl",
-      "title": "KTO Trainer"
-    },
-    {
-      "rel": "trl/dpo_trainer.md",
-      "bytes": 46250,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/dpo_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "DPO Trainer"
-    },
-    {
-      "rel": "trl/rewards.md",
-      "bytes": 12467,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/rewards.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Reward Functions"
-    },
-    {
-      "rel": "trl/online_dpo_trainer.md",
-      "bytes": 36553,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/online_dpo_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Online DPO Trainer"
-    },
-    {
-      "rel": "trl/merge_model_callback.md",
-      "bytes": 1484,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/merge_model_callback.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "MergeModelCallback[[trl.experimental.merge_model_callback.MergeModelCallback]]"
-    },
-    {
-      "rel": "trl/distributing_training.md",
-      "bytes": 21063,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/distributing_training.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Distributing Training"
-    },
-    {
-      "rel": "trl/index.md",
-      "bytes": 3885,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/index.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "TRL - Transformers Reinforcement Learning"
-    },
-    {
-      "rel": "trl/ppo_trainer.md",
-      "bytes": 49738,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/ppo_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "PPO Trainer"
-    },
-    {
-      "rel": "trl/tpo_trainer.md",
-      "bytes": 27206,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/tpo_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "TPO Trainer"
-    },
-    {
-      "rel": "trl/grpo_trainer.md",
-      "bytes": 114160,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/grpo_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "GRPO Trainer"
-    },
-    {
-      "rel": "trl/async_grpo_trainer.md",
-      "bytes": 33312,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/async_grpo_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Asynchronous GRPO"
-    },
-    {
-      "rel": "trl/reducing_memory_usage.md",
-      "bytes": 13757,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/reducing_memory_usage.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Reducing Memory Usage"
-    },
-    {
-      "rel": "trl/sft_trainer.md",
-      "bytes": 44632,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/sft_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "SFT Trainer"
-    },
-    {
-      "rel": "trl/rloo_trainer.md",
-      "bytes": 68786,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/rloo_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "RLOO Trainer"
-    },
-    {
-      "rel": "trl/kernels_hub.md",
-      "bytes": 4268,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/kernels_hub.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Kernels Hub Integration and Usage"
-    },
-    {
-      "rel": "trl/trackio_integration.md",
-      "bytes": 1995,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/trackio_integration.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Trackio Integration"
-    },
-    {
-      "rel": "trl/use_model.md",
-      "bytes": 2623,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/use_model.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Use model after training"
-    },
-    {
-      "rel": "trl/script_utils.md",
-      "bytes": 11229,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/script_utils.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "Scripts Utilities"
-    },
-    {
-      "rel": "trl/sdpo_trainer.md",
-      "bytes": 35655,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/sdpo_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "SDPO"
-    },
-    {
-      "rel": "trl/gold_trainer.md",
-      "bytes": 32662,
-      "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/gold_trainer.md",
-      "track": "TRL",
-      "package": "trl",
-      "title": "General Online Logit Distillation (GOLD) Trainer"
+      "title": "Data Utilities"
     },
     {
       "rel": "trl/example_overview.md",
-      "bytes": 22902,
+      "bytes": 15454,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/example_overview.md",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/example_overview.md",
       "track": "TRL",
       "package": "trl",
       "title": "Examples"
     },
     {
-      "rel": "trl/cpo_trainer.md",
-      "bytes": 29694,
+      "rel": "trl/distributing_training.md",
+      "bytes": 21112,
       "source": "llms-full-split",
-      "url": "https://huggingface.co/docs/trl/v1.10.0/cpo_trainer.md",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/distributing_training.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Distributing Training"
+    },
+    {
+      "rel": "trl/peft_integration.md",
+      "bytes": 24267,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/peft_integration.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "PEFT Integration"
+    },
+    {
+      "rel": "trl/speeding_up_training.md",
+      "bytes": 6197,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/speeding_up_training.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Speeding Up Training"
+    },
+    {
+      "rel": "trl/usage_stats.md",
+      "bytes": 2607,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/usage_stats.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Usage Stats Collection"
+    },
+    {
+      "rel": "trl/rapidfire_integration.md",
+      "bytes": 17863,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/rapidfire_integration.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "RapidFire AI Integration"
+    },
+    {
+      "rel": "trl/bema_for_reference_model.md",
+      "bytes": 7193,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/bema_for_reference_model.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "BEMA for Reference Model"
+    },
+    {
+      "rel": "trl/grpo_trainer.md",
+      "bytes": 114777,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/grpo_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "GRPO Trainer"
+    },
+    {
+      "rel": "trl/installation.md",
+      "bytes": 830,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/installation.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Installation"
+    },
+    {
+      "rel": "trl/harbor.md",
+      "bytes": 13854,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/harbor.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Harbor Integration for Training LLMs with Environments"
+    },
+    {
+      "rel": "trl/ssd_trainer.md",
+      "bytes": 18558,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/ssd_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "SSD"
+    },
+    {
+      "rel": "trl/sdft_trainer.md",
+      "bytes": 28048,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/sdft_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "SDFT"
+    },
+    {
+      "rel": "trl/openenv.md",
+      "bytes": 35913,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/openenv.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "OpenEnv Integration for Training LLMs with Environments"
+    },
+    {
+      "rel": "trl/cpo_trainer.md",
+      "bytes": 29101,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/cpo_trainer.md",
       "track": "TRL",
       "package": "trl",
       "title": "CPO Trainer"
+    },
+    {
+      "rel": "trl/sdpo_trainer.md",
+      "bytes": 35609,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/sdpo_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "SDPO"
+    },
+    {
+      "rel": "trl/gmpo.md",
+      "bytes": 13539,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/gmpo.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "GMPO"
+    },
+    {
+      "rel": "trl/async_distillation_trainer.md",
+      "bytes": 49701,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/async_distillation_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Async Distillation"
+    },
+    {
+      "rel": "trl/reward_trainer.md",
+      "bytes": 31708,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/reward_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Reward Modeling"
+    },
+    {
+      "rel": "trl/distillation_trainer.md",
+      "bytes": 41186,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/distillation_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Distillation Trainer"
+    },
+    {
+      "rel": "trl/rewards.md",
+      "bytes": 12461,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/rewards.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Reward Functions"
+    },
+    {
+      "rel": "trl/xpo_trainer.md",
+      "bytes": 23783,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/xpo_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "XPO Trainer"
+    },
+    {
+      "rel": "trl/minillm_trainer.md",
+      "bytes": 25552,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/minillm_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "MiniLLM Trainer"
+    },
+    {
+      "rel": "trl/bco_trainer.md",
+      "bytes": 21872,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/bco_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "BCO Trainer"
+    },
+    {
+      "rel": "trl/unsloth_integration.md",
+      "bytes": 5309,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/unsloth_integration.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Unsloth Integration"
+    },
+    {
+      "rel": "trl/prm_trainer.md",
+      "bytes": 19514,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/prm_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "PRM Trainer"
+    },
+    {
+      "rel": "trl/vllm_integration.md",
+      "bytes": 10234,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/vllm_integration.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "vLLM Integration"
+    },
+    {
+      "rel": "trl/orpo_trainer.md",
+      "bytes": 23711,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/orpo_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "ORPO Trainer"
+    },
+    {
+      "rel": "trl/community_tutorials.md",
+      "bytes": 11093,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/community_tutorials.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Community Tutorials"
+    },
+    {
+      "rel": "trl/openreward.md",
+      "bytes": 11919,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/openreward.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "OpenReward Integration for Training LLMs with Environments"
+    },
+    {
+      "rel": "trl/a2po_trainer.md",
+      "bytes": 16501,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/a2po_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "A2PO"
+    },
+    {
+      "rel": "trl/chat_templates.md",
+      "bytes": 14904,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/chat_templates.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Chat Templates"
+    },
+    {
+      "rel": "trl/gold_trainer.md",
+      "bytes": 32761,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/gold_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "General Online Logit Distillation (GOLD) Trainer"
+    },
+    {
+      "rel": "trl/dpo_trainer.md",
+      "bytes": 46265,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/dpo_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "DPO Trainer"
+    },
+    {
+      "rel": "trl/trackio_integration.md",
+      "bytes": 1992,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/trackio_integration.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Trackio Integration"
+    },
+    {
+      "rel": "trl/nash_md_trainer.md",
+      "bytes": 22751,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/nash_md_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Nash-MD Trainer"
+    },
+    {
+      "rel": "trl/paper_index.md",
+      "bytes": 93753,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/paper_index.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Paper Index"
+    },
+    {
+      "rel": "trl/tpo_trainer.md",
+      "bytes": 27245,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/tpo_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "TPO Trainer"
+    },
+    {
+      "rel": "trl/use_model.md",
+      "bytes": 2632,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/use_model.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Use model after training"
+    },
+    {
+      "rel": "trl/lora_without_regret.md",
+      "bytes": 14331,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/lora_without_regret.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "LoRA Without Regret"
+    },
+    {
+      "rel": "trl/quickstart.md",
+      "bytes": 3700,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/quickstart.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Quickstart"
+    },
+    {
+      "rel": "trl/customization.md",
+      "bytes": 4170,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/customization.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Training customization"
+    },
+    {
+      "rel": "trl/index.md",
+      "bytes": 3961,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/index.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "TRL - Transformers Reinforcement Learning"
+    },
+    {
+      "rel": "trl/merge_model_callback.md",
+      "bytes": 1466,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/merge_model_callback.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "MergeModelCallback[[trl.experimental.merge_model_callback.MergeModelCallback]]"
+    },
+    {
+      "rel": "trl/rloo_trainer.md",
+      "bytes": 69088,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/rloo_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "RLOO Trainer"
+    },
+    {
+      "rel": "trl/script_utils.md",
+      "bytes": 11255,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/script_utils.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Scripts Utilities"
+    },
+    {
+      "rel": "trl/reducing_memory_usage.md",
+      "bytes": 13779,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/reducing_memory_usage.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Reducing Memory Usage"
+    },
+    {
+      "rel": "trl/kernels_hub.md",
+      "bytes": 4264,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/kernels_hub.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Kernels Hub Integration and Usage"
+    },
+    {
+      "rel": "trl/clis.md",
+      "bytes": 13025,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/clis.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Command Line Interfaces (CLIs)"
+    },
+    {
+      "rel": "trl/async_grpo_trainer.md",
+      "bytes": 57749,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/async_grpo_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Asynchronous GRPO"
+    },
+    {
+      "rel": "trl/online_dpo_trainer.md",
+      "bytes": 35974,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/online_dpo_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Online DPO Trainer"
+    },
+    {
+      "rel": "trl/liger_kernel_integration.md",
+      "bytes": 2274,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/liger_kernel_integration.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Liger Kernel Integration"
+    },
+    {
+      "rel": "trl/sft_trainer.md",
+      "bytes": 44648,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/sft_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "SFT Trainer"
+    },
+    {
+      "rel": "trl/ppo_trainer.md",
+      "bytes": 49747,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/ppo_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "PPO Trainer"
+    },
+    {
+      "rel": "trl/kto_trainer.md",
+      "bytes": 42154,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/kto_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "KTO Trainer"
+    },
+    {
+      "rel": "trl/dataset_formats.md",
+      "bytes": 43064,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/dataset_formats.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Dataset formats and types"
+    },
+    {
+      "rel": "trl/deepspeed_integration.md",
+      "bytes": 1611,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/deepspeed_integration.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "DeepSpeed Integration"
+    },
+    {
+      "rel": "trl/chat_template_utils.md",
+      "bytes": 7187,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/chat_template_utils.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Chat template utilities"
+    },
+    {
+      "rel": "trl/gkd_trainer.md",
+      "bytes": 20969,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/gkd_trainer.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Generalized Knowledge Distillation Trainer"
+    },
+    {
+      "rel": "trl/jobs_training.md",
+      "bytes": 6673,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/jobs_training.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Training with Jobs"
+    },
+    {
+      "rel": "trl/callbacks.md",
+      "bytes": 8833,
+      "source": "llms-full-split",
+      "url": "https://huggingface.co/docs/trl/v1.12.0/callbacks.md",
+      "track": "TRL",
+      "package": "trl",
+      "title": "Callbacks"
     },
     {
       "rel": "xet/file-id.md",
@@ -19435,14 +19444,14 @@
       "toc": 25,
       "found": 25,
       "written": 25,
-      "full_bytes": 159882
+      "full_bytes": 160705
     },
     {
       "pkg": "cli",
       "toc": 0,
       "found": 1,
       "written": 1,
-      "full_bytes": 87480
+      "full_bytes": 92055
     },
     {
       "pkg": "dataset-viewer",
@@ -19470,14 +19479,14 @@
       "toc": 270,
       "found": 269,
       "written": 269,
-      "full_bytes": 1443952
+      "full_bytes": 1443970
     },
     {
       "pkg": "huggingface_hub",
       "toc": 52,
       "found": 52,
       "written": 52,
-      "full_bytes": 1749151
+      "full_bytes": 1771489
     },
     {
       "pkg": "inference-endpoints",
@@ -19491,14 +19500,14 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 416840
+      "full_bytes": 416846
     },
     {
       "pkg": "kernels",
       "toc": 37,
       "found": 37,
       "written": 37,
-      "full_bytes": 210344
+      "full_bytes": 210351
     },
     {
       "pkg": "lerobot",
@@ -19554,7 +19563,7 @@
       "toc": 77,
       "found": 77,
       "written": 77,
-      "full_bytes": 450151
+      "full_bytes": 474110
     },
     {
       "pkg": "tokenizers",
@@ -19579,10 +19588,10 @@
     },
     {
       "pkg": "trl",
-      "toc": 63,
-      "found": 63,
-      "written": 63,
-      "full_bytes": 1356286
+      "toc": 64,
+      "found": 64,
+      "written": 64,
+      "full_bytes": 1421737
     },
     {
       "pkg": "xet",

@@ -12,7 +12,7 @@ The `StableEmbedding` class was introduced in the [8-bit Optimizers via Block-wi
 bitsandbytes.nn.Embedding(num_embeddings: int, embedding_dim: int, padding_idx: typing.Optional[int] = None, max_norm: typing.Optional[float] = None, norm_type: float = 2.0, scale_grad_by_freq: bool = False, sparse: bool = False, _weight: typing.Optional[torch.Tensor] = None, device: typing.Optional[torch.device] = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L134)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/nn/modules.py#L134)
 
 Embedding class to store and retrieve word embeddings from their indices.
 
@@ -22,7 +22,7 @@ Embedding class to store and retrieve word embeddings from their indices.
 __init__(num_embeddings: int, embedding_dim: int, padding_idx: typing.Optional[int] = None, max_norm: typing.Optional[float] = None, norm_type: float = 2.0, scale_grad_by_freq: bool = False, sparse: bool = False, _weight: typing.Optional[torch.Tensor] = None, device: typing.Optional[torch.device] = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L139)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/nn/modules.py#L139)
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ _weight (`Optional[Tensor]`) : Pretrained embeddings.
 bitsandbytes.nn.StableEmbedding(num_embeddings: int, embedding_dim: int, padding_idx: typing.Optional[int] = None, max_norm: typing.Optional[float] = None, norm_type: float = 2.0, scale_grad_by_freq: bool = False, sparse: bool = False, _weight: typing.Optional[torch.Tensor] = None, device = None, dtype = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L28)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/nn/modules.py#L28)
 
 **Parameters:**
 
@@ -82,7 +82,7 @@ forward(input: Tensor) -> Tensor: Forward pass through the stable embedding laye
 __init__(num_embeddings: int, embedding_dim: int, padding_idx: typing.Optional[int] = None, max_norm: typing.Optional[float] = None, norm_type: float = 2.0, scale_grad_by_freq: bool = False, sparse: bool = False, _weight: typing.Optional[torch.Tensor] = None, device = None, dtype = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L54)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/nn/modules.py#L54)
 
 **Parameters:**
 
@@ -103,4 +103,4 @@ sparse (`bool`, defaults to `False`) : Computes dense gradients. Set to `True` t
 _weight (`Optional[Tensor]`) : Pretrained embeddings.
 
 ### LLM.int8()
-https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/nn/linear8bit.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/nn/linear8bit.md

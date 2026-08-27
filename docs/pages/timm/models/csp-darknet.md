@@ -90,5 +90,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### DenseNet
-https://huggingface.co/docs/timm/v1.0.28/models/densenet.md
+### (Gluon) ResNet
+https://huggingface.co/docs/timm/v1.0.29/models/gloun-resnet.md

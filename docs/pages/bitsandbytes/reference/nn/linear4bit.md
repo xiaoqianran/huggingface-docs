@@ -10,7 +10,7 @@
 bitsandbytes.nn.Linear4bit(input_features, output_features, bias = True, compute_dtype = None, compress_statistics = True, quant_type = 'fp4', quant_storage = torch.uint8, device = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L504)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/nn/modules.py#L504)
 
 This class is the base module for the 4-bit quantization algorithm presented in [QLoRA](https://arxiv.org/abs/2305.14314).
 QLoRA 4-bit linear layers uses blockwise k-bit quantization under the hood, with the possibility of selecting various
@@ -48,7 +48,7 @@ quantized_model = quantized_model.to(0) # Quantization happens here
 __init__(input_features, output_features, bias = True, compute_dtype = None, compress_statistics = True, quant_type = 'fp4', quant_storage = torch.uint8, device = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L537)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/nn/modules.py#L537)
 
 **Parameters:**
 
@@ -68,7 +68,7 @@ Initialize Linear4bit class.
 bitsandbytes.nn.LinearFP4(input_features, output_features, bias = True, compute_dtype = None, compress_statistics = True, quant_storage = torch.uint8, device = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L640)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/nn/modules.py#L640)
 
 Implements the FP4 data type.
 
@@ -78,7 +78,7 @@ Implements the FP4 data type.
 __init__(input_features, output_features, bias = True, compute_dtype = None, compress_statistics = True, quant_storage = torch.uint8, device = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L645)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/nn/modules.py#L645)
 
 **Parameters:**
 
@@ -96,7 +96,7 @@ bias (`bool`, defaults to `True`) : Whether the linear class uses the bias term 
 bitsandbytes.nn.LinearNF4(input_features, output_features, bias = True, compute_dtype = None, compress_statistics = True, quant_storage = torch.uint8, device = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L676)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/nn/modules.py#L676)
 
 Implements the NF4 data type.
 
@@ -114,7 +114,7 @@ the `functional.py` file: https://github.com/TimDettmers/bitsandbytes/blob/main/
 __init__(input_features, output_features, bias = True, compute_dtype = None, compress_statistics = True, quant_storage = torch.uint8, device = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L688)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/nn/modules.py#L688)
 
 **Parameters:**
 
@@ -132,7 +132,7 @@ bias (`bool`, defaults to `True`) : Whether the linear class uses the bias term 
 bitsandbytes.nn.Params4bit(data: typing.Optional[torch.Tensor] = None, requires_grad = False, quant_state: typing.Optional[bitsandbytes.functional.QuantState] = None, blocksize: typing.Optional[int] = None, compress_statistics: bool = True, quant_type: str = 'fp4', quant_storage: dtype = torch.uint8, module: typing.Optional[ForwardRef('Linear4bit')] = None, bnb_quantized: bool = False, **kwargs)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L213)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/nn/modules.py#L213)
 
 #### [[bitsandbytes.nn.Params4bit.__init__]]
 
@@ -140,7 +140,7 @@ bitsandbytes.nn.Params4bit(data: typing.Optional[torch.Tensor] = None, requires_
 <lambda>(*args, **kwargs)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/doc_builder/mock_imports.py#L251)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/doc_builder/mock_imports.py#L251)
 
 ### 8-bit optimizers
-https://huggingface.co/docs/bitsandbytes/v0.50.1/explanations/optimizers.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/explanations/optimizers.md

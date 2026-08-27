@@ -88,5 +88,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### (Tensorflow) EfficientNet CondConv
-https://huggingface.co/docs/timm/v1.0.28/models/tf-efficientnet-condconv.md
+### SWSL ResNeXt
+https://huggingface.co/docs/timm/v1.0.29/models/swsl-resnext.md

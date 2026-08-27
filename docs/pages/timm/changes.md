@@ -1375,5 +1375,5 @@ More models, more fixes
 * TinyNet models added by [rsomani95](https://github.com/rsomani95)
 * LCNet added via MobileNetV3 architecture
 
-### Scripts
-https://huggingface.co/docs/timm/v1.0.28/training_script.md
+### Quickstart
+https://huggingface.co/docs/timm/v1.0.29/quickstart.md

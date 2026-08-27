@@ -25,4 +25,4 @@ Please see the existing documentation to see how to generate autodocs.
 - find the documentation builds for each PR in a link posted to the PR, such as https://moon-ci-docs.huggingface.co/docs/bitsandbytes/pr_1012/en/introduction
 
 ### Quickstart
-https://huggingface.co/docs/bitsandbytes/v0.50.1/quickstart.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/quickstart.md

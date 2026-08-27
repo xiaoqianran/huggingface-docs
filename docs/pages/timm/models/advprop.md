@@ -90,5 +90,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### Big Transfer (BiT)
-https://huggingface.co/docs/timm/v1.0.28/models/big-transfer.md
+### ECA-ResNet
+https://huggingface.co/docs/timm/v1.0.29/models/ecaresnet.md

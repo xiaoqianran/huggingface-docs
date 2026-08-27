@@ -5,11 +5,11 @@
 This guide covers **how to integrate OpenEnv with TRL**. For more on OpenEnv itself, see the [OpenEnv docs](https://huggingface.co/docs/openenv).
 
 > [!NOTE]
-> You can explore ready-to-use example [scripts](example_overview#openenv-scripts) and [notebooks](example_overview#openenv-notebooks) in the Examples Overview.
+> Ready-to-use OpenEnv examples: [`grpo_echo`](https://github.com/huggingface/trl/tree/main/examples/grpo_echo) (minimal), [`grpo_catch`](https://github.com/huggingface/trl/tree/main/examples/grpo_catch), [`grpo_wordle`](https://github.com/huggingface/trl/tree/main/examples/grpo_wordle), [`grpo_sudoku`](https://github.com/huggingface/trl/tree/main/examples/grpo_sudoku), [`grpo_multi_env`](https://github.com/huggingface/trl/tree/main/examples/grpo_multi_env), [`grpo_browsergym`](https://github.com/huggingface/trl/tree/main/examples/grpo_browsergym), [`grpo_carla`](https://github.com/huggingface/trl/tree/main/examples/grpo_carla), and [`async_grpo_opencode`](https://github.com/huggingface/trl/tree/main/examples/async_grpo_opencode).
 
 ## When to use environments
 
-[GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) can be used to train agents. For agentic tasks, it supports two modes: **tools**, where the model can call external functions but each call is stateless and independent, and **environments**, which maintain state across turns, enabling genuine multi-turn interaction where the agent's actions shape future observations. Use environments when continuity matters — for example, navigating a game, browsing a web page, or any task where what the agent sees next depends on what it did before.
+[GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer) can be used to train agents. For agentic tasks, it supports two modes: **tools**, where the model can call external functions but each call is stateless and independent, and **environments**, which maintain state across turns, enabling genuine multi-turn interaction where the agent's actions shape future observations. Use environments when continuity matters — for example, navigating a game, browsing a web page, or any task where what the agent sees next depends on what it did before.
 
 ## Choosing an environment integration
 
@@ -50,14 +50,14 @@ pip install -e .
 > Each environment script in TRL includes inline dependency metadata (PEP 723) so you can also run them directly with [uv](https://docs.astral.sh/uv/):
 >
 > ```bash
-> uv run examples/scripts/openenv/echo.py
+> uv run examples/grpo_echo/grpo_echo.py
 > ```
 >
 > This automatically installs the required environment package in an isolated virtual environment.
 
 ## Quick start
 
-The fastest way to understand the integration is a complete example. The [echo.py](https://github.com/huggingface/trl/blob/main/examples/scripts/openenv/echo.py) script trains a model with the [Echo environment](https://huggingface.co/docs/openenv/environments/echo), which rewards completions based on their text length:
+The fastest way to understand the integration is a complete example. The [echo.py](https://github.com/huggingface/trl/blob/main/examples/grpo_echo/grpo_echo.py) script trains a model with the [Echo environment](https://huggingface.co/docs/openenv/environments/echo), which rewards completions based on their text length:
 
 ```python
 from datasets import Dataset
@@ -121,20 +121,20 @@ That's it. Here's what happens under the hood:
 
 ```bash
 # Run the example
-python examples/scripts/openenv/echo.py
+python examples/grpo_echo/grpo_echo.py
 
 # Customize model and environment URL
-python examples/scripts/openenv/echo.py --model Qwen/Qwen3-0.6B --env-host https://openenv-echo-env.hf.space
+python examples/grpo_echo/grpo_echo.py --model Qwen/Qwen3-0.6B --env-host https://openenv-echo-env.hf.space
 ```
 
 Below is the reward curve from training:
 
 > [!NOTE]
-> You can explore more ready-to-use example [scripts](example_overview#openenv-scripts) and [notebooks](example_overview#openenv-notebooks) in the Examples Overview.
+> You can explore more ready-to-use OpenEnv examples in the note at the top of this page.
 
 ## How `environment_factory` works
 
-TRL's [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) supports interactive environment training through the `environment_factory` argument. When provided, the trainer automatically handles the multi-turn tool-calling loop: it generates completions, parses tool calls, executes them against the environment, and feeds the results back to the model. All without custom rollout code.
+TRL's [GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer) supports interactive environment training through the `environment_factory` argument. When provided, the trainer automatically handles the multi-turn tool-calling loop: it generates completions, parses tool calls, executes them against the environment, and feeds the results back to the model. All without custom rollout code.
 
 ### Environment class requirements
 
@@ -196,7 +196,7 @@ A few things we've found helpful when working with OpenEnv environments and GRPO
 
 - **Simple rewards work well.** In our experiments with Wordle and Sudoku, binary rewards (1.0 for success, 0.0 otherwise) gave cleaner training signals than shaped rewards with partial credit. GRPO compares completions within a group, so the relative ranking matters more than the absolute values.
 - **Check the final state, not the path.** When possible, let the environment judge the outcome (e.g., "did the model solve the puzzle?") rather than checking if it followed a specific sequence of actions. This gives the model freedom to discover its own strategies.
-- **Test your reward before training.** Run a few episodes manually (see the [Wordle example notebook](https://github.com/huggingface/trl/blob/main/examples/notebooks/openenv_wordle_grpo.ipynb)) to confirm the environment returns sensible rewards. If a capable model can't score higher than a random baseline, the reward signal may need adjustment.
+- **Test your reward before training.** Run a few episodes manually (see the [Wordle example notebook](https://github.com/huggingface/trl/blob/main/examples/grpo_wordle/grpo_wordle.ipynb)) to confirm the environment returns sensible rewards. If a capable model can't score higher than a random baseline, the reward signal may need adjustment.
 
 ### `max_completion_length` in multi-turn episodes
 
@@ -216,7 +216,7 @@ If episodes are being cut short (model stops mid-game), this is likely the cause
 Let's train a model to play [Wordle](https://www.nytimes.com/games/wordle/index.html) using the [`TextArena`](https://huggingface.co/docs/openenv/environments/textarena) environment. This demonstrates multi-turn interaction, cumulative feedback handling, and episode termination via exceptions.
 
 > [!NOTE]
-> You can explore the notebook version of this example in [the OpenEnv Wordle GRPO example](https://github.com/huggingface/trl/blob/main/examples/notebooks/openenv_wordle_grpo.ipynb).
+> You can explore the notebook version of this example in [the OpenEnv Wordle GRPO example](https://github.com/huggingface/trl/blob/main/examples/grpo_wordle/grpo_wordle.ipynb).
 
 ### The TextArena Environment
 
@@ -325,7 +325,7 @@ The environment returns `1.0` if the model wins and `0.0` otherwise.
 **Colocate mode (1 GPU, recommended)**
 
 ```bash
-python examples/scripts/openenv/wordle.py --vllm-mode colocate
+python examples/grpo_wordle/grpo_wordle.py --vllm-mode colocate
 ```
 
 This runs vLLM in the same process as training, requiring only a single GPU.
@@ -334,10 +334,13 @@ This runs vLLM in the same process as training, requiring only a single GPU.
 
 ```bash
 # Terminal 1: Start vLLM inference server
-CUDA_VISIBLE_DEVICES=0 trl vllm-serve --model Qwen/Qwen3-1.7B --host 0.0.0.0 --port 8000
+CUDA_VISIBLE_DEVICES=0 VLLM_SERVER_DEV_MODE=1 vllm serve Qwen/Qwen3-1.7B --host 0.0.0.0 --port 8000 \
+    --weight-transfer-config '{"backend": "nccl"}' \
+    --logprobs-mode processed_logprobs \
+    --max-logprobs -1
 
 # Terminal 2: Run GRPO training with OpenEnv
-CUDA_VISIBLE_DEVICES=1 python examples/scripts/openenv/wordle.py --vllm-mode server --vllm-server-url http://localhost:8000
+CUDA_VISIBLE_DEVICES=1 python examples/grpo_wordle/grpo_wordle.py --vllm-mode server --vllm-server-url http://localhost:8000
 ```
 
 ### Results
@@ -364,7 +367,7 @@ The key idea is to create a **meta-environment class** that wraps multiple envir
 
 ### Example: Wordle + Catch
 
-The [multi_env.py](https://github.com/huggingface/trl/blob/main/examples/scripts/openenv/multi_env.py) script trains on Wordle and Catch simultaneously:
+The [grpo_multi_env.py](https://github.com/huggingface/trl/blob/main/examples/grpo_multi_env/grpo_multi_env.py) script trains on Wordle and Catch simultaneously:
 
 ```python
 class MultiEnv:
@@ -462,7 +465,7 @@ dataset = Dataset.from_dict({
 ### Running the multi-environment example
 
 ```bash
-python examples/scripts/openenv/multi_env.py \
+python examples/grpo_multi_env/grpo_multi_env.py \
     --wordle-url https://openenv-wordle.hf.space \
     --catch-url https://openenv-openspiel-env.hf.space \
     --vllm-mode colocate \
@@ -562,7 +565,7 @@ app = create_app(
 
 ## `environment_factory` vs `rollout_func`
 
-[GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) supports two approaches for environment-based training:
+[GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer) supports two approaches for environment-based training:
 
 - **`environment_factory`** (recommended): You define an environment class with tool methods, and the trainer handles generation, tool-call parsing, and the multi-turn loop automatically. This is the approach used throughout this guide.
 - **`rollout_func`**: You write the entire generation and environment interaction loop yourself. This gives full control over how completions are produced, how tools are executed, and how rewards are computed.
@@ -575,7 +578,7 @@ The integrations above are **white-box**: TRL drives the multi-turn loop itself.
 
 Some agents cannot be driven this way because they own their own loop. A production coding agent harness like [`opencode`](https://opencode.ai) has its own planner, tool set, context management, and stop condition. You want to train that exact agent, not a reimplementation of it.
 
-For this, TRL provides an experimental **black box (loop-owning)** path built on [experimental.async_grpo.AsyncGRPOTrainer](/docs/trl/v1.10.0/en/async_grpo_trainer#trl.experimental.async_grpo.AsyncGRPOTrainer) and a `HarnessRolloutWorker` specific for OpenEnv that drives an [OpenEnv `ResourceSessionFactory`](https://huggingface.co/docs/openenv). See [`examples/scripts/openenv/opencode.py`](https://github.com/huggingface/trl/blob/main/examples/scripts/openenv/opencode.py) for a complete, self-contained example. To scale rollouts beyond a single node, [`examples/scripts/openenv/opencode_hf_sandbox.py`](https://github.com/huggingface/trl/blob/main/examples/scripts/openenv/opencode_hf_sandbox.py) runs each rollout in its own remote Hugging Face sandbox instead of a local subprocess.
+For this, TRL provides an experimental **black box (loop-owning)** path built on [experimental.async_grpo.AsyncGRPOTrainer](/docs/trl/v1.12.0/en/async_grpo_trainer#trl.experimental.async_grpo.AsyncGRPOTrainer) and a `HarnessRolloutWorker` specific for OpenEnv that drives an [OpenEnv `ResourceSessionFactory`](https://huggingface.co/docs/openenv). See [`examples/async_grpo_opencode/async_grpo_opencode.py`](https://github.com/huggingface/trl/blob/main/examples/async_grpo_opencode/async_grpo_opencode.py) for a complete, self-contained example. To scale rollouts beyond a single node, [`examples/async_grpo_opencode/opencode_hf_sandbox.py`](https://github.com/huggingface/trl/blob/main/examples/async_grpo_opencode/opencode_hf_sandbox.py) runs each rollout in its own remote Hugging Face sandbox instead of a local subprocess.
 
 ### How it works
 
@@ -589,7 +592,7 @@ Each rollout runs in its own isolated session. In the example that means one san
 
 ### Wiring
 
-You pass a `HarnessRolloutWorker` to [experimental.async_grpo.AsyncGRPOTrainer](/docs/trl/v1.10.0/en/async_grpo_trainer#trl.experimental.async_grpo.AsyncGRPOTrainer) with `harness_adapter=None` to select loop-owning mode. Besides the usual training arguments, you provide three functions (`rollout_reward_fn`, `train_turn_fn`, and `agent_turn_fn`) that tell TRL how to score, filter, and read the agent's rollouts. They are described in [What you need to define](#what-you-need-to-define).
+You pass a `HarnessRolloutWorker` to [experimental.async_grpo.AsyncGRPOTrainer](/docs/trl/v1.12.0/en/async_grpo_trainer#trl.experimental.async_grpo.AsyncGRPOTrainer) with `harness_adapter=None` to select loop-owning mode. Besides the usual training arguments, you provide three functions (`rollout_reward_fn`, `train_turn_fn`, and `agent_turn_fn`) that tell TRL how to score, filter, and read the agent's rollouts. They are described in [What you need to define](#what-you-need-to-define).
 
 ```python
 from trl.experimental.async_grpo import AsyncGRPOConfig, AsyncGRPOTrainer
@@ -678,5 +681,5 @@ vllm serve <model> \
 > [!NOTE]
 > Loop-owning training lives under `trl.experimental` and its API may change. The example installs the `opencode` CLI into a sandbox template on first run (needs internet once) and uses [`agentica-org/DeepCoder-Preview-Dataset`](https://huggingface.co/datasets/agentica-org/DeepCoder-Preview-Dataset) with a held-out stdin/stdout verifier.
 
-### Usage Stats Collection
-https://huggingface.co/docs/trl/v1.10.0/usage_stats.md
+### CPO Trainer
+https://huggingface.co/docs/trl/v1.12.0/cpo_trainer.md

@@ -67,4 +67,4 @@ For weights ported from other deep learning frameworks (Tensorflow, MXNet GluonC
 Model code .py files contain links to original sources of models and weights.
 
 ### Changelog
-https://huggingface.co/docs/timm/v1.0.28/changes.md
+https://huggingface.co/docs/timm/v1.0.29/changes.md

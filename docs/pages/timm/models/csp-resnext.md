@@ -88,5 +88,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### ResNet-D
-https://huggingface.co/docs/timm/v1.0.28/models/resnet-d.md
+### Noisy Student (EfficientNet)
+https://huggingface.co/docs/timm/v1.0.29/models/noisy-student.md

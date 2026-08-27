@@ -46,5 +46,5 @@ Contributors should also be respectful of our [code of
 conduct](https://github.com/huggingface/huggingface_hub/blob/main/CODE_OF_CONDUCT.md) to
 create an inclusive and welcoming collaborative space for everyone.
 
-### Run and manage Jobs
-https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/jobs.md
+### Cache-system reference
+https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/cache.md

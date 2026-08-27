@@ -88,5 +88,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### (Gluon) Inception v3
-https://huggingface.co/docs/timm/v1.0.28/models/gloun-inception-v3.md
+### FBNet
+https://huggingface.co/docs/timm/v1.0.29/models/fbnet.md

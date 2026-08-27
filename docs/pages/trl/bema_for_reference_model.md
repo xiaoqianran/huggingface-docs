@@ -28,7 +28,7 @@ trainer.train()
 trl.DPOTrainer(*args, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/bema_for_ref_model/dpo_trainer.py#L19)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/bema_for_ref_model/dpo_trainer.py#L19)
 
 #### train[[trl.DPOTrainer.train]]
 
@@ -36,7 +36,7 @@ trl.DPOTrainer(*args, **kwargs)
 train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L1347)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L1350)
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ Main training entry point.
 save_model(output_dir: str | None = None, _internal_call: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L3794)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L3805)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
@@ -70,7 +70,7 @@ Will only save from the main process.
 push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L4041)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L4052)
 
 **Parameters:**
 
@@ -99,7 +99,7 @@ Upload `self.model` and `self.processing_class` to the 🤗 model hub on the rep
 trl.BEMACallback(update_freq: int = 400, ema_power: float = 0.5, bias_power: float = 0.2, lag: int = 10, update_after: int = 0, multiplier: float = 1.0, min_ema_multiplier: float = 0.0, device: str = 'cpu', update_ref_model: bool = False, ref_model_update_freq: int = 400, ref_model_update_after: int = 0)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/bema_for_ref_model/callback.py#L59)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/bema_for_ref_model/callback.py#L59)
 
 **Parameters:**
 
@@ -125,7 +125,7 @@ ref_model_update_freq (`int`, *optional*, defaults to `400`) : Update the refere
 
 ref_model_update_after (`int`, *optional*, defaults to `0`) : Number of steps to wait before starting to update the reference model.
 
-A [TrainerCallback](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/callback#transformers.TrainerCallback) that implements [BEMA](https://huggingface.co/papers/2508.00180)
+A [TrainerCallback](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/callback#transformers.TrainerCallback) that implements [BEMA](https://huggingface.co/papers/2508.00180)
 (Bias-Corrected Exponential Moving Average) by [Adam Block](https://huggingface.co/abblock) and [Cyril
 Zhang](https://huggingface.co/cyrilzhang). Code from https://github.com/abblock/bema under MIT license.
 
@@ -163,5 +163,5 @@ Example:
 >>> trainer = Trainer(..., callbacks=[BEMACallback()])
 ```
 
-### vLLM Integration
-https://huggingface.co/docs/trl/v1.10.0/vllm_integration.md
+### GRPO Trainer
+https://huggingface.co/docs/trl/v1.12.0/grpo_trainer.md

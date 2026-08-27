@@ -88,5 +88,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### MnasNet
-https://huggingface.co/docs/timm/v1.0.28/models/mnasnet.md
+### HRNet
+https://huggingface.co/docs/timm/v1.0.29/models/hrnet.md

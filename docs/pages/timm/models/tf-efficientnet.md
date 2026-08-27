@@ -94,5 +94,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### Adversarial Inception v3
-https://huggingface.co/docs/timm/v1.0.28/models/adversarial-inception-v3.md
+### (Tensorflow) EfficientNet Lite
+https://huggingface.co/docs/timm/v1.0.29/models/tf-efficientnet-lite.md

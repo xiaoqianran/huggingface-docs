@@ -135,5 +135,5 @@ The documentation is organized into the following sections:
       Talk given on October 30, 2025
       Fine tuning with TRL
 
-### PPO Trainer
-https://huggingface.co/docs/trl/v1.10.0/ppo_trainer.md
+### MergeModelCallback[[trl.experimental.merge_model_callback.MergeModelCallback]]
+https://huggingface.co/docs/trl/v1.12.0/merge_model_callback.md

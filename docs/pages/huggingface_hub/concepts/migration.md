@@ -17,12 +17,12 @@ The `huggingface_hub` library now uses [`httpx`](https://www.python-httpx.org/) 
 This is a major change that affects the entire library. While we have tried to make this change as transparent as possible, you may need to update your code in some cases. Here is a list of breaking changes introduced in the process:
 
 - **Proxy configuration**: "per method" proxies are no longer supported. Proxies must be configured globally using the `HTTP_PROXY` and `HTTPS_PROXY` environment variables.
-- **Custom HTTP backend**: The `configure_http_backend` function has been removed. You should now use [set_client_factory()](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.set_client_factory) and [set_async_client_factory()](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.set_async_client_factory) to configure the HTTP clients.
+- **Custom HTTP backend**: The `configure_http_backend` function has been removed. You should now use [set_client_factory()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.set_client_factory) and [set_async_client_factory()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.set_async_client_factory) to configure the HTTP clients.
 - **Error handling**: HTTP errors are not inherited from `requests.HTTPError` anymore, but from `httpx.HTTPError`. We recommend catching `huggingface_hub.HfHubHttpError` which is a subclass of `requests.HTTPError` in v0.x and of `httpx.HTTPError` in v1.x. Catching from the `huggingface_hub` error ensures your code is compatible with both the old and new versions of the library.
 - **SSLError**: `httpx` does not have the concept of `SSLError`. It is now a generic `httpx.ConnectError`.
 - **`LocalEntryNotFoundError`**: This error no longer inherits from `HTTPError`. We now define a `EntryNotFoundError` (new) that is inherited by both `LocalEntryNotFoundError` (if file not found in local cache) and `RemoteEntryNotFoundError` (if file not found in repo on the Hub). Only the remote error inherits from `HTTPError`.
 - **`InferenceClient`**: The `InferenceClient` can now be used as a context manager. This is especially useful when streaming tokens from a language model to ensure that the connection is closed properly.
-- **`AsyncInferenceClient`**: The `trust_env` parameter has been removed from the `AsyncInferenceClient`'s constructor. Environment variables are trusted by default by `httpx`. If you explicitly don't want to trust the environment, you must configure it with [set_client_factory()](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.set_client_factory).
+- **`AsyncInferenceClient`**: The `trust_env` parameter has been removed from the `AsyncInferenceClient`'s constructor. Environment variables are trusted by default by `httpx`. If you explicitly don't want to trust the environment, you must configure it with [set_client_factory()](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.set_client_factory).
 
 For more details, you can check [PR #3328](https://github.com/huggingface/huggingface_hub/pull/3328) that introduced `httpx`.
 
@@ -57,17 +57,17 @@ Here is a mapping from the legacy `Repository` class to the new `HfApi` one:
 | `Repository` method                        | `HfApi` method                                        |
 | ------------------------------------------ | ----------------------------------------------------- |
 | `repo.clone_from`                          | `snapshot_download`                                   |
-| `repo.git_add` + `git_commit` + `git_push` | [upload_file()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file), [upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder), [create_commit()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) |
+| `repo.git_add` + `git_commit` + `git_push` | [upload_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file), [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder), [create_commit()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) |
 | `repo.git_tag`                             | `create_tag`                                          |
 | `repo.git_branch`                          | `create_branch`                                       |
 
 ## `HfFolder` class
 
-`HfFolder` was used to manage the user access token. Use [login()](/docs/huggingface_hub/v1.27.0/en/package_reference/authentication#huggingface_hub.login) to save a new token, [logout()](/docs/huggingface_hub/v1.27.0/en/package_reference/authentication#huggingface_hub.logout) to delete it and [whoami()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.whoami) to check the user associated to the current token. Finally, use `get_token()` to retrieve user's token in a script.
+`HfFolder` was used to manage the user access token. Use [login()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.login) to save a new token, [logout()](/docs/huggingface_hub/v1.29.0/en/package_reference/authentication#huggingface_hub.logout) to delete it and [whoami()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.whoami) to check the user associated to the current token. Finally, use `get_token()` to retrieve user's token in a script.
 
 ## `InferenceApi` class
 
-`InferenceApi` was a class to interact with the Inference API. It is now recommended to use the [InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) class instead.
+`InferenceApi` was a class to interact with the Inference API. It is now recommended to use the [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) class instead.
 
 ## Other deprecated features
 
@@ -105,7 +105,4 @@ The Keras 2.x integration has also been removed. This includes the `KerasModelHu
 
 ## `upload_file` and `upload_folder` return values
 
-The [upload_file()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) functions now return the URL of the commit created on the Hub. Previously, they returned the URL of the file or folder. This is to align with the return value of [create_commit()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit), [delete_file()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_file) and [delete_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_folder).
-
-### Sandboxes under the hood
-https://huggingface.co/docs/huggingface_hub/v1.27.0/concepts/sandbox.md
+The [upload_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) functions now return the URL of the commit created on the Hub. Previously, they returned the URL of the file or folder. This is to align with the return value of [create_commit()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit), [delete_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_file) and [delete_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_folder).

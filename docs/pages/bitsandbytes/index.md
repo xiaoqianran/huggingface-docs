@@ -11,4 +11,4 @@ bitsandbytes enables accessible large language models via k-bit quantization for
 bitsandbytes is MIT licensed.
 
 ### Integrations
-https://huggingface.co/docs/bitsandbytes/v0.50.1/integrations.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/integrations.md

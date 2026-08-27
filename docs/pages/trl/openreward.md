@@ -9,7 +9,7 @@ This guide covers **how to integrate OpenReward with TRL**. For more on the stan
 
 ## When to use OpenReward environments
 
-[GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) supports environment-based training via the `environment_factory` slot — see [OpenEnv](openenv) for the general contract. Use OpenReward when you want to train against an ORS-speaking environment: the [OpenReward catalog](https://openreward.ai) (e.g. `Eigent/SETA`, `kanishk/EndlessTerminals`, `nebius/SWE-rebench-V2`), an env you self-host on your own infra, or a local server you're developing.
+[GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer) supports environment-based training via the `environment_factory` slot — see [OpenEnv](openenv) for the general contract. Use OpenReward when you want to train against an ORS-speaking environment: the [OpenReward catalog](https://openreward.ai) (e.g. `Eigent/SETA`, `kanishk/EndlessTerminals`, `nebius/SWE-rebench-V2`), an env you self-host on your own infra, or a local server you're developing.
 
 ## Installation
 
@@ -194,7 +194,7 @@ The per-rollout adapter exposes the running state TRL needs — `env.reward`, `e
 trl.experimental.openreward.OpenRewardSpec(target: str, num_tasks: int | None = None, split: str = 'train', indices: list[int] | None = None, api_key: str | None = None, secrets: dict[str, str] | None = None, env_name: str | None = None, include_metadata: bool = True, discover_task_tools: bool = True, task_tools_discovery_index: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/openreward/_spec.py#L78)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/openreward/_spec.py#L78)
 
 **Parameters:**
 
@@ -233,5 +233,5 @@ Single spec object that wires an ORS environment into a TRL trainer.
 - [`openreward` Python SDK](https://pypi.org/project/openreward/)
 - [Echo env Space — `trl-internal-testing/openreward-echo-env`](https://huggingface.co/spaces/trl-internal-testing/openreward-echo-env)
 
-### Training with Jobs
-https://huggingface.co/docs/trl/v1.10.0/jobs_training.md
+### A2PO
+https://huggingface.co/docs/trl/v1.12.0/a2po_trainer.md

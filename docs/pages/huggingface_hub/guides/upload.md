@@ -6,7 +6,7 @@ Whenever you want to upload files to the Hub, you need to log in to your Hugging
 
 ## Upload a file
 
-Once you've created a repository with [create_repo()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo), you can upload a file to your repository using [upload_file()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file).
+Once you've created a repository with [create_repo()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_repo), you can upload a file to your repository using [upload_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file).
 
 Specify the path of the file to upload, where you want to upload the file to in the repository, and the name of the repository you want to add the file to. Depending on your repository type, you can optionally set the repository type as a `dataset`, `model`, or `space`.
 
@@ -23,7 +23,7 @@ Specify the path of the file to upload, where you want to upload the file to in 
 
 ## Upload a folder
 
-Use the [upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) function to upload a local folder to an existing repository. Specify the path of the local folder
+Use the [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) function to upload a local folder to an existing repository. Specify the path of the local folder
 to upload, where you want to upload the folder to in the repository, and the name of the repository you want to add the
 folder to. Depending on your repository type, you can optionally set the repository type as a `dataset`, `model`, or `space`.
 
@@ -74,7 +74,7 @@ but before that, all previous logs on the repo are deleted. All of this in a sin
 
 ### How files are uploaded
 
-When `hf_xet` is installed (which is the case by default), [upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) uploads files through a streamed pipeline: files are checked against the Hub, uploaded to the Xet storage backend (which chunks, deduplicates and retries transfers internally), and committed in adaptive batches, all in parallel. In practice this means:
+When `hf_xet` is installed (which is the case by default), [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) uploads files through a streamed pipeline: files are checked against the Hub, uploaded to the Xet storage backend (which chunks, deduplicates and retries transfers internally), and committed in adaptive batches, all in parallel. In practice this means:
 
 - **Folders of any size**: small folders are uploaded in a single commit, while folders with many files are automatically split into several commits to stay below server limits. When this happens, follow-up commits get a ` (part 2)`, ` (part 3)`, ... suffix on the commit message.
 - **Resumable**: if the upload is interrupted for any reason, simply re-run the same call. Files already committed are detected and skipped, and chunks already uploaded are deduplicated — re-uploading them transfers (almost) no data. No local state is involved: you can even resume from a different machine. One exception: with `create_pr=True`, re-running opens a new pull request. We recommend re-run with `revision="refs/pr/N"` instead when resuming upload.
@@ -89,11 +89,11 @@ Found 5,000 files to upload
   Committing  ██████████████████░░  4,580 / 5,000  6 commits
 ```
 
-If `hf_xet` is not installed, [upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) falls back to the legacy behavior: hash everything first, upload over HTTP, then create a single commit. We always recommend to keep `hf_xet` installed for better robustness
+If `hf_xet` is not installed, [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) falls back to the legacy behavior: hash everything first, upload over HTTP, then create a single commit. We always recommend to keep `hf_xet` installed for better robustness
 
 ## Upload from the CLI
 
-You can use the `hf upload` command from the terminal to directly upload files to the Hub. Internally it uses the same [upload_file()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) helpers described above.
+You can use the `hf upload` command from the terminal to directly upload files to the Hub. Internally it uses the same [upload_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) helpers described above.
 
 You can either upload a single file or an entire folder:
 
@@ -126,7 +126,7 @@ For more details about the CLI upload command, please refer to the [CLI guide](.
 
 ## Upload a large folder
 
-[upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) and the `hf upload` command are the go-to solutions to upload files to the Hub, including for very large folders. Files are streamed to the Hub in several commits and the process resumes automatically if it gets interrupted. Simply re-run the same call and already-uploaded files are skipped.
+[upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) and the `hf upload` command are the go-to solutions to upload files to the Hub, including for very large folders. Files are streamed to the Hub in several commits and the process resumes automatically if it gets interrupted. Simply re-run the same call and already-uploaded files are skipped.
 
 ```py
 >>> api.upload_folder(
@@ -143,7 +143,7 @@ hf upload HuggingFaceM4/Docmatix --repo-type=dataset /path/to/local/docmatix
 ```
 
 > [!WARNING]
-> The legacy [upload_large_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_large_folder) method and `hf upload-large-folder` command are **deprecated** and will be removed in a future release. Use [upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) / `hf upload` instead.
+> The legacy [upload_large_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_large_folder) method and `hf upload-large-folder` command are **deprecated** and will be removed in a future release. Use [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) / `hf upload` instead.
 
 ### Tips and tricks for large uploads
 
@@ -152,12 +152,12 @@ There are some limitations to be aware of when dealing with a large amount of da
 Check out our [Repository limitations and recommendations](https://huggingface.co/docs/hub/repositories-recommendations) guide for best practices on how to structure your repositories on the Hub. Let's move on with some practical tips to make your upload process as smooth as possible.
 
 - **Start small**: We recommend starting with a small amount of data to test your upload script. It's easier to iterate on a script when failing takes only a little time.
-- **Expect failures**: Streaming large amounts of data is challenging. You don't know what can happen, but it's always best to consider that something will fail at least once -no matter if it's due to your machine, your connection, or our servers. For example, if you plan to upload a large number of files, it's best to keep track locally of which files you already uploaded before uploading the next batch. You are ensured that an LFS file that is already committed will never be re-uploaded twice but checking it client-side can still save some time. This is what [upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) does for you.
+- **Expect failures**: Streaming large amounts of data is challenging. You don't know what can happen, but it's always best to consider that something will fail at least once -no matter if it's due to your machine, your connection, or our servers. For example, if you plan to upload a large number of files, it's best to keep track locally of which files you already uploaded before uploading the next batch. You are ensured that an LFS file that is already committed will never be re-uploaded twice but checking it client-side can still save some time. This is what [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) does for you.
 - **Use `hf_xet`**: this leverages the new storage backend for the Hub, is written in Rust, and is now available for everyone to use. In fact, `hf_xet` is already enabled by default when using `huggingface_hub`! For maximum performance, set [`HF_XET_HIGH_PERFORMANCE=1`](../package_reference/environment_variables#hf_xet_high_performance) as an environment variable. Be aware that when high performance mode is enabled, the tool will try to use all available bandwidth and CPU cores.
 
 ## Advanced features
 
-In most cases, you won't need more than [upload_file()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) to upload your files to the Hub.
+In most cases, you won't need more than [upload_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) to upload your files to the Hub.
 However, `huggingface_hub` has more advanced features to make things easier. Let's have a look at them!
 
 ### Faster Uploads
@@ -183,8 +183,8 @@ When uploading from a cluster, the files being uploaded often reside on a distri
 ### Non-blocking uploads
 
 In some cases, you want to push data without blocking your main thread. This is particularly useful to upload logs and
-artifacts while continuing a training. To do so, you can use the `run_as_future` argument in both [upload_file()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and
-[upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder). This will return a [`concurrent.futures.Future`](https://docs.python.org/3/library/concurrent.futures.html#future-objects)
+artifacts while continuing a training. To do so, you can use the `run_as_future` argument in both [upload_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and
+[upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder). This will return a [`concurrent.futures.Future`](https://docs.python.org/3/library/concurrent.futures.html#future-objects)
 object that you can use to check the status of the upload.
 
 ```py
@@ -208,7 +208,7 @@ False
 > executed in the correct order.
 
 Even though background jobs are mostly useful to upload data/create commits, you can queue any method you like using
-[run_as_future()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_as_future). For instance, you can use it to create a repo and then upload data to it in the background. The
+[run_as_future()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.run_as_future). For instance, you can use it to create a repo and then upload data to it in the background. The
 built-in `run_as_future` argument in upload methods is just an alias around it.
 
 ```py
@@ -227,7 +227,7 @@ Future(...)
 
 ### Copy files between repositories
 
-Use [copy_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.copy_files) to copy files or folders between repositories on the Hub without downloading or re-uploading large data. This is useful when you want to duplicate weights across model variants, copy dataset files between repos, or reorganize files across your repositories. Under the hood, it creates a commit with [CommitOperationCopy](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.CommitOperationCopy) operations.
+Use [copy_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.copy_files) to copy files or folders between repositories on the Hub without downloading or re-uploading large data. This is useful when you want to duplicate weights across model variants, copy dataset files between repos, or reorganize files across your repositories. Under the hood, it creates a commit with [CommitOperationCopy](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.CommitOperationCopy) operations.
 
 ```py
 >>> from huggingface_hub import HfApi
@@ -260,16 +260,16 @@ You can also copy within the same repository:
 > When copying a folder, a trailing `/` on the source uses rsync-style semantics meaning the *contents* of the folder are copied, without nesting the folder itself. Without a trailing `/`, the folder itself is nested at the destination.
 
 > [!TIP]
-> [copy_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.copy_files) also supports copying files to [Buckets](./buckets). See the [Buckets guide](./buckets#copy-files-to-bucket) for more details.
+> [copy_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.copy_files) also supports copying files to [Buckets](./buckets). See the [Buckets guide](./buckets#copy-files-to-bucket) for more details.
 
 ### Scheduled uploads
 
 The Hugging Face Hub makes it easy to save and version data. However, there are some limitations when updating the same file thousands of times. For instance, you might want to save logs of a training process or user
-feedback on a deployed Space. In these cases, uploading the data as a dataset on the Hub makes sense, but it can be hard to do properly. The main reason is that you don't want to version every update of your data because it'll make the git repository unusable. The [CommitScheduler](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler) class offers a solution to this problem.
+feedback on a deployed Space. In these cases, uploading the data as a dataset on the Hub makes sense, but it can be hard to do properly. The main reason is that you don't want to version every update of your data because it'll make the git repository unusable. The [CommitScheduler](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler) class offers a solution to this problem.
 
 The idea is to run a background job that regularly pushes a local folder to the Hub. Let's assume you have a
 Gradio Space that takes as input some text and generates two translations of it. Then, the user can select their preferred translation. For each run, you want to save the input, output, and user preference to analyze the results. This is a
-perfect use case for [CommitScheduler](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler); you want to save data to the Hub (potentially millions of user feedback), but
+perfect use case for [CommitScheduler](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler); you want to save data to the Hub (potentially millions of user feedback), but
 you don't _need_ to save in real-time each user's input. Instead, you can save the data locally in a JSON file and
 upload it every 10 minutes. For example:
 
@@ -312,7 +312,7 @@ upload it every 10 minutes. For example:
 And that's it! User input/outputs and feedback will be available as a dataset on the Hub. By using a unique JSON file name, you are guaranteed you won't overwrite data from a previous run or data from another
 Spaces/replicas pushing concurrently to the same repository.
 
-For more details about the [CommitScheduler](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler), here is what you need to know:
+For more details about the [CommitScheduler](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler), here is what you need to know:
 - **append-only:**
     It is assumed that you will only add content to the folder. You must only append data to existing files or create
     new files. Deleting or overwriting a file might corrupt your repository.
@@ -333,15 +333,15 @@ For more details about the [CommitScheduler](/docs/huggingface_hub/v1.27.0/en/pa
 
 #### Space persistence demo
 
-Persisting data from a Space to a Dataset on the Hub is the main use case for [CommitScheduler](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler). Depending on the use
+Persisting data from a Space to a Dataset on the Hub is the main use case for [CommitScheduler](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler). Depending on the use
 case, you might want to structure your data differently. The structure has to be robust to concurrent users and
 restarts which often implies generating UUIDs. Besides robustness, you should upload data in a format readable by the 🤗 Datasets library for later reuse. We created a [Space](https://huggingface.co/spaces/Wauplin/space_to_dataset_saver)
 that demonstrates how to save several different data formats (you may need to adapt it for your own specific needs).
 
 #### Custom uploads
 
-[CommitScheduler](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler) assumes your data is append-only and should be uploading "as is". However, you
-might want to customize the way data is uploaded. You can do that by creating a class inheriting from [CommitScheduler](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler)
+[CommitScheduler](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler) assumes your data is append-only and should be uploading "as is". However, you
+might want to customize the way data is uploaded. You can do that by creating a class inheriting from [CommitScheduler](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler)
 and overwrite the `push_to_hub` method (feel free to overwrite it any way you want). You are guaranteed it will
 be called every `every` minutes in a background thread. You don't have to worry about concurrency and errors but you
 must be careful about other aspects, such as pushing empty commits or duplicated data.
@@ -372,8 +372,8 @@ class ZipScheduler(CommitScheduler):
             png_file.unlink()
 ```
 
-When you overwrite `push_to_hub`, you have access to the attributes of [CommitScheduler](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler) and especially:
-- [HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi) client: `api`
+When you overwrite `push_to_hub`, you have access to the attributes of [CommitScheduler](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.CommitScheduler) and especially:
+- [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi) client: `api`
 - Folder parameters: `folder_path` and `path_in_repo`
 - Repo parameters: `repo_id`, `repo_type`, `revision`
 - The thread lock: `lock`
@@ -384,20 +384,20 @@ When you overwrite `push_to_hub`, you have access to the attributes of [CommitSc
 
 ### create_commit
 
-The [upload_file()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) functions are high-level APIs that are generally convenient to use. We recommend
+The [upload_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) functions are high-level APIs that are generally convenient to use. We recommend
 trying these functions first if you don't need to work at a lower level. However, if you want to work at a commit-level,
-you can use the [create_commit()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) function directly.
+you can use the [create_commit()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) function directly.
 
-There are three types of operations supported by [create_commit()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit):
+There are three types of operations supported by [create_commit()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit):
 
-- [CommitOperationAdd](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.CommitOperationAdd) uploads a file to the Hub. If the file already exists, the file contents are overwritten. This operation accepts two arguments:
+- [CommitOperationAdd](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.CommitOperationAdd) uploads a file to the Hub. If the file already exists, the file contents are overwritten. This operation accepts two arguments:
 
   - `path_in_repo`: the repository path to upload a file to.
   - `path_or_fileobj`: either a path to a file on your filesystem or a file-like object. This is the content of the file to upload to the Hub.
 
-- [CommitOperationDelete](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.CommitOperationDelete) removes a file or a folder from a repository. This operation accepts `path_in_repo` as an argument.
+- [CommitOperationDelete](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.CommitOperationDelete) removes a file or a folder from a repository. This operation accepts `path_in_repo` as an argument.
 
-- [CommitOperationCopy](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.CommitOperationCopy) copies a file within a repository or across repositories. This operation accepts the following arguments:
+- [CommitOperationCopy](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.CommitOperationCopy) copies a file within a repository or across repositories. This operation accepts the following arguments:
 
   - `src_path_in_repo`: the repository path of the file to copy.
   - `path_in_repo`: the repository path where the file should be copied.
@@ -421,7 +421,7 @@ For example, if you want to upload two files and delete a file in a Hub reposito
 ... ]
 ```
 
-2. Pass your operations to [create_commit()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit):
+2. Pass your operations to [create_commit()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit):
 
 ```py
 >>> api.create_commit(
@@ -431,13 +431,13 @@ For example, if you want to upload two files and delete a file in a Hub reposito
 ... )
 ```
 
-In addition to [upload_file()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder), the following functions also use [create_commit()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) under the hood:
+In addition to [upload_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file) and [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder), the following functions also use [create_commit()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) under the hood:
 
-- [delete_file()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_file) deletes a single file from a repository on the Hub.
-- [delete_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_folder) deletes an entire folder from a repository on the Hub.
-- [metadata_update()](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.metadata_update) updates a repository's metadata.
+- [delete_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_file) deletes a single file from a repository on the Hub.
+- [delete_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_folder) deletes an entire folder from a repository on the Hub.
+- [metadata_update()](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.metadata_update) updates a repository's metadata.
 
-For more detailed information, take a look at the [HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi) reference.
+For more detailed information, take a look at the [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi) reference.
 
 ### Preupload LFS files before commit
 
@@ -446,12 +446,12 @@ committing a dataset in several shards that are generated in-memory, you would n
 to avoid an out-of-memory issue. A solution is to upload each shard as a separate commit on the repo. While being
 perfectly valid, this solution has the drawback of potentially messing the git history by generating tens of commits.
 To overcome this issue, you can upload your files one by one to S3 and then create a single commit at the end. This
-is possible using [preupload_lfs_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.preupload_lfs_files) in combination with [create_commit()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit).
+is possible using [preupload_lfs_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.preupload_lfs_files) in combination with [create_commit()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit).
 
 > [!WARNING]
-> This is a power-user method. Directly using [upload_file()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file), [upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) or [create_commit()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) instead of handling
+> This is a power-user method. Directly using [upload_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file), [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder) or [create_commit()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) instead of handling
 > the low-level logic of pre-uploading files is the way to go in the vast majority of cases. The main caveat of
-> [preupload_lfs_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.preupload_lfs_files) is that until the commit is actually made, the upload files are not accessible on the repo on
+> [preupload_lfs_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.preupload_lfs_files) is that until the commit is actually made, the upload files are not accessible on the repo on
 > the Hub. If you have a question, feel free to ping us on our Discord or in a GitHub issue.
 
 Here is a simple example illustrating how to pre-upload files:
@@ -472,13 +472,13 @@ Here is a simple example illustrating how to pre-upload files:
 >>> create_commit(repo_id, operations=operations, commit_message="Commit all shards")
 ```
 
-First, we create the [CommitOperationAdd](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.CommitOperationAdd) objects one by one. In a real-world example, those would contain the
-generated shards. Each file is uploaded before generating the next one. During the [preupload_lfs_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.preupload_lfs_files) step, **the
-`CommitOperationAdd` object is mutated**. You should only use it to pass it directly to [create_commit()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit). The main
+First, we create the [CommitOperationAdd](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.CommitOperationAdd) objects one by one. In a real-world example, those would contain the
+generated shards. Each file is uploaded before generating the next one. During the [preupload_lfs_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.preupload_lfs_files) step, **the
+`CommitOperationAdd` object is mutated**. You should only use it to pass it directly to [create_commit()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit). The main
 update of the object is that **the binary content is removed** from it, meaning that it will be garbage-collected if
 you don't store another reference to it. This is expected as we don't want to keep in memory the content that is
-already uploaded. Finally we create the commit by passing all the operations to [create_commit()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit). You can pass
+already uploaded. Finally we create the commit by passing all the operations to [create_commit()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit). You can pass
 additional operations (add, delete or copy) that have not been processed yet and they will be handled correctly.
 
-### Webhooks
-https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/webhooks.md
+### Download files from the Hub
+https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/download.md

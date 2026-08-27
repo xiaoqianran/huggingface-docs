@@ -37,15 +37,15 @@ The `HfApi` class allows you to retrieve Discussions and Pull Requests on a give
 ```
 
 `HfApi.get_repo_discussions` returns a [generator](https://docs.python.org/3.7/howto/functional.html#generators) that yields
-[Discussion](/docs/huggingface_hub/v1.27.0/en/package_reference/community#huggingface_hub.Discussion) objects. To get all the Discussions in a single list, run:
+[Discussion](/docs/huggingface_hub/v1.29.0/en/package_reference/community#huggingface_hub.Discussion) objects. To get all the Discussions in a single list, run:
 
 ```python
 >>> from huggingface_hub import get_repo_discussions
 >>> discussions_list = list(get_repo_discussions(repo_id="bert-base-uncased"))
 ```
 
-The [Discussion](/docs/huggingface_hub/v1.27.0/en/package_reference/community#huggingface_hub.Discussion) object returned by [HfApi.get_repo_discussions()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_repo_discussions) contains high-level overview of the
-Discussion or Pull Request. You can also get more detailed information using [HfApi.get_discussion_details()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_discussion_details):
+The [Discussion](/docs/huggingface_hub/v1.29.0/en/package_reference/community#huggingface_hub.Discussion) object returned by [HfApi.get_repo_discussions()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_repo_discussions) contains high-level overview of the
+Discussion or Pull Request. You can also get more detailed information using [HfApi.get_discussion_details()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_discussion_details):
 
 ```python
 >>> from huggingface_hub import get_discussion_details
@@ -71,7 +71,7 @@ DiscussionWithDetails(
 )
 ```
 
-[HfApi.get_discussion_details()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_discussion_details) returns a [DiscussionWithDetails](/docs/huggingface_hub/v1.27.0/en/package_reference/community#huggingface_hub.DiscussionWithDetails) object, which is a subclass of [Discussion](/docs/huggingface_hub/v1.27.0/en/package_reference/community#huggingface_hub.Discussion)
+[HfApi.get_discussion_details()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_discussion_details) returns a [DiscussionWithDetails](/docs/huggingface_hub/v1.29.0/en/package_reference/community#huggingface_hub.DiscussionWithDetails) object, which is a subclass of [Discussion](/docs/huggingface_hub/v1.29.0/en/package_reference/community#huggingface_hub.Discussion)
 with more detailed information about the Discussion or Pull Request. Information includes all the comments, status changes,
 and renames of the Discussion via `DiscussionWithDetails.events`.
 
@@ -80,18 +80,18 @@ Pull Requests are listed in `DiscussionWithDetails.events`.
 
 ## Create and edit a Discussion or Pull Request programmatically
 
-The [HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi) class also offers ways to create and edit Discussions and Pull Requests.
+The [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi) class also offers ways to create and edit Discussions and Pull Requests.
 You will need an [access token](https://huggingface.co/docs/hub/security-tokens) to create and edit Discussions
 or Pull Requests.
 
-The simplest way to propose changes on a repo on the Hub is via the [create_commit()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) API: just
-set the `create_pr` parameter to `True`. This parameter is also available on other methods that wrap [create_commit()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit):
+The simplest way to propose changes on a repo on the Hub is via the [create_commit()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit) API: just
+set the `create_pr` parameter to `True`. This parameter is also available on other methods that wrap [create_commit()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_commit):
 
-    * [upload_file()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file)
-    * [upload_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder)
-    * [delete_file()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_file)
-    * [delete_folder()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_folder)
-    * [metadata_update()](/docs/huggingface_hub/v1.27.0/en/package_reference/cards#huggingface_hub.metadata_update)
+    * [upload_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file)
+    * [upload_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder)
+    * [delete_file()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_file)
+    * [delete_folder()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_folder)
+    * [metadata_update()](/docs/huggingface_hub/v1.29.0/en/package_reference/cards#huggingface_hub.metadata_update)
 
 ```python
 >>> from huggingface_hub import metadata_update
@@ -103,7 +103,7 @@ set the `create_pr` parameter to `True`. This parameter is also available on oth
 ... )
 ```
 
-You can also use [HfApi.create_discussion()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_discussion) (respectively [HfApi.create_pull_request()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_pull_request)) to create a Discussion (respectively a Pull Request) on a repo.
+You can also use [HfApi.create_discussion()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_discussion) (respectively [HfApi.create_pull_request()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_pull_request)) to create a Discussion (respectively a Pull Request) on a repo.
 Opening a Pull Request this way can be useful if you need to work on changes locally. Pull Requests opened this way will be in `"draft"` mode.
 
 ```python
@@ -124,15 +124,15 @@ DiscussionWithDetails(...)
 DiscussionWithDetails(..., is_pull_request=True)
 ```
 
-Managing Pull Requests and Discussions can be done entirely with the [HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi) class. For example:
+Managing Pull Requests and Discussions can be done entirely with the [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi) class. For example:
 
-    * [comment_discussion()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.comment_discussion) to add comments
-    * [edit_discussion_comment()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.edit_discussion_comment) to edit comments
-    * [rename_discussion()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.rename_discussion) to rename a Discussion or Pull Request
-    * [change_discussion_status()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.change_discussion_status) to open or close a Discussion / Pull Request
-    * [merge_pull_request()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.merge_pull_request) to merge a Pull Request
+    * [comment_discussion()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.comment_discussion) to add comments
+    * [edit_discussion_comment()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.edit_discussion_comment) to edit comments
+    * [rename_discussion()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.rename_discussion) to rename a Discussion or Pull Request
+    * [change_discussion_status()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.change_discussion_status) to open or close a Discussion / Pull Request
+    * [merge_pull_request()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.merge_pull_request) to merge a Pull Request
 
-Visit the [HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi) documentation page for an exhaustive reference of all available methods.
+Visit the [HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi) documentation page for an exhaustive reference of all available methods.
 
 ## Manage Discussions and Pull Requests from the CLI
 
@@ -175,5 +175,5 @@ For the full list of options, run `hf discussions --help` or see the [CLI refere
 
 For a more detailed reference, visit the [Discussions and Pull Requests](../package_reference/community) and the [hf_api](../package_reference/hf_api) documentation page.
 
-### Interact with the Hub through the Filesystem API
-https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/hf_file_system.md
+### Upload files to the Hub
+https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/upload.md

@@ -12,7 +12,7 @@ bitsandbytes provides 8-bit optimizers through the base `Optimizer8bit` class, a
 bitsandbytes.optim.optimizer.Optimizer8bit(params, defaults, optim_bits = 32, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/optimizer.py#L117)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/optimizer.py#L117)
 
 #### __init__[[bitsandbytes.optim.optimizer.Optimizer8bit.__init__]]
 
@@ -20,7 +20,7 @@ bitsandbytes.optim.optimizer.Optimizer8bit(params, defaults, optim_bits = 32, is
 __init__(params, defaults, optim_bits = 32, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/optimizer.py#L120)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/optimizer.py#L120)
 
 **Parameters:**
 
@@ -40,7 +40,7 @@ Base 8-bit optimizer class.
 bitsandbytes.optim.optimizer.Optimizer2State(optimizer_name, params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.0, optim_bits = 32, args = None, min_8bit_size = 4096, max_unorm = 0.0, skip_zeros = False, is_paged = False, alpha = 0.0, t_alpha: typing.Optional[int] = None, t_beta3: typing.Optional[int] = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/optimizer.py#L403)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/optimizer.py#L403)
 
 #### __init__[[bitsandbytes.optim.optimizer.Optimizer2State.__init__]]
 
@@ -48,7 +48,7 @@ bitsandbytes.optim.optimizer.Optimizer2State(optimizer_name, params, lr = 0.001,
 __init__(optimizer_name, params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.0, optim_bits = 32, args = None, min_8bit_size = 4096, max_unorm = 0.0, skip_zeros = False, is_paged = False, alpha = 0.0, t_alpha: typing.Optional[int] = None, t_beta3: typing.Optional[int] = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/optimizer.py#L404)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/optimizer.py#L404)
 
 **Parameters:**
 
@@ -92,7 +92,7 @@ Base 2-state update optimizer class.
 bitsandbytes.optim.optimizer.Optimizer1State(optimizer_name, params, lr = 0.001, betas = (0.9, 0.0), eps = 1e-08, weight_decay = 0.0, optim_bits = 32, args = None, min_8bit_size = 4096, max_unorm = 0.0, skip_zeros = False, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/optimizer.py#L593)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/optimizer.py#L593)
 
 #### __init__[[bitsandbytes.optim.optimizer.Optimizer1State.__init__]]
 
@@ -100,7 +100,7 @@ bitsandbytes.optim.optimizer.Optimizer1State(optimizer_name, params, lr = 0.001,
 __init__(optimizer_name, params, lr = 0.001, betas = (0.9, 0.0), eps = 1e-08, weight_decay = 0.0, optim_bits = 32, args = None, min_8bit_size = 4096, max_unorm = 0.0, skip_zeros = False, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/optimizer.py#L594)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/optimizer.py#L594)
 
 **Parameters:**
 
@@ -138,7 +138,7 @@ Base 1-state update optimizer class.
 bitsandbytes.optim.GlobalOptimManager()
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/optimizer.py#L26)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/optimizer.py#L26)
 
 A global optimizer manager for enabling custom optimizer configs.
 
@@ -148,7 +148,7 @@ A global optimizer manager for enabling custom optimizer configs.
 override_config(parameters, key = None, value = None, key_value_dict = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/optimizer.py#L60)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/optimizer.py#L60)
 
 **Parameters:**
 
@@ -186,4 +186,4 @@ mng.override_config(model.fc1.weight, 'optim_bits', 32)
 ```
 
 ### Adam
-https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/adam.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/adam.md

@@ -11,7 +11,7 @@
 bitsandbytes.nn.Linear8bitLt(input_features: int, output_features: int, bias = True, has_fp16_weights = True, threshold = 0.0, index = None, device = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L1018)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/nn/modules.py#L1018)
 
 This class is the base module for the [LLM.int8()](https://arxiv.org/abs/2208.07339) algorithm.
 To read more about it, have a look at the paper.
@@ -48,7 +48,7 @@ int8_model = int8_model.to(0) # Quantization happens here
 __init__(input_features: int, output_features: int, bias = True, has_fp16_weights = True, threshold = 0.0, index = None, device = None)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L1050)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/nn/modules.py#L1050)
 
 **Parameters:**
 
@@ -76,7 +76,7 @@ Initialize Linear8bitLt class.
 bitsandbytes.nn.Int8Params(data: typing.Optional[torch.Tensor] = None, requires_grad = True, has_fp16_weights = False, CB: typing.Optional[torch.Tensor] = None, SCB: typing.Optional[torch.Tensor] = None, **kwargs)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/nn/modules.py#L719)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/nn/modules.py#L719)
 
 #### [[bitsandbytes.nn.Int8Params.__init__]]
 
@@ -84,7 +84,7 @@ bitsandbytes.nn.Int8Params(data: typing.Optional[torch.Tensor] = None, requires_
 <lambda>(*args, **kwargs)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/doc_builder/mock_imports.py#L251)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/doc_builder/mock_imports.py#L251)
 
 ### 4-bit quantization
-https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/nn/linear4bit.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/nn/linear4bit.md

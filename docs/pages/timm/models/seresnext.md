@@ -88,5 +88,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### (Tensorflow) MixNet
-https://huggingface.co/docs/timm/v1.0.28/models/tf-mixnet.md
+### DenseNet
+https://huggingface.co/docs/timm/v1.0.29/models/densenet.md

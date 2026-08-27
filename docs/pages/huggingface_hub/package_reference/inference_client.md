@@ -7,7 +7,7 @@ The `huggingface_hub` library provides a unified interface to run inference acro
 2.  [Inference Endpoints](https://huggingface.co/docs/inference-endpoints/index): a product to easily deploy models to production. Inference is run by Hugging Face in a dedicated, fully managed infrastructure on a cloud provider of your choice.
 3.  Local endpoints: you can also run inference with local inference servers like [llama.cpp](https://github.com/ggerganov/llama.cpp), [Ollama](https://ollama.com/), [vLLM](https://github.com/vllm-project/vllm), [LiteLLM](https://docs.litellm.ai/docs/simple_proxy), or [Text Generation Inference (TGI)](https://github.com/huggingface/text-generation-inference) by connecting the client to these local endpoints.
 
-These services can be called with the [InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) object. Please refer to [this guide](../guides/inference)
+These services can be called with the [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) object. Please refer to [this guide](../guides/inference)
 for more information on how to use it.
 
 ## Inference Client[[huggingface_hub.InferenceClient]]
@@ -18,7 +18,7 @@ for more information on how to use it.
 huggingface_hub.InferenceClient(model: str | None = None, provider: typing.Union[typing.Literal['baseten', 'cerebras', 'cohere', 'deepinfra', 'fal-ai', 'featherless-ai', 'fireworks-ai', 'groq', 'hf-inference', 'novita', 'nscale', 'openai', 'ovhcloud', 'publicai', 'replicate', 'scaleway', 'together', 'wavespeed', 'zai-org'], typing.Literal['auto'], NoneType] = None, token: str | None = None, timeout: float | None = None, headers: dict[str, str] | None = None, cookies: dict[str, str] | None = None, bill_to: str | None = None, base_url: str | None = None, api_key: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L123)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L123)
 
 **Parameters:**
 
@@ -36,13 +36,13 @@ bill_to (`str`, `optional`) : The billing account to use for the requests. By de
 
 cookies (`dict[str, str]`, `optional`) : Additional cookies to send to the server.
 
-base_url (`str`, `optional`) : Base URL to run inference. This is a duplicated argument from `model` to make [InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) follow the same pattern as `openai.OpenAI` client. Cannot be used if `model` is set. Defaults to None.
+base_url (`str`, `optional`) : Base URL to run inference. This is a duplicated argument from `model` to make [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) follow the same pattern as `openai.OpenAI` client. Cannot be used if `model` is set. Defaults to None.
 
-api_key (`str`, `optional`) : Token to use for authentication. This is a duplicated argument from `token` to make [InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) follow the same pattern as `openai.OpenAI` client. Cannot be used if `token` is set. Defaults to None.
+api_key (`str`, `optional`) : Token to use for authentication. This is a duplicated argument from `token` to make [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) follow the same pattern as `openai.OpenAI` client. Cannot be used if `token` is set. Defaults to None.
 
 Initialize a new Inference Client.
 
-[InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) aims to provide a unified experience to perform inference. The client can be used
+[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) aims to provide a unified experience to perform inference. The client can be used
 seamlessly with either the (free) Inference API, self-hosted Inference Endpoints, or third-party Inference Providers.
 
 #### audio_classification[[huggingface_hub.InferenceClient.audio_classification]]
@@ -51,7 +51,7 @@ seamlessly with either the (free) Inference API, self-hosted Inference Endpoints
 audio_classification(audio: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, top_k: int | None = None, function_to_apply: typing.Optional[ForwardRef('AudioClassificationOutputTransform')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L299)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L307)
 
 **Parameters:**
 
@@ -65,11 +65,11 @@ function_to_apply (`"AudioClassificationOutputTransform"`, *optional*) : The fun
 
 **Returns:** `list[AudioClassificationOutputElement]`
 
-List of [AudioClassificationOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.AudioClassificationOutputElement) items containing the predicted labels and their confidence.
+List of [AudioClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.AudioClassificationOutputElement) items containing the predicted labels and their confidence.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -94,7 +94,7 @@ Example:
 audio_to_audio(audio: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L356)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L364)
 
 **Parameters:**
 
@@ -104,7 +104,7 @@ model (`str`, *optional*) : The model can be any model which takes an audio file
 
 **Returns:** `list[AudioToAudioOutputElement]`
 
-A list of [AudioToAudioOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.AudioToAudioOutputElement) items containing audios label, content-type, and audio content in blob.
+A list of [AudioToAudioOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.AudioToAudioOutputElement) items containing audios label, content-type, and audio content in blob.
 
 **Raises:** ``InferenceTimeoutError`` or `HfHubHTTPError`
 
@@ -131,7 +131,7 @@ Example:
 automatic_speech_recognition(audio: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, extra_body: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L408)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L416)
 
 **Parameters:**
 
@@ -141,13 +141,13 @@ model (`str`, *optional*) : The model to use for ASR. Can be a model ID hosted o
 
 extra_body (`dict`, *optional*) : Additional provider-specific parameters to pass to the model. Refer to the provider's documentation for supported parameters.
 
-**Returns:** [AutomaticSpeechRecognitionOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.AutomaticSpeechRecognitionOutput)
+**Returns:** [AutomaticSpeechRecognitionOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.AutomaticSpeechRecognitionOutput)
 
 An item containing the transcribed text and optionally the timestamp chunks.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -168,13 +168,13 @@ Example:
 chat_completion(messages: list, model: str | None = None, stream: bool = False, frequency_penalty: float | None = None, logit_bias: list[float] | None = None, logprobs: bool | None = None, max_tokens: int | None = None, n: int | None = None, presence_penalty: float | None = None, response_format: typing.Union[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatText, huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatJSONSchema, huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatJSONObject, NoneType] = None, seed: int | None = None, stop: list[str] | None = None, stream_options: huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputStreamOptions | None = None, temperature: float | None = None, tool_choice: typing.Union[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputToolChoiceClass, ForwardRef('ChatCompletionInputToolChoiceEnum'), NoneType] = None, tool_prompt: str | None = None, tools: list[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputTool] | None = None, top_logprobs: int | None = None, top_p: float | None = None, extra_body: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L535)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L543)
 
 **Parameters:**
 
-messages (List of [ChatCompletionInputMessage](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputMessage)) : Conversation history consisting of roles and content pairs.
+messages (List of [ChatCompletionInputMessage](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputMessage)) : Conversation history consisting of roles and content pairs.
 
-model (`str`, *optional*) : The model to use for chat-completion. Can be a model ID hosted on the Hugging Face Hub or a URL to a deployed Inference Endpoint. If not provided, the default recommended model for chat-based text-generation will be used. See https://huggingface.co/tasks/text-generation for more details. If `model` is a model ID, it is passed to the server as the `model` parameter. If you want to define a custom URL while setting `model` in the request payload, you must set `base_url` when initializing [InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient).
+model (`str`, *optional*) : The model to use for chat-completion. Can be a model ID hosted on the Hugging Face Hub or a URL to a deployed Inference Endpoint. If not provided, the default recommended model for chat-based text-generation will be used. See https://huggingface.co/tasks/text-generation for more details. If `model` is a model ID, it is passed to the server as the `model` parameter. If you want to define a custom URL while setting `model` in the request payload, you must set `base_url` when initializing [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient).
 
 frequency_penalty (`float`, *optional*) : Penalizes new tokens based on their existing frequency in the text so far. Range: [-2.0, 2.0]. Defaults to 0.0.
 
@@ -196,7 +196,7 @@ stop (`list[str]`, *optional*) : Up to four strings which trigger the end of the
 
 stream (`bool`, *optional*) : Enable realtime streaming of responses. Defaults to False.
 
-stream_options ([ChatCompletionInputStreamOptions](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputStreamOptions), *optional*) : Options for streaming completions.
+stream_options ([ChatCompletionInputStreamOptions](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputStreamOptions), *optional*) : Options for streaming completions.
 
 temperature (`float`, *optional*) : Controls randomness of the generations. Lower values ensure less random completions. Range: [0, 2]. Defaults to 1.0.
 
@@ -204,23 +204,23 @@ top_logprobs (`int`, *optional*) : An integer between 0 and 5 specifying the num
 
 top_p (`float`, *optional*) : Fraction of the most likely next words to sample from. Must be between 0 and 1. Defaults to 1.0.
 
-tool_choice ([ChatCompletionInputToolChoiceClass](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputToolChoiceClass) or `ChatCompletionInputToolChoiceEnum()`, *optional*) : The tool to use for the completion. Defaults to "auto".
+tool_choice ([ChatCompletionInputToolChoiceClass](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputToolChoiceClass) or `ChatCompletionInputToolChoiceEnum()`, *optional*) : The tool to use for the completion. Defaults to "auto".
 
 tool_prompt (`str`, *optional*) : A prompt to be appended before the tools.
 
-tools (List of [ChatCompletionInputTool](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputTool), *optional*) : A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for.
+tools (List of [ChatCompletionInputTool](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputTool), *optional*) : A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for.
 
 extra_body (`dict`, *optional*) : Additional provider-specific parameters to pass to the model. Refer to the provider's documentation for supported parameters.
 
-**Returns:** [ChatCompletionOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput) or Iterable of [ChatCompletionStreamOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput)
+**Returns:** [ChatCompletionOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput) or Iterable of [ChatCompletionStreamOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput)
 
 Generated text returned from the server:
-- if `stream=False`, the generated text is returned as a [ChatCompletionOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput) (default).
-- if `stream=True`, the generated text is returned token by token as a sequence of [ChatCompletionStreamOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput).
+- if `stream=False`, the generated text is returned as a [ChatCompletionOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput) (default).
+- if `stream=True`, the generated text is returned token by token as a sequence of [ChatCompletionStreamOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput).
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -496,7 +496,7 @@ n": "park"}'
 document_question_answering(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], question: str, model: str | None = None, doc_stride: int | None = None, handle_impossible_answer: bool | None = None, lang: str | None = None, max_answer_len: int | None = None, max_question_len: int | None = None, max_seq_len: int | None = None, top_k: int | None = None, word_boxes: list[list[float] | str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L937)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L945)
 
 **Parameters:**
 
@@ -524,11 +524,11 @@ word_boxes (`list[Union[list[float], str`, *optional*) : A list of words and bou
 
 **Returns:** `list[DocumentQuestionAnsweringOutputElement]`
 
-a list of [DocumentQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.DocumentQuestionAnsweringOutputElement) items containing the predicted label, associated probability, word ids, and page number.
+a list of [DocumentQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.DocumentQuestionAnsweringOutputElement) items containing the predicted label, associated probability, word ids, and page number.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -549,7 +549,7 @@ Example:
 feature_extraction(text: str | list[str], normalize: bool | None = None, prompt_name: str | None = None, truncate: bool | None = None, truncation_direction: typing.Optional[typing.Literal['left', 'right']] = None, dimensions: int | None = None, encoding_format: typing.Optional[typing.Literal['float', 'base64']] = None, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1024)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1032)
 
 **Parameters:**
 
@@ -599,7 +599,7 @@ array([[ 2.424802  ,  2.93384   ,  1.1750331 , ...,  1.240499, -0.13776633, -0.7
 fill_mask(text: str, model: str | None = None, targets: list[str] | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1107)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1115)
 
 **Parameters:**
 
@@ -613,12 +613,12 @@ top_k (`int`, *optional*) : When passed, overrides the number of predictions to 
 
 **Returns:** `list[FillMaskOutputElement]`
 
-a list of [FillMaskOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.FillMaskOutputElement) items containing the predicted label, associated
+a list of [FillMaskOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.FillMaskOutputElement) items containing the predicted label, associated
 probability, token reference, and completed text.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -642,7 +642,7 @@ Example:
 get_endpoint_info(model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L3277)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L3279)
 
 **Parameters:**
 
@@ -691,7 +691,7 @@ Example:
 health_check(model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L3335)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L3337)
 
 **Parameters:**
 
@@ -719,7 +719,7 @@ True
 image_classification(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, function_to_apply: typing.Optional[ForwardRef('ImageClassificationOutputTransform')] = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1163)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1171)
 
 **Parameters:**
 
@@ -733,11 +733,11 @@ top_k (`int`, *optional*) : When specified, limits the output to the top K most 
 
 **Returns:** `list[ImageClassificationOutputElement]`
 
-a list of [ImageClassificationOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ImageClassificationOutputElement) items containing the predicted label and associated probability.
+a list of [ImageClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ImageClassificationOutputElement) items containing the predicted label and associated probability.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -758,7 +758,7 @@ Example:
 image_segmentation(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, mask_threshold: float | None = None, overlap_mask_area_threshold: float | None = None, subtask: typing.Optional[ForwardRef('ImageSegmentationSubtask')] = None, threshold: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1213)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1221)
 
 **Parameters:**
 
@@ -776,11 +776,11 @@ threshold (`float`, *optional*) : Probability threshold to filter out predicted 
 
 **Returns:** `list[ImageSegmentationOutputElement]`
 
-A list of [ImageSegmentationOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ImageSegmentationOutputElement) items containing the segmented masks and associated attributes.
+A list of [ImageSegmentationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ImageSegmentationOutputElement) items containing the segmented masks and associated attributes.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -804,7 +804,7 @@ Example:
 image_to_image(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], prompt: str | None = None, negative_prompt: str | None = None, num_inference_steps: int | None = None, guidance_scale: float | None = None, model: str | None = None, target_size: huggingface_hub.inference._generated.types.image_to_image.ImageToImageTargetSize | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1281)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1289)
 
 **Parameters:**
 
@@ -826,9 +826,9 @@ target_size (`ImageToImageTargetSize`, *optional*) : The size in pixels of the o
 
 The translated image.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -852,7 +852,7 @@ Example:
 image_to_text(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1436)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1444)
 
 **Parameters:**
 
@@ -860,13 +860,13 @@ image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) : The input image t
 
 model (`str`, *optional*) : The model to use for inference. Can be a model ID hosted on the Hugging Face Hub or a URL to a deployed Inference Endpoint. This parameter overrides the model defined at the instance level. Defaults to None.
 
-**Returns:** [ImageToTextOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ImageToTextOutput)
+**Returns:** [ImageToTextOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ImageToTextOutput)
 
 The generated text.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -892,7 +892,7 @@ Example:
 image_to_video(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, prompt: str | None = None, negative_prompt: str | None = None, num_frames: float | None = None, num_inference_steps: int | None = None, guidance_scale: float | None = None, seed: int | None = None, target_size: huggingface_hub.inference._generated.types.image_to_video.ImageToVideoTargetSize | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1357)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1365)
 
 **Parameters:**
 
@@ -939,7 +939,7 @@ Examples:
 object_detection(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, threshold: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1482)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1490)
 
 **Parameters:**
 
@@ -951,11 +951,11 @@ threshold (`float`, *optional*) : The probability necessary to make a prediction
 
 **Returns:** `list[ObjectDetectionOutputElement]`
 
-A list of [ObjectDetectionOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ObjectDetectionOutputElement) items containing the bounding boxes and associated attributes.
+A list of [ObjectDetectionOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ObjectDetectionOutputElement) items containing the bounding boxes and associated attributes.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError` or ``ValueError``
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError` or ``ValueError``
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -981,7 +981,7 @@ Example:
 question_answering(question: str, context: str, model: str | None = None, align_to_words: bool | None = None, doc_stride: int | None = None, handle_impossible_answer: bool | None = None, max_answer_len: int | None = None, max_question_len: int | None = None, max_seq_len: int | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1530)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1538)
 
 **Parameters:**
 
@@ -1005,14 +1005,14 @@ max_seq_len (`int`, *optional*) : The maximum length of the total sentence (cont
 
 top_k (`int`, *optional*) : The number of answers to return (will be chosen by order of likelihood). Note that we return less than topk answers if there are not enough options available within the context.
 
-**Returns:** Union[`QuestionAnsweringOutputElement`, list[QuestionAnsweringOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.QuestionAnsweringOutputElement)]
+**Returns:** Union[`QuestionAnsweringOutputElement`, list[QuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.QuestionAnsweringOutputElement)]
 
 When top_k is 1 or not provided, it returns a single `QuestionAnsweringOutputElement`.
 When top_k is greater than 1, it returns a list of `QuestionAnsweringOutputElement`.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -1033,7 +1033,7 @@ QuestionAnsweringOutputElement(answer='Clara', end=16, score=0.9326565265655518,
 sentence_similarity(sentence: str, other_sentences: list, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1614)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1622)
 
 **Parameters:**
 
@@ -1047,9 +1047,9 @@ model (`str`, *optional*) : The model to use for the sentence similarity task. C
 
 The embedding representing the input text.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -1077,7 +1077,7 @@ Example:
 summarization(text: str, model: str | None = None, clean_up_tokenization_spaces: bool | None = None, generate_parameters: dict[str, typing.Any] | None = None, truncation: typing.Optional[ForwardRef('SummarizationTruncationStrategy')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1667)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1675)
 
 **Parameters:**
 
@@ -1091,13 +1091,13 @@ generate_parameters (`dict[str, Any]`, *optional*) : Additional parametrization 
 
 truncation (`"SummarizationTruncationStrategy"`, *optional*) : The truncation strategy to use.
 
-**Returns:** [SummarizationOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.SummarizationOutput)
+**Returns:** [SummarizationOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.SummarizationOutput)
 
 The generated summary text.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -1118,7 +1118,7 @@ SummarizationOutput(generated_text="The Eiffel tower is one of the most famous l
 table_question_answering(table: dict, query: str, model: str | None = None, padding: typing.Optional[ForwardRef('Padding')] = None, sequential: bool | None = None, truncation: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1725)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1733)
 
 **Parameters:**
 
@@ -1134,13 +1134,13 @@ sequential (`bool`, *optional*) : Whether to do inference sequentially or as a b
 
 truncation (`bool`, *optional*) : Activates and controls truncation.
 
-**Returns:** [TableQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.TableQuestionAnsweringOutputElement)
+**Returns:** [TableQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TableQuestionAnsweringOutputElement)
 
 a table question answering output containing the answer, coordinates, cells and the aggregator used.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -1163,7 +1163,7 @@ TableQuestionAnsweringOutputElement(answer='36542', coordinates=[[0, 1]], cells=
 tabular_classification(table: dict, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1787)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1795)
 
 **Parameters:**
 
@@ -1175,9 +1175,9 @@ model (`str`, *optional*) : The model to use for the tabular classification task
 
 a list of labels, one per row in the initial table.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -1211,7 +1211,7 @@ Example:
 tabular_regression(table: dict, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1842)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1850)
 
 **Parameters:**
 
@@ -1223,9 +1223,9 @@ model (`str`, *optional*) : The model to use for the tabular regression task. Ca
 
 a list of predicted numerical target values.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -1254,7 +1254,7 @@ Example:
 text_classification(text: str, model: str | None = None, top_k: int | None = None, function_to_apply: typing.Optional[ForwardRef('TextClassificationOutputTransform')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L1892)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L1900)
 
 **Parameters:**
 
@@ -1268,11 +1268,11 @@ function_to_apply (`"TextClassificationOutputTransform"`, *optional*) : The func
 
 **Returns:** `list[TextClassificationOutputElement]`
 
-a list of [TextClassificationOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.TextClassificationOutputElement) items containing the predicted label and associated probability.
+a list of [TextClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextClassificationOutputElement) items containing the predicted label and associated probability.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -1296,7 +1296,7 @@ Example:
 text_generation(prompt: str, details: bool | None = None, stream: bool | None = None, model: str | None = None, adapter_id: str | None = None, best_of: int | None = None, decoder_input_details: bool | None = None, do_sample: bool | None = None, frequency_penalty: float | None = None, grammar: huggingface_hub.inference._generated.types.text_generation.TextGenerationInputGrammarType | None = None, max_new_tokens: int | None = None, repetition_penalty: float | None = None, return_full_text: bool | None = None, seed: int | None = None, stop: list[str] | None = None, stop_sequences: list[str] | None = None, temperature: float | None = None, top_k: int | None = None, top_n_tokens: int | None = None, top_p: float | None = None, truncate: int | None = None, typical_p: float | None = None, watermark: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L2100)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L2108)
 
 **Parameters:**
 
@@ -1318,7 +1318,7 @@ do_sample (`bool`, *optional*) : Activate logits sampling
 
 frequency_penalty (`float`, *optional*) : Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
 
-grammar ([TextGenerationInputGrammarType](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.TextGenerationInputGrammarType), *optional*) : Grammar constraints. Can be either a JSONSchema or a regex.
+grammar ([TextGenerationInputGrammarType](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextGenerationInputGrammarType), *optional*) : Grammar constraints. Can be either a JSONSchema or a regex.
 
 max_new_tokens (`int`, *optional*) : Maximum number of generated tokens. Defaults to 100.
 
@@ -1351,14 +1351,14 @@ watermark (`bool`, *optional*) : Watermarking with [A Watermark for Large Langua
 Generated text returned from the server:
 - if `stream=False` and `details=False`, the generated text is returned as a `str` (default)
 - if `stream=True` and `details=False`, the generated text is returned token by token as a `Iterable[str]`
-- if `stream=False` and `details=True`, the generated text is returned with more details as a [TextGenerationOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.TextGenerationOutput)
-- if `details=True` and `stream=True`, the generated text is returned token by token as a iterable of [TextGenerationStreamOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.TextGenerationStreamOutput)
+- if `stream=False` and `details=True`, the generated text is returned with more details as a [TextGenerationOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextGenerationOutput)
+- if `details=True` and `stream=True`, the generated text is returned token by token as a iterable of [TextGenerationStreamOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextGenerationStreamOutput)
 
-**Raises:** ``ValidationError`` or [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** ``ValidationError`` or [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
 - ``ValidationError`` -- 
   If input values are not valid. No HTTP call is made to the server.
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -1366,7 +1366,7 @@ Generated text returned from the server:
 Given a prompt, generate the following text.
 
 > [!TIP]
-> If you want to generate a response from chat messages, you should use the [InferenceClient.chat_completion()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) method.
+> If you want to generate a response from chat messages, you should use the [InferenceClient.chat_completion()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) method.
 > It accepts a list of messages instead of a single text prompt and handles the chat templating for you.
 
 Example:
@@ -1477,7 +1477,7 @@ TextGenerationStreamOutput(token=TokenElement(
 text_to_image(prompt: str, negative_prompt: str | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int | None = None, guidance_scale: float | None = None, model: str | None = None, scheduler: str | None = None, seed: int | None = None, extra_body: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L2439)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L2447)
 
 **Parameters:**
 
@@ -1505,9 +1505,9 @@ extra_body (`dict[str, Any]`, *optional*) : Additional provider-specific paramet
 
 The generated image.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -1588,7 +1588,7 @@ Example using Replicate provider with extra parameters
 text_to_speech(text: str, model: str | None = None, do_sample: bool | None = None, early_stopping: typing.Union[bool, ForwardRef('TextToSpeechEarlyStoppingEnum'), NoneType] = None, epsilon_cutoff: float | None = None, eta_cutoff: float | None = None, max_length: int | None = None, max_new_tokens: int | None = None, min_length: int | None = None, min_new_tokens: int | None = None, num_beam_groups: int | None = None, num_beams: int | None = None, penalty_alpha: float | None = None, temperature: float | None = None, top_k: int | None = None, top_p: float | None = None, typical_p: float | None = None, use_cache: bool | None = None, extra_body: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L2676)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L2684)
 
 **Parameters:**
 
@@ -1634,9 +1634,9 @@ extra_body (`dict[str, Any]`, *optional*) : Additional provider-specific paramet
 
 The generated audio.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -1740,7 +1740,7 @@ Example music-gen using "YuE-s1-7B-anneal-en-cot" on fal.ai
 text_to_video(prompt: str, model: str | None = None, guidance_scale: float | None = None, negative_prompt: list[str] | None = None, num_frames: float | None = None, num_inference_steps: int | None = None, seed: int | None = None, extra_body: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L2579)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L2587)
 
 **Parameters:**
 
@@ -1809,7 +1809,7 @@ Example using a third-party provider through Hugging Face Routing. Usage will be
 token_classification(text: str, model: str | None = None, aggregation_strategy: typing.Optional[ForwardRef('TokenClassificationAggregationStrategy')] = None, ignore_labels: list[str] | None = None, stride: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L2884)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L2892)
 
 **Parameters:**
 
@@ -1825,11 +1825,11 @@ stride (`int`, *optional*) : The number of overlapping tokens between chunks whe
 
 **Returns:** `list[TokenClassificationOutputElement]`
 
-List of [TokenClassificationOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.TokenClassificationOutputElement) items containing the entity group, confidence score, word, start and end index.
+List of [TokenClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TokenClassificationOutputElement) items containing the entity group, confidence score, word, start and end index.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -1866,7 +1866,7 @@ Example:
 translation(text: str, model: str | None = None, src_lang: str | None = None, tgt_lang: str | None = None, clean_up_tokenization_spaces: bool | None = None, truncation: typing.Optional[ForwardRef('TranslationTruncationStrategy')] = None, generate_parameters: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L2959)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L2967)
 
 **Parameters:**
 
@@ -1884,13 +1884,13 @@ truncation (`"TranslationTruncationStrategy"`, *optional*) : The truncation stra
 
 generate_parameters (`dict[str, Any]`, *optional*) : Additional parametrization of the text generation algorithm.
 
-**Returns:** [TranslationOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.TranslationOutput)
+**Returns:** [TranslationOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TranslationOutput)
 
 The generated translated text.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError` or ``ValueError``
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError` or ``ValueError``
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -1926,7 +1926,7 @@ Specifying languages:
 visual_question_answering(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], question: str, model: str | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L3048)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L3056)
 
 **Parameters:**
 
@@ -1940,7 +1940,7 @@ top_k (`int`, *optional*) : The number of answers to return (will be chosen by o
 
 **Returns:** `list[VisualQuestionAnsweringOutputElement]`
 
-a list of [VisualQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.VisualQuestionAnsweringOutputElement) items containing the predicted label and associated probability.
+a list of [VisualQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.VisualQuestionAnsweringOutputElement) items containing the predicted label and associated probability.
 
 **Raises:** ``InferenceTimeoutError`` or `HfHubHTTPError`
 
@@ -1971,15 +1971,13 @@ Example:
 zero_shot_classification(text: str, candidate_labels: list, multi_label: bool | None = False, hypothesis_template: str | None = None, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L3107)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L3115)
 
 **Parameters:**
 
 text (`str`) : The input text to classify.
 
 candidate_labels (`list[str]`) : The set of possible class labels to classify the text into.
-
-labels (`list[str]`, *optional*) : (deprecated) List of strings. Each string is the verbalization of a possible label for the input text.
 
 multi_label (`bool`, *optional*) : Whether multiple candidate labels can be true. If false, the scores are normalized such that the sum of the label likelihoods for each sequence is 1. If true, the labels are considered independent and probabilities are normalized for each candidate.
 
@@ -1989,11 +1987,11 @@ model (`str`, *optional*) : The model to use for inference. Can be a model ID ho
 
 **Returns:** `list[ZeroShotClassificationOutputElement]`
 
-List of [ZeroShotClassificationOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ZeroShotClassificationOutputElement) items containing the predicted labels and their confidence.
+List of [ZeroShotClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ZeroShotClassificationOutputElement) items containing the predicted labels and their confidence.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -2034,7 +2032,7 @@ Example with `multi_label=True` and a custom `hypothesis_template`:
 >>> client = InferenceClient()
 >>> client.zero_shot_classification(
 ...    text="I really like our dinner and I'm very happy. I don't like the weather though.",
-...    labels=["positive", "negative", "pessimistic", "optimistic"],
+...    candidate_labels=["positive", "negative", "pessimistic", "optimistic"],
 ...    multi_label=True,
 ...    hypothesis_template="This text is {} towards the weather"
 ... )
@@ -2049,10 +2047,10 @@ Example with `multi_label=True` and a custom `hypothesis_template`:
 #### zero_shot_image_classification[[huggingface_hub.InferenceClient.zero_shot_image_classification]]
 
 ```python
-zero_shot_image_classification(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], candidate_labels: list, model: str | None = None, hypothesis_template: str | None = None, labels: list = None)
+zero_shot_image_classification(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], candidate_labels: list, model: str | None = None, hypothesis_template: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_client.py#L3210)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_client.py#L3216)
 
 **Parameters:**
 
@@ -2060,19 +2058,17 @@ image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) : The input image t
 
 candidate_labels (`list[str]`) : The candidate labels for this image
 
-labels (`list[str]`, *optional*) : (deprecated) List of string possible labels. There must be at least 2 labels.
-
 model (`str`, *optional*) : The model to use for inference. Can be a model ID hosted on the Hugging Face Hub or a URL to a deployed Inference Endpoint. This parameter overrides the model defined at the instance level. If not provided, the default recommended zero-shot image classification model will be used.
 
 hypothesis_template (`str`, *optional*) : The sentence used in conjunction with `candidate_labels` to attempt the image classification by replacing the placeholder with the candidate labels.
 
 **Returns:** `list[ZeroShotImageClassificationOutputElement]`
 
-List of [ZeroShotImageClassificationOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ZeroShotImageClassificationOutputElement) items containing the predicted labels and their confidence.
+List of [ZeroShotImageClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ZeroShotImageClassificationOutputElement) items containing the predicted labels and their confidence.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -2086,7 +2082,7 @@ Example:
 
 >>> client.zero_shot_image_classification(
 ...     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Cute_dog.jpg/320px-Cute_dog.jpg",
-...     labels=["dog", "cat", "horse"],
+...     candidate_labels=["dog", "cat", "horse"],
 ... )
 [ZeroShotImageClassificationOutputElement(label='dog', score=0.956),...]
 ```
@@ -2101,7 +2097,7 @@ An async version of the client is also provided, based on `asyncio` and `httpx`.
 huggingface_hub.AsyncInferenceClient(model: str | None = None, provider: typing.Union[typing.Literal['baseten', 'cerebras', 'cohere', 'deepinfra', 'fal-ai', 'featherless-ai', 'fireworks-ai', 'groq', 'hf-inference', 'novita', 'nscale', 'openai', 'ovhcloud', 'publicai', 'replicate', 'scaleway', 'together', 'wavespeed', 'zai-org'], typing.Literal['auto'], NoneType] = None, token: str | None = None, timeout: float | None = None, headers: dict[str, str] | None = None, cookies: dict[str, str] | None = None, bill_to: str | None = None, base_url: str | None = None, api_key: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L113)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L113)
 
 **Parameters:**
 
@@ -2119,13 +2115,13 @@ bill_to (`str`, `optional`) : The billing account to use for the requests. By de
 
 cookies (`dict[str, str]`, `optional`) : Additional cookies to send to the server.
 
-base_url (`str`, `optional`) : Base URL to run inference. This is a duplicated argument from `model` to make [InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) follow the same pattern as `openai.OpenAI` client. Cannot be used if `model` is set. Defaults to None.
+base_url (`str`, `optional`) : Base URL to run inference. This is a duplicated argument from `model` to make [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) follow the same pattern as `openai.OpenAI` client. Cannot be used if `model` is set. Defaults to None.
 
-api_key (`str`, `optional`) : Token to use for authentication. This is a duplicated argument from `token` to make [InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) follow the same pattern as `openai.OpenAI` client. Cannot be used if `token` is set. Defaults to None.
+api_key (`str`, `optional`) : Token to use for authentication. This is a duplicated argument from `token` to make [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) follow the same pattern as `openai.OpenAI` client. Cannot be used if `token` is set. Defaults to None.
 
 Initialize a new Inference Client.
 
-[InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) aims to provide a unified experience to perform inference. The client can be used
+[InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient) aims to provide a unified experience to perform inference. The client can be used
 seamlessly with either the (free) Inference API, self-hosted Inference Endpoints, or third-party Inference Providers.
 
 #### audio_classification[[huggingface_hub.AsyncInferenceClient.audio_classification]]
@@ -2134,7 +2130,7 @@ seamlessly with either the (free) Inference API, self-hosted Inference Endpoints
 audio_classification(audio: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, top_k: int | None = None, function_to_apply: typing.Optional[ForwardRef('AudioClassificationOutputTransform')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L319)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L327)
 
 **Parameters:**
 
@@ -2148,11 +2144,11 @@ function_to_apply (`"AudioClassificationOutputTransform"`, *optional*) : The fun
 
 **Returns:** `list[AudioClassificationOutputElement]`
 
-List of [AudioClassificationOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.AudioClassificationOutputElement) items containing the predicted labels and their confidence.
+List of [AudioClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.AudioClassificationOutputElement) items containing the predicted labels and their confidence.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -2178,7 +2174,7 @@ Example:
 audio_to_audio(audio: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L377)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L385)
 
 **Parameters:**
 
@@ -2188,7 +2184,7 @@ model (`str`, *optional*) : The model can be any model which takes an audio file
 
 **Returns:** `list[AudioToAudioOutputElement]`
 
-A list of [AudioToAudioOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.AudioToAudioOutputElement) items containing audios label, content-type, and audio content in blob.
+A list of [AudioToAudioOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.AudioToAudioOutputElement) items containing audios label, content-type, and audio content in blob.
 
 **Raises:** ``InferenceTimeoutError`` or `HfHubHTTPError`
 
@@ -2216,7 +2212,7 @@ Example:
 automatic_speech_recognition(audio: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, extra_body: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L430)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L438)
 
 **Parameters:**
 
@@ -2226,13 +2222,13 @@ model (`str`, *optional*) : The model to use for ASR. Can be a model ID hosted o
 
 extra_body (`dict`, *optional*) : Additional provider-specific parameters to pass to the model. Refer to the provider's documentation for supported parameters.
 
-**Returns:** [AutomaticSpeechRecognitionOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.AutomaticSpeechRecognitionOutput)
+**Returns:** [AutomaticSpeechRecognitionOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.AutomaticSpeechRecognitionOutput)
 
 An item containing the transcribed text and optionally the timestamp chunks.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -2254,13 +2250,13 @@ Example:
 chat_completion(messages: list, model: str | None = None, stream: bool = False, frequency_penalty: float | None = None, logit_bias: list[float] | None = None, logprobs: bool | None = None, max_tokens: int | None = None, n: int | None = None, presence_penalty: float | None = None, response_format: typing.Union[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatText, huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatJSONSchema, huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputResponseFormatJSONObject, NoneType] = None, seed: int | None = None, stop: list[str] | None = None, stream_options: huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputStreamOptions | None = None, temperature: float | None = None, tool_choice: typing.Union[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputToolChoiceClass, ForwardRef('ChatCompletionInputToolChoiceEnum'), NoneType] = None, tool_prompt: str | None = None, tools: list[huggingface_hub.inference._generated.types.chat_completion.ChatCompletionInputTool] | None = None, top_logprobs: int | None = None, top_p: float | None = None, extra_body: dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L558)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L566)
 
 **Parameters:**
 
-messages (List of [ChatCompletionInputMessage](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputMessage)) : Conversation history consisting of roles and content pairs.
+messages (List of [ChatCompletionInputMessage](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputMessage)) : Conversation history consisting of roles and content pairs.
 
-model (`str`, *optional*) : The model to use for chat-completion. Can be a model ID hosted on the Hugging Face Hub or a URL to a deployed Inference Endpoint. If not provided, the default recommended model for chat-based text-generation will be used. See https://huggingface.co/tasks/text-generation for more details. If `model` is a model ID, it is passed to the server as the `model` parameter. If you want to define a custom URL while setting `model` in the request payload, you must set `base_url` when initializing [InferenceClient](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient).
+model (`str`, *optional*) : The model to use for chat-completion. Can be a model ID hosted on the Hugging Face Hub or a URL to a deployed Inference Endpoint. If not provided, the default recommended model for chat-based text-generation will be used. See https://huggingface.co/tasks/text-generation for more details. If `model` is a model ID, it is passed to the server as the `model` parameter. If you want to define a custom URL while setting `model` in the request payload, you must set `base_url` when initializing [InferenceClient](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient).
 
 frequency_penalty (`float`, *optional*) : Penalizes new tokens based on their existing frequency in the text so far. Range: [-2.0, 2.0]. Defaults to 0.0.
 
@@ -2282,7 +2278,7 @@ stop (`list[str]`, *optional*) : Up to four strings which trigger the end of the
 
 stream (`bool`, *optional*) : Enable realtime streaming of responses. Defaults to False.
 
-stream_options ([ChatCompletionInputStreamOptions](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputStreamOptions), *optional*) : Options for streaming completions.
+stream_options ([ChatCompletionInputStreamOptions](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputStreamOptions), *optional*) : Options for streaming completions.
 
 temperature (`float`, *optional*) : Controls randomness of the generations. Lower values ensure less random completions. Range: [0, 2]. Defaults to 1.0.
 
@@ -2290,23 +2286,23 @@ top_logprobs (`int`, *optional*) : An integer between 0 and 5 specifying the num
 
 top_p (`float`, *optional*) : Fraction of the most likely next words to sample from. Must be between 0 and 1. Defaults to 1.0.
 
-tool_choice ([ChatCompletionInputToolChoiceClass](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputToolChoiceClass) or `ChatCompletionInputToolChoiceEnum()`, *optional*) : The tool to use for the completion. Defaults to "auto".
+tool_choice ([ChatCompletionInputToolChoiceClass](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputToolChoiceClass) or `ChatCompletionInputToolChoiceEnum()`, *optional*) : The tool to use for the completion. Defaults to "auto".
 
 tool_prompt (`str`, *optional*) : A prompt to be appended before the tools.
 
-tools (List of [ChatCompletionInputTool](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputTool), *optional*) : A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for.
+tools (List of [ChatCompletionInputTool](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionInputTool), *optional*) : A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for.
 
 extra_body (`dict`, *optional*) : Additional provider-specific parameters to pass to the model. Refer to the provider's documentation for supported parameters.
 
-**Returns:** [ChatCompletionOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput) or Iterable of [ChatCompletionStreamOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput)
+**Returns:** [ChatCompletionOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput) or Iterable of [ChatCompletionStreamOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput)
 
 Generated text returned from the server:
-- if `stream=False`, the generated text is returned as a [ChatCompletionOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput) (default).
-- if `stream=True`, the generated text is returned token by token as a sequence of [ChatCompletionStreamOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput).
+- if `stream=False`, the generated text is returned as a [ChatCompletionOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionOutput) (default).
+- if `stream=True`, the generated text is returned token by token as a sequence of [ChatCompletionStreamOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ChatCompletionStreamOutput).
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -2588,7 +2584,7 @@ n": "park"}'
 close()
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L240)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L240)
 
 Close the client.
 
@@ -2600,7 +2596,7 @@ This method is automatically called when using the client as a context manager.
 document_question_answering(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], question: str, model: str | None = None, doc_stride: int | None = None, handle_impossible_answer: bool | None = None, lang: str | None = None, max_answer_len: int | None = None, max_question_len: int | None = None, max_seq_len: int | None = None, top_k: int | None = None, word_boxes: list[list[float] | str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L966)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L974)
 
 **Parameters:**
 
@@ -2628,11 +2624,11 @@ word_boxes (`list[Union[list[float], str`, *optional*) : A list of words and bou
 
 **Returns:** `list[DocumentQuestionAnsweringOutputElement]`
 
-a list of [DocumentQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.DocumentQuestionAnsweringOutputElement) items containing the predicted label, associated probability, word ids, and page number.
+a list of [DocumentQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.DocumentQuestionAnsweringOutputElement) items containing the predicted label, associated probability, word ids, and page number.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -2654,7 +2650,7 @@ Example:
 feature_extraction(text: str | list[str], normalize: bool | None = None, prompt_name: str | None = None, truncate: bool | None = None, truncation_direction: typing.Optional[typing.Literal['left', 'right']] = None, dimensions: int | None = None, encoding_format: typing.Optional[typing.Literal['float', 'base64']] = None, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1054)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1062)
 
 **Parameters:**
 
@@ -2705,7 +2701,7 @@ array([[ 2.424802  ,  2.93384   ,  1.1750331 , ...,  1.240499, -0.13776633, -0.7
 fill_mask(text: str, model: str | None = None, targets: list[str] | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1138)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1146)
 
 **Parameters:**
 
@@ -2719,12 +2715,12 @@ top_k (`int`, *optional*) : When passed, overrides the number of predictions to 
 
 **Returns:** `list[FillMaskOutputElement]`
 
-a list of [FillMaskOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.FillMaskOutputElement) items containing the predicted label, associated
+a list of [FillMaskOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.FillMaskOutputElement) items containing the predicted label, associated
 probability, token reference, and completed text.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -2749,7 +2745,7 @@ Example:
 get_endpoint_info(model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L3331)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L3333)
 
 **Parameters:**
 
@@ -2799,7 +2795,7 @@ Example:
 health_check(model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L3391)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L3393)
 
 **Parameters:**
 
@@ -2828,7 +2824,7 @@ True
 image_classification(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, function_to_apply: typing.Optional[ForwardRef('ImageClassificationOutputTransform')] = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1195)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1203)
 
 **Parameters:**
 
@@ -2842,11 +2838,11 @@ top_k (`int`, *optional*) : When specified, limits the output to the top K most 
 
 **Returns:** `list[ImageClassificationOutputElement]`
 
-a list of [ImageClassificationOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ImageClassificationOutputElement) items containing the predicted label and associated probability.
+a list of [ImageClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ImageClassificationOutputElement) items containing the predicted label and associated probability.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -2868,7 +2864,7 @@ Example:
 image_segmentation(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, mask_threshold: float | None = None, overlap_mask_area_threshold: float | None = None, subtask: typing.Optional[ForwardRef('ImageSegmentationSubtask')] = None, threshold: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1246)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1254)
 
 **Parameters:**
 
@@ -2886,11 +2882,11 @@ threshold (`float`, *optional*) : Probability threshold to filter out predicted 
 
 **Returns:** `list[ImageSegmentationOutputElement]`
 
-A list of [ImageSegmentationOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ImageSegmentationOutputElement) items containing the segmented masks and associated attributes.
+A list of [ImageSegmentationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ImageSegmentationOutputElement) items containing the segmented masks and associated attributes.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -2915,7 +2911,7 @@ Example:
 image_to_image(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], prompt: str | None = None, negative_prompt: str | None = None, num_inference_steps: int | None = None, guidance_scale: float | None = None, model: str | None = None, target_size: huggingface_hub.inference._generated.types.image_to_image.ImageToImageTargetSize | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1315)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1323)
 
 **Parameters:**
 
@@ -2937,9 +2933,9 @@ target_size (`ImageToImageTargetSize`, *optional*) : The size in pixels of the o
 
 The translated image.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -2964,7 +2960,7 @@ Example:
 image_to_text(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1472)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1480)
 
 **Parameters:**
 
@@ -2972,13 +2968,13 @@ image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) : The input image t
 
 model (`str`, *optional*) : The model to use for inference. Can be a model ID hosted on the Hugging Face Hub or a URL to a deployed Inference Endpoint. This parameter overrides the model defined at the instance level. Defaults to None.
 
-**Returns:** [ImageToTextOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ImageToTextOutput)
+**Returns:** [ImageToTextOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ImageToTextOutput)
 
 The generated text.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -3005,7 +3001,7 @@ Example:
 image_to_video(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, prompt: str | None = None, negative_prompt: str | None = None, num_frames: float | None = None, num_inference_steps: int | None = None, guidance_scale: float | None = None, seed: int | None = None, target_size: huggingface_hub.inference._generated.types.image_to_video.ImageToVideoTargetSize | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1392)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1400)
 
 **Parameters:**
 
@@ -3053,7 +3049,7 @@ Examples:
 object_detection(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], model: str | None = None, threshold: float | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1519)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1527)
 
 **Parameters:**
 
@@ -3065,11 +3061,11 @@ threshold (`float`, *optional*) : The probability necessary to make a prediction
 
 **Returns:** `list[ObjectDetectionOutputElement]`
 
-A list of [ObjectDetectionOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ObjectDetectionOutputElement) items containing the bounding boxes and associated attributes.
+A list of [ObjectDetectionOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ObjectDetectionOutputElement) items containing the bounding boxes and associated attributes.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError` or ``ValueError``
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError` or ``ValueError``
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -3096,7 +3092,7 @@ Example:
 question_answering(question: str, context: str, model: str | None = None, align_to_words: bool | None = None, doc_stride: int | None = None, handle_impossible_answer: bool | None = None, max_answer_len: int | None = None, max_question_len: int | None = None, max_seq_len: int | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1568)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1576)
 
 **Parameters:**
 
@@ -3120,14 +3116,14 @@ max_seq_len (`int`, *optional*) : The maximum length of the total sentence (cont
 
 top_k (`int`, *optional*) : The number of answers to return (will be chosen by order of likelihood). Note that we return less than topk answers if there are not enough options available within the context.
 
-**Returns:** Union[`QuestionAnsweringOutputElement`, list[QuestionAnsweringOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.QuestionAnsweringOutputElement)]
+**Returns:** Union[`QuestionAnsweringOutputElement`, list[QuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.QuestionAnsweringOutputElement)]
 
 When top_k is 1 or not provided, it returns a single `QuestionAnsweringOutputElement`.
 When top_k is greater than 1, it returns a list of `QuestionAnsweringOutputElement`.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -3149,7 +3145,7 @@ QuestionAnsweringOutputElement(answer='Clara', end=16, score=0.9326565265655518,
 sentence_similarity(sentence: str, other_sentences: list, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1653)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1661)
 
 **Parameters:**
 
@@ -3163,9 +3159,9 @@ model (`str`, *optional*) : The model to use for the sentence similarity task. C
 
 The embedding representing the input text.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -3194,7 +3190,7 @@ Example:
 summarization(text: str, model: str | None = None, clean_up_tokenization_spaces: bool | None = None, generate_parameters: dict[str, typing.Any] | None = None, truncation: typing.Optional[ForwardRef('SummarizationTruncationStrategy')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1707)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1715)
 
 **Parameters:**
 
@@ -3208,13 +3204,13 @@ generate_parameters (`dict[str, Any]`, *optional*) : Additional parametrization 
 
 truncation (`"SummarizationTruncationStrategy"`, *optional*) : The truncation strategy to use.
 
-**Returns:** [SummarizationOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.SummarizationOutput)
+**Returns:** [SummarizationOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.SummarizationOutput)
 
 The generated summary text.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -3236,7 +3232,7 @@ SummarizationOutput(generated_text="The Eiffel tower is one of the most famous l
 table_question_answering(table: dict, query: str, model: str | None = None, padding: typing.Optional[ForwardRef('Padding')] = None, sequential: bool | None = None, truncation: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1766)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1774)
 
 **Parameters:**
 
@@ -3252,13 +3248,13 @@ sequential (`bool`, *optional*) : Whether to do inference sequentially or as a b
 
 truncation (`bool`, *optional*) : Activates and controls truncation.
 
-**Returns:** [TableQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.TableQuestionAnsweringOutputElement)
+**Returns:** [TableQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TableQuestionAnsweringOutputElement)
 
 a table question answering output containing the answer, coordinates, cells and the aggregator used.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -3282,7 +3278,7 @@ TableQuestionAnsweringOutputElement(answer='36542', coordinates=[[0, 1]], cells=
 tabular_classification(table: dict, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1829)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1837)
 
 **Parameters:**
 
@@ -3294,9 +3290,9 @@ model (`str`, *optional*) : The model to use for the tabular classification task
 
 a list of labels, one per row in the initial table.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -3331,7 +3327,7 @@ Example:
 tabular_regression(table: dict, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1885)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1893)
 
 **Parameters:**
 
@@ -3343,9 +3339,9 @@ model (`str`, *optional*) : The model to use for the tabular regression task. Ca
 
 a list of predicted numerical target values.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -3375,7 +3371,7 @@ Example:
 text_classification(text: str, model: str | None = None, top_k: int | None = None, function_to_apply: typing.Optional[ForwardRef('TextClassificationOutputTransform')] = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L1936)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L1944)
 
 **Parameters:**
 
@@ -3389,11 +3385,11 @@ function_to_apply (`"TextClassificationOutputTransform"`, *optional*) : The func
 
 **Returns:** `list[TextClassificationOutputElement]`
 
-a list of [TextClassificationOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.TextClassificationOutputElement) items containing the predicted label and associated probability.
+a list of [TextClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextClassificationOutputElement) items containing the predicted label and associated probability.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -3418,7 +3414,7 @@ Example:
 text_generation(prompt: str, details: bool | None = None, stream: bool | None = None, model: str | None = None, adapter_id: str | None = None, best_of: int | None = None, decoder_input_details: bool | None = None, do_sample: bool | None = None, frequency_penalty: float | None = None, grammar: huggingface_hub.inference._generated.types.text_generation.TextGenerationInputGrammarType | None = None, max_new_tokens: int | None = None, repetition_penalty: float | None = None, return_full_text: bool | None = None, seed: int | None = None, stop: list[str] | None = None, stop_sequences: list[str] | None = None, temperature: float | None = None, top_k: int | None = None, top_n_tokens: int | None = None, top_p: float | None = None, truncate: int | None = None, typical_p: float | None = None, watermark: bool | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L2145)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L2153)
 
 **Parameters:**
 
@@ -3440,7 +3436,7 @@ do_sample (`bool`, *optional*) : Activate logits sampling
 
 frequency_penalty (`float`, *optional*) : Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
 
-grammar ([TextGenerationInputGrammarType](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.TextGenerationInputGrammarType), *optional*) : Grammar constraints. Can be either a JSONSchema or a regex.
+grammar ([TextGenerationInputGrammarType](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextGenerationInputGrammarType), *optional*) : Grammar constraints. Can be either a JSONSchema or a regex.
 
 max_new_tokens (`int`, *optional*) : Maximum number of generated tokens. Defaults to 100.
 
@@ -3473,14 +3469,14 @@ watermark (`bool`, *optional*) : Watermarking with [A Watermark for Large Langua
 Generated text returned from the server:
 - if `stream=False` and `details=False`, the generated text is returned as a `str` (default)
 - if `stream=True` and `details=False`, the generated text is returned token by token as a `AsyncIterable[str]`
-- if `stream=False` and `details=True`, the generated text is returned with more details as a [TextGenerationOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.TextGenerationOutput)
-- if `details=True` and `stream=True`, the generated text is returned token by token as a iterable of [TextGenerationStreamOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.TextGenerationStreamOutput)
+- if `stream=False` and `details=True`, the generated text is returned with more details as a [TextGenerationOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextGenerationOutput)
+- if `details=True` and `stream=True`, the generated text is returned token by token as a iterable of [TextGenerationStreamOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TextGenerationStreamOutput)
 
-**Raises:** ``ValidationError`` or [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** ``ValidationError`` or [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
 - ``ValidationError`` -- 
   If input values are not valid. No HTTP call is made to the server.
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -3488,7 +3484,7 @@ Generated text returned from the server:
 Given a prompt, generate the following text.
 
 > [!TIP]
-> If you want to generate a response from chat messages, you should use the [InferenceClient.chat_completion()](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) method.
+> If you want to generate a response from chat messages, you should use the [InferenceClient.chat_completion()](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceClient.chat_completion) method.
 > It accepts a list of messages instead of a single text prompt and handles the chat templating for you.
 
 Example:
@@ -3600,7 +3596,7 @@ TextGenerationStreamOutput(token=TokenElement(
 text_to_image(prompt: str, negative_prompt: str | None = None, height: int | None = None, width: int | None = None, num_inference_steps: int | None = None, guidance_scale: float | None = None, model: str | None = None, scheduler: str | None = None, seed: int | None = None, extra_body: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L2485)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L2493)
 
 **Parameters:**
 
@@ -3628,9 +3624,9 @@ extra_body (`dict[str, Any]`, *optional*) : Additional provider-specific paramet
 
 The generated image.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -3712,7 +3708,7 @@ Example using Replicate provider with extra parameters
 text_to_speech(text: str, model: str | None = None, do_sample: bool | None = None, early_stopping: typing.Union[bool, ForwardRef('TextToSpeechEarlyStoppingEnum'), NoneType] = None, epsilon_cutoff: float | None = None, eta_cutoff: float | None = None, max_length: int | None = None, max_new_tokens: int | None = None, min_length: int | None = None, min_new_tokens: int | None = None, num_beam_groups: int | None = None, num_beams: int | None = None, penalty_alpha: float | None = None, temperature: float | None = None, top_k: int | None = None, top_p: float | None = None, typical_p: float | None = None, use_cache: bool | None = None, extra_body: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L2723)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L2731)
 
 **Parameters:**
 
@@ -3758,9 +3754,9 @@ extra_body (`dict[str, Any]`, *optional*) : Additional provider-specific paramet
 
 The generated audio.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -3865,7 +3861,7 @@ Example music-gen using "YuE-s1-7B-anneal-en-cot" on fal.ai
 text_to_video(prompt: str, model: str | None = None, guidance_scale: float | None = None, negative_prompt: list[str] | None = None, num_frames: float | None = None, num_inference_steps: int | None = None, seed: int | None = None, extra_body: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L2626)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L2634)
 
 **Parameters:**
 
@@ -3934,7 +3930,7 @@ Example using a third-party provider through Hugging Face Routing. Usage will be
 token_classification(text: str, model: str | None = None, aggregation_strategy: typing.Optional[ForwardRef('TokenClassificationAggregationStrategy')] = None, ignore_labels: list[str] | None = None, stride: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L2932)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L2940)
 
 **Parameters:**
 
@@ -3950,11 +3946,11 @@ stride (`int`, *optional*) : The number of overlapping tokens between chunks whe
 
 **Returns:** `list[TokenClassificationOutputElement]`
 
-List of [TokenClassificationOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.TokenClassificationOutputElement) items containing the entity group, confidence score, word, start and end index.
+List of [TokenClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TokenClassificationOutputElement) items containing the entity group, confidence score, word, start and end index.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -3992,7 +3988,7 @@ Example:
 translation(text: str, model: str | None = None, src_lang: str | None = None, tgt_lang: str | None = None, clean_up_tokenization_spaces: bool | None = None, truncation: typing.Optional[ForwardRef('TranslationTruncationStrategy')] = None, generate_parameters: dict[str, typing.Any] | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L3008)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L3016)
 
 **Parameters:**
 
@@ -4010,13 +4006,13 @@ truncation (`"TranslationTruncationStrategy"`, *optional*) : The truncation stra
 
 generate_parameters (`dict[str, Any]`, *optional*) : Additional parametrization of the text generation algorithm.
 
-**Returns:** [TranslationOutput](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.TranslationOutput)
+**Returns:** [TranslationOutput](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.TranslationOutput)
 
 The generated translated text.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError` or ``ValueError``
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError` or ``ValueError``
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -4053,7 +4049,7 @@ Specifying languages:
 visual_question_answering(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], question: str, model: str | None = None, top_k: int | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L3098)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L3106)
 
 **Parameters:**
 
@@ -4067,7 +4063,7 @@ top_k (`int`, *optional*) : The number of answers to return (will be chosen by o
 
 **Returns:** `list[VisualQuestionAnsweringOutputElement]`
 
-a list of [VisualQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.VisualQuestionAnsweringOutputElement) items containing the predicted label and associated probability.
+a list of [VisualQuestionAnsweringOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.VisualQuestionAnsweringOutputElement) items containing the predicted label and associated probability.
 
 **Raises:** ``InferenceTimeoutError`` or `HfHubHTTPError`
 
@@ -4099,15 +4095,13 @@ Example:
 zero_shot_classification(text: str, candidate_labels: list, multi_label: bool | None = False, hypothesis_template: str | None = None, model: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L3158)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L3166)
 
 **Parameters:**
 
 text (`str`) : The input text to classify.
 
 candidate_labels (`list[str]`) : The set of possible class labels to classify the text into.
-
-labels (`list[str]`, *optional*) : (deprecated) List of strings. Each string is the verbalization of a possible label for the input text.
 
 multi_label (`bool`, *optional*) : Whether multiple candidate labels can be true. If false, the scores are normalized such that the sum of the label likelihoods for each sequence is 1. If true, the labels are considered independent and probabilities are normalized for each candidate.
 
@@ -4117,11 +4111,11 @@ model (`str`, *optional*) : The model to use for inference. Can be a model ID ho
 
 **Returns:** `list[ZeroShotClassificationOutputElement]`
 
-List of [ZeroShotClassificationOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ZeroShotClassificationOutputElement) items containing the predicted labels and their confidence.
+List of [ZeroShotClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ZeroShotClassificationOutputElement) items containing the predicted labels and their confidence.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -4164,7 +4158,7 @@ Example with `multi_label=True` and a custom `hypothesis_template`:
 >>> client = AsyncInferenceClient()
 >>> await client.zero_shot_classification(
 ...    text="I really like our dinner and I'm very happy. I don't like the weather though.",
-...    labels=["positive", "negative", "pessimistic", "optimistic"],
+...    candidate_labels=["positive", "negative", "pessimistic", "optimistic"],
 ...    multi_label=True,
 ...    hypothesis_template="This text is {} towards the weather"
 ... )
@@ -4179,10 +4173,10 @@ Example with `multi_label=True` and a custom `hypothesis_template`:
 #### zero_shot_image_classification[[huggingface_hub.AsyncInferenceClient.zero_shot_image_classification]]
 
 ```python
-zero_shot_image_classification(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], candidate_labels: list, model: str | None = None, hypothesis_template: str | None = None, labels: list = None)
+zero_shot_image_classification(image: typing.Union[bytes, typing.BinaryIO, str, pathlib.Path, ForwardRef('Image'), bytearray, memoryview], candidate_labels: list, model: str | None = None, hypothesis_template: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/inference/_generated/_async_client.py#L3263)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/inference/_generated/_async_client.py#L3269)
 
 **Parameters:**
 
@@ -4190,19 +4184,17 @@ image (`Union[str, Path, bytes, BinaryIO, PIL.Image.Image]`) : The input image t
 
 candidate_labels (`list[str]`) : The candidate labels for this image
 
-labels (`list[str]`, *optional*) : (deprecated) List of string possible labels. There must be at least 2 labels.
-
 model (`str`, *optional*) : The model to use for inference. Can be a model ID hosted on the Hugging Face Hub or a URL to a deployed Inference Endpoint. This parameter overrides the model defined at the instance level. If not provided, the default recommended zero-shot image classification model will be used.
 
 hypothesis_template (`str`, *optional*) : The sentence used in conjunction with `candidate_labels` to attempt the image classification by replacing the placeholder with the candidate labels.
 
 **Returns:** `list[ZeroShotImageClassificationOutputElement]`
 
-List of [ZeroShotImageClassificationOutputElement](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_types#huggingface_hub.ZeroShotImageClassificationOutputElement) items containing the predicted labels and their confidence.
+List of [ZeroShotImageClassificationOutputElement](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_types#huggingface_hub.ZeroShotImageClassificationOutputElement) items containing the predicted labels and their confidence.
 
-**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
+**Raises:** [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) or `HfHubHTTPError`
 
-- [InferenceTimeoutError](/docs/huggingface_hub/v1.27.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
+- [InferenceTimeoutError](/docs/huggingface_hub/v1.29.0/en/package_reference/inference_client#huggingface_hub.InferenceTimeoutError) -- 
   If the model is unavailable or the request times out.
 - `HfHubHTTPError` -- 
   If the request fails with an HTTP error status code other than HTTP 503.
@@ -4217,7 +4209,7 @@ Example:
 
 >>> await client.zero_shot_image_classification(
 ...     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Cute_dog.jpg/320px-Cute_dog.jpg",
-...     labels=["dog", "cat", "horse"],
+...     candidate_labels=["dog", "cat", "horse"],
 ... )
 [ZeroShotImageClassificationOutputElement(label='dog', score=0.956),...]
 ```
@@ -4230,9 +4222,9 @@ Example:
 huggingface_hub.InferenceTimeoutError(message: str)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/errors.py#L155)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L155)
 
 Error raised when a model is unavailable or the request times out.
 
-### Cache-system reference
-https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/cache.md
+### Authentication
+https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/authentication.md

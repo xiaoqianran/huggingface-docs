@@ -47,4 +47,4 @@ If you see an error like `No compatible CUDA library found`, it means no compati
    The value must be digits only, e.g. `128` for CUDA 12.8 or `72` for ROCm 7.2.
 
 ### Contribution Guide
-https://huggingface.co/docs/bitsandbytes/v0.50.1/contributing.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/contributing.md

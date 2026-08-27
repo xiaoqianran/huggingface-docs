@@ -92,5 +92,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### (Tensorflow) EfficientNet Lite
-https://huggingface.co/docs/timm/v1.0.28/models/tf-efficientnet-lite.md
+### SK-ResNeXt
+https://huggingface.co/docs/timm/v1.0.29/models/skresnext.md

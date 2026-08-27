@@ -271,5 +271,5 @@ Pruned params: 35212800
 Feat shape: torch.Size([2, 512, 16, 16])
 ```
 
-### SSL ResNet
-https://huggingface.co/docs/timm/v1.0.28/models/ssl-resnet.md
+### HParams
+https://huggingface.co/docs/timm/v1.0.29/hparams.md

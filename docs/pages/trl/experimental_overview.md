@@ -30,5 +30,5 @@ Not necessarily. The experimental module is a playground for new ideas, and main
 
 Use: `export TRL_EXPERIMENTAL_SILENCE=1`.
 
-### SDFT
-https://huggingface.co/docs/trl/v1.10.0/sdft_trainer.md
+### GSPO-token
+https://huggingface.co/docs/trl/v1.12.0/gspo_token.md

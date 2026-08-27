@@ -90,5 +90,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### RegNetX
-https://huggingface.co/docs/timm/v1.0.28/models/regnetx.md
+### # Ensemble Adversarial Inception ResNet v2
+https://huggingface.co/docs/timm/v1.0.29/models/ensemble-adversarial.md

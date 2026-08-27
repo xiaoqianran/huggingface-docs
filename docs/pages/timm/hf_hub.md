@@ -53,5 +53,5 @@ Loading a model from the Hub is as simple as calling `timm.create_model` with th
 >>> model_reloaded = timm.create_model('hf_hub:nateraw/resnet18-random', pretrained=True)
 ```
 
-### HParams
-https://huggingface.co/docs/timm/v1.0.28/hparams.md
+### Results
+https://huggingface.co/docs/timm/v1.0.29/results.md

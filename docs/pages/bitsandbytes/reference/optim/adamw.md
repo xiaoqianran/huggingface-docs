@@ -12,7 +12,7 @@ bitsandbytes also supports paged optimizers which take advantage of CUDAs unifie
 bitsandbytes.optim.AdamW(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.01, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adamw.py#L9)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adamw.py#L9)
 
 #### __init__[[bitsandbytes.optim.AdamW.__init__]]
 
@@ -20,7 +20,7 @@ bitsandbytes.optim.AdamW(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, 
 __init__(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.01, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adamw.py#L10)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adamw.py#L10)
 
 **Parameters:**
 
@@ -54,7 +54,7 @@ Base AdamW optimizer.
 bitsandbytes.optim.AdamW8bit(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.01, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adamw.py#L62)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adamw.py#L62)
 
 #### __init__[[bitsandbytes.optim.AdamW8bit.__init__]]
 
@@ -62,7 +62,7 @@ bitsandbytes.optim.AdamW8bit(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-
 __init__(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.01, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adamw.py#L63)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adamw.py#L63)
 
 **Parameters:**
 
@@ -96,7 +96,7 @@ is_paged (`bool`, defaults to `False`) : Whether the optimizer is a paged optimi
 bitsandbytes.optim.AdamW32bit(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.01, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adamw.py#L126)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adamw.py#L126)
 
 #### __init__[[bitsandbytes.optim.AdamW32bit.__init__]]
 
@@ -104,7 +104,7 @@ bitsandbytes.optim.AdamW32bit(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e
 __init__(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.01, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096, is_paged = False)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adamw.py#L127)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adamw.py#L127)
 
 **Parameters:**
 
@@ -138,7 +138,7 @@ is_paged (`bool`, defaults to `False`) : Whether the optimizer is a paged optimi
 bitsandbytes.optim.PagedAdamW(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.01, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adamw.py#L179)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adamw.py#L179)
 
 #### __init__[[bitsandbytes.optim.PagedAdamW.__init__]]
 
@@ -146,7 +146,7 @@ bitsandbytes.optim.PagedAdamW(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e
 __init__(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.01, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adamw.py#L180)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adamw.py#L180)
 
 **Parameters:**
 
@@ -178,7 +178,7 @@ Paged AdamW optimizer.
 bitsandbytes.optim.PagedAdamW8bit(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.01, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adamw.py#L229)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adamw.py#L229)
 
 #### __init__[[bitsandbytes.optim.PagedAdamW8bit.__init__]]
 
@@ -186,7 +186,7 @@ bitsandbytes.optim.PagedAdamW8bit(params, lr = 0.001, betas = (0.9, 0.999), eps 
 __init__(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.01, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adamw.py#L230)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adamw.py#L230)
 
 **Parameters:**
 
@@ -218,7 +218,7 @@ Paged 8-bit AdamW optimizer.
 bitsandbytes.optim.PagedAdamW32bit(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.01, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adamw.py#L290)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adamw.py#L290)
 
 #### __init__[[bitsandbytes.optim.PagedAdamW32bit.__init__]]
 
@@ -226,7 +226,7 @@ bitsandbytes.optim.PagedAdamW32bit(params, lr = 0.001, betas = (0.9, 0.999), eps
 __init__(params, lr = 0.001, betas = (0.9, 0.999), eps = 1e-08, weight_decay = 0.01, amsgrad = False, optim_bits = 32, args = None, min_8bit_size = 4096)
 ```
 
-[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.1/bitsandbytes/optim/adamw.py#L291)
+[Source](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/v0.50.2/bitsandbytes/optim/adamw.py#L291)
 
 **Parameters:**
 
@@ -251,4 +251,4 @@ min_8bit_size (`int`, defaults to 4096) : The minimum number of elements of the 
 Paged 32-bit AdamW optimizer.
 
 ### LARS
-https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/optim/lars.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/optim/lars.md

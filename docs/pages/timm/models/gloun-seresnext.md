@@ -90,5 +90,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### Noisy Student (EfficientNet)
-https://huggingface.co/docs/timm/v1.0.28/models/noisy-student.md
+### Inception v4
+https://huggingface.co/docs/timm/v1.0.29/models/inception-v4.md

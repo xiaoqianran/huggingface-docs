@@ -10,7 +10,7 @@
 huggingface_hub.hf_hub_download(repo_id: str, filename: str, subfolder: str | None = None, repo_type: str | None = None, revision: str | None = None, library_name: str | None = None, library_version: str | None = None, cache_dir: str | pathlib.Path | None = None, local_dir: str | pathlib.Path | None = None, user_agent: dict | str | None = None, force_download: bool = False, etag_timeout: float = 10, token: bool | str | None = None, local_files_only: bool = False, headers: dict[str, str] | None = None, endpoint: str | None = None, tqdm_class: type[tqdm.asyncio.tqdm_asyncio] | None = None, dry_run: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/file_download.py#L828)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/file_download.py#L836)
 
 **Parameters:**
 
@@ -48,23 +48,23 @@ endpoint (`str`, *optional*) : The Hub endpoint to send the request to. Defaults
 
 tqdm_class (`tqdm`, *optional*) : If provided, overwrites the default behavior for the progress bar. Passed argument must inherit from `tqdm.auto.tqdm` or at least mimic its behavior. Defaults to the custom HF progress bar that can be disabled by setting `HF_HUB_DISABLE_PROGRESS_BARS` environment variable.
 
-dry_run (`bool`, *optional*, defaults to `False`) : If `True`, perform a dry run without actually downloading the file. Returns a [DryRunFileInfo](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) object containing information about what would be downloaded.
+dry_run (`bool`, *optional*, defaults to `False`) : If `True`, perform a dry run without actually downloading the file. Returns a [DryRunFileInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) object containing information about what would be downloaded.
 
-**Returns:** `str` or [DryRunFileInfo](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo)
+**Returns:** `str` or [DryRunFileInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo)
 
 - If `dry_run=False`: Local path of file or if networking is off, last version of file cached on disk.
-- If `dry_run=True`: A [DryRunFileInfo](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) object containing download information.
+- If `dry_run=True`: A [DryRunFileInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) object containing download information.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or `~utils.RemoteEntryNotFoundError` or [LocalEntryNotFoundError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.LocalEntryNotFoundError) or ``EnvironmentError`` or ``OSError`` or ``ValueError``
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or `~utils.RemoteEntryNotFoundError` or [LocalEntryNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.LocalEntryNotFoundError) or ``EnvironmentError`` or ``OSError`` or ``ValueError``
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If the repository to download from cannot be found. This may be because it doesn't exist,
   or because it is set to `private` and you do not have access.
-- [RevisionNotFoundError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
+- [RevisionNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
   If the revision to download from cannot be found.
 - `~utils.RemoteEntryNotFoundError` -- 
   If the file to download cannot be found.
-- [LocalEntryNotFoundError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.LocalEntryNotFoundError) -- 
+- [LocalEntryNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.LocalEntryNotFoundError) -- 
   If network is disabled or unavailable and file is not found in cache.
 - [`EnvironmentError`](https://docs.python.org/3/library/exceptions.html#EnvironmentError) -- 
   If `token=True` but the token cannot be found.
@@ -116,7 +116,7 @@ cache-system, it's optimized for regularly pulling the latest version of a repos
 huggingface_hub.hf_hub_url(repo_id: str, filename: str, subfolder: str | None = None, repo_type: str | None = None, revision: str | None = None, endpoint: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/file_download.py#L201)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/file_download.py#L201)
 
 **Parameters:**
 
@@ -179,7 +179,7 @@ References:
 huggingface_hub.snapshot_download(repo_id: str, repo_type: str | None = None, revision: str | None = None, cache_dir: str | pathlib.Path | None = None, local_dir: str | pathlib.Path | None = None, library_name: str | None = None, library_version: str | None = None, user_agent: dict | str | None = None, etag_timeout: float = 10, force_download: bool = False, token: bool | str | None = None, local_files_only: bool = False, allow_patterns: list[str] | str | None = None, ignore_patterns: list[str] | str | None = None, max_workers: int = 8, tqdm_class: type[tqdm.asyncio.tqdm_asyncio] | None = None, headers: dict[str, str] | None = None, endpoint: str | None = None, dry_run: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_snapshot_download.py#L113)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_snapshot_download.py#L113)
 
 **Parameters:**
 
@@ -219,21 +219,21 @@ max_workers (`int`, *optional*) : Number of concurrent threads to download files
 
 tqdm_class (`tqdm`, *optional*) : If provided, overwrites the default behavior for the progress bar. Passed argument must inherit from `tqdm.auto.tqdm` or at least mimic its behavior. Note that the `tqdm_class` is not passed to each individual download. Defaults to the custom HF progress bar that can be disabled by setting `HF_HUB_DISABLE_PROGRESS_BARS` environment variable.
 
-dry_run (`bool`, *optional*, defaults to `False`) : If `True`, perform a dry run without actually downloading the files. Returns a list of [DryRunFileInfo](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) objects containing information about what would be downloaded.
+dry_run (`bool`, *optional*, defaults to `False`) : If `True`, perform a dry run without actually downloading the files. Returns a list of [DryRunFileInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) objects containing information about what would be downloaded.
 
-**Returns:** `str` or list of [DryRunFileInfo](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo)
+**Returns:** `str` or list of [DryRunFileInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo)
 
 - If `dry_run=False`: Local snapshot path.
-- If `dry_run=True`: A list of [DryRunFileInfo](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) objects containing download information.
+- If `dry_run=True`: A list of [DryRunFileInfo](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.DryRunFileInfo) objects containing download information.
 
-**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or [IncompleteSnapshotError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.IncompleteSnapshotError) or ``EnvironmentError`` or ``OSError`` or ``ValueError``
+**Raises:** [RepositoryNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) or [RevisionNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) or [IncompleteSnapshotError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.IncompleteSnapshotError) or ``EnvironmentError`` or ``OSError`` or ``ValueError``
 
-- [RepositoryNotFoundError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
+- [RepositoryNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.RepositoryNotFoundError) -- 
   If the repository to download from cannot be found. This may be because it doesn't exist
   or because it is set to `private` and you do not have access.
-- [RevisionNotFoundError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
+- [RevisionNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.RevisionNotFoundError) -- 
   If the revision to download from cannot be found.
-- [IncompleteSnapshotError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.IncompleteSnapshotError) -- 
+- [IncompleteSnapshotError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.IncompleteSnapshotError) -- 
   If the Hub cannot be reached (offline, connection issue, or `local_files_only=True`) and the
   cached snapshot is missing some of the requested files.
 - [`EnvironmentError`](https://docs.python.org/3/library/exceptions.html#EnvironmentError) -- 
@@ -266,7 +266,7 @@ configured. It is also not possible to filter which files to download when cloni
 huggingface_hub.get_cached_repo_tree(repo_id: str, repo_type: str | None = None, revision: str | None = None, cache_dir: str | pathlib.Path | None = None, local_dir: str | pathlib.Path | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_snapshot_download.py#L584)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_snapshot_download.py#L584)
 
 **Parameters:**
 
@@ -282,20 +282,20 @@ local_dir (`str` or `Path`, *optional*) : If provided, read the tree listing cac
 
 **Returns:** `list[RepoFile]`
 
-The list of [RepoFile](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.RepoFile) objects cached for this revision.
+The list of [RepoFile](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.RepoFile) objects cached for this revision.
 
-**Raises:** [CachedRepoTreeNotFoundError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.CachedRepoTreeNotFoundError)
+**Raises:** [CachedRepoTreeNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.CachedRepoTreeNotFoundError)
 
-- [CachedRepoTreeNotFoundError](/docs/huggingface_hub/v1.27.0/en/package_reference/utilities#huggingface_hub.errors.CachedRepoTreeNotFoundError) -- 
+- [CachedRepoTreeNotFoundError](/docs/huggingface_hub/v1.29.0/en/package_reference/utilities#huggingface_hub.errors.CachedRepoTreeNotFoundError) -- 
   If no tree listing is cached for the requested revision (e.g. the repo was never downloaded at this revision).
 
 Return the cached tree listing of a repo at a given revision, without any network call.
 
 The tree listing is the set of files (with their download metadata) of a repo at a commit. It is populated
-on disk as a side effect of [snapshot_download()](/docs/huggingface_hub/v1.27.0/en/package_reference/file_download#huggingface_hub.snapshot_download) (see the `trees/<commit_hash>.json` cache files) and is
+on disk as a side effect of [snapshot_download()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.snapshot_download) (see the `trees/<commit_hash>.json` cache files) and is
 used to skip network calls on subsequent downloads. This function exposes that cache directly.
 
-If you need the current tree listing of a repo on the Hub, use [list_repo_tree()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_tree) instead.
+If you need the current tree listing of a repo on the Hub, use [list_repo_tree()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_repo_tree) instead.
 
 Example:
 ```py
@@ -307,7 +307,7 @@ Example:
 
 ## Resolve a revision
 
-Resolve a branch/tag name to a commit hash once, then pass the result around to pin every download to the same commit. See [HfApi.resolve_revision()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) and the [cache-system guide](../guides/manage-cache#pin-a-revision-advanced).
+Resolve a branch/tag name to a commit hash once, then pass the result around to pin every download to the same commit. See [HfApi.resolve_revision()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision) and the [cache-system guide](../guides/manage-cache#pin-a-revision-advanced).
 
 ### ResolvedRevision[[huggingface_hub.ResolvedRevision]]
 
@@ -317,7 +317,7 @@ Resolve a branch/tag name to a commit hash once, then pass the result around to 
 huggingface_hub.ResolvedRevision(resolved: str, initial: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/_revision.py#L4)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/_revision.py#L4)
 
 **Parameters:**
 
@@ -331,7 +331,7 @@ A git revision that has already been resolved to a commit hash.
 argument. Its string value is the revision initially requested by the user (e.g. `"main"`, `"refs/pr/4"`),
 which keeps URLs and error messages readable, while `.resolved` holds the commit hash it points to.
 
-Instances are built by [HfApi.resolve_revision()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision), which also caches the `revision` -> `commit hash` mapping
+Instances are built by [HfApi.resolve_revision()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.resolve_revision), which also caches the `revision` -> `commit hash` mapping
 in the local cache (`refs/` folder).
 
 Example:
@@ -356,11 +356,11 @@ True
 huggingface_hub.get_hf_file_metadata(url: str, token: bool | str | None = None, timeout: float | None = 10, library_name: str | None = None, library_version: str | None = None, user_agent: dict | str | None = None, headers: dict[str, str] | None = None, endpoint: str | None = None, retry_on_errors: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/file_download.py#L1568)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/file_download.py#L1576)
 
 **Parameters:**
 
-url (`str`) : File url, for example returned by [hf_hub_url()](/docs/huggingface_hub/v1.27.0/en/package_reference/file_download#huggingface_hub.hf_hub_url).
+url (`str`) : File url, for example returned by [hf_hub_url()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.hf_hub_url).
 
 token (`str` or `bool`, *optional*) : A token to be used for the download. - If `True`, the token is read from the HuggingFace config folder. - If `False` or `None`, no token is provided. - If a string, it's used as the authentication token.
 
@@ -380,7 +380,7 @@ retry_on_errors (`bool`, *optional*, defaults to `False`) : Whether to retry on 
 
 **Returns:**
 
-A [HfFileMetadata](/docs/huggingface_hub/v1.27.0/en/package_reference/file_download#huggingface_hub.HfFileMetadata) object containing metadata such as location, etag, size and
+A [HfFileMetadata](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.HfFileMetadata) object containing metadata such as location, etag, size and
 commit_hash.
 
 Fetch metadata of a file versioned on the Hub for a given url.
@@ -393,7 +393,7 @@ Fetch metadata of a file versioned on the Hub for a given url.
 huggingface_hub.HfFileMetadata(commit_hash: str | None, etag: str | None, location: str, size: int | None, xet_file_data: huggingface_hub.utils._xet.XetFileData | None)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/file_download.py#L147)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/file_download.py#L147)
 
 **Parameters:**
 
@@ -409,7 +409,7 @@ xet_file_data (`XetFileData`, *optional*) : Xet information for the file. This i
 
 Data structure containing information about a file versioned on the Hub.
 
-Returned by [get_hf_file_metadata()](/docs/huggingface_hub/v1.27.0/en/package_reference/file_download#huggingface_hub.get_hf_file_metadata) based on a URL.
+Returned by [get_hf_file_metadata()](/docs/huggingface_hub/v1.29.0/en/package_reference/file_download#huggingface_hub.get_hf_file_metadata) based on a URL.
 
 ## Caching
 
@@ -419,5 +419,5 @@ cache-system shared across libraries that depend on the Hub.
 
 Read the [cache-system guide](../guides/manage-cache) for a detailed presentation of caching at HF.
 
-### MCP Client
-https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/mcp.md
+### Inference Endpoints
+https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/inference_endpoints.md

@@ -25,7 +25,7 @@ training_args = GRPOConfig(
 trl.GRPOTrainer(model: str | PreTrainedModel | PeftModel, reward_funcs: str | transformers.modeling_utils.PreTrainedModel | collections.abc.Callable[..., list[float | None]] | list[str | transformers.modeling_utils.PreTrainedModel | collections.abc.Callable[..., list[float | None]]] | None = None, args: trl.trainer.grpo_config.GRPOConfig | None = None, train_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | None = None, eval_dataset: datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset | datasets.dataset_dict.DatasetDict | datasets.dataset_dict.IterableDatasetDict | dict[str, datasets.arrow_dataset.Dataset | datasets.iterable_dataset.IterableDataset] | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.processing_utils.ProcessorMixin | None = None, reward_processing_classes: transformers.tokenization_utils_base.PreTrainedTokenizerBase | list[transformers.tokenization_utils_base.PreTrainedTokenizerBase] | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple = (None, None), quantization_config: BitsAndBytesConfig | None = None, peft_config: PeftConfig | None = None, tools: list[collections.abc.Callable] | None = None, rollout_func: collections.abc.Callable[[list[str], 'GRPOTrainer'], dict[str, typing.Any]] | None = None, environment_factory: collections.abc.Callable[[], trl.trainer.grpo_trainer._SupportsReset] | dict[str, collections.abc.Callable[[], trl.trainer.grpo_trainer._SupportsReset]] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/gspo_token/grpo_trainer.py#L21)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/gspo_token/grpo_trainer.py#L21)
 
 #### train[[trl.GRPOTrainer.train]]
 
@@ -33,7 +33,7 @@ trl.GRPOTrainer(model: str | PreTrainedModel | PeftModel, reward_funcs: str | tr
 train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L1347)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L1350)
 
 **Parameters:**
 
@@ -55,7 +55,7 @@ Main training entry point.
 save_model(output_dir: str | None = None, _internal_call: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L3794)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L3805)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
@@ -67,7 +67,7 @@ Will only save from the main process.
 push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L4041)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L4052)
 
 **Parameters:**
 
@@ -88,5 +88,5 @@ progress of the commit if `blocking=True`.
 
 Upload `self.model` and `self.processing_class` to the 🤗 model hub on the repo `self.args.hub_model_id`.
 
-### KTO Trainer
-https://huggingface.co/docs/trl/v1.10.0/kto_trainer.md
+### Data Utilities
+https://huggingface.co/docs/trl/v1.12.0/data_utils.md

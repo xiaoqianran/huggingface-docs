@@ -2,7 +2,7 @@
 
 Buckets provide S3-like object storage on Hugging Face, powered by the Xet storage backend. Unlike repositories (which are git-based and track file history), buckets are remote object storage containers designed for large-scale files with content-addressable deduplication. They are designed for use cases where you need simple, fast, mutable storage such as storing training checkpoints, logs, intermediate artifacts, or any large collection of files that doesn't need version control.
 
-You can interact with buckets using the Python API ([HfApi](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi)) or the CLI (`hf buckets`). In this guide, we will walk through all the operations available.
+You can interact with buckets using the Python API ([HfApi](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi)) or the CLI (`hf buckets`). In this guide, we will walk through all the operations available.
 
 > [!TIP]
 > All CLI commands are available under `hf buckets <command>`. Run `hf buckets --help` to learn more.
@@ -11,7 +11,7 @@ You can interact with buckets using the Python API ([HfApi](/docs/huggingface_hu
 
 ### Create a bucket
 
-Create a bucket with [create_bucket()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_bucket). You need to provide a bucket name. If you don't specify a namespace, the bucket is created under your username.
+Create a bucket with [create_bucket()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.create_bucket). You need to provide a bucket name. If you don't specify a namespace, the bucket is created under your username.
 
 ```py
 >>> from huggingface_hub import create_bucket
@@ -69,7 +69,7 @@ Or via CLI:
 
 ### Get bucket info
 
-Use [bucket_info()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.bucket_info) to get metadata about a bucket, including its visibility, total size, file count, and creation date.
+Use [bucket_info()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.bucket_info) to get metadata about a bucket, including its visibility, total size, file count, and creation date.
 
 ```py
 >>> from huggingface_hub import bucket_info
@@ -98,7 +98,7 @@ Or via CLI:
 
 ### List buckets
 
-Use [list_buckets()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_buckets) to list all buckets in a namespace. By default, it lists buckets in the current user's namespace.
+Use [list_buckets()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_buckets) to list all buckets in a namespace. By default, it lists buckets in the current user's namespace.
 
 ```py
 >>> from huggingface_hub import list_buckets
@@ -168,9 +168,36 @@ username/logs
 ]
 ```
 
+### Change bucket visibility
+
+Use [update_bucket_settings()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.update_bucket_settings) to switch an existing bucket between private and public.
+
+```py
+>>> from huggingface_hub import update_bucket_settings
+
+# Make a bucket private
+>>> update_bucket_settings("username/my-bucket", private=True)
+
+# Make it public again
+>>> update_bucket_settings("username/my-bucket", private=False)
+```
+
+Or via CLI:
+
+```bash
+# Make a bucket private
+>>> hf buckets settings username/my-bucket --private
+✓ Bucket settings updated
+  bucket_id: username/my-bucket
+  private: True
+
+# Make it public again
+>>> hf buckets settings username/my-bucket --public
+```
+
 ### Delete a bucket
 
-Use [delete_bucket()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_bucket) to delete a bucket. This operation is irreversible.
+Use [delete_bucket()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.delete_bucket) to delete a bucket. This operation is irreversible.
 
 ```py
 >>> from huggingface_hub import delete_bucket
@@ -195,7 +222,7 @@ Or via CLI:
 
 ### Delete files
 
-Use [batch_bucket_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.batch_bucket_files) with the `delete` parameter to delete files from a bucket:
+Use [batch_bucket_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.batch_bucket_files) with the `delete` parameter to delete files from a bucket:
 
 ```py
 >>> from huggingface_hub import batch_bucket_files
@@ -225,7 +252,7 @@ Or via CLI with `hf buckets rm` (or `hf buckets remove`):
 
 ### Move a bucket
 
-Use [move_bucket()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.move_bucket) to move or rename a bucket. You can rename within the same namespace or transfer to a different namespace (user or organization).
+Use [move_bucket()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.move_bucket) to move or rename a bucket. You can rename within the same namespace or transfer to a different namespace (user or organization).
 
 ```py
 >>> from huggingface_hub import move_bucket
@@ -257,7 +284,7 @@ Or via CLI:
 
 ### List files
 
-Use [list_bucket_tree()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_bucket_tree) to list files and directories in a bucket.
+Use [list_bucket_tree()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_bucket_tree) to list files and directories in a bucket.
 
 ```py
 >>> from huggingface_hub import list_bucket_tree
@@ -340,7 +367,7 @@ sub/
 
 ### Upload with Python
 
-Use [batch_bucket_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.batch_bucket_files) to upload files to a bucket. You can upload from local file paths or from raw bytes:
+Use [batch_bucket_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.batch_bucket_files) to upload files to a bucket. You can upload from local file paths or from raw bytes:
 
 ```py
 >>> from huggingface_hub import batch_bucket_files
@@ -390,7 +417,7 @@ You can also delete files while uploading others.
 ```
 
 > [!WARNING]
-> Calls to [batch_bucket_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.batch_bucket_files) are non-transactional. If an error occurs during the process, some files may have been uploaded, copied, or deleted while others haven't.
+> Calls to [batch_bucket_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.batch_bucket_files) are non-transactional. If an error occurs during the process, some files may have been uploaded, copied, or deleted while others haven't.
 
 ### Upload a single file with the CLI
 
@@ -436,7 +463,7 @@ See the [Sync directories](#sync-directories) section below for the full set of 
 
 ### Download with Python
 
-Use [download_bucket_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.download_bucket_files) to download files from a bucket:
+Use [download_bucket_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.download_bucket_files) to download files from a bucket:
 
 ```py
 >>> from huggingface_hub import download_bucket_files
@@ -451,7 +478,7 @@ Use [download_bucket_files()](/docs/huggingface_hub/v1.27.0/en/package_reference
 ... )
 ```
 
-For better performance, you can pass [BucketFile](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.BucketFile) objects obtained from [list_bucket_tree()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_bucket_tree) instead of string paths. This skips the metadata fetching step:
+For better performance, you can pass [BucketFile](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.BucketFile) objects obtained from [list_bucket_tree()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.list_bucket_tree) instead of string paths. This skips the metadata fetching step:
 
 ```py
 >>> from huggingface_hub import list_bucket_tree, download_bucket_files
@@ -505,7 +532,7 @@ See the [Sync directories](#sync-directories) section below for the full set of 
 
 ## Copy files to Bucket
 
-Use [copy_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.copy_files) to copy files already hosted on the Hub to a Bucket:
+Use [copy_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.copy_files) to copy files already hosted on the Hub to a Bucket:
 
 ```py
 >>> from huggingface_hub import copy_files
@@ -549,11 +576,11 @@ Notes:
 - Server-side copies only work within the same [storage region](https://huggingface.co/docs/hub/storage-regions).
 - Files tracked with Xet (in buckets or repos) are copied server-side by hash — no data is downloaded or re-uploaded.
 - Small text files not tracked with Xet on repo sources are downloaded and re-uploaded to the destination bucket.
-- [copy_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.copy_files) can also be used for repo-to-repo copies. See the [repository guide](./repository#copy-files) for more details.
+- [copy_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.copy_files) can also be used for repo-to-repo copies. See the [repository guide](./repository#copy-files) for more details.
 
 ## Sync directories
 
-The `hf buckets sync` command (and its API equivalent [sync_bucket()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_bucket)) is the most powerful way to transfer files between a local directory and a bucket. It compares source and destination, and only transfers files that have changed.
+The `hf buckets sync` command (and its API equivalent [sync_bucket()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.sync_bucket)) is the most powerful way to transfer files between a local directory and a bucket. It compares source and destination, and only transfers files that have changed.
 
 ### Basic sync
 
@@ -748,7 +775,7 @@ Or via Python:
 
 For lower-level use cases, the following methods are also available:
 
-- [get_bucket_paths_info()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_bucket_paths_info): Fetch information about specific paths in a bucket in a single batch request. Useful when you know exactly which files you need metadata for.
+- [get_bucket_paths_info()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_bucket_paths_info): Fetch information about specific paths in a bucket in a single batch request. Useful when you know exactly which files you need metadata for.
 
 ```py
 >>> from huggingface_hub import get_bucket_paths_info
@@ -756,7 +783,7 @@ For lower-level use cases, the following methods are also available:
 ...     print(info.path, info.size, info.xet_hash)
 ```
 
-- [get_bucket_file_metadata()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_bucket_file_metadata): Fetch metadata (size and xet data) for a single file. Used internally by [download_bucket_files()](/docs/huggingface_hub/v1.27.0/en/package_reference/hf_api#huggingface_hub.HfApi.download_bucket_files).
+- [get_bucket_file_metadata()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.get_bucket_file_metadata): Fetch metadata (size and xet data) for a single file. Used internally by [download_bucket_files()](/docs/huggingface_hub/v1.29.0/en/package_reference/hf_api#huggingface_hub.HfApi.download_bucket_files).
 
 ```py
 >>> from huggingface_hub import get_bucket_file_metadata
@@ -765,5 +792,5 @@ For lower-level use cases, the following methods are also available:
 42000
 ```
 
-### Upload files to the Hub
-https://huggingface.co/docs/huggingface_hub/v1.27.0/guides/upload.md
+### Create a CLI extension
+https://huggingface.co/docs/huggingface_hub/v1.29.0/guides/cli-extensions.md

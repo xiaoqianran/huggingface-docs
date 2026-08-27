@@ -321,5 +321,5 @@ Using TRL, you can efficiently implement LoRA adapters to match full fine-tuning
 }  
 ```
 
-### Dataset formats and types
-https://huggingface.co/docs/trl/v1.10.0/dataset_formats.md
+### Quickstart
+https://huggingface.co/docs/trl/v1.12.0/quickstart.md

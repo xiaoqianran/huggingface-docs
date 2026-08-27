@@ -32,5 +32,5 @@ If you want the development install you can replace the pip install with the fol
 pip install -e ".[dev]"
 ```
 
-### RapidFire AI Integration
-https://huggingface.co/docs/trl/v1.10.0/rapidfire_integration.md
+### Harbor Integration for Training LLMs with Environments
+https://huggingface.co/docs/trl/v1.12.0/harbor.md

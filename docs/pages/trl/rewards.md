@@ -1,6 +1,6 @@
 # Reward Functions
 
-This module contains some useful reward functions, primarily intended for use with the [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer) and [RLOOTrainer](/docs/trl/v1.10.0/en/rloo_trainer#trl.RLOOTrainer).
+This module contains some useful reward functions, primarily intended for use with the [GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer) and [RLOOTrainer](/docs/trl/v1.12.0/en/rloo_trainer#trl.RLOOTrainer).
 
 ## accuracy_reward[[trl.rewards.accuracy_reward]]
 
@@ -10,7 +10,7 @@ This module contains some useful reward functions, primarily intended for use wi
 trl.rewards.accuracy_reward(completions: list, solution: list, log_extra: collections.abc.Callable[[str, list], None] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/rewards/accuracy_rewards.py#L28)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/rewards/accuracy_rewards.py#L28)
 
 **Parameters:**
 
@@ -20,7 +20,7 @@ solution (`list[str]`) : List of the raw-text solutions to the questions/problem
 
 log_extra (`callable`, *optional*) : Callable to log extra columns to the completions table, provided automatically by the trainer. Defaults to `None` to allow calling the function directly outside of a trainer (e.g., for testing).
 
-- ****kwargs** : Additional keyword arguments. This function does not use them, but they are required in the function signature to ensure compatibility with trainers like [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer).
+- ****kwargs** : Additional keyword arguments. This function does not use them, but they are required in the function signature to ensure compatibility with trainers like [GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer).
 
 Reward function that checks if the completion matches the ground truth.
 - If both gold and prediction are parseable → use math verification.
@@ -47,7 +47,7 @@ Example:
 trl.rewards.reasoning_accuracy_reward(completions: list, solution: list, reasoning_delimiters: list[str] | None = None, log_extra: collections.abc.Callable[[str, list], None] | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/rewards/accuracy_rewards.py#L223)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/rewards/accuracy_rewards.py#L223)
 
 **Parameters:**
 
@@ -59,7 +59,7 @@ reasoning_delimiters (`list[str]]`, *optional*) : List of strings indicating whe
 
 log_extra (`callable`, *optional*) : Callable to log extra columns to the completions table, provided automatically by the trainer. Defaults to `None` to allow calling the function directly outside of a trainer (e.g., for testing).
 
-- ****kwargs** : Additional keyword arguments. This function does not use them, but they are required in the function signature to ensure compatibility with trainers like [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer).
+- ****kwargs** : Additional keyword arguments. This function does not use them, but they are required in the function signature to ensure compatibility with trainers like [GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer).
 
 Reward function that removes the reasoning content and checks if the final answer matches the ground truth.
 - If both gold and prediction are parseable → use math verification.
@@ -103,7 +103,7 @@ Example:
 trl.rewards.get_cosine_scaled_reward(max_len: int, min_value_wrong: float = -1.0, max_value_wrong: float = -0.5, min_value_correct: float = 0.5, max_value_correct: float = 1.0)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/rewards/accuracy_rewards.py#L118)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/rewards/accuracy_rewards.py#L118)
 
 **Parameters:**
 
@@ -126,7 +126,7 @@ Reward function that scales a correctness reward by the completion length follow
 concise reasoning. Reference: Appendix C.1 of the "Demystifying Long Chain-of-Thought Reasoning" paper
 (https://huggingface.co/papers/2502.03373).
 
-Correctness is determined by math verification (as in [accuracy_reward()](/docs/trl/v1.10.0/en/rewards#trl.rewards.accuracy_reward)), and the length is the number
+Correctness is determined by math verification (as in [accuracy_reward()](/docs/trl/v1.12.0/en/rewards#trl.rewards.accuracy_reward)), and the length is the number
 of completion tokens. The reward interpolates along a cosine schedule between a short-completion and a
 long-completion bound:
 
@@ -138,7 +138,7 @@ For a **correct** completion, $(v_{\min}, v_{\max}) = (\texttt{min\_value\_corre
 so a shorter completion is rewarded more. For a **wrong** completion, the bounds are swapped to
 $(v_{\min}, v_{\max}) = (\texttt{max\_value\_wrong}, \texttt{min\_value\_wrong})$, so a shorter completion is
 penalized more (a longer wrong completion is penalized less, preserving exploration). When the gold solution is not
-parseable, the example is skipped (reward `None`), as in [accuracy_reward()](/docs/trl/v1.10.0/en/rewards#trl.rewards.accuracy_reward).
+parseable, the example is skipped (reward `None`), as in [accuracy_reward()](/docs/trl/v1.12.0/en/rewards#trl.rewards.accuracy_reward).
 
 Example:
 ```python
@@ -160,13 +160,13 @@ Example:
 trl.rewards.think_format_reward(completions: list, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/rewards/format_rewards.py#L18)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/rewards/format_rewards.py#L18)
 
 **Parameters:**
 
 completions (`list[list[dict[str, str]]]`) : List of completions to be evaluated. Each completion must be a list of one message, i.e. a dictionary containing the key `"content"` with the value being the text of the completion.
 
-- ****kwargs** : Additional keyword arguments. This function does not use them, but they are required in the function signature to ensure compatibility with trainers like [GRPOTrainer](/docs/trl/v1.10.0/en/gspo_token#trl.GRPOTrainer).
+- ****kwargs** : Additional keyword arguments. This function does not use them, but they are required in the function signature to ensure compatibility with trainers like [GRPOTrainer](/docs/trl/v1.12.0/en/grpo_trainer#trl.GRPOTrainer).
 
 **Returns:** `list[float]`
 
@@ -195,7 +195,7 @@ Example:
 trl.rewards.get_repetition_penalty_reward(ngram_size: int = 3, max_penalty: float = -1.0)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/rewards/other_rewards.py#L18)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/rewards/other_rewards.py#L18)
 
 **Parameters:**
 
@@ -241,7 +241,7 @@ Example:
 trl.rewards.get_soft_overlong_punishment(max_completion_len: int, soft_punish_cache: int)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/rewards/other_rewards.py#L83)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/rewards/other_rewards.py#L83)
 
 **Parameters:**
 
@@ -270,5 +270,5 @@ Example:
 >>> [-0.5]
 ```
 
-### Online DPO Trainer
-https://huggingface.co/docs/trl/v1.10.0/online_dpo_trainer.md
+### XPO Trainer
+https://huggingface.co/docs/trl/v1.12.0/xpo_trainer.md

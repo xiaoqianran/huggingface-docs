@@ -89,4 +89,4 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 ```
 
 ### (Gluon) Xception
-https://huggingface.co/docs/timm/v1.0.28/models/gloun-xception.md
+https://huggingface.co/docs/timm/v1.0.29/models/gloun-xception.md

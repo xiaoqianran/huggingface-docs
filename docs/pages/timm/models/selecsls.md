@@ -93,5 +93,5 @@ You can follow the [timm recipe scripts](../training_script) for training a new 
 }
 ```
 
-### RexNet
-https://huggingface.co/docs/timm/v1.0.28/models/rexnet.md
+### Xception
+https://huggingface.co/docs/timm/v1.0.29/models/xception.md

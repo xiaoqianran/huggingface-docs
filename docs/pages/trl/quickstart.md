@@ -138,5 +138,5 @@ training_args = SFTConfig(learning_rate=2e-5)  # Good starting point
 
 For more help, open an [issue on GitHub](https://github.com/huggingface/trl/issues).
 
-### Command Line Interfaces (CLIs)
-https://huggingface.co/docs/trl/v1.10.0/clis.md
+### Training customization
+https://huggingface.co/docs/trl/v1.12.0/customization.md

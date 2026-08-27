@@ -90,5 +90,5 @@ training_args = SFTConfig(
 
 Learn more about the [Liger Kernel Integration](./liger_kernel_integration).
 
-### Trackio Integration
-https://huggingface.co/docs/trl/v1.10.0/trackio_integration.md
+### Command Line Interfaces (CLIs)
+https://huggingface.co/docs/trl/v1.12.0/clis.md

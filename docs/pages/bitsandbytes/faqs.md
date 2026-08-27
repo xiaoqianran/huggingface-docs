@@ -5,4 +5,4 @@ Please submit your questions in [this Github Discussion thread](https://github.c
 We'll pick the most generally applicable ones and post the QAs here or integrate them into the general documentation (also feel free to submit doc PRs, please).
 
 ### Overview
-https://huggingface.co/docs/bitsandbytes/v0.50.1/reference/functional.md
+https://huggingface.co/docs/bitsandbytes/v0.50.2/reference/functional.md

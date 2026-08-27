@@ -4,12 +4,11 @@
 
 TRL supports the Binary Classifier Optimization (BCO).
 The [BCO](https://huggingface.co/papers/2404.04656) authors train a binary classifier whose logit serves as a reward so that the classifier maps {prompt, chosen completion} pairs to 1 and {prompt, rejected completion} pairs to 0.
-For a full example have a look at [`examples/scripts/bco.py`](https://github.com/huggingface/trl/blob/main/examples/scripts/bco.py).
 
 ## Expected dataset type
 
-The [experimental.bco.BCOTrainer](/docs/trl/v1.10.0/en/bco_trainer#trl.experimental.bco.BCOTrainer) requires an [unpaired preference dataset](dataset_formats#unpaired-preference).
-The [experimental.bco.BCOTrainer](/docs/trl/v1.10.0/en/bco_trainer#trl.experimental.bco.BCOTrainer) supports both [conversational](dataset_formats#conversational) and [standard](dataset_formats#standard) dataset formats. When provided with a conversational dataset, the trainer will automatically apply the chat template to the dataset.
+The [experimental.bco.BCOTrainer](/docs/trl/v1.12.0/en/bco_trainer#trl.experimental.bco.BCOTrainer) requires an [unpaired preference dataset](dataset_formats#unpaired-preference).
+The [experimental.bco.BCOTrainer](/docs/trl/v1.12.0/en/bco_trainer#trl.experimental.bco.BCOTrainer) supports both [conversational](dataset_formats#conversational) and [standard](dataset_formats#standard) dataset formats. When provided with a conversational dataset, the trainer will automatically apply the chat template to the dataset.
 
 ## Expected model format
 
@@ -17,12 +16,19 @@ The BCO trainer expects a model of `AutoModelForCausalLM`, compared to PPO that 
 
 ## Using the `BCOTrainer`
 
-For a detailed example have a look at the `examples/scripts/bco.py` script. At a high level we need to initialize the `BCOTrainer` with a `model` we wish to train and a reference `ref_model` which we will use to calculate the implicit rewards of the preferred and rejected response.
+At a high level we need to initialize the `BCOTrainer` with a `model` we wish to train and a reference `ref_model` which we will use to calculate the implicit rewards of the preferred and rejected response.
 
 The `beta` refers to the hyperparameter of the implicit reward, and the dataset contains the 3 entries listed above. Note that the `model` and `ref_model` need to have the same architecture (ie decoder only or encoder-decoder).
 
 ```python
+from datasets import load_dataset
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from trl.experimental.bco import BCOConfig, BCOTrainer
+
+model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-0.5B-Instruct")
+model_ref = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-0.5B-Instruct")
+tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-0.5B-Instruct")
+train_dataset = load_dataset("trl-lib/ultrafeedback-gpt-3.5-turbo-helpfulness", split="train")
 
 training_args = BCOConfig(
     beta=0.1,
@@ -101,21 +107,21 @@ To scale how much the auxiliary loss contributes to the total loss, use the hype
 trl.experimental.bco.BCOTrainer(model: typing.Union[transformers.modeling_utils.PreTrainedModel, torch.nn.Module, str] = None, ref_model: typing.Union[transformers.modeling_utils.PreTrainedModel, torch.nn.Module, str, NoneType] = None, args: BCOConfig = None, train_dataset: datasets.arrow_dataset.Dataset | None = None, eval_dataset: datasets.arrow_dataset.Dataset | dict[str, datasets.arrow_dataset.Dataset] | None = None, processing_class: transformers.tokenization_utils_base.PreTrainedTokenizerBase | transformers.image_processing_utils.BaseImageProcessor | transformers.feature_extraction_utils.FeatureExtractionMixin | transformers.processing_utils.ProcessorMixin | None = None, data_collator: collections.abc.Callable[[list[typing.Any]], dict[str, typing.Any]] | None = None, model_init: collections.abc.Callable[[], transformers.modeling_utils.PreTrainedModel] | None = None, callbacks: list[transformers.trainer_callback.TrainerCallback] | None = None, optimizers: tuple = (None, None), preprocess_logits_for_metrics: collections.abc.Callable[[torch.Tensor, torch.Tensor], torch.Tensor] | None = None, peft_config: PeftConfig | None = None, compute_metrics: collections.abc.Callable[[transformers.trainer_utils.EvalLoopOutput], dict] | None = None, model_adapter_name: str | None = None, ref_adapter_name: str | None = None, embedding_func: collections.abc.Callable | None = None, embedding_tokenizer: transformers.tokenization_utils_base.PreTrainedTokenizerBase | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/bco/bco_trainer.py#L358)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/bco/bco_trainer.py#L358)
 
 **Parameters:**
 
-model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : The model to train, preferably an [AutoModelForSequenceClassification](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForSequenceClassification).
+model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/model#transformers.PreTrainedModel)) : The model to train, preferably an [AutoModelForSequenceClassification](https://huggingface.co/docs/transformers/v5.16.1/en/model_doc/auto#transformers.AutoModelForSequenceClassification).
 
-ref_model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/model#transformers.PreTrainedModel)) : Hugging Face transformer model with a casual language modelling head. Used for implicit reward computation and loss. If no reference model is provided, the trainer will create a reference model with the same architecture as the model to be optimized.
+ref_model ([PreTrainedModel](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/model#transformers.PreTrainedModel)) : Hugging Face transformer model with a casual language modelling head. Used for implicit reward computation and loss. If no reference model is provided, the trainer will create a reference model with the same architecture as the model to be optimized.
 
-args ([experimental.bco.BCOConfig](/docs/trl/v1.10.0/en/bco_trainer#trl.experimental.bco.BCOConfig)) : The arguments to use for training.
+args ([experimental.bco.BCOConfig](/docs/trl/v1.12.0/en/bco_trainer#trl.experimental.bco.BCOConfig)) : The arguments to use for training.
 
 train_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset)) : The dataset to use for training.
 
 eval_dataset ([Dataset](https://huggingface.co/docs/datasets/v5.0.1/en/package_reference/main_classes#datasets.Dataset)) : The dataset to use for evaluation.
 
-processing_class ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), [BaseImageProcessor](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/image_processor#transformers.BaseImageProcessor), [FeatureExtractionMixin](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin) or [ProcessorMixin](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/processors#transformers.ProcessorMixin), *optional*) : Processing class used to process the data. If provided, will be used to automatically process the inputs for the model, and it will be saved along the model to make it easier to rerun an interrupted training or reuse the fine-tuned model.
+processing_class ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.16.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), [BaseImageProcessor](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/image_processor#transformers.BaseImageProcessor), [FeatureExtractionMixin](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/feature_extractor#transformers.FeatureExtractionMixin) or [ProcessorMixin](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/processors#transformers.ProcessorMixin), *optional*) : Processing class used to process the data. If provided, will be used to automatically process the inputs for the model, and it will be saved along the model to make it easier to rerun an interrupted training or reuse the fine-tuned model.
 
 data_collator (`DataCollator`, *optional*) : The data collator to use for training. If None is specified, the default data collator (`experimental.utils.DPODataCollatorWithPadding`) will be used which will pad the sequences to the maximum length of the sequences in the batch, given a dataset of paired sequences.
 
@@ -137,7 +143,7 @@ ref_adapter_name (`str`, defaults to `None`) : Name of the reference PEFT adapte
 
 embedding_func (`Callable`, *optional*) : Function to compute prompt embeddings, used to train the underlying distribution matching (UDM) classifier when the desirable and undesirable datasets have divergent prompt distributions. Requires the scikit-learn and joblib libraries.
 
-embedding_tokenizer ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.15.0/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), *optional*) : Tokenizer used to prepare prompts for `embedding_func`.
+embedding_tokenizer ([PreTrainedTokenizerBase](https://huggingface.co/docs/transformers/v5.16.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase), *optional*) : Tokenizer used to prepare prompts for `embedding_func`.
 
 Initialize BCOTrainer from [BCO](https://huggingface.co/papers/2404.04656) paper.
 
@@ -147,7 +153,7 @@ Initialize BCOTrainer from [BCO](https://huggingface.co/papers/2404.04656) paper
 train(resume_from_checkpoint: str | bool | None = None, trial: optuna.Trial | dict[str, Any] | None = None, ignore_keys_for_eval: list[str] | None = None)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L1347)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L1350)
 
 **Parameters:**
 
@@ -169,7 +175,7 @@ Main training entry point.
 save_model(output_dir: str | None = None, _internal_call: bool = False)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L3794)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L3805)
 
 Will save the model, so you can reload it using `from_pretrained()`.
 
@@ -181,7 +187,7 @@ Will only save from the main process.
 push_to_hub(commit_message: str | None = 'End of training', blocking: bool = True, token: str | None = None, revision: str | None = None, **kwargs)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/transformers/trainer.py#L4041)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/transformers/trainer.py#L4052)
 
 **Parameters:**
 
@@ -210,7 +216,7 @@ Upload `self.model` and `self.processing_class` to the 🤗 model hub on the rep
 trl.experimental.bco.BCOConfig(output_dir: str | None = None, per_device_train_batch_size: int = 8, num_train_epochs: float = 3.0, max_steps: int = -1, learning_rate: float = 5e-07, lr_scheduler_type: transformers.trainer_utils.SchedulerType | str = 'linear', lr_scheduler_kwargs: dict | str | None = None, warmup_steps: float = 0, optim: transformers.training_args.OptimizerNames | str = 'adamw_torch_fused', optim_args: str | None = None, weight_decay: float = 0.0, adam_beta1: float = 0.9, adam_beta2: float = 0.999, adam_epsilon: float = 1e-08, optim_target_modules: None | str | list[str] = None, gradient_accumulation_steps: int = 1, average_tokens_across_devices: bool = True, max_grad_norm: float = 1.0, label_smoothing_factor: float = 0.0, bf16: bool | None = None, fp16: bool = False, bf16_full_eval: bool = False, fp16_full_eval: bool = False, tf32: bool | None = None, gradient_checkpointing: bool = True, gradient_checkpointing_kwargs: dict[str, typing.Any] | str | None = None, torch_compile: bool = False, torch_compile_backend: str | None = None, torch_compile_mode: str | None = None, use_liger_kernel: bool = False, liger_kernel_config: dict[str, bool] | None = None, use_cache: bool = False, neftune_noise_alpha: float | None = None, torch_empty_cache_steps: int | None = None, auto_find_batch_size: bool = False, logging_strategy: transformers.trainer_utils.IntervalStrategy | str = 'steps', logging_steps: float = 10, logging_first_step: bool = False, log_on_each_node: bool = True, logging_nan_inf_filter: bool = True, include_num_input_tokens_seen: str | bool = 'no', log_level: str = 'passive', log_level_replica: str = 'warning', disable_tqdm: bool | None = None, report_to: None | str | list[str] = 'none', run_name: str | None = None, project: str = 'huggingface', trackio_space_id: str | None = None, trackio_bucket_id: str | None = None, trackio_static_space_id: typing.Union[str, NoneType, typing.Literal[False]] = None, eval_strategy: transformers.trainer_utils.IntervalStrategy | str = 'no', eval_steps: float | None = None, eval_delay: float = 0, per_device_eval_batch_size: int = 8, prediction_loss_only: bool = False, eval_on_start: bool = False, eval_do_concat_batches: bool = True, eval_use_gather_object: bool = False, eval_accumulation_steps: int | None = None, include_for_metrics: list = <factory>, batch_eval_metrics: bool = False, save_only_model: bool = False, save_strategy: transformers.trainer_utils.SaveStrategy | str = 'steps', save_steps: float = 500, save_on_each_node: bool = False, save_total_limit: int | None = None, enable_jit_checkpoint: bool = False, push_to_hub: bool = False, hub_token: str | None = None, hub_private_repo: bool | None = None, hub_model_id: str | None = None, hub_strategy: transformers.trainer_utils.HubStrategy | str = 'every_save', hub_always_push: bool = False, hub_revision: str | None = None, load_best_model_at_end: bool = False, metric_for_best_model: str | None = None, greater_is_better: bool | None = None, ignore_data_skip: bool = False, restore_callback_states_from_checkpoint: bool = False, full_determinism: bool = False, seed: int = 42, data_seed: int | None = None, use_cpu: bool = False, accelerator_config: dict | str | None = None, parallelism_config: accelerate.parallelism_config.ParallelismConfig | None = None, dataloader_drop_last: bool = False, dataloader_num_workers: int = 0, dataloader_pin_memory: bool = True, dataloader_persistent_workers: bool = False, dataloader_prefetch_factor: int | None = None, dataloader_multiprocessing_context: str | None = None, dataloader_in_order: bool = True, remove_unused_columns: bool = True, label_names: list[str] | None = None, train_sampling_strategy: str = 'random', length_column_name: str = 'length', ddp_find_unused_parameters: bool | None = None, ddp_bucket_cap_mb: int | None = None, ddp_broadcast_buffers: bool | None = None, ddp_static_graph: bool | None = None, ddp_backend: str | None = None, ddp_timeout: int = 1800, fsdp: str | None = None, fsdp_config: dict[str, typing.Any] | str | None = None, deepspeed: dict | str | None = None, debug: str | list[transformers.debug_utils.DebugOption] = '', skip_memory_metrics: bool = True, do_train: bool = False, do_eval: bool = False, do_predict: bool = False, resume_from_checkpoint: str | None = None, local_rank: int = -1, max_length: int | None = 1024, max_completion_length: int | None = None, beta: float = 0.1, disable_dropout: bool = True, generate_during_eval: bool = False, is_encoder_decoder: bool | None = None, precompute_ref_log_probs: bool = False, model_init_kwargs: dict[str, typing.Any] | str | None = None, trust_remote_code: bool = False, dataset_num_proc: int | None = None, prompt_sample_size: int = 1024, min_density_ratio: float = 0.5, max_density_ratio: float = 10.0)
 ```
 
-[Source](https://github.com/huggingface/trl/blob/v1.10.0/trl/experimental/bco/bco_config.py#L22)
+[Source](https://github.com/huggingface/trl/blob/v1.12.0/trl/experimental/bco/bco_config.py#L22)
 
 **Parameters:**
 
@@ -230,7 +236,7 @@ precompute_ref_log_probs (`bool`, *optional*, defaults to `False`) : Whether to 
 
 model_init_kwargs (`dict[str, Any]`, *optional*) : Keyword arguments to pass to `AutoModelForCausalLM.from_pretrained` when instantiating the model and reference model from strings.
 
-trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to allow loading models that ship custom Python code from the Hub. Forwarded to [from_pretrained](https://huggingface.co/docs/transformers/v5.15.0/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) for both the model and reference model.
+trust_remote_code (`bool`, *optional*, defaults to `False`) : Whether to allow loading models that ship custom Python code from the Hub. Forwarded to [from_pretrained](https://huggingface.co/docs/transformers/v5.16.1/en/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained) for both the model and reference model.
 
 dataset_num_proc (`int`, *optional*) : Number of processes to use for processing the dataset.
 
@@ -240,22 +246,22 @@ min_density_ratio (`float`, *optional*, defaults to `0.5`) : Minimum value of th
 
 max_density_ratio (`float`, *optional*, defaults to `10.0`) : Maximum value of the density ratio. The estimated density ratio is clamped to this value.
 
-Configuration class for the [experimental.bco.BCOTrainer](/docs/trl/v1.10.0/en/bco_trainer#trl.experimental.bco.BCOTrainer).
+Configuration class for the [experimental.bco.BCOTrainer](/docs/trl/v1.12.0/en/bco_trainer#trl.experimental.bco.BCOTrainer).
 
 This class includes only the parameters that are specific to BCO training. For a full list of training arguments,
-please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default values in this class may
-differ from those in [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments).
+please refer to the [TrainingArguments](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/trainer#transformers.TrainingArguments) documentation. Note that default values in this class may
+differ from those in [TrainingArguments](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/trainer#transformers.TrainingArguments).
 
-Using [HfArgumentParser](https://huggingface.co/docs/transformers/v5.15.0/en/internal/trainer_utils#transformers.HfArgumentParser) we can turn this class into
+Using [HfArgumentParser](https://huggingface.co/docs/transformers/v5.16.1/en/internal/trainer_utils#transformers.HfArgumentParser) we can turn this class into
 [argparse](https://docs.python.org/3/library/argparse#module-argparse) arguments that can be specified on the
 command line.
 
 > [!NOTE]
-> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.15.0/en/main_classes/trainer#transformers.TrainingArguments):
+> These parameters have default values different from [TrainingArguments](https://huggingface.co/docs/transformers/v5.16.1/en/main_classes/trainer#transformers.TrainingArguments):
 > - `logging_steps`: Defaults to `10` instead of `500`.
 > - `gradient_checkpointing`: Defaults to `True` instead of `False`.
 > - `bf16`: Defaults to `True` if `fp16` is not set, instead of `False`.
 > - `learning_rate`: Defaults to `5e-7` instead of `5e-5`.
 
-### Training customization
-https://huggingface.co/docs/trl/v1.10.0/customization.md
+### Unsloth Integration
+https://huggingface.co/docs/trl/v1.12.0/unsloth_integration.md

@@ -192,7 +192,7 @@ The `@strict` decorator enhances a dataclass with strict validation.
 huggingface_hub.dataclasses.strict(accept_kwargs: bool = False)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/dataclasses.py#L56)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/dataclasses.py#L56)
 
 **Parameters:**
 
@@ -260,7 +260,7 @@ This is the equivalent to dataclass validation but for `TypedDict`s. Since typed
 huggingface_hub.dataclasses.validate_typed_dict(schema: type, data: dict)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/dataclasses.py#L286)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/dataclasses.py#L286)
 
 **Parameters:**
 
@@ -314,7 +314,7 @@ Decorator to create a `validated_field`. Recommended for fields with a single va
 huggingface_hub.dataclasses.as_validated_field(validator: Callable)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/dataclasses.py#L426)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/dataclasses.py#L426)
 
 **Parameters:**
 
@@ -329,10 +329,10 @@ Creates a dataclass field with custom validation.
 #### huggingface_hub.dataclasses.validated_field[[huggingface_hub.dataclasses.validated_field]]
 
 ```python
-huggingface_hub.dataclasses.validated_field(validator: list[collections.abc.Callable[[typing.Any], None]] | collections.abc.Callable[[typing.Any], None], default: typing.Any = <dataclasses._MISSING_TYPE object at 0x7f8e7d51d090>, default_factory: typing.Any = <dataclasses._MISSING_TYPE object at 0x7f8e7d51d090>, init: bool = True, repr: bool = True, hash: bool | None = None, compare: bool = True, metadata: dict | None = None, **kwargs: typing.Any)
+huggingface_hub.dataclasses.validated_field(validator: list[collections.abc.Callable[[typing.Any], None]] | collections.abc.Callable[[typing.Any], None], default: typing.Any = <dataclasses._MISSING_TYPE object at 0x7fbf33a25480>, default_factory: typing.Any = <dataclasses._MISSING_TYPE object at 0x7fbf33a25480>, init: bool = True, repr: bool = True, hash: bool | None = None, compare: bool = True, metadata: dict | None = None, **kwargs: typing.Any)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/dataclasses.py#L383)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/dataclasses.py#L383)
 
 **Parameters:**
 
@@ -352,13 +352,13 @@ Useful to apply several checks to a field. If only applying one rule, check out 
 
 #### huggingface_hub.errors.StrictDataclassError[[huggingface_hub.errors.StrictDataclassError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/errors.py#L528)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L528)
 
 Base exception for strict dataclasses.
 
 #### huggingface_hub.errors.StrictDataclassDefinitionError[[huggingface_hub.errors.StrictDataclassDefinitionError]]
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/errors.py#L532)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L532)
 
 Exception thrown when a strict dataclass is defined incorrectly.
 
@@ -368,7 +368,7 @@ Exception thrown when a strict dataclass is defined incorrectly.
 huggingface_hub.errors.StrictDataclassFieldValidationError(field: str, cause: Exception)
 ```
 
-[Source](https://github.com/huggingface/huggingface_hub/blob/v1.27.0/src/huggingface_hub/errors.py#L536)
+[Source](https://github.com/huggingface/huggingface_hub/blob/v1.29.0/src/huggingface_hub/errors.py#L536)
 
 Exception thrown when a strict dataclass fails validation for a given field.
 
@@ -380,5 +380,5 @@ Exception thrown when a strict dataclass fails validation for a given field.
 - We don't want to mutate data. In `@strict`, "validation" means "checking if a value is valid." In Pydantic, "validation" means "casting a value, possibly mutating it, and then checking if it's valid."
 - We don't need blazing-fast validation. `@strict` isn't designed for heavy loads where performance is critical. Common use cases involve validating a model configuration (performed once and negligible compared to running a model). This allows us to keep the code minimal.
 
-### TensorBoard logger
-https://huggingface.co/docs/huggingface_hub/v1.27.0/package_reference/tensorboard.md
+### WARNING
+https://huggingface.co/docs/huggingface_hub/v1.29.0/package_reference/cli.md
