@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-27T18:13:37.168236+00:00",
+  "fetchedAt": "2026-08-28T19:23:04.610325+00:00",
   "method": "llms-full-split",
   "ok": 2158,
   "failed": 0,
@@ -6690,7 +6690,7 @@
     },
     {
       "rel": "hub/jobs-configuration.md",
-      "bytes": 18888,
+      "bytes": 19194,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/jobs-configuration.md",
       "track": "Hub",
@@ -7239,7 +7239,7 @@
     },
     {
       "rel": "hub/webhooks.md",
-      "bytes": 10364,
+      "bytes": 12551,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/hub/webhooks.md",
       "track": "Hub",
@@ -8040,7 +8040,7 @@
     },
     {
       "rel": "inference-providers/index.md",
-      "bytes": 72209,
+      "bytes": 72265,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/index.md",
       "track": "Inference Providers",
@@ -8130,7 +8130,7 @@
     },
     {
       "rel": "inference-providers/guides/github-actions-code-review.md",
-      "bytes": 101116,
+      "bytes": 101172,
       "source": "llms-full-split",
       "url": "https://huggingface.co/docs/inference-providers/guides/github-actions-code-review.md",
       "track": "Inference Providers",
@@ -19479,7 +19479,7 @@
       "toc": 270,
       "found": 269,
       "written": 269,
-      "full_bytes": 1443970
+      "full_bytes": 1446463
     },
     {
       "pkg": "huggingface_hub",
@@ -19500,7 +19500,7 @@
       "toc": 66,
       "found": 28,
       "written": 28,
-      "full_bytes": 416846
+      "full_bytes": 416958
     },
     {
       "pkg": "kernels",
