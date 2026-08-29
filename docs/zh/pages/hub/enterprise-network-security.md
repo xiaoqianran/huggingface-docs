@@ -27,6 +27,9 @@ Hub 上的大多数操作都有限制；例如，用户每天只能创建一定�
 
 ## 限制组织仅访问您的 IP 范围此选项将对您组织的资源的访问权限限制为仅来自您定义的 IP 范围的资源。任何人都无法访问您的 IP 范围之外的组织资源。这些规则也适用于访问令牌。启用后，此选项将解锁下面的其他嵌套安全设置。
 
+> [!提示]
+> 对于在公司网络外部运行的自动化工作流程，您可以使个人 [service account token](./enterprise-service-accounts#network-security-exemption) 免受这些限制和内容访问策略的约束。
+
 ### 要求您的 IP 范围内的用户登录
 
 启用此选项后，从公司网络访问 Hugging Face 的任何人都必须登录并属于您的组织（IP 范围更改时需要手动验证）。如果启用，您可以选择定义内容访问策略。
@@ -53,5 +56,5 @@ Hub 上的大多数操作都有限制；例如，用户每天只能创建一定�
 
 **OpenAPI 参考：**
 - GET /api/organizations//settings/网络安全
-- 补丁/api/组织//设置/网络安全### 文件名和分割
+- 补丁 /api/organizations//settings/network-security### 文件名和分割
 https://huggingface.co/docs/hub/datasets-file-names-and-splits.md

@@ -4,7 +4,7 @@
 
 Webhook 是 MLOps 相关功能的基础。它们允许您监听特定存储库或属于特定用户/组织集的所有存储库（不仅仅是您的存储库，而是任何存储库）的新更改。
 
-您可以使用它们自动转换模型、构建社区机器人或为您的模型、数据集和空间（以及更多！）构建 CI/CD。 Webhook 还可以 [trigger Jobs](./jobs-webhooks) 自动执行计算任务以响应存储库事件。
+您可以使用它们自动转换模型、构建社区机器人或为您的模型、数据集、空间和存储桶（以及更多！）构建 CI/CD。 Webhooks 还可以 [trigger Jobs](./jobs-webhooks) 自动执行计算任务以响应存储库事件。
 
 Webhooks 的文档如下 - 或者您也可以浏览我们的**指南**，其中展示了 Webhooks 的一些可能的用例：
 - [Fine-tune a new model whenever a dataset gets updated (Python)](./webhooks-guide-auto-retrain)
@@ -14,7 +14,7 @@ Webhooks 的文档如下 - 或者您也可以浏览我们的**指南**，其中�
 
 ## 创建您的 Webhook
 
-您可以创建新的 Webhooks 并编辑 Webhooks 中的现有 Webhook [settings](https://huggingface.co/settings/webhooks)：
+您可以创建新的 Webhooks 并编辑 Webhooks 中的现有 Webhooks [settings](https://huggingface.co/settings/webhooks)：
 
 ![Settings of an individual webhook](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhook-settings.png)
 
@@ -22,11 +22,11 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 
 ## Webhook 有效负载
 
-注册 Webhook 后，您将通过对指定目标 URL 的 `HTTP POST` 调用收到新事件通知。有效负载以 JSON 形式编码。
+注册 Webhook 后，您将通过对指定目标 URL 的 `HTTP POST` 调用收到新事件通知。有效负载以 JSON 形式编码。您可以在 Webhook 设置页面的活动选项卡中查看发送的有效负载的历史记录，还可以重播过去的 Webhook 以方便调试：
 
-您可以在 Webhook 设置页面的活动选项卡中查看发送的有效负载的历史记录，还可以重播过去的 Webhook 以方便调试：
+![image.png](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhook-activity.png)
 
-![image.png](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhook-activity.png)例如，以下是打开 Pull 请求时的完整负载：
+例如，以下是打开 Pull 请求时的完整负载：
 
 ```json
 {
@@ -92,12 +92,13 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 `event.scope` 将是以下值之一：
 
 - `"repo"` - 回购协议上的全球事件。关联的 `action` 的可能值：`"create"`、`"delete"`、`"update"`、`"move"`。
-- `"repo.content"` - 存储库内容的事件，例如新提交或标签。由于新创建的引用/提交，它也会触发新的拉取请求。关联的 `action` 始终为 `"update"`。
+- `"repo.content"` - 存储库内容的事件，例如新提交或标签。由于新创建的引用/提交，它也会触发新的拉取请求。对于存储桶，它会在添加或删除文件时触发，而不是在 Git 引用上触发。关联的 `action` 始终为 `"update"`。
 - `"repo.config"` - 配置上的事件：更新空间秘密、更新设置、更新 DOI、禁用与否等。关联的 `action` 始终为 `"update"`。
-- `"discussion"` - 创建讨论或拉取请求，更新标题或状态，然后合并。关联的 `action` 的可能值：`"create"`、`"delete"`、`"update"`。
-- `"discussion.comment"` - 创建、更新和隐藏评论。相关 `action` 的可能值：`"create"`、`"update"`。
+- `"discussion"` - 创建讨论或拉取请求，更新标题或状态，然后合并。关联的 `action` 的可能值：`"create"`、`"delete"`、`"update"`。- `"discussion.comment"` - 创建、更新和隐藏评论。关联的 `action` 的可能值：`"create"`、`"update"`。
 
-将来可以添加更多范围。为了处理未知事件，您的 Webhook 处理程序可以将缩小范围内的任何操作视为更广泛范围内的 `"update"` 操作。例如，如果将来添加 `"repo.config.dois"` 范围，则您的 webhook 处理程序可以将具有该范围的任何事件视为 `"repo.config"` 范围上的 `"update"` 操作。
+将来可以添加更多范围。为了处理未知事件，您的 Webhook 处理程序可以将缩小范围内的任何操作视为更广泛范围内的 `"update"` 操作。
+
+例如，如果将来添加 `"repo.config.dois"` 范围，则您的 webhook 处理程序可以将具有该范围的任何事件视为 `"repo.config"` 范围上的 `"update"` 操作。
 
 ### 回购协议
 
@@ -120,7 +121,7 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 }
 ```
 
-`repo.headSha` 是存储库的 `main` 分支上最新提交的 sha。仅当`event.scope`以`"repo"`开头时发送，而不是在讨论和评论等社区活动中发送。
+`repo.headSha` 是存储库的 `main` 分支上最新提交的 sha。它仅在 `event.scope` 以 `"repo"` 开头时发送，不会在讨论和评论等社区活动中发送，也不会在没有 Git 历史记录的存储桶中发送。
 
 ### 代码更改
 
@@ -141,9 +142,57 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 ]
 ```
 
-新创建的引用会将 `oldSha` 设置为 `null`。删除的引用会将 `newSha` 设置为 `null`。
+新创建的引用会将 `oldSha` 设置为 `null`。删除的引用会将 `newSha` 设置为 `null`。您可以对特定拉取请求、新标签或新分支的新提交做出反应。
 
-您可以对特定拉取请求、新标签或新分支的新提交做出反应。
+### 桶
+
+[Buckets](./storage-buckets) 不是 Git 存储库：它们没有提交、分支或标签。生命周期事件（`create`、`delete`、`move`和可见性等配置更新）使用与其他存储库类型相同的`"repo"` / `"repo.config"`范围。
+
+文件更改使用`"repo.content"`，但有效负载具有`updatedFiles`属性而不是`updatedRefs`。覆盖现有文件会报告为 `"add"`。以下是添加一个文件并删除另一个文件后的有效负载示例：
+
+```json
+{
+  "event": {
+    "action": "update",
+    "scope": "repo.content"
+  },
+  "repo": {
+    "type": "bucket",
+    "name": "some-user/some-bucket",
+    "id": "6366c000a2abcdf2fd69a080",
+    "private": false,
+    "url": {
+      "web": "https://huggingface.co/buckets/some-user/some-bucket",
+      "api": "https://huggingface.co/api/buckets/some-user/some-bucket"
+    },
+    "owner": {
+      "id": "61d2000c3c2083e1c08af22d"
+    }
+  },
+  "updatedFiles": [
+    {
+      "path": "data/train.txt",
+      "action": "add",
+      "xetHash": "55faef2f2f80cd1a087c35b729f228960739441d38073cd5aa4320751e137166",
+      "size": 20
+    },
+    {
+      "path": "data/old.txt",
+      "action": "delete"
+    },
+    ...
+  ],
+  "updatedFilesTruncated": true,
+  "webhook": {
+    "id": "6390e855e30d9209411de93b",
+    "version": 3
+  }
+}
+```
+
+超过 10,000 个条目时，列表会被缩短，并且 `updatedFilesTruncated` 设置为 `true`。在这种情况下，请列出存储桶以获取完整情况。
+
+存储桶没有讨论或拉取请求，因此您永远不会收到它们的 `"discussion"` 和 `"discussion.comment"` 事件。
 
 ### 配置更改
 
@@ -159,11 +208,11 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 
 ```json
 "updatedConfig": {}
-```目前仅支持`private`。如果您希望从此处提供的更多配置密钥中受益，请通过 website@huggingface.co 告知我们。
+```
 
-### 讨论和拉取请求
+目前仅支持`private`。如果您希望从此处提供的更多配置密钥中受益，请通过 website@huggingface.co 告知我们。
 
-顶级属性 `discussion` 在社区活动（讨论和 Pull 请求）上指定。 `discussion.isPullRequest` 属性是一个布尔值，指示讨论是否也是 Pull 请求（在 Hub 上，PR 是一种特殊类型的讨论）。这是一个示例值：
+### 讨论和拉取请求顶级属性 `discussion` 在社区活动（讨论和 Pull 请求）上指定。 `discussion.isPullRequest` 属性是一个布尔值，指示讨论是否也是 Pull 请求（在 Hub 上，PR 是一种特殊类型的讨论）。这是一个示例值：
 
 ```json
 "discussion": {
@@ -214,7 +263,13 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 >
 > 如果访问请求的 HTTP 标头对于 Webhook 处理程序来说很复杂，这会很有帮助。
 
-## 速率限制每个 Webhook 每 24 小时最多可触发 1,000 次。您可以在 Webhook 设置页面的“活动”选项卡中查看您的使用情况。
+## 交付和重试
+
+Webhook 有效负载会在集线器上发生事件后不久异步传递。顺序无法保证：如果多个事件同时发生，它们可能会乱序到达。当向 Webhook 的传送持续失败时，Webhook 将自动暂停，并通过电子邮件通知其所有者。您可以对其进行故障排除并从 Webhooks [settings](https://huggingface.co/settings/webhooks) 重新启用它。
+
+## 速率限制
+
+每个 Webhook 每 24 小时最多可触发 1,000 次。您可以在 Webhook 设置页面的“活动”选项卡中查看您的使用情况。
 
 如果您需要增加 Webhook 的触发器数量，请升级到 PRO、Team 或 Enterprise，并通过 website@huggingface.co 联系我们。
 
@@ -224,9 +279,9 @@ Webhooks 可以监视存储库更新、拉取请求、讨论和新评论。甚�
 
 此外，您可以在开发过程中将真实的 Webhook 有效负载路由到计算机上本地运行的代码。这是测试和调试以实现更快集成的好方法。您可以通过将本地主机端口公开到互联网来完成此操作。为了能够走这条路，您可以使用[ngrok](https://ngrok.com/)或[localtunnel](https://theboroer.github.io/localtunnel-www/)。
 
-## 调试 Webhook
+## 调试 Webhook您可以轻松找到最近为您的 webhook 生成的事件。打开 Webhook 的活动选项卡。在那里您将看到最近事件的列表。
 
-您可以轻松找到最近为您的 webhook 生成的事件。打开 Webhook 的活动选项卡。在那里您将看到最近事件的列表。![image.png](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhook-payload.png)
+![image.png](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/webhook-payload.png)
  
 您可以在此处查看 HTTP 状态代码和生成的事件的负载。此外，您可以通过单击 `Replay` 按钮重播这些事件！ 
 

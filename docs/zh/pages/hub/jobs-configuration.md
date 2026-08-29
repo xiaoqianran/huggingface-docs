@@ -55,7 +55,7 @@
 
 ### 内置环境变量
 
-与[built-in environment variables in Spaces](./spaces-overview#built-in-environment-variables)类似，Jobs自动在容器内提供以下环境变量：
+与[built-in environment variables in Spaces](./spaces-overview#built-in-environment-variables)类似，作业会自动在容器内提供以下环境变量：
 
 |变量|描述 |
 |----------|-------------|
@@ -100,7 +100,7 @@
 
 ## 卷
 
-使用 `-v` 或 `--volume` 将 Hugging Face 存储库（模型、数据集）、[Storage Buckets](./storage-buckets) 或本地目录作为卷安装在作业容器中。 Hub 源使用 `hf://` URL 方案：`hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro]`；本地目录直接作为源传递。
+使用 `-v` 或 `--volume` 将 Hugging Face 存储库（模型、数据集）、[Storage Buckets](./storage-buckets) 或本地目录作为卷装载到作业容器中。 Hub 源使用 `hf://` URL 方案：`hf://[TYPE/]SOURCE:/MOUNT_PATH[:ro]`；本地目录直接作为源传递。
 
 > [!提示]
 > 由于装载的文件是延迟获取的，因此装载可以让作业处理远大于其本地磁盘的数据集。有关在作业上安装、流式传输和处理大数据的信息，请参阅[Process Large Datasets](./jobs-large-datasets)。
@@ -140,7 +140,7 @@
 
 ### 本地目录
 
-传递本地目录作为源，在作业启动之前将其同步到您的私有`jobs-artifacts`[Storage Bucket](./storage-buckets)（自动创建），然后将其安装到容器中。本地目录默认挂载为**只读**；使用 `:rw` 写入输出：
+在作业启动之前，传递本地目录作为源，将其同步到您的私有`jobs-artifacts`[Storage Bucket](./storage-buckets)（自动创建），然后将其安装到容器中。本地目录默认挂载为**只读**；使用 `:rw` 写入输出：
 
 ```bash
 >>> hf jobs uv run -v ./pdfs:/input -v ./md-out:/output:rw ocr.py
@@ -315,7 +315,7 @@ ssh 6a2bd1f1871c005b5352ad31@ssh.hf.jobs
 
 ## 超时
 
-作业有一个默认超时（30 分钟），之后它们将自动停止。在运行模型训练等长时间运行的任务时，了解这一点很重要。
+作业有默认超时（30 分钟），之后它们将自动停止。在运行模型训练等长时间运行的任务时，了解这一点很重要。
 
 您可以在运行作业时使用 `--timeout` 参数指定自定义超时值。可以通过两种方式指定超时：
 
@@ -351,7 +351,7 @@ ssh 6a2bd1f1871c005b5352ad31@ssh.hf.jobs
 - `d` - 天
 
 > [!警告]
-> 如果您不指定超时，则默认超时将应用于您的作业。对于模型训练等可能需要数小时的长时间运行的任务，请确保设置适当的超时以避免作业意外终止。
+> 如果您不指定超时，则默认超时将应用于您的作业。对于长时间运行的任务（例如可能需要数小时的模型训练），请确保设置适当的超时以避免作业意外终止。
 
 ## 命名空间使用 `--namespace` 参数在您的组织帐户下运行作业。确保您使用有权在您的组织帐户下启动和管理作业的令牌登录。
 
@@ -370,26 +370,26 @@ ssh 6a2bd1f1871c005b5352ad31@ssh.hf.jobs
 向作业添加一个或多个标签，以添加一些带有`-l`或`--label`的元数据。
 您可以稍后使用此类元数据来过滤网站上或 CLI 中的作业。
 
-添加带有 `--label my-label` 的标签或带有 `--label key=value` 的键值标签。
+添加带有 `--label my-label` 的标签或带有 `--label key=value` 的键值标签。键和值可以包含字母、数字、`-` 和 `_`。
 例如：
 
 ```bash
-hf jobs uv run --label fine-tuning --label model=Qwen3-0.6B --label dataset=Capybara ...
+hf jobs uv run --label fine-tuning --label model=Qwen3-06B --label dataset=Capybara ...
 ```
 
 请注意，多次使用相同的`key`会导致最后一个`key=value`覆盖并丢弃任何先前带有`key`的标签。
 
 ### 命名一个工作
 
-为作业命名，以便更容易在 UI 中查找和识别。该名称存储为 `name` 标签。名称是可选的，并且不必是唯一的。在 UI 中，作业将按名称分组。
+为作业命名，以便更容易在 UI 中查找和识别。该名称存储为 `name` 标签，并且不必是唯一的。在 UI 中，作业将按名称分组。
 
 ```bash
 hf jobs run --name daily-report python:3.12 python report.py
 ```
 
-### 更新标签
+如果您不通过 `--name`，作业将以其 Docker 映像或脚本加上命令的简短哈希值命名，因此同一命令的重新运行共享一个名称，而不同的命令会获得不同的名称（例如，`python-3-12-6b9d662c` 表示在 `python:3.12` 上运行的作业）。
 
-使用 `hf jobs labels` 更新现有作业上的标签。通过`--label`将替换所有现有标签；单独通过 `--name` 可以保留它们：
+### 更新标签使用 `hf jobs labels` 更新现有作业上的标签。通过`--label`将替换所有现有标签；单独通过 `--name` 可以保留它们：
 
 ```bash
 # Replace the labels on a Job

@@ -321,12 +321,12 @@
       "translatedAt": "2026-08-19T07:46:56.734Z"
     },
     "hub/enterprise-service-accounts.md": {
-      "hash": "7ad3d2f364f518bf6e6ef05b9e9ff86d41b39826",
-      "translatedAt": "2026-08-14T08:24:09.281Z"
+      "hash": "5b3be08873ab8be5c5063fd01a153340f9e74968",
+      "translatedAt": "2026-08-29T13:08:07.432Z"
     },
     "hub/enterprise-network-security.md": {
-      "hash": "2f4e96e01515bb35f55aa441856781563832172e",
-      "translatedAt": "2026-08-27T18:13:43.552Z"
+      "hash": "69a14800c7d2555bf35276e28f3869680c29bb0d",
+      "translatedAt": "2026-08-29T13:08:08.566Z"
     },
     "hub/enterprise-gating-group-collections.md": {
       "hash": "79a659709095e7eb95130c57ae9ad4ba16c145be",
@@ -393,8 +393,8 @@
       "translatedAt": "2026-08-14T08:24:20.458Z"
     },
     "hub/jobs-configuration.md": {
-      "hash": "8e2acd5bb6379d32a20f531cfef09f502f26d173",
-      "translatedAt": "2026-08-14T08:24:20.043Z"
+      "hash": "843715ae129e54777c082b692c95cec01d2ea3d7",
+      "translatedAt": "2026-08-29T13:08:10.395Z"
     },
     "hub/jobs-overview.md": {
       "hash": "7dcbb1065730d9c1ddae2f530033e938d988d5ac",
@@ -1065,8 +1065,8 @@
       "translatedAt": "2026-08-14T08:26:27.052Z"
     },
     "hub/webhooks.md": {
-      "hash": "94b2e50b979819935fb9ba6b6a2616c16baa3825",
-      "translatedAt": "2026-08-14T08:26:27.950Z"
+      "hash": "9b781ccfc57687529decebbb49ea4c07a84d838b",
+      "translatedAt": "2026-08-29T13:08:11.301Z"
     },
     "hub/webhooks-guide-metadata-review.md": {
       "hash": "7f63463dca93e25f2f91b2b637f33eca36230e65",
@@ -2001,11 +2001,11 @@
       "translatedAt": "2026-08-11T13:59:27.535Z"
     }
   },
-  "updatedAt": "2026-08-28T19:23:10.808Z",
+  "updatedAt": "2026-08-29T13:08:11.301Z",
   "stats": {
-    "translated": 0,
-    "skipped": 398,
-    "failed": 2,
+    "translated": 4,
+    "skipped": 396,
+    "failed": 0,
     "total": 400
   }
 }
