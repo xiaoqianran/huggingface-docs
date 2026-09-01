@@ -7,10 +7,10 @@
 #### kernels.get_kernel[[kernels.get_kernel]]
 
 ```python
-kernels.get_kernel(repo_id: str, revision: str | None = None, version: int | None = None, backend: str | None = None, user_agent: str | dict | None = None, trust_remote_code: bool | list[str] = False)
+kernels.get_kernel(repo_id: str, revision: str | None = None, version: int | None = None, backend: str | None = None, user_agent: str | dict | None = None, trust_remote_code: bool | list[str] = False, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L87)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L90)
 
 **Parameters:**
 
@@ -25,6 +25,8 @@ backend (*str*, *optional*) : The backend to load the kernel for. Can only be *c
 user_agent (*Union[str, dict]*, *optional*) : The *user_agent* info to pass to *snapshot_download()* for internal telemetry.
 
 trust_remote_code (*bool | list[str]*, *optional*, defaults to *False*) : Whether to allow loading kernels from untrusted organisations. When `False`, only kernels from trusted organisations are allowed. When `True`, all repositories are allowed. A list of strings will be used to verify signing identities in a future release; for now it emits a warning and falls back to the default trust check.
+
+check_arch (*bool*, *optional*, defaults to *True*) : Whether to check that the kernel build supports the architecture (e.g. CUDA compute capability) of the current device. Kernels can support more architectures than they declare (e.g. through a Triton fallback), *check_arch=False* skips the check for such kernels.
 
 **Returns:** `*ModuleType*`
 
@@ -54,7 +56,7 @@ result = activation.relu(out, x)
 kernels.get_local_kernel(repo_path: Path, backend: str | None = None, trust_remote_code: bool | list[str] = False, user_agent: str | dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L157)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L172)
 
 **Parameters:**
 
@@ -79,10 +81,10 @@ If the kernel has any (transitive) dependencies, they will be downloaded.
 #### kernels.has_kernel[[kernels.has_kernel]]
 
 ```python
-kernels.has_kernel(repo_id: str, revision: str | None = None, version: int | None = None, backend: str | None = None, trust_remote_code: bool | list[str] = False)
+kernels.has_kernel(repo_id: str, revision: str | None = None, version: int | None = None, backend: str | None = None, trust_remote_code: bool | list[str] = False, check_arch: bool = True)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L210)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L226)
 
 **Parameters:**
 
@@ -95,6 +97,8 @@ version (*int*, *optional*) : The kernel version to download. Cannot be used tog
 backend (*str*, *optional*) : The backend to load the kernel for. Can only be *cpu* or the backend that Torch is compiled for. The backend will be detected automatically if not provided.
 
 trust_remote_code (*bool | list[str]*, *optional*, defaults to *False*) : Whether to allow loading kernels from untrusted organisations. When `False`, only kernels from trusted organisations are allowed. When `True`, all repositories are allowed. A list of strings will be used to verify signing identities in a future release; for now it emits a warning and falls back to the default trust check.
+
+check_arch (*bool*, *optional*, defaults to *True*) : Whether to check that the kernel build supports the architecture (e.g. CUDA compute capability) of the current device. Kernels can support more architectures than they declare (e.g. through a Triton fallback), *check_arch=False* skips the check for such kernels.
 
 **Returns:** `*bool*`
 
@@ -185,7 +189,7 @@ for loaded in get_loaded_kernels():
 kernels.load_kernel(repo_id: str, lockfile: pathlib.Path | None, backend: str | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L270)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L299)
 
 **Parameters:**
 
@@ -214,7 +218,7 @@ If `lockfile` is not specified, the lockfile will be loaded from the caller's pa
 kernels.get_locked_kernel(repo_id: str, lockfile: pathlib.Path | None, trust_remote_code: bool | list[str] = False, user_agent: str | dict | None = None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L313)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/load.py#L343)
 
 **Parameters:**
 
