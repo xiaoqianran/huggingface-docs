@@ -159,7 +159,7 @@ for decision in get_kernel_variants("kernels-community/activation", version=1):
 kernels.get_loaded_kernels()
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/importer.py#L45)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/importer.py#L48)
 
 **Returns:** `list[LoadedKernel]`
 
@@ -244,7 +244,7 @@ Get a kernel using a lock file.
 kernels.LoadedKernel(metadata: Metadata, module: module, repo_info: kernels.hf_hub.RepoInfo | None)
 ```
 
-[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/importer.py#L14)
+[Source](https://github.com/huggingface/kernels/blob/main/kernels/src/kernels/importer.py#L15)
 
 This dataclass provides information about a loaded kernel:
 
@@ -260,6 +260,8 @@ The metadata includes the following properties that describe a kernel:
 - `id` (`str`): kernel identifier that is unique to the kernel version + backend.
 - `name` (`str`): the name of the kernel.
 - `version` (`int`): the version of the kernel.
+- `kernels_minver` (`Version | None`): the minimum `kernels` library
+  version required to load the kernel.
 - `license` (`str`): the license of the kernel.
 - `upstream` (`str | None`): the original upstream repository of the kernel.
 - `source` (`str | None`): the kernel-builder formatted source repository.
